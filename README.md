@@ -1,5 +1,3 @@
 - Hi, I’m @eymensancar
 - I'm a young developer with a strong interest in cybersecurity, especially focused on improving myself in Red Team operations.  
-- I have a solid grasp of Python and I'm planning to move on to learning C# to build more advanced tools.  
-- I use Ubuntu in my daily workflow and I'm getting more comfortable with the Linux environment.  
-- I'm also diving into network security, using tools like Wireshark to analyze traffic and understand packet behavior
+- I have a solid grasp of Python and I'm planning to move on to learning C# to build more advanced tools.
