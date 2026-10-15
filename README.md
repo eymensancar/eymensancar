@@ -1,3 +1,5 @@
-- Hi, I’m @eymensancar
-- I'm a young developer with a strong interest in cybersecurity, especially focused on improving myself in Red Team operations.  
-- I have a solid grasp of Python and I'm planning to move on to learning C# to build more advanced tools.
+Muhammed Eymen Sancar
+Çapa Fen Lisesi | Science High School
+AI Kulübü Yöneticisi | AI Club Lead
+Yapay Zekâ & Siber Güvenlik | AI & Cybersecurity
+BTK Akademi | Cybersecurity Training
