@@ -1,22 +1,15 @@
-## Merhaba, ben Eymen 👋
+# Muhammed Eymen Sancar
 
-Çapa Fen Lisesi öğrencisiyim. Okulumuzun **Yapay Zekâ Kulübü**'nü yönetiyorum ve **BTK Akademi**'nin siber güvenlik eğitimini tamamladım. İlgi alanım savunma tarafı: sistemlerin nasıl korunduğunu anlamak ve bunu herkesin kullanabileceği araçlara dönüştürmek.
+**Çapa Fen Lisesi** | Science High School
+**AI Kulübü Yöneticisi** | AI Club Lead
+**Yapay Zekâ & Siber Güvenlik** | AI & Cybersecurity
+**BTK Akademi** | Siber Güvenlik Eğitimi (Tamamlandı) · Cybersecurity Training (Completed)
 
-*Science high school student · AI Club Lead · completed BTK Akademi Cybersecurity Training · focused on blue team.*
+---
 
-### 🛡️ Öne çıkan proje
+### İlgi Alanları · Areas of Interest
 
-**[Windows Güvenlik Karnesi](https://github.com/eymensancar/windows-guvenlik-karnesi)**
-Windows bilgisayarlarda 41 güvenlik kontrolü yapıp okul karnesi gibi not veren, salt-okunur bir PowerShell aracı. Antivirüs ve güncellemelerden SMBv1, RDP, açık portlar, LLMNR ve zararlıların kalıcılık yöntemlerine (başlangıç kayıtları, zamanlanmış görevler, WMI abonelikleri) kadar inceler; her bulguyu nedeni ve çözümüyle çevrimdışı bir HTML raporda sunar.
-
-`PowerShell` · `Windows güvenliği` · `Sağlamlaştırma` · `Kalıcılık tespiti`
-
-### 🔭 Odak alanlarım
-
-- 🔐 Siber güvenlik: Windows sağlamlaştırma, tehdit tespiti, blue team
-- 🤖 Yapay zekâ ve güvenliğe uygulanması
-- 🎮 Boş zamanlarımda tarayıcıda çalışan oyunlar ve küçük web araçları
-
-### 📫 İletişim
-
-Projeler hakkında soru, öneri veya iş birliği için GitHub üzerinden issue açabilirsiniz.
+- Siber güvenlik: sistem sağlamlaştırma, tehdit tespiti, savunma (blue team)
+  *Cybersecurity: system hardening, threat detection, blue team*
+- Yapay zekâ ve güvenlik alanındaki uygulamaları
+  *Artificial intelligence and its applications in security*
