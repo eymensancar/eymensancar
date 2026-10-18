@@ -1,0 +1,34 @@
+:root{--bg:#fffaf0;--card:#fff;--ink:#1f1a14;--soft:#6b6155;--line:#eadfcb;--sun:#f5b700;--sun-ink:#3a2a00;--link:#b45a00}
+@media (prefers-color-scheme:dark){:root{--bg:#17140f;--card:#211d17;--ink:#f4ede1;--soft:#b5aa99;--line:#3a3328;--sun:#f5b700;--sun-ink:#2a1f00;--link:#ffc24a}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+a{color:var(--link)}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.brand b{color:var(--sun)}
+nav{display:flex;align-items:center;gap:14px;font-size:15px}
+nav a{color:var(--soft);text-decoration:none}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:none;color:var(--soft);font:600 13px/1 inherit;padding:6px 10px;cursor:pointer}
+html[data-l=tr] .lang [data-set=tr],html[data-l=en] .lang [data-set=en]{background:var(--sun);color:var(--sun-ink)}
+html[data-l=tr] [lang=en],html[data-l=en] [lang=tr]{display:none}
+main.wrap{padding-top:24px;padding-bottom:48px}
+h1{font-size:30px;line-height:1.2;margin:0 0 6px}
+h2{font-size:20px;margin:28px 0 6px}
+.muted{color:var(--soft)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin:14px 0}
+.card img{width:72px;height:72px;border-radius:16px;flex:none}
+.card .ph{width:72px;height:72px;border-radius:16px;flex:none;background:var(--line);display:grid;place-items:center;font-size:30px}
+.card h3{margin:0;font-size:19px}
+.card p{margin:2px 0 6px}
+.links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:15px}
+.mail{display:inline-block;background:var(--sun);color:var(--sun-ink);font-weight:700;text-decoration:none;padding:10px 16px;border-radius:12px;margin:6px 0;word-break:break-all}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:600}
+footer{border-top:1px solid var(--line);font-size:14px;color:var(--soft)}
+footer .wrap{padding-top:16px;padding-bottom:24px}
+@media (max-width:480px){nav .hide-sm{display:none}h1{font-size:26px}}
