@@ -1,0 +1,155 @@
+{
+ "langName": "Español",
+ "gameName": "Rey del Derribo",
+ "meta": {
+  "title": "Rey del Derribo – juego de demolición de edificios para iPhone",
+  "desc": "Estudia el edificio, elige la máquina adecuada, corta las columnas y échalo todo abajo. Un juego de demolición gratis para iPhone."
+ },
+ "nav": {
+  "game": "Juego",
+  "support": "Soporte",
+  "privacy": "Privacidad",
+  "language": "Idioma"
+ },
+ "hero": {
+  "eyebrow": "Gratis para iPhone",
+  "tagline": "¡Vuela, corta y derriba!",
+  "lead": "Cada nivel es un edificio de verdad que se desploma como en la vida real. Estudia la estructura, elige la máquina adecuada, corta las columnas de carga y míralo caer.",
+  "badge": "Muy pronto en el App Store",
+  "cta": "Ver el juego",
+  "shots": "Capturas de pantalla"
+ },
+ "facts": [
+  "Gratis",
+  "Se juega sin conexión",
+  "Guardado en iCloud",
+  "20 idiomas"
+ ],
+ "features": {
+  "title": "Mucho más que romper",
+  "items": [
+   {
+    "t": "7 máquinas, cada una con su especialidad",
+    "p": "El mazo no puede con el hormigón y la bola de demolición rebota en el acero. Elige la máquina adecuada para cada material."
+   },
+   {
+    "t": "Derrumbes realistas",
+    "p": "Las plantas que se quedan sin apoyo caen por su propio peso. Corta un lado y el edificio se vendrá abajo hacia ese lado."
+   },
+   {
+    "t": "Dinamita, C4 y reacciones en cadena",
+    "p": "Coloca los explosivos en la columna correcta, haz estallar los tanques de gas y mantén el combo para ganar más oro."
+   },
+   {
+    "t": "Obras gigantes y edificios jefe",
+    "p": "Fábricas, torres gemelas, complejos de oficinas y centros comerciales. Cada 5 niveles te espera un edificio jefe reforzado."
+   },
+   {
+    "t": "Tesoros bajo los escombros",
+    "p": "Entre los escombros pueden aparecer objetos valiosos. Sácalos con el pincel de excavación y completa las colecciones del museo."
+   },
+   {
+    "t": "Demolición diaria",
+    "p": "El mismo edificio para todos, cada día, y un solo intento. Mantén tu racha y comparte tu resultado."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Ponte el casco",
+  "p": "Rey del Derribo llegará muy pronto al App Store. ¿Tienes preguntas o ideas? Leemos todos los mensajes.",
+  "btn": "Contáctanos"
+ },
+ "support": {
+  "title": "Soporte",
+  "lead": "¿Has encontrado un error o tienes una idea? Escríbenos; solemos responder en un plazo de 2 días hábiles. Indícanos el modelo de tu iPhone y tu versión de iOS.",
+  "faqTitle": "Preguntas frecuentes",
+  "faq": [
+   {
+    "q": "Tengo un teléfono nuevo. ¿Dónde está mi progreso?",
+    "a": "Tu progreso se guarda en tu iCloud. Inicia sesión con el mismo Apple ID en el nuevo iPhone y comprueba que iCloud esté activado (Ajustes → tu nombre → iCloud). Abre el juego y seguirás justo donde lo dejaste."
+   },
+   {
+    "q": "Mi compra o «Sin anuncios» ha desaparecido.",
+    "a": "Toca «Restaurar compras» al final de Tienda → Packs. Las compras están vinculadas a tu Apple ID. Los packs de oro se consumen, así que no se pueden restaurar; si algo ha salido mal, escríbenos."
+   },
+   {
+    "q": "No hay sonido.",
+    "a": "Para que puedas seguir escuchando tu propia música, el juego respeta el modo silencio. Desactiva el modo silencio, sube el volumen y comprueba que el sonido esté activado en los ajustes del juego."
+   },
+   {
+    "q": "¿Cómo inicio sesión en Game Center?",
+    "a": "Inicia sesión en Ajustes → Game Center y vuelve a abrir el juego."
+   },
+   {
+    "q": "Quiero que se borren mis datos.",
+    "a": "No recopilamos ni almacenamos ningún dato tuyo. Tu progreso solo está en tu dispositivo y en tu propia cuenta de iCloud; al borrar el juego se elimina la copia del dispositivo, y la pequeña copia de seguridad de iCloud permanece en tu cuenta de Apple, que solo controlas tú. Consulta la política de privacidad para más detalles."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Política de privacidad",
+  "updated": "Última actualización: 18 de octubre de 2026",
+  "intro": "Esta política explica qué información se guarda y dónde mientras juegas a Rey del Derribo (la «App»).",
+  "sections": [
+   {
+    "h": "Datos que recopilamos",
+    "p": [
+     "Ninguno. La App no te pide que crees una cuenta; tu nombre, tu correo electrónico y cualquier otro dato personal nunca se nos envían, y no utilizamos servidores propios."
+    ]
+   },
+   {
+    "h": "Qué se guarda en tu dispositivo y en tu iCloud",
+    "p": [
+     "Tu progreso en el juego (niveles, oro, máquinas, cosméticos y ajustes de sonido y vibración) se guarda en tu dispositivo. Para que puedas continuar en un teléfono nuevo, se conserva una copia en iCloud de Apple, en el espacio que pertenece a tu propio Apple ID. Nosotros no podemos ver esa copia. Puedes desactivar iCloud en los Ajustes del iPhone."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "Es posible que la App te pida iniciar sesión en Apple Game Center. El inicio de sesión lo gestiona por completo Apple; los datos de tu cuenta de Game Center no se comparten con nosotros."
+    ]
+   },
+   {
+    "h": "Publicidad",
+    "p": [
+     "La App puede mostrar anuncios servidos por Google AdMob. Los anuncios con recompensa (los que ves, por ejemplo, para conseguir tiempo u oro extra) son siempre opcionales. Para servir anuncios, prevenir el fraude y medir el rendimiento publicitario, Google puede recopilar de tu dispositivo: dirección IP, ubicación aproximada, modelo del dispositivo y sistema operativo, interacciones con los anuncios y, solo si lo permites, el identificador publicitario de Apple (IDFA). La App solicita este permiso mediante el aviso de Transparencia de Seguimiento de Apps (App Tracking Transparency) de Apple. Si lo rechazas, seguirás viendo anuncios, pero no estarán personalizados. Puedes cambiarlo en cualquier momento en Ajustes → Privacidad y seguridad → Rastreo. Cómo usa Google estos datos: {google}.",
+     "Si compras «Sin anuncios» o un pack que lo incluya, dejarán de mostrarse los anuncios intersticiales."
+    ]
+   },
+   {
+    "h": "Compras dentro de la app",
+    "p": [
+     "Apple procesa todas las compras a través del App Store. Nunca vemos tus datos de pago; la App solo sabe qué has comprado para poder desbloquearlo."
+    ]
+   },
+   {
+    "h": "Menores",
+    "p": [
+     "No recopilamos datos personales de nadie, incluidos los menores. Si eres padre, madre o tutor y crees que hay algún problema relacionado con tu hijo o hija, ponte en contacto con nosotros."
+    ]
+   },
+   {
+    "h": "Tus derechos",
+    "p": [
+     "No guardamos ningún dato sobre ti, así que no hay nada que podamos borrar o corregir. Para solicitudes sobre datos publicitarios en virtud del RGPD o de leyes similares, puedes dirigirte a Google, y también puedes enviarnos tus preguntas a nosotros."
+    ]
+   },
+   {
+    "h": "Cambios",
+    "p": [
+     "Si actualizamos esta política, cambiaremos la fecha que aparece en esta página."
+    ]
+   },
+   {
+    "h": "Contacto",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Todos los derechos reservados.",
+  "made": "Hecho en Turquía"
+ }
+}

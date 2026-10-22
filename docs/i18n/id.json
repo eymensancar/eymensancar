@@ -1,0 +1,155 @@
+{
+ "langName": "Bahasa Indonesia",
+ "gameName": "Jagoan Bongkar",
+ "meta": {
+  "title": "Jagoan Bongkar – game merobohkan gedung untuk iPhone",
+  "desc": "Pelajari gedungnya, pilih alat yang tepat, potong tiang-tiangnya, lalu robohkan semuanya. Game pembongkaran gratis untuk iPhone."
+ },
+ "nav": {
+  "game": "Game",
+  "support": "Dukungan",
+  "privacy": "Privasi",
+  "language": "Bahasa"
+ },
+ "hero": {
+  "eyebrow": "Gratis untuk iPhone",
+  "tagline": "Ledakkan, potong, robohkan!",
+  "lead": "Setiap level adalah gedung sungguhan yang runtuh layaknya aslinya. Pelajari strukturnya, pilih alat yang tepat, potong tiang penyangganya, lalu saksikan gedung itu ambruk.",
+  "badge": "Segera hadir di App Store",
+  "cta": "Lihat game-nya",
+  "shots": "Tangkapan layar"
+ },
+ "facts": [
+  "Gratis dimainkan",
+  "Bisa dimainkan offline",
+  "Simpan di iCloud",
+  "20 bahasa"
+ ],
+ "features": {
+  "title": "Bukan sekadar menghancurkan",
+  "items": [
+   {
+    "t": "7 alat berat, masing-masing punya keahlian",
+    "p": "Palu godam tak mempan pada beton, dan bola penghancur memantul dari baja. Pilih alat yang tepat untuk setiap material."
+   },
+   {
+    "t": "Keruntuhan struktur yang realistis",
+    "p": "Lantai yang tak lagi punya penopang akan runtuh oleh bobotnya sendiri. Potong satu sisi, dan gedung akan roboh ke arah itu."
+   },
+   {
+    "t": "Dinamit, C4, dan reaksi berantai",
+    "p": "Pasang bahan peledak di tiang yang tepat, ledakkan tabung gas, dan pertahankan kombo untuk mendapat lebih banyak emas."
+   },
+   {
+    "t": "Lokasi raksasa dan gedung bos",
+    "p": "Pabrik, menara kembar, kompleks perkantoran, dan mal. Setiap level ke-5 adalah gedung bos yang diperkuat."
+   },
+   {
+    "t": "Harta karun di balik puing",
+    "p": "Artefak berharga bisa muncul di antara reruntuhan. Angkat dengan Kuas Penggalian dan lengkapi koleksi museum."
+   },
+   {
+    "t": "Pembongkaran Harian",
+    "p": "Gedung yang sama untuk semua orang setiap hari, dan hanya satu kesempatan. Pertahankan streak Anda dan bagikan hasilnya."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Kenakan helm proyek Anda",
+  "p": "Jagoan Bongkar segera hadir di App Store. Punya pertanyaan atau ide? Kami membaca setiap pesan.",
+  "btn": "Hubungi kami"
+ },
+ "support": {
+  "title": "Dukungan",
+  "lead": "Menemukan bug atau punya ide? Kirimi kami pesan; biasanya kami membalas dalam 2 hari kerja. Mohon sebutkan model iPhone dan versi iOS Anda.",
+  "faqTitle": "Pertanyaan umum",
+  "faq": [
+   {
+    "q": "Saya ganti ponsel baru. Di mana progres saya?",
+    "a": "Progres Anda dicadangkan ke iCloud Anda. Masuk dengan ID Apple yang sama di iPhone baru dan pastikan iCloud aktif (Pengaturan → nama Anda → iCloud). Buka game, dan Anda bisa melanjutkan dari posisi terakhir."
+   },
+   {
+    "q": "Pembelian atau “Tanpa Iklan” saya hilang.",
+    "a": "Ketuk “Pulihkan pembelian” di bagian bawah Toko → Paket. Pembelian terhubung dengan ID Apple Anda. Paket emas bersifat habis pakai sehingga tidak dapat dipulihkan; jika ada masalah, hubungi kami."
+   },
+   {
+    "q": "Tidak ada suara.",
+    "a": "Agar Anda tetap bisa memutar musik sendiri, game ini mengikuti sakelar senyap. Matikan mode senyap dan naikkan volume, lalu pastikan suara aktif di pengaturan dalam game."
+   },
+   {
+    "q": "Bagaimana cara masuk ke Game Center?",
+    "a": "Masuk melalui Pengaturan → Game Center, lalu mulai ulang game."
+   },
+   {
+    "q": "Saya ingin data saya dihapus.",
+    "a": "Kami tidak mengumpulkan atau menyimpan data apa pun tentang Anda. Progres Anda hanya tersimpan di perangkat Anda dan di akun iCloud Anda sendiri; menghapus game akan menghapus salinan di perangkat, sementara cadangan kecil di iCloud tetap ada di akun Apple Anda, yang hanya Anda kendalikan. Lihat kebijakan privasi untuk detailnya."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Kebijakan Privasi",
+  "updated": "Terakhir diperbarui: 18 Oktober 2026",
+  "intro": "Kebijakan ini menjelaskan informasi apa yang disimpan dan di mana selama Anda memainkan Jagoan Bongkar (“Aplikasi”).",
+  "sections": [
+   {
+    "h": "Data yang kami kumpulkan",
+    "p": [
+     "Tidak ada. Aplikasi tidak meminta Anda membuat akun; nama, email, atau informasi pribadi Anda lainnya tidak pernah dikirim kepada kami, dan kami tidak menjalankan server apa pun."
+    ]
+   },
+   {
+    "h": "Yang disimpan di perangkat dan iCloud Anda",
+    "p": [
+     "Progres game Anda (level, emas, alat berat, kosmetik, pengaturan suara dan getaran) disimpan di perangkat Anda. Agar Anda bisa melanjutkan di ponsel baru, salinannya disimpan di iCloud milik Apple, di ruang penyimpanan yang menjadi milik ID Apple Anda sendiri. Kami tidak dapat melihat salinan ini. Anda dapat menonaktifkan iCloud di Pengaturan iPhone."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "Aplikasi mungkin meminta Anda masuk ke Apple Game Center. Proses masuk sepenuhnya ditangani oleh Apple; detail akun Game Center Anda tidak dibagikan kepada kami."
+    ]
+   },
+   {
+    "h": "Iklan",
+    "p": [
+     "Aplikasi dapat menampilkan iklan yang disajikan oleh Google AdMob. Iklan berhadiah (yang ditonton, misalnya, untuk mendapatkan waktu atau emas tambahan) selalu bersifat opsional. Untuk menayangkan iklan, mencegah penipuan, dan mengukur kinerja iklan, Google dapat mengumpulkan dari perangkat Anda: alamat IP, perkiraan lokasi, model perangkat dan sistem operasi, interaksi dengan iklan, serta—hanya jika Anda mengizinkannya—pengenal iklan Apple (IDFA). Aplikasi meminta izin ini melalui permintaan App Tracking Transparency dari Apple. Jika Anda menolak, iklan tetap ditampilkan, tetapi tidak dipersonalisasi. Anda dapat mengubahnya kapan saja di Pengaturan → Privasi & Keamanan → Pelacakan. Cara Google menggunakan data ini: {google}.",
+     "Jika Anda membeli “Tanpa Iklan” atau paket yang mencakupnya, iklan interstisial tidak akan ditampilkan lagi."
+    ]
+   },
+   {
+    "h": "Pembelian dalam aplikasi",
+    "p": [
+     "Pembelian sepenuhnya diproses oleh Apple melalui App Store. Kami tidak pernah melihat detail pembayaran Anda; Aplikasi hanya mengetahui apa yang Anda beli agar dapat membukanya."
+    ]
+   },
+   {
+    "h": "Anak-anak",
+    "p": [
+     "Kami tidak mengumpulkan data pribadi dari siapa pun, termasuk anak-anak. Jika Anda orang tua dan merasa ada masalah terkait anak Anda, silakan hubungi kami."
+    ]
+   },
+   {
+    "h": "Hak Anda",
+    "p": [
+     "Kami tidak menyimpan data apa pun tentang Anda, jadi tidak ada yang perlu kami hapus atau perbaiki. Untuk permintaan terkait data iklan berdasarkan GDPR atau undang-undang serupa, Anda dapat menghubungi Google, dan Anda juga dipersilakan mengirimkan pertanyaan kepada kami."
+    ]
+   },
+   {
+    "h": "Perubahan",
+    "p": [
+     "Jika kami memperbarui kebijakan ini, kami akan mengubah tanggal di halaman ini."
+    ]
+   },
+   {
+    "h": "Kontak",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Hak cipta dilindungi undang-undang.",
+  "made": "Dibuat di Turki"
+ }
+}

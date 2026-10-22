@@ -1,0 +1,155 @@
+{
+ "langName": "Italiano",
+ "gameName": "Il Demolitore",
+ "meta": {
+  "title": "Il Demolitore – gioco di demolizione di edifici per iPhone",
+  "desc": "Studia l’edificio, scegli il mezzo giusto, taglia i pilastri e butta giù tutto. Un gioco di demolizione gratuito per iPhone."
+ },
+ "nav": {
+  "game": "Gioco",
+  "support": "Assistenza",
+  "privacy": "Privacy",
+  "language": "Lingua"
+ },
+ "hero": {
+  "eyebrow": "Gratis per iPhone",
+  "tagline": "Fai saltare, taglia e butta giù!",
+  "lead": "Ogni livello è un vero edificio che crolla proprio come nella realtà. Studia la struttura, scegli il mezzo giusto, taglia i pilastri portanti e guardalo venire giù.",
+  "badge": "Presto su App Store",
+  "cta": "Scopri il gioco",
+  "shots": "Screenshot"
+ },
+ "facts": [
+  "Gratis",
+  "Si gioca offline",
+  "Salvataggio su iCloud",
+  "20 lingue"
+ ],
+ "features": {
+  "title": "Molto più che spaccare tutto",
+  "items": [
+   {
+    "t": "7 mezzi, ognuno con la sua specialità",
+    "p": "La mazza non scalfisce il cemento e la palla demolitrice rimbalza sull’acciaio. Scegli il mezzo giusto per ogni materiale."
+   },
+   {
+    "t": "Crolli realistici",
+    "p": "I piani che restano senza sostegno cedono sotto il proprio peso. Taglia un lato e l’edificio si inclinerà da quella parte."
+   },
+   {
+    "t": "Dinamite, C4 e reazioni a catena",
+    "p": "Piazza gli esplosivi sul pilastro giusto, fai saltare le bombole del gas e tieni viva la combo per guadagnare più oro."
+   },
+   {
+    "t": "Cantieri giganti ed edifici boss",
+    "p": "Fabbriche, torri gemelle, complessi di uffici e centri commerciali. Ogni 5 livelli ti aspetta un edificio boss rinforzato."
+   },
+   {
+    "t": "Tesori sotto le macerie",
+    "p": "Tra i detriti possono spuntare reperti preziosi. Estraili con il pennello da scavo e completa le collezioni del museo."
+   },
+   {
+    "t": "Demolizione del giorno",
+    "p": "Lo stesso edificio per tutti, ogni giorno, e un solo tentativo. Mantieni viva la tua serie e condividi il risultato."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Metti il casco",
+  "p": "Il Demolitore arriverà presto su App Store. Domande o idee? Leggiamo ogni messaggio.",
+  "btn": "Contattaci"
+ },
+ "support": {
+  "title": "Assistenza",
+  "lead": "Hai trovato un bug o hai un’idea? Scrivici: di solito rispondiamo entro 2 giorni lavorativi. Indica il modello del tuo iPhone e la versione di iOS.",
+  "faqTitle": "Domande frequenti",
+  "faq": [
+   {
+    "q": "Ho un telefono nuovo. Dove sono i miei progressi?",
+    "a": "I tuoi progressi vengono salvati sul tuo iCloud. Accedi con lo stesso ID Apple sul nuovo iPhone e assicurati che iCloud sia attivo (Impostazioni → il tuo nome → iCloud). Apri il gioco e riprendi da dove avevi lasciato."
+   },
+   {
+    "q": "Il mio acquisto o «Senza pubblicità» è sparito.",
+    "a": "Tocca «Ripristina acquisti» in fondo a Negozio → Pacchetti. Gli acquisti sono legati al tuo ID Apple. I pacchetti d’oro vengono consumati e quindi non si possono ripristinare; se qualcosa è andato storto, scrivici."
+   },
+   {
+    "q": "Non c’è audio.",
+    "a": "Per lasciarti ascoltare la tua musica, il gioco rispetta la modalità silenziosa. Disattiva la modalità silenziosa, alza il volume e controlla che l’audio sia attivo nelle impostazioni del gioco."
+   },
+   {
+    "q": "Come accedo a Game Center?",
+    "a": "Accedi da Impostazioni → Game Center, poi riavvia il gioco."
+   },
+   {
+    "q": "Voglio che i miei dati vengano cancellati.",
+    "a": "Non raccogliamo né conserviamo alcun tuo dato. I tuoi progressi si trovano solo sul tuo dispositivo e nel tuo account iCloud; eliminando il gioco viene rimossa la copia sul dispositivo, mentre il piccolo backup su iCloud resta nel tuo account Apple, che controlli solo tu. Per i dettagli consulta l’informativa sulla privacy."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Informativa sulla privacy",
+  "updated": "Ultimo aggiornamento: 18 ottobre 2026",
+  "intro": "Questa informativa spiega quali informazioni vengono conservate, e dove, mentre giochi a Il Demolitore (l’“App”).",
+  "sections": [
+   {
+    "h": "Dati che raccogliamo",
+    "p": [
+     "Nessuno. L’App non ti chiede di creare un account; il tuo nome, la tua e-mail o qualsiasi altra informazione personale non ci vengono mai inviati, e non gestiamo alcun server."
+    ]
+   },
+   {
+    "h": "Cosa viene salvato sul tuo dispositivo e su iCloud",
+    "p": [
+     "I tuoi progressi di gioco (livelli, oro, mezzi, elementi estetici, impostazioni di audio e vibrazione) vengono salvati sul tuo dispositivo. Per permetterti di continuare su un nuovo telefono, una copia viene conservata su iCloud di Apple, nello spazio associato al tuo ID Apple. Noi non possiamo vedere questa copia. Puoi disattivare iCloud nelle Impostazioni dell’iPhone."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "L’App può chiederti di accedere ad Apple Game Center. L’accesso è gestito interamente da Apple; i dati del tuo account Game Center non vengono condivisi con noi."
+    ]
+   },
+   {
+    "h": "Pubblicità",
+    "p": [
+     "L’App può mostrare annunci forniti da Google AdMob. Gli annunci con premio (che guardi, per esempio, per ottenere tempo o oro extra) sono sempre facoltativi. Per mostrare gli annunci, prevenire le frodi e misurarne il rendimento, Google può raccogliere dal tuo dispositivo: indirizzo IP, posizione approssimativa, modello del dispositivo e sistema operativo, interazioni con gli annunci e, solo se lo consenti, l’identificatore pubblicitario di Apple (IDFA). L’App chiede questo permesso tramite la richiesta di App Tracking Transparency di Apple. Se rifiuti, continuerai a vedere annunci, ma non saranno personalizzati. Puoi cambiare idea in qualsiasi momento in Impostazioni → Privacy e sicurezza → Tracciamento. Come Google utilizza questi dati: {google}.",
+     "Se acquisti «Senza pubblicità» o un pacchetto che la include, gli annunci interstitial non vengono più mostrati."
+    ]
+   },
+   {
+    "h": "Acquisti in-app",
+    "p": [
+     "Gli acquisti sono gestiti interamente da Apple tramite App Store. Non vediamo mai i tuoi dati di pagamento; l’App viene a sapere solo cosa hai acquistato, così da poterlo sbloccare."
+    ]
+   },
+   {
+    "h": "Minori",
+    "p": [
+     "Non raccogliamo dati personali da nessuno, nemmeno dai minori. Se sei un genitore e ritieni che ci sia un problema che riguarda tuo figlio o tua figlia, contattaci."
+    ]
+   },
+   {
+    "h": "I tuoi diritti",
+    "p": [
+     "Non conserviamo alcun dato su di te, quindi non c’è nulla che dobbiamo cancellare o rettificare. Per richieste relative ai dati pubblicitari ai sensi del GDPR o di leggi analoghe puoi rivolgerti a Google; puoi comunque inviare le tue domande anche a noi."
+    ]
+   },
+   {
+    "h": "Modifiche",
+    "p": [
+     "Se aggiorneremo questa informativa, modificheremo la data riportata in questa pagina."
+    ]
+   },
+   {
+    "h": "Contatti",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Tutti i diritti riservati.",
+  "made": "Realizzato in Turchia"
+ }
+}

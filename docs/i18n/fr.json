@@ -1,0 +1,155 @@
+{
+ "langName": "Français",
+ "gameName": "Le Démolisseur",
+ "meta": {
+  "title": "Le Démolisseur – jeu de démolition d’immeubles pour iPhone",
+  "desc": "Analyse le bâtiment, choisis le bon engin, coupe les colonnes et fais tout tomber. Un jeu de démolition gratuit pour iPhone."
+ },
+ "nav": {
+  "game": "Jeu",
+  "support": "Assistance",
+  "privacy": "Confidentialité",
+  "language": "Langue"
+ },
+ "hero": {
+  "eyebrow": "Gratuit sur iPhone",
+  "tagline": "Fais sauter, découpe et rase tout !",
+  "lead": "Chaque niveau est un vrai bâtiment qui s’effondre comme dans la réalité. Analyse la structure, choisis le bon engin, coupe les colonnes porteuses et regarde-le tomber.",
+  "badge": "Bientôt sur l’App Store",
+  "cta": "Découvrir le jeu",
+  "shots": "Captures d’écran"
+ },
+ "facts": [
+  "Gratuit",
+  "Jouable hors ligne",
+  "Sauvegarde iCloud",
+  "20 langues"
+ ],
+ "features": {
+  "title": "Bien plus que tout casser",
+  "items": [
+   {
+    "t": "7 engins, chacun sa spécialité",
+    "p": "La masse ne peut rien contre le béton et le boulet de démolition rebondit sur l’acier. Choisis le bon engin pour chaque matériau."
+   },
+   {
+    "t": "Un effondrement réaliste",
+    "p": "Les étages qui n’ont plus rien pour les soutenir s’écroulent sous leur propre poids. Coupe un côté et le bâtiment bascule de ce côté-là."
+   },
+   {
+    "t": "Dynamite, C4 et réactions en chaîne",
+    "p": "Place tes explosifs sur la bonne colonne, fais exploser les bouteilles de gaz et enchaîne les combos pour gagner plus d’or."
+   },
+   {
+    "t": "Chantiers géants et bâtiments boss",
+    "p": "Usines, tours jumelles, quartiers d’affaires et centres commerciaux. Tous les 5 niveaux, un bâtiment boss renforcé t’attend."
+   },
+   {
+    "t": "Des trésors sous les décombres",
+    "p": "Des objets précieux peuvent apparaître dans les gravats. Dégage-les avec le pinceau de fouille et complète les collections du musée."
+   },
+   {
+    "t": "Démolition du jour",
+    "p": "Le même bâtiment pour tout le monde, chaque jour, et un seul essai. Garde ta série intacte et partage ton résultat."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Mets ton casque",
+  "p": "Le Démolisseur arrive bientôt sur l’App Store. Une question, une idée ? Nous lisons tous les messages.",
+  "btn": "Nous contacter"
+ },
+ "support": {
+  "title": "Assistance",
+  "lead": "Tu as trouvé un bug ou tu as une idée ? Écris-nous : nous répondons généralement sous 2 jours ouvrés. Pense à préciser ton modèle d’iPhone et ta version d’iOS.",
+  "faqTitle": "Questions fréquentes",
+  "faq": [
+   {
+    "q": "J’ai changé de téléphone. Où est ma progression ?",
+    "a": "Ta progression est sauvegardée dans ton iCloud. Connecte-toi avec le même identifiant Apple sur le nouvel iPhone et vérifie qu’iCloud est activé (Réglages → ton nom → iCloud). Ouvre le jeu : tu reprends exactement là où tu en étais."
+   },
+   {
+    "q": "Mon achat ou « Sans pub » a disparu.",
+    "a": "Touche « Restaurer les achats » en bas de Boutique → Packs. Les achats sont liés à ton identifiant Apple. Les packs d’or sont consommés et ne peuvent donc pas être restaurés ; en cas de problème, écris-nous."
+   },
+   {
+    "q": "Il n’y a pas de son.",
+    "a": "Pour que tu puisses continuer à écouter ta propre musique, le jeu respecte le mode silencieux. Désactive le mode silencieux, monte le volume et vérifie que le son est activé dans les réglages du jeu."
+   },
+   {
+    "q": "Comment me connecter à Game Center ?",
+    "a": "Connecte-toi dans Réglages → Game Center, puis relance le jeu."
+   },
+   {
+    "q": "Je veux que mes données soient supprimées.",
+    "a": "Nous ne collectons ni ne conservons aucune de tes données. Ta progression se trouve uniquement sur ton appareil et dans ton propre compte iCloud ; supprimer le jeu efface la copie sur l’appareil, et la petite sauvegarde iCloud reste dans ton compte Apple, dont tu as le contrôle exclusif. Pour en savoir plus, consulte la politique de confidentialité."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Politique de confidentialité",
+  "updated": "Dernière mise à jour : 18 octobre 2026",
+  "intro": "Cette politique explique quelles informations sont conservées, et où, lorsque tu joues au Démolisseur (l’« App »).",
+  "sections": [
+   {
+    "h": "Données que nous collectons",
+    "p": [
+     "Aucune. L’App ne te demande pas de créer de compte ; ton nom, ton adresse e-mail ou toute autre information personnelle ne nous sont jamais transmis, et nous n’exploitons aucun serveur."
+    ]
+   },
+   {
+    "h": "Ce qui est stocké sur ton appareil et dans ton iCloud",
+    "p": [
+     "Ta progression (niveaux, or, engins, cosmétiques, réglages du son et des vibrations) est stockée sur ton appareil. Pour que tu puisses continuer sur un nouveau téléphone, une copie est conservée dans l’iCloud d’Apple, dans l’espace qui appartient à ton propre identifiant Apple. Nous ne pouvons pas voir cette copie. Tu peux désactiver iCloud dans les Réglages de l’iPhone."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "L’App peut te proposer de te connecter à Apple Game Center. La connexion est entièrement gérée par Apple ; les informations de ton compte Game Center ne nous sont pas communiquées."
+    ]
+   },
+   {
+    "h": "Publicité",
+    "p": [
+     "L’App peut afficher des publicités diffusées par Google AdMob. Les publicités avec récompense (que tu regardes par exemple pour obtenir du temps ou de l’or en plus) sont toujours facultatives. Pour diffuser les publicités, prévenir la fraude et mesurer leurs performances, Google peut collecter depuis ton appareil : l’adresse IP, la position approximative, le modèle de l’appareil et le système d’exploitation, les interactions avec les publicités et, uniquement si tu l’autorises, l’identifiant publicitaire d’Apple (IDFA). L’App demande cette autorisation via la fenêtre de transparence du suivi publicitaire (App Tracking Transparency) d’Apple. Si tu refuses, tu vois toujours des publicités, mais elles ne sont pas personnalisées. Tu peux modifier ce choix à tout moment dans Réglages → Confidentialité et sécurité → Suivi. Utilisation de ces données par Google : {google}.",
+     "Si tu achètes « Sans pub » ou un pack qui l’inclut, les publicités interstitielles ne s’affichent plus."
+    ]
+   },
+   {
+    "h": "Achats intégrés",
+    "p": [
+     "Les achats sont entièrement traités par Apple via l’App Store. Nous ne voyons jamais tes informations de paiement ; l’App sait seulement ce que tu as acheté afin de pouvoir le débloquer."
+    ]
+   },
+   {
+    "h": "Enfants",
+    "p": [
+     "Nous ne collectons de données personnelles auprès de personne, y compris des enfants. Si tu es parent et penses qu’il y a un problème concernant ton enfant, contacte-nous."
+    ]
+   },
+   {
+    "h": "Tes droits",
+    "p": [
+     "Nous ne détenons aucune donnée sur toi : nous n’avons donc rien à supprimer ni à rectifier. Pour toute demande relative aux données publicitaires au titre du RGPD ou de lois similaires, tu peux contacter Google, et tu peux bien sûr aussi nous envoyer tes questions."
+    ]
+   },
+   {
+    "h": "Modifications",
+    "p": [
+     "Si nous mettons à jour cette politique, nous modifierons la date indiquée sur cette page."
+    ]
+   },
+   {
+    "h": "Contact",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Tous droits réservés.",
+  "made": "Créé en Turquie"
+ }
+}

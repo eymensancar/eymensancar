@@ -1,0 +1,155 @@
+{
+ "langName": "Polski",
+ "gameName": "Mistrz Rozbiórki",
+ "meta": {
+  "title": "Mistrz Rozbiórki – gra w wyburzanie budynków na iPhone’a",
+  "desc": "Przeanalizuj budynek, wybierz odpowiednią maszynę, przetnij kolumny i zrównaj wszystko z ziemią. Darmowa gra o wyburzaniu na iPhone’a."
+ },
+ "nav": {
+  "game": "Gra",
+  "support": "Pomoc",
+  "privacy": "Prywatność",
+  "language": "Język"
+ },
+ "hero": {
+  "eyebrow": "Za darmo na iPhone’a",
+  "tagline": "Wysadzaj, tnij i burz!",
+  "lead": "Każdy poziom to prawdziwy budynek, który wali się jak w rzeczywistości. Przeanalizuj konstrukcję, wybierz odpowiednią maszynę, przetnij kolumny nośne i patrz, jak wszystko się sypie.",
+  "badge": "Wkrótce w App Store",
+  "cta": "Poznaj grę",
+  "shots": "Zrzuty ekranu"
+ },
+ "facts": [
+  "Za darmo",
+  "Działa offline",
+  "Zapis w iCloud",
+  "20 języków"
+ ],
+ "features": {
+  "title": "Coś więcej niż demolka",
+  "items": [
+   {
+    "t": "7 maszyn, każda do innego zadania",
+    "p": "Młot kowalski nic nie zdziała na betonie, a kula burząca odbija się od stali. Do każdego materiału dobierz właściwą maszynę."
+   },
+   {
+    "t": "Realistyczne zawalenia",
+    "p": "Piętra pozbawione podparcia runą pod własnym ciężarem. Przetnij jedną stronę, a budynek przewróci się właśnie w tę stronę."
+   },
+   {
+    "t": "Dynamit, C4 i reakcje łańcuchowe",
+    "p": "Podłóż ładunki pod właściwą kolumnę, wysadzaj butle z gazem i podtrzymuj combo, żeby zgarnąć więcej złota."
+   },
+   {
+    "t": "Ogromne place budowy i budynki-bossowie",
+    "p": "Fabryki, bliźniacze wieże, kompleksy biurowe i centra handlowe. Co 5. poziom czeka na Ciebie wzmocniony budynek-boss."
+   },
+   {
+    "t": "Skarby pod gruzami",
+    "p": "W gruzowisku mogą kryć się cenne artefakty. Wydobądź je pędzlem archeologa i skompletuj kolekcje w muzeum."
+   },
+   {
+    "t": "Codzienna rozbiórka",
+    "p": "Codziennie ten sam budynek dla wszystkich i tylko jedna próba. Nie przerywaj serii i pochwal się wynikiem."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Załóż kask",
+  "p": "Mistrz Rozbiórki już wkrótce trafi do App Store. Masz pytania lub pomysły? Czytamy każdą wiadomość.",
+  "btn": "Napisz do nas"
+ },
+ "support": {
+  "title": "Pomoc",
+  "lead": "Trafił się błąd albo masz pomysł? Napisz do nas – zwykle odpowiadamy w ciągu 2 dni roboczych. Podaj model swojego iPhone’a i wersję iOS.",
+  "faqTitle": "Najczęstsze pytania",
+  "faq": [
+   {
+    "q": "Mam nowy telefon. Gdzie jest mój postęp?",
+    "a": "Twój postęp jest zapisywany w Twoim iCloud. Zaloguj się na nowym iPhonie tym samym Apple ID i upewnij się, że iCloud jest włączony (Ustawienia → Twoje imię i nazwisko → iCloud). Otwórz grę i kontynuuj dokładnie od tego samego miejsca."
+   },
+   {
+    "q": "Zniknął mój zakup lub „Bez reklam”.",
+    "a": "Stuknij „Przywróć zakupy” na dole zakładki Sklep → Pakiety. Zakupy są powiązane z Twoim Apple ID. Pakiety złota są zużywane, więc nie da się ich przywrócić; jeśli coś poszło nie tak, napisz do nas."
+   },
+   {
+    "q": "Nie ma dźwięku.",
+    "a": "Aby można było dalej słuchać własnej muzyki, gra respektuje tryb cichy. Wyłącz tryb cichy, zwiększ głośność i sprawdź, czy dźwięk jest włączony w ustawieniach gry."
+   },
+   {
+    "q": "Jak zalogować się do Game Center?",
+    "a": "Zaloguj się w Ustawienia → Game Center, a następnie uruchom grę ponownie."
+   },
+   {
+    "q": "Chcę, żeby moje dane zostały usunięte.",
+    "a": "Nie zbieramy ani nie przechowujemy żadnych Twoich danych. Twój postęp znajduje się wyłącznie na Twoim urządzeniu i na Twoim własnym koncie iCloud; usunięcie gry kasuje kopię na urządzeniu, a niewielka kopia zapasowa w iCloud pozostaje na Twoim koncie Apple, nad którym kontrolę masz tylko Ty. Szczegóły znajdziesz w polityce prywatności."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Polityka prywatności",
+  "updated": "Ostatnia aktualizacja: 18 października 2026",
+  "intro": "Niniejsza polityka wyjaśnia, jakie informacje i gdzie są przechowywane podczas gry w Mistrza Rozbiórki („Aplikacja”).",
+  "sections": [
+   {
+    "h": "Jakie dane zbieramy",
+    "p": [
+     "Żadnych. Aplikacja nie wymaga zakładania konta; Twoje imię, adres e-mail ani żadne inne dane osobowe nigdy nie są do nas przesyłane, a my nie prowadzimy żadnych serwerów."
+    ]
+   },
+   {
+    "h": "Co jest przechowywane na Twoim urządzeniu i w Twoim iCloud",
+    "p": [
+     "Twój postęp w grze (poziomy, złoto, maszyny, elementy wyglądu, ustawienia dźwięku i wibracji) jest przechowywany na Twoim urządzeniu. Aby można było kontynuować grę na nowym telefonie, kopia jest przechowywana w usłudze iCloud firmy Apple, w przestrzeni należącej do Twojego własnego Apple ID. Nie mamy wglądu w tę kopię. iCloud możesz wyłączyć w Ustawieniach iPhone’a."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "Aplikacja może poprosić Cię o zalogowanie się do Apple Game Center. Logowanie w całości obsługuje Apple; dane Twojego konta Game Center nie są nam udostępniane."
+    ]
+   },
+   {
+    "h": "Reklamy",
+    "p": [
+     "Aplikacja może wyświetlać reklamy dostarczane przez Google AdMob. Reklamy z nagrodą (oglądane np. w zamian za dodatkowy czas lub dodatkowe złoto) są zawsze dobrowolne. W celu wyświetlania reklam, zapobiegania oszustwom i mierzenia skuteczności reklam Google może zbierać z Twojego urządzenia: adres IP, przybliżoną lokalizację, model urządzenia i system operacyjny, interakcje z reklamami oraz – tylko jeśli wyrazisz na to zgodę – identyfikator reklamowy Apple (IDFA). Aplikacja prosi o tę zgodę za pomocą komunikatu przejrzystości śledzenia w aplikacjach (App Tracking Transparency) firmy Apple. Jeśli odmówisz, nadal będziesz widzieć reklamy, ale nie będą one spersonalizowane. W każdej chwili możesz to zmienić w Ustawienia → Prywatność i ochrona → Śledzenie. Jak Google wykorzystuje te dane: {google}.",
+     "Jeśli kupisz „Bez reklam” lub pakiet, który zawiera tę opcję, reklamy pełnoekranowe przestaną się wyświetlać."
+    ]
+   },
+   {
+    "h": "Zakupy w aplikacji",
+    "p": [
+     "Zakupy są w całości obsługiwane przez Apple za pośrednictwem App Store. Nigdy nie widzimy Twoich danych płatniczych; Aplikacja dowiaduje się jedynie, co zostało kupione, aby móc to odblokować."
+    ]
+   },
+   {
+    "h": "Dzieci",
+    "p": [
+     "Nie zbieramy danych osobowych od nikogo, w tym od dzieci. Jeśli jesteś rodzicem i uważasz, że wystąpił problem dotyczący Twojego dziecka, skontaktuj się z nami."
+    ]
+   },
+   {
+    "h": "Twoje prawa",
+    "p": [
+     "Nie przechowujemy żadnych danych na Twój temat, więc nie mamy czego usuwać ani poprawiać. W sprawie żądań dotyczących danych reklamowych na podstawie RODO lub podobnych przepisów możesz skontaktować się z Google; śmiało wysyłaj też swoje pytania do nas."
+    ]
+   },
+   {
+    "h": "Zmiany",
+    "p": [
+     "Jeśli zaktualizujemy tę politykę, zmienimy datę na tej stronie."
+    ]
+   },
+   {
+    "h": "Kontakt",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Wszelkie prawa zastrzeżone.",
+  "made": "Stworzone w Turcji"
+ }
+}

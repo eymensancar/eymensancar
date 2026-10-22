@@ -1,0 +1,155 @@
+{
+ "langName": "Tiếng Việt",
+ "gameName": "Vua Phá Dỡ",
+ "meta": {
+  "title": "Vua Phá Dỡ – game phá dỡ tòa nhà cho iPhone",
+  "desc": "Đọc kết cấu tòa nhà, chọn đúng cỗ máy, cắt đứt các cột chịu lực và san phẳng tất cả. Game phá dỡ miễn phí cho iPhone."
+ },
+ "nav": {
+  "game": "Trò chơi",
+  "support": "Hỗ trợ",
+  "privacy": "Quyền riêng tư",
+  "language": "Ngôn ngữ"
+ },
+ "hero": {
+  "eyebrow": "Miễn phí cho iPhone",
+  "tagline": "Cho nổ, cắt đứt và san phẳng!",
+  "lead": "Mỗi màn chơi là một tòa nhà thật, sụp đổ y như ngoài đời. Đọc kết cấu, chọn đúng cỗ máy, cắt các cột chịu lực và ngắm nhìn nó đổ sập.",
+  "badge": "Sắp ra mắt trên App Store",
+  "cta": "Khám phá trò chơi",
+  "shots": "Ảnh chụp màn hình"
+ },
+ "facts": [
+  "Chơi miễn phí",
+  "Chơi ngoại tuyến",
+  "Lưu qua iCloud",
+  "20 ngôn ngữ"
+ ],
+ "features": {
+  "title": "Không chỉ là đập phá",
+  "items": [
+   {
+    "t": "7 cỗ máy, mỗi loại một sở trường",
+    "p": "Búa Tạ không làm gì được bê tông, còn Quả Tạ Phá Dỡ thì dội ngược khi gặp thép. Hãy chọn đúng cỗ máy cho từng loại vật liệu."
+   },
+   {
+    "t": "Sụp đổ kết cấu chân thực",
+    "p": "Những tầng không còn gì nâng đỡ sẽ sụp xuống dưới sức nặng của chính nó. Cắt một bên, tòa nhà sẽ đổ nghiêng về phía đó."
+   },
+   {
+    "t": "Thuốc Nổ, C4 và phản ứng dây chuyền",
+    "p": "Đặt chất nổ vào đúng cột, kích nổ bình gas và giữ chuỗi combo để kiếm thêm vàng."
+   },
+   {
+    "t": "Công trường khổng lồ và tòa nhà trùm",
+    "p": "Nhà máy, tháp đôi, khu văn phòng và trung tâm thương mại. Cứ mỗi 5 màn lại có một tòa nhà trùm được gia cố."
+   },
+   {
+    "t": "Kho báu dưới đống đổ nát",
+    "p": "Cổ vật quý giá có thể xuất hiện trong đống đổ nát. Dùng Cọ khai quật để lấy chúng ra và hoàn thành các bộ sưu tập của Bảo tàng."
+   },
+   {
+    "t": "Phá dỡ hằng ngày",
+    "p": "Mỗi ngày, mọi người cùng phá một tòa nhà và chỉ có một lượt duy nhất. Giữ vững chuỗi ngày chơi và chia sẻ kết quả của bạn."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Đội mũ bảo hộ vào nào",
+  "p": "Vua Phá Dỡ sắp ra mắt trên App Store. Có câu hỏi hay ý tưởng? Chúng tôi đọc từng tin nhắn.",
+  "btn": "Liên hệ với chúng tôi"
+ },
+ "support": {
+  "title": "Hỗ trợ",
+  "lead": "Phát hiện lỗi hoặc có ý tưởng? Hãy viết cho chúng tôi; chúng tôi thường phản hồi trong vòng 2 ngày làm việc. Vui lòng cho biết mẫu iPhone và phiên bản iOS bạn đang dùng.",
+  "faqTitle": "Câu hỏi thường gặp",
+  "faq": [
+   {
+    "q": "Tôi vừa đổi điện thoại mới. Tiến trình chơi của tôi đâu rồi?",
+    "a": "Tiến trình của bạn được sao lưu vào iCloud của bạn. Hãy đăng nhập cùng một Tài khoản Apple trên iPhone mới và đảm bảo iCloud đang bật (Cài đặt → [tên của bạn] → iCloud). Mở trò chơi và bạn sẽ tiếp tục từ chỗ đã dừng."
+   },
+   {
+    "q": "Giao dịch mua hoặc “Không quảng cáo” của tôi bị mất.",
+    "a": "Chạm vào “Khôi phục giao dịch mua” ở cuối mục Cửa hàng → Gói. Các giao dịch mua được gắn với Tài khoản Apple của bạn. Gói vàng là vật phẩm tiêu hao nên không thể khôi phục; nếu có sự cố, hãy viết cho chúng tôi."
+   },
+   {
+    "q": "Không có âm thanh.",
+    "a": "Để bạn có thể tiếp tục nghe nhạc của mình, trò chơi tuân theo nút gạt Chuông/Im lặng. Hãy tắt chế độ im lặng, tăng âm lượng và kiểm tra xem âm thanh đã được bật trong phần cài đặt của trò chơi chưa."
+   },
+   {
+    "q": "Làm cách nào để đăng nhập Game Center?",
+    "a": "Đăng nhập trong Cài đặt → Game Center, sau đó khởi động lại trò chơi."
+   },
+   {
+    "q": "Tôi muốn xóa dữ liệu của mình.",
+    "a": "Chúng tôi không thu thập hay lưu trữ bất kỳ dữ liệu nào của bạn. Tiến trình của bạn chỉ nằm trên thiết bị và trong tài khoản iCloud của chính bạn; xóa trò chơi sẽ xóa bản sao trên thiết bị, còn bản sao lưu iCloud nhỏ vẫn ở lại trong Tài khoản Apple mà chỉ bạn mới kiểm soát được. Xem chính sách quyền riêng tư để biết chi tiết."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Chính sách quyền riêng tư",
+  "updated": "Cập nhật lần cuối: 18 tháng 10 năm 2026",
+  "intro": "Chính sách này giải thích những thông tin nào được lưu giữ ở đâu khi bạn chơi Vua Phá Dỡ (“Ứng dụng”).",
+  "sections": [
+   {
+    "h": "Dữ liệu chúng tôi thu thập",
+    "p": [
+     "Không có. Ứng dụng không yêu cầu bạn tạo tài khoản; tên, email hay bất kỳ thông tin cá nhân nào khác của bạn đều không bao giờ được gửi đến chúng tôi, và chúng tôi không vận hành máy chủ nào."
+    ]
+   },
+   {
+    "h": "Những gì được lưu trên thiết bị và trong iCloud của bạn",
+    "p": [
+     "Tiến trình chơi của bạn (màn chơi, vàng, cỗ máy, vật phẩm trang trí, cài đặt âm thanh và rung) được lưu trên thiết bị của bạn. Để bạn có thể chơi tiếp trên điện thoại mới, một bản sao được lưu trong iCloud của Apple, trong không gian thuộc về Tài khoản Apple của chính bạn. Chúng tôi không thể xem bản sao này. Bạn có thể tắt iCloud trong Cài đặt của iPhone."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "Ứng dụng có thể đề nghị bạn đăng nhập Apple Game Center. Việc đăng nhập do Apple xử lý hoàn toàn; thông tin tài khoản Game Center của bạn không được chia sẻ với chúng tôi."
+    ]
+   },
+   {
+    "h": "Quảng cáo",
+    "p": [
+     "Ứng dụng có thể hiển thị quảng cáo do Google AdMob cung cấp. Quảng cáo có thưởng (ví dụ: xem để nhận thêm thời gian hoặc thêm vàng) luôn là tùy chọn. Để phân phát quảng cáo, ngăn chặn gian lận và đo lường hiệu quả quảng cáo, Google có thể thu thập từ thiết bị của bạn: địa chỉ IP, vị trí gần đúng, kiểu máy và hệ điều hành, các tương tác với quảng cáo và, chỉ khi bạn cho phép, mã định danh quảng cáo của Apple (IDFA). Ứng dụng xin quyền này thông qua lời nhắc Minh bạch về theo dõi ứng dụng của Apple. Nếu bạn từ chối, bạn vẫn thấy quảng cáo nhưng chúng không được cá nhân hóa. Bạn có thể thay đổi lựa chọn này bất cứ lúc nào trong Cài đặt → Quyền riêng tư & Bảo mật → Theo dõi. Cách Google sử dụng dữ liệu này: {google}.",
+     "Nếu bạn mua “Không quảng cáo” hoặc một gói có bao gồm tính năng này, quảng cáo xen kẽ sẽ không còn hiển thị nữa."
+    ]
+   },
+   {
+    "h": "Mua hàng trong ứng dụng",
+    "p": [
+     "Các giao dịch mua được Apple xử lý hoàn toàn thông qua App Store. Chúng tôi không bao giờ thấy thông tin thanh toán của bạn; Ứng dụng chỉ biết bạn đã mua gì để có thể mở khóa vật phẩm đó."
+    ]
+   },
+   {
+    "h": "Trẻ em",
+    "p": [
+     "Chúng tôi không thu thập dữ liệu cá nhân của bất kỳ ai, kể cả trẻ em. Nếu bạn là phụ huynh và cho rằng có vấn đề liên quan đến con mình, vui lòng liên hệ với chúng tôi."
+    ]
+   },
+   {
+    "h": "Quyền của bạn",
+    "p": [
+     "Chúng tôi không nắm giữ dữ liệu nào về bạn, vì vậy không có gì để chúng tôi xóa hay chỉnh sửa. Đối với các yêu cầu liên quan đến dữ liệu quảng cáo theo GDPR hoặc các luật tương tự, bạn có thể liên hệ với Google, và bạn cũng có thể gửi câu hỏi cho chúng tôi."
+    ]
+   },
+   {
+    "h": "Thay đổi",
+    "p": [
+     "Nếu cập nhật chính sách này, chúng tôi sẽ thay đổi ngày trên trang này."
+    ]
+   },
+   {
+    "h": "Liên hệ",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Bảo lưu mọi quyền.",
+  "made": "Sản xuất tại Thổ Nhĩ Kỳ"
+ }
+}
