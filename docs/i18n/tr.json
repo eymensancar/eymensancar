@@ -1,0 +1,155 @@
+{
+ "langName": "Türkçe",
+ "gameName": "Yıkım Ustası",
+ "meta": {
+  "title": "Yıkım Ustası – iPhone için bina yıkma oyunu",
+  "desc": "Binayı oku, doğru makineyi seç, kolonları kes ve hepsini çökert. iPhone için ücretsiz bir yıkım oyunu."
+ },
+ "nav": {
+  "game": "Oyun",
+  "support": "Destek",
+  "privacy": "Gizlilik",
+  "language": "Dil"
+ },
+ "hero": {
+  "eyebrow": "iPhone için ücretsiz",
+  "tagline": "Şantiyede patlat ve çökert!",
+  "lead": "Her bölüm, gerçeği gibi çöken gerçek bir bina. Yapıyı oku, doğru makineyi seç, taşıyıcı kolonları kes ve yıkılışını izle.",
+  "badge": "Yakında App Store'da",
+  "cta": "Oyunu gör",
+  "shots": "Ekran görüntüleri"
+ },
+ "facts": [
+  "Ücretsiz",
+  "İnternetsiz oynanır",
+  "iCloud yedeği",
+  "20 dil"
+ ],
+ "features": {
+  "title": "Kırmaktan fazlası",
+  "items": [
+   {
+    "t": "7 makine, her birinin uzmanlığı ayrı",
+    "p": "Balyoz betona işlemez, yıkım topu çelikte seker. Her malzemeye doğru makineyi seç."
+   },
+   {
+    "t": "Gerçekçi yapısal çökme",
+    "p": "Desteği kalmayan katlar kendi ağırlığıyla çöker. Tek taraftan kesersen bina o yöne devrilir."
+   },
+   {
+    "t": "Dinamit, C4 ve zincirleme patlamalar",
+    "p": "Patlayıcıyı doğru kolona yerleştir, gaz tüplerini patlat, komboyu sürdür, daha çok altın kazan."
+   },
+   {
+    "t": "Dev şantiyeler ve patron binalar",
+    "p": "Fabrikalar, ikiz kuleler, plazalar ve AVM'ler. Her 5. bölümde güçlendirilmiş bir patron bina var."
+   },
+   {
+    "t": "Yıkıntıların altındaki hazine",
+    "p": "Molozların arasından değerli eserler çıkabilir. Kazı Fırçası ile dikkatlice çıkar, müzedeki setleri tamamla."
+   },
+   {
+    "t": "Günlük Yıkım",
+    "p": "Her gün herkes için aynı bina ve tek deneme. Serini sürdür, sonucunu arkadaşlarınla paylaş."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Baretini tak",
+  "p": "Yıkım Ustası çok yakında App Store'da. Sorun ya da fikrin mi var? Her mesajı okuyoruz.",
+  "btn": "Bize yaz"
+ },
+ "support": {
+  "title": "Destek",
+  "lead": "Bir sorun mu var, bir fikrin mi var? Bize yaz, genellikle 2 iş günü içinde dönüyoruz. iPhone modelini ve iOS sürümünü yazarsan daha hızlı yardımcı olabiliriz.",
+  "faqTitle": "Sık sorulanlar",
+  "faq": [
+   {
+    "q": "Telefonumu değiştirdim, ilerlemem nerede?",
+    "a": "İlerlemen iCloud'una yedeklenir. Yeni iPhone'da aynı Apple kimliğiyle giriş yap ve iCloud'un açık olduğundan emin ol (Ayarlar → adın → iCloud). Oyunu açınca kaldığın yerden devam edersin."
+   },
+   {
+    "q": "Satın aldığım paket ya da “Reklamsız” kayboldu.",
+    "a": "Mağaza → Paketler sekmesinin altındaki “Satın alımları geri yükle” düğmesine dokun. Satın almalar Apple kimliğine bağlıdır. Altın paketleri tüketilir, bu yüzden geri yüklenmez; sorun yaşarsan bize yaz."
+   },
+   {
+    "q": "Oyunda ses yok.",
+    "a": "Oyun, kendi müziğini dinlemeye devam edebilmen için iPhone'un sessiz düğmesine uyar. Sessiz düğmesini kapat ve sesi aç; oyun içi ayarlardan sesin açık olduğunu da kontrol et."
+   },
+   {
+    "q": "Game Center girişini nasıl açarım?",
+    "a": "Ayarlar → Game Center'dan oturum aç, sonra oyunu yeniden başlat."
+   },
+   {
+    "q": "Verilerimi silmek istiyorum.",
+    "a": "Biz senden hiçbir veri toplamıyor ve saklamıyoruz. İlerlemen yalnızca cihazında ve kendi iCloud hesabında durur; oyunu silmek cihazdaki kopyayı siler, iCloud'daki küçük yedek ise yalnızca senin kontrolündeki Apple hesabındadır. Ayrıntılar gizlilik politikasında."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Gizlilik Politikası",
+  "updated": "Son güncelleme: 18 Ekim 2026",
+  "intro": "Bu metin, Yıkım Ustası (“Uygulama”) oyununu oynarken hangi bilgilerin nerede tutulduğunu anlatır.",
+  "sections": [
+   {
+    "h": "Bizim topladığımız veriler",
+    "p": [
+     "Hiçbiri. Uygulama hesap açmanı istemez; adın, e-postan ya da başka bir kişisel bilgin bize gönderilmez ve bizim bir sunucumuz yoktur."
+    ]
+   },
+   {
+    "h": "Cihazında ve iCloud'unda saklananlar",
+    "p": [
+     "Oyun ilerlemen (bölüm, altın, makineler, kozmetikler, ses ve titreşim tercihleri) cihazında saklanır. Telefon değiştirdiğinde kaldığın yerden devam edebilmen için bir kopyası Apple'ın iCloud hizmetinde, kendi Apple kimliğine ait alanda tutulur. Bu kopyayı biz göremeyiz. iCloud'u iPhone Ayarlar'ından kapatabilirsin."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "Uygulama Apple Game Center'da oturum açmanı isteyebilir. Oturum tamamen Apple tarafından yönetilir; Game Center hesap bilgilerin bize iletilmez."
+    ]
+   },
+   {
+    "h": "Reklamlar",
+    "p": [
+     "Uygulamada Google'ın AdMob hizmeti üzerinden reklam gösterilebilir. Ödüllü reklamlar (örneğin ek süre ya da ek altın karşılığında izlenenler) tamamen isteğe bağlıdır. Reklam göstermek, sahtekârlığı önlemek ve reklamların performansını ölçmek için Google cihazından şu bilgileri toplayabilir: IP adresi, yaklaşık konum, cihaz modeli ve işletim sistemi, reklam etkileşimleri ve yalnızca izin verirsen Apple reklam kimliği (IDFA). Uygulama bu izni Apple'ın “Uygulama İzleme Şeffaflığı” penceresiyle sorar. İzin vermezsen reklamlar yine gösterilir ama kişiselleştirilmez. Bu izni istediğin zaman Ayarlar → Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin. Google'ın bu verileri nasıl kullandığı: {google}.",
+     "“Reklamsız” ya da onu içeren bir paket satın alırsan geçiş reklamları gösterilmez."
+    ]
+   },
+   {
+    "h": "Uygulama içi satın almalar",
+    "p": [
+     "Satın almalar tamamen Apple tarafından App Store üzerinden işlenir. Ödeme bilgilerini biz görmeyiz; Uygulama yalnızca neyi satın aldığını öğrenir ki içeriği açabilsin."
+    ]
+   },
+   {
+    "h": "Çocuklar",
+    "p": [
+     "Biz çocuklar dahil kimseden kişisel veri toplamayız. Bir ebeveyn olarak çocuğunla ilgili bir sorun olduğunu düşünüyorsan bize yaz."
+    ]
+   },
+   {
+    "h": "Hakların",
+    "p": [
+     "Bizde senin hakkında tutulan bir veri olmadığı için silinecek ya da düzeltilecek bir kayıt da yoktur. Reklam verileriyle ilgili KVKK veya GDPR kapsamındaki taleplerin için Google ile iletişime geçebilir, sorularını bize de iletebilirsin."
+    ]
+   },
+   {
+    "h": "Değişiklikler",
+    "p": [
+     "Bu politikayı güncellersek tarihini bu sayfada değiştiririz."
+    ]
+   },
+   {
+    "h": "İletişim",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Tüm hakları saklıdır.",
+  "made": "Türkiye'de yapıldı"
+ }
+}

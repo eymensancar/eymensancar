@@ -1,0 +1,155 @@
+{
+ "langName": "Deutsch",
+ "gameName": "Abrissmeister",
+ "meta": {
+  "title": "Abrissmeister – das Abrissspiel für iPhone",
+  "desc": "Analysiere das Gebäude, wähle die richtige Maschine, kapp die Stützen und bring alles zum Einsturz. Ein kostenloses Abrissspiel für iPhone."
+ },
+ "nav": {
+  "game": "Spiel",
+  "support": "Support",
+  "privacy": "Datenschutz",
+  "language": "Sprache"
+ },
+ "hero": {
+  "eyebrow": "Kostenlos für iPhone",
+  "tagline": "Sprengen, schneiden, plattmachen!",
+  "lead": "Jedes Level ist ein echtes Gebäude, das einstürzt wie in Wirklichkeit. Analysiere die Statik, wähle die richtige Maschine, kapp die tragenden Stützen und sieh zu, wie alles fällt.",
+  "badge": "Bald im App Store",
+  "cta": "Zum Spiel",
+  "shots": "Screenshots"
+ },
+ "facts": [
+  "Kostenlos spielbar",
+  "Offline spielbar",
+  "Speicherung in iCloud",
+  "20 Sprachen"
+ ],
+ "features": {
+  "title": "Mehr als nur Kaputtmachen",
+  "items": [
+   {
+    "t": "7 Maschinen, jede mit eigener Stärke",
+    "p": "Mit dem Vorschlaghammer kommst du gegen Beton nicht an, und die Abrissbirne prallt an Stahl ab. Wähle für jedes Material die passende Maschine."
+   },
+   {
+    "t": "Realistischer Einsturz",
+    "p": "Stockwerke ohne Halt stürzen unter ihrem eigenen Gewicht ein. Kappst du eine Seite, kippt das Gebäude genau dorthin."
+   },
+   {
+    "t": "Dynamit, C4 und Kettenreaktionen",
+    "p": "Platziere Sprengladungen an der richtigen Stütze, jag Gastanks in die Luft und halte deine Combo am Laufen – für mehr Gold."
+   },
+   {
+    "t": "Riesige Baustellen und Boss-Gebäude",
+    "p": "Fabriken, Zwillingstürme, Bürokomplexe und Einkaufszentren. Jedes 5. Level ist ein verstärktes Boss-Gebäude."
+   },
+   {
+    "t": "Schätze unter den Trümmern",
+    "p": "Im Schutt können wertvolle Artefakte auftauchen. Leg sie mit dem Grabungspinsel frei und vervollständige die Sammlungen im Museum."
+   },
+   {
+    "t": "Täglicher Abriss",
+    "p": "Jeden Tag dasselbe Gebäude für alle – und nur ein Versuch. Halte deine Serie am Leben und teile dein Ergebnis."
+   }
+  ]
+ },
+ "cta": {
+  "title": "Helm auf!",
+  "p": "Abrissmeister kommt bald in den App Store. Fragen oder Ideen? Wir lesen jede Nachricht.",
+  "btn": "Kontakt"
+ },
+ "support": {
+  "title": "Support",
+  "lead": "Du hast einen Fehler gefunden oder eine Idee? Schreib uns – wir antworten in der Regel innerhalb von 2 Werktagen. Gib bitte dein iPhone-Modell und deine iOS-Version an.",
+  "faqTitle": "Häufige Fragen",
+  "faq": [
+   {
+    "q": "Ich habe ein neues Handy. Wo ist mein Spielstand?",
+    "a": "Dein Spielstand wird in deiner iCloud gesichert. Melde dich auf dem neuen iPhone mit derselben Apple-ID an und achte darauf, dass iCloud aktiviert ist (Einstellungen → dein Name → iCloud). Öffne das Spiel, und du machst genau dort weiter, wo du aufgehört hast."
+   },
+   {
+    "q": "Mein Kauf oder „Ohne Werbung“ fehlt.",
+    "a": "Tippe unten unter Shop → Pakete auf „Käufe wiederherstellen“. Käufe sind an deine Apple-ID gebunden. Goldpakete werden verbraucht und lassen sich daher nicht wiederherstellen; falls dabei etwas schiefgelaufen ist, schreib uns."
+   },
+   {
+    "q": "Ich höre keinen Ton.",
+    "a": "Damit deine eigene Musik weiterlaufen kann, richtet sich das Spiel nach dem Stummschalter. Schalte die Stummschaltung aus, dreh die Lautstärke hoch und prüfe in den Spieleinstellungen, ob der Ton eingeschaltet ist."
+   },
+   {
+    "q": "Wie melde ich mich bei Game Center an?",
+    "a": "Melde dich unter Einstellungen → Game Center an und starte das Spiel danach neu."
+   },
+   {
+    "q": "Ich möchte, dass meine Daten gelöscht werden.",
+    "a": "Wir erheben und speichern keinerlei Daten von dir. Dein Spielstand liegt nur auf deinem Gerät und in deinem eigenen iCloud-Account. Wenn du das Spiel löschst, wird die Kopie auf dem Gerät entfernt; die kleine iCloud-Sicherung bleibt in deinem Apple-Account, über den nur du verfügst. Details findest du in der Datenschutzerklärung."
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Datenschutzerklärung",
+  "updated": "Zuletzt aktualisiert: 18. Oktober 2026",
+  "intro": "Diese Erklärung beschreibt, welche Informationen wo gespeichert werden, während du Abrissmeister (die „App“) spielst.",
+  "sections": [
+   {
+    "h": "Welche Daten wir erheben",
+    "p": [
+     "Keine. Die App verlangt von dir kein Benutzerkonto; dein Name, deine E-Mail-Adresse oder andere personenbezogene Daten werden niemals an uns übermittelt, und wir betreiben keine Server."
+    ]
+   },
+   {
+    "h": "Was auf deinem Gerät und in deiner iCloud gespeichert wird",
+    "p": [
+     "Dein Spielstand (Level, Gold, Maschinen, Designs, Ton- und Vibrationseinstellungen) wird auf deinem Gerät gespeichert. Damit du auf einem neuen Handy weiterspielen kannst, wird eine Kopie in Apples iCloud abgelegt, und zwar in dem Speicherbereich, der zu deiner eigenen Apple-ID gehört. Wir können diese Kopie nicht einsehen. Du kannst iCloud in den Einstellungen deines iPhone deaktivieren."
+    ]
+   },
+   {
+    "h": "Game Center",
+    "p": [
+     "Die App fordert dich unter Umständen auf, dich bei Apple Game Center anzumelden. Die Anmeldung wird vollständig von Apple abgewickelt; die Daten deines Game-Center-Accounts werden nicht an uns weitergegeben."
+    ]
+   },
+   {
+    "h": "Werbung",
+    "p": [
+     "Die App kann Werbung anzeigen, die über Google AdMob ausgeliefert wird. Werbung mit Belohnung (die du dir z. B. für zusätzliche Zeit oder zusätzliches Gold ansiehst) ist immer freiwillig. Um Werbung auszuliefern, Betrug zu verhindern und die Werbeleistung zu messen, kann Google folgende Daten von deinem Gerät erheben: IP-Adresse, ungefährer Standort, Gerätemodell und Betriebssystem, Interaktionen mit Werbung und – nur wenn du es erlaubst – Apples Werbe-ID (IDFA). Die App fragt diese Erlaubnis über Apples App-Tracking-Transparenz-Abfrage ab. Lehnst du ab, siehst du weiterhin Werbung, sie ist dann aber nicht personalisiert. Du kannst das jederzeit unter Einstellungen → Datenschutz & Sicherheit → Tracking ändern. So verwendet Google diese Daten: {google}.",
+     "Wenn du „Ohne Werbung“ oder ein Paket kaufst, das diese Option enthält, werden keine Interstitial-Anzeigen mehr eingeblendet."
+    ]
+   },
+   {
+    "h": "In-App-Käufe",
+    "p": [
+     "Käufe werden vollständig von Apple über den App Store abgewickelt. Wir sehen deine Zahlungsdaten nie; die App erfährt nur, was du gekauft hast, damit sie es freischalten kann."
+    ]
+   },
+   {
+    "h": "Kinder",
+    "p": [
+     "Wir erheben von niemandem personenbezogene Daten, auch nicht von Kindern. Wenn du ein Elternteil bist und glaubst, dass es in Bezug auf dein Kind ein Problem gibt, wende dich bitte an uns."
+    ]
+   },
+   {
+    "h": "Deine Rechte",
+    "p": [
+     "Wir speichern keine Daten über dich, daher gibt es bei uns nichts zu löschen oder zu berichtigen. Anfragen zu Werbedaten nach der DSGVO oder vergleichbaren Gesetzen kannst du an Google richten; deine Fragen kannst du aber gern auch uns schicken."
+    ]
+   },
+   {
+    "h": "Änderungen",
+    "p": [
+     "Wenn wir diese Erklärung aktualisieren, ändern wir das Datum auf dieser Seite."
+    ]
+   },
+   {
+    "h": "Kontakt",
+    "p": [
+     "{email}"
+    ]
+   }
+  ]
+ },
+ "footer": {
+  "rights": "Alle Rechte vorbehalten.",
+  "made": "Entwickelt in der Türkei"
+ }
+}
