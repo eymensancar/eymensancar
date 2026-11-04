@@ -133,3 +133,5 @@ footer a:hover{color:var(--text)}
 .js .rise{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .js .rise.in{opacity:1;transform:none}
 :focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:6px}
+a.badge{text-decoration:none}
+.cta .btn{margin:6px 5px}
