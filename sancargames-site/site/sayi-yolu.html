@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sayı Yolu · Sancar Games</title>
+<meta name="description" content="Parmağınla tahtadaki her kareden bir kez geçen tek bir yol çiz. Kırmızı sayılara tam o adımda bas. Kolay başlar, zekice zorlaşır.">
+<meta property="og:title" content="Sayı Yolu · Sancar Games">
+<meta property="og:description" content="Parmağınla tahtadaki her kareden bir kez geçen tek bir yol çiz. Kırmızı sayılara tam o adımda bas. Kolay başlar, zekice zorlaşır.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="tr" href="https://sancargames.com/sayi-yolu.html">
+<link rel="alternate" hreflang="en" href="https://sancargames.com/en/number-path.html">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mk" aria-hidden="true">S</span>Sancar Games</a>
+  <nav class="nav" aria-label="Oyunlar">
+    <a class="hide-s" href="index.html#oyunlar" aria-current="page">Oyunlar</a>
+    <a href="destek.html">Destek</a>
+    <a class="lang" href="en/number-path.html" hreflang="en" aria-label="English">EN</a>
+  </nav>
+</div></header>
+<main>
+<section class="wrap ghero">
+  <div>
+    <div class="ghead"><img src="assets/img/icon-sy.jpg" alt=""></div>
+    <h1 style="margin-top:22px">Sayı Yolu</h1>
+    <span class="status soon">Yakında</span>
+    <p class="lead">Parmağınla tahtadaki her kareden bir kez geçen tek bir yol çiz. Kırmızı sayılara tam o adımda bas. Kolay başlar, zekice zorlaşır.</p>
+    <p class="muted" style="margin-top:20px;font-weight:600">App Store'da yakında.</p>
+  </div>
+  <div class="phones"><div class="phone"><img src="assets/img/sy-intro-tr.jpg" alt="" loading="lazy"></div><div class="phone"><img src="assets/img/sy-play-tr.jpg" alt="" loading="lazy"></div></div>
+</section>
+<section class="wrap sec">
+  <div class="sec-h"><h2>Öne çıkanlar</h2></div>
+  <div class="feats"><div><b>Tek kural</b><span>Her kareden bir kez geç, yalnızca yatay ve dikey git, kırmızı sayılara tam o adımda bas.</span></div><div><b>Her gün yeni bulmaca</b><span>Günün bulmacasını çöz, serini koru.</span></div><div><b>Yeni kurallar</b><span>İlerledikçe taşlar, duvarlar, oklar ve ışınlanma kapıları gibi yeni mekanikler eklenir.</span></div></div>
+</section>
+<section class="wrap sec">
+  <div class="sec-h"><h2>Yardım</h2></div>
+  <div class="links"><a href="destek.html">Destek</a><a href="gizlilik-sayi-yolu.html">Gizlilik Politikası</a></div>
+</section>
+</main>
+<footer class="foot-site"><div class="wrap">
+  <span>© 2026 Sancar Games. Tüm hakları saklıdır.</span>
+  <nav aria-label="footer">
+    <a href="destek.html">Destek</a>
+    <a href="gizlilik-yikim-ustasi.html">Gizlilik: Yıkım Ustası</a>
+    <a href="gizlilik-sayi-yolu.html">Gizlilik: Sayı Yolu</a>
+    <a href="en/number-path.html">English</a>
+  </nav>
+</div></footer>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+  var t=b.getAttribute('data-copy'),ok=function(){b.textContent='Kopyalandı';setTimeout(function(){b.textContent='Kopyala'},1600)};
+  var sel=function(){var c=b.parentNode.querySelector('code'),r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,sel);else sel()})});
+</script>
+</body>
+</html>

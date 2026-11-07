@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Destek · Sancar Games</title>
+<meta name="description" content="Bir sorun mu var, bir fikrin mi? Bize yaz, genellikle 2 iş günü içinde dönüyoruz. iPhone modelini ve iOS sürümünü yazarsan daha hızlı yardımcı olabiliriz.">
+<meta property="og:title" content="Destek · Sancar Games">
+<meta property="og:description" content="Bir sorun mu var, bir fikrin mi? Bize yaz, genellikle 2 iş günü içinde dönüyoruz. iPhone modelini ve iOS sürümünü yazarsan daha hızlı yardımcı olabiliriz.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="tr" href="https://sancargames.com/destek.html">
+<link rel="alternate" hreflang="en" href="https://sancargames.com/en/support.html">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mk" aria-hidden="true">S</span>Sancar Games</a>
+  <nav class="nav" aria-label="Oyunlar">
+    <a class="hide-s" href="index.html#oyunlar">Oyunlar</a>
+    <a href="destek.html" aria-current="page">Destek</a>
+    <a class="lang" href="en/support.html" hreflang="en" aria-label="English">EN</a>
+  </nav>
+</div></header>
+<main>
+<div class="wrap"><article class="doc">
+  <h1>Destek</h1>
+  <p style="margin-top:18px;font-size:18px">Bir sorun mu var, bir fikrin mi? Bize yaz, genellikle 2 iş günü içinde dönüyoruz. iPhone modelini ve iOS sürümünü yazarsan daha hızlı yardımcı olabiliriz.</p>
+  <div class="mailbox"><code>support@sancargames.com</code><button type="button" data-copy="support@sancargames.com">Kopyala</button></div>
+  <div class="faq-g"><h2><img src="assets/img/icon-yk.jpg" alt="">Yıkım Ustası</h2><details><summary>Telefonumu değiştirdim, ilerlemem nerede?</summary><p>İlerlemen iCloud'una yedeklenir. Yeni iPhone'da aynı Apple kimliğiyle giriş yap ve iCloud'un açık olduğundan emin ol (Ayarlar → adın → iCloud). Oyunu açınca kaldığın yerden devam edersin.</p></details><details><summary>Satın aldığım paket ya da “Reklamsız” kayboldu.</summary><p>Mağaza → Paketler sekmesinin altındaki “Satın alımları geri yükle” düğmesine dokun. Satın almalar Apple kimliğine bağlıdır. Altın paketleri tüketilir, bu yüzden geri yüklenmez; sorun yaşarsan bize yaz.</p></details><details><summary>Oyunda ses yok.</summary><p>Oyun, kendi müziğini dinlemeye devam edebilmen için iPhone'un sessiz düğmesine uyar. Sessiz düğmesini kapat ve sesi aç; oyun içi ayarlardan sesin açık olduğunu da kontrol et.</p></details><details><summary>Game Center girişini nasıl açarım?</summary><p>Ayarlar → Game Center'dan oturum aç, sonra oyunu yeniden başlat.</p></details><details><summary>Verilerimi silmek istiyorum.</summary><p>Seni tanımlayan bir veri tutmuyoruz. İlerlemen cihazında ve kendi iCloud hesabında durur. Anonim kullanım istatistikleri ve hata raporları yalnızca uygulamaya özel bir kurulum kimliğine bağlıdır; oyunu silmek bu kimliği ve cihazdaki kopyayı siler. Başka bir talebin varsa bize yaz.</p></details></div>
+  <div class="faq-g"><h2><img src="assets/img/icon-sy.jpg" alt="">Sayı Yolu</h2><details><summary>İlerlemem nerede tutuluyor?</summary><p>Bölümlerin, yıldızların ve ayarların yalnızca cihazında tutulur. Bizim tarafımızda hesap ya da kişisel veri yoktur.</p></details><details><summary>Hatırlatmaları nasıl kapatırım?</summary><p>Oyunun ayarlarından ya da iPhone Ayarlar → Bildirimler → Sayı Yolu bölümünden kapatabilirsin.</p></details></div>
+</article></div>
+</main>
+<footer class="foot-site"><div class="wrap">
+  <span>© 2026 Sancar Games. Tüm hakları saklıdır.</span>
+  <nav aria-label="footer">
+    <a href="destek.html">Destek</a>
+    <a href="gizlilik-yikim-ustasi.html">Gizlilik: Yıkım Ustası</a>
+    <a href="gizlilik-sayi-yolu.html">Gizlilik: Sayı Yolu</a>
+    <a href="en/support.html">English</a>
+  </nav>
+</div></footer>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+  var t=b.getAttribute('data-copy'),ok=function(){b.textContent='Kopyalandı';setTimeout(function(){b.textContent='Kopyala'},1600)};
+  var sel=function(){var c=b.parentNode.querySelector('code'),r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,sel);else sel()})});
+</script>
+</body>
+</html>

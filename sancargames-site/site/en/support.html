@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Support · Sancar Games</title>
+<meta name="description" content="Found a bug or have an idea? Write to us; we usually reply within 2 business days. Please mention your iPhone model and iOS version.">
+<meta property="og:title" content="Support · Sancar Games">
+<meta property="og:description" content="Found a bug or have an idea? Write to us; we usually reply within 2 business days. Please mention your iPhone model and iOS version.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="tr" href="https://sancargames.com/destek.html">
+<link rel="alternate" hreflang="en" href="https://sancargames.com/en/support.html">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mk" aria-hidden="true">S</span>Sancar Games</a>
+  <nav class="nav" aria-label="Games">
+    <a class="hide-s" href="index.html#oyunlar">Games</a>
+    <a href="support.html" aria-current="page">Support</a>
+    <a class="lang" href="../destek.html" hreflang="tr" aria-label="Türkçe">TR</a>
+  </nav>
+</div></header>
+<main>
+<div class="wrap"><article class="doc">
+  <h1>Support</h1>
+  <p style="margin-top:18px;font-size:18px">Found a bug or have an idea? Write to us; we usually reply within 2 business days. Please mention your iPhone model and iOS version.</p>
+  <div class="mailbox"><code>support@sancargames.com</code><button type="button" data-copy="support@sancargames.com">Copy</button></div>
+  <div class="faq-g"><h2><img src="../assets/img/icon-yk.jpg" alt="">Demolition Master</h2><details><summary>I got a new phone. Where is my progress?</summary><p>Your progress is backed up to your iCloud. Sign in with the same Apple ID on the new iPhone and make sure iCloud is on (Settings → your name → iCloud). Open the game and you continue where you left off.</p></details><details><summary>My purchase or “No Ads” is missing.</summary><p>Tap “Restore purchases” at the bottom of Store → Packs. Purchases are tied to your Apple ID. Gold packs are consumed, so they cannot be restored; if something went wrong, write to us.</p></details><details><summary>There is no sound.</summary><p>So you can keep your own music playing, the game respects the silent switch. Turn the silent switch off and raise the volume, and check that sound is on in the in-game settings.</p></details><details><summary>How do I sign in to Game Center?</summary><p>Sign in under Settings → Game Center, then restart the game.</p></details><details><summary>I want my data deleted.</summary><p>We keep no data that identifies you. Your progress lives on your device and in your own iCloud account. Anonymous usage statistics and crash reports are tied only to an installation ID for the App; deleting the game removes that ID and the copy on the device. For any other request, write to us.</p></details></div>
+  <div class="faq-g"><h2><img src="../assets/img/icon-sy.jpg" alt="">Number Path</h2><details><summary>Where is my progress stored?</summary><p>Your levels, stars and settings are stored only on your device. We have no accounts and no personal data.</p></details><details><summary>How do I turn off reminders?</summary><p>In the game's settings, or in iPhone Settings → Notifications → Number Path.</p></details></div>
+</article></div>
+</main>
+<footer class="foot-site"><div class="wrap">
+  <span>© 2026 Sancar Games. All rights reserved.</span>
+  <nav aria-label="footer">
+    <a href="support.html">Support</a>
+    <a href="privacy-demolition-master.html">Privacy: Demolition Master</a>
+    <a href="privacy-number-path.html">Privacy: Number Path</a>
+    <a href="../destek.html">Türkçe</a>
+  </nav>
+</div></footer>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+  var t=b.getAttribute('data-copy'),ok=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)};
+  var sel=function(){var c=b.parentNode.querySelector('code'),r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,sel);else sel()})});
+</script>
+</body>
+</html>
