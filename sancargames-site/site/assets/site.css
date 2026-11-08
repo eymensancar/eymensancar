@@ -102,6 +102,15 @@ body.menu-open .scrim{opacity:1;visibility:visible;transition:opacity .2s}
   .js .keyart.in .kb{transform:none}
   .js .keyart.go .km{transform:none;opacity:1}
 }
+.keyart.sy{aspect-ratio:1087/1447}
+.keyart.sy .rw{position:absolute;inset:0;clip-path:polygon(0 0,100% 0,100% 35.4%,0 46.5%)}
+.keyart.sy .kc{position:absolute;left:13.6%;top:26.1%;width:22.7%;height:auto;filter:drop-shadow(0 8px 14px rgba(60,20,120,.25))}
+.keyart.sy .sen{top:18%;bottom:auto;height:34%}
+.tile .keyart.sy{width:100%}
+@media (prefers-reduced-motion:no-preference){
+  .js .keyart.sy .kc{transform:translateY(72%);transition:transform 1.9s cubic-bezier(.34,1.2,.5,1) .25s}
+  .js .keyart.sy.go .kc{transform:none}
+}
 /* bölümler */
 .sec{padding-block:clamp(80px,10vw,160px)}
 .sec-head{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;margin-bottom:clamp(36px,4.5vw,64px);align-items:end}
@@ -306,3 +315,4 @@ details p{padding-bottom:24px;color:var(--mute);max-width:40em}
   .ghero .vis{grid-column:1 / span 12 !important}.ghero .txt{grid-column:1 / span 12 !important}
   .keyart{-webkit-mask-image:url(img/paint-mask-tb.png);mask-image:url(img/paint-mask-tb.png)}
 }
+@media (max-width:640px){.tile .keyart{margin-left:calc(-1 * var(--gut));margin-right:calc(-1 * var(--gutR));width:auto!important}}
