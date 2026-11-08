@@ -37,7 +37,7 @@ L = {
 
 def badge(t, cls=''): return f'<a class="badge {cls}" href="{STORE}" target="_blank" rel="noopener">{APPLE}<span><small>{t["badge_s"]}</small><b>{t["badge_b"]}</b></span></a>'
 
-def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-wide.jpg'):
+def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg'):
     me = P[key][0 if lang == 'tr' else 1]; t = L[lang]; other = P[key][1 if lang == 'tr' else 0]
     a = lambda k: rel(me, P[k][0 if lang == 'tr' else 1])
     A = lambda p: rel(me, p)
@@ -152,14 +152,9 @@ for lang in ('tr', 'en'):
     <h1 class="d d-xl"><span class="intro" style="--i:0;display:block">Sancar</span><span class="l2 intro" style="--i:1">Games<span class="dot" aria-hidden="true"></span></span></h1>
     <div class="copy intro" style="--i:3"><p class="lead">{h['lead']}</p><a class="scroll" href="#oyunlar"><span aria-hidden="true"></span>{h['scroll']}</a></div>
   </div>
-  <div class="stage intro from-r" style="--i:4">
-    {vphone(me, h['yk_alt'])}
-    <a class="tag" href="{a('yk')}"><img src="{I(me,'icon-yk.jpg')}" alt="" width="46" height="46"><span><small>{h['tag_s']}</small><b>{t['yk']}</b></span></a>
-  </div>
 </section>
 
 <section class="feature" id="oyunlar" aria-labelledby="f-yk">
-  <div class="wide mask"><img data-par src="{I(me,'yk-wide.jpg')}" alt="" width="1080" height="608" loading="lazy"></div>
   <div class="wrap body">
     <div class="txt">
       <img class="icon rv" src="{I(me,'icon-yk.jpg')}" alt="" width="88" height="88" loading="lazy">
@@ -209,14 +204,14 @@ for lang in ('tr', 'en'):
 G = {
  ('yk','tr'): dict(title='Yıkım Ustası · Sancar Games', name='Yıkım Ustası', icon='icon-yk.jpg', live=True,
    lead='Kulenin taşıyıcı noktasını bul, patlayıcıyı doğru yere koy ve tek hamlede indir. Her bina gerçek fizikle, parça parça çöker.',
-   meta='Ücretsiz · iPhone ve iPad · 20 dil', band='yk-wide.jpg', gal=['yk-screen.jpg','yk-boom.jpg'],
+   meta='Ücretsiz · iPhone ve iPad · 20 dil', band=None, gal=[],
    rows=[('Gerçek fizik','Her bina blok blok, gerçek fizikle çöker. Aynı kule iki kez aynı şekilde yıkılmaz.'),
          ('Doğru alet, doğru yer','Balyoz, kesici, yıkım topu ve C4. Her binayı en az hamleyle indirmenin yolunu ara.'),
          ('Kombo ve dükkân','Art arda yıkımlarla kombo çarpanını büyüt, altınla yeni makineler ve görünümler aç.')],
    rows_h='Neden oynamalısın', social=True),
  ('yk','en'): dict(title='Demolition Master: Tower Blast · Sancar Games', name='Demolition Master', icon='icon-yk.jpg', live=True,
    lead="Find the tower's load-bearing point, place the charge in the right spot and bring it down in one move. Every building collapses piece by piece with real physics.",
-   meta='Free · iPhone and iPad · 20 languages', band='yk-wide.jpg', gal=['yk-screen.jpg','yk-boom.jpg'],
+   meta='Free · iPhone and iPad · 20 languages', band=None, gal=[],
    rows=[('Real physics','Every building falls block by block with real physics. No tower comes down the same way twice.'),
          ('Right tool, right spot','Sledgehammer, cutter, wrecking ball and C4. Find the way to bring each building down in the fewest moves.'),
          ('Combos and a shop','Chain demolitions to grow your combo multiplier, then spend gold on new machines and looks.')],
@@ -269,11 +264,11 @@ for (k, lang), g in G.items():
   <div class="sec-head"><h2 class="d d-m rv">{g['rows_h']}</h2></div>
   <div class="rows">{rows}</div>
 </div></section>
-{'' if g['band'] else '<section class="sec" style="padding-top:0"><div class="wrap"><div class="gallery">'+gal+'</div></div></section>'}
+{'' if (g['band'] or not g['gal']) else '<section class="sec" style="padding-top:0"><div class="wrap"><div class="gallery">'+gal+'</div></div></section>'}
 {social}
 {help_}
 '''
-    page(k, lang, g['title'], g['lead'], body, cur='games', ogimg='assets/img/' + (g['band'] or g['gal'][0]))
+    page(k, lang, g['title'], g['lead'], body, cur='games', ogimg='assets/img/' + (g['band'] or (g['gal'][0] if g['gal'] else 'yk-key-bg.jpg')))
 
 # ---------------- destek ve gizlilik: içerik eski build.py'den ----------------
 src = open(os.path.join(HERE, 'content.py'), encoding='utf-8').read()

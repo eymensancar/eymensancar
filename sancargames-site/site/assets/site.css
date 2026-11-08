@@ -62,12 +62,12 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-8.5px) rotate(-45
 .scrim{position:fixed;inset:0;z-index:48;background:rgba(15,15,17,.28);opacity:0;visibility:hidden;transition:opacity .2s,visibility 0s .2s}
 body.menu-open .scrim{opacity:1;visibility:visible;transition:opacity .2s}
 /* ana sayfa açılış */
-.hero{position:relative;padding-block:clamp(36px,6vw,80px) clamp(56px,8vw,120px);overflow:hidden;min-height:clamp(560px,52vw,760px)}
+.hero{position:relative;padding-block:clamp(48px,7vw,110px) clamp(64px,9vw,140px);overflow:hidden}
 .hero .grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:end}
 .hero h1{grid-column:1 / span 12;position:relative;z-index:2}
-.hero h1 .l2{display:block;padding-left:.58em}
+.hero h1 .l2{display:block;padding-left:1.1em}
 .hero h1 .dot{display:inline-block;width:.16em;height:.16em;background:var(--signal);margin-left:.05em;vertical-align:baseline}
-.hero .copy{grid-column:1 / span 5;margin-top:clamp(28px,4vw,56px)}
+.hero .copy{grid-column:8 / span 5;margin-top:clamp(28px,4vw,56px)}
 .hero .copy .lead{color:var(--ink)}
 .hero .scroll{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-weight:700;font-size:16px;text-decoration:none}
 .hero .scroll span{display:inline-block;width:34px;height:1.5px;background:var(--ink);transition:width .3s var(--ease)}
@@ -92,8 +92,8 @@ body.menu-open .scrim{opacity:1;visibility:visible;transition:opacity .2s}
 .feature .shots .keyart{flex:1;max-width:460px;margin-left:auto}
 .ghero .keyart{width:100%}
 @media (prefers-reduced-motion:no-preference){
-  .js .keyart .kb{transform:scale(1.07);transition:transform 1.6s var(--ease)}
-  .js .keyart .km{transform:translateX(-78%);opacity:0;transition:transform 1.15s cubic-bezier(.16,.84,.28,1) .25s,opacity .5s ease .25s}
+  .js .keyart .kb{transform:scale(1.08);transition:transform 2.6s cubic-bezier(.22,.61,.36,1)}
+  .js .keyart .km{transform:translateX(-85%);opacity:0;transition:transform 2s cubic-bezier(.45,.05,.25,1) .3s,opacity 1.2s ease .3s}
   .js .keyart.in .kb{transform:none}
   .js .keyart.in .km{transform:none;opacity:1}
 }
@@ -108,12 +108,12 @@ body.menu-open .scrim{opacity:1;visibility:visible;transition:opacity .2s}
 .feature .wide{position:relative;height:clamp(300px,46vw,640px);overflow:hidden}
 .feature .wide img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;image-rendering:auto}
 .feature .wide::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(transparent,var(--ink))}
-.feature .body{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding-block:0 clamp(80px,9vw,140px);margin-top:clamp(-120px,-8vw,-60px);position:relative}
-.feature .txt{grid-column:1 / span 6;align-self:start}
+.feature .body{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding-block:clamp(80px,9vw,140px);position:relative;align-items:center}
+.feature .txt{grid-column:1 / span 6}
 .feature .icon{width:88px;height:88px;border-radius:20px;margin-bottom:28px;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
 .feature .lead{color:var(--on-ink-mute);margin-top:26px}
 .feature .acts{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-top:36px}
-.feature .shots{grid-column:8 / span 5;display:flex;gap:20px;align-items:flex-start;margin-top:clamp(40px,8vw,140px)}
+.feature .shots{grid-column:8 / span 5;display:flex;gap:20px;align-items:flex-start}
 .feature .shots .phone{flex:1;box-shadow:0 40px 80px -36px rgba(0,0,0,.9),inset 0 0 0 1.5px #2b2b30}
 .feature .shots .phone:last-child{margin-top:64px}
 
@@ -282,7 +282,7 @@ details p{padding-bottom:24px;color:var(--mute);max-width:40em}
   .hero .tag{left:-34%;bottom:10%}
   .hero .copy{grid-column:1 / span 12;margin-top:22px}
   .sec-head h2,.sec-head p{grid-column:1 / span 12}.sec-head p{margin-top:16px}
-  .feature .body{display:block;margin-top:-40px}
+  .feature .body{display:block}
   .feature .shots{margin-top:56px;gap:14px;max-width:520px;margin-left:auto;margin-right:auto}
   .feature .shots .phone:last-child{margin-top:40px}
   .mag{row-gap:56px}.tile.off{margin-top:72px}
