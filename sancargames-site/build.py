@@ -123,6 +123,13 @@ def keyart_sy(me, alt, eager=False):
             f'<img class="kb" src="{I(me,"sy-key-bg.jpg")}" alt="" width="1087" height="1447"{lz}>'
             f'<span class="rw"><img class="kc" src="{I(me,"sy-key-char.webp")}" alt="" width="785" height="826"{lz}></span>'
             f'<span class="sen" aria-hidden="true"></span></figure>')
+def keyart_fd(me, alt):
+    # Fenerli Dedektif: karanlık oda; fener yanınca ışık fenerden yayılır ve dedektif ile ışık huzmesi belirir
+    lz = ' loading="lazy" decoding="async"'
+    return (f'<figure class="keyart fd" role="img" aria-label="{html.escape(alt)}">'
+            f'<img class="kb" src="{I(me,"fd-key-dark.jpg")}" alt="" width="1672" height="941"{lz}>'
+            f'<img class="kl" src="{I(me,"fd-key-lit.jpg")}" alt="" width="1672" height="941"{lz}>'
+            f'<span class="sen" aria-hidden="true"></span></figure>')
 def vphone(me, alt, cls=''):
     v = rel(me, 'assets/media/yk-loop.mp4'); po = I(me, 'yk-screen.jpg')
     return f'<div class="phone {cls}"><video data-auto src="{v}" poster="{po}" autoplay muted loop playsinline preload="metadata" aria-label="{html.escape(alt)}"></video></div>'
@@ -183,7 +190,7 @@ for lang in ('tr', 'en'):
         <div class="cap"><h3 class="d d-s">{t['sy']}</h3><span class="pill soon">{t['soon']}</span><p>{h['sy_p']}</p><span class="tl">{t['more']} {AR}</span></div>
       </a>
       <div class="tile off rv" style="--i:1">
-        <div class="art fd"><img class="icon" src="{I(me,'icon-fd.jpg')}" alt="" width="64" height="64" loading="lazy">{phone(me,'fd-menu-'+lang+'.jpg')}</div>
+        {keyart_fd(me, t['fd'])}
         <div class="cap"><h3 class="d d-s">{t['fd']}</h3><span class="pill soon">{t['soon']}</span><p>{h['fd_p']}</p></div>
       </div>
     </div>
