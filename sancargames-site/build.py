@@ -115,7 +115,7 @@ def keyart(me, alt, eager=False):
     lz = '' if eager else ' loading="lazy" decoding="async"'
     return (f'<figure class="keyart" role="img" aria-label="{html.escape(alt)}">'
             f'<img class="kb" src="{I(me,"yk-key-bg.jpg")}" alt="" width="941" height="1672"{lz}>'
-            f'<img class="km" src="{I(me,"yk-key-man.webp")}" alt="" width="855" height="823"{lz}></figure>')
+            f'<img class="km" src="{I(me,"yk-key-man.webp")}" alt="" width="855" height="823"{lz}><span class="sen" aria-hidden="true"></span></figure>')
 def vphone(me, alt, cls=''):
     v = rel(me, 'assets/media/yk-loop.mp4'); po = I(me, 'yk-screen.jpg')
     return f'<div class="phone {cls}"><video data-auto src="{v}" poster="{po}" autoplay muted loop playsinline preload="metadata" aria-label="{html.escape(alt)}"></video></div>'
