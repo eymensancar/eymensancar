@@ -30,11 +30,13 @@
     // maskeli öğe kendi kırpması yüzünden görünmez sayılır; kesişimi üst öğesinde ölç
     els.forEach(function(e){if(e.classList.contains('mask')){var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){e.classList.add('in');o.disconnect()}},{rootMargin:'0px 0px -10% 0px'});o.observe(e.parentNode)}else io.observe(e)})}
 
-  // tanıtım görseli: usta ancak görselin büyük kısmı ekrandayken gelir (yalnız ucu görününce değil)
+  // tanıtım görseli: önce görsel aşağıdan yavaşça belirir; usta ise görselin alt kısmı (ustanın duracağı yer) tamamen ekrandayken gelir
   d.querySelectorAll('.keyart').forEach(function(k){
-    if(rm||!('IntersectionObserver' in window)){k.classList.add('in');return}
-    var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.6||(e.isIntersecting&&e.intersectionRect.height>=window.innerHeight*.6)){k.classList.add('in');o.disconnect()}})},{threshold:[.3,.45,.6,.75]});
-    o.observe(k)});
+    var sen=k.querySelector('.sen');
+    if(rm||!('IntersectionObserver' in window)){k.classList.add('in','go');return}
+    var o1=new IntersectionObserver(function(es){if(es[0].isIntersecting){k.classList.add('in');o1.disconnect()}},{threshold:.15});o1.observe(k);
+    var o2=new IntersectionObserver(function(es){if(es[0].intersectionRatio>=.85){k.classList.add('in','go');o2.disconnect()}},{threshold:[.5,.7,.85,1]});o2.observe(sen||k);
+  });
 
   // hafif parallax: yalnızca [data-par] görseller, en çok ±6%
   var pars=rm?[]:Array.prototype.slice.call(d.querySelectorAll('[data-par]'));
