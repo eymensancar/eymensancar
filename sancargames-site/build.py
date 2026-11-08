@@ -158,7 +158,6 @@ for lang in ('tr', 'en'):
   <div class="wrap body">
     <div class="txt">
       <img class="icon rv" src="{I(me,'icon-yk.jpg')}" alt="" width="88" height="88" loading="lazy">
-      <div class="rv" style="--i:1"><span class="pill live">{t['live']}</span></div>
       <h2 class="d d-l rv" id="f-yk" style="--i:2;margin-top:18px">{ykname}</h2>
       <p class="lead rv" style="--i:3">{h['feat_lead']}</p>
       <div class="acts rv" style="--i:4">{badge(t)}<a class="tl" href="{a('yk')}">{t['more']} {AR}</a></div>
@@ -252,7 +251,7 @@ for (k, lang), g in G.items():
     body = f'''<section class="ghero"><div class="wrap">
   <div class="txt">
     <img class="icon intro" style="--i:0" src="{I(me, g['icon'])}" alt="" width="104" height="104">
-    <div class="intro" style="--i:1"><span class="pill {'live' if g['live'] else 'soon'}">{t['live'] if g['live'] else t['soon']}</span></div>
+    {'' if g['live'] else '<div class="intro" style="--i:1"><span class="pill soon">'+t['soon']+'</span></div>'}
     <h1 class="d d-l intro" style="--i:2;margin-top:16px">{h1}</h1>
     <p class="lead intro" style="--i:3">{g['lead']}</p>
     <div class="acts intro" style="--i:4">{acts}</div>
