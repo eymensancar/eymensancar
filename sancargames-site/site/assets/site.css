@@ -115,10 +115,10 @@ body.menu-open .scrim{opacity:1;visibility:visible;transition:opacity .2s}
 .keyart.fd{aspect-ratio:1672/941;-webkit-mask-image:url(img/paint-mask-wide.png);mask-image:url(img/paint-mask-wide.png)}
 .keyart.fd .kl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;--lr:140%;
   -webkit-mask-image:radial-gradient(circle at 37% 76%,#000 var(--lr),transparent calc(var(--lr) + 22%));mask-image:radial-gradient(circle at 37% 76%,#000 var(--lr),transparent calc(var(--lr) + 22%))}
-.keyart.fd .sen{top:15%;bottom:auto;height:70%}
+.keyart.fd .sen{top:30%;bottom:auto;height:25%}
 .tile .keyart.fd{width:100%}
 @media (prefers-reduced-motion:no-preference){
-  .js .keyart.fd .kl{--lr:-22%;opacity:.0;transition:--lr 3.2s cubic-bezier(.45,.05,.3,1) .4s,opacity .6s ease .4s}
+  .js .keyart.fd .kl{--lr:-22%;opacity:.0;transition:--lr 3.2s cubic-bezier(.45,.05,.3,1) .15s,opacity .6s ease .15s}
   .js .keyart.fd.go .kl{--lr:140%;opacity:1}
 }
 /* oyunlar başlığı → koyu Yıkım bandı → diğer oyunlar */
