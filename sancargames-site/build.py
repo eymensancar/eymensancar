@@ -116,6 +116,13 @@ def keyart(me, alt, eager=False):
     return (f'<figure class="keyart" role="img" aria-label="{html.escape(alt)}">'
             f'<img class="kb" src="{I(me,"yk-key-bg.jpg")}" alt="" width="941" height="1672"{lz}>'
             f'<img class="km" src="{I(me,"yk-key-man.webp")}" alt="" width="855" height="823"{lz}><span class="sen" aria-hidden="true"></span></figure>')
+def keyart_sy(me, alt, eager=False):
+    # Sayı Yolu tanıtım görseli: tahta + filiz karakter tahtanın arkasından yükselir
+    lz = '' if eager else ' loading="lazy" decoding="async"'
+    return (f'<figure class="keyart sy" role="img" aria-label="{html.escape(alt)}">'
+            f'<img class="kb" src="{I(me,"sy-key-bg.jpg")}" alt="" width="1087" height="1447"{lz}>'
+            f'<span class="rw"><img class="kc" src="{I(me,"sy-key-char.webp")}" alt="" width="785" height="826"{lz}></span>'
+            f'<span class="sen" aria-hidden="true"></span></figure>')
 def vphone(me, alt, cls=''):
     v = rel(me, 'assets/media/yk-loop.mp4'); po = I(me, 'yk-screen.jpg')
     return f'<div class="phone {cls}"><video data-auto src="{v}" poster="{po}" autoplay muted loop playsinline preload="metadata" aria-label="{html.escape(alt)}"></video></div>'
@@ -172,7 +179,7 @@ for lang in ('tr', 'en'):
     <div class="sec-head"><h2 class="d d-l rv" id="g-h">{h['games_h']}</h2><p class="rv" style="--i:1">{h['games_p']}</p></div>
     <div class="mag">
       <a class="tile rv" href="{a('sy')}">
-        <div class="art sy"><img class="icon" src="{I(me,'icon-sy.jpg')}" alt="" width="64" height="64" loading="lazy">{phone(me,'sy-intro-'+lang+'.jpg')}</div>
+        {keyart_sy(me, t['sy'])}
         <div class="cap"><h3 class="d d-s">{t['sy']}</h3><span class="pill soon">{t['soon']}</span><p>{h['sy_p']}</p><span class="tl">{t['more']} {AR}</span></div>
       </a>
       <div class="tile off rv" style="--i:1">
@@ -217,14 +224,14 @@ G = {
    rows_h='Why play', social=True),
  ('sy','tr'): dict(title='Sayı Yolu · Sancar Games', name='Sayı Yolu', icon='icon-sy.jpg', live=False,
    lead='Parmağınla tahtadaki her kareden bir kez geçen tek bir yol çiz. Kırmızı sayılara tam o adımda bas. Kolay başlar, zekice zorlaşır.',
-   meta="App Store'da yakında", band=None, gal=['sy-intro-tr.jpg','sy-play-tr.jpg'],
+   meta="App Store'da yakında", band=None, gal=[],
    rows=[('Tek kural','Her kareden bir kez geç, yalnızca yatay ve dikey git, kırmızı sayılara tam o adımda bas.'),
          ('Her gün yeni bulmaca','Günün bulmacasını çöz, serini koru.'),
          ('Yeni kurallar','İlerledikçe taşlar, duvarlar, oklar ve ışınlanma kapıları gibi yeni mekanikler tahtaya eklenir.')],
    rows_h='Nasıl oynanır', social=False),
  ('sy','en'): dict(title='Number Path · Sancar Games', name='Number Path', icon='icon-sy.jpg', live=False,
    lead='Draw one path with your finger that visits every square exactly once. Step on each red number at exactly that step. Easy to start, cleverly hard later.',
-   meta='Coming soon to the App Store', band=None, gal=['sy-intro-en.jpg','sy-play-en.jpg'],
+   meta='Coming soon to the App Store', band=None, gal=[],
    rows=[('One rule','Visit every square once, move only horizontally or vertically, and hit each red number on exactly that step.'),
          ('A new puzzle every day','Solve the daily puzzle and keep your streak going.'),
          ('New twists','As you progress, new mechanics such as rocks, walls, arrows and portals join the board.')],
@@ -234,7 +241,7 @@ for (k, lang), g in G.items():
     t = L[lang]; me = P[k][0 if lang == 'tr' else 1]
     a = lambda kk: rel(me, P[kk][0 if lang == 'tr' else 1])
     pol = 'pyk' if k == 'yk' else 'psy'
-    vis = keyart(me, g['name'], eager=True) if k == 'yk' else phone(me, g['gal'][1], lazy=False)
+    vis = keyart(me, g['name'], eager=True) if k == 'yk' else keyart_sy(me, g['name'], eager=True)
     acts = (badge(t) + f'<span class="meta">{g["meta"]}</span>') if g['live'] else f'<span class="meta">{g["meta"]}</span>'
     h1 = 'Demolition Master: Tower Blast' if (k, lang) == ('yk', 'en') else g['name']
     rows = ''.join(f'<div class="row rv" style="--i:{i}"><h3 class="d d-s">{x}</h3><p>{y}</p></div>' for i, (x, y) in enumerate(g['rows']))
