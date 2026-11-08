@@ -7,8 +7,7 @@ STORE = 'https://apps.apple.com/app/id6823286892'
 YT = 'https://www.youtube.com/@demolitionmastergame'
 IG = 'https://www.instagram.com/demolitionmaster.game/'
 MAIL = 'support@sancargames.com'
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">')
+FONTS = ''  # Archivo yerel: assets/archivo.woff2 (Latin + Türkçe tek dosya)
 APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8zM14.1 5.7c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>'
 AR = '<span class="ar" aria-hidden="true">→</span>'
 ARU = '<span class="ar" aria-hidden="true">↗</span>'
@@ -62,7 +61,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{A('assets/img/favicon.png')}">
 <link rel="apple-touch-icon" href="{A('assets/img/favicon.png')}">
-{FONTS}
+<link rel="preload" href="{A('assets/archivo.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{A('assets/site.css')}">
 <script>document.documentElement.classList.add('js')</script>
 </head>
