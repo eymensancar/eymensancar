@@ -68,7 +68,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-wide.jpg')
 <body>
 <a class="skip" href="#main">{t['skip']}</a>
 <header class="bar"><div class="wrap">
-  <a class="logo" href="{a('home')}" aria-label="Sancar Games"><i aria-hidden="true"></i><b>Sancar Games</b></a>
+  <a class="logo" href="{a('home')}" aria-label="Sancar Games"><img class="mk" src="{A('assets/img/logo-s.png')}" alt="" width="26" height="29"><b>Sancar Games</b></a>
   <nav class="menu" aria-label="{t['menu']}">
     <a href="{gl}"{c('games')}>{t['games']}</a>
     <a href="{a('home')}#studyo">{t['studio']}</a>
@@ -77,22 +77,20 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-wide.jpg')
   </nav>
   <button class="burger" type="button" aria-label="{t['menu']}" aria-expanded="false" aria-controls="sheet"><span></span><span></span><span></span></button>
 </div></header>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="{t['menu']}">
-  <div class="top"><a class="logo" href="{a('home')}"><i aria-hidden="true"></i><b>Sancar Games</b></a><button class="x" type="button" aria-label="{t['close']}">×</button></div>
+<div class="sheet" id="sheet" aria-label="{t['menu']}">
   <nav>
-    <a href="{gl}">{t['games']}</a>
-    <a href="{a('home')}#studyo">{t['studio']}</a>
-    <a href="{a('sup')}">{t['support']}</a>
-    <a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a>
+    <a href="{gl}">{t['games']}<span aria-hidden="true">›</span></a>
+    <a href="{a('home')}#studyo">{t['studio']}<span aria-hidden="true">›</span></a>
+    <a href="{a('sup')}">{t['support']}<span aria-hidden="true">›</span></a>
   </nav>
-  <div class="foot">{MAIL}</div>
+  <div class="sub"><a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a><span>{MAIL}</span></div>
 </div>
 <main id="main">
 '''
     foot = f'''</main>
 <footer class="foot">
   <div class="wrap cols">
-    <div class="about"><a class="logo" href="{a('home')}"><i aria-hidden="true"></i><b>Sancar Games</b></a><p>{t['about']}</p></div>
+    <div class="about"><a class="logo" href="{a('home')}"><img class="mk" src="{A('assets/img/logo-s-w.png')}" alt="" width="26" height="29"><b>Sancar Games</b></a><p>{t['about']}</p></div>
     <div class="col"><h4>{t['games']}</h4><ul><li><a href="{a('yk')}">{t['yk']}</a></li><li><a href="{a('sy')}">{t['sy']}</a></li><li><a href="{gl}">{t['fd']}</a></li></ul></div>
     <div class="col"><h4>{t['support']}</h4><ul><li><a href="{a('sup')}">{t['support']}</a></li><li><a href="{a('pyk')}">{t['privacy']}: {t['yk']}</a></li><li><a href="{a('psy')}">{t['privacy']}: {t['sy']}</a></li></ul></div>
     <div class="col"><h4>{t['contact']}</h4><ul><li><a href="mailto:{MAIL}">{MAIL}</a></li><li><a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a></li></ul></div>
