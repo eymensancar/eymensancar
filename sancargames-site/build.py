@@ -141,7 +141,7 @@ H = {
    games_h='Oyunlar', games_p='Her biri birkaç dakikada oynanır. Bırakması zor olan kısım.',
    sy_p='Her kareden bir kez geçen tek bir yol çiz; kırmızı sayılara tam o adımda bas. Her gün yeni bir bulmaca.', sy_k='Yol çizme bulmacası',
    fd_p='Karanlık odalarda fenerini gezdir, gizli ipuçlarını bul, şifreli sandığı aç ve kapıdan çık.', fd_k='Işıkla çözülen kaçış odaları',
-   m_k='Stüdyo', m_q='Her bölümü <mark>elle</mark> tasarlıyor, her oyunu oynayarak dengeliyoruz.',
+   m_k='Stüdyo', m_alt='Yıkım Ustası, Sayı Yolu filizi ve Fenerli Dedektif tilkisi birlikte poz veriyor', m_q='Her bölümü <mark>elle</mark> tasarlıyor, her oyunu oynayarak dengeliyoruz.',
    m_p='Sancar Games küçük bir ekip. Fikirden yayına kadar tasarımı, kodu, sesi ve çeviriyi kendimiz yapıyoruz. Hedefimiz basit: açtığın anda anlaşılan, kapattıktan sonra aklında kalan oyunlar.',
    c_h='Bize yazın', c_p='Bir oyunla ilgili sorun, iş birliği ya da basın için. Genellikle iki iş günü içinde dönüyoruz.',
    yk_alt='Yıkım Ustası oynanışı: kule çöküyor', tag_s="App Store'da"),
@@ -151,7 +151,7 @@ H = {
    games_h='Games', games_p='Each one plays in a few minutes. Putting it down is the hard part.',
    sy_p='Draw one path that visits every square once and hit each red number on exactly that step. A new puzzle every day.', sy_k='Path-drawing puzzle',
    fd_p='Sweep your lantern through dark rooms, find hidden clues, crack the coded chest and escape.', fd_k='Escape rooms solved with light',
-   m_k='Studio', m_q='We design every level <mark>by hand</mark> and balance every game by playing it.',
+   m_k='Studio', m_alt='The Demolition Master, the Number Path sprout and the Lantern Detective fox posing together', m_q='We design every level <mark>by hand</mark> and balance every game by playing it.',
    m_p='Sancar Games is a small team. From idea to release we do the design, code, sound and translation ourselves. Our goal is simple: games you understand the moment you open them and remember after you close them.',
    c_h='Write to us', c_p='About a game, a partnership or press. We usually reply within two business days.',
    yk_alt='Demolition Master gameplay: a tower collapsing', tag_s='On the App Store'),
@@ -204,6 +204,7 @@ for lang in ('tr', 'en'):
 <section class="sec manifesto" id="studyo" aria-labelledby="m-h">
   <div class="wrap">
     <div class="k rv"><span class="eyebrow">{h['m_k']}</span></div>
+    <figure class="team rv" style="--i:1"><img src="{I(me,'team-v.webp')}" alt="{h['m_alt']}" width="934" height="1017" loading="lazy" decoding="async"></figure>
     <div class="q"><p class="d rv" id="m-h" style="--i:1">{h['m_q']}</p><p class="rv" style="--i:2">{h['m_p']}</p></div>
   </div>
 </section>
