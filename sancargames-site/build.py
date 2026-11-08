@@ -2,7 +2,7 @@
 # Destek SSS ve gizlilik metinleri ../sg/build.py'den (içerik aynı) alınır; tasarım ve sayfalar burada.
 import os, html, re
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, 'site')
+OUT = os.environ.get('SG_OUT') or os.path.join(HERE, 'site')
 STORE = 'https://apps.apple.com/app/id6823286892'
 YT = 'https://www.youtube.com/@demolitionmastergame'
 IG = 'https://www.instagram.com/demolitionmaster.game/'
@@ -20,6 +20,7 @@ P = {'home': ('index.html', 'en/index.html'), 'yk': ('yikim-ustasi.html', 'en/de
 
 def rel(frm, to):
     r = os.path.relpath(os.path.join(OUT, to), os.path.dirname(os.path.join(OUT, frm))).replace(os.sep, '/')
+    if os.environ.get('SG_KEEPHTML'): return r
     return r[:-5] if r.endswith('.html') and not r.endswith('index.html') else (r[:-10] or './' if r.endswith('index.html') else r)
 def url(k, lang): return 'https://sancargames.com/' + re.sub(r'(index)?\.html$', '', P[k][0 if lang == 'tr' else 1])
 
@@ -109,6 +110,12 @@ def I(me, n): return rel(me, 'assets/img/' + n)
 def phone(me, n, alt='', cls='', lazy=True):
     if n.startswith(('sy-','fd-')): cls += ' s'
     return f'<div class="phone {cls}"><img src="{I(me, n)}" alt="{html.escape(alt)}" width="720" height="1280"{" loading=lazy decoding=async" if lazy else ""}></div>'
+def keyart(me, alt, eager=False):
+    # Yıkım Ustası tanıtım görseli: arka plan (kule çöküyor) + usta soldan kayarak gelir
+    lz = '' if eager else ' loading="lazy" decoding="async"'
+    return (f'<figure class="keyart" role="img" aria-label="{html.escape(alt)}">'
+            f'<img class="kb" src="{I(me,"yk-key-bg.jpg")}" alt="" width="941" height="1672"{lz}>'
+            f'<img class="km" src="{I(me,"yk-key-man.webp")}" alt="" width="855" height="823"{lz}></figure>')
 def vphone(me, alt, cls=''):
     v = rel(me, 'assets/media/yk-loop.mp4'); po = I(me, 'yk-screen.jpg')
     return f'<div class="phone {cls}"><video data-auto src="{v}" poster="{po}" autoplay muted loop playsinline preload="metadata" aria-label="{html.escape(alt)}"></video></div>'
@@ -161,9 +168,7 @@ for lang in ('tr', 'en'):
       <p class="lead rv" style="--i:3">{h['feat_lead']}</p>
       <div class="acts rv" style="--i:4">{badge(t)}<a class="tl" href="{a('yk')}">{t['more']} {AR}</a></div>
     </div>
-    <div class="shots">
-      {phone(me,'yk-boom.jpg',cls='settle')}
-      <div class="phone settle" style="--i:1"><img src="{I(me,'yk-scene.jpg')}" alt="" width="1080" height="1110" loading="lazy" style="object-position:50% 30%"></div>
+    <div class="shots">{keyart(me, h['yk_alt'])}</div>
     </div>
   </div>
 </section>
@@ -235,7 +240,7 @@ for (k, lang), g in G.items():
     t = L[lang]; me = P[k][0 if lang == 'tr' else 1]
     a = lambda kk: rel(me, P[kk][0 if lang == 'tr' else 1])
     pol = 'pyk' if k == 'yk' else 'psy'
-    vis = vphone(me, g['name']) if k == 'yk' else phone(me, g['gal'][1], lazy=False)
+    vis = keyart(me, g['name'], eager=True) if k == 'yk' else phone(me, g['gal'][1], lazy=False)
     acts = (badge(t) + f'<span class="meta">{g["meta"]}</span>') if g['live'] else f'<span class="meta">{g["meta"]}</span>'
     h1 = 'Demolition Master: Tower Blast' if (k, lang) == ('yk', 'en') else g['name']
     rows = ''.join(f'<div class="row rv" style="--i:{i}"><h3 class="d d-s">{x}</h3><p>{y}</p></div>' for i, (x, y) in enumerate(g['rows']))

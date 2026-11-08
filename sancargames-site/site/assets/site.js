@@ -24,7 +24,7 @@
   sheet&&sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
 
   // kaydırmayla belirme
-  var els=d.querySelectorAll('.rv,.mask,.settle');
+  var els=d.querySelectorAll('.rv,.mask,.settle,.keyart');
   if(rm||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')})}
   else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px',threshold:.08});
     // maskeli öğe kendi kırpması yüzünden görünmez sayılır; kesişimi üst öğesinde ölç
