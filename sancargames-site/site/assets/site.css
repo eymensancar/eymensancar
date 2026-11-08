@@ -39,7 +39,7 @@ p{margin:0}
 .bar.lift{box-shadow:0 1px 0 var(--line)}
 .bar .wrap{display:flex;align-items:center;gap:36px;height:72px}
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
-.logo i{width:22px;height:22px;background:var(--signal);display:block}
+.logo .mk{width:auto;height:28px;display:block}
 .logo b{font-variation-settings:"wdth" 62;font-weight:900;font-size:26px;letter-spacing:.005em;text-transform:uppercase;line-height:1}
 .menu{display:flex;gap:30px;margin-left:auto;align-items:center}
 .menu a{position:relative;text-decoration:none;font-weight:600;font-size:16px;padding:6px 0}
@@ -47,19 +47,20 @@ p{margin:0}
 .menu a:hover::after,.menu a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
 .lang{font-weight:700;font-size:14px;letter-spacing:.08em;text-decoration:none;border:1.5px solid var(--ink);padding:5px 10px;transition:background .2s,color .2s}
 .lang:hover{background:var(--ink);color:var(--paper)}
-.burger{display:none;margin-left:auto;background:none;border:0;width:44px;height:44px;padding:10px;cursor:pointer}
+.burger{display:none;margin-left:auto;background:none;border:0;width:44px;height:44px;padding:10px 9px;cursor:pointer}
 .burger span{display:block;height:2.5px;background:var(--ink);margin:6px 0;transition:transform .3s var(--ease),opacity .2s}
-.sheet{position:fixed;inset:0;z-index:60;background:var(--ink);color:var(--on-ink);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutR) calc(env(safe-area-inset-bottom,0px) + 28px) var(--gut);visibility:hidden;opacity:0;transition:opacity .3s var(--ease),visibility 0s .3s}
-.sheet.open{visibility:visible;opacity:1;transition:opacity .3s var(--ease)}
-.sheet .top{display:flex;justify-content:space-between;align-items:center;height:58px}
-.sheet .logo b{color:var(--on-ink)}
-.sheet .x{background:none;border:0;color:var(--on-ink);font-size:34px;line-height:1;width:44px;height:44px;cursor:pointer}
-.sheet nav{display:flex;flex-direction:column;gap:4px;margin-top:auto;margin-bottom:auto}
-.sheet nav a{text-decoration:none;font-variation-settings:"wdth" 62;font-weight:900;text-transform:uppercase;font-size:clamp(54px,16vw,88px);line-height:1;transform:translateY(24px);opacity:0;transition:transform .5s var(--ease),opacity .5s var(--ease)}
-.sheet.open nav a{transform:none;opacity:1}
-.sheet.open nav a:nth-child(2){transition-delay:.06s}.sheet.open nav a:nth-child(3){transition-delay:.12s}.sheet.open nav a:nth-child(4){transition-delay:.18s}
-.sheet .foot{color:var(--on-ink-mute);font-size:15px}
-
+.sheet{position:fixed;left:0;right:0;top:62px;z-index:49;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 24px 40px -24px rgba(15,15,17,.35);padding:6px var(--gutR) 18px var(--gut);transform:translateY(-8px);opacity:0;visibility:hidden;transition:transform .24s var(--ease),opacity .2s var(--ease),visibility 0s .24s}
+.sheet.open{transform:none;opacity:1;visibility:visible;transition:transform .24s var(--ease),opacity .2s var(--ease)}
+.sheet nav{display:flex;flex-direction:column}
+.sheet nav a{display:flex;justify-content:space-between;align-items:center;padding:15px 2px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:600;font-size:18px}
+.sheet nav a span{color:var(--mute);font-size:22px;line-height:1}
+.sheet .sub{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:16px;font-size:15px;color:var(--mute)}
+.sheet .sub a{font-weight:700;color:var(--ink);text-decoration:none;border:1.5px solid var(--ink);padding:4px 10px;font-size:14px}
+body.menu-open .burger span:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0}
+body.menu-open .burger span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
+.scrim{position:fixed;inset:0;z-index:48;background:rgba(15,15,17,.28);opacity:0;visibility:hidden;transition:opacity .2s,visibility 0s .2s}
+body.menu-open .scrim{opacity:1;visibility:visible;transition:opacity .2s}
 /* ana sayfa açılış */
 .hero{position:relative;padding-block:clamp(36px,6vw,80px) clamp(56px,8vw,120px);overflow:hidden;min-height:clamp(560px,52vw,760px)}
 .hero .grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:end}

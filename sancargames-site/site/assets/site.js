@@ -14,11 +14,11 @@
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
 
   // mobil menü
-  var sheet=d.getElementById('sheet'),openB=d.querySelector('.burger'),closeB=sheet&&sheet.querySelector('.x');
+  var sheet=d.getElementById('sheet'),openB=d.querySelector('.burger'),closeB=null;
+  var scrim=d.createElement('div');scrim.className='scrim';d.body.appendChild(scrim);scrim.addEventListener('click',function(){setMenu(false)});
   function setMenu(o){if(!sheet)return;sheet.classList.toggle('open',o);d.body.classList.toggle('menu-open',o);
-    openB&&openB.setAttribute('aria-expanded',o?'true':'false');d.body.style.overflow=o?'hidden':'';
-    if(o){var f=sheet.querySelector('a');f&&f.focus()}else{openB&&openB.focus()}}
-  openB&&openB.addEventListener('click',function(){setMenu(true)});
+    openB&&openB.setAttribute('aria-expanded',o?'true':'false');if(o&&bar)bar.classList.remove('up');}
+  openB&&openB.addEventListener('click',function(){setMenu(!sheet.classList.contains('open'))});
   closeB&&closeB.addEventListener('click',function(){setMenu(false)});
   d.addEventListener('keydown',function(e){if(e.key==='Escape'&&sheet&&sheet.classList.contains('open'))setMenu(false)});
   sheet&&sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
