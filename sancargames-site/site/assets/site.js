@@ -24,11 +24,17 @@
   sheet&&sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
 
   // kaydırmayla belirme
-  var els=d.querySelectorAll('.rv,.mask,.settle,.keyart');
+  var els=d.querySelectorAll('.rv,.mask,.settle');
   if(rm||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')})}
   else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px',threshold:.08});
     // maskeli öğe kendi kırpması yüzünden görünmez sayılır; kesişimi üst öğesinde ölç
     els.forEach(function(e){if(e.classList.contains('mask')){var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){e.classList.add('in');o.disconnect()}},{rootMargin:'0px 0px -10% 0px'});o.observe(e.parentNode)}else io.observe(e)})}
+
+  // tanıtım görseli: usta ancak görselin büyük kısmı ekrandayken gelir (yalnız ucu görününce değil)
+  d.querySelectorAll('.keyart').forEach(function(k){
+    if(rm||!('IntersectionObserver' in window)){k.classList.add('in');return}
+    var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.6||(e.isIntersecting&&e.intersectionRect.height>=window.innerHeight*.6)){k.classList.add('in');o.disconnect()}})},{threshold:[.3,.45,.6,.75]});
+    o.observe(k)});
 
   // hafif parallax: yalnızca [data-par] görseller, en çok ±6%
   var pars=rm?[]:Array.prototype.slice.call(d.querySelectorAll('[data-par]'));
