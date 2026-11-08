@@ -34,7 +34,7 @@
   d.querySelectorAll('.keyart').forEach(function(k){
     var sen=k.querySelector('.sen');
     if(rm||!('IntersectionObserver' in window)){k.classList.add('in','go');return}
-    var o1=new IntersectionObserver(function(es){if(es[0].isIntersecting){k.classList.add('in');o1.disconnect()}},{threshold:.15});o1.observe(k);
+    var o1=new IntersectionObserver(function(es){if(es[0].isIntersecting){k.classList.add('in');o1.disconnect()}},{threshold:.25,rootMargin:'0px 0px -8% 0px'});o1.observe(k);
     var o2=new IntersectionObserver(function(es){if(es[0].intersectionRatio>=.85){k.classList.add('in','go');o2.disconnect()}},{threshold:[.5,.7,.85,1]});o2.observe(sen||k);
   });
 

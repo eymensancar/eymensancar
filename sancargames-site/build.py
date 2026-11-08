@@ -168,7 +168,13 @@ for lang in ('tr', 'en'):
   </div>
 </section>
 
-<section class="feature" id="oyunlar" aria-labelledby="f-yk">
+<section class="sec games-h" id="oyunlar" aria-labelledby="g-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="d d-l rv" id="g-h">{h['games_h']}</h2><p class="rv" style="--i:1">{h['games_p']}</p></div>
+  </div>
+</section>
+
+<section class="feature" aria-labelledby="f-yk">
   <div class="wrap body">
     <div class="txt">
       <img class="icon rv" src="{I(me,'icon-yk.jpg')}" alt="" width="88" height="88" loading="lazy">
@@ -181,9 +187,8 @@ for lang in ('tr', 'en'):
   </div>
 </section>
 
-<section class="sec" aria-labelledby="g-h">
+<section class="sec games-rest" aria-label="{h['games_h']}">
   <div class="wrap">
-    <div class="sec-head"><h2 class="d d-l rv" id="g-h">{h['games_h']}</h2><p class="rv" style="--i:1">{h['games_p']}</p></div>
     <div class="mag">
       <a class="tile rv" href="{a('sy')}">
         {keyart_sy(me, t['sy'])}
