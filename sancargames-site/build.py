@@ -61,7 +61,7 @@ def jsonld(key, lang, title, desc):
 def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/og-team.jpg'):
     me = P[key][0 if lang == 'tr' else 1]; t = L[lang]; other = P[key][1 if lang == 'tr' else 0]
     a = lambda k: rel(me, P[k][0 if lang == 'tr' else 1])
-    A = lambda p: rel(me, p)
+    A = lambda p: rel(me, p) + ver(p)
     c = lambda k: ' aria-current="page"' if cur == k else ''
     gl = a('home') + '#oyunlar'
     head = f'''<!doctype html>
@@ -130,6 +130,11 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/og-team.jpg')
     path = os.path.join(OUT, me); os.makedirs(os.path.dirname(path), exist_ok=True)
     open(path, 'w', encoding='utf-8').write(head + body + foot)
 
+def ver(p):
+    # css/js değişince adres de değişsin; tarayıcı eski kopyayı kullanmasın
+    if not p.endswith(('.css', '.js')): return ''
+    import hashlib
+    return '?v=' + hashlib.md5(open(os.path.join(OUT, p), 'rb').read()).hexdigest()[:8]
 def I(me, n): return rel(me, 'assets/img/' + n)
 def phone(me, n, alt='', cls='', lazy=True):
     if n.startswith(('sy-','fd-')): cls += ' s'
