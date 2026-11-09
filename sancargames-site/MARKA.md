@@ -14,7 +14,8 @@ Süreç (Eymen'in önerisi): her tarzdan bir finalist çıkar, sonunda Amca ile 
 2. **Minimalist:** Archivo; tek sarı detay. Eymen'in favorileri:
    - **2a:** küçük harf "sancar games" + sonda sarı imleç (animasyonda yanıp söner). Simge: "s|".
    - **5:** büyük harf SANCAR + altında %70 dolu sarı yükleme/can çubuğu + aralıklı GAMES (animasyonda çubuk dolar).
-Dosyalar Eymen'de (zip). Sıradaki tarz önerisi: yalnız simgeden oluşan amblem.
+3. **Amblem (yazısız):** tek kalın çizgiden S + ucunda sarı düğme (top). ChatGPT görseli, potrace ile SVG'ye çevrildi; sürümler: koyu, açık, koyu+sarı S, çerçevesiz koyu/beyaz. Sarı zemin + koyu S kullanılmayacak (sahibinden'e benzer).
+Dosyalar Eymen'de (zip).
 
 ## Açılış/kapanış animasyonu fikri (Eymen, saklanacak)
 Logo olarak değil, **oyun açılışları ve video giriş/kapanışları** için:
