@@ -1,5 +1,11 @@
 # Sancar Games marka notları
 
+## Karar (9 Kasım 2026)
+**Logo: oyun kolu** (üstte SANCAR, altta GAMES; G ve S kolun tutamaçları), koyu zemin, sarı tutamaçlar. Muhammed Sancar onayladı.
+- Dosyalar: `marka/` (koyu, renkli, siyah, beyaz SVG). Sitede `assets/img/logo.svg` (açık zemin), `logo-w.svg` (koyu zemin, alt bilgi).
+- **Ayrı simge yok** (Eymen): küçük yerlerde de aynı logo küçültülerek kullanılır. Sekme simgesi ve apple-touch-icon: koyu yuvarlak kare içinde logo (`favicon.svg/.png`, `apple-touch-icon.png`).
+- Eski sarı kare + S simgesi (sahibinden.com'a benziyordu) kaldırıldı.
+
 ## Logo (Kasım 2026, sürüyor)
 - Eski site simgesi (sarı kare içinde siyah S) sahibinden.com'a benzediği için değişecek.
 - Eymen'in istediği tarz: FedEx (E ile x arasındaki ok), Carrefour (gizli C), Toblerone (gizli ayı), Formula 1 (gizli 1) gibi **sade, tek bir gizli negatif alan sürprizi**. Abartılı olmayacak.
