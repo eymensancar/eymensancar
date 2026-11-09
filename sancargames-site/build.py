@@ -7,6 +7,7 @@ STORE = 'https://apps.apple.com/app/id6823286892'
 YT = 'https://www.youtube.com/@demolitionmastergame'
 IG = 'https://www.instagram.com/demolitionmaster.game/'
 MAIL = 'support@sancargames.com'
+INFO = 'info@sancargames.com'
 FONTS = ''  # Archivo yerel: assets/archivo-tr.woff2 (Latin + Türkçe tek dosya)
 APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8zM14.1 5.7c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>'
 AR = '<span class="ar" aria-hidden="true">→</span>'
@@ -40,7 +41,7 @@ def badge(t, cls=''): return f'<a class="badge {cls}" href="{STORE}" target="_bl
 IGS = 'https://www.instagram.com/sancargamesofficial/'
 def jsonld(key, lang, title, desc):
     org = {'@type': 'Organization', '@id': 'https://sancargames.com/#org', 'name': 'Sancar Games',
-           'url': 'https://sancargames.com/', 'logo': 'https://sancargames.com/assets/img/apple-touch-icon.png',
+           'url': 'https://sancargames.com/', 'logo': 'https://sancargames.com/assets/img/favicon-512.png', 'image': 'https://sancargames.com/assets/img/og-team.jpg',
            'email': 'support@sancargames.com', 'sameAs': [IGS, YT, IG, STORE]}
     g = [org]
     if key == 'home':
@@ -57,7 +58,7 @@ def jsonld(key, lang, title, desc):
                   'url': url(key, lang), 'gamePlatform': 'iPhone', 'publisher': {'@id': 'https://sancargames.com/#org'}, 'inLanguage': lang})
     return '<script type="application/ld+json">' + json.dumps({'@context': 'https://schema.org', '@graph': g}, ensure_ascii=False) + '</script>'
 
-def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg'):
+def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/og-team.jpg'):
     me = P[key][0 if lang == 'tr' else 1]; t = L[lang]; other = P[key][1 if lang == 'tr' else 0]
     a = lambda k: rel(me, P[k][0 if lang == 'tr' else 1])
     A = lambda p: rel(me, p)
@@ -81,7 +82,8 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{A('assets/img/favicon.svg')}" type="image/svg+xml">
-<link rel="icon" href="{A('assets/img/favicon.png')}" sizes="32x32">
+<link rel="icon" href="{A('assets/img/favicon-192.png')}" type="image/png" sizes="192x192">
+<link rel="icon" href="{A('assets/img/favicon.png')}" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="{A('assets/img/apple-touch-icon.png')}">
 <link rel="preload" href="{A('assets/archivo-tr.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{A('assets/site.css')}">
@@ -116,7 +118,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg
     <div class="about"><a class="logo" href="{a('home')}" aria-label="Sancar Games"><img class="wm" src="{A('assets/img/logo-w.svg')}" alt="Sancar Games" width="140" height="80"></a><p>{t['about']}</p></div>
     <div class="col"><h4>{t['games']}</h4><ul><li><a href="{a('yk')}">{t['yk']}</a></li><li><a href="{a('sy')}">{t['sy']}</a></li><li><a href="{gl}">{t['fd']}</a></li></ul></div>
     <div class="col"><h4>{t['support']}</h4><ul><li><a href="{a('sup')}">{t['support']}</a></li><li><a href="{a('pyk')}">{t['privacy']}: {t['yk']}</a></li><li><a href="{a('psy')}">{t['privacy']}: {t['sy']}</a></li></ul></div>
-    <div class="col"><h4>{t['contact']}</h4><ul><li><a href="mailto:{MAIL}">{MAIL}</a></li><li><a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a></li></ul></div>
+    <div class="col"><h4>{t['contact']}</h4><ul><li><a href="mailto:{MAIL}">{MAIL}</a></li><li><a href="mailto:{INFO}">{INFO}</a></li><li><a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a></li></ul></div>
   </div>
   <div class="wrap"><div class="giant" aria-hidden="true">Sancar Games<span>.</span></div></div>
   <div class="legal"><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%"><span>© 2026 Sancar Games. {t['rights']}</span><span>sancargames.com</span></div></div>
@@ -166,7 +168,7 @@ H = {
    fd_p='Karanlık odalarda fenerini gezdir, gizli ipuçlarını bul, şifreli sandığı aç ve kapıdan çık.', fd_k='Işıkla çözülen kaçış odaları',
    m_k='Stüdyo', m_alt='Yıkım Ustası, Sayı Yolu filizi ve Fenerli Dedektif tilkisi birlikte poz veriyor', m_q='Her bölümü <mark>elle</mark> tasarlıyor, her oyunu oynayarak dengeliyoruz.',
    m_p='Sancar Games küçük bir ekip. Fikirden yayına kadar tasarımı, kodu, sesi ve çeviriyi kendimiz yapıyoruz. Hedefimiz basit: açtığın anda anlaşılan, kapattıktan sonra aklında kalan oyunlar.',
-   c_h='Bize yazın', c_p='Bir oyunla ilgili sorun, iş birliği ya da basın için. Genellikle iki iş günü içinde dönüyoruz.',
+   c_h='Bize yazın', c_p='Genellikle iki iş günü içinde dönüyoruz.', c_sup='Oyunlarla ilgili destek', c_info='İş birliği ve basın',
    yk_alt='Yıkım Ustası oynanışı: kule çöküyor', tag_s="App Store'da"),
  'en': dict(title='Sancar Games', desc='Sancar Games is an independent studio making puzzle and physics games for iPhone and iPad.',
    lead='An independent studio making short, clever, handcrafted games for iPhone and iPad.', scroll='Our games',
@@ -176,7 +178,7 @@ H = {
    fd_p='Sweep your lantern through dark rooms, find hidden clues, crack the coded chest and escape.', fd_k='Escape rooms solved with light',
    m_k='Studio', m_alt='The Demolition Master, the Number Path sprout and the Lantern Detective fox posing together', m_q='We design every level <mark>by hand</mark> and balance every game by playing it.',
    m_p='Sancar Games is a small team. From idea to release we do the design, code, sound and translation ourselves. Our goal is simple: games you understand the moment you open them and remember after you close them.',
-   c_h='Write to us', c_p='About a game, a partnership or press. We usually reply within two business days.',
+   c_h='Write to us', c_p='We usually reply within two business days.', c_sup='Help with our games', c_info='Partnerships and press',
    yk_alt='Demolition Master gameplay: a tower collapsing', tag_s='On the App Store'),
 }
 for lang in ('tr', 'en'):
@@ -185,7 +187,8 @@ for lang in ('tr', 'en'):
     ykname = t['yk'] if lang == 'tr' else 'Demolition Master: Tower Blast'
     body = f'''<section class="hero" aria-label="Sancar Games">
   <div class="wrap grid">
-    <h1 class="d d-xl"><span class="intro" style="--i:0;display:block">Sancar</span><span class="l2 intro" style="--i:1">Games<span class="dot" aria-hidden="true"></span></span></h1>
+    <figure class="hero-team intro" style="--i:1"><img src="{I(me,'team-w.webp')}" alt="{h['m_alt']}" width="902" height="892" fetchpriority="high" decoding="async"></figure>
+    <h1 class="hero-logo intro" style="--i:0"><img src="{I(me,'logo.svg')}" alt="Sancar Games" width="1000" height="572"></h1>
     <div class="copy intro" style="--i:3"><p class="lead">{h['lead']}</p><a class="scroll" href="#oyunlar"><span aria-hidden="true"></span>{h['scroll']}</a></div>
   </div>
 </section>
@@ -227,7 +230,6 @@ for lang in ('tr', 'en'):
 <section class="sec manifesto" id="studyo" aria-labelledby="m-h">
   <div class="wrap">
     <div class="k rv"><span class="eyebrow">{h['m_k']}</span></div>
-    <figure class="team rv" style="--i:1"><img src="{I(me,'team-v.webp')}" alt="{h['m_alt']}" width="934" height="1017" loading="lazy" decoding="async"></figure>
     <div class="q"><p class="d rv" id="m-h" style="--i:1">{h['m_q']}</p><p class="rv" style="--i:2">{h['m_p']}</p></div>
   </div>
 </section>
@@ -235,7 +237,7 @@ for lang in ('tr', 'en'):
 <section class="sec contact" aria-labelledby="c-h">
   <div class="wrap">
     <h2 class="d d-l rv" id="c-h">{h['c_h']}</h2>
-    <div class="m rv" style="--i:1"><p>{h['c_p']}</p><div class="mail"><a href="mailto:{MAIL}">{MAIL}</a><button type="button" data-copy="{MAIL}" data-done="{t['copied']}">{t['copy']}</button></div></div>
+    <div class="m rv" style="--i:1"><p>{h['c_p']}</p><small class="ml">{h['c_sup']}</small><div class="mail"><a href="mailto:{MAIL}">{MAIL}</a><button type="button" data-copy="{MAIL}" data-done="{t['copied']}">{t['copy']}</button></div><small class="ml">{h['c_info']}</small><div class="mail"><a href="mailto:{INFO}">{INFO}</a><button type="button" data-copy="{INFO}" data-done="{t['copied']}">{t['copy']}</button></div></div>
   </div>
 </section>
 '''
