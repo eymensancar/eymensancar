@@ -41,6 +41,8 @@ p{margin:0}
 .bar .wrap{display:flex;align-items:center;gap:36px;height:72px}
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
 .logo .mk{width:auto;height:28px;display:block}
+.logo .wm{height:46px;width:auto;display:block}
+.foot .about .logo .wm{height:72px}
 .logo b{font-variation-settings:"wdth" 62;font-weight:900;font-size:26px;letter-spacing:.005em;text-transform:uppercase;line-height:1}
 .menu{display:flex;gap:30px;margin-left:auto;align-items:center}
 .menu a{position:relative;text-decoration:none;font-weight:600;font-size:16px;padding:6px 0}

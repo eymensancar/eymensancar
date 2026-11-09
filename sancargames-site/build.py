@@ -59,8 +59,9 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg
 <meta property="og:image" content="https://sancargames.com/{ogimg}">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="{A('assets/img/favicon.png')}">
-<link rel="apple-touch-icon" href="{A('assets/img/favicon.png')}">
+<link rel="icon" href="{A('assets/img/favicon.svg')}" type="image/svg+xml">
+<link rel="icon" href="{A('assets/img/favicon.png')}" sizes="32x32">
+<link rel="apple-touch-icon" href="{A('assets/img/apple-touch-icon.png')}">
 <link rel="preload" href="{A('assets/archivo-tr.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{A('assets/site.css')}">
 <script>document.documentElement.classList.add('js')</script>
@@ -68,7 +69,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg
 <body>
 <a class="skip" href="#main">{t['skip']}</a>
 <header class="bar"><div class="wrap">
-  <a class="logo" href="{a('home')}" aria-label="Sancar Games"><img class="mk" src="{A('assets/img/logo-s.png')}" alt="" width="26" height="29"><b>Sancar Games</b></a>
+  <a class="logo" href="{a('home')}" aria-label="Sancar Games"><img class="wm" src="{A('assets/img/logo.svg')}" alt="Sancar Games" width="96" height="55"></a>
   <nav class="menu" aria-label="{t['menu']}">
     <a href="{gl}"{c('games')}>{t['games']}</a>
     <a href="{a('home')}#studyo">{t['studio']}</a>
@@ -90,7 +91,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg
     foot = f'''</main>
 <footer class="foot">
   <div class="wrap cols">
-    <div class="about"><a class="logo" href="{a('home')}"><img class="mk" src="{A('assets/img/logo-s-w.png')}" alt="" width="26" height="29"><b>Sancar Games</b></a><p>{t['about']}</p></div>
+    <div class="about"><a class="logo" href="{a('home')}" aria-label="Sancar Games"><img class="wm" src="{A('assets/img/logo-w.svg')}" alt="Sancar Games" width="140" height="80"></a><p>{t['about']}</p></div>
     <div class="col"><h4>{t['games']}</h4><ul><li><a href="{a('yk')}">{t['yk']}</a></li><li><a href="{a('sy')}">{t['sy']}</a></li><li><a href="{gl}">{t['fd']}</a></li></ul></div>
     <div class="col"><h4>{t['support']}</h4><ul><li><a href="{a('sup')}">{t['support']}</a></li><li><a href="{a('pyk')}">{t['privacy']}: {t['yk']}</a></li><li><a href="{a('psy')}">{t['privacy']}: {t['sy']}</a></li></ul></div>
     <div class="col"><h4>{t['contact']}</h4><ul><li><a href="mailto:{MAIL}">{MAIL}</a></li><li><a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a></li></ul></div>
