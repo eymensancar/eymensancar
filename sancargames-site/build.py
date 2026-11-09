@@ -1,6 +1,6 @@
 # sancargames.com — 2. tasarım. python3 build.py → site/
 # Destek SSS ve gizlilik metinleri ../sg/build.py'den (içerik aynı) alınır; tasarım ve sayfalar burada.
-import os, html, re
+import json, os, html, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get('SG_OUT') or os.path.join(HERE, 'site')
 STORE = 'https://apps.apple.com/app/id6823286892'
@@ -36,6 +36,27 @@ L = {
 
 def badge(t, cls=''): return f'<a class="badge {cls}" href="{STORE}" target="_blank" rel="noopener">{APPLE}<span><small>{t["badge_s"]}</small><b>{t["badge_b"]}</b></span></a>'
 
+
+IGS = 'https://www.instagram.com/sancargamesofficial/'
+def jsonld(key, lang, title, desc):
+    org = {'@type': 'Organization', '@id': 'https://sancargames.com/#org', 'name': 'Sancar Games',
+           'url': 'https://sancargames.com/', 'logo': 'https://sancargames.com/assets/img/apple-touch-icon.png',
+           'email': 'support@sancargames.com', 'sameAs': [IGS, YT, IG, STORE]}
+    g = [org]
+    if key == 'home':
+        g.append({'@type': 'WebSite', 'name': 'Sancar Games', 'url': 'https://sancargames.com/', 'inLanguage': lang, 'publisher': {'@id': 'https://sancargames.com/#org'}})
+    if key == 'yk':
+        g.append({'@type': ['MobileApplication', 'VideoGame'], 'name': 'Yıkım Ustası' if lang == 'tr' else 'Demolition Master: Tower Blast',
+                  'alternateName': 'Demolition Master: Tower Blast' if lang == 'tr' else 'Yıkım Ustası',
+                  'description': desc, 'url': url(key, lang), 'operatingSystem': 'iOS', 'applicationCategory': 'GameApplication',
+                  'gamePlatform': 'iPhone', 'installUrl': STORE, 'sameAs': [STORE, YT, IG],
+                  'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'},
+                  'publisher': {'@id': 'https://sancargames.com/#org'}, 'inLanguage': lang})
+    if key == 'sy':
+        g.append({'@type': 'VideoGame', 'name': 'Sayı Yolu' if lang == 'tr' else 'Number Path', 'description': desc,
+                  'url': url(key, lang), 'gamePlatform': 'iPhone', 'publisher': {'@id': 'https://sancargames.com/#org'}, 'inLanguage': lang})
+    return '<script type="application/ld+json">' + json.dumps({'@context': 'https://schema.org', '@graph': g}, ensure_ascii=False) + '</script>'
+
 def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg'):
     me = P[key][0 if lang == 'tr' else 1]; t = L[lang]; other = P[key][1 if lang == 'tr' else 0]
     a = lambda k: rel(me, P[k][0 if lang == 'tr' else 1])
@@ -65,6 +86,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/yk-key-bg.jpg
 <link rel="preload" href="{A('assets/archivo-tr.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{A('assets/site.css')}">
 <script>document.documentElement.classList.add('js')</script>
+{jsonld(key, lang, title, desc)}
 </head>
 <body>
 <a class="skip" href="#main">{t['skip']}</a>
