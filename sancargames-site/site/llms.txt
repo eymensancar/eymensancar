@@ -1,0 +1,21 @@
+# Sancar Games
+
+> Sancar Games is an independent mobile game studio from Türkiye making puzzle and physics games for iPhone and iPad. Website: https://sancargames.com (Turkish) and https://sancargames.com/en/ (English). Contact: support@sancargames.com
+
+## Games
+
+- [Demolition Master: Tower Blast](https://sancargames.com/en/demolition-master): physics demolition game for iPhone (Turkish name: Yıkım Ustası). Choose the right machine (sledgehammer, breaker, wrecking ball, hydraulic shear, dynamite, C4) for each material and bring buildings down before time runs out. Free on the App Store: https://apps.apple.com/app/id6823286892
+- [Number Path](https://sancargames.com/en/number-path): number puzzle for iPhone (Turkish name: Sayı Yolu). Draw one path that visits every cell once and hits the red numbers on exactly that step. Coming soon.
+- Lantern Detective (Turkish name: Fenerli Dedektif): detective puzzle game for iPhone where you light dark rooms with a lantern. Coming soon.
+
+## Support and privacy
+
+- [Support (English)](https://sancargames.com/en/support) · [Destek (Türkçe)](https://sancargames.com/destek)
+- [Privacy: Demolition Master](https://sancargames.com/en/privacy-demolition-master)
+- [Privacy: Number Path](https://sancargames.com/en/privacy-number-path)
+
+## Social
+
+- Instagram: https://www.instagram.com/sancargamesofficial/
+- Demolition Master on YouTube: https://www.youtube.com/@demolitionmastergame
+- Demolition Master on Instagram: https://www.instagram.com/demolitionmaster.game/
