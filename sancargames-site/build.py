@@ -212,11 +212,11 @@ for lang in ('tr', 'en'):
 <section class="sec games-rest" aria-label="{h['games_h']}">
   <div class="wrap">
     <div class="mag">
-      <a class="tile rv" href="{a('sy')}">
+      <a class="tile t-sy rv" href="{a('sy')}">
         {keyart_sy(me, t['sy'])}
         <div class="cap"><h3 class="d d-s">{t['sy']}</h3><span class="pill soon">{t['soon']}</span><p>{h['sy_p']}</p><span class="tl">{t['more']} {AR}</span></div>
       </a>
-      <div class="tile off rv" style="--i:1">
+      <div class="tile t-fd rv" style="--i:1">
         {keyart_fd(me, t['fd'])}
         <div class="cap"><h3 class="d d-s">{t['fd']}</h3><span class="pill soon">{t['soon']}</span><p>{h['fd_p']}</p></div>
       </div>
