@@ -8,5 +8,6 @@ Dikey oynanan, hafif yukarıdan bakılan sipariş oyunu: müşteriler tezgâha g
 
 ## Görseller (itch.io)
 - Yiyecekler, tente, yıldız: **Food Icon Pack, Bluc** (https://bluc.itch.io/food-icon-pack). Ticari kullanım serbest, **atıf zorunlu** ("Icons by Bluc"; oyunda ana ekranın altında yazıyor, mağaza açıklamasına da eklenecek). Paketi olduğu gibi yeniden dağıtmak yasak: depoda yalnız oyunun kullandığı küçültülmüş görseller var.
-- Müşteriler: **Characters Pack, 3DPyramid** (https://3dpyramid.itch.io/characters), CC0.
-- Ekmeğin alt tabanı paketteki üslupla kodla çizildi; üst kubbe paketteki birleşik ekmek simgesinden kesildi.
+- Müşteriler: **Refined Free Cute Characters V1 ve V2, BITTI Studio** (https://bitti-studio.itch.io/). Ücretsiz paket; **lisans koşulları itch.io sayfasında açık yazmıyor** (bittistudio.com/guide'a yönlendiriyor) ve görseller yapay zekâ destekli üretilmiş. Mağazaya çıkmadan önce koşullar doğrulanmalı ya da karakterler kendi çizimlerimizle değiştirilmeli.
+- Tabaktaki burger katmanları (yandan görünüş) kodla çizildi (`SV` içindeki SVG'ler); itch.io'da uygun, ücretsiz, yandan görünen parça parça çizgi film burger seti bulunamadı.
+- Siparişler baloncukta malzeme simgeleri olarak görünür (ekmek ve köfte dahil); sıra önemli değil, malzemeler tutmalı.

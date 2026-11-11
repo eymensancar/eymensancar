@@ -31,20 +31,22 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .cust{position:relative;display:flex;flex-direction:column;align-items:center;transform:translateY(120%);opacity:0;transition:transform .45s cubic-bezier(.2,1.2,.4,1),opacity .25s}
 .cust.in{transform:none;opacity:1}
 .cust.out{transform:translateY(120%);opacity:0;transition:transform .4s ease-in,opacity .4s}
-.cust .who{width:23cqw;height:23cqw;object-fit:contain;object-position:bottom;animation:bob 1.6s ease-in-out infinite;transform-origin:50% 100%;filter:drop-shadow(0 1cqw .6cqw rgba(0,0,0,.25))}
+.cust .who{width:25cqw;height:25cqw;object-fit:contain;object-position:bottom;animation:bob 1.6s ease-in-out infinite;transform-origin:50% 100%;filter:drop-shadow(0 1cqw .6cqw rgba(0,0,0,.25))}
 .cust.happy .who{animation:hop .45s ease-out 2}
 .cust.angry .who{animation:shake .35s linear 3;filter:drop-shadow(0 0 1.2cqw #e11)}
 .cust.hurry .who{animation:bob .5s ease-in-out infinite}
 .bub{position:relative;background:#fff;border:.7cqw solid var(--ink);border-radius:4cqw;padding:1.4cqw 2cqw 1cqw;margin-bottom:1.6cqw;min-width:17cqw;display:flex;flex-direction:column;align-items:center;box-shadow:0 1cqw 0 rgba(0,0,0,.15)}
 .bub::after{content:"";position:absolute;left:50%;bottom:-2.2cqw;width:3cqw;height:3cqw;background:#fff;border-right:.7cqw solid var(--ink);border-bottom:.7cqw solid var(--ink);transform:translateX(-50%) rotate(45deg)}
-/* burger yığını: üstten çizilmiş parçalar yatırılır (scaleY) ve altlarına kalınlık gölgesi gelir; böylece katmanlar yandan bakılan gerçek bir burger gibi durur.
-   --w parça genişliği, --st katman aralığı; tabakta büyük, baloncukta küçük */
-.bg{position:relative;width:var(--w);height:calc(var(--w)*.62 + var(--st)*var(--n))}
-.ly{position:absolute;left:0;bottom:calc(var(--st)*var(--i));width:var(--w);height:calc(var(--w)*.5);z-index:var(--i);filter:drop-shadow(0 calc(var(--w)*.045) 0 rgba(70,35,10,.6))}
-.ly img{position:absolute;left:0;bottom:0;width:100%;height:var(--w);transform-origin:50% 100%;transform:scaleY(.5)}
-.ly.top{height:calc(var(--w)*.8)}.ly.top img{transform:scaleY(.82)}
-.ly.thin img{transform:scale(.94,.44)}
-.ord{--w:13cqw;--st:2.15cqw}
+/* burger: katmanlar yandan görünüşle kodla çizilir (SVG), alttan üste dizilir ve birbirine hafifçe biner. --w burgerin genişliği */
+.bg{display:flex;flex-direction:column-reverse;align-items:center;width:var(--w)}
+.ly{display:block;width:100%;margin-top:calc(var(--w)*-.05)}
+.ly svg{display:block;width:100%;height:auto;overflow:visible}
+.ly:last-child{margin-top:0}
+/* sipariş baloncuğu: malzemeler tek tek simge olarak */
+.ord{display:grid;grid-template-columns:repeat(2,9.6cqw);gap:.3cqw .5cqw;justify-content:center}
+.ord.n3{grid-template-columns:repeat(3,8.4cqw)}
+.ord img{width:100%;height:auto;aspect-ratio:1}
+.ord img.got{opacity:.28;filter:grayscale(.6)}
 .pat{width:100%;height:1.6cqw;border-radius:1cqw;background:#e6ddd0;margin-top:1.2cqw;overflow:hidden}
 .pat b{display:block;height:100%;width:100%;background:var(--green);border-radius:1cqw}
 .pat.mid b{background:#f2a01c}.pat.low b{background:var(--red)}
@@ -67,7 +69,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .gs .smoke{position:absolute;top:-3cqw;font-size:5cqw;animation:smoke 1s ease-out infinite}
 .plate{position:relative;justify-self:center;width:34cqw;height:46cqw;display:flex;align-items:flex-end;justify-content:center}
 .plate::before{content:"";position:absolute;left:1cqw;right:1cqw;bottom:.5cqw;height:15cqw;border-radius:50%;background:radial-gradient(ellipse at 50% 42%,#fff 0 46%,#e7e3da 47% 62%,#fff 63%);box-shadow:0 1.2cqw 0 rgba(0,0,0,.28),inset 0 0 0 .6cqw #cfc8ba}
-.stack{--w:27cqw;--st:4.3cqw;position:relative;width:27cqw;margin-bottom:4.5cqw;transition:transform .35s ease-in,opacity .35s}
+.stack{--w:29cqw;position:relative;width:29cqw;margin-bottom:5.5cqw;transition:transform .35s ease-in,opacity .35s}
 .stack .ly.new{animation:drop .22s cubic-bezier(.2,1.4,.4,1)}
 .stack.serve{transform:translateY(-60cqw) scale(.5);opacity:0}
 .stack.trashed{transform:translateX(40cqw) rotate(40deg) scale(.5);opacity:0}
@@ -152,7 +154,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
   <div class="home" id="home">
     <div class="top"><div class="chip"><i>🪙</i><span id="hCoins">0</span></div><button class="lang" id="langBtn">EN</button></div>
     <div class="logo">BURGER<small id="logo2">USTASI</small></div>
-    <div class="hero"><img class="bg" src="g/bun.webp" alt=""><img class="f f1" src="g/c-knight.webp" alt=""><img class="f f2" src="g/c-wizard.webp" alt=""><img class="f f3" src="g/fries.webp" alt=""></div>
+    <div class="hero"><img class="bg" src="g/bun.webp" alt=""><img class="f f1" src="g/a2.webp" alt=""><img class="f f2" src="g/a5.webp" alt=""><img class="f f3" src="g/fries.webp" alt=""></div>
     <button class="btn" id="playBtn">OYNA</button>
     <div class="ups" id="ups"></div>
     <div class="credit" id="credit"></div>
@@ -172,7 +174,7 @@ const T={
   wrong:'Yanlış sipariş!',burnt:'Yandı!',needBun:'Önce ekmek!',gone:'Gitti!',tip:'bahşiş',combo:n=>`Seri x${n}!`,grillFull:'Izgara dolu',
   ing:{bun:'Ekmek',patty:'Köfte',cheese:'Peynir',lettuce:'Marul',tomato:'Domates',onion:'Soğan',bacon:'Pastırma',egg:'Yumurta',pickle:'Turşu'},
   up:{cook:['Hızlı ızgara','Köfte daha çabuk pişer'],pat:['Sabırlı müşteri','Daha uzun beklerler'],tip:['Cömert bahşiş','Daha çok altın'],slot:['Geniş ızgara','3. ızgara gözü']},max:'TAM',lv:n=>`Sv ${n}`,
-  credit:'Yiyecek görselleri: Bluc (itch.io) · Karakterler: 3DPyramid (CC0, itch.io)'},
+  credit:'Yiyecek görselleri: Bluc (itch.io) · Hayvanlar: BITTI Studio (itch.io)'},
  en:{day:n=>`Day ${n}`,play:'PLAY',cont:n=>`PLAY · Day ${n}`,grill:'Grill',logo2:'MASTER',newIng:'NEW',lockDay:n=>`Day ${n}`,
   dayT:n=>`Day ${n}`,dayP:(n,c)=>`${c} customers are coming today. Lose three and the shop closes!`,start:'Start',newT:'New ingredient!',
   winT:'Day complete!',winP:(s,t)=>`${s} orders · ${t} in tips`,next:'Next day',home:'Main menu',failT:'Shop closed!',failP:'Too many customers left. Try again, and be quicker!',retry:'Try again',
@@ -180,7 +182,7 @@ const T={
   wrong:'Wrong order!',burnt:'Burnt!',needBun:'Bun first!',gone:'Left!',tip:'tip',combo:n=>`Combo x${n}!`,grillFull:'Grill is full',
   ing:{bun:'Bun',patty:'Patty',cheese:'Cheese',lettuce:'Lettuce',tomato:'Tomato',onion:'Onion',bacon:'Bacon',egg:'Egg',pickle:'Pickle'},
   up:{cook:['Fast grill','Patties cook quicker'],pat:['Patient customers','They wait longer'],tip:['Big tippers','More gold'],slot:['Wide grill','A 3rd grill slot']},max:'MAX',lv:n=>`Lv ${n}`,
-  credit:'Food art: Bluc (itch.io) · Characters: 3DPyramid (CC0, itch.io)'}};
+  credit:'Food art: Bluc (itch.io) · Animals: BITTI Studio (itch.io)'}};
 // ---- kayıt ----
 const KEY='burgerustasi.v1';
 const SAVE=Object.assign({day:1,coins:0,stars:{},up:{cook:0,pat:0,tip:0,slot:0},lang:(navigator.language||'tr').toLowerCase().startsWith('tr')?'tr':'en',seen:[]},(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}})());
@@ -190,7 +192,7 @@ const t=(k,...a)=>{const v=T[SAVE.lang][k];return typeof v==='function'?v(...a):
 const ING=[['cheese',1],['lettuce',2],['tomato',3],['onion',5],['bacon',7],['egg',9],['pickle',11]];   // [malzeme, açıldığı gün]
 const IMG={bunBot:'bun-bot',bunTop:'bun-top',patty:'patty',raw:'raw',burnt:'burnt'};
 const src=k=>'g/'+(IMG[k]||k)+'.webp';
-const WHO=['woman','old-man','hero','pirate','pirate-captain','knight','wizard','ninja','ghost','vampire','slime','amphibian','plague-doctor','bandit'];
+const WHO=Array.from({length:16},(_,i)=>'a'+(i+1));
 const UPS={cook:{e:'🔥',max:4,cost:l=>40+l*45},pat:{e:'⏳',max:4,cost:l=>50+l*50},tip:{e:'💰',max:4,cost:l=>60+l*60},slot:{e:'🍳',max:1,cost:()=>250}};
 const dayCfg=d=>({n:Math.min(16,5+d),gap:Math.max(2.6,6.2-d*.28),maxQ:d<2?2:3,pat:Math.max(13,24-d*.6)+SAVE.up.pat*2.5,
   extras:d<2?[0,1]:d<4?[0,2]:d<7?[1,3]:[1,4]});
@@ -222,8 +224,23 @@ function buildTray(){const open=unlocked(S.day);tray.innerHTML='';
 function buildGrill(){const n=2+SAVE.up.slot;grillEl.querySelectorAll('.gs').forEach(e=>e.remove());S.grill=[];
   for(let i=0;i<n;i++){const b=document.createElement('button');b.className='gs';b.innerHTML='<span class="plus">+</span>';b.onclick=()=>tapGrill(i);grillEl.appendChild(b);S.grill.push({el:b,st:0,t:0})}
   $('grillT').textContent=t('grill')}
-const THIN={cheese:1,lettuce:1,bacon:1,egg:1,tomato:1,onion:1,pickle:1};
-const layers=(list,fresh)=>`<div class="bg" style="--n:${Math.max(0,list.length-1)}">`+list.map((k,i)=>`<span class="ly${k==='bunTop'?' top':THIN[k]?' thin':''}${fresh&&i===list.length-1?' new':''}" style="--i:${i}"><img src="${src(k)}" alt=""></span>`).join('')+'</div>';
+// burger katmanları: yandan görünüş, 200 birim genişlik; kalın koyu çizgi + açık parlama (çizgi film üslubu)
+const O='stroke="#3a1d0c" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"';
+const SV={
+ bunBot:[46,`<path d="M12 6h176q8 0 8 9 0 26-30 26H34Q4 41 4 15q0-9 8-9z" fill="#e2a352" ${O}/><path d="M16 12h168" stroke="#f6d59a" stroke-width="5" stroke-linecap="round"/>`],
+ patty:[40,`<rect x="5" y="5" width="190" height="30" rx="15" fill="#6e3b1e" ${O}/><path d="M22 14h40M84 14h30M136 14h42" stroke="#8d5230" stroke-width="5" stroke-linecap="round"/><path d="M30 27h18M70 27h44M132 27h30" stroke="#4d2710" stroke-width="4" stroke-linecap="round"/>`],
+ cheese:[34,`<path d="M4 6h192v9l-26 0-12 16-12-16H96l-10 12-10-12H42L30 27 18 15H4z" fill="#ffc933" ${O}/><path d="M14 10h172" stroke="#ffe58a" stroke-width="3" stroke-linecap="round"/>`],
+ lettuce:[32,`<path d="M4 10q12-9 24 0t24 0 24 0 24 0 24 0 24 0 24 0 24 0v8q-6 12-16 6-8 10-20 2-10 9-22 0-12 8-24 0-12 9-24 0-12 8-24 0-10 8-20-2-10 6-16-6z" fill="#6fca47" ${O}/><path d="M16 11q6-4 12 0M64 11q6-4 12 0M112 11q6-4 12 0M160 11q6-4 12 0" stroke="#b5ee8c" stroke-width="3" fill="none" stroke-linecap="round"/>`],
+ tomato:[28,`<rect x="8" y="5" width="88" height="18" rx="9" fill="#ee4a32" ${O}/><rect x="104" y="5" width="88" height="18" rx="9" fill="#ee4a32" ${O}/><path d="M20 11h64M116 11h64" stroke="#ff8a70" stroke-width="3" stroke-linecap="round"/>`],
+ onion:[24,`<rect x="10" y="5" width="180" height="14" rx="7" fill="#fbf3ff" stroke="#9b4fd0" stroke-width="5"/><path d="M40 12h18M82 12h36M142 12h18" stroke="#c99be8" stroke-width="3" stroke-linecap="round"/>`],
+ bacon:[30,`<path d="M4 10q16-10 32 0t32 0 32 0 32 0 32 0 32 0v10q-16 10-32 0t-32 0-32 0-32 0-32 0-32 0z" fill="#b8321f" ${O}/><path d="M12 15q12-8 24 0t32 0 32 0 32 0 32 0 24 0" stroke="#f3b0a0" stroke-width="4" fill="none" stroke-linecap="round"/>`],
+ egg:[34,`<path d="M10 20q0-10 14-10h152q14 0 14 10t-14 10H24q-14 0-14-10z" fill="#fff" ${O}/><path d="M72 14q0-12 28-12t28 12z" fill="#ffb21f" ${O}/>`],
+ pickle:[26,`<rect x="14" y="5" width="50" height="16" rx="8" fill="#5c9e2e" ${O}/><rect x="75" y="5" width="50" height="16" rx="8" fill="#5c9e2e" ${O}/><rect x="136" y="5" width="50" height="16" rx="8" fill="#5c9e2e" ${O}/><path d="M24 11h30M85 11h30M146 11h30" stroke="#9fd66a" stroke-width="3" stroke-linecap="round"/>`],
+ bunTop:[84,`<path d="M6 76Q6 6 100 6t94 70q0 4-6 4H12q-6 0-6-4z" fill="#e2a352" ${O}/><path d="M30 44Q44 18 84 14" stroke="#f6d59a" stroke-width="6" fill="none" stroke-linecap="round"/><g fill="#fff3d6" stroke="#3a1d0c" stroke-width="2.5"><ellipse cx="70" cy="34" rx="7" ry="4" transform="rotate(-20 70 34)"/><ellipse cx="108" cy="24" rx="7" ry="4"/><ellipse cx="142" cy="40" rx="7" ry="4" transform="rotate(25 142 40)"/><ellipse cx="96" cy="50" rx="7" ry="4" transform="rotate(10 96 50)"/><ellipse cx="50" cy="58" rx="7" ry="4" transform="rotate(-30 50 58)"/><ellipse cx="160" cy="62" rx="7" ry="4" transform="rotate(30 160 62)"/><ellipse cx="124" cy="62" rx="7" ry="4" transform="rotate(-8 124 62)"/></g>`]};
+const layers=(list,fresh)=>'<div class="bg">'+list.map((k,i)=>`<span class="ly${fresh&&i===list.length-1?' new':''}"><svg viewBox="0 0 200 ${SV[k][0]}" aria-hidden="true">${SV[k][1]}</svg></span>`).join('')+'</div>';
+// sipariş: malzemeler simge olarak (ekmek ve köfte dahil); sıra önemli değil
+const ordIcons=o=>{const xs=['bun',...o.slice(1,-1)];return `<div class="ord${xs.length>4?' n3':''}">`+xs.map(k=>`<img src="${src(k)}" alt="">`).join('')+'</div>'};
+const keyOf=list=>list.slice(1,-1).slice().sort().join(',');
 function drawStack(){stackEl.className='stack snap';stackEl.innerHTML=layers(S.stack,true);void stackEl.offsetWidth;stackEl.classList.remove('snap')}
 // ---- müşteriler ----
 function makeOrder(){const open=unlocked(S.day),[a,b]=S.cfg.extras,n=Math.min(open.length,a+Math.floor(Math.random()*(b-a+1))),ex=[];
@@ -234,7 +251,7 @@ function makeOrder(){const open=unlocked(S.day),[a,b]=S.cfg.extras,n=Math.min(op
 function spawn(){const free=S.cust.map((c,i)=>c?-1:i).filter(i=>i>=0&&i<3);const act=S.cust.filter(Boolean).length;if(!free.length||act>=S.cfg.maxQ||S.left<=0)return false;
   const i=free[Math.floor(Math.random()*free.length)],order=makeOrder(),who=WHO[Math.floor(Math.random()*WHO.length)];
   const el=document.createElement('div');el.className='cust';
-  el.innerHTML=`<div class="bub"><div class="ord">${layers(order)}</div><div class="pat"><b></b></div></div><img class="who" src="g/c-${who}.webp" alt="">`;
+  el.innerHTML=`<div class="bub">${ordIcons(order)}<div class="pat"><b></b></div></div><img class="who" src="g/${who}.webp" alt="">`;
   queue.children[i].appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
   const max=S.cfg.pat+order.length*2.2+(S.guide?40:0);S.cust[i]={el,order,max,p:max,bar:el.querySelector('.pat'),fill:el.querySelector('.pat b')};S.left--;tone(660,.06,'triangle',.07);return true}
 function leave(i,happy){const c=S.cust[i];if(!c)return;S.cust[i]=null;c.el.classList.add(happy?'happy':'angry');c.el.querySelector('.bub').style.visibility='hidden';
@@ -253,8 +270,8 @@ function tapGrill(i){if(!S.on||S.paused)return;audio();const g=S.grill[i];
 function clearGrill(g){g.st=0;g.t=0;g.el.className='gs';g.el.innerHTML='<span class="plus">+</span>'}
 function trashStack(){if(!S.stack.length)return;requestAnimationFrame(()=>stackEl.classList.add('trashed'));S.stack=[];setTimeout(drawStack,360)}
 $('trash').onclick=()=>{if(!S.on||S.paused||!S.stack.length)return;audio();SFX.tap();S.combo=0;trashStack();guide()};
-function serve(){const key=S.stack.join(',');let best=-1;
-  S.cust.forEach((c,i)=>{if(c&&c.order.join(',')===key&&(best<0||c.p/c.max<S.cust[best].p/S.cust[best].max))best=i});
+function serve(){const key=keyOf(S.stack);let best=-1;
+  S.cust.forEach((c,i)=>{if(c&&keyOf(c.order)===key&&(best<0||c.p/c.max<S.cust[best].p/S.cust[best].max))best=i});
   if(best<0){S.combo=0;deny(stackEl,t('wrong'));trashStack();guide();return}
   const c=S.cust[best],fresh=c.p/c.max,base=6+(c.order.length-2)*3;S.combo++;
   const tip=Math.round(base*(.15+fresh*.55)*(1+SAVE.up.tip*.3))+(S.combo>=3?Math.min(10,S.combo):0),gain=base+tip;
@@ -265,7 +282,8 @@ function serve(){const key=S.stack.join(',');let best=-1;
 // ---- ilk gün rehberi: sıradaki doğru hamleyi parlatır ----
 function guide(){document.querySelectorAll('.hint').forEach(e=>e.classList.remove('hint'));document.querySelectorAll('.tip').forEach(e=>e.remove());
   if(!S.on||S.day!==1||SAVE.seen.includes('tut'))return;const c=S.cust.find(Boolean);if(!c)return;
-  const need=c.order[S.stack.length],ok=S.stack.every((k,i)=>k===c.order[i]);let el,msg;
+  const rest=c.order.slice(1,-1);let ok=true;S.stack.slice(1).forEach(k=>{const j=rest.indexOf(k);if(j<0)ok=false;else rest.splice(j,1)});
+  const need=!S.stack.length?'bunBot':rest.length?rest[0]:'bunTop';let el,msg;
   if(!ok){el=$('trash');msg='🗑️'}
   else if(need==='bunBot'){el=tray.querySelector('[data-k=bun]');msg=t('tips')[0]}
   else if(need==='bunTop'){el=tray.querySelector('[data-k=bun]');msg=t('tips')[5]}
