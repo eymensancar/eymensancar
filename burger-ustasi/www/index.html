@@ -37,9 +37,14 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .cust.hurry .who{animation:bob .5s ease-in-out infinite}
 .bub{position:relative;background:#fff;border:.7cqw solid var(--ink);border-radius:4cqw;padding:1.4cqw 2cqw 1cqw;margin-bottom:1.6cqw;min-width:17cqw;display:flex;flex-direction:column;align-items:center;box-shadow:0 1cqw 0 rgba(0,0,0,.15)}
 .bub::after{content:"";position:absolute;left:50%;bottom:-2.2cqw;width:3cqw;height:3cqw;background:#fff;border-right:.7cqw solid var(--ink);border-bottom:.7cqw solid var(--ink);transform:translateX(-50%) rotate(45deg)}
-.ord{display:flex;flex-direction:column-reverse;align-items:center}
-.ord img{width:10.5cqw;height:10.5cqw;margin-top:-6.6cqw}
-.ord img:last-child{margin-top:0}
+/* burger yığını: üstten çizilmiş parçalar yatırılır (scaleY) ve altlarına kalınlık gölgesi gelir; böylece katmanlar yandan bakılan gerçek bir burger gibi durur.
+   --w parça genişliği, --st katman aralığı; tabakta büyük, baloncukta küçük */
+.bg{position:relative;width:var(--w);height:calc(var(--w)*.62 + var(--st)*var(--n))}
+.ly{position:absolute;left:0;bottom:calc(var(--st)*var(--i));width:var(--w);height:calc(var(--w)*.5);z-index:var(--i);filter:drop-shadow(0 calc(var(--w)*.045) 0 rgba(70,35,10,.6))}
+.ly img{position:absolute;left:0;bottom:0;width:100%;height:var(--w);transform-origin:50% 100%;transform:scaleY(.5)}
+.ly.top{height:calc(var(--w)*.8)}.ly.top img{transform:scaleY(.82)}
+.ly.thin img{transform:scale(.94,.44)}
+.ord{--w:13cqw;--st:2.15cqw}
 .pat{width:100%;height:1.6cqw;border-radius:1cqw;background:#e6ddd0;margin-top:1.2cqw;overflow:hidden}
 .pat b{display:block;height:100%;width:100%;background:var(--green);border-radius:1cqw}
 .pat.mid b{background:#f2a01c}.pat.low b{background:var(--red)}
@@ -60,13 +65,13 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .gs .ring b{display:block;height:100%;width:0;background:#7be06a}
 .gs.done .ring b{background:#ff5a3c}
 .gs .smoke{position:absolute;top:-3cqw;font-size:5cqw;animation:smoke 1s ease-out infinite}
-.plate{position:relative;justify-self:center;width:34cqw;height:44cqw;display:flex;align-items:flex-end;justify-content:center}
+.plate{position:relative;justify-self:center;width:34cqw;height:46cqw;display:flex;align-items:flex-end;justify-content:center}
 .plate::before{content:"";position:absolute;left:1cqw;right:1cqw;bottom:.5cqw;height:15cqw;border-radius:50%;background:radial-gradient(ellipse at 50% 42%,#fff 0 46%,#e7e3da 47% 62%,#fff 63%);box-shadow:0 1.2cqw 0 rgba(0,0,0,.28),inset 0 0 0 .6cqw #cfc8ba}
-.stack{position:relative;width:24cqw;height:24cqw;margin-bottom:4cqw}
-.stack img{position:absolute;left:0;bottom:0;width:24cqw;height:24cqw;animation:drop .22s cubic-bezier(.2,1.4,.4,1)}
-.stack.bye img{animation:none;transition:transform .35s ease-in,opacity .35s}
-.stack.serve img{transform:translateY(-60cqw) scale(.5)!important;opacity:0}
-.stack.trashed img{transform:translateX(40cqw) rotate(40deg) scale(.5)!important;opacity:0}
+.stack{--w:27cqw;--st:4.3cqw;position:relative;width:27cqw;margin-bottom:4.5cqw;transition:transform .35s ease-in,opacity .35s}
+.stack .ly.new{animation:drop .22s cubic-bezier(.2,1.4,.4,1)}
+.stack.serve{transform:translateY(-60cqw) scale(.5);opacity:0}
+.stack.trashed{transform:translateX(40cqw) rotate(40deg) scale(.5);opacity:0}
+.stack.snap{transition:none}
 .trash{justify-self:center;width:16cqw;height:16cqw;border-radius:4cqw;background:#e9e4da;border:.8cqw solid var(--ink);font-size:8cqw;box-shadow:0 1cqw 0 rgba(0,0,0,.3);display:grid;place-items:center}
 .trash:active,.ing:active,.gs:active{transform:translateY(.6cqw) scale(.97)}
 /* malzeme tepsisi */
@@ -217,8 +222,9 @@ function buildTray(){const open=unlocked(S.day);tray.innerHTML='';
 function buildGrill(){const n=2+SAVE.up.slot;grillEl.querySelectorAll('.gs').forEach(e=>e.remove());S.grill=[];
   for(let i=0;i<n;i++){const b=document.createElement('button');b.className='gs';b.innerHTML='<span class="plus">+</span>';b.onclick=()=>tapGrill(i);grillEl.appendChild(b);S.grill.push({el:b,st:0,t:0})}
   $('grillT').textContent=t('grill')}
-function drawStack(){stackEl.className='stack';stackEl.innerHTML=S.stack.map((k,i)=>`<img src="${src(k)}" alt="" style="transform:translateY(${-i*5.2}cqw);z-index:${i}"${i<S.stack.length-1?' data-old':''}>`).join('');
-  stackEl.querySelectorAll('[data-old]').forEach(e=>e.style.animation='none')}
+const THIN={cheese:1,lettuce:1,bacon:1,egg:1,tomato:1,onion:1,pickle:1};
+const layers=(list,fresh)=>`<div class="bg" style="--n:${Math.max(0,list.length-1)}">`+list.map((k,i)=>`<span class="ly${k==='bunTop'?' top':THIN[k]?' thin':''}${fresh&&i===list.length-1?' new':''}" style="--i:${i}"><img src="${src(k)}" alt=""></span>`).join('')+'</div>';
+function drawStack(){stackEl.className='stack snap';stackEl.innerHTML=layers(S.stack,true);void stackEl.offsetWidth;stackEl.classList.remove('snap')}
 // ---- müşteriler ----
 function makeOrder(){const open=unlocked(S.day),[a,b]=S.cfg.extras,n=Math.min(open.length,a+Math.floor(Math.random()*(b-a+1))),ex=[];
   const pool=open.slice();for(let i=0;i<n;i++)ex.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
@@ -228,7 +234,7 @@ function makeOrder(){const open=unlocked(S.day),[a,b]=S.cfg.extras,n=Math.min(op
 function spawn(){const free=S.cust.map((c,i)=>c?-1:i).filter(i=>i>=0&&i<3);const act=S.cust.filter(Boolean).length;if(!free.length||act>=S.cfg.maxQ||S.left<=0)return false;
   const i=free[Math.floor(Math.random()*free.length)],order=makeOrder(),who=WHO[Math.floor(Math.random()*WHO.length)];
   const el=document.createElement('div');el.className='cust';
-  el.innerHTML=`<div class="bub"><div class="ord">${order.map(k=>`<img src="${src(k)}" alt="">`).join('')}</div><div class="pat"><b></b></div></div><img class="who" src="g/c-${who}.webp" alt="">`;
+  el.innerHTML=`<div class="bub"><div class="ord">${layers(order)}</div><div class="pat"><b></b></div></div><img class="who" src="g/c-${who}.webp" alt="">`;
   queue.children[i].appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
   const max=S.cfg.pat+order.length*2.2+(S.guide?40:0);S.cust[i]={el,order,max,p:max,bar:el.querySelector('.pat'),fill:el.querySelector('.pat b')};S.left--;tone(660,.06,'triangle',.07);return true}
 function leave(i,happy){const c=S.cust[i];if(!c)return;S.cust[i]=null;c.el.classList.add(happy?'happy':'angry');c.el.querySelector('.bub').style.visibility='hidden';
@@ -245,7 +251,7 @@ function tapGrill(i){if(!S.on||S.paused)return;audio();const g=S.grill[i];
   if(g.st===2){if(!S.stack.length){deny(g.el,t('needBun'));return}if(S.stack.length>=8)return;S.stack.push('patty');clearGrill(g);SFX.put();vib(8);drawStack();guide();return}
   if(g.st===3){clearGrill(g);SFX.tap();fly(g.el,'🗑️')}}
 function clearGrill(g){g.st=0;g.t=0;g.el.className='gs';g.el.innerHTML='<span class="plus">+</span>'}
-function trashStack(){if(!S.stack.length)return;stackEl.classList.add('bye');requestAnimationFrame(()=>stackEl.classList.add('trashed'));S.stack=[];setTimeout(drawStack,360)}
+function trashStack(){if(!S.stack.length)return;requestAnimationFrame(()=>stackEl.classList.add('trashed'));S.stack=[];setTimeout(drawStack,360)}
 $('trash').onclick=()=>{if(!S.on||S.paused||!S.stack.length)return;audio();SFX.tap();S.combo=0;trashStack();guide()};
 function serve(){const key=S.stack.join(',');let best=-1;
   S.cust.forEach((c,i)=>{if(c&&c.order.join(',')===key&&(best<0||c.p/c.max<S.cust[best].p/S.cust[best].max))best=i});
@@ -253,7 +259,7 @@ function serve(){const key=S.stack.join(',');let best=-1;
   const c=S.cust[best],fresh=c.p/c.max,base=6+(c.order.length-2)*3;S.combo++;
   const tip=Math.round(base*(.15+fresh*.55)*(1+SAVE.up.tip*.3))+(S.combo>=3?Math.min(10,S.combo):0),gain=base+tip;
   SAVE.coins+=gain;S.earn+=gain;S.tips+=tip;S.served++;save();
-  stackEl.classList.add('bye');requestAnimationFrame(()=>stackEl.classList.add('serve'));S.stack=[];setTimeout(drawStack,360);
+  requestAnimationFrame(()=>stackEl.classList.add('serve'));S.stack=[];setTimeout(drawStack,360);
   SFX.coin();vib([10,30,10]);fly(c.el,`+${gain} 🪙`);if(S.combo>=3)setTimeout(()=>fly(stackEl,t('combo',S.combo)),150);
   leave(best,true);S.guide=false;hud();guide();checkEnd()}
 // ---- ilk gün rehberi: sıradaki doğru hamleyi parlatır ----
