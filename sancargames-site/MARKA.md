@@ -26,3 +26,10 @@ Dosyalar Eymen'de (zip).
 ## Açılış/kapanış animasyonu fikri (Eymen, saklanacak)
 Logo olarak değil, **oyun açılışları ve video giriş/kapanışları** için:
 SANCAR GAMES logosu görünür → kamera bir A'ya yakınlaşır → A'nın içindeki üçgen boşluk yana dönüp **oynat (▶) tuşuna** dönüşür → bir parmak/tıklama animasyonu tuşa basar → oyun (ya da video) başlar.
+
+## Oyun açılışı (12 Kasım 2026, Eymen)
+
+Bütün oyunların girişi aynı: **beyaz zemin, tamamı siyah logo** (sarı tutamaçlar da siyah). Hazır dosya `marka/giris/sancar-intro.js` (kendi içinde, başka dosya istemez); ön izleme `marka/giris/index.html`.
+- Kullanım: `<script src="sancar-intro.js"></script>` sonra `SancarIntro.play().then(oyunuBaslat)`.
+- Harfler sırayla yerine oturur (SANCAR, sonra GAMES), logo hafifçe esner, beyaz perde açılır. ~2,3 sn, dokununca geçilir; kısa bir tını çalar (`{sound:false}` ile sessiz).
+- Yukarıdaki "A → oynat tuşu" fikri ayrı duruyor; istenirse bu açılışın sonuna eklenir.
