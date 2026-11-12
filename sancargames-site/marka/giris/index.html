@@ -5,7 +5,7 @@ main{min-height:100%;display:grid;place-items:center;text-align:center;padding:2
 p{margin:0 0 20px;font-size:18px;line-height:1.5;color:#c9ccd4;max-width:28em}
 button{font:inherit;font-weight:800;font-size:18px;border:0;border-radius:14px;padding:14px 26px;background:#F5B700;color:#14161B;cursor:pointer}
 </style></head><body>
-<main><div><p>Açılış bitti; burada oyun başlar.</p><button id="again">Tekrar oynat</button></div></main>
+<main><div><p>Açılış bitti; burada oyun başlar.<br>Sesi duymak için “Tekrar oynat”a bas.</p><button id="again">Tekrar oynat</button></div></main>
 <script src="sancar-intro.js"></script>
-<script>const go=()=>SancarIntro.play();document.getElementById('again').onclick=go;go();</script>
+<script>const go=()=>SancarIntro.play({audio:'sancar-intro.mp3'});document.getElementById('again').onclick=go;go();</script>
 </body></html>
