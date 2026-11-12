@@ -3,6 +3,7 @@
    - Sakin açılış: harfler sırayla, yumuşakça belirir (SANCAR, sonra GAMES); kısa bir bekleyişten sonra beyaz perde yavaşça açılır. Toplam ~3 sn; dokununca geçilir.
    - Logo %30 büyük başlar (ekrandan taşabilir) ve yavaşça asıl boyuna iner. Varsayılan SESSİZ (Eymen, 12.11: yapay ses beğenilmedi; gerçek bir ses bulunursa eklenir).
    - Ses: {audio:'sancar-intro.m4a'} verilirse açılış sesi çalar (özgün, marka/giris/ses-uret.py üretir: derin vuruş + ısınarak açılan Re majör akor + parıltı).
+   - {ctx, src}: sesi oyunun kendi AudioContext'iyle dosyadan çalar (tek ses bağlamı; iPhone'da ses oturumunu değiştirmez). {onFade:fn}: beyaz perde açılmaya başladığı an çağrılır (oyun ekranını o an göster).
    - Diğer seçenekler: {sound:true} eski sentez akor; {hold:ms} logonun ekranda kalma süresi. "Hareketi azalt" açıksa yalnız görünüp kaybolur.
    - Logo yolları sancargames-site/site/assets/img/logo.svg ile aynı (marka/giris/uret.py yeniden üretir). */
 (function(){
@@ -29,10 +30,14 @@ function play(opt){opt=opt||{};return new Promise(function(done){
     if(ac2.state==='suspended')ac2.resume().catch(function(){});
     ac2.decodeAudioData(buf.buffer,function(ab){if(ended)return;var src=ac2.createBufferSource(),g=ac2.createGain();g.gain.value=opt.volume==null?.9:opt.volume;src.buffer=ab;src.connect(g).connect(ac2.destination);src.start();au={pause:function(){try{g.gain.setTargetAtTime(0,ac2.currentTime,.08)}catch(e){}}}},function(){});
     timers.push(setTimeout(function(){try{ac2.close()}catch(e){}},9000))}catch(e){}}
+  // oyunun kendi ses bağlamıyla (ctx) dosyadan çalma: {ctx:AudioContext, src:'sancar-intro.mp3'}; bağlam kilitliyse (tarayıcı, dokunuş yok) sessiz geçer
+  if(opt.ctx&&opt.src&&window.fetch){try{var cx=opt.ctx;fetch(opt.src).then(function(r){return r.arrayBuffer()}).then(function(b){return new Promise(function(ok,no){cx.decodeAudioData(b,ok,no)})}).then(function(ab){
+    if(ended||cx.state!=='running')return;var s2=cx.createBufferSource(),g2=cx.createGain();g2.gain.value=opt.volume==null?.9:opt.volume;s2.buffer=ab;s2.connect(g2).connect(cx.destination);s2.start();
+    au={pause:function(){try{g2.gain.setTargetAtTime(0,cx.currentTime,.08)}catch(e){}}}}).catch(function(){})}catch(e){}}
   if(opt.sound===true){try{var AC=window.AudioContext||window.webkitAudioContext,ac=new AC(),t0=ac.currentTime+.12;
     if(ac.state==='suspended')ac.resume().catch(function(){});
     [261.63,392,523.25].forEach(function(f,i){tone(ac,f,t0+.35+i*.12,1.4,.035)});timers.push(setTimeout(function(){try{ac.close()}catch(e){}},inT+hold+900))}catch(e){}}
-  function end(skip){if(ended)return;ended=true;timers.forEach(clearTimeout);el.classList.add('out');if(au&&skip===true){try{au.pause()}catch(e){}}setTimeout(function(){el.remove();done()},620)}
+  function end(skip){if(ended)return;ended=true;timers.forEach(clearTimeout);el.classList.add('out');if(opt.onFade){try{opt.onFade()}catch(e){}}if(au&&skip===true){try{au.pause()}catch(e){}}setTimeout(function(){el.remove();done()},620)}
   timers.push(setTimeout(end,inT+hold));
   el.addEventListener('pointerdown',function(){end(true)})})}
 window.SancarIntro={play:play};
