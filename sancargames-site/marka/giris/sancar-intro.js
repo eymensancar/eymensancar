@@ -1,6 +1,6 @@
 /* Sancar Games açılışı: beyaz zemin, tamamı siyah logo. Bütün oyunlarda aynı.
    Kullanım: <script src="sancar-intro.js"></script> … SancarIntro.play().then(oyunuBaslat)
-   - Sakin açılış: harfler sırayla, yumuşakça belirir (SANCAR, sonra GAMES); kısa bir bekleyişten sonra beyaz perde yavaşça açılır. Toplam ~3 sn; dokununca geçilir.
+   - Sakin açılış: harfler sırayla, yumuşakça belirir (SANCAR, sonra GAMES); kısa bir bekleyişten sonra beyaz perde yavaşça açılır. Logo yerine oturduktan sonra ~3 sn bekler (Eymen, 12.11: oyuna birden geçmesin; ses de bitmiş olur). Toplam ~6 sn; dokununca geçilir.
    - Logo %30 büyük başlar (ekrandan taşabilir) ve yavaşça asıl boyuna iner. Varsayılan SESSİZ (Eymen, 12.11: yapay ses beğenilmedi; gerçek bir ses bulunursa eklenir).
    - Ses: {audio:'sancar-intro.m4a'} verilirse açılış sesi çalar (özgün, marka/giris/ses-uret.py üretir: derin vuruş + ısınarak açılan Re majör akor + parıltı).
    - {ctx, src}: sesi oyunun kendi AudioContext'iyle dosyadan çalar (tek ses bağlamı; iPhone'da ses oturumunu değiştirmez). {onFade:fn}: beyaz perde açılmaya başladığı an çağrılır (oyun ekranını o an göster).
@@ -23,7 +23,7 @@ function play(opt){opt=opt||{};return new Promise(function(done){
   var STEP=75,html='<svg viewBox="0 0 3976 2275" aria-hidden="true"><g class="lg"><g transform="translate(0,2275) scale(.1,-.1)">';
   for(var i=0;i<P.length;i++)html+='<path style="animation-delay:'+(120+ORDER.indexOf(i)*STEP)+'ms" d="'+P[i]+'"/>';
   el.innerHTML=html+'</g></g></svg>';document.body.appendChild(el);
-  var inT=120+P.length*STEP+620,hold=opt.hold==null?1150:opt.hold;
+  var inT=120+P.length*STEP+620,hold=opt.hold==null?4050:opt.hold;
   var ended=false,timers=[],au=null;if(opt.audio){try{au=new Audio(opt.audio);au.volume=opt.volume==null?.8:opt.volume;var pr=au.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}}   // ses dosyası (sancar-intro.m4a); tarayıcı izin vermezse sessiz oynar
   // gömülü ses (base64 mp3/m4a): dosya indirmeden Web Audio ile çalar; sayfa içi çerçevelerde (ön izleme) de çalışır
   if(opt.audioB64){try{var AC2=window.AudioContext||window.webkitAudioContext,ac2=new AC2(),bin=atob(opt.audioB64),buf=new Uint8Array(bin.length);for(var q=0;q<bin.length;q++)buf[q]=bin.charCodeAt(q);
