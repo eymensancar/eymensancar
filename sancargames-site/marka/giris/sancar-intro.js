@@ -22,8 +22,13 @@ function play(opt){opt=opt||{};return new Promise(function(done){
   var STEP=75,html='<svg viewBox="0 0 3976 2275" aria-hidden="true"><g class="lg"><g transform="translate(0,2275) scale(.1,-.1)">';
   for(var i=0;i<P.length;i++)html+='<path style="animation-delay:'+(120+ORDER.indexOf(i)*STEP)+'ms" d="'+P[i]+'"/>';
   el.innerHTML=html+'</g></g></svg>';document.body.appendChild(el);
-  var inT=120+P.length*STEP+620,hold=opt.hold==null?1150:opt.hold,ended=false,timers=[];
-  var au=null;if(opt.audio){try{au=new Audio(opt.audio);au.volume=opt.volume==null?.8:opt.volume;var pr=au.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}}   // ses dosyası (sancar-intro.m4a); tarayıcı izin vermezse sessiz oynar
+  var inT=120+P.length*STEP+620,hold=opt.hold==null?1150:opt.hold;
+  var ended=false,timers=[],au=null;if(opt.audio){try{au=new Audio(opt.audio);au.volume=opt.volume==null?.8:opt.volume;var pr=au.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}}   // ses dosyası (sancar-intro.m4a); tarayıcı izin vermezse sessiz oynar
+  // gömülü ses (base64 mp3/m4a): dosya indirmeden Web Audio ile çalar; sayfa içi çerçevelerde (ön izleme) de çalışır
+  if(opt.audioB64){try{var AC2=window.AudioContext||window.webkitAudioContext,ac2=new AC2(),bin=atob(opt.audioB64),buf=new Uint8Array(bin.length);for(var q=0;q<bin.length;q++)buf[q]=bin.charCodeAt(q);
+    if(ac2.state==='suspended')ac2.resume().catch(function(){});
+    ac2.decodeAudioData(buf.buffer,function(ab){if(ended)return;var src=ac2.createBufferSource(),g=ac2.createGain();g.gain.value=opt.volume==null?.9:opt.volume;src.buffer=ab;src.connect(g).connect(ac2.destination);src.start();au={pause:function(){try{g.gain.setTargetAtTime(0,ac2.currentTime,.08)}catch(e){}}}},function(){});
+    timers.push(setTimeout(function(){try{ac2.close()}catch(e){}},9000))}catch(e){}}
   if(opt.sound===true){try{var AC=window.AudioContext||window.webkitAudioContext,ac=new AC(),t0=ac.currentTime+.12;
     if(ac.state==='suspended')ac.resume().catch(function(){});
     [261.63,392,523.25].forEach(function(f,i){tone(ac,f,t0+.35+i*.12,1.4,.035)});timers.push(setTimeout(function(){try{ac.close()}catch(e){}},inT+hold+900))}catch(e){}}
