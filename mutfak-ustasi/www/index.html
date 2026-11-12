@@ -1,0 +1,247 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>Mutfak Ustası</title><meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Mutfak Ustası (deneme): üstten görünümlü ızgara lokantası. Düzen: üst bilgi → salon (3 müşteri) → mutfak (servis tezgâhı, ızgara, lavabo, çöp, malzeme kasaları, online pencere).
+   Aşçı dokunulan istasyona kendisi yürür; işler sıraya girer. Tabak sürüklenip müşteriye bırakılır. Ölçüler cqw (alan genişliğinin yüzdesi). */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;overflow:hidden;background:#1d1410;font-family:"Baloo 2","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
+:root{--ink:#2a1a10;--cream:#fff4dc;--red:#d2281e;--red-d:#8d140e;--gold:#ffc21a;--green:#2e9d3e;--steel:#c9ced6;--steel-d:#7d8591}
+#app{position:relative;height:100dvh;width:min(100vw,540px,calc(100dvh/1.5));margin:0 auto;container-type:inline-size;overflow:hidden;display:flex;flex-direction:column;color:var(--ink);background:#3a2a1e}
+button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer}
+img{display:block;pointer-events:none;-webkit-user-drag:none}
+svg{display:block;pointer-events:none}
+/* üst bilgi */
+.hud{display:flex;align-items:center;gap:2cqw;padding:calc(env(safe-area-inset-top,0px) + 2cqw) 3cqw 1.6cqw;background:#2a1c13}
+.chip{display:flex;align-items:center;gap:1.4cqw;background:rgba(255,255,255,.94);border-radius:5cqw;padding:1cqw 3cqw 1cqw 2cqw;font-weight:800;font-size:4.4cqw;line-height:1;box-shadow:0 .8cqw 0 rgba(0,0,0,.3)}
+.hearts{margin-left:auto;font-size:5.2cqw;display:flex;gap:.5cqw}.hearts .off{filter:grayscale(1);opacity:.35}
+.pause{width:9.5cqw;height:9.5cqw;border-radius:50%;background:rgba(255,255,255,.94);font-weight:900;font-size:4.4cqw}
+/* salon */
+.hall{position:relative;height:39cqw;flex:none;background:linear-gradient(#f6e3bd,#eccf9c);display:grid;grid-template-columns:repeat(3,1fr);align-items:end;padding:0 1cqw;border-bottom:2cqw solid #6b4320}
+.hall::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 16cqw,rgba(120,80,30,.08) 16cqw 16.6cqw)}
+.seat{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.cust{position:relative;display:flex;flex-direction:column;align-items:center;transform:translateY(-110%);opacity:0;transition:transform .45s cubic-bezier(.2,1.2,.4,1),opacity .25s}
+.cust.in{transform:none;opacity:1}.cust.out{transform:translateY(-110%);opacity:0}
+.cust .who{width:19cqw;height:19cqw;object-fit:contain;object-position:bottom}
+.cust.angry .who{animation:shake .35s linear 3}.cust.eat .who{animation:bob .5s ease-in-out infinite}
+.bub{position:relative;background:#fff;border:.7cqw solid var(--ink);border-radius:4cqw;padding:1cqw 1.4cqw .9cqw;margin-bottom:1.4cqw;width:21cqw;box-shadow:0 .9cqw 0 rgba(0,0,0,.15)}
+.bub::after{content:"";position:absolute;left:50%;bottom:-2.1cqw;width:2.8cqw;height:2.8cqw;background:#fff;border-right:.7cqw solid var(--ink);border-bottom:.7cqw solid var(--ink);transform:translateX(-50%) rotate(45deg)}
+.bub svg{width:100%;height:auto}
+.pat{height:1.5cqw;border-radius:1cqw;background:#e6ddd0;margin-top:.8cqw;overflow:hidden}.pat b{display:block;height:100%;background:var(--green)}
+.pat.mid b{background:#f2a01c}.pat.low b{background:var(--red)}
+.drop-ok{outline:1cqw dashed var(--gold);outline-offset:.6cqw;border-radius:4cqw}
+/* mutfak */
+.kit{position:relative;height:96cqw;flex:1;min-height:96cqw;background:#d8dde3;background-image:linear-gradient(rgba(255,255,255,.55) 0 0),conic-gradient(#b9c0c9 25%,#cfd5dc 0 50%,#b9c0c9 0 75%,#cfd5dc 0);background-size:auto,16cqw 16cqw}
+.st{position:absolute;display:grid;place-items:center;border:.8cqw solid var(--ink);border-radius:3.4cqw;box-shadow:0 1cqw 0 rgba(0,0,0,.28)}
+.st small{position:absolute;left:0;right:0;bottom:-4.6cqw;text-align:center;font-size:2.9cqw;font-weight:800;color:#3b3f47;line-height:1;white-space:nowrap}
+.st.busy{outline:1cqw solid var(--gold)}
+.pass{position:absolute;left:0;right:0;top:0;height:23cqw;background:linear-gradient(#a8703a,#8a5a2a);border-bottom:1.2cqw solid #4a2c10}
+.spot{width:21cqw;height:21cqw;top:1cqw;border-radius:50%;border:.8cqw dashed rgba(255,255,255,.55);box-shadow:none;background:rgba(0,0,0,.12)}
+.spot.has{border-color:transparent;background:none;touch-action:none}
+.spot svg{width:100%;height:100%}
+.spot .plus{font-size:8cqw;font-weight:900;color:rgba(255,255,255,.7)}
+.clean{left:2cqw;top:2.5cqw;width:17cqw;height:17cqw;background:#f1ede4}
+.clean svg{width:86%;height:86%}
+.badge{position:absolute;right:-1.6cqw;top:-1.6cqw;min-width:6.2cqw;height:6.2cqw;border-radius:4cqw;background:var(--red);color:#fff;font-size:3.6cqw;font-weight:900;display:grid;place-items:center;border:.6cqw solid var(--ink);line-height:1}
+.badge.zero{background:#9aa0a8}
+.online{right:2cqw;top:1.4cqw;width:22cqw;height:20cqw;background:#24303f;color:#fff;border-radius:3cqw;padding:.6cqw}
+.online .lbl{position:absolute;top:.8cqw;left:0;right:0;text-align:center;font-size:2.7cqw;font-weight:800;letter-spacing:.04em}
+.online .tk{width:15cqw;margin-top:3cqw}.online .tk svg{width:100%;height:auto}
+.online .pat{position:absolute;left:1.6cqw;right:1.6cqw;bottom:1.2cqw;margin:0;background:#3c4a5c}
+.online .idle{font-size:7cqw;opacity:.6;margin-top:2cqw}
+.grill{left:2cqw;top:28cqw;width:22cqw;height:46cqw;background:#3a3d44;display:grid;gap:1.4cqw;padding:1.6cqw;align-content:center}
+.gs{position:relative;width:100%;height:13cqw;border-radius:2.4cqw;background:repeating-linear-gradient(90deg,#1c1d21 0 1.1cqw,#55585f 1.1cqw 2cqw);box-shadow:inset 0 0 0 .6cqw #0d0e10;display:grid;place-items:center}
+.gs svg{width:13cqw;height:11cqw}
+.gs .bar{position:absolute;left:1cqw;right:1cqw;bottom:.7cqw;height:1.5cqw;border-radius:1cqw;background:#000;overflow:hidden;display:flex}
+.gs .bar i{position:absolute;inset:0;width:0;background:#7be06a}
+.gs .lv{position:absolute;top:-.6cqw;right:-.6cqw;background:var(--gold);border:.5cqw solid var(--ink);border-radius:2cqw;font-size:2.6cqw;font-weight:900;padding:.2cqw 1.2cqw;line-height:1.2}
+.gs.cook svg{animation:sizzle .25s linear infinite}
+.gs.burnt .lv{background:#444;color:#fff}
+.sink{right:2cqw;top:28cqw;width:22cqw;height:21cqw;background:var(--steel)}
+.sink svg{width:80%;height:80%}
+.trash{right:5cqw;top:57cqw;width:16cqw;height:15cqw;background:#e9e4da;font-size:7.5cqw}
+.bins{position:absolute;left:1.5cqw;right:1.5cqw;bottom:calc(env(safe-area-inset-bottom,0px) + 5.4cqw);display:grid;grid-template-columns:repeat(5,1fr);gap:1.6cqw}
+.bin{position:relative;height:16cqw;background:var(--cream);border:.8cqw solid var(--ink);border-radius:3.4cqw;box-shadow:0 1cqw 0 rgba(0,0,0,.28);display:grid;place-items:center}
+.bin svg{width:13cqw;height:11cqw}
+.bin small{position:absolute;left:0;right:0;bottom:-4.4cqw;text-align:center;font-size:2.9cqw;font-weight:800;color:#3b3f47;line-height:1}
+.st:active,.bin:active{transform:translateY(.5cqw)}
+/* aşçı */
+.chef{position:absolute;z-index:5;width:13cqw;height:13cqw;margin:-6.5cqw 0 0 -6.5cqw;transition:left linear,top linear;pointer-events:none}
+.chef svg{width:100%;height:100%;filter:drop-shadow(0 1cqw .5cqw rgba(0,0,0,.3))}
+.chef.walk svg{animation:waddle .28s linear infinite}
+.chef .hand{position:absolute;left:50%;top:-7.5cqw;width:10cqw;margin-left:-5cqw;background:#fff;border:.6cqw solid var(--ink);border-radius:50%;aspect-ratio:1;display:grid;place-items:center}
+.chef .hand svg{width:8.4cqw;height:7cqw;filter:none;animation:none}
+.chef .hand.pl svg{width:9.4cqw;height:9.4cqw}
+.chef .work{position:absolute;left:-1cqw;right:-1cqw;bottom:-3cqw;height:1.6cqw;border-radius:1cqw;background:#000;overflow:hidden}.chef .work b{display:block;height:100%;background:#58c4ff;width:0}
+.ghost{position:absolute;z-index:40;width:24cqw;height:24cqw;margin:-12cqw 0 0 -12cqw;pointer-events:none;filter:drop-shadow(0 1.6cqw 1cqw rgba(0,0,0,.35))}
+.ghost svg{width:100%;height:100%}
+.fly{position:absolute;z-index:50;font-weight:900;font-size:5cqw;color:#fff;-webkit-text-stroke:.5cqw var(--ink);paint-order:stroke fill;pointer-events:none;animation:fly .95s ease-out forwards;white-space:nowrap}
+.fly.bad{color:#ff7a6e}
+/* katmanlar */
+.ov{position:absolute;inset:0;z-index:60;display:grid;place-items:center;background:rgba(30,16,8,.74);padding:6cqw}
+.card{width:100%;background:var(--cream);border:1cqw solid var(--ink);border-radius:7cqw;padding:5.4cqw 5cqw 5cqw;text-align:center;display:grid;gap:2.8cqw;justify-items:center;box-shadow:0 2cqw 0 rgba(0,0,0,.4)}
+.card h2{margin:0;font-size:8cqw;line-height:1;font-weight:900;color:var(--red-d)}
+.card p{margin:0;font-size:4.1cqw;font-weight:700;line-height:1.32;color:#5a4334}
+.card ol{margin:0;padding-left:5.4cqw;text-align:left;font-size:3.9cqw;font-weight:700;line-height:1.36;color:#5a4334;display:grid;gap:1cqw}
+.btn{width:100%;background:var(--red);color:#fff;font-weight:900;font-size:6cqw;padding:3.2cqw;border-radius:5cqw;border:.8cqw solid var(--ink);box-shadow:0 1.4cqw 0 var(--red-d);line-height:1}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:0 1.4cqw 0 #b9ad9c;font-size:4.6cqw}
+.legend{display:flex;gap:3cqw;font-size:3.4cqw;font-weight:800;align-items:center}.legend svg{width:13cqw;height:11cqw}
+.legend div{display:grid;justify-items:center;gap:.4cqw}
+@keyframes bob{50%{transform:translateY(-1.2cqw)}}
+@keyframes shake{25%{transform:translateX(-1.4cqw) rotate(-5deg)}75%{transform:translateX(1.4cqw) rotate(5deg)}}
+@keyframes sizzle{50%{transform:translate(.25cqw,-.25cqw)}}
+@keyframes waddle{25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}}
+@keyframes fly{from{opacity:0;transform:translate(-50%,0) scale(.6)}20%{opacity:1;transform:translate(-50%,-4cqw) scale(1.1)}to{opacity:0;transform:translate(-50%,-15cqw)}}
+</style></head><body>
+<div id="app">
+  <div class="hud"><div class="chip">🪙 <span id="coins">0</span></div><div class="chip" id="dayChip">Gün 1</div><div class="hearts" id="hearts"></div><button class="pause" id="pauseBtn" aria-label="Duraklat">Ⅱ</button></div>
+  <div class="hall" id="hall"><div class="seat" data-drop="c0"></div><div class="seat" data-drop="c1"></div><div class="seat" data-drop="c2"></div></div>
+  <div class="kit" id="kit">
+    <div class="pass"></div>
+    <button class="st clean" id="clean"><span id="cleanP"></span><b class="badge" id="cleanN">4</b></button>
+    <button class="st spot" id="spot0" style="left:25cqw"></button>
+    <button class="st spot" id="spot1" style="left:51cqw"></button>
+    <div class="st online" id="online" data-drop="online"><span class="lbl" id="onT">ONLINE 🛵</span><span id="onB"></span></div>
+    <div class="st grill" id="grill"></div>
+    <button class="st sink" id="sink"><span id="sinkP"></span><b class="badge zero" id="dirtyN">0</b><small id="sinkT">Bulaşık</small></button>
+    <button class="st trash" id="trash" data-drop="trash">🗑️</button>
+    <div class="bins" id="bins"></div>
+    <div class="chef" id="chef"></div>
+  </div>
+  <div class="ov" id="ov"><div class="card" id="card"></div></div>
+</div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const LANG=(navigator.language||'tr').toLowerCase().startsWith('tr')?'tr':'en';
+const T={tr:{day:n=>`Gün ${n}`,title:'MUTFAK USTASI',how:['Malzemeye dokun, aşçı gidip alır. Sonra koyacağın yere dokun (ızgara ya da tabak).','Et ızgarada pişer: <b>az</b>, <b>orta</b>, <b>iyi</b>. İstenen kıvamda ızgaraya dokunup al, tabağa koy. Tavuk ve köftenin tek kıvamı var.','Soğan ve patatesi alıp doğrudan tabağa koy.','Hazır tabağı <b>sürükleyip</b> müşteriye ya da ONLINE penceresine bırak.','Müşteri yiyince tabak kirlenir: lavaboya dokunup yıka.'],start:'Başla',
+  meats:{steak:'Et',chicken:'Tavuk',kofte:'Köfte'},sides:{onion:'Soğan',potato:'Patates'},lv:['Çiğ','Az','Orta','İyi','Yandı'],ok:'Pişti',sink:'Bulaşık',plates:'Tabak',
+  full:'Elin dolu!',noPlate:'Temiz tabak yok, bulaşık yıka!',raw:'Daha pişmedi!',wrong:'Yanlış sipariş!',gone:'Gitti!',needPlate:'Önce tabak koy!',hasMeat:'Tabakta et var!',gfull:'Burası dolu!',burnt:'Yandı!',
+  winT:'Gün bitti!',failT:'Lokanta kapandı!',failP:'Üç müşteri kaçtı. Tekrar dene!',next:'Sonraki gün',retry:'Tekrar dene',pauseT:'Durakladı',resume:'Devam',sum:(s,o)=>`${s} servis · ${o} online sipariş`,dayP:n=>`Bugün ${n} müşteri gelecek.`},
+ en:{day:n=>`Day ${n}`,title:'KITCHEN MASTER',how:['Tap an ingredient and the chef walks over to grab it. Then tap where it goes (grill or plate).','Steak cooks on the grill: <b>rare</b>, <b>medium</b>, <b>well done</b>. Tap the grill at the right moment to take it, then tap a plate. Chicken and meatballs have one doneness.','Take onion and fries straight to the plate.','<b>Drag</b> the finished plate to a customer or to the ONLINE window.','Plates get dirty after eating: tap the sink to wash.'],start:'Start',
+  meats:{steak:'Steak',chicken:'Chicken',kofte:'Meatballs'},sides:{onion:'Onion',potato:'Fries'},lv:['Raw','Rare','Medium','Well','Burnt'],ok:'Done',sink:'Dishes',plates:'Plates',
+  full:'Hands full!',noPlate:'No clean plates, wash some!',raw:'Not cooked yet!',wrong:'Wrong order!',gone:'Left!',needPlate:'Put a plate first!',hasMeat:'Plate already has meat!',gfull:'Slot is full!',burnt:'Burnt!',
+  winT:'Day complete!',failT:'Restaurant closed!',failP:'Three customers left. Try again!',next:'Next day',retry:'Try again',pauseT:'Paused',resume:'Resume',sum:(s,o)=>`${s} served · ${o} online orders`,dayP:n=>`${n} customers are coming today.`}};
+const t=(k,...a)=>{const v=T[LANG][k];return typeof v==='function'?v(...a):v};
+const KEY='mutfakustasi.v1',SAVE=Object.assign({day:1,coins:0},(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}})());
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(SAVE))}catch(e){}};
+// ---- çizimler (üstten görünüş, 100x84 birim) ----
+const O='stroke="#3a1d0c" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"';
+const STEAK=['#e8747c','#c2504a','#8f4a2c','#52290f','#1d1512'],CHK=['#f6b9b0','#e0a03a','#2a1d14'],KOF=['#e98a8a','#6b381c','#1d1512'];
+function meatSVG(m,lv,x=50,y=42,s=1){const g=b=>`<g transform="translate(${x} ${y}) scale(${s})">${b}</g>`;
+  if(m==='steak'){const c=STEAK[lv],marks=lv>=1&&lv<4?`<path d="M-16 -8l22 14M-6 -14l22 14${lv>=3?'M-22 0l18 12M6 -16l18 12':''}" stroke="${lv>=3?'#2a1408':'#5a2a14'}" stroke-width="3" stroke-linecap="round"/>`:'';
+    return g(`<path d="M-30 -6q2-20 26-18 22 2 30 12 8 12-4 22-16 12-36 6-18-6-16-22z" fill="${c}" ${O}/><path d="M18 -8q6 4 4 12" stroke="#f3e1c8" stroke-width="5" fill="none" stroke-linecap="round" opacity="${lv<4?.9:.2}"/>${marks}`)}
+  if(m==='chicken'){const c=CHK[lv===0?0:lv>=4?2:1];
+    return g(`<path d="M-26 4q-8-18 8-24 18-6 28 6l14 12q6 0 8 5t-4 7q0 6-6 5t-5-7l-10-4q-22 16-33 0z" fill="${c}" ${O}/><path d="M-14 -10q8-6 16-2" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".55"/>`)}
+  const c=KOF[lv===0?0:lv>=4?2:1],b=(cx,cy)=>`<ellipse cx="${cx}" cy="${cy}" rx="13" ry="10" fill="${c}" ${O}/><path d="M${cx-6} ${cy-3}h10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".35"/>`;
+  return g(b(-15,-6)+b(13,-8)+b(0,10))}
+const onionSVG=(x=50,y=42,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><ellipse cx="-8" cy="2" rx="15" ry="11" fill="#fbf3ff" stroke="#8d3fc4" stroke-width="4"/><ellipse cx="-8" cy="2" rx="7" ry="5" fill="none" stroke="#b77fe0" stroke-width="3"/><ellipse cx="12" cy="-6" rx="12" ry="9" fill="#fbf3ff" stroke="#8d3fc4" stroke-width="4"/><ellipse cx="12" cy="-6" rx="5" ry="3.5" fill="none" stroke="#b77fe0" stroke-width="3"/></g>`;
+const potatoSVG=(x=50,y=42,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})">`+[[-18,6,-20],[-8,-6,12],[4,6,-8],[14,-6,24],[-2,-2,60],[18,8,-30]].map(([a,b,r])=>`<rect x="${a-11}" y="${b-3.5}" width="22" height="7" rx="2" fill="#ffcf3f" ${O} stroke-width="3" transform="rotate(${r} ${a} ${b})"/>`).join('')+'</g>';
+const icon=b=>`<svg viewBox="0 0 100 84" aria-hidden="true">${b}</svg>`;
+// tabak: içeriğiyle; et kıvamı kenardaki 1–3 alev noktasıyla da okunur
+function plateSVG(p,empty){let b=`<circle cx="50" cy="50" r="46" fill="#fff" ${O}/><circle cx="50" cy="50" r="33" fill="#f1ede4" stroke="#d9d2c4" stroke-width="2"/>`;
+  if(p){if(p.sides.includes('potato'))b+=potatoSVG(70,62,.62);if(p.sides.includes('onion'))b+=onionSVG(30,66,.62);
+    if(p.meat){b+=meatSVG(p.meat,p.lv,50,p.sides.length?40:50,.78);
+      if(p.meat==='steak')b+=`<g>${[0,1,2].map(i=>`<circle cx="${40+i*10}" cy="11" r="4.2" fill="${i<p.lv?'#ff5a1f':'#e3ddd0'}" stroke="#3a1d0c" stroke-width="2"/>`).join('')}</g>`}}
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">${b}</svg>`}
+const chefSVG=`<svg viewBox="0 0 100 100"><ellipse cx="50" cy="60" rx="34" ry="30" fill="#fff" ${O}/><circle cx="50" cy="52" r="22" fill="#f2c9a0" ${O}/><path d="M26 40q-10-22 10-26 4-12 16-10t14 10q18 2 10 26z" fill="#fff" ${O}/><circle cx="42" cy="56" r="3" fill="#2a1a10"/><circle cx="58" cy="56" r="3" fill="#2a1a10"/><path d="M43 65q7 6 14 0" stroke="#2a1a10" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`;
+// ---- ses ----
+let AC=null;const audio=()=>{if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume()};
+function tone(f,d=.09,type='sine',v=.12,to){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain(),n=AC.currentTime;o.type=type;o.frequency.setValueAtTime(f,n);if(to)o.frequency.exponentialRampToValueAtTime(to,n+d);g.gain.setValueAtTime(v,n);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g).connect(AC.destination);o.start(n);o.stop(n+d+.02)}
+const SFX={tap:()=>tone(520,.05,'triangle',.09),put:()=>tone(330,.08,'sine',.13,220),coin:()=>{tone(988,.07,'square',.06);setTimeout(()=>tone(1319,.14,'square',.06),70)},bad:()=>tone(160,.22,'sawtooth',.08,90),ready:()=>tone(880,.08,'triangle',.08),wash:()=>tone(700,.25,'sine',.07,1200),
+  win:()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.16,'triangle',.12),i*110)),lose:()=>[392,330,262].forEach((f,i)=>setTimeout(()=>tone(f,.22,'sawtooth',.07),i*160))};
+// ---- durum ----
+const MEATS=['steak','chicken','kofte'],SIDES=['onion','potato'],WHO=Array.from({length:16},(_,i)=>'a'+(i+1));
+const STAGE={steak:[3.2,6.2,9.2,13.5],chicken:[5,5,5,11.5],kofte:[4.4,4.4,4.4,10.5]};   // saniye: az, orta, iyi, yanık (tavuk ve köftede tek kıvam)
+const lvOf=(m,s)=>{const a=STAGE[m];return s<a[0]?0:m==='steak'?(s<a[1]?1:s<a[2]?2:s<a[3]?3:4):(s<a[3]?3:4)};
+const S={on:false,paused:false,day:1,cfg:null,left:0,served:0,lost:0,onl:0,earn:0,cust:[null,null,null],online:null,grill:[],spots:[null,null],clean:4,dirty:0,hand:null,q:[],busy:false,pos:[50,50],now:0,nextAt:0,nextOn:0};
+const cfgOf=d=>({n:Math.min(14,5+d),gap:Math.max(4.5,9-d*.4),pat:Math.max(26,40-d),maxQ:d<2?2:3,sides:d<2?1:2,onl:d>=2});
+const kit=$('kit'),chef=$('chef'),app=$('app');
+function fly(el,txt,bad){const r=el.getBoundingClientRect(),a=app.getBoundingClientRect(),f=document.createElement('div');f.className='fly'+(bad?' bad':'');f.textContent=txt;f.style.left=(r.left+r.width/2-a.left)+'px';f.style.top=(r.top-a.top)+'px';app.appendChild(f);setTimeout(()=>f.remove(),960)}
+const deny=(el,m)=>{SFX.bad();fly(el,m,true)};
+function hud(){$('coins').textContent=SAVE.coins;$('dayChip').textContent=t('day',S.day);$('hearts').innerHTML=[0,1,2].map(i=>`<span class="${i<3-S.lost?'':'off'}">❤️</span>`).join('')}
+// ---- istasyonlar: kimlik → aşçının duracağı yer (mutfak genişliğinin yüzdesi; y de aynı birimde) ----
+const STAND={clean:[12,29],spot0:[35.5,29],spot1:[61.5,29],sink:[70,39],trash:[70,64],g0:[30,36],g1:[30,51],g2:[30,66]};
+function build(){const g=$('grill');g.innerHTML='';S.grill=[];for(let i=0;i<3;i++){const b=document.createElement('button');b.className='gs';b.onclick=()=>go('g'+i);g.appendChild(b);S.grill.push({el:b,meat:null,s:0})}
+  const bins=$('bins');bins.innerHTML='';[...MEATS,...SIDES].forEach((k,i)=>{const b=document.createElement('button');b.className='bin';b.id='bin_'+k;
+    b.innerHTML=icon(MEATS.includes(k)?meatSVG(k,0):k==='onion'?onionSVG():potatoSVG())+`<small>${(t('meats')[k]||t('sides')[k])}</small>`;b.onclick=()=>go('bin_'+k);bins.appendChild(b);STAND['bin_'+k]=[11+i*19.5,72]});
+  $('sinkT').textContent=t('sink');chef.innerHTML=chefSVG+'<span class="hand" id="hand" hidden></span>';place(50,50,0)}
+function place(x,y,dur){chef.style.transitionDuration=dur+'s';chef.style.left=x+'cqw';chef.style.top=y+'cqw';S.pos=[x,y]}
+function draw(){[0,1].forEach(j=>{const el=$('spot'+j),p=S.spots[j];el.classList.toggle('has',!!p);el.innerHTML=p?plateSVG(p):'<span class="plus">+</span>'});
+  $('cleanN').textContent=S.clean;$('cleanN').classList.toggle('zero',!S.clean);$('cleanP').innerHTML=S.clean?plateSVG(null):'';
+  $('dirtyN').textContent=S.dirty;$('dirtyN').classList.toggle('zero',!S.dirty);$('sinkP').innerHTML=`<svg viewBox="0 0 100 100"><rect x="10" y="16" width="80" height="68" rx="12" fill="#8fd0ee" ${O}/><circle cx="50" cy="50" r="6" fill="#3a1d0c"/>${S.dirty?`<circle cx="36" cy="46" r="20" fill="#e9dfc8" ${O}/><path d="M26 44q8-8 16 2" stroke="#9a7b4f" stroke-width="4" fill="none"/>`:''}${S.dirty>1?`<circle cx="64" cy="58" r="18" fill="#e9dfc8" ${O}/>`:''}</svg>`;
+  const h=$('hand'),H=S.hand;h.hidden=!H;h.classList.toggle('pl',!!H&&H.t==='plate');if(H)h.innerHTML=H.t==='plate'?plateSVG(null):icon(H.t==='side'?(H.k==='onion'?onionSVG():potatoSVG()):meatSVG(H.meat,H.t==='raw'?0:H.lv))}
+function drawGrill(g){if(!g.meat){g.el.className='gs';g.el.innerHTML='';return}const lv=lvOf(g.meat,g.s),a=STAGE[g.meat],nm=g.meat==='steak'?t('lv')[lv]:lv===0?t('lv')[0]:lv>=4?t('lv')[4]:t('ok');
+  if(g.lv!==lv||!g.el.firstChild){g.lv=lv;g.el.className='gs'+(lv>=4?' burnt':' cook');g.el.innerHTML=icon(meatSVG(g.meat,lv))+`<span class="bar"><i></i></span><span class="lv">${nm}</span>`;if(lv>0&&lv<4)SFX.ready();if(lv===4){SFX.bad();fly(g.el,t('burnt'),true)}}
+  const i=g.el.querySelector('.bar i');if(i){i.style.width=Math.min(100,g.s/a[3]*100)+'%';i.style.background=lv>=4?'#555':lv===3?'#ff5a3c':lv===2?'#f2a01c':'#7be06a'}}
+// ---- aşçı: iş sırası ----
+function go(id){if(!S.on||S.paused)return;audio();SFX.tap();if(S.q.length>=4)return;S.q.push(id);if(!S.busy)next()}
+function next(){const id=S.q.shift();if(!id){S.busy=false;chef.classList.remove('walk');return}S.busy=true;const [x,y]=STAND[id],d=Math.hypot(x-S.pos[0],y-S.pos[1]),dur=d/62;
+  chef.classList.add('walk');place(x,y,dur);setTimeout(()=>{chef.classList.remove('walk');if(!S.on)return;act(id,()=>next())},dur*1000+40)}
+function work(sec,done){const w=document.createElement('span');w.className='work';w.innerHTML='<b></b>';chef.appendChild(w);const b=w.firstChild;b.style.transition=`width ${sec}s linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>b.style.width='100%'));setTimeout(()=>{w.remove();done()},sec*1000)}
+function act(id,done){const el=$(id)||S.grill[+id[1]].el,H=S.hand;
+  if(id.startsWith('bin_')){const k=id.slice(4);if(H)deny(el,t('full'));else{S.hand=MEATS.includes(k)?{t:'raw',meat:k}:{t:'side',k};SFX.put()}}
+  else if(id==='clean'){if(H)deny(el,t('full'));else if(!S.clean)deny(el,t('noPlate'));else{S.clean--;S.hand={t:'plate'};SFX.put()}}
+  else if(id==='trash'){if(H){if(H.t==='plate')S.clean++;S.hand=null;SFX.put()}}
+  else if(id==='sink'){if(H)deny(el,t('full'));else if(S.dirty){SFX.wash();work(1.3,()=>{S.dirty--;S.clean++;draw();done()});return}}
+  else if(id[0]==='g'){const g=S.grill[+id[1]];
+    if(H&&H.t==='raw'){if(g.meat)deny(el,t('gfull'));else{g.meat=H.meat;g.s=0;g.lv=-1;S.hand=null;SFX.put();drawGrill(g)}}
+    else if(g.meat&&!H){const lv=lvOf(g.meat,g.s);if(lv===0)deny(el,t('raw'));else if(lv>=4){g.meat=null;drawGrill(g);fly(el,'🗑️')}else{S.hand={t:'meat',meat:g.meat,lv};g.meat=null;drawGrill(g);SFX.put()}}
+    else if(H)deny(el,t('full'))}
+  else if(id.startsWith('spot')){const j=+id[4],p=S.spots[j];
+    if(!p){if(H&&H.t==='plate'){S.spots[j]={meat:null,lv:0,sides:[]};S.hand=null;SFX.put()}
+      else if(!H){if(!S.clean)deny(el,t('noPlate'));else{S.q.unshift('clean',id)}}   // boş yere dokununca: önce temiz tabak alır, sonra getirir
+      else deny(el,t('needPlate'))}
+    else if(H&&H.t==='meat'){if(p.meat)deny(el,t('hasMeat'));else{p.meat=H.meat;p.lv=H.lv;S.hand=null;SFX.put()}}
+    else if(H&&H.t==='side'){if(!p.sides.includes(H.k))p.sides.push(H.k);S.hand=null;SFX.put()}
+    else if(H&&H.t==='raw')deny(el,t('raw'))}
+  draw();done()}
+['clean','sink','trash','spot0','spot1'].forEach(id=>$(id).addEventListener('click',()=>{if(drag.moved){drag.moved=false;return}go(id)}));
+// ---- tabağı sürükle bırak ----
+const drag={j:-1,el:null,moved:false,x0:0,y0:0};
+[0,1].forEach(j=>$('spot'+j).addEventListener('pointerdown',e=>{const p=S.spots[j];if(!S.on||S.paused||!p||(!p.meat&&!p.sides.length))return;drag.j=j;drag.x0=e.clientX;drag.y0=e.clientY;drag.moved=false;e.currentTarget.setPointerCapture(e.pointerId)}));
+function moveGhost(e){const a=app.getBoundingClientRect();drag.el.style.left=(e.clientX-a.left)+'px';drag.el.style.top=(e.clientY-a.top-30)+'px'}
+const dropAt=e=>{const el=document.elementFromPoint(e.clientX,e.clientY-30);return el&&el.closest('[data-drop]')};
+addEventListener('pointermove',e=>{if(drag.j<0)return;if(!drag.el){if(Math.hypot(e.clientX-drag.x0,e.clientY-drag.y0)<8)return;drag.moved=true;drag.el=document.createElement('div');drag.el.className='ghost';drag.el.innerHTML=plateSVG(S.spots[drag.j]);app.appendChild(drag.el);$('spot'+drag.j).style.opacity=.25;audio()}
+  moveGhost(e);document.querySelectorAll('.drop-ok').forEach(x=>x.classList.remove('drop-ok'));const d=dropAt(e);if(d)d.classList.add('drop-ok')});
+addEventListener('pointerup',e=>{if(drag.j<0)return;const j=drag.j;drag.j=-1;document.querySelectorAll('.drop-ok').forEach(x=>x.classList.remove('drop-ok'));if(!drag.el)return;const d=dropAt(e);drag.el.remove();drag.el=null;$('spot'+j).style.opacity='';if(d)deliver(j,d.dataset.drop,d)});
+const same=(p,o)=>p.meat===o.meat&&(o.meat!=='steak'||p.lv===o.lv)&&p.sides.slice().sort().join()===o.sides.slice().sort().join();
+function pay(el,o,fresh,mult){const base=12+o.sides.length*4+(o.meat==='steak'?4:0),gain=Math.round((base+base*.6*fresh)*mult);SAVE.coins+=gain;S.earn+=gain;save();SFX.coin();fly(el,`+${gain} 🪙`);hud()}
+function deliver(j,where,el){const p=S.spots[j];if(!p)return;
+  if(where==='trash'){S.spots[j]={meat:null,lv:0,sides:[]};SFX.put();draw();return}
+  if(where==='online'){const o=S.online;if(!o||!same(p,o.order)){deny(el,t('wrong'));return}pay(el,o.order,o.p/o.max,1.5);S.spots[j]=null;S.clean++;S.online=null;S.onl++;drawOnline();draw();return}   // paket: tabak hemen geri gelir
+  const i=+where[1],c=S.cust[i];if(!c||c.eat)return;if(!same(p,c.order)){c.p-=2;deny(c.el,t('wrong'));return}
+  pay(c.el,c.order,c.p/c.max,1);S.spots[j]=null;S.served++;c.eat=2.6;c.el.classList.add('eat');c.el.querySelector('.bub').style.visibility='hidden';draw()}
+// ---- müşteriler ve online ----
+function order(){const meat=MEATS[Math.floor(Math.random()*(S.day<2?2:3))+(S.day<2?1:0)]||'kofte',n=Math.floor(Math.random()*(S.cfg.sides+1)),sides=SIDES.slice().sort(()=>Math.random()-.5).slice(0,n);
+  return {meat,lv:meat==='steak'?1+Math.floor(Math.random()*3):3,sides}}
+function spawn(){const free=[0,1,2].filter(i=>!S.cust[i]);if(!free.length||S.cust.filter(Boolean).length>=S.cfg.maxQ||S.left<=0)return false;const i=free[Math.floor(Math.random()*free.length)],o=order();
+  const el=document.createElement('div');el.className='cust';el.innerHTML=`<div class="bub">${plateSVG(o)}<div class="pat"><b></b></div></div><img class="who" src="g/${WHO[Math.floor(Math.random()*WHO.length)]}.webp" alt="">`;
+  $('hall').children[i].appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));const max=S.cfg.pat+o.sides.length*4+(o.meat==='steak'?o.lv*3:4);
+  S.cust[i]={el,order:o,max,p:max,bar:el.querySelector('.pat'),fill:el.querySelector('.pat b'),eat:0};S.left--;tone(660,.06,'triangle',.07);return true}
+function gone(i,angry){const c=S.cust[i];S.cust[i]=null;if(angry)c.el.classList.add('angry');setTimeout(()=>{c.el.classList.add('out');setTimeout(()=>c.el.remove(),450)},angry?700:100)}
+function drawOnline(){const o=S.online;$('onB').innerHTML=o?`<span class="tk">${plateSVG(o.order)}</span><span class="pat"><b></b></span>`:'<span class="idle">📦</span>'}
+function barOf(bar,f){bar.firstElementChild.style.width=(f*100)+'%';bar.className='pat'+(f<.25?' low':f<.55?' mid':'')}
+// ---- gün ----
+function card(h){$('card').innerHTML=h;$('ov').hidden=false}
+function intro(){card(`<h2>${t('title')}</h2><ol>${t('how').map(x=>`<li>${x}</li>`).join('')}</ol><div class="legend">${[1,2,3].map(l=>`<div>${icon(meatSVG('steak',l))}<span>${t('lv')[l]}</span></div>`).join('')}</div><button class="btn" id="go">${t('start')}</button>`);$('go').onclick=()=>startDay(SAVE.day)}
+function startDay(d){audio();S.day=d;S.cfg=cfgOf(d);S.left=S.cfg.n;S.served=S.lost=S.onl=S.earn=0;S.cust=[null,null,null];S.online=null;S.spots=[null,null];S.clean=4;S.dirty=0;S.hand=null;S.q=[];S.busy=false;
+  [...$('hall').children].forEach(x=>x.innerHTML='');build();draw();drawOnline();hud();$('ov').hidden=true;S.on=true;S.paused=false;S.now=0;S.nextAt=.8;S.nextOn=14;last=performance.now();requestAnimationFrame(loop)}
+function end(win){if(!S.on)return;S.on=false;if(win){SAVE.day=Math.max(SAVE.day,S.day+1);save();SFX.win();card(`<h2>${t('winT')}</h2><p>🪙 +${S.earn}<br>${t('sum',S.served,S.onl)}</p><button class="btn" id="nx">${t('next')}</button>`);$('nx').onclick=()=>startDay(S.day+1)}
+  else{SFX.lose();card(`<h2>${t('failT')}</h2><p>${t('failP')}</p><button class="btn" id="nx">${t('retry')}</button>`);$('nx').onclick=()=>startDay(S.day)}}
+$('pauseBtn').onclick=()=>{if(!S.on||S.paused)return;S.paused=true;card(`<h2>${t('pauseT')}</h2><button class="btn" id="rs">${t('resume')}</button>`);$('rs').onclick=()=>{S.paused=false;$('ov').hidden=true;last=performance.now();requestAnimationFrame(loop)}};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&S.on&&!S.paused)$('pauseBtn').onclick()});
+let last=0;
+function loop(now){if(!S.on||S.paused)return;const dt=Math.min(.1,(now-last)/1000);last=now;S.now+=dt;
+  if(S.left>0&&S.now>=S.nextAt)S.nextAt=S.now+(spawn()?S.cfg.gap*(.8+Math.random()*.4):.5);
+  if(S.left>0&&!S.cust.some(Boolean)&&S.nextAt-S.now>1.2)S.nextAt=S.now+.6;
+  S.cust.forEach((c,i)=>{if(!c)return;if(c.eat){c.eat-=dt;if(c.eat<=0){S.dirty++;gone(i,false);draw();check()}return}
+    c.p-=dt;barOf(c.bar,Math.max(0,c.p/c.max));if(c.p<=0){S.lost++;SFX.bad();fly(c.el,t('gone'),true);gone(i,true);hud();check()}});
+  if(S.cfg.onl&&!S.online&&S.now>=S.nextOn&&S.left>0){const o=order();S.online={order:o,max:S.cfg.pat*1.5,p:S.cfg.pat*1.5};drawOnline();tone(784,.1,'triangle',.08)}
+  if(S.online){const o=S.online;o.p-=dt;const b=$('onB').querySelector('.pat');if(b)barOf(b,Math.max(0,o.p/o.max));if(o.p<=0){S.online=null;S.nextOn=S.now+12;drawOnline();fly($('online'),t('gone'),true)}}else if(S.nextOn<S.now-1)S.nextOn=S.now+10+Math.random()*8;
+  S.grill.forEach(g=>{if(!g.meat)return;g.s+=dt;drawGrill(g)});
+  requestAnimationFrame(loop)}
+function check(){if(S.lost>=3){end(false);return}if(S.left<=0&&!S.cust.some(Boolean))setTimeout(()=>S.on&&end(true),700)}
+if(/[?&]debug\b/.test(location.search))window.__mu={S,SAVE,go,deliver,startDay,end,lvOf};
+build();draw();drawOnline();hud();intro();
+})();
+</script></body></html>
