@@ -31,5 +31,5 @@ SANCAR GAMES logosu görünür → kamera bir A'ya yakınlaşır → A'nın içi
 
 Bütün oyunların girişi aynı: **beyaz zemin, tamamı siyah logo** (sarı tutamaçlar da siyah). Hazır dosya `marka/giris/sancar-intro.js` (kendi içinde, başka dosya istemez); ön izleme `marka/giris/index.html`.
 - Kullanım: `<script src="sancar-intro.js"></script>` sonra `SancarIntro.play().then(oyunuBaslat)`.
-- Harfler sırayla yerine oturur (SANCAR, sonra GAMES), logo hafifçe esner, beyaz perde açılır. ~2,3 sn, dokununca geçilir; kısa bir tını çalar (`{sound:false}` ile sessiz).
+- Sakin (Eymen, 12.11): harfler sırayla yumuşakça belirir (SANCAR, sonra GAMES), zıplama yok; kısa bekleyiş, sonra beyaz perde yavaşça açılır. ~3 sn, dokununca geçilir; tek, yumuşak bir akor (`{sound:false}` ile sessiz).
 - Yukarıdaki "A → oynat tuşu" fikri ayrı duruyor; istenirse bu açılışın sonuna eklenir.
