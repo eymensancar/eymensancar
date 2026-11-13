@@ -24,9 +24,9 @@ const port = server.address().port;
 const FAKES = ['world', 'trash', 'player', 'tools', 'economy', 'debug'];
 
 const VPS = {
-  land: { w: 844, h: 390, safe: { t: 0, r: 47, b: 21, l: 47 }, bg: '/test/spike/shots/01-start-plaza.png' },
+  land: { w: 844, h: 390, safe: { t: 0, r: 47, b: 21, l: 47 }, bg: '/test/spike/shots/05-cleaned-trail.png' },
   land2: { w: 932, h: 430, safe: { t: 0, r: 59, b: 21, l: 59 }, bg: '/test/spike/shots/02-street-north.png' },
-  port: { w: 390, h: 844, safe: { t: 47, r: 0, b: 34, l: 0 }, bg: '/test/spike/shots/09-portrait.png' },
+  port: { w: 390, h: 844, safe: { t: 47, r: 0, b: 34, l: 0 }, bg: '/test/spike/shots/02-street-north.png' },
 };
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'] });
 const report = { errors: [], tapTargets: [], overlaps: [], perf: {}, shots: [] };
@@ -170,15 +170,15 @@ async function run(vp) {
   await shot(page, vp, '13a-cart-enter-offer', 300);
   await tapEl(page, '.act'); await ev(() => { const fk = window.__fk; fk.econ.tank = 340; fk.player.pose.speed = 4; S(12); });
   await shot(page, vp, '13b-cart-driving', 300);
-  await tapEl(page, '.act2'); await ev(() => S(4));   // nozzle via the secondary button
+  await tapEl(page, '.act'); await ev(() => S(4));    // nozzle via the big button (integration decision)
   await ev(() => { const fk = window.__fk; fk.econ.tank = 600; fk.emit('economy:bagFull', { container: 'tank' }); S(8); });
   await shot(page, vp, '13c-tank-full', 300);
-  await tapEl(page, '.act'); await ev(() => S(4));
+  await tapEl(page, '.act2'); await ev(() => S(4));   // "İn" on the secondary button
   // 14 stragglers (≥ 90 %): red dots on the compass
   await ev(() => { const fk = window.__fk; window.__ctx.mods.player.dismount(); fk.tools.current = 'broom'; fk.tools.nearCart = false; fk.econ.bag = 40; fk.trash.clean = 0.934; const s = fk.trash.sums; s.fill(0); s[3] = 12; s[40] = 30; s[77] = 6; fk.player.pose.yaw = Math.PI * 1.1; S(30); });
   await shot(page, vp, '14-stragglers', 300);
   // 15 district cleaned: final sweep, camera lift wait, complete card
-  await ev(() => { const fk = window.__fk; fk.econ.items = 13446; fk.econ.earned = 29880; fk.econ.playS = 1027; fk.trash.clean = 1; fk.emit('economy:finalSweep', { units: 190, coins: 410 }); fk.emit('trash:milestone', { index: 3, at: 1, fraction: 1 }); fk.emit('district:cleaned', { playS: 1027 }); W(3.5); });
+  await ev(() => { const fk = window.__fk; fk.econ.items = 13446; fk.econ.earned = 29880; fk.econ.playS = 1027; fk.trash.clean = 1; fk.emit('economy:finalSweep', { units: 190, coins: 410 }); fk.emit('trash:milestone', { index: 3, at: 1, fraction: 1 }); fk.emit('district:cleaned', { playS: 1027 }); W(5); }); // CONFIG.ui.completeDelayS 4.6 (integration)
   await shot(page, vp, '15-complete', 700);
   await ev(() => { const s = document.querySelector('#ui .pn-bd'); if (s) s.scrollTop = s.scrollHeight; });
   await shot(page, vp, '15b-complete-scrolled', 150);
@@ -243,3 +243,5 @@ for (const vp of vps) { try { await run(vp); } catch (e) { report.errors.push(vp
 await browser.close(); server.close();
 fs.writeFileSync(path.join(here, 'report.json'), JSON.stringify(report, null, 2));
 console.log(JSON.stringify({ shots: report.shots.length, errors: report.errors, tapTargets: report.tapTargets, overlaps: report.overlaps, perf: report.perf, contract: report.contract }, null, 2));
+// integration: a non-zero exit code for test/run-all.mjs (runner errors, small tap targets, overlaps/clipped text)
+process.exit(report.errors.length || report.tapTargets.length || report.overlaps.length ? 1 : 0);

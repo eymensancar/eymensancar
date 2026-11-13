@@ -28,17 +28,37 @@
 //   hints                      onboarding hints (show-once, dismissed by the action they ask for).
 //   feedback                   juice timings (pickup arc, pitch chain, coin fly, etc.).
 //   promo                      slots for the studio's other games (placeholders, no links yet).
+//   render                     render scale (adaptive DPR, quality auto/high/low), near item band, depth format, GL loss.
+//   player.controller          controller feel: acceleration, stick, tap, eye, mount blend, chase camera, finale lift.
+//   tools                      picking geometry, view model, cart handling details, feedback rate limits.
+//   haptics                    rate limit of ctx.haptic (main).
+//   robot (names..bodyHeightM) robot names (STR keys), colours, AI/simulation tunables.
+//   offline, income            away catch-up cap (PSIKOLOJI §6); income estimate for the boost offer rule.
+//   ui                         HUD tunables (timings, confetti, compass, secondary button, robot tags).
 
 export const CONFIG = {
   version: 1,
   saveKey: 'temizsehir.v1',
 
   // ---- Intended timeline, average player (70% efficiency), minutes. Simulated, not playtested.
+  // Updated by the integrator from test/economy/bot.mjs with the current prices (docs/TASARIM.md §3).
   targets: {
-    firstSale: 0.15, bag1: 0.3, broom: 1.9, bag2: 3.0, bag3: 5.0, dropoff: 5.9,
-    robot1: 7.5, robot2: 9.8, cart: 11.8, percent50: 13.5, percent75: 15.5,
-    complete: 17.1, completeSlowPlayer: 21.2, completeFastPlayer: 14.7,
+    firstSale: 0.15, bag1: 0.33, broom: 1.27, bag2: 1.97, bag3: 3.62, dropoff: 4.52,
+    robot1: 6.1, robot2: 9.62, cart: 11.47, percent50: 13.17, percent75: 15.27,
+    complete: 16.92, completeSlowPlayer: 21.93, completeFastPlayer: 13.62,
     sessionMinMax: [10, 20],
+  },
+
+  // ---- Rendering (main.js). quality: 'auto' adapts the render scale between minDpr and maxDpr;
+  // 'high' pins maxDpr; 'low' (battery saver) pins lowDpr and pulls the 3D item band in (trash nearFadeLow).
+  render: {
+    maxDpr: 2, minDpr: 1, startDpr: 2, lowDpr: 1,
+    antialias: true, near: 0.1, far: 480,
+    adaptive: true, downMs: 19.5, upMs: 17.4, upAfterS: 4, step: 0.85, freezeS: 20,
+    nearFade: [6.2, 8.5],                  // m: 3D items shrink into the painted far layer between these
+    nearFadeLow: [4.2, 6.0],
+    depthFormat: 'rgba',                   // trash depth texture: 'rgba' (RGBA8, safest) or 'la' (LuminanceAlpha); ?depth= overrides
+    glLostReloadS: 4,                      // WebGL context lost and not restored within this: save and reload
   },
 
   // ---- District geometry. 54 x 54 m, 0.5 m cells => 108 x 108 grid.
@@ -108,13 +128,61 @@ export const CONFIG = {
     walkSpeed: 5.0,
     eyeHeightM: 1.65,
     radiusM: 0.35,
-    fovVerticalDegLandscape: 60,
+    // FOV (main.js): landscape uses a HORIZONTAL target (PSIKOLOJI §4: 75-90 deg), the vertical FOV that gives
+    // it is clamped to fovVerticalClampDeg; portrait (narrow) uses a fixed vertical FOV.
+    fovHorizontalDegLandscape: 85,
+    fovVerticalClampDeg: [44, 65],
     fovVerticalDegPortrait: 75,
     lookSensitivityTouchDegPerPx: 0.25,
     lookSensitivityMouseDegPerPx: 0.15,
     pitchLimitDeg: [-70, 60],
     startCoins: 0,
+    // controller feel (player.js)
+    controller: {
+      accelS: 0.18,             // standstill to full walking speed (linear), PSIKOLOJI 0.15-0.25 s
+      decelS: 0.12,
+      stickRadiusPx: 56,        // thumb travel for full deflection (CSS px)
+      stickDeadZone: 0.12,      // fraction of the radius
+      stickFullAt: 0.92,
+      stickEdgePx: 44,          // stick base at least this far from the screen edges
+      tapMaxMs: 220, tapMaxPx: 12,
+      surfaceLift: 0.5,         // eye rises by this fraction of the trash surface under the feet
+      eyeSmoothS: 0.15,
+      startPitchDeg: -6,
+      headBobM: 0,              // 0 = off; hard-capped at 0.01 m (PSIKOLOJI §4)
+      stepLengthM: 0.8,         // player:step every this many metres
+      mountBlendS: 0.4,
+      seatBackM: 0.25,          // first-person seat behind the vehicle centre
+      chaseDistM: 4.6, chaseHeightM: 1.1, chasePitchDeg: -14, chaseMinDistM: 1.2,   // tuned for the 85 deg horizontal FOV
+      chasePortraitScale: 1.5,  // portrait: chase camera sits further back
+      liftRiseS: 4.0, liftHeightM: 70, liftBackM: 22, liftHoldS: 2.0, liftReturnS: 1.6,   // finale camera lift
+      liftYawOffsetDeg: 20,     // landscape: district in the left half, beside the completion card
+      invertMouseY: false,
+      shakeM: 0.03,             // cart bump jolt (vertical only)
+    },
   },
+
+  // ---- Tool feel (tools.js): picking geometry, view model, cart handling details, feedback rate limits.
+  tools: {
+    aimPickRadiusM: 0.35,     // hold-pick radius around the crosshair hit
+    tapPickRadiusM: 0.3,
+    tapReachSlackM: 0.3,      // a tap may reach this much further than the hold reach
+    coneStepM: 0.25, coneStepDeg: 10, conePickRadiusM: 0.5,
+    dustPool: 64, dustLifeS: 0.7,   // broom stroke puffs and valuable sparkles (removal juice is trash.js's)
+    handReachS: 0.16, bagBounceS: 0.22,
+    equipS: 0.22,             // tool appears with a bounce (in hand within 200 ms)
+    swingInPlaceS: 0.55, swingDepthM: 0.22,
+    fullFeedbackS: 2.0,       // "bag full" toast/thump/haptic at most this often while trying to collect
+    handTarget: [-0.17, -0.12, -0.43],  // camera-local point picked items fly to (the bag in the left glove)
+    portraitLateral: 0.62, portraitOffset: [0, -0.06, -0.24],   // view model in the narrow portrait frame
+    cartView: 'auto',         // 'auto' (camera steering -> chase view, tank -> seat), 'chase', 'first'
+    cartReverseAngleDeg: 130, cartReverseSpeed: 2.5,
+    cartSteerGain: 3.0, cartTurnDampS: 0.12, cartRecentreS: 0.9,
+    cartNozzleMoveS: 0.25, cartSurfaceRide: 0.85,
+  },
+
+  // ---- Haptics (main.js ctx.haptic; used by ui and tools). Light ticks are rate-limited (PSIKOLOJI §3).
+  haptics: { lightMaxPerS: 15, minGapMs: 40 },
 
   // ---- Hands (start tool). Hold action = auto-grab; tap an item = grab it.
   hands: {
@@ -153,7 +221,28 @@ export const CONFIG = {
     retargetRadiusM: 12,                   // look for dirty cells within this of itself first
     avoidPlayerM: 1.2,
     priorityStragglersAt: 0.90,            // from district 90%: target remaining clusters globally
+    names: ['robot_n1', 'robot_n2', 'robot_n3', 'robot_n4'],   // STR keys; tag = STR robot_name
+    colors: ['#ff7a59', '#2fb5a3', '#f2b632', '#8a6cf0'],       // mesh, compass, chips, shop list
+    // AI / simulation tunables (economy.js)
+    turnRateDeg: 300,
+    farM: 30, farHysteresisM: 4, farTickS: 0.25, maxSubstepM: 0.2,   // far robots: coarse ticks of the same logic
+    anchorWeight: 0.5, claimPenaltyM: 10, localSearchCells: 2,
+    waitMaxS: 2.0, stuckS: 4, banS: 20, idleRetryS: 1.0,
+    collectEventS: 0.25,
+    puffEveryS: 0.12, puffLifeS: 0.7, puffs: 6,
+    rateWindowS: 10, rateTauS: 120, ratePriorUps: 2.4,
+    swathEps: 0.01,
+    bodyRadiusM: 0.33, bodyHeightM: 0.2,
   },
+
+  // ---- Away / offline (PSIKOLOJI §6): robots keep working while away, capped.
+  offline: {
+    capS: 7200,                            // at most 2 hours of robot output ...
+    maxFractionOfRemaining: 0.5,           // ... and at most 50 % of the remaining trash
+    minSimS: 2,                            // shorter absences are ignored
+    announceMinS: 60,                      // the "welcome back" card only after this long
+  },
+  income: { windowS: 10, tauS: 60 },       // income estimate for the boost offer rule
 
   // ---- Ride-on vacuum cart.
   cart: {
@@ -183,6 +272,7 @@ export const CONFIG = {
     dumpAnimS: 0.6,
     priceMultiplier: 1.0,                  // same price at every sell point
     fullArrowShowS: 0.0,                   // arrow to nearest sell point appears immediately when bag full
+    resellDelayS: 1.0,                     // standing inside a sell zone: next sale at most this often
   },
 
   // ---- Shop. Shown: all items whose requires are bought, sorted by price; cheapest flagged "next".
@@ -193,21 +283,21 @@ export const CONFIG = {
       { id: 'broom',          price: 300,  requires: [],              effect: { set: 'broom.owned', value: true },  strName: 'shop_broom',      strDesc: 'shop_broom_d' },
       { id: 'bag_2',          price: 400,  requires: ['bag_1'],       effect: { set: 'bag.level', value: 2 },       strName: 'shop_bag_2',      strDesc: 'shop_bag_2_d' },
       { id: 'broom_w1',       price: 450,  requires: ['broom'],       effect: { set: 'broom.widthLevel', value: 1 },strName: 'shop_broom_w1',   strDesc: 'shop_broom_w1_d' },
-      { id: 'dropoff',        price: 600,  requires: ['broom'],       effect: { set: 'sell.dropoff', value: true }, strName: 'shop_dropoff',    strDesc: 'shop_dropoff_d' },
+      { id: 'dropoff',        price: 750,  requires: ['broom'],       effect: { set: 'sell.dropoff', value: true }, strName: 'shop_dropoff',    strDesc: 'shop_dropoff_d' },
       { id: 'bag_3',          price: 700,  requires: ['bag_2'],       effect: { set: 'bag.level', value: 3 },       strName: 'shop_bag_3',      strDesc: 'shop_bag_3_d' },
-      { id: 'broom_s1',       price: 900,  requires: ['broom_w1'],    effect: { set: 'broom.speedLevel', value: 1 },strName: 'shop_broom_s1',   strDesc: 'shop_broom_s1_d' },
-      { id: 'robot_1',        price: 1200, requires: ['broom'],       effect: { set: 'robot.count', value: 1 },     strName: 'shop_robot_1',    strDesc: 'shop_robot_d' },
-      { id: 'robot_speed_1',  price: 1400, requires: ['robot_1'],     effect: { set: 'robot.speedLevel', value: 1 },strName: 'shop_robot_speed_1', strDesc: 'shop_robot_speed_d' },
-      { id: 'robot_2',        price: 1600, requires: ['robot_1'],     effect: { set: 'robot.count', value: 2 },     strName: 'shop_robot_2',    strDesc: 'shop_robot_d' },
-      { id: 'cart',           price: 2800, requires: ['robot_1'],     effect: { set: 'cart.owned', value: true },   strName: 'shop_cart',       strDesc: 'shop_cart_d' },
+      { id: 'broom_s1',       price: 1450,  requires: ['broom_w1'],    effect: { set: 'broom.speedLevel', value: 1 },strName: 'shop_broom_s1',   strDesc: 'shop_broom_s1_d' },
+      { id: 'robot_1',        price: 1400, requires: ['broom'],       effect: { set: 'robot.count', value: 1 },     strName: 'shop_robot_1',    strDesc: 'shop_robot_d' },
+      { id: 'robot_speed_1',  price: 2900, requires: ['robot_1'],     effect: { set: 'robot.speedLevel', value: 1 },strName: 'shop_robot_speed_1', strDesc: 'shop_robot_speed_d' },
+      { id: 'robot_2',        price: 1500, requires: ['robot_1'],     effect: { set: 'robot.count', value: 2 },     strName: 'shop_robot_2',    strDesc: 'shop_robot_d' },
+      { id: 'cart',           price: 2300, requires: ['robot_1'],     effect: { set: 'cart.owned', value: true },   strName: 'shop_cart',       strDesc: 'shop_cart_d' },
       { id: 'cart_tank_1',    price: 2500, requires: ['cart'],        effect: { set: 'cart.tankLevel', value: 1 },  strName: 'shop_cart_tank_1',strDesc: 'shop_cart_tank_1_d' },
-      { id: 'robot_cap_1',    price: 2500, requires: ['robot_1'],     effect: { set: 'robot.capLevel', value: 1 },  strName: 'shop_robot_cap_1',strDesc: 'shop_robot_cap_1_d' },
+      { id: 'robot_cap_1',    price: 3200, requires: ['robot_1'],     effect: { set: 'robot.capLevel', value: 1 },  strName: 'shop_robot_cap_1',strDesc: 'shop_robot_cap_1_d' },
       { id: 'robot_3',        price: 3000, requires: ['robot_2'],     effect: { set: 'robot.count', value: 3 },     strName: 'shop_robot_3',    strDesc: 'shop_robot_d' },
       { id: 'cart_width_1',   price: 3000, requires: ['cart'],        effect: { set: 'cart.widthLevel', value: 1 }, strName: 'shop_cart_width_1', strDesc: 'shop_cart_width_1_d' },
-      { id: 'robot_speed_2',  price: 3500, requires: ['robot_speed_1'], effect: { set: 'robot.speedLevel', value: 2 }, strName: 'shop_robot_speed_2', strDesc: 'shop_robot_speed_d' },
+      { id: 'robot_speed_2',  price: 4500, requires: ['robot_speed_1'], effect: { set: 'robot.speedLevel', value: 2 }, strName: 'shop_robot_speed_2', strDesc: 'shop_robot_speed_d' },
       { id: 'robot_4',        price: 4000, requires: ['robot_3'],     effect: { set: 'robot.count', value: 4 },     strName: 'shop_robot_4',    strDesc: 'shop_robot_d' },
     ],
-    totalPrice: 28890,                     // informational
+    totalPrice: 32390,                     // informational
     openRadiusM: 3.0,                      // shop panel button appears within this of the kiosk sell point
   },
 
@@ -267,6 +357,22 @@ export const CONFIG = {
   },
 
   // ---- Promo slots for the studio's other games (placeholders, no links yet).
+  // ---- HUD tunables (ui.js).
+  ui: {
+    nearGoalAt: 0.8,            // goal chip glows from 80 % of the price
+    endowedFirstGoal: 1 / 3,    // first goal's bar starts a third filled
+    toastS: 2.2,
+    msCardS: 4.2, msBoostCardS: 9,
+    completeDelayS: 4.6,        // after the 4 s camera lift (player.controller.liftRiseS): the district is seen first
+    confetti: 56, confettiBig: 110,
+    coinFlyMax: 14,
+    compassSpanDeg: 200,
+    slowHz: 10, debugHz: 4,
+    secondaryMinPriority: 50,   // a second offer at or above this gets the smaller secondary button
+    sensSteps: [0.6, 0.8, 1, 1.3, 1.7],
+    robotTagMaxM: 26,           // robot name tags in the world up to this distance
+  },
+
   promo: {
     billboard: { blockId: 'se', facing: 'north', sizeM: [6, 3] },
     onCompleteCards: true,
@@ -298,6 +404,11 @@ export const STR = {
   act_shop:         { tr: 'Dükkan', en: 'Shop' },
   act_tool_hands:   { tr: 'Eller', en: 'Hands' },
   act_tool_broom:   { tr: 'Süpürge', en: 'Broom' },
+  pct:              { tr: '%{n}', en: '{n}%' },
+  district_clean:   { tr: 'Temiz', en: 'Clean' },
+  goal_ready:       { tr: 'Alabilirsin!', en: 'You can buy it!' },
+  all_bought:       { tr: 'Hepsi alındı', en: 'All bought' },
+  dist_m:           { tr: '{n} m', en: '{n} m' },
 
   // Selling
   sell_shop:        { tr: 'Dükkan', en: 'Shop' },
@@ -327,6 +438,12 @@ export const STR = {
   shop_owned:       { tr: 'Alındı', en: 'Owned' },
   shop_no_money:    { tr: '{n} altın daha', en: '{n} more coins' },
   shop_close:       { tr: 'Kapat', en: 'Close' },
+  owned_title:      { tr: 'Aldıkların', en: 'Owned' },
+  u_items:          { tr: '{n} parça', en: '{n} items' },
+  u_m:              { tr: '{n} m', en: '{n} m' },
+  u_mps:            { tr: '{n} m/sn', en: '{n} m/s' },
+  u_robots:         { tr: '{n} robot', en: '{n} robots' },
+  u_points:         { tr: '{n} satış yeri', en: '{n} sell points' },
   shop_bag_1:       { tr: 'Çuval', en: 'Sack' },
   shop_bag_1_d:     { tr: '40 parça taşır', en: 'Carries 40 items' },
   shop_bag_2:       { tr: 'Büyük çuval', en: 'Big sack' },
@@ -337,7 +454,7 @@ export const STR = {
   shop_broom_d:     { tr: 'Yürürken bir şerit süpürür', en: 'Sweeps a strip as you walk' },
   shop_broom_w1:    { tr: 'Geniş süpürge', en: 'Wide broom' },
   shop_broom_w1_d:  { tr: 'Daha geniş şerit', en: 'Wider strip' },
-  shop_broom_s1:    { tr: 'Sert kıl', en: 'Stiff bristles' },
+  shop_broom_s1:    { tr: 'Sert kıl', en: 'Fast broom' },
   shop_broom_s1_d:  { tr: 'Daha hızlı süpürürsün', en: 'Sweep faster' },
   shop_dropoff:     { tr: 'Yakın konteyner', en: 'Nearby container' },
   shop_dropoff_d:   { tr: 'Uzak köşeye ikinci satış noktası', en: 'A second sell point in the far corner' },
@@ -390,15 +507,37 @@ export const STR = {
   barrier_soon:     { tr: 'Yakında', en: 'Coming soon' },
   continue:         { tr: 'Devam', en: 'Continue' },
 
+  // Robots
+  robot_name:       { tr: 'Robot {n}: {name}', en: 'Robot {n}: {name}' },
+  robot_n1:         { tr: 'Pırıl', en: 'Sparkle' },
+  robot_n2:         { tr: 'Fıstık', en: 'Peanut' },
+  robot_n3:         { tr: 'Bulut', en: 'Cloud' },
+  robot_n4:         { tr: 'Şimşek', en: 'Flash' },
+  robots_title:     { tr: 'Robotların', en: 'Your robots' },
+  robots_none:      { tr: 'Henüz robotun yok', en: 'No robots yet' },
+  robot_idle:       { tr: 'Bekliyor', en: 'Waiting' },
+  robot_clean:      { tr: 'Temizliyor', en: 'Cleaning' },
+  robot_travel:     { tr: 'Satmaya gidiyor', en: 'Going to sell' },
+  robot_unload:     { tr: 'Boşaltıyor', en: 'Unloading' },
+
+  // Away (one honest screen, PSIKOLOJI §6)
+  away_title:       { tr: 'Tekrar hoş geldin!', en: 'Welcome back!' },
+  away_body:        { tr: 'Sen yokken robotların {n} parça topladı', en: 'While you were away your robots collected {n} items' },
+  away_coins:       { tr: '+{n} altın hesabına eklendi', en: '+{n} coins added to your total' },
+  away_cap:         { tr: '({n} saatlik sınır)', en: '({n}-hour limit)' },
+
   // Boost (mock rewarded ad)
   boost_offer:      { tr: 'Reklam izle: 2 dakika 2 kat altın', en: 'Watch an ad: 2x coins for 2 minutes' },
   boost_active:     { tr: '2 kat: {n} sn', en: '2x: {n}s' },
   boost_cooldown:   { tr: 'Yeniden: {n} sn', en: 'Again in: {n}s' },
   boost_mock_ad:    { tr: 'Reklam (deneme)', en: 'Ad (test)' },
   no_thanks:        { tr: 'Hayır, teşekkürler', en: 'No thanks' },
+  boost_on:         { tr: '2 kat altın başladı!', en: '2x coins started!' },
+  ad_tag:           { tr: 'Reklam', en: 'Ad' },
 
   // Promo
   promo_title:      { tr: 'Sancar Games oyunları', en: 'Games by Sancar Games' },
+  promo_label:      { tr: 'Bizim diğer oyunlarımız', en: 'Our other games' },
   promo_yikim:      { tr: 'Yıkım Ustası', en: 'Demolition Master' },
   promo_sayiyolu:   { tr: 'Sayı Yolu', en: 'Number Path' },
 
@@ -407,4 +546,24 @@ export const STR = {
   resume:           { tr: 'Devam et', en: 'Resume' },
   sound:            { tr: 'Ses', en: 'Sound' },
   reset_save:       { tr: 'Kaydı sıfırla', en: 'Reset save' },
+  reset_confirm:    { tr: 'Bütün ilerleme silinsin mi?', en: 'Delete all progress?' },
+  reset_yes:        { tr: 'Evet, sil', en: 'Yes, delete' },
+  cancel:           { tr: 'Vazgeç', en: 'Cancel' },
+  settings:         { tr: 'Ayarlar', en: 'Settings' },
+  ambient:          { tr: 'Şehir sesi', en: 'City sound' },
+  haptics:          { tr: 'Titreşim', en: 'Haptics' },
+  sensitivity:      { tr: 'Bakış hızı', en: 'Look speed' },
+  steer_mode:       { tr: 'Araba sürüşü', en: 'Cart steering' },
+  steer_camera:     { tr: 'Kameraya göre', en: 'Camera' },
+  steer_tank:       { tr: 'Tank', en: 'Tank' },
+  quality:          { tr: 'Grafik', en: 'Graphics' },
+  q_auto:           { tr: 'Otomatik', en: 'Auto' },
+  q_high:           { tr: 'Yüksek', en: 'High' },
+  q_low:            { tr: 'Pil dostu', en: 'Battery saver' },
+  language:         { tr: 'Dil', en: 'Language' },
+  on:               { tr: 'Açık', en: 'On' },
+  off:              { tr: 'Kapalı', en: 'Off' },
+  boot_error:       { tr: 'Oyun başlatılamadı.', en: 'The game could not start.' },
+  no_webgl:         { tr: 'Bu cihazda 3B grafik açılamadı.', en: '3D graphics are not available on this device.' },
+  gl_lost:          { tr: 'Grafik yeniden yükleniyor...', en: 'Reloading graphics...' },
 };

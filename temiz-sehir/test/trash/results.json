@@ -29,7 +29,9 @@
         "gem"
       ],
       "blocks": 9,
-      "blockSize": 12
+      "blockSize": 12,
+      "blockSizeM": 6,
+      "depthFormat": "rgba"
     },
     "total": 13446,
     "init": 13446,
@@ -792,7 +794,7 @@
     "geoFallback": true,
     "hugeR": {
       "u": 0,
-      "ms": 0.09999999962747097
+      "ms": 0
     }
   },
   "milestones": {
@@ -881,7 +883,7 @@
     },
     "bytes": 1201,
     "msSave": 0.09999999962747097,
-    "msLoad": 2.599999999627471,
+    "msLoad": 4.400000000372529,
     "loaded": [
       {
         "exact": true
@@ -905,41 +907,41 @@
   "perf": {
     "cells0": {
       "cellsPerFrame": 0,
-      "msPerFrame": 0.0007,
+      "msPerFrame": 0.001,
       "updateMsPerFrame": 0.0007,
       "rowsPerFrame": 0,
       "maxFlying": 0
     },
     "cells20": {
       "cellsPerFrame": 20,
-      "msPerFrame": 0.0297,
-      "updateMsPerFrame": 0.0213,
+      "msPerFrame": 0.0933,
+      "updateMsPerFrame": 0.0683,
       "rowsPerFrame": 105.9,
       "maxFlying": 80
     },
     "cells100": {
       "cellsPerFrame": 97.4,
-      "msPerFrame": 0.103,
-      "updateMsPerFrame": 0.0447,
+      "msPerFrame": 0.1907,
+      "updateMsPerFrame": 0.117,
       "rowsPerFrame": 107.9,
       "maxFlying": 160
     },
     "cells100_noJuice": {
       "cellsPerFrame": 97.4,
-      "msPerFrame": 0.0683,
-      "updateMsPerFrame": 0.035,
+      "msPerFrame": 0.139,
+      "updateMsPerFrame": 0.0937,
       "rowsPerFrame": 107.9,
       "maxFlying": 0
     },
     "broomWalk": {
-      "msPerFrame": 0.0183,
+      "msPerFrame": 0.025,
       "unitsPerFrame": 0.42
     },
     "cartDrive": {
-      "msPerFrame": 0.023,
+      "msPerFrame": 0.0415,
       "unitsPerFrame": 1.28
     },
-    "teleportRebuildMs": 0.94,
+    "teleportRebuildMs": 1.01,
     "nearestDirtyMs": 0.0015,
     "consume2000": {
       "units": 2000,
@@ -955,16 +957,6 @@
     "triangles": 85834,
     "trashVisible": 8,
     "instances": 2341
-  },
-  "juice": {
-    "flying": 17,
-    "dust": 12,
-    "calls": 10
-  },
-  "juiceAfter": {
-    "flying": 0,
-    "dust": 0,
-    "visible": 7
   },
   "consoleExpected": [
     "warning: [trash] cellCenter: invalid cell index NaN",

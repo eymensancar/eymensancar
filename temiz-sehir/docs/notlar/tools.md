@@ -132,3 +132,7 @@ Owner: tools. File: `www/js/tools.js`. Contract: MIMARI.md §4.5, §4.9, §6, §
 - Hold-pick in the cone uses `amountAt` probes (35 at most per grab, 2.5 grabs/s): cheap, but it picks the nearest dirty cell, not the most visible item.
 - Cart collision is two circles, so corners of the 1.6 × 2.4 body can overlap walls slightly when turning against them.
 - The chase camera starts 1.2 m behind when the cart is parked against the district edge (the camera slides in).
+
+## Integration (phase 3)
+
+Every contract issue above was decided at integration; the decisions and the defects found in the real game are in `docs/BIRLESTIRME.md`, and `docs/MIMARI.md` now matches the code. Tunables listed above now live in `www/js/config.js`.

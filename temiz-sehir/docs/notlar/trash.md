@@ -135,3 +135,7 @@ The real main.js, config.js, bus.js and trash.js run with a fake world (`test/tr
 - For 0.2 s after a cell is cleaned, the far layer's painted tile is still visible where the 3D items were. This is the designed `cellCleanFadeS` fade, but if the fade is lengthened it reads as "items turned into a picture".
 - The gust for the final sweep only animates items within 8.5 m of the camera; the rest of the district fades in 0.2 s. World's finale and economy's sweep effect have to carry that moment.
 - At aerial distance the 1 m broom trail is about 3 px wide and reads as a dark line, not a light one. The sheen only helps at grazing angles (eye height). The cart swath and robot patches read clearly.
+
+## Integration (phase 3)
+
+Every contract issue above was decided at integration; the decisions and the defects found in the real game are in `docs/BIRLESTIRME.md`, and `docs/MIMARI.md` now matches the code. Tunables listed above now live in `www/js/config.js`.

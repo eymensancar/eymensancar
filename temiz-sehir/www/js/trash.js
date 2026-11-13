@@ -294,7 +294,7 @@ const LOOK = {
   meshInner: 32, meshOuter: 16, meshExtent: 300,
   outGround: '#3d3e40',
   // cleaned ground: washed = base·gain + lift; sheen = sky reflection at grazing angles (reads from 30+ m)
-  cleanGain: 1.5, cleanLift: 0.045, cleanSheen: 0.55, cleanFadeMul: 1.6,
+  cleanGain: 1.35, cleanLift: 0.035, cleanSheen: 0.32, cleanFadeMul: 1.6,   // integration: 1.5/0.045/0.55 read as snow at eye level
   rimHalo: 0.4,            // wide grime halo strength around trash (0..1); the narrow band at the edge is always drawn
   // juice
   flyMax: 160,             // pooled flying items (all shapes together)
@@ -498,7 +498,14 @@ function createCore(opts) {
   resetGrid();
 
   // ---- textures
-  const depthTex = new THREE.DataTexture(vis, N, N, THREE.LuminanceAlphaFormat, THREE.UnsignedByteType);
+  // depth texture format: 'rgba' (default) mirrors vis into an RGBA8 buffer (R = G = B = units, A = cleaned) so the
+  // vertex shader only ever samples the universally supported RGBA8/UNSIGNED_BYTE format; 'la' uploads the
+  // interleaved LUMINANCE_ALPHA buffer directly (legacy unsized format). Neither needs a float extension.
+  const RGBA = o.depthFormat !== 'la';
+  const vis4 = RGBA ? new Uint8Array(NN * 4) : null;
+  function mirror(r0, r1) { for (let q = r0 * N, e = (r1 + 1) * N; q < e; q++) { const v = vis[q * 2]; vis4[q * 4] = v; vis4[q * 4 + 1] = v; vis4[q * 4 + 2] = v; vis4[q * 4 + 3] = vis[q * 2 + 1]; } }
+  if (RGBA) mirror(0, N - 1);
+  const depthTex = RGBA ? new THREE.DataTexture(vis4, N, N, THREE.RGBAFormat, THREE.UnsignedByteType) : new THREE.DataTexture(vis, N, N, THREE.LuminanceAlphaFormat, THREE.UnsignedByteType);
   depthTex.magFilter = depthTex.minFilter = THREE.LinearFilter;
   depthTex.generateMipmaps = false; depthTex.unpackAlignment = 1; depthTex.flipY = false;
   depthTex.needsUpdate = true;
@@ -769,7 +776,7 @@ function createCore(opts) {
     if (juice.spawned >= o.flySpawnPerFrame) return;
     const x = itemX(i, key, k), z = itemZ(j, key, k);
     const dx = x - camX, dz = z - camZ;
-    if (dx * dx + dz * dz > o.fadeEnd * o.fadeEnd || !inWin(i, j) || slotOwner[wslot(i, j)] !== key) return; // not visible as an item
+    if (dx * dx + dz * dz > fadeU.value.y * fadeU.value.y || !inWin(i, j) || slotOwner[wslot(i, j)] !== key) return; // not visible as an item
     const v = variantOf(t, key, k), sh = typeShapes[t].shp[v], s = itemS(key, k);
     const f = F.head; F.head = (F.head + 1) % FLY;
     if (!F.alive[f]) F.n++;
@@ -1002,14 +1009,19 @@ function createCore(opts) {
     if (rowMax < rowMin) return 0;
     const rows = rowMax - rowMin + 1;
     const props = renderer && renderer.properties.get(depthTex);
-    if (!props || !props.__webglTexture || props.__version !== depthTex.version) { depthTex.needsUpdate = true; stats.fullUploads++; }
+    const full = !props || !props.__webglTexture || props.__version !== depthTex.version;
+    if (RGBA) mirror(full ? 0 : rowMin, full ? N - 1 : rowMax);
+    if (full) { depthTex.needsUpdate = true; stats.fullUploads++; }
     else {
       const gl = renderer.getContext();
       renderer.state.bindTexture(gl.TEXTURE_2D, props.__webglTexture);
       gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
       gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
-      if (renderer.capabilities.isWebGL2) gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.LUMINANCE_ALPHA, gl.UNSIGNED_BYTE, vis, rowMin * N * 2);
+      if (RGBA) {
+        if (renderer.capabilities.isWebGL2) gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.RGBA, gl.UNSIGNED_BYTE, vis4, rowMin * N * 4);
+        else gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.RGBA, gl.UNSIGNED_BYTE, vis4.subarray(rowMin * N * 4, (rowMax + 1) * N * 4));
+      } else if (renderer.capabilities.isWebGL2) gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.LUMINANCE_ALPHA, gl.UNSIGNED_BYTE, vis, rowMin * N * 2);
       else gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.LUMINANCE_ALPHA, gl.UNSIGNED_BYTE, vis.subarray(rowMin * N * 2, (rowMax + 1) * N * 2));
       stats.partialUploads++;
     }
@@ -1128,7 +1140,7 @@ function createCore(opts) {
     N, K, CELL, SIZE, W, TYPES, group, groundMesh, dustPts, lists, grid, initGrid, zones, uniforms, fade: fadeU, stats, juice,
     geometries: geos, itemMaterial: itemMat, textureBytes, groundTris: (GV - 1) * (GV - 1) * 2,
     unitsAt, surfaceAt, removeInCircle, removeAlongSegment, removeCell, pick, nearestDirty, consume, clearAll, setCell,
-    clearRes, res, blockSums: blockSum, blocks: B, blockSize: BS, typeOf, keyOf,
+    clearRes, res, blockSums: blockSum, blocks: B, blockSize: BS, typeOf, keyOf, depthFormat: RGBA ? 'rgba' : 'la',
     totalUnits: () => total, initialUnits: () => initialTotal, trashCells: () => trashCells0, cleanCells: () => cleanCells,
     cleanFraction: () => (trashCells0 ? cleanCells / trashCells0 : 1),
     unitFraction: () => (initialTotal ? 1 - total / initialTotal : 1),
@@ -1222,7 +1234,11 @@ function setJuice(by, mode, tx, tz) {
   if (by === 'final') { J.mode = 4; J.tx = 0.8; J.ty = 0; J.tz = 0.6; J.dur = LOOK.gustDur; J.hop = 0.4; return; }
   if (by === 'debug' || mode === 0) { J.mode = 0; return; }
   const cam = ctx.camera;
-  if (by === 'hands') { J.mode = 1; J.tx = LOOK.handOffset[0]; J.ty = LOOK.handOffset[1]; J.tz = LOOK.handOffset[2]; return; }
+  if (by === 'hands') { // the bag in the left glove (tools' view model): CONFIG.tools.handTarget, portrait-adjusted
+    const T = CFG.tools || {}, h = T.handTarget || LOOK.handOffset, por = ctx.view && ctx.view.portrait, off = (por && T.portraitOffset) || null, lat = por ? (T.portraitLateral || 1) : 1;
+    const zs = por ? 1 : Math.tan(Math.PI / 6) / Math.tan(ctx.camera.fov * Math.PI / 360); // tools' view-model depth stretch
+    J.mode = 1; J.tx = h[0] * lat + (off ? off[0] : 0); J.ty = h[1] + (off ? off[1] : 0); J.tz = h[2] * zs + (off ? off[2] : 0); return;
+  }
   if (by === 'robot') { J.mode = 3; J.tx = tx; J.ty = LOOK.collectY; J.tz = tz; J.dur = LOOK.flyDurRobot; return; }
   // broom / cart: the target follows the player rigidly, stored in the camera's yaw frame (x right, z back).
   // Broom: swept items fly up into the bag at the hip (TASARIM §1). Cart: into the intake at the stroke end.
@@ -1248,8 +1264,13 @@ export function init(c) {
   const gen = genDistrict(CFG, kind, N, cell);
   genStats = gen.stats;
   if (D.trashCellsExpected && gen.stats.cells !== D.trashCellsExpected && !world.__stub) warnOnce('cells', 'generator made ' + gen.stats.cells + ' trash cells, CONFIG expects ' + D.trashCellsExpected);
-  const G = CFG.trashGen || {};
+  const G = CFG.trashGen || {}, RD = CFG.render || {};
+  const fmtParam = c.params && c.params.get ? c.params.get('depth') : null;
+  const depthFormat = fmtParam === 'la' || fmtParam === 'rgba' ? fmtParam : (RD.depthFormat || 'rgba');
+  const fade = RD.nearFade || [LOOK.fadeStart, LOOK.fadeEnd];
+  if (c.renderer && c.renderer.capabilities && !(c.renderer.capabilities.maxVertexTextures > 0)) warnOnce('vtf', 'no vertex texture units: the trash layer cannot be displaced on this GPU');
   core = createCore({
+    depthFormat, fadeStart: fade[0], fadeEnd: fade[1],
     N, cell, K: G.depthMax || 4, types, zones: gen.zones, mixes: gen.mixes, initial: gen.initial,
     outside: world.outsideUnits ? (i, j) => world.outsideUnits(i, j) : null, outsideZone: 1, outUnitsShader: 2,
     groundMap: world.groundTexture ? world.groundTexture() : null, light: world.lighting ? world.lighting() : null,
@@ -1257,7 +1278,8 @@ export function init(c) {
   });
   c.scene.add(core.group);
   core.warmup();
-  infoObj = { N, cell, K: core.K, size: core.SIZE, types, shapes: SHAPES.slice(), blocks: core.blocks, blockSize: core.blockSize };
+  // blockSize is in CELLS (12 = 6 m); blockSizeM in metres
+  infoObj = { N, cell, K: core.K, size: core.SIZE, types, shapes: SHAPES.slice(), blocks: core.blocks, blockSize: core.blockSize, blockSizeM: core.blockSize * cell, depthFormat: core.depthFormat };
   msReached = -1; sweepWait = -1;
   // first frame: build the near window so the curtain lifts on a filled street
   const p = c.camera.position; core.update(p.x, p.z, 0);
@@ -1335,6 +1357,12 @@ export function load(data) {
 }
 
 // ---- queries
+// quality: 'low' pulls the 3D item band in (CONFIG.render.nearFadeLow), anything else uses render.nearFade
+export function setQuality(mode) {
+  if (!core) return;
+  const RD = CFG.render || {}, f = (mode === 'low' ? RD.nearFadeLow : RD.nearFade) || [LOOK.fadeStart, LOOK.fadeEnd];
+  core.fade.value.x = f[0]; core.fade.value.y = f[1];
+}
 export function info() { return infoObj || { N: 108, cell: 0.5, K: 4, size: 54, types: [], shapes: SHAPES.slice(), blocks: 9, blockSize: 12 }; }
 export function amountAt(x, z) {
   if (!core || !fin(x) || !fin(z)) return 0;

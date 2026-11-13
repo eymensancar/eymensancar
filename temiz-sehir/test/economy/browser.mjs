@@ -95,7 +95,7 @@ const bt = await page.evaluate(() => {
   return out;
 });
 check(bt.active0 && bt.mul === 2 && bt.active119 && !bt.active121 && bt.cd > 297, `boost 2x for 120 s then cooldown ${bt.cd.toFixed(1)} s (${bt.boostEvents} economy:boost events)`);
-check(bt.away && bt.away.capped && bt.away.simS === 7200, `away 10 h → simulated ${bt.away && bt.away.simS} s, ${bt.away && bt.away.units} items, +${bt.away && bt.away.coins} coins; toast: "${bt.toast.slice(-1)[0]}"`);
+check(bt.away && bt.away.capped && bt.away.simS === 7200, `away 10 h → simulated ${bt.away && bt.away.simS} s, ${bt.away && bt.away.units} items, +${bt.away && bt.away.coins} coins (ui shows the card from economy:away; no toast since integration)`);
 await cam(page, ...AER); await shot(page, 'a7-after-away');
 const c2 = await page.evaluate(() => __ts.counters());
 notes.push(`counters after: calls ${c2.calls}, triangles ${c2.triangles}, instances ${c2.instances}`);

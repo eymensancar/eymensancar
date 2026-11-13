@@ -4,80 +4,10 @@
 //
 // DOM only (no THREE meshes). Reads other modules through ctx.mods getters, writes the DOM only when a shown
 // value changes, animates with transform/opacity only. Layout is read (getBoundingClientRect) on resize only.
-// Player-facing text only through ctx.t(); keys that config.js STR does not have yet fall back to FB_STR below
-// (listed in docs/notlar/ui.md for design to move into STR).
+// Player-facing text only through ctx.t() (STR in config.js).
 
 // ------------------------------------------------------------------------------------------ tunables
-// UI-only numbers. CONFIG.ui (if design adds it) overrides any of them.
-const UI_DEFAULTS = {
-  nearGoalAt: 0.8,            // goal chip glows from 80 % of the price (PSIKOLOJI §3 near-goal tension)
-  endowedFirstGoal: 1 / 3,    // first goal's bar starts a third filled (endowed progress)
-  toastS: 2.2,
-  msCardS: 4.2,               // milestone banner (25/50/75 %) visible time
-  msBoostCardS: 9,            // 50 % banner with the optional boost button
-  completeDelayS: 3.2,        // wait for the camera lift before the "district cleaned" card
-  confetti: 56, confettiBig: 110,
-  coinFlyMax: 14,
-  awayMinS: 60,               // show the "while you were away" card only after this much absence
-  offlineCapS: 7200,          // PSIKOLOJI §6: robots work at most 2 h while away (economy enforces it; ui only words it)
-  hapticMaxPerS: 15,
-  compassSpanDeg: 200,        // degrees visible across the compass strip
-  slowHz: 10, debugHz: 4,
-  secondaryMinPriority: 50,   // a second offer at or above this gets its own smaller button (enter/exit/nozzle/shop)
-  robotColors: ['#ff8a3d', '#33b5ff', '#a66bff', '#36d07a'],
-  robotNames: ['robot_name_1', 'robot_name_2', 'robot_name_3', 'robot_name_4'],
-  sensSteps: [0.6, 0.8, 1, 1.3, 1.7],
-};
-
-// Strings ui needs that STR (config.js) does not define yet. ctx.t() wins whenever STR has the key.
-const FB_STR = {
-  pct:            { tr: '%{n}', en: '{n}%' },
-  district_clean: { tr: 'Temiz', en: 'Clean' },
-  settings:       { tr: 'Ayarlar', en: 'Settings' },
-  ambient:        { tr: 'Şehir sesi', en: 'City sound' },
-  haptics:        { tr: 'Titreşim', en: 'Haptics' },
-  sensitivity:    { tr: 'Bakış hızı', en: 'Look speed' },
-  steer_mode:     { tr: 'Araba sürüşü', en: 'Cart steering' },
-  steer_camera:   { tr: 'Kameraya göre', en: 'Camera' },
-  steer_tank:     { tr: 'Tank', en: 'Tank' },
-  quality:        { tr: 'Grafik', en: 'Graphics' },
-  q_auto:         { tr: 'Otomatik', en: 'Auto' },
-  q_high:         { tr: 'Yüksek', en: 'High' },
-  q_low:          { tr: 'Pil dostu', en: 'Battery saver' },
-  language:       { tr: 'Dil', en: 'Language' },
-  on:             { tr: 'Açık', en: 'On' },
-  off:            { tr: 'Kapalı', en: 'Off' },
-  reset_confirm:  { tr: 'Bütün ilerleme silinsin mi?', en: 'Delete all progress?' },
-  reset_yes:      { tr: 'Evet, sil', en: 'Yes, delete' },
-  cancel:         { tr: 'Vazgeç', en: 'Cancel' },
-  away_title:     { tr: 'Tekrar hoş geldin!', en: 'Welcome back!' },
-  away_body:      { tr: 'Sen yokken robotların {n} parça topladı', en: 'While you were away your robots collected {n} items' },
-  away_coins:     { tr: '+{n} altın hesabına eklendi', en: '+{n} coins added to your total' },
-  away_cap:       { tr: '({n} saatlik sınır)', en: '({n}-hour limit)' },
-  promo_label:    { tr: 'Bizim diğer oyunlarımız', en: 'Our other games' },
-  ad_tag:         { tr: 'Reklam', en: 'Ad' },
-  boost_on:       { tr: '2 kat altın başladı!', en: '2x coins started!' },
-  robots_title:   { tr: 'Robotların', en: 'Your robots' },
-  robots_none:    { tr: 'Henüz robotun yok', en: 'No robots yet' },
-  robot_idle:     { tr: 'Bekliyor', en: 'Waiting' },
-  robot_clean:    { tr: 'Temizliyor', en: 'Cleaning' },
-  robot_travel:   { tr: 'Satmaya gidiyor', en: 'Going to sell' },
-  robot_unload:   { tr: 'Boşaltıyor', en: 'Unloading' },
-  robot_name_1:   { tr: 'Pırıl', en: 'Sparkle' },
-  robot_name_2:   { tr: 'Fırfır', en: 'Whirly' },
-  robot_name_3:   { tr: 'Şimşek', en: 'Flash' },
-  robot_name_4:   { tr: 'Pamuk', en: 'Cotton' },
-  robot_tag:      { tr: 'Robot {n}: {name}', en: 'Robot {n}: {name}' },
-  u_items:        { tr: '{n} parça', en: '{n} items' },
-  u_m:            { tr: '{n} m', en: '{n} m' },
-  u_mps:          { tr: '{n} m/sn', en: '{n} m/s' },
-  u_robots:       { tr: '{n} robot', en: '{n} robots' },
-  u_points:       { tr: '{n} satış yeri', en: '{n} sell points' },
-  goal_ready:     { tr: 'Alabilirsin!', en: 'You can buy it!' },
-  all_bought:     { tr: 'Hepsi alındı', en: 'All bought' },
-  owned_title:    { tr: 'Aldıkların', en: 'Owned' },
-  dist_m:         { tr: '{n} m', en: '{n} m' },
-};
+// Every number is CONFIG.ui (plus CONFIG.robot.colors/names, CONFIG.offline, CONFIG.feedback); every text is STR.
 
 // ------------------------------------------------------------------------------------------ icons
 // One consistent set: 24 × 24, chunky filled shapes, currentColor (coin is the only multi-colour icon).
@@ -140,7 +70,7 @@ function tile(id, big) {
 
 // ------------------------------------------------------------------------------------------ module state
 let C = null;          // ctx
-let U = null;          // merged UI_DEFAULTS
+let U = null;          // CONFIG.ui + robot colours/names + offline wording
 let E = null;          // element refs
 let S = null;          // runtime state
 let nf = null, nf1 = null;
@@ -149,14 +79,7 @@ const OFFER_ICON = { pick: 'hand', sweep: 'broom', enter: 'cart', exit: 'exit', 
 const PANEL_PAUSES = { pause: true, settings: true, ad: true };
 const STATE_KEY = { idle: 'robot_idle', clean: 'robot_clean', travel: 'robot_travel', unload: 'robot_unload' };
 
-function tx(key, vars) {
-  if (C.STR && C.STR[key]) return C.t(key, vars);
-  const e = FB_STR[key];
-  if (!e) return C.t(key, vars);
-  let s = e[C.state.settings.lang] != null ? e[C.state.settings.lang] : e.tr;
-  if (vars) s = s.replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? vars[k] : m));
-  return s;
-}
+function tx(key, vars) { return C.t(key, vars); }
 function fmt(n) { return nf.format(Math.round(n)); }
 function fmt1(n) { return nf1.format(n); }
 function setText(el, s) { if (el.__t !== s) { el.__t = s; el.textContent = s; } }
@@ -467,6 +390,23 @@ const CSS = `
 .pfoot{display:flex;justify-content:center;padding:4px 12px 14px;flex:none}
 /* complete + away + ad */
 .pn-done{width:min(640px,100%)}
+/* finale: a side panel (landscape) / bottom sheet (portrait) over a light scrim, so the aerial view of the clean
+   district stays visible next to the card */
+.mw.done{justify-content:flex-end}
+.mw.done .bd{background:linear-gradient(90deg,rgba(10,20,34,0) 0%,rgba(10,20,34,0) 35%,rgba(10,20,34,.5) 100%)}
+.mw.done .pn-done{width:min(390px,100%)}
+.mw.done .done-top{gap:8px}
+.mw.done .bigring,.mw.done .bigring svg{width:64px;height:64px}
+.mw.done .bigring .t{font-size:17px}
+.mw.done .stats{gap:6px}
+.mw.done .stat{min-width:0;flex:1;padding:6px 6px}
+.u.port .mw.done{justify-content:center;align-items:flex-end}
+.u.port .mw.done .bd{background:linear-gradient(180deg,rgba(10,20,34,0) 0%,rgba(10,20,34,0) 40%,rgba(10,20,34,.5) 100%)}
+.u.port .mw.done .pn-done{width:100%;max-height:60%}
+/* robot name tags in the world */
+.rtag{position:absolute;left:0;top:0;display:flex;align-items:center;gap:5px;padding:3px 9px 3px 5px;border-radius:12px;background:rgba(18,30,48,.78);color:#fff;font-size:12px;font-weight:800;white-space:nowrap;will-change:transform;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.u.fin .act,.u.fin .act2,.u.fin .tools,.u.fin .stk,.u.fin .taph,.u.fin .hint,.u.fin .ind,.u.fin .pops{visibility:hidden}
+.rtag i{width:12px;height:12px;border-radius:6px;border:2px solid rgba(255,255,255,.85);flex:none}
 .pn-done .pn-hd{background:linear-gradient(180deg,#ffd451,#ffad1f);color:#4a2a00;text-shadow:0 1px 0 rgba(255,255,255,.4)}
 .done-bd{flex-direction:column;align-items:center;gap:12px}
 .done-top{display:flex;align-items:center;gap:16px}
@@ -523,7 +463,11 @@ const CSS = `
 // ------------------------------------------------------------------------------------------ init
 export function init(ctx) {
   C = ctx;
-  U = Object.assign({}, UI_DEFAULTS, (ctx.CONFIG && ctx.CONFIG.ui) || {});
+  const CF = ctx.CONFIG;
+  U = Object.assign({}, CF.ui, {
+    robotColors: CF.robot.colors, robotNames: CF.robot.names,
+    awayMinS: (CF.offline && CF.offline.announceMinS) || 60, offlineCapS: (CF.offline && CF.offline.capS) || 7200,
+  });
   const st = ctx.state.settings;
   if (st.haptics == null) st.haptics = true;
   if (st.steer == null) st.steer = cfg('cart.controlMode', 'camera');
@@ -603,6 +547,7 @@ function buildDom() {
     '<div class="ind" hidden><div class="arw">' + svg('arrow') + '</div><div class="pin">' + svg('store') + '</div><div class="lab"></div></div>' +
     '<div class="hint" hidden><div class="bub"></div></div>' +
     '<div class="ghostw" hidden style="position:absolute;left:0;top:0"><div class="ghostt"></div></div>' +
+    '<div class="rtags"></div>' +
     '<div class="toasts"></div>' +
     '<div class="pops"></div><div class="coins"></div>' +
     '<div class="msb"><div class="ms-st">' + svg('star') + '</div><div class="ms-tx"><div class="ms-t"></div><div class="ms-b"></div></div><div class="ms-ad"></div></div>' +
@@ -624,8 +569,10 @@ function buildDom() {
     hint: q('.hint'), hintBub: q('.hint .bub'), ghost: q('.ghostw'),
     toasts: q('.toasts'), pops: q('.pops'), coins: q('.coins'), cfs: q('.cfs'),
     msb: q('.msb'), msT: q('.ms-t'), msB: q('.ms-b'), msAd: q('.ms-ad'),
-    mwrap: q('.mwrap'), dbg: q('.dbg'),
+    mwrap: q('.mwrap'), dbg: q('.dbg'), rtags: q('.rtags'),
   };
+  // robot name tags (pool of 4, PSIKOLOJI §3 "Robot 1: Pırıl")
+  E.tag = []; for (let i = 0; i < 4; i++) { const d = document.createElement('div'); d.className = 'rtag'; d.hidden = true; d.innerHTML = '<i></i><span></span>'; E.rtags.appendChild(d); E.tag.push({ el: d, dot: d.firstChild, tx: d.lastChild, name: '', x: -1, y: -1, on: false, col: '' }); }
   // pools (created once)
   E.popPool = []; for (let i = 0; i < 14; i++) { const d = document.createElement('div'); d.className = 'pop'; E.pops.appendChild(d); E.popPool.push(d); }
   E.popI = 0;
@@ -668,6 +615,11 @@ function bindInput() {
   const up = () => release();
   act.addEventListener('pointerup', up); act.addEventListener('pointercancel', up); act.addEventListener('lostpointercapture', up);
   act.addEventListener('contextmenu', (e) => e.preventDefault());
+  // the context buttons act on pointerdown; cancel the click the browser synthesizes after the tap, or it lands on
+  // whatever the press just opened (the shop backdrop in portrait closed the shop at once: integration defect)
+  const noGhost = (e) => { if (e.cancelable) e.preventDefault(); };
+  act.addEventListener('touchend', noGhost, { passive: false });
+  E.act2.addEventListener('touchend', noGhost, { passive: false });
   E.pause.addEventListener('click', () => { click(); openPanel('pause'); });
   // secondary context button: second offer with priority >= U.secondaryMinPriority (e.g. nozzle while 'exit' is on top)
   E.act2.addEventListener('pointerdown', (e) => {
@@ -733,7 +685,9 @@ function bindBus() {
   b.on('game:ready', onReady);
   b.on('app:pause', snapshot);
   b.on('app:resume', (p) => onAway(p ? p.awayS : 0));
-  b.on('economy:offline', (p) => { if (p) { S.offlineSeen = true; showAway(p.units || 0, p.coins || 0, p.awayS || 0); } });
+  // economy:away is emitted by economy's own game:ready / app:resume handler (it subscribed first), so it arrives
+  // before onReady/onAway below; those then skip their coin/unit diff
+  b.on('economy:away', (p) => { if (p) { S.offlineSeen = true; if ((p.awayS || 0) >= U.awayMinS) showAway(p.units || 0, p.coins || 0, p.awayS || 0, p.capped); } });
   b.on('tool:collect', onCollect);
   b.on('economy:sold', onSold);
   b.on('economy:bagFull', () => { haptic('medium'); hintTrigger('bagFull'); });
@@ -772,7 +726,7 @@ export function openPanel(id) {
   if (S.panel === id) return;
   if (S.panel) closePanel(true);
   if (S.held) release();
-  S.panel = id; S.resetAsk = false;
+  S.panel = id; S.resetAsk = false; S.panelAt = performance.now();
   if (PANEL_PAUSES[id]) C.setPaused('panel', true);
   if (id === 'ad') { S.adT = 0; }
   renderPanel();
@@ -841,11 +795,15 @@ function num(v) { return typeof v === 'number' && isFinite(v) ? v : 0; }
 export function update(dt) {
   const rdt = C.time.dt || 0; // real seconds; UI animates while paused
   const econ = mod('economy'), player = mod('player');
+  // finale (camera lift + completion card): the controls step aside so the clean district is the picture
+  S.fin = !!(player && player.liftState && player.liftState() !== 0) || S.panel === 'complete';
+  setCls(E.u, 'fin', S.fin);
   updateOffers();
   updateStick(player);
   updateMoney(econ, rdt);
   updatePose(player, rdt);
   updateIndicator();
+  updateRobotTags(econ);
   updateHintPos();
   updateTimers(rdt);
   S.slowAcc += rdt;
@@ -888,7 +846,7 @@ function updateOffers() {
   if (id === 'shop') hintDone('nearShop');
 }
 
-function offerText(id, label) { return (C.STR && C.STR[label]) || FB_STR[label] ? tx(label) : (label || tx('act_' + id)); }
+function offerText(id, label) { return tx(label || ('act_' + id)); } // labels are STR keys (MIMARI §4.9)
 function offerIcon(id, label) { return id === 'nozzle' && label === 'act_nozzle_up' ? 'nozzleUp' : (OFFER_ICON[id] || 'hand'); }
 function updateSecondary(sec) {
   const id = sec ? sec.id : '', label = sec ? sec.label : '';
@@ -1033,6 +991,29 @@ function updateIndicator() {
   if (deg !== E.indArw.__deg) { E.indArw.__deg = deg; const ax = Math.round(Math.sin(ang) * 38), ay = Math.round(-Math.cos(ang) * 38); E.indArw.style.transform = 'translate3d(' + ax + 'px,' + ay + 'px,0) rotate(' + deg + 'deg)'; }
 }
 
+// name tags above robots within CONFIG.ui.robotTagMaxM that are on screen (DOM writes only on change)
+function updateRobotTags(econ) {
+  const rs = econ && econ.robots ? econ.robots() : null, n = rs ? Math.min(rs.length, E.tag.length) : 0;
+  const cam = C.camera.position, max = U.robotTagMaxM || 26, hidden = !!S.panel || (C.mods.player && C.mods.player.liftState && C.mods.player.liftState() !== 0);
+  for (let i = 0; i < E.tag.length; i++) {
+    const g = E.tag[i];
+    let show = false;
+    if (i < n && !hidden) {
+      const r = rs[i], dx = r.x - cam.x, dz = r.z - cam.z, d2 = dx * dx + dz * dz;
+      // on screen and clear of the top HUD band and the thumb zone
+      if (d2 < max * max && project(r.x, 0.62, r.z) && S.sx > 40 && S.sx < C.view.w - 40 && S.sy > (C.view.safe.top || 0) + 96 && S.sy < C.view.h - (C.view.safe.bottom || 0) - 110) {
+        show = true;
+        const name = robotTag(r, i);
+        if (name !== g.name) { g.name = name; g.tx.textContent = name; }
+        const col = robotColor(r, i); if (col !== g.col) { g.col = col; g.dot.style.background = col; }
+        const x = Math.round(S.sx), y = Math.round(S.sy);
+        if (x !== g.x || y !== g.y) { g.x = x; g.y = y; g.el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-100%)'; }
+      }
+    }
+    if (show !== g.on) { g.on = show; g.el.hidden = !show; }
+  }
+}
+
 function updateTimers(rdt) {
   // toasts
   for (let i = S.toasts.length - 1; i >= 0; i--) {
@@ -1057,7 +1038,6 @@ function updateTimers(rdt) {
   // hints with a duration
   const h = S.hints;
   if (h.active) { h.t += rdt; const d = hintDef(h.active); if (d && d.durationS && h.t >= d.durationS) hintFinish(h.active); }
-  if (S.hapticT > 0) S.hapticT -= rdt; else S.hapticN = 0;
 }
 
 // ------------------------------------------------------------------------------------------ slow (10 Hz)
@@ -1175,6 +1155,7 @@ function robotColor(r, i) {
   return U.robotColors[i % U.robotColors.length];
 }
 function robotName(r, i) { return r && r.name ? r.name : tx(U.robotNames[i % U.robotNames.length]); }
+function robotTag(r, i) { return tx('robot_name', { n: i + 1, name: robotName(r, i) }); }
 function updateRobots(econ) {
   const rs = econ.robots ? econ.robots() : null;
   const n = rs ? Math.min(rs.length, 8) : 0;
@@ -1255,7 +1236,6 @@ function onCollect(p) {
   if (p.tool === 'broom') hintDone('sweep');
   S.pendingValue += valueOf(p.byType);
   if (S.collectTickT <= 0) { S.collectTickT = 0.1; E.bag.classList.remove('tick'); void E.bag.offsetWidth; E.bag.classList.add('tick'); }
-  haptic('light');
   if (p.valuable) {
     const vv = (cfg('trashTypes', []).find((t) => t.id === 'valuable') || { value: 50 }).value;
     if (p.x != null && project(p.x, (p.y || 0) + 0.4, p.z)) popAtScreen(S.sx, S.sy, '+' + fmt(vv), 'gold');
@@ -1267,11 +1247,13 @@ function onSold(p) {
   if (!p) return;
   const coins = num(p.coins);
   if (p.by === 'robot') {
-    if (p.x != null && project(p.x, 0.9, p.z)) popAtScreen(S.sx, S.sy, '+' + fmt(coins), '');
+    if (!S.fin && p.x != null && project(p.x, 0.9, p.z)) popAtScreen(S.sx, S.sy, '+' + fmt(coins), '');
     return;
   }
   hintDone('sale');
   haptic('medium');
+  // the bag is emptying: a pending "bag full" toast is stale now
+  for (let i = S.toasts.length - 1; i >= 0; i--) { const t = S.toasts[i]; if (!t.out && (t.text === tx('bag_full') || t.text === tx('tank_full'))) dropToast(t, true); }
   // coin shower from the sell point (or screen centre) to the counter; the counter rolls as they land
   let sx = C.view.w / 2, sy = C.view.h * 0.55;
   if (p.x != null && project(p.x, 1.4, p.z) && S.sx > 0 && S.sx < C.view.w && S.sy > 0 && S.sy < C.view.h) { sx = S.sx; sy = S.sy; }
@@ -1400,9 +1382,9 @@ function onAway(awayS) {
   snapshot();
   if (awayS >= U.awayMinS && (units > 0 || coins > 0)) showAway(Math.max(0, units), Math.max(0, coins), awayS);
 }
-function showAway(units, coins, awayS) {
+function showAway(units, coins, awayS, capped) {
   if (!(units > 0 || coins > 0)) return;
-  S.away = { units, coins, capped: awayS > U.offlineCapS };
+  S.away = { units, coins, capped: capped != null ? !!capped : awayS > U.offlineCapS };
   if (S.panel && S.panel !== 'away') return;
   openPanel('away');
 }
@@ -1642,7 +1624,7 @@ function patchRobotList(root, econ) {
   rs.forEach((r, i) => {
     const f = r.cap ? Math.min(1, r.load / r.cap) : 0;
     h += '<div class="rrow' + (f >= 1 ? ' full' : '') + '"><div class="rdot" style="background:' + robotColor(r, i) + ';color:#fff">' + svg('robot') + '</div><div class="rtx"><span class="rn">' +
-      esc(tx('robot_tag', { n: i + 1, name: robotName(r, i) })) + '</span><span class="rs">' + esc(tx(STATE_KEY[r.state] || 'robot_clean')) + '</span><div class="bar"><i style="transform:scaleX(' + f.toFixed(2) + ')"></i></div></div></div>';
+      esc(robotTag(r, i)) + '</span><span class="rs">' + esc(tx(STATE_KEY[r.state] || 'robot_clean')) + '</span><div class="bar"><i style="transform:scaleX(' + f.toFixed(2) + ')"></i></div></div></div>';
   });
   list.innerHTML = h;
 }
@@ -1680,7 +1662,7 @@ function completeHtml() {
   const s = Math.round(num(st.playS) || C.time.game), mm = Math.floor(s / 60), ss = s % 60;
   const time = mm + ':' + (ss < 10 ? '0' : '') + ss;
   const C2 = 2 * Math.PI * 40;
-  return '<div class="mw"><div class="bd"></div><div class="pn pn-done">' +
+  return '<div class="mw done"><div class="bd"></div><div class="pn pn-done">' +
     hdr('trophy', tx('ms_100')) +
     '<div class="pn-bd done-bd">' +
       '<div class="done-top"><div class="bigring"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="40" fill="#e9f8f1" stroke="#d4eee2" stroke-width="10"/><circle cx="48" cy="48" r="40" fill="none" stroke="url(#uRingG)" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + C2.toFixed(1) + '" stroke-dashoffset="0"/></svg><div class="t">' + esc(tx('pct', { n: 100 })) + '</div></div>' +
@@ -1727,6 +1709,7 @@ function updateAd(rdt) {
 }
 
 function onPanelClick(e) {
+  if (performance.now() - (S.panelAt || 0) < 350) return; // a click from the tap that opened the panel
   const b = e.target.closest('[data-act]'); if (!b) return;
   const a = b.getAttribute('data-act');
   if (a === 'close') { click(); if (S.panel === 'ad') return; closePanel(); return; }
@@ -1763,25 +1746,12 @@ function applyAudio() {
   const s = C.state.settings, a = mod('audio');
   if (a && a.setEnabled) a.setEnabled(s.sound !== false, s.music !== false);
 }
-function resetSave() {
-  // main saves again on pagehide; ?nosave in ctx.params stops that write so the cleared save stays cleared
-  try { if (C.params && C.params.set) C.params.set('nosave', '1'); } catch (e) { /* ignore */ }
-  if (C.save && C.save.clear) C.save.clear();
-  location.reload();
-}
+function resetSave() { if (C.save && C.save.reset) C.save.reset(); } // main: clear, block later saves, reload
 
 // ------------------------------------------------------------------------------------------ haptics
-// No owner in the contract; ui owns the setting so it drives haptics (light ≤ U.hapticMaxPerS per second).
-function haptic(kind) {
-  const s = C.state.settings;
-  if (s.haptics === false) return;
-  if (kind === 'light') { if (S.hapticN >= U.hapticMaxPerS) return; if (S.hapticT <= 0) { S.hapticT = 1; S.hapticN = 0; } S.hapticN++; }
-  try {
-    const H = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Haptics;
-    if (H && H.impact) { H.impact({ style: kind === 'heavy' ? 'HEAVY' : kind === 'medium' ? 'MEDIUM' : 'LIGHT' }); return; }
-    if (C.isTouch && navigator.vibrate && navigator.userActivation && navigator.userActivation.hasBeenActive) navigator.vibrate(kind === 'heavy' ? 30 : kind === 'medium' ? 16 : 6);
-  } catch (e) { /* haptics are optional */ }
-}
+// main owns the implementation and the rate limit (ctx.haptic); ui triggers buttons, sale, full bag, purchase and
+// milestones, tools triggers picks, bumps and the nozzle.
+function haptic(kind) { if (C.haptic) C.haptic(kind); }
 
 // ------------------------------------------------------------------------------------------ debug overlay
 function updateDebug() {

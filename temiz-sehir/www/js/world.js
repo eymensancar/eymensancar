@@ -37,6 +37,8 @@ let ctx = null, THREE = null, CFG = null;
 let SIZE = 54, CELL = 0.5, N = 108, OFFS = null, BLOCKS = null, KIOSK = null;
 let LAYOUT = null, LIGHT = null, PTS = null, PLAZA = null;
 let SOL = null, nSol = 0, nSolBase = 0;     // solid AABBs (x0, z0, x1, z1): building blocks, kiosk, container
+let CIRC = [], SC = null, nSC = 0;          // small solid circles (x, z, r): lamp posts and tree trunks in the district
+                                            // (benches and bins stay walk-through; decided at integration)
 let BX0 = 0, BZ0 = 0, BX1 = 54, BZ1 = 54;   // walkable bounds
 let WP = null, nWP = 0, WPC = null;         // guide waypoints (x, z) and their pairwise clearance
 const R = {};                               // atlas regions: name -> [x, y, w, h] px
@@ -730,6 +732,7 @@ function buildProps(B, Gl, Mk, rnd) {
   const H = VIS.lampHeightM, ARM = VIS.lampArmM;
   bulbFrom = Gl.P.length / 3;
   for (const [x, z, fx, fz] of lamps) {
+    if (x > 0 && x < SIZE && z > 0 && z < SIZE) CIRC.push(x, z, 0.16);
     box(B, x - 0.13, 0, z - 0.13, x + 0.13, 0.45, z + 0.13, pole);
     box(B, x - 0.06, 0.45, z - 0.06, x + 0.06, H, z + 0.06, pole, RW, 15);
     const hx = x + fx * ARM, hz = z + fz * ARM;
@@ -763,7 +766,7 @@ function buildProps(B, Gl, Mk, rnd) {
     bench(P.x0 + 6, P.z1 - 1.0, true, 1); bench(P.x1 - 6, P.z1 - 1.0, true, 1);
     const trunk = C3('#7a5236'), leaf = C3('#5fae4e'), leaf2 = C3('#4b9a43');
     for (const [tx, tz] of [[P.x0 + 2.3, P.z0 + 2.3], [P.x1 - 2.3, P.z0 + 2.3], [P.x0 + 2.3, P.z1 - 2.3], [P.x1 - 2.3, P.z1 - 2.3]]) {
-      cyl(B, tx, tz, 0, 2.6, 0.17, 6, trunk);
+      cyl(B, tx, tz, 0, 2.6, 0.17, 6, trunk); CIRC.push(tx, tz, 0.2);
       blob(B, tx, 3.5, tz, 1.55, 0.85, leaf, rnd); blob(B, tx + 0.5, 4.4, tz - 0.3, 1.05, 0.9, leaf2, rnd);
     }
     // robot dock: a short post with a glowing robot badge
@@ -1206,7 +1209,9 @@ export function init(c) {
   RW = rect('white', 8);
   const rnd = mulberry(VIS.seed + 9);
   const CB = buildCity(built.lots, rnd), GL = mkB(false), MK = mkB(false);
+  CIRC = [];
   buildProps(CB, GL, MK, rnd);
+  SC = new Float64Array(CIRC); nSC = CIRC.length / 3;
   cityBase = CB.I.length; glowBase = GL.I.length;
   CONT = buildContainer(CB, GL);
   if (CONT) { SOL[nSolBase * 4] = CONT.x0; SOL[nSolBase * 4 + 1] = CONT.z0; SOL[nSolBase * 4 + 2] = CONT.x1; SOL[nSolBase * 4 + 3] = CONT.z1; }
@@ -1322,6 +1327,7 @@ export function isBlocked(x, z, radius) {
     if (x >= x0 && x < x1 && z >= z0 && z < z1) return true;
     if (r > 0) { const cx = x < x0 ? x0 : x > x1 ? x1 : x, cz = z < z0 ? z0 : z > z1 ? z1 : z, dx = x - cx, dz = z - cz; if (dx * dx + dz * dz < r * r) return true; }
   }
+  for (let k = 0; k < nSC; k++) { const dx = x - SC[k * 3], dz = z - SC[k * 3 + 1], rr = r + SC[k * 3 + 2]; if (dx * dx + dz * dz < rr * rr) return true; }
   return false;
 }
 export function collide(x, z, radius, out) {
@@ -1342,6 +1348,13 @@ export function collide(x, z, radius, out) {
       if (m === l) px = x0 - r - 1e-7; else if (m === rr) px = x1 + r + 1e-7; else if (m === t) pz = z0 - r - 1e-7; else pz = z1 + r + 1e-7;
       hit = moved = true;
     }
+    for (let k = 0; k < nSC; k++) {
+      const dx = px - SC[k * 3], dz = pz - SC[k * 3 + 1], rr = r + SC[k * 3 + 2];
+      if (dx > rr || dx < -rr || dz > rr || dz < -rr) continue;
+      const d2 = dx * dx + dz * dz; if (d2 >= rr * rr) continue;
+      if (d2 > 1e-12) { const d = Math.sqrt(d2), s = (rr - d) / d + 1e-7; px += dx * s; pz += dz * s; } else px += rr;
+      hit = moved = true;
+    }
     if (!moved) break;
   }
   const lx = BX0 + r, hx = BX1 - r, lz = BZ0 + r, hz = BZ1 - r;
@@ -1358,9 +1371,11 @@ function segHitsBox(ax, az, bx, bz, x0, z0, x1, z1) { // Liang-Barsky, closed bo
   _t0 = 0; _t1 = 1; const dx = bx - ax, dz = bz - az;
   return clipT(-dx, ax - x0) && clipT(dx, x1 - ax) && clipT(-dz, az - z0) && clipT(dz, z1 - az);
 }
-export function segmentClear(x0, z0, x1, z1, radius) {
+// ignoreSmall: skip lamp posts and tree trunks (the chase camera may pass a thin pole; it must not jump in)
+export function segmentClear(x0, z0, x1, z1, radius, ignoreSmall) {
   const r = radius > 0 ? radius : 0;
-  if (isBlocked(x0, z0, r) || isBlocked(x1, z1, r)) return false; // bounds shrunk by r are convex: endpoints inside => segment inside
+  if (ignoreSmall) { const n = nSC; nSC = 0; const blocked = isBlocked(x0, z0, r) || isBlocked(x1, z1, r); nSC = n; if (blocked) return false; }
+  else if (isBlocked(x0, z0, r) || isBlocked(x1, z1, r)) return false; // bounds shrunk by r are convex: endpoints inside => segment inside
   const r2 = r * r;
   for (let k = 0; k < nSol; k++) {
     const o = k * 4, bx0 = SOL[o], bz0 = SOL[o + 1], bx1 = SOL[o + 2], bz1 = SOL[o + 3];
@@ -1370,5 +1385,6 @@ export function segmentClear(x0, z0, x1, z1, radius) {
     if (r > 0 && (ptBox2(x0, z0, bx0, bz0, bx1, bz1) < r2 || ptBox2(x1, z1, bx0, bz0, bx1, bz1) < r2 ||
       ptSeg2(bx0, bz0, x0, z0, x1, z1) < r2 || ptSeg2(bx1, bz0, x0, z0, x1, z1) < r2 || ptSeg2(bx0, bz1, x0, z0, x1, z1) < r2 || ptSeg2(bx1, bz1, x0, z0, x1, z1) < r2)) return false;
   }
+  if (!ignoreSmall) for (let k = 0; k < nSC; k++) { const rr = r + SC[k * 3 + 2]; if (ptSeg2(SC[k * 3], SC[k * 3 + 1], x0, z0, x1, z1) < rr * rr) return false; }
   return true;
 }

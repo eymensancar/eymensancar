@@ -37,7 +37,7 @@ Average ≈ **2.08 coins/unit**, so the district is worth **≈28,000 coins**. V
 
 **Selling.** Walk into a sell zone (2.5 m radius; 3.5 m in the cart). No button. The bag empties in a 0.6 s arc of items into the bin, then the coins count up. There are two sell points:
 - the **shop** on the plaza;
-- the **drop-off container** (600 coins, at the SW crossroads, the far corner). It halves the average trip once the cleared area has moved away from the shop. Robots also unload at whichever point is nearer.
+- the **drop-off container** (750 coins, at the SW crossroads, the far corner). It halves the average trip once the cleared area has moved away from the shop. Robots also unload at whichever point is nearer.
 
 When the bag is full, a bag icon pulses and a ground arrow points to the nearest sell point.
 
@@ -54,20 +54,44 @@ When the bag is full, a bag icon pulses and a ground arrow points to the nearest
 | Bag L2 (big sack) | 40→90 | 400 | Bag L1 |
 | Broom width L1 | 1.0→1.3 m | 450 | Broom |
 | Bag L3 (backpack) | 90→180 | 700 | Bag L2 |
-| Drop-off container | 2nd sell point | 600 | Broom |
-| Robot #1 | 60 cap, clean 1.5 / move 2.5 m/s | 1,200 | Broom |
-| Broom speed L1 | sweep 2.0→2.4 m/s | 900 | Broom width L1 |
-| Robot #2 | | 1,600 | Robot #1 |
-| Cart | 1.8 m nozzle, tank 600 | 2,800 | Robot #1 |
-| Robot speed L1 | clean 1.8 / move 3.2 | 1,400 | Robot #1 |
+| Drop-off container | 2nd sell point | 750 | Broom |
+| Robot #1 | 60 cap, clean 1.5 / move 2.5 m/s | 1,400 | Broom |
+| Broom speed L1 | sweep 2.0→2.4 m/s | 1,450 | Broom width L1 |
+| Robot #2 | | 1,500 | Robot #1 |
+| Cart | 1.8 m nozzle, tank 600 | 2,300 | Robot #1 |
+| Robot speed L1 | clean 1.8 / move 3.2 | 2,900 | Robot #1 |
 | Robot #3 | | 3,000 | Robot #2 |
 | Cart tank L1 | 600→1000 | 2,500 | Cart |
 | Cart width L1 | 1.8→2.2 m | 3,000 | Cart |
-| Robot capacity L1 | 60→100 | 2,500 | Robot #1 |
+| Robot capacity L1 | 60→100 | 3,200 | Robot #1 |
 | Robot #4 | | 4,000 | Robot #3 |
-| Robot speed L2 | clean 2.1 / move 4.0 (end sink) | 3,500 | Robot speed L1 |
+| Robot speed L2 | clean 2.1 / move 4.0 (end sink) | 4,500 | Robot speed L1 |
 
-The shop lists every unlocked item, sorted by price, with the cheapest one marked "Sıradaki" (Next). Total spend is 28,890. An average player can afford everything except Robot speed L2 before 100 %, and carries ~2,300 coins into the "next district" teaser.
+The shop lists every unlocked item, sorted by price, with the cheapest one marked "Sıradaki" (Next). Total spend is 32,390. Prices changed at integration (dropoff 600→750, broom_s1 900→1450, robot_1 1200→1400, robot_2 1600→1500, cart 2800→2300, robot_speed_1 1400→2900, robot_cap_1 2500→3200, robot_speed_2 3500→4500) so that "cheapest first" gives the design order and the PSIKOLOJI limits hold (§3a). An average player buys everything up to Robot capacity L1 before 100 % and carries ~4,000 coins into the "next district" teaser; Robot #4 and Robot speed L2 are the end sink.
+
+### 3a. Final timeline (integration, `node test/economy/bot.mjs`)
+
+The balance bot runs the REAL economy rules and robot agents (`createEconomyCore` from economy.js) on a model of the trash grid, with a modelled player (efficiency 0.5 / 0.7 / 0.9). Real-time minutes; the bot has no first-time hesitation, so real first sessions will be somewhat slower early on. `node test/run-all.mjs` asserts the PSIKOLOJI limits on these numbers.
+
+| | slow | **average** | fast | PSIKOLOJI limit |
+|---|---|---|---|---|
+| first sale | 0:13 | **0:09** | 0:06 | ≤ 0:45 (max 1:00) |
+| broom | 1:48 | **1:16** | 0:57 | ~1:30, max 2:00 |
+| bag L3 | 4:59 | **3:37** | 2:40 | |
+| drop-off | 6:12 | **4:31** | 3:21 | |
+| robot #1 | 8:18 | **6:06** | 4:37 | 6–8 min |
+| robot #2 | 12:27 | **9:37** | 7:28 | |
+| cart | 14:18 | **11:28** | 8:58 | ≤ 12 min |
+| 50 % | 16:50 | **13:10** | 10:28 | |
+| 75 % | 19:43 | **15:16** | 12:10 | |
+| 100 % | 21:56 | **16:55** | 13:37 | 14–18 min |
+| longest gap without a purchase | 2.6 min | **2.0 min** | 1.7 min | ≤ 3 (hard 4) |
+
+Average purchase order (= the shop's "next"): bag_1 0:20 → broom 1:16 → bag_2 1:58 → broom_w1 2:37 → bag_3 3:37 → dropoff 4:31 → robot_1 6:06 → broom_s1 8:09 → robot_2 9:37 → cart 11:28 → cart_tank_1 12:36 → robot_speed_1 13:34 → robot_3 14:16 → cart_width_1 15:07 → robot_cap_1 15:42 → 100 % 16:55. Other measures (average): walking full after bag L2 27 % of the time (target < 45 %), 90 % → 98.5 % in 35 s (target < 90 s), robots clean ~24 % of all units. With the mock boost (watched at 9:45) the cart comes 21 s earlier and 100 % 7 s earlier: the boost is a small bonus and the pacing works without it (PSIKOLOJI §5). The slow player's cart (14:18) is past 12 min; that is the one limit only the average player meets.
+
+**Away (PSIKOLOJI §6) — open design question.** With the brief's cap (2 h of robot output, at most 50 % of what is left) one robot alone collects ~5,800 units (+12,000 coins) in a 2.5 h absence: a player who comes back after lunch skips from robot #1 to "cart affordable, district half clean". It is honest and capped as specified, but in a 17-minute slice it removes most of the middle. Options for design: cap by robot count × a shorter time (e.g. 20 min), or by a fraction of the slice's income curve. Not changed at integration.
+
+The stage table below is the original pre-integration simulation (old prices), kept for the design rationale.
 
 **Stage table (average player, simulated).** "Rate" is the player's active cleaning rate. Income includes trips and robots.
 

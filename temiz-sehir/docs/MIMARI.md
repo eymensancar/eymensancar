@@ -4,6 +4,8 @@ Owner of this file: architecture (graphics/engine). It is the contract between m
 
 Status legend: **[verified]** = run and measured here (headless Chromium + SwiftShader, see §11); **[assumed]** = reasoning, not yet run on an iPhone.
 
+**Integration (phase 3).** All eight modules now run together; this file was updated to match the code. Every decision on a contract issue raised in `docs/notlar/*.md` is listed with its reason in `docs/BIRLESTIRME.md` (§ "Kararlar"); the sections below state the result. Tests: `node test/run-all.mjs` (§12).
+
 ---
 
 ## 1. The hard problem and the chosen approach
@@ -21,7 +23,7 @@ The whole ground of a 54 × 54 m district is covered in trash, with buried neigh
 
 **Why not the alternatives.** One mesh per item (≈13 000 items) is far over a 60-draw-call budget. Instancing every item in the district (13 446 + neighbours) costs ~400 k triangles and a full rebuild per change. A pure texture with no 3D items looks like a printed carpet up close. Per-cell decals would need sorting and blending. The hybrid keeps the far field at one draw call and spends triangles only where the eye can resolve them.
 
-Screenshots of the spike (look at them before changing the approach): `test/spike/shots/` — `01-start-plaza`, `02-street-north` (down a buried street to the horizon), `03-feet`, `05-cleaned-trail` (broom strip + robot patch), `06-cleaned-feet` (trench walls), `07-cart-swath` (a 1.8 m swath down the west street, buried neighbour district behind the barrier), `08-aerial`, `09-portrait`.
+Screenshots of the spike (look at them before changing the approach): `test/spike/shots/` — `02-street-north` (down a buried street to the horizon), `05-cleaned-trail` (broom strip + robot patch), `07-cart-swath` (a 1.8 m swath down the west street, buried neighbour district behind the barrier), `08-aerial` (the other spike shots were pruned at integration; `node test/spike/run.mjs` regenerates them).
 
 ---
 
@@ -49,12 +51,13 @@ Screenshots of the spike (look at them before changing the approach): `test/spik
 | `www/js/world.js` | world | layout, buildings, kiosk, props, sky, fog, lights, ground texture, collision, sell-point/guide markers, city events, promo billboard |
 | `www/js/trash.js` | trash | grid, far layer, near items, removal API, milestones, save of the grid |
 | `www/js/player.js` | player | input (touch + keyboard/mouse), first-person controller, camera pose, vehicle mounting, view-model root, final camera lift |
-| `www/js/tools.js` | tools | hands, broom, cart (mesh + driving + nozzle), turning input into removal + bag, view-model animation, pickup/dust particles |
+| `www/js/tools.js` | tools | hands, broom, cart (mesh + driving + nozzle), turning input into removal + bag, view-model animation, broom stroke puffs + valuable sparkle (removal juice is trash's, §4.3) |
 | `www/js/economy.js` | economy | bag/tank, coins, selling, shop/upgrades, boost, robots (simulation **and** their meshes), final sweep, offline catch-up |
 | `www/js/ui.js` | ui | HUD, context button, tool buttons, shop panel, toasts, hints, milestone/complete cards, compass, settings, mock ad, debug overlay (fps, calls) |
 | `www/js/audio.js` | audio | procedural Web Audio, unlocked on first touch |
 | `www/js/debug.js` | debug/test | `window.__ts` test hook (§12) |
 | `tools/build.py` | build (any) | makes `www/tek.html` (§10) |
+| `test/run-all.mjs`, `test/e2e/*` | integration | one test command; e2e smoke, full touch play-through, performance/robustness (§12) |
 | `test/spike/*` | architecture | throwaway spike, `trash-core.js` reference, `run.mjs` measurements |
 
 **Module rules (the single-file build depends on them):**
@@ -85,9 +88,11 @@ ctx = {
   mods: { world, trash, player, tools, economy, audio, ui, debug },   // APIs below; each has __stub: true|false
   time: { game, frame, dt, real },             // game = simulated seconds (persisted), frame counter, last dt, real seconds since boot
   view: { w, h, dpr, portrait, safe: {top, right, bottom, left} },   // CSS px; updated before resize()
-  offers, offer(id, label, priority = 0, owner = '', data = null),    // context-button offers, §4.9
+  offers, offer(id, labelKey, priority = 0, owner = '', data = null), // context-button offers, §4.9 (label = STR key)
   setPaused(reason, on),                       // pause reasons: 'hidden', 'gl', 'panel', 'ad', 'cinematic'…
-  save: { now(), clear(), key },
+  save: { now(), clear(), reset(), key },      // reset(): delete the save, block every later write, reload
+  haptic(kind),                                // 'light' | 'medium' | 'heavy' | 'full': reads settings.haptics, rate-limits light
+                                               // ticks (CONFIG.haptics); Capacitor Haptics if present, else navigator.vibrate
   step(frames, dt = 1/60),                     // run updates + render synchronously (tests; use with ctx.manual = true)
   manual,                                      // true → the rAF loop does not tick (tests)
   perf: { frameMs, jsMs, renderMs, fps, mods: {name: ms} },          // EMA, written by main
@@ -95,7 +100,11 @@ ctx = {
 }
 ```
 
-Config fields main.js reads (all optional; defaults in `MAIN_DEFAULTS` in main.js): `saveKey`; `player.fovVerticalDegLandscape`, `player.fovVerticalDegPortrait`; `render { maxDpr: 2, minDpr: 1, startDpr: 2, antialias: true, near: 0.1, far: 480, adaptive: true, downMs: 19.5, upMs: 17.4, upAfterS: 4, step: 0.85, freezeS: 20 }`; `loop { maxDt: 0.05 }`; `save { intervalS: 10 }`. `STR` entries are `{ tr, en }` objects; main adds three fallbacks of its own (`boot_error`, `no_webgl`, `gl_lost`) that `STR` may override. URL flags read by main: `?debug`, `?nosave`, `?reset`, `?manual`, `?dpr=<n>`, `?lang=en`.
+Config fields main.js reads (config.js is the single source; `MAIN_DEFAULTS` keeps only `loop.maxDt` and `save.intervalS`): `saveKey`; `player.fovHorizontalDegLandscape` (85), `player.fovVerticalClampDeg` ([44, 65]), `player.fovVerticalDegPortrait` (75); `render { maxDpr, minDpr, startDpr, lowDpr, antialias, near, far, adaptive, downMs, upMs, upAfterS, step, freezeS, nearFade, nearFadeLow, depthFormat, glLostReloadS }`; `haptics`. All player-facing text, including main's own (`boot_error`, `no_webgl`, `gl_lost`), is in `STR` (`{ tr, en }`). URL flags read by main: `?debug`, `?nosave`, `?reset`, `?manual`, `?dpr=<n>`, `?lang=en`; trash reads `?depth=rgba|la`.
+
+**FOV (decided at integration).** Landscape: vertical FOV = the one that gives `fovHorizontalDegLandscape` (85°, PSIKOLOJI §4 asks 75–90° horizontal) at the current aspect, clamped to `fovVerticalClampDeg` → 46° vertical on 844 × 390 (19.5:9), 54° at 16:9. Portrait: 75° vertical. Computed in one place (`fovFor` in main.js) on every resize; nothing else writes the FOV. The view model was tuned for 60° vertical, so tools stretches its depth by tan 30° / tan(fov/2) (same screen size and place); trash uses the same factor for the hand-pick target.
+
+**Settings (`ctx.state.settings`, written by ui, persisted in ui's save):** `lang`, `sound`, `music` (city bed), `haptics` (ctx.haptic), `sens` (look multiplier, player), `invertY` (player), `steer` (`'camera' | 'tank'`, tools' cart), `quality` (`'auto' | 'high' | 'low'`, main). ui emits `ui:settings` (payload = the settings object) on every change; main re-applies quality on it (auto = adaptive DPR between min and max; high = max DPR fixed; low = `render.lowDpr` fixed and `trash.setQuality('low')`, which pulls the 3D item band in to `render.nearFadeLow`).
 
 ### 4.2 world.js
 
@@ -111,8 +120,9 @@ kindAt(x, z) → 0 | 1 | 2                   // also outside the district (perio
 outsideUnits(i, j) → 0..4                  // visual trash units of a neighbour cell (0 under buildings); deterministic
 isBlocked(x, z, radius = 0) → boolean      // inside a building/kiosk/container or outside bounds (barriers)
 collide(x, z, radius, out) → out           // pushes the circle out of solids and bounds: out.x, out.z, out.hit (boolean); out is caller-owned
-segmentClear(x0, z0, x1, z1, radius) → boolean   // no solid along the swept circle (robot line of sight)
+segmentClear(x0, z0, x1, z1, radius, ignoreSmall?) → boolean   // no solid along the swept circle; ignoreSmall skips poles/trunks (chase camera)
 ```
+Solids (decided at integration): building blocks, kiosk, the drop-off container while owned, and **small circles**: lamp posts inside the district (r 0.16 m) and the 4 plaza tree trunks (r 0.2 m). Benches and bins stay walk-through. The drop-off container stands just outside the west barrier at the SW crossing (x −2.6…−0.6), so it never covers a trash cell; its sell zone (3, 51, r 2.5) is inside the district: the player, the cart and the robots reach it (verified: player sale there by touch, robots unload at the nearer point).
 World draws: buildings (1 merged mesh, canvas facade atlas, vertex tints), props (lamps, barriers with "Yakında" signs, kiosk, drop-off container when bought: 1 merged mesh), sky (vertex-coloured sphere that follows the camera, `fog: false`, `depthWrite: false`), lights (1 `HemisphereLight` + 1 `DirectionalLight`, no shadows), `scene.fog = new THREE.Fog(fogColor, 30, 230)`, `scene.background = fogColor`, sell-point rings and the ground guide arrow (shown while `economy.bagSpace() === 0`, pointing at the nearest active sell point), promo billboard, milestone city events (`CONFIG.milestones[].cityEvent`: birds, streetlights, pedestrians, finale) and the plaza confetti. **World does not draw the ground inside or around the district:** trash.js's ground mesh draws ground and trash together (one draw call). The reference code for layout, ground map, buildings, props and sky is in `test/spike/spike.js`.
 
 ### 4.3 trash.js
@@ -133,8 +143,16 @@ clearAll(by) → TrashResult                                  // final sweep: em
 cleanFraction() → clean cells / initial trash cells         // CONFIG definition of district %
 unitFraction(), totalUnits(), initialUnits(), trashCells(), cleanCells()
 blockSums() → Int32Array(blocks²)                           // live units per 6 m block (compass, minimap, straggler clusters)
-itemGeometry(shapeIndex) → BufferGeometry;  itemMaterial() → Material   // tools/economy draw flying copies of picked items
+itemGeometry(shapeIndex) → BufferGeometry;  itemMaterial() → Material
+removeCell(idx, maxUnits, by) → TrashResult                 // added at integration (per-cell cleaners)
+setQuality(mode)                                            // 'low' → render.nearFadeLow band, else render.nearFade (main calls it)
+debugInfo()                                                 // tests only
 ```
+`info().blockSize` is in **cells** (12 = 6 m); `info().blockSizeM` (6) is in metres; `info().depthFormat` is `'rgba'` or `'la'`. `TrashResult` also carries `value` (coins at base price). Default `by` when omitted: `pick` → hands, `remove*` → debug, `consume`/`removeCell` → robot, `clearAll` → final; callers always pass it.
+
+**Removal juice belongs to trash (decided at integration).** Removed items that were visible fly to their collector inside the existing 7 instanced meshes (0 extra draw calls) and a dust puff rises from each cell that becomes clean (1 `Points`, only while puffs live). Collectors: hands → the bag in the left glove (`CONFIG.tools.handTarget`, camera space); broom → the bag at the hip; cart → the intake; robot → the robot; final → a gust. tools.js draws no flying copies and no removal dust (its earlier duplicate was removed); it keeps only the broom stroke puff (rhythm, `feedback.dustPuffEveryS`) and the gold sparkle of a valuable.
+
+**Depth texture (decided at integration).** UNSIGNED_BYTE with LINEAR filtering, sampled in the vertex shader: no float or half-float extension is used anywhere. Default format RGBA8 (R = G = B = units, A = cleaned), mirrored from the LA working buffer for the uploaded rows only; `?depth=la` (or `render.depthFormat: 'la'`) uploads LUMINANCE_ALPHA directly. Both render the same picture (verified by screenshot). If a GPU reports 0 vertex texture units trash warns (the layer would be flat); all iOS GPUs report 16.
 `by` ∈ `'hands' | 'broom' | 'cart' | 'robot' | 'final' | 'debug'`; trash aggregates units per `by` for `trash:changed`.
 
 `TrashResult` is **one reused object** (valid until the next trash call): `{ units, cells, cleaned, byType: Int32Array(types), n, sx, sy, sz: Float32Array(48), st: Uint8Array(48) (type), ss: Uint8Array(48) (shape), sc: Uint32Array(48) (0xRRGGBB) }`. The first `n` (≤ 48) removed items are sampled with position, type, shape and colour for juice. `Picked` is reused too: `{ type, shape, color, x, y, z, yaw, scale }`.
@@ -155,7 +173,11 @@ teleport(x, z, yaw?)
 mount(vehicle) → boolean;  dismount();  mounted() → vehicle | null
 setSpeedCap(mps | null)                             // broom caps walking speed at its sweep speed
 viewModel() → THREE.Group                           // child of the camera; tools add their hand/tool meshes here
+look(yawRad, pitchRad)                              // added at integration (tests, __ts.look)
+setStick(x, y)                                      // added: a virtual stick merged like the keyboard (tests, __ts.stick)
+liftState() → 0 off | 1 rising | 2 holding | 3 returning;  endLift()   // finale lift (ui/tools read it)
 ```
+Tunables: `CONFIG.player.controller` (acceleration, stick, tap thresholds, eye smoothing, mount blend, chase camera, finale lift incl. `liftYawOffsetDeg`). Vehicle descriptor extras (all optional, set by tools): `view: 'first' | 'chase'`, `exitSideM`, `teleport(x, z, yaw)`, `drive()` may return a bump strength 0..1. After a reload tools re-mounts the cart on `game:ready` (tools saves `cart.mounted`; player's own `mounted` field is informative). The finale lift ends when the completion card closes (`ui:panel {id:'complete', open:false}`) or on input after 2 s.
 Input: left half of the screen = floating stick, right half = look drag; a short tap on the right half (< 220 ms, < 12 px) emits `input:tap`. Keyboard: WASD/arrows move, mouse drag looks. The primary action button lives in ui.js; player merges `input:button` events into `input().action`. Collision: `world.collide(x, z, CONFIG.player.radiusM, out)` every frame. While mounted, player keeps reading input and the camera but calls `vehicle.drive(dt, input, pose)` instead of walking; the vehicle (tools.js) moves `pose.x/z/yaw` and does its own collision. Vehicle descriptor: `{ id: 'cart', eyeHeight, drive(dt, input, pose), object3D }`. On `district:cleaned` player runs the camera lift (`ctx.setPaused('cinematic', …)` is not used; the lift runs while the game keeps updating).
 
 Writes: `ctx.camera.position/rotation` (only player writes the camera pose).
@@ -167,7 +189,7 @@ current() → 'hands' | 'broom' | 'cart'
 available() → ids the player owns
 equip(id) → boolean
 ```
-Hands: while `input().action` is held, grab 1 unit every `CONFIG.hands.holdIntervalS` from the nearest dirty cell in the cone (`trash.pick`); `input:tap` picks the item under the tap (ray → `trash.pick`). Broom: sweeps `removeAlongSegment` from last to current strip centre (`reachAheadM` ahead, width `economy.stat('broomWidth')`) while moving ≥ `minMoveSpeedToSweep`; sets `player.setSpeedCap`. Cart: owns the cart mesh (parked at `world.point('cartPark')` after purchase), offers `enter`/`exit`/`nozzle`, implements `drive()` (CONFIG.cart handling, `world.collide`), cleans with the nozzle down into the tank (`economy.addToBag(…, 'tank')`). Juice: flying copies of picked items (one `InstancedMesh` per shape on demand, or a pool), dust puffs (1 `Points` or instanced quads). Emits `tool:collect`, `tool:changed`, `tool:nozzle`.
+Hands: while `input().action` is held, grab 1 unit every `CONFIG.hands.holdIntervalS`: the item under the crosshair, else the nearest dirty spot in the cone, else (integration fix) the nearest dirty cell within reach, so a held button never silently does nothing; `input:tap` picks the item under the tap (ray → `trash.pick`). Broom: sweeps `removeAlongSegment` from last to current strip centre (`reachAheadM` ahead, width `economy.stat('broomWidth')`) while moving ≥ `minMoveSpeedToSweep`; sets `player.setSpeedCap`. Cart: owns the cart mesh (parked at `world.point('cartPark')` after purchase), offers `enter`/`nozzle`/`exit` (§4.9), implements `drive()` (CONFIG.cart handling, `world.collide`; steering from `settings.steer`), cleans with the nozzle down into the tank (`economy.addToBag(…, 'tank')`). Juice: removal juice is trash's (§4.3); tools draws the broom stroke puff and the valuable sparkle (1 `Points`). Haptics through `ctx.haptic` (picks/collect light, cart bump and getting in medium, nozzle light, full bag 'full'). Tunables: `CONFIG.tools`. Emits `tool:collect`, `tool:changed`, `tool:nozzle`, `tool:swing`, `tool:full`, `ui:toast {key:'bag_full'|'tank_full'}`. Extra test helpers: `perfSample()`, `cartState()`.
 
 ### 4.6 economy.js
 
@@ -185,7 +207,9 @@ robots() → [{ id, x, z, yaw, state: 'idle' | 'clean' | 'travel' | 'unload', lo
 sellPoints() → [{ id, x, z, r, cartR, active }]
 stats() → { items, coins, playS }
 ```
-Sells automatically when the player (or the cart) is inside a sell point radius. Simulates robots: on screen they clean with `trash.removeInCircle`/`removeAlongSegment` along their path; when far from the camera (> 30 m) or away/offline they may use `trash.consume` per second of simulated time. Draws robots (≤ 3 draw calls, LED blink, blob shadow). Runs the final sweep at `CONFIG.completion.finalSweepAt` (`trash.clearAll('final')`, pays the value). Offline catch-up on `game:ready` / `app:resume` using `awayS` (cap it; design decides). Emits `economy:*`, `robot:*`.
+Extensions (integration): `grant(id)` (debug: own an item and its prerequisites), `debugState()`, `simulateAway(s)`, `canOfferBoost(where = 'shop' | 'milestone')`. `robots()` entries also carry `name` (short name from STR `robot_n1..4` via `CONFIG.robot.names`; ui shows the tag `robot_name` "Robot 1: Pırıl"), `color` (`CONFIG.robot.colors`, the one palette for mesh, compass, chips, tags), `hum`, `led`, `far`, `index`, `units`. Every tunable is in config.js (`robot.*` incl. AI, `offline`, `selling.resellDelayS`, `income`). Sale timing: `economy:sold` at dump start, coins credited after `selling.dumpAnimS` (player) or `robot.unloadS` (robot), `bagUnits()` drains meanwhile; a save folds in-flight coins in.
+
+Sells automatically when the player (or the cart) is inside a sell point radius. Simulates robots: on screen they clean with `trash.removeInCircle`/`removeAlongSegment` along their path; when far from the camera (> 30 m) or away/offline they may use `trash.consume` per second of simulated time. Draws robots (≤ 3 draw calls, LED blink, blob shadow). Runs the final sweep at `CONFIG.completion.finalSweepAt` (`trash.clearAll('final')`, pays the value). Offline catch-up on `game:ready` / `app:resume` using `awayS`, capped at `offline.capS` (2 h) of robot output and `offline.maxFractionOfRemaining` (50 %) of what is left; it emits **`economy:away`** (no toast: ui shows one card). Emits `economy:*`, `robot:*`.
 
 ### 4.7 ui.js
 
@@ -193,7 +217,9 @@ Sells automatically when the player (or the cart) is inside a sell point radius.
 toast(key, vars)            // also via bus 'ui:toast' { key, vars } or { text }
 openPanel(id), closePanel() // 'shop' | 'settings' | 'pause' | 'ad' | 'complete'
 ```
-DOM only (no THREE meshes). Reads state through other modules' getters each frame and writes the DOM **only when a shown value changes**. Owns: the primary context button (shows the top offer, §4.9; press → `input:button {id:'action', down:true}` + `ui:offer {id}`; release → `input:button {id:'action', down:false}`; keyboard E/Space do the same), tool buttons (`ui:tool`), shop panel (`economy.catalog()`, `ui:buy`), boost offer and the mock ad overlay (`ui:adWatched` after `CONFIG.boost.mockAdS`), hints (`CONFIG.hints`), toasts, coin fly-to-counter, "+N" popups projected from world positions with `ctx.camera`, milestone and completion cards, compass (straggler clusters from `trash.blockSums()`), settings (writes `ctx.state.settings`, persists them in its save), stick visuals (from `player.input().stick`), the debug overlay (`?debug`: `ctx.perf`, `renderer.info.render.calls/triangles`). Portrait/landscape reflow in CSS using `ctx.view` and the `--sat/--sar/--sab/--sal` variables. All touch targets ≥ 44 × 44 pt. Text only through `ctx.t()`.
+DOM only (no THREE meshes). Reads state through other modules' getters each frame and writes the DOM **only when a shown value changes**. Owns: the primary context button (shows the top offer, §4.9; press → `input:button {id:'action', down:true}` + `ui:offer {id}`; release → `input:button {id:'action', down:false}`; keyboard E/Space do the same), tool buttons (`ui:tool`), shop panel (`economy.catalog()`, `ui:buy`), boost offer and the mock ad overlay (`ui:adWatched` after `CONFIG.boost.mockAdS`), hints (`CONFIG.hints`), toasts, coin fly-to-counter, "+N" popups projected from world positions with `ctx.camera`, milestone and completion cards, compass (straggler clusters from `trash.blockSums()`), settings (writes `ctx.state.settings`, persists them in its save), stick visuals (from `player.input().stick`), the debug overlay (`?debug`: `ctx.perf`, `renderer.info.render.calls/triangles`). Portrait/landscape reflow in CSS using `ctx.view` and the `--sat/--sar/--sab/--sal` variables. All touch targets ≥ 44 × 44 pt. Text only through `ctx.t()` (every key is in STR; ui's fallback table was removed). Tunables: `CONFIG.ui`.
+
+Integration additions: the **secondary context button** (second offer with priority ≥ `ui.secondaryMinPriority`, e.g. "İn" in the cart, "Dükkan" next to "Bin"); **robot name tags** in the world (≤ `ui.robotTagMaxM`, kept out of the HUD bands); the "welcome back" card from `economy:away` (one card, honest numbers, "(2 saatlik sınır)"); the **finale** (`completeDelayS` 4.6 s after the camera lift starts; the card is a side panel in landscape and a bottom sheet in portrait over a light scrim, the camera turns `liftYawOffsetDeg` so the district sits beside it; context buttons, stick, hints and robot pops hide during the lift); the context buttons cancel the browser's synthesized click after a tap (it closed the shop it had just opened, in portrait) and panels ignore clicks for 350 ms after opening; a sale drops a stale "Çanta dolu" toast; reset save goes through `ctx.save.reset()`; haptics through `ctx.haptic`.
 
 ### 4.8 audio.js
 
@@ -202,24 +228,26 @@ play(name, opts)            // opts { vol, pitchSemis, x, z } — positional whe
 setEnabled(sound, music)
 unlocked() → boolean
 ```
-Creates the `AudioContext` lazily and resumes it on the first `pointerdown`/`touchend`/`keydown` (WKWebView needs a user gesture). Listens to events (§6) and reads `economy.robots()` for the positional hum. Suspends on `app:pause`.
+Creates the `AudioContext` lazily and resumes it on the first `pointerdown`/`touchend`/`keydown` (WKWebView needs a user gesture). Listens to events (§6, plus `tool:full` → the dull thump) and reads `economy.robots()` for the positional hum. Suspends on `app:pause`. `setEnabled(sound, music)`: "music" is the city ambience bed (there is no music in the slice).
 
 ### 4.9 Context offers (the one action button)
 
-Every frame main clears `ctx.offers`; during `update` modules call `ctx.offer(id, label, priority, owner)` for what is possible right now; ui (updated after all gameplay modules) shows the highest-priority offer on the button. When pressed, ui emits `ui:offer {id, owner}` and the owner acts.
+Every frame main clears `ctx.offers`; during `update` modules call `ctx.offer(id, labelKey, priority, owner)` for what is possible right now (the label is an **STR key**; ui translates, so a language change applies at once); ui (updated after all gameplay modules) shows the highest-priority offer on the big button and the second one, if its priority is ≥ `CONFIG.ui.secondaryMinPriority` (50), on a smaller secondary button. When pressed, ui emits `ui:offer {id, owner}` and the owner acts.
+
+Decided at integration: in the cart **both** `nozzle` (90, big button) and `exit` (80, secondary button) are always offered (before, `exit` 90 hid the nozzle behind the one button).
 
 | id | owner | label key | priority |
 |---|---|---|---|
-| `exit` | tools | `act_exit` | 90 |
-| `nozzle` | tools | `act_nozzle_down` / `act_nozzle_up` | 80 |
+| `nozzle` | tools | `act_nozzle_down` / `act_nozzle_up` | 90 |
+| `exit` | tools | `act_exit` | 80 |
 | `enter` | tools | `act_enter` | 70 |
 | `shop` | economy (within `shop.openRadiusM`; ui opens the panel) | `act_shop` | 60 |
-| `pick` | tools (hands equipped; hold = auto-grab) | `act_pick` | 10 |
-| `sweep` | tools (broom equipped; informative, walking sweeps) | `act_sweep` | 5 |
+| `pick` | tools (hands equipped; hold = auto-grab) | `act_pick` (`bag_full` when full) | 10 |
+| `sweep` | tools (broom equipped; informative, walking sweeps) | `act_sweep` (`bag_full` when full) | 5 |
 
 ### 4.10 debug.js
 
-Installs `window.__ts` only with `?debug` (§12). Reads `window.__tsCtx` (main sets it with `?debug`). No gameplay effect without calls.
+Installs `window.__ts` only with `?debug` (§12). Reads `window.__tsCtx` (main sets it with `?debug`). No gameplay effect without calls. Note: with `?debug` the event trace copies every payload (≈ 50 B/frame of garbage); measurements of allocation exclude it.
 
 ---
 
@@ -256,14 +284,15 @@ Key mechanics (all in the core):
 | `app:pause` / `app:resume` | `null` / `{ awayS }` | main (visibilitychange) | audio, economy (catch-up) |
 | `gl:lost` / `gl:restored` | `null` | main | ui (message), anyone with custom GL state |
 | `view:resize` | `ctx.view` | main | ui |
-| `view:quality` | `{ dpr }` | main (adaptive DPR) | debug overlay |
+| `view:quality` | `{ dpr, mode? }` | main (adaptive DPR, quality setting) | debug overlay |
 | `input:button` | `{ id: 'action', down }` | ui | player |
 | `input:tap` | `{ x, y }` (CSS px) | player | tools (tap-to-pick) |
 | `ui:offer` | `{ id, owner }` | ui | owner of the offer (tools, economy) |
 | `ui:tool` | `{ id }` | ui | tools |
 | `ui:buy` | `{ id }` | ui | economy |
 | `ui:adWatched` | `{ kind: 'boost' }` | ui (after the mock ad) | economy |
-| `ui:panel` | `{ id, open }` | ui | player (ignore look input while a panel is open), audio |
+| `ui:panel` | `{ id, open }` | ui | player (ignore look input while a panel is open; `complete` closed ends the finale lift), audio |
+| `ui:settings` | `ctx.state.settings` | ui (on every settings change) | main (quality) |
 | `ui:toast` | `{ key, vars }` or `{ text }` | anyone | ui |
 | `trash:changed` | `{ units, cells, cleaned, by: { hands, broom, cart, robot, final, debug }, fraction }` (once per frame) | trash | ui (%), audio, economy |
 | `trash:milestone` | `{ index, at, fraction }` (each `CONFIG.milestones` entry once; persisted) | trash | economy (bonus), ui (card), world (city event), audio |
@@ -272,16 +301,18 @@ Key mechanics (all in the core):
 | `tool:changed` | `{ id }` | tools | ui, audio, player |
 | `tool:collect` | `{ tool, units, byType, x, y, z, valuable }` (aggregated per frame per tool) | tools | ui (bag tick, hints), audio (pop pitch chain) |
 | `tool:nozzle` | `{ down }` | tools | ui, audio |
+| `tool:full` | `{ tool, container }` (tried to collect with a full bag/tank; ≤ 1 per `tools.fullFeedbackS`) | tools | audio (thump) |
 | `tool:swing` | `{ tool, speed }` (broom stroke, ≤ 1 per 0.3 s) | tools | audio |
 | `player:mount` / `player:dismount` | `{ vehicle }` | player | ui, audio, tools |
 | `player:step` | `{ speed }` | player | audio |
 | `economy:coins` | `{ coins, delta, reason }` | economy | ui |
 | `economy:bag` | `{ container, units, cap }` (on change) | economy | ui |
 | `economy:bagFull` | `{ container }` | economy | ui, audio, world (guide arrow) |
-| `economy:sold` | `{ pointId, units, coins, byType, valuable, x, z, by: 'player' \| 'robot' }` | economy | ui (coin fly, hints), audio |
+| `economy:sold` | `{ pointId, units, coins, byType, valuable, x, z, by: 'player' \| 'robot', container, robotId, dumpS }` (at dump start) | economy | ui (coin fly, hints), audio |
 | `economy:purchased` | `{ id, price }` | economy | tools (equip), world (drop-off), ui (toast), audio, main via `game:saveNow` |
 | `economy:boost` | `{ active, left }` | economy | ui, audio |
-| `economy:finalSweep` | `{ units, coins }` | economy | ui, audio, world |
+| `economy:finalSweep` | `{ units, coins, durationS }` | economy | ui, audio, world |
+| `economy:away` | `{ awayS, simS, capped, limitedByRemaining, units, coins, robots, rateUps, capS }` (after an away catch-up; coins already added) | economy | ui ("welcome back" card) |
 | `robot:added` | `{ id }` | economy | ui, audio |
 | `robot:collect` | `{ id, units, x, z }` (aggregated, ≤ 4/s per robot) | economy | audio, ui |
 
@@ -327,15 +358,18 @@ One localStorage key, `CONFIG.saveKey` = `temizsehir.v1`:
 { v: 1, savedAt: <epoch ms>, playS: <game seconds>,
   mods: { trash: { g: 'g1.108.4.<hash>.<base64>', ms: 2 },
           economy: { v: 1, coins, bag: {units, byType}, tank: {...}, owned: [...], levels: {...}, boost: {...}, robots: [...], stats: {...} },
-          tools: { v: 1, current, cart: { x, z, yaw, nozzle } },
+          tools: { v: 1, current, cart: { x, z, yaw, nozzle, mounted } },
           player: { v: 1, x, z, yaw, pitch, mounted },
-          ui: { v: 1, settings: {...}, hintsDone: [...] },
+          ui: { v: 1, settings: {...}, hintsDone: [...], hb, msBoost, complete },
+          world: { v: 1, ev },
           audio: null } }
 ```
 - main collects `save()` from each real module (stubs are skipped, and the previous data of a module that is missing in this build is kept) every 10 s, on `visibilitychange` → hidden, on `pagehide` and on `game:saveNow`.
 - At boot main calls `load(data | null)` on every real module after all `init`s. `null` = fresh game. Each module must tolerate missing or extra fields; never rename a field; if the shape changes, add `v` handling that reads the old one.
 - Measured: trash grid after a heavy carve = 10.7 KB, fresh = a few bytes; save ≈ 2 ms, load 2–5 ms **[verified, desktop]**.
-- URL flags: `?nosave` (no read/write), `?reset` (delete the save, then start).
+- URL flags: `?nosave` (no read/write), `?reset` (delete the save, then start). `ctx.save.reset()` (settings → reset save) deletes the save and blocks every later write (pagehide, visibilitychange) before it reloads.
+- Without usable localStorage (sandboxed iframe, private mode quota) main says so once (`console.info`) and the game runs without saving.
+- **[verified at integration]** reload after a full play-through restores coins, owned items, clean %, robots, position and tool exactly (`test/e2e/play.mjs`, `smoke.mjs`); coins of a sale still in flight are folded into the save on purpose.
 
 ---
 
@@ -373,6 +407,14 @@ Spike measurements **[verified, headless Chromium, SwiftShader, desktop CPU; `te
 - `nearestDirty`: 0.0015 ms; `consume` of 2 000 units (1 223 cells): 9–17 ms (offline catch-up only; spread it over frames if it runs during play).
 - `renderer.info`: 11 calls, 53–87 k triangles in all eight test views, 69 k in portrait.
 
+**Integrated game [verified at integration, headless Chromium + SwiftShader, desktop CPU; `node test/e2e/perf.mjs`]**, busiest moment (cart sweeping with the nozzle down, 4 robots cleaning, 25 % milestone confetti/birds/banner), DPR 2, 844 × 390:
+- **19 draw calls** (max over 90 frames), **76 k triangles**, 1.7 k near instances, 6 textures.
+- **JS 0.40 ms/frame** total (player 0.02, tools 0.13, economy 0.05, trash 0.04, world 0.08, audio 0.00, ui 0.05).
+- Allocation (V8 sampling heap profiler, 1 200 gameplay frames): ≈ 45 B/frame from the game modules (boxed doubles returned by `trash.surfaceAt`, a few robot/sale payload strings); the rest of the ≈ 96 B/frame sampled is debug.js's event trace (`?debug` only). No per-frame `new THREE.*`, arrays or closures.
+- Hidden tab → paused (game time frozen), visible → resumes, one `app:resume`. Adaptive DPR steps 2 → 1.7 within 9 s when frames are slow; quality high pins DPR 2, low pins DPR 1 and the shorter item band.
+- WebGL context loss: paused + saved; restore → running, picture correct; no restore within `render.glLostReloadS` (4 s) → saved and reloaded, state kept.
+- Frame-rate independence: walking 1.5 s and hand-picking 4 s give identical results at 60 Hz and 30 Hz (`dt` integration everywhere; `dt` clamped at 50 ms, so below 20 fps the game slows rather than jumps).
+
 Estimate for iPhone 12 **[assumed]**: vertex load ≈ 100 k triangles is far under A14 capacity. The fragment cost is the ground shader (≈ 13 texture taps, derivatives) over ~50 % of 1.3 Mpx at DPR 2, ≈ 9 M taps per frame, well within the GPU's texture rate. JS in WebKit's JIT is estimated at ≤ 2× this container's figures. Expected 60 fps at DPR 2 with headroom. The adaptive DPR falls to 1.0 if the GPU-bound frame time exceeds 19.5 ms. Real fps is **not** measured: SwiftShader is a CPU rasteriser (≈ 0.5–1 s per frame here).
 
 Adaptive DPR (main.js): every 1 s, average real frame time; above 19.5 ms → DPR × 0.85 (floor 1.0); below 17.4 ms for 4 s → DPR ÷ 0.85 (cap min(2, devicePixelRatio)). If a step down did not improve the average by 7 %, the cap is vsync or Low Power Mode (30 Hz), not fill rate: the step is undone and adaptation pauses for 20 s. `?dpr=1.5` forces a value.
@@ -396,6 +438,8 @@ The artifact host wraps a body fragment, so `tek.html` must **start with `<title
 4. Escape `</script` inside the bundle as `<\/script`. Fail if the output exceeds 2 MB (the budget is ~400 KB).
 5. Smoke test after building: open `tek.html?debug&nosave` wrapped in a minimal `<!doctype html><html><body>…` in Playwright and assert `window.__ts.ready` (§12).
 
+**[implemented at integration]** `python3 tools/build.py` also drops indentation, blank lines and full-line `//` comments (`--no-min` keeps them): **437 KB** (503 KB unsqueezed). `test/e2e/smoke.mjs --target tek | iframe | sandbox` plays the whole loop on `tek.html` wrapped the way the host does (doctype, charset, viewport-fit=cover meta, fragment in body), inside a plain `<iframe>`, and inside `<iframe sandbox="allow-scripts">` (opaque origin: no localStorage, the game runs without saving): all pass with no errors. The only external request is the three.js r128 script.
+
 ---
 
 ## 11. How the spike was measured
@@ -405,6 +449,8 @@ The artifact host wraps a body fragment, so `tek.html` must **start with `<title
 ---
 
 ## 12. Test recipe (`window.__ts`, Playwright)
+
+**One command:** `node test/run-all.mjs` (economy unit tests, balance bot with the PSIKOLOJI limits asserted, build, e2e smoke ×5, performance/robustness, every module suite); `--full` adds the touch play-through in both orientations (`test/e2e/play.mjs --shots DIR` also writes screenshots); `--quick` is the short loop. `THREE_LOCAL=/path/three.min.js` runs offline. Headless rendering takes ~0.1 s per frame, so the e2e tests keep the loop manual and advance game time with `__ts.fast` between REAL touch events (CDP multi-touch); a rAF loop would clamp `dt` and stretch taps past the 220 ms tap threshold.
 
 `debug.js` provides, with `?debug` only:
 
@@ -420,7 +466,10 @@ window.__ts = {
   counters() → { fps, frameMs, jsMs, renderMs, mods, calls, triangles, textures, geometries, instances, dpr },
   events(name?) → recorded [{ t, name, payload copy }] (via bus.setTrace), clearEvents(),
   save(), reload() /* location.reload keeping the save */,
+  fast(seconds, dt = 1/30, render = true) /* gameplay + ui updates without rendering each frame */,
+  econ(), away(seconds), overlay(on), overlayData(),
 };
+// look() and stick() use player.look() / player.setStick() (added at integration)
 ```
 
 Recipe (Node, Playwright pre-installed; ESM needs `createRequire`):
@@ -446,6 +495,8 @@ Always `step()` (manual frames) in assertions; rAF timing in headless is not rel
 ---
 
 ## 13. Risks and open questions
+
+Resolved at integration: the depth texture needs no float/half-float extension and defaults to RGBA8 (risk 2 below, format part); context loss is handled (restore or save + reload); the game runs in an iframe and in a sandboxed iframe.
 
 Biggest technical risks on a real iPhone **[assumed, unverified]**:
 1. **Sustained fill rate and heat.** The ground shader covers half the screen at DPR 2 with MSAA. A14 should hold 60 fps, but after 10–20 minutes thermal throttling can halve GPU clocks. Mitigation: adaptive DPR (floor 1.0). If that is not enough, drop the second trash-tile sample and the 4-tap rim beyond 25 m, and turn MSAA off below DPR 1.3.

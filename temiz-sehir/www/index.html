@@ -22,6 +22,8 @@ html, body {
   -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
 }
+/* iOS Safari: the dynamic viewport (toolbars shown/hidden) where supported */
+@supports (height: 100dvh) { html, body { height: 100dvh; } }
 /* the 3D view: full screen, under everything */
 #game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; outline: none; }
 /* DOM overlay owned by ui.js; transparent to touches except elements that opt in */

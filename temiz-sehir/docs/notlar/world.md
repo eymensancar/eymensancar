@@ -168,3 +168,7 @@ Assumed / not verified:
 - Pedestrians walk through lamp posts and bins, and birds circle only over the plaza.
 - The neighbour districts reuse the same facade styles: the aerial view looks repetitive at the second ring (heavily fogged).
 - Confetti and leaves use `Math.random`, so they are not deterministic (visual only).
+
+## Integration (phase 3)
+
+Every contract issue above was decided at integration; the decisions and the defects found in the real game are in `docs/BIRLESTIRME.md`, and `docs/MIMARI.md` now matches the code. Tunables listed above now live in `www/js/config.js`.

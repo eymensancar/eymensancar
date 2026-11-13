@@ -227,3 +227,7 @@ Average robot_1 lands at 5:35, longest gap 2.1 min. With the boost the cart come
 - Robots ride at 55 % of the trash surface height, so in deep trash they look half-buried at the cleaning front (`a5`, `e1`). That reads as "digging in" but is less visible from far away.
 - The away rate uses the measured EMA; right after an upgrade it lags the new speed until new samples arrive.
 - The bot's player is a model: no exploration, perfect routing. Trust it for relative comparisons (orders, prices, boost), less for absolute early-game seconds.
+
+## Integration (phase 3)
+
+Every contract issue above was decided at integration; the decisions and the defects found in the real game are in `docs/BIRLESTIRME.md`, and `docs/MIMARI.md` now matches the code. Tunables listed above now live in `www/js/config.js`.

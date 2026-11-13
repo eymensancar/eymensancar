@@ -49,3 +49,7 @@ File: `www/js/ui.js`. Contract: MIMARI §4.7, §4.9 (UI side), §6. Tests: `test
 - The 50 % banner covers the compass and bag meter for up to 9 s (it can be dismissed in one tap).
 - Edge indicator projects with the camera matrices in `ui.update` (after player wrote the pose; calls `camera.updateMatrixWorld()`).
 - Hint "walk" is marked done by any movement before 0:45 (so it never nags a player who already moved).
+
+## Integration (phase 3)
+
+Every contract issue above was decided at integration; the decisions and the defects found in the real game are in `docs/BIRLESTIRME.md`, and `docs/MIMARI.md` now matches the code. Tunables listed above now live in `www/js/config.js`.

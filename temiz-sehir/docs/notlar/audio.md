@@ -38,3 +38,7 @@ File: `www/js/audio.js`. Contract: MIMARI §4.8, §6. Test: `node test/audio/run
 - Init synthesis time (boot) instead of zero; could move to a Worker if boot time matters.
 - Coin cascade voices are scheduled ahead; a new cascade within 0.8 s steals the oldest coins (max 18).
 - Robot hum is per robot index, not per robot id (fine for ≤ 4 robots that are never removed).
+
+## Integration (phase 3)
+
+Every contract issue above was decided at integration; the decisions and the defects found in the real game are in `docs/BIRLESTIRME.md`, and `docs/MIMARI.md` now matches the code. Tunables listed above now live in `www/js/config.js`.

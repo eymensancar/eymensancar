@@ -129,7 +129,7 @@ await test('boost offer: hidden when the next item is < 60 s of income away', ()
   assert.equal(core.canOfferBoost(), false);
 });
 
-await test('away: capped at 2 h of robot output and 50 % of remaining, honest coins, no boost, toast', () => {
+await test('away: capped at 2 h of robot output and 50 % of remaining, honest coins, no boost, event only', () => {
   const { core, trash, ev, step, pose } = setup();
   core.grant('robot_2'); pose.x = 20; pose.z = 3; step(30);
   core.startBoost();
@@ -139,7 +139,7 @@ await test('away: capped at 2 h of robot output and 50 % of remaining, honest co
   assert.ok(r.units <= Math.floor(before * 0.5) + 2 * CONFIG.robot.capacity[0] + 1, 'at most half the remaining (+ what robots carried)');
   assert.ok(trash.totalUnits() >= before - Math.floor(before * 0.5));
   const a = ev('economy:away').pop().p; assert.equal(a.coins, core.coins() - coins0, 'coins already added, equal to the summary');
-  assert.ok(ev('ui:toast').some((e) => /Sen yokken robotların/.test(e.p.text) && /2 saatlik sınır/.test(e.p.text)), 'Turkish summary toast');
+  assert.ok(!ev('ui:toast').length, 'no toast: ui shows one card from economy:away (integration decision)');
   // value honesty: coins == value of what disappeared (no boost)
   assert.ok(a.coins > 0 && a.coins < a.units * 3, 'coins plausible for the units: ' + a.coins + ' for ' + a.units);
   assert.ok(trash.cleanFraction() < CONFIG.completion.finalSweepAt, 'never finishes the district while away');

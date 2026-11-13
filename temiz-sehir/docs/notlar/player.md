@@ -114,3 +114,7 @@ Covered:
   - `step()` does not render: SwiftShader takes 0.2–0.5 s per frame, and queued frames back up the GPU process until screenshots time out. Call `render()` before any screenshot.
   - CDP touchEnd ends exactly the listed points.
   - Never move a touch outside the viewport.
+
+## Integration (phase 3)
+
+Every contract issue above was decided at integration; the decisions and the defects found in the real game are in `docs/BIRLESTIRME.md`, and `docs/MIMARI.md` now matches the code. Tunables listed above now live in `www/js/config.js`.

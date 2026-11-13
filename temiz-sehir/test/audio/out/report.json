@@ -4,7 +4,7 @@
       "cpu": {
         "firstFramesMaxMs": 0.3,
         "steadyMaxMs": 0.2,
-        "meanMs": 0.0082
+        "meanMs": 0.0121
       },
       "whole": {
         "peakDb": -3.3,
@@ -34,18 +34,18 @@
         "gt6k": 0.066
       },
       "pickups30ps": {
-        "peakDb": -5,
+        "peakDb": -5.2,
         "rmsDb": -16.8,
         "clipped": 0,
-        "centroidHz": 1382,
+        "centroidHz": 1392,
         "lt120": 0.006,
         "b120_500": 0.009,
-        "b500_2k": 0.857,
-        "b2k_6k": 0.127,
+        "b500_2k": 0.852,
+        "b2k_6k": 0.131,
         "gt6k": 0.001
       },
       "sale": {
-        "peakDb": -5.9,
+        "peakDb": -5.2,
         "rmsDb": -20.4,
         "clipped": 0
       },
@@ -91,43 +91,43 @@
         "clipped": 0
       },
       "valuable": {
-        "peakDb": -3.4,
-        "rmsDb": -16.9,
+        "peakDb": -3.3,
+        "rmsDb": -17,
         "clipped": 0
       },
       "ladderHz": [
-        580,
-        629,
-        682,
-        847,
-        697,
-        752,
-        822,
-        856,
-        978,
-        1355
+        591,
+        634,
+        689,
+        842,
+        700,
+        760,
+        804,
+        860,
+        963,
+        1289
       ]
     },
     "B": {
       "cpu": {
-        "firstFramesMaxMs": 1.8,
+        "firstFramesMaxMs": 1.1,
         "steadyMaxMs": 0.3,
-        "meanMs": 0.0372
+        "meanMs": 0.0324
       },
       "whole": {
-        "peakDb": -2.6,
+        "peakDb": -2.7,
         "rmsDb": -16.3,
         "clipped": 0
       },
       "stress": {
-        "peakDb": -2.6,
-        "rmsDb": -14.7,
+        "peakDb": -2.7,
+        "rmsDb": -14.8,
         "clipped": 0
       }
     },
     "C": {
-      "eastRminusL_db": 4.3,
-      "westLminusR_db": 4,
+      "eastRminusL_db": 4.2,
+      "westLminusR_db": 4.1,
       "afterDisable": {
         "peakDb": -86.3,
         "rmsDb": -105,
@@ -135,31 +135,31 @@
       }
     },
     "genMs": {
-      "initMs": 137.3,
-      "unlockMs": 3.3,
-      "pop": 0.3,
-      "click": 0.1,
-      "coin": 0,
-      "thud": 0,
+      "initMs": 156.5,
+      "unlockMs": 4.5,
+      "pop": 0.5,
+      "click": 0,
+      "coin": 0.1,
+      "thud": 0.1,
       "swish": 0.1,
-      "kaching": 0.1,
-      "chime": 0,
-      "purchase": 0.2,
-      "open": 0,
-      "close": 0.1,
+      "kaching": 0,
+      "chime": 0.2,
+      "purchase": 0.1,
+      "open": 0.1,
+      "close": 0.2,
       "equip": 0.1,
-      "chirp": 0.1,
+      "chirp": 0,
       "crunch": 0,
       "robot": 0,
       "boost": 0.1,
       "nozzleDown": 0.1,
       "nozzleUp": 0,
-      "rev": 0.2,
-      "horn": 0,
-      "ms1": 0.2,
-      "ms2": 0,
+      "rev": 0.1,
+      "horn": 0.1,
+      "ms1": 0.1,
+      "ms2": 0.2,
       "ms3": 0.2,
-      "gust": 0.1,
+      "gust": 0.2,
       "fanfare": 0.2
     }
   },

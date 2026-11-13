@@ -2,8 +2,6 @@
 // away catch-up. Owner: economy. Contract: docs/MIMARI.md §4.6 (API), §6 (events), §7 (frame order), §8 (save).
 //
 // Layout of this file
-//   ECONOMY_DEFAULTS        tunables that config.js does not (yet) contain; CONFIG.robot / CONFIG.offline /
-//                           CONFIG.selling override them field by field (see docs/notlar/economy.md).
 //   createEconomyCore(o)    ALL rules and the robot simulation. Pure JS: no THREE, no DOM, no ctx. The Node
 //                           balance bot (test/economy/bot.mjs) and the unit tests drive exactly this code with a
 //                           model trash grid. It talks to the outside only through the functions passed in `o`.
@@ -16,47 +14,9 @@
 // robot.farM from the camera run the SAME logic in coarse ticks (4 per second, sub-stepped by distance), so totals
 // are identical and the hand-over to the per-frame mode is seamless; only the rendered pose is smoothed.
 
-export const ECONOMY_DEFAULTS = {
-  robot: {
-    turnRateDeg: 300,          // in-place turning speed; the robot slows to a stop while badly misaligned
-    farM: 30, farHysteresisM: 4, farTickS: 0.25, maxSubstepM: 0.2,
-    anchorWeight: 0.5,         // target score = distance to robot + anchorWeight * distance to anchor (+ claims)
-    claimPenaltyM: 10,         // a 6 m block another robot works in costs this much extra (spread out)
-    localSearchCells: 2,       // after a row ends, look this many cells around before jumping to a new block
-    waitMaxS: 2.0,             // waiting behind the player / another robot longer than this → go elsewhere
-    stuckS: 4, banS: 20,       // no progress for stuckS → re-plan; the block is avoided for banS
-    idleRetryS: 1.0,
-    collectEventS: 0.25,       // robot:collect is aggregated to at most 4 per second per robot
-    puffEveryS: 0.12, puffLifeS: 0.7, puffs: 6,
-    rateWindowS: 10, rateTauS: 120,   // measured robot rate (units per robot-second, trips included): EMA
-    ratePriorUps: 2.4,         // TASARIM: ~2.4 u/s per robot with its trips, at cleanSpeed[0]
-    swathEps: 0.01,
-    names: null,               // CONFIG.robot.names / STR robot_n1.. win; fallback FALLBACK_STR
-    colors: ['#ff7a59', '#2fb5a3', '#f2b632', '#8a6cf0'],
-    bodyRadiusM: 0.33, bodyHeightM: 0.2,
-  },
-  offline: {
-    capS: 7200,                // PSIKOLOJI §6: robots keep working while away, capped at 2 hours of output ...
-    maxFractionOfRemaining: 0.5, // ... and at 50 % of the remaining trash
-    minSimS: 2,                // shorter absences are ignored (main's own away threshold)
-    announceMinS: 60,          // the "while you were away" toast only for absences this long
-  },
-  selling: { resellDelayS: 1.0 }, // standing inside a sell zone: next sale at most this often (re-entering is instant)
-  income: { windowS: 10, tauS: 60 },
-};
+// Every tunable comes from config.js: CONFIG.robot (stats, names, colours, AI), CONFIG.offline (away cap),
+// CONFIG.selling.resellDelayS, CONFIG.income. Robot names are STR keys (robot_n1..4, tag robot_name).
 
-// Player-facing texts that config.js does not have yet. ctx.STR wins when it defines the same key.
-const FALLBACK_STR = {
-  robot_name: { tr: 'Robot {n}: {name}', en: 'Robot {n}: {name}' },
-  robot_n1: { tr: 'Pırıl', en: 'Pırıl' },
-  robot_n2: { tr: 'Fıstık', en: 'Fıstık' },
-  robot_n3: { tr: 'Bulut', en: 'Bulut' },
-  robot_n4: { tr: 'Şimşek', en: 'Şimşek' },
-  away_summary: { tr: 'Sen yokken robotların {n} parça topladı: +{m} altın', en: 'While you were away your robots collected {n} items: +{m} coins' },
-  away_capped: { tr: '({h} saatlik sınır)', en: '({h}-hour limit)' },
-};
-
-function mergeFlat(a, b) { const o = Object.assign({}, a); if (b && typeof b === 'object') for (const k of Object.keys(b)) if (b[k] !== undefined && b[k] !== null) o[k] = b[k]; return o; }
 const arrAt = (a, i) => (Array.isArray(a) && a.length ? a[Math.max(0, Math.min(a.length - 1, i | 0))] : 0);
 const num = (v, d) => (typeof v === 'number' && isFinite(v) ? v : d);
 const TAU = Math.PI * 2;
@@ -66,14 +26,12 @@ function wrapAng(a) { a %= TAU; if (a > Math.PI) a -= TAU; else if (a < -Math.PI
 // Core: rules + simulation (pure)
 // o = { CONFIG, bus, trash, world,
 //       player() → pose {x, z, yaw, mounted} | null, camera() → {x, z} | null,
-//       offer(id, label, priority, owner)?, t(key, vars)?, hasStr(key)?, lang()?, playS()? }
+//       offer(id, label, priority, owner)?, t(key, vars)?, lang()?, playS()? }
 // =====================================================================================================
 export function createEconomyCore(o) {
   const C = o.CONFIG, bus = o.bus, trash = o.trash, world = o.world || {};
-  const RC = mergeFlat(ECONOMY_DEFAULTS.robot, C.robot);
-  const OFF = mergeFlat(ECONOMY_DEFAULTS.offline, C.offline);
-  const SELLX = mergeFlat(ECONOMY_DEFAULTS.selling, C.selling);
-  const INC = mergeFlat(ECONOMY_DEFAULTS.income, C.income);
+  const RC = C.robot, OFF = C.offline || { capS: 7200, maxFractionOfRemaining: 0.5, minSimS: 2, announceMinS: 60 };
+  const SELLX = C.selling || {}, INC = C.income || { windowS: 10, tauS: 60 };
   const DEG = Math.PI / 180;
   const warned = {};
   function warnOnce(k, msg) { if (!warned[k]) { warned[k] = 1; console.warn('[economy] ' + msg); } }
@@ -82,14 +40,7 @@ export function createEconomyCore(o) {
     if (!has(trash, f)) warnOnce('trash.' + f, 'trash.' + f + '() missing: contract §4.3 violated');
 
   // ---- strings
-  function txt(key, vars) {
-    if (o.hasStr && o.hasStr(key) && o.t) return o.t(key, vars);
-    const e = FALLBACK_STR[key]; const lang = o.lang ? o.lang() : 'tr';
-    let s = e ? (e[lang] != null ? e[lang] : e.tr) : key;
-    if (vars) s = s.replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? vars[k] : m));
-    return s;
-  }
-  function fmt(n) { try { return Math.round(n).toLocaleString((o.lang ? o.lang() : 'tr') === 'en' ? 'en-US' : 'tr-TR'); } catch (e) { return String(Math.round(n)); } }
+  function txt(key, vars) { return o.t ? o.t(key, vars) : key; }
 
   // ---- trash types and values
   const tinfo = has(trash, 'info') ? trash.info() : null;
@@ -399,13 +350,9 @@ export function createEconomyCore(o) {
   const PMAX = 48;
   let vMove = 0, vClean = 0, rCap = 0; // robot stats cached once per update (hot path: no stat() calls)
   function cacheRobotStats() { vMove = stat('robotMoveSpeed'); vClean = stat('robotCleanSpeed'); rCap = stat('robotCapacity'); }
-    function robotName(k) {
-    const n = k + 1;
-    let nm = RC.names && RC.names[k] ? RC.names[k] : null;
-    if (nm && o.hasStr && o.hasStr(nm)) nm = txt(nm);
-    if (!nm) nm = txt('robot_n' + n);
-    return txt('robot_name', { n, name: nm });
-  }
+  // robots()[k].name is the short name (STR key from CONFIG.robot.names, translated); ui shows the tag
+  // 'Robot {n}: {name}' (STR robot_name)
+  function robotName(k) { return txt((RC.names && RC.names[k]) || ('robot_n' + (k + 1))); }
   function makeRobot(k) {
     const r = {
       id: 'robot_' + (k + 1), index: k, name: robotName(k), color: RC.colors[k % RC.colors.length],
@@ -777,12 +724,7 @@ export function createEconomyCore(o) {
     S.stats.items += units; S.stats.robotUnits += units; S.stats.awayUnits += units; S.stats.awayCoins += coins;
     earn(coins, 'away');
     Object.assign(awayEv, { awayS, simS, capped: awayS > OFF.capS, limitedByRemaining: want > maxU, units: units + carried, coins, robots: robots.length, rateUps: rate, capS: OFF.capS });
-    bus.emit('economy:away', awayEv);
-    if (awayS >= OFF.announceMinS && units + carried > 0) {
-      let text = txt('away_summary', { n: fmt(units + carried), m: fmt(coins) });
-      if (awayEv.capped) text += ' ' + txt('away_capped', { h: fmt(OFF.capS / 3600) });
-      bus.emit('ui:toast', { text });
-    }
+    bus.emit('economy:away', awayEv);   // ui shows the one "welcome back" card from this (≥ offline.announceMinS)
     bus.emit('game:saveNow', null);
     return awayEv;
   }
@@ -804,7 +746,7 @@ export function createEconomyCore(o) {
     // shop offer (§4.9)
     if (o.offer) {
       const pose = o.player ? o.player() : null, sp = shopPt;
-      if (pose && sp) { const dx = pose.x - sp.x, dz = pose.z - sp.z, R = C.shop.openRadiusM; if (dx * dx + dz * dz <= R * R) o.offer('shop', o.t ? o.t('act_shop') : 'Dükkan', 60, 'economy'); }
+      if (pose && sp) { const dx = pose.x - sp.x, dz = pose.z - sp.z, R = C.shop.openRadiusM; if (dx * dx + dz * dz <= R * R) o.offer('shop', 'act_shop', 60, 'economy'); }
     }
   }
 
@@ -914,7 +856,7 @@ export function init(ctx) {
     player: () => (mods.player && mods.player.pose ? mods.player.pose() : null),
     camera: () => { camPos.x = ctx.camera.position.x; camPos.z = ctx.camera.position.z; return camPos; },
     offer: (id, label, pr, owner) => ctx.offer(id, label, pr, owner),
-    t: ctx.t, hasStr: (k) => !!(ctx.STR && ctx.STR[k]), lang: () => (ctx.state && ctx.state.settings && ctx.state.settings.lang) || 'tr',
+    t: ctx.t, lang: () => (ctx.state && ctx.state.settings && ctx.state.settings.lang) || 'tr',
     playS: () => ctx.time.game,
   });
   V = makeView(ctx);
@@ -952,7 +894,7 @@ export function simulateAway(awayS) { return core ? core.catchUp(awayS) : null; 
 // ------------------------------------------------------------------------------- robot meshes (3 draw calls)
 function makeView(ctx) {
   const THREE = ctx.THREE; if (!THREE) return null;
-  const C = ctx.CONFIG, RC = mergeFlat(ECONOMY_DEFAULTS.robot, C.robot);
+  const C = ctx.CONFIG, RC = C.robot;
   const MAX = C.robot.maxCount || 4, PUFFS = RC.puffs, RAD = RC.bodyRadiusM, H = RC.bodyHeightM;
 
   // body: merged non-indexed parts, vertex colours (white parts take the robot's instance colour)

@@ -15,7 +15,7 @@ export function init(ctx) {
 }
 export function update() {
   const m = C.mods.player.mounted();
-  if (m) { C.offer('exit', 'act_exit', 90, 'tools'); C.offer('nozzle', F.nozzle ? 'act_nozzle_up' : 'act_nozzle_down', 80, 'tools'); return; }
+  if (m) { C.offer('nozzle', F.nozzle ? 'act_nozzle_up' : 'act_nozzle_down', 90, 'tools'); C.offer('exit', 'act_exit', 80, 'tools'); return; } // integration: nozzle on the big button
   if (F.nearCart) C.offer('enter', 'act_enter', 70, 'tools');
   if (F.current === 'hands') C.offer('pick', 'act_pick', 10, 'tools');
   if (F.current === 'broom') C.offer('sweep', 'act_sweep', 5, 'tools');

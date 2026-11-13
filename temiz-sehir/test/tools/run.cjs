@@ -20,7 +20,7 @@ const S = {
   ev: (page, n) => page.evaluate((n) => window.__fakeAudio.log[n].slice(), n),
   clear: (page) => page.evaluate(() => { window.__fakeAudio.clear(); window.__vib.length = 0; }),
   frame: (page) => page.evaluate(() => window.__tsCtx.time.frame),
-  topOffer: (page) => page.evaluate(() => { const o = window.__tsCtx.offers; let t = null; for (let i = 0; i < o.count; i++) if (!t || o.list[i].priority > t.priority) t = o.list[i]; return t ? { id: t.id, label: t.label } : null; }),
+  topOffer: (page) => page.evaluate(() => { const o = window.__tsCtx.offers; let t = null; for (let i = 0; i < o.count; i++) if (!t || o.list[i].priority > t.priority) t = o.list[i]; return t ? { id: t.id, label: window.__tsCtx.t(t.label), offers: Array.from({ length: o.count }, (_, i) => o.list[i].id + ':' + o.list[i].priority) } : null; }), // labels are STR keys (integration)
   calls: (page) => page.evaluate(() => window.__tsCtx.renderer.info.render.calls),
   look: (page, x, z, yaw, pitchDeg) => page.evaluate(([x, z, yaw, p]) => { const P = window.__tsCtx.mods.player; P.teleport(x, z, yaw); P.pose().pitch = p * Math.PI / 180; }, [x, z, yaw, pitchDeg]),
 };
@@ -42,7 +42,8 @@ async function landscape() {
   await H.step(page, 1);
   let col = await S.ev(page, 'tool:collect');
   H.check('press → item collected on the very next frame (≤ 17 ms ≪ 100 ms)', col.length === 1 && col[0].f === f0 + 1 && col[0].tool === 'hands' && col[0].units === 1, col);
-  H.check('…bag +1, haptic tick, flying copy + dust visible', (await S.bag(page)) === 1 && (await page.evaluate(() => window.__vib.length)) === 1 && (await page.evaluate(() => { const s = window.__tsCtx.scene; return s.getObjectByName('toolsFly').visible && s.getObjectByName('toolsDust').visible; })));
+  // integration: the flying item is drawn by trash.js (its instanced meshes), tools has no flying copies any more
+  H.check('…bag +1, haptic tick, the picked item flies (trash juice)', (await S.bag(page)) === 1 && (await page.evaluate(() => window.__vib.length)) === 1 && (await page.evaluate(() => { const d = window.__tsCtx.mods.trash.debugInfo && window.__tsCtx.mods.trash.debugInfo(); return !window.__tsCtx.scene.getObjectByName('toolsFly') && (!d || d.stats.flying > 0); })));
   await H.step(page, 122); // 2.05 s held
   await touch.up(0); await H.step(page, 1);
   let bag = await S.bag(page);
@@ -50,7 +51,7 @@ async function landscape() {
   const handsCost = await page.evaluate(() => window.__tsCtx.mods.tools.perfSample());
 
   // ---- tap-to-pick: an item in reach, then one out of reach
-  await S.look(page, 27, 36, 0, -20);
+  await S.look(page, 27, 36, 0, -34); // 85 deg horizontal FOV (integration): ~46 deg vertical in landscape
   await H.step(page, 2);
   const target = await page.evaluate(() => { // project a point 1.4 m ahead on the trash to the screen
     const c = window.__tsCtx.camera, T = window.__tsCtx.mods.trash, v = new window.THREE.Vector3(27, T.surfaceAt(27, 34.6), 34.6).project(c);
@@ -152,7 +153,7 @@ async function landscape() {
   let st = await page.evaluate(() => ({ cs: window.__tsCtx.mods.tools.cartState(), cur: window.__tsCtx.mods.tools.current(), m: window.__tsCtx.mods.player.pose().mounted }));
   H.check('press "Bin" → mounted, tool = cart, tool:changed + player:mount', st.cs.mounted && st.cur === 'cart' && st.m === 'cart' && (await S.ev(page, 'player:mount')).length === 1 && (await S.ev(page, 'tool:changed')).slice(-1)[0] !== undefined, st);
   await H.step(page, 30);
-  H.check('stopped in the cart: button offers "İn" (exit, 90)', (await S.topOffer(page)).label === 'İn');
+  { const t = await S.topOffer(page); H.check('in the cart: big button = nozzle (90), "İn" (exit, 80) offered for the secondary button', t.id === 'nozzle' && t.offers.includes('exit:80'), t); }
   // drive south along the plaza (camera mode: stick up = where the camera looks) — the camera looks south
   await S.clear(page);
   const t0 = await S.tank(page);
@@ -202,7 +203,7 @@ async function landscape() {
   await touch.up(0); await H.step(page, 60);
   H.check('wall bump: the cart stops at the building (front at x = 30), speed cut by bumpSlowdown', near(st.x, 28.8, 0.02) && hitSpeed !== null && hitSpeed <= before * 0.6, { x: st.x, hitSpeed, before });
   // tank mode
-  await page.evaluate(() => { window.__tsCtx.state.settings.cartControl = 'tank'; window.__tsCtx.mods.player.teleport(27, 40, 0); });
+  await page.evaluate(() => { window.__tsCtx.state.settings.steer = 'tank'; window.__tsCtx.mods.player.teleport(27, 40, 0); });
   await H.step(page, 30);
   const tm0 = await page.evaluate(() => ({ h: window.__tsCtx.mods.tools.cartState().heading, yaw: window.__tsCtx.mods.player.pose().yaw }));
   await touch.down(0, 160, 290); await touch.move(0, 210, 250); await H.step(page, 45);
@@ -210,7 +211,7 @@ async function landscape() {
   await touch.up(0);
   H.check('tank mode: stick x turns, the view turns with the cart', tm1.h - tm0.h > 0.5 && near(tm1.yaw - tm0.yaw, tm1.h - tm0.h, 0.05) && tm1.s > 1, { tm0, tm1 });
   await H.step(page, 60);
-  await page.evaluate(() => { window.__tsCtx.state.settings.cartControl = undefined; });
+  await page.evaluate(() => { window.__tsCtx.state.settings.steer = 'camera'; });
   // tank full
   await page.evaluate(() => { window.__tsCtx.mods.player.teleport(3, 40, 0); window.__fakeEco.fill('tank'); window.__tsCtx.bus.emit('ui:offer', { id: 'nozzle', owner: 'tools' }); });
   await S.clear(page);
@@ -221,8 +222,8 @@ async function landscape() {
   // exit
   await S.clear(page);
   await page.evaluate(() => window.__fakeEco.empty('tank'));
-  const be = await btn(page);
-  await touch.down(0, be.x, be.y); await touch.up(0); await H.step(page, 30);
+  // the fake ui has one button (top offer = nozzle): the real ui's secondary button emits this
+  await page.evaluate(() => window.__tsCtx.bus.emit('ui:offer', { id: 'exit', owner: 'tools' })); await H.step(page, 30);
   st = await page.evaluate(() => ({ cs: window.__tsCtx.mods.tools.cartState(), cur: window.__tsCtx.mods.tools.current(), p: window.__tsCtx.mods.player.pose() }));
   H.check('press "İn" → on foot beside the cart, previous tool back', !st.cs.mounted && st.cur === 'broom' && st.p.mounted === null && Math.hypot(st.p.x - st.cs.x, st.p.z - st.cs.z) > 1.2, st);
 
@@ -234,7 +235,7 @@ async function landscape() {
   await page.evaluate(() => window.__tsCtx.mods.player.teleport(window.__tsCtx.mods.tools.cartState().x, window.__tsCtx.mods.tools.cartState().z + 3.5, 0));
   await touch.down(0, 160, 290); await touch.move(0, 140, 280); await H.step(page, 6);
   const dc = await page.evaluate(() => {
-    const s = window.__tsCtx.scene, r = window.__tsCtx.renderer; const names = ['toolsFly', 'toolsDust', 'cartBody', 'cartNozzle'];
+    const s = window.__tsCtx.scene, r = window.__tsCtx.renderer; const names = ['toolsDust', 'cartBody', 'cartNozzle'];
     const vis = Object.fromEntries(names.map((n) => [n, !!(s.getObjectByName(n) && s.getObjectByName(n).visible)]));
     r.render(s, window.__tsCtx.camera); const total = r.info.render.calls;
     // hide tools objects and re-render to isolate their share

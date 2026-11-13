@@ -9,7 +9,7 @@ export function init(ctx) {
   ctx.bus.on('ui:buy', (p) => buy(p.id));
   ctx.bus.on('ui:adWatched', () => startBoost());
   // offline catch-up like the real economy would do on game:ready (runs before ui's handler: subscribed earlier)
-  ctx.bus.on('game:ready', (p) => { const a = window.__FK_AWAY; if (a && p.awayS > 60) { F.coins += a.coins; window.__fk.trash.units -= a.units; } });
+  ctx.bus.on('game:ready', (p) => { const a = window.__FK_AWAY; if (a && p.awayS > 60) { F.coins += a.coins; window.__fk.trash.units -= a.units; ctx.bus.emit('economy:away', { awayS: p.awayS, units: a.units, coins: a.coins, capped: p.awayS > 7200 }); } }); // like the real economy (integration: economy:away)
 }
 const lvl = (pref, max) => { let n = 0; for (let i = 1; i <= max; i++) if (F.owned[pref + i]) n = i; return n; };
 export function update(dt) {

@@ -228,6 +228,7 @@ function bindBus(b) {
     if (coins >= 40 || p.valuable) voice('kaching', SND.kaching, t0 + span + 0.02, 1, SND.kaching.vol * (p.valuable ? 1.2 : 1), 0);
   });
   b.on('economy:bagFull', () => play('thud'));
+  b.on('tool:full', () => play('thud'));          // tried to collect with a full bag/tank (tools, ≤ 1 per 2 s)
   b.on('economy:purchased', () => play('purchase'));
   b.on('trash:milestone', (p) => {
     const ms = (C.CONFIG && C.CONFIG.milestones) || [];

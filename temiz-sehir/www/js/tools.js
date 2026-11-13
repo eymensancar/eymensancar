@@ -6,38 +6,11 @@
 // through bus events (tool:collect, tool:swing, tool:changed, tool:nozzle, tool:full, ui:toast).
 // Hot paths do not allocate: every vector, payload and pool is created in init.
 //
-// Draw calls (MIMARI §9: ≤ 6): view model 2 (hidden while driving), cart body (with contact shadow) + nozzle 2
-// (only once bought, frustum-culled), flying items 1 (one InstancedMesh for all 7 shapes), dust/sparkle 1.
-
-// Tunables that config.js does not define. A key of the same name in CONFIG.tools overrides the default.
-const TL = {
-  aimPickRadiusM: 0.35,     // hold-pick: pick radius around the crosshair hit
-  tapPickRadiusM: 0.3,      // tap-pick: pick radius around the tap ray hit
-  tapReachSlackM: 0.3,      // a tap may reach this much further than the hold reach (finger imprecision)
-  coneStepM: 0.25, coneStepDeg: 10,
-  flyPool: 40,              // flying item copies alive at once
-  flyMaxPerFrame: 4,        // new flying copies per frame (broom/cart; the rest are counted, not drawn)
-  flyArcM: 0.35,            // arc height for hand picks
-  dustPool: 64,
-  dustLifeS: 0.7,
-  handReachS: 0.16,         // right-hand reach animation
-  bagBounceS: 0.22,
-  equipS: 0.22,             // tool appears with a bounce (PSIKOLOJI: in hand within 200 ms)
-  broomStrokeS: 0.3,        // one stroke = one tool:swing + one dust puff (CONFIG.feedback.dustPuffEveryS wins)
-  swingInPlaceS: 0.55,      // holding the button while standing: one in-place stroke per this
-  swingDepthM: 0.22,        // half depth of an in-place stroke
-  fullFeedbackS: 2.0,       // "bag full" toast/thump/haptic at most this often while trying to collect
-  hapticMinGapMs: 66,       // ≤ 15 ticks/s (PSIKOLOJI §3)
-  cartView: 'auto',         // 'auto' (camera mode → chase, tank mode → seat), 'chase', 'first'
-  cartExitMaxSpeed: 0.4,    // 'exit' is offered only when the cart is (nearly) stopped, so 'nozzle' is reachable while driving
-  cartReverseAngleDeg: 130, // camera mode: a stick direction further than this from the heading reverses
-  cartReverseSpeed: 2.5,
-  cartSteerGain: 3.0,       // yaw rate (rad/s) per rad of heading error, capped at CONFIG.cart.turnRateDeg
-  cartTurnDampS: 0.12,      // yaw-rate smoothing: no sudden yaw snaps (PSIKOLOJI §4)
-  cartRecentreS: 0.9,       // tank mode: free look springs back to the heading after 1 s without look input
-  cartNozzleMoveS: 0.25,
-  cartSurfaceRide: 0.85,    // the cart rides on this fraction of the trash surface height
-};
+// Removal juice (items flying to the collector, dust per cleaned cell) is drawn by trash.js inside its own
+// instanced meshes (MIMARI §4.3/§4.5, decided at integration). tools draws only what is tool-specific: the view
+// model, the cart, broom stroke puffs and the valuable sparkle.
+// Draw calls: view model 2 (hidden while driving), cart body + nozzle 2 (once bought), puffs/sparkle 1 (Points).
+// Tunables: CONFIG.tools (config.js is the single source).
 
 const DEG = Math.PI / 180;
 let ctx = null, THREE = null, bus = null, C = null, K = null, cam = null;
@@ -129,24 +102,21 @@ function addToBag(units, byType, container) {
 // ------------------------------------------------------------------------------------------ init
 export function init(c) {
   ctx = c; THREE = c.THREE; bus = c.bus; C = c.CONFIG; cam = c.camera;
-  K = {}; const o = C.tools || {};
-  for (const k in TL) K[k] = o[k] != null ? o[k] : TL[k];
+  K = Object.assign({}, C.tools || {});
   types = (T().info && T().info().types) || C.trashTypes.map((t) => t.id);
   NT = Math.max(1, types.length); VALUABLE = types.indexOf('valuable');
   byOne = new Int32Array(NT);
   for (const t of ['hands', 'broom', 'cart']) agg[t] = makeAgg(t);
   v3a = new THREE.Vector3(); v3b = new THREE.Vector3(); m4 = new THREE.Matrix4();
-  dustEvery = (C.feedback && C.feedback.dustPuffEveryS) || K.broomStrokeS;
+  dustEvery = (C.feedback && C.feedback.dustPuffEveryS) || 0.3;
 
   buildViewModels();
-  buildFly();
   buildDust();
 
   bus.on('input:tap', (e) => { if (e) { tapPending = true; tapX = e.x; tapY = e.y; } });
   bus.on('ui:tool', (e) => { if (e && e.id) equip(e.id); });
   bus.on('ui:offer', onOffer);
   bus.on('economy:purchased', onPurchased);
-  bus.on('economy:sold', (e) => { if (e && e.by !== 'robot') haptic(H_MED); });
   bus.on('economy:bag', (e) => { if (e && (e.container || 'bag') === 'bag') bagFillTarget = e.cap > 0 ? e.units / e.cap : 0; });
   bus.on('player:dismount', onDismount);
   bus.on('game:ready', reconcile);
@@ -179,7 +149,6 @@ function reconcile() {
 
 function onPurchased(e) {
   if (!e) return;
-  haptic(H_HEAVY);
   const id = e.id || '';
   if (id === 'broom') { if (!cartMounted) setTool('broom', true); }
   else if (id === 'cart') { if (!cart) spawnCart(null, null, null); }
@@ -221,7 +190,6 @@ export function update(dt) {
   if (cart && !cartMounted) cartIdle(dt);
 
   animViewModel(dt, inp, ps);
-  updateFly(dt);
   updateDust(dt);
   if (cart) cartVisual(dt);
   flushCollect();
@@ -231,15 +199,16 @@ export function update(dt) {
 export function perfSample() { const r = perf.n ? perf.ms / perf.n : 0; perf.ms = 0; perf.n = 0; return r; }
 
 function offers(ps) {
-  const t = ctx.t;
+  // labels are STR keys (MIMARI §4.9); ui translates. In the cart both offers are always there: the nozzle on the
+  // big button (90), getting out on ui's secondary button (80).
   if (cartMounted) {
-    ctx.offer('nozzle', t(cart.nozzleDown ? 'act_nozzle_up' : 'act_nozzle_down'), 80, 'tools');
-    if (Math.abs(cart.speed) < K.cartExitMaxSpeed) ctx.offer('exit', t('act_exit'), 90, 'tools');
+    ctx.offer('nozzle', cart.nozzleDown ? 'act_nozzle_up' : 'act_nozzle_down', 90, 'tools');
+    ctx.offer('exit', 'act_exit', 80, 'tools');
     return;
   }
-  if (cart && cartDist(ps) <= C.cart.enterRadiusM) ctx.offer('enter', t('act_enter'), 70, 'tools');
-  if (cur === 'hands') ctx.offer('pick', t(space('bag') > 0 ? 'act_pick' : 'bag_full'), 10, 'tools');
-  else if (cur === 'broom') ctx.offer('sweep', t(space('bag') > 0 ? 'act_sweep' : 'bag_full'), 5, 'tools');
+  if (cart && cartDist(ps) <= C.cart.enterRadiusM) ctx.offer('enter', 'act_enter', 70, 'tools');
+  if (cur === 'hands') ctx.offer('pick', space('bag') > 0 ? 'act_pick' : 'bag_full', 10, 'tools');
+  else if (cur === 'broom') ctx.offer('sweep', space('bag') > 0 ? 'act_sweep' : 'bag_full', 5, 'tools');
 }
 
 function blocked(tool, container) {
@@ -247,7 +216,7 @@ function blocked(tool, container) {
   fullT = 0;
   fullEv.tool = tool; fullEv.container = container; bus.emit('tool:full', fullEv);
   toastEv.key = container === 'tank' ? 'tank_full' : 'bag_full'; bus.emit('ui:toast', toastEv);
-  haptic(H_FULL);
+  ctx.haptic('full');
 }
 
 // ---- hands
@@ -280,10 +249,15 @@ function grabNearest(ps) {
       const a = (k & 1 ? -1 : 1) * Math.ceil(k / 2) * stepA; // 0, +10°, -10°, +20°, ...
       if (Math.abs(a) > half + 1e-6) break;
       const x = ps.x + Math.sin(yaw + a) * d, z = ps.z - Math.cos(yaw + a) * d;
-      if (T().amountAt(x, z) > 0 && doPick(x, z, 0.3)) return;
+      if (T().amountAt(x, z) > 0 && doPick(x, z, K.conePickRadiusM)) return;
     }
   }
+  // 3) never waste a held button (TASARIM §4): an item's top can sit up to 0.46 m from its cell centre, so take the
+  // nearest dirty cell within reach even if no cone sample landed close enough to its top item
+  const idx = T().nearestDirty ? T().nearestDirty(ps.x, ps.z, reach) : -1;
+  if (idx >= 0 && T().cellCenter) { T().cellCenter(idx, cc); doPick(cc.x, cc.z, K.conePickRadiusM); }
 }
+const cc = { x: 0, z: 0 };
 function tapPick(ps) {
   if (space('bag') <= 0) { blocked('hands', 'bag'); reachT = 0; return; }
   // ray through the tap point
@@ -317,11 +291,9 @@ function doPick(x, z, r) {
   byOne.fill(0); if (p.type >= 0 && p.type < NT) byOne[p.type] = 1;
   addToBag(1, byOne, 'bag');
   aggAdd(agg.hands, 1, byOne, p.x, p.y, p.z);
-  spawnFly(p.x, p.y + 0.03, p.z, p.shape, p.color, p.scale, p.yaw, 0);
-  dustBurst(p.x, p.y + 0.05, p.z, 2, DUST_COL, 0.5);
   if (p.type === VALUABLE) sparkle(p.x, p.y + 0.1, p.z);
   reachT = 0;
-  haptic(H_TICK);
+  ctx.haptic('light');
   return true;
 }
 
@@ -338,7 +310,7 @@ function broomUpdate(dt, inp, ps) {
     if (room <= 0) blocked('broom', 'bag');
     else {
       const r = T().removeAlongSegment(lastSX, lastSZ, cx, cz, hw, room, 'broom');
-      collectResult(r, 'broom', 1);
+      collectResult(r, 'broom');
     }
     sweepActive = 1;
     strokeT += dt;
@@ -357,7 +329,7 @@ function broomUpdate(dt, inp, ps) {
       else {
         const rx = -fwd.z * hw, rz = fwd.x * hw, side = (strokePhase % (Math.PI * 2)) < Math.PI ? 1 : -1;
         const r = T().removeAlongSegment(cx - rx * side, cz - rz * side, cx + rx * side, cz + rz * side, K.swingDepthM, room, 'broom');
-        collectResult(r, 'broom', 1);
+        collectResult(r, 'broom');
       }
       swingEv.tool = 'broom'; swingEv.speed = 0; bus.emit('tool:swing', swingEv);
       dustBurst(cx, T().surfaceAt(cx, cz) + 0.06, cz, 3, DUST_COL, 0.8);
@@ -368,36 +340,16 @@ function broomUpdate(dt, inp, ps) {
 }
 
 // shared by broom + cart: bag/tank, aggregation, flying copies, haptic
-function collectResult(r, tool, kind) {
+function collectResult(r, tool) {
   if (!r || r.units <= 0) return;
   addToBag(r.units, r.byType, tool === 'cart' ? 'tank' : 'bag');
-  const n = Math.min(r.n, K.flyMaxPerFrame);
   aggAdd(agg[tool], r.units, r.byType, r.n ? r.sx[0] : 0, r.n ? r.sy[0] : 0, r.n ? r.sz[0] : 0);
-  for (let i = 0; i < n; i++) spawnFly(r.sx[i], r.sy[i] + 0.03, r.sz[i], r.ss[i], r.sc[i], 1, i * 1.7, kind);
   for (let i = 0; i < r.n; i++) if (r.st[i] === VALUABLE) { sparkle(r.sx[i], r.sy[i] + 0.1, r.sz[i]); break; }
-  haptic(H_TICK);
+  ctx.haptic('light');
 }
 
 function flushCollect() {
   for (const k in agg) { const a = agg[k]; if (a.units > 0) { bus.emit('tool:collect', a); a.units = 0; } }
-}
-
-// ------------------------------------------------------------------------------------------ haptics
-const H_TICK = 1, H_MED = 2, H_HEAVY = 3, H_FULL = 4;
-const VIB = [0, 8, 22, [18, 40, 28], [30, 60, 30]];
-const CAP_STYLE = ['', 'LIGHT', 'MEDIUM', 'HEAVY', 'MEDIUM'];
-let lastHaptic = -1e9;
-function haptic(kind) {
-  const s = ctx.state.settings || {};
-  if (s.haptics === false) return;
-  const now = performance.now();
-  if (now - lastHaptic < K.hapticMinGapMs) return;
-  lastHaptic = now;
-  const cap = window.Capacitor, H = cap && cap.Plugins && cap.Plugins.Haptics;
-  try {
-    if (H && H.impact) { H.impact({ style: CAP_STYLE[kind] }); return; }
-    if (navigator.vibrate) navigator.vibrate(VIB[kind]);
-  } catch (e) { /* no haptics here */ }
 }
 
 // ------------------------------------------------------------------------------------------ geometry helpers (init only)
@@ -522,6 +474,7 @@ function syncBagLook() {
   bagCol.needsUpdate = true;
   const u = E().bagUnits ? E().bagUnits('bag') : 0; bagFillTarget = cap > 0 ? u / cap : 0;
 }
+function vmDepthScale() { return ctx.view.portrait ? 1 : Math.tan(30 * DEG) / Math.tan(cam.fov * 0.5 * DEG); }
 const backOut = (t) => { const s = 1.9; t -= 1; return t * t * ((s + 1) * t + s) + 1; };
 function animViewModel(dt, inp, ps) {
   if (!vmRoot) return;
@@ -529,9 +482,12 @@ function animViewModel(dt, inp, ps) {
   vmRoot.visible = !cartMounted && !lifting;
   if (!vmRoot.visible) return;
   const rdt = dt > 0 ? dt : 0;
-  const lat = ctx.view.portrait ? 0.62 : 1; // keep hands inside the narrow portrait frame
+  const lat = ctx.view.portrait ? K.portraitLateral : 1; // keep hands inside the narrow portrait frame
   // portrait: push the whole view model a little further away (smaller, nearer the centre of the narrow frame)
-  if (ctx.view.portrait) vmRoot.position.set(0, -0.06, -0.24); else vmRoot.position.set(0, 0, 0);
+  if (ctx.view.portrait) vmRoot.position.set(K.portraitOffset[0], K.portraitOffset[1], K.portraitOffset[2]); else vmRoot.position.set(0, 0, 0);
+  // the view model was laid out for a 60 deg vertical FOV; main now derives a narrower one from the horizontal target in
+  // landscape. Stretching depth by tan(30)/tan(fov/2) keeps every part at the same screen position and size.
+  vmRoot.scale.z = vmDepthScale();
   // equip bounce: rises from below with a small overshoot
   equipT = Math.min(1, equipT + rdt / K.equipS);
   const eq = backOut(equipT), lower = (1 - eq) * -0.22;
@@ -561,113 +517,6 @@ function animViewModel(dt, inp, ps) {
     broomG.rotation.set(-0.03 * Math.abs(sw), sw * 0.2, -sw * 0.05);
     broomHead.rotation.set(-vel * 0.2, 0, vel * 0.3);
   }
-}
-
-// ------------------------------------------------------------------------------------------ flying items
-// One InstancedMesh holding all 7 item shapes merged; per instance `iShape` selects which shape's
-// vertices are kept (the others collapse to a point). 1 draw call for every flying item.
-let fly = null, flyGeo = null, flyShapeAttr = null, flyN = 0, nShapes = 1;
-const FLY = { x0: null, y0: null, z0: null, t: null, dur: null, shape: null, kind: null, spin: null, s: null, col: null };
-function buildFly() {
-  const n = K.flyPool, tr = T();
-  const parts = [];
-  nShapes = (tr.info && tr.info().shapes && tr.info().shapes.length) || 0;
-  for (let s = 0; s < nShapes; s++) {
-    let g = tr.itemGeometry ? tr.itemGeometry(s) : null;
-    if (!g) { parts.length = 0; break; }
-    g = g.index ? g.toNonIndexed() : g.clone();
-    if (!g.attributes.normal) g.computeVertexNormals();
-    const cnt = g.attributes.position.count;
-    if (!g.attributes.color) { const ca = new Float32Array(cnt * 3).fill(1); g.setAttribute('color', new THREE.BufferAttribute(ca, 3)); }
-    g.setAttribute('aShape', new THREE.BufferAttribute(new Float32Array(cnt).fill(s), 1));
-    parts.push(g);
-  }
-  if (!parts.length) { // trash stub: a small box stands in for every shape
-    nShapes = 1;
-    const g = new THREE.BoxGeometry(0.12, 0.08, 0.1).toNonIndexed();
-    g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(g.attributes.position.count * 3).fill(1), 3));
-    g.setAttribute('aShape', new THREE.BufferAttribute(new Float32Array(g.attributes.position.count), 1));
-    parts.push(g);
-  }
-  let cnt = 0; for (const g of parts) cnt += g.attributes.position.count;
-  const pos = new Float32Array(cnt * 3), nor = new Float32Array(cnt * 3), cl = new Float32Array(cnt * 3), sh = new Float32Array(cnt);
-  let o = 0;
-  for (const g of parts) { const c = g.attributes.position.count; pos.set(g.attributes.position.array, o * 3); nor.set(g.attributes.normal.array, o * 3); cl.set(g.attributes.color.array, o * 3); sh.set(g.attributes.aShape.array, o); o += c; }
-  flyGeo = new THREE.BufferGeometry();
-  flyGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  flyGeo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
-  flyGeo.setAttribute('color', new THREE.BufferAttribute(cl, 3));
-  flyGeo.setAttribute('aShape', new THREE.BufferAttribute(sh, 1));
-  flyShapeAttr = new THREE.InstancedBufferAttribute(new Float32Array(n), 1);
-  flyShapeAttr.setUsage(THREE.DynamicDrawUsage);
-  flyGeo.setAttribute('iShape', flyShapeAttr);
-  const mat = new THREE.MeshLambertMaterial({ vertexColors: true });
-  mat.onBeforeCompile = (s) => {
-    s.vertexShader = s.vertexShader
-      .replace('#include <common>', '#include <common>\nattribute float aShape;\nattribute float iShape;')
-      .replace('#include <begin_vertex>', '#include <begin_vertex>\nif (abs(aShape - iShape) > 0.5) transformed = vec3(0.0);');
-  };
-  fly = new THREE.InstancedMesh(flyGeo, mat, n);
-  fly.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-  fly.setColorAt(0, new THREE.Color(1, 1, 1));
-  fly.instanceColor.setUsage(THREE.DynamicDrawUsage);
-  fly.count = 0; fly.visible = false; fly.frustumCulled = false; fly.name = 'toolsFly';
-  ctx.scene.add(fly);
-  for (const k of ['x0', 'y0', 'z0', 't', 'dur', 'spin', 's']) FLY[k] = new Float32Array(n);
-  FLY.shape = new Uint8Array(n); FLY.kind = new Uint8Array(n); FLY.col = new Uint32Array(n);
-}
-function spawnFly(x, y, z, shape, color, scale, spin, kind) {
-  if (!fly || flyN >= K.flyPool) return;
-  const i = flyN++;
-  FLY.x0[i] = x; FLY.y0[i] = y; FLY.z0[i] = z; FLY.t[i] = 0;
-  FLY.dur[i] = (C.feedback && C.feedback.pickupArcS) || 0.25;
-  FLY.shape[i] = shape >= 0 && shape < nShapes ? shape : 0; FLY.kind[i] = kind; FLY.spin[i] = spin || 0; FLY.s[i] = scale || 1; FLY.col[i] = color >>> 0;
-}
-// where the flying items go: 0 = hands bag, 1 = broom head, 2 = cart intake (world)
-const anchor = [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }];
-function updateAnchors() {
-  const lat = ctx.view.portrait ? 0.62 : 1;
-  const ox = vmRoot ? vmRoot.position.y : 0, oz = vmRoot ? vmRoot.position.z : 0;
-  v3a.set(BAG.x * lat, BAG.y - 0.04 + ox, BAG.z + oz).applyMatrix4(cam.matrixWorld); anchor[0].x = v3a.x; anchor[0].y = v3a.y; anchor[0].z = v3a.z;
-  v3a.set(BROOM.x * lat + BROOM_HEAD.x, BROOM.y + BROOM_HEAD.y + 0.02 + ox, BROOM.z + BROOM_HEAD.z + oz).applyMatrix4(cam.matrixWorld); anchor[1].x = v3a.x; anchor[1].y = v3a.y; anchor[1].z = v3a.z;
-  if (cart) { const f = cartNozzleFront(); anchor[2].x = cart.x + Math.sin(cart.heading) * (f - 0.25); anchor[2].z = cart.z - Math.cos(cart.heading) * (f - 0.25); anchor[2].y = cart.y + 0.35; }
-}
-const tmpCol = { r: 0, g: 0, b: 0 };
-function updateFly(dt) {
-  if (!fly) return;
-  if (flyN === 0) { if (fly.visible) { fly.visible = false; fly.count = 0; } return; }
-  updateAnchors();
-  const m = fly.instanceMatrix.array, ca = fly.instanceColor.array, sa = flyShapeAttr.array, arc = K.flyArcM;
-  for (let i = 0; i < flyN; i++) {
-    FLY.t[i] += dt;
-    if (FLY.t[i] >= FLY.dur[i]) { // swap-remove
-      const l = --flyN;
-      if (i !== l) for (const k in FLY) FLY[k][i] = FLY[k][l];
-      i--; continue;
-    }
-  }
-  for (let i = 0; i < flyN; i++) {
-    const u = FLY.t[i] / FLY.dur[i], e = u * u * (3 - 2 * u), a = anchor[FLY.kind[i]];
-    let x = FLY.x0[i] + (a.x - FLY.x0[i]) * e, y = FLY.y0[i] + (a.y - FLY.y0[i]) * e, z = FLY.z0[i] + (a.z - FLY.z0[i]) * e;
-    if (FLY.kind[i] === 2) { // spiral into the intake
-      const ang = FLY.spin[i] + u * 9, rr = (1 - u) * 0.25;
-      x += Math.cos(ang) * rr; z += Math.sin(ang) * rr; y += Math.sin(u * Math.PI) * 0.25;
-    } else y += Math.sin(u * Math.PI) * arc * (FLY.kind[i] === 0 ? 1 : 0.6);
-    const s = FLY.s[i] * (u < 0.55 ? 1 : 1 - (u - 0.55) / 0.45) * 0.95, yaw = FLY.spin[i] + u * 7, tilt = u * 5;
-    const cy = Math.cos(yaw), sy = Math.sin(yaw), cx = Math.cos(tilt), sx = Math.sin(tilt), q = i * 16;
-    m[q] = cy * s; m[q + 1] = 0; m[q + 2] = -sy * s; m[q + 3] = 0;
-    m[q + 4] = sy * sx * s; m[q + 5] = cx * s; m[q + 6] = cy * sx * s; m[q + 7] = 0;
-    m[q + 8] = sy * cx * s; m[q + 9] = -sx * s; m[q + 10] = cy * cx * s; m[q + 11] = 0;
-    m[q + 12] = x; m[q + 13] = y; m[q + 14] = z; m[q + 15] = 1;
-    const c = FLY.col[i];
-    tmpCol.r = ((c >> 16) & 255) / 255; tmpCol.g = ((c >> 8) & 255) / 255; tmpCol.b = (c & 255) / 255;
-    ca[i * 3] = tmpCol.r; ca[i * 3 + 1] = tmpCol.g; ca[i * 3 + 2] = tmpCol.b;
-    sa[i] = FLY.shape[i];
-  }
-  fly.count = flyN; fly.visible = flyN > 0;
-  fly.instanceMatrix.updateRange.count = flyN * 16; fly.instanceMatrix.needsUpdate = true;
-  fly.instanceColor.updateRange.count = flyN * 3; fly.instanceColor.needsUpdate = true;
-  flyShapeAttr.updateRange.count = flyN; flyShapeAttr.needsUpdate = true;
 }
 
 // ------------------------------------------------------------------------------------------ dust + sparkle (1 Points)
@@ -841,7 +690,7 @@ function mountCart(quiet) {
   cartMounted = true; cart.lastNX = NaN; cart.lookIdle = 0;
   cur = 'cart'; P().setSpeedCap(null); capNow = null;
   showViewModel(false);
-  if (!quiet) haptic(H_MED);
+  if (!quiet) ctx.haptic('medium');
   changedEv.id = 'cart'; bus.emit('tool:changed', changedEv);
   return true;
 }
@@ -854,9 +703,9 @@ function toggleNozzle() {
   if (!cart || !cartMounted) return;
   cart.nozzleDown = !cart.nozzleDown; cart.lastNX = NaN;
   nozzleEv.down = cart.nozzleDown; bus.emit('tool:nozzle', nozzleEv);
-  haptic(H_TICK);
+  ctx.haptic('light');
 }
-function controlMode() { const s = ctx.state.settings || {}; return s.cartControl === 'tank' || s.cartControl === 'camera' ? s.cartControl : (C.cart.controlMode || 'camera'); }
+function controlMode() { const s = ctx.state.settings || {}; return s.steer === 'tank' || s.steer === 'camera' ? s.steer : (C.cart.controlMode || 'camera'); }
 function cartViewMode() { return K.cartView === 'chase' || K.cartView === 'first' ? K.cartView : (controlMode() === 'tank' ? 'first' : 'chase'); }
 
 // vehicle.drive(dt, input, pose): called by player.update while mounted. Moves pose.x/z (and pose.yaw in
@@ -898,7 +747,7 @@ function drive(dt, inp, ps) {
     cart.lookIdle = inp.lookDX !== 0 || inp.lookDY !== 0 ? 0 : cart.lookIdle + dt;
     if (cart.lookIdle > 1) ps.yaw = wrapPi(ps.yaw + wrapPi(cart.heading - ps.yaw) * (1 - Math.exp(-dt / K.cartRecentreS)));
   }
-  if (bump > 0) haptic(H_MED);
+  if (bump > 0) ctx.haptic('medium');
   return bump;
 }
 // integrate + collide (two circles along the body); returns bump strength on a fresh hit
@@ -931,11 +780,7 @@ function cartClean(dt) {
   const room = space('tank');
   if (room <= 0) { blocked('cart', 'tank'); cart.lastNX = nx; cart.lastNZ = nz; return; }
   const r = T().removeAlongSegment(cart.lastNX, cart.lastNZ, nx, nz, stat('cartNozzleWidth') * 0.5, room, 'cart');
-  collectResult(r, 'cart', 2);
-  if (r && r.units > 0) {
-    cart.dustT += dt;
-    if (cart.dustT >= dustEvery * 0.5) { cart.dustT = 0; const s = stat('cartNozzleWidth') * 0.5, rx = -Math.cos(cart.heading), rz = -Math.sin(cart.heading); dustBurst(nx + rx * s * 0.8, cart.y + 0.1, nz + rz * s * 0.8, 2, DUST_COL, 0.8); dustBurst(nx - rx * s * 0.8, cart.y + 0.1, nz - rz * s * 0.8, 2, DUST_COL, 0.8); }
-  }
+  collectResult(r, 'cart');
   cart.lastNX = nx; cart.lastNZ = nz;
 }
 // test helper (not in the contract)

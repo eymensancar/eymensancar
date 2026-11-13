@@ -10,23 +10,10 @@ const INIT_ORDER = ['world', 'trash', 'player', 'tools', 'economy', 'audio', 'ui
 const UPDATE_ORDER = ['player', 'tools', 'economy', 'trash', 'world', 'audio', 'ui', 'debug'];
 const SAVE_MODULES = ['world', 'trash', 'player', 'tools', 'economy', 'audio', 'ui'];
 
-// Fields main.js reads. config.js (design) may override any of them; missing ones fall back here.
+// Engine-only fields that config.js does not carry (every gameplay/render number lives in config.js).
 const MAIN_DEFAULTS = {
-  saveKey: 'temizsehir.v1',
-  player: { fovVerticalDegLandscape: 60, fovVerticalDegPortrait: 75 },
-  render: {
-    maxDpr: 2, minDpr: 1, startDpr: 2,     // device pixel ratio clamp (also capped by window.devicePixelRatio)
-    antialias: true, near: 0.1, far: 480,
-    adaptive: true, downMs: 19.5, upMs: 17.4, upAfterS: 4, step: 0.85, freezeS: 20,
-  },
-  loop: { maxDt: 0.05, awayThresholdS: 2 },
+  loop: { maxDt: 0.05 },
   save: { intervalS: 10 },
-};
-// minimal Turkish/English fallbacks for the few texts main.js itself can show
-const MAIN_STR = {
-  boot_error: { tr: 'Oyun başlatılamadı.', en: 'The game could not start.' },
-  no_webgl: { tr: 'Bu cihazda 3B grafik açılamadı.', en: '3D graphics are not available on this device.' },
-  gl_lost: { tr: 'Grafik yeniden yükleniyor...', en: 'Reloading graphics...' },
 };
 
 const params = new URLSearchParams(location.search);
@@ -126,11 +113,13 @@ async function boot() {
 
   const cfgMod = loaded.config || {};
   const CONFIG = deepMerge(MAIN_DEFAULTS, cfgMod.CONFIG || {});
-  const STR = Object.assign({}, MAIN_STR, cfgMod.STR || {});
+  const STR = cfgMod.STR || {};
   const bus = loaded.bus && loaded.bus.createBus ? loaded.bus.createBus() : fallbackBus();
 
   // shared state: main writes `paused`/`pauseReasons`; `settings` is written by ui.js (persisted in ui's save)
-  const state = { settings: { lang: params.get('lang') === 'en' ? 'en' : 'tr', sound: true, music: true, sens: 1, invertY: false }, paused: false, pauseReasons: {} };
+  // settings are written by ui.js (persisted in ui's save) and read by player (sens, invertY), tools (steer, haptics
+  // via ctx.haptic), main (quality) and audio (sound, music)
+  const state = { settings: { lang: params.get('lang') === 'en' ? 'en' : 'tr', sound: true, music: true, sens: 1, invertY: false, haptics: true, steer: (CONFIG.cart && CONFIG.cart.controlMode) || 'camera', quality: 'auto' }, paused: false, pauseReasons: {} };
   function t(key, vars) {
     const e = STR[key];
     let s = e ? (e[state.settings.lang] != null ? e[state.settings.lang] : (e.tr != null ? e.tr : key)) : key;
@@ -140,13 +129,14 @@ async function boot() {
 
   const THREE = window.THREE;
   if (!THREE) return fatal(bootEl, t('boot_error'));
+  if (!CONFIG.render) return fatal(bootEl, t('boot_error'));
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: CONFIG.render.antialias, powerPreference: 'high-performance', stencil: false, alpha: false, preserveDrawingBuffer: params.has('debug') });
   } catch (e) { console.error(e); return fatal(bootEl, t('no_webgl')); }
   renderer.setClearColor(0xcdd7dc, 1);
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(CONFIG.player.fovVerticalDegLandscape, 1, CONFIG.render.near, CONFIG.render.far);
+  const camera = new THREE.PerspectiveCamera(60, 1, CONFIG.render.near, CONFIG.render.far); // fov set by fovFor() in resize()
   camera.rotation.order = 'YXZ';
   scene.add(camera); // so view models parented to the camera render
 
@@ -170,7 +160,8 @@ async function boot() {
       const o = offerPool[offers.count++]; o.id = id; o.label = label; o.priority = priority; o.owner = owner; o.data = data;
     },
     setPaused(reason, on) { if (on) state.pauseReasons[reason] = true; else delete state.pauseReasons[reason]; state.paused = Object.keys(state.pauseReasons).length > 0; },
-    save: { now: saveNow, clear: clearSave, key: CONFIG.saveKey },
+    save: { now: saveNow, clear: clearSave, reset: resetSave, key: CONFIG.saveKey },
+    haptic,                                  // haptic('light' | 'medium' | 'heavy' | 'full'): settings + rate limit
     step: manualStep, // (frames, dt) run updates + render synchronously (tests)
     manual: params.has('manual'),
     errors: {},
@@ -198,9 +189,32 @@ async function boot() {
   // ---- resize + adaptive resolution
   const R = CONFIG.render;
   const devDpr = Math.max(1, window.devicePixelRatio || 1);
-  const q = { max: Math.min(devDpr, R.maxDpr), min: Math.min(devDpr, R.minDpr), dpr: 1, acc: 0, n: 0, winStart: now(), good: 0, lastAvg: 0, lastDown: false, freezeUntil: 0 };
+  const q = { max: Math.min(devDpr, R.maxDpr), min: Math.min(devDpr, R.minDpr), dpr: 1, acc: 0, n: 0, winStart: now(), good: 0, lastAvg: 0, lastDown: false, freezeUntil: 0, mode: 'auto' };
   q.dpr = Math.max(q.min, Math.min(q.max, params.has('dpr') ? +params.get('dpr') : R.startDpr));
   ctx.view.dpr = q.dpr;
+  // quality setting (ui writes state.settings.quality): 'auto' adapts, 'high' pins maxDpr, 'low' pins lowDpr
+  // and asks trash for the shorter 3D item band. Applied at boot (after load) and on ui:settings.
+  function applyQuality() {
+    const m = state.settings.quality === 'high' || state.settings.quality === 'low' ? state.settings.quality : 'auto';
+    if (m === q.mode && q.applied) return;
+    q.mode = m; q.applied = true;
+    if (!params.has('dpr')) {
+      if (m === 'high') q.dpr = q.max;
+      else if (m === 'low') q.dpr = Math.min(devDpr, R.lowDpr || 1);
+      else q.dpr = Math.max(q.min, Math.min(q.max, R.startDpr));
+    }
+    q.good = 0; q.lastDown = false; q.freezeUntil = 0;
+    const tr = ctx.mods.trash; if (tr && tr.setQuality) try { tr.setQuality(m); } catch (e) { reportError('trash', e); }
+    resize(); bus.emit('view:quality', { dpr: q.dpr, mode: m });
+  }
+  // FOV (PSIKOLOJI §4): landscape from a horizontal target, vertical clamped; portrait a fixed vertical FOV
+  const P0 = CONFIG.player || {};
+  function fovFor(w, h) {
+    if (h > w) return P0.fovVerticalDegPortrait || 75;
+    const hDeg = P0.fovHorizontalDegLandscape || 85, cl = P0.fovVerticalClampDeg || [44, 65];
+    const v = 2 * Math.atan(Math.tan(hDeg * Math.PI / 360) / (w / h)) * 180 / Math.PI;
+    return Math.max(cl[0], Math.min(cl[1], v));
+  }
   const probe = document.createElement('div');
   probe.style.cssText = 'position:fixed;visibility:hidden;pointer-events:none;top:0;left:0;padding:var(--sat) var(--sar) var(--sab) var(--sal)';
   document.body.appendChild(probe);
@@ -213,7 +227,7 @@ async function boot() {
     renderer.setPixelRatio(q.dpr);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    camera.fov = v.portrait ? CONFIG.player.fovVerticalDegPortrait : CONFIG.player.fovVerticalDegLandscape;
+    camera.fov = fovFor(w, h);
     camera.updateProjectionMatrix();
     for (const name of INIT_ORDER) { const m = ctx.mods[name]; if (m.resize) try { m.resize(w, h); } catch (e) { reportError(name, e); } }
     bus.emit('view:resize', v);
@@ -226,7 +240,7 @@ async function boot() {
   resize();
 
   function adapt(frameMs, tNow) {
-    if (!R.adaptive || params.has('dpr')) return;
+    if (!R.adaptive || params.has('dpr') || q.mode !== 'auto') { if (frameMs < 100) { q.acc += frameMs; q.n++; if (tNow - q.winStart >= 1000) { perf.fps = 1000 / (q.acc / q.n); q.acc = 0; q.n = 0; q.winStart = tNow; } } return; }
     if (frameMs > 100) return; // hitches, tab switches
     q.acc += frameMs; q.n++;
     if (tNow - q.winStart < 1000) return;
@@ -246,12 +260,15 @@ async function boot() {
   }
 
   // ---- save orchestration (single localStorage key, one object per module)
+  // a sandboxed iframe (opaque origin) throws on any localStorage access: play on without saving, say it once
+  let storageOk = true;
+  try { localStorage.getItem(CONFIG.saveKey); } catch (e) { storageOk = false; console.info('[main] localStorage unavailable here: progress is not saved'); }
   function readSave() {
-    if (params.has('nosave') || params.has('reset')) return null;
+    if (!storageOk || params.has('nosave') || params.has('reset')) return null;
     try { const s = localStorage.getItem(CONFIG.saveKey); return s ? JSON.parse(s) : null; } catch (e) { console.warn('[main] save unreadable, starting fresh', e); return null; }
   }
   function saveNow() {
-    if (params.has('nosave')) return false;
+    if (!storageOk || params.has('nosave') || saveBlocked) return false;
     bus.emit('game:willSave', null);
     const data = { v: 1, savedAt: Date.now(), playS: ctx.time.game, mods: {} };
     for (const name of SAVE_MODULES) { const m = ctx.mods[name]; if (m.__stub || !m.save) continue; try { const d = m.save(); if (d != null) data.mods[name] = d; } catch (e) { reportError(name, e); } }
@@ -259,6 +276,29 @@ async function boot() {
     try { localStorage.setItem(CONFIG.saveKey, JSON.stringify(data)); return true; } catch (e) { console.warn('[main] save failed', e); return false; }
   }
   function clearSave() { try { localStorage.removeItem(CONFIG.saveKey); } catch (e) { /* ignore */ } }
+  // reset: delete the save and reload WITHOUT the pagehide/visibility saves writing it back
+  let saveBlocked = false;
+  function resetSave() { saveBlocked = true; clearSave(); try { location.reload(); } catch (e) { /* ignore */ } }
+  // haptics: one owner of the rate limit and the setting (ui: buttons, sale, purchase, milestone; tools: picks,
+  // bumps). Capacitor Haptics plugin when present, else navigator.vibrate (no-op on iOS Safari).
+  const HC = CONFIG.haptics || { lightMaxPerS: 15, minGapMs: 40 };
+  const hz = { t: 0, n: 0, last: -1e9 };
+  const HAPTIC_MS = { light: 6, medium: 16, heavy: 30, full: [18, 40, 28] };
+  function haptic(kind) {
+    if (state.settings.haptics === false) return;
+    const tn = now();
+    if (kind === 'light') {
+      if (tn - hz.t > 1000) { hz.t = tn; hz.n = 0; }
+      if (hz.n >= HC.lightMaxPerS || tn - hz.last < HC.minGapMs) return;
+      hz.n++;
+    }
+    hz.last = tn;
+    try {
+      const H = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Haptics;
+      if (H && H.impact) { H.impact({ style: kind === 'heavy' ? 'HEAVY' : kind === 'light' ? 'LIGHT' : 'MEDIUM' }); return; }
+      if (ctx.isTouch && navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) navigator.vibrate(HAPTIC_MS[kind] || 10);
+    } catch (e) { /* haptics are optional */ }
+  }
   if (params.has('reset')) clearSave();
   const prevSave = readSave();
   for (const name of SAVE_MODULES) {
@@ -315,12 +355,26 @@ async function boot() {
     }
   });
   addEventListener('pagehide', () => saveNow());
-  canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); ctx.setPaused('gl', true); bus.emit('gl:lost', null); bus.emit('ui:toast', { text: t('gl_lost') }); });
-  canvas.addEventListener('webglcontextrestored', () => { ctx.setPaused('gl', false); bus.emit('gl:restored', null); resize(); });
+  // WebGL context loss (iOS under memory pressure / long background): pause, save, wait for the restore; three r128
+  // re-creates its GL objects on restore and re-uploads textures and buffers lazily. If the browser does not
+  // restore within render.glLostReloadS, save and reload the page (the save brings the player back exactly).
+  let glTimer = 0;
+  canvas.addEventListener('webglcontextlost', (e) => {
+    e.preventDefault(); ctx.setPaused('gl', true); saveNow();
+    bus.emit('gl:lost', null); bus.emit('ui:toast', { text: t('gl_lost') });
+    clearTimeout(glTimer);
+    glTimer = setTimeout(() => { if (state.pauseReasons.gl && !document.hidden) { saveNow(); location.reload(); } }, (R.glLostReloadS || 4) * 1000);
+  });
+  canvas.addEventListener('webglcontextrestored', () => {
+    clearTimeout(glTimer); ctx.setPaused('gl', false); last = now();
+    bus.emit('gl:restored', null); resize();
+  });
+  bus.on('ui:settings', applyQuality);
 
   bus.on('game:saveNow', () => saveNow());
   window.__tsCtx = ctx.debug ? ctx : undefined;
 
+  applyQuality(); // after load: ui restored the saved settings
   // first frame, then lift the curtain
   try { tick(0); } catch (e) { console.error(e); }
   bus.emit('game:ready', { fresh: !prevSave, awayS });

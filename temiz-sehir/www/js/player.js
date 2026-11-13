@@ -3,7 +3,7 @@
 // Notes, tunables and contract issues: docs/notlar/player.md.
 //
 // Comfort rules (docs/PSIKOLOJI.md §4) built in: no head bob (optional, capped at 1 cm, off by default),
-// never any roll, FOV untouched (main owns it), walking reaches top speed in CTRL.accelS (0.18 s, linear,
+// never any roll, FOV untouched (main owns it), walking reaches top speed in controller.accelS (0.18 s, linear,
 // no long ease), look applies raw deltas in the same frame (no smoothing = no added latency), vehicle
 // turns are damped by tools.js (drive), mount/dismount and the finale lift are eased camera blends.
 //
@@ -15,37 +15,7 @@
 //   Moves are tracked on window with pointer capture, so a finger sliding over the HUD keeps working.
 //   pointercancel / lostpointercapture / blur / hidden / panel open / orientation flip release everything.
 
-// Tunables that config.js does not (yet) define. Any key of the same name in CONFIG.player overrides
-// the default (see docs/notlar/player.md, "Sözleşme sorunları").
-const CTRL = {
-  accelS: 0.18,             // time from standstill to full walking speed (linear), PSIKOLOJI 0.15–0.25 s
-  decelS: 0.12,             // full speed to standstill
-  stickRadiusPx: 56,        // thumb travel for full deflection (CSS px)
-  stickDeadZone: 0.12,      // fraction of the radius
-  stickFullAt: 0.92,        // deflection that already counts as full
-  stickEdgePx: 44,          // the stick base is kept at least this far from the screen edges
-  tapMaxMs: 220,            // MIMARI §4.4
-  tapMaxPx: 12,
-  surfaceLift: 0.5,         // eye rises by this fraction of the trash surface under the feet
-  eyeSmoothS: 0.15,         // low-pass time constant of that rise
-  startPitchDeg: -6,
-  headBobM: 0,              // 0 = off (default). Hard-capped at 0.01 m (PSIKOLOJI §4)
-  stepLengthM: 0.8,         // player:step every this many metres walked
-  mountBlendS: 0.4,         // camera blend into/out of a vehicle
-  seatBackM: 0.25,          // first-person seat behind the vehicle centre
-  chaseDistM: 3.6,          // chase camera behind the vehicle (along the view direction)
-  chaseHeightM: 0.75,       // above the vehicle eye height
-  chasePitchDeg: -13,       // extra look-down so the vehicle stays in frame
-  chaseMinDistM: 1.2,
-  chasePortraitScale: 1.5,  // portrait has a narrow horizontal FOV: sit further back so the street around the cart shows       // when a wall is in the way the camera slides in, never closer than this
-  liftRiseS: 4.0,           // finale camera lift
-  liftHeightM: 70,
-  liftBackM: 22,            // horizontal distance from the district centre (pitch ≈ -72°: the whole district in frame)
-  liftHoldS: 2.0,           // the lift can only be ended by input after this
-  liftReturnS: 1.6,
-  invertMouseY: false,
-  shakeM: 0.03,             // cart bump jolt amplitude (vertical only); duration = CONFIG.feedback.cartShakeOnBump
-};
+// Tunables: CONFIG.player.controller (config.js is the single source).
 
 const DEG = Math.PI / 180;
 const TAU = Math.PI * 2;
@@ -172,6 +142,15 @@ export function dismount() {
   mountEv.vehicle = v.id || 'vehicle'; bus.emit('player:dismount', mountEv);
 }
 export function mounted() { return vehicle; }
+// look(yawRad, pitchRad): set the view direction (tests, debug.js __ts.look); pitch is clamped
+export function look(yaw, pitch) {
+  if (yaw != null && isFinite(yaw)) PS.yaw = wrapPi(yaw);
+  if (pitch != null && isFinite(pitch)) PS.pitch = clamp(pitch, pitchMin, pitchMax);
+  writeCamera(0);
+}
+// setStick(x, y): a virtual stick (-1..1, +y forward) merged like the keyboard; setStick(0, 0) releases it
+let virtX = 0, virtY = 0;
+export function setStick(x, y) { virtX = clamp(+x || 0, -1, 1); virtY = clamp(+y || 0, -1, 1); }
 export function setSpeedCap(mps) { speedCap = (mps == null || !(mps > 0)) ? null : +mps; }
 export function viewModel() { return vm; }
 
@@ -179,8 +158,7 @@ export function viewModel() { return vm; }
 export function init(c) {
   ctx = c; THREE = c.THREE; cam = c.camera; bus = c.bus; C = c.CONFIG;
   const P = C.player || {};
-  K = {};
-  for (const k in CTRL) K[k] = P[k] != null ? P[k] : CTRL[k];
+  K = Object.assign({}, P.controller || {});
   K.headBobM = clamp(+K.headBobM || 0, 0, 0.01);
   walkSpeed = P.walkSpeed || 5; radius = P.radiusM || 0.35; eyeH = P.eyeHeightM || 1.65;
   if (P.pitchLimitDeg) { pitchMin = P.pitchLimitDeg[0] * DEG; pitchMax = P.pitchLimitDeg[1] * DEG; }
@@ -307,7 +285,7 @@ function freePtr(s) {
   p.id = -1; p.role = R_NONE;
 }
 function releasePointers() { for (let i = 0; i < MAXP; i++) if (ptr[i].id !== -1) freePtr(i); accTX = accTY = accMX = accMY = 0; }
-function releaseAll() { releasePointers(); keys = 0; actionHeld = false; actionLatch = false; }
+function releaseAll() { releasePointers(); keys = 0; actionHeld = false; actionLatch = false; virtX = virtY = 0; }
 
 // thumb position → stick vector; the base follows a thumb that goes past the rim (floating stick)
 function stickFromThumb() {
@@ -347,6 +325,7 @@ function onKey(e) {
 // fold this frame's input into the live input object
 function sampleInput() {
   let mx = stickRawX, my = stickRawY;
+  if (Math.abs(virtX) + Math.abs(virtY) > Math.abs(mx) + Math.abs(my)) { mx = virtX; my = virtY; }
   if (keys & 15) {
     let kx = ((keys & 8) ? 1 : 0) - ((keys & 4) ? 1 : 0), ky = ((keys & 1) ? 1 : 0) - ((keys & 2) ? 1 : 0);
     const l = Math.sqrt(kx * kx + ky * ky); if (l > 0) { kx /= l; ky /= l; }
@@ -428,9 +407,9 @@ function writeCamera(dt) {
       const chaseFull = K.chaseDistM * (ctx.view.portrait ? K.chasePortraitScale : 1);
       let want = chaseFull;
       const W = world();
-      if (W.segmentClear && !W.segmentClear(PS.x, PS.z, PS.x - fx * want, PS.z - fz * want, 0.25)) {
+      if (W.segmentClear && !W.segmentClear(PS.x, PS.z, PS.x - fx * want, PS.z - fz * want, 0.25, true)) {
         let a = K.chaseMinDistM, b = want;
-        for (let k = 0; k < 5; k++) { const m = (a + b) * 0.5; if (W.segmentClear(PS.x, PS.z, PS.x - fx * m, PS.z - fz * m, 0.25)) a = m; else b = m; }
+        for (let k = 0; k < 5; k++) { const m = (a + b) * 0.5; if (W.segmentClear(PS.x, PS.z, PS.x - fx * m, PS.z - fz * m, 0.25, true)) a = m; else b = m; }
         want = a;
       }
       if (chaseDist <= 0) chaseDist = want;
@@ -482,6 +461,8 @@ function startLift() {
   if (l < 1) { ax = 0; az = 1; } else { ax /= l; az /= l; }
   liftX = cx + ax * K.liftBackM; liftZ = cz + az * K.liftBackM; liftY = K.liftHeightM;
   liftYaw = Math.atan2(cx - liftX, -(cz - liftZ));
+  // landscape: the completion card sits on the right, so turn a little right to put the district in the left half
+  if (!ctx.view.portrait) liftYaw += (K.liftYawOffsetDeg || 0) * DEG;
   liftPitch = -Math.atan2(liftY, K.liftBackM);
   liftFromX = cam.position.x; liftFromY = cam.position.y; liftFromZ = cam.position.z;
   liftFromYaw = -cam.rotation.y; liftFromPitch = cam.rotation.x;
