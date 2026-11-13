@@ -1,0 +1,157 @@
+{
+  "view_01-start-plaza": {
+    "calls": 11,
+    "triangles": 86956,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 2341
+  },
+  "view_02-street-north": {
+    "calls": 11,
+    "triangles": 68792,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 1819
+  },
+  "view_03-feet": {
+    "calls": 11,
+    "triangles": 65840,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 1693
+  },
+  "view_04-west-street": {
+    "calls": 11,
+    "triangles": 73948,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 2138
+  },
+  "carve": {
+    "cleanFraction": 0.13444616977225674,
+    "unitFraction": 0.1340919232485498
+  },
+  "view_05-cleaned-trail": {
+    "calls": 11,
+    "triangles": 64524,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 1665
+  },
+  "view_06-cleaned-feet": {
+    "calls": 11,
+    "triangles": 53012,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 1166
+  },
+  "view_07-cart-swath": {
+    "calls": 11,
+    "triangles": 70392,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 1996
+  },
+  "view_08-aerial": {
+    "calls": 11,
+    "triangles": 57020,
+    "textures": 5,
+    "geometries": 11,
+    "instances": 1437
+  },
+  "gen": {
+    "mean": 1.7399068322981366,
+    "cells": 7728,
+    "total": 13446
+  },
+  "uploadPaths": {
+    "partial": 1,
+    "full": 0
+  },
+  "benchConsume": {
+    "units": 2000,
+    "cells": 1223,
+    "ms": 6.9
+  },
+  "textureBytes": {
+    "depth": 11664,
+    "trashTile": 1398101.3333333333,
+    "noise": 87381.33333333333,
+    "groundMap": 3981312,
+    "facade": 349525.3333333333,
+    "instanceBuffers": 2757888
+  },
+  "coreInfo": {
+    "groundTris": 18432,
+    "window": 36,
+    "maxPerCell": 4
+  },
+  "benchSweep_broom_3robots": {
+    "frames": 300,
+    "msPerFrame": 0.01,
+    "cellsPerFrame": 0.5,
+    "unitsPerFrame": 0.7,
+    "rowsPerFrame": 1.6,
+    "maxRows": 108,
+    "instances": 770
+  },
+  "benchSweep_cart_8robots": {
+    "frames": 300,
+    "msPerFrame": 0.0193,
+    "cellsPerFrame": 1.4,
+    "unitsPerFrame": 2.4,
+    "rowsPerFrame": 4.6,
+    "maxRows": 108,
+    "instances": 1415
+  },
+  "benchStress_50cells": {
+    "frames": 200,
+    "cellsPerFrame": 17.7,
+    "msPerFrame": 0.018,
+    "rowsPerFrame": 99.3
+  },
+  "benchStress_400cells": {
+    "frames": 60,
+    "cellsPerFrame": 96.2,
+    "msPerFrame": 0.092,
+    "rowsPerFrame": 107
+  },
+  "benchWalk": {
+    "frames": 600,
+    "msPerFrame": 0.0078,
+    "recenters": 97,
+    "cellsPerRecenter": 45.3
+  },
+  "benchTeleport": {
+    "msPerFullRebuild": 0.925,
+    "cells": 1296,
+    "instances": 1830
+  },
+  "benchSave": {
+    "bytes": 10737,
+    "msSave": 1.6,
+    "msLoad": 2.1,
+    "ok": true,
+    "exact": true,
+    "roundTrip": true
+  },
+  "benchNearest": {
+    "msEach": 0.0019999999995343387,
+    "hits": 200
+  },
+  "benchRender": {
+    "msRenderSubmitJS": 0.12,
+    "msRenderSwiftShaderSync": 357.3
+  },
+  "gl": {
+    "webgl2": true,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "maxVertexTextures": 32
+  },
+  "view_portrait": {
+    "calls": 11,
+    "triangles": 68792,
+    "textures": 5,
+    "geometries": 11
+  }
+}

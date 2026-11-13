@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#cdd7dc">
+<title>Temiz Şehir</title>
+<!-- BUILD:STYLE-START (tools/build.py keeps this block as-is) -->
+<style>
+:root {
+  /* safe areas: read by ui.js / player.js through getComputedStyle or used directly in CSS */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --bg: #cdd7dc;
+}
+html, body {
+  margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--bg);
+  overscroll-behavior: none; touch-action: none;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
+}
+/* the 3D view: full screen, under everything */
+#game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; outline: none; }
+/* DOM overlay owned by ui.js; transparent to touches except elements that opt in */
+#ui { position: fixed; inset: 0; pointer-events: none; overflow: hidden;
+      font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; color: #fff; }
+#ui .hit, #ui button, #ui [data-hit] { pointer-events: auto; }
+/* boot curtain owned by main.js */
+#boot { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+        background: var(--bg); color: #2b3a44; font: 600 16px -apple-system, system-ui, sans-serif;
+        transition: opacity .35s; z-index: 10; padding: 0 24px; text-align: center; }
+#boot.off { opacity: 0; pointer-events: none; }
+#boot .spin { width: 34px; height: 34px; border-radius: 50%; border: 4px solid rgba(43,58,68,.2);
+              border-top-color: #2b3a44; animation: sp 0.9s linear infinite; }
+@keyframes sp { to { transform: rotate(360deg); } }
+[hidden] { display: none !important; }
+</style>
+<!-- BUILD:STYLE-END -->
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="ui"></div>
+<div id="boot"><div class="spin"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- BUILD:MODULES (tools/build.py replaces the next line with the inlined module bundle) -->
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
