@@ -1,0 +1,167 @@
+{
+  "result": {
+    "A": {
+      "cpu": {
+        "firstFramesMaxMs": 0.3,
+        "steadyMaxMs": 0.2,
+        "meanMs": 0.0082
+      },
+      "whole": {
+        "peakDb": -3.3,
+        "rmsDb": -20.4,
+        "clipped": 0
+      },
+      "bed0": {
+        "peakDb": -21.1,
+        "rmsDb": -34,
+        "clipped": 0,
+        "centroidHz": 307,
+        "lt120": 0.295,
+        "b120_500": 0.548,
+        "b500_2k": 0.148,
+        "b2k_6k": 0.008,
+        "gt6k": 0.001
+      },
+      "bed100": {
+        "peakDb": -27.1,
+        "rmsDb": -38.9,
+        "clipped": 0,
+        "centroidHz": 2413,
+        "lt120": 0.049,
+        "b120_500": 0.092,
+        "b500_2k": 0.389,
+        "b2k_6k": 0.405,
+        "gt6k": 0.066
+      },
+      "pickups30ps": {
+        "peakDb": -5,
+        "rmsDb": -16.8,
+        "clipped": 0,
+        "centroidHz": 1382,
+        "lt120": 0.006,
+        "b120_500": 0.009,
+        "b500_2k": 0.857,
+        "b2k_6k": 0.127,
+        "gt6k": 0.001
+      },
+      "sale": {
+        "peakDb": -5.9,
+        "rmsDb": -20.4,
+        "clipped": 0
+      },
+      "purchase": {
+        "peakDb": -4.6,
+        "rmsDb": -18.2,
+        "clipped": 0
+      },
+      "thud": {
+        "peakDb": -3.3,
+        "rmsDb": -19.3,
+        "clipped": 0,
+        "centroidHz": 188,
+        "lt120": 0.325,
+        "b120_500": 0.653,
+        "b500_2k": 0.021,
+        "b2k_6k": 0.002,
+        "gt6k": 0
+      },
+      "ms25": {
+        "peakDb": -4.8,
+        "rmsDb": -18.5,
+        "clipped": 0
+      },
+      "ms50": {
+        "peakDb": -4.7,
+        "rmsDb": -17.4,
+        "clipped": 0
+      },
+      "ms75": {
+        "peakDb": -4.6,
+        "rmsDb": -16.9,
+        "clipped": 0
+      },
+      "fanfare": {
+        "peakDb": -4.2,
+        "rmsDb": -16.3,
+        "clipped": 0
+      },
+      "gust": {
+        "peakDb": -4.9,
+        "rmsDb": -19.2,
+        "clipped": 0
+      },
+      "valuable": {
+        "peakDb": -3.4,
+        "rmsDb": -16.9,
+        "clipped": 0
+      },
+      "ladderHz": [
+        580,
+        629,
+        682,
+        847,
+        697,
+        752,
+        822,
+        856,
+        978,
+        1355
+      ]
+    },
+    "B": {
+      "cpu": {
+        "firstFramesMaxMs": 1.8,
+        "steadyMaxMs": 0.3,
+        "meanMs": 0.0372
+      },
+      "whole": {
+        "peakDb": -2.6,
+        "rmsDb": -16.3,
+        "clipped": 0
+      },
+      "stress": {
+        "peakDb": -2.6,
+        "rmsDb": -14.7,
+        "clipped": 0
+      }
+    },
+    "C": {
+      "eastRminusL_db": 4.3,
+      "westLminusR_db": 4,
+      "afterDisable": {
+        "peakDb": -86.3,
+        "rmsDb": -105,
+        "clipped": 0
+      }
+    },
+    "genMs": {
+      "initMs": 137.3,
+      "unlockMs": 3.3,
+      "pop": 0.3,
+      "click": 0.1,
+      "coin": 0,
+      "thud": 0,
+      "swish": 0.1,
+      "kaching": 0.1,
+      "chime": 0,
+      "purchase": 0.2,
+      "open": 0,
+      "close": 0.1,
+      "equip": 0.1,
+      "chirp": 0.1,
+      "crunch": 0,
+      "robot": 0,
+      "boost": 0.1,
+      "nozzleDown": 0.1,
+      "nozzleUp": 0,
+      "rev": 0.2,
+      "horn": 0,
+      "ms1": 0.2,
+      "ms2": 0,
+      "ms3": 0.2,
+      "gust": 0.1,
+      "fanfare": 0.2
+    }
+  },
+  "fail": []
+}
