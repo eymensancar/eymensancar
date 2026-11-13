@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Economy harness</title>
+<style>
+:root { --sat: env(safe-area-inset-top, 0px); --sar: env(safe-area-inset-right, 0px); --sab: env(safe-area-inset-bottom, 0px); --sal: env(safe-area-inset-left, 0px); }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #cdd7dc; }
+#game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+#ui { position: fixed; inset: 0; pointer-events: none; }
+#boot { position: fixed; inset: 0; background: #cdd7dc; transition: opacity .35s; }
+#boot.off { opacity: 0; pointer-events: none; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="ui"></div>
+<div id="boot"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script type="module">
+// Real main.js + config + bus + economy + debug; fake world/trash (test/economy/fake-mods.js); stubs for the rest.
+import * as config from '../../www/js/config.js';
+import * as bus from '../../www/js/bus.js';
+import * as economy from '../../www/js/economy.js';
+import * as debug from '../../www/js/debug.js';
+import { fakeWorld, fakeTrash } from './fake-mods.js';
+window.__TS_MODS = { config, bus, economy, debug, world: fakeWorld, trash: fakeTrash };
+import('../../www/js/main.js');
+</script>
+</body>
+</html>
