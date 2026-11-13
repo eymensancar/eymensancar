@@ -160,7 +160,7 @@ export function init(c) {
   const P = C.player || {};
   K = Object.assign({}, P.controller || {});
   K.headBobM = clamp(+K.headBobM || 0, 0, 0.01);
-  walkSpeed = P.walkSpeed || 5; radius = P.radiusM || 0.35; eyeH = P.eyeHeightM || 1.65;
+  walkSpeed = Array.isArray(P.walkSpeed) ? P.walkSpeed[0] : (P.walkSpeed || 7.5); radius = P.radiusM || 0.35; eyeH = P.eyeHeightM || 1.65;
   if (P.pitchLimitDeg) { pitchMin = P.pitchLimitDeg[0] * DEG; pitchMax = P.pitchLimitDeg[1] * DEG; }
   sensTouch = (P.lookSensitivityTouchDegPerPx || 0.25) * DEG;
   sensMouse = (P.lookSensitivityMouseDegPerPx || 0.15) * DEG;
@@ -195,10 +195,11 @@ export function init(c) {
   writeCamera(0);
 }
 
+let lastRot = 0;
 export function resize() {
-  const p = !!ctx.view.portrait;
-  if (p !== lastPortrait) releasePointers(); // orientation flip: fingers are re-placed by the user
-  lastPortrait = p;
+  const p = !!ctx.view.portrait, r = ctx.view.rot | 0;
+  if (p !== lastPortrait || r !== lastRot) releasePointers(); // orientation flip / forced-landscape switch: fingers are re-placed by the user
+  lastPortrait = p; lastRot = r;
 }
 
 export function save() {
@@ -227,6 +228,11 @@ function spawn() {
 
 // ------------------------------------------------------------------------------------------ input
 function prevent(e) { if (e.cancelable) e.preventDefault(); }
+// client (screen) coordinates -> game view coordinates. In forced landscape (main rotates the stage 90 degrees when
+// the viewport is portrait) ctx.view.toView maps through the same transform as the CSS, so stick and look match what
+// is seen. Identity otherwise.
+const LP = { x: 0, y: 0 };
+function local(e) { const tv = ctx.view.toView; if (tv) return tv(e.clientX, e.clientY, LP); LP.x = e.clientX; LP.y = e.clientY; return LP; }
 function slotOf(id) { for (let i = 0; i < MAXP; i++) if (ptr[i].id === id) return i; return -1; }
 function freeSlot() { for (let i = 0; i < MAXP; i++) if (ptr[i].id === -1) return i; return -1; }
 
@@ -238,7 +244,7 @@ function onDown(e) {
   const s = freeSlot(); if (s < 0) return;
   const mouse = e.pointerType === 'mouse';
   if (mouse && e.button !== 0) return;
-  const p = ptr[s], v = ctx.view, x = e.clientX, y = e.clientY;
+  const v = ctx.view, L = local(e), x = L.x, y = L.y, p = ptr[s];
   let role = mouse ? R_LOOK : (x < v.w * 0.5 ? R_STICK : R_LOOK);
   if (role === R_STICK && stickSlot >= 0) role = R_NONE;
   if (role === R_LOOK && lookSlot >= 0) role = R_NONE;
@@ -258,7 +264,7 @@ function onDown(e) {
 function onMove(e) {
   const s = slotOf(e.pointerId); if (s < 0) return;
   if (e.cancelable) e.preventDefault();
-  const p = ptr[s], x = e.clientX, y = e.clientY;
+  const L = local(e), p = ptr[s], x = L.x, y = L.y;
   const dx = x - p.x, dy = y - p.y;
   p.x = x; p.y = y;
   const d0 = Math.abs(x - p.x0) + Math.abs(y - p.y0); if (d0 > p.maxD) p.maxD = d0;
@@ -364,6 +370,8 @@ export function update(dt) {
 }
 
 function walk(dt) {
+  const eco = ctx.mods.economy, ws = eco && eco.stat ? eco.stat('walkSpeed') : 0;   // shoes (shop) raise it
+  if (ws > 0) walkSpeed = ws;
   const maxV = speedCap != null ? Math.min(walkSpeed, speedCap) : walkSpeed;
   const sy = Math.sin(PS.yaw), cy = Math.cos(PS.yaw);
   // stick: +y forward (sin yaw, -cos yaw), +x right (cos yaw, sin yaw)
@@ -376,10 +384,17 @@ function walk(dt) {
     const k = dl > rate ? rate / dl : 1;
     vx += dvx * k; vz += dvz * k;
   }
-  const ox = PS.x, oz = PS.z;
-  world().collide(ox + vx * dt, oz + vz * dt, radius, col);
-  PS.x = col.x; PS.z = col.z;
-  if (col.hit) { vx = (PS.x - ox) / dt; vz = (PS.z - oz) / dt; } // slide along walls, no speed build-up into them
+  // collision in sub-steps of at most player.maxStepM (v2: at 7.5-9.5 m/s a 50 ms frame moves ~0.5 m; thin solids such
+  // as lamp posts are 0.32 m wide), sliding along walls without jitter: each sub-step resolves against the wall
+  const ox = PS.x, oz = PS.z, maxStep = (C.player && C.player.maxStepM) || 0.12;
+  const n = Math.min(10, Math.max(1, Math.ceil(Math.sqrt(vx * vx + vz * vz) * dt / maxStep)));
+  let hit = false, x = ox, z = oz;
+  for (let k = 0; k < n; k++) {
+    world().collide(x + vx * dt / n, z + vz * dt / n, radius, col);
+    x = col.x; z = col.z; if (col.hit) hit = true;
+  }
+  PS.x = x; PS.z = z;
+  if (hit) { vx = (PS.x - ox) / dt; vz = (PS.z - oz) / dt; } // slide along walls, no speed build-up into them
   PS.vx = vx; PS.vz = vz;
   PS.speed = Math.sqrt(vx * vx + vz * vz);
   if (PS.speed > 0.3) {
@@ -452,46 +467,47 @@ function writeCamera(dt) {
 let shakeT = 0, shakeDur = 0.15, shakeAmp = 0;
 
 // ------------------------------------------------------------------------------------------ finale lift
+const fadeEv = { on: false, s: 0.35 };
 function startLift() {
   if (lift === 1 || lift === 2) return;
   releasePointers();
-  const D = C.district || {}, size = (D.sizeM && D.sizeM[0]) || 54;
-  const cx = size / 2, cz = size / 2;
-  let ax = PS.x - cx, az = PS.z - cz; const l = Math.sqrt(ax * ax + az * az);
-  if (l < 1) { ax = 0; az = 1; } else { ax /= l; az /= l; }
-  liftX = cx + ax * K.liftBackM; liftZ = cz + az * K.liftBackM; liftY = K.liftHeightM;
-  liftYaw = Math.atan2(cx - liftX, -(cz - liftZ));
-  // landscape: the completion card sits on the right, so turn a little right to put the district in the left half
-  if (!ctx.view.portrait) liftYaw += (K.liftYawOffsetDeg || 0) * DEG;
-  liftPitch = -Math.atan2(liftY, K.liftBackM);
+  if (vehicle) dismount();   // v2: after the finale the player stands on foot, not in the cart
+  // v2 (psychology review: the old lift rose at ~58 m/s and dived back at ~80 m/s with a 124 deg swing): a slow rise
+  // BACKWARDS from where the player looks, over controller.liftRiseS with ease-in-out (peak speed <= ~11 m/s), the
+  // yaw turning at most liftMaxYawDeg towards the district; the way back is a fade to white and a cut.
+  const D = C.district || {}, size = (D.sizeM && D.sizeM[0]) || 90;
+  const cx = size / 2, cz = size / 2, fx = Math.sin(PS.yaw), fz = -Math.cos(PS.yaw);
+  liftX = PS.x - fx * K.liftBackM; liftZ = PS.z - fz * K.liftBackM; liftY = K.liftHeightM;
+  let want = Math.atan2(cx - liftX, -(cz - liftZ));
+  if (!ctx.view.portrait) want += (K.liftYawOffsetDeg || 0) * DEG;
+  const maxYaw = (K.liftMaxYawDeg || 30) * DEG, dy = clamp(wrapPi(want - PS.yaw), -maxYaw, maxYaw);
+  liftYaw = wrapPi(PS.yaw + dy);
+  const hd = Math.max(10, Math.hypot(cx - liftX, cz - liftZ));
+  liftPitch = clamp(-Math.atan2(liftY, hd), -70 * DEG, -22 * DEG);
   liftFromX = cam.position.x; liftFromY = cam.position.y; liftFromZ = cam.position.z;
   liftFromYaw = -cam.rotation.y; liftFromPitch = cam.rotation.x;
   lift = 1; liftT = 0; liftEndReq = false; liftForce = false;
 }
+function ease(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
 function updateLift(dt) {
   const step = dt > 0 ? dt : (ctx.time && ctx.time.dt) || 0;
   liftT += step;
   let x, y, z, yaw, pitch;
   if (lift === 1) {
-    const e = smooth01(liftT / K.liftRiseS);
-    // rise first, then travel: the camera clears the rooftops before it moves sideways (never through walls)
-    const eh = smooth01((liftT - K.liftRiseS * 0.3) / (K.liftRiseS * 0.7));
+    const T = K.liftRiseS, e = ease(liftT / T);
+    const ey = ease(liftT / (T * 0.75)), eh = ease((liftT - T * 0.2) / (T * 0.8));   // rise first, then drift back: never through walls
     x = liftFromX + (liftX - liftFromX) * eh; z = liftFromZ + (liftZ - liftFromZ) * eh;
-    const ey = smooth01(liftT / (K.liftRiseS * 0.55));
     y = liftFromY + (liftY - liftFromY) * ey;
     yaw = liftFromYaw + wrapPi(liftYaw - liftFromYaw) * e; pitch = liftFromPitch + (liftPitch - liftFromPitch) * e;
-    if (liftT >= K.liftRiseS) { lift = 2; liftT = 0; }
+    if (liftEndReq && liftForce) { lift = 3; liftT = 0; liftEndReq = false; liftForce = false; fadeEv.on = true; bus.emit('ui:fade', fadeEv); }
+    else if (liftT >= T) { lift = 2; liftT = 0; }
   } else if (lift === 2) {
     x = liftX; y = liftY; z = liftZ; yaw = liftYaw; pitch = liftPitch;
-    if (liftEndReq && (liftT >= K.liftHoldS || liftForce)) { lift = 3; liftT = 0; liftEndReq = false; liftForce = false; }
+    if (liftEndReq && (liftT >= K.liftHoldS || liftForce)) { lift = 3; liftT = 0; liftEndReq = false; liftForce = false; fadeEv.on = true; bus.emit('ui:fade', fadeEv); }
   } else {
-    // back down to the player's own eye
-    const e = smooth01(liftT / K.liftReturnS);
-    writeCamera(0); // computes camOut for the player pose
-    const tx = camOut.x, ty = camOut.y, tz = camOut.z;
-    x = liftX + (tx - liftX) * e; y = liftY + (ty - liftY) * e; z = liftZ + (tz - liftZ) * e;
-    yaw = liftYaw + wrapPi(PS.yaw - liftYaw) * e; pitch = liftPitch + (PS.pitch - liftPitch) * e;
-    if (liftT >= K.liftReturnS) { lift = 0; writeCamera(0); return; }
+    // fade to white, then cut back to the player's own eye (no dive)
+    if (liftT >= K.liftReturnS) { lift = 0; blendT = 1; ySnap = true; writeCamera(0); fadeEv.on = false; bus.emit('ui:fade', fadeEv); return; }
+    return; // hold the current camera while the screen fades
   }
   cam.position.set(x, y, z);
   cam.rotation.set(pitch, -yaw, 0, 'YXZ');

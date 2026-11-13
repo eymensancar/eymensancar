@@ -37,7 +37,7 @@ export function init(c) {
   s.add(makeBuildings(buildings)); s.add(makeProps()); sky = makeSky(); s.add(sky);
   const P = c.CONFIG.player;
   pts = [{ id: 'spawn', x: P.startPos[0], z: P.startPos[1], r: 0, yaw: P.startYawDeg * DEG },
-    { id: 'shop', x: 39, z: 13, r: 2.5, yaw: 0 }, { id: 'cartPark', x: c.CONFIG.cart.parkPos[0], z: c.CONFIG.cart.parkPos[1], r: 0, yaw: c.CONFIG.cart.parkYawDeg * DEG }];
+    { id: 'shop', x: c.CONFIG.sellPoints[0].pos[0], z: c.CONFIG.sellPoints[0].pos[1], r: 2.5, yaw: 0 }, { id: 'cartPark', x: c.CONFIG.cart.parkPos[0], z: c.CONFIG.cart.parkPos[1], r: 0, yaw: c.CONFIG.cart.parkYawDeg * DEG }];
 }
 export function update() { sky.position.copy(ctx.camera.position); }
 export function layout() { return layoutObj; }

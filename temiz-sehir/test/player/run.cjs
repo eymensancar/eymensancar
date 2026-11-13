@@ -14,15 +14,17 @@ async function seq(page, name, frames, between) { // record a frame sequence
 }
 
 async function landscape() {
-  const { page, touch, errors, close } = await H.open({ width: 844, height: 390 });
+  const { page, touch, errors, close } = await H.open({ width: 844, height: 390, stub: ['tools'] });
   const probe = async (n) => { if (!process.env.PROBE) return; try { await page.screenshot({ path: '/tmp/claude-0/-home-user/8066dee7-8627-553b-a97c-0e1bfc2ce9b4/scratchpad/pt/probe.png', timeout: 8000 }); console.log('probe ok', n); } catch (e) { console.log('probe TIMEOUT', n); process.exit(2); } };
   await page.waitForTimeout(500); // boot curtain fade
   const ev = (n) => page.evaluate((n) => window.__fakeAudio.log[n].length, n);
   const clearEv = () => page.evaluate(() => window.__fakeAudio.clear());
   await H.step(page, 2);
   let p = await H.pose(page);
-  H.check('spawn at CONFIG start, facing south', near(p.x, 39, 1e-6) && near(p.z, 17, 1e-6) && near(Math.abs(p.yaw), Math.PI, 1e-6), p);
+  const CF = await page.evaluate(() => ({ start: window.__tsCtx.CONFIG.player.startPos, yaw: window.__tsCtx.CONFIG.player.startYawDeg, walk: window.__tsCtx.CONFIG.player.walkSpeed[0] }));
+  H.check('spawn at CONFIG start (v2: looking down a street)', near(p.x, CF.start[0], 1e-6) && near(p.z, CF.start[1], 1e-6) && near(p.yaw, CF.yaw * DEG, 1e-6), p);
   const fov0 = await page.evaluate(() => window.__tsCtx.camera.fov);
+  await page.evaluate(() => window.__tsCtx.mods.player.teleport(45, 40, Math.PI)); await H.step(page, 1);   // plaza, facing south
 
   // ---- stick: thumb lands in the left half, pushes up 60 px (full forward)
   await touch.down(0, 160, 290);
@@ -35,10 +37,10 @@ async function landscape() {
   // acceleration profile: full speed ≈ 0.18 s
   const speeds = [];
   for (let i = 0; i < 14; i++) { await H.step(page, 1); speeds.push((await H.pose(page)).speed); }
-  const tFull = speeds.findIndex((s) => s >= 4.95) + 2; // frames incl. the first
+  const tFull = speeds.findIndex((s) => s >= CF.walk * 0.99) + 2; // frames incl. the first
   H.check('walk reaches top speed within 0.15–0.25 s', tFull / 60 >= 0.14 && tFull / 60 <= 0.26, { seconds: +(tFull / 60).toFixed(3), speeds: speeds.map((s) => +s.toFixed(2)) });
   p = await H.pose(page);
-  H.check('forward = south (+z) for yaw 180°', p.z > 17.3 && near(p.x, 39, 0.02), p);
+  H.check('forward = south (+z) for yaw 180°', p.z > 40.3 && near(p.x, 45, 0.02), p);
 
   // ---- second finger looks while the stick is held (two simultaneous touches)
   const yaw0 = p.yaw;
@@ -131,27 +133,36 @@ async function landscape() {
 
   await probe('// ---- keyboard + mouse');
   // ---- keyboard + mouse
-  await page.evaluate(() => window.__tsCtx.mods.player.teleport(39, 19, 0));
+  await page.evaluate(() => window.__tsCtx.mods.player.teleport(45, 47, 0));
   await page.keyboard.down('KeyW'); await H.step(page, 30); await page.keyboard.up('KeyW');
   p = await H.pose(page);
-  H.check('W walks forward (north = -z for yaw 0)', p.z < 18 && near(p.x, 39, 0.05), p);
+  H.check('W walks forward (north = -z for yaw 0)', p.z < 46 && near(p.x, 45, 0.05), p);
   await page.keyboard.down('KeyD'); await H.step(page, 20); await page.keyboard.up('KeyD'); await H.step(page, 10);
   const p5 = await H.pose(page);
-  H.check('D strafes right (east)', p5.x > 39.8, p5);
+  H.check('D strafes right (east)', p5.x > 45.8, p5);
   await page.mouse.move(500, 200); await page.mouse.down(); await page.mouse.move(600, 200, { steps: 5 }); await page.mouse.up(); await H.step(page, 1);
   const p6 = await H.pose(page);
   H.check('mouse drag 100 px → +15° yaw (0.15°/px)', near((p6.yaw - p5.yaw) / DEG, 15, 0.5), (p6.yaw - p5.yaw) / DEG);
 
   await probe('// ---- collision with');
-  // ---- collision with the kiosk [37,8,41,11] and the district edge
-  await page.evaluate(() => window.__tsCtx.mods.player.teleport(39, 14, 0));
+  // ---- collision with the kiosk [43,49,47,52] and the district edge (v2: at 7.5 m/s, sub-stepped)
+  await page.evaluate(() => window.__tsCtx.mods.player.teleport(45, 55, 0));
   await page.keyboard.down('KeyW'); await H.step(page, 90); await page.keyboard.up('KeyW');
   p = await H.pose(page);
-  H.check('kiosk blocks: stops at radius from its south wall', near(p.z, 11 + 0.35, 0.02), p.z);
-  await page.evaluate(() => window.__tsCtx.mods.player.teleport(36.5, 14, 0.25));
-  await page.keyboard.down('KeyW'); await H.step(page, 120); await page.keyboard.up('KeyW');
-  p = await H.pose(page);
-  H.check('walking diagonally into the kiosk slides along its wall instead of sticking', p.x > 38 && near(p.z, 11.35, 0.02) && p.speed > 1, p);
+  H.check('kiosk blocks: stops at radius from its south wall', near(p.z, 52 + 0.35, 0.02), p.z);
+  await page.evaluate(() => window.__tsCtx.mods.player.teleport(42.5, 55, 0.25));
+  await page.keyboard.down('KeyW'); await H.step(page, 40);
+  const ps40 = await H.pose(page); await page.keyboard.up('KeyW');
+  H.check('walking diagonally into the kiosk slides along its wall instead of sticking (no jitter)', ps40.x > 43.3 && near(ps40.z, 52.35, 0.02) && ps40.speed > 1, ps40);
+  // thin solids at speed: a lamp post is never tunnelled through, even with 50 ms frames
+  const lamp = await page.evaluate(() => { const W = window.__tsCtx.mods.world; for (let x = 1; x < 89; x += 0.25) for (let z = 1; z < 89; z += 0.25) if (W.isBlocked(x, z, 0) && !W.isBlocked(x + 0.5, z, 0) && !W.isBlocked(x - 0.5, z, 0) && !W.isBlocked(x, z + 0.5, 0) && !W.isBlocked(x, z - 0.5, 0)) return { x, z }; return null; });
+  if (lamp) {
+    const tun = await page.evaluate((L) => { const P = window.__tsCtx.mods.player, W = window.__tsCtx.mods.world; let through = 0, n = 0;
+      for (let a = 0; a < 16; a++) { const ang = a * Math.PI / 8; P.teleport(L.x - Math.sin(ang) * 1.5, L.z + Math.cos(ang) * 1.5, ang); if (W.isBlocked(P.pose().x, P.pose().z, 0.35)) continue; n++; P.setStick(0, 1); for (let i = 0; i < 20; i++) P.update(0.05); P.setStick(0, 0);
+        const p = P.pose(), along = (p.x - L.x) * Math.sin(ang) - (p.z - L.z) * Math.cos(ang), side = Math.abs((p.x - L.x) * Math.cos(ang) + (p.z - L.z) * Math.sin(ang)); if (along > 0.3 && side < 0.15) through++; }
+      return { through, n }; }, lamp);
+    H.check('no tunnelling through thin solids at walking speed with 50 ms frames', tun.through === 0, { lamp, tun });
+  }
   await page.evaluate(() => window.__tsCtx.mods.player.teleport(2, 2, -Math.PI / 4));
   await page.keyboard.down('KeyW'); await H.step(page, 60); await page.keyboard.up('KeyW');
   p = await H.pose(page);
@@ -159,7 +170,7 @@ async function landscape() {
 
   await probe('// ---- speed cap');
   // ---- speed cap (broom)
-  await page.evaluate(() => { window.__tsCtx.mods.player.teleport(27, 40, 0); window.__tsCtx.mods.player.setSpeedCap(2); });
+  await page.evaluate(() => { window.__tsCtx.mods.player.teleport(31, 40, 0); window.__tsCtx.mods.player.setSpeedCap(2); });
   await page.keyboard.down('KeyW'); await H.step(page, 40);
   p = await H.pose(page);
   H.check('setSpeedCap(2) caps walking at 2 m/s', near(p.speed, 2, 0.01), p.speed);
@@ -168,7 +179,7 @@ async function landscape() {
 
   await probe('// ---- comfort:');
   // ---- comfort: no roll, FOV stable, no head bob (eye only follows the trash surface, smoothly)
-  await page.evaluate(() => window.__tsCtx.mods.player.teleport(27, 52, 0));
+  await page.evaluate(() => window.__tsCtx.mods.player.teleport(31, 52, 0));
   await page.keyboard.down('KeyW');
   const ys = [], rolls = [], fovs = [];
   for (let i = 0; i < 120; i++) { await H.step(page, 1); const r = await page.evaluate(() => { const c = window.__tsCtx.camera; return [c.position.y, c.rotation.z, c.fov]; }); ys.push(r[0]); rolls.push(r[1]); fovs.push(r[2]); }
@@ -190,10 +201,10 @@ async function landscape() {
 
   await probe('// ---- aimPoint');
   // ---- aimPoint
-  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(27, 40, 0); P.pose().pitch = -40 * Math.PI / 180; });
+  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(31, 40, 0); P.pose().pitch = -40 * Math.PI / 180; });
   await H.step(page, 1);
   const aim = await page.evaluate(() => window.__tsCtx.mods.player.aimPoint(5, { x: 0, y: 0, z: 0, hit: false }));
-  H.check('aimPoint hits the trash ~1.7 m ahead when looking 40° down', aim.hit && near(aim.x, 27, 0.01) && aim.z < 39 && aim.z > 37.7 && aim.y >= 0 && aim.y <= 0.31, aim);
+  H.check('aimPoint hits the trash ~1.7 m ahead when looking 40° down', aim.hit && near(aim.x, 31, 0.01) && aim.z < 39 && aim.z > 37.7 && aim.y >= 0 && aim.y <= 0.31, aim);
   const aim2 = await page.evaluate(() => { window.__tsCtx.mods.player.pose().pitch = 0.1; return window.__tsCtx.mods.player.aimPoint(5, { x: 0, y: 0, z: 0, hit: false }); });
   H.check('aimPoint above the horizon → no hit', aim2.hit === false);
 
@@ -201,8 +212,8 @@ async function landscape() {
   // ---- mount / dismount with a minimal vehicle (the real cart is tested in test/tools)
   const m = await page.evaluate(() => {
     const T = window.THREE, P = window.__tsCtx.mods.player;
-    P.teleport(27, 40, 0); P.pose().pitch = -0.1;
-    const o = new T.Object3D(); o.position.set(28, 0, 40); o.rotation.y = 0;
+    P.teleport(31, 40, 0); P.pose().pitch = -0.1;
+    const o = new T.Object3D(); o.position.set(32, 0, 40); o.rotation.y = 0;
     const veh = { id: 'testcar', eyeHeight: 2, object3D: o, view: 'first', drive(dt, inp, ps) { o.position.z -= 3 * dt; ps.x = o.position.x; ps.z = o.position.z; return 0; } };
     window.__veh = veh;
     const ok = P.mount(veh);
@@ -218,20 +229,20 @@ async function landscape() {
   await page.evaluate(() => window.__tsCtx.mods.player.dismount());
   await H.step(page, 30);
   p = await H.pose(page);
-  H.check('dismount: on foot beside the vehicle, events emitted', p.mounted === null && near(p.x, 26.6, 0.05) && (await ev('player:mount')) === 0 && (await ev('player:dismount')) === 1, p);
+  H.check('dismount: on foot beside the vehicle, events emitted', p.mounted === null && near(p.x, 30.6, 0.05) && (await ev('player:mount')) === 0 && (await ev('player:dismount')) === 1, p);
 
   await probe('// ---- save / load');
   // ---- save / load round trip
-  const sv = await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(30.5, 27.25, 1.0); P.pose().pitch = -0.2; const s = P.save(); P.teleport(39, 17, 0); P.load(s); const q = P.pose(); return { s, x: q.x, z: q.z, yaw: q.yaw, pitch: q.pitch }; });
+  const sv = await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(30.5, 27.25, 1.0); P.pose().pitch = -0.2; const s = P.save(); P.teleport(45, 47, 0); P.load(s); const q = P.pose(); return { s, x: q.x, z: q.z, yaw: q.yaw, pitch: q.pitch }; });
   H.check('save/load round trip', near(sv.x, 30.5, 1e-3) && near(sv.z, 27.25, 1e-3) && near(sv.yaw, 1, 1e-3) && near(sv.pitch, -0.2, 1e-3), sv);
-  const bad = await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(27, 40, 0); P.load({ x: 39, z: 9.5 }); P.load({}); P.load(null); P.load({ x: 'x', yaw: NaN }); const q = P.pose(); return { x: q.x, z: q.z }; });
-  H.check('load tolerates bad data (blocked spot, missing, NaN)', near(bad.x, 27, 1e-6) && near(bad.z, 40, 1e-6), bad);
+  const bad = await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(31, 40, 0); P.load({ x: 45, z: 50.5 }); P.load({}); P.load(null); P.load({ x: 'x', yaw: NaN }); const q = P.pose(); return { x: q.x, z: q.z }; });
+  H.check('load tolerates bad data (blocked spot, missing, NaN)', near(bad.x, 31, 1e-6) && near(bad.z, 40, 1e-6), bad);
 
   await probe('// ---- per-frame cost');
   // ---- per-frame cost (player.update alone, stick held + look)
   await touch.down(0, 160, 290); await touch.move(0, 160, 230);
   const cost = await page.evaluate(() => {
-    const P = window.__tsCtx.mods.player; P.teleport(27, 40, 0);
+    const P = window.__tsCtx.mods.player; P.teleport(31, 40, 0);
     const n = 3000, t0 = performance.now();
     for (let i = 0; i < n; i++) P.update(1 / 60);
     return (performance.now() - t0) / n;
@@ -242,7 +253,7 @@ async function landscape() {
 
   await probe('// ---- frame sequences: walk');
   // ---- frame sequences: walk (stick) and look (drag), landscape
-  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(27, 50, 0); P.pose().pitch = -6 * Math.PI / 180; });
+  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(31, 50, 0); P.pose().pitch = -6 * Math.PI / 180; });
   await H.step(page, 2);
   await touch.down(0, 150, 290);
   await seq(page, 'walk-landscape', 8, async (i) => { await touch.move(0, 150 + (i > 3 ? 25 : 0), 290 - Math.min(60, i * 20)); await H.step(page, 8); });
@@ -253,39 +264,44 @@ async function landscape() {
   await touch.up(1);
 
   // ---- finale lift
-  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(39, 27, Math.PI); P.pose().pitch = -0.1; });
+  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(45, 47, Math.PI); P.pose().pitch = -0.1; });
   await H.step(page, 2);
   await page.evaluate(() => window.__tsCtx.bus.emit('district:cleaned', { playS: 1000 }));
-  await seq(page, 'lift', 8, async (i) => { await H.step(page, i === 0 ? 1 : 36); });
+  // v2 (psychology review F): slow and smooth: peak camera speed <= 12 m/s, no frame-to-frame yaw/pitch jump > 2 deg
+  const motion = await page.evaluate(() => { const c = window.__tsCtx.camera, out = { vmax: 0, jump: 0, yaw0: -c.rotation.y, yawMax: 0 }; let px = c.position.x, py = c.position.y, pz = c.position.z, pr = c.rotation.x, pyw = c.rotation.y;
+    for (let i = 0; i < 640; i++) { window.__tsCtx.step(1, 1 / 60); const v = Math.hypot(c.position.x - px, c.position.y - py, c.position.z - pz) * 60; out.vmax = Math.max(out.vmax, v); out.jump = Math.max(out.jump, Math.abs(c.rotation.x - pr) * 180 / Math.PI, Math.abs(c.rotation.y - pyw) * 180 / Math.PI); out.yawMax = Math.max(out.yawMax, Math.abs(-c.rotation.y - out.yaw0) * 180 / Math.PI); px = c.position.x; py = c.position.y; pz = c.position.z; pr = c.rotation.x; pyw = c.rotation.y; }
+    out.vmax = +out.vmax.toFixed(2); out.jump = +out.jump.toFixed(2); out.yawMax = +out.yawMax.toFixed(1); return out; });
+  H.check('finale lift: slow (peak <= 12 m/s), no jumps (<= 2 deg/frame), yaw turn <= 30 deg', motion.vmax <= 12 && motion.jump <= 2 && motion.yawMax <= 30.5, motion);
+  await H.step(page, 40);   // (no screenshots up here: SwiftShader renders the whole city from 50 m too slowly)
   const lp = await page.evaluate(() => { const c = window.__tsCtx.camera; return { y: c.position.y, pitch: c.rotation.x / Math.PI * 180, roll: c.rotation.z, state: window.__tsCtx.mods.player.liftState() }; });
-  H.check('district:cleaned lifts the camera to a bird\'s-eye view, no roll', lp.y > 40 && lp.pitch < -40 && lp.roll === 0 && lp.state === 2, lp);
+  H.check('district:cleaned lifts the camera to a bird\'s-eye view, no roll', lp.y > 40 && lp.pitch < -20 && lp.roll === 0 && lp.state === 2, lp);
   await touch.down(1, 600, 200); await touch.move(1, 700, 200);
   await H.step(page, 30);
-  H.check('input during the lift does not move the player', near((await H.pose(page)).x, 39, 1e-6) && near((await H.pose(page)).z, 27, 1e-6));
+  H.check('input during the lift does not move the player', near((await H.pose(page)).x, 45, 1e-6) && near((await H.pose(page)).z, 47, 1e-6));
   await touch.up(1);
   await page.evaluate(() => window.__tsCtx.bus.emit('ui:panel', { id: 'complete', open: false }));
   await H.step(page, 120);
   const back = await page.evaluate(() => ({ y: window.__tsCtx.camera.position.y, state: window.__tsCtx.mods.player.liftState() }));
-  H.check('closing the complete card brings the camera back to the eye', back.state === 0 && back.y < 2, back);
-  await H.render(page); await page.screenshot({ path: path.join(SHOTS, 'lift-back.png') });
+  H.check('closing the complete card: a short fade, then a cut back to the eye (no dive)', back.state === 0 && back.y < 2, back);
+  await H.render(page); await page.screenshot({ path: path.join(SHOTS, 'lift-back.png'), timeout: 60000 }).catch(() => console.log('(lift-back screenshot skipped: SwiftShader too slow)'));
 
   await close();
   return errors;
 }
 
 async function portrait() {
-  const { page, touch, errors, close } = await H.open({ width: 390, height: 844 });
+  const { page, touch, errors, close } = await H.open({ width: 390, height: 844, stub: ['tools'] });
   await page.waitForTimeout(500);
   await H.step(page, 2);
   const fov = await page.evaluate(() => window.__tsCtx.camera.fov);
-  H.check('portrait: main applies the portrait vertical FOV', fov === 75, fov);
+  H.check('portrait ("Dikey oyna"): main applies the portrait vertical FOV', fov === 82, fov);
   await touch.down(0, 100, 700); await touch.move(0, 100, 640);
   await touch.down(1, 300, 400); await touch.move(1, 340, 400);
   await H.step(page, 20);
   const p = await H.pose(page), inp = await H.input(page);
   H.check('portrait: stick on the left half + look on the right half at once', inp.moveY > 0.95 && p.speed > 4.9 && p.yaw > -Math.PI + 9 * DEG - 1e-6 || p.yaw < 0, { yawDeg: p.yaw / DEG, speed: p.speed });
   await touch.up(1); await touch.up(0);
-  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(27, 50, 0); P.pose().pitch = -6 * Math.PI / 180; });
+  await page.evaluate(() => { const P = window.__tsCtx.mods.player; P.teleport(31, 50, 0); P.pose().pitch = -6 * Math.PI / 180; });
   await H.step(page, 12);
   await touch.down(0, 90, 700);
   await seq(page, 'walk-portrait', 6, async (i) => { await touch.move(0, 90, 700 - Math.min(60, i * 20)); await H.step(page, 8); });

@@ -1,6 +1,6 @@
 {
  "views": {},
- "initLog": "[world] init 185 ms, city 8230 tris, glow 564, markers 374",
+ "initLog": "[world] init 132 ms, city 8230 tris, glow 564, markers 374",
  "api": {
   "counts": {
    "solid": 3936,

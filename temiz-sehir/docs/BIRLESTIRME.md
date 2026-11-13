@@ -68,3 +68,59 @@ Landscape 844 × 390 and portrait 390 × 844, real CDP touch, both pass all 43 c
 - Real-device frame rate, thermal behaviour, Metal-backed ANGLE (vertex texture fetch with LINEAR filtering, texSubImage2D row uploads), Low Power Mode 30 Hz in practice (gameplay is dt-integrated and was checked at 30 vs 60 Hz updates).
 - iOS Safari / WKWebView touch (pointer capture, the ghost-click fix, gesture prevention), the claude.ai iframe's real sandbox attributes, audio unlock on the first touch, every sound (nobody has listened), haptics (no device; iOS Safari has no `navigator.vibrate`, so only the Capacitor app can vibrate).
 - Feel: walking speed, look sensitivity, cart steering, the narrower 85° FOV, motion comfort, and the balance with real people (the bot has no hesitation or exploration).
+
+---
+
+## v2: Eymen'in ilk geri bildirimi (the owner's first impressions on his iPhone 14 Pro)
+
+Owner: lead engineer + game designer for v2 (one session, this worktree). Same verification setting as above: headless Chromium + SwiftShader with real CDP touch; nothing here was run on an iPhone.
+
+### What he said, and what changed
+
+| # | He said | What changed (numbers) |
+|---|---|---|
+| 1 | "Progress is very fast, maybe because the map is small." | District **54 → 90 m square** (grid 108² → **180²**, 3 × 3 blocks of 22 m, the plaza with the shop in the centre), **7,728 → 16,864 trash cells**, mean depth 1.74 → 1.85, **13,446 → 31,198 units**. A **27-item ladder** (was 17) with intermediate levels: Geniş fırça, three broom widths and speeds, four bags, two shoes, robot count / speed / capacity, cart tank / width / suction. Prices fitted item by item with the balance bot. Average player: first upgrade **1:48**, broom 6:34, robot #1 **13:32**, cart **26:54**, 100 % **38:14** (slow 49:04, fast 31:23), never more than 2.8 min without something new (slow 3.7). Table: TASARIM §3a. Away rule shortened to fit the longer slice (below). |
+| 2 | "Start with a smaller brush; the hand turned out silly." | Hand-picking, the gloves, tap-to-pick, the `hands` tool, its strings, hints and tests are gone. The start tool is a **hand brush + dustpan** (`brush`): a 0.55 m strip swept automatically while walking (cap 1.8 m/s), quick short flicks while standing with the button held (a held button never does nothing: it reaches the nearest dirty cell within 1.3 m), its own view model (brush in the right glove, dustpan with a growing pile in the left), its own sound (a short bright "flick", lighter pickup ticks), items fly into the dustpan. First hint: "Basılı tut ve yürü" over the stick. The tool switcher shows El fırçası / Süpürge. Rare valuables are swept up and keep their sparkle. |
+| 3 | "The character must get considerably faster." | Walking **5.0 → 7.5 m/s** (shoes 8.5 / 9.5), still 0.18 s to top speed. A sweeping tool slows the player **only while it sweeps** (trash ahead and room in the bag); full bag or clean ground = full speed (psychology review A). Collision in sub-steps of ≤ 0.12 m (player) / ≤ 0.24 m (cart): no tunnelling through lamp posts with 50 ms frames, smooth sliding along walls (tested). Cart top 8 → **12 m/s** (clearly the fastest), nozzle down 5.5 / 6.5; robots travel 3.6–5.6 m/s. One-way sell trip on foot: **7.0 s mean** (average player). |
+| 4 | "Fix the FOV, it is very narrow." | **85° → 104° horizontal** in landscape (46° → **61° vertical** on 19.5:9), portrait 75° → 82° vertical, a **Görüş açısı slider 85–115°** in settings (saved). Re-tuned: brush/dustpan placed low at the sides for the wide view (screenshot `el-fircasi.png`), chase camera 4.6 → 3.9 m, finale lift. The near-item band (6.2–8.5 m, radial) and the fog needed no change: no pop-in at the edges in the screenshots. 104° is the widest that still looked natural at the start spot; at 110–115° the street edges stretch visibly. |
+
+### The coordinator's later requests (folded into v2)
+
+| # | Request | What was done |
+|---|---|---|
+| 5 | "There must be saving." | One storage wrapper in main: real write/read-back probe, fallbacks **localStorage → sessionStorage → IndexedDB → memory**, plus the claude.ai artifact's per-person database when the host offers it (`window.claude.use('db')` + `'user'`; the artifact must be published with `capabilities: {db: {}, user: {}}`; it wins when its save is newer, writes at most every 15 s). Saves every **5 s** while playing, **within 1 s of every sale, purchase, milestone and settings change**, on hidden / pagehide / blur / beforeunload / freeze. A tiny **"Kaydedildi"** tick under the pause button on each save (≤ 1 s); an honest non-blocking notice **"Bu önizlemede ilerleme kaydedilemiyor"** (memory) or "İlerleme yalnız bu sekme açıkken kalır" (sessionStorage), repeated in the pause panel. An existing save starts straight in the game. **"Baştan başla"** in settings behind a confirm. Save format **v2**: a v1 save (old district) starts fresh but keeps the settings. `test/e2e/save.mjs` (22 checks incl. throwing localStorage/sessionStorage and no storage at all). **Why his progress was lost:** the claude.ai preview runs the page in a sandboxed iframe where localStorage throws; v1 played on silently without saving. In that iframe IndexedDB is normally unavailable too, so only the artifact database (or the native app) can keep progress there. |
+| 6 | "The game must start sideways automatically." | **Forced landscape**: in a portrait viewport `#game` and `#ui` are rotated 90° together (CSS), the renderer uses the landscape size, every canvas touch goes through one transform (`ctx.view.toView`), the browser hit-tests the rotated DOM, ui's layout reads, slider and panel scrolling map through the same transform, safe areas map to the rotated edges (notch left, home indicator right). Default in portrait; **"Dikey oyna"** (and `?dikey=1`) keeps the old upright layout; **"Ekranı çevir"** flips 180°. Resizes switch modes live. `test/e2e/rot.mjs` (25 checks with real touch at 390×844: stick, look, sweeping, shop + buy, list scroll, FOV slider, flip, pause, resize both ways, "Dikey oyna", finale). The native app locks landscape itself. |
+| A | Sweep cap with a full bag (psych.) | Cap only while sweeping (above); the bot models the real speeds. |
+| B | First robot off screen (psych.) | A new robot appears 3.5 m in front of the player, its name tag large and glowing for 4 s (`robot.introS`), the robot sound plays, it starts cleaning there (unit + e2e tests). |
+| C | Nothing new between robot and cart (psych.) | Five purchases there now (shoes, bag 3, drop-off, robot 2, Sert kıl). Robots slowed to 1.3–1.9 m/s cleaning: their share of units per minute in that stretch is 39 % (v1 34–52 %); the player's tool upgrades stay ahead. |
+| D | Ad on milestone banners (psych.) | Removed (`boost.offerOnMilestone: null`); banners 3 s. Shop: "Hayır, teşekkürler" as large as the offer; no seconds countdown ("Şu an aktif" while it runs). |
+| E | Away return (psych.) | min(10 min of robot output, 15 % of what is left, 10 % of the district, the next item's price in coins); the card names the limit; milestones crossed while away are named on the card and only the latest shows after it, quietly. |
+| F | Finale camera (psych.) | Rises backwards from the view over 10 s with ease in/out (measured peak 10.9 m/s, yaw turn 12°, ≤ 0.14° per frame); "Devam" → 0.45 s white fade and a cut (no dive); a player in the cart is set down on foot. |
+| G | Sell marker same in front and behind (QA #1) | In-view pin only when the target is on screen and ahead; otherwise an edge arrow on the left/right by bearing, a dashed "turn round" ring when behind. `play.mjs` follows it from the start, turned away, and reaches the shop. |
+| H | Double tap buys two items (QA #3) | Buy taps ignored for 500 ms after a purchase; the tap buys the id it was pressed on (play.mjs checks a 70 ms double tap). |
+| I | Minor QA items | "Dükkan" (and Bin/İn/nozzle) no longer sends a tool action; the cart treats robots as soft obstacles; the boost runs out in real time while away; "Araba sürüşü" row is full width; finale promo tiles shorter; the compass and bag meter hide during the finale; the bag-full toast is not repeated over the hint. Tap misses are gone with tap-to-pick. |
+| J | Context lost while hidden (perf F2) | Recovery re-armed when the page becomes visible: reload with the save (perf.mjs reproduces it). |
+| K | Mid-game shader compiles (perf F1) | `renderer.compile(scene, camera)` before the first frame: 13 programs at boot, **0 compiles during play** (perf.mjs: 40 game minutes of autoplay with robots, cart and the 25 / 50 % milestones). |
+| L | Adaptive resolution (perf F3) | The reviewer's controller: two-step probe before calling a refresh cap, ceiling with backoff (30 → 240 s), freeze 60 s doubling, never above DPR 2; a frame > 250 ms is ignored as a stall. |
+| M | Performance overlay (perf F4) | `?perf` (no `preserveDrawingBuffer`, no trace, no `__ts`) and a **"Performans göstergesi"** switch in settings, so it works inside the artifact: fps, frame ms with p50/p95, js/render ms, DPR, draw calls, triangles. |
+| N | iOS guards | `?aa0` (MSAA off) besides the quality setting; the haptics row is hidden where nothing can vibrate (Safari / artifact); the Capacitor `impact()` promise is caught. Not done (needs a device or a product decision): the Audio Session API for the silent switch, Safari's left-edge back swipe (the stick base already stays ≥ 44 px from the edges). |
+
+### Performance before / after (headless Chromium + SwiftShader, desktop CPU, DPR 2, 844 × 390; busiest moment = cart sweeping + 4 robots + 25 % milestone effects)
+
+| | v1 (54 m) | v2 (90 m) |
+|---|---|---|
+| draw calls (max) | 19 | 19 |
+| triangles (max) | 76.0 k | 83.9 k |
+| JS per frame (all modules) | 0.43 ms | 0.42 ms |
+| GPU uploads per frame (instance buffers + depth texture), mean / peak | 52.5 / 154 KB | **39.9 / 158 KB** |
+| texture memory (estimate from image sizes) | 12.1 MB | 12.2 MB |
+| shader programs compiled during play | 6 (up to 69 ms each) | **0** |
+| JS heap after ~20 game minutes | – | 29.8 MB (stable to the end) |
+| trash grid in the save (heavy carve) | 10.7 KB | ≤ 3.3 KB measured |
+| `tek.html` | 437 KB | 469 KB |
+
+The bigger grid alone would have doubled the per-frame texture upload: the depth texture went up as one band of whole rows from the northernmost to the southernmost changed cell, and with robots spread over 180 rows that band was most of the texture (100 KB/frame measured). trash.js now uploads only the dirty rectangles (runs of dirty rows with their column span, `UNPACK_ROW_LENGTH`), which brought it below v1. The ground plan texture stays 1024² (11.4 px/m instead of 19): cleaned asphalt looks a little softer up close; 2048² would cost +16 MB and was not worth it.
+
+### Not verified on a real iPhone (be honest)
+
+Frame rate and heat with the bigger district and the wider FOV; the forced-landscape mode in iOS Safari and inside the claude.ai iframe (touch through a rotated stage, safe-area values, the address bar); whether the artifact host grants its database to the page (the IndexedDB / memory fallbacks are tested, the cloud path is not); motion comfort at 7.5–9.5 m/s with 104°; every sound (nobody has listened to the new "flick"); haptics; the balance with real people (the bot has no hesitation; first sessions will run somewhat slower early on).

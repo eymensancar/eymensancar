@@ -40,7 +40,7 @@ export function buy(id) {
   C.bus.emit('economy:coins', { coins: F.coins, delta: -it.price, reason: 'buy' });
   C.bus.emit('economy:purchased', { id, price: it.price });
   if (/^robot_\d$/.test(id)) { F.robots.push({ id: 'r' + F.robots.length, x: 35, z: 13, yaw: 0, state: 'clean', load: 0, cap: 60 }); C.bus.emit('robot:added', { id }); }
-  if (id === 'broom') { window.__fk.tools.available = ['hands', 'broom']; window.__fk.tools.current = 'broom'; C.bus.emit('tool:changed', { id: 'broom' }); }
+  if (id === 'broom') { window.__fk.tools.available = ['brush', 'broom']; window.__fk.tools.current = 'broom'; C.bus.emit('tool:changed', { id: 'broom' }); }
   return true;
 }
 export function boostActive() { return F.boostLeft > 0; }

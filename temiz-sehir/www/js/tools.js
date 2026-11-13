@@ -1,4 +1,4 @@
-// tools.js — hands, broom, ride-on vacuum cart: turning input into trash removal + bag, the view model,
+// tools.js — hand brush (start tool), broom, ride-on vacuum cart: turning input into trash removal + bag, the view model,
 // pickup / dust / sparkle juice, haptics. Owner: tools. Contract: docs/MIMARI.md §4.5, §4.9 (offers), §6.
 // Notes, tunables and contract issues: docs/notlar/tools.md.
 //
@@ -9,14 +9,18 @@
 // Removal juice (items flying to the collector, dust per cleaned cell) is drawn by trash.js inside its own
 // instanced meshes (MIMARI §4.3/§4.5, decided at integration). tools draws only what is tool-specific: the view
 // model, the cart, broom stroke puffs and the valuable sparkle.
-// Draw calls: view model 2 (hidden while driving), cart body + nozzle 2 (once bought), puffs/sparkle 1 (Points).
+// Draw calls: view model 2-3 (brush: brush + dustpan + pile; broom: handle + head; hidden while driving),
+// cart body + nozzle 2 (once bought), puffs/sparkle 1 (Points).
+// v2: hand-picking was removed (owner: "the hand turned out silly"); the start tool is a small hand brush + dustpan
+// that sweeps a narrow strip like a small broom. Brush and broom cap walking speed ONLY while they are sweeping
+// (trash ahead and room in the bag), so moving between places is brisk.
 // Tunables: CONFIG.tools (config.js is the single source).
 
 const DEG = Math.PI / 180;
 let ctx = null, THREE = null, bus = null, C = null, K = null, cam = null;
 let types = [], VALUABLE = -1, NT = 6;
 
-let cur = 'hands', prevTool = 'hands', cartMounted = false;
+let cur = 'brush', prevTool = 'brush', cartMounted = false;
 let warned = {};
 function warnOnce(k, m) { if (warned[k]) return; warned[k] = true; console.warn('[tools] ' + m); }
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
@@ -31,6 +35,7 @@ let v3a = null, v3b = null, m4 = null;
 const aim = { x: 0, y: 0, z: 0, hit: false };
 const fwd = { x: 0, z: 0 };
 const col = { x: 0, z: 0, hit: false };
+const cc = { x: 0, z: 0 };
 let byOne = null; // Int32Array(NT) for single picks
 
 // per-frame collect aggregation, one payload per tool (MIMARI §6: aggregated per frame per tool)
@@ -45,14 +50,14 @@ function aggAdd(a, units, byType, x, y, z) {
 }
 const nozzleEv = { down: true };
 const swingEv = { tool: 'broom', speed: 0 };
-const changedEv = { id: 'hands' };
-const fullEv = { tool: 'hands', container: 'bag' };
+const changedEv = { id: 'brush' };
+const fullEv = { tool: 'brush', container: 'bag' };
 const toastEv = { key: 'bag_full', vars: null };
 
 // ------------------------------------------------------------------------------------------ API
 export function current() { return cur; }
 export function available() {
-  const out = ['hands'];
+  const out = ['brush'];
   const e = E();
   if (e.owned && e.owned('broom')) out.push('broom');
   if (e.owned && e.owned('cart')) out.push('cart');
@@ -61,7 +66,8 @@ export function available() {
 export function equip(id) {
   if (id === cur && !(id === 'cart' && !cartMounted)) return true;
   if (id === 'cart') { return tryEnterCart(); }
-  if (id !== 'hands' && id !== 'broom') return false;
+  if (id === 'hands') id = 'brush';   // v1 name
+  if (id !== 'brush' && id !== 'broom') return false;
   if (id === 'broom' && !(E().owned && E().owned('broom'))) return false;
   if (cartMounted) return false; // get out of the cart first
   setTool(id, true);
@@ -75,10 +81,25 @@ function setTool(id, anim) {
   showViewModel(anim);
   changedEv.id = id; bus.emit('tool:changed', changedEv);
 }
-let capNow = -1;
-function applySpeedCap() {
-  if (cur === 'broom') { const s = stat('broomSweepSpeed'); if (s !== capNow) { capNow = s; P().setSpeedCap(s); } }
-  else if (capNow !== null) { capNow = null; P().setSpeedCap(null); }
+let capNow = -1, capHold = 0;
+// The sweep tools cap walking speed only while they sweep: trash on the strip ahead and room in the bag. Walking over
+// the clean trail, or to the shop with a full bag, runs at full walking speed (v2). A short hold avoids flicker.
+function sweepingAhead(ps) {
+  if (space('bag') <= 0) return false;
+  P().forward(fwd);
+  const pr = K.sweepAheadProbeM || [0.5, 1.0];
+  for (let i = 0; i < pr.length; i++) if (T().amountAt(ps.x + fwd.x * pr[i], ps.z + fwd.z * pr[i]) > 0) return true;
+  // moving sideways or backwards: the strip is where you are heading
+  const sp = ps.speed; if (sp > 0.5) { const vx = ps.vx / sp, vz = ps.vz / sp; if (T().amountAt(ps.x + vx * 0.8, ps.z + vz * 0.8) > 0) return true; }
+  return false;
+}
+function applySpeedCap(dt, ps) {
+  let want = null;
+  if (cur === 'broom' || cur === 'brush') {
+    if (ps && sweepingAhead(ps)) capHold = 0.25; else capHold -= dt || 0;
+    if (capHold > 0) want = stat(cur === 'broom' ? 'broomSweepSpeed' : 'brushSweepSpeed');
+  }
+  if (want !== capNow) { capNow = want; P().setSpeedCap(want); }
 }
 function stat(name) {
   const e = E(), v = e.stat ? e.stat(name) : 0;
@@ -86,8 +107,10 @@ function stat(name) {
   switch (name) { // economy stub / not yet bought: level-0 values from config
     case 'broomWidth': return C.broom.widthM[0];
     case 'broomSweepSpeed': return C.broom.sweepSpeed[0];
-    case 'handsReach': return C.hands.reachM;
+    case 'brushWidth': return C.brush.widthM[0];
+    case 'brushSweepSpeed': return C.brush.sweepSpeed[0];
     case 'cartNozzleWidth': return C.cart.nozzleWidthM[0];
+    case 'cartCleanSpeed': return Array.isArray(C.cart.cleanSpeedMax) ? C.cart.cleanSpeedMax[0] : C.cart.cleanSpeedMax;
     default: return 0;
   }
 }
@@ -106,14 +129,13 @@ export function init(c) {
   types = (T().info && T().info().types) || C.trashTypes.map((t) => t.id);
   NT = Math.max(1, types.length); VALUABLE = types.indexOf('valuable');
   byOne = new Int32Array(NT);
-  for (const t of ['hands', 'broom', 'cart']) agg[t] = makeAgg(t);
+  for (const t of ['brush', 'broom', 'cart']) agg[t] = makeAgg(t);
   v3a = new THREE.Vector3(); v3b = new THREE.Vector3(); m4 = new THREE.Matrix4();
   dustEvery = (C.feedback && C.feedback.dustPuffEveryS) || 0.3;
 
   buildViewModels();
   buildDust();
 
-  bus.on('input:tap', (e) => { if (e) { tapPending = true; tapX = e.x; tapY = e.y; } });
   bus.on('ui:tool', (e) => { if (e && e.id) equip(e.id); });
   bus.on('ui:offer', onOffer);
   bus.on('economy:purchased', onPurchased);
@@ -139,9 +161,9 @@ function reconcile() {
     spawnCart(c && isFinite(+c.x) ? +c.x : null, c && isFinite(+c.z) ? +c.z : null, c && isFinite(+c.yaw) ? +c.yaw : null);
     if (c && c.nozzle === false) { cart.nozzleDown = false; cart.nozzleAnim = 0; }
   }
-  const want = d.current === 'broom' && e.owned && e.owned('broom') ? 'broom' : 'hands';
+  const want = d.current === 'broom' && e.owned && e.owned('broom') ? 'broom' : 'brush';
   if (cur !== want && !cartMounted) setTool(want, false);
-  else { applySpeedCap(); showViewModel(false); }
+  else { applySpeedCap(0, P().pose()); showViewModel(false); }
   if (cart && d.cart && d.cart.mounted && !cartMounted) mountCart(true);
   loaded = null;
   syncBagLook();
@@ -152,8 +174,9 @@ function onPurchased(e) {
   const id = e.id || '';
   if (id === 'broom') { if (!cartMounted) setTool('broom', true); }
   else if (id === 'cart') { if (!cart) spawnCart(null, null, null); }
-  else if (id.indexOf('broom') === 0 && cur === 'broom') { applySpeedCap(); equipT = 0; }
-  else if (id.indexOf('bag') === 0) { syncBagLook(); bagBounce = 1; if (cur === 'hands') equipT = 0; }
+  else if (id.indexOf('broom') === 0 && cur === 'broom') { capNow = -1; equipT = 0; }
+  else if (id.indexOf('brush') === 0 && cur === 'brush') { capNow = -1; equipT = 0; }
+  else if (id.indexOf('bag') === 0) { syncBagLook(); bagBounce = 1; if (cur === 'brush') equipT = 0; }
   else if (id.indexOf('cart') === 0 && cart) cartNozzleScale();
 }
 function onOffer(e) {
@@ -165,10 +188,10 @@ function onOffer(e) {
 }
 
 // ------------------------------------------------------------------------------------------ update
-let prevAction = false, holdT = 0, tapPending = false, tapX = 0, tapY = 0, tapCool = 0;
+let prevAction = false;
 let fullT = 0; // time since the last "full" feedback
-let reachT = 1, bagBounce = 0, equipT = 1, bagFill = 0, bagFillTarget = 0;
-let strokePhase = 0, strokeT = 0, swingT = 0, dustEvery = 0.3, sweepActive = 0, lastSX = NaN, lastSZ = NaN;
+let bagBounce = 0, equipT = 1, bagFill = 0, bagFillTarget = 0, flickT = 0, flickPhase = 1, flickSide = 1;
+let flickN = 0, strokePhase = 0, strokeT = 0, swingT = 0, dustEvery = 0.3, sweepActive = 0, lastSX = NaN, lastSZ = NaN;
 let lookSway = 0, lookSwayY = 0;
 const perf = { ms: 0, n: 0 };
 
@@ -176,15 +199,14 @@ export function update(dt) {
   const t0 = performance.now();
   const inp = P().input(), ps = P().pose();
   if (cartMounted && cur !== 'cart') cur = 'cart';
-  fullT += dt; tapCool -= dt;
-  applySpeedCap();
+  fullT += dt;
+  if (!cartMounted) applySpeedCap(dt, ps);
   offers(ps);
 
   if (dt > 0) {
     if (cartMounted) cartClean(dt);
-    else if (cur === 'hands') handsUpdate(dt, inp, ps);
+    else if (cur === 'brush') brushUpdate(dt, inp, ps);
     else if (cur === 'broom') broomUpdate(dt, inp, ps);
-    if (!cartMounted && cur !== 'hands') tapPending = false;
   }
   prevAction = inp.action;
   if (cart && !cartMounted) cartIdle(dt);
@@ -207,7 +229,7 @@ function offers(ps) {
     return;
   }
   if (cart && cartDist(ps) <= C.cart.enterRadiusM) ctx.offer('enter', 'act_enter', 70, 'tools');
-  if (cur === 'hands') ctx.offer('pick', space('bag') > 0 ? 'act_pick' : 'bag_full', 10, 'tools');
+  if (cur === 'brush') ctx.offer('brush', space('bag') > 0 ? 'act_brush' : 'bag_full', 10, 'tools');
   else if (cur === 'broom') ctx.offer('sweep', space('bag') > 0 ? 'act_sweep' : 'bag_full', 5, 'tools');
 }
 
@@ -219,82 +241,46 @@ function blocked(tool, container) {
   ctx.haptic('full');
 }
 
-// ---- hands
-function handsUpdate(dt, inp, ps) {
-  const pressed = inp.action && !prevAction;
-  if (pressed) { reachT = 0; holdT = 0; }
-  if (inp.action) {
-    holdT -= dt;
-    if (pressed || holdT <= 0) { if (!pressed) holdT += C.hands.holdIntervalS; else holdT = C.hands.holdIntervalS; grabNearest(ps); }
-  }
-  if (tapPending) {
-    tapPending = false;
-    if (tapCool <= 0) { tapCool = C.hands.tapCooldownS; tapPick(ps); }
-  }
-}
-function grabNearest(ps) {
-  if (space('bag') <= 0) { blocked('hands', 'bag'); return; }
-  const reach = stat('handsReach');
-  // 1) the item under the crosshair, if within reach
-  P().aimPoint(reach + 2, aim);
-  if (aim.hit) {
-    const dx = aim.x - ps.x, dz = aim.z - ps.z;
-    if (dx * dx + dz * dz <= reach * reach && T().amountAt(aim.x, aim.z) > 0 && doPick(aim.x, aim.z, K.aimPickRadiusM)) return;
-  }
-  // 2) the nearest dirty spot in the cone in front (CONFIG.hands.coneDeg), nearest first
+// ---- hand brush (v2 start tool): sweeps a narrow strip while walking (automatic), and, standing still with the
+// button held, quick short flicks across the strip in front. Same feedback rules as the broom (collectResult).
+function brushUpdate(dt, inp, ps) {
   P().forward(fwd);
-  const half = C.hands.coneDeg * 0.5 * DEG, yaw = Math.atan2(fwd.x, -fwd.z), stepA = K.coneStepDeg * DEG;
-  for (let d = K.coneStepM; d <= reach + 1e-6; d += K.coneStepM) {
-    for (let k = 0; ; k++) {
-      const a = (k & 1 ? -1 : 1) * Math.ceil(k / 2) * stepA; // 0, +10°, -10°, +20°, ...
-      if (Math.abs(a) > half + 1e-6) break;
-      const x = ps.x + Math.sin(yaw + a) * d, z = ps.z - Math.cos(yaw + a) * d;
-      if (T().amountAt(x, z) > 0 && doPick(x, z, K.conePickRadiusM)) return;
+  const B = C.brush, reachA = B.reachAheadM, cx = ps.x + fwd.x * reachA, cz = ps.z + fwd.z * reachA;
+  const hw = stat('brushWidth') * 0.5, moving = ps.speed >= B.minMoveSpeedToSweep;
+  sweepActive = Math.max(0, sweepActive - dt * 4);
+  if (moving) {
+    if (!(lastSX === lastSX)) { lastSX = cx; lastSZ = cz; }
+    const room = space('bag');
+    if (room <= 0) blocked('brush', 'bag');
+    else collectResult(T().removeAlongSegment(lastSX, lastSZ, cx, cz, hw, room, 'brush'), 'brush');
+    sweepActive = 1;
+  }
+  // the flick rhythm runs while sweeping (walking) or while the button is held standing still
+  if (moving || inp.action) {
+    flickT -= dt;
+    if (flickT <= 0 || (inp.action && !prevAction)) {
+      flickT = B.flickS; flickPhase = 0; flickSide = -flickSide;
+      if (!moving) { // standing: one short flick across the strip in front, alternating sides
+        const room = space('bag');
+        if (room <= 0) blocked('brush', 'bag');
+        else {
+          const rx = -fwd.z * hw, rz = fwd.x * hw;
+          let r = T().removeAlongSegment(cx - rx * flickSide, cz - rz * flickSide, cx + rx * flickSide + fwd.x * B.flickDepthM * 0.5, cz + rz * flickSide + fwd.z * B.flickDepthM * 0.5, B.flickDepthM, room, 'brush');
+          // the strip in front is already clean: reach for the nearest dirty cell around the feet (never a held button
+          // that silently does nothing, QA/integration D1); if nothing is within reach, the hint asks to walk
+          if (!r || r.units <= 0) {
+            const idx = T().nearestDirty ? T().nearestDirty(ps.x + fwd.x * 0.3, ps.z + fwd.z * 0.3, B.reachM || 1.3) : -1;
+            if (idx >= 0) { T().cellCenter(idx, cc); r = T().removeAlongSegment(cc.x - rx * 0.4, cc.z - rz * 0.4, cc.x + rx * 0.4, cc.z + rz * 0.4, 0.3, room, 'brush'); }
+          }
+          collectResult(r, 'brush');
+        }
+        sweepActive = 1;
+      }
+      swingEv.tool = 'brush'; swingEv.speed = ps.speed; bus.emit('tool:swing', swingEv);
+      if ((++flickN & 1) === 0) dustBurst(cx, T().surfaceAt(cx, cz) + 0.04, cz, 2, DUST_COL, 0.6);
     }
   }
-  // 3) never waste a held button (TASARIM §4): an item's top can sit up to 0.46 m from its cell centre, so take the
-  // nearest dirty cell within reach even if no cone sample landed close enough to its top item
-  const idx = T().nearestDirty ? T().nearestDirty(ps.x, ps.z, reach) : -1;
-  if (idx >= 0 && T().cellCenter) { T().cellCenter(idx, cc); doPick(cc.x, cc.z, K.conePickRadiusM); }
-}
-const cc = { x: 0, z: 0 };
-function tapPick(ps) {
-  if (space('bag') <= 0) { blocked('hands', 'bag'); reachT = 0; return; }
-  // ray through the tap point
-  const v = ctx.view;
-  v3a.set((tapX / v.w) * 2 - 1, -(tapY / v.h) * 2 + 1, 0.5).unproject(cam).sub(cam.position).normalize();
-  const reach = stat('handsReach') + K.tapReachSlackM;
-  const ox = cam.position.x, oy = cam.position.y, oz = cam.position.z, dx = v3a.x, dy = v3a.y, dz = v3a.z;
-  if (dy >= -1e-4) return;
-  const maxT = Math.sqrt(reach * reach + oy * oy) + 0.5;
-  let prev = 0, hitT = -1;
-  for (let t = 0.08; t <= maxT; t += 0.06) {
-    const x = ox + dx * t, z = oz + dz * t;
-    if (W().isBlocked(x, z, 0)) return;
-    if (oy + dy * t <= T().surfaceAt(x, z)) {
-      let a = prev, b = t;
-      for (let k = 0; k < 6; k++) { const m = (a + b) * 0.5; if (oy + dy * m <= T().surfaceAt(ox + dx * m, oz + dz * m)) b = m; else a = m; }
-      hitT = b; break;
-    }
-    prev = t;
-  }
-  if (hitT < 0) return;
-  const hx = ox + dx * hitT, hz = oz + dz * hitT, ddx = hx - ps.x, ddz = hz - ps.z;
-  if (ddx * ddx + ddz * ddz > reach * reach) return;
-  reachT = 0;
-  doPick(hx, hz, K.tapPickRadiusM);
-}
-// remove the single top item nearest (x, z); bag + juice. true if something was picked
-function doPick(x, z, r) {
-  const p = T().pick(x, z, r, 'hands');
-  if (!p) return false;
-  byOne.fill(0); if (p.type >= 0 && p.type < NT) byOne[p.type] = 1;
-  addToBag(1, byOne, 'bag');
-  aggAdd(agg.hands, 1, byOne, p.x, p.y, p.z);
-  if (p.type === VALUABLE) sparkle(p.x, p.y + 0.1, p.z);
-  reachT = 0;
-  ctx.haptic('light');
-  return true;
+  lastSX = cx; lastSZ = cz;
 }
 
 // ---- broom
@@ -344,7 +330,7 @@ function collectResult(r, tool) {
   if (!r || r.units <= 0) return;
   addToBag(r.units, r.byType, tool === 'cart' ? 'tank' : 'bag');
   aggAdd(agg[tool], r.units, r.byType, r.n ? r.sx[0] : 0, r.n ? r.sy[0] : 0, r.n ? r.sz[0] : 0);
-  for (let i = 0; i < r.n; i++) if (r.st[i] === VALUABLE) { sparkle(r.sx[i], r.sy[i] + 0.1, r.sz[i]); break; }
+  for (let i = 0; i < r.n; i++) if (r.st[i] === VALUABLE) { sparkle(r.sx[i], r.sy[i] + 0.1, r.sz[i]); break; }   // rare valuables keep their sparkle
   ctx.haptic('light');
 }
 
@@ -391,12 +377,13 @@ function lumpy(g, amp, seed) {
 
 // ------------------------------------------------------------------------------------------ view models
 // Camera space: x right, y up, -z forward. The group is laid out for landscape; in portrait (narrow
-// horizontal FOV) lateral offsets are pulled towards the centre so the hands stay in frame.
-// Draw calls: hands 2 (reaching right glove; left glove + bag), broom 2 (handle; bristle head that leans).
-let vmRoot = null, handsG = null, handR = null, bagMesh = null, bagCol = null, bagV0 = 0, bagV1 = 0, broomG = null, broomHead = null;
-const HAND_R = { x: 0.15, y: -0.13, z: -0.4 }, BAG = { x: -0.17, y: -0.075, z: -0.43 }, BROOM = { x: 0.17, y: -0.35, z: -0.22 };
+// horizontal FOV) lateral offsets are pulled towards the centre so the tools stay in frame.
+// Draw calls: brush 3 (right glove + hand brush; left glove + dustpan; the pile in the pan that grows with the bag),
+// broom 2 (handle; bristle head that leans). v2: laid out for the wide default FOV (61 deg vertical in landscape):
+// both tools sit low and to the sides, the centre of the screen stays free.
+let vmRoot = null, brushG = null, brushM = null, panG = null, pileMesh = null, broomG = null, broomHead = null;
+const BRUSH = { x: 0.33, y: -0.175, z: -0.46 }, PAN = { x: -0.38, y: -0.235, z: -0.56 }, BROOM = { x: 0.17, y: -0.35, z: -0.22 };
 const BROOM_HEAD = { x: -0.15, y: 0.075, z: -0.55 }; // head relative to the broom pivot (the upper hand, below the frame)
-const BAG_TINTS = ['#d6e8f0', '#b89a6a', '#9c7f52', '#3f6f9a'];
 // cylinder from a to b (init only)
 function tube(a, b, r0, r1, color, seg) {
   const d = new THREE.Vector3(b[0] - a[0], b[1] - a[1], b[2] - a[2]), len = d.length();
@@ -412,30 +399,40 @@ function buildViewModels() {
   const mat = new THREE.MeshLambertMaterial({ vertexColors: true });
   const GLOVE = '#ee8a2a', GLOVE_D = '#cf7420', SLEEVE = '#2f4a6b', BAND = '#e9e35a';
 
-  // right glove, palm down, fingers forward: sleeve, reflective band, cuff, palm, 4 fingers, thumb. Origin = palm.
-  const hp = [];
-  hp.push(tube([0.035, -0.12, 0.13], [0.012, -0.018, 0.05], 0.031, 0.029, SLEEVE));
-  hp.push(tube([0.016, -0.021, 0.062], [0.009, -0.012, 0.042], 0.031, 0.031, BAND));
-  hp.push(tube([0.01, -0.013, 0.043], [0.0, 0.0, 0.012], 0.029, 0.027, GLOVE_D));
-  hp.push(part(box(0.072, 0.028, 0.072), GLOVE, 0, 0, -0.018, -0.12, 0, 0));
-  for (let f = 0; f < 4; f++) { const x = -0.026 + f * 0.0175; hp.push(tube([x, -0.002, -0.05], [x * 1.08, -0.026, -0.098 + Math.abs(f - 1.5) * 0.006], 0.0095, 0.0085, f & 1 ? GLOVE_D : GLOVE, 6)); }
-  hp.push(tube([-0.03, -0.006, -0.01], [-0.052, -0.02, -0.05], 0.011, 0.0095, GLOVE, 6));
-  handR = new THREE.Mesh(merge(hp), mat); handR.frustumCulled = false;
-  // left glove holding a bag by its knot; bag vertices are recoloured per bag level (syncBagLook)
-  const bp = [];
-  bp.push(tube([-0.03, -0.12, 0.12], [-0.006, -0.008, 0.035], 0.031, 0.029, SLEEVE));
-  bp.push(tube([-0.009, -0.024, 0.047], [-0.006, -0.008, 0.035], 0.031, 0.031, BAND));
-  bp.push(part(box(0.058, 0.05, 0.06), GLOVE, 0, 0, 0, 0.2, 0.3, 0));
-  bp.push(tube([0.0, -0.01, -0.005], [0.003, -0.06, -0.005], 0.008, 0.022, '#ffffff', 6));
-  let nv = 0; for (const g of bp) nv += g.attributes.position.count;
-  bagV0 = nv;
-  bp.push(part(lumpy(new THREE.SphereGeometry(0.075, 10, 8), 0.3, 3), '#ffffff', 0.004, -0.115, -0.004, 0, 0, 0, 1.05, 1.15, 0.92));
-  for (let k = 0; k < 3; k++) bp.push(tube([0.004, -0.06, -0.004], [0.004 + (k - 1) * 0.03, -0.075, -0.004 + (k === 1 ? -0.03 : 0.012)], 0.004, 0.003, '#ffffff', 4));
-  const bagGeo = merge(bp); bagV1 = bagGeo.attributes.position.count;
-  bagMesh = new THREE.Mesh(bagGeo, mat); bagMesh.frustumCulled = false;
-  bagCol = bagGeo.attributes.color;
-  bagV0 -= bp[3].attributes.position.count; // the knot takes the bag colour too
-  handsG = new THREE.Group(); handsG.add(handR); handsG.add(bagMesh);
+  // hand brush in the right glove. Origin = the grip; the short wooden handle points forward and down to a
+  // block with stiff bristles (bristles down). A flick rotates the whole thing about the grip.
+  const hb = [];
+  hb.push(tube([0.03, -0.13, 0.14], [0.006, -0.012, 0.035], 0.032, 0.03, SLEEVE));
+  hb.push(tube([0.012, -0.03, 0.06], [0.006, -0.016, 0.042], 0.032, 0.032, BAND));
+  hb.push(part(box(0.066, 0.056, 0.074), GLOVE, 0, 0, 0, 0.25, 0.1, 0));
+  hb.push(part(box(0.07, 0.02, 0.03), GLOVE_D, 0.0, 0.02, -0.022, 0.25, 0.1, 0));         // knuckles over the handle
+  hb.push(tube([0.0, 0.0, 0.03], [-0.01, -0.02, -0.1], 0.012, 0.011, '#c98b4a'));         // handle
+  hb.push(part(box(0.1, 0.028, 0.055), '#8a5a32', -0.012, -0.034, -0.13, 0.2, 0, 0));     // brush block
+  hb.push(part(box(0.104, 0.008, 0.059), '#3f9a5a', -0.012, -0.018, -0.127, 0.2, 0, 0));  // painted top stripe
+  for (let i = 0; i < 6; i++) hb.push(part(box(0.016, 0.04, 0.05), i & 1 ? '#d9b352' : '#e8c86a', -0.054 + i * 0.0168, -0.062, -0.136, 0.2 + (i % 3 - 1) * 0.06, 0, (i - 2.5) * 0.03));
+  brushM = new THREE.Mesh(merge(hb), mat); brushM.frustumCulled = false;
+  brushG = new THREE.Group(); brushG.add(brushM);
+  // dustpan in the left glove: short handle towards the hand, a flat pan with a back wall and side lips, its open
+  // lip facing forward-right where the brush flicks. The pile inside (separate mesh) grows with the bag.
+  const dp = [];
+  dp.push(tube([-0.03, -0.12, 0.13], [-0.004, -0.01, 0.035], 0.032, 0.03, SLEEVE));
+  dp.push(tube([-0.01, -0.028, 0.058], [-0.004, -0.014, 0.04], 0.032, 0.032, BAND));
+  dp.push(part(box(0.06, 0.054, 0.066), GLOVE, 0, 0, 0, 0.2, -0.2, 0));
+  dp.push(tube([0.0, 0.0, 0.0], [0.012, -0.03, -0.075], 0.011, 0.011, '#2b6cb0'));        // handle
+  const PC = '#3d86d6', PD = '#2b6cb0';
+  dp.push(part(box(0.14, 0.006, 0.1), PC, 0.02, -0.04, -0.12, -0.12, 0, 0));              // pan floor
+  dp.push(part(box(0.14, 0.045, 0.008), PD, 0.02, -0.02, -0.07, -0.12, 0, 0));            // back wall
+  dp.push(part(box(0.006, 0.032, 0.1), PD, -0.05, -0.026, -0.12, -0.12, 0, 0));           // side lips
+  dp.push(part(box(0.006, 0.032, 0.1), PD, 0.09, -0.026, -0.12, -0.12, 0, 0));
+  const panM = new THREE.Mesh(merge(dp), mat); panM.frustumCulled = false;
+  const pl = [];
+  const TR = ['#e8e2d0', '#4fa3d9', '#c9483b', '#3f9a5a', '#6b6155', '#e8e2d0', '#4fa3d9'];
+  for (let k = 0; k < 7; k++) pl.push(part(lumpy(new THREE.SphereGeometry(0.016 + (k % 3) * 0.004, 7, 5), 0.35, k), TR[k], -0.035 + (k % 4) * 0.025, 0.0, -0.01 - ((k / 4) | 0) * 0.03, 0, 0, 0, 1.2, 0.6, 1.1));
+  pileMesh = new THREE.Mesh(merge(pl), mat); pileMesh.frustumCulled = false;
+  pileMesh.position.set(0.02, -0.032, -0.11); pileMesh.rotation.set(-0.12, 0, 0);
+  panG = new THREE.Group(); panG.add(panM); panG.add(pileMesh);
+  const handsG = new THREE.Group(); handsG.name = 'brushVM'; handsG.add(brushG); handsG.add(panG);
+  brushVM = handsG;
   vmRoot.add(handsG);
 
   // broom: the pivot (upper hand) is below the frame, the handle rises into view towards the head that rests
@@ -458,20 +455,16 @@ function buildViewModels() {
   broomG.add(bm); broomG.add(broomHead);
   vmRoot.add(broomG);
 }
+let brushVM = null;
 function showViewModel(anim) {
   if (!vmRoot) return;
-  handsG.visible = cur === 'hands';
+  brushVM.visible = cur === 'brush';
   broomG.visible = cur === 'broom';
   vmRoot.visible = !cartMounted;
   if (anim) equipT = 0;
 }
 function syncBagLook() {
-  if (!bagCol) return;
-  let lvl = 0; const caps = C.bag.capacity, cap = E().bagCapacity ? E().bagCapacity('bag') : caps[0];
-  for (let i = 0; i < caps.length; i++) if (cap >= caps[i]) lvl = i;
-  const c = new THREE.Color(BAG_TINTS[Math.min(lvl, BAG_TINTS.length - 1)]), a = bagCol.array; // purchase-time only
-  for (let i = bagV0; i < bagV1; i++) { a[i * 3] = c.r; a[i * 3 + 1] = c.g; a[i * 3 + 2] = c.b; }
-  bagCol.needsUpdate = true;
+  const cap = E().bagCapacity ? E().bagCapacity('bag') : C.bag.capacity[0];
   const u = E().bagUnits ? E().bagUnits('bag') : 0; bagFillTarget = cap > 0 ? u / cap : 0;
 }
 function vmDepthScale() { return ctx.view.portrait ? 1 : Math.tan(30 * DEG) / Math.tan(cam.fov * 0.5 * DEG); }
@@ -495,16 +488,20 @@ function animViewModel(dt, inp, ps) {
   const tx = clamp(-inp.lookDX * 0.0006, -0.03, 0.03), ty = clamp(inp.lookDY * 0.0006, -0.03, 0.03);
   const k = 1 - Math.exp(-rdt / 0.08);
   lookSway += (tx - lookSway) * k; lookSwayY += (ty - lookSwayY) * k;
-  if (cur === 'hands') {
-    reachT = Math.min(1, reachT + rdt / K.handReachS);
-    const r = Math.sin(reachT * Math.PI); // out and back
-    handR.position.set(HAND_R.x * lat + lookSway - r * 0.04, HAND_R.y + lower + lookSwayY - r * 0.06, HAND_R.z - r * 0.12);
-    handR.rotation.set(-r * 0.5, 0, 0);
+  if (cur === 'brush') {
+    // quick short flick: fast down-forward stroke (25 % of the beat), slower lift back; the pan tips to meet it
+    flickPhase = Math.min(1, flickPhase + rdt / Math.max(0.08, C.brush.flickS));
+    const f = flickPhase < 0.25 ? flickPhase / 0.25 : 1 - (flickPhase - 0.25) / 0.75, e = f * f * (3 - 2 * f);
+    brushG.position.set(BRUSH.x * lat + lookSway - e * 0.03 * flickSide, BRUSH.y + lower + lookSwayY - e * 0.03, BRUSH.z - e * 0.05);
+    brushG.rotation.set(0.05 - e * 0.5, 0.25 + e * 0.25 * flickSide, -0.2 - e * 0.1 * flickSide);
     bagBounce = Math.max(0, bagBounce - rdt / K.bagBounceS);
     bagFill += (bagFillTarget - bagFill) * (1 - Math.exp(-rdt / 0.15));
-    const s = 0.86 + 0.26 * bagFill, sq = Math.sin(bagBounce * Math.PI) * 0.12;
-    bagMesh.position.set(BAG.x * lat + lookSway, BAG.y + lower + lookSwayY - sq * 0.02, BAG.z);
-    bagMesh.scale.set(s * (1 + sq), s * (1 - sq), s * (1 + sq));
+    const sq = Math.sin(bagBounce * Math.PI) * 0.12;
+    panG.position.set(PAN.x * lat + lookSway, PAN.y + lower + lookSwayY - sq * 0.02 + e * 0.008, PAN.z);
+    panG.rotation.set(0.45 + e * 0.08, 0.45, 0.1);
+    const ps2 = 0.15 + 0.95 * Math.min(1, bagFill);
+    pileMesh.scale.set(ps2 * (1 + sq), Math.max(0.05, ps2 * (1 - sq)), ps2);
+    pileMesh.visible = bagFill > 0.02;
   } else if (cur === 'broom') {
     // stroke: the head swings across, bristles lean against the motion, rhythm follows walking speed
     const sweepSp = stat('broomSweepSpeed');
@@ -697,7 +694,7 @@ function mountCart(quiet) {
 function onDismount(e) {
   if (!cartMounted || !e || e.vehicle !== 'cart') return;
   cartMounted = false;
-  setTool(prevTool === 'broom' && E().owned && E().owned('broom') ? 'broom' : 'hands', true);
+  setTool(prevTool === 'broom' && E().owned && E().owned('broom') ? 'broom' : 'brush', true);
 }
 function toggleNozzle() {
   if (!cart || !cartMounted) return;
@@ -714,7 +711,7 @@ function drive(dt, inp, ps) {
   if (!cart) return 0;
   const CC = C.cart, mode = controlMode();
   cartDesc.view = cartViewMode();
-  const vmax = cart.nozzleDown ? CC.cleanSpeedMax : CC.topSpeed, turnMax = CC.turnRateDeg * DEG;
+  const vmax = cart.nozzleDown ? stat('cartCleanSpeed') : CC.topSpeed, turnMax = CC.turnRateDeg * DEG;
   const mx = inp.moveX, my = inp.moveY, m = Math.min(1, Math.sqrt(mx * mx + my * my));
   let tSpeed = 0, tYaw = 0;
   if (mode === 'tank') {
@@ -740,7 +737,10 @@ function drive(dt, inp, ps) {
   const rate = (Math.sign(tSpeed) === Math.sign(sp) || sp === 0) && Math.abs(tSpeed) > Math.abs(sp) ? CC.accel : CC.brake;
   const d = tSpeed - sp, st = rate * dt;
   cart.speed = Math.abs(d) <= st ? tSpeed : sp + Math.sign(d) * st;
-  const bump = moveCart(dt);
+  // sub-steps: at 12 m/s a 50 ms frame moves 0.6 m; never move more than player.maxStepM * 2 between collision checks
+  const maxStep = ((C.player && C.player.maxStepM) || 0.12) * 2, nSub = Math.min(8, Math.max(1, Math.ceil(Math.abs(cart.speed) * dt / maxStep)));
+  let bump = 0;
+  for (let k = 0; k < nSub; k++) bump = Math.max(bump, moveCart(dt / nSub));
   ps.x = cart.x; ps.z = cart.z;
   if (mode === 'tank') {
     ps.yaw = wrapPi(ps.yaw + dYaw);
@@ -762,6 +762,17 @@ function moveCart(dt) {
     if (col.hit) { hit = true; x += col.x - cx; z += col.z - cz; }
   }
   W().collide(x, z, r, col); if (col.hit) { hit = true; x = col.x; z = col.z; }
+  // robots are soft obstacles (QA #8: the cart drove through them): push the cart out of their circle and slow it
+  const rs = E().robots ? E().robots() : null, rr = (C.robot.bodyRadiusM || 0.33) + 0.05;
+  let soft = false;
+  if (rs) for (let k = 0; k < rs.length; k++) {
+    const rb = rs[k];
+    for (let pass = -1; pass <= 1; pass++) {
+      const cx = x + fx * off * pass, cz = z + fz * off * pass, dx = cx - rb.x, dz = cz - rb.z, d2 = dx * dx + dz * dz, R2 = r + rr;
+      if (d2 < R2 * R2 && d2 > 1e-8) { const d = Math.sqrt(d2), push = (R2 - d) / d; x += dx * push; z += dz * push; soft = true; }
+    }
+  }
+  if (soft) { cart.speed *= Math.max(0, 1 - 4 * dt); if (!W().isBlocked(x, z, r * 0.5)) { /* keep */ } else { x = cart.x; z = cart.z; } }
   let bump = 0;
   if (hit) {
     if (!cart.contact && Math.abs(cart.speed) > 1) { bump = Math.min(1, Math.abs(cart.speed) / C.cart.topSpeed); cart.speed *= C.cart.bumpSlowdown; }

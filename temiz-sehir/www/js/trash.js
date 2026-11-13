@@ -300,15 +300,15 @@ const LOOK = {
   flyMax: 160,             // pooled flying items (all shapes together)
   flySpawnPerFrame: 40,
   flyStagger: 0.012,       // s between items removed in one frame (cascade)
-  flyHop: { hands: 0.22, broom: 0.35, cart: 0.18, robot: 0.10, debug: 0.2 },
-  flySwirl: { hands: 0, broom: 0.06, cart: 0.32, robot: 0.18, debug: 0 },
+  flyHop: { brush: 0.28, broom: 0.35, cart: 0.18, robot: 0.10, debug: 0.2 },
+  flySwirl: { brush: 0.03, broom: 0.06, cart: 0.32, robot: 0.18, debug: 0 },
   flyDurRobot: 0.34, gustDur: 1.1, gustDist: 4.5, gustRise: 2.6,
-  handOffset: [0.24, -0.46, -0.52],   // camera-local target for hand picks (x right, y up, -z forward)
+  handOffset: [-0.19, -0.26, -0.56],  // camera-local target for brush sweeps: the dustpan (x right, y up, -z forward)
   bagOffset: [0.2, -0.85, -0.3],      // broom: bag at the hip, yaw frame (x right, y below the eye, z back)
   collectY: 0.16,          // m, height of dustpan / intake / robot mouth
   dustMax: 96, dustPerFrame: 8, dustLife: 0.55, dustRange: 16, dustColor: '#b7aa94', dustAlpha: 0.38,
 };
-const BY_IDS = ['hands', 'broom', 'cart', 'robot', 'final', 'debug'];
+const BY_IDS = ['brush', 'broom', 'cart', 'robot', 'final', 'debug'];
 
 // ---------------------------------------------------------------- shaders
 const GROUND_VS = /* glsl */`
@@ -632,11 +632,16 @@ function createCore(opts) {
   const dirtyMark = new Uint8Array(NN);
   const DIRTY_CAP = 16384, dirtyList = new Int32Array(DIRTY_CAP);
   let dirtyCount = 0, dirtyOverflow = false, rowMin = N, rowMax = -1;
+  // v2 (90 m district): per-row dirty column span, so an upload covers only the changed rectangles, not one band of
+  // full rows from the northernmost to the southernmost change (with robots spread over a 180-cell grid that band
+  // was most of the texture every frame)
+  const rowC0 = new Int16Array(N).fill(N), rowC1 = new Int16Array(N).fill(-1);
+  function markRC(i, j) { if (j < rowMin) rowMin = j; if (j > rowMax) rowMax = j; if (i < rowC0[j]) rowC0[j] = i; if (i > rowC1[j]) rowC1[j] = i; }
   const animMark = new Uint8Array(NN), animList = new Int32Array(NN);
   let animCount = 0;
   function cellChanged(idx, j) {
     if (o.fadeS > 0) { if (!animMark[idx]) { animMark[idx] = 1; animList[animCount++] = idx; } }
-    else { vis[idx * 2] = visTarget(idx); vis[idx * 2 + 1] = cleanTarget(idx); if (j < rowMin) rowMin = j; if (j > rowMax) rowMax = j; }
+    else { vis[idx * 2] = visTarget(idx); vis[idx * 2 + 1] = cleanTarget(idx); markRC(idx - j * N, j); }
     if (dirtyMark[idx]) return;
     dirtyMark[idx] = 1;
     if (dirtyCount < DIRTY_CAP) dirtyList[dirtyCount++] = idx; else dirtyOverflow = true;
@@ -650,7 +655,7 @@ function createCore(opts) {
       const nv = v > target ? Math.max(target, v - step) : Math.min(target, v + step);
       const nc = c > ct ? Math.max(ct, c - stepC) : Math.min(ct, c + stepC);
       vis[q] = nv; vis[q + 1] = nc;
-      const j = (idx / N) | 0; if (j < rowMin) rowMin = j; if (j > rowMax) rowMax = j;
+      const j = (idx / N) | 0; markRC(idx - j * N, j);
       if (nv === target && nc === ct) { animMark[idx] = 0; animList[a] = animList[--animCount]; }
     }
   }
@@ -1010,21 +1015,34 @@ function createCore(opts) {
     const rows = rowMax - rowMin + 1;
     const props = renderer && renderer.properties.get(depthTex);
     const full = !props || !props.__webglTexture || props.__version !== depthTex.version;
-    if (RGBA) mirror(full ? 0 : rowMin, full ? N - 1 : rowMax);
-    if (full) { depthTex.needsUpdate = true; stats.fullUploads++; }
+    if (full) { if (RGBA) mirror(0, N - 1); depthTex.needsUpdate = true; stats.fullUploads++; }
     else {
-      const gl = renderer.getContext();
+      const gl = renderer.getContext(), gl2 = renderer.capabilities.isWebGL2;
       renderer.state.bindTexture(gl.TEXTURE_2D, props.__webglTexture);
       gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
       gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
-      if (RGBA) {
-        if (renderer.capabilities.isWebGL2) gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.RGBA, gl.UNSIGNED_BYTE, vis4, rowMin * N * 4);
-        else gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.RGBA, gl.UNSIGNED_BYTE, vis4.subarray(rowMin * N * 4, (rowMax + 1) * N * 4));
-      } else if (renderer.capabilities.isWebGL2) gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.LUMINANCE_ALPHA, gl.UNSIGNED_BYTE, vis, rowMin * N * 2);
-      else gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, rowMin, N, rows, gl.LUMINANCE_ALPHA, gl.UNSIGNED_BYTE, vis.subarray(rowMin * N * 2, (rowMax + 1) * N * 2));
-      stats.partialUploads++;
+      if (gl2) gl.pixelStorei(gl.UNPACK_ROW_LENGTH, N);
+      const bpp = RGBA ? 4 : 2, buf = RGBA ? vis4 : vis, fmt = RGBA ? gl.RGBA : gl.LUMINANCE_ALPHA;
+      // dirty rectangles: runs of dirty rows (gaps of <= 2 clean rows merge), each with its column span
+      let j = rowMin;
+      while (j <= rowMax) {
+        while (j <= rowMax && rowC1[j] < 0) j++;
+        if (j > rowMax) break;
+        const j0 = j; let c0 = N, c1 = -1, j1 = j, gap = 0;
+        for (; j <= rowMax; j++) {
+          if (rowC1[j] < 0) { if (++gap > 2) break; continue; }
+          gap = 0; j1 = j; if (rowC0[j] < c0) c0 = rowC0[j]; if (rowC1[j] > c1) c1 = rowC1[j];
+        }
+        if (RGBA) mirror(j0, j1);
+        const h = j1 - j0 + 1;
+        if (gl2) gl.texSubImage2D(gl.TEXTURE_2D, 0, c0, j0, c1 - c0 + 1, h, fmt, gl.UNSIGNED_BYTE, buf, (j0 * N + c0) * bpp);
+        else gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, j0, N, h, fmt, gl.UNSIGNED_BYTE, buf.subarray(j0 * N * bpp, (j1 + 1) * N * bpp));
+        stats.partialUploads++;
+      }
+      if (gl2) gl.pixelStorei(gl.UNPACK_ROW_LENGTH, 0);
     }
+    for (let r = rowMin; r <= rowMax; r++) { rowC0[r] = N; rowC1[r] = -1; }
     rowMin = N; rowMax = -1;
     return rows;
   }
@@ -1107,7 +1125,7 @@ function createCore(opts) {
     }
     animCount = 0; animMark.fill(0);
     dirtyCount = 0; dirtyMark.fill(0);
-    rowMin = 0; rowMax = N - 1; dirtyOverflow = true;
+    rowMin = 0; rowMax = N - 1; rowC0.fill(0); rowC1.fill(N - 1); dirtyOverflow = true;
     clearJuice();
   }
   // {ok, exact}; exact=false: layout or K changed since saving (applied best-effort, never adds trash)
@@ -1202,8 +1220,8 @@ let ctx = null, core = null, CFG = null, genStats = null, infoObj = null, typeVa
 let msReached = -1, sweepWait = -1, sweepWarned = false, readyForMilestones = false;
 const warned = {};
 function warnOnce(key, msg) { if (warned[key]) return; warned[key] = true; console.warn('[trash] ' + msg); }
-const agg = { units: 0, cells: 0, cleaned: 0, by: { hands: 0, broom: 0, cart: 0, robot: 0, final: 0, debug: 0 } };
-const changedPayload = { units: 0, cells: 0, cleaned: 0, by: { hands: 0, broom: 0, cart: 0, robot: 0, final: 0, debug: 0 }, fraction: 0 };
+const agg = { units: 0, cells: 0, cleaned: 0, by: { brush: 0, broom: 0, cart: 0, robot: 0, final: 0, debug: 0 } };
+const changedPayload = { units: 0, cells: 0, cleaned: 0, by: { brush: 0, broom: 0, cart: 0, robot: 0, final: 0, debug: 0 }, fraction: 0 };
 let emptyRes = null;
 const tmpV = { x: 0, z: 0 };
 
@@ -1215,12 +1233,13 @@ function units(maxUnits) { // undefined/null → unlimited; NaN/≤0 → 0; frac
   return maxUnits > 0 ? Math.floor(maxUnits) : 0;
 }
 function byId(by) {
-  if (by === 'hands' || by === 'broom' || by === 'cart' || by === 'robot' || by === 'final' || by === 'debug') return by;
+  if (by === 'hands') return 'brush';   // v1 name
+  if (by === 'brush' || by === 'broom' || by === 'cart' || by === 'robot' || by === 'final' || by === 'debug') return by;
   warnOnce('by:' + by, 'unknown remover "' + by + '", counted as "debug"');
   return 'debug';
 }
 function empty() { return core ? core.clearRes() : emptyRes; }
-const MAX_R = 120; // m; covers the whole district from anywhere near it
+const MAX_R = 160; // m; covers the whole district (90 m, diagonal 127 m) from anywhere near it
 function finish(res, by) {
   let v = 0; for (let t = 0; t < nTypes; t++) v += res.byType[t] * typeValue[t];
   res.value = v;
@@ -1234,8 +1253,8 @@ function setJuice(by, mode, tx, tz) {
   if (by === 'final') { J.mode = 4; J.tx = 0.8; J.ty = 0; J.tz = 0.6; J.dur = LOOK.gustDur; J.hop = 0.4; return; }
   if (by === 'debug' || mode === 0) { J.mode = 0; return; }
   const cam = ctx.camera;
-  if (by === 'hands') { // the bag in the left glove (tools' view model): CONFIG.tools.handTarget, portrait-adjusted
-    const T = CFG.tools || {}, h = T.handTarget || LOOK.handOffset, por = ctx.view && ctx.view.portrait, off = (por && T.portraitOffset) || null, lat = por ? (T.portraitLateral || 1) : 1;
+  if (by === 'brush') { // the dustpan in the left glove (tools' view model): CONFIG.tools.brushTarget, portrait-adjusted
+    const T = CFG.tools || {}, h = T.brushTarget || LOOK.handOffset, por = ctx.view && ctx.view.portrait, off = (por && T.portraitOffset) || null, lat = por ? (T.portraitLateral || 1) : 1;
     const zs = por ? 1 : Math.tan(Math.PI / 6) / Math.tan(ctx.camera.fov * Math.PI / 360); // tools' view-model depth stretch
     J.mode = 1; J.tx = h[0] * lat + (off ? off[0] : 0); J.ty = h[1] + (off ? off[1] : 0); J.tz = h[2] * zs + (off ? off[2] : 0); return;
   }
@@ -1416,7 +1435,7 @@ export function removeCell(idx, maxUnits, by) {
 }
 export function pick(x, z, r, by) {
   if (!core) return null;
-  const b = byId(by == null ? 'hands' : by);
+  const b = byId(by == null ? 'brush' : by);
   if (!fin(x) || !fin(z) || !fin(r) || r <= 0) { core.clearRes(); return null; }
   setJuice(b, 1, x, z);
   const p = core.pick(x, z, Math.min(r, MAX_R));

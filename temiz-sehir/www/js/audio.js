@@ -31,6 +31,7 @@ const SND = {
   coin:     { vol: 0.30, max: 18, gap: 0.0, vary: 0.15 },
   kaching:  { vol: 0.5, max: 2, gap: 0.1, vary: 0 },
   swish:    { vol: 0.32, max: 3, gap: 0.12, vary: 0.8 },
+  flick:    { vol: 0.24, max: 3, gap: 0.06, vary: 1.6 },   // v2: hand brush, a short bright bristle flick
   thud:     { vol: 0.75, max: 1, gap: 0.3, vary: 0 },
   click:    { vol: 0.35, max: 3, gap: 0.03, vary: 0.4 },
   purchase: { vol: 0.62, max: 1, gap: 0.2, vary: 0 },
@@ -51,7 +52,7 @@ const SND = {
   horn:     { vol: 0.07, max: 1, gap: 2, vary: 1, bus: 'amb' },
   chirp:    { vol: 0.10, max: 3, gap: 0.05, vary: 1.5, bus: 'amb' },
 };
-const GEN_ORDER = ['pop', 'click', 'coin', 'thud', 'swish', 'kaching', 'chime', 'purchase', 'open', 'close', 'equip', 'chirp', 'crunch', 'robot', 'boost', 'nozzleDown', 'nozzleUp', 'rev', 'horn', 'ms1', 'ms2', 'ms3', 'gust', 'fanfare'];
+const GEN_ORDER = ['pop', 'click', 'coin', 'thud', 'swish', 'flick', 'kaching', 'chime', 'purchase', 'open', 'close', 'equip', 'chirp', 'crunch', 'robot', 'boost', 'nozzleDown', 'nozzleUp', 'rev', 'horn', 'ms1', 'ms2', 'ms3', 'gust', 'fanfare'];
 
 // ------------------------------------------------------------------------------------------ state
 let C = null, ac = null, G = null, SR = 24000;   // SR = generation rate of the synthesised buffers (browser resamples)
@@ -211,11 +212,15 @@ function bindBus(b) {
       L.chain = (L.lastPick >= 0 && t - L.lastPick <= win) ? Math.min(maxS, L.chain + stepS) : 0;
       L.lastPick = t;
       if (p.tool === 'broom') { L.broomAct = Math.min(1.5, L.broomAct + p.units * 0.06); play('pop', { pitchSemis: L.chain, vol: 0.55 }); }
+      else if (p.tool === 'brush') play('pop', { pitchSemis: L.chain + 3, vol: 0.4 });   // smaller tool, lighter tick
       else play('pop', { pitchSemis: L.chain });
     }
     if (p.valuable) play('chime');
   });
-  b.on('tool:swing', (p) => play('swish', { vol: 0.45 + 0.55 * Math.min(1, ((p && p.speed) || 1.5) / 2.4) }));
+  b.on('tool:swing', (p) => {
+    if (p && p.tool === 'brush') { play('flick', { vol: 0.6 + 0.4 * Math.min(1, (p.speed || 0) / 1.8) }); return; }
+    play('swish', { vol: 0.45 + 0.55 * Math.min(1, ((p && p.speed) || 1.5) / 3.2) });
+  });
   b.on('economy:sold', (p) => {
     if (!p || !ac) return;
     if (p.by === 'robot') { play('coin', { x: p.x, z: p.z, vol: 0.8, maxDist: 40 }); return; }
@@ -363,7 +368,7 @@ function updateLoops(step) {
   const broomOn = tools && tools.current && tools.current() === 'broom' && !mounted && !paused && en.sound;
   if (broomOn) { if (!L.broom) startBroom(); } else if (L.broom) stopBroom();
   if (L.broom) {
-    const sp = p ? Math.min(1, Math.abs(p.speed || 0) / 2.4) : 0;
+    const sp = p ? Math.min(1, Math.abs(p.speed || 0) / 3.2) : 0;
     setP(16, L.broom.g.gain, A.broomVol * (sp > 0.12 ? 0.25 + 0.5 * sp + 0.4 * Math.min(1, L.broomAct) : 0), 0.06);
     setP(17, L.broom.bp.frequency, 1900 + 1400 * sp + 600 * L.broomAct);
   }
@@ -517,6 +522,11 @@ const GEN = {
     bell(d, 2349, 0.09, 0.7, [[1, 1, 0.35], [1.5, 0.4, 0.2], [2, 0.3, 0.14]]);
     bell(d, 3136, 0.18, 0.5, [[1, 1, 0.3], [2, 0.3, 0.12]]);
     return fadeOut(normalize(d, 0.85), 0.15);
+  },
+  flick() { // a quick, light bristle scratch: rising band, very short
+    const dur = 0.11, d = arr(dur + 0.02);
+    noiseBand(d, 0, dur, (t) => 2600 + 4200 * (t / dur), 1.6, (t) => Math.pow(Math.sin(Math.PI * Math.min(1, t / dur)), 0.7) * (1 - 0.5 * t / dur));
+    return normalize(d, 0.7);
   },
   swish() {
     const dur = 0.3, d = arr(dur);

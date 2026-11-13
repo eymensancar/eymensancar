@@ -25,7 +25,7 @@ async function game(query = '', opts = {}) {
 const SETUP_BUSY = () => {
   const T = __ts, M = T.ctx.mods;
   T.give(200000);
-  for (const id of ['bag_1', 'broom', 'bag_2', 'broom_w1', 'bag_3', 'dropoff', 'robot_1', 'broom_s1', 'robot_2', 'cart', 'robot_3', 'robot_4', 'cart_tank_1', 'cart_width_1']) M.economy.buy(id);
+  for (const id of ['bag_1', 'brush_w1', 'broom', 'bag_2', 'broom_w1', 'robot_1', 'shoes_1', 'bag_3', 'dropoff', 'robot_2', 'broom_s1', 'cart', 'cart_tank_1', 'robot_speed_1', 'cart_width_1', 'robot_3', 'robot_cap_1', 'robot_4']) M.economy.buy(id);
   T.setClean(0.24); T.fast(3, 1 / 30, false);
   // cart on the west street (dirty), nozzle down, heading south; robots spread from the dock
   const c = M.tools.cartState(); M.player.teleport(c.x + 1.2, c.z, -Math.PI / 2); M.tools.equip('cart');
@@ -43,20 +43,30 @@ try {
       // cross 25 %: milestone confetti, birds, banner, while the cart is sweeping and 4 robots work
       const mid = M.trash.cleanFraction();
       T.setClean(0.255);
+      // per-frame GPU uploads (instance buffers + depth rows), and texture bytes (estimate from image sizes)
+      const gl = c.renderer.getContext(); let up = 0; const ups = [];
+      const bsd = gl.bufferSubData.bind(gl), tsi = gl.texSubImage2D.bind(gl);
+      gl.bufferSubData = function (t, o, d, so, len) { up += len != null ? len * (d.BYTES_PER_ELEMENT || 1) : (d.byteLength || 0); return bsd.apply(null, arguments); };
+      gl.texSubImage2D = function () { const a = arguments; up += (a[4] || 0) * (a[5] || 0) * 4; return tsi.apply(null, a); };
+      let texBytes = 0; const seen = new Set();
+      const addTex = (t) => { if (!t || seen.has(t)) return; seen.add(t); const im = t.image; const w = im && (im.width || (im.data && Math.sqrt(im.data.length / 4))) || 0, h = im && im.height || w; texBytes += w * h * 4 * (t.generateMipmaps ? 1.33 : 1); };
+      c.scene.traverse((o) => { const ms = o.material ? (Array.isArray(o.material) ? o.material : [o.material]) : []; for (const m of ms) { for (const k of Object.keys(m)) if (m[k] && m[k].isTexture) addTex(m[k]); if (m.uniforms) for (const k of Object.keys(m.uniforms)) { const v = m.uniforms[k].value; if (v && v.isTexture) addTex(v); } } });
       let maxCalls = 0, maxTris = 0, frames = 0; const js = []; const mods = {};
       for (const k of Object.keys(c.perf.mods)) mods[k] = [];
       for (let f = 0; f < 90; f++) {
         const t0 = performance.now();
         c.step(1, 1 / 60);
         frames++;
-        maxCalls = Math.max(maxCalls, info.calls); maxTris = Math.max(maxTris, info.triangles);
+        maxCalls = Math.max(maxCalls, info.calls); maxTris = Math.max(maxTris, info.triangles); ups.push(up); up = 0;
         js.push(c.perf.jsMs);
         for (const k of Object.keys(mods)) mods[k].push(c.perf.mods[k]);
       }
       const mean = (a) => a.slice(30).reduce((s, v) => s + v, 0) / (a.length - 30);
       const m = {}; for (const k of Object.keys(mods)) m[k] = +mean(mods[k]).toFixed(3);
       const st = T.state(), robots = M.economy.robots().map((r) => r.state);
-      return { maxCalls, maxTris, jsMs: +mean(js).toFixed(3), mods: m, tank: st.tank, robots, clean0: mid, clean: st.clean, instances: T.counters().instances, textures: c.renderer.info.memory.textures, geometries: c.renderer.info.memory.geometries, dpr: c.view.dpr, milestones: T.events('trash:milestone').length };
+      gl.bufferSubData = bsd; gl.texSubImage2D = tsi;
+      const upMean = ups.slice(30).reduce((a, b) => a + b, 0) / (ups.length - 30);
+      return { uploadKBPerFrame: +(upMean / 1024).toFixed(1), uploadKBPeak: +(Math.max(...ups) / 1024).toFixed(1), textureMB: +(texBytes / 1048576).toFixed(2), programs: c.renderer.info.programs.length, maxCalls, maxTris, jsMs: +mean(js).toFixed(3), mods: m, tank: st.tank, robots, clean0: mid, clean: st.clean, instances: T.counters().instances, textures: c.renderer.info.memory.textures, geometries: c.renderer.info.memory.geometries, dpr: c.view.dpr, milestones: T.events('trash:milestone').length };
     });
     OUT.busy = r;
     console.log('busiest moment:', JSON.stringify(r));
@@ -64,6 +74,8 @@ try {
     check(R, r.maxCalls <= 40, 'draw calls ≤ 40 at the busiest moment (' + r.maxCalls + ')');
     check(R, r.maxTris <= 150000, 'triangles ≤ 150 k (' + r.maxTris + ')');
     check(R, r.jsMs <= 4, 'JS per frame ≤ 4 ms on this desktop CPU (' + r.jsMs + ' ms; device assumed ≤ 2×)');
+    check(R, r.textureMB <= 24, 'texture memory ≤ 24 MB (' + r.textureMB + ' MB estimated from image sizes)');
+    check(R, r.uploadKBPeak <= 256, 'per-frame GPU uploads stay small (' + r.uploadKBPerFrame + ' KB/frame mean, ' + r.uploadKBPeak + ' KB peak)');
     await page.screenshot({ path: path.join(ROOT, 'test/e2e/out-busy.png') }).catch(() => {});
     // ----------------------------------------------------------------------------- 2. allocations
     const cdp = await page.context().newCDPSession(page);
@@ -103,7 +115,7 @@ try {
       const paused = c.state.paused, g1 = c.time.game;
       Object.defineProperty(document, 'hidden', { configurable: true, get: () => false });
       document.dispatchEvent(new Event('visibilitychange'));
-      await new Promise((r) => setTimeout(r, 600));
+      for (let k = 0; k < 40 && c.time.game <= g1; k++) await new Promise((r) => setTimeout(r, 100));   // SwiftShader frames can take 0.5 s+
       return { paused, frozen: Math.abs(g1 - c.time.game) > 0 && g1 - g0 < 0.3, resumed: !c.state.paused && c.time.game > g1, resumeEv: __ts.events('app:resume').length };
     });
     check(R, r.paused && r.resumed && r.resumeEv === 1, 'hidden tab pauses the game, visible again resumes (' + JSON.stringify(r) + ')');
@@ -139,7 +151,7 @@ try {
       const pausedLost = c.state.paused;
       ext.restoreContext();
       await new Promise((r) => setTimeout(r, 1500));
-      __ts.clean(39, 22, 2);
+      __ts.clean(31, 40, 2);
       await new Promise((r) => setTimeout(r, 800));
       return { pausedLost, running: !c.state.paused, restored: __ts.events('gl:restored').length, lost: __ts.events('gl:lost').length };
     });
@@ -167,9 +179,9 @@ try {
     const { page } = await game('&manual');
     const run = (hz) => page.evaluate((hz) => {
       const T = __ts, M = T.ctx.mods; const out = {};
-      M.player.teleport(39, 17, Math.PI); M.player.setStick(0, 1); T.fast(1.5, 1 / hz, false); M.player.setStick(0, 0); T.fast(0.5, 1 / hz, false);
+      T.clean(45, 44, 7); M.player.teleport(45, 38, Math.PI); M.player.setStick(0, 1); T.fast(1.0, 1 / hz, false); M.player.setStick(0, 0); T.fast(0.5, 1 / hz, false);
       out.walk = +M.player.pose().z.toFixed(2);
-      M.player.teleport(39, 30, Math.PI); T.hold(true); T.fast(4, 1 / hz, false); T.hold(false); T.fast(0.2, 1 / hz, false);
+      M.player.teleport(31, 40, Math.PI); T.hold(true); T.fast(4, 1 / hz, false); T.hold(false); T.fast(0.2, 1 / hz, false);
       out.picks = T.state().bag.units;
       return out;
     }, hz);
@@ -185,7 +197,7 @@ try {
     const shots = [];
     for (const q of ['&depth=rgba', '&depth=la']) {
       const { page } = await game('&manual' + q);
-      await page.evaluate(() => { __ts.clean(36, 20, 2.2); __ts.teleport(39, 17, Math.PI); __ts.look(180, -20); __ts.ctx.step(3, 1 / 60); });
+      await page.evaluate(() => { __ts.clean(45, 50, 2.2); __ts.teleport(45, 47, Math.PI); __ts.look(180, -20); __ts.ctx.step(3, 1 / 60); });
       const fmt = await page.evaluate(() => __ts.ctx.mods.trash.info().depthFormat);
       await page.waitForFunction(() => !document.getElementById('boot'), null, { timeout: 5000 }).catch(() => {}); // curtain gone
       shots.push({ fmt, png: await page.locator('#game').screenshot() });
@@ -194,6 +206,39 @@ try {
     const diff = shots[0].png.length === shots[1].png.length && shots[0].png.equals(shots[1].png) ? 0 : Math.abs(shots[0].png.length - shots[1].png.length) / shots[0].png.length;
     fs.writeFileSync(path.join(ROOT, 'test/e2e/out-depth-la.png'), shots[1].png);
     check(R, shots[0].fmt === 'rgba' && shots[1].fmt === 'la' && diff < 0.02, 'RGBA8 (default) and LuminanceAlpha depth paths render the same picture (png size diff ' + (diff * 100).toFixed(2) + ' %)');
+  }
+  // ------------------------------------------------------------------------------- 8. context lost while hidden (perf F2)
+  {
+    const g = await openPage(browser, {});
+    await g.page.goto(base + '?debug&reset'); await ready(g.page);
+    await g.page.goto(base + '?debug'); await ready(g.page);
+    await g.page.evaluate(() => { __ts.give(555); __ts.ctx.save.now(); window.__stay = 1;
+      Object.defineProperty(document, 'hidden', { configurable: true, get: () => true }); document.dispatchEvent(new Event('visibilitychange'));
+      __ts.ctx.renderer.getContext().getExtension('WEBGL_lose_context').loseContext(); });
+    await g.page.waitForTimeout(5500);   // longer than render.glLostReloadS while hidden: the old code gave up here
+    await g.page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, get: () => false }); document.dispatchEvent(new Event('visibilitychange')); });
+    await g.page.waitForFunction(() => !window.__stay && window.__ts && window.__ts.ready, null, { timeout: 15000 }).catch(() => {});
+    const after = await g.page.evaluate(() => ({ reloaded: !window.__stay, coins: window.__ts ? __ts.state().coins : -1, paused: window.__ts ? __ts.ctx.state.paused : null }));
+    check(R, after.reloaded && after.coins === 555 && !after.paused, 'context lost while hidden → recovery re-armed when visible again: reloaded, state kept, running (' + JSON.stringify(after) + ')');
+    await g.page.close();
+  }
+  // ------------------------------------------------------------------------------- 9. no shader compiles during play (perf F1) + memory after 20 game minutes
+  {
+    const { page } = await game('&manual');
+    await (await import('./autoplay.mjs')).install(page);
+    const p0 = await page.evaluate(() => __ts.ctx.renderer.info.programs.length);
+    const r = await page.evaluate(() => {
+      const c = __ts.ctx; let mins = 0; const progs = [];
+      for (let k = 0; k < 80 && c.mods.trash.cleanFraction() < 0.999; k++) { window.__auto(30, {}); c.step(1, 1 / 60); progs.push(c.renderer.info.programs.length); mins += 0.5; if (k === 40) window.__mem20 = performance.memory ? performance.memory.usedJSHeapSize : 0; }
+      // the finale too
+      for (let k = 0; k < 30 && !__ts.events('district:cleaned').length; k++) { window.__auto(5, {}); c.step(1, 1 / 60); progs.push(c.renderer.info.programs.length); }
+      c.step(30, 1 / 60); progs.push(c.renderer.info.programs.length);
+      return { progs: [...new Set(progs)], clean: c.mods.trash.cleanFraction(), heapMB20: +((window.__mem20 || 0) / 1048576).toFixed(1), heapMBEnd: +((performance.memory ? performance.memory.usedJSHeapSize : 0) / 1048576).toFixed(1), owned: c.mods.economy.catalog().filter((e) => e.state === 'owned').length };
+    });
+    OUT.programs = { boot: p0, during: r.progs }; OUT.memory = { heapMB20: r.heapMB20, heapMBEnd: r.heapMBEnd };
+    check(R, r.progs.length === 1 && r.progs[0] === p0, 'no shader program compiles during play (' + p0 + ' at boot, during: ' + r.progs.join(',') + '; ' + r.owned + ' items, clean ' + (r.clean * 100).toFixed(0) + ' %)');
+    check(R, r.heapMB20 > 0 && r.heapMBEnd < 200, 'JS heap after ~20 game minutes ' + r.heapMB20 + ' MB, at the end ' + r.heapMBEnd + ' MB');
+    await page.close();
   }
 } catch (e) { check(R, false, 'ABORTED: ' + (e && e.message ? e.message.split('\n')[0] : e)); }
 

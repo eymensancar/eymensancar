@@ -1,5 +1,6 @@
 // Full play-through of the slice like a player, with REAL touch (CDP multi-touch) on the real game:
-// first launch → hand picks (hold + tap) → walk to the shop (stick + look drag) → first sale → shop panel (touch buy)
+// first launch → hand brush (hold, then walk) → follow the sell marker to the shop (stick + look drag) → first sale →
+// shop panel (touch buy, double-tap guard)
 // → broom sweep (stick) → drop-off sale → robots (name tags) → away return (reload with an old save) → cart (touch:
 // get in, drive, nozzle, get out) → 50 % → 100 % finale → reload restores the save exactly. Long stretches between
 // the stages are fast-forwarded with the autoplayer (test/e2e/autoplay.mjs); every KIND of action is done for real.
@@ -40,6 +41,19 @@ async function auto(seconds, opt) { return page.evaluate(([s, o]) => window.__au
 const adv = (sec) => page.evaluate((sec) => __ts.fast(sec, 1 / 30, true), sec);
 const realtime = () => adv(0.05);
 
+// v2: in a portrait viewport the game is rotated 90 deg (forced landscape). Touches are given in GAME coordinates
+// (u right, v down in the landscape picture) and mapped to the screen here, the way a player holding the phone
+// sideways touches it. GW/GH = game view size.
+let ROT = 0, GW = 0, GH = 0, IW = 0, IH = 0;
+async function view() { const v = await page.evaluate(() => ({ rot: __ts.ctx.view.rot | 0, w: __ts.ctx.view.w, h: __ts.ctx.view.h, iw: innerWidth, ih: innerHeight })); ROT = v.rot; GW = v.w; GH = v.h; IW = v.iw; IH = v.ih; }
+const dev = (u, v) => (ROT === 90 ? { x: IW - v, y: u } : ROT === -90 ? { x: v, y: IH - u } : { x: u, y: v });
+const G = {
+  down: (id, u, v) => { const d = dev(u, v); return tp.down(id, d.x, d.y); },
+  move: (id, u, v) => { const d = dev(u, v); return tp.move(id, d.x, d.y); },
+  up: (id) => tp.up(id),
+  tap: (u, v) => { const d = dev(u, v); return tp.tap(d.x, d.y); },
+  async drag(id, u0, v0, du, dv, n = 10, ms = 30) { await G.down(id, u0, v0); for (let k = 1; k <= n; k++) { await G.move(id, u0 + du * k / n, v0 + dv * k / n); await page.waitForTimeout(ms); } await G.up(id); },
+};
 async function boot(query) {
   await page.goto(base + '?debug' + (query || ''));
   await ready(page);
@@ -47,6 +61,21 @@ async function boot(query) {
   await page.evaluate(() => { __ts.ctx.manual = true; });
   await wait(700); // boot curtain fade (CSS)
   tp = await T;
+  await view();
+}
+// v2 (QA #1): follow the sell marker like a new player: turn towards an edge arrow, walk towards the pin
+async function followMarker(maxSteps = 60) {
+  for (let k = 0; k < maxSteps; k++) {
+    const ind = await page.evaluate(() => { const e = document.querySelector('.ind'); if (!e || e.hidden) return null; const m = /translate3d\((-?[\d.]+)px/.exec(e.style.transform) || /translate\((-?[\d.]+)px/.exec(e.style.transform); return { edge: e.classList.contains('edge'), back: e.classList.contains('back'), left: e.style.getPropertyValue('--nx').trim().startsWith('-'), x: m ? +m[1] : NaN }; });
+    if (!ind) return true;   // marker gone: arrived (sold)
+    if (ind.edge) await G.drag(2, GW * 0.62, GH * 0.45, ind.left ? -100 : 100, 0, 6, 5);
+    else {
+      if (ind.x < GW * 0.4) await G.drag(2, GW * 0.62, GH * 0.45, -24, 0, 4, 5); else if (ind.x > GW * 0.6) await G.drag(2, GW * 0.62, GH * 0.45, 24, 0, 4, 5);
+      const sx0 = GW * 0.16, sy0 = GH * 0.7; await G.down(3, sx0, sy0); await G.move(3, sx0, sy0 - 60); await adv(0.35); await G.up(3);
+    }
+    await adv(0.1);
+  }
+  return false;
 }
 
 async function run() {
@@ -54,32 +83,33 @@ async function run() {
 log('1. first launch');
 await boot('&reset');
 let s = await st();
-check(R, s.coins === 0 && s.bag.units === 0 && s.tool === 'hands' && s.unitsLeft > 13000, 'fresh start: 0 coins, empty bag, hands, district full (' + s.unitsLeft + ' units)');
+check(R, s.coins === 0 && s.bag.units === 0 && s.tool === 'brush' && s.unitsLeft > 30000, 'fresh start: 0 coins, empty bag, hand brush, district full (' + s.unitsLeft + ' units)');
+check(R, ORIENT !== 'port' || (ROT === 90 && GW > GH), 'portrait viewport: the game runs in forced landscape (rot ' + ROT + ', ' + GW + 'x' + GH + ')');
 const vp = page.viewportSize();
 check(R, await page.locator('.act').isVisible(), 'action button visible');
-check(R, /Topla/.test(await page.locator('.act .lb').innerText()), 'action button offers "Topla"');
+check(R, /Fırçala/.test(await page.locator('.act .lb').innerText()), 'action button offers "Fırçala"');
+check(R, /Basılı tut ve yürü/.test(await page.locator('.hint .bub').innerText().catch(() => '')), 'first hint: "Basılı tut ve yürü" over the stick');
 await shot('01-ilk-an');
 
-// ------------------------------------------------------------------------------------ 2. hand picks (hold + tap)
-log('2. hand picks');
+// ------------------------------------------------------------------------------------ 2. hand brush (hold, then walk)
+log('2. hand brush');
+const sx = GW * 0.16, sy = GH * 0.7;   // stick (game coordinates, left half)
+await G.down(3, sx, sy); await G.move(3, sx, sy - 30); await G.move(3, sx, sy - 60);
+await adv(1.2);
+await G.up(3); await adv(0.1);
+s = await st();
+check(R, s.bag.units > 0, 'walking with the stick (no button) sweeps with the brush (' + s.bag.units + ')');
+const before = s.bag.units;
 const act = await center(page, '.act');
 await tp.down(1, act.x, act.y);
-await adv(1.5);
-// stop right after a pick so the shot shows the item on its way into the bag
-await page.evaluate(() => { const n = __ts.events('tool:collect').length; for (let k = 0; k < 40 && __ts.events('tool:collect').length === n; k++) __ts.fast(1 / 60, 1 / 60, false); __ts.fast(6 / 60, 1 / 60, true); });
-await shot('02-elle');
-await adv(1);
+await adv(0.6);
+// stop right after a flick so the shot shows items on their way into the dustpan
+await page.evaluate(() => { const n = __ts.events('tool:collect').length; for (let k = 0; k < 40 && __ts.events('tool:collect').length === n; k++) __ts.fast(1 / 60, 1 / 60, false); __ts.fast(5 / 60, 1 / 60, true); });
+await shot('02-el-fircasi');
 await tp.up(1);
 await adv(0.05);
 s = await st();
-check(R, s.bag.units >= 3, 'holding the button picks items (' + s.bag.units + ' in 2.5 s)');
-const before = s.bag.units;
-// tap an item on the ground in front (right half, lower middle)
-await page.evaluate(() => __ts.look(180, -38));
-await adv(0.1);
-for (let k = 0; k < 3; k++) { await tp.tap(vp.width * 0.62, vp.height * 0.72); await adv(0.2); }
-s = await st();
-check(R, s.bag.units > before, 'tapping an item picks it (' + before + ' → ' + s.bag.units + ')');
+check(R, s.bag.units > before, 'holding the button standing still flicks trash into the dustpan (' + before + ' → ' + s.bag.units + ')');
 // fill the bag
 await tp.down(1, act.x, act.y);
 for (let k = 0; k < 60 && (await st()).bag.units < (await st()).bag.cap; k++) await adv(0.5);
@@ -89,33 +119,26 @@ s = await st();
 check(R, s.bag.units === s.bag.cap, 'bag full (' + s.bag.units + '/' + s.bag.cap + ')');
 check(R, /dolu/i.test(await page.locator('.act .lb').innerText()), 'button says the bag is full');
 
-// ------------------------------------------------------------------------------------ 3. walk to the shop, first sale
-log('3. walk to the shop and sell');
-// turn around with look drags on the right half (0.25 deg/px: 720 px = 180 deg)
-{ const n = Math.ceil(720 / (vp.width * 0.38)), px = 720 / n; // 0.25 deg/px: 720 px = 180 deg, in drags that fit the right half
-  for (let k = 0; k < n; k++) { await tp.drag(2, vp.width * 0.56, vp.height * 0.45, px, 0, 8, 5); await adv(0.05); } }
-await tp.drag(2, vp.width * 0.7, vp.height * 0.6, 0, -110, 8, 5); // drag up = look up, towards the kiosk
-await adv(0.1);
-s = await st();
-check(R, Math.abs(Math.abs(s.pose.yawDeg) - 0) < 25 || Math.abs(Math.abs(s.pose.yawDeg) - 360) < 25, 'look drag turned the player round to face the shop (yaw ' + s.pose.yawDeg + ')');
+// ------------------------------------------------------------------------------------ 3. follow the marker to the shop, first sale
+log('3. follow the sell marker and sell');
 const soldBefore = await ev('economy:sold');
-const sx = vp.width * 0.18, sy = vp.height * 0.7;
-await tp.down(3, sx, sy); await tp.move(3, sx, sy - 30); await tp.move(3, sx, sy - 60);
-for (let k = 0; k < 40 && (await ev('economy:sold')) === soldBefore; k++) await adv(0.1);
-await tp.up(3);
+await page.evaluate(() => __ts.look(270, -6)); await adv(0.1);   // the shop is now behind-right: the marker must say so
+const edge0 = await page.evaluate(() => document.querySelector('.ind').classList.contains('edge'));
+check(R, edge0, 'shop behind the player: the marker sits on the screen edge with a turn arrow (not the in-view pin)');
+const arrived = await followMarker();
 await adv(0.3);
 await shot('03-satis');
 await adv(1.2);
 s = await st();
-check(R, (await ev('economy:sold')) > soldBefore && s.coins > 0, 'walked into the shop zone: sold, ' + s.coins + ' coins');
+check(R, arrived && (await ev('economy:sold')) > soldBefore && s.coins > 0, 'following the marker (turn, then walk) reached the shop and sold: ' + s.coins + ' coins');
 
 // ------------------------------------------------------------------------------------ 4. earn, open the shop, buy by touch
 log('4. shop panel, buy by touch');
 await page.evaluate(() => __ts.step(0.02));
 // keep playing (hands, selling) until the sack and the broom are affordable
 let r;
-for (let k = 0; k < 30 && (await st()).coins < 340; k++) r = await auto(20, { buy: false });
-await page.evaluate(() => { __ts.teleport(39, 14.6, 0); __ts.look(0, -8); __ts.fast(0.5, 1 / 30, true); });
+for (let k = 0; k < 60 && (await st()).coins < 1450; k++) r = await auto(20, { buy: false });
+await page.evaluate(() => { const sp = __ts.ctx.CONFIG.sellPoints[0].pos; __ts.teleport(sp[0], sp[1] + 1.6, 0); __ts.look(0, -8); __ts.fast(0.5, 1 / 30, true); });
 check(R, /Dükkan/.test(await page.locator('.act .lb').innerText()), 'at the kiosk the button offers "Dükkan"');
 const a2 = await center(page, '.act');
 await tp.tap(a2.x, a2.y);
@@ -125,7 +148,11 @@ check(R, await page.locator('.pn-shop').isVisible(), 'tapping the button opens t
 await adv(0.3); await wait(300);
 await shot('05-dukkan');
 { // the sack first (stays open), then close with X, reopen and buy the broom (the shop closes itself on a new tool)
-  const b = page.locator('.card[data-id="bag_1"] .bt.buy'); const c = await b.boundingBox(); await tp.tap(c.x + c.width / 2, c.y + c.height / 2); await adv(0.3); await wait(300);
+  // QA #3: a quick double tap on "Satın al" buys only that item (the card sliding into its place is not bought)
+  const owned0 = (await st()).owned.length;
+  const b = page.locator('.card[data-id="bag_1"] .bt.buy'); const c = await b.boundingBox();
+  await tp.tap(c.x + c.width / 2, c.y + c.height / 2); await wait(70); await tp.tap(c.x + c.width / 2, c.y + c.height / 2); await adv(0.3); await wait(300);
+  check(R, (await st()).owned.length === owned0 + 1, 'double tap on buy: exactly one purchase (' + (await st()).owned.join(',') + ')');
   const x = await center(page, '.pn-shop .xb'); await tp.tap(x.x, x.y); await adv(0.3); await wait(300);
   check(R, (await page.locator('.mw').count()) === 0, 'X closes the shop');
   const a3 = await center(page, '.act'); await tp.tap(a3.x, a3.y); await adv(0.2); await wait(300);
@@ -140,36 +167,39 @@ check(R, s.tool === 'broom', 'the broom is in hand after buying it');
 // ------------------------------------------------------------------------------------ 5. sweep with the broom
 log('5. broom sweep');
 const cleanBefore = s.unitsLeft;
-await page.evaluate(() => { __ts.teleport(31, 26.5, 270); __ts.look(270, -16); });
+await page.evaluate(() => { __ts.teleport(59, 26.5, 0); __ts.look(0, -16); });
 await adv(0.1);
-await tp.down(3, sx, sy); await tp.move(3, sx, sy - 30); await tp.move(3, sx, sy - 60);
+await G.down(3, sx, sy); await G.move(3, sx, sy - 30); await G.move(3, sx, sy - 60);
 await adv(1.6);
 await shot('04-supurge');
 await adv(1.6);
-await tp.up(3);
+await G.up(3);
 await adv(0.1);
 s = await st();
 check(R, s.unitsLeft < cleanBefore - 15, 'walking with the broom sweeps a strip (' + (cleanBefore - s.unitsLeft) + ' units)');
-check(R, s.pose.x < 28, 'stick moved the player west (x ' + s.pose.x + ')');
+check(R, s.pose.z < 24, 'stick moved the player north (z ' + s.pose.z + ')');
 
 // ------------------------------------------------------------------------------------ 6. drop-off container
 log('6. drop-off');
-r = await auto(1500, { until: 'dropoff' });
+r = await auto(3000, { until: 'dropoff' });
 check(R, r.state.owned.includes('dropoff'), 'drop-off bought at game time ' + r.t.toFixed(0) + ' s of autoplay');
 // fill the bag by sweeping near the SW corner, then walk into the drop-off zone
 await auto(300, { buy: false, untilFull: true });
-await page.evaluate(() => { __ts.teleport(3, 45.5, 180); __ts.look(180, -10); });
+await page.evaluate(() => { const d = __ts.ctx.CONFIG.sellPoints[1].pos; __ts.teleport(d[0], d[1] - 6, 180); __ts.look(180, -10); });
 const soldB = await ev('economy:sold');
-await tp.down(3, sx, sy); await tp.move(3, sx, sy - 60);
+await G.down(3, sx, sy); await G.move(3, sx, sy - 60);
 for (let k = 0; k < 40 && (await ev('economy:sold')) === soldB; k++) await adv(0.1);
-await tp.up(3); await adv(0.1);
+await G.up(3); await adv(0.1);
 const lastSale = await page.evaluate(() => { const e = __ts.events('economy:sold'); return e[e.length - 1].payload; });
 check(R, lastSale.pointId === 'dropoff', 'sold at the drop-off container (' + lastSale.pointId + ', ' + lastSale.coins + ' coins)');
 
 // ------------------------------------------------------------------------------------ 7. robots
 log('7. robots');
-r = await auto(1500, { until: 'robot_1' });
+r = await auto(3000, { until: 'robot_1' });
 check(R, r.state.robots >= 1, 'first robot bought at autoplay ' + r.t.toFixed(0) + ' s');
+// v2 (psychology review B): a robot bought now appears in front of the player, its name tag large for a few seconds
+await page.evaluate(() => { const E = __ts.ctx.mods.economy; __ts.give(20000); __ts.look(__ts.state().pose.yawDeg, -12); E.buy(E.owned('robot_2') ? 'robot_3' : 'robot_2'); __ts.fast(0.3, 1 / 30, true); });
+check(R, (await page.locator('.rtag.big:not([hidden])').count()) >= 1, 'the new robot is in view at once, with a large name tag');
 await auto(8, { buy: false });
 await page.evaluate(() => { const rb = __ts.ctx.mods.economy.robots()[0]; const yaw = Math.atan2(rb.x - (rb.x + 2.2), -(rb.z - (rb.z + 2.2))); __ts.teleport(rb.x + 2.2, rb.z + 2.2, yaw); __ts.look(yaw * 180 / Math.PI, -24); __ts.fast(0.2); });
 const tags = await page.locator('.rtag:not([hidden])').allInnerTexts();
@@ -185,18 +215,18 @@ await page.goto(base + '?debug');
 await ready(page); await install(page); await page.evaluate(() => { __ts.ctx.manual = true; }); await adv(0.2); await wait(700);
 const away1 = await st();
 const awayEv = await page.evaluate(() => { const e = __ts.events('economy:away'); return e.length ? e[e.length - 1].payload : null; });
-check(R, awayEv && awayEv.capped && awayEv.units > 0, 'away catch-up ran, capped at 2 h (' + (awayEv && awayEv.units) + ' units, ' + (awayEv && awayEv.coins) + ' coins)');
+check(R, awayEv && (awayEv.capped || awayEv.limitedByRemaining) && awayEv.units > 0 && awayEv.simS <= 600 && awayEv.coins <= 1.4 * (await page.evaluate(() => (__ts.ctx.mods.economy.catalog().find((e) => e.next) || { price: 1e9 }).price)) + 600, 'away catch-up ran, capped (' + (awayEv && awayEv.limitBy) + ': ' + (awayEv && awayEv.units) + ' units, ' + (awayEv && awayEv.coins) + ' coins)');
 check(R, away1.unitsLeft < away0.unitsLeft && away1.coins > away0.coins, 'robots cleaned and earned while away');
 check(R, await page.locator('.pn-away').isVisible(), 'one "welcome back" card shown');
 const awayText = await page.locator('.pn-away').innerText().catch(() => '');
-check(R, /Sen yokken/.test(awayText) && /2 saatlik sınır/.test(awayText), 'card text is honest Turkish with the 2 h cap');
+check(R, /Sen yokken/.test(awayText) && /sınır/.test(awayText), 'card text is honest Turkish and names the limit that applied');
 check(R, (await page.locator('.toast').count()) === 0 || !(await page.locator('.toasts').innerText()).includes('Sen yokken'), 'no duplicate away toast');
 if (SHOTS) await shot('06b-donus');
 if (await page.locator('.pn-away').count()) { const b = await center(page, '.pn-away .pfoot .bt'); await tp.tap(b.x, b.y); await adv(0.2); }
 
 // ------------------------------------------------------------------------------------ 8. the cart
 log('8. cart');
-r = await auto(2000, { until: 'cart' });
+r = await auto(4000, { until: 'cart' });
 check(R, r.state.owned.includes('cart'), 'cart bought (autoplay ' + r.t.toFixed(0) + ' s)');
 await page.evaluate(() => { const c = __ts.ctx.mods.tools.cartState(); if (__ts.ctx.mods.player.mounted()) __ts.ctx.mods.player.dismount(); __ts.teleport(c.x + 1.6, c.z, 270); __ts.look(270, -12); __ts.fast(0.2); });
 check(R, /Bin/.test(await page.locator('.act .lb').innerText()), 'next to the cart the button offers "Bin"');
@@ -204,13 +234,13 @@ check(R, /Bin/.test(await page.locator('.act .lb').innerText()), 'next to the ca
 s = await st();
 check(R, s.tool === 'cart', 'tapping "Bin" gets in the cart');
 check(R, /Emiciyi/.test(await page.locator('.act .lb').innerText()) && await page.locator('.act2').isVisible() && /İn/.test(await page.locator('.act2 .lb').innerText()), 'in the cart: big button = nozzle, secondary = "İn"');
-await page.evaluate(() => { const c = __ts.ctx.mods.tools.cartState(); const idx = __ts.ctx.mods.trash.nearestDirty(c.x, c.z, 80), cc = { x: 0, z: 0 }; __ts.ctx.mods.trash.cellCenter(idx, cc); __ts.look(Math.atan2(cc.x - c.x, -(cc.z - c.z)) * 180 / Math.PI, -8); });
+await page.evaluate(() => { const c = __ts.ctx.mods.tools.cartState(); __ts.look(c.heading * 180 / Math.PI, -8); });   // straight ahead along the street
 const tank0 = (await st()).tank.units;
-await tp.down(3, sx, sy); await tp.move(3, sx, sy - 60);
+await G.down(3, sx, sy); await G.move(3, sx, sy - 60);
 await adv(1.8);
 await shot('07-araba');
 await adv(1.5);
-await tp.up(3); await adv(0.1);
+await G.up(3); await adv(0.1);
 s = await st();
 check(R, s.tank.units > tank0, 'driving with the nozzle down fills the tank (' + tank0 + ' → ' + s.tank.units + ')');
 const noz0 = await ev('tool:nozzle');
@@ -222,22 +252,22 @@ check(R, s.tool !== 'cart', 'secondary button "İn" gets out (' + s.tool + ')');
 
 // ------------------------------------------------------------------------------------ 9. half clean: the trail from afar
 log('9. 50 %');
-r = await auto(3000, { stopClean: 0.5 });
+r = await auto(6000, { stopClean: 0.5 });
 s = await st();
 check(R, s.clean >= 0.5, 'half the district clean at autoplay ' + r.t.toFixed(0) + ' s, owned: ' + s.owned.length);
-check(R, (await ev('trash:milestone')) >= 2, 'milestones 25 % and 50 % fired');
+check(R, await page.evaluate(() => __ts.events('trash:milestone').some((e) => e.payload.index === 1)), 'the 50 % milestone fired');
 // stand at the east end of the middle street and look back west along it, the plaza on the right
-await page.evaluate(() => { const P = __ts.ctx.mods.player, TL = __ts.ctx.mods.tools; if (P.mounted()) P.dismount(); const c = TL.cartState(); if (c) TL.equip('hands'); __ts.teleport(53.3, 26.2, 285); __ts.look(285, -3); __ts.fast(10); });
+await page.evaluate(() => { const P = __ts.ctx.mods.player, TL = __ts.ctx.mods.tools; if (P.mounted()) P.dismount(); const c = TL.cartState(); if (c) TL.equip('brush'); __ts.teleport(88.5, 59, 270); __ts.look(270, -3); __ts.fast(10); });
 await shot('08-yari-temiz');
 
 // ------------------------------------------------------------------------------------ 10. 100 %: finale
 log('10. 100 %');
-r = await auto(4000, { stopClean: 0.97 });
+r = await auto(8000, { stopClean: 0.97 });
 // the last stretch at a watchable pace: the final sweep, the camera lift, then the card
 for (let k = 0; k < 120 && !(await ev('district:cleaned')); k++) await auto(2, {});
-await adv(2.2);
+await adv(3.5);
 await shot('09a-kalkis');
-await adv(3.0);
+await adv(4.0);   // v2: the card comes part-way through the slow 10 s lift
 s = await st();
 check(R, s.clean === 1 && s.unitsLeft === 0, 'district 100 % clean (autoplay ' + r.t.toFixed(0) + ' s)');
 check(R, (await ev('district:cleaned')) === 1 && (await ev('economy:finalSweep')) === 1, 'final sweep and "district cleaned" fired once');

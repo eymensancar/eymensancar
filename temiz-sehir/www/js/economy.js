@@ -172,7 +172,10 @@ export function createEconomyCore(o) {
       case 'bagCapacity': return arrAt(C.bag.capacity, lvl('bag.level'));
       case 'broomWidth': return arrAt(C.broom.widthM, lvl('broom.widthLevel'));
       case 'broomSweepSpeed': return arrAt(C.broom.sweepSpeed, lvl('broom.speedLevel'));
-      case 'handsReach': return C.hands.reachM;
+      case 'brushWidth': return arrAt(C.brush.widthM, lvl('brush.level'));
+      case 'brushSweepSpeed': return arrAt(C.brush.sweepSpeed, lvl('brush.level'));
+      case 'walkSpeed': return arrAt(C.player.walkSpeed, lvl('player.speedLevel'));
+      case 'cartCleanSpeed': return arrAt(C.cart.cleanSpeedMax, lvl('cart.suctionLevel'));
       case 'cartNozzleWidth': return arrAt(C.cart.nozzleWidthM, lvl('cart.widthLevel'));
       case 'cartTank': return arrAt(C.cart.tank, lvl('cart.tankLevel'));
       case 'robotCount': return Math.min(C.robot.maxCount || 4, lvl('robot.count'));
@@ -364,18 +367,33 @@ export function createEconomyCore(o) {
       sell: null, saleCoins: 0, unloadT: 0, wait: 0, waits: 0, freeT: 0, ghost: 0, stuckT: 0, px: 0, pz: 0, idleT: RC.idleRetryS,
       resX: 0, resZ: 0, hasRes: false,
       far: false, farAcc: 0, collectAcc: 0, collectT: 0, cleanT: 0, hum: 0, led: 0,
-      units: 0, firstCleanS: -1, spawnS: S.playS,
+      units: 0, firstCleanS: -1, spawnS: S.playS, introT: 0,
       ev: { id: 'robot_' + (k + 1), units: 0, x: 0, z: 0 },
     };
+    // v2 (psychology review: the first robot was bought facing the shop and started off screen, "it works by itself"
+    // was missed): a robot bought now appears a few metres IN FRONT of the player and makes that spot its anchor, so
+    // it starts cleaning where the player can watch. Loaded robots (silent) keep the dock.
+    if (introSpawn && o.player) {
+      const pp = o.player(), ah = RC.introAheadM || 3.5;
+      if (pp && isFinite(pp.yaw) && pp.x > -50) {
+        let done = false;
+        for (const da of [0, 0.45, -0.45, 0.8, -0.8]) for (const d of [ah, ah * 1.4, ah * 0.7]) {
+          if (done) break;
+          const yw = pp.yaw + da + (k % 2 ? 0.12 : -0.12) * (k > 0 ? 1 : 0), x = pp.x + Math.sin(yw) * d, z = pp.z - Math.cos(yw) * d;
+          if (walkAt(x, z) && walkAt(x + 0.4, z) && walkAt(x - 0.4, z) && walkAt(x, z + 0.4) && walkAt(x, z - 0.4)) { r.x = x; r.z = z; r.ax = x; r.az = z; r.yaw = yw; r.introT = RC.introS || 4; done = true; }
+        }
+      }
+    }
     r.px = r.x; r.pz = r.z;
     r.farAcc = (k / Math.max(1, C.robot.maxCount || 4)) * RC.farTickS; // stagger the far ticks
     return r;
   }
   const addEv = { id: '' };
+  let introSpawn = false;
   function syncRobots(silent) {
     const want = stat('robotCount');
     while (robots.length < want) {
-      const r = makeRobot(robots.length); robots.push(r);
+      introSpawn = !silent; const r = makeRobot(robots.length); introSpawn = false; robots.push(r);
       if (!silent) { addEv.id = r.id; bus.emit('robot:added', addEv); }
     }
   }
@@ -656,6 +674,7 @@ export function createEconomyCore(o) {
     let active = 0;
     for (let k = 0; k < robots.length; k++) {
       const r = robots[k];
+      if (r.introT > 0) r.introT = Math.max(0, r.introT - dt);
       if (r.state !== 'idle') active++;
       if (cam) { const dx = cam.x - r.x, dz = cam.z - r.z, d2 = dx * dx + dz * dz, lim = r.far ? RC.farM - RC.farHysteresisM : RC.farM; r.far = d2 > lim * lim; }
       else r.far = true;
@@ -701,10 +720,17 @@ export function createEconomyCore(o) {
   const awayEv = { awayS: 0, simS: 0, capped: false, limitedByRemaining: false, units: 0, coins: 0, robots: 0, rateUps: 0, capS: 0 };
   function catchUp(awayS) {
     awayS = num(awayS, 0);
+    // QA #9 (decided): the boost and its cooldown run out in real time while away (2 minutes means 2 real minutes)
+    if (awayS > 0) { if (S.boostLeft > 0) { S.boostLeft = Math.max(0, S.boostLeft - awayS); emitBoost(); } S.boostCd = Math.max(0, S.boostCd - awayS); }
     if (awayS < OFF.minSimS || robots.length === 0 || S.swept || !has(trash, 'consume')) return null;
     const simS = Math.min(awayS, OFF.capS), rate = robotRate();
     const want = Math.floor(rate * robots.length * simS);
-    const maxU = Math.floor(trash.totalUnits() * OFF.maxFractionOfRemaining);
+    // v2 caps (psychology review): the smallest of 10 min of robot output, 15 % of what is left, 10 % of the district,
+    // and (in coins, at the average unit value) the price of the next item
+    let maxU = Math.floor(trash.totalUnits() * OFF.maxFractionOfRemaining), limitBy = 'remaining';
+    if (OFF.maxFractionOfDistrict && trash.initialUnits) { const m = Math.floor(trash.initialUnits() * OFF.maxFractionOfDistrict); if (m < maxU) { maxU = m; limitBy = 'district'; } }
+    const nx = OFF.maxNextItemPrice ? nextItem() : null;
+    if (nx) { const m = Math.ceil(nx.price / Math.max(0.5, C.averageValuePerUnit || 2.08)); if (m < maxU) { maxU = m; limitBy = 'nextItem'; } }
     const target = Math.max(0, Math.min(want, maxU));
     awayBy.fill(0); let units = 0, carried = 0;
     for (let k = 0; k < robots.length; k++) {
@@ -723,7 +749,7 @@ export function createEconomyCore(o) {
     const coins = Math.round(valueOf(awayBy) * priceMul); // never boosted
     S.stats.items += units; S.stats.robotUnits += units; S.stats.awayUnits += units; S.stats.awayCoins += coins;
     earn(coins, 'away');
-    Object.assign(awayEv, { awayS, simS, capped: awayS > OFF.capS, limitedByRemaining: want > maxU, units: units + carried, coins, robots: robots.length, rateUps: rate, capS: OFF.capS });
+    Object.assign(awayEv, { awayS, simS, capped: awayS > OFF.capS && want <= maxU, limitedByRemaining: want > maxU, limitBy: want > maxU ? limitBy : (awayS > OFF.capS ? 'time' : ''), units: units + carried, coins, robots: robots.length, rateUps: rate, capS: OFF.capS });
     bus.emit('economy:away', awayEv);   // ui shows the one "welcome back" card from this (≥ offline.announceMinS)
     bus.emit('game:saveNow', null);
     return awayEv;

@@ -50,7 +50,7 @@ export function init(ctx) {
       const E = M.economy, p = pose();
       return {
         coins: E.coins(), bag: { units: E.bagUnits('bag'), cap: E.bagCapacity('bag') }, tank: { units: E.bagUnits('tank'), cap: E.bagCapacity('tank') },
-        tool: M.tools.current ? M.tools.current() : 'hands', clean: M.trash.cleanFraction(), unitsLeft: M.trash.totalUnits(),
+        tool: M.tools.current ? M.tools.current() : 'brush', clean: M.trash.cleanFraction(), unitsLeft: M.trash.totalUnits(),
         pose: { x: +p.x.toFixed(3), z: +p.z.toFixed(3), yawDeg: +((p.yaw || 0) / D2R).toFixed(1) },
         owned: (M.economy.catalog() || []).filter((e) => e.state === 'owned').map((e) => e.id), robots: E.robots().length,
         paused: c.state.paused, frame: c.time.frame, gameS: +c.time.game.toFixed(3),

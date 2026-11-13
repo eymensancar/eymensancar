@@ -1,5 +1,5 @@
 // In-page autoplayer used to fast-forward long stretches of play (installed as window.__auto by install()).
-// It plays like a simple player through the game's own APIs: hold the action button with hands, walk the broom
+// It plays like a simple player through the game's own APIs: walk the hand brush or the broom
 // (virtual stick) through the nearest dirt, drive the cart with the nozzle down, sell when full (teleporting to the
 // sell point stands in for the walk), buy whatever the shop flags as next. Time runs through __ts.fast (no render).
 export const AUTOPLAY_SRC = String(function installAuto() {
@@ -22,7 +22,7 @@ export const AUTOPLAY_SRC = String(function installAuto() {
       if (E.bagCapacity(cont) > 0 && E.bagSpace(cont) <= 0) { // sell at the nearest active point
         T.hold(false); P.setStick(0, 0);
         let best = null, bd = 1e9; for (const sp of E.sellPoints()) if (sp.active) { const d = Math.hypot(sp.x - ps.x, sp.z - ps.z); if (d < bd) { bd = d; best = sp; } }
-        P.teleport(best.x, best.z); T.fast(1.0, o.dt, false); t += 1.0 + bd / 5; // the walk is not simulated: count its time
+        P.teleport(best.x, best.z); T.fast(1.0, o.dt, false); t += 1.0 + bd / 7.5; // the walk is not simulated: count its time
         continue;
       }
       const idx = TR.nearestDirty(ps.x, ps.z, 120);
@@ -32,15 +32,13 @@ export const AUTOPLAY_SRC = String(function installAuto() {
       const tool = TL.current();
       if (mounted) {
         T.look(yaw * 180 / Math.PI, -10); P.setStick(0, 1);
-      } else if (tool === 'broom' || E.owned('broom')) {
-        if (tool !== 'broom') TL.equip('broom');
+      } else {
+        // v2: brush (start tool) and broom both sweep while walking
+        if (E.owned('broom') && tool !== 'broom') TL.equip('broom');
         T.hold(false);
-        if (d > 4) { P.teleport(cc.x - Math.sin(yaw) * 1.2, cc.z + Math.cos(yaw) * 1.2, yaw); t += d / 5; }
+        if (d > 4) { P.teleport(cc.x - Math.sin(yaw) * 1.2, cc.z + Math.cos(yaw) * 1.2, yaw); t += d / 7.5; }
         else T.look(yaw * 180 / Math.PI, -20);
         P.setStick(0, 1);
-      } else {
-        if (d > 1.6) { P.teleport(cc.x - Math.sin(yaw) * 1.0, cc.z + Math.cos(yaw) * 1.0, yaw); t += d / 5; }
-        T.look(yaw * 180 / Math.PI, -35); T.hold(true);
       }
       T.fast(o.chunk, o.dt, false); t += o.chunk;
     }

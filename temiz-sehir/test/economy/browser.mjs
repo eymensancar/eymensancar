@@ -95,7 +95,7 @@ const bt = await page.evaluate(() => {
   return out;
 });
 check(bt.active0 && bt.mul === 2 && bt.active119 && !bt.active121 && bt.cd > 297, `boost 2x for 120 s then cooldown ${bt.cd.toFixed(1)} s (${bt.boostEvents} economy:boost events)`);
-check(bt.away && bt.away.capped && bt.away.simS === 7200, `away 10 h → simulated ${bt.away && bt.away.simS} s, ${bt.away && bt.away.units} items, +${bt.away && bt.away.coins} coins (ui shows the card from economy:away; no toast since integration)`);
+check(bt.away && (bt.away.capped || bt.away.limitedByRemaining) && bt.away.simS === 600, `away 10 h → simulated ${bt.away && bt.away.simS} s, ${bt.away && bt.away.units} items, +${bt.away && bt.away.coins} coins (ui shows the card from economy:away; no toast since integration)`);
 await cam(page, ...AER); await shot(page, 'a7-after-away');
 const c2 = await page.evaluate(() => __ts.counters());
 notes.push(`counters after: calls ${c2.calls}, triangles ${c2.triangles}, instances ${c2.instances}`);
@@ -133,7 +133,7 @@ if (threeLocal) await p4.route('https://cdnjs.cloudflare.com/**', (r) => r.fulfi
 await p4.goto(`http://127.0.0.1:${port}/www/index.html?debug&nosave`);
 await p4.waitForFunction(() => window.__ts && window.__ts.ready, null, { timeout: 60000 });
 const d4 = await p4.evaluate(() => { __ts.give(2000); const ok = __ts.ctx.mods.economy.buy('robot_1') === false && __ts.own('robot_1'); __ts.step(0.5); return { ok, st: __ts.state(), stub: Object.fromEntries(Object.entries(__ts.ctx.mods).map(([k, m]) => [k, m.__stub])), cat: __ts.ctx.mods.economy.catalog().length, sp: __ts.ctx.mods.economy.sellPoints().map((p) => p.id + (p.active ? '+' : '-')) }; });
-check(d4.ok && d4.st.robots === 1 && d4.cat === 17 && d4.stub.economy === false && d4.stub.debug === false, `www/index.html with stubs (${Object.entries(d4.stub).filter(([, v]) => v).map(([k]) => k).join(', ')}): economy + __ts work, sell points ${d4.sp.join(' ')}`);
+check(d4.ok && d4.st.robots === 1 && d4.cat === 27 && d4.stub.economy === false && d4.stub.debug === false, `www/index.html with stubs (${Object.entries(d4.stub).filter(([, v]) => v).map(([k]) => k).join(', ')}): economy + __ts work, sell points ${d4.sp.join(' ')}`);
 await p4.close();
 
 check(errors.length === 0, 'no page / console errors' + (errors.length ? ': ' + errors.slice(0, 3).join(' | ') : ''));

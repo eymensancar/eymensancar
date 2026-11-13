@@ -74,9 +74,9 @@ const page = await open(1280, 590);
 // ---------------------------------------------------------------- generator + determinism
 const gen = await page.evaluate(() => ({ gen: H.T.debugInfo().gen, info: H.T.info(), total: H.T.totalUnits(), init: H.T.initialUnits(), cells: H.T.trashCells(), clean: H.T.cleanFraction(), grid: H.gridHash(), types: H.typeHash(), calls: H.ctx.renderer.info.render.calls }));
 results.generator = gen;
-check('generator: 7728 trash cells (CONFIG.district.trashCellsExpected)', gen.cells === 7728, gen.gen);
-check('generator: mean depth 1.74 +-0.03, ~13.5k units', Math.abs(gen.gen.mean - 1.74) <= 0.03 && gen.total > 13000 && gen.total < 14000, { mean: gen.gen.mean, total: gen.total });
-check('info() shape', gen.info.N === 108 && gen.info.K === 4 && gen.info.types.length === 6 && gen.info.shapes.length === 7 && gen.info.blocks === 9 && gen.info.blockSize === 12, gen.info);
+check('generator: ' + 16864 + ' trash cells (CONFIG.district.trashCellsExpected, v2 90 m district)', gen.cells === 16864, gen.gen);
+check('generator: mean depth 1.85 +-0.03, ~31k units', Math.abs(gen.gen.mean - 1.85) <= 0.03 && gen.total > 30000 && gen.total < 32500, { mean: gen.gen.mean, total: gen.total });
+check('info() shape', gen.info.N === 180 && gen.info.K === 4 && gen.info.types.length === 6 && gen.info.shapes.length === 7 && gen.info.blocks === 15 && gen.info.blockSize === 12, gen.info);
 check('fresh district: 0 % clean, total == initial', gen.clean === 0 && gen.total === gen.init);
 const page2 = await open(1280, 590);
 const gen2 = await page2.evaluate(() => ({ grid: H.gridHash(), types: H.typeHash(), total: H.T.totalUnits() }));
@@ -86,7 +86,7 @@ await page2.close();
 // ---------------------------------------------------------------- removal APIs
 const api = await page.evaluate(() => {
   const T = H.T, out = {};
-  H.cam(27, 40, 0, -20); H.flush(); H.flush();
+  H.cam(31.0, 40, 0, -20); H.flush(); H.flush();
   const typeVal = H.ctx.CONFIG.trashTypes.map((t) => t.value);
   function run(name, fn, expectVisible) {
     const before = H.recount(), sc0 = H.shapeCounts(), tot0 = T.totalUnits();
@@ -105,18 +105,18 @@ const api = await page.evaluate(() => {
       drop, hist,
     };
   }
-  run('removeInCircle', () => T.removeInCircle(27, 38, 0.8, undefined, 'robot'), true);
-  run('removeInCircle_max5', () => T.removeInCircle(25.5, 37, 1.5, 5, 'robot'), true);
-  run('removeAlongSegment_broom', () => T.removeAlongSegment(26, 36, 26, 34.5, 0.5, 40, 'broom'), true);
-  run('removeAlongSegment_cart', () => T.removeAlongSegment(28.5, 37, 28.5, 33, 0.9, 1e9, 'cart'), false);
-  const idx = T.cellAt(25.25, 42.25);
+  run('removeInCircle', () => T.removeInCircle(31.0, 38, 0.8, undefined, 'robot'), true);
+  run('removeInCircle_max5', () => T.removeInCircle(29.5, 37, 1.5, 5, 'robot'), true);
+  run('removeAlongSegment_broom', () => T.removeAlongSegment(30.0, 36, 30, 34.5, 0.5, 40, 'broom'), true);
+  run('removeAlongSegment_cart', () => T.removeAlongSegment(32.5, 37, 28.5, 33, 0.9, 1e9, 'cart'), false);
+  const idx = T.cellAt(29.25, 42.25);
   run('removeCell', () => T.removeCell(idx, 2, 'robot'), true);
-  const pk = T.pick(27.3, 43, 1.0, 'hands');
+  const pk = T.pick(31.3, 43, 1.0, 'brush');
   out.pick = { picked: pk && { type: pk.type, shape: pk.shape }, units: (H.flush(), H.core.res.units) };
-  run('pick_again', () => { T.pick(27.3, 43.4, 1.0, 'hands'); return H.core.res; }, true);
+  run('pick_again', () => { T.pick(31.3, 43.4, 1.0, 'brush'); return H.core.res; }, true);
   run('consume', () => T.consume(3, 3, 300, 30, 'robot'), false);
-  out.nearestDirty = { a: T.nearestDirty(27, 38, 10), hasTrash: T.amountAt(...(() => { const c = T.cellCenter(T.nearestDirty(27, 38, 10), { x: 0, z: 0 }); return [c.x, c.z]; })()) };
-  out.surface = { s: T.surfaceAt(27, 45), s0: T.surfaceAt(27, 38), out: T.amountAt(-3, -3) };
+  out.nearestDirty = { a: T.nearestDirty(31.0, 38, 10), hasTrash: T.amountAt(...(() => { const c = T.cellCenter(T.nearestDirty(31.0, 38, 10), { x: 0, z: 0 }); return [c.x, c.z]; })()) };
+  out.surface = { s: T.surfaceAt(31.0, 45), s0: T.surfaceAt(31.0, 38), out: T.amountAt(-3, -3) };
   out.events = window.__ev.filter((e) => e.n === 'trash:changed').map((e) => e.p);
   return out;
 });
@@ -134,7 +134,7 @@ check('pick returns an item and removes 1 unit', api.pick.picked && api.pick.uni
 check('nearestDirty finds a dirty cell', api.nearestDirty.a >= 0 && api.nearestDirty.hasTrash > 0, api.nearestDirty);
 check('surfaceAt: 0 on cleaned ground, >0 on trash; outside uses world.outsideUnits', api.surface.s0 >= 0 && api.surface.s > 0 && api.surface.out >= 0, api.surface);
 {
-  const ev = api.events, byRobot = ev.reduce((a, p) => a + p.by.robot, 0), byBroom = ev.reduce((a, p) => a + p.by.broom, 0), byHands = ev.reduce((a, p) => a + p.by.hands, 0), byCart = ev.reduce((a, p) => a + p.by.cart, 0);
+  const ev = api.events, byRobot = ev.reduce((a, p) => a + p.by.robot, 0), byBroom = ev.reduce((a, p) => a + p.by.broom, 0), byHands = ev.reduce((a, p) => a + p.by.brush, 0), byCart = ev.reduce((a, p) => a + p.by.cart, 0);
   const sumUnits = ev.reduce((a, p) => a + p.units, 0), expect = ['removeInCircle', 'removeInCircle_max5', 'removeAlongSegment_broom', 'removeAlongSegment_cart', 'removeCell', 'pick_again', 'consume'].reduce((a, k) => a + api[k].r.units, 0) + api.pick.units;
   check('trash:changed once per flushed frame, by-aggregation matches removals', ev.length === 8 && sumUnits === expect && byBroom === api.removeAlongSegment_broom.r.units && byCart === api.removeAlongSegment_cart.r.units && byHands === api.pick.units + api.pick_again.r.units && byRobot === sumUnits - byBroom - byCart - byHands, { n: ev.length, sumUnits, expect });
 }
@@ -146,20 +146,20 @@ const guards = await page.evaluate(() => {
   const tryit = (f) => { try { const t0 = T.totalUnits(); f(); if (T.totalUnits() !== t0) changed++; } catch (e) { threw++; console.log('threw', e.message); } };
   for (const b of bad) {
     const coordBad = b !== -1; // -1 m is a legal coordinate (just outside the district); it is only bad as a radius / count
-    if (coordBad) { tryit(() => T.removeInCircle(b, 20, 1, 5, 'robot')); tryit(() => T.removeAlongSegment(b, 20, 27, 21, 0.5, 5, 'broom')); tryit(() => T.pick(b, 20, 1)); tryit(() => T.consume(b, 20, 5)); } tryit(() => T.removeInCircle(27, 20, b, 5, 'robot')); tryit(() => T.removeInCircle(Infinity, 20, 1, 5, 'robot')); tryit(() => b !== undefined && b !== null && T.removeInCircle(27, 20, 1, b, 'robot'));
-    tryit(() => T.removeAlongSegment(27, 20, 27, 21, b, 5, 'broom'));
-    tryit(() => T.pick(27, 20, b));
-    tryit(() => b !== undefined && b !== null && T.consume(27, 20, b));
+    if (coordBad) { tryit(() => T.removeInCircle(b, 20, 1, 5, 'robot')); tryit(() => T.removeAlongSegment(b, 20, 31, 21, 0.5, 5, 'broom')); tryit(() => T.pick(b, 20, 1)); tryit(() => T.consume(b, 20, 5)); } tryit(() => T.removeInCircle(31.0, 20, b, 5, 'robot')); tryit(() => T.removeInCircle(Infinity, 20, 1, 5, 'robot')); tryit(() => b !== undefined && b !== null && T.removeInCircle(31.0, 20, 1, b, 'robot'));
+    tryit(() => T.removeAlongSegment(31.0, 20, 31, 21, b, 5, 'broom'));
+    tryit(() => T.pick(31.0, 20, b));
+    tryit(() => b !== undefined && b !== null && T.consume(31, 20, b));
     tryit(() => T.removeCell(b, 1)); tryit(() => T.nearestDirty(b, 3)); tryit(() => T.amountAt(b, 3)); tryit(() => T.surfaceAt(b, b)); tryit(() => T.cellAt(b, 3)); tryit(() => T.cellCenter(b, { x: 0, z: 0 })); tryit(() => T.itemGeometry(b));
   }
   const r = {
     threw, changed, tot0: tot, tot1: T.totalUnits(),
     outOfDistrict: T.removeInCircle(-50, -50, 3, 100, 'robot').units + T.removeAlongSegment(-10, -10, -20, -20, 1, 100, 'cart').units + T.consume(200, 200, 10, 5, 'robot').units,
-    nearestOut: T.nearestDirty(-500, -500, 5), cellOut: T.cellAt(-1, 3), cellOut2: T.cellAt(54, 3), amountOutside: T.amountAt(-0.25, 3),
+    nearestOut: T.nearestDirty(-500, -500, 5), cellOut: T.cellAt(-1, 3), cellOut2: T.cellAt(90, 3), amountOutside: T.amountAt(-0.25, 3),
     hugeCoords: T.removeInCircle(1e300, 1e300, 2, 5, 'robot').units + T.removeAlongSegment(1e300, 0, -1e300, 0, 0.3, 5, 'broom').units + T.nearestDirty(1e300, 3, 1e300) + 1,
-    unknownBy: T.removeInCircle(10, 3, 0.3, 1, 'alien').units, removeCellRange: T.removeCell(108 * 108, 1, 'robot').units + T.removeCell(-1, 1).units + T.removeCell(1.5, 1).units,
+    unknownBy: T.removeInCircle(10, 3, 0.3, 1, 'alien').units, removeCellRange: T.removeCell(180 * 180, 1, 'robot').units + T.removeCell(-1, 1).units + T.removeCell(1.5, 1).units,
     geoFallback: !!T.itemGeometry(99),
-    hugeR: (() => { const t0 = performance.now(); const u = T.removeInCircle(27, 27, 1e6, 0, 'debug').units; return { u, ms: performance.now() - t0 }; })(),
+    hugeR: (() => { const t0 = performance.now(); const u = T.removeInCircle(45, 45, 1e6, 0, 'debug').units; return { u, ms: performance.now() - t0 }; })(),
   };
   H.flush();
   return r;
@@ -176,7 +176,7 @@ const ms = await page.evaluate(() => {
   // consume from the district centre until each threshold, one simulated frame at a time
   // simulated frames without rendering (a SwiftShader frame is ~0.25 s of GPU work that would queue up)
   const sim = () => { H.ctx.time.game += 1 / 60; H.ctx.time.frame++; T.update(1 / 60); };
-  for (let f = 0; f < 4000 && T.cleanFraction() < C.completion.finalSweepAt; f++) { T.consume(27, 27, 60, 1e9, 'robot'); sim(); }
+  for (let f = 0; f < 4000 && T.cleanFraction() < C.completion.finalSweepAt; f++) { T.consume(45, 45, 60, 1e9, 'robot'); sim(); }
   const atSweep = T.cleanFraction(), unitsLeft = T.totalUnits();
   const ev1 = window.__ev.filter((e) => e.n === 'trash:milestone').map((e) => e.p);
   // nobody (economy is a stub) runs the final sweep: the safety net must clear the district after finalSweepS + 3 s
@@ -205,7 +205,7 @@ const sv = await page.evaluate(() => {
   T.load(null); H.flush();
   const fresh = { total: T.totalUnits(), hash: H.gridHash(), clean: T.cleanFraction(), ms: T.save().ms, bytes: JSON.stringify(T.save()).length };
   // carve: broom trail, robot patch, cart swath, some partial cells
-  for (let z = 50; z > 8; z -= 0.25) T.removeAlongSegment(26.2, z, 26.2, z - 0.25, 0.5, 1e9, 'broom');
+  for (let z = 50; z > 8; z -= 0.25) T.removeAlongSegment(30.2, z, 26.2, z - 0.25, 0.5, 1e9, 'broom');
   for (let x = 31; x < 47; x += 0.5) T.removeAlongSegment(x, 25, x, 29, 0.25, 1e9, 'robot');
   T.removeAlongSegment(3, 52, 3, 2, 0.9, 1e9, 'cart');
   for (let k = 0; k < 160; k++) T.removeInCircle(29 + (k % 8) * 0.25, 46 + ((k / 8) | 0) * 0.25, 0.25, 1, 'robot');
@@ -214,7 +214,7 @@ const sv = await page.evaluate(() => {
   const a = { total: T.totalUnits(), hash: H.gridHash(), clean: T.cleanFraction(), cleanCells: T.cleanCells(), unit: T.unitFraction(), blocks: Array.from(T.blockSums()).join(',') };
   const t0 = performance.now(); const s = T.save(); const msSave = performance.now() - t0;
   const json = JSON.stringify(s);
-  T.removeInCircle(27, 27, 30, undefined, 'debug'); H.flush();          // diverge (passes milestones: celebrated here, legitimately)
+  T.removeInCircle(45, 45, 30, undefined, 'debug'); H.flush();          // diverge (passes milestones: celebrated here, legitimately)
   window.__ev.length = 0;
   const t1 = performance.now(); T.load(JSON.parse(json)); const msLoad = performance.now() - t1; H.flush();
   const b = { total: T.totalUnits(), hash: H.gridHash(), clean: T.cleanFraction(), cleanCells: T.cleanCells(), unit: T.unitFraction(), blocks: Array.from(T.blockSums()).join(',') };
@@ -222,7 +222,7 @@ const sv = await page.evaluate(() => {
   const loaded = window.__ev.filter((e) => e.n === 'trash:loaded').map((e) => e.p);
   const milestonesOnLoad = window.__ev.filter((e) => e.n === 'trash:milestone').length;
   // corrupt / foreign saves
-  T.load({ g: 'g1.108.4.zzz.@@@', ms: 1 }); H.flush(); const corrupt = { total: T.totalUnits(), init: T.initialUnits() };
+  T.load({ g: 'g1.180.4.zzz.@@@', ms: 1 }); H.flush(); const corrupt = { total: T.totalUnits(), init: T.initialUnits() };
   T.load({ g: json.length ? JSON.parse(json).g.replace(/\.[a-z0-9]+\.([^.]*)$/, '.otherlayout.$1') : '', ms: 0 }); H.flush(); const foreign = { total: T.totalUnits(), exact: window.__ev.filter((e) => e.n === 'trash:loaded').pop().p.exact };
   T.load({}); H.flush(); const emptyObj = { total: T.totalUnits(), init: T.initialUnits() };
   T.load(JSON.parse(json)); H.flush();
@@ -230,7 +230,7 @@ const sv = await page.evaluate(() => {
 });
 results.save = sv;
 check('save -> load round trip restores grid, totals, clean fraction, block sums', sv.a.hash === sv.b.hash && sv.a.total === sv.b.total && sv.a.clean === sv.b.clean && sv.a.cleanCells === sv.b.cleanCells && sv.a.blocks === sv.b.blocks && sv.rc.units === sv.b.total, { a: sv.a.total, b: sv.b.total, clean: sv.b.clean });
-check('save is compact', sv.bytes < 16000 && sv.freshBytes < 200, { carved: sv.bytes, fresh: sv.freshBytes });
+check('save is compact', sv.bytes < 16000 && sv.freshBytes < 600, { carved: sv.bytes, fresh: sv.freshBytes });
 check('load emits trash:loaded {exact:true} and celebrates nothing', sv.loaded.some((p) => p.exact === true) && sv.milestonesOnLoad === 0);
 check('corrupt save -> fresh district (warned), {} -> fresh', sv.corrupt.total === sv.corrupt.init && sv.emptyObj.total === sv.emptyObj.init);
 check('save from another layout applied best-effort with exact:false', sv.foreign.exact === false && sv.foreign.total === sv.a.total);
@@ -243,13 +243,13 @@ const perf = await page.evaluate(() => {
   function bench(cellsPerFrame, frames, by) {
     let seed = 12345; const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
     const N = H.core.N, near = [], far = [];
-    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) if (H.core.initGrid[j * N + i]) { const x = (i + 0.5) * 0.5, z = (j + 0.5) * 0.5; ((Math.abs(x - 27) < 7 && Math.abs(z - 40) < 7) ? near : far).push(j * N + i); }
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) if (H.core.initGrid[j * N + i]) { const x = (i + 0.5) * 0.5, z = (j + 0.5) * 0.5; ((Math.abs(x - 31) < 7 && Math.abs(z - 40) < 7) ? near : far).push(j * N + i); }
     const shuf = (a) => { for (let i = a.length - 1; i > 0; i--) { const k = (rnd() * (i + 1)) | 0; const t = a[i]; a[i] = a[k]; a[k] = t; } return a; };
     shuf(near); shuf(far);
     let changed = 0, rows = 0, ms = 0, msUpd = 0, maxFly = 0, pn = 0, pf = 0;
     const c = { x: 0, z: 0 };
     for (let f = 0; f < frames; f++) {
-      if (f % 8 === 0) { T.load(null); H.cam(27, 40, 0, -10); H.flush(); H.flush(); pn = 0; pf = 0; }
+      if (f % 8 === 0) { T.load(null); H.cam(31.0, 40, 0, -10); H.flush(); H.flush(); pn = 0; pf = 0; }
       const t0 = performance.now();
       for (let k = 0; k < cellsPerFrame; k++) {
         const idx = (k & 1) ? near[pn++ % near.length] : far[pf++ % far.length];
@@ -269,13 +269,13 @@ const perf = await page.evaluate(() => {
   // broom walking: one stroke per frame, camera moving
   T.load(null);
   { let z = 52, ms = 0, units = 0; const frames = 600;
-    for (let f = 0; f < frames; f++) { H.cam(26.2, z + 0.6, 0, -10); const t0 = performance.now(); units += T.removeAlongSegment(26.2, z, 26.2, z - 0.04, 0.65, 1e9, 'broom').units; T.update(1 / 60); ms += performance.now() - t0; z -= 0.04; if (z < 2) z = 52; }
+    for (let f = 0; f < frames; f++) { H.cam(30.2, z + 0.6, 0, -10); const t0 = performance.now(); units += T.removeAlongSegment(30.2, z, 26.2, z - 0.04, 0.65, 1e9, 'broom').units; T.update(1 / 60); ms += performance.now() - t0; z -= 0.04; if (z < 2) z = 52; }
     out.broomWalk = { msPerFrame: +(ms / frames).toFixed(4), unitsPerFrame: +(units / frames).toFixed(2) }; }
   T.load(null);
   { let z = 52, ms = 0, units = 0; const frames = 400;
-    for (let f = 0; f < frames; f++) { H.cam(27, z + 1.5, 0, -10); const t0 = performance.now(); units += T.removeAlongSegment(26.1, z, 27.9, z - 0.083, 0.15, 1e9, 'cart').units + T.removeAlongSegment(27, z, 27, z - 0.083, 0.9, 1e9, 'cart').units; T.update(1 / 60); ms += performance.now() - t0; z -= 0.083; if (z < 2) z = 52; }
+    for (let f = 0; f < frames; f++) { H.cam(31.0, z + 1.5, 0, -10); const t0 = performance.now(); units += T.removeAlongSegment(30.1, z, 31.9, z - 0.083, 0.15, 1e9, 'cart').units + T.removeAlongSegment(31.0, z, 31, z - 0.083, 0.9, 1e9, 'cart').units; T.update(1 / 60); ms += performance.now() - t0; z -= 0.083; if (z < 2) z = 52; }
     out.cartDrive = { msPerFrame: +(ms / frames).toFixed(4), unitsPerFrame: +(units / frames).toFixed(2) }; }
-  { const t0 = performance.now(); const n = 20; for (let i = 0; i < n; i++) { H.cam(i % 2 ? 3 : 27, i % 2 ? 3 : 50); T.update(1 / 60); } out.teleportRebuildMs = +((performance.now() - t0) / 20).toFixed(3); }
+  { const t0 = performance.now(); const n = 20; for (let i = 0; i < n; i++) { H.cam(i % 2 ? 3 : 31, i % 2 ? 3 : 50); T.update(1 / 60); } out.teleportRebuildMs = +((performance.now() - t0) / 20).toFixed(3); }
   { const t0 = performance.now(); let h = 0; for (let i = 0; i < 200; i++) if (T.nearestDirty(2 + (i % 10) * 5, 2 + ((i / 10) | 0) * 2.5, 30) >= 0) h++; out.nearestDirtyMs = +((performance.now() - t0) / 200).toFixed(4); }
   { T.load(null); const t0 = performance.now(); const r = T.consume(3, 3, 2000, 60, 'robot'); out.consume2000 = { units: r.units, ms: +(performance.now() - t0).toFixed(1) }; }
   { T.load(null); const t0 = performance.now(); const r = T.clearAll('final'); out.clearAll = { units: r.units, ms: +(performance.now() - t0).toFixed(1) }; T.update(1 / 60); }
@@ -301,38 +301,38 @@ if (doShots) {
   const shot = async (name) => { const t0 = Date.now(); await page.screenshot({ path: path.join(shots, name + '.png'), timeout: 180000 }); console.log('shot', name, Date.now() - t0, 'ms'); };
   const view = async (x, z, yaw, pitch, y = 1.65) => page.evaluate(([x, z, yaw, pitch, y]) => { H.cam(x, z, yaw, pitch, y); H.ctx.step(2); }, [x, z, yaw, pitch, y]);
   await page.evaluate(() => { H.T.load(null); });
-  await view(26.5, 53, 0, -7); await shot('01-before-eye');
-  await view(27, 75, 0, -40, 45); await shot('02-before-aerial');
+  await view(30.5, 53, 0, -7); await shot('01-before-eye');
+  await view(31.0, 75, 0, -40, 45); await shot('02-before-aerial');
   // sweep a broom trail up the middle street and let a robot clean a lawnmower patch on the cross street
   await page.evaluate(() => {
     const T = H.T;
-    for (let z = 52; z > 8; z -= 0.04) { H.cam(26.2, z + 0.6, 0, -10); T.removeAlongSegment(26.2, z, 26.2, z - 0.04, 0.5, 1e9, 'broom'); T.update(1 / 60); }
-    for (let k = 0; k < 30; k++) { const a = k * 0.45; T.removeAlongSegment(28.3 + Math.sin(a) * 0.8, 40 - k, 28.3 + Math.sin(a + 0.45) * 0.8, 39 - k, 0.5, 1e9, 'broom'); }
+    for (let z = 52; z > 8; z -= 0.04) { H.cam(30.2, z + 0.6, 0, -10); T.removeAlongSegment(30.2, z, 26.2, z - 0.04, 0.5, 1e9, 'broom'); T.update(1 / 60); }
+    for (let k = 0; k < 30; k++) { const a = k * 0.45; T.removeAlongSegment(32.3 + Math.sin(a) * 0.8, 40 - k, 32.3 + Math.sin(a + 0.45) * 0.8, 39 - k, 0.5, 1e9, 'broom'); }
     for (let x = 31; x < 47; x += 0.5) { T.removeAlongSegment(x, 25.25, x, 28.75, 0.25, 1e9, 'robot'); T.update(1 / 60); }
     T.removeAlongSegment(3, 52, 3, 2, 0.9, 1e9, 'cart');
     for (let s = 0; s < 40; s++) T.update(1 / 60);
   });
-  await view(26.5, 53, 0, -7); await shot('03-after-eye');
-  await view(27, 75, 0, -40, 45); await shot('04-after-aerial');
+  await view(30.5, 53, 0, -7); await shot('03-after-eye');
+  await view(31.0, 75, 0, -40, 45); await shot('04-after-aerial');
   await view(38, 27, -90, -12); await shot('05-robot-patch-eye');
-  await view(26.2, 34, 0, -48); await shot('06-trail-feet');
+  await view(30.2, 34, 0, -48); await shot('06-trail-feet');
   // trail readable from 30+ m away, from the street end
-  await view(26.5, 53.5, 0, -2.5); await shot('07-trail-35m');
+  await view(30.5, 53.5, 0, -2.5); await shot('07-trail-35m');
   // juice mid-flight: hand picks (into the hand), a broom stroke (up into the bag), a robot bite, captured a few frames in
   await page.evaluate(() => {
-    const T = H.T; H.cam(27, 49, 0, -30); T.update(1 / 60);
-    for (let k = 0; k < 4; k++) T.pick(27.6 + k * 0.15, 47.9, 0.6, 'hands');
-    T.removeAlongSegment(26.0, 47.8, 27.4, 47.7, 0.5, 1e9, 'broom');
-    T.removeInCircle(29.25, 46.25, 0.45, 1e9, 'robot');
+    const T = H.T; H.cam(31.0, 49, 0, -30); T.update(1 / 60);
+    for (let k = 0; k < 4; k++) T.pick(31.6 + k * 0.15, 47.9, 0.6, 'brush');
+    T.removeAlongSegment(30.0, 47.8, 31.4, 47.7, 0.5, 1e9, 'broom');
+    T.removeInCircle(33.25, 46.25, 0.45, 1e9, 'robot');
     H.ctx.step(6);
   });
   await shot('08-juice-midflight');
   // closer look at the arcs: broom stroke 1.2 m ahead, frames 3 and 7 after removal (0.05 s, 0.12 s)
-  await page.evaluate(() => { const T = H.T; H.cam(25.2, 39.8, 0, -38, 1.3); T.update(1 / 60); T.removeAlongSegment(24.6, 38.6, 25.8, 38.5, 0.5, 1e9, 'broom'); H.ctx.step(3); });
+  await page.evaluate(() => { const T = H.T; H.cam(29.2, 39.8, 0, -38, 1.3); T.update(1 / 60); T.removeAlongSegment(28.6, 38.6, 25.8, 38.5, 0.5, 1e9, 'broom'); H.ctx.step(3); });
   await shot('08b-juice-broom-3f');
   await page.evaluate(() => H.ctx.step(4));
   await shot('08c-juice-broom-7f');
-  await page.evaluate(() => { const T = H.T; H.cam(25.0, 37.2, 30, -40, 1.65); T.update(1 / 60); for (let k = 0; k < 6; k++) T.pick(25.3 + k * 0.12, 36.2, 0.5, 'hands'); H.ctx.step(5); });
+  await page.evaluate(() => { const T = H.T; H.cam(29.0, 37.2, 30, -40, 1.65); T.update(1 / 60); for (let k = 0; k < 6; k++) T.pick(25.3 + k * 0.12, 36.2, 0.5, 'brush'); H.ctx.step(5); });
   await shot('08d-juice-hands-5f');
   results.juice = await page.evaluate(() => ({ flying: H.core.stats.flying, dust: H.core.stats.dust, calls: H.ctx.renderer.info.render.calls }));
   await page.evaluate(() => H.ctx.step(40));
@@ -340,7 +340,7 @@ if (doShots) {
   check('juice: items in flight and dust puffs spawn, then end', results.juice.flying > 0 && results.juice.dust > 0 && results.juiceAfter.flying === 0 && results.juiceAfter.dust === 0, { mid: results.juice, after: results.juiceAfter });
   // portrait
   const pp = await open(390, 844);
-  await pp.evaluate(() => { const T = H.T; for (let z = 52; z > 20; z -= 0.25) T.removeAlongSegment(26.2, z, 26.2, z - 0.25, 0.5, 1e9, 'broom'); H.cam(26.5, 53, 0, -8); H.ctx.step(16); }); // > cellCleanFadeS so the far layer has faded
+  await pp.evaluate(() => { const T = H.T; for (let z = 52; z > 20; z -= 0.25) T.removeAlongSegment(30.2, z, 26.2, z - 0.25, 0.5, 1e9, 'broom'); H.cam(30.5, 53, 0, -8); H.ctx.step(16); }); // > cellCleanFadeS so the far layer has faded
   await pp.screenshot({ path: path.join(shots, '09-portrait.png') });
   await pp.close();
 }

@@ -9,8 +9,9 @@
 //
 // Player model (the only invented part; robots, shop, selling, boost, milestones, final sweep are the game's code):
 //   eff = 0.5 / 0.7 / 0.9 (slow / average / fast), the TASARIM "efficiency" (turns, overlap, looking around).
-//   Active rate at eff 0.7 reproduces TASARIM's table: hands 2.6 u/s, broom cells/s = width*speed*2.4,
-//   cart cells/s = nozzle*cleanSpeedMax*2.2; other profiles scale linearly with eff/0.7.
+//   Active rate at eff 0.7: brush and broom cells/s = width*speed*2.4 (4 cells per m² swept × 0.6),
+//   cart cells/s = nozzle*cleanSpeed*2.2; other profiles scale linearly with eff/0.7. Walking between places runs at
+//   the walking speed (shoes level), not at the tool's sweep cap (v2: the cap applies only while sweeping).
 //   It cleans nearest-first from where it works (the dirty edge drifts away as the cleared area grows), walks to the
 //   sell point with the shortest PATH (BFS over the walkable grid, × walkFactor) plus tripS of overhead per trip
 //   (turning round, finding the way), sells, buys at the shop, walks back.
@@ -28,10 +29,11 @@ const PROFILES = {
   'average-designorder': { eff: 0.7, walkF: 0.9, tripS: 2.5, shopS: 5, policy: 'design', boost: false },
   'average-boost': { eff: 0.7, walkF: 0.9, tripS: 2.5, shopS: 5, policy: 'next', boost: true },
 };
-const DESIGN_ORDER = ['bag_1', 'broom', 'bag_2', 'broom_w1', 'bag_3', 'dropoff', 'robot_1', 'broom_s1', 'robot_2', 'cart', 'robot_speed_1', 'robot_3', 'cart_tank_1', 'cart_width_1', 'robot_cap_1', 'robot_4', 'robot_speed_2'];
-// TASARIM §3 stage table, "From min" of each purchase (average player), and the sensitivity line
-const DESIGN_AVG = { bag_1: 0.283, broom: 1.933, bag_2: 2.983, broom_w1: 3.867, bag_3: 5.05, dropoff: 5.883, robot_1: 7.5, broom_s1: 8.367, robot_2: 9.783, cart: 11.817, robot_speed_1: 12.283, robot_3: 13.25, cart_tank_1: 13.983, cart_width_1: 14.833, robot_cap_1: 15.467, robot_4: 16.417, complete: 17.083 };
-const DESIGN_SENS = { slow: { broom: 2.533, robot_1: 9.617, cart: 14.717, complete: 21.2 }, fast: { broom: 1.6, robot_1: 6.317, cart: 10.133, complete: 14.733 } };
+// v2 design order = the shop's price order (cheapest unlocked item first)
+const DESIGN_ORDER = CONFIG.shop.items.slice().sort((a, b) => a.price - b.price).map((it) => it.id);
+// v2 design intent (average player, minutes): docs/TASARIM.md §3a
+const DESIGN_AVG = { bag_1: 1.8, broom: 6.57, robot_1: 13.53, cart: 26.9, complete: 38.23 };
+const DESIGN_SENS = { slow: { broom: 8.97, robot_1: 17.83, cart: 34.45, complete: 49.07 }, fast: { broom: 4.93, robot_1: 10.48, cart: 22.33, complete: 31.38 } };
 
 // --price id=value[,id=value…]: try shop prices without editing config.js (the bot works on a copy)
 const priceArg = process.argv.indexOf('--price');
@@ -45,7 +47,7 @@ function play(name, P, log) {
   const pose = { x: CONFIG.player.startPos[0], z: CONFIG.player.startPos[1], yaw: Math.PI, mounted: null };
   const core = createEconomyCore({ CONFIG: CFG, bus, trash, world, player: () => pose, camera: () => null });
   core.update(0);
-  const out = { name, purchases: [], milestones: {}, firstSale: null, complete: null, trips: 0, walkFullS: 0, cleanS: 0, walkFullAfterBag2S: 0, cleanAfterBag2S: 0, boostAt: null, coinsLeft: 0, robotUnits: 0, playerUnits: 0, t90: null, t985: null };
+  const out = { name, tripS: [], tripFootS: [], minute: [], purchases: [], milestones: {}, firstSale: null, complete: null, trips: 0, walkFullS: 0, cleanS: 0, walkFullAfterBag2S: 0, cleanAfterBag2S: 0, boostAt: null, coinsLeft: 0, robotUnits: 0, playerUnits: 0, t90: null, t985: null };
   let real = 0, game = 0;
   const N = city.N, CELL = city.CELL, DT = 0.1;
   bus.on('trash:milestone', (p) => { out.milestones[CONFIG.milestones[p.index].at] = real / 60; });
@@ -58,9 +60,9 @@ function play(name, P, log) {
   const stand = (x, z) => { pose.x = x; pose.z = z; };
   const awayPose = () => stand(-100, -100); // while walking (abstracted) the player is not in the robots' way
   const pathM = (p, x, z) => { const c = Math.floor(z / CELL) * N + Math.floor(x / CELL); const f = p.field[c]; return (f === 65535 ? Math.hypot(p.x - x, p.z - z) / 0.75 : f * CELL) * 0.82; }; // 4-connected steps → walked metres
-  const tool = () => (core.owned('cart') ? 'cart' : core.owned('broom') ? 'broom' : 'hands');
+  const tool = () => (core.owned('cart') ? 'cart' : core.owned('broom') ? 'broom' : 'brush');
   const container = () => (tool() === 'cart' ? 'tank' : 'bag');
-  const travelSpeed = () => (tool() === 'cart' ? CONFIG.cart.topSpeed : CONFIG.player.walkSpeed) * P.walkF;
+  const travelSpeed = () => (tool() === 'cart' ? CONFIG.cart.topSpeed : core.stat('walkSpeed')) * P.walkF;
   const afterBag2 = () => core.owned('bag_2');
   function walk(seconds, full) {
     awayPose(); let t = seconds;
@@ -83,6 +85,7 @@ function play(name, P, log) {
     out.trips++;
     const pts = core.sellPoints().filter((p) => p.active);
     let best = pts[0], bd = Infinity; for (const p of pts) { const d = pathM(p, wx, wz); if (d < bd) { bd = d; best = p; } }
+    out.tripS.push(bd / travelSpeed() + P.tripS); if (tool() !== 'cart') out.tripFootS.push(bd / travelSpeed() + P.tripS);
     walk(bd / travelSpeed() + P.tripS, true);
     pose.mounted = tool() === 'cart' ? 'cart' : null; stand(best.x, best.z);
     for (let k = 0; k < 8; k++) tick(DT, false); // dump anim (0.6 s) + coins
@@ -98,7 +101,7 @@ function play(name, P, log) {
     stand(wx, wz);
   }
   const k = P.eff / 0.7;
-  while (real < 60 * 60) {
+  while (real < 90 * 60) {
     if (trash.totalUnits() === 0) { out.complete = real / 60; break; }
     const c = container();
     if (core.bagSpace(c) <= 0) { sellTrip(); continue; }
@@ -108,16 +111,16 @@ function play(name, P, log) {
     // clean for DT
     const t = tool();
     let rate, unitMode;
-    if (t === 'hands') { rate = 2.6 * k; unitMode = true; }
+    if (t === 'brush') { rate = core.stat('brushWidth') * core.stat('brushSweepSpeed') * 2.4 * k; unitMode = false; }
     else if (t === 'broom') { rate = core.stat('broomWidth') * core.stat('broomSweepSpeed') * 2.4 * k; unitMode = false; }
-    else { rate = core.stat('cartNozzleWidth') * CONFIG.cart.cleanSpeedMax * 2.2 * k; unitMode = false; }
+    else { rate = core.stat('cartNozzleWidth') * core.stat('cartCleanSpeed') * 2.2 * k; unitMode = false; }
     acc += rate * DT;
     let extra = 0;
     while (acc >= 1 && core.bagSpace(c) > 0) {
       const idx = trash.nearestDirty(wx, wz); if (idx < 0) break;
       const x = (idx % N + 0.5) * CELL, z = (((idx / N) | 0) + 0.5) * CELL, d = Math.hypot(x - wx, z - wz);
-      const reach = t === 'hands' ? CONFIG.hands.reachM : t === 'broom' ? 1.2 : 2.0;
-      if (d > reach) extra += (d - reach * 0.5) / ((t === 'cart' ? CONFIG.cart.cleanSpeedMax : t === 'broom' ? core.stat('broomSweepSpeed') : CONFIG.player.walkSpeed) * P.walkF); // reposition
+      const reach = t === 'brush' ? 0.8 : t === 'broom' ? 1.2 : 2.0;
+      if (d > reach) extra += (d - reach * 0.5) / ((t === 'cart' ? CONFIG.cart.topSpeed * 0.7 : core.stat('walkSpeed')) * P.walkF); // reposition over clean ground: not capped
       const r = trash.takeCell(idx, unitMode ? 1 : Math.min(4, core.bagSpace(c)), t);
       core.addToBag(r.units, r.byType, c); out.playerUnits += r.units;
       if (!unitMode || d > reach) { wx = x; wz = z; }
@@ -127,7 +130,13 @@ function play(name, P, log) {
     tick(DT + extra, false); // repositioning costs time too
     out.cleanS += DT + extra; if (afterBag2()) out.cleanAfterBag2S += DT + extra;
     const f = trash.cleanFraction(); if (out.t90 == null && f >= 0.9) out.t90 = real / 60;
+    if (real / 60 >= out.minute.length + 1) { const ru = core._S.stats.robotUnits; out.minute.push({ t: real / 60, player: out.playerUnits - (out._pu || 0), robot: ru - (out._ru || 0) }); out._pu = out.playerUnits; out._ru = ru; }
   }
+  { const ft = out.tripFootS.slice().sort((a, b) => a - b); out.tripFootMean = ft.reduce((a, b) => a + b, 0) / Math.max(1, ft.length); out.tripFootP90 = ft[Math.floor(ft.length * 0.9)] || 0; }
+  // player vs robots per minute between robot_1 and the cart (psychology review: the player must stay the fastest cleaner)
+  { const a = out.purchases.find((p) => p.id === 'robot_1'), b = out.purchases.find((p) => p.id === 'cart'); let pr = 0, ro = 0, n = 0;
+    for (const m of out.minute) if (a && b && m.t > a.t && m.t <= b.t) { pr += m.player; ro += m.robot; n++; }
+    out.robotShareBridge = pr + ro ? ro / (pr + ro) : 0; out.robotShareBridgeMax = Math.max(0, ...out.minute.filter((m) => a && b && m.t > a.t && m.t <= b.t).map((m) => (m.robot / Math.max(1, m.robot + m.player)))); }
   out.robotFirstClean = core.robots().map((r) => +r.firstCleanS.toFixed(1));
   out.coinsLeft = core.coins(); out.robotUnits = core._S.stats.robotUnits; out.gameMin = game / 60; out.real = real / 60;
   out.at = Object.fromEntries(out.purchases.map((p) => [p.id, p]));
@@ -145,8 +154,8 @@ const T = CONFIG.targets;
 const results = {};
 for (const n of names) { if (logOne) console.log(`\n== ${n}`); results[n] = play(n, PROFILES[n], logOne); }
 
-const rows = [['firstSale', 'first sale', T.firstSale], ['bag_1', 'bag_1', T.bag1], ['broom', 'broom', T.broom], ['bag_2', 'bag_2', T.bag2], ['bag_3', 'bag_3', T.bag3], ['dropoff', 'dropoff', T.dropoff], ['robot_1', 'robot_1', T.robot1], ['robot_2', 'robot_2', T.robot2], ['cart', 'cart', T.cart], ['m0.5', '50 %', T.percent50], ['m0.75', '75 %', T.percent75], ['complete', '100 %', T.complete]];
-const val = (r, key) => key === 'firstSale' ? r.firstSale : key === 'complete' ? r.complete : key.startsWith('m') ? r.milestones[+key.slice(1)] : r.at[key] && r.at[key].t;
+const rows = [['firstSale', 'first sale', T.firstSale], ['first', 'first buy', T.firstBuy], ['bag_1', 'bag_1', T.bag1], ['brush_w1', 'brush_w1', T.brushW1], ['broom', 'broom', T.broom], ['bag_2', 'bag_2', T.bag2], ['shoes_1', 'shoes_1', T.shoes1], ['robot_1', 'robot_1', T.robot1], ['bag_3', 'bag_3', T.bag3], ['dropoff', 'dropoff', T.dropoff], ['robot_2', 'robot_2', T.robot2], ['cart', 'cart', T.cart], ['m0.5', '50 %', T.percent50], ['m0.75', '75 %', T.percent75], ['complete', '100 %', T.complete]];
+const val = (r, key) => key === 'first' ? (r.purchases[0] && r.purchases[0].t) : key === 'firstSale' ? r.firstSale : key === 'complete' ? r.complete : key.startsWith('m') ? r.milestones[+key.slice(1)] : r.at[key] && r.at[key].t;
 console.log('\nTimeline vs CONFIG.targets (average target; slow/fast complete targets in brackets). Times m:ss real time.');
 console.log('event       target   ' + names.map((n) => n.padStart(20)).join(''));
 for (const [key, label, tgt] of rows) {
@@ -161,7 +170,7 @@ for (const n of names) {
   const maxGap = gaps.reduce((a, b) => (b[0] > a[0] ? b : a), [0, '']);
   const walkShare = r.walkFullAfterBag2S / Math.max(1, r.walkFullAfterBag2S + r.cleanAfterBag2S);
   console.log(`\n${n}: purchases ` + r.purchases.map((p) => `${p.id}@${mmss(p.t)}(${p.pct.toFixed(0)}%)`).join(' '));
-  console.log(`  complete ${mmss(r.complete)} | 90 %→98.5 % ${r.t90 && r.t985 ? ((r.t985 - r.t90) * 60).toFixed(0) + ' s' : '-'} | longest gap ${(maxGap[0]).toFixed(1)} min (before ${maxGap[1]}) | walking full after bag_2 ${(walkShare * 100).toFixed(0)} % | trips ${r.trips} | units player ${r.playerUnits} robots ${r.robotUnits} | coins left ${r.coinsLeft} | robots' first clean after deploy (s) ${r.robotFirstClean.join(' ')}${r.boostAt ? ' | boost at ' + mmss(r.boostAt) : ''}`);
+  console.log(`  complete ${mmss(r.complete)} | 90 %→98.5 % ${r.t90 && r.t985 ? ((r.t985 - r.t90) * 60).toFixed(0) + ' s' : '-'} | longest gap ${(maxGap[0]).toFixed(1)} min (before ${maxGap[1]}) | walking full after bag_2 ${(walkShare * 100).toFixed(0)} % | trips ${r.trips} | sell trip on foot mean ${r.tripFootMean.toFixed(1)} s, p90 ${r.tripFootP90.toFixed(1)} s | robots' share robot_1→cart ${(r.robotShareBridge * 100).toFixed(0)} % (worst minute ${(r.robotShareBridgeMax * 100).toFixed(0)} %) | units player ${r.playerUnits} robots ${r.robotUnits} | coins left ${r.coinsLeft} | robots' first clean after deploy (s) ${r.robotFirstClean.join(' ')}${r.boostAt ? ' | boost at ' + mmss(r.boostAt) : ''}`);
   if (n === 'average' || n === 'average-designorder') console.log('  vs TASARIM stage table: ' + Object.keys(DESIGN_AVG).map((id) => { const v = id === 'complete' ? r.complete : r.at[id] && r.at[id].t; return v == null ? `${id} -` : `${id} ${v - DESIGN_AVG[id] >= 0 ? '+' : ''}${((v - DESIGN_AVG[id]) * 60).toFixed(0)}s`; }).join(', '));
 }
 if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify(results, null, 1));

@@ -28,7 +28,10 @@ function threePath() {
   return i > 0 ? process.argv[i + 1] : process.env.THREE_LOCAL || null;
 }
 
-async function open({ width = 844, height = 390, dpr = 1, query = 'debug&nosave&manual', fakes = !process.env.REAL, initScript = null } = {}) {
+async function open({ width = 844, height = 390, dpr = 1, query = 'debug&nosave&manual', fakes = !process.env.REAL, initScript = null, stub = [] } = {}) {
+  // v2: a portrait viewport is played rotated (forced landscape) by default; these module tests exercise the upright
+  // portrait layout ("Dikey oyna"), so they ask for it. Forced landscape is tested in test/e2e (play.mjs, rot.mjs).
+  if (height > width && !/dikey/.test(query)) query += '&dikey=1';
   const server = await serve();
   const port = server.address().port;
   const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
@@ -47,6 +50,8 @@ async function open({ width = 844, height = 390, dpr = 1, query = 'debug&nosave&
       else r.fulfill({ status: 200, contentType: 'text/javascript', body: 'export function init(){}\nexport function update(){}\n' });
     });
   }
+  // stub: modules replaced by main's built-in stub (v2: player tests stub tools, whose sweep cap would slow walking)
+  for (const m of stub) await page.route(new RegExp('/www/js/' + m + '\\.js(\\?.*)?$'), (r) => r.fulfill({ status: 200, contentType: 'text/javascript', body: 'export function init() {}\nexport function update() {}\n' }));
   await page.goto(`http://127.0.0.1:${port}/www/index.html?${query}`);
   await page.waitForFunction(() => window.__tsCtx && window.__tsCtx.time.frame >= 1, null, { timeout: 90000 });
   const cdp = await context.newCDPSession(page);

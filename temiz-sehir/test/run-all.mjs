@@ -38,14 +38,16 @@ run('economy unit tests', 'node', ['test/economy/unit.mjs']);
     const d = JSON.parse(fs.readFileSync(out, 'utf8')); fs.unlinkSync(out);
     const at = (p, id) => (d[p].at[id] ? d[p].at[id].t : Infinity);
     const gap = (p) => { const t = [0, ...d[p].purchases.map((x) => x.t), d[p].complete].sort((a, b) => a - b); let g = 0; for (let i = 1; i < t.length; i++) g = Math.max(g, t[i] - t[i - 1]); return g; };
-    const lim = [
-      ['average: broom ≤ 2:00', at('average', 'broom') <= 2],
-      ['slow: broom ≤ 2:00', at('slow', 'broom') <= 2],
-      ['average: first robot 6–8 min', at('average', 'robot_1') >= 6 && at('average', 'robot_1') <= 8],
-      ['average: cart ≤ 12 min', at('average', 'cart') <= 12],
+    const lim = [ // v2 targets (owner's first playtest on an iPhone 14 Pro): docs/TASARIM.md §3a
+      ['average: first upgrade 1:30–2:00', d.average.purchases[0].t >= 1.5 && d.average.purchases[0].t <= 2],
+      ['average: first robot 12–15 min', at('average', 'robot_1') >= 12 && at('average', 'robot_1') <= 15],
+      ['average: cart 24–28 min', at('average', 'cart') >= 24 && at('average', 'cart') <= 28],
       ['all: no gap > 4 min without something new', ['slow', 'average', 'fast'].every((p) => gap(p) <= 4)],
-      ['average: 100 % in 14–20 min', d.average.complete >= 14 && d.average.complete <= 20],
+      ['average: 100 % in 35–40 min', d.average.complete >= 35 && d.average.complete <= 40],
+      ['slow: 100 % ≤ 50 min', d.slow.complete <= 50],
+      ['fast: 100 % ≥ 27 min', d.fast.complete >= 27],
     ];
+
     for (const [n, ok] of lim) { console.log('  ' + (ok ? 'ok  ' : 'FAIL') + ' ' + n); results.push({ name: 'balance: ' + n, ok }); }
   }
 }
@@ -56,6 +58,8 @@ if (!QUICK) {
   run('e2e smoke: tek.html wrapped like the host', 'node', ['test/e2e/smoke.mjs', '--target', 'tek']);
   run('e2e smoke: tek.html inside an iframe', 'node', ['test/e2e/smoke.mjs', '--target', 'iframe']);
   run('e2e smoke: tek.html, sandboxed iframe', 'node', ['test/e2e/smoke.mjs', '--target', 'sandbox']);
+  run('e2e saving: storage fallbacks, reload, notices', 'node', ['test/e2e/save.mjs']);
+  run('e2e forced landscape 390x844 (real touch)', 'node', ['test/e2e/rot.mjs']);
   run('e2e performance + robustness', 'node', ['test/e2e/perf.mjs']);
   // module suites (fakes around one real module, written by each programmer; updated at integration)
   run('world module (api)', 'node', ['test/world/run.mjs', ...threeArg, '--only', 'api']);
@@ -64,12 +68,13 @@ if (!QUICK) {
   run('player module (CDP touch)', 'node', ['test/player/run.cjs']);
   run('tools module (CDP touch)', 'node', ['test/tools/run.cjs']);
   run('ui module, landscape', 'node', ['test/ui/run.mjs', ...threeArg, '--vp', 'land']);
-  run('ui module, portrait', 'node', ['test/ui/run.mjs', ...threeArg, '--vp', 'port']);
+  run('ui module, portrait ("Dikey oyna")', 'node', ['test/ui/run.mjs', ...threeArg, '--vp', 'port']);
+  run('ui module, forced landscape (390x844 rotated)', 'node', ['test/ui/run.mjs', ...threeArg, '--vp', 'rot']);
   run('economy in the browser', 'node', ['test/economy/browser.mjs', ...threeArg]);
 }
 if (FULL) {
   run('e2e full touch play-through, landscape', 'node', ['test/e2e/play.mjs', '--orient', 'land']);
-  run('e2e full touch play-through, portrait', 'node', ['test/e2e/play.mjs', '--orient', 'port']);
+  run('e2e full touch play-through, portrait (forced landscape)', 'node', ['test/e2e/play.mjs', '--orient', 'port']);
 }
 const bad = results.filter((r) => !r.ok);
 console.log('\n' + (results.length - bad.length) + '/' + results.length + ' passed' + (bad.length ? ' — failed: ' + bad.map((r) => r.name).join('; ') : ''));

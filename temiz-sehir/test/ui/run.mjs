@@ -26,7 +26,8 @@ const FAKES = ['world', 'trash', 'player', 'tools', 'economy', 'debug'];
 const VPS = {
   land: { w: 844, h: 390, safe: { t: 0, r: 47, b: 21, l: 47 }, bg: '/test/spike/shots/05-cleaned-trail.png' },
   land2: { w: 932, h: 430, safe: { t: 0, r: 59, b: 21, l: 59 }, bg: '/test/spike/shots/02-street-north.png' },
-  port: { w: 390, h: 844, safe: { t: 47, r: 0, b: 34, l: 0 }, bg: '/test/spike/shots/02-street-north.png' },
+  port: { w: 390, h: 844, safe: { t: 47, r: 0, b: 34, l: 0 }, bg: '/test/spike/shots/02-street-north.png', q: '&dikey=1' },   // "Dikey oyna"
+  rot: { w: 390, h: 844, safe: { t: 47, r: 0, b: 34, l: 0 }, bg: '/test/spike/shots/02-street-north.png' },                 // v2 default: forced landscape
 };
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'] });
 const report = { errors: [], tapTargets: [], overlaps: [], perf: {}, shots: [] };
@@ -47,7 +48,7 @@ async function open(vp, query = '?manual&nosave', init) {
     });
   }, { bg: V.bg, safe: V.safe });
   if (init) await page.addInitScript(init);
-  await page.goto(`http://127.0.0.1:${port}/www/index.html${query}`);
+  await page.goto(`http://127.0.0.1:${port}/www/index.html${query}${V.q || ''}`);
   await page.waitForFunction(() => window.__ctx && window.__fk && window.__fk.econ && !document.getElementById('boot'), null, { timeout: 30000 });
   await page.evaluate(() => { window.S = (n) => window.__ctx.step(n || 1, 1 / 60); window.W = (sec) => window.__ctx.step(Math.ceil(sec / 0.1), 0.1); });
   return page;
@@ -111,7 +112,7 @@ async function run(vp) {
   await ev(() => {
     const fk = window.__fk;
     fk.player.input.stick.active = true; fk.player.input.stick.cx = 120; fk.player.input.stick.cy = innerHeight - 110; fk.player.input.stick.x = 150; fk.player.input.stick.y = innerHeight - 150;
-    for (let i = 0; i < 9; i++) { fk.econ.bag++; fk.emit('tool:collect', { tool: 'hands', units: 1, byType: new Int32Array([1, 0, 0, 0, 0, 0]), x: 39, y: 0.1, z: 19, valuable: false }); S(8); }
+    for (let i = 0; i < 9; i++) { fk.econ.bag++; fk.emit('tool:collect', { tool: 'brush', units: 1, byType: new Int32Array([1, 0, 0, 0, 0, 0]), x: 39, y: 0.1, z: 19, valuable: false }); S(8); }
   });
   await shot(page, vp, '02-picking', 120);
   // 03 bag full: red state, edge indicator to the shop behind, sell hint
@@ -140,7 +141,7 @@ async function run(vp) {
     for (const id of ['bag_1', 'broom', 'bag_2', 'broom_w1', 'dropoff', 'bag_3', 'robot_1', 'robot_2']) e.owned[id] = true;
     e.coins = 1370; e.bag = 112; e.boostLeft = 87;
     e.robots = [{ id: 'r0', x: 30, z: 20, yaw: 0, state: 'clean', load: 22, cap: 60 }, { id: 'r1', x: 45, z: 28, yaw: 0, state: 'travel', load: 60, cap: 60 }];
-    fk.tools.available = ['hands', 'broom']; fk.tools.current = 'broom'; fk.emit('tool:changed', { id: 'broom' });
+    fk.tools.available = ['brush', 'broom']; fk.tools.current = 'broom'; fk.emit('tool:changed', { id: 'broom' });
     fk.trash.clean = 0.183; fk.player.pose.z = 22; fk.player.pose.yaw = Math.PI * 0.85;
     fk.player.input.stick.active = true; fk.player.input.stick.cx = 130; fk.player.input.stick.cy = innerHeight - 120; fk.player.input.stick.x = 150; fk.player.input.stick.y = innerHeight - 170;
     S(30);
@@ -178,7 +179,7 @@ async function run(vp) {
   await ev(() => { const fk = window.__fk; window.__ctx.mods.player.dismount(); fk.tools.current = 'broom'; fk.tools.nearCart = false; fk.econ.bag = 40; fk.trash.clean = 0.934; const s = fk.trash.sums; s.fill(0); s[3] = 12; s[40] = 30; s[77] = 6; fk.player.pose.yaw = Math.PI * 1.1; S(30); });
   await shot(page, vp, '14-stragglers', 300);
   // 15 district cleaned: final sweep, camera lift wait, complete card
-  await ev(() => { const fk = window.__fk; fk.econ.items = 13446; fk.econ.earned = 29880; fk.econ.playS = 1027; fk.trash.clean = 1; fk.emit('economy:finalSweep', { units: 190, coins: 410 }); fk.emit('trash:milestone', { index: 3, at: 1, fraction: 1 }); fk.emit('district:cleaned', { playS: 1027 }); W(5); }); // CONFIG.ui.completeDelayS 4.6 (integration)
+  await ev(() => { const fk = window.__fk; fk.econ.items = 13446; fk.econ.earned = 29880; fk.econ.playS = 1027; fk.trash.clean = 1; fk.emit('economy:finalSweep', { units: 190, coins: 410 }); fk.emit('trash:milestone', { index: 3, at: 1, fraction: 1 }); fk.emit('district:cleaned', { playS: 1027 }); W(8); }); // CONFIG.ui.completeDelayS 6.5 (v2: slow lift)
   await shot(page, vp, '15-complete', 700);
   await ev(() => { const s = document.querySelector('#ui .pn-bd'); if (s) s.scrollTop = s.scrollHeight; });
   await shot(page, vp, '15b-complete-scrolled', 150);
@@ -225,7 +226,7 @@ async function run(vp) {
 
   // 18 "while you were away" (needs a save that is 3 h old + an economy catch-up)
   page = await open(vp, '?manual', () => {
-    if (!sessionStorage.getItem('fk-seeded')) { sessionStorage.setItem('fk-seeded', '1'); localStorage.setItem('temizsehir.v1', JSON.stringify({ v: 1, savedAt: Date.now() - 3 * 3600 * 1000, playS: 600, mods: { ui: { v: 1, settings: { lang: 'tr', sound: true, music: true }, hintsDone: ['pick', 'sell', 'shop', 'walk'] } } })); }
+    if (!sessionStorage.getItem('fk-seeded')) { sessionStorage.setItem('fk-seeded', '1'); localStorage.setItem('temizsehir.v1', JSON.stringify({ v: 2, savedAt: Date.now() - 3 * 3600 * 1000, playS: 600, mods: { ui: { v: 1, settings: { lang: 'tr', sound: true, music: true }, hintsDone: ['pick', 'sell', 'shop', 'walk'] } } })); }
     window.__FK_AWAY = { coins: 1980, units: 1240 };
   });
   await shot(page, vp, '18-away', 400);
@@ -238,7 +239,7 @@ async function run(vp) {
   await page.close();
 }
 
-const vps = onlyVp ? [onlyVp] : ['land', 'land2', 'port'];
+const vps = onlyVp ? [onlyVp] : ['land', 'land2', 'port', 'rot'];
 for (const vp of vps) { try { await run(vp); } catch (e) { report.errors.push(vp + ' [runner] ' + (e.stack || e.message)); } }
 await browser.close(); server.close();
 fs.writeFileSync(path.join(here, 'report.json'), JSON.stringify(report, null, 2));

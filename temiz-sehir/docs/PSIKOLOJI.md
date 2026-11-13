@@ -77,3 +77,14 @@ Recommendation: **robots keep working while away, capped at 2 hours of robot out
 12. Rewarded boost opt-in only, no loss framing, no fake timers, promos labelled and non-interrupting?
 
 **Measure in playtest:** (1) time to each tier (broom, robot, cart, 100%); (2) quit or "what now?" moments with timestamps; (3) number of times the player turns to look at their trail or robots unprompted; (4) motion discomfort self-report (0–4) after 10 min; (5) "would you play another district?" (yes/no + why) and the one moment they remember.
+
+---
+
+## Addendum (v2, 2026-11-13): the owner overrode two comfort values after playing on his device
+
+This brief is kept as written. After playing v1 on his iPhone 14 Pro the owner overrode two of its comfort numbers; the game now uses his values:
+
+- **Field of view.** §4 asked for 75–90° horizontal in landscape (~55–65° vertical). v1 used 85° horizontal (46° vertical on a 19.5:9 screen) and the owner found it "very narrow, like a tube". v2 default: **104° horizontal in landscape = 61° vertical on 19.5:9** (46–80° vertical clamp for other aspects), **82° vertical** in the upright portrait layout. A slider in settings (Görüş açısı, **85–115°**, saved with the settings) lets each player choose. The FOV still never changes with speed (rule kept).
+- **Walking speed.** v1 walked at 5.0 m/s ("the character must get considerably faster"). v2: **7.5 m/s** base, **8.5 / 9.5 m/s** with the shoes upgrades; acceleration keeps the 0.18 s rule (0 → 7.5 m/s linear), the cart tops at 12 m/s. A sweeping tool slows the player to its sweep speed only while it is actually sweeping.
+
+Also changed from this brief, on the psychology review of v1: away credit is now at most 10 minutes of robot work, 15 % of what is left, 10 % of the district and the price of the next item (§6 said 2 h / 50 %); milestone banners carry no ad offer; the finale camera rises slowly (≤ ~11 m/s) and returns with a fade instead of a dive. Motion comfort with the wider view and the faster walk is **not yet verified on a device** (§7 item 11).

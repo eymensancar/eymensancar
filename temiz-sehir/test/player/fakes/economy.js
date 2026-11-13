@@ -36,7 +36,10 @@ export function stat(name) {
     case 'bagCapacity': return bagCapacity('bag');
     case 'broomWidth': return C.broom.widthM[ownedSet.has('broom_w1') ? 1 : 0];
     case 'broomSweepSpeed': return C.broom.sweepSpeed[ownedSet.has('broom_s1') ? 1 : 0];
-    case 'handsReach': return C.hands.reachM;
+    case 'brushWidth': return C.brush.widthM[ownedSet.has('brush_w1') ? 1 : 0];
+    case 'brushSweepSpeed': return C.brush.sweepSpeed[ownedSet.has('brush_w1') ? 1 : 0];
+    case 'walkSpeed': return C.player.walkSpeed[ownedSet.has('shoes_1') ? 1 : 0];
+    case 'cartCleanSpeed': return C.cart.cleanSpeedMax[0];
     case 'cartNozzleWidth': return C.cart.nozzleWidthM[ownedSet.has('cart_width_1') ? 1 : 0];
     case 'cartTank': return C.cart.tank[0];
     default: return 0;

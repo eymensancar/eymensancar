@@ -45,6 +45,10 @@ const ICON = {
   nozzleUp: '<path d="M12 13.6V3.2M7.4 7.6L12 3l4.6 4.6" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round"/><rect x="3.6" y="16.4" width="16.8" height="4.4" rx="2.2" fill="currentColor"/>',
   exit: '<path d="M10 3.8H6.2a2.2 2.2 0 0 0-2.2 2.2v12a2.2 2.2 0 0 0 2.2 2.2H10" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/><path d="M9.8 12h10.4M16 7.8l4.2 4.2-4.2 4.2" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round"/>',
   chevron: '<path d="M8.5 4.5L16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>',
+  // v2: hand brush (start tool) and shoes
+  brush: '<path d="M14.6 2.6l2.2 2.2-4.9 4.9-2.2-2.2z" fill="currentColor"/><path d="M3.4 12.6l5.8-5.8 6.2 6.2-5.8 5.8z" fill="currentColor"/><path d="M4.4 15.2l-1.6 3.4M6.6 17.4l-1.2 3.6M8.8 19.6L8 21.8M3.3 13.4l-1.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  shoe: '<path d="M2.6 15.4c0-2.7.6-6.6 1.6-8.6h4.2c.4 1.8 1.6 3 3.6 3.4l5.6 1.2c2.6.6 4 2.2 4 4.4v1.4H2.6z" fill="currentColor"/><path d="M2.6 18.6h18.8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M8.6 10.6l1.4-1.4M10.6 12l1.4-1.4" stroke="rgba(0,0,0,.35)" stroke-width="1.4" stroke-linecap="round"/>',
+  check: '<path d="M4.6 12.6l4.6 4.6L19.6 6.8" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>',
 };
 function svg(name, cls) { return '<svg class="ic' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICON[name] || '') + '</svg>'; }
 
@@ -52,8 +56,11 @@ function svg(name, cls) { return '<svg class="ic' + (cls ? ' ' + cls : '') + '" 
 function itemVis(id) {
   if (id.indexOf('bag') === 0) return { cat: 'bag', ic: 'bag', badge: 'plus' };
   if (id === 'broom') return { cat: 'broom', ic: 'broom', badge: null };
-  if (id === 'broom_w1') return { cat: 'broom', ic: 'broom', badge: 'width' };
-  if (id === 'broom_s1') return { cat: 'broom', ic: 'broom', badge: 'speed' };
+  if (id.indexOf('broom_w') === 0) return { cat: 'broom', ic: 'broom', badge: 'width' };
+  if (id.indexOf('broom_s') === 0) return { cat: 'broom', ic: 'broom', badge: 'speed' };
+  if (id.indexOf('brush') === 0) return { cat: 'broom', ic: 'brush', badge: 'width' };
+  if (id.indexOf('shoes') === 0) return { cat: 'drop', ic: 'shoe', badge: id === 'shoes_1' ? null : 'speed' };
+  if (id.indexOf('cart_suction') === 0) return { cat: 'cart', ic: 'cart', badge: 'speed' };
   if (id === 'dropoff') return { cat: 'drop', ic: 'container', badge: null };
   if (/^robot_\d$/.test(id)) return { cat: 'robot', ic: 'robot', badge: id === 'robot_1' ? null : 'plus' };
   if (id.indexOf('robot_speed') === 0) return { cat: 'robot', ic: 'robot', badge: 'bolt' };
@@ -75,7 +82,7 @@ let E = null;          // element refs
 let S = null;          // runtime state
 let nf = null, nf1 = null;
 let tmpV = null;       // reused THREE.Vector3
-const OFFER_ICON = { pick: 'hand', sweep: 'broom', enter: 'cart', exit: 'exit', nozzle: 'nozzleDown', shop: 'store' };
+const OFFER_ICON = { brush: 'brush', sweep: 'broom', enter: 'cart', exit: 'exit', nozzle: 'nozzleDown', shop: 'store' };
 const PANEL_PAUSES = { pause: true, settings: true, ad: true };
 const STATE_KEY = { idle: 'robot_idle', clean: 'robot_clean', travel: 'robot_travel', unload: 'robot_unload' };
 
@@ -86,6 +93,15 @@ function setText(el, s) { if (el.__t !== s) { el.__t = s; el.textContent = s; } 
 function setTf(el, s) { if (el.__tf !== s) { el.__tf = s; el.style.transform = s; } }
 function setCls(el, cls, on) { on = !!on; if (!el.__c) el.__c = {}; if (el.__c[cls] !== on) { el.__c[cls] = on; el.classList.toggle(cls, on); } }
 function tfXY(el, x, y) { x = Math.round(x); y = Math.round(y); if (el.__x === x && el.__y === y) return; el.__x = x; el.__y = y; el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)'; }
+// layout rect in GAME coordinates: when main rotates the stage (forced landscape), getBoundingClientRect is in screen
+// space; map the centre through ctx.view.toView and swap the sides
+const LRP = { x: 0, y: 0 };
+function lrect(el) {
+  const r = el.getBoundingClientRect(), tv = C.view.toView;
+  if (!tv) return r;
+  const c = tv(r.left + r.width / 2, r.top + r.height / 2, LRP), w = r.height, h = r.width;
+  return { left: c.x - w / 2, top: c.y - h / 2, width: w, height: h, right: c.x + w / 2, bottom: c.y + h / 2 };
+}
 function setHidden(el, h) { h = !!h; if (el.__h !== h) { el.__h = h; el.hidden = h; } }
 function mod(name) { return C.mods[name]; }
 function call(name, fn, a, b) {
@@ -172,7 +188,23 @@ const CSS = `
 .cmp .mk.dirt{width:12px;height:12px;margin-left:-6px;top:9px;background:#ff4d5e;border:2px solid #fff;animation:upulse .9s ease-in-out infinite}
 .cmp .mk.edge{opacity:.55}
 /* district ring */
-.ringw{display:flex;align-items:flex-start;gap:8px}
+.ringw{display:flex;align-items:flex-start;gap:8px;position:relative}
+/* v2: "Kaydedildi" tick under the pause button (each save, <= 1 s) and the honest storage notice */
+.svd{position:absolute;right:0;top:52px;display:flex;align-items:center;gap:3px;padding:2px 7px 2px 4px;border-radius:10px;background:rgba(18,30,48,.62);font-size:11px;color:#bff5d9;opacity:0;pointer-events:none;white-space:nowrap}
+.svd .ic{width:13px;height:13px;color:#5df0a8}
+.svd.on{animation:usvd .95s ease-out both}
+@keyframes usvd{0%{opacity:0;transform:translateY(-3px)}15%,70%{opacity:1;transform:none}100%{opacity:0}}
+.snote{position:absolute;left:50%;bottom:calc(var(--sab) + 10px);transform:translateX(-50%);max-width:min(460px,calc(var(--vw,100vw) - 40px));padding:6px 12px;border-radius:12px;background:rgba(120,40,30,.82);color:#fff;font-size:13px;line-height:1.25;text-align:center;pointer-events:none;transition:opacity .6s}
+.snote.fade{opacity:0}
+.pn-pause .snote2{font-size:13px;color:#b0433a;font-weight:800;padding:2px 4px 6px}
+/* v2: settings slider (FOV) — custom, so it maps touches correctly when the stage is rotated */
+.sld{display:flex;align-items:center;gap:10px;flex:1;min-width:180px;max-width:300px;margin-left:auto;touch-action:none}
+.sld .trk{position:relative;flex:1;height:44px}
+.sld .trk::before{content:"";position:absolute;left:0;right:0;top:19px;height:6px;border-radius:3px;background:#dfe6ee}
+.sld .trk>i{position:absolute;left:0;top:19px;height:6px;border-radius:3px;background:linear-gradient(90deg,#45d98f,#1fae64)}
+.sld .trk>b{position:absolute;top:8px;width:28px;height:28px;margin-left:-14px;border-radius:14px;background:#fff;box-shadow:0 2px 0 rgba(0,0,0,.25),0 0 0 2px #1fae64}
+.sld .sv{min-width:44px;text-align:right;color:#1f2d40;font-size:16px}
+html.rot .u .pn-bd{touch-action:none}
 .ring{position:relative;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle,rgba(30,46,68,.92) 58%,rgba(22,34,52,.0) 59%);filter:drop-shadow(0 3px 0 rgba(0,0,0,.3))}
 .ring svg{position:absolute;inset:0;width:64px;height:64px;transform:rotate(-90deg)}
 .ring .trk{fill:none;stroke:rgba(10,18,30,.75);stroke-width:8}
@@ -232,6 +264,12 @@ const CSS = `
 .ind .lab{position:absolute;left:0;top:30px;transform:translateX(-50%);padding:4px 11px;border-radius:12px;font-size:14px;white-space:nowrap;background:rgba(22,34,52,.9);box-shadow:0 2px 0 rgba(0,0,0,.3)}
 .ind.sell .pin{background:#ff5f6d;color:#fff;box-shadow:0 4px 0 #9b1724,0 0 0 3px #fff;animation:upulse .9s ease-in-out infinite}
 .ind.on .lab{top:auto;bottom:34px}
+.ind.edge .arw{width:36px;height:36px;left:-18px;top:-18px;animation:unudge .8s ease-in-out infinite}
+.ind.edge .arw .ic{width:36px;height:36px}
+.ind.edge .lab{top:34px}
+.ind.back .pin{opacity:.8}
+.ind.back .pin::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:3px dashed #fff}
+@keyframes unudge{0%,100%{margin-left:0}50%{margin-left:var(--nx,0px)}}
 .ind.drop .pin{background:#3de3a8;color:#0a4a33;box-shadow:0 4px 0 #0c7a4b,0 0 0 3px #fff}
 .ind.cartp .pin{background:#ff6fb5;color:#4a0730;box-shadow:0 4px 0 #a11f62,0 0 0 3px #fff}
 /* hints */
@@ -264,7 +302,7 @@ const CSS = `
 .cf{position:absolute;left:0;top:0;width:10px;height:14px;border-radius:2px;opacity:0;will-change:transform,opacity}
 /* milestone banner */
 .msb{position:absolute;left:50%;top:calc(var(--sat) + 8px);display:flex;align-items:center;gap:12px;padding:10px 20px 10px 12px;border-radius:24px;transform:translate(-50%,-140%);opacity:0;
-  background:linear-gradient(180deg,#ffe991,#ffc21a);color:#4a2a00;box-shadow:0 5px 0 #b8620a,0 12px 26px rgba(0,0,0,.3);transition:transform .45s cubic-bezier(.2,1.5,.4,1),opacity .3s;text-shadow:none;pointer-events:none;max-width:min(660px,calc(100vw - 32px))}
+  background:linear-gradient(180deg,#ffe991,#ffc21a);color:#4a2a00;box-shadow:0 5px 0 #b8620a,0 12px 26px rgba(0,0,0,.3);transition:transform .45s cubic-bezier(.2,1.5,.4,1),opacity .3s;text-shadow:none;pointer-events:none;max-width:min(660px,calc(var(--vw,100vw) - 32px))}
 .msb.on{transform:translate(-50%,0);opacity:1;pointer-events:auto}
 .msb .ms-st{width:56px;height:56px;border-radius:28px;background:#fff;display:flex;align-items:center;justify-content:center;color:#ffb21f;box-shadow:inset 0 -3px 0 rgba(0,0,0,.08);flex:none}
 .msb .ms-st .ic{width:40px;height:40px}
@@ -276,7 +314,7 @@ const CSS = `
 .msb .ms-ad .ad{width:230px}
 .msb .ms-ad .bt.ghost{padding:0 10px;font-size:15px;color:#7a4500}
 .msb .ms-ad:empty{display:none}
-.msb.has-ad{flex-wrap:wrap;justify-content:center;max-width:min(470px,calc(100vw - 32px));row-gap:8px}
+.msb.has-ad{flex-wrap:wrap;justify-content:center;max-width:min(470px,calc(var(--vw,100vw) - 32px));row-gap:8px}
 .msb.has-ad .ms-ad{width:100%;justify-content:center;margin:0}
 /* buttons (panels) */
 .bt{min-height:48px;padding:0 20px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:18px;font-weight:900;color:#fff;
@@ -359,6 +397,10 @@ const CSS = `
 .rrow.full .bar>i{background:linear-gradient(180deg,#ffc76a,#ff9d1c)}
 .rnone{font-size:14px;color:#9aa9ba;font-weight:700}
 .boostbx .ad{width:100%}
+.boostbx .nad{width:100%;margin-top:8px;min-height:48px;font-size:15px}
+.u.fin .goal,.u.fin .g-tc{visibility:hidden}
+.fade{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .35s}
+.fade.on{opacity:1}
 .boostbx .on{display:flex;align-items:center;gap:8px;font-size:16px;color:#5b3ee0}
 .boostbx .on .ic{color:#7a5cff;width:26px;height:26px}
 .boostbx .cd{font-size:14px;color:#8a99ab;display:flex;align-items:center;gap:6px}
@@ -400,10 +442,15 @@ const CSS = `
 .mw.done .bigring .t{font-size:17px}
 .mw.done .stats{gap:6px}
 .mw.done .stat{min-width:0;flex:1;padding:6px 6px}
+.mw.done .pcard .art{height:38px}          /* QA #6: the promo captions fit above the footer in short landscape */
+.mw.done .done-bd{gap:8px}
+.mw.done .nextd{font-size:14px}
 .u.port .mw.done{justify-content:center;align-items:flex-end}
 .u.port .mw.done .bd{background:linear-gradient(180deg,rgba(10,20,34,0) 0%,rgba(10,20,34,0) 40%,rgba(10,20,34,.5) 100%)}
 .u.port .mw.done .pn-done{width:100%;max-height:60%}
 /* robot name tags in the world */
+.rtag.big{font-size:17px;padding:6px 14px 6px 8px;border-radius:16px;box-shadow:0 0 0 3px var(--rc,#fff),0 0 18px var(--rc,#fff);animation:utagglow .8s ease-in-out infinite}
+@keyframes utagglow{0%,100%{box-shadow:0 0 0 3px var(--rc,#fff),0 0 10px var(--rc,#fff)}50%{box-shadow:0 0 0 4px var(--rc,#fff),0 0 26px var(--rc,#fff)}}
 .rtag{position:absolute;left:0;top:0;display:flex;align-items:center;gap:5px;padding:3px 9px 3px 5px;border-radius:12px;background:rgba(18,30,48,.78);color:#fff;font-size:12px;font-weight:800;white-space:nowrap;will-change:transform;box-shadow:0 2px 0 rgba(0,0,0,.25)}
 .u.fin .act,.u.fin .act2,.u.fin .tools,.u.fin .stk,.u.fin .taph,.u.fin .hint,.u.fin .ind,.u.fin .pops{visibility:hidden}
 .rtag i{width:12px;height:12px;border-radius:6px;border:2px solid rgba(255,255,255,.85);flex:none}
@@ -429,7 +476,7 @@ const CSS = `
 .adv{position:absolute;inset:0;pointer-events:auto;background:#0d0a26;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;animation:ufade .2s both}
 .adv .tag{padding:4px 12px;border-radius:10px;background:#fff;color:#5b3ee0;font-size:14px;letter-spacing:.8px;text-transform:uppercase}
 .adv .ic{width:72px;height:72px;color:#8e72ff}
-.adv .pb{width:min(360px,70vw);height:12px;border-radius:6px;background:rgba(255,255,255,.15);overflow:hidden}
+.adv .pb{width:min(360px,calc(var(--vw,100vw) * .7));height:12px;border-radius:6px;background:rgba(255,255,255,.15);overflow:hidden}
 .adv .pb>i{display:block;height:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#8e72ff,#ffe066)}
 /* debug */
 .dbg{position:absolute;left:50%;bottom:calc(var(--sab) + 4px);transform:translateX(-50%);padding:4px 8px;border-radius:8px;background:rgba(0,0,0,.6);font:600 11px/1.35 ui-monospace,Menlo,Consolas,monospace;white-space:pre;color:#bff;text-shadow:none}
@@ -437,7 +484,7 @@ const CSS = `
 .u.port .g-tl{gap:8px}
 .u.port .g-tc{top:calc(var(--sat) + 200px)}
 .u.port .goal{min-width:0;max-width:222px}
-.u.port .cmp{width:min(320px,calc(100vw - 40px))}
+.u.port .cmp{width:min(320px,calc(var(--vw,100vw) - 40px))}
 .u.port .toasts{top:calc(var(--sat) + 300px)}
 .u.port .tools{flex-direction:column;right:calc(var(--sar) + 44px);bottom:calc(var(--sab) + 140px)}
 .u.port .act{bottom:calc(var(--sab) + 26px)}
@@ -466,7 +513,7 @@ export function init(ctx) {
   const CF = ctx.CONFIG;
   U = Object.assign({}, CF.ui, {
     robotColors: CF.robot.colors, robotNames: CF.robot.names,
-    awayMinS: (CF.offline && CF.offline.announceMinS) || 60, offlineCapS: (CF.offline && CF.offline.capS) || 7200,
+    awayMinS: (CF.offline && CF.offline.announceMinS) || 60, offlineCapS: (CF.offline && CF.offline.capS) || 600,
   });
   const st = ctx.state.settings;
   if (st.haptics == null) st.haptics = true;
@@ -537,13 +584,14 @@ function buildDom() {
     '</div>' +
     '<div class="g g-tr">' +
       '<div class="ringw"><div class="ring"><svg viewBox="0 0 64 64"><circle class="trk" cx="32" cy="32" r="27"/><circle class="fil" cx="32" cy="32" r="27" stroke-dasharray="' + ringC.toFixed(2) + '" stroke-dashoffset="' + ringC.toFixed(2) + '"/>' + msDots() + '</svg><div class="rt"><span class="rv"></span><span class="rl"></span></div></div>' +
-      '<button class="btn-r pause" data-hit aria-label="pause">' + svg('pause') + '</button></div>' +
+      '<button class="btn-r pause" data-hit aria-label="pause">' + svg('pause') + '</button><div class="svd">' + svg('check') + '<span></span></div></div>' +
       '<div class="rbs"></div>' +
     '</div>' +
     '<div class="tools" hidden></div>' +
-    '<button class="act idle" data-hit>' + svg('hand') + '<span class="lb"></span></button>' +
+    '<button class="act idle" data-hit>' + svg('brush') + '<span class="lb"></span></button>' +
     '<button class="act2" data-hit hidden>' + svg('exit') + '<span class="lb"></span></button>' +
     '<div class="taph" hidden>' + svg('hand') + '</div>' +
+    '<div class="snote" hidden></div>' +
     '<div class="ind" hidden><div class="arw">' + svg('arrow') + '</div><div class="pin">' + svg('store') + '</div><div class="lab"></div></div>' +
     '<div class="hint" hidden><div class="bub"></div></div>' +
     '<div class="ghostw" hidden style="position:absolute;left:0;top:0"><div class="ghostt"></div></div>' +
@@ -551,8 +599,8 @@ function buildDom() {
     '<div class="toasts"></div>' +
     '<div class="pops"></div><div class="coins"></div>' +
     '<div class="msb"><div class="ms-st">' + svg('star') + '</div><div class="ms-tx"><div class="ms-t"></div><div class="ms-b"></div></div><div class="ms-ad"></div></div>' +
-    '<div class="mwrap"></div><div class="cfs"></div>' +
-    (C.debug ? '<div class="dbg"></div>' : '');
+    '<div class="mwrap"></div><div class="cfs"></div><div class="fade"></div>' +
+    '<div class="dbg"' + (C.debug || C.perfHud || C.state.settings.perfHud ? '' : ' hidden') + '></div>';
   root.appendChild(u);
   const q = (s) => u.querySelector(s);
   E = {
@@ -563,7 +611,7 @@ function buildDom() {
     cmp: q('.cmp'), cmpTk: q('.cmp .tk'), cmpMks: q('.cmp .mks'),
     bag: q('.bagm'), bagIc: q('.bagm>.ic'), bagBar: q('.bagm .bar'), bagFill: q('.bagm .bar>i'), bagCnt: q('.bagm .cnt'), bagFl: q('.bagm .flt'),
     ring: q('.ring'), ringFil: q('.ring .fil'), ringV: q('.ring .rv'), ringL: q('.ring .rl'), ringDots: u.querySelectorAll('.ring .msd'), ringC,
-    pause: q('.pause'), rbs: q('.rbs'),
+    pause: q('.pause'), rbs: q('.rbs'), svd: q('.svd'), svdLb: q('.svd span'), snote: q('.snote'),
     tools: q('.tools'), act: q('.act'), actLb: q('.act .lb'), taph: q('.taph'), act2: q('.act2'), act2Lb: q('.act2 .lb'),
     ind: q('.ind'), indArw: q('.ind .arw'), indPin: q('.ind .pin'), indLab: q('.ind .lab'),
     hint: q('.hint'), hintBub: q('.hint .bub'), ghost: q('.ghostw'),
@@ -640,6 +688,7 @@ function bindInput() {
     if (a === 'ad') openPanel('ad');
   });
   E.mwrap.addEventListener('click', onPanelClick);
+  bindSliders(); bindRotScroll();
   addEventListener('keydown', (e) => {
     if (e.code === 'Escape' || e.code === 'KeyP') {
       if (S.panel === 'ad') return;
@@ -661,8 +710,11 @@ function press() {
   if (S.held) return;
   S.held = true;
   setCls(E.act, 'dn', true);
-  P_BTN.down = true; C.bus.emit('input:button', P_BTN);
   const o = S.actOffer;
+  // QA #4: pressing "Dükkan" (or Bin/İn/nozzle) also swept/picked: only the tool's own offer is a held action
+  const toolAct = !o || o.id === 'brush' || o.id === 'sweep';
+  S.heldTool = toolAct;
+  if (toolAct) { P_BTN.down = true; C.bus.emit('input:button', P_BTN); }
   haptic('light');
   if (o) {
     P_OFFER.id = o.id; P_OFFER.owner = o.owner; C.bus.emit('ui:offer', P_OFFER);
@@ -673,21 +725,24 @@ function release() {
   if (!S.held) return;
   S.held = false;
   setCls(E.act, 'dn', false);
-  P_BTN.down = false; C.bus.emit('input:button', P_BTN);
+  if (S.heldTool !== false) { P_BTN.down = false; C.bus.emit('input:button', P_BTN); }
+  S.heldTool = true;
 }
 function click() { const a = mod('audio'); if (a && a.play) a.play('click'); haptic('light'); }
 
 // ------------------------------------------------------------------------------------------ bus
 function bindBus() {
   const b = C.bus;
-  b.on('ui:toast', (p) => { if (!p) return; if (p.text) toastText(p.text, p.big); else if (p.key) toast(p.key, p.vars); });
+  b.on('ui:toast', (p) => { if (!p) return; if (p.text) toastText(p.text, p.big); else if (p.key) { if ((p.key === 'bag_full' || p.key === 'tank_full') && S.bagFull) return; toast(p.key, p.vars); } });   // QA #10: the bag meter already says it
   b.on('view:resize', () => { applyOrientation(); measure(); });
   b.on('game:ready', onReady);
+  b.on('game:saved', onSaved);
+  b.on('ui:fade', (p) => { const f = E.u.querySelector('.fade'); if (f) f.classList.toggle('on', !!(p && p.on)); });
   b.on('app:pause', snapshot);
   b.on('app:resume', (p) => onAway(p ? p.awayS : 0));
   // economy:away is emitted by economy's own game:ready / app:resume handler (it subscribed first), so it arrives
   // before onReady/onAway below; those then skip their coin/unit diff
-  b.on('economy:away', (p) => { if (p) { S.offlineSeen = true; if ((p.awayS || 0) >= U.awayMinS) showAway(p.units || 0, p.coins || 0, p.awayS || 0, p.capped); } });
+  b.on('economy:away', (p) => { if (p) { S.offlineSeen = true; if ((p.awayS || 0) >= U.awayMinS) showAway(p.units || 0, p.coins || 0, p.awayS || 0, p.capped, p.limitBy); } });
   b.on('tool:collect', onCollect);
   b.on('economy:sold', onSold);
   b.on('economy:bagFull', () => { haptic('medium'); hintTrigger('bagFull'); });
@@ -727,6 +782,7 @@ export function openPanel(id) {
   if (S.panel) closePanel(true);
   if (S.held) release();
   S.panel = id; S.resetAsk = false; S.panelAt = performance.now();
+  if (id === 'shop') S.adNo = false;
   if (PANEL_PAUSES[id]) C.setPaused('panel', true);
   if (id === 'ad') { S.adT = 0; }
   renderPanel();
@@ -740,6 +796,7 @@ export function closePanel(silentSwap) {
   E.mwrap.innerHTML = '';
   E.panelRefs = null;
   C.bus.emit('ui:panel', { id, open: false });
+  if (id === 'away' && S.msLater != null) { const k = S.msLater; S.msLater = null; S.awayMs = 0; onMilestone({ index: k, at: 0, quiet: true }); }
   if (!silentSwap && id === 'ad' && S.panelPrev) { const p = S.panelPrev; S.panelPrev = null; openPanel(p); }
 }
 
@@ -772,13 +829,13 @@ function applyOrientation() {
 }
 function measure() {
   // layout reads: resize only
-  const r = E.moneyIc.getBoundingClientRect();
+  const r = lrect(E.moneyIc);
   S.mx = r.left + r.width / 2; S.my = r.top + r.height / 2;
-  const b = E.bagIc.getBoundingClientRect();
+  const b = lrect(E.bagIc);
   S.bagX = b.left + b.width / 2; S.bagY = b.bottom;
-  const a = E.act.getBoundingClientRect();
+  const a = lrect(E.act);
   S.actX = a.left + a.width / 2; S.actY = a.top;
-  const W = E.cmp.getBoundingClientRect().width || 250;
+  const W = lrect(E.cmp).width || 250;
   S.cmpW = W; S.ppd = W / U.compassSpanDeg;
   const step = 15 * S.ppd;
   E.cmpTk.style.width = (W + step * 2) + 'px';
@@ -808,7 +865,7 @@ export function update(dt) {
   updateTimers(rdt);
   S.slowAcc += rdt;
   if (S.slowAcc >= 1 / U.slowHz || S.slowAcc < 0) { slowUpdate(S.slowAcc); S.slowAcc = 0; }
-  if (C.debug && E.dbg) { S.dbgAcc += rdt; if (S.dbgAcc >= 1 / U.debugHz) { S.dbgAcc = 0; updateDebug(); } }
+  if (E.dbg && (C.debug || C.perfHud || C.state.settings.perfHud)) { S.dbgAcc += rdt; if (S.dbgAcc >= 1 / U.debugHz) { S.dbgAcc = 0; updateDebug(); } }
   if (S.panel === 'ad') updateAd(rdt);
 }
 
@@ -832,9 +889,9 @@ function updateOffers() {
     icon = offerIcon(id, label);
     text = offerText(id, label);
   } else {
-    const tool = call('tools', 'current') || 'hands';
-    icon = tool === 'broom' ? 'broom' : tool === 'cart' ? 'cart' : 'hand';
-    text = tx(tool === 'broom' ? 'act_tool_broom' : 'act_tool_hands');
+    const tool = call('tools', 'current') || 'brush';
+    icon = tool === 'broom' ? 'broom' : tool === 'cart' ? 'cart' : 'brush';
+    text = tx(tool === 'broom' ? 'act_tool_broom' : 'act_tool_brush');
     if (tool === 'cart') text = '';
   }
   E.act.firstElementChild.innerHTML = ICON[icon];
@@ -847,7 +904,7 @@ function updateOffers() {
 }
 
 function offerText(id, label) { return tx(label || ('act_' + id)); } // labels are STR keys (MIMARI §4.9)
-function offerIcon(id, label) { return id === 'nozzle' && label === 'act_nozzle_up' ? 'nozzleUp' : (OFFER_ICON[id] || 'hand'); }
+function offerIcon(id, label) { return id === 'nozzle' && label === 'act_nozzle_up' ? 'nozzleUp' : (OFFER_ICON[id] || 'brush'); }
 function updateSecondary(sec) {
   const id = sec ? sec.id : '', label = sec ? sec.label : '';
   if (sec) { if (!S.act2Obj) S.act2Obj = { id: '', owner: '' }; S.act2Obj.id = sec.id; S.act2Obj.owner = sec.owner; S.act2Offer = S.act2Obj; } else S.act2Offer = null;
@@ -858,7 +915,7 @@ function updateSecondary(sec) {
   E.act2.firstElementChild.innerHTML = ICON[offerIcon(id, label)];
   setText(E.act2Lb, offerText(id, label));
   E.act2.classList.remove('apop'); void E.act2.offsetWidth; E.act2.classList.add('apop');
-  const r = E.act2.getBoundingClientRect(); S.act2X = r.left + r.width / 2; S.act2Y = r.top;   // discrete: on change only
+  const r = lrect(E.act2); S.act2X = r.left + r.width / 2; S.act2Y = r.top;   // discrete: on change only
 }
 
 function updateStick(player) {
@@ -943,6 +1000,7 @@ function project(x, y, z) {
   return !S.behind;
 }
 
+function wrapA(a) { a = (a + Math.PI) % (Math.PI * 2); if (a < 0) a += Math.PI * 2; return a - Math.PI; }
 function updateIndicator() {
   // what to point at: full bag → nearest sell point; hints → shop / cart
   const player = mod('player');
@@ -962,7 +1020,7 @@ function updateIndicator() {
   if (!S.indOn) { S.indOn = true; setHidden(E.ind, false); }
   if (kind !== S.indKind) {
     S.indKind = kind;
-    E.ind.className = 'ind ' + (kind === 'shopk' ? '' : kind);
+    E.ind.className = 'ind ' + (kind === 'shopk' ? '' : kind); E.ind.__c = {};   // setCls caches classes: start clean
     E.indPin.innerHTML = svg(kind === 'drop' ? 'container' : kind === 'cartp' ? 'cart' : 'store');
   }
   if (dist !== S.indD || label !== S.indLabel) { S.indD = dist; S.indLabel = label; setText(E.indLab, label + '  ' + tx('dist_m', { n: fmt(dist) })); }
@@ -970,21 +1028,22 @@ function updateIndicator() {
   const w = C.view.w, hh = C.view.h, sf = C.view.safe;
   const x0 = (sf.left || 0) + 40, x1 = w - (sf.right || 0) - 40, y0 = (sf.top || 0) + 112, y1 = hh - (sf.bottom || 0) - 150; // stays above the thumb controls
   let x = S.sx, y = S.sy, ang;
-  const inside = onScr && x >= x0 && x <= x1 && y >= y0 && y <= y1;
+  // v2 (QA #1: a target behind looked exactly like one in front, and following it walked the wrong way): the pin with
+  // its arrow down is used ONLY when the target is on screen; otherwise the pin sits on the left or right edge by the
+  // target's bearing relative to the view, its arrow points that way, and a target behind gets the "turn round" look
+  const rel = wrapA(Math.atan2(tgt.x - p.x, -(tgt.z - p.z)) - p.yaw);
+  const inside = onScr && x >= x0 && x <= x1 && y >= y0 && y <= y1 && Math.abs(rel) < Math.PI / 2;
+  const back = !inside && Math.abs(rel) > Math.PI * 0.6;
   if (inside) { ang = Math.PI; }
   else {
-    // clamp along the ray from the screen centre
-    const cx = w / 2, cy = (y0 + y1) / 2;
-    let dx = x - cx, dy = y - cy;
-    if (!onScr) dy = Math.max(dy, Math.abs(dx) * 0.25, 1);  // behind: favour the bottom edge (never 0/0)
-    if (dx === 0 && dy === 0) dy = 1;
-    const sx = dx !== 0 ? ((dx > 0 ? x1 : x0) - cx) / dx : Infinity;
-    const sy = dy !== 0 ? ((dy > 0 ? y1 : y0) - cy) / dy : Infinity;
-    const s = Math.min(Math.abs(sx), Math.abs(sy));
-    x = cx + dx * s; y = cy + dy * s;
-    ang = Math.atan2(dy, dx) + Math.PI / 2;
+    const right = rel > 0;
+    x = right ? x1 : x0;
+    y = onScr && Math.abs(rel) < Math.PI / 2 ? Math.max(y0, Math.min(y1, y)) : (y0 + y1) / 2;
+    ang = right ? Math.PI / 2 : -Math.PI / 2;
+    if (S.indSide !== right) { S.indSide = right; E.ind.style.setProperty('--nx', right ? '7px' : '-7px'); }
   }
-  setCls(E.ind, 'on', inside || Math.cos(ang) < -0.3);   // arrow points down → label goes above the pin
+  setCls(E.ind, 'edge', !inside); setCls(E.ind, 'back', back);
+  setCls(E.ind, 'on', inside);   // arrow points down → label goes above the pin
   const xi = Math.round(x), yi = Math.round(y);
   S.indX = xi; S.indY = yi; tfXY(E.ind, xi, yi);
   const deg = Math.round(ang * 180 / Math.PI);
@@ -1005,7 +1064,9 @@ function updateRobotTags(econ) {
         show = true;
         const name = robotTag(r, i);
         if (name !== g.name) { g.name = name; g.tx.textContent = name; }
-        const col = robotColor(r, i); if (col !== g.col) { g.col = col; g.dot.style.background = col; }
+        const col = robotColor(r, i); if (col !== g.col) { g.col = col; g.dot.style.background = col; g.el.style.setProperty('--rc', col); }
+        const big = r.introT > 0;   // v2: a new robot's name tag is large for its first seconds (robot.introS)
+        if (big !== g.big) { g.big = big; g.el.classList.toggle('big', big); }
         const x = Math.round(S.sx), y = Math.round(S.sy);
         if (x !== g.x || y !== g.y) { g.x = x; g.y = y; g.el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-100%)'; }
       }
@@ -1045,7 +1106,7 @@ function slowUpdate() {
   const econ = mod('economy'), trash = mod('trash'), player = mod('player'), tools = mod('tools');
   if (!econ) return;
   const mounted = player && player.mounted ? player.mounted() : null;
-  const tool = tools && tools.current ? tools.current() : 'hands';
+  const tool = tools && tools.current ? tools.current() : 'brush';
   // container
   const cont = (mounted || tool === 'cart') ? 'tank' : 'bag';
   if (cont !== S.container) { S.container = cont; S.bagUnits = -1; setText(E.bagFl, tx(cont === 'tank' ? 'tank_full' : 'bag_full')); E.bagIc.innerHTML = ICON[cont === 'tank' ? 'cart' : 'bag']; }
@@ -1177,16 +1238,16 @@ function updateRobots(econ) {
 
 function updateTools(tools, mounted) {
   const av = tools && tools.available ? tools.available() : null;
-  const cur = tools && tools.current ? tools.current() : 'hands';
+  const cur = tools && tools.current ? tools.current() : 'brush';
   const list = [];
-  if (av && !mounted) { if (av.indexOf('hands') >= 0) list.push('hands'); if (av.indexOf('broom') >= 0) list.push('broom'); }
+  if (av && !mounted) { if (av.indexOf('brush') >= 0) list.push('brush'); if (av.indexOf('broom') >= 0) list.push('broom'); }
   const sig = list.length > 1 ? list.join(',') + '|' + cur : '';
   if (sig === S.toolsSig) return;
   S.toolsSig = sig;
   setHidden(E.tools, !sig);
   if (!sig) return;
   let h = '';
-  for (const id of list) h += '<button class="tb' + (id === cur ? ' on' : '') + '" data-tool="' + id + '" aria-label="' + tx(id === 'broom' ? 'act_tool_broom' : 'act_tool_hands') + '">' + svg(id === 'broom' ? 'broom' : 'hand') + '</button>';
+  for (const id of list) h += '<button class="tb' + (id === cur ? ' on' : '') + '" data-tool="' + id + '" aria-label="' + tx(id === 'broom' ? 'act_tool_broom' : 'act_tool_brush') + '">' + svg(id === 'broom' ? 'broom' : 'brush') + '</button>';
   E.tools.innerHTML = h;
 }
 
@@ -1232,7 +1293,7 @@ function valueOf(byType) {
 }
 function onCollect(p) {
   if (!p) return;
-  if (p.tool === 'hands') hintDone('pickup');
+  if (p.tool === 'brush') hintDone('pickup');
   if (p.tool === 'broom') hintDone('sweep');
   S.pendingValue += valueOf(p.byType);
   if (S.collectTickT <= 0) { S.collectTickT = 0.1; E.bag.classList.remove('tick'); void E.bag.offsetWidth; E.bag.classList.add('tick'); }
@@ -1333,20 +1394,25 @@ function onMilestone(p) {
   const ms = cfg('milestones', []);
   const m = ms[p.index] || { at: p.at, bonus: 0 };
   if ((m.at || p.at) >= 1) return; // 100 %: district:cleaned shows the complete card
-  haptic('heavy');
+  // v2 (psychology review): milestones crossed while away never fire hidden behind the welcome card: the card names
+  // them; after it closes only the latest one shows, quietly (no confetti)
+  if (S.panel === 'away') { S.msLater = p.index; S.awayMs = Math.max(S.awayMs || 0, m.at || p.at || 0); renderPanel(); return; }
+  const quiet = !!p.quiet;
+  if (!quiet) haptic('heavy');
   E.ring.classList.remove('ms'); void E.ring.offsetWidth; E.ring.classList.add('ms');
   setText(E.msT, tx(m.strId || 'ms_25'));
   E.msB.innerHTML = m.bonus ? svg('coin') + '<span>' + esc(tx('ms_bonus', { n: fmt(m.bonus) })) + '</span>' : '';
   let ad = false;
   const econ = mod('economy');
-  if (Math.abs((m.at || 0) - cfg('boost.offerOnMilestone', 0.5)) < 1e-6 && !S.boostMsOffered && econ && !(econ.boostActive && econ.boostActive()) && !(econ.boostCooldownLeft && econ.boostCooldownLeft() > 0)) {
+  const om = C.CONFIG.boost ? C.CONFIG.boost.offerOnMilestone : null;   // v2: null = no ad on milestone banners
+  if (om != null && Math.abs((m.at || 0) - om) < 1e-6 && !S.boostMsOffered && econ && !(econ.boostActive && econ.boostActive()) && !(econ.boostCooldownLeft && econ.boostCooldownLeft() > 0)) {
     S.boostMsOffered = true; ad = true;
     E.msAd.innerHTML = adButton() + '<button class="bt ghost" data-act="no">' + esc(tx('no_thanks')) + '</button>';
   } else E.msAd.innerHTML = '';
   setCls(E.msb, 'has-ad', ad);
   E.msb.classList.add('on');
   S.msT = ad ? U.msBoostCardS : U.msCardS;
-  confetti(U.confetti, C.view.w / 2, (C.view.safe.top || 0) + 60, Math.PI * 1.1);
+  if (!quiet) confetti(U.confetti, C.view.w / 2, (C.view.safe.top || 0) + 60, Math.PI * 1.1);
   C.bus.emit('game:saveNow', null);
 }
 function hideMs() { S.msT = 0; E.msb.classList.remove('on'); }
@@ -1368,7 +1434,20 @@ function snapshot() {
   S.snapCoins = num(e && e.coins ? e.coins() : 0);
   S.snapUnits = num(t && t.totalUnits ? t.totalUnits() : 0);
 }
+function onSaved(p) {
+  if (!p || !p.persistent || S.panel === 'complete') return;
+  const now = performance.now(); if (now - (S.svdAt || 0) < 900) return; S.svdAt = now;
+  const el = E.svd; setText(E.svdLb, tx('saved'));
+  el.classList.remove('on'); void el.offsetWidth; el.classList.add('on');
+}
+function showStorageNote(st) {
+  if (!st || st.persistent || C.params.has('nosave')) return;
+  E.snote.textContent = tx(st.kind === 'session' ? 'save_session' : 'save_none');
+  setHidden(E.snote, false); E.snote.classList.remove('fade');
+  clearTimeout(S.snoteT); S.snoteT = setTimeout(() => E.snote.classList.add('fade'), 9000);
+}
 function onReady(p) {
+  showStorageNote(p && p.storage);
   S.gameS0 = C.time.game;
   if (p && !p.fresh) onAway(p.awayS || 0);
   else snapshot();
@@ -1382,9 +1461,9 @@ function onAway(awayS) {
   snapshot();
   if (awayS >= U.awayMinS && (units > 0 || coins > 0)) showAway(Math.max(0, units), Math.max(0, coins), awayS);
 }
-function showAway(units, coins, awayS, capped) {
+function showAway(units, coins, awayS, capped, limitBy) {
   if (!(units > 0 || coins > 0)) return;
-  S.away = { units, coins, capped: capped != null ? !!capped : awayS > U.offlineCapS };
+  S.away = { units, coins, capped: capped != null ? !!capped : awayS > U.offlineCapS, limitBy: limitBy || '' };
   if (S.panel && S.panel !== 'away') return;
   openPanel('away');
 }
@@ -1412,8 +1491,8 @@ function hintShow(id) {
   S.hintHalfW = 0;
   S.hintPos = null;
   setHidden(E.hint, false);
-  setHidden(E.taph, id !== 'pick');
-  setHidden(E.ghost, !(id === 'walk' || id === 'broom'));
+  setHidden(E.taph, true);   // v2: no "tap to pick" pointer any more
+  setHidden(E.ghost, !(id === 'walk' || id === 'broom' || id === 'brush'));
 }
 function hintFinish(id) {
   const H = S.hints;
@@ -1465,9 +1544,9 @@ function updateHintPos() {
   if (off) return;
   let x, y, below = false;
   if (id === 'nozzle' && S.off2Id === 'nozzle') { x = S.act2X; y = S.act2Y - 8; }
-  else if (id === 'pick' || id === 'nozzle' || (id === 'shop' && S.offerId === 'shop') || (id === 'cart' && S.offerId === 'enter')) {
+  else if (id === 'nozzle' || (id === 'shop' && S.offerId === 'shop') || (id === 'cart' && S.offerId === 'enter')) {
     x = S.actX; y = S.actY - 8;
-  } else if (id === 'walk' || id === 'broom') {
+  } else if (id === 'walk' || id === 'broom' || id === 'brush') {
     x = S.stkRestX; y = S.stkRestY - 80;
     tfXY(E.ghost, S.stkRestX, S.stkRestY);
   } else if ((id === 'sell' || id === 'shop' || id === 'cart') && S.indOn) {
@@ -1533,7 +1612,10 @@ function effectHtml(it) {
   const arr = (p) => cfg(p, []);
   switch (def.set) {
     case 'bag.level': a = arr('bag.capacity')[v - 1]; b = arr('bag.capacity')[v]; break;
-    case 'broom.owned': return '<div class="fx"><span class="a">' + esc(tx('act_tool_hands')) + '</span>' + svg('chevron', 'ar') + '<b>' + esc(tx('act_tool_broom')) + '</b></div>';
+    case 'broom.owned': return '<div class="fx"><span class="a">' + esc(tx('act_tool_brush')) + '</span>' + svg('chevron', 'ar') + '<b>' + esc(tx('act_tool_broom')) + '</b></div>';
+    case 'brush.level': a = arr('brush.widthM')[v - 1]; b = arr('brush.widthM')[v]; unit = 'u_m'; break;
+    case 'player.speedLevel': a = arr('player.walkSpeed')[v - 1]; b = arr('player.walkSpeed')[v]; unit = 'u_mps'; break;
+    case 'cart.suctionLevel': a = arr('cart.cleanSpeedMax')[v - 1]; b = arr('cart.cleanSpeedMax')[v]; unit = 'u_mps'; break;
     case 'broom.widthLevel': a = arr('broom.widthM')[v - 1]; b = arr('broom.widthM')[v]; unit = 'u_m'; break;
     case 'broom.speedLevel': a = arr('broom.sweepSpeed')[v - 1]; b = arr('broom.sweepSpeed')[v]; unit = 'u_mps'; break;
     case 'sell.dropoff': a = 1; b = 2; unit = 'u_points'; break;
@@ -1602,15 +1684,15 @@ function patchBoostBox(root, econ) {
   const box = root.querySelector('.boostbx'); if (!box) return;
   const active = !!(econ.boostActive && econ.boostActive());
   const can = !!(econ.canOfferBoost && econ.canOfferBoost());
-  const cd = Math.ceil(num(econ.boostCooldownLeft && econ.boostCooldownLeft()));
-  let mode = active ? 'on' : can ? 'offer' : (cd > 0 && S.purchases >= cfg('boost.offerMinPurchases', 3)) ? 'cd' : '';
-  const sig = mode + (mode === 'on' ? Math.ceil(num(econ.boostLeft())) : mode === 'cd' ? cd : '') + C.state.settings.lang;
+  // v2 (psychology review): no countdown text here (it read as urgency). Active: "Şu an aktif". Cooling down: nothing.
+  // The offer carries an equally visible "Hayır, teşekkürler" that hides it for this visit of the shop.
+  const mode = active ? 'on' : can && !S.adNo ? 'offer' : '';
+  const sig = mode + C.state.settings.lang;
   if (sig === box.__sig) return;
   box.__sig = sig;
   setHidden(box, !mode);
-  if (mode === 'on') box.innerHTML = '<div class="on">' + svg('bolt') + '<span>' + esc(tx('boost_active', { n: fmt(Math.ceil(num(econ.boostLeft()))) })) + '</span></div>';
-  else if (mode === 'offer') box.innerHTML = adButton();
-  else if (mode === 'cd') box.innerHTML = '<div class="cd">' + svg('clock') + '<span>' + esc(tx('boost_cooldown', { n: fmt(cd) })) + '</span></div>';
+  if (mode === 'on') box.innerHTML = '<div class="on">' + svg('bolt') + '<span>' + esc(tx('boost_now')) + '</span></div>';
+  else if (mode === 'offer') box.innerHTML = adButton() + '<button class="bt grey nad" data-act="noad">' + esc(tx('no_thanks')) + '</button>';
 }
 function patchRobotList(root, econ) {
   const list = root.querySelector('.rlist'); if (!list) return;
@@ -1642,17 +1724,75 @@ function pauseHtml() {
     '<div class="pn-bd"><div class="set">' +
       '<div class="srow">' + svg('sound') + '<span class="sl">' + esc(tx('sound')) + '</span>' + tg('sound', s.sound) + '</div>' +
       '<div class="srow">' + svg('leaf') + '<span class="sl">' + esc(tx('ambient')) + '</span>' + tg('music', s.music) + '</div>' +
-      '<div class="srow">' + svg('vibrate') + '<span class="sl">' + esc(tx('haptics')) + '</span>' + tg('haptics', s.haptics) + '</div>' +
+      // haptics: only where something can vibrate (iOS Safari and the artifact have no navigator.vibrate; the app has Capacitor)
+      (canVibrate() ? '<div class="srow">' + svg('vibrate') + '<span class="sl">' + esc(tx('haptics')) + '</span>' + tg('haptics', s.haptics) + '</div>' : '') +
       '<div class="srow">' + svg('globe') + '<span class="sl">' + esc(tx('language')) + '</span>' + seg('lang', [['tr', 'TR'], ['en', 'EN']]) + '</div>' +
       '<div class="srow">' + svg('eye') + '<span class="sl">' + esc(tx('sensitivity')) + '</span>' + sensSeg + '</div>' +
-      '<div class="srow">' + svg('wheel') + '<span class="sl">' + esc(tx('steer_mode')) + '</span>' + seg('steer', [['camera', tx('steer_camera')], ['tank', tx('steer_tank')]]) + '</div>' +
+      '<div class="srow wide">' + svg('wheel') + '<span class="sl">' + esc(tx('steer_mode')) + '</span>' + seg('steer', [['camera', tx('steer_camera')], ['tank', tx('steer_tank')]]) + '</div>' +
       '<div class="srow wide">' + svg('sparkle') + '<span class="sl">' + esc(tx('quality')) + '</span>' + seg('quality', [['auto', tx('q_auto')], ['high', tx('q_high')], ['low', tx('q_low')]]) + '</div>' +
+      '<div class="srow wide">' + svg('eye') + '<span class="sl">' + esc(tx('fov')) + '</span>' + fovSlider() + '</div>' +
+      (C.isTouch || C.view.rot || C.view.portrait || s.portrait ? '<div class="srow">' + svg('reset') + '<span class="sl">' + esc(tx('portrait_play')) + '</span>' + tg('portrait', s.portrait) + '</div>' +
+        '<div class="srow">' + svg('reset') + '<span class="sl">' + esc(tx('flip_screen')) + '</span>' + tg('flip', s.flip) + '</div>' : '') +
+      '<div class="srow">' + svg('sparkle') + '<span class="sl">' + esc(tx('perf_hud')) + '</span>' + tg('perfHud', s.perfHud) + '</div>' +
       '<div class="srow wide rst">' + svg('reset') + (S.resetAsk
         ? '<div class="cfm"><span>' + esc(tx('reset_confirm')) + '</span><button class="bt grey" data-act="rno">' + esc(tx('cancel')) + '</button><button class="bt red" data-act="ryes">' + esc(tx('reset_yes')) + '</button></div>'
         : '<span class="sl">' + esc(tx('reset_save')) + '</span><button class="bt grey" data-act="rask">' + esc(tx('reset_save')) + '</button>') + '</div>' +
     '</div></div>' +
+    (C.save && C.save.status && !C.save.status.persistent && !C.params.has('nosave') ? '<div class="snote2">' + esc(tx(C.save.status.kind === 'session' ? 'save_session' : 'save_none')) + '</div>' : '') +
     '<div class="pfoot"><button class="bt blue" data-act="close">' + svg('chevron') + esc(tx('resume')) + '</button></div>' +
     '</div></div>';
+}
+
+// FOV slider (settings.fov, horizontal degrees in landscape; main applies it on ui:settings)
+function canVibrate() { return !!((window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Haptics) || navigator.vibrate); }
+function fovRange() { return cfg('player.fovRangeDeg', [85, 115]); }
+function fovSlider() {
+  const [a, b] = fovRange(), v = Math.max(a, Math.min(b, num(+C.state.settings.fov) || cfg('player.fovHorizontalDegLandscape', 104))), f = (v - a) / (b - a);
+  return '<div class="sld" data-sld="fov" role="slider" aria-valuemin="' + a + '" aria-valuemax="' + b + '" aria-valuenow="' + v + '" aria-label="' + esc(tx('fov')) + '"><div class="trk"><i style="width:' + (f * 100).toFixed(1) + '%"></i><b style="left:' + (f * 100).toFixed(1) + '%"></b></div><span class="sv">' + esc(tx('fov_val', { n: Math.round(v) })) + '</span></div>';
+}
+const SLP = { x: 0, y: 0 };
+function sliderAt(el, e) {
+  const trk = el.querySelector('.trk'), r = lrect(trk), tv = C.view.toView, p = tv ? tv(e.clientX, e.clientY, SLP) : (SLP.x = e.clientX, SLP.y = e.clientY, SLP);
+  const [a, b] = fovRange(), step = cfg('player.fovStepDeg', 1);
+  const f = Math.max(0, Math.min(1, (p.x - r.left) / Math.max(1, r.width)));
+  const v = Math.round((a + f * (b - a)) / step) * step;
+  if (v !== C.state.settings.fov) {
+    C.state.settings.fov = v;
+    const ff = (v - a) / (b - a);
+    trk.firstElementChild.style.width = (ff * 100).toFixed(1) + '%'; trk.lastElementChild.style.left = (ff * 100).toFixed(1) + '%';
+    el.querySelector('.sv').textContent = tx('fov_val', { n: v }); el.setAttribute('aria-valuenow', String(v));
+    C.bus.emit('ui:settings', C.state.settings);
+  }
+}
+function bindSliders() {
+  E.mwrap.addEventListener('pointerdown', (e) => {
+    const el = e.target.closest('[data-sld]'); if (!el) return;
+    e.preventDefault(); S.sld = { el, id: e.pointerId };
+    try { el.setPointerCapture(e.pointerId); } catch (err) { /* synthetic */ }
+    sliderAt(el, e);
+  });
+  E.mwrap.addEventListener('pointermove', (e) => { if (S.sld && S.sld.id === e.pointerId) { e.preventDefault(); sliderAt(S.sld.el, e); } });
+  const end = (e) => { if (S.sld && S.sld.id === e.pointerId) { S.sld = null; S.dragAt = performance.now(); settingsChanged(); } };
+  E.mwrap.addEventListener('pointerup', end); E.mwrap.addEventListener('pointercancel', end);
+}
+// rotated stage: scroll panel lists with our own drag (the browser's native touch scrolling works in screen axes)
+function bindRotScroll() {
+  let sc = null, lx = 0, ly = 0, moved = 0, id = -1;
+  const pt = { x: 0, y: 0 };
+  E.mwrap.addEventListener('touchstart', (e) => {
+    if (!C.view.rot || S.sld) { sc = null; return; }
+    const t = e.changedTouches[0]; sc = e.target.closest('.pn-bd'); if (!sc) return;
+    id = t.identifier; C.view.toView(t.clientX, t.clientY, pt); lx = pt.x; ly = pt.y; moved = 0;
+  }, { passive: true });
+  E.mwrap.addEventListener('touchmove', (e) => {
+    if (!sc || !C.view.rot) return;
+    let t = null; for (const x of e.changedTouches) if (x.identifier === id) t = x; if (!t) return;
+    C.view.toView(t.clientX, t.clientY, pt);
+    const dx = pt.x - lx, dy = pt.y - ly; lx = pt.x; ly = pt.y; moved += Math.abs(dx) + Math.abs(dy);
+    if (moved > 6) { sc.scrollLeft -= dx; sc.scrollTop -= dy; S.dragAt = performance.now(); }
+    if (e.cancelable) e.preventDefault();
+  }, { passive: false });
+  E.mwrap.addEventListener('touchend', () => { sc = null; }, { passive: true });
 }
 
 // ---- complete
@@ -1686,7 +1826,10 @@ function awayHtml() {
     '<div class="pn-bd away-bd">' +
       '<div class="big">' + esc(tx('away_body', { n: fmt(a.units) })) + '</div>' +
       (a.coins > 0 ? '<div class="cn">' + svg('coin') + '<span>' + esc(tx('away_coins', { n: fmt(a.coins) })) + '</span></div>' : '') +
-      (a.capped ? '<div class="cap">' + esc(tx('away_cap', { n: fmt(U.offlineCapS / 3600) })) + '</div>' : '') +
+      (S.awayMs ? '<div class="cn">' + svg('star') + '<span>' + esc(tx('away_ms', { n: Math.round(S.awayMs * 100) })) + '</span></div>' : '') +
+      (a.limitBy === 'nextItem' ? '<div class="cap">' + esc(tx('away_cap_next')) + '</div>'
+        : a.limitBy === 'district' || a.limitBy === 'remaining' ? '<div class="cap">' + esc(tx('away_cap_part')) + '</div>'
+        : a.capped ? '<div class="cap">' + esc(tx('away_cap', { n: fmt(Math.round(U.offlineCapS / 60)) })) + '</div>' : '') +
     '</div>' +
     '<div class="pfoot"><button class="bt" data-act="close">' + esc(tx('continue')) + '</button></div>' +
     '</div></div>';
@@ -1710,21 +1853,30 @@ function updateAd(rdt) {
 
 function onPanelClick(e) {
   if (performance.now() - (S.panelAt || 0) < 350) return; // a click from the tap that opened the panel
+  if (performance.now() - (S.dragAt || 0) < 250) return;  // the end of a slider drag / rotated scroll
   const b = e.target.closest('[data-act]'); if (!b) return;
   const a = b.getAttribute('data-act');
   if (a === 'close') { click(); if (S.panel === 'ad') return; closePanel(); return; }
   if (a === 'buy') {
+    // QA #3: a quick double tap bought the item that slid into the bought one's place. Ignore buy taps for a moment
+    // after any purchase (and until the list has been laid out again); the tap buys the id it was pressed on.
+    if (performance.now() < (S.buyLockUntil || 0)) return;
+    S.buyLockUntil = performance.now() + 500;
     const id = b.getAttribute('data-id');
     click();
     C.bus.emit('ui:buy', { id });
     return;
   }
   if (a === 'ad') { click(); S.panelPrev = S.panel; openPanel('ad'); return; }
+  if (a === 'noad') { click(); S.adNo = true; return; }
   if (a === 'promo') { const c = b; c.animate([{ transform: 'rotate(0)' }, { transform: 'rotate(-2deg)' }, { transform: 'rotate(2deg)' }, { transform: 'rotate(0)' }], { duration: 260 }); return; }
   const st = C.state.settings;
   if (a === 'tg') {
     const k = b.getAttribute('data-k'); st[k] = !st[k];
-    click(); settingsChanged(); b.classList.toggle('on', !!st[k]); b.setAttribute('aria-checked', String(!!st[k])); return;
+    click(); settingsChanged(); b.classList.toggle('on', !!st[k]); b.setAttribute('aria-checked', String(!!st[k]));
+    if (k === 'portrait' || k === 'flip') renderPanel();   // the stage may have rotated: lay the panel out again
+    if (k === 'perfHud') setHidden(E.dbg, !(C.debug || C.perfHud || st.perfHud));
+    return;
   }
   if (a === 'set') {
     const k = b.getAttribute('data-k'); let v = b.getAttribute('data-v');
@@ -1760,7 +1912,8 @@ function updateDebug() {
   const m = p.mods || {};
   let mods = '';
   for (const k of Object.keys(m)) if (m[k] > 0.05) mods += k + ' ' + m[k].toFixed(2) + '  ';
-  const s = 'fps ' + (p.fps || 0).toFixed(0) + '  frame ' + ms(p.frameMs) + '  js ' + ms(p.jsMs) + '  render ' + ms(p.renderMs) + '  dpr ' + (C.view.dpr || 1).toFixed(2) +
+  if (C.perfStats) C.perfStats();
+  const s = 'fps ' + (p.fps || 0).toFixed(0) + '  frame ' + ms(p.frameMs) + ' (p50 ' + ms(p.p50) + ' p95 ' + ms(p.p95) + ')  js ' + ms(p.jsMs) + '  render ' + ms(p.renderMs) + '  dpr ' + (C.view.dpr || 1).toFixed(2) +
     '\ncalls ' + info.calls + '  tris ' + (info.triangles / 1000).toFixed(1) + 'k  cells ' + S.dbgCells + (mods ? '\n' + mods : '');
   S.dbgCells = 0;
   setText(E.dbg, s);

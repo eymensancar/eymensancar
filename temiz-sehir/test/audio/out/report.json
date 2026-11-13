@@ -2,12 +2,12 @@
   "result": {
     "A": {
       "cpu": {
-        "firstFramesMaxMs": 0.3,
-        "steadyMaxMs": 0.2,
-        "meanMs": 0.0121
+        "firstFramesMaxMs": 0.4,
+        "steadyMaxMs": 1.7,
+        "meanMs": 0.0109
       },
       "whole": {
-        "peakDb": -3.3,
+        "peakDb": -2.9,
         "rmsDb": -20.4,
         "clipped": 0
       },
@@ -34,19 +34,19 @@
         "gt6k": 0.066
       },
       "pickups30ps": {
-        "peakDb": -5.2,
+        "peakDb": -5.3,
         "rmsDb": -16.8,
         "clipped": 0,
         "centroidHz": 1392,
         "lt120": 0.006,
         "b120_500": 0.009,
         "b500_2k": 0.852,
-        "b2k_6k": 0.131,
+        "b2k_6k": 0.132,
         "gt6k": 0.001
       },
       "sale": {
-        "peakDb": -5.2,
-        "rmsDb": -20.4,
+        "peakDb": -5.7,
+        "rmsDb": -20.5,
         "clipped": 0
       },
       "purchase": {
@@ -91,42 +91,42 @@
         "clipped": 0
       },
       "valuable": {
-        "peakDb": -3.3,
-        "rmsDb": -17,
+        "peakDb": -2.9,
+        "rmsDb": -16.9,
         "clipped": 0
       },
       "ladderHz": [
-        591,
-        634,
-        689,
-        842,
-        700,
-        760,
-        804,
-        860,
-        963,
-        1289
+        585,
+        622,
+        715,
+        846,
+        716,
+        773,
+        810,
+        886,
+        978,
+        1220
       ]
     },
     "B": {
       "cpu": {
-        "firstFramesMaxMs": 1.1,
-        "steadyMaxMs": 0.3,
-        "meanMs": 0.0324
+        "firstFramesMaxMs": 1.3,
+        "steadyMaxMs": 0.2,
+        "meanMs": 0.0338
       },
       "whole": {
-        "peakDb": -2.7,
+        "peakDb": -2.5,
         "rmsDb": -16.3,
         "clipped": 0
       },
       "stress": {
-        "peakDb": -2.7,
+        "peakDb": -2.5,
         "rmsDb": -14.8,
         "clipped": 0
       }
     },
     "C": {
-      "eastRminusL_db": 4.2,
+      "eastRminusL_db": 4.3,
       "westLminusR_db": 4.1,
       "afterDisable": {
         "peakDb": -86.3,
@@ -135,32 +135,32 @@
       }
     },
     "genMs": {
-      "initMs": 156.5,
-      "unlockMs": 4.5,
-      "pop": 0.5,
-      "click": 0,
-      "coin": 0.1,
+      "initMs": 117.9,
+      "unlockMs": 3,
+      "pop": 0.3,
+      "click": 0.1,
+      "coin": 0,
       "thud": 0.1,
-      "swish": 0.1,
-      "kaching": 0,
-      "chime": 0.2,
+      "swish": 0,
+      "kaching": 0.1,
+      "chime": 0,
       "purchase": 0.1,
       "open": 0.1,
       "close": 0.2,
-      "equip": 0.1,
+      "equip": 0,
       "chirp": 0,
       "crunch": 0,
-      "robot": 0,
-      "boost": 0.1,
+      "robot": 0.1,
+      "boost": 0,
       "nozzleDown": 0.1,
-      "nozzleUp": 0,
-      "rev": 0.1,
-      "horn": 0.1,
-      "ms1": 0.1,
-      "ms2": 0.2,
+      "nozzleUp": 0.1,
+      "rev": 0.2,
+      "horn": 0,
+      "ms1": 0,
+      "ms2": 0.1,
       "ms3": 0.2,
       "gust": 0.2,
-      "fanfare": 0.2
+      "fanfare": 0.1
     }
   },
   "fail": []
