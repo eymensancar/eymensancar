@@ -280,6 +280,17 @@ details p{padding-bottom:24px;color:var(--mute);max-width:40em}
 .faqgrp+.faqgrp{margin-top:56px}
 .faqgrp h2{display:flex;align-items:center;gap:14px;margin:0 0 18px}
 .faqgrp h2 img{width:40px;height:40px;border-radius:10px}
+.gamehub{margin-top:64px}
+.gamehub h2{margin:0 0 6px}
+.gamehub>p{color:var(--mute);margin:0 0 14px}
+.gamehub ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.gamehub li{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line)}
+.gamehub li img{width:44px;height:44px;border-radius:11px;flex:none}
+.gamehub li b{font-family:var(--disp);font-size:1.15rem;flex:1 1 160px;min-width:0}
+.gamehub li span{display:flex;gap:10px;flex-wrap:wrap}
+.gamehub li a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem}
+.gamehub li a:hover{background:var(--stone)}
+.allpol{margin-top:48px}
 
 /* hareket: açılış */
 @media (prefers-reduced-motion:no-preference){

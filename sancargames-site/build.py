@@ -30,12 +30,12 @@ def url(k, lang): return 'https://sancargames.com/' + re.sub(r'(index)?\.html$',
 L = {
  'tr': dict(games='Oyunlar', studio='Stüdyo', support='Destek', privacy='Gizlilik', live='Yayında', soon='Yakında', other='EN', other_label='English',
    badge_s="App Store'dan", badge_b='İndirin', more='Oyunu incele', rights='Tüm hakları saklıdır.', menu='Menü', close='Kapat',
-   copy='Kopyala', copied='Kopyalandı', yk='Yıkım Ustası', sy='Sayı Yolu', fd='Fenerli Dedektif', contact='İletişim', skip='İçeriğe geç',
-   about="iPhone ve iPad için bulmaca ve fizik oyunları yapan bağımsız bir oyun stüdyosu.", lang_h='Dil', follow='Takip et'),
+   copy='Kopyala', copied='Kopyalandı', yk='Yıkım Ustası', sy='Sayı Yolu', fd='Fenerli Dedektif', ky='Kedi Yuvası', contact='İletişim', skip='İçeriğe geç',
+   about="iPhone ve iPad için bulmaca ve fizik oyunları yapan bağımsız bir oyun stüdyosu.", lang_h='Dil', follow='Takip et', help='Yardım', bygame='Oyunlara göre', bygame_p='Her oyunun yardım ve gizlilik sayfaları.', allpol='Bütün oyunların destek ve gizlilik sayfaları'),
  'en': dict(games='Games', studio='Studio', support='Support', privacy='Privacy', live='Out now', soon='Coming soon', other='TR', other_label='Türkçe',
    badge_s='Download on the', badge_b='App Store', more='See the game', rights='All rights reserved.', menu='Menu', close='Close',
-   copy='Copy', copied='Copied', yk='Demolition Master', sy='Number Path', fd='Lantern Detective', contact='Contact', skip='Skip to content',
-   about='An independent studio making puzzle and physics games for iPhone and iPad.', lang_h='Language', follow='Follow'),
+   copy='Copy', copied='Copied', yk='Demolition Master', sy='Number Path', fd='Lantern Detective', ky='Cat Haven', contact='Contact', skip='Skip to content',
+   about='An independent studio making puzzle and physics games for iPhone and iPad.', lang_h='Language', follow='Follow', help='Help', bygame='By game', bygame_p='Help and privacy pages for each game.', allpol='Support and privacy pages for all games'),
 }
 
 def badge(t, cls=''): return f'<a class="badge {cls}" href="{STORE}" target="_blank" rel="noopener">{APPLE}<span><small>{t["badge_s"]}</small><b>{t["badge_b"]}</b></span></a>'
@@ -120,7 +120,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/og-team.jpg')
   <div class="wrap cols">
     <div class="about"><a class="logo" href="{a('home')}" aria-label="Sancar Games"><img class="wm" src="{A('assets/img/logo-w.svg')}" alt="Sancar Games" width="140" height="80"></a><p>{t['about']}</p></div>
     <div class="col"><h4>{t['games']}</h4><ul><li><a href="{a('yk')}">{t['yk']}</a></li><li><a href="{a('sy')}">{t['sy']}</a></li><li><a href="{gl}">{t['fd']}</a></li></ul></div>
-    <div class="col"><h4>{t['support']}</h4><ul><li><a href="{a('sup')}">{t['support']}</a></li><li><a href="{a('pyk')}">{t['privacy']}: {t['yk']}</a></li><li><a href="{a('psy')}">{t['privacy']}: {t['sy']}</a></li></ul></div>
+    <div class="col"><h4>{t['support']}</h4><ul><li><a href="{a('sup')}">{t['support']}</a></li><li><a href="{a('pyk')}">{t['privacy']}: {t['yk']}</a></li><li><a href="{a('psy')}">{t['privacy']}: {t['sy']}</a></li><li><a href="{a('pfd')}">{t['privacy']}: {t['fd']}</a></li><li><a href="{a('pky')}">{t['privacy']}: {t['ky']}</a></li></ul></div>
     <div class="col"><h4>{t['contact']}</h4><ul><li><a href="mailto:{MAIL}">{MAIL}</a></li><li><a href="mailto:{INFO}">{INFO}</a></li><li><a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a></li></ul></div>
   </div>
   <div class="wrap"><div class="giant" aria-hidden="true">Sancar Games<span>.</span></div></div>
@@ -332,11 +332,19 @@ for lang in ('tr', 'en'):
     t = L[lang]; h = SUP[lang]; me = P['sup'][0 if lang == 'tr' else 1]
     det = lambda items: ''.join(f'<details><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{x}</p></div></details>' for q, x in items)
     ykn = t['yk']
+    lk = lambda k: rel(me, P[k][0 if lang == 'tr' else 1])
+    row = lambda ic, n, links: f'<li><img src="{I(me, ic)}" alt="" width="44" height="44"><b>{n}</b><span>' + ''.join(f'<a href="{lk(k)}">{x}</a>' for k, x in links) + '</span></li>'
+    hub = (f'<div class="gamehub rv" id="{"oyunlar" if lang == "tr" else "games"}"><h2>{t["bygame"]}</h2><p>{t["bygame_p"]}</p><ul>'
+           + row('icon-yk.jpg', ykn, [('yk', t['more']), ('pyk', t['privacy'])])
+           + row('icon-sy.jpg', t['sy'], [('sy', t['more']), ('psy', t['privacy'])])
+           + row('icon-fd.jpg', t['fd'], [('sfd', t['help']), ('pfd', t['privacy'])])
+           + row('icon-ky.jpg', t['ky'], [('pky', t['privacy'])]) + '</ul></div>')
     body = f'''<section class="doc"><div class="wrap">
   <div class="side"><h1 class="d d-l intro">{h['h1']}</h1></div>
   <div class="main">
     <p class="intro" style="--i:1">{h['intro']}</p>
     <div class="mail intro" style="--i:2;margin-top:26px"><a href="mailto:{MAIL}">{MAIL}</a><button type="button" data-copy="{MAIL}" data-done="{t['copied']}">{t['copy']}</button></div>
+    {hub}
     <div class="faqgrp rv" style="margin-top:72px"><h2><img src="{I(me,'icon-yk.jpg')}" alt="" width="40" height="40">{ykn}</h2>{det(h['yk'])}</div>
     <div class="faqgrp rv"><h2><img src="{I(me,'icon-sy.jpg')}" alt="" width="40" height="40">{t['sy']}</h2>{det(h['sy'])}</div>
   </div>
@@ -344,12 +352,14 @@ for lang in ('tr', 'en'):
 '''
     page('sup', lang, h['title'], h['intro'], body, cur='sup')
 
+def backlink(me, lang):
+    return f'<p class="allpol"><a href="{rel(me, P["sup"][0 if lang == "tr" else 1])}#{"oyunlar" if lang == "tr" else "games"}">{L[lang]["allpol"]} {AR}</a></p>'
 def policy(key, lang, title, h1, meta, intro, secs):
     me = P[key][0 if lang == 'tr' else 1]
     s = ''.join(f'<h2>{x}</h2>' + ''.join(f'<p>{p}</p>' for p in ps) for x, ps in secs)
     body = f'''<section class="doc"><div class="wrap">
   <div class="side"><h1 class="d d-m intro">{h1}</h1><p class="meta intro" style="--i:1">{meta}</p></div>
-  <div class="main intro" style="--i:2"><p>{intro}</p>{s}</div>
+  <div class="main intro" style="--i:2"><p>{intro}</p>{s}{backlink(me, lang)}</div>
 </div></section>
 '''
     page(key, lang, title, intro, body)
@@ -363,6 +373,7 @@ def support_one(key, lang, title, h1, intro, icon, name, faq):
     <p class="intro" style="--i:1">{intro}</p>
     <div class="mail intro" style="--i:2;margin-top:26px"><a href="mailto:{MAIL}">{MAIL}</a><button type="button" data-copy="{MAIL}" data-done="{t['copied']}">{t['copy']}</button></div>
     <div class="faqgrp rv" style="margin-top:72px"><h2><img src="{I(me, icon)}" alt="" width="40" height="40">{name}</h2>{det}</div>
+    {backlink(me, lang)}
   </div>
 </div></section>
 '''
