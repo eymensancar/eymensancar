@@ -1,0 +1,3 @@
+test/**/*.png
+test/**/shots/
+test/audio/out/*.wav

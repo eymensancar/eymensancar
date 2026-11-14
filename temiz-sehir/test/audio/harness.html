@@ -1,0 +1,182 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>audio harness</title></head>
+<body>
+<script type="module">
+// Loads the real www/js/audio.js with a fake ctx (bus + fake player/trash/economy/tools) and renders scripted
+// sequences through an OfflineAudioContext (window.AudioContext is replaced before the module creates it).
+let audio = null, modN = 0;
+import { createBus } from '/www/js/bus.js';
+import { CONFIG, STR } from '/www/js/config.js';
+
+const SR = 48000;
+let OFF = null;
+window.AudioContext = function () { return OFF; };
+
+function makeCtx() {
+  const bus = createBus();
+  const F = {
+    pose: { x: 27, y: 1.65, z: 27, yaw: 0, pitch: 0, speed: 0, mounted: null },
+    clean: 0, robots: [], tool: 'hands',
+  };
+  const ctx = {
+    bus, CONFIG, STR, state: { settings: { sound: true, music: true }, paused: false },
+    time: { dt: 1 / 20, game: 0 },
+    mods: {
+      player: { pose: () => F.pose },
+      trash: { cleanFraction: () => F.clean },
+      economy: { robots: () => F.robots },
+      tools: { current: () => F.tool },
+    },
+  };
+  return { ctx, F };
+}
+
+// ---- analysis helpers
+function fft(re, im) {
+  const n = re.length;
+  for (let i = 1, j = 0; i < n; i++) { let bit = n >> 1; for (; j & bit; bit >>= 1) j ^= bit; j ^= bit; if (i < j) { [re[i], re[j]] = [re[j], re[i]]; [im[i], im[j]] = [im[j], im[i]]; } }
+  for (let len = 2; len <= n; len <<= 1) {
+    const a = -2 * Math.PI / len, wr = Math.cos(a), wi = Math.sin(a);
+    for (let i = 0; i < n; i += len) { let cr = 1, ci = 0; for (let j = 0; j < len / 2; j++) { const ur = re[i + j], ui = im[i + j], vr = re[i + j + len / 2] * cr - im[i + j + len / 2] * ci, vi = re[i + j + len / 2] * ci + im[i + j + len / 2] * cr; re[i + j] = ur + vr; im[i + j] = ui + vi; re[i + j + len / 2] = ur - vr; im[i + j + len / 2] = ui - vi; const t = cr * wr - ci * wi; ci = cr * wi + ci * wr; cr = t; } }
+  }
+}
+function spectrum(x, t0, t1) {           // averaged power spectrum (Hann, 4096) over [t0, t1)
+  const N = 4096, P = new Float64Array(N / 2); let cnt = 0;
+  for (let s = Math.floor(t0 * SR); s + N <= Math.floor(t1 * SR); s += N / 2) {
+    const re = new Float64Array(N), im = new Float64Array(N);
+    for (let i = 0; i < N; i++) re[i] = x[s + i] * (0.5 - 0.5 * Math.cos(2 * Math.PI * i / N));
+    fft(re, im); for (let k = 0; k < N / 2; k++) P[k] += re[k] * re[k] + im[k] * im[k]; cnt++;
+  }
+  return { P, df: SR / N, cnt };
+}
+function bands(x, t0, t1) {
+  const { P, df } = spectrum(x, t0, t1);
+  let tot = 0, low = 0, cen = 0, b = { lt120: 0, b120_500: 0, b500_2k: 0, b2k_6k: 0, gt6k: 0 };
+  for (let k = 1; k < P.length; k++) {
+    const f = k * df, p = P[k]; tot += p; cen += f * p;
+    if (f < 120) b.lt120 += p; else if (f < 500) b.b120_500 += p; else if (f < 2000) b.b500_2k += p; else if (f < 6000) b.b2k_6k += p; else b.gt6k += p;
+  }
+  for (const k in b) b[k] = +(b[k] / (tot || 1)).toFixed(3);
+  return { centroidHz: Math.round(cen / (tot || 1)), ...b };
+}
+function level(x, t0, t1) {
+  let pk = 0, ss = 0, n = 0, clip = 0;
+  for (let i = Math.floor(t0 * SR); i < Math.min(x.length, Math.floor(t1 * SR)); i++) { const v = Math.abs(x[i]); if (v > pk) pk = v; if (v >= 0.999) clip++; ss += v * v; n++; }
+  const db = (v) => +(20 * Math.log10(v || 1e-9)).toFixed(1);
+  return { peakDb: db(pk), rmsDb: db(Math.sqrt(ss / (n || 1))), clipped: clip };
+}
+function peakFreq(x, t0, dur, fmin, fmax) {
+  const N = 4096, re = new Float64Array(N), im = new Float64Array(N), s = Math.floor(t0 * SR), L = Math.min(N, Math.floor(dur * SR));
+  for (let i = 0; i < L; i++) re[i] = x[s + i] * (0.5 - 0.5 * Math.cos(2 * Math.PI * i / L));
+  fft(re, im);
+  let best = 0, bk = 0; const df = SR / N;
+  for (let k = Math.ceil(fmin / df); k < fmax / df; k++) { const p = re[k] * re[k] + im[k] * im[k]; if (p > best) { best = p; bk = k; } }
+  // parabolic interpolation
+  const m = (k) => Math.sqrt(re[k] * re[k] + im[k] * im[k]);
+  const a = m(bk - 1), b = m(bk), c = m(bk + 1), d = 0.5 * (a - c) / (a - 2 * b + c || 1);
+  return (bk + d) * df;
+}
+
+// ---- scripted sequence: events at times, F changes, audio.update at 20 Hz
+async function render(durS, script) {
+  OFF = new OfflineAudioContext(2, Math.ceil(durS * SR), SR);
+  audio = await import('/www/js/audio.js?r=' + (++modN));   // fresh module state (and AudioContext) per render
+  const { ctx, F } = makeCtx();
+  audio.init(ctx);
+  window.dispatchEvent(new Event('pointerdown'));          // the "first touch" unlock path
+  const q = 2560 / SR;                                      // 20 render quanta: suspend grid
+  const evs = script(ctx, F).sort((a, b) => a[0] - b[0]);
+  let ei = 0, genMax = 0, updMax = 0, nUpd = 0, updTot = 0;
+  for (let t = q; t < durS - q; t += q) {
+    const tt = t;
+    OFF.suspend(tt).then(() => {
+      while (ei < evs.length && evs[ei][0] <= tt + 1e-9) { evs[ei][1](); ei++; }
+      ctx.time.dt = q; ctx.time.game += q;
+      const a = performance.now(); audio.update(q); const ms = performance.now() - a;
+      updTot += ms; nUpd++; if (nUpd <= 30) genMax = Math.max(genMax, ms); else updMax = Math.max(updMax, ms);
+      OFF.resume();
+    });
+  }
+  const buf = await OFF.startRendering();
+  return { buf, cpu: { firstFramesMaxMs: +genMax.toFixed(2), steadyMaxMs: +updMax.toFixed(3), meanMs: +(updTot / nUpd).toFixed(4) } };
+}
+function mono(buf) { const a = buf.getChannelData(0), b = buf.getChannelData(1), m = new Float32Array(a.length); for (let i = 0; i < a.length; i++) m[i] = 0.5 * (a[i] + b[i]); return m; }
+function both(buf) { return [buf.getChannelData(0), buf.getChannelData(1)]; }
+function lvl2(buf, t0, t1) { const [l, r] = both(buf); const A = level(l, t0, t1), B = level(r, t0, t1); return { peakDb: Math.max(A.peakDb, B.peakDb), rmsDb: Math.max(A.rmsDb, B.rmsDb), clipped: A.clipped + B.clipped }; }
+const col = (byType) => new Int32Array(byType);
+
+window.runAll = async function () {
+  const out = {};
+  // ===== A: the moment-to-moment sequence
+  const LADDER_T = 5.0, LADDER_N = 10, LADDER_DT = 0.15;
+  const seqA = await render(30, (ctx, F) => {
+    const e = (n, p) => () => ctx.bus.emit(n, p), E = [];
+    // 0–3 s: city bed at 0 % only
+    // 3–4 s: 30 pickups per second (hands)
+    for (let i = 0; i < 30; i++) E.push([3 + i / 30, e('tool:collect', { tool: 'hands', units: 1, byType: col([1, 0, 0, 0, 0, 0]), valuable: false })]);
+    // ladder: 10 pickups 0.15 s apart (inside the 0.6 s chain window) → rising pitch
+    for (let i = 0; i < LADDER_N; i++) E.push([LADDER_T + i * LADDER_DT, e('tool:collect', { tool: 'hands', units: 1, byType: col([1, 0, 0, 0, 0, 0]) })]);
+    E.push([6.5, e('economy:sold', { pointId: 'shop', units: 40, coins: 120, by: 'player', x: 27, z: 24 })]);
+    E.push([8.0, e('economy:purchased', { id: 'broom', price: 300 })]);
+    E.push([9.5, e('economy:bagFull', { container: 'bag' })]);
+    E.push([10.5, e('trash:milestone', { index: 0, at: 0.25 })]);
+    E.push([12.0, e('trash:milestone', { index: 1, at: 0.5 })]);
+    E.push([13.5, e('trash:milestone', { index: 2, at: 0.75 })]);
+    E.push([15.0, () => { F.clean = 1; ctx.bus.emit('district:cleaned', { playS: 1000 }); }]);
+    E.push([18.5, e('economy:finalSweep', { units: 100, coins: 200 })]);
+    E.push([20.0, e('tool:collect', { tool: 'hands', units: 1, byType: col([0, 0, 0, 0, 0, 1]), valuable: true })]);
+    // 21.5–29.5: city bed at 100 % only
+    return E;
+  });
+  const A = seqA.buf, ma = mono(A);
+  out.A = {
+    cpu: seqA.cpu,
+    whole: lvl2(A, 0, 30),
+    bed0: { ...lvl2(A, 0.5, 2.9), ...bands(ma, 0.5, 2.9) },
+    bed100: { ...lvl2(A, 22, 29.5), ...bands(ma, 22, 29.5) },
+    pickups30ps: { ...lvl2(A, 3, 4.2), ...bands(ma, 3, 4.2) },
+    sale: lvl2(A, 6.5, 8), purchase: lvl2(A, 8, 9.4), thud: { ...lvl2(A, 9.5, 10), ...bands(ma, 9.5, 10) },
+    ms25: lvl2(A, 10.5, 12), ms50: lvl2(A, 12, 13.5), ms75: lvl2(A, 13.5, 15), fanfare: lvl2(A, 15, 18), gust: lvl2(A, 18.5, 20), valuable: lvl2(A, 20, 21),
+    ladderHz: Array.from({ length: LADDER_N }, (_, i) => Math.round(peakFreq(ma, LADDER_T + i * LADDER_DT + 0.03, 0.06, 400, 1500))),
+  };
+  // ===== B: worst case all at once: 30 pops/s + broom loop + cart vacuum + 4 robot hums + coin cascade + purchase + stinger
+  const seqB = await render(8, (ctx, F) => {
+    const e = (n, p) => () => ctx.bus.emit(n, p), E = [];
+    E.push([0.2, () => { F.tool = 'broom'; F.pose.speed = 2.4; F.robots = [0, 1, 2, 3].map((i) => ({ id: 'r' + i, x: 27 + (i - 1.5) * 3, z: 25, state: 'clean', load: 1, cap: 60 })); }]);
+    for (let i = 0; i < 150; i++) E.push([0.5 + i / 30, e('tool:collect', { tool: 'broom', units: 6, byType: col([3, 2, 1, 0, 0, 0]) })]);
+    for (let i = 0; i < 16; i++) E.push([0.5 + i * 0.3, e('tool:swing', { tool: 'broom', speed: 2.4 })]);
+    E.push([2.0, () => { F.pose.mounted = 'cart'; F.pose.speed = 5; ctx.bus.emit('player:mount', { vehicle: 'cart' }); }]);
+    for (let i = 0; i < 90; i++) E.push([2.1 + i / 30, e('tool:collect', { tool: 'cart', units: 20, byType: col([10, 5, 3, 1, 1, 0]) })]);
+    E.push([3.0, e('economy:sold', { coins: 2400, by: 'player', x: 27, z: 24 })]);
+    E.push([3.1, e('economy:purchased', { id: 'robot_3', price: 3000 })]);
+    E.push([3.2, e('trash:milestone', { index: 2, at: 0.75 })]);
+    for (let i = 0; i < 8; i++) E.push([3 + i * 0.2, e('economy:sold', { coins: 100, by: 'robot', x: 27 + i, z: 27 })]);
+    return E;
+  });
+  out.B = { cpu: seqB.cpu, whole: lvl2(seqB.buf, 0, 8), stress: lvl2(seqB.buf, 2, 5.5) };
+  // ===== C: sound off → silence (setEnabled), and positional pan check
+  const seqC = await render(3, (ctx, F) => [
+    [0.5, () => audio.play('coin', { x: 37, z: 27 })],            // 10 m to the east while facing north → right channel
+    [1.5, () => audio.play('coin', { x: 17, z: 27 })],            // west → left
+    [2.2, () => audio.setEnabled(false, false)],
+  ]);
+  const [cl, cr] = both(seqC.buf), L1 = level(cl, 0.5, 1.2), R1 = level(cr, 0.5, 1.2), L2 = level(cl, 1.5, 2.2), R2 = level(cr, 1.5, 2.2);
+  out.C = { eastRminusL_db: +(R1.rmsDb - L1.rmsDb).toFixed(1), westLminusR_db: +(L2.rmsDb - R2.rmsDb).toFixed(1), afterDisable: lvl2(seqC.buf, 2.6, 2.95) };
+  // keep the main sequence for a WAV + spectrogram
+  window.__wav = { sr: SR, l: Array.from(A.getChannelData(0)), r: Array.from(A.getChannelData(1)) };
+  return out;
+};
+window.genTimes = async function () {
+  OFF = new OfflineAudioContext(2, SR, SR);
+  audio = await import('/www/js/audio.js?g=' + (++modN));
+  const { ctx } = makeCtx();
+  let t = performance.now(); audio.init(ctx); const initMs = performance.now() - t;
+  t = performance.now(); window.dispatchEvent(new Event('pointerdown')); const unlockMs = performance.now() - t;
+  const names = ['pop','click','coin','thud','swish','kaching','chime','purchase','open','close','equip','chirp','crunch','robot','boost','nozzleDown','nozzleUp','rev','horn','ms1','ms2','ms3','gust','fanfare'];
+  const out = { initMs: +initMs.toFixed(1), unlockMs: +unlockMs.toFixed(1) };
+  for (const n of names) { t = performance.now(); audio.play(n); out[n] = +(performance.now() - t).toFixed(1); }
+  return out;
+};
+window.__ready = true;
+</script>
+</body></html>

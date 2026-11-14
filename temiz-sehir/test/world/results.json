@@ -1,0 +1,130 @@
+{
+ "views": {},
+ "initLog": "[world] init 132 ms, city 8230 tris, glow 564, markers 374",
+ "api": {
+  "counts": {
+   "solid": 3936,
+   "street": 6480,
+   "plaza": 1248,
+   "trash": 7728,
+   "buildings": 410,
+   "home": 24
+  },
+  "bounds": {
+   "x0": 0,
+   "z0": 0,
+   "x1": 54,
+   "z1": 54
+  },
+  "N": 108,
+  "size": 54,
+  "cell": 0.5,
+  "kind": [
+   0,
+   1,
+   0,
+   2,
+   0,
+   1,
+   0,
+   1
+  ],
+  "blocked": [
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   false
+  ],
+  "collide": [
+   [
+    24.35,
+    15,
+    true
+   ],
+   [
+    24.35,
+    15,
+    true
+   ],
+   [
+    0.35,
+    30,
+    true
+   ],
+   [
+    27,
+    27,
+    false
+   ],
+   [
+    5.7525,
+    5.7525,
+    true
+   ],
+   [
+    39,
+    7.65,
+    true
+   ],
+   [
+    53.65,
+    53.65,
+    true
+   ]
+  ],
+  "seg": [
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true
+  ],
+  "outside": [
+   2,
+   2,
+   0,
+   2
+  ],
+  "outsideMean": 2.005,
+  "outsideZero": 784,
+  "points": [
+   "spawn:39.0,17.0 r0.35 yaw3.14",
+   "shop:39.0,13.0 r2.5 yaw3.14",
+   "dropoff:3.0,51.0 r2.5 yaw1.57",
+   "dock:35.0,13.0 r0.7 yaw3.14",
+   "cartPark:39.0,20.0 r2 yaw3.14",
+   "billboard:39.0,29.7 r3 yaw0.00"
+  ],
+  "pointShop": "shop",
+  "pointNone": null,
+  "light": {
+   "sunDir": 1,
+   "sun": true,
+   "sky": true,
+   "gnd": true,
+   "fog": "cdd7dc"
+  },
+  "ground": {
+   "isTexture": true,
+   "flipY": false,
+   "mip": true,
+   "w": 1024
+  },
+  "fog": {
+   "near": 30,
+   "far": 230
+  },
+  "save": {
+   "v": 1,
+   "ev": 0
+  },
+  "buildingsInside": 0,
+  "buildingCellsNotSolid": 0
+ }
+}

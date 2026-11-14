@@ -1,0 +1,39 @@
+{
+  "errors": [],
+  "tapTargets": [],
+  "overlaps": [],
+  "perf": {},
+  "shots": [
+    "rot/01-start",
+    "rot/02-picking",
+    "rot/03-bag-full",
+    "rot/03b-indicator-side",
+    "rot/04-sale-coins",
+    "rot/05-goal-ready-shop-offer",
+    "rot/06-shop-first",
+    "rot/07-shop-bought",
+    "rot/08-midgame-hud",
+    "rot/09-shop-mid",
+    "rot/09b-shop-mid-scrolled",
+    "rot/10-mock-ad",
+    "rot/10b-shop-boost-on",
+    "rot/11-milestone-25",
+    "rot/12-milestone-50-offer",
+    "rot/13a-cart-enter-offer",
+    "rot/13b-cart-driving",
+    "rot/13c-tank-full",
+    "rot/14-stragglers",
+    "rot/15-complete",
+    "rot/15b-complete-scrolled",
+    "rot/16-pause-settings",
+    "rot/16b-reset-confirm",
+    "rot/17-settings-en",
+    "rot/17b-shop-en",
+    "rot/17c-hud-en",
+    "rot/18-away",
+    "rot/19-debug"
+  ],
+  "contract": {
+    "rot": "btn:true offer:sweep/tools btn:false"
+  }
+}
