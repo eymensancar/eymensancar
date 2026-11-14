@@ -18,6 +18,9 @@ P = {'home': ('index.html', 'en/index.html'), 'yk': ('yikim-ustasi.html', 'en/de
      'pyk': ('gizlilik-yikim-ustasi.html', 'en/privacy-demolition-master.html'),
      'psy': ('gizlilik-sayi-yolu.html', 'en/privacy-number-path.html'),
      'pky': ('gizlilik-kedi-yuvasi.html', 'en/privacy-cat-haven.html'),
+     'syk': ('destek-yikim-ustasi.html', 'en/support-demolition-master.html'),
+     'ssy': ('destek-sayi-yolu.html', 'en/support-number-path.html'),
+     'sky': ('destek-kedi-yuvasi.html', 'en/support-cat-haven.html'),
      'sfd': ('fenerli-dedektif/destek.html', 'en/fenerli-dedektif/support.html'),
      'pfd': ('fenerli-dedektif/gizlilik.html', 'en/fenerli-dedektif/privacy.html')}
 
@@ -298,7 +301,7 @@ for (k, lang), g in G.items():
   <a href="{YT}" target="_blank" rel="noopener">YouTube {ARU}</a><a href="{IG}" target="_blank" rel="noopener">Instagram {ARU}</a>
 </div></div></section>'''
     help_ = f'''<section class="sec" style="padding-top:0" aria-label="{t['support']}"><div class="wrap"><div class="biglinks rv">
-  <a href="{a('sup')}">{t['support']} {AR}</a><a href="{a(pol)}">{t['privacy']} {AR}</a>
+  <a href="{a('s' + k)}">{t['help']} {AR}</a><a href="{a(pol)}">{t['privacy']} {AR}</a>
 </div></div></section>'''
     body = f'''<section class="ghero"><div class="wrap">
   <div class="txt">
@@ -335,18 +338,13 @@ for lang in ('tr', 'en'):
     lk = lambda k: rel(me, P[k][0 if lang == 'tr' else 1])
     row = lambda ic, n, links: f'<li><img src="{I(me, ic)}" alt="" width="44" height="44"><b>{n}</b><span>' + ''.join(f'<a href="{lk(k)}">{x}</a>' for k, x in links) + '</span></li>'
     hub = (f'<div class="gamehub rv" id="{"oyunlar" if lang == "tr" else "games"}"><h2>{t["bygame"]}</h2><p>{t["bygame_p"]}</p><ul>'
-           + row('icon-yk.jpg', ykn, [('yk', t['more']), ('pyk', t['privacy'])])
-           + row('icon-sy.jpg', t['sy'], [('sy', t['more']), ('psy', t['privacy'])])
-           + row('icon-fd.jpg', t['fd'], [('sfd', t['help']), ('pfd', t['privacy'])])
-           + row('icon-ky.jpg', t['ky'], [('pky', t['privacy'])]) + '</ul></div>')
+           + ''.join(row(f'icon-{g}.jpg', t[g], [('s' + g, t['help']), ('p' + g, t['privacy'])]) for g in ('yk', 'sy', 'fd', 'ky')) + '</ul></div>')
     body = f'''<section class="doc"><div class="wrap">
   <div class="side"><h1 class="d d-l intro">{h['h1']}</h1></div>
   <div class="main">
     <p class="intro" style="--i:1">{h['intro']}</p>
     <div class="mail intro" style="--i:2;margin-top:26px"><a href="mailto:{MAIL}">{MAIL}</a><button type="button" data-copy="{MAIL}" data-done="{t['copied']}">{t['copy']}</button></div>
     {hub}
-    <div class="faqgrp rv" style="margin-top:72px"><h2><img src="{I(me,'icon-yk.jpg')}" alt="" width="40" height="40">{ykn}</h2>{det(h['yk'])}</div>
-    <div class="faqgrp rv"><h2><img src="{I(me,'icon-sy.jpg')}" alt="" width="40" height="40">{t['sy']}</h2>{det(h['sy'])}</div>
   </div>
 </div></section>
 '''
@@ -378,6 +376,6 @@ def support_one(key, lang, title, h1, intro, icon, name, faq):
 </div></section>
 '''
     page(key, lang, title, intro, body, cur='sup')
-ns2 = {'MAIL': MAIL, 'policy': policy, 'support_one': support_one}
+ns2 = {'MAIL': MAIL, 'policy': policy, 'support_one': support_one, 'SUP': SUP}
 exec(pol_src, ns2)
 print('ok')
