@@ -317,4 +317,26 @@ policy('psy', 'en', 'Privacy Policy · Number Path', 'Privacy Policy', 'Number P
   ('Ads', ['When you have no hints left, the App can show an optional promotion for our other game. It is drawn by the App itself; no ad network is used and no data is collected.']),
   ('Children', ['We do not collect personal data from anyone, including children.']),
   ('Changes and contact', [f'If we update this policy, we will change the date on this page. Questions: {ML}'])])
+GP = '<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>'
+# Kedi Yuvası: metin SunStroke5634/kedi-yuvasi deposundaki docs/gizlilik-politikasi.md ile aynı (14 Kasım 2026)
+policy('pky', 'tr', 'Gizlilik Politikası · Kedi Yuvası', 'Gizlilik Politikası', 'Kedi Yuvası · Son güncelleme: 14 Kasım 2026',
+  'Kedi Yuvası, SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games) tarafından yayımlanan bir iPhone oyunudur. Bu politika, oyunun hangi bilgileri nasıl kullandığını anlatır.', [
+  ('Bizim topladığımız bilgiler', ['Hiçbiri. Oyunda hesap, giriş, sohbet ya da kişisel bilgi isteyen bir bölüm yoktur. Oyundaki ilerlemen (yıldızlar, açılan kediler, ayarlar) yalnızca kendi cihazında saklanır ve bize gönderilmez.']),
+  ('Reklamlar', ["Oyun ücretsizdir ve Google AdMob üzerinden reklam gösterir: kaybedince isteğe bağlı “reklam izle ve devam et” ve bölüm aralarında arada bir tam ekran reklam. Reklam istekleri “çocuklara yönelik” olarak işaretlenir, içerik sınırı “Genel izleyici”dir ve reklamlar kişiselleştirilmez. Oyun, Apple'ın uygulama takibi iznini istemez ve seni uygulamalar ya da web siteleri arasında takip etmez.",
+    f"Reklam gösterebilmek için Google, cihazdan bazı teknik bilgiler alabilir: IP adresinden çıkarılan yaklaşık konum (ülke/şehir), cihaz türü ve işletim sistemi, uygulama içi reklam etkileşimleri (reklamın gösterilmesi, tıklanması) ve hata/performans bilgileri. Bu bilgiler Google'ın gizlilik politikasına tabidir: {GP} ve {GL}",
+    "Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'de reklamlardan önce Google'ın izin formu gösterilir; tercihini oyunun Ayarlar bölümündeki “Gizlilik seçenekleri” ile istediğin zaman değiştirebilirsin."]),
+  ('Çocuklar', ['Oyun her yaştan oyuncu içindir. Çocuklardan bilerek kişisel bilgi toplamayız. Reklam ayarları çocuklara uygun olacak şekilde yapılmıştır.']),
+  ('İnternet bağlantısı', ['Oyun internetsiz oynanabilir; internet yalnızca reklamlar için kullanılır.']),
+  ('Değişiklikler', ['Bu politikayı değiştirirsek güncel hâlini bu sayfada yayımlarız.']),
+  ('İletişim', [ML])])
+policy('pky', 'en', 'Privacy Policy · Cat Haven', 'Privacy Policy', 'Cat Haven (Kedi Yuvası) · Last updated: 14 November 2026',
+  'Cat Haven is an iPhone game published by SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games). This policy explains what information the game uses and how.', [
+  ('Information we collect', ['None. The game has no accounts, no login, no chat and never asks for personal information. Your progress (stars, unlocked cats, settings) is stored only on your device and is never sent to us.']),
+  ('Ads', ["The game is free and shows ads through Google AdMob: an optional “watch an ad to continue” after losing a level, and an occasional full-screen ad between levels. Ad requests are tagged as child-directed, limited to content suitable for general audiences, and are not personalized. The game does not ask for Apple's App Tracking Transparency permission and does not track you across apps or websites.",
+    f"To show ads, Google may receive some technical information from the device: approximate location derived from the IP address (country/city), device type and operating system, ad interactions in the app (ad shown, ad tapped) and crash/performance information. This information is subject to Google's privacy policy: {GP} and {GL}",
+    "In the European Economic Area, the United Kingdom and Switzerland, Google's consent form is shown before ads; you can change your choice at any time with “Privacy options” in the game's Settings."]),
+  ('Children', ['The game is for players of all ages. We do not knowingly collect personal information from children. The ad settings are configured to be appropriate for children.']),
+  ('Internet connection', ['The game can be played offline; the internet is used only for ads.']),
+  ('Changes', ['If we change this policy, we will publish the updated version on this page.']),
+  ('Contact', [ML])])
 print('ok')
