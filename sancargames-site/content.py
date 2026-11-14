@@ -339,4 +339,32 @@ policy('pky', 'en', 'Privacy Policy · Cat Haven', 'Privacy Policy', 'Cat Haven 
   ('Internet connection', ['The game can be played offline; the internet is used only for ads.']),
   ('Changes', ['If we change this policy, we will publish the updated version on this page.']),
   ('Contact', [ML])])
+GA = '<a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a>'
+# Fenerli Dedektif: metinler SunStroke5634/fenerli-dedektif deposundaki docs/SITE_METINLERI.md ile aynı (14 Kasım 2026)
+support_one('sfd', 'tr', 'Yardım · Fenerli Dedektif', 'Yardım', 'Fenerli Dedektif, 7–11 yaş çocuklar ve aileler için karanlık odalarda ipucu toplanan bir dedektif bulmaca oyunudur.', 'icon-fd.jpg', 'Fenerli Dedektif', [
+  ('Takıldım, ne yapmalıyım?', "Odadaki 💡 düğmesine dokun; o odanın ipucu çıkar. Davalarda soruları cevaplarken 📓 Dedektif Defteri'ne bakmayı unutma: cevap her zaman ipuçlarını birleştirince bulunur."),
+  ('Ses gelmiyor.', "Telefonun sessiz modda olmadığından ve ses düzeyinin açık olduğundan emin ol. Ayarlar'da “Sesli anlatım” açık olmalı."),
+  ('İlerlemem kayboldu mu?', 'İlerleme telefonda saklanır. Uygulamayı silmek ilerlemeyi de siler.')])
+support_one('sfd', 'en', 'Help · Lantern Detective', 'Help', 'Lantern Detective is a detective puzzle game for children aged 7–11 and their families: collect clues in dark rooms with your lantern and solve the mystery.', 'icon-fd.jpg', 'Lantern Detective', [
+  ("I'm stuck. What should I do?", "Tap the 💡 button in the room to see that room's hint. When answering a case's questions, check your 📓 Detective Notebook: every answer comes from putting the clues together."),
+  ("There's no sound.", "Make sure the phone isn't in silent mode and the volume is up. “Narration” must be on in Settings."),
+  ('Did I lose my progress?', 'Progress is stored on the phone. Deleting the app also deletes the progress.')])
+policy('pfd', 'tr', 'Gizlilik Politikası · Fenerli Dedektif', 'Gizlilik Politikası', 'Fenerli Dedektif · Son güncelleme: Kasım 2026',
+  "Fenerli Dedektif'i SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games) geliştirir. Oyun çocuklar için tasarlandı ve gizliliği buna göre kurduk.", [
+  ('Topladığımız bilgiler', ['Biz hiçbir kişisel bilgi toplamayız. Hesap, giriş, ad, e-posta, konum, fotoğraf ya da mikrofon kullanılmaz. Oyun ilerlemesi (açılan odalar, yıldızlar, ayarlar) yalnızca senin cihazında saklanır ve bize gönderilmez. Oyunda analiz (istatistik) aracı yoktur.']),
+  ('Reklamlar', [f"Oyun ücretsizdir; reklamları Google AdMob gösterir. Reklam isteklerini çocuklara yönelik olarak işaretleriz (“çocuğa yönelik içerik” ve “rıza yaşının altındaki kullanıcı” ayarları açıktır), yalnızca genel izleyiciye uygun reklamlara izin veririz ve reklamlar kişiselleştirilmez. Uygulama, Apple'ın uygulamalar arası takip iznini istemez ve reklam kimliğine (IDFA) erişmez. Google, reklamı gösterebilmek ve kötüye kullanımı önlemek için cihaz türü, işletim sistemi sürümü ve yaklaşık ülke gibi sınırlı teknik bilgileri işleyebilir; ayrıntılar: {GA}"]),
+  ('Satın alma ve bağlantılar', ['Oyunda satın alma yoktur. Oyun dışına çıkan bağlantılar bir ebeveyn kapısının (yetişkinlerin cevaplayabileceği bir soru) arkasındadır.']),
+  ('Sesli anlatım', ['Türkçe ve İngilizce anlatım sesleri uygulamanın içindedir; diğer dillerde cihazın kendi konuşma özelliği kullanılır. Ses kaydı yapılmaz.']),
+  ('Çocukların gizliliği', ['Bilerek çocuklardan kişisel bilgi toplamayız. Bir ebeveyn olarak sorunuz varsa bize yazın.']),
+  ('Değişiklikler', ['Bu politika değişirse bu sayfayı güncelleriz.']),
+  ('İletişim', [ML])])
+policy('pfd', 'en', 'Privacy Policy · Lantern Detective', 'Privacy Policy', 'Lantern Detective · Last updated: November 2026',
+  'Lantern Detective is developed by SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games). The game is designed for children, and its privacy setup follows from that.', [
+  ('Information we collect', ['We do not collect any personal information. There is no account or login, and the game does not use your name, email, location, photos or microphone. Game progress (unlocked rooms, stars, settings) is stored only on your device and is never sent to us. The game contains no analytics tools.']),
+  ('Ads', [f"The game is free; ads are shown by Google AdMob. We mark ad requests as child-directed (“tag for child-directed treatment” and “tag for under age of consent” are on), allow only ads suitable for general audiences, and ads are not personalized. The app does not request Apple's App Tracking Transparency permission and does not access the advertising identifier (IDFA). To show an ad and prevent abuse, Google may process limited technical information such as device type, operating system version and approximate country; details: {GA}"]),
+  ('Purchases and links', ['The game has no in-app purchases. Links that leave the game are behind a parental gate (a question for grown-ups).']),
+  ('Narration', ["Turkish and English narration audio is bundled in the app; other languages use the device's built-in text-to-speech. Nothing is recorded."]),
+  ("Children's privacy", ['We do not knowingly collect personal information from children. Parents with questions can contact us.']),
+  ('Changes', ['If this policy changes, we will update this page.']),
+  ('Contact', [ML])])
 print('ok')

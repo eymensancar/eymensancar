@@ -17,7 +17,9 @@ P = {'home': ('index.html', 'en/index.html'), 'yk': ('yikim-ustasi.html', 'en/de
      'sy': ('sayi-yolu.html', 'en/number-path.html'), 'sup': ('destek.html', 'en/support.html'),
      'pyk': ('gizlilik-yikim-ustasi.html', 'en/privacy-demolition-master.html'),
      'psy': ('gizlilik-sayi-yolu.html', 'en/privacy-number-path.html'),
-     'pky': ('gizlilik-kedi-yuvasi.html', 'en/privacy-cat-haven.html')}
+     'pky': ('gizlilik-kedi-yuvasi.html', 'en/privacy-cat-haven.html'),
+     'sfd': ('fenerli-dedektif/destek.html', 'en/fenerli-dedektif/support.html'),
+     'pfd': ('fenerli-dedektif/gizlilik.html', 'en/fenerli-dedektif/privacy.html')}
 
 def rel(frm, to):
     r = os.path.relpath(os.path.join(OUT, to), os.path.dirname(os.path.join(OUT, frm))).replace(os.sep, '/')
@@ -351,6 +353,20 @@ def policy(key, lang, title, h1, meta, intro, secs):
 </div></section>
 '''
     page(key, lang, title, intro, body)
-ns2 = {'MAIL': MAIL, 'policy': policy}
+def support_one(key, lang, title, h1, intro, icon, name, faq):
+    # tek oyunun destek sayfası (ortak Destek sayfasıyla aynı düzen): giriş, posta, sık sorulanlar
+    t = L[lang]; me = P[key][0 if lang == 'tr' else 1]
+    det = ''.join(f'<details><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{x}</p></div></details>' for q, x in faq)
+    body = f'''<section class="doc"><div class="wrap">
+  <div class="side"><h1 class="d d-l intro">{h1}</h1></div>
+  <div class="main">
+    <p class="intro" style="--i:1">{intro}</p>
+    <div class="mail intro" style="--i:2;margin-top:26px"><a href="mailto:{MAIL}">{MAIL}</a><button type="button" data-copy="{MAIL}" data-done="{t['copied']}">{t['copy']}</button></div>
+    <div class="faqgrp rv" style="margin-top:72px"><h2><img src="{I(me, icon)}" alt="" width="40" height="40">{name}</h2>{det}</div>
+  </div>
+</div></section>
+'''
+    page(key, lang, title, intro, body, cur='sup')
+ns2 = {'MAIL': MAIL, 'policy': policy, 'support_one': support_one}
 exec(pol_src, ns2)
 print('ok')
