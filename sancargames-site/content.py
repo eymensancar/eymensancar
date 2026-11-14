@@ -272,75 +272,172 @@ def policy(key, lang, title, h1, meta, intro, secs):
     page(key, lang, title, intro, body)
 
 GL = '<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>'
-ML = f'<a href="mailto:{MAIL}">{MAIL}</a>'
-policy('pyk', 'tr', 'Gizlilik Politikası · Yıkım Ustası', 'Gizlilik Politikası', 'Yıkım Ustası · Son güncelleme: 8 Kasım 2026 (1.0.1 sürümünden itibaren)',
-  'Bu metin, Yıkım Ustası (“Uygulama”) oyununu oynarken hangi bilgilerin nerede tutulduğunu anlatır.', [
-  ('Bizim topladığımız veriler', ['Uygulama hesap açmanı istemez; adın, e-postan, rehberin ya da konumun gibi kişisel bilgilerin toplanmaz ve bizim bir sunucumuz yoktur.']),
-  ('Kullanım istatistikleri ve hata raporları', ["Oyunu iyileştirmek için Google'ın Firebase Analytics ve Firebase Crashlytics hizmetlerini kullanırız. Analytics, oyunun nasıl oynandığını gösteren olayları kaydeder: oyunun ilk açılışı, oturum süresi, bir bölümün başlaması, bitmesi ya da süre dolması, ödüllü reklam izlenmesi ve satın alma yapılması gibi. Crashlytics, oyun çöktüğünde ya da bir hata oluştuğunda cihaz modeli, iOS sürümü ve hatanın teknik ayrıntılarını içeren bir rapor gönderir.", "Bu veriler, Firebase'in uygulamaya özel rastgele oluşturduğu bir kurulum kimliğiyle gruplanır. Adınla, Apple kimliğinle ya da reklam kimliğinle (IDFA) ilişkilendirilmez, izleme veya reklam kişiselleştirme için kullanılmaz ve yalnızca toplu olarak, oyunu iyileştirmek için incelenir. Uygulamayı silmek bu kurulum kimliğini de siler. Google'ın bu verileri nasıl işlediği: <a href=\"https://firebase.google.com/support/privacy\" target=\"_blank\" rel=\"noopener\">firebase.google.com/support/privacy</a>."]),
-  ("Cihazında ve iCloud'unda saklananlar", ["Oyun ilerlemen (bölüm, altın, makineler, kozmetikler, ses ve titreşim tercihleri) cihazında saklanır. Telefon değiştirdiğinde kaldığın yerden devam edebilmen için bir kopyası Apple'ın iCloud hizmetinde, kendi Apple kimliğine ait alanda tutulur. Bu kopyayı biz göremeyiz. iCloud'u iPhone Ayarlar'ından kapatabilirsin."]),
-  ('Game Center', ["Uygulama Apple Game Center'da oturum açmanı isteyebilir. Oturum tamamen Apple tarafından yönetilir; Game Center hesap bilgilerin bize iletilmez."]),
-  ('Reklamlar', [f"Uygulamada Google'ın AdMob hizmeti üzerinden reklam gösterilebilir. Ödüllü reklamlar (örneğin ek süre ya da ek altın karşılığında izlenenler) tamamen isteğe bağlıdır. Reklam göstermek, sahtekârlığı önlemek ve reklamların performansını ölçmek için Google cihazından şu bilgileri toplayabilir: IP adresi, yaklaşık konum, cihaz modeli ve işletim sistemi, reklam etkileşimleri ve yalnızca izin verirsen Apple reklam kimliği (IDFA). Uygulama bu izni Apple'ın “Uygulama İzleme Şeffaflığı” penceresiyle sorar. İzin vermezsen reklamlar yine gösterilir ama kişiselleştirilmez. Bu izni istediğin zaman Ayarlar → Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin. Google'ın bu verileri nasıl kullandığı: {GL}.", '“Reklamsız” ya da onu içeren bir paket satın alırsan geçiş reklamları gösterilmez.']),
-  ('Uygulama içi satın almalar', ['Satın almalar tamamen Apple tarafından App Store üzerinden işlenir. Ödeme bilgilerini biz görmeyiz; Uygulama yalnızca neyi satın aldığını öğrenir ki içeriği açabilsin.']),
-  ('Çocuklar', ['Biz çocuklar dahil kimseden kişisel veri toplamayız. Bir ebeveyn olarak çocuğunla ilgili bir sorun olduğunu düşünüyorsan bize yaz.']),
-  ('Hakların', ['Seni tanımlayan bir kayıt tutmuyoruz. Kullanım istatistikleri ve hata raporları kimliğinle eşleşmez; uygulamayı silmek kurulum kimliğini sıfırlar. Avrupa Ekonomik Alanı ve Birleşik Krallık\'ta reklam onayını oyunun Ayarlar → Gizlilik seçenekleri bölümünden istediğin zaman değiştirebilirsin. KVKK veya GDPR kapsamındaki taleplerin ve soruların için bize yazabilirsin.']),
-  ('Değişiklikler', ['Bu politikayı güncellersek tarihini bu sayfada değiştiririz.']),
-  ('İletişim', [ML])])
-policy('pyk', 'en', 'Privacy Policy · Demolition Master', 'Privacy Policy', 'Demolition Master: Tower Blast · Last updated: 8 November 2026 (from version 1.0.1)',
-  'This policy explains what information is kept where while you play Demolition Master (the “App”).', [
-  ('Data we collect', ['The App does not ask you to create an account. Personal information such as your name, email, contacts or location is never collected, and we run no servers.']),
-  ('Usage statistics and crash reports', ["To improve the game we use Google's Firebase Analytics and Firebase Crashlytics. Analytics records events that show how the game is played, such as the first launch, session length, a level starting, being completed or running out of time, a rewarded ad being watched and a purchase being made. When the game crashes or an error occurs, Crashlytics sends a report with the device model, iOS version and technical details of the error.", "This data is grouped by a random installation ID that Firebase creates for the App. It is not linked to your name, your Apple ID or your advertising identifier (IDFA), it is not used for tracking or ad personalisation, and we only review it in aggregate to improve the game. Deleting the App also deletes this installation ID. How Google processes this data: <a href=\"https://firebase.google.com/support/privacy\" target=\"_blank\" rel=\"noopener\">firebase.google.com/support/privacy</a>."]),
-  ('What is stored on your device and in your iCloud', ["Your game progress (levels, gold, machines, cosmetics, sound and vibration settings) is stored on your device. So you can continue on a new phone, a copy is kept in Apple's iCloud, in the space that belongs to your own Apple ID. We cannot see this copy. You can turn iCloud off in the iPhone Settings."]),
-  ('Game Center', ['The App may ask you to sign in to Apple Game Center. Sign-in is handled entirely by Apple; your Game Center account details are not shared with us.']),
-  ('Advertising', [f"The App may show ads served by Google AdMob. Rewarded ads (watched for extra time or extra gold, for example) are always optional. To serve ads, prevent fraud and measure ad performance, Google may collect from your device: IP address, approximate location, device model and operating system, ad interactions and, only if you allow it, Apple's advertising identifier (IDFA). The App asks for this permission through Apple's App Tracking Transparency prompt. If you decline, you still see ads, but they are not personalised. You can change this at any time in Settings → Privacy & Security → Tracking. How Google uses this data: {GL}.", 'If you buy “No Ads” or a pack that includes it, interstitial ads are no longer shown.']),
-  ('In-app purchases', ['Purchases are processed entirely by Apple through the App Store. We never see your payment details; the App only learns what you bought so it can unlock it.']),
-  ('Children', ['We do not collect personal data from anyone, including children. If you are a parent and believe there is a problem regarding your child, please contact us.']),
-  ('Your rights', ['We keep no record that identifies you. Usage statistics and crash reports are not matched to your identity, and deleting the App resets the installation ID. In the European Economic Area and the United Kingdom you can change your ad consent at any time in the game under Settings → Privacy options. For GDPR or similar requests and any questions, write to us.']),
-  ('Changes', ['If we update this policy, we will change the date on this page.']),
-  ('Contact', [ML])])
-policy('psy', 'tr', 'Gizlilik Politikası · Sayı Yolu', 'Gizlilik Politikası', 'Sayı Yolu · Son güncelleme: 8 Kasım 2026',
-  "Bu metin, Sayı Yolu'nu (“Uygulama”) oynarken hangi bilginin nerede tutulduğunu anlatır.", [
-  ('Hesap yok, kişisel veri yok', ['Uygulama hesap açmanızı istemez. Adınız, e-postanız, rehberiniz, konumunuz ya da başka bir kişisel bilginiz toplanmaz.']),
-  ('Cihazınızda tutulanlar', ['İlerlemeniz (bölümler, yıldızlar, en iyi süreler, günlük bulmaca serisi, ipuçları ve ayarlar) yalnız cihazınızda tutulur.']),
-  ('Anonim kullanım sayıları', ['Hangi bölümlerin fazla zor olduğunu ve oyuncuların geri dönüp dönmediğini öğrenmek için Uygulama anonim, toplu sayılar gönderir; örneğin “12. bölüm başladı”, “12. bölüm 48 saniyede bitti”, “günlük bulmaca çözüldü”, “ipucu kullanıldı”. Her pakette yalnız uygulama sürümü, uygulama dili ve kurulum günü bulunur. Hiçbir kimlik yoktur (reklam kimliği, cihaz kimliği, hesap yok); bu yüzden sayılar size ya da cihazınıza bağlanamaz, izleme ya da reklam için kullanılmaz. Yalnız bizim okuyabildiğimiz bir tabloda durur ve yalnız oyunu iyileştirmek için kullanılır.']),
-  ('Game Center', ["Uygulama başarımlar ve sıralamalar için Apple Game Center'a giriş isteyebilir. Giriş, skorlar ve başarımlar tamamen Apple tarafından yönetilir; Game Center hesap bilgileriniz bizimle paylaşılmaz."]),
-  ('Hatırlatmalar', ["Bildirimlere izin verirseniz Uygulama (örneğin günlük bulmaca için) hatırlatmaları cihazınızda planlar. Hatırlatmalar iPhone'un kendisinde oluşturulur, hiçbir sunucuya bir şey gönderilmez. Uygulamanın ayarlarından ya da iPhone Ayarlar'dan kapatabilirsiniz."]),
-  ('Reklam', ['İpucunuz kalmadığında Uygulama isteğe bağlı olarak diğer oyunumuzun tanıtımını gösterebilir. Tanıtımı Uygulama kendisi çizer; reklam ağı kullanılmaz, veri toplanmaz.']),
-  ('Çocuklar', ['Çocuklar dahil kimseden kişisel veri toplamıyoruz.']),
-  ('Değişiklikler ve iletişim', [f'Bu metni güncellersek bu sayfadaki tarihi değiştiririz. Sorular: {ML}'])])
-policy('psy', 'en', 'Privacy Policy · Number Path', 'Privacy Policy', 'Number Path · Last updated: 8 November 2026',
-  'This policy explains what information is kept where while you play Number Path (the “App”).', [
-  ('No account, no personal data', ['The App does not ask you to create an account. Your name, email, contacts, location or any other personal information are never collected.']),
-  ('What is stored on your device', ['Your progress (levels, stars, best times, daily puzzle streak, hints and settings) is stored only on your device.']),
-  ('Anonymous usage statistics', ['To learn which levels are too hard and whether players come back, the App sends anonymous, aggregated counts, for example “level 12 started”, “level 12 finished in 48 seconds”, “daily puzzle solved”, “a hint was used”. Each batch carries only the app version, the app language and the date the App was installed. There is no identifier of any kind (no advertising ID, no device ID, no account), so the counts cannot be linked to you or to your device, and they are not used for tracking or advertising. They are stored in a spreadsheet only we can read and are used only to improve the game.']),
-  ('Game Center', ['The App may ask you to sign in to Apple Game Center for achievements and leaderboards. Sign-in, scores and achievements are handled entirely by Apple; your Game Center account details are not shared with us.']),
-  ('Reminders', ["If you allow notifications, the App schedules reminders (for example for the daily puzzle) on your device. They are created on the iPhone itself; nothing is sent to a server. You can turn them off in the App's settings or in iPhone Settings."]),
-  ('Ads', ['When you have no hints left, the App can show an optional promotion for our other game. It is drawn by the App itself; no ad network is used and no data is collected.']),
-  ('Children', ['We do not collect personal data from anyone, including children.']),
-  ('Changes and contact', [f'If we update this policy, we will change the date on this page. Questions: {ML}'])])
 GP = '<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>'
-# Kedi Yuvası: metin SunStroke5634/kedi-yuvasi deposundaki docs/gizlilik-politikasi.md ile aynı (14 Kasım 2026)
-policy('pky', 'tr', 'Gizlilik Politikası · Kedi Yuvası', 'Gizlilik Politikası', 'Kedi Yuvası · Son güncelleme: 14 Kasım 2026',
-  'Kedi Yuvası, SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games) tarafından yayımlanan bir iPhone oyunudur. Bu politika, oyunun hangi bilgileri nasıl kullandığını anlatır.', [
-  ('Bizim topladığımız bilgiler', ['Hiçbiri. Oyunda hesap, giriş, sohbet ya da kişisel bilgi isteyen bir bölüm yoktur. Oyundaki ilerlemen (yıldızlar, açılan kediler, ayarlar) yalnızca kendi cihazında saklanır ve bize gönderilmez.']),
-  ('Reklamlar', ["Oyun ücretsizdir ve Google AdMob üzerinden reklam gösterir: kaybedince isteğe bağlı “reklam izle ve devam et” ve bölüm aralarında arada bir tam ekran reklam. Reklam istekleri “çocuklara yönelik” olarak işaretlenir, içerik sınırı “Genel izleyici”dir ve reklamlar kişiselleştirilmez. Oyun, Apple'ın uygulama takibi iznini istemez ve seni uygulamalar ya da web siteleri arasında takip etmez.",
-    f"Reklam gösterebilmek için Google, cihazdan bazı teknik bilgiler alabilir: IP adresinden çıkarılan yaklaşık konum (ülke/şehir), cihaz türü ve işletim sistemi, uygulama içi reklam etkileşimleri (reklamın gösterilmesi, tıklanması) ve hata/performans bilgileri. Bu bilgiler Google'ın gizlilik politikasına tabidir: {GP} ve {GL}",
-    "Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'de reklamlardan önce Google'ın izin formu gösterilir; tercihini oyunun Ayarlar bölümündeki “Gizlilik seçenekleri” ile istediğin zaman değiştirebilirsin."]),
-  ('Çocuklar', ['Oyun her yaştan oyuncu içindir. Çocuklardan bilerek kişisel bilgi toplamayız. Reklam ayarları çocuklara uygun olacak şekilde yapılmıştır.']),
-  ('İnternet bağlantısı', ['Oyun internetsiz oynanabilir; internet yalnızca reklamlar için kullanılır.']),
-  ('Değişiklikler', ['Bu politikayı değiştirirsek güncel hâlini bu sayfada yayımlarız.']),
-  ('İletişim', [ML])])
-policy('pky', 'en', 'Privacy Policy · Cat Haven', 'Privacy Policy', 'Cat Haven (Kedi Yuvası) · Last updated: 14 November 2026',
-  'Cat Haven is an iPhone game published by SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games). This policy explains what information the game uses and how.', [
-  ('Information we collect', ['None. The game has no accounts, no login, no chat and never asks for personal information. Your progress (stars, unlocked cats, settings) is stored only on your device and is never sent to us.']),
-  ('Ads', ["The game is free and shows ads through Google AdMob: an optional “watch an ad to continue” after losing a level, and an occasional full-screen ad between levels. Ad requests are tagged as child-directed, limited to content suitable for general audiences, and are not personalized. The game does not ask for Apple's App Tracking Transparency permission and does not track you across apps or websites.",
-    f"To show ads, Google may receive some technical information from the device: approximate location derived from the IP address (country/city), device type and operating system, ad interactions in the app (ad shown, ad tapped) and crash/performance information. This information is subject to Google's privacy policy: {GP} and {GL}",
-    "In the European Economic Area, the United Kingdom and Switzerland, Google's consent form is shown before ads; you can change your choice at any time with “Privacy options” in the game's Settings."]),
-  ('Children', ['The game is for players of all ages. We do not knowingly collect personal information from children. The ad settings are configured to be appropriate for children.']),
-  ('Internet connection', ['The game can be played offline; the internet is used only for ads.']),
-  ('Changes', ['If we change this policy, we will publish the updated version on this page.']),
-  ('Contact', [ML])])
-GA = '<a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a>'
-# Fenerli Dedektif: metinler SunStroke5634/fenerli-dedektif deposundaki docs/SITE_METINLERI.md ile aynı (14 Kasım 2026)
+FB = '<a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>'
+ML = f'<a href="mailto:{MAIL}">{MAIL}</a>'
+
+# ---------------- Gizlilik: dört oyun, tek kalıp ----------------
+# Her metin aynı on başlıkla, aynı sırayla yazılır; yalnız oyuna özgü cümleler değişir.
+# Buradaki her cümle oyunun kodundan doğrulandı (14 Kasım 2026). Oyunda reklam, ölçüm, izin ya da
+# satın alma değişirse ÖNCE bu metin güncellenir. Sayı Yolu yayınlanacak hâline göre yazıldı (Eymen, 14 Kasım):
+# AdMob oraya bu metne uyacak biçimde kurulur (kişiselleştirme yok, takip izni sorulmaz, AB'de onay formu).
+POL_DATE = {'tr': '14 Kasım 2026', 'en': '14 November 2026'}
+POL_H = {
+ 'tr': ['Bizim topladığımız bilgiler', 'Cihazında saklananlar', 'Reklamlar', 'İstatistikler ve hata raporları', 'İzinler ve Apple hizmetleri',
+        'Satın almalar ve dış bağlantılar', 'Çocuklar', 'Hakların', 'Değişiklikler', 'İletişim'],
+ 'en': ['Information we collect', 'What is stored on your device', 'Ads', 'Statistics and crash reports', 'Permissions and Apple services',
+        'Purchases and external links', 'Children', 'Your rights', 'Changes', 'Contact'],
+}
+G_TECH = {
+ 'tr': f"Reklamı gösterebilmek, kötüye kullanımı önlemek ve reklamları ölçmek için Google cihazdan bazı teknik bilgiler alabilir: IP adresi ve ondan çıkarılan yaklaşık konum (ülke/şehir), cihaz türü ve işletim sistemi, reklam etkileşimleri (gösterim, tıklama) ve hata/performans bilgileri{{idfa}}. Bu bilgileri Google kendi gizlilik politikasına göre işler: {GP} ve {GL}.",
+ 'en': f"To show ads, prevent abuse and measure ads, Google may receive some technical information from the device: IP address and the approximate location derived from it (country/city), device type and operating system, ad interactions (impressions, clicks) and error/performance information{{idfa}}. Google processes this information under its own privacy policy: {GP} and {GL}.",
+}
+UMP = {
+ 'tr': "Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'de reklamlardan önce Google'ın onay formu gösterilir; tercihini oyunun Ayarlar bölümündeki “Gizlilik seçenekleri” ile istediğin zaman değiştirebilirsin.",
+ 'en': "In the European Economic Area, the United Kingdom and Switzerland, Google's consent form is shown before ads; you can change your choice at any time under “Privacy options” in the game's Settings.",
+}
+NO_TRACK = {
+ 'tr': "Reklamlar kişiselleştirilmez. Oyun, Apple'ın uygulamalar arası takip iznini istemez ve seni uygulamalar ya da web siteleri arasında takip etmez.",
+ 'en': "Ads are not personalised. The game does not ask for Apple's app tracking permission and does not track you across apps or websites.",
+}
+KIDS = {
+ 'tr': 'Çocuklar dahil kimseden bilerek kişisel bilgi toplamayız. Bir ebeveyn olarak sorun ya da endişen varsa bize yaz.',
+ 'en': 'We do not knowingly collect personal information from anyone, including children. If you are a parent and have a question or concern, write to us.',
+}
+RIGHTS = {
+ 'tr': 'Seni tanımlayan bir kayıt tutmuyoruz; bu yüzden elimizde sana ait gösterebileceğimiz ya da silebileceğimiz bir kişisel veri yoktur. Cihazındaki oyun verisini uygulamayı silerek kaldırabilirsin. KVKK, GDPR ya da benzeri yasalar kapsamındaki soru ve taleplerin için bize yazabilirsin.',
+ 'en': 'We keep no record that identifies you, so we hold no personal data of yours that we could show or delete. You can remove the game data on your device by deleting the app. For questions and requests under GDPR, KVKK or similar laws, write to us.',
+}
+CHG = {'tr': 'Bu politikayı değiştirirsek güncel hâlini ve yeni tarihi bu sayfada yayımlarız.', 'en': 'If we change this policy, we publish the current version and the new date on this page.'}
+INTRO = {
+ 'tr': '{n}, SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games) tarafından yayımlanan bir iPhone oyunudur. Bu politika, oyunun hangi bilgileri nasıl kullandığını anlatır.',
+ 'en': '{n} is an iPhone game published by SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games). This policy explains what information the game uses and how.',
+}
+def pol(key, names, d):
+    for lang in ('tr', 'en'):
+        n = names[lang]; x = d[lang]
+        secs = [x['we'], x['dev'], x['ads'], x['stat'], x['perm'], x['buy'], [KIDS[lang]] + x.get('kids', []), [RIGHTS[lang]] + x.get('rights', []), [CHG[lang]], [ML]]
+        tt = ('Gizlilik Politikası', 'Son güncelleme') if lang == 'tr' else ('Privacy Policy', 'Last updated')
+        policy(key, lang, f'{tt[0]} · {n}', tt[0], f'{n} · {tt[1]}: {POL_DATE[lang]}', INTRO[lang].format(n=n), list(zip(POL_H[lang], secs)))
+
+# --- Yıkım Ustası: AdMob (takip izni + onay formu), Firebase Analytics/Crashlytics, iCloud, Game Center, bildirim, satın alma
+pol('pyk', {'tr': 'Yıkım Ustası', 'en': 'Demolition Master'}, {
+ 'tr': dict(
+  we=['Kişisel bilgi toplamayız. Oyunda hesap, giriş ya da sohbet yoktur; adın, e-postan, rehberin ya da konumun istenmez. Bize ulaşan tek veri, aşağıda anlatılan ve kimliğinle eşleşmeyen kullanım istatistikleri ile hata raporlarıdır.',
+      "Kampanya kodu: oyuna bir kampanya kodu girersen, aynı kod ikinci kez kullanılamasın diye kodun kullanıldığı Google'ın Firebase hizmetindeki veritabanımıza kaydedilir. Kayıtta yalnızca kodun parmak izi ve kullanım zamanı bulunur; sana ya da cihazına ait bir bilgi bulunmaz."],
+  dev=["Oyundaki ilerlemen (bölümler, altın, makineler, kozmetikler, ses ve titreşim tercihleri) cihazında saklanır. Telefon değiştirdiğinde kaldığın yerden devam edebilmen için bir kopyası Apple'ın iCloud hizmetinde, kendi Apple kimliğine ait alanda tutulur. Bu kopyayı biz göremeyiz. iCloud'u iPhone Ayarlar'ından kapatabilirsin."],
+  ads=['Oyun, Google AdMob üzerinden reklam gösterir: isteğe bağlı ödüllü reklamlar (örneğin ek süre ya da ek altın karşılığında) ve arada bir tam ekran geçiş reklamı. “Reklamsız” ya da onu içeren bir paket satın alırsan geçiş reklamları gösterilmez.',
+       "Oyun, Apple'ın “Uygulama İzleme Şeffaflığı” penceresiyle takip izni sorar. İzin verirsen reklamlar ilgi alanlarına göre kişiselleştirilebilir; vermezsen reklamlar yine gösterilir ama kişiselleştirilmez. Bu izni istediğin zaman iPhone Ayarlar → Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin.",
+       G_TECH['tr'].format(idfa=' ve yalnızca takip iznini verirsen Apple reklam kimliği (IDFA)'), UMP['tr']],
+  stat=["1.0.1 sürümünden itibaren oyunu iyileştirmek için Google'ın Firebase Analytics ve Firebase Crashlytics hizmetlerini kullanırız. Analytics, oyunun nasıl oynandığını gösteren olayları kaydeder: oyunun ilk açılışı, oturum süresi, bir bölümün başlaması, bitmesi ya da süre dolması, ödüllü reklam izlenmesi ve satın alma yapılması gibi. Crashlytics, oyun çöktüğünde ya da bir hata oluştuğunda cihaz modeli, iOS sürümü ve hatanın teknik ayrıntılarını içeren bir rapor gönderir.",
+        f"Bu veriler, Firebase'in uygulamaya özel rastgele oluşturduğu bir kurulum kimliğiyle gruplanır. Adınla, Apple kimliğinle ya da reklam kimliğinle (IDFA) ilişkilendirilmez, takip ya da reklam kişiselleştirme için kullanılmaz ve yalnızca toplu olarak, oyunu iyileştirmek için incelenir. Uygulamayı silmek bu kurulum kimliğini de siler. Google'ın bu verileri nasıl işlediği: {FB}."],
+  perm=["Takip izni: yukarıda “Reklamlar” bölümünde anlatıldı.", "Game Center: oyun Apple Game Center'da oturum açmanı isteyebilir. Oturum tamamen Apple tarafından yönetilir; Game Center hesap bilgilerin bize iletilmez.",
+        "Bildirimler: izin verirsen oyun hatırlatmaları cihazında planlar. Hatırlatmalar iPhone'un kendisinde oluşturulur; bunun için hiçbir sunucuya bilgi gönderilmez. iPhone Ayarlar → Bildirimler bölümünden kapatabilirsin.",
+        'Oyun kamera, mikrofon, fotoğraf, rehber ya da konum izni istemez.'],
+  buy=["Oyunda uygulama içi satın alma vardır. Satın almalar tamamen Apple tarafından App Store üzerinden işlenir. Ödeme bilgilerini biz görmeyiz; oyun yalnızca neyi satın aldığını öğrenir ki içeriği açabilsin.", "Oyundaki bağlantılar App Store'u, bu sitedeki destek sayfasını, YouTube ve Instagram sayfalarımızı ya da iPhone'un paylaşım penceresini açabilir; bu hizmetler kendi gizlilik kurallarına tabidir."],
+  rights=['Kullanım istatistikleri ve hata raporları kimliğinle eşleşmez; uygulamayı silmek kurulum kimliğini sıfırlar.']),
+ 'en': dict(
+  we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The only data that reaches us is the usage statistics and crash reports described below, which are not matched to your identity.',
+      "Promo codes: if you enter a promo code in the game, the fact that the code has been used is recorded in our database on Google's Firebase service so the same code cannot be used twice. The record contains only a fingerprint of the code and the time of use; it contains nothing about you or your device."],
+  dev=["Your game progress (levels, gold, machines, cosmetics, sound and vibration settings) is stored on your device. So you can continue on a new phone, a copy is kept in Apple's iCloud, in the space that belongs to your own Apple ID. We cannot see this copy. You can turn iCloud off in the iPhone Settings."],
+  ads=['The game shows ads through Google AdMob: optional rewarded ads (for extra time or extra gold, for example) and an occasional full-screen interstitial ad. If you buy “No Ads” or a pack that includes it, interstitial ads are no longer shown.',
+       "The game asks for tracking permission through Apple's App Tracking Transparency prompt. If you allow it, ads may be personalised to your interests; if you decline, you still see ads, but they are not personalised. You can change this at any time in iPhone Settings → Privacy & Security → Tracking.",
+       G_TECH['en'].format(idfa=" and, only if you allow tracking, Apple's advertising identifier (IDFA)"), UMP['en']],
+  stat=["From version 1.0.1, to improve the game we use Google's Firebase Analytics and Firebase Crashlytics. Analytics records events that show how the game is played, such as the first launch, session length, a level starting, being completed or running out of time, a rewarded ad being watched and a purchase being made. When the game crashes or an error occurs, Crashlytics sends a report with the device model, iOS version and technical details of the error.",
+        f"This data is grouped by a random installation ID that Firebase creates for the app. It is not linked to your name, your Apple ID or your advertising identifier (IDFA), it is not used for tracking or ad personalisation, and we only review it in aggregate to improve the game. Deleting the app also deletes this installation ID. How Google processes this data: {FB}."],
+  perm=['Tracking permission: described under “Ads” above.', 'Game Center: the game may ask you to sign in to Apple Game Center. Sign-in is handled entirely by Apple; your Game Center account details are not shared with us.',
+        'Notifications: if you allow them, the game schedules reminders on your device. Reminders are created on the iPhone itself; no information is sent to any server for this. You can turn them off in iPhone Settings → Notifications.',
+        'The game does not ask for camera, microphone, photo, contacts or location permission.'],
+  buy=['The game has in-app purchases. Purchases are processed entirely by Apple through the App Store. We never see your payment details; the game only learns what you bought so it can unlock it.', 'Links in the game may open the App Store, the support page on this website, our YouTube and Instagram pages or the iPhone share sheet; those services are subject to their own privacy rules.'],
+  rights=['Usage statistics and crash reports are not matched to your identity, and deleting the app resets the installation ID.']),
+})
+
+# --- Sayı Yolu (yayınlanacak hâli): AdMob (kişiselleştirme yok, takip izni yok, onay formu), kimliksiz ölçüm, Game Center, bildirim, fotoğraf/kamera/mikrofon
+pol('psy', {'tr': 'Sayı Yolu', 'en': 'Number Path'}, {
+ 'tr': dict(
+  we=['Kişisel bilgi toplamayız. Oyunda hesap, giriş ya da sohbet yoktur; adın, e-postan, rehberin ya da konumun istenmez. Bize ulaşan tek veri, aşağıda anlatılan kimliksiz kullanım sayılarıdır.'],
+  dev=['Oyundaki ilerlemen (bölümler, yıldızlar, en iyi süreler, günlük bulmaca serisi, ipuçları, altın, dükkandan aldıkların ve ayarlar) yalnızca cihazında saklanır ve bize gönderilmez. Tahtanın arkasına koyduğun fotoğraf, kendi müziğin ve kaydettiğin sesler de yalnızca cihazında durur; hiçbir yere gönderilmez.'],
+  ads=['Oyun, Google AdMob üzerinden reklam gösterir: isteğe bağlı ödüllü reklamlar (örneğin ipucu, altın ya da günlük serini kurtarmak için) ve ileri bölümlerde arada bir bölüm arası reklam. Oyun ayrıca diğer oyunumuz Yıkım Ustası\'nın tanıtımını gösterebilir; bu tanıtımı oyun kendisi çizer, reklam ağından gelmez.',
+       NO_TRACK['tr'], G_TECH['tr'].format(idfa=''), UMP['tr']],
+  stat=['Hangi bölümlerin fazla zor olduğunu ve oyuncuların geri dönüp dönmediğini öğrenmek için oyun kimliksiz, toplu sayılar gönderir; örneğin “12. bölüm başladı”, “12. bölüm 48 saniyede bitti”, “günlük bulmaca çözüldü”, “ipucu kullanıldı”, “reklam izlendi”. Her pakette yalnızca uygulama sürümü, uygulama dili ve kurulum günü bulunur.',
+        'Bu sayılarda hiçbir kimlik yoktur: reklam kimliği, cihaz kimliği, hesap ya da rastgele kullanıcı numarası gönderilmez. Bu yüzden sayılar sana ya da cihazına bağlanamaz; takip ya da reklam için kullanılmaz. Google E-Tablolar hizmetinde, yalnızca bizim okuyabildiğimiz bir tabloda durur ve yalnızca oyunu iyileştirmek için kullanılır. Oyunda hata raporu gönderen bir araç yoktur.'],
+  perm=["Game Center: oyun başarımlar ve sıralamalar için Apple Game Center'da oturum açmanı isteyebilir. Oturum, skorlar ve başarımlar tamamen Apple tarafından yönetilir; Game Center hesap bilgilerin bize iletilmez.",
+        "Bildirimler: izin verirsen oyun (örneğin günlük bulmaca için) hatırlatmaları cihazında planlar. Hatırlatmalar iPhone'un kendisinde oluşturulur; bunun için hiçbir sunucuya bilgi gönderilmez. Oyunun ayarlarından ya da iPhone Ayarlar → Bildirimler bölümünden kapatabilirsin.",
+        'Fotoğraf ve kamera: yalnızca tahtanın arkasına kendi fotoğrafını koymak istersen sorulur. Fotoğraf 24 saat boyunca tahtanın arkasında görünür ve yalnızca cihazında kalır.',
+        'Mikrofon: yalnızca oyunun seslerini kendi sesinle değiştirmek için kısa bir kayıt yapmak istersen sorulur. Kayıt yalnızca cihazında kalır.',
+        'Oyun rehber ya da konum izni istemez.'],
+  buy=["Oyunda gerçek parayla satın alma yoktur; dükkanda yalnızca oyunda kazanılan altın harcanır.", "Oyun, Yıkım Ustası tanıtımını gösterip göstermeyeceğine karar vermek için o oyunun cihazında yüklü olup olmadığına bakar; başka hiçbir uygulamaya bakmaz. Tanıtıma dokunursan App Store açılır; App Store kendi gizlilik kurallarına tabidir."]),
+ 'en': dict(
+  we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The only data that reaches us is the anonymous usage counts described below.'],
+  dev=['Your game progress (levels, stars, best times, daily puzzle streak, hints, gold, shop items and settings) is stored only on your device and is not sent to us. The photo you put behind the board, your own music and the sounds you record also stay only on your device; they are not sent anywhere.'],
+  ads=['The game shows ads through Google AdMob: optional rewarded ads (for a hint, gold or to save your daily streak, for example) and, in later levels, an occasional ad between levels. The game may also show a promotion for our other game, Demolition Master; the game draws this promotion itself and it does not come from an ad network.',
+       NO_TRACK['en'], G_TECH['en'].format(idfa=''), UMP['en']],
+  stat=['To learn which levels are too hard and whether players come back, the game sends anonymous, aggregate counts; for example “level 12 started”, “level 12 finished in 48 seconds”, “daily puzzle solved”, “hint used”, “ad watched”. Each batch contains only the app version, the app language and the install day.',
+        'These counts contain no identifier: no advertising identifier, device identifier, account or random user number is sent. They therefore cannot be linked to you or your device, and are not used for tracking or advertising. They are kept in Google Sheets, in a table only we can read and are used only to improve the game. The game has no tool that sends crash reports.'],
+  perm=['Game Center: the game may ask you to sign in to Apple Game Center for achievements and leaderboards. Sign-in, scores and achievements are handled entirely by Apple; your Game Center account details are not shared with us.',
+        "Notifications: if you allow them, the game schedules reminders on your device (for the daily puzzle, for example). Reminders are created on the iPhone itself; no information is sent to any server for this. You can turn them off in the game's settings or in iPhone Settings → Notifications.",
+        'Photos and camera: asked only if you want to put your own photo behind the board. The photo is shown behind the board for 24 hours and stays only on your device.',
+        "Microphone: asked only if you want to make a short recording to replace the game's sounds with your own. The recording stays only on your device.",
+        'The game does not ask for contacts or location permission.'],
+  buy=['The game has no real-money purchases; the shop only spends gold earned in the game.', 'To decide whether to show the Demolition Master promotion, the game checks whether that game is installed on your device; it does not check for any other app. If you tap the promotion, the App Store opens; the App Store is subject to its own privacy rules.']),
+})
+
+# --- Fenerli Dedektif: AdMob (çocuğa yönelik, kişiselleştirme yok, takip izni yok), ölçüm yok, satın alma yok, ebeveyn kapısı
+pol('pfd', {'tr': 'Fenerli Dedektif', 'en': 'Lantern Detective'}, {
+ 'tr': dict(
+  we=['Kişisel bilgi toplamayız. Oyunda hesap, giriş ya da sohbet yoktur; adın, e-postan, rehberin ya da konumun istenmez. Oyun bize hiçbir veri göndermez.'],
+  dev=['Oyundaki ilerlemen (açılan odalar, yıldızlar ve ayarlar) yalnızca cihazında saklanır ve bize gönderilmez.'],
+  ads=['Oyun ücretsizdir ve Google AdMob üzerinden reklam gösterir: ipucu için isteğe bağlı ödüllü reklam ve arada bir tam ekran geçiş reklamı.',
+       'Oyun çocuklar için tasarlandığından reklam isteklerini çocuklara yönelik olarak işaretleriz (“çocuğa yönelik içerik” ve “rıza yaşının altındaki kullanıcı” ayarları açıktır) ve yalnızca genel izleyiciye uygun reklamlara izin veririz. ' + NO_TRACK['tr'],
+       G_TECH['tr'].format(idfa='')],
+  stat=['Oyunda istatistik, analiz ya da hata raporu gönderen bir araç yoktur.'],
+  perm=['Oyun hiçbir izin istemez: takip, bildirim, kamera, mikrofon, fotoğraf, rehber ya da konum izni sorulmaz.',
+        'Sesli anlatım: Türkçe ve İngilizce anlatım sesleri uygulamanın içindedir; diğer dillerde cihazın kendi konuşma özelliği kullanılır. Ses kaydı yapılmaz.'],
+  buy=['Oyunda satın alma yoktur.', 'Oyun dışına çıkan bağlantılar (bu sitedeki yardım ve gizlilik sayfaları) bir ebeveyn kapısının (yetişkinlerin cevaplayabileceği bir soru) arkasındadır.'],
+  kids=['Oyun 7–11 yaş çocuklar ve aileleri için tasarlandı; gizlilik ve reklam ayarları buna göre yapıldı.']),
+ 'en': dict(
+  we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The game sends us no data at all.'],
+  dev=['Your game progress (unlocked rooms, stars and settings) is stored only on your device and is not sent to us.'],
+  ads=['The game is free and shows ads through Google AdMob: an optional rewarded ad for a hint and an occasional full-screen interstitial ad.',
+       'Because the game is designed for children, we mark ad requests as child-directed (“tag for child-directed treatment” and “tag for under age of consent” are on) and allow only ads suitable for a general audience. ' + NO_TRACK['en'],
+       G_TECH['en'].format(idfa='')],
+  stat=['The game has no tool that sends statistics, analytics or crash reports.'],
+  perm=['The game asks for no permissions: it never asks for tracking, notification, camera, microphone, photo, contacts or location permission.',
+        "Narration: Turkish and English narration voices are included in the app; other languages use the device's own speech feature. No audio is recorded."],
+  buy=['The game has no purchases.', 'Links that leave the game (the help and privacy pages on this website) are behind a parental gate (a question adults can answer).'],
+  kids=['The game is designed for children aged 7–11 and their families; privacy and ad settings were chosen accordingly.']),
+})
+
+# --- Kedi Yuvası: AdMob (çocuğa yönelik, kişiselleştirme yok, takip izni yok, onay formu), ölçüm yok, satın alma yok
+pol('pky', {'tr': 'Kedi Yuvası', 'en': 'Cat Haven'}, {
+ 'tr': dict(
+  we=['Kişisel bilgi toplamayız. Oyunda hesap, giriş ya da sohbet yoktur; adın, e-postan, rehberin ya da konumun istenmez. Oyun bize hiçbir veri göndermez.'],
+  dev=['Oyundaki ilerlemen (yıldızlar, açılan kediler ve ayarlar) yalnızca cihazında saklanır ve bize gönderilmez.'],
+  ads=['Oyun ücretsizdir ve Google AdMob üzerinden reklam gösterir: kaybedince isteğe bağlı “reklam izle ve devam et” ve bölüm aralarında arada bir tam ekran geçiş reklamı. Oyun internetsiz oynanabilir; internet yalnızca reklamlar için kullanılır.',
+       'Reklam isteklerini çocuklara yönelik olarak işaretleriz (“çocuğa yönelik içerik” ve “rıza yaşının altındaki kullanıcı” ayarları açıktır) ve yalnızca genel izleyiciye uygun reklamlara izin veririz. ' + NO_TRACK['tr'],
+       G_TECH['tr'].format(idfa=''), UMP['tr']],
+  stat=['Oyunda istatistik, analiz ya da hata raporu gönderen bir araç yoktur.'],
+  perm=['Oyun hiçbir izin istemez: takip, bildirim, kamera, mikrofon, fotoğraf, rehber ya da konum izni sorulmaz.'],
+  buy=['Oyunda satın alma yoktur.', 'Oyunda oyun dışına çıkan bir bağlantı yoktur; yalnızca reklama dokunursan reklamverenin sayfası açılır.'],
+  kids=['Oyun her yaştan oyuncu içindir; reklam ayarları çocuklara uygun olacak şekilde yapıldı.']),
+ 'en': dict(
+  we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The game sends us no data at all.'],
+  dev=['Your game progress (stars, unlocked cats and settings) is stored only on your device and is not sent to us.'],
+  ads=['The game is free and shows ads through Google AdMob: an optional “watch an ad and continue” when you lose, and an occasional full-screen interstitial ad between levels. The game can be played offline; the internet is used only for ads.',
+       'We mark ad requests as child-directed (“tag for child-directed treatment” and “tag for under age of consent” are on) and allow only ads suitable for a general audience. ' + NO_TRACK['en'],
+       G_TECH['en'].format(idfa=''), UMP['en']],
+  stat=['The game has no tool that sends statistics, analytics or crash reports.'],
+  perm=['The game asks for no permissions: it never asks for tracking, notification, camera, microphone, photo, contacts or location permission.'],
+  buy=['The game has no purchases.', "The game has no links that leave the game; only if you tap an ad does the advertiser's page open."],
+  kids=['The game is for players of all ages; ad settings were chosen to be suitable for children.']),
+})
+
+# ---------------- Yardım: her oyunun kendi sayfası (aynı düzen) ----------------
+support_one('syk', 'tr', 'Yardım · Yıkım Ustası', 'Yardım', 'Yıkım Ustası, binaları patlayıcı ve makinelerle yıktığın bir iPhone fizik oyunudur.', 'icon-yk.jpg', 'Yıkım Ustası', SUP['tr']['yk'])
+support_one('syk', 'en', 'Help · Demolition Master', 'Help', 'Demolition Master is an iPhone physics game where you bring buildings down with explosives and machines.', 'icon-yk.jpg', 'Demolition Master', SUP['en']['yk'])
+support_one('ssy', 'tr', 'Yardım · Sayı Yolu', 'Yardım', 'Sayı Yolu, tahtadaki her kareden bir kez geçen tek bir yol çizdiğin bir sayı bulmacasıdır.', 'icon-sy.jpg', 'Sayı Yolu', SUP['tr']['sy'])
+support_one('ssy', 'en', 'Help · Number Path', 'Help', 'Number Path is a number puzzle where you draw one path that passes through every square of the board once.', 'icon-sy.jpg', 'Number Path', SUP['en']['sy'])
+# Fenerli Dedektif: sorular SunStroke5634/fenerli-dedektif deposundaki docs/SITE_METINLERI.md ile aynı (14 Kasım 2026)
 support_one('sfd', 'tr', 'Yardım · Fenerli Dedektif', 'Yardım', 'Fenerli Dedektif, 7–11 yaş çocuklar ve aileler için karanlık odalarda ipucu toplanan bir dedektif bulmaca oyunudur.', 'icon-fd.jpg', 'Fenerli Dedektif', [
   ('Takıldım, ne yapmalıyım?', "Odadaki 💡 düğmesine dokun; o odanın ipucu çıkar. Davalarda soruları cevaplarken 📓 Dedektif Defteri'ne bakmayı unutma: cevap her zaman ipuçlarını birleştirince bulunur."),
   ('Ses gelmiyor.', "Telefonun sessiz modda olmadığından ve ses düzeyinin açık olduğundan emin ol. Ayarlar'da “Sesli anlatım” açık olmalı."),
@@ -349,22 +446,11 @@ support_one('sfd', 'en', 'Help · Lantern Detective', 'Help', 'Lantern Detective
   ("I'm stuck. What should I do?", "Tap the 💡 button in the room to see that room's hint. When answering a case's questions, check your 📓 Detective Notebook: every answer comes from putting the clues together."),
   ("There's no sound.", "Make sure the phone isn't in silent mode and the volume is up. “Narration” must be on in Settings."),
   ('Did I lose my progress?', 'Progress is stored on the phone. Deleting the app also deletes the progress.')])
-policy('pfd', 'tr', 'Gizlilik Politikası · Fenerli Dedektif', 'Gizlilik Politikası', 'Fenerli Dedektif · Son güncelleme: Kasım 2026',
-  "Fenerli Dedektif'i SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games) geliştirir. Oyun çocuklar için tasarlandı ve gizliliği buna göre kurduk.", [
-  ('Topladığımız bilgiler', ['Biz hiçbir kişisel bilgi toplamayız. Hesap, giriş, ad, e-posta, konum, fotoğraf ya da mikrofon kullanılmaz. Oyun ilerlemesi (açılan odalar, yıldızlar, ayarlar) yalnızca senin cihazında saklanır ve bize gönderilmez. Oyunda analiz (istatistik) aracı yoktur.']),
-  ('Reklamlar', [f"Oyun ücretsizdir; reklamları Google AdMob gösterir. Reklam isteklerini çocuklara yönelik olarak işaretleriz (“çocuğa yönelik içerik” ve “rıza yaşının altındaki kullanıcı” ayarları açıktır), yalnızca genel izleyiciye uygun reklamlara izin veririz ve reklamlar kişiselleştirilmez. Uygulama, Apple'ın uygulamalar arası takip iznini istemez ve reklam kimliğine (IDFA) erişmez. Google, reklamı gösterebilmek ve kötüye kullanımı önlemek için cihaz türü, işletim sistemi sürümü ve yaklaşık ülke gibi sınırlı teknik bilgileri işleyebilir; ayrıntılar: {GA}"]),
-  ('Satın alma ve bağlantılar', ['Oyunda satın alma yoktur. Oyun dışına çıkan bağlantılar bir ebeveyn kapısının (yetişkinlerin cevaplayabileceği bir soru) arkasındadır.']),
-  ('Sesli anlatım', ['Türkçe ve İngilizce anlatım sesleri uygulamanın içindedir; diğer dillerde cihazın kendi konuşma özelliği kullanılır. Ses kaydı yapılmaz.']),
-  ('Çocukların gizliliği', ['Bilerek çocuklardan kişisel bilgi toplamayız. Bir ebeveyn olarak sorunuz varsa bize yazın.']),
-  ('Değişiklikler', ['Bu politika değişirse bu sayfayı güncelleriz.']),
-  ('İletişim', [ML])])
-policy('pfd', 'en', 'Privacy Policy · Lantern Detective', 'Privacy Policy', 'Lantern Detective · Last updated: November 2026',
-  'Lantern Detective is developed by SAMFA Gayrimenkul Yatırım ve Yönetim A.Ş. (Sancar Games). The game is designed for children, and its privacy setup follows from that.', [
-  ('Information we collect', ['We do not collect any personal information. There is no account or login, and the game does not use your name, email, location, photos or microphone. Game progress (unlocked rooms, stars, settings) is stored only on your device and is never sent to us. The game contains no analytics tools.']),
-  ('Ads', [f"The game is free; ads are shown by Google AdMob. We mark ad requests as child-directed (“tag for child-directed treatment” and “tag for under age of consent” are on), allow only ads suitable for general audiences, and ads are not personalized. The app does not request Apple's App Tracking Transparency permission and does not access the advertising identifier (IDFA). To show an ad and prevent abuse, Google may process limited technical information such as device type, operating system version and approximate country; details: {GA}"]),
-  ('Purchases and links', ['The game has no in-app purchases. Links that leave the game are behind a parental gate (a question for grown-ups).']),
-  ('Narration', ["Turkish and English narration audio is bundled in the app; other languages use the device's built-in text-to-speech. Nothing is recorded."]),
-  ("Children's privacy", ['We do not knowingly collect personal information from children. Parents with questions can contact us.']),
-  ('Changes', ['If this policy changes, we will update this page.']),
-  ('Contact', [ML])])
-print('ok')
+support_one('sky', 'tr', 'Yardım · Kedi Yuvası', 'Yardım', 'Kedi Yuvası, parkurda saklanan sokak kedilerini bulup yuvaya kavuşturduğun bir iPhone oyunudur.', 'icon-ky.jpg', 'Kedi Yuvası', [
+  ('Kedileri nasıl yakalarım?', 'Joystick ile parkurda yürü ve saklanan kedilerin kuyruklarını ara. Kedi halkanın içindeyken YAKALA düğmesine bas.'),
+  ('Yeni kediler nasıl açılır?', 'Bölümleri bitirdikçe yıldız kazanırsın; kediler topladığın toplam yıldızla açılır.'),
+  ('İlerlemem nerede tutuluyor?', 'İlerleme yalnızca telefonda saklanır. Uygulamayı silmek ilerlemeyi de siler.')])
+support_one('sky', 'en', 'Help · Cat Haven', 'Help', 'Cat Haven is an iPhone game where you find the stray cats hiding in the park and bring them home.', 'icon-ky.jpg', 'Cat Haven', [
+  ('How do I catch the cats?', 'Walk around with the joystick and look for the tails of hiding cats. Press CATCH while the cat is inside your ring.'),
+  ('How do I unlock new cats?', 'You earn stars as you finish levels; cats unlock with the total stars you have collected.'),
+  ('Where is my progress stored?', 'Progress is stored only on the phone. Deleting the app also deletes the progress.')])
