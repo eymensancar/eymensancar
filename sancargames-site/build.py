@@ -16,7 +16,8 @@ ARU = '<span class="ar" aria-hidden="true">↗</span>'
 P = {'home': ('index.html', 'en/index.html'), 'yk': ('yikim-ustasi.html', 'en/demolition-master.html'),
      'sy': ('sayi-yolu.html', 'en/number-path.html'), 'sup': ('destek.html', 'en/support.html'),
      'pyk': ('gizlilik-yikim-ustasi.html', 'en/privacy-demolition-master.html'),
-     'psy': ('gizlilik-sayi-yolu.html', 'en/privacy-number-path.html')}
+     'psy': ('gizlilik-sayi-yolu.html', 'en/privacy-number-path.html'),
+     'pky': ('gizlilik-kedi-yuvasi.html', 'en/privacy-cat-haven.html')}
 
 def rel(frm, to):
     r = os.path.relpath(os.path.join(OUT, to), os.path.dirname(os.path.join(OUT, frm))).replace(os.sep, '/')
