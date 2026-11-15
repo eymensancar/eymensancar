@@ -637,11 +637,11 @@
     [-1, 1].forEach(d => [0, 1].forEach(q => { const r = 40 + q * 22, a0 = d < 0 ? Math.PI * .82 : -Math.PI * .18, a1 = d < 0 ? Math.PI * 1.18 : Math.PI * .18; C.line(ctx, C.ell(0, -352, r, r * .9, 8, a0, a1), 5.6 * (1 - q * .2) * Math.min(1, v * 1.5), null, .5); }));
   }
   shot('p3b25-son', k => k.desk, k => k.dur + 1, (ctx, t) => {
-    const k = times(), tf = t >= k.freeze0 && t < k.freeze1 ? k.freeze0 : t, tw = twos(tf);
+    const k = times(), tf = t < k.freeze0 ? t : t < k.freeze1 ? k.freeze0 : t - (k.freeze1 - k.freeze0), tw = twos(tf);   // bipte her şey durur, sonra kaldığı yerden
     const b = beepV(t, k.endBeep);
     // oda: duvar + pencere üstte, masa altta
     ctx.fillStyle = '#3a2f2c'; ctx.fillRect(0, 0, 1080, 1920);
-    const push = E.io(seg(tf, k.desk, k.end + .6)), post = Math.max(0, tf - k.freeze1) * .004 * (tf >= k.freeze1 ? 1 : 0);
+    const push = E.io(seg(tf, k.desk, k.end + .6)), post = Math.max(0, tf - k.freeze0) * .004;
     ctx.save(); cam(ctx, lerp(1, 1.06, push) + post, 540, lerp(820, 760, push), 540, 820);
     C.seed(395); for (let x = -100; x < 1200; x += 120) { ctx.fillStyle = 'rgba(7,11,24,.15)'; ctx.fillRect(x, -200, 50, 900); }
     drawWindowView(ctx, b, tw);
