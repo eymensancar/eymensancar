@@ -401,6 +401,7 @@
     const tq = q2(t);
     const boom = .5 * (1 - E.outBack(seg(t, t0, t0 + .32)));
     const hook = swing(tq, t0 + .22, .34, 6.5) + .03;
+    drawBallD(ctx, 860, 2020, 2.05, hook, -boom);
     C.drawDaisy(ctx, { x: 860, y: 2020, s: 2.05, boom: -boom, hook, seed: 23 });
     ctx.restore();
     tag(ctx, 800, 250, swing(q2(t), t0, .18, 8), '1', 2000, { s: .8 });
@@ -582,9 +583,11 @@
   });
 
   // Gülle: b-sahneler.js drawBall ile aynı (Daisy yerel koordinatı, s=1: bom ucu (-118.8,-858.1), halat 455).
-  const D_TIP = [-118.8, -858.1], ROPE = 455, BALL_R = 58;
-  function drawBallD(ctx, dx, dy, s, sw) {
+  const D_TIP0 = [-118.8, -858.1], ROPE = 455, BALL_R = 58;
+  function drawBallD(ctx, dx, dy, s, sw, boom) {
     ctx.save(); ctx.translate(dx, dy); ctx.scale(s, s);
+    // boom ≠ 0 ise bom ucu cizim.js'deki gibi yeniden hesaplanır (piv + 700·yön)
+    const ang = -2.36 + (boom || 0) * .5, D_TIP = boom ? [120 + .55 * 470 + Math.cos(ang) * 700, -262 - .22 * 470 + Math.sin(ang) * 700] : D_TIP0;
     const bx = D_TIP[0] + Math.sin(sw) * ROPE, by = D_TIP[1] + Math.cos(sw) * ROPE, hk = [D_TIP[0] + Math.sin(sw) * 404, D_TIP[1] + Math.cos(sw) * 404];
     C.seed(71);
     C.line(ctx, [hk, [bx - Math.sin(sw) * BALL_R, by - Math.cos(sw) * BALL_R]], 6, P.ink, .2);

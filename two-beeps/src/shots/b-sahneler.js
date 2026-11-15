@@ -782,7 +782,7 @@
     const k = times(), b = beepAt(t, k.twice - TONES[0][0]);
     if (!memCv) memCv = canvas(1080, 1920);
     const m = memCv.getContext('2d'); m.setTransform(1, 0, 0, 1, 0, 0); m.clearRect(0, 0, 1080, 1920);
-    drawDaisyCU(m, k.freeze0, DAISY_CU.z1 + .02 * u, 0, b.after ? 'alert' : 'sleepy', 'pre', k.daisy);
+    drawDaisyCU(m, k.freeze0, DAISY_CU.z1 + .02 * u, 0, 'alert', 'pre', k.daisy);
     ctx.fillStyle = '#2a2118'; ctx.fillRect(0, 0, 1080, 1920);
     ctx.filter = 'sepia(1) saturate(.55) brightness(.92) contrast(.92)'; ctx.drawImage(memCv, 0, 0); ctx.filter = 'none';
     // ışık hatırada da kırmızı yanar (tek renkli an)
@@ -816,11 +816,15 @@
     const k = times(), b = beepAt(t, k.endBeep, 1);
     const bg = blurredWorld('bg-daisy-post', k.ground + 6, 1.15, 640, 800, 7, { noDaisy: true, noBall: true });
     drawBlurBg(ctx, bg, 1.3);
-    ctx.save(); cam(ctx, 7.2, 0, -350, 520, 640);
-    C.drawDaisy(ctx, { x: 0, y: 0, s: 1, seed: 23, beep: b.v, mood: 'sleepy', hook: .02 });
+    // ışık üst üçte birde (y≈470): bitiş kartı y≈700–1400 bandına gelir, ışığı örtmez
+    ctx.save(); cam(ctx, 7.2, 0, -350, 520, 470);
+    C.drawDaisy(ctx, { x: 0, y: 0, s: 1, seed: 23, beep: 0, mood: 'sleepy', hook: .02 });
+    drawBeacon(ctx, b.v);
     ctx.restore();
     vignette(ctx, .5);
-    finish(ctx, .5 * E.io(seg(t, k.endCard, k.endCard + .5)));
+    // kart için yalnız alt kısım kararır; ışık açıkta kalır
+    const dk = .6 * E.io(seg(t, k.endCard - .1, k.endCard + .2)); if (dk > 0) { const g = ctx.createLinearGradient(0, 600, 0, 900); g.addColorStop(0, 'rgba(7,11,24,0)'); g.addColorStop(1, `rgba(7,11,24,${dk})`); ctx.fillStyle = g; ctx.fillRect(0, 600, 1080, 1320); }
+    finish(ctx);
   });
 
   /* ================= SES EKİBİNE İŞARETLER (sn, bölüm zamanı) ================= */
