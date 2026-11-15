@@ -171,7 +171,7 @@
     }
     const p = along(PATH17, E.io(seg(tw, k.trace + .08, k.lightArr)));
     const out = E.inQ(seg(tw, k.lightArr + .12, k.dis1 + .1));           // ışığa varınca el çekilir
-    return { p: [p[0] + out * 360, p[1] + 36 + out * 560], rot: .5, press: 0 };
+    return { p: [p[0] + out * 360, p[1] + 6 + out * 560], rot: .5, press: 0 };
   }
 
   /* ================= A'NIN DÜNYASI (src/shots/p4-a.js'den kopya: aynı ofis, aynı masa) ================= */
