@@ -20,7 +20,8 @@ import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SR = 48000
-KATLAR = ('muzik', 'ortam', 'efekt', 'bip')
+KATLAR = ('muzik', 'ortam', 'efekt', 'darbe', 'bip')
+ARKA = ('muzik', 'ortam', 'efekt', 'darbe')
 
 
 def db2a(d):
@@ -320,11 +321,10 @@ def main():
         bus[k] *= g[k][:, None]
         if k != 'bip':
             bus[k] = hp_fft(bus[k], 40)      # telefon: 40 Hz altı yalnız tepe payı yer
-    bg = bus['muzik'] + bus['ortam'] + bus['efekt']
-    kg = koruma(voice, bg, cue.get('koruma', {}), tl)
-    for k in ('muzik', 'ortam', 'efekt'):
+    kg = koruma(voice, sum(bus[k] for k in ARKA), cue.get('koruma', {}), tl)
+    for k in ('muzik', 'ortam', 'efekt'):          # darbe katı korumasız: boşluğa yerleştirilir
         bus[k] *= kg[:, None]
-    bg = bus['muzik'] + bus['ortam'] + bus['efekt']
+    bg = sum(bus[k] for k in ARKA)
     mix = voice + bg + bus['bip']
 
     # seviye: -14 LUFS'e kazanç, sonra gerçek tepe sınırı (iki tur)
@@ -351,7 +351,7 @@ def main():
     if not a.olcme:
         sm = db2a(kaz) * gs[:, None]
         olc(out, tl, cue, Z, {'anlatici': voice * sm, 'arka': bg * sm, 'bip': bus['bip'] * sm,
-                               **{k: bus[k] * sm for k in ('muzik', 'ortam', 'efekt')}}, n)
+                               **{k: bus[k] * sm for k in ARKA}}, n)
     if a.mux:
         video = a.video or f'{ROOT}/out/part{n}-video.mp4'
         if not os.path.exists(video):
@@ -421,10 +421,10 @@ def olc(yol, tl, cue, Z, st, n):
         print(f'  {ad:32s} {a:6.2f}-{b:6.2f}: RMS {rms_db(x):6.1f}  tepe {a2db(np.abs(x).max()):6.1f}')
     # telefon: darbelerde 120 Hz üstü
     for ad, t in [('top darbe', Z('s19.t1') + 0.06), ('baca yere', Z('s20.t1') + 0.12)]:
-        x = seg(st['efekt'], t, t + 0.4).mean(1)
+        x = seg(st['darbe'], t, t + 0.4).mean(1)
         X = np.abs(np.fft.rfft(x)) ** 2; f = np.fft.rfftfreq(x.size, 1 / SR)
         print(f'{ad} @ {t:.2f}: 120 Hz üstü enerji %{100 * X[f >= 120].sum() / X.sum():.0f}, '
-              f'tepe {a2db(np.abs(seg(st["efekt"], t, t + 0.4)).max()):.1f} dBFS')
+              f'tepe {a2db(np.abs(seg(st["darbe"], t, t + 0.4)).max()):.1f} dBFS')
     gorseller(yol, tl, Z, st, mix, n)
 
 
@@ -436,7 +436,7 @@ def _oku_taze(yol):
 def gorseller(yol, tl, Z, st, mix, n):
     o = os.path.dirname(yol)
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', yol, '-lavfi',
-                    'showwavespic=s=1800x360:split_channels=0:colors=#2b6cb0:scale=lin', '-frames:v', '1',
+                    'showwavespic=s=1800x360:split_channels=0:colors=#2b6cb0:scale=sqrt', '-frames:v', '1',
                     f'{o}/miks-dalga.png'], check=True)
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', yol, '-lavfi',
                     'showspectrumpic=s=1600x512:mode=combined:scale=log:fscale=log:legend=1', f'{o}/miks-spektrum.png'],
@@ -460,13 +460,13 @@ def gorseller(yol, tl, Z, st, mix, n):
         d.line([X(v), T, X(v), H - 30], fill=(200, 120, 40)); d.text((X(v) + 2, T), k, fill=(170, 90, 20))
     hop = int(0.05 * SR)
     for ad, renk in [('anlatici', (30, 30, 30)), ('muzik', (60, 110, 200)), ('ortam', (60, 160, 90)),
-                     ('efekt', (190, 70, 60)), ('bip', (230, 150, 0))]:
+                     ('efekt', (190, 70, 60)), ('darbe', (140, 40, 160)), ('bip', (230, 150, 0))]:
         x = st[ad]; pts = []
         for i in range(0, x.shape[0] - hop, hop):
             r = max(rms_db(x[i:i + hop]), -70)
             pts.append((X(i / SR), Y(r)))
         d.line(pts, fill=renk, width=2)
-    d.text((L + 5, H - 12), 'RMS 50 ms (dBFS): siyah anlatıcı, mavi müzik, yeşil ortam, kırmızı efekt, turuncu bip; mavi zemin = cümleler',
+    d.text((L + 5, H - 12), 'RMS 50 ms (dBFS): black=voice  blue=music  green=ambience  red=sfx  purple=impact  orange=beep;  shaded=sentences',
            fill=(40, 40, 40))
     im.save(f'{o}/miks-seviye.png')
     print('görseller: out/miks-dalga.png, out/miks-spektrum.png, out/miks-seviye.png')

@@ -25,3 +25,14 @@ Not: Lilita One'da Ş ş Ğ ğ İ yok (oyunda ayrı `lilita-one-turkish` dosyas�
 | `sfx/kaynak/park_ambience_wind_40-64s.wav` (`park_ambience_wind.wav` dosyasının 40–64. saniyesi) | https://opengameart.org/content/park-ambiences | Thimras | CC0 1.0 |
 
 Bu iki kesitten `sfx/ortam-bos-arsa-dongu.wav` üretildi (filtre + karışım + döngü). CC0: atıf zorunlu değil, ticari kullanım serbest. Lisans: https://creativecommons.org/publicdomain/zero/1.0/
+
+### Freesound'dan (Eymen buldu, 15 Kasım 2026; dördünün de sayfasında lisans "Creative Commons 0" yazıyor, Eymen doğruladı)
+
+Sesler Freesound'un önizlemesinden ekran kaydıyla alındı ve kırpıldı. CC0: atıf zorunlu değil, ticari kullanım serbest.
+
+| Dosya | Freesound'daki adı | Yükleyen | Lisans |
+|---|---|---|---|
+| `sfx/kaynak/fs-dizel-rolanti.wav` | G45-19-Submarine Motor Topside.wav | craigsmith | CC0 1.0 |
+| `sfx/kaynak/fs-tugla-dusme.wav` | Bricks Falling 2.wav | Benboncan | CC0 1.0 |
+| `sfx/kaynak/fs-kagit-hisirti.wav` | paper_rustling_03 | Spaghetto87 | CC0 1.0 |
+| `sfx/kaynak/fs-kalem-karalama.wav` | Pen Strokes and Scribbling (Compilation) | Sheyvan | CC0 1.0 |
