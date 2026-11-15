@@ -17,7 +17,7 @@
  "satirlar": [
   { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 0, "son": 8.0, "fadeout": 0.03, "not": "giriş 0-8 (merak); cümle 2 sessizliğinde solar (kisma)" },
   { "t": 8.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -10, "ss": 8.0, "son": 12.0, "fadein": 0.03, "fadeout": 0.04, "not": "oyunbaz 8-12: Hale, şehir, liste (dosya zamanı = bölüm zamanı, 4 sn ızgarası)" },
-  { "t": 12.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 48, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "12-16 'Not the crane. Not the land. Just the list.': plan S + yakın plan; oyunbaz yerine sakin Gm pad (tema 48-52) bloğu" },
+  { "t": 12.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6, "ss": 48, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "12-16 'Not the crane. Not the land. Just the list.': plan S + yakın plan; oyunbaz yerine sakin Gm pad (tema 48-52) bloğu" },
   { "t": 16.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -10, "ss": 16.0, "son": "B.daisyMotor", "fadein": 0.04, "fadeout": 0.05, "not": "oyunbaz 16-26,08: cep, sayım, oyun, lastik; JOB 2 kesmesinde gerilime geçer" },
   { "t": "B.daisyMotor", "dosya": "music/gerilim.wav", "kat": "muzik", "db": -14, "ss": 2.08, "son": "B.kuleYereCarpma", "dongu": true, "fadein": 0.05, "fadeout": 0.12, "not": "JOB 2: gerilim (ss 2,08 = 26,08 mod 4, vuruş ızgarası); kule yere oturunca kısa solmayla biter (temiz yıkım)" },
   { "t": "B.kuleYereCarpma+0.03", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 50.03, "son": 35.0, "fadein": 1.0, "fadeout": 0.04, "not": "iniş sonrası sakin Gm pad (tema 50-52), ızgaraya oturur" },
@@ -25,7 +25,7 @@
   { "t": 39.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 48, "son": "s21.t0", "fadein": 0.04, "fadeout": 0.04, "not": "tema 48-52: Hale; donma sessizliğinde kisma ile çıkar, araba ile geri gelir" },
   { "t": "s21.t0", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -12.5, "ss": 44, "son": "s25.t0-0.15", "fadein": 0.04, "fadeout": 0.45, "not": "akşam, mektup: soru bölümü (44-, Mi'de asılı); 'The ant is not ready.' sonrası solar, cümle 25 müziksiz (plan: sessizlik)" },
 
-  { "t": 0, "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -9, "son": "B.daisyMotor", "dongu": true, "fadein": 0.3, "fadeout": 0.05, "not": "gündüz avlu/sokak" },
+  { "t": 0, "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -10, "son": "B.daisyMotor", "dongu": true, "fadein": 0.3, "fadeout": 0.05, "not": "gündüz avlu/sokak" },
   { "t": "B.daisyMotor", "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -7, "ss": 8.0, "son": "s20.t1+0.55", "dongu": true, "fadein": 0.05, "fadeout": 0.08, "not": "iş 2 sahası; akşam avluya kesmeyle biter (p3b21-posta = s20.t1+0,55)" },
   { "t": "s20.t1+0.55", "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -12, "ss": 14.0, "son": "voiceEnd", "dongu": true, "fadein": 0.3, "fadeout": 0.4, "not": "akşam avlu, sonra masa: pencereden kısık rüzgâr; voiceEnd'de tam sessizliğe" },
 
@@ -40,8 +40,8 @@
 
   { "t": "A.gameIn", "dosya": "sfx/oyun-yikim.wav", "kat": "efekt", "db": -8, "ss": 0, "sure": 0.1, "fadein": 0.002, "fadeout": 0.01, "not": "telefon kadraja: oyunun blip'i" },
   { "t": "A.gameIn+0.12", "dosya": "sfx/oyun-yikim.wav", "kat": "efekt", "db": -13, "ss": 0.70, "sure": 0.75, "son": "A.gameDemolished", "dongu": true, "fadein": 0.005, "fadeout": 0.01, "not": "yıkım + altın kareleri: yalnız kasa/ödül tıkırtısı döngüsü (boom süpürmesi KULLANILMAZ)" },
-  { "t": "A.gameDemolished", "dosya": "sfx/oyun-demolished.wav", "kat": "efekt", "db": -9, "son": "A.cutReal", "fadeout": 0.008, "not": "DEMOLISHED! fanfarı" },
-  { "t": "A.gameCard", "dosya": "sfx/oyun-kart.wav", "kat": "efekt", "db": -12, "son": "A.cutReal", "fadeout": 0.008, "not": "sonuç kartı (SHOP) coin; avluya sert kesmede her oyun sesi biter" },
+  { "t": "A.gameDemolished", "dosya": "sfx/oyun-demolished.wav", "kat": "efekt", "db": -11, "son": "A.cutReal", "fadeout": 0.008, "not": "DEMOLISHED! fanfarı" },
+  { "t": "A.gameCard", "dosya": "sfx/oyun-kart.wav", "kat": "efekt", "db": -14, "son": "A.cutReal", "fadeout": 0.008, "not": "sonuç kartı (SHOP) coin; avluya sert kesmede her oyun sesi biter" },
 
   { "t": "A.tireRoll", "dosya": "sfx/lastik-yuvarlanma.wav", "kat": "efekt", "db": -7, "son": "A.tireStop", "fadeout": 0.06, "pan": 0.2, "not": "gerçeğe dönüş: eski lastik toprakta yuvarlanır" },
   { "t": "A.tireStop", "dosya": "sfx/lastik-oturma.wav", "kat": "efekt", "db": -7, "pan": -0.1, "not": "lastik yalpalar, oturur" },
@@ -54,7 +54,7 @@
   { "t": "B.ekipAdim", "dosya": "sfx/adim-cakil-4.wav", "kat": "efekt", "db": -12, "pan": -0.2, "not": "ekip çitin dışına yürür" },
   { "t": "B.topDarbe-0.01", "dosya": "sfx/su-kulesi-darbe.wav", "kat": "darbe", "db": -7, "fadeout": 0.6, "not": "top kule ayağına değer (anlatıcı boşluğunda); pilottan yumuşak" },
   { "t": "B.kuleDusus", "dosya": "sfx/kule-egilme.wav", "kat": "efekt", "db": -11, "son": "B.kuleYereCarpma+0.05", "fadeout": 0.1, "not": "kule eğilir: tonlu metal inleme" },
-  { "t": "B.kuleYereCarpma+0.07", "dosya": "sfx/su-kulesi-yere.wav", "kat": "darbe", "db": -7, "fadeout": 0.5, "not": "kule alana oturur (sarsıntı 6 kare); temiz, pilottan kısık. Görüntüdeki iniş 'clean' kelimesinin bitişinden 80 ms önce; darbe kelime bitişine (= cues.clean, +2,4 kare) kaydırıldı: anlatıcının üstüne binmesin, koruyucu yutmasın" },
+  { "t": "B.kuleYereCarpma+0.07", "dosya": "sfx/su-kulesi-yere.wav", "kat": "ortam", "db": -7, "fadeout": 0.5, "not": "kule alana oturur (sarsıntı 6 kare); temiz, pilottan kısık. Görüntüdeki iniş 'clean' kelimesinin bitişinden 80 ms önce; darbe kelime bitişine (= cues.clean, +2,4 kare) kaydırıldı, anlatıcının üstüne binmesin. Kat 'ortam': anlatıcı koruyucusunun 300 ms bırakması kelimeden hemen sonraki darbeyi 15 dB yutuyordu" },
   { "t": "B.kuleYereCarpma+0.30", "dosya": "sfx/beton-parcalari.wav", "kat": "efekt", "db": -12, "pan": 0.2, "not": "beton parçaları" },
   { "t": "B.damga-0.04", "dosya": "sfx/damga-kesif.wav", "kat": "efekt", "db": -7, "ss": 0.30, "fadein": 0.01, "not": "H K damgası: pilottaki zil (dosyada 0,34 = B.damga); 0-0,3 fırça gürültüsü ALINMAZ" },
   { "t": "B.arabaKapi", "dosya": "sfx/araba-kapi-kapanis.wav", "kat": "efekt", "db": -8, "pan": 0.3, "not": "kapı kapanır" },
