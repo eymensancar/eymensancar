@@ -423,7 +423,7 @@
   function truckPos(i, t) { const k = times(), tr = TRUCKS[i], u = E.outC(seg(t, k.truck[i], k.truck[i] + .75)); if (t < k.truck[i]) return null; const y = lerp(2900, tr.y, u), x = lerp(tr.x0, tr.x, u); return { x, y, s: 1.28 * ps(y), wob: u < 1 ? Math.sin(t * 40 + i) * 3 * ps(y) : 0 }; }
 
   // bizim taraf (şeridin kameraya yakın yanı): Kaan, Defne, Daisy
-  const LINE = { x0: -1240, x1: 2300, gy: 1830, ph: 220, gap: 330, lw: 5 };     // B'nin yakın hattı (−200…1300 kısmı aynı direklerle)
+  const LINE = { x0: -1230, x1: 2300, gy: 1830, ph: 220, gap: 330, lw: 5 };     // B'nin yakın hattı (−200…1300 kısmı aynı direklerle)
   const KS = { x: 330, y: 1960 }, DS = { x: 660, y: 1975 }, DZ = { x: 920, y: 1930 };
   const kaanS = y => 1.42 * ps(y), daisyS = y => 1.2 * ps(y);
   // Saha dünyası. o: fall, still (kalabalık alkışlamaz), crew, line (true | {xEnd}), daisy, kaan/defne {..., back}, trucks, extra[[y,fn]]
@@ -441,6 +441,7 @@
     if (o.trucks) for (let i = 0; i < 3; i++) { const p = truckPos(i, t); if (p) items.push([p.y, () => truck(ctx, TRUCKS[i], p.x, p.y, p.s, p.wob)]); }
     if (o.crew !== false) { items.push([1760, () => worker(ctx, 120, 1760, .62, 420, tw * 7, false)]); items.push([1750, () => worker(ctx, 980, 1750, .62, 421, tw * 7 + 1, !!o.fall)]); }
     if (o.line) items.push([LINE.gy, () => barrierLine(ctx, LINE.x0 + 40, LINE.x1, LINE.gy, LINE.ph, LINE.gap, LINE.lw, o.line.xEnd)]);
+    if (o.lineB) items.push([LINE.gy, () => barrierLine(ctx, -200, 1300, 1830, 220, 330, 5)]);   // B'nin 13a hattı (kesmede birebir)
     if (o.daisy) items.push([DZ.y, () => C.drawDaisy(ctx, Object.assign({ x: DZ.x, y: DZ.y, s: daisyS(DZ.y), seed: 23, beep: 0, mood: 'sleepy', hook: Math.sin(t * 1.1) * .03 }, o.daisy === true ? {} : o.daisy))]);
     if (o.kaan) items.push([o.kaan.y || KS.y, () => C.drawKaan(ctx, Object.assign({ x: KS.x, y: KS.y, s: kaanS(o.kaan.y || KS.y), seed: 11, phone: false }, o.kaan, o.kaan.back ? { pose: 'back' } : {}))]);
     if (o.defne) items.push([(o.defne.y || DS.y) - .5, () => (o.defne.back ? defneBack : C.drawDefne)(ctx, Object.assign({ x: DS.x, y: DS.y, s: kaanS(DS.y), seed: 31 }, o.defne))]);
@@ -684,7 +685,7 @@
   /* --- 4: "Not us." Kaan hevesle elini kaldırır; Defne bakmadan indirir --- */
   shot('p9a-04-bizdegil', k => k.c4, k => k.c5, (ctx, t, u) => {
     const k = times(), tw = twos(t);
-    ctx.drawImage(blurred('p9-sokak-bulanik', 9, g => { cam(g, 1.35, 540, 1060); street(g, 0, { bars: true, crowd: true, daisy: true }); }), 0, 0);
+    ctx.drawImage(blurred('p9-sokak-bulanik', 9, g => { cam(g, .9, 540, 1500); site(g, 0, { line: true, daisy: true, still: true }); }), 0, 0);
     const up = E.outBack(seg(tw, k.c4 + .02, k.c4 + .3)), pull = E.ioC(seg(tw, k.grab + .06, k.grab + .36)), a = up * (1 - pull);
     const reach = E.outC(seg(tw, k.grab - .2, k.grab)) * (1 - E.io(seg(tw, k.grab + .42, k.grab + .7)));
     const KO = { x: 400, y: 1756, s: 2.0 }, DO = { x: 650, y: 1756, s: 2.0 };
@@ -731,7 +732,7 @@
   }
   shot('p9a-05-uzman', k => k.c5, k => k.c5b, (ctx, t, u) => {
     const tw = twos(t);
-    ctx.drawImage(blurred('p9-taban-bulanik', 8, g => { cam(g, 2.6, 540, 980); street(g, 0, { crowd: false, zone: false }); }), 0, 0);
+    ctx.drawImage(blurred('p9-taban-bulanik', 8, g => { cam(g, 1.7, 540, 1060); site(g, 0, { still: true, crew: false }); }), 0, 0);
     ctx.fillStyle = 'rgba(241,232,212,.12)'; ctx.fillRect(0, 0, 1080, 1920);
     ctx.save(); cam(ctx, lerp(1, 1.04, E.io(u)), 540, 960);
     specialist(ctx, 170, 1640, 1.25, 1801, '#b8322a', 'tripod', tw);
@@ -744,47 +745,35 @@
 
   /* --- 5b: "from three cities." üç ayrı şehrin aracı meydana girer, durur --- */
   shot('p9a-06-kamyon', k => k.c5b, k => k.c6, (ctx, t, u) => {
-    ctx.save(); cam(ctx, lerp(.92, .95, E.io(u)), 540, 1000);
-    street(ctx, t, { trucks: true, crowd: false, zone: false });
+    ctx.save(); cam(ctx, lerp(.62, .65, E.io(u)), 540, 1240);
+    site(ctx, t, { trucks: true, still: true, crew: false });
     ctx.restore();
     vignette(ctx, .25);
     finish(ctx);
   });
 
-  /* --- 6a: "Our job was small: clear the street," Kaan son bariyeri yerine iter; Defne ve Daisy sokağın kenarında --- */
-  shot('p9a-07-bariyer', k => k.c6, k => k.c6b, (ctx, t, u) => {
-    const k = times(), tw = twos(t), m = E.io(seg(tw, k.c6 + .05, k.barSet)), bx = lerp(150, BARS[1], m), moving = tw < k.barSet;
-    ctx.save(); cam(ctx, lerp(1.0, 1.04, E.io(u)), 540, 1010);
-    street(ctx, t, { bars: { movX: bx }, crowd: false, daisy: true,
-      kaan: moving ? { x: bx - 90, y: 1372, pose: 'side', step: Math.sin((tw - k.c6) * 9), expr: 'determined' } : { x: lerp(bx - 90, KS.x, E.io(seg(tw, k.barSet + .2, k.barSet + .7))), y: lerp(1372, KS.y, E.io(seg(tw, k.barSet + .2, k.barSet + .7))), expr: 'smile', look: .8, blink: blinkAt(tw, [k.barSet + 1]) },
+  /* --- 6a: "Our job was small: clear the street," Kaan şeridi direkten direğe çeker; Defne ve Daisy bu yanda --- */
+  shot('p9a-07-serit', k => k.c6, k => k.c6b, (ctx, t, u) => {
+    const k = times(), tw = twos(t), m = E.io(seg(tw, k.c6 + .05, k.barSet)), kx = lerp(80, 760, m), moving = tw < k.barSet, ky = 1880, ks = kaanS(ky);
+    const back = E.io(seg(tw, k.barSet + .2, k.barSet + .8));
+    ctx.save(); cam(ctx, lerp(.8, .83, E.io(u)), lerp(470, 540, E.io(u)), 1420);
+    site(ctx, t, { line: { xEnd: moving ? kx + 40 * ks : null }, daisy: true, still: true,
+      kaan: moving ? { x: kx, y: ky, s: ks, pose: 'side', step: Math.sin((tw - k.c6) * 9), expr: 'determined' } : { x: lerp(kx, KS.x, back), y: lerp(ky, KS.y, back), s: kaanS(lerp(ky, KS.y, back)), expr: 'smile', look: -.8, blink: blinkAt(tw, [k.barSet + 1]) },
       defne: { item: 'roll', expr: 'calm', look: -.7, blink: blinkAt(tw, [k.c6 + .9]) } });
     ctx.restore();
     vignette(ctx, .25);
     finish(ctx);
   });
 
-  /* --- 6b: "and wait behind the line." ters açı: üçü bariyerin arkasında bekler --- */
-  function revBg() {
-    return cached('p9-ters', 1080, 1920, g => {
-      const sg = g.createLinearGradient(0, 0, 0, 1000); sg.addColorStop(0, P.sky0); sg.addColorStop(.6, P.sky1); sg.addColorStop(1, P.sky2); g.fillStyle = sg; g.fillRect(0, 0, 1080, 1000);
-      g.fillStyle = P.cloud; g.globalAlpha = .9; [[240, 260], [820, 380]].forEach(([cx, cy]) => [[0, 0, 70, 24], [-56, 8, 46, 18], [52, 6, 50, 20]].forEach(([a, b, rx, ry]) => { g.beginPath(); g.ellipse(cx + a, cy + b, rx, ry, 0, 0, TAU); g.fill(); })); g.globalAlpha = 1;
-      let cx = -20, n = 0; while (cx < 1100) { const bw = 50 + rnd(2000 + n) * 70, bh = 60 + rnd(2100 + n) * 150; C.seed(2200 + n); C.shape(g, [[cx, 1000], [cx, 1000 - bh], [cx + bw, 1000 - bh], [cx + bw, 1000]], P.far, { lw: 1.6, ink: P.far2, amp: .4 }); cx += bw + 4; n++; }
-      const gg = g.createLinearGradient(0, 1000, 0, 1920); gg.addColorStop(0, '#d2c9b5'); gg.addColorStop(1, '#aea592'); g.fillStyle = gg; g.fillRect(0, 1000, 1080, 920);
-      C.seed(2301); C.shape(g, [[500, 1002], [580, 1002], [1300, 1920], [-220, 1920]], '#8a857c', { lw: 3, amp: .5 });
-      facade(g, [[420, 820], [-40, 360], [-40, 1500], [420, 1006]], '#c9b08a', '#a08a64', 2311, 4, 6);
-      facade(g, [[660, 840], [1120, 380], [1120, 1500], [660, 1006]], P.brick, P.brickDk, 2321, 4, 6);
-    });
-  }
+  /* --- 6b: "and wait behind the line." ters açı (p9-b güvenli taraf): üçü şeridin arkasında, kuleye dönük bekler --- */
   shot('p9a-08-bekle', k => k.c6b, k => k.c7, (ctx, t, u) => {
-    const k = times(), tw = twos(t), sh = tw >= k.shift ? Math.sin((tw - k.shift) * 5) * 8 : 0;
-    ctx.drawImage(revBg(), 0, 0);
-    ctx.save(); cam(ctx, lerp(1.0, 1.04, E.io(u)), 540, 1000);
-    C.drawDaisy(ctx, { x: 830, y: 1480, s: .8, seed: 23, beep: 0, mood: 'sleepy', hook: Math.sin(t * 1.1) * .03 });
-    C.drawDefne(ctx, { x: 545, y: 1520, s: 1.05, seed: 31, pose: 'cross', expr: tw >= k.shift + .4 ? 'calm' : 'serious', look: tw >= k.shift + .2 && tw < k.shift + 1 ? -.7 : .2, blink: blinkAt(tw, [k.c6b + .5, k.shift + 1.2]) });
-    C.drawKaan(ctx, { x: 300 + sh, y: 1520 - Math.abs(sh) * .4, s: 1.05, seed: 11, phone: false, expr: tw >= k.shift ? 'tired' : 'calm', look: .4, blink: blinkAt(tw, [k.c6b + 1.1]) });
-    [[90, 0], [450, 1], [810, 2], [1170, 3]].forEach(([x, i]) => barrier(ctx, x, 1660, 380, 2400 + i));
+    const k = times(), tw = twos(t), sh = tw >= k.shift ? Math.sin((tw - k.shift) * 5) * 6 : 0;
+    ctx.save(); cam(ctx, lerp(.95, .99, E.io(u)), 640, 1405);
+    safeWorld(ctx, t, {
+      defne: { pose: 'cross', item: null, expr: tw >= k.shift + .4 ? 'calm' : 'serious', look: tw >= k.shift + .2 && tw < k.shift + 1 ? 1 : 0, blink: blinkAt(tw, [k.c6b + .5, k.shift + 1.2]) },
+      kaan: { x: BKAAN.x + sh, y: BKAAN.y - Math.abs(sh) * .4, expr: tw >= k.shift ? 'tired' : 'calm', look: 0, blink: blinkAt(tw, [k.c6b + 1.1]) } });
     ctx.restore();
-    vignette(ctx, .25);
+    vignette(ctx, .2);
     finish(ctx);
   });
 
@@ -866,48 +855,48 @@
   });
 
   /* --- 10: "At noon, forty floors sat down..." geniş plan: şarjlar, kule kendi tozuna oturur; tabanda 6 kare sarsıntı --- */
-  const backs = (t) => ({ kaan: { back: true, expr: 'calm' }, defne: { back: true } });
+  const backs = { kaan: { back: true, expr: 'calm' }, defne: { back: true } };
   shot('p9a-12-genis', k => k.c10, k => k.c10b, (ctx, t, u) => {
     const k = times();
-    ctx.save(); shake(ctx, t, k.thump, 16); cam(ctx, lerp(.9, .93, E.io(u)), 540, 980);
-    street(ctx, t, Object.assign({ fall: true, bars: true, daisy: true }, backs(t)));
-    if (t > k.thump) airDust(ctx, t, 30, 3, [200, 500, 700, 600], clamp((t - k.thump) / 1.5) * .8);
+    ctx.save(); shake(ctx, t, k.thump, 16); cam(ctx, lerp(.55, .58, E.io(u)), 540, 980);
+    site(ctx, t, Object.assign({ fall: true, line: true, daisy: true, still: true, wideCrowd: true }, backs));
+    if (t > k.thump) airDustB(ctx, t, 40, 3, [-200, 400, 1500, 900], clamp((t - k.thump) / 1.5) * .8, '216,202,176');
     ctx.restore();
     vignette(ctx, .25);
     finish(ctx);
   });
   /* --- 10b: yakın: katlar birer birer tozun içine iner, çatı ve anten en son --- */
   shot('p9a-13-katlar', k => k.c10b, k => k.c11, (ctx, t, u) => {
-    ctx.save(); cam(ctx, 2.0, 540, lerp(840, 960, E.io(u)));
-    street(ctx, t, { fall: true, crowd: false });
-    airDust(ctx, t, 40, 5, [300, 500, 480, 700], .9);
+    ctx.save(); cam(ctx, 1.3, 540, lerp(740, 860, E.io(u)));
+    site(ctx, t, { fall: true, still: true, crew: false });
+    airDustB(ctx, t, 40, 5, [100, 300, 900, 900], .9, '216,202,176');
     ctx.restore();
     vignette(ctx, .3);
     finish(ctx);
   });
   /* --- 11: "Slowly." omuz üstü: Kaan ve Defne arkadan, toz ağır ağır büyür; çok yavaş itme --- */
   shot('p9a-14-yavas', k => k.c11, k => k.c12, (ctx, t, u) => {
-    ctx.save(); cam(ctx, lerp(1.6, 1.66, E.io(u)), 540, 1090);
-    street(ctx, t, Object.assign({ fall: true, bars: true, daisy: true }, backs(t)));
-    airDust(ctx, t * .6, 30, 6, [100, 600, 900, 700], .8);
+    ctx.save(); cam(ctx, lerp(.75, .78, E.io(u)), 560, 1350);
+    site(ctx, t, Object.assign({ fall: true, line: true, daisy: true, still: true }, backs));
+    airDustB(ctx, t * .6, 30, 6, [-100, 700, 1300, 900], .8, '216,202,176');
     ctx.restore();
     vignette(ctx, .3);
     finish(ctx);
   });
-  /* --- 12: "Exactly where the engineers wanted." alanın şeridi yakın: toz çizginin içinde kalır; sonra geniş plana açılır --- */
+  /* --- 12: "Exactly where the engineers wanted." alanın sağ ön direği yakın: toz şeridin içinde kalır; sonra B'nin geniş planına açılır --- */
   shot('p9a-15-tamyer', k => k.c12, k => k.end, (ctx, t, u) => {
-    const k = times(), p = E.ioC(seg(t, k.pull, k.end - .12));
-    const z = lerp(3.0, .9, p), cx = lerp(690, 540, p), cy = lerp(1080, 980, p);
-    ctx.save(); cam(ctx, z * lerp(1, 1.02, seg(t, k.c12, k.pull)), cx, cy);
-    street(ctx, t, Object.assign({ fall: true, bars: true, daisy: true }, backs(t)));
-    airDust(ctx, t * .6, 40, 7, [200, 700, 700, 600], .8);
+    const k = times(), p = E.ioC(seg(t, k.pull, k.end - .1)), push = lerp(1, 1.03, E.io(seg(t, k.c12, k.pull)));
+    const z = lerp(2.6 * push, 1.18, p), cx = lerp(870, 540, p), cy = lerp(1180, 1200, p), sy = lerp(960, 1000, p);
+    ctx.save(); cam(ctx, z, cx, cy, 540, sy);
+    site(ctx, t, { fall: true, lineB: true, still: t < k.pull + .2 });
+    airDustB(ctx, t, 18, 91, [-100, 800, 1300, 700], .6);
     ctx.restore();
-    vignette(ctx, .25);
+    vignette(ctx, .2);
     finish(ctx);
   });
 
   /* ================= B için dışa açılan yerleşim ================= */
-  window.P9A = { HZ, TS, ps, BARS, BY, KS, DS, DZ, zone: { x: 540, y: 1112, w: 400, h: 64 }, endCam: { z: .9, x: 540, y: 980 }, dustAt, dropFrac, street, drawTower, pile };
+  window.P9A = { SITE, TBY, TS, ps, LINE, KS, DS, DZ, endCam: { z: 1.18, cx: 540, cy: 1200, sx: 540, sy: 1000 }, dustA, dropFrac, site, drawTower };
 
   /* ================= SES EKİBİNE İŞARETLER (sn, bölüm zamanı) ================= */
   const f3 = x => +x.toFixed(3);
@@ -923,8 +912,8 @@
     get kamyon1() { return f3(times().truck[0] + .7); },              // her biri: motor yavaşlar + fren
     get kamyon2() { return f3(times().truck[1] + .7); },
     get kamyon3() { return f3(times().truck[2] + .7); },
-    get bariyerSurtunme() { return f3(times().c6 + .05); },          // sehpa asfaltta sürtünür
-    get bariyerYerinde() { return f3(times().barSet); },              // sehpa yerine oturur: metal tok
+    get seritCekilir() { return f3(times().c6 + .05); },             // şerit makarası açılır (plastik tıkırtı)
+    get seritBagla() { return f3(times().barSet); },                 // şerit son direğe bağlanır: kısa çıt
     get telefonTers() { return f3(times().flip + .3); },             // telefon komodine yüzüstü: kuru "tak"
     get yastik() { return f3(times().flop + .22); },                  // yastığa düşüş: yumuşak puf
     get sarjlar() { return f3(times().fall + .12); },                 // 5 küçük boğuk pat, 0,09 sn arayla
