@@ -20,7 +20,7 @@
  "hedef": { "lufs": -14.0, "tp": -1.0 },
  "satirlar": [
   { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 0, "son": "s2.t0", "fadein": 0.03, "fadeout": 0.05, "not": "giriş/merak (tema 0-): kızartma tabağı, 'I found Ironline Demolition.'; plan 2 sessizliğine kısma penceresiyle solar" },
-  { "t": "s2.t1+0.1", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 8.0, "son": "A.halkaSessizlik+0.1", "fadein": 0.03, "fadeout": 0.05, "not": "sepya geri dönüş + zarf (cümle 3-5): oyunbaz (tema 8-); kısma 0,4 sn solmayla açar; halka yakın planında çıkar" },
+  { "t": "s2.t1+0.1", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8.5, "ss": 8.0, "son": "A.halkaSessizlik+0.1", "fadein": 0.03, "fadeout": 0.05, "not": "sepya geri dönüş + zarf (cümle 3-5): oyunbaz (tema 8-); kısma 0,4 sn solmayla açar; halka yakın planında çıkar" },
   { "t": "A.defterAnt-0.3", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "son": "s8.t0-0.2", "fadein": 0.03, "fadeout": 0.05, "not": "'only two people ever called me Ant': sakin pad (tema 48-52); ipucu sessizliğinde çıkar" },
   { "t": "A.bardakKonur+0.5", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "sure": 4, "fadein": 0.03, "fadeout": 0.04, "not": "Defne'nin yüzü açılır, itiraf (cümle 9-10): sakin pad (tema 48-52)" },
   { "t": "A.bardakKonur+4.5", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 44, "son": "s12.t0+1.55", "fadein": 0.04, "fadeout": 0.05, "not": "'I wanted them to stop you. Before a building did.': soru (tema 44+, nabızsız, Mi'de asılı); 'did.' sonrası ağır sessizliğe kısma penceresiyle çıkar" },
