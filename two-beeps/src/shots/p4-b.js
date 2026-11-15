@@ -655,7 +655,8 @@
     drawRoom(ctx, 1, true);
     const S = toScr(z, fx, fy);
     ctx.restore();
-    roomLight(ctx, S, [[...S(OF.kx, 140), 380, .75, 520]], .82);
+    roomLight(ctx, S, [[...S(OF.kx, 110), 360, .95, 480]], .82);
+    { const [cx0, cy0] = S(OF.kx, 110); glow(ctx, cx0, cy0, 360, '255,214,150', .1); }
     if (v > 0) { // kırmızı ışık çatlaktan sızar (yalnız tonun 6 karesi)
       ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
       const pts = CRACK.map(([x, y]) => S(x, y));

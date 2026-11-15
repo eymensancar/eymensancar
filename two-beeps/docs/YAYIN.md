@@ -64,8 +64,8 @@ The game Ant plays is real: search "Demolition Master: Tower Blast" on the App S
 
 - **Her gün bir bölüm.** "Part 2 is next" sözü 24 saat içinde tutulur.
 - **Sabit saat: 21:00 TSİ.** (18:00 UTC, 13:00 EST). En hızlı başlangıç bu saatte; Eymen ilk saatte yanıt verebilir; sabit saat alışkanlık kurar.
-- **Başlangıç: 21 Kasım Cumartesi; bitiş: 30 Kasım Pazartesi.** Şart: 10 bölüm 20 Kasım'a kadar bitmiş ve zamanlanmış; değilse başlangıç kayar.
-- **"Artık App Store'da" videoları:** 17.11'deki video çıkar; stokta varsa 19.11'deki de. Dizi boyunca durur (her bölüm oyunu taşıyor); 2 Aralık'ta eski düzen döner.
+- **Başlangıç: 18 Kasım Çarşamba; bitiş: 27 Kasım Cuma (Eymen, 15 Kasım).** Dizi, iki günlük düzendeki bir sonraki videonun yerinde başlar: 17.11 01:00'deki Wi-Fi videosundan sonra sıradaki video 18.11'de çıkacaktı; onun yerine 1. bölüm çıkar, sonra her gün bir bölüm. Bölümler hazır oldukça YouTube'a yüklenip gününe zamanlanır.
+- **"Artık App Store'da" videoları:** 17.11'deki video çıkar; ondan sonra dizi başlar ve dizi boyunca bu videolar durur (her bölüm oyunu taşıyor); 27 Kasım'dan sonra eski iki günlük düzen döner (ilk video 29 Kasım).
 - **Oynatma listesi: evet,** adı `Two Beeps`. Her bölümün "İlgili video"su sonrakidir.
 
 **Başlık kalıbı:** `[kanca] (Part N/10)`, ör. `... (Part 1/10)`.
@@ -81,7 +81,7 @@ The game Ant plays is real: search "Demolition Master: Tower Blast" on the App S
 9. `200 people walked out of a tower today`
 10. `The last building on the list is my home`
 
-**Ara değerlendirme (24 Kasım):** 1–2. bölüm 48 saat, 3. bölüm 22 saat verisi; taban 949–1243.
+**Ara değerlendirme (21 Kasım):** 1–2. bölüm 48 saat, 3. bölüm 22 saat verisi; taban 949–1243.
 
 | Sayı | Devam | Saat değiştir | Tempo değiştir |
 |---|---|---|---|
@@ -99,3 +99,9 @@ The game Ant plays is real: search "Demolition Master: Tower Blast" on the App S
 
 - Instagram ve TikTok hesapları var mı?
 - Kart 4,7 sn olunca `src/part1.timeline.json` güncellenmeli.
+
+## Eymen'in kararları (15 Kasım 2026)
+- Bölüm sonu soruları onaylandı ("sorular iyi güzel"); çerçeve "What would YOU do?" / tahmin; oy ima eden ifade yok.
+- Takvim: 18–27 Kasım, her gün bir bölüm, 21:00 TSİ (publishAt 18:00 UTC).
+- TikTok hesabı yok. Instagram'ı Eymen kendi paylaşır: her bölümün dosyası ve kısa İngilizce açıklaması ona gönderilir.
+- 10. bölümün bitiş kartı öbür bölümlerdeki gibi uzun (≈4,7 sn) olur; oyun adı net okunmalı (bölüm ≈64 sn olabilir).
