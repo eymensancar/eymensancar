@@ -114,40 +114,91 @@
 
   /* ================= GÜNEŞLİ AVLU (ofis sökülmüş) ================= */
   const YD = (() => { const hz = 1920 * .56, bx = 108, bw = 561.6, by = hz + 192, bh = 576; return { hz, bx, bw, by, bh, fy: hz + 1920 * .14, gx: 1080 * .72 }; })();
-  const DAISY = { x: 640, y: 1520, s: .8 };
+  const DAISY = { x: 900, y: 1600, s: .8 };
   const BEACON = [DAISY.x, DAISY.y - 346 * DAISY.s];
-  const DESK = { x: 330, y: 1700, s: .9 }, SEAT = { x: 330, y: 1668 };
-  function noOffice(g) {   // barakanın yerine gök, uzak şehir, zemin; beton taban kalır
-    const { hz, bx, bw, by, bh, fy, gx } = YD, x0 = bx - 26, x1 = bx + bw + 30, y0 = by - bh - 44, y1 = by + 20;
-    g.save(); g.beginPath(); g.rect(x0, y0, x1 - x0, y1 - y0); g.clip();
-    const sg = g.createLinearGradient(0, 0, 0, hz); sg.addColorStop(0, P.sky0); sg.addColorStop(.6, P.sky1); sg.addColorStop(1, P.sky2); g.fillStyle = sg; g.fillRect(x0, y0, x1 - x0, hz - y0 + 2);
-    let cx = x0 - 30, n = 0; C.seed(1007);
-    while (cx < x1) { const w = 60 + rnd(7000 + n) * 70, h = 60 + rnd(7100 + n) * 150; C.shape(g, [[cx, hz], [cx, hz - h], [cx + w, hz - h], [cx + w, hz]], P.far, { lw: 2, ink: P.far2, amp: .5 }); cx += w + 6 + rnd(7200 + n) * 16; n++; }
-    const gg = g.createLinearGradient(0, hz, 0, 1920); gg.addColorStop(0, P.groundLt); gg.addColorStop(.4, P.ground); gg.addColorStop(1, P.groundDk); g.fillStyle = gg; g.fillRect(x0, hz, x1 - x0, y1 - hz);
-    // beton taban (söküm sonrası); ilk taşın çukuru sol uçta
-    C.seed(1009); C.shape(g, [[bx - 6, by - 6], [bx + bw + 6, by - 6], [bx + bw + 6, by + 14], [bx - 6, by + 14]], P.concrete, { lw: 2.9, shade: c => C.blot(c, [[bx + bw * .7, by - 8], [bx + bw + 8, by - 8], [bx + bw + 8, by + 16], [bx + bw * .72, by + 16]], P.concreteDk, .5) });
-    C.shape(g, C.ell(bx + 42, by + 2, 30, 7, 14), '#7d6a52', { lw: 2.2 });
-    g.globalAlpha = .55; g.strokeStyle = P.dustDk; g.lineWidth = 1.3;
-    for (let fx = -20; fx < x1; fx += 14) { if (fx > gx - 20) continue; g.beginPath(); g.moveTo(fx, fy - 110); g.lineTo(fx + 50, fy); g.moveTo(fx + 50, fy - 110); g.lineTo(fx, fy); g.stroke(); }
-    g.globalAlpha = 1; C.seed(1008); C.line(g, [[x0 - 10, fy - 112], [x1 + 10, fy - 111.4]], 3, P.dustDk, .8);
-    g.restore();
+  const DESK = { x: 240, y: 1700, s: .85 }, SEAT = { x: 240, y: 1668 };
+  /* avlu: p10-a ile birebir aynı 'boş' plaka (ext + drawYard barakasız + temel izi) */
+  const HZ = YD.hz;
+  const TUFT = [[-12, -526], [-6, -552], [8, -572], [30, -580], [46, -570], [44, -556], [36, -548], [38, -562], [26, -562], [14, -550], [12, -530]];
+  function ext(ctx) {
+    const g = ctx.createLinearGradient(0, 0, 0, HZ); g.addColorStop(0, P.sky0); g.addColorStop(.6, P.sky1); g.addColorStop(1, P.sky2);
+    ctx.fillStyle = g; ctx.fillRect(-1600, -2400, 4400, HZ + 2402);
+    const gg = ctx.createLinearGradient(0, HZ, 0, 1920); gg.addColorStop(0, P.groundLt); gg.addColorStop(.4, P.ground); gg.addColorStop(1, P.groundDk);
+    ctx.fillStyle = gg; ctx.fillRect(-1600, HZ, 4400, 3200);
+    C.seed(901);
+    for (const side of [-1, 1]) {
+      let cx = side < 0 ? -1600 : 1080, i = 0;
+      while (cx < (side < 0 ? 0 : 2800)) { const bw = 60 + rnd(920 + i * 3 + side) * 70, bh = 60 + rnd(940 + i * 7 + side) * 150;
+        C.shape(ctx, [[cx, HZ], [cx, HZ - bh], [cx + bw, HZ - bh], [cx + bw, HZ]], P.far, { lw: 2, ink: P.far2, amp: .5 }); cx += bw + 6 + rnd(960 + i) * 16; i++; }
+      for (let j = 0; j < 8; j++) C.blot(ctx, C.ell((side < 0 ? -1500 : 1100) + rnd(980 + j + side * 50) * 1400, HZ + 40 + rnd(990 + j) * 1600, 50 + rnd(995 + j) * 80, 9 + rnd(999 + j) * 8, 12), j % 2 ? P.groundDk : P.groundLt, .25);
+    }
+    const fy = YD.fy;
+    ctx.save(); ctx.globalAlpha = .55; ctx.strokeStyle = P.dustDk; ctx.lineWidth = 1.3;
+    ctx.save(); ctx.beginPath(); ctx.rect(-1600, 0, 1600, 3000); ctx.rect(1080, 0, 1800, 3000); ctx.clip();
+    for (let fx = -20 - 14 * 120; fx < 2800; fx += 14) { if (fx > -60 && fx < 1060) continue; ctx.beginPath(); ctx.moveTo(fx, fy - 110); ctx.lineTo(fx + 50, fy); ctx.moveTo(fx + 50, fy - 110); ctx.lineTo(fx, fy); ctx.stroke(); }
+    ctx.restore(); ctx.restore();
+    C.seed(905); C.line(ctx, [[-1600, fy - 112], [0, fy - 112]], 3, P.dustDk, .8); C.line(ctx, [[1080, fy - 108], [2800, fy - 106]], 3, P.dustDk, .8);
+    for (let px = -1530; px < 2800; px += 190) if (px < -10 || px > 1090) C.line(ctx, [[px, fy - 116], [px + 1, fy + 2]], 3.4, P.dustDk, .4);
   }
-  function yardBase() {   // avlu + dış uzantı (önbellek 1500×2700; dünya x −210…1290, y −300…2400)
-    return cached('avlu', 1500, 3100, g => {
-      g.translate(210, 300);
-      const sg = g.createLinearGradient(0, -300, 0, YD.hz); sg.addColorStop(0, P.sky0); sg.addColorStop(.6, P.sky1); sg.addColorStop(1, P.sky2); g.fillStyle = sg; g.fillRect(-210, -300, 1500, YD.hz + 300);
-      const gg = g.createLinearGradient(0, YD.hz, 0, 2400); gg.addColorStop(0, P.groundLt); gg.addColorStop(.3, P.ground); gg.addColorStop(1, P.groundDk); g.fillStyle = gg; g.fillRect(-210, YD.hz, 1500, 2800 - YD.hz);
-      for (let i = 0; i < 30; i++) C.blot(g, C.ell(-200 + rnd(5100 + i) * 1480, 1300 + rnd(5200 + i) * 1100, 50 + rnd(5300 + i) * 90, 8 + rnd(5400 + i) * 10, 12), i % 2 ? P.groundDk : P.groundLt, .25);
-      C.drawYard(g, { seed: 7, mode: 'day', letter: false });
-      noOffice(g);
-      [[-210, 0], [1080, 1290]].forEach(([a, b]) => {   // çit ve ufuk 1080 dışına
-        g.save(); g.beginPath(); g.rect(a, YD.hz - 220, b - a, 520); g.clip();
-        let cx = a; C.seed(5500 + a); while (cx < b) { const bw = 60 + rnd(cx + 9000) * 70, bh = 60 + rnd(cx + 9100) * 150; C.shape(g, [[cx, YD.hz], [cx, YD.hz - bh], [cx + bw, YD.hz - bh], [cx + bw, YD.hz]], P.far, { lw: 2, ink: P.far2, amp: .5 }); cx += bw + 10; }
-        const fy = YD.fy; g.globalAlpha = .55; g.strokeStyle = P.dustDk; g.lineWidth = 1.3;
-        for (let fx = a - 20; fx < b; fx += 14) { g.beginPath(); g.moveTo(fx, fy - 110); g.lineTo(fx + 50, fy); g.moveTo(fx + 50, fy - 110); g.lineTo(fx, fy); g.stroke(); }
-        g.globalAlpha = 1; C.line(g, [[a, fy - 111], [b, fy - 110]], 3, P.dustDk, .8);
-        g.restore();
-      });
+  function skipShed(g) {
+    let st = 0; const DRAW = { fill: 1, stroke: 1, fillRect: 1, fillText: 1, strokeRect: 1, strokeText: 1 };
+    return new Proxy(g, {
+      get(tg, k) {
+        if (DRAW[k]) return (...a) => {
+          if (k === 'fill' && typeof tg.fillStyle === 'string') { const fs = tg.fillStyle.toLowerCase(); if (st === 0 && fs === '#9aa59c') st = 1; else if (st === 1 && fs === P.concrete) st = 2; }
+          if (st === 1) return; tg[k](...a);
+        };
+        const v = tg[k]; return typeof v === 'function' ? v.bind(tg) : v;
+      },
+      set(tg, k, v) { tg[k] = v; return true; }
+    });
+  }
+  // barakanın kalktığı yer: soluk toprak izi + eski temel taşları (ilk taş hariç: o canlı çizilir)
+  function footprint(ctx) {
+    C.seed(631);
+    const Q = [[112, 1268], [664, 1268], [640, 1196], [134, 1200]];
+    C.shape(ctx, Q, '#dcc79f', { lw: 0, shade: c => { C.blot(c, [[112, 1250], [664, 1250], [664, 1270], [112, 1270]], '#c6ad80', .7); for (let i = 0; i < 12; i++) C.blot(c, C.ell(150 + rnd(640 + i) * 480, 1205 + rnd(650 + i) * 55, 20 + rnd(660 + i) * 40, 4 + rnd(670 + i) * 4, 10), i % 2 ? '#c9b083' : '#eadbb8', .6); } });
+    C.line(ctx, [[134, 1200], [640, 1196]], 2.4, 'rgba(110,100,87,.7)', .8);           // arka duvarın izi
+    C.line(ctx, [[134, 1200], [112, 1266]], 2.4, 'rgba(110,100,87,.6)', .8); C.line(ctx, [[640, 1196], [664, 1266]], 2.4, 'rgba(110,100,87,.6)', .8);
+    // eski temel taşları (köşeler + arka)
+    [[656, 1262, 60, 30], [140, 1202, 40, 18], [634, 1198, 40, 18], [388, 1198, 34, 15]].forEach(([x, y, w, h], i) => stoneBlock(ctx, x, y, w, h, 640 + i));
+  }
+  function stoneBlock(ctx, x, y, w, h, sd) {
+    C.seed(sd);
+    C.shape(ctx, [[x - w / 2, y - h * .1], [x - w * .42, y - h], [x + w * .4, y - h * 1.04], [x + w / 2, y - h * .2], [x + w * .46, y + h * .12], [x - w * .46, y + h * .14]], '#b9ab8e', { lw: 2.6, shade: c => { C.blot(c, [[x - w, y - h * .3], [x + w, y - h * .3], [x + w, y + h], [x - w, y + h]], '#8f846f', .55); C.blot(c, C.ell(x - w * .15, y - h * .7, w * .2, h * .15, 8), '#d6cbb2', .6); } });
+  }
+  function helmetShape(ctx, lw) {
+    C.seed(311);
+    C.shape(ctx, [[-50, 8], [-46, -20], [-30, -40], [0, -48], [30, -40], [46, -20], [50, 8]], '#e3dccb', { lw, shade: c => { C.blot(c, [[10, -50], [60, -50], [60, 10], [18, 10]], '#b9b0a0', .7); C.blot(c, C.ell(-18, -14, 9, 5, 8), '#9a8f7c', .5); } });
+    C.shape(ctx, [[-62, 6], [62, 6], [58, 16], [-58, 16]], '#d5ccba', { lw: lw * .9 });
+    C.line(ctx, [[0, -48], [0, 6]], lw * .5, 'rgba(21,18,13,.4)', .3);
+    C.line(ctx, [[-30, -26], [-18, -30]], lw * .45, '#6e6457', .3); C.line(ctx, [[22, -16], [34, -8]], lw * .45, '#6e6457', .3);
+  }
+  const HEAD = { stand: [6, -521, 1.12], side: [8, -524, 1.08], back: [4, -521, 1.12] };
+  // Kaan (+ isteğe bağlı baret, kutu, liste). Tutam baretin tepesinden çıkar.
+  function kaanH(ctx, o) {
+    const pose = o.pose || 'stand', s = o.s, lw = 5.2 / Math.sqrt(s);
+    ctx.save(); ctx.translate(o.x, o.y + (o.bob || 0)); ctx.rotate(o.rot || 0); ctx.translate(-o.x, -o.y);
+    C.drawKaan(ctx, Object.assign({ seed: 11, phone: false }, o, { pose, bob: undefined }));
+    ctx.save(); ctx.translate(o.x, o.y); ctx.scale(o.flip ? -s : s, s);
+    if (o.box) kaanBox(ctx, pose, lw);
+    if (o.helmet) {
+      const h = HEAD[pose] || HEAD.stand;
+      ctx.save(); ctx.translate(h[0], h[1]); ctx.scale(h[2], h[2]); helmetShape(ctx, lw / h[2]); ctx.restore();
+      if (pose !== 'back') { ctx.save(); ctx.beginPath(); ctx.rect(-200, -700, 400, h[1] - 44 + 700); ctx.clip(); C.seed(541); C.shape(ctx, pose === 'side' ? TUFT.map(([x, y]) => [x - 2, y - 2]) : TUFT, P.hair, { lw }); ctx.restore(); }
+      else { ctx.save(); ctx.beginPath(); ctx.rect(-200, -700, 400, h[1] - 44 + 700); ctx.clip(); C.seed(541); C.shape(ctx, TUFT, P.hair, { lw }); ctx.restore(); }
+    }
+    ctx.restore();
+    ctx.restore();
+  }
+  const PX0 = -600;
+  function yardBase() {   // dünya x −600…1800, y 0…2800
+    return cached('avlu', 2400, 2800, g => {
+      g.translate(-PX0, 0); ext(g);
+      C.drawYard(skipShed(g), { seed: 7, mode: 'day', letter: false }); footprint(g);
+      // ilk taşın çukuru (sol ön köşe) ve kenara konmuş taş
+      C.seed(1009); C.shape(g, C.ell(122, 1270, 30, 9, 14), '#7d6a52', { lw: 2.2 });
+      stoneBlock(g, 40, 1300, 70, 34, 1010);
     });
   }
   function grass(ctx, t) {
@@ -235,12 +286,12 @@
   }
   function world(ctx, t, o) {
     o = o || {};
-    ctx.drawImage(yardBase(), -210, -300);
+    ctx.drawImage(yardBase(), PX0, 0);
     const items = [];
     if (o.daisy !== false) items.push([DAISY.y, () => daisy(ctx, Object.assign({ x: DAISY.x, y: DAISY.y, s: DAISY.s, hook: Math.sin(t * 1.1) * .025 }, o.daisy || {}))]);
     if (o.desk) items.push([DESK.y, () => drawDesk(ctx, DESK.x, DESK.y, DESK.s, o.desk)]);
     if (o.defne) items.push([SEAT.y - 1, () => drawDefneHead(ctx, Object.assign({ x: SEAT.x, y: SEAT.y, s: DESK.s, seed: 31, pose: 'sit' }, o.defne), o.defne.headRot, o.defne.headDy)]);
-    if (o.kaan) items.push([o.kaan.y, () => C.drawKaan(ctx, Object.assign({ seed: 11 }, o.kaan))]);
+    if (o.kaan) items.push([o.kaan.y, () => kaanH(ctx, Object.assign({ seed: 11 }, o.kaan))]);
     (o.extra || []).forEach(e => items.push(e));
     items.sort((a, b) => a[0] - b[0]).forEach(f => f[1]());
     if (!o.noGrass) grass(ctx, t);
@@ -259,7 +310,7 @@
      aynı bulanık toprak/teneke zemini (p10-a dirt/stoneBed/tinTop/foldedNote/sideHand kopyası). Kaan notu tuttuğu yerden (yatay eksen)
      ters çevirir; not yukarı kalkar ve büyür: ön yüzde dedenin el yazısı üst üçte birde. */
   const INK_OLD = '#3a3026', NW = 520, NH = 330, NAX = 60;   // not yerel ölçüsü (A ile aynı), çevirme ekseni = ellerin tuttuğu çizgi
-  const N0 = { x: 540, y: 760, s: 1.08, rot: -.04 }, N1 = { x: 475, y: 380, s: 1.4, rot: -.02 };
+  const N0 = { x: 540, y: 760, s: 1.08, rot: -.04 }, N1 = { x: 475, y: 330, s: 1.4, rot: -.02 };
   function limb(ctx, A, B, wa, wb, fill, sd) {
     const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L; C.seed(sd);
     return C.shape(ctx, [[A[0] + nx * wa, A[1] + ny * wa], [B[0] + nx * wb, B[1] + ny * wb], [B[0] - nx * wb, B[1] - ny * wb], [A[0] - nx * wa, A[1] - ny * wa]], fill, { lw: 7, shade: c => C.blot(c, [[A[0] - nx * wa * .1, A[1] - ny * wa * .1], [B[0] - nx * wb * .1, B[1] - ny * wb * .1], [B[0] - nx * wb * 1.2, B[1] - ny * wb * 1.2], [A[0] - nx * wa * 1.2, A[1] - ny * wa * 1.2]], '#0b1f2a', .3) });
@@ -397,7 +448,7 @@
   /* ================= 20: Defne masada, avluda ================= */
   shot('p10b20-masa', k => k.desk, k => k.top, (ctx, t, u) => {
     const k = times(), tw = twos(t), e = E.io(u);
-    ctx.save(); cam(ctx, lerp(1.55, 1.62, e), lerp(420, 400, e), 1540, 520, 880);
+    ctx.save(); cam(ctx, lerp(1.55, 1.62, e), lerp(330, 310, e), 1540, 520, 880);
     const pen = Math.sin(tw * 9) * 10;
     world(ctx, t, {
       desk: { helmet: true, after: (c, lw) => { C.seed(2902); C.line(c, [[-60 + pen, -246], [-40 + pen, -262]], lw * 1.2, P.pencil, .1); } },
@@ -486,7 +537,7 @@
   /* ================= 23–24: Daisy emekli, güneşte ================= */
   shot('p10b23-avlu', k => k.yard, k => k.dmed, (ctx, t, u) => {
     const k = times(), e = E.io(u);
-    ctx.save(); cam(ctx, lerp(1.08, 1.14, e), lerp(560, 600, e), 1400, 540, 760);
+    ctx.save(); cam(ctx, lerp(1.0, 1.06, e), lerp(640, 680, e), 1460, 540, 800);
     world(ctx, t, { desk: { helmet: true } });
     airDust(ctx, t, 22, 51, [-100, 600, 1300, 900], .8);
     ctx.restore();
@@ -496,7 +547,7 @@
   });
   shot('p10b24-daisy', k => k.dmed, k => k.bcu, (ctx, t, u) => {
     const k = times(), e = E.io(u);
-    ctx.save(); cam(ctx, lerp(1.75, 1.86, e), 640, 1380, 520, 780);
+    ctx.save(); cam(ctx, lerp(1.75, 1.86, e), 880, 1460, 540, 780);
     world(ctx, t, { daisy: { bird: birdState(t) } });
     airDust(ctx, t, 18, 53, [200, 700, 900, 900], .8);
     ctx.restore();
@@ -506,7 +557,7 @@
   });
 
   /* ================= 25–26: SON İKİ BİP (pilot kalıbı) ================= */
-  const CU = { z0: 2.3, z1: 2.42, cx: 640, cy: 1330, sx: 500, sy: 830 };
+  const CU = { z0: 2.3, z1: 2.42, cx: 900, cy: 1410, sx: 500, sy: 830 };
   shot('p10b25-bip', k => k.bcu, k => k.check, (ctx, t, u) => {
     const k = times(), tf = frozen(t), ft = flow(t);
     const zu = tf < k.fr0 ? E.outC(seg(tf, k.bcu, k.fr0)) : 1;
@@ -564,7 +615,7 @@
   });
   shot('p10b27-kanca', k => k.c1, k => k.c2, (ctx, t, u) => {
     const k = times(), tw = ones(t), g = seg(tw, k.c1 + .1, k.c1 + .2), tug = Math.sin(Math.PI * seg(tw, k.c1 + .2, k.c1 + .38)) * 26;
-    const bg = blurredWorld('bg-kanca', 2.1, 560, 1250, 10, { daisy: false, desk: { helmet: true } }, 540, 760);
+    const bg = blurredWorld('bg-kanca', 2.1, 800, 1250, 10, { daisy: false, desk: { helmet: true } }, 540, 760);
     ctx.save(); ctx.translate((1 - E.outC(seg(t, k.c1, k.c1 + .12))) * 50, 0); ctx.drawImage(bg, 0, 0); ctx.restore();
     const sw = .05 * Math.sin((t - k.c1) * 7) * Math.exp(-(t - k.c1) * 2) + (g > 0 ? -.02 * g : 0);
     hookCU(ctx, 470, 620 + tug, 5.2, sw);
@@ -585,12 +636,12 @@
   /* ================= 28: "Then I understood." Kaan durur, yüzü yumuşar ================= */
   shot('p10b28-anladi', k => k.under, k => k.bye, (ctx, t, u) => {
     const k = times(), tw = twos(t), e = E.io(u);
-    const bg = blurredWorld('bg-kaan', 1.6, 700, 1350, 9, { desk: { helmet: true } }, 540, 860);
+    const bg = blurredWorld('bg-kaan', 1.6, 900, 1430, 9, { desk: { helmet: true } }, 700, 860);
     ctx.save(); ctx.translate(540, 960); ctx.scale(1 + u * .04, 1 + u * .04); ctx.drawImage(bg, -540, -960); ctx.restore();
     const expr = tw < k.soft - .05 ? 'worried' : tw < k.soft + .35 ? 'calm' : 'smile';
     const breath = Math.sin(tw * 1.5) * 5 + E.io(seg(tw, k.soft, k.soft + .4)) * 10;   // omuzlar iner: rahatlar
     ctx.save(); cam(ctx, lerp(1, 1.05, e), 540, 960);
-    C.drawKaan(ctx, { x: 420, y: 1960 + breath, s: 2.6, expr, look: .8, blink: blinkAt(tw, [k.soft + .02]), phone: false, seed: 11 });
+    kaanH(ctx, { x: 420, y: 1960 + breath, s: 2.6, expr, look: .8, blink: blinkAt(tw, [k.soft + .02]), helmet: true, seed: 11 });
     ctx.restore();
     sun(ctx, .9);
     vignette(ctx, .25);
@@ -603,11 +654,11 @@
     const pull = E.io(seg(t, k.bye, k.cta + .3));
     const ember = Math.min(E.outQ(seg(t, k.glow - .1, k.glow + .35)), 1 - E.io(seg(t, k.glow + .45, k.glow + 1.9)));
     const mood = t < k.glow + 1.2 ? 'alert' : 'sleepy';   // ışık sönünce siperlik yarıya iner: huzur
-    ctx.save(); cam(ctx, lerp(1.42, 1.14, pull), lerp(560, 560, pull), lerp(1390, 1400, pull), 520, lerp(820, 760, pull));
+    ctx.save(); cam(ctx, lerp(1.42, 1.14, pull), lerp(830, 800, pull), lerp(1470, 1480, pull), 520, lerp(820, 780, pull));
     world(ctx, t, {
       desk: { helmet: true },
       daisy: { mood, ember, bird: birdState(t) },
-      kaan: { x: 420, y: 1765, s: .82, expr: 'smile', look: 1, blink: blinkAt(tw, [k.bye + .8, k.glow + 1.6]), phone: false }
+      kaan: { x: 690, y: 1700, s: .82, helmet: true, expr: 'smile', look: 1, blink: blinkAt(tw, [k.bye + .8, k.glow + 1.6]), phone: false }
     });
     airDust(ctx, t, 20, 61, [0, 700, 1200, 900], .8);
     ctx.restore();

@@ -492,7 +492,8 @@
     if (t < k.c14) return lerp(-372, -175, E.outC(seg(t, k.c13 + .12, k.c14 - .1)));
     return lerp(-175, -80, E.io(seg(t, k.c14, k.end)));
   }
-  function deskTop(ctx, t, rx) {
+  function deskTop(ctx, t, rx, d, caps) {
+    d = d || 46;
     const bg = cached('masa-ust', 2160, 2880, c => {
       c.translate(540, 480); c.fillStyle = P.wood; c.fillRect(-540, -480, 2160, 2880); C.seed(611);
       for (let i = -2; i < 11; i++) C.line(c, [[-560, 120 + i * 220], [1640, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
@@ -522,8 +523,61 @@
     ctx.restore();
     // rulo silindiri
     C.seed(641);
-    ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(rx + 6, -280, 60, 576); ctx.restore();
-    C.shape(ctx, [[rx, -284], [rx + 46, -284], [rx + 46, 284], [rx, 284]], '#e4ebe9', { lw: 4.4, shade: c => { C.blot(c, [[rx + 26, -290], [rx + 50, -290], [rx + 50, 290], [rx + 26, 290]], '#aeb9b6', .8); } });
+    if (!caps) {
+      ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(rx + 6, -280, 60, 576); ctx.restore();
+      C.shape(ctx, [[rx, -284], [rx + 46, -284], [rx + 46, 284], [rx, 284]], '#e4ebe9', { lw: 4.4, shade: c => { C.blot(c, [[rx + 26, -290], [rx + 50, -290], [rx + 50, 290], [rx + 26, 290]], '#aeb9b6', .8); } });
+    } else rollBody(ctx, rx, d);
+    ctx.restore();
+  }
+
+  /* a12: tek, bütün kâğıt rulosu (kalınlık açıldıkça d → 46, a13'teki ruloya iner); iki uçta aynı silindirin ağzı, sarmal kâğıt katları. */
+  function rollBody(ctx, rx, d) {
+    const cx = rx + d / 2, Y = 284, ry = d * .3;
+    // kâğıdın rulodan çıktığı yerde kıvrım gölgesi
+    const sg = ctx.createLinearGradient(rx - 26, 0, rx, 0); sg.addColorStop(0, 'rgba(21,18,13,0)'); sg.addColorStop(1, 'rgba(21,18,13,.28)');
+    ctx.fillStyle = sg; ctx.fillRect(rx - 26, -Y + 4, 26, 2 * Y - 8);
+    ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(rx + d * .3, -Y + 10, d * .9, 2 * Y); ctx.restore();
+    C.seed(661);
+    C.shape(ctx, [[rx, -Y], [rx + d, -Y], [rx + d, Y], [rx, Y]], '#e4ebe9', { lw: 4.4, shade: c => {
+      const g = c.createLinearGradient(rx, 0, rx + d, 0); g.addColorStop(0, 'rgba(255,255,255,.35)'); g.addColorStop(.35, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(120,135,132,.55)');
+      c.fillStyle = g; c.fillRect(rx - 4, -Y - 4, d + 8, 2 * Y + 8);
+      c.strokeStyle = 'rgba(31,79,224,.10)'; c.lineWidth = 1; for (let yy = -Y + 20; yy < Y; yy += 20) { c.beginPath(); c.moveTo(rx, yy); c.lineTo(rx + d, yy); c.stroke(); }
+    } });
+    [-Y, Y].forEach(yy => {   // iki uç: aynı silindirin ağzı + sarmal
+      C.shape(ctx, C.ell(cx, yy, d / 2, ry, 18), '#f2f5f3', { lw: 3.4 });
+      ctx.save(); ctx.strokeStyle = 'rgba(36,64,143,.45)'; ctx.lineWidth = 1.6;
+      for (let i = 1; i <= 3; i++) { ctx.beginPath(); ctx.ellipse(cx + i * .8, yy, d / 2 * (1 - i * .24), ry * (1 - i * .24), 0, .3 + i * .5, 5.6 + i * .3); ctx.stroke(); }
+      ctx.fillStyle = 'rgba(21,18,13,.55)'; ctx.beginPath(); ctx.ellipse(cx + 2, yy, d * .08, ry * .18, 0, 0, TAU); ctx.fill(); ctx.restore();
+    });
+  }
+  function bgRollEnds(ctx) { // üstteki iki rulo da uçlarıyla okunsun (yalnız a12)
+    [[340, 330, -.12, 300], [700, 300, .1, 240]].forEach(([x, y, r, L], i) => {
+      ctx.save(); ctx.translate(x, y); ctx.rotate(r); C.seed(671 + i);
+      ctx.save(); ctx.globalAlpha = .28; ctx.fillStyle = P.ink; ctx.fillRect(-L / 2 + 6, 10, L, 22); ctx.restore();
+      C.shape(ctx, [[-L / 2, -24], [L / 2, -24], [L / 2, 24], [-L / 2, 24]], '#dfe5e2', { lw: 4, shade: c => { const g = c.createLinearGradient(0, -24, 0, 24); g.addColorStop(0, 'rgba(255,255,255,.4)'); g.addColorStop(1, 'rgba(110,125,122,.55)'); c.fillStyle = g; c.fillRect(-L / 2, -26, L, 52); } });
+      [-L / 2, L / 2].forEach(xx => { C.shape(ctx, C.ell(xx, 0, 9, 24, 12), '#f2f5f3', { lw: 3 }); ctx.strokeStyle = 'rgba(36,64,143,.45)'; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.ellipse(xx, 0, 5, 14, 0, .4, 5.5); ctx.stroke(); });
+      ctx.restore();
+    });
+  }
+  // İki kemikli kol (omuz → dirsek → bilek), pilot üslubunda el: avuç, kıvrık parmaklar ruloyu sarar, başparmak, sarı bileklik.
+  function ik(S, G, L1, L2, bend) {
+    const dx = G[0] - S[0], dy = G[1] - S[1], d = Math.min(Math.hypot(dx, dy), L1 + L2 - 1), ux = dx / Math.hypot(dx, dy), uy = dy / Math.hypot(dx, dy);
+    const a = (L1 * L1 - L2 * L2 + d * d) / (2 * d), h = Math.sqrt(Math.max(0, L1 * L1 - a * a));
+    return [S[0] + ux * a - uy * h * bend, S[1] + uy * a + ux * h * bend];
+  }
+  function reachArm(ctx, S, grip, L1, L2, bend, flip, sd) {
+    const HL = 74, El = ik(S, grip, L1, L2 + HL, bend), gx = grip[0] - El[0], gy = grip[1] - El[1], gl = Math.hypot(gx, gy), ux = gx / gl, uy = gy / gl;
+    const Wr = [grip[0] - ux * HL, grip[1] - uy * HL], lw = 6;
+    C.seed(sd);
+    const q = (A, B, f) => [lerp(A[0], B[0], f), lerp(A[1], B[1], f)], e1 = q(S, El, .82), e2 = q(El, Wr, .18), eM = q(e1, e2, .5);
+    C.tube(ctx, [S, q(S, El, .5), e1, q(eM, El, .35), e2, q(El, Wr, .6), Wr], 168, 124, P.jacket, lw, { shade: c => C.blot(c, [[S[0] + 20, S[1]], [S[0] + 90, S[1]], [El[0] + 50, El[1]], [Wr[0] + 30, Wr[1]], [Wr[0], Wr[1]]], '#0b1f2a', .22) });
+    C.line(ctx, [q(El, e1, .5), q(El, eM, .2), q(El, e2, .5)], 3, '#1f4d50', .4);   // dirsek kırışığı
+    ctx.save(); ctx.translate(Wr[0], Wr[1]); ctx.rotate(Math.atan2(uy, ux)); if (flip) ctx.scale(1, -1);
+    C.shape(ctx, [[-34, -50], [-6, -50], [-6, 50], [-34, 50]], P.hazard, { lw: lw * .8 });
+    C.shape(ctx, [[-4, -46], [56, -52], [92, -38], [102, -4], [96, 36], [58, 48], [-4, 44]], P.skin, { lw, shade: c => C.blot(c, [[-10, 14], [110, 14], [110, 56], [-10, 56]], P.skinDk, .5) });
+    [[100, -30], [108, -10], [108, 10], [100, 30]].forEach(([fx, fy], i) => C.shape(ctx, C.ell(fx, fy, 15, 10.5, 12), i % 2 ? P.skinDk : P.skin, { lw: lw * .75 }));
+    C.line(ctx, [[60, -30], [66, -16]], 2.6, P.skinDk); C.line(ctx, [[62, 0], [66, 12]], 2.6, P.skinDk);
+    C.shape(ctx, [[16, -46], [52, -74], [84, -74], [88, -62], [56, -48]], P.skin, { lw });
     ctx.restore();
   }
   function handOnRoll(ctx, x, y, rot, flip) { // Kaan'ın kolu alttan gelir: ceket + sarı bileklik + el
@@ -540,12 +594,18 @@
   }
   function planToScreen(lx, ly) { const c = Math.cos(PLAN.rot), s = Math.sin(PLAN.rot); return [PLAN.x + (lx * c - ly * s) * PLAN.s, PLAN.y + (lx * s + ly * c) * PLAN.s]; }
   shot('a12-rulo', k => k.c13, k => k.c14, (ctx, t, u) => {
-    const rx = rollX(twos(t)), z = lerp(1.0, 1.06, E.io(u));
+    const k = times(), tw = twos(t), rx = rollX(tw), z = lerp(1.0, 1.06, E.io(u));
+    const d = lerp(92, 46, E.io(seg(rx, -372, -175)));                       // rulo açıldıkça incelir; a13'teki 46'ya iner
     ctx.save(); cam(ctx, z, 540, 900);
-    deskTop(ctx, t, rx);
+    deskTop(ctx, t, rx, d, true);
+    bgRollEnds(ctx);
+    // iki el ruloyu iki ucundan tutar; sonda a13'ün el konumlarına geçer (sağ el rulonun ortası, sol el kâğıdın sol alt köşesi)
+    const v = E.io(seg(tw, k.c14 - .4, k.c14 - .04));
+    const top = planToScreen(rx + d / 2, -262), bot = planToScreen(rx + d / 2, 262);
     const [hx, hy] = planToScreen(rx + 24, 80), [lx, ly] = planToScreen(-330, 230);
-    handOnRoll(ctx, lx, ly + 40, .25, true);
-    handOnRoll(ctx, hx, hy, -.2, false);
+    const gR = [lerp(top[0], hx, v), lerp(top[1], hy - 30, v)], gL = [lerp(bot[0], lx, v), lerp(bot[1], ly + 10, v)];
+    reachArm(ctx, [lerp(1180, 1000, v), lerp(1750, 2150, v)], gR, 640, 560, 1, false, 681);
+    reachArm(ctx, [lerp(360, 120, v), 2250], gL, 620, 520, -1, true, 682);
     ctx.restore();
     lampWarm(ctx, .5); vignette(ctx, .45); finish(ctx);
   });

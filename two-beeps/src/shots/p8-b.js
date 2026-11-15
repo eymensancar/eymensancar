@@ -907,8 +907,8 @@
   shot('p8b30-son', k => k.end0, k => k.dur + 1, (ctx, t, u) => {
     const k = times(), tf = frozen(t), ft = flow(t), tw = twos(ft);
     const e = E.io(seg(tf, k.end0, k.endF0 - .02)), after = E.io(seg(t, k.endF1, k.dur));
-    const z = lerp(1.06, 1.0, e) + .03 * after;
-    ctx.save(); cam(ctx, z, 540, 1000, 540, 900);
+    const z = lerp(1.36, 1.28, e) + .03 * after;
+    ctx.save(); cam(ctx, z, 620, 660, 540, 580);
     wallB(ctx, tf, {});
     // yürüyüş: ayakta önden, sola; ikişerli adım (bipte durur), kart altında kadrajdan çıkar
     const w1 = seg(ft, k.end0 + .12, k.endF0 + .02), w2 = seg(ft, k.endF0 + .02, k.endF0 + 2.2);
