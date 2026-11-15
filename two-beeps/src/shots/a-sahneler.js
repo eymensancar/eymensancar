@@ -404,7 +404,7 @@
     drawBallD(ctx, 860, 2020, 2.05, hook, -boom);
     C.drawDaisy(ctx, { x: 860, y: 2020, s: 2.05, boom: -boom, hook, seed: 23 });
     ctx.restore();
-    tag(ctx, 800, 250, swing(q2(t), t0, .18, 8), '1', 2000, { s: .8 });
+    tag(ctx, 270, 262, swing(q2(t), t0, .18, 8), '1', 2000, { s: .8 });
     vignette(ctx, .25); grain(ctx);
   });
 
@@ -464,7 +464,7 @@
     ctx.restore();
     ctx.restore();
     lampLight(ctx, 400, 700, 1300, 1);
-    tag(ctx, 800, 250, swing(q2(t), t0, -.2, 8), '2', 2017, { s: .8 });
+    tag(ctx, 270, 262, swing(q2(t), t0, -.2, 8), '2', 2017, { s: .8 });
     grain(ctx);
   });
 
@@ -487,7 +487,9 @@
     drawList(ctx, { half: 1, flap: 0 });
     ctx.restore();
     lampLight(ctx, 500, 760, 1250, 1);
-    tag(ctx, 800, 250, swing(q2(t), t0, .2, 8), '3', 2034, { s: .8 });
+    ctx.save(); ctx.globalAlpha = 1 - seg(t, t0 + 1.1, t0 + 1.4);   // liste itilince başlıkla çakışmasın
+    if (ctx.globalAlpha > 0) tag(ctx, 270, 262, swing(q2(t), t0, .2, 8), '3', 2034, { s: .8 });
+    ctx.restore();
     grain(ctx);
   });
 

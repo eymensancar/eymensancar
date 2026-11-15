@@ -526,26 +526,37 @@
     // gösterge
     C.shape(ctx, C.ell(400, 620, 44, 44, 22), P.paper, { lw: 4 }); C.line(ctx, [[400, 620], [430, 594]], 4);
   }
-  function drawLeverAndHand(ctx, t, a) {
+  function limb(ctx, A, B, wa, wb, fill, sd) { // iki uçta farklı kalınlıkta kol parçası
+    const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L; C.seed(sd);
+    return C.shape(ctx, [[A[0] + nx * wa, A[1] + ny * wa], [B[0] + nx * wb, B[1] + ny * wb], [B[0] - nx * wb, B[1] - ny * wb], [A[0] - nx * wa, A[1] - ny * wa]], fill, { lw: 7, shade: c => C.blot(c, [[A[0] - nx * wa * .1, A[1] - ny * wa * .1], [B[0] - nx * wb * .1, B[1] - ny * wb * .1], [B[0] - nx * wb * 1.2, B[1] - ny * wb * 1.2], [A[0] - nx * wa * 1.2, A[1] - ny * wa * 1.2]], P.jacketDk, .55) });
+  }
+  function drawLeverAndHand(ctx, t, a, reach) {
     const pv = [540, 1120], L = 640, KX = pv[0] + Math.sin(a) * L, KY = pv[1] - Math.cos(a) * L;
     C.seed(211);
     C.line(ctx, [pv, [KX, KY]], 30); C.line(ctx, [pv, [KX, KY]], 16, P.steelLt, .2);
     C.shape(ctx, C.ell(pv[0], pv[1], 46, 30, 18), P.steel, { lw: 5 });
-    // el: topuzu kavrayan yumruk, kol sağ alttan gelir
-    const ex = KX + 620, ey = KY + 900;
-    C.seed(212);
-    C.shape(ctx, [[KX + 40, KY - 50], [ex + 260, ey - 200], [ex - 40, ey + 160], [KX - 40, KY + 70]], P.jacket, { lw: 7, shade: c => C.blot(c, [[KX + 40, KY + 40], [ex + 200, ey - 40], [ex + 200, ey + 200], [KX, KY + 90]], P.jacketDk, .6) });
-    C.shape(ctx, [[KX + 50, KY - 30], [KX + 120, KY + 30], [KX + 70, KY + 110], [KX - 4, KY + 60]], P.hazard, { lw: 6 });
     C.shape(ctx, C.ell(KX, KY, 50, 50, 22), '#1d1f24', { lw: 6 });
+    // el: topuzu kavrayan yumruk; kol sağ alttan bilek → dirsek → omuz (kadraj dışı). reach<1: el yaklaşıyor
+    const rr = reach == null ? 1 : reach, off = [(1 - rr) * 520, (1 - rr) * 640];
+    ctx.save(); ctx.translate(off[0], off[1]);
+    const wr = [KX + 70, KY + 50], el = [KX + 300 - (KX - 540) * .25, KY + 560], sh = [KX + 900, KY + 820];
+    limb(ctx, el, sh, 92, 120, P.jacket, 213);
+    limb(ctx, wr, el, 66, 88, P.jacket, 212);
+    C.shape(ctx, C.ell(el[0], el[1], 88, 84, 20), P.jacket, { lw: 0 });
+    C.line(ctx, [[el[0] - 70, el[1] - 20], [el[0] - 10, el[1] + 30], [el[0] + 50, el[1] + 20]], 5, P.jacketDk);
+    C.shape(ctx, [[KX + 40, KY - 20], [KX + 120, KY + 40], [KX + 90, KY + 110], [KX + 4, KY + 64]], P.hazard, { lw: 6 });
+    ctx.restore();
+    ctx.save(); ctx.translate(off[0], off[1]);
     C.shape(ctx, [[KX - 78, KY - 46], [KX + 40, KY - 70], [KX + 70, KY + 10], [KX + 30, KY + 70], [KX - 70, KY + 60], [KX - 96, KY + 6]], P.skin, { lw: 7, shade: c => C.blot(c, [[KX + 10, KY - 80], [KX + 90, KY - 80], [KX + 90, KY + 90], [KX + 20, KY + 90]], P.skinDk, .5) });
     for (let i = 0; i < 3; i++) C.line(ctx, [[KX - 92 + i * 4, KY - 18 + i * 26], [KX - 50 + i * 4, KY - 14 + i * 26]], 4.5);
     C.shape(ctx, [[KX - 60, KY - 58], [KX + 30, KY - 82], [KX + 44, KY - 60], [KX - 46, KY - 34]], '#d79a6c', { lw: 5 });
+    ctx.restore();
   }
   shot('b16-kol', k => k.lever, k => k.daisy, (ctx, t, u, tl) => {
     const k = times(), z = lerp(1, 1.05, u);
     // kol yerine oturunca kamera 2 kare sarsılmaz; sadece panel bir piksel titrer (ağırlık)
     ctx.save(); cam(ctx, z * 1.35, 560, 760);
-    drawLeverPanel(ctx, t); drawLeverAndHand(ctx, t, leverAngle(twos(t)));
+    drawLeverPanel(ctx, t); drawLeverAndHand(ctx, t, leverAngle(twos(t)), E.outC(seg(twos(t), k.lever, k.ant1 - .1)));
     ctx.restore();
     finish(ctx);
   });
@@ -669,9 +680,9 @@
       c.translate(160, 140);
       const g = c.createLinearGradient(0, 0, 0, 1920); g.addColorStop(0, P.groundLt); g.addColorStop(1, P.groundDk); c.fillStyle = g; c.fillRect(-200, -200, 1500, 2400);
       for (let i = 0; i < 40; i++) C.blot(c, C.ell(rnd(i) * 1080, rnd(i + 50) * 1920, 60 + rnd(i + 90) * 100, 18 + rnd(i + 130) * 20, 12), i % 2 ? P.groundDk : P.dustLt, .3);
-      for (let i = 0; i < 64; i++) {
+      for (let i = 0; i < 34; i++) {
         const x = -60 + rnd(1000 + i) * 1200, y = -60 + rnd(2000 + i) * 2050;
-        if (Math.abs(x - STONE.x) < STONE.w * .62 && Math.abs(y - STONE.y) < STONE.h * .7) continue;
+        if (Math.abs(x - STONE.x) < STONE.w * .85 && Math.abs(y - STONE.y) < STONE.h * 1.1) continue;
         const w = 90 + rnd(3000 + i) * 60, h = 44 + rnd(4000 + i) * 16, r = (rnd(5000 + i) - .5) * 1.6;
         c.save(); c.translate(x, y); c.rotate(r); C.seed(600 + i);
         C.shape(c, [[-w / 2, -h / 2], [w / 2, -h / 2], [w / 2, h / 2], [-w / 2, h / 2]], [P.brick, P.brickDk, P.brickLt][i % 3], { lw: 4.4, shade: cc => { C.blot(cc, [[-w / 2, h * .1], [w / 2, h * .1], [w / 2, h], [-w / 2, h]], P.brickDk, .55); cc.fillStyle = 'rgba(216,202,176,.45)'; cc.fillRect(-w / 2, -h / 2, w * rnd(i) , h * .3); } });
@@ -691,7 +702,7 @@
       c.lineWidth = 2.4; c.strokeStyle = 'rgba(21,18,13,.6)'; c.strokeText('H  K', 0, 0);
       c.restore();
       // tozu üstte, dağınık açık lekeler
-      for (let i = 0; i < 60; i++) C.blot(c, C.ell(rnd(7000 + i) * 1080, rnd(7100 + i) * 1920, 20 + rnd(7200 + i) * 40, 10 + rnd(7300 + i) * 12, 10), P.dustLt, .35);
+      for (let i = 0; i < 24; i++) C.blot(c, C.ell(rnd(7000 + i) * 1080, rnd(7100 + i) * 1920, 10 + rnd(7200 + i) * 22, 4 + rnd(7300 + i) * 6, 10), P.dustLt, .3);
     });
     ctx.drawImage(cv, -160, -140);
   }
@@ -709,7 +720,9 @@
   }
   function drawFlatHand(ctx, x, y, rot, curl) { // üstten el (parmaklar sol yukarı), kol sağ alttan
     ctx.save(); ctx.translate(x, y); ctx.rotate(rot); C.seed(231);
-    C.shape(ctx, [[60, 30], [700, 360], [760, 120], [130, -60]], P.jacket, { lw: 7, shade: c => C.blot(c, [[60, 40], [760, 380], [780, 180], [100, 30]], P.jacketDk, .55) });
+    limb(ctx, [430, 250], [980, 120], 96, 120, P.jacket, 233);           // üst kol (kadraj dışına)
+    limb(ctx, [90, 0], [430, 250], 62, 86, P.jacket, 232);               // ön kol → dirsek
+    C.shape(ctx, C.ell(430, 250, 84, 82, 20), P.jacket, { lw: 0 }); C.line(ctx, [[380, 300], [440, 320], [490, 280]], 5, P.jacketDk);
     C.shape(ctx, [[70, -40], [140, -20], [100, 70], [40, 40]], P.hazard, { lw: 6 });
     const fl = 1 - (curl || 0) * .35;
     C.shape(ctx, [[60, 50], [-20, 70], [-120 * fl, 40], [-140 * fl, 10], [-130 * fl, -20], [-140 * fl, -48], [-118 * fl, -70], [-30, -72], [20, -110], [50, -100], [40, -60], [90, -40]], P.skin, { lw: 6, shade: c => C.blot(c, [[-140, 20], [80, 30], [80, 90], [-140, 90]], P.skinDk, .55) });
@@ -718,13 +731,14 @@
   }
   function stoneWipe(t) {
     const k = times();
-    const w1a = k.stone + .15, w1b = k.H - .05, bA = k.H - .05, bB = k.H + .35, w2a = k.H + .4, w2b = k.K + .12;
-    const cleanH = .15 + .62 * seg(t, w1a, w1b) + .23 * seg(t, bA, bB), cleanK = .1 + .35 * seg(t, bA, bB) + .55 * E.outQ(seg(t, w2a, w2b));
-    return { cleanH: t >= k.stamp ? 1 : cleanH, cleanK: t >= k.stamp ? 1 : cleanK, w1a, w1b, bA, bB, w2a, w2b };
+    // tek silme (ikisinin üstünden), kısa üfleme; el üflemeyle birlikte çekilir. Damga "H"den önce temiz, ≥2 sn okunur.
+    const w1a = k.stone + .1, w1b = k.stone + .55, bA = w1b, bB = w1b + .3, w2a = bA;
+    const cleanH = .1 + .9 * seg(t, w1a, w1b - .1), cleanK = .05 + .55 * seg(t, w1a + .1, w1b) + .4 * seg(t, bA, bB);
+    return { cleanH, cleanK, w1a, w1b, bA, bB, w2a };
   }
   shot('b23-moloz', k => k.rubble, k => k.stone, (ctx, t, u, tl) => {
-    const k = times(), tw = twos(t), z = lerp(1, 1.12, E.io(u));
-    ctx.save(); cam(ctx, z, 560, 900);
+    const k = times(), tw = twos(t), z = lerp(1.2, 1.32, E.io(u));
+    ctx.save(); cam(ctx, z, STONE.x, STONE.y + 140);
     drawRubble(ctx);
     stoneDust(ctx, 0, 0);
     // taşın üstünde duran tuğlayı el iter
@@ -745,18 +759,15 @@
     stoneDust(ctx, W.cleanH, W.cleanK);
     // el: H üstünde ileri-geri, üfleme için çekilir, K üstünde ileri-geri, damgada kadraj dışında
     let hx = 1000, hy = 1150, rot = -.35;
-    const rub = (a, b) => { const s = seg(tw, a, b); return Math.sin(s * Math.PI * 4) * 60; };
-    if (tw < W.w1b) { const e = E.outC(seg(tw, k.stone, W.w1a)); hx = lerp(1000, STONE.x - 40 + rub(W.w1a, W.w1b), e); hy = lerp(1150, STONE.y + 40, e); }
-    else if (tw < W.w2a) { const e = E.outQ(seg(tw, W.bA, W.bA + .15)); hx = lerp(STONE.x - 40, STONE.x + 150, e); hy = lerp(STONE.y + 40, STONE.y + 240, e); }
-    else if (tw < W.w2b) { const e = E.outC(seg(tw, W.w2a, W.w2a + .12)); hx = lerp(STONE.x + 150, STONE.x + 130 + rub(W.w2a + .1, W.w2b), e); hy = lerp(STONE.y + 240, STONE.y + 30, e); }
-    else { const e = E.inQ(seg(tw, W.w2b, k.stamp - .04)); hx = lerp(STONE.x + 130, STONE.x + 600, e); hy = lerp(STONE.y + 30, STONE.y + 520, e); }
+    if (tw < W.w1b) { const e = E.outC(seg(tw, k.stone, W.w1a + .05)), sw = E.io(seg(tw, W.w1a, W.w1b)); hx = lerp(1000, STONE.x - 150 + sw * 300, e); hy = lerp(1150, STONE.y + 30 - Math.sin(sw * Math.PI) * 14, e); }
+    else { const e = E.inQ(seg(tw, W.w1b, W.w1b + .22)); hx = lerp(STONE.x + 150, STONE.x + 650, e); hy = lerp(STONE.y + 30, STONE.y + 560, e); }
     // üfleme: toz sol üste savrulur + hava çizgileri
     const bt = t - W.bA;
     if (bt > 0 && bt < 1.1) {
       for (let i = 0; i < 26; i++) { const r = j => rnd(9100 + i * 5 + j), tt = bt - r(1) * .2; if (tt < 0) continue; const x = STONE.x - 120 + r(2) * 260 - tt * (160 + r(3) * 260), y = STONE.y - 60 + r(4) * 100 - tt * (90 + r(5) * 160); ctx.fillStyle = `rgba(216,202,176,${.85 * (1 - tt / 1.1)})`; ctx.beginPath(); ctx.arc(x, y, 6 + r(6) * 12 + tt * 20, 0, TAU); ctx.fill(); }
       if (bt < .4) { C.seed(240); for (let i = 0; i < 3; i++) C.line(ctx, [[STONE.x + 260 - bt * 200, STONE.y + 140 + i * 26], [STONE.x + 140 - bt * 200, STONE.y + 80 + i * 22]], 4, `rgba(21,18,13,${.6 * (1 - bt / .4)})`, 1); }
     }
-    if (tw < k.stamp) drawFlatHand(ctx, hx, hy, rot, 0);
+    if (tw < W.w1b + .22) drawFlatHand(ctx, hx, hy, rot, 0);
     ctx.restore();
     // damga anı: "tok" ile taş bir kare parlar
     const st = t - k.stamp; if (st >= 0 && st < 2 / FPS) { ctx.fillStyle = 'rgba(255,243,196,.12)'; ctx.fillRect(0, 0, 1080, 1920); }
@@ -839,7 +850,7 @@
     get bacaYereCarpma() { return +times().ground.toFixed(3); },     // baca-devrilme.wav'daki 2,75 sn'lik darbe buraya
     get tozSilme1() { return +stoneWipe(times().stone + .3).w1a.toFixed(3); },
     get uffleme() { return +stoneWipe(times().stone + .3).bA.toFixed(3); },
-    get tozSilme2() { return +stoneWipe(times().stone + .3).w2a.toFixed(3); },
+    get tozSilme2() { return +stoneWipe(times().stone + .3).w2a.toFixed(3); },          // artık üflemeyle aynı an (tek silme)
     get damga() { return +times().stamp.toFixed(3); },               // damga-kesif.wav ("tok")
     get hatiraIsik() { return +(times().twice - TONES[0][0]).toFixed(3); }, // 27'deki hatıra: ışık iki kez (ses ekibi karar versin)
     get sonBip() { return +times().endBeep.toFixed(3); }             // tek bip; ışık +0,04–0,24
