@@ -219,7 +219,7 @@ def yerlestir(bus, y, i):
         bus[a:b] += y[a - i:b - i]
 
 
-def zarf(N, tl, cue, Z):
+def zarf(N, tl, cue, Z, ducking=False):
     """Kat başına kazanç zarfı (lineer): konuşma kısması + kısma pencereleri. 1 kHz denetim hızında hesaplanır."""
     k = cue.get('konusma_kisma', {})
     atak, bir = float(k.get('atak', 0.08)), float(k.get('birakma', 0.4))
@@ -231,7 +231,7 @@ def zarf(N, tl, cue, Z):
         konus = np.maximum(konus, tr)
     out = {}
     for kat in KATLAR:
-        ddb = konus * float(k.get('db', {}).get(kat, 0))
+        ddb = konus * float(k.get('db', {}).get(kat, 0)) * (1.0 if ducking else 0.0)   # varsayılan: kısma yok
         pen = np.zeros_like(tc)
         for w in cue.get('kisma', []):
             if kat not in w['katlar']:
@@ -308,6 +308,8 @@ def main():
     ap.add_argument('--mux', action='store_true', help='out/partN-video.mp4 varsa sesle birleştir -> out/partN.mp4')
     ap.add_argument('--video', help='görüntü dosyası (varsayılan out/partN-video.mp4)')
     ap.add_argument('--olcme', action='store_true', help='ölçüm raporu ve PNG üretme')
+    ap.add_argument('--muzik-db', type=float, help='müzik kanalının çıkıştaki bütünleşik seviyesi, LUFS (varsayılan cue "muzik_lufs", yoksa -27); sabit, konuşmaya göre kısılmaz')
+    ap.add_argument('--ducking', action='store_true', help='eski davranış: müzik/ortam/efektleri cümle zamanlarına göre kıs (varsayılan KAPALI)')
     a = ap.parse_args()
     n = a.bolum
     tl_yol = a.tl or f'{ROOT}/src/part{n}.timeline.json'
@@ -334,42 +336,49 @@ def main():
         y, i = satir_sesi(r, Z, dur)
         if y is not None:
             yerlestir(bus[r.get('kat', 'efekt')], y, i)
-    g, konus = zarf(N, tl, cue, Z)
+    g, konus = zarf(N, tl, cue, Z, a.ducking)
     for k in KATLAR:
         bus[k] *= g[k][:, None]
         if k != 'bip':
             bus[k] = hp_fft(bus[k], 40)      # telefon: 40 Hz altı yalnız tepe payı yer
-    kg = koruma(voice, sum(bus[k] for k in ARKA), cue.get('koruma', {}), tl)
-    for k in ARKA:                                  # darbe de: korumanın etkisi yalnız cümle içinde
+    # anlatıcı koruyucu yalnız tek seferlik efektlerde (müzik ve sürekli sesler sabit kalır)
+    kg = koruma(voice, bus['efekt'] + bus['darbe'], cue.get('koruma', {}), tl)
+    for k in ('efekt', 'darbe'):
         bus[k] *= kg[:, None]
-    bg = sum(bus[k] for k in ARKA)
-    mix = voice + bg + bus['bip']
 
-    # seviye: -14 LUFS'e kazanç, sonra gerçek tepe sınırı (iki tur)
+    # seviye: müzik kanalı sabit hedefe (LUFS), toplam -14 LUFS, sonra gerçek tepe sınırı
     hedef = cue.get('hedef', {})
     hI, hTP = float(hedef.get('lufs', -14)), float(hedef.get('tp', -1))
-    kaz = 0.0
-    esik = hTP - 0.5
+    hM = a.muzik_db if a.muzik_db is not None else float(cue.get('muzik_lufs', -27))
+    kaz, esik, mk = 0.0, hTP - 0.5, 0.0
     tmp = tempfile.mkdtemp()
-    for tur in range(3):
+    for tur in range(6):
+        bg = bus['muzik'] * db2a(mk) + bus['ortam'] + bus['efekt'] + bus['darbe']
+        mix = voice + bg + bus['bip']
         y = mix * db2a(kaz)
         y, gs, gmin = sinirla(y, esik)
         yaz_wav(f'{tmp}/m.wav', y)
         m = ebur128(f'{tmp}/m.wav')
-        print(f'tur {tur + 1}: kazanç {kaz:+.2f} dB, sınırlayıcı en çok {gmin:.2f} dB -> {m["I"]:.2f} LUFS, {m["TP"]:.2f} dBTP')
-        if abs(m['I'] - hI) <= 0.15 and m['TP'] <= hTP:
+        yaz_wav(f'{tmp}/muz.wav', bus['muzik'] * db2a(mk + kaz) * gs[:, None])
+        mm = ebur128(f'{tmp}/muz.wav')['I']
+        print(f'tur {tur + 1}: müzik {mk:+.2f} dB -> {mm:.2f} LUFS | toplam kazanç {kaz:+.2f} dB, sınırlayıcı en çok {gmin:.2f} dB '
+              f'-> {m["I"]:.2f} LUFS, {m["TP"]:.2f} dBTP')
+        if abs(m['I'] - hI) <= 0.15 and m['TP'] <= hTP and abs(mm - hM) <= 0.2:
             break
         kaz += hI - m['I']
+        mk += hM - mm
         if m['TP'] > hTP:
             esik -= (m['TP'] - hTP) + 0.1
+    bus['muzik'] = bus['muzik'] * db2a(mk)
     os.makedirs(os.path.dirname(out), exist_ok=True)
     yaz_wav(out, y)
     print('yazıldı:', os.path.relpath(out, ROOT))
 
+    bg = bus['muzik'] + bus['ortam'] + bus['efekt'] + bus['darbe']
     if not a.olcme:
         sm = db2a(kaz) * gs[:, None]
         olc(out, tl, cue, Z, {'anlatici': voice * sm, 'arka': bg * sm, 'bip': bus['bip'] * sm,
-                               **{k: bus[k] * sm for k in ARKA}}, n)
+                               **{k: bus[k] * sm for k in ARKA}, 'muzik_kazanc': g['muzik']}, n)
     if a.mux:
         video = a.video or f'{ROOT}/out/part{n}-video.mp4'
         if not os.path.exists(video):
@@ -417,6 +426,21 @@ def olc(yol, tl, cue, Z, st, n):
     fs.sort()
     print(f"sesli 100 ms pencereler: {len(fs)}, %{100 * sum(f >= 12 for f, _ in fs) / len(fs):.1f}'i >= 12 dB; en kötü 3: "
           + ', '.join(f'{f:.1f} dB @ {t:.1f}' for f, t in fs[:3]))
+    # müzik sabit mi: yalnız müziğin çaldığı ve sahne sessizliği olmayan yerlerde, konuşma içi ile cümle arası
+    mg = st['muzik_kazanc']
+    calar = (np.abs(st['muzik']).max(1) > db2a(-80)) & (mg > 0.999)
+    konus = np.zeros(mg.size, bool)
+    for s in tl['sentences']:
+        konus[int(float(s['t0']) * SR):int(float(s['t1']) * SR)] = True
+    ic, ara = calar & konus, calar & ~konus
+    gi, ga = a2db(mg[ic].mean()), a2db(mg[ara].mean())
+    ri, ra = rms_db(st['muzik'][ic]), rms_db(st['muzik'][ara])
+    print(f'\nmüzik kanalı: uygulanan kazanç konuşma içi {gi:+.2f} dB, cümle arası {ga:+.2f} dB (fark {gi - ga:+.2f}); '
+          f'RMS konuşma içi {ri:.1f}, cümle arası {ra:.1f} dBFS (fark {ri - ra:+.1f}, müziğin kendi dinamiği)')
+    vm = [rms_db(seg(st['anlatici'], float(s['t0']), float(s['t1']))) - rms_db(seg(st['muzik'], float(s['t0']), float(s['t1'])))
+          for s in tl['sentences']]
+    vm = [(d, s['i']) for d, s in zip(vm, tl['sentences']) if d < 100]
+    print(f'anlatıcı - müzik (cümle içi): en az {min(vm)[0]:.1f} dB (cümle {min(vm)[1]}), ortanca {sorted(vm)[len(vm) // 2][0]:.1f} dB')
     print('\ncümle arası RMS (dBFS, miks):')
     ss = tl['sentences']
     print('  ' + ' '.join(f"{float(ss[i]['t1']):.1f}:{rms_db(seg(mix, float(ss[i]['t1']) + .05, float(ss[i + 1]['t0']) - .05)):.0f}"
@@ -431,12 +455,15 @@ def olc(yol, tl, cue, Z, st, n):
     # sessizlikler
     print('\nsessizlik (miks, bip hariç; hedef < -45 dBFS):')
     s15, s16 = [s for s in ss if s['i'] == 15][0], [s for s in ss if s['i'] == 16][0]
-    for ad, a, b in [("'Real chimneys don't.' sonrası", float(s15['t1']) + 0.05, float(s16['t0']) - 0.15),
-                     ('bitiş, bip öncesi', Z('voiceEnd') + 0.10, Z('endBeep') - 0.01),
-                     ('bitiş, bip sonrası', Z('endBeep') + 0.40, Z('endCard') - 0.01),
-                     ('bitiş kartı (rüzgâr + vurgu)', Z('endCard'), Z('dur'))]:
-        x = seg(mix, a, b)
-        print(f'  {ad:32s} {a:6.2f}-{b:6.2f}: RMS {rms_db(x):6.1f}  tepe {a2db(np.abs(x).max()):6.1f}')
+    pencereler = cue.get('olcum_sessizlik') or [
+        ["'Real chimneys don't.' sonrası", 's15.t1+0.05', 's16.t0-0.15', 'miks'],
+        ['bitiş, bip öncesi', 'voiceEnd+0.10', 'endBeep-0.01', 'miks'],
+        ['bitiş, bip sonrası', 'endBeep+0.40', 'endCard-0.01', 'miks'],
+        ['bitiş kartı (rüzgâr + vurgu)', 'endCard', 'dur', 'miks']]
+    for ad, a, b, ne in pencereler:
+        a, b = Z(a), Z(b)
+        x = seg(mix if ne == 'miks' else st[ne], a, b)
+        print(f'  {ad:40s} {a:6.2f}-{b:6.2f} [{ne}]: RMS {rms_db(x):6.1f}  tepe {a2db(np.abs(x).max()):6.1f}')
     # telefon: darbelerde 120 Hz üstü
     darbeler = [('top darbe', Z(['B.topDarbe', 's19.t1+0.06'])), ('baca yere', Z(['B.bacaYereCarpma', 's20.t1+0.12']))]
     for ad, t in darbeler:
