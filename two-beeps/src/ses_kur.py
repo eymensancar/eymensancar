@@ -191,7 +191,8 @@ def kur(n, segs, rows, ozel, soru_acik=True, kuru=False):
     soru = soru_kur(n, K, rows, ozel) if soru_acik else None
     endCard = round(voiceEnd + (CARD_AFTER if tek_bip else CARD_NOBEEP), 3)
     total = round(t + tail, 3)
-    if soru: total = round(max(total, endCard + SORU_CARD), 3)
+    # soru kartı en az SORU_CARD sn; son bölümde (next yok) kurgu notlarındaki bitiş payı geçerli
+    if soru and K.get('next'): total = round(max(total, endCard + SORU_CARD), 3)
     # işaretler
     spec = notlar.get('isaretAni', {})
     cues = {}
