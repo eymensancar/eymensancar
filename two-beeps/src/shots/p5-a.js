@@ -238,8 +238,8 @@
     const rest = [kx + 260, 1230], rest2 = [kx + 420, 1360];
     const wr = (rx, ry, u, w) => [rx + 24 + u * w + 12, ry - 30 + Math.sin(u * 46) * 16];
     const keys = [
-      [0, hx - 90, hy - 70], [.34, hx + 50, hy + 50], [k.hale0, ...wr(r1x, R1Y, 0, w1)], [k.hale1, ...wr(r1x, R1Y, 1, w1)],
-      [k.hale1 + .34, ...rest], [k.overK - .16, ...rest], [k.overK + .1, kx - 70, ky - 60], [k.overK + .32, kx + 50, ky + 50],
+      [0, hx - 120, hy + 12], [.34, hx + 30, hy + 72], [k.hale0, ...wr(r1x, R1Y, 0, w1)], [k.hale1, ...wr(r1x, R1Y, 1, w1)],
+      [k.hale1 + .34, ...rest], [k.overK - .16, ...rest], [k.overK + .1, kx - 110, ky + 14], [k.overK + .32, kx + 30, ky + 72],
       [k.kaya0, ...wr(r2x, R2Y, 0, w2)], [k.kaya1, ...wr(r2x, R2Y, 1, w2)], [k.kaya1 + .38, ...rest2]
     ];
     let p;
