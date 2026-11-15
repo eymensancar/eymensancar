@@ -1,14 +1,11 @@
 /* Part 8 · NUMBER NINE — Animatör B: cümle 14–29 ve bitiş görüntüsü. Başlangıç (S13.t1 + S14.t0) / 2 ≈ 25,88 sn → tl.duration.
-   YERLEŞİM (dünya = C.drawWaitingRoom varsayılan alanı {0,0,1080,1920}; A'nın notu gelirse ona uyulur):
-   • SALON: zemin çizgisi y 1267; numaratör kutusu x 670–951, y 230–422 ("NOW SERVING" altında); pano x 86–475, y 192–576.
-     Sıra: üç koltuk, ayak ortası y 1651, ölçek 1.728 (koltuk ortaları x 212 / 540 / 868; oturak üstü y≈1381).
-     Hale SOLDA (212,1651) s 1.66 'sit' (koltuk salonunki: seat:false); ortadaki koltuk BOŞ; Kaan SAĞDA (868,1651) s 1.8 'sit'.
-     Kaan'ın cebinde katlı liste (göğüs cebi, ceketin sol yanı, ekranda Kaan'ın sağ göğsü).
-   • NUMARALAR: ekran önce NUM.prev, "They called his number"da NUM.hale (Hale'in fişi), Kaan'ın fişi NUM.kaan.
-   • TERS AÇI (bitiş): pencere duvarı (numaratörün karşısı): pencere x 120–960, y 170–640; dışarıda kaldırımda Daisy (540,628) s .5,
-     uyarı ışığı ekranda ≈(540,455). Gişe (sağda) x 700–1010, tezgâh üstü y 1240. Hale arkadan, gişeye yürür.
-   • HATIRA (sepya, P5 a05 fotoğrafındaki iki genç adamın büyütülmüş çizimi): genç Kaya ince, şapkasız, koyu iş ceketi;
-     genç Hale iri, şapkalı, açık renk takım. Tek renk: tabeladaki altın "HALE".
+   YERLEŞİM: p8-a'nın salonu birebir (kod kopyası). AR {-320,-200,1720,2300}, zemin y 1318, sıra ayak çizgisi y 1778, koltuk ölçeği 2.07, koltuklar x 147/540/933.
+   • DUVAR A (numaratör): Kaan 1. koltuk (147,1766) 'sit'; göğüs cebinde katlı liste; 14–18'de telefon elde (gerçek oyun), 24'ten sonra eller dizde, 104 fişi.
+     Defne 2. koltuk, kucağında "No. 9". Numaratör 101 → 102 (tık) → 103 (ding, "They called his number"). Kutu x 746–1194, y 76–306.
+   • DUVAR B (pencere, karşı sıra): Hale ortada (540,1766) s 1.99; 13'ten devam: telefon elde. 19'da şapka kucağa, 26'da kalkar, 27'de şapka başa.
+     Pencere x 170–910, y 90–590; Daisy karşı kaldırımda (705,566) s .3, uyarı ışığı dünyada ≈(705,457) → bitişte ekranda ≈(705,357), üst üçte bir.
+   • HATIRA (sepya, P5 a05 fotoğrafındaki iki genç adamın büyütülmüş çizimi): genç Kaya ince, şapkasız, koyu iş ceketi; genç Hale iri, şapkalı,
+     açık renk takım. İmza kâğıdında "H." ve "K." satırları; "Kaya" P5 defterindeki imzayla aynı el yazısı (tohum 953). Tek renk: altın "HALE" levhası.
    Her şey timeline'dan (times()); karakterler ikişerli, kamera/ışık birerli; bitiş bipinde ışıktan başka her şey donar. */
 (function () {
   'use strict';
@@ -16,7 +13,6 @@
   const clamp = TB.clamp, lerp = TB.lerp, seg = TB.seg, rnd = TB.rand;
   const FPS = 30;
   const twos = t => Math.floor(t * 15 + 1e-6) / 15;
-  const NUM = { prev: '087', hale: '088', kaan: '089' };
 
   /* ================= ZAMANLAR ================= */
   let _tl = null, K = null;
@@ -164,19 +160,173 @@
     C.shape(ctx, [[tx - 24, ty - 36], [tx + 6, ty - 50], [tx + 20, ty - 26], [tx - 8, ty - 14]], skin === P.hSkin ? '#efc8a6' : '#e7b896', { lw: 3 });
   }
 
-  /* ================= SALON ================= */
-  const ROOM_K = 1920 / 1000 * .9, FL = 1920 * .66, ROWY = FL + 1920 * .2;     // koltuk ölçeği, zemin, sıra ayak çizgisi
-  const SEATX = [540 - 190 * ROOM_K, 540, 540 + 190 * ROOM_K];
-  const HALE = { x: SEATX[0], y: ROWY, s: 1.66 }, KAAN = { x: SEATX[2], y: ROWY, s: 1.8 };
-  function room(num, blur) {
-    return cached('salon-' + num + (blur ? '-b' + blur : ''), 1080, 1920, g => {
-      if (blur) { g.filter = `blur(${blur}px)`; g.drawImage(room(num, 0), 0, 0); g.filter = 'none'; return; }
-      C.drawWaitingRoom(g, { seed: 7, number: num, chairs: 3 });
-    });
+  /* ================= SALON (p8-a ile aynı: iki karşılıklı duvar; kod p8-a'dan kopya) ================= */
+  const LEAF = ['#c0612b', '#a8482a', '#d4893a', '#8a4f26', '#b9702e'];
+  function leaf(ctx, x, y, sz, rot, col, flipY) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(1, flipY);
+    ctx.beginPath(); ctx.moveTo(-sz, 0); ctx.quadraticCurveTo(-sz * .2, -sz * .62, sz, 0); ctx.quadraticCurveTo(-sz * .2, sz * .62, -sz, 0); ctx.closePath();
+    ctx.fillStyle = col; ctx.fill(); ctx.lineWidth = Math.max(1.6, sz * .13); ctx.strokeStyle = P.ink; ctx.lineJoin = 'round'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-sz * 1.25, 0); ctx.lineTo(sz * .7, 0); ctx.lineWidth = Math.max(1, sz * .08); ctx.stroke();
+    ctx.restore();
   }
-  function roomBg(ctx, num, blur) {   // dünya koordinatında (kameranın içinde) çizilir; kenar dışı salon rengi
-    ctx.fillStyle = P.hall; ctx.fillRect(-1200, -1200, 3480, FL + 1200); ctx.fillStyle = '#d6d1c2'; ctx.fillRect(-1200, FL, 3480, 2400);
-    if (blur) ctx.drawImage(room(num, blur), -30, -30, 1140, 1980); else ctx.drawImage(room(num, 0), 0, 0);
+  function leaves(ctx, t, n, sb, box, size, speed) {
+    for (let i = 0; i < n; i++) {
+      const r = j => rnd(sb * 313 + i * 17 + j), v = (speed || 1) * (110 + r(1) * 90), L = box[3] + 200;
+      const ph = (r(2) * L + t * v) % L, y = box[1] - 100 + ph, sw = Math.sin(t * (1.4 + r(3)) + r(4) * 6);
+      const x = box[0] + r(5) * box[2] + sw * 40 * (size || 1) + t * 25 * (r(6) - .3);
+      const sz = (size || 1) * (11 + r(7) * 9), fl = Math.cos(t * (2.2 + r(8) * 2) + r(9) * 6);
+      leaf(ctx, x, y, sz, sw * .9 + r(10) * 6, LEAF[i % LEAF.length], Math.abs(fl) < .15 ? .15 * Math.sign(fl || 1) : fl);
+    }
+  }
+  function autumnTree(ctx, x, y, s, t, sd) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s); C.seed(sd || 811);
+    const sw = Math.sin(t * 1.3 + (sd || 0)) * 4;
+    C.shape(ctx, [[-22, 0], [22, 0], [16, -260], [40, -330], [10, -320], [-4, -380], [-20, -300], [-46, -340], [-14, -250]], '#4a3a2c', { lw: 5, shade: c => C.blot(c, [[4, 0], [30, 0], [30, -330], [6, -330]], '#2e241b', .5) });
+    [[-80, -380, 110, 80, LEAF[0]], [70, -400, 120, 86, LEAF[2]], [0, -470, 130, 90, LEAF[4]], [-120, -460, 80, 60, LEAF[1]], [120, -480, 80, 64, LEAF[0]], [10, -540, 90, 60, LEAF[2]]].forEach(([fx, fy, rx, ry, col], i) => {
+      C.seed((sd || 811) + i * 3); C.shape(ctx, C.ell(fx + sw * (1 + i * .2), fy, rx, ry, 20), col, { lw: 4.4, amp: 3, shade: c => C.blot(c, C.ell(fx + rx * .35 + sw, fy + ry * .3, rx * .6, ry * .5, 12), '#7a3418', .35) });
+    });
+    ctx.restore();
+  }
+  const INK_OLD = '#3a3026';
+  function ticket(ctx, x, y, s, rot, num) {   // numara fişi (p8-a)
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot || 0); ctx.scale(s, s);
+    const W = 130, H = 84, pts = [];
+    for (let q = 0; q <= 10; q++) pts.push([-W / 2 + q * W / 10, -H / 2 + (q % 2 ? 4 : 0)]);
+    for (let q = 10; q >= 0; q--) pts.push([-W / 2 + q * W / 10, H / 2 - (q % 2 ? 4 : 0)]);
+    C.seed(4101); C.shape(ctx, pts, '#f3ecd8', { lw: 3, amp: .3, shade: c => C.blot(c, [[W * .2, -H], [W, -H], [W, H], [W * .26, H]], '#ddd2b6', .5) });
+    ctx.fillStyle = P.ink; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '700 11px Rubik'; ctx.fillText('CITY HALL', 0, -27);
+    ctx.font = '700 44px Rubik'; ctx.fillText(num, 0, 4);
+    ctx.font = '500 10px Rubik'; ctx.fillStyle = 'rgba(21,18,13,.7)'; ctx.fillText('PLEASE WAIT', 0, 31);
+    ctx.restore();
+  }
+  function folderClosed(ctx, x, y, s, rot) {   // "No. 9" rapor dosyası (p8-a)
+    const W = 720, H = 960; ctx.save(); ctx.translate(x, y); ctx.rotate(rot || 0); ctx.scale(s, s); C.seed(3201);
+    C.shape(ctx, [[-W / 2, -H / 2], [W / 2, -H / 2], [W / 2, H / 2], [-W / 2, H / 2]], '#b89463', { lw: 5 / s * .45 });
+    C.seed(3202);
+    C.shape(ctx, [[-W / 2, -H / 2 - 4], [W / 2 + 8, -H / 2 - 4], [W / 2 + 8, H / 2 + 4], [-W / 2, H / 2 + 4]], '#c9a26b', { lw: 5 / s * .45, shade: cc => { C.blot(cc, [[W * .2, -H / 2 - 10], [W / 2 + 14, -H / 2 - 10], [W / 2 + 14, H / 2 + 10], [W * .26, H / 2 + 10]], '#a88a5a', .4); } });
+    C.shape(ctx, [[-W * .34, -H * .3], [W * .34, -H * .3], [W * .34, -H * .06], [-W * .34, -H * .06]], P.paper, { lw: 3.4 / s * .45 });
+    C.handwrite(ctx, 'No. 9', -W * .26, -H * .14, 96, INK_OLD, 361, { bold: true });
+    ctx.save(); ctx.globalAlpha = .22; ctx.strokeStyle = P.coffee; ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(W * .24, H * .24, 60, .5, 5.6); ctx.stroke(); ctx.restore();
+    ctx.restore();
+  }
+  const AR = { x: -320, y: -200, w: 1720, h: 2300 };
+  const FL = AR.y + AR.h * .66, WAIN = AR.y + (FL - AR.y) * .55, ROWY = FL + AR.h * .2, CHS = AR.h / 1000 * .9;
+  const NUMBOX = { x: AR.x + AR.w * .62, y: AR.y + AR.h * .12, w: AR.w * .26, h: AR.h * .1 };
+  const CLOCK = { x: 591, y: 190, r: 85 };
+  const SEATX = [540 - 190 * CHS, 540, 540 + 190 * CHS];
+  const KAAN = { x: SEATX[0], y: ROWY - (156 - 150) * CHS, s: CHS };
+  const DEFNE = { x: SEATX[1], y: ROWY - (156 * CHS - 150 * 2.2 * .9), s: 2.2 };
+  const HALE = { x: 540, y: ROWY - (156 - 150) * CHS, s: CHS / 1.04 };
+  const DZ = { x: 705, y: 566, s: .3 };                 // pencereden Daisy (p8-a), uyarı ışığı ≈(705,457)
+  const numStr = n => String(n).padStart(3, '0');
+  function floorExt(ctx) {
+    ctx.fillStyle = P.hallDk; ctx.fillRect(-2000, -2000, 5000, 1800 + 2);
+    ctx.fillStyle = P.hall; ctx.fillRect(-2000, AR.y, 5000, FL - AR.y);
+    ctx.fillStyle = '#d6d1c2'; ctx.fillRect(-2000, FL, 5000, 3000);
+    ctx.strokeStyle = 'rgba(21,18,13,.2)'; ctx.lineWidth = 2; for (let yy = AR.y + AR.h; yy < 3200; yy += 90) { ctx.beginPath(); ctx.moveTo(-2000, yy); ctx.lineTo(3000, yy); ctx.stroke(); }
+    C.seed(871); C.line(ctx, [[-2000, AR.y], [3000, AR.y]], 4, P.hallDk, .3);
+  }
+  function wallClock(ctx, minutes) {
+    const { x, y, r } = CLOCK; C.seed(881);
+    C.shape(ctx, C.ell(x, y, r + 10, r + 10, 26), '#3a3d45', { lw: 4.4 });
+    C.shape(ctx, C.ell(x, y, r, r, 26), '#f4f1e6', { lw: 3 });
+    for (let q = 0; q < 12; q++) { const a = q / 12 * TAU; ctx.save(); ctx.translate(x + Math.cos(a) * r * .8, y + Math.sin(a) * r * .8); ctx.rotate(a); ctx.fillStyle = P.ink; ctx.fillRect(-6, -2, q % 3 ? 8 : 14, q % 3 ? 4 : 6); ctx.restore(); }
+    const am = minutes / 60 * TAU - Math.PI / 2, ah = (2 + minutes / 60) / 12 * TAU - Math.PI / 2;
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineCap = 'round';
+    ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(ah) * r * .48, y + Math.sin(ah) * r * .48); ctx.stroke();
+    ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(am) * r * .74, y + Math.sin(am) * r * .74); ctx.stroke();
+    ctx.fillStyle = '#b8322a'; ctx.beginPath(); ctx.arc(x, y, 7, 0, TAU); ctx.fill(); ctx.restore();
+  }
+  function sunPatch(ctx, u) {
+    ctx.save(); ctx.globalCompositeOperation = 'soft-light'; ctx.globalAlpha = .9;
+    const x0 = lerp(-260, 420, u), y0 = 380, w = 640, h = 720, sk = 260;
+    ctx.fillStyle = '#fff1c8'; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0 + w, y0); ctx.lineTo(x0 + w + sk, y0 + h); ctx.lineTo(x0 + sk, y0 + h); ctx.fill();
+    ctx.restore();
+  }
+  function kaanTalk(ctx, o, headRot, headDy) {
+    const s = o.s, neck = o.y - (o.pose === 'sit' ? 300 : 404) * s;
+    ctx.save(); ctx.beginPath(); ctx.rect(-4000, neck, 9000, 9000); ctx.clip(); C.drawKaan(ctx, o); ctx.restore();
+    ctx.save(); ctx.beginPath(); ctx.rect(-4000, -9000, 9000, neck + 9000 + 1); ctx.clip();
+    ctx.translate(o.x, neck + (headDy || 0)); ctx.rotate(headRot || 0); ctx.translate(-o.x, -neck); C.drawKaan(ctx, o); ctx.restore();
+  }
+  // DUVAR A (numaratör): Kaan 1. koltuk (cebinde liste), Defne 2. koltuk (kucağında No. 9). o.kaan.hands 'phone' ise fiş elde değil.
+  function wallA(ctx, t, o) {
+    o = o || {};
+    floorExt(ctx);
+    C.drawWaitingRoom(ctx, Object.assign({ seed: 7, number: numStr(o.num == null ? 101 : o.num) }, AR));
+    wallClock(ctx, o.minutes == null ? 66 : o.minutes);
+    sunPatch(ctx, o.sun == null ? 1 : o.sun);
+    ctx.save(); C.seed(883); C.shape(ctx, [[NUMBOX.x + 60, NUMBOX.y + NUMBOX.h + 92], [NUMBOX.x + NUMBOX.w - 60, NUMBOX.y + NUMBOX.h + 92], [NUMBOX.x + NUMBOX.w - 60, NUMBOX.y + NUMBOX.h + 150], [NUMBOX.x + 60, NUMBOX.y + NUMBOX.h + 150]], '#efe6d2', { lw: 3 });
+    ctx.font = '700 26px Rubik'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = P.ink; ctx.fillText('PLEASE WAIT', NUMBOX.x + NUMBOX.w / 2, NUMBOX.y + NUMBOX.h + 122); ctx.restore();
+    if (o.numOff) { ctx.fillStyle = `rgba(20,22,27,${o.numOff})`; ctx.fillRect(NUMBOX.x + 4, NUMBOX.y + 4, NUMBOX.w - 8, NUMBOX.h - 8); }
+    if (o.defne !== false) {
+      const dob = Object.assign({ seed: 31, pose: 'sit', seat: false, expr: 'serious', look: 0 }, DEFNE, o.defne || {});
+      C.drawDefne(ctx, dob);
+      const ds = dob.s * .9; folderClosed(ctx, dob.x, dob.y - 150 * ds, .3, -.06);
+      ctx.save(); ctx.translate(dob.x, dob.y + 104 * ds); ctx.scale(ds, ds); [[-22, -280 - 104 - 40], [22, -282 - 104 - 40]].forEach(([hx, hy]) => { ctx.beginPath(); ctx.ellipse(hx * 1.6, hy, 12, 13, 0, 0, TAU); ctx.fillStyle = P.dSkin; ctx.fill(); ctx.lineWidth = 3.4; ctx.strokeStyle = P.ink; ctx.stroke(); }); ctx.restore();
+    }
+    if (o.kaan !== false) {
+      const ko = Object.assign({ seed: 11, pose: 'sit', hands: 'knees', seat: false, expr: 'calm', look: 0 }, KAAN, o.kaan || {});
+      if (o.kaanHead) kaanTalk(ctx, ko, o.kaanHead[0], o.kaanHead[1]); else C.drawKaan(ctx, ko);
+      ctx.save(); ctx.translate(ko.x, ko.y); ctx.scale(CHS, CHS); pocketList(ctx, 5.2 / Math.sqrt(CHS)); ctx.restore();
+      if (ko.hands === 'knees') {
+        ticket(ctx, ko.x + 70 * CHS, ko.y - 166 * CHS, .95, -.5, '104');
+        C.seed(12); ctx.save(); ctx.translate(ko.x, ko.y); ctx.scale(CHS, CHS); ctx.beginPath(); ctx.ellipse(44, -152, 15, 16, 0, 0, TAU); ctx.fillStyle = P.skin; ctx.fill(); ctx.lineWidth = 3.6; ctx.strokeStyle = P.ink; ctx.stroke(); ctx.restore();
+      } else if (o.kaanFrame) smallScreen(ctx, 'kaan', gameImgs[o.kaanFrame]);
+    }
+  }
+  // DUVAR B (pencere): sonbahar sokağı + Daisy; sıra; Hale'i çağıran çizer
+  function windowView(ctx, t) {
+    const x0 = 170, y0 = 90, x1 = 910, y1 = 590;
+    ctx.save(); ctx.beginPath(); ctx.rect(x0, y0, x1 - x0, y1 - y0); ctx.clip();
+    const g = ctx.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, '#87a9c4'); g.addColorStop(1, '#ecd2a8'); ctx.fillStyle = g; ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+    C.seed(891); let x = x0 - 10, n = 0;
+    while (x < x1) { const bw = 80 + rnd(8910 + n) * 90, bh = 120 + rnd(8920 + n) * 200; C.shape(ctx, [[x, 520], [x, 520 - bh], [x + bw, 520 - bh], [x + bw, 520]], n % 2 ? '#c9b79a' : '#b9a78c', { lw: 2.4, shade: c => { for (let yy = 520 - bh + 20; yy < 500; yy += 40) for (let xx = x + 12; xx < x + bw - 16; xx += 30) { c.fillStyle = '#6e8592'; c.fillRect(xx, yy, 14, 20); } } }); x += bw + 4; n++; }
+    ctx.fillStyle = '#b9b1a0'; ctx.fillRect(x0, 520, x1 - x0, 20); ctx.fillStyle = '#6f6a60'; ctx.fillRect(x0, 540, x1 - x0, 60); C.line(ctx, [[x0, 540], [x1, 540]], 2.4);
+    autumnTree(ctx, 300, 545, .5, t, 851);
+    C.drawDaisy(ctx, { x: DZ.x, y: DZ.y, s: DZ.s, seed: 23, beep: 0, mood: 'sleepy', hook: Math.sin(t * 1.2) * .03 });
+    autumnTree(ctx, 880, 560, .42, t, 853);
+    leaves(ctx, t, 6, 93, [x0, y0, x1 - x0, y1 - y0], .5, .5);
+    ctx.fillStyle = 'rgba(200,220,235,.12)'; ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+    ctx.restore();
+    C.seed(893);
+    C.shape(ctx, [[x0 - 18, y0 - 18], [x1 + 18, y0 - 18], [x1 + 18, y1 + 22], [x0 - 18, y1 + 22]], null, { lw: 6 });
+    [0, 1, 2].forEach(q => { const mx = x0 + (x1 - x0) * (q + 1) / 4; C.line(ctx, [[mx, y0], [mx, y1]], 9, '#e8e6dc', .3); C.line(ctx, [[mx - 5, y0], [mx - 5, y1]], 2, P.ink, .3); });
+    C.line(ctx, [[x0, (y0 + y1) / 2 - 40], [x1, (y0 + y1) / 2 - 40]], 9, '#e8e6dc', .3);
+    C.shape(ctx, [[x0 - 30, y1 + 14], [x1 + 30, y1 + 14], [x1 + 36, y1 + 40], [x0 - 36, y1 + 40]], '#e8e6dc', { lw: 4.4 });
+  }
+  function wallB(ctx, t, o) {
+    o = o || {};
+    floorExt(ctx);
+    const P0 = AR;
+    ctx.save(); ctx.beginPath(); ctx.rect(P0.x, P0.y, P0.w, P0.h); ctx.clip();
+    ctx.fillStyle = P.hall; ctx.fillRect(P0.x, P0.y, P0.w, FL - P0.y);
+    ctx.fillStyle = '#b8bdb0'; ctx.fillRect(P0.x, WAIN, P0.w, FL - WAIN); C.seed(895); C.line(ctx, [[P0.x, WAIN], [P0.x + P0.w, WAIN]], 3, '#8e938a');
+    [.25, .7].forEach(uu => C.shape(ctx, [[P0.x + P0.w * uu - 90, P0.y + 20], [P0.x + P0.w * uu + 90, P0.y + 20], [P0.x + P0.w * uu + 90, P0.y + 36], [P0.x + P0.w * uu - 90, P0.y + 36]], '#f6f7ee', { lw: 3 }));
+    ctx.fillStyle = '#d6d1c2'; ctx.fillRect(P0.x, FL, P0.w, P0.y + P0.h - FL);
+    ctx.strokeStyle = 'rgba(21,18,13,.2)'; ctx.lineWidth = 2; for (let i = -10; i < 20; i++) { ctx.beginPath(); ctx.moveTo(P0.x + P0.w / 2 + i * 40, FL); ctx.lineTo(P0.x + P0.w / 2 + i * 160, P0.y + P0.h); ctx.stroke(); }
+    for (let yy = FL; yy < P0.y + P0.h; yy += (yy - FL) * .35 + 18) { ctx.beginPath(); ctx.moveTo(P0.x, yy); ctx.lineTo(P0.x + P0.w, yy); ctx.stroke(); }
+    C.line(ctx, [[P0.x, FL], [P0.x + P0.w, FL]], 3.8, '#8e938a');
+    ctx.save(); ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = '#fff1c8'; ctx.globalAlpha = .8; const su = o.sun == null ? .75 : o.sun;
+    ctx.beginPath(); ctx.moveTo(170 + su * 120, FL); ctx.lineTo(910 + su * 120, FL); ctx.lineTo(1100 + su * 300, P0.y + P0.h); ctx.lineTo(60 + su * 300, P0.y + P0.h); ctx.fill(); ctx.restore();
+    C.seed(897);
+    C.shape(ctx, [[-170, 1318], [-60, 1318], [-60, 900], [-170, 900]], '#e8e6dc', { lw: 4.4 });
+    C.shape(ctx, C.ell(-115, 820, 52, 80, 20), '#a9cde0', { lw: 4.4, shade: c => { c.fillStyle = 'rgba(255,255,255,.4)'; c.fillRect(-150, 760, 12, 110); } });
+    C.shape(ctx, [[1120, 1318], [1240, 1318], [1220, 1190], [1140, 1190]], '#b4532f', { lw: 4.4 });
+    [[1180, 1100, 70, 120], [1130, 1060, 40, 90], [1230, 1070, 40, 80]].forEach(([px, py, rx, ry], i) => C.shape(ctx, C.ell(px, py, rx, ry, 16), i ? '#6b7a3e' : P.weed, { lw: 4 }));
+    C.shape(ctx, [[960, 700], [1180, 700], [1180, 860], [960, 860]], '#efe6d2', { lw: 3 });
+    ctx.font = '700 24px Rubik'; ctx.textAlign = 'center'; ctx.fillStyle = P.ink; ctx.fillText('NO PHONE', 1070, 760); ctx.fillText('CALLS', 1070, 792); ctx.restore();
+    windowView(ctx, t);
+    ctx.save(); ctx.translate(540, ROWY); ctx.scale(CHS, CHS); C.waitChair(ctx, 0, 0, 3.8, 3); ctx.restore();
+  }
+  // Önbellekli bulanık arka planlar (yakın planlar için; kamera dünyası aynı)
+  function blurWall(key, wall, z, cx, cy, sx, sy, blur, t) {
+    return cached('bw-' + key, 1080, 1920, c => {
+      const tmp = canvas(1080, 1920), g = tmp.getContext('2d'); cam(g, z, cx, cy, sx, sy);
+      if (wall === 'B') wallB(g, t || 54, {}); else wallA(g, t || 54, { kaan: false, defne: false });
+      c.filter = `blur(${blur}px)`; c.drawImage(tmp, -24, -24, 1128, 1968); c.filter = 'none';
+    });
   }
   // Hale konuşurken: boyundan bölünür (p3-b drawHaleTalk), baş eğilir/döner; gövde kalçadan eğilebilir
   function haleTalk(ctx, o, headRot, headDy, lean) {
@@ -212,32 +362,6 @@
     ctx.restore();
     C.line(ctx, [[-58, -194], [-22, -198]], lw * .55);   // cep ağzı listeyi önden örter
   }
-  // Fiş (numara kâğıdı)
-  function ticket(ctx, num, lw) {
-    C.seed(5201); C.shape(ctx, [[-70, -40], [70, -44], [72, 44], [-68, 46]], '#f3eee2', { lw, shade: c => { c.fillStyle = 'rgba(21,18,13,.12)'; c.fillRect(-70, 22, 140, 22); } });
-    ctx.save(); ctx.font = '700 46px Rubik'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = P.ink; ctx.fillText(num, 0, -2);
-    ctx.font = '500 12px Rubik'; ctx.fillText('CITY HALL · PERMITS', 0, 30); ctx.restore();
-  }
-  // Odadaki iki kişi (ikili planlar). o: {hale:{...}, kaan:{...}, num}
-  function haleSit(ctx, h) {
-    const o = Object.assign({ x: HALE.x, y: HALE.y, s: HALE.s, seed: 41, pose: 'sit', seat: false, hat: true, phone: true, expr: 'serious' }, h);
-    haleTalk(ctx, o, h.headRot || 0, h.headDy || 0, h.lean || 0);
-  }
-  function kaanSit(ctx, kk) {
-    C.drawKaan(ctx, Object.assign({ x: KAAN.x, y: KAAN.y, s: KAAN.s, seed: 11, pose: 'sit', seat: false, hands: 'phone', expr: 'calm' }, kk));
-    if (kk.list !== false) { ctx.save(); ctx.translate(KAAN.x, KAAN.y); ctx.scale(KAAN.s, KAAN.s); pocketList(ctx, 5.2 / Math.sqrt(KAAN.s)); ctx.restore(); }
-  }
-  // küçük telefonlara gerçek oyun karesi (phoneInHands ekranı: Hale yerel (0,-196) rot .08 ; Kaan yerel (-6,-182) rot -.1)
-  function smallScreen(ctx, who, im, lean) {
-    if (!okImg(im)) return;
-    const H = who === 'hale', o = H ? HALE : KAAN, s = H ? o.s * 1.04 : o.s;
-    ctx.save();
-    if (H && lean) { const hip = o.y - 130 * s; ctx.translate(o.x, hip); ctx.rotate(lean); ctx.translate(-o.x, -hip); }
-    ctx.translate(o.x, o.y); ctx.scale(s, s); ctx.translate(H ? 0 : -6, H ? -196 : -182); ctx.rotate(H ? .08 : -.1);
-    ctx.save(); ctx.beginPath(); ctx.rect(-13, -28, 26, 48); ctx.clip(); ctx.drawImage(im, -13, -28, 26, 48); ctx.restore();
-    ctx.restore();
-  }
-
   /* ================= GENÇ İKİ ORTAK (P5 a05 fotoğrafındaki çizim, büyütülmüş) =================
      yerel birim = fotoğraftaki birim; ayak y 60, omuz y -20, baş ortası y -33. o: wide, suit, hat, step (-1..1), arms 'down'|'point'|'box'|'up'|'pen', look, brow */
   function youngMan(g, x, o) {
@@ -283,10 +407,6 @@
     else { arm(1, [[sh * .8, -12], [sh * 1.0, 8], [sh * .95, 24]]); hand(x + sh * .95, 27); hand(x - sh * .95, 27); }
   }
 
-  /* ================= TERS AÇI: PENCERE DUVARI + DAISY + GİŞE ================= */
-  const WIN = { x0: 120, x1: 960, y0: 170, y1: 640 };
-  const DZ = { x: 540, y: 628, s: .5 };
-  const BEACON = [DZ.x, DZ.y - 364 * DZ.s];
   function drawBeacon(ctx, v) { // pilotla aynı: yalnız uyarı ışığı (farlar değişmez)
     if (v <= 0) return;
     ctx.save(); ctx.globalCompositeOperation = 'screen';
@@ -295,53 +415,6 @@
     C.seed(23);
     C.shape(ctx, C.ell(0, -346, 21, 25, 20, Math.PI, TAU), P.beaconOn, { lw: 5.6, shade: c => { c.fillStyle = 'rgba(255,240,200,.9)'; c.beginPath(); c.ellipse(-7, -360, 4, 8, .3, 0, TAU); c.fill(); } });
     [-1, 1].forEach(d => [0, 1].forEach(q => { const r = 40 + q * 22, a0 = d < 0 ? Math.PI * .82 : -Math.PI * .18, a1 = d < 0 ? Math.PI * 1.18 : Math.PI * .18; C.line(ctx, C.ell(0, -352, r, r * .9, 8, a0, a1), 5.6 * (1 - q * .2) * Math.min(1, v * 1.5), null, .5); }));
-  }
-  function windowWall() {
-    return cached('pencere-duvar', 1080, 1920, g => {
-      const lw = 3.8;
-      g.fillStyle = P.hall; g.fillRect(0, 0, 1080, FL);
-      g.fillStyle = '#b8bdb0'; g.fillRect(0, FL * .55, 1080, FL * .45); C.line(g, [[0, FL * .55], [1080, FL * .55]], 3, '#8e938a');
-      [.25, .7].forEach(u => C.shape(g, [[1080 * u - 90, 20], [1080 * u + 90, 20], [1080 * u + 90, 36], [1080 * u - 90, 36]], '#f6f7ee', { lw: 3 }));
-      // pencere: dışarısı (gündüz sokak, karşı binalar, kaldırım), Daisy kaldırımda
-      g.save(); g.beginPath(); g.rect(WIN.x0, WIN.y0, WIN.x1 - WIN.x0, WIN.y1 - WIN.y0); g.clip();
-      const sk = g.createLinearGradient(0, WIN.y0, 0, 560); sk.addColorStop(0, '#8fbadb'); sk.addColorStop(.6, '#c9dbe0'); sk.addColorStop(1, '#f0e2c2'); g.fillStyle = sk; g.fillRect(WIN.x0, WIN.y0, WIN.x1 - WIN.x0, 400);
-      let cx = WIN.x0 - 20; C.seed(5301);
-      while (cx < WIN.x1) { const bw = 70 + rnd(cx + 11) * 110, bh = 120 + rnd(cx + 13) * 200; C.shape(g, [[cx, 560], [cx, 560 - bh], [cx + bw, 560 - bh], [cx + bw, 560]], rnd(cx) < .5 ? P.far : '#c2c9c4', { lw: 1.8, ink: P.far2, amp: .4, shade: c => { c.fillStyle = 'rgba(158,173,183,.6)'; for (let yy = 560 - bh + 16; yy < 550; yy += 28) for (let xx = cx + 10; xx < cx + bw - 14; xx += 24) c.fillRect(xx, yy, 12, 14); } }); cx += bw + 6; }
-      // tek ağaç (canlılık için önbellekte sabit, gövde)
-      g.fillStyle = '#9a8a6a'; g.fillRect(860, 470, 10, 100); C.seed(5302); C.shape(g, C.ell(866, 450, 58, 50, 16), '#8b9a5a', { lw: 2, ink: '#5e6a3a', shade: c => C.blot(c, C.ell(890, 470, 40, 30, 10), '#6f7d45', .7) });
-      g.fillStyle = '#9b958a'; g.fillRect(WIN.x0, 560, WIN.x1 - WIN.x0, 40); g.fillStyle = '#7d786f'; g.fillRect(WIN.x0, 596, WIN.x1 - WIN.x0, 50);
-      C.line(g, [[WIN.x0, 600], [WIN.x1, 600]], 2, '#6a655c');
-      g.save(); g.globalAlpha = .9; for (let x = WIN.x0; x < WIN.x1; x += 70) { g.fillStyle = '#c9c3b5'; g.fillRect(x, 618, 36, 4); } g.restore();
-      C.drawDaisy(g, { x: DZ.x, y: DZ.y, s: DZ.s, seed: 23, beep: 0, mood: 'sleepy', hook: 0 });
-      g.fillStyle = 'rgba(200,225,240,.16)'; g.fillRect(WIN.x0, WIN.y0, WIN.x1 - WIN.x0, WIN.y1 - WIN.y0);   // cam
-      g.fillStyle = 'rgba(255,255,255,.14)'; [[200, 120], [560, 90], [760, 60]].forEach(([x, w]) => { g.beginPath(); g.moveTo(x, WIN.y0); g.lineTo(x + w, WIN.y0); g.lineTo(x + w - 200, WIN.y1); g.lineTo(x - 200, WIN.y1); g.fill(); });
-      g.restore();
-      // kasa + kayıtlar (mullion'lar ışığın iki yanında)
-      C.seed(5303); C.shape(g, [[WIN.x0, WIN.y0], [WIN.x1, WIN.y0], [WIN.x1, WIN.y1], [WIN.x0, WIN.y1]], null, { lw: lw * 1.6 });
-      [400, 680].forEach(x => C.shape(g, [[x - 7, WIN.y0], [x + 7, WIN.y0], [x + 7, WIN.y1], [x - 7, WIN.y1]], '#e9ebe3', { lw: 2.6 }));
-      C.shape(g, [[WIN.x0 - 16, WIN.y1], [WIN.x1 + 16, WIN.y1], [WIN.x1 + 22, WIN.y1 + 22], [WIN.x0 - 22, WIN.y1 + 22]], '#e9ebe3', { lw: 3 });
-      // gişe (sağda): cam bölme, numara lambası, tezgâh
-      const gx = 700, gw = 310, gt = 760, gb = 1240;
-      C.shape(g, [[gx, gt - 60], [gx + gw, gt - 60], [gx + gw, gb], [gx, gb]], '#cdbfa2', { lw, shade: c => C.blot(c, [[gx + gw * .7, gt - 70], [gx + gw + 10, gt - 70], [gx + gw + 10, gb], [gx + gw * .75, gb]], '#ac9f84', .6) });
-      C.shape(g, [[gx + 30, gt], [gx + gw - 30, gt], [gx + gw - 30, gb - 120], [gx + 30, gb - 120]], '#a9c4cf', { lw: lw * .9, shade: c => { c.fillStyle = 'rgba(255,255,255,.25)'; c.beginPath(); c.moveTo(gx + 60, gt); c.lineTo(gx + 110, gt); c.lineTo(gx + 50, gb - 120); c.lineTo(gx + 30, gb - 120); c.fill(); c.fillStyle = 'rgba(60,70,70,.35)'; c.fillRect(gx + 30, gb - 260, gw - 60, 140); } });
-      C.shape(g, [[gx + gw / 2 - 60, gb - 150], [gx + gw / 2 + 60, gb - 150], [gx + gw / 2 + 60, gb - 120], [gx + gw / 2 - 60, gb - 120]], '#2a2d34', { lw: 2.4 });
-      C.shape(g, [[gx + gw / 2 - 46, gt - 50], [gx + gw / 2 + 46, gt - 50], [gx + gw / 2 + 46, gt - 8], [gx + gw / 2 - 46, gt - 8]], '#14161b', { lw: 2.6 });
-      g.save(); g.font = '400 34px "Lilita One"'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.shadowColor = 'rgba(255,59,47,.8)'; g.shadowBlur = 8; g.fillStyle = P.beaconOn; g.fillText('3', gx + gw / 2, gt - 28); g.restore();
-      C.shape(g, [[gx - 20, gb - 14], [gx + gw + 20, gb - 14], [gx + gw + 30, gb + 16], [gx - 30, gb + 16]], P.wood, { lw });
-      C.shape(g, [[gx - 10, gb + 16], [gx + gw + 10, gb + 16], [gx + gw + 10, gb + 230], [gx - 10, gb + 230]], '#8a6a48', { lw, shade: c => C.blot(c, [[gx + gw * .7, gb + 10], [gx + gw + 20, gb + 10], [gx + gw + 20, gb + 240], [gx + gw * .72, gb + 240]], '#6a4f33', .6) });
-      // sol: saksı + "PERMITS" levhası
-      C.shape(g, [[60, 860], [300, 860], [300, 940], [60, 940]], '#2c4f66', { lw: 3 });
-      g.save(); g.font = '700 34px Rubik'; g.fillStyle = '#f1e8d4'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('PERMITS', 180, 902); g.restore();
-      C.shape(g, [[80, 1180], [170, 1180], [160, 1260], [90, 1260]], P.brick, { lw: 3 });
-      C.seed(5304); for (let i = 0; i < 6; i++) C.shape(g, C.ell(125 + (i - 2.5) * 16, 1120 - (i % 3) * 30, 18, 40, 10, 0, TAU), '#6f7d45', { lw: 2.4 });
-      // zemin
-      g.fillStyle = '#d6d1c2'; g.fillRect(0, FL, 1080, 1920 - FL);
-      g.strokeStyle = 'rgba(21,18,13,.2)'; g.lineWidth = 2; for (let i = -10; i < 20; i++) { g.beginPath(); g.moveTo(540 + i * 40, FL); g.lineTo(540 + i * 160, 1920); g.stroke(); }
-      for (let yy = FL; yy < 1920; yy += (yy - FL) * .35 + 18) { g.beginPath(); g.moveTo(0, yy); g.lineTo(1080, yy); g.stroke(); }
-      C.line(g, [[0, FL], [1080, FL]], lw, '#8e938a');
-      // ışık penceresinden zemine düşen aydınlık
-      g.save(); g.globalCompositeOperation = 'soft-light'; g.fillStyle = 'rgba(255,240,200,.5)'; g.beginPath(); g.moveTo(WIN.x0, FL); g.lineTo(WIN.x1, FL); g.lineTo(WIN.x1 + 300, 1920); g.lineTo(WIN.x0 - 300, 1920); g.fill(); g.restore();
-    });
   }
   // Hale arkadan (cizim.js'teki ayakta Hale'in arka yüzü; aynı ölçüler)
   function haleBack(ctx, o) {
@@ -366,13 +439,38 @@
     ctx.restore();
   }
 
+  // küçük telefonlara gerçek oyun karesi (phoneInHands ekranı: Hale yerel (0,-196) rot .08 ; Kaan yerel (-6,-182) rot -.1)
+  function smallScreen(ctx, who, im, lean) {
+    if (!okImg(im)) return;
+    const H = who === 'hale', o = H ? HALE : KAAN, s = H ? o.s * 1.04 : o.s;
+    ctx.save();
+    if (H && lean) { const hip = o.y - 130 * s; ctx.translate(o.x, hip); ctx.rotate(lean); ctx.translate(-o.x, -hip); }
+    ctx.translate(o.x, o.y); ctx.scale(s, s); ctx.translate(H ? 0 : -6, H ? -196 : -182); ctx.rotate(H ? .08 : -.1);
+    ctx.save(); ctx.beginPath(); ctx.rect(-13, -28, 26, 48); ctx.clip(); ctx.drawImage(im, -13, -28, 26, 48); ctx.restore();
+    ctx.restore();
+  }
+  function haleSit(ctx, h) {
+    const o = Object.assign({ x: HALE.x, y: HALE.y, s: HALE.s, seed: 41, pose: 'sit', seat: false, hat: true, phone: true, expr: 'serious' }, h);
+    haleTalk(ctx, o, h.headRot || 0, h.headDy || 0, h.lean || 0);
+    if (o.phone && h.frame) smallScreen(ctx, 'hale', gameImgs[h.frame], h.lean);
+    if (o.phone && h.glow) {
+      const hs = o.s * 1.04, px = o.x, py = o.y + (-292 + 96) * hs;
+      ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(px, py - 40, 10, px, py - 160, 300); g.addColorStop(0, `rgba(255,226,122,${.32 * h.glow})`); g.addColorStop(1, 'rgba(255,226,122,0)'); ctx.fillStyle = g; ctx.fillRect(px - 400, py - 600, 800, 800); ctx.restore();
+    }
+  }
+  function haleKnee(ctx, base) {   // şapka kucakta, telefon yok
+    const s = HALE.s * 1.04, lw = 5.2 / Math.sqrt(s);
+    haleSit(ctx, Object.assign({}, base, { hat: false, phone: false }));
+    ctx.save(); ctx.translate(HALE.x, HALE.y); ctx.scale(s, s); hatOnKnee(ctx, lw, .1); ctx.restore();
+  }
+
   /* ================= SAHNELER ================= */
   const shot = (id, f0, f1, draw) => TB.shot({ id, get t0() { return f0(times()); }, get t1() { return f1(times()); }, draw });
 
-  /* --- 14a: Hale'in telefonu yakın (iri eller, krem kol); gerçek oyun: Old Textile Mill, C4 --- */
-  function phoneBg(ctx, num) {
-    ctx.drawImage(room(num || NUM.prev, 14), -200, -240, 1480, 2630);
-    ctx.fillStyle = 'rgba(30,26,22,.35)'; ctx.fillRect(0, 0, 1080, 1920);
+  /* --- 14a: Hale'in telefonu yakın (iri eller, krem kol); gerçek oyun: Old Textile Mill, C4 (A'nın 13b itişinin devamı) --- */
+  function phoneBg(ctx) {
+    ctx.drawImage(blurWall('tel', 'B', 2.25, 540, 1300, 540, 760, 14), 0, 0);
+    ctx.fillStyle = 'rgba(30,26,22,.3)'; ctx.fillRect(0, 0, 1080, 1920);
     ctx.save(); ctx.globalCompositeOperation = 'lighter'; const hg = ctx.createRadialGradient(540, 760, 200, 540, 760, 760); hg.addColorStop(0, 'rgba(255,226,122,.18)'); hg.addColorStop(1, 'rgba(255,190,110,0)'); ctx.fillStyle = hg; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
     vignette(ctx, .45);
   }
@@ -384,26 +482,26 @@
     haleHand(ctx, -BWd / 2 + 4, 10, false, 6);
     phone(ctx, gameImgs[haleIdx(t)]);
     haleHand(ctx, BWd / 2 - 4, 10, true, 6);
-    // başparmak tıklar gibi bekler (aceleci): ekranın sağ altında iki kez iner
-    const tap = Math.floor((t - k.start) * 3.2) % 2 === 0 ? 0 : 12;
+    const tap = Math.floor((t - k.start) * 3.2) % 2 === 0 ? 0 : 12;     // aceleci başparmak
     thumb(ctx, BWd / 2 + 10, 150, 300 + tap, P.hSkin, P.hSkinDk, 6, 183);
     ctx.restore();
     finish(ctx);
   });
 
-  /* --- 14b: "the same game as me." İki telefon yan yana: solda Hale'in (krem kol), sağdan Kaan'ın (yeşil kol, sarı reflektör) girer --- */
-  shot('p8b14-iki', k => k.two, k => k.bad, (ctx, t, u) => {
-    const k = times(), tw = twos(t), z = .66 * lerp(1, 1.03, E.io(u));
-    phoneBg(ctx);
-    const kin = E.outC(seg(tw, k.kIn, k.kIn + .3));
-    ctx.save(); ctx.translate(lerp(540, 330, E.ioC(seg(t, k.two, k.kIn + .2))), 900); ctx.rotate(.04); ctx.scale(z, z);
-    haleHand(ctx, -BWd / 2 + 4, 10, false, 7); phone(ctx, gameImgs[haleIdx(t)]); haleHand(ctx, BWd / 2 - 4, 10, true, 7);
+  /* --- 14b: "…the same game as me." Kaan'ın bakışı: karşıda Hale telefonuyla; önde Kaan'ın telefonu kadraja kalkar, aynı oyun --- */
+  function kaanPhoneFg(ctx, t, x, y, z, rot, frame) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(z, z);
+    kaanHand(ctx, -BWd / 2 + 10, 0, false, 7); phone(ctx, gameImgs[frame]); kaanHand(ctx, BWd / 2 - 10, 0, true, 7);
     ctx.restore();
-    if (kin > 0) {
-      ctx.save(); ctx.translate(lerp(1300, 790, kin), 910 + Math.sin(tw * 1.4) * 3); ctx.rotate(-.05); ctx.scale(z, z);
-      kaanHand(ctx, -BWd / 2 + 10, 0, false, 7); phone(ctx, gameImgs[kaanIdx(t)]); kaanHand(ctx, BWd / 2 - 10, 0, true, 7);
-      ctx.restore();
-    }
+  }
+  shot('p8b14-iki', k => k.two, k => k.bad, (ctx, t, u) => {
+    const k = times(), tw = twos(t), kin = E.outC(seg(tw, k.kIn, k.kIn + .3));
+    ctx.save(); cam(ctx, lerp(1.5, 1.56, E.io(u)), 540, 1180, 360, 900);
+    wallB(ctx, t, {});
+    haleSit(ctx, { expr: 'serious', look: .1, headRot: .08, headDy: 8, phone: true, frame: haleIdx(t), glow: 1, blink: blinkAt(tw, [k.two + .4]) });
+    ctx.restore();
+    vignette(ctx, .25);
+    if (kin > 0) kaanPhoneFg(ctx, t, lerp(1250, 790, kin), lerp(1300, 900, kin) + Math.sin(tw * 1.4) * 3, .56, -.06, kaanIdx(t));
     finish(ctx);
   });
 
@@ -413,88 +511,76 @@
     phoneBg(ctx);
     ctx.save(); ctx.translate(540, 700); ctx.rotate(.02); ctx.scale(z, z);
     haleHand(ctx, -BWd / 2 + 4, 10, false, 6);
-    const tx = (TRY[0] - .5) * SWd, ty = (TRY[1] - .5) * SHd;
-    const rd = t - k.tap;
+    const tx = (TRY[0] - .5) * SWd, ty = (TRY[1] - .5) * SHd, rd = t - k.tap;
     phone(ctx, gameImgs[haleIdx(t)], c => { if (rd >= 0 && rd < .4) { c.strokeStyle = `rgba(255,255,255,${.9 * (1 - rd / .4)})`; c.lineWidth = 8; c.beginPath(); c.arc(tx, ty, 26 + rd * 220, 0, TAU); c.stroke(); } });
     haleHand(ctx, BWd / 2 - 4, 10, true, 6);
-    // başparmak: kart gelince yavaşça "Try again"e gelir, bir kez sertçe bastırır
     const come = E.ioC(seg(tw, k.badly + .45, k.tap - .1)), press = t >= k.tap - .08 && t < k.tap + .12 ? 1 : 0, away = E.inQ(seg(tw, k.tap + .2, k.tap + .5));
     thumb(ctx, BWd / 2 + 10, lerp(180, tx + 30, come) + away * 160, lerp(330, ty + 46, come) + (press ? 10 : -14) * come + away * 260, P.hSkin, P.hSkinDk, 6, 183);
     ctx.restore();
     finish(ctx);
   });
 
-  /* --- 16: "He looked at my screen." İkili: Hale (solda) boş koltuğun üstünden eğilip Kaan'ın ekranına bakar --- */
-  function twoShot(ctx, t, o) {
-    roomBg(ctx, o.num || NUM.prev, 0);
-    o.hale && haleSit(ctx, o.hale);
-    o.kaan && kaanSit(ctx, o.kaan);
-    o.hale && o.hale.phone !== false && smallScreen(ctx, 'hale', gameImgs[o.haleFrame || haleIdx(t)], o.hale.lean);
-    o.kaan && o.kaan.hands !== 'knees' && smallScreen(ctx, 'kaan', gameImgs[o.kaanFrame || 55]);
-  }
+  /* --- 16: "He looked at my screen." İki ekran: önde Kaan'ın telefonu (DEMOLISHED!), karşıda Hale eğilip ona bakar; Hale'in kucağında yeniden başlayan bölüm --- */
   shot('p8b16-bakti', k => k.look0, k => k.cu1, (ctx, t, u) => {
     const k = times(), tw = twos(t), lk = E.ioC(seg(tw, k.look - .05, k.look + .35));
-    const z = lerp(1.02, 1.12, E.io(u));
-    ctx.save(); cam(ctx, z, lerp(560, 600, E.io(u)), 1080, 540, 760);
-    twoShot(ctx, t, {
-      hale: { expr: 'serious', look: lerp(.3, 1, lk), lean: .12 * lk, headRot: .08 * lk, headDy: 6 * lk, blink: blinkAt(tw, [k.look0 + .2]) },
-      kaan: { expr: lk > .5 ? 'surprised' : 'calm', look: lerp(.2, -.8, seg(tw, k.look + .3, k.look + .5)), glow: .25, blink: 0 },
-      haleFrame: Math.min(150, haleIdx(t)), kaanFrame: 55
-    });
+    ctx.save(); cam(ctx, lerp(1.5, 1.62, E.io(u)), 540, 1180, 360, 900);
+    wallB(ctx, t, {});
+    haleSit(ctx, { expr: lk > .5 ? 'surprised' : 'serious', look: lerp(.1, 1, lk), lean: .1 * lk, headRot: .1 * lk, headDy: 10 * lk, phone: true, frame: Math.min(150, haleIdx(t)), glow: .6, blink: blinkAt(tw, [k.look0 + .2]) });
     ctx.restore();
     vignette(ctx, .25);
+    kaanPhoneFg(ctx, t, 800, 920 + Math.sin(tw * 1.4) * 3, .58, -.06 - .05 * lk, 55);
     finish(ctx);
   });
 
-  /* --- 17: "You rush the first move." Hale yakın; gözü Kaan'ın ekranında (aşağı-sağ) --- */
-  function haleCU(ctx, t, o, cz) {
+  /* --- 17: "You rush the first move." Hale yakın; gözü Kaan'ın ekranında (sağ-aşağı) --- */
+  function haleCU(ctx, t, o, cz, key) {
+    ctx.drawImage(blurWall(key || 'cuB', 'B', cz[0], cz[1], cz[2], 540, cz[3] || 760, 12), 0, 0);
     ctx.save(); cam(ctx, cz[0], cz[1], cz[2], 540, cz[3] || 760);
-    roomBg(ctx, o.num || NUM.prev, 10);
     haleSit(ctx, o);
-    if (o.phone) smallScreen(ctx, 'hale', gameImgs[150], o.lean);
     ctx.restore();
     vignette(ctx, .3);
   }
   shot('p8b17-hale', k => k.cu1, k => k.kr1, (ctx, t, u) => {
-    const k = times(), tw = twos(t), talking = tw >= times().cu1 + .2 && tw < TB.sentence(17).t1;
+    const k = times(), tw = twos(t), talking = tw >= k.cu1 + .2 && tw < TB.sentence(17).t1;
     const nod = talking ? Math.sin(tw * 7) * .03 : 0;
-    haleCU(ctx, t, { expr: talking ? talkExpr(tw, 3, ['serious', 'confident', 'serious', 'tired']) : 'serious', look: .9, headRot: .1 + nod, headDy: 8, lean: .06, blink: blinkAt(tw, [k.cu1 + .9]), phone: true }, [lerp(2.3, 2.42, E.io(u)), HALE.x + 40, 1020]);
+    haleCU(ctx, t, { expr: talking ? talkExpr(tw, 3, ['serious', 'confident', 'serious', 'tired']) : 'serious', look: .9, headRot: .1 + nod, headDy: 8, lean: .06, blink: blinkAt(tw, [k.cu1 + .9]), phone: true, frame: 150 }, [lerp(2.1, 2.2, E.io(u)), HALE.x + 40, 1060], 'cu17');
     finish(ctx);
   });
 
-  /* --- Kaan'ın kısa tepkisi (cümle arası): ekranından başını kaldırır --- */
+  /* --- Kaan'ın kısa tepkisi (cümle arası): yakalanmış gibi --- */
   function kaanCU(ctx, t, o, cz) {
     ctx.save(); cam(ctx, cz[0], cz[1], cz[2], 540, cz[3] || 780);
-    roomBg(ctx, NUM.prev, 10);
-    kaanSit(ctx, o);
-    smallScreen(ctx, 'kaan', gameImgs[55]);
+    wallA(ctx, t, { kaan: o, kaanHead: o.head, kaanFrame: 55, defne: o.defne || {} });
     ctx.restore();
     vignette(ctx, .3);
   }
   shot('p8b17-kaan', k => k.kr1, k => k.cu2, (ctx, t, u) => {
     const k = times(), tw = twos(t);
-    kaanCU(ctx, t, { expr: tw < k.kr1 + .16 ? 'calm' : 'sheepish', look: -1, glow: .2 }, [lerp(2.2, 2.26, u), KAAN.x - 30, 1000]);
+    kaanCU(ctx, t, { hands: 'phone', expr: tw < k.kr1 + .16 ? 'calm' : 'sheepish', look: .5, glow: .2, head: [.04, 4] }, [lerp(2.2, 2.26, u), KAAN.x + 20, KAAN.y - 360 * CHS]);
     finish(ctx);
   });
 
-  /* --- 18: "So did Kaya." Hale yakın (biraz daha sıkı): gözü telefondan Kaan'ın yüzüne kalkar; "Kaya"da kaşlar yumuşar --- */
+  /* --- 18: "So did Kaya." Hale yakın (daha sıkı): gözü telefondan Kaan'ın yüzüne kalkar; "Kaya"da kaşlar yumuşar --- */
   shot('p8b18-kaya', k => k.cu2, k => k.kr2, (ctx, t, u) => {
     const k = times(), tw = twos(t), up = E.ioC(seg(tw, k.cu2 + .05, k.cu2 + .3)), soft = tw >= k.kaya;
     const talking = tw < TB.sentence(18).t1;
     const expr = soft ? (tw < k.kaya + .3 ? 'calm' : 'tired') : talkExpr(tw, 5, ['serious', 'confident']);
-    haleCU(ctx, t, { expr, look: lerp(.9, .6, up), headRot: lerp(.1, -.02, up) + (talking && !soft ? Math.sin(tw * 7) * .02 : 0), headDy: lerp(8, 0, up), lean: .06, blink: blinkAt(tw, [k.kaya + .45]), phone: true }, [lerp(2.7, 2.78, E.io(u)), HALE.x + 30, 1000, 740]);
+    haleCU(ctx, t, { expr, look: lerp(.9, .35, up), headRot: lerp(.1, -.02, up) + (talking && !soft ? Math.sin(tw * 7) * .02 : 0), headDy: lerp(8, 0, up), lean: .04, blink: blinkAt(tw, [k.kaya + .45]), phone: true, frame: 150 }, [lerp(2.6, 2.68, E.io(u)), HALE.x + 20, 1010, 740], 'cu18');
     finish(ctx);
   });
 
-  /* --- Kaan: dedenin adı ("Kaya") — şaşkın, telefon iner --- */
-  shot('p8b18-kaan', k => k.kr2, k => k.hat0, (ctx, t, u) => {
-    const k = times(), tw = twos(t);
-    kaanCU(ctx, t, { expr: tw < k.kr2 + .14 ? 'calm' : 'surprised', look: -1, glow: .15, blink: 0 }, [lerp(2.3, 2.42, E.io(u)), KAAN.x - 20, 990]);
+  /* --- Kaan ve Defne: dedenin adı. İkisi de Hale'e döner (Defne dosyayı sıkar) --- */
+  shot('p8b18-ikisi', k => k.kr2, k => k.hat0, (ctx, t, u) => {
+    const k = times(), tw = twos(t), hit = tw >= k.kr2 + .14;
+    ctx.save(); cam(ctx, lerp(1.5, 1.56, E.io(u)), 340, 1080, 540, 820);
+    wallA(ctx, t, { kaan: { hands: 'phone', expr: hit ? 'surprised' : 'calm', look: .4, glow: .15, blink: 0 }, kaanFrame: 55, defne: { expr: hit ? 'surprised' : 'serious', look: hit ? .3 : -.7, blink: 0 } });
+    ctx.restore();
+    vignette(ctx, .28);
     finish(ctx);
   });
 
-  /* --- 19: "Then he said the rest, quietly." Orta plan: Hale telefonu bırakır, şapkasını çıkarıp dizine koyar --- */
-  function hatState(tw) {   // 0 başta, 1 elde havada, 2 dizde
+  /* --- 19: "Then he said the rest, quietly." Hale telefonu bırakmış; sağ eli şapkayı başından alıp kucağına indirir --- */
+  function hatState(tw) {
     const k = times(); return { off: E.ioC(seg(tw, k.hatOff - .1, k.hatOff + .4)), knee: E.ioC(seg(tw, k.hatOff + .7, k.hatKnee)) };
   }
   function haleWithHat(ctx, tw, base, hs) {
@@ -518,25 +604,19 @@
   shot('p8b19-sapka', k => k.hat0, k => k.cu3, (ctx, t, u) => {
     const k = times(), tw = twos(t), hs = hatState(tw);
     const z = lerp(2.3, 2.42, E.io(u));
+    ctx.drawImage(blurWall('cu19', 'B', 2.36, HALE.x + 40, 1000, 540, 640, 10), 0, 0);
     ctx.save(); cam(ctx, z, HALE.x + 40, 1000, 540, 640);
-    roomBg(ctx, NUM.prev, 8);
     haleWithHat(ctx, tw, { expr: hs.knee > .5 ? 'tired' : 'serious', look: hs.knee > .5 ? .3 : .6, headRot: lerp(.02, .08, hs.knee), headDy: lerp(0, 10, hs.knee), blink: blinkAt(tw, [k.hat0 + .3]) }, hs);
-    // boş koltuk sağda; Kaan'ın dizi kadraj kenarında
     ctx.restore();
     vignette(ctx, .3);
     finish(ctx);
   });
 
   /* --- 20: "The cheap concrete…" Hale yakın, şapkasız, alçak sesle (gözler aşağıda) --- */
-  function haleKnee(ctx, base) {   // şapka kucakta, telefon yok
-    const s = HALE.s * 1.04, lw = 5.2 / Math.sqrt(s);
-    haleSit(ctx, Object.assign({}, base, { hat: false, phone: false }));
-    ctx.save(); ctx.translate(HALE.x, HALE.y); ctx.scale(s, s); hatOnKnee(ctx, lw, .1); ctx.restore();
-  }
   shot('p8b20-hale', k => k.cu3, k => k.f1, (ctx, t, u) => {
     const k = times(), tw = twos(t);
+    ctx.drawImage(blurWall('cu20', 'B', 2.56, HALE.x + 20, 1010, 540, 740, 12), 0, 0);
     ctx.save(); cam(ctx, lerp(2.5, 2.62, E.io(u)), HALE.x + 20, 1010, 540, 740);
-    roomBg(ctx, NUM.prev, 10);
     const talking = tw >= TB.sentence(20).t0 - .05;
     haleKnee(ctx, { expr: talking ? talkExpr(tw, 7, ['regret', 'tired', 'regret', 'serious']) : 'tired', look: .2, headRot: .06 + (talking ? Math.sin(tw * 6) * .015 : 0), headDy: 10, blink: blinkAt(tw, [k.cu3 + .25]) });
     ctx.restore();
@@ -708,75 +788,84 @@
     finish(ctx);
   });
 
-  /* --- 24: "I wanted your list so nobody would ever read it." Şimdi: Hale yakın (pişman, şapka kucakta) → bakışını izleyip Kaan'ın cebindeki listeye kayar --- */
-  shot('p8b24-liste', k => k.list0, k => k.num, (ctx, t, u) => {
-    const k = times(), tw = twos(t), p = E.ioC(seg(t, k.listW - .35, k.listW + .55));
-    const z = lerp(2.3, 1.6, p) * lerp(1, 1.04, seg(t, k.listW + .55, k.num));
-    const cx = lerp(HALE.x + 30, KAAN.x - 150, p), cy = lerp(1010, 1300, p);
-    ctx.save(); cam(ctx, z, cx, cy, 540, 760);
-    roomBg(ctx, NUM.prev, p < .5 ? 10 : 4);
-    const talking = tw < TB.sentence(24).t1;
-    haleKnee(ctx, { expr: talking ? talkExpr(tw, 11, ['regret', 'regret', 'tired', 'serious']) : 'regret', look: lerp(.4, 1, p), headRot: .1 + (talking ? Math.sin(tw * 6) * .012 : 0), headDy: 10, lean: .03, blink: blinkAt(tw, [k.list0 + .3]) });
-    kaanSit(ctx, { expr: 'serious', look: -1, hands: 'knees', glow: 0, blink: blinkAt(tw, [k.listW + 1.1]) });
+  /* --- 24a: "I wanted your list…" Hale yakın: pişman, şapka kucakta; bakışı karşıya, Kaan'ın göğsüne iner --- */
+  shot('p8b24-hale', k => k.list0, k => k.listW - .12, (ctx, t, u) => {
+    const k = times(), tw = twos(t), dn = E.ioC(seg(tw, k.list0 + .5, k.listW - .2));
+    ctx.drawImage(blurWall('cu24', 'B', 2.5, HALE.x + 10, 1010, 540, 740, 12), 0, 0);
+    ctx.save(); cam(ctx, lerp(2.44, 2.56, E.io(u)), HALE.x + 10, 1010, 540, 740);
+    haleKnee(ctx, { expr: talkExpr(tw, 11, ['regret', 'regret', 'tired', 'serious']), look: lerp(.2, .5, dn), headRot: .02 + .06 * dn + Math.sin(tw * 6) * .012, headDy: 4 + 10 * dn, blink: blinkAt(tw, [k.list0 + .3]) });
     ctx.restore();
+    vignette(ctx, .32);
+    finish(ctx);
+  });
+
+  /* --- 24b: "…so nobody would ever read it." Hale'in omzunun üstünden: karşıda Kaan, cebinde katlı liste; Defne yanında. İtme listeye --- */
+  shot('p8b24-liste', k => k.listW - .12, k => k.num, (ctx, t, u) => {
+    const k = times(), tw = twos(t), e = E.io(u);
+    const hand = E.ioC(seg(tw, k.listW + 1.3, k.listW + 1.7));   // "read it"te Kaan'ın eli cebe gider
+    ctx.save(); cam(ctx, lerp(1.7, 2.3, e), lerp(260, KAAN.x - 40 * CHS, e), lerp(1100, KAAN.y - 196 * CHS, e), 560, 760);
+    wallA(ctx, t, {
+      kaan: { hands: 'knees', expr: tw >= k.listW + 1.2 ? 'worried' : 'serious', look: .25, blink: blinkAt(tw, [k.listW + .9]) },
+      defne: { expr: 'serious', look: .2, blink: blinkAt(tw, [k.listW + .4]) }
+    });
+    if (hand > 0) { ctx.save(); ctx.translate(KAAN.x, KAAN.y); ctx.scale(CHS, CHS); C.seed(5401);
+      C.tube(ctx, [[60, -230], [lerp(70, 10, hand), lerp(-180, -220, hand)], [lerp(44, -40, hand), lerp(-152, -200, hand)]], 34, 30, P.jacket, 3.6);
+      C.shape(ctx, C.ell(lerp(44, -40, hand), lerp(-152, -200, hand), 15, 16, 14), P.skin, { lw: 3.6 }); ctx.restore(); }
+    ctx.restore();
+    // önde Hale'in sırtı (bulanık, sol alt): şapkasız baş + omuz
+    ctx.save(); ctx.filter = 'blur(5px)'; haleBack(ctx, { x: 130 - 30 * e, y: 2380, s: 2.5, hat: false }); ctx.restore();
     vignette(ctx, .3);
     finish(ctx);
   });
 
-  /* --- 25: "They called his number." Numaratör yakın: sayı değişir (ding), üç kez yanıp söner; altta Hale'in eli aynı numaralı fişi kaldırır --- */
+  /* --- 25: "They called his number." Numaratör yakın: 101 → 102 tık, sonra 103 + ding, üç kez yanıp söner; alttan Hale'in eli 103 numaralı fişi kaldırır --- */
   shot('p8b25-numara', k => k.num, k => k.stand0, (ctx, t, u) => {
     const k = times(), tw = twos(t), d = t - k.ding;
-    const show = d < 0 ? NUM.prev : NUM.hale;
-    const on = d < 0 ? 1 : d < 2 / FPS ? 0 : d < 1.0 ? (Math.floor((d - 2 / FPS) * 6) % 2 === 0 ? 1 : .25) : 1;
-    // numaratör (yanıp sönme): dünya kutusu x 670–951, y 230–422
-    ctx.save(); cam(ctx, lerp(2.4, 2.5, E.io(u)), 810, 420, 540, 620);
-    roomBg(ctx, show, 0);
-    if (on < 1) { ctx.fillStyle = `rgba(20,22,27,${1 - on})`; ctx.fillRect(674, 234, 273, 184); }
-    if (d >= 0 && d < .5) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(810, 336, 10, 810, 336, 260); g.addColorStop(0, `rgba(255,80,60,${.35 * (1 - d / .5)})`); g.addColorStop(1, 'rgba(255,80,60,0)'); ctx.fillStyle = g; ctx.fillRect(500, 100, 620, 500); ctx.restore(); }
+    const num = d >= 0 ? 103 : t >= k.num + .3 ? 102 : 101;
+    const off = d < 0 ? 0 : d < 2 / FPS ? 1 : d < 1.0 ? (Math.floor((d - 2 / FPS) * 6) % 2 === 0 ? 0 : .75) : 0;
+    const cx = NUMBOX.x + NUMBOX.w / 2, cy = NUMBOX.y + NUMBOX.h / 2;
+    ctx.save(); cam(ctx, lerp(1.8, 1.88, E.io(u)), cx, cy + 60, 540, 520);
+    wallA(ctx, t, { kaan: false, defne: false, num, numOff: off });
+    if (d >= 0 && d < .5) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(cx, cy, 10, cx, cy, 300); g.addColorStop(0, `rgba(255,80,60,${.35 * (1 - d / .5)})`); g.addColorStop(1, 'rgba(255,80,60,0)'); ctx.fillStyle = g; ctx.fillRect(cx - 320, cy - 320, 640, 640); ctx.restore(); }
     ctx.restore();
-    // Hale'in eli fişle alttan girer (ding'den sonra)
     const hin = E.outC(seg(tw, k.ding + .2, k.ding + .55));
     if (hin > 0) {
-      ctx.save(); ctx.translate(380, lerp(1500, 1010, hin)); ctx.rotate(-.12); ctx.scale(1.1, 1.1);
-      haleHand(ctx, 0, -60, false, 6); ctx.save(); ctx.translate(30, 60); ctx.rotate(.05); ticket(ctx, NUM.hale, 4); ctx.restore();
-      C.seed(5250); C.shape(ctx, [[-30, 110], [10, 70], [60, 80], [60, 130], [0, 150]], P.hSkin, { lw: 5 });   // başparmak fişin üstünde
+      ctx.save(); ctx.translate(360, lerp(1500, 1030, hin)); ctx.rotate(-.12);
+      haleHand(ctx, 0, -40, false, 6); ticket(ctx, 20, 30, 2.3, .05, '103');
+      C.seed(5250); C.shape(ctx, [[-60, 120], [-10, 60], [40, 70], [40, 120], [-20, 150]], P.hSkin, { lw: 5 });
       ctx.restore();
     }
     vignette(ctx, .25);
     finish(ctx);
   });
 
-  /* --- 26: "He stood up." İkili: Hale (şapka elde) kalkar; Kaan başını kaldırıp izler --- */
+  /* --- 26: "He stood up." Pencere duvarı: Hale (şapka elde) ortadaki koltuktan kalkar --- */
   function standHale(ctx, rise, o) {   // rise 0 oturuş → 1 ayakta (ikişerli üç poz)
     const s = HALE.s * 1.04;
     if (rise <= 0) return haleKnee(ctx, o);
-    // koltuk sırtı Hale'in arkasında kalsın diye salonun koltuğu zaten çizili; ara poz: ayakta poz alçak ve öne eğik
     const r = rise >= 1 ? 1 : rise > .5 ? .7 : .35;
     ctx.save(); ctx.translate(0, (1 - r) * 120 * s);
-    haleTalk(ctx, Object.assign({ x: HALE.x + 20 * r, y: HALE.y, s: HALE.s, seed: 41, pose: 'stand', hat: 'hand', expr: 'serious' }, o), o.headRot || 0, o.headDy || 0, (1 - r) * .22);
+    haleTalk(ctx, Object.assign({ x: HALE.x, y: HALE.y, s: HALE.s, seed: 41, pose: 'stand', hat: 'hand', expr: 'serious' }, o), o.headRot || 0, o.headDy || 0, (1 - r) * .22);
     ctx.restore();
   }
   shot('p8b26-kalkar', k => k.stand0, k => k.hatOn0, (ctx, t, u) => {
     const k = times(), tw = twos(t), rise = seg(tw, k.rise, k.rise + .4);
-    const z = lerp(1.0, 1.06, E.io(u));
-    ctx.save(); cam(ctx, z, 560, 1000 - 40 * E.io(rise), 540, 720);
-    roomBg(ctx, NUM.hale, 0);
-    standHale(ctx, rise, { expr: rise > .5 ? 'determined' : 'regret', look: rise > .5 ? .2 : .6, blink: blinkAt(tw, [k.stand0 + .2]) });
-    kaanSit(ctx, { expr: rise > .3 ? 'surprised' : 'serious', look: -1, hands: 'knees', glow: 0, blink: 0 });
+    ctx.save(); cam(ctx, lerp(1.0, 1.05, E.io(u)), 540, 1150 - 60 * E.io(rise), 540, 960);
+    wallB(ctx, t, {});
+    standHale(ctx, rise, { expr: rise > .5 ? 'determined' : 'regret', look: rise > .5 ? .1 : .4, blink: blinkAt(tw, [k.stand0 + .2]) });
     ctx.restore();
     vignette(ctx, .25);
     finish(ctx);
   });
 
-  /* --- 27: "He carried it for forty years." Orta plan: Hale ayakta, şapkayı elinden başına koyar --- */
+  /* --- 27: "He carried it for forty years." Orta plan: Hale şapkayı elinden başına koyar --- */
   function haleStandHat(ctx, hu, o) {
-    const s = HALE.s * 1.04, lw = 5.2 / Math.sqrt(s), x = HALE.x + 20;
+    const s = HALE.s * 1.04, lw = 5.2 / Math.sqrt(s), x = HALE.x;
     if (hu <= 0) return haleTalk(ctx, Object.assign({ x, y: HALE.y, s: HALE.s, seed: 41, pose: 'stand', hat: 'hand' }, o), o.headRot || 0, o.headDy || 0, 0);
     if (hu >= 1) return haleTalk(ctx, Object.assign({ x, y: HALE.y, s: HALE.s, seed: 41, pose: 'stand', hat: true }, o), o.headRot || 0, o.headDy || 0, 0);
     haleTalk(ctx, Object.assign({ x, y: HALE.y, s: HALE.s, seed: 41, pose: 'stand', hat: false }, o), o.headRot || 0, o.headDy || 0, 0);
-    // şapka elden (30,-262 dönük) başa (2,-514): sağ kol kalkar
     ctx.save(); ctx.translate(x, HALE.y); ctx.scale(s, s);
-    const hx = lerp(30, 2, hu), hy = lerp(-262 - 0, -514, hu) - Math.sin(Math.PI * hu) * 40, rot = lerp(-.22, 0, hu);
+    const hx = lerp(30, 2, hu), hy = lerp(-262, -514, hu) - Math.sin(Math.PI * hu) * 40, rot = lerp(-.22, 0, hu);
     C.tube(ctx, [[80, -392], [lerp(106, 120, hu), lerp(-320, -420, hu)], [hx + 40, hy + 10]], 46, 38, P.suit, lw);
     ctx.save(); ctx.translate(hx, hy); ctx.rotate(rot); ctx.scale(lerp(.9, 1, hu), lerp(.9, 1, hu)); hat(ctx, lw); ctx.restore();
     handR(ctx, hx + 44, hy + 6, 16, P.hSkin, lw);
@@ -785,8 +874,8 @@
   shot('p8b27-sapka', k => k.hatOn0, k => k.chest, (ctx, t, u) => {
     const k = times(), tw = twos(t), hu = E.ioC(seg(tw, k.hatOn, k.hatOn + .55));
     const talking = tw >= TB.sentence(27).t0 - .05 && tw < TB.sentence(27).t1;
-    ctx.save(); cam(ctx, lerp(1.62, 1.72, E.io(u)), HALE.x + 30, 1180, 540, 900);
-    roomBg(ctx, NUM.hale, 0);
+    ctx.save(); cam(ctx, lerp(1.5, 1.58, E.io(u)), HALE.x + 10, 1180, 540, 980);
+    wallB(ctx, t, {});
     haleStandHat(ctx, hu, { expr: talking ? talkExpr(tw, 13, ['serious', 'tired', 'serious', 'determined']) : 'serious', look: .3, headRot: talking ? Math.sin(tw * 6) * .015 : 0, blink: blinkAt(tw, [k.hatOn0 + .3]) });
     ctx.restore();
     vignette(ctx, .28);
@@ -797,42 +886,38 @@
   shot('p8b28-omuz', k => k.chest, k => k.turn0, (ctx, t, u) => {
     const k = times(), tw = twos(t), up = E.outBack(seg(tw, k.straight, k.straight + .35));
     const talking = tw >= TB.sentence(28).t0 - .05 && tw < TB.sentence(28).t1;
-    ctx.save(); cam(ctx, lerp(2.0, 2.12, E.io(u)), HALE.x + 30, 1060, 540, 900);
-    roomBg(ctx, NUM.hale, 8);
+    ctx.drawImage(blurWall('cu28', 'B', 1.9, HALE.x + 10, 1000, 540, 900, 8), 0, 0);
+    ctx.save(); cam(ctx, lerp(1.86, 1.96, E.io(u)), HALE.x + 10, 1000, 540, 900);
     ctx.translate(HALE.x, HALE.y); ctx.scale(1, lerp(.975, 1.0, up)); ctx.translate(-HALE.x, -HALE.y);
-    haleTalk(ctx, { x: HALE.x + 20, y: HALE.y - 14 * up, s: HALE.s, seed: 41, pose: 'stand', hat: true, expr: talking ? (up > .5 ? talkExpr(tw, 17, ['determined', 'serious']) : talkExpr(tw, 15, ['tired', 'serious'])) : 'determined', look: .2, blink: blinkAt(tw, [k.chest + .25]) }, (talking ? Math.sin(tw * 6) * .012 : 0) - .03 * up, lerp(10, -4, up), 0);
+    haleTalk(ctx, { x: HALE.x, y: HALE.y - 14 * up, s: HALE.s, seed: 41, pose: 'stand', hat: true, expr: talking ? (up > .5 ? talkExpr(tw, 17, ['determined', 'serious']) : talkExpr(tw, 15, ['tired', 'serious'])) : 'determined', look: .2, blink: blinkAt(tw, [k.chest + .25]) }, (talking ? Math.sin(tw * 6) * .012 : 0) - .03 * up, lerp(10, -4, up), 0);
     ctx.restore();
     vignette(ctx, .3);
     finish(ctx);
   });
 
-  /* --- 29: "Empty my tower." Hale kameraya döner (bakış ve baş), sade; sonra sessizlik --- */
+  /* --- 29: "Empty my tower." Hale kameraya döner (bakış ve baş), sade; arkada pencere --- */
   shot('p8b29-kamera', k => k.turn0, k => k.end0, (ctx, t, u) => {
     const k = times(), tw = twos(t), tu = E.ioC(seg(tw, k.turn, k.turn + .3));
-    ctx.save(); cam(ctx, lerp(2.36, 2.44, E.io(u)), HALE.x + 24, 1000, 540, 860);
-    roomBg(ctx, NUM.hale, 12);
-    haleTalk(ctx, { x: HALE.x + 20, y: HALE.y - 14, s: HALE.s, seed: 41, pose: 'stand', hat: true, expr: tu > .5 ? 'determined' : 'serious', look: lerp(.8, 0, tu), blink: 0 }, lerp(.14, 0, tu), lerp(4, -4, tu), 0);
+    ctx.drawImage(blurWall('cu29', 'B', 2.3, HALE.x + 6, 790, 540, 860, 10), 0, 0);
+    ctx.save(); cam(ctx, lerp(2.26, 2.34, E.io(u)), HALE.x + 6, 790, 540, 860);
+    haleTalk(ctx, { x: HALE.x, y: HALE.y - 14, s: HALE.s, seed: 41, pose: 'stand', hat: true, expr: tu > .5 ? 'determined' : 'serious', look: lerp(.8, 0, tu), blink: 0 }, lerp(.14, 0, tu), lerp(4, -4, tu), 0);
     ctx.restore();
     vignette(ctx, .34);
     finish(ctx);
   });
 
-  /* --- Bitiş: ters açı. Pencere duvarı; Hale arkadan gişeye yürür; pencereden Daisy, uyarı ışığı üst üçte birde. TEK bip. --- */
+  /* --- Bitiş: pencere duvarı geniş. Hale ayakta, şapka başında, gişeye (sola) birkaç adım; pencereden Daisy, ışık üst üçte birde. TEK bip. --- */
   shot('p8b30-son', k => k.end0, k => k.dur + 1, (ctx, t, u) => {
-    const k = times(), tf = frozen(t), ft = flow(t), tw = twos(tf);
+    const k = times(), tf = frozen(t), ft = flow(t), tw = twos(ft);
     const e = E.io(seg(tf, k.end0, k.endF0 - .02)), after = E.io(seg(t, k.endF1, k.dur));
-    const z = lerp(1.0, 1.08, e) + .04 * after;
-    ctx.save(); cam(ctx, z, lerp(560, 580, e), lerp(900, 860, e) - 20 * after, 540, lerp(940, 920, e));
-    ctx.drawImage(windowWall(), 0, 0);
-    // pencerede canlılık: ağaç yaprağı salınımı + uzak kuş (bip penceresinde donar)
-    const lv = Math.sin(ft * 1.7) * 4; ctx.save(); ctx.beginPath(); ctx.rect(WIN.x0, WIN.y0, WIN.x1 - WIN.x0, WIN.y1 - WIN.y0); ctx.clip();
-    C.seed(5302); C.shape(ctx, C.ell(866 + lv, 446, 50, 42, 14), '#93a262', { lw: 1.6, ink: '#5e6a3a' });
-    ctx.restore();
-    // Hale: yürüyüş (arkadan), gişeye
-    const wu = seg(ft, k.end0 + .02, k.end0 + 2.0);
-    const hx = lerp(330, 850, E.io(wu)), hy = lerp(1880, 1520, E.io(wu)), hs = lerp(1.5, 1.08, E.io(wu));
-    const step = wu > 0 && wu < 1 ? (Math.floor(twos(ft) * 4) % 2 ? 1 : -1) : 0;
-    haleBack(ctx, { x: hx, y: hy - (step ? 6 : 0), s: hs, step, hat: true });
+    const z = lerp(1.06, 1.0, e) + .03 * after;
+    ctx.save(); cam(ctx, z, 540, 1000, 540, 900);
+    wallB(ctx, tf, {});
+    // yürüyüş: ayakta önden, sola; ikişerli adım (bipte durur), kart altında kadrajdan çıkar
+    const w1 = seg(ft, k.end0 + .12, k.endF0 + .02), w2 = seg(ft, k.endF0 + .02, k.endF0 + 2.2);
+    const hx = HALE.x - 150 * E.io(w1) - 760 * E.inQ(w2), moving = (w1 > 0 && w1 < 1) || (w2 > 0 && w2 < 1);
+    const ph = Math.floor(tw * 15 / 4) % 2, bob = moving ? (ph ? -10 : 0) : 0, sway = moving ? (ph ? .02 : -.02) : 0;
+    haleTalk(ctx, { x: hx, y: HALE.y + bob, s: HALE.s, seed: 41, pose: 'stand', hat: true, expr: 'determined', look: -.6, blink: blinkAt(tw, [k.end0 + .9]) }, -.04, 0, sway);
     if (beepV(t, k.endBeep) > 0) { ctx.save(); ctx.translate(DZ.x, DZ.y); ctx.scale(DZ.s, DZ.s); drawBeacon(ctx, 1); ctx.restore(); }
     ctx.restore();
     if (beepV(t, k.endBeep) > 0) { ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = 'rgba(255,90,60,.05)'; ctx.fillRect(0, 0, 1080, 1920); ctx.restore(); }

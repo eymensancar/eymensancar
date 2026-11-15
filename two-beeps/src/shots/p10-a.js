@@ -3,14 +3,15 @@
    - ufuk y 1075; baraka (dedenin ofisi) x 108–670, taban y 1267; pencere x 187–355, y 852–1048; ofis kapısı x 445–569, y 852–1267
      (menteşe solda, topuz sağda). ADRES LEVHASI kapının sağında duvarda: orta (619,990), 84×60, "7 / Old Mill Lane".
    - Daisy'nin bu bölümdeki PARK YERİ: (900,1600) s .8, siperlik uykulu, bom 0 (bom ucu ≈(806,912), kanca ≈(806,1200)).
-   - Kutu yığını (boşaltılan ofis): (250,1430) çevresi; Defne'nin çizim masası (p7-b drawDesk) (240,1700) s .85.
+   - Kutu yığını (boşaltılan ofis): (250,1430) çevresi; Defne'nin çizim masası (p7-b drawDesk) (330,1700) s .9 (bu yarıda yalnız masa üstü yakın planı var).
    - Kaan bu bölümde 9. cümleden itibaren DEDENİN ESKİ BARETİNİ takar (kirli beyaz, P4'te kapının yanında çividen alınır;
      tutam baretin tepesinden çıkar: kaanH() yardımcısı).
    - SÖKÜMDEN SONRA (13. cümleden itibaren): baraka Daisy'nin askısıyla bütün olarak kalkar ve avludan çıkar (kadrajdan yukarı).
      Yerinde: beton şerit (drawYard'ın x 102–676, y 1267–1281 temel şeridi) + çıplak toprak izi (arka kenar y≈1200, x 128–650)
      + köşelerde eski temel taşları. İLK TAŞ sol ön köşede (122,1262); altında teneke (kalktı). Çit, posta kutusu yerinde.
-   - SON KARE (≈28,47 sn): teneke açık, KATLI not Kaan'ın iki elinde, ekran ortası ≈(540,760), not ekranda ≈560×340, -0,04 rad,
-     tek kat (sağ yarı sola katlı); arkasından dedenin eğik el yazısı soluk sızar (aynalı, okunmaz). Not henüz açılmadı.
+   - SON KARE (≈28,47 sn): p10-b'nin notuna eşlendi: üçe katlı not (KATLI, tek panel görünür) Kaan'ın iki elinde, not ortası (475,600),
+     740×165, -0,025 rad; eller alttan iki yandan; arkada bulanık açık teneke ≈(470,1560). Arkasından dedenin yazısı soluk, aynalı sızar.
+   - Not: Daisy bu yarıda (900,1600)'de; p10-b onu (640,1520)'ye alıyor (iş bitti, başka gün): kesmede Daisy kadrajda değil.
    Karakterler ikişerli (15 poz/sn), kamera/toz birerli; rastgelelik yalnız tohumlu. Hatıralar sepya/soluk ve sessiz. */
 (function () {
   'use strict';
@@ -450,7 +451,7 @@
     C.shape(ctx, [[-W / 2, -H / 2], [W / 2, -H / 2 + 3], [W / 2 + 2, H / 2], [-W / 2 + 2, H / 2 + 2]], '#8f9aa3', { lw: 5, shade: c => { C.blot(c, [[W * .25, -H], [W, -H], [W, H], [W * .3, H]], '#5d6873', .5); for (let i = 0; i < 7; i++) C.blot(c, C.ell(-W / 2 + rnd(960 + i) * W, -H / 2 + rnd(970 + i) * H, 8 + rnd(980 + i) * 16, 5 + rnd(990 + i) * 9, 8), P.rust, .5); } });
     // iç
     C.shape(ctx, [[-W / 2 + 16, -H / 2 + 16], [W / 2 - 16, -H / 2 + 18], [W / 2 - 14, H / 2 - 14], [-W / 2 + 16, H / 2 - 14]], '#4c565f', { lw: 3, shade: c => { C.blot(c, [[-W, -H / 2], [W, -H / 2], [W, -H / 2 + 46], [-W, -H / 2 + 40]], '#323a42', .7); } });
-    if (o.note !== false) foldedNote(ctx, 6, 8, .62, .04, 1);
+    if (o.note !== false) foldedNote(ctx, 4, 10, .42, .04, 1);
     ctx.restore();
   }
   function tinLid(ctx, x, y, s, rot) {
@@ -460,23 +461,19 @@
     ctx.strokeStyle = 'rgba(21,18,13,.35)'; ctx.lineWidth = 2.4; ctx.strokeRect(-W / 2 + 18, -H / 2 + 18, W - 36, H - 36);
     ctx.restore();
   }
-  // katlı not: tek kat (sağ yarı sola katlı); arkasından soluk, aynalı el yazısı sızar. W 520 × H 330 (yerel, s=1)
+  // katlı not: üçe katlı şerit (p10-b'deki not, 740×165 panel); katlıyken tek panel görünür, alt kenarda üç kat izi;
+  // arkasından soluk, aynalı el yazısı sızar (okunmaz). Yerel s=1: 740×165.
   function foldedNote(ctx, x, y, s, rot, bleed) {
     ctx.save(); ctx.translate(x, y); ctx.rotate(rot || 0); ctx.scale(s, s); C.seed(961);
-    const W = 520, H = 330;
-    ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(-W / 2 + 10, -H / 2 + 12, W, H); ctx.restore();
-    C.shape(ctx, [[-W / 2, -H / 2], [W / 2, -H / 2 + 4], [W / 2 - 2, H / 2], [-W / 2 + 2, H / 2 - 2]], '#efe2c0', { lw: 4.4, shade: c => {
-      C.blot(c, [[0, -H], [W, -H], [W, H], [0, H]], '#e2d1a8', .55);
+    const W = 740, H = 165;
+    ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(-W / 2 + 10, -H / 2 + 14, W, H + 6); ctx.restore();
+    C.shape(ctx, [[-W / 2 + 4, -H / 2 + 8], [W / 2 - 2, -H / 2 + 10], [W / 2 - 4, H / 2 + 8], [-W / 2 + 6, H / 2 + 7]], '#ddd0b0', { lw: 3.4 });   // alttaki katlar
+    C.shape(ctx, [[-W / 2, -H / 2], [W / 2, -H / 2 + 3], [W / 2 - 2, H / 2], [-W / 2 + 2, H / 2 - 1]], '#eadfc2', { lw: 4.4, shade: c => {
+      C.blot(c, [[W * .1, -H], [W, -H], [W, H], [W * .2, H]], '#ddd0b0', .5);
       for (let i = 0; i < 6; i++) { c.fillStyle = `rgba(160,118,62,${.06 + rnd(970 + i) * .1})`; c.beginPath(); c.arc(-W / 2 + rnd(975 + i) * W, -H / 2 + rnd(980 + i) * H, 4 + rnd(985 + i) * 12, 0, TAU); c.fill(); }
-      if (bleed > 0) { // aynalı, soluk sızıntı: dedenin eğik yazısı (okunmaz)
-        c.save(); c.globalAlpha = .11 * bleed; c.filter = 'blur(2.5px)'; c.scale(-1, 1);
-        C.handwrite(c, 'Ant.', -W / 2 + 60, -50, 56, '#3a3026', 31);
-        C.handwrite(c, 'Now build something.', -W / 2 + 60, 40, 44, '#3a3026', 33);
-        c.restore();
-      }
+      if (bleed > 0) { c.save(); c.globalAlpha = .12 * bleed; c.filter = 'blur(2.5px)'; c.scale(-1, 1); C.handwrite(c, 'Now build something.', -W / 2 + 70, 16, 46, '#3a3026', 33); c.restore(); }
     } });
-    C.line(ctx, [[2, -H / 2 + 6], [0, H / 2 - 4]], 3, 'rgba(138,106,64,.7)', .5);       // kat
-    ctx.save(); ctx.globalAlpha = .18; ctx.fillStyle = '#8a6a40'; ctx.fillRect(0, -H / 2 + 6, 26, H - 10); ctx.restore();
+    C.line(ctx, [[-W / 2 + 8, H / 2 - 2], [W / 2 - 8, H / 2]], 1.8, 'rgba(120,90,50,.45)', .3);
     ctx.restore();
   }
   // toprak zemin (üstten), cached
@@ -954,20 +951,20 @@
   });
 
   /* --- 16: "Grandpa's handwriting." Kaan'ın elleri katlı notu kaldırır; arkasından dedenin eğik yazısı soluk sızar. Not KATLI kalır. --- */
-  const NOTE_END = { x: 540, y: 760, s: 1.08, rot: -.04 };
+  const NOTE_END = { x: 475, y: 600, s: 1, rot: -.025 };
   shot('p10a-16-yazi', k => k.c16, k => k.end, (ctx, t, u) => {
     const k = times(), tw = twos(t);
-    const bg = blurred('teneke-acik', 10, g => { g.translate(540, 760); g.scale(1.6, 1.6); g.translate(-540, -760); g.save(); g.translate(540, 760); dirt(g); stoneBed(g, 0); tinTop(g, 0, 0, .9, { note: false }); g.restore(); });
+    const bg = blurred('teneke-acik', 10, g => { g.translate(470, 1560); g.scale(1.5, 1.5); dirt(g); stoneBed(g, 0); tinTop(g, 0, 0, .9, { note: false }); });
     ctx.save(); ctx.translate(540, 960); ctx.scale(1 + .03 * u, 1 + .03 * u); ctx.translate(-540, -960); ctx.drawImage(bg, 0, 0); ctx.restore();
     ctx.fillStyle = 'rgba(30,22,14,.25)'; ctx.fillRect(0, 0, 1080, 1920);
-    const pu = E.outC(seg(tw, k.pick, k.pick + .55));
-    const x = lerp(546, NOTE_END.x, pu), y = lerp(770, NOTE_END.y, pu) + Math.sin(t * 2.1) * 3 * pu, s = lerp(.62 * 1.44, NOTE_END.s, pu), rot = lerp(.04, NOTE_END.rot, pu);
+    const pu = E.io(seg(tw, k.pick, k.pick + .6));
+    const x = lerp(474, NOTE_END.x, pu), y = lerp(1568, NOTE_END.y, pu) + Math.sin(t * 2.1) * 3 * pu, s = lerp(.42 * 1.35, NOTE_END.s, pu), rot = lerp(.04, NOTE_END.rot, pu);
     const bleed = .35 + .65 * E.io(seg(t, S1(15).t0 + .05, S1(15).t1));
     foldedNote(ctx, x, y, s, rot, bleed);
     // iki el notu kenarlarından tutar
-    const c = Math.cos(rot), sn = Math.sin(rot), hw = 260 * s;
-    sideHand(ctx, x - hw * c + 30, y - hw * sn + 60 * s, Math.PI * .78, .8, { sd: 521 });
-    sideHand(ctx, x + hw * c - 30, y + hw * sn + 60 * s, Math.PI * .22, .8, { sd: 525, flipY: true });
+    const c = Math.cos(rot), sn = Math.sin(rot), hw = 330 * s;
+    sideHand(ctx, x - hw * c + 10, y - hw * sn + 70 * s, Math.PI * .62, .85 * Math.max(.6, s), { sd: 521 });
+    sideHand(ctx, x + hw * c - 10, y + hw * sn + 70 * s, Math.PI * .38, .85 * Math.max(.6, s), { sd: 525, flipY: true });
     vignette(ctx, .45);
     finish(ctx);
   });

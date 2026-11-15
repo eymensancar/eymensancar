@@ -525,12 +525,12 @@
   }
   shot('p2b-satir', k => k.line, k => k.sign, (ctx, t, u) => {
     // yazılar y 330–1100 ve x ≤ 890 içinde (rozet, simge, altyazı bandı boş); imza katlı
-    letterShot(ctx, t, lerp(2.96, 3.06, E.io(u)), -22, 0, -.03, 480, 0);
+    letterShot(ctx, t, lerp(2.96, 3.06, E.io(u)), -12, 0, -.03, 480, 0);
     finish(ctx);
   });
   shot('p2b-imza', k => k.sign, k => k.yard, (ctx, t, u) => {
     const k = times(), e = E.io(seg(t, k.sign, k.sign + .45));
-    letterShot(ctx, t, lerp(3.06, 2.9, e) + .03 * E.io(seg(t, k.ironline, k.yard)), -22, 0, -.03, lerp(480, 458, e), E.outBack(seg(twos(t), k.sign + .15, k.sign + .5)));
+    letterShot(ctx, t, lerp(3.06, 2.9, e) + .03 * E.io(seg(t, k.ironline, k.yard)), -12, 0, -.03, lerp(480, 458, e), E.outBack(seg(twos(t), k.sign + .15, k.sign + .5)));
     finish(ctx);
   });
 
