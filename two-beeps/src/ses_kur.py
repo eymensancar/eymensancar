@@ -8,7 +8,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W = json.load(open(f'{ROOT}/assets/voice/kelimeler.json'))
 LEAD = 0.35          # ilk kelimeden önce
 BASE = 0.28          # her cümle arasında en az
-END_TAIL = 3.4       # son cümleden sonra bitiş (bip + kart)
+END_TAIL = 4.3       # son cümleden sonra bitiş (tek bip + en az 2,5 sn bitiş kartı)
 # (metin, cümleden sonra ek nefes, işaret)
 S = [
  ("Grandpa left me three things.", .2, None), ("A crane.", .2, None), ("A debt.", .2, None),
@@ -59,9 +59,9 @@ flt += ';' + ''.join(f'[s{n}]' for n in range(len(parts))) + f"amix=inputs={len(
 os.makedirs(f'{ROOT}/out', exist_ok=True)
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', f'{ROOT}/assets/voice/ham.wav', '-filter_complex', flt, '-map', '[o]', '-ar', '48000', '-ac', '1', f'{ROOT}/out/part1-voice.wav'], check=True)
 marks = {s['mark']: s for s in out if s['mark']}
-tl = dict(part=1, title='THE CHIMNEY', next=dict(part=2, title='THE ANT'), fps=30, w=1080, h=1920, duration=total,
+tl = dict(part=1, parts=10, title='THE CHIMNEY', next=dict(part=2, title='THE ANT'), fps=30, w=1080, h=1920, duration=total,
           voice='out/part1-voice.wav', sentences=out,
           cues=dict(beep=round(marks['beep']['t1'] + 0.22, 3), fall=round(marks['fall']['t0'], 3), stamp=round(marks['stamp']['t1'], 3),
-                    voiceEnd=out[-1]['t1'], endBeep=round(out[-1]['t1'] + 1.5, 3), endCard=round(out[-1]['t1'] + 2.1, 3)))
+                    voiceEnd=out[-1]['t1'], endBeep=round(out[-1]['t1'] + 0.95, 3), endCard=round(out[-1]['t1'] + 1.6, 3)))
 json.dump(tl, open(f'{ROOT}/src/part1.timeline.json', 'w'), indent=1, ensure_ascii=False)
 print('süre', total); [print(f"{s['i']:2d} {s['t0']:6.2f} {s['t1']:6.2f} {s['mark'] or '':6} {s['text']}") for s in out]; print(tl['cues'])

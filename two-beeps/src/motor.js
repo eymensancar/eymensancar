@@ -29,6 +29,25 @@
     outEl: u => u === 0 || u === 1 ? u : Math.pow(2, -10 * u) * Math.sin((u * 10 - .75) * (2 * Math.PI) / 3) + 1
   };
   TB.sentence = i => TB.tl.sentences[i - 1];
+  /* Ortak sahne öğesi: planlanan devrilme alanı ("drop zone"). İki animatör de bunu çağırır ki aynı görünsün.
+     Yerde perspektifli bir dörtgen: dört kazık, sarı-siyah şerit, ortada tebeşirle büyük X.
+     cx,cy = alanın yerdeki merkezi; w = genişlik; h = derinlik (perspektifle basık, ör. w*0.28); a = saydamlık. */
+  TB.zone = (ctx, cx, cy, w, h, a) => {
+    const k = .82, x0 = cx - w / 2, x1 = cx + w / 2, y0 = cy - h / 2, y1 = cy + h / 2, bx0 = cx - w * k / 2, bx1 = cx + w * k / 2;
+    const P = [[bx0, y0], [bx1, y0], [x1, y1], [x0, y1]], ph = Math.max(26, w * .13), lw = Math.max(3, w * .012);
+    ctx.save(); ctx.globalAlpha = a == null ? 1 : a; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.fillStyle = 'rgba(255,255,255,.10)'; ctx.beginPath(); P.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = 'rgba(248,244,232,.92)'; ctx.lineWidth = lw * 2.2;                      // tebeşir X
+    ctx.beginPath(); ctx.moveTo(TB.lerp(bx0, x0, .25) + w * .12, y0 + h * .22); ctx.lineTo(TB.lerp(bx1, x1, .75) - w * .12, y1 - h * .2);
+    ctx.moveTo(TB.lerp(bx1, x1, .25) - w * .12, y0 + h * .22); ctx.lineTo(TB.lerp(bx0, x0, .75) + w * .12, y1 - h * .2); ctx.stroke();
+    const tape = (A, B) => { const n = Math.max(4, Math.round(Math.hypot(B[0] - A[0], B[1] - A[1]) / (lw * 6)));   // sarı-siyah şerit
+      for (let i = 0; i < n; i++) { ctx.strokeStyle = i % 2 ? '#15120d' : '#f5b21c'; ctx.lineWidth = lw * 2.4; ctx.lineCap = 'butt'; ctx.beginPath();
+        ctx.moveTo(TB.lerp(A[0], B[0], i / n), TB.lerp(A[1], B[1], i / n) - ph * .62 + Math.sin(i / n * Math.PI) * ph * .12); ctx.lineTo(TB.lerp(A[0], B[0], (i + 1) / n), TB.lerp(A[1], B[1], (i + 1) / n) - ph * .62 + Math.sin((i + 1) / n * Math.PI) * ph * .12); ctx.stroke(); } };
+    tape(P[0], P[1]); tape(P[1], P[2]); tape(P[3], P[0]); tape(P[2], P[3]);
+    P.forEach((p, i) => { const s = i < 2 ? k : 1; ctx.strokeStyle = '#15120d'; ctx.lineWidth = lw * 2.6 * s; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(p[0], p[1] - ph * s); ctx.stroke();
+      ctx.strokeStyle = '#d9c2a0'; ctx.lineWidth = lw * 1.3 * s; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(p[0], p[1] - ph * s); ctx.stroke(); });
+    ctx.restore();
+  };
   let ctx;
   G.renderAt = t => {
     const tl = TB.tl; t = TB.clamp(t, 0, tl.duration - 1e-4); TB.t = t;
