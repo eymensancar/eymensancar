@@ -521,16 +521,20 @@
   // Defne (sola bakar, flip): ön kolu kendi kolumuz; T hedef bilek (dünya) ya da null
   function drawDefneReach(ctx, o, T, r) {
     const s = o.s * .9, toW = p => [o.x - p[0] * s, o.y + p[1] * s], toL = p => [-(p[0] - o.x) / s, (p[1] - o.y) / s];
-    ctx.save(); ctx.beginPath(); ctx.rect(-5000, -5000, 10000, 10000);
-    const R = [[30, -406], [400, -406], [400, -236], [30, -236]].map(toW); ctx.moveTo(...R[0]); R.slice(1).forEach(p => ctx.lineTo(...p)); ctx.closePath(); ctx.clip('evenodd');
-    C.drawDefne(ctx, Object.assign({ seed: 31, flip: true }, o));
-    ctx.restore();
+    if (!o.armOnly) {
+      ctx.save(); ctx.beginPath(); ctx.rect(-5000, -5000, 10000, 10000);
+      const R = [[30, -406], [400, -406], [400, -236], [30, -236]].map(toW); ctx.moveTo(...R[0]); R.slice(1).forEach(p => ctx.lineTo(...p)); ctx.closePath(); ctx.clip('evenodd');
+      C.drawDefne(ctx, Object.assign({ seed: 31, flip: true }, o));
+      ctx.restore();
+    }
     ctx.save(); ctx.translate(o.x, o.y); ctx.scale(-s, s); const lw = 5.2 / Math.sqrt(s); C.seed(1511);
-    C.shape(ctx, [[12, -398], [54, -398], [52, -300], [48, -234], [8, -234], [6, -300]], P.vest, { lw, shade: c => C.blot(c, [[30, -400], [60, -400], [60, -230], [34, -230]], P.vestDk, .6) });
-    C.shape(ctx, [[18, -350], [40, -351], [40, -322], [18, -321]], P.paper, { lw: lw * .55 });
+    if (!o.armOnly) {
+      C.shape(ctx, [[12, -398], [54, -398], [52, -300], [48, -234], [8, -234], [6, -300]], P.vest, { lw, shade: c => C.blot(c, [[30, -400], [60, -400], [60, -230], [34, -230]], P.vestDk, .6) });
+      C.shape(ctx, [[18, -350], [40, -351], [40, -322], [18, -321]], P.paper, { lw: lw * .55 });
+    }
     const S = [54, -392], rest = [70, -250], tgt = T ? toL(T) : rest, W0 = [lerp(rest[0], tgt[0], r), lerp(rest[1], tgt[1], r)];
     const L1 = 78, L2 = 66, dx = W0[0] - S[0], dy = W0[1] - S[1], d = Math.min(Math.hypot(dx, dy), L1 + L2 - 1), base = Math.atan2(dy, dx);
-    const al = Math.acos(clamp((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d), -1, 1)), El = [S[0] + L1 * Math.cos(base - al), S[1] + L1 * Math.sin(base - al)];
+    const al = Math.acos(clamp((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d), -1, 1)), El = [S[0] + L1 * Math.cos(base + al), S[1] + L1 * Math.sin(base + al)];
     const fa = Math.atan2(W0[1] - El[1], W0[0] - El[0]), Wr = [El[0] + L2 * Math.cos(fa), El[1] + L2 * Math.sin(fa)], M = [lerp(El[0], Wr[0], .3), lerp(El[1], Wr[1], .3)];
     C.tube(ctx, [M, Wr], 30, 26, P.dSkin, lw); C.tube(ctx, [S, El, M], 40, 36, P.shirt, lw);
     C.shape(ctx, C.ell(Wr[0] + Math.cos(fa) * 8, Wr[1] + Math.sin(fa) * 8, 13, 14, 12), P.dSkin, { lw });
@@ -690,11 +694,14 @@
     ctx.drawImage(blurred('p9-sokak-bulanik', 9, g => { cam(g, .9, 540, 1500); site(g, 0, { line: true, daisy: true, still: true }); }), 0, 0);
     const up = E.outBack(seg(tw, k.c4 + .02, k.c4 + .3)), pull = E.ioC(seg(tw, k.grab + .06, k.grab + .36)), a = up * (1 - pull);
     const reach = E.outC(seg(tw, k.grab - .2, k.grab)) * (1 - E.io(seg(tw, k.grab + .42, k.grab + .7)));
-    const KO = { x: 400, y: 1756, s: 2.0 }, DO = { x: 650, y: 1756, s: 2.0 };
+    const KO = { x: 360, y: 1756, s: 2.0 }, DO = { x: 720, y: 1756, s: 2.0 };
     ctx.save(); cam(ctx, lerp(1, 1.03, E.io(u)), 540, 960);
     const kexpr = tw >= k.grab + .3 ? 'sheepish' : 'determined';
-    const fm = drawKaanRaise(ctx, Object.assign({ expr: kexpr, look: tw >= k.grab + .3 ? 1 : -.2, blink: blinkAt(tw, [k.grab + .9]) }, KO), a);
-    drawDefneReach(ctx, Object.assign({ expr: 'serious', look: 0, blink: blinkAt(tw, [k.c4 + .3]) }, DO), fm, reach);
+    const DD = Object.assign({ expr: 'serious', look: 0, blink: blinkAt(tw, [k.c4 + .3]) }, DO);
+    const fm0 = drawKaanRaise(canvas(4, 4).getContext('2d'), Object.assign({}, KO), a);       // ön kol ortası (çizmeden)
+    drawDefneReach(ctx, DD, fm0, reach);
+    drawKaanRaise(ctx, Object.assign({ expr: kexpr, look: tw >= k.grab + .3 ? 1 : -.2, blink: blinkAt(tw, [k.grab + .9]) }, KO), a);
+    if (reach > 0) drawDefneReach(ctx, Object.assign({ armOnly: true }, DD), fm0, reach);   // el, Kaan'ın kolunun üstünde
     ctx.restore();
     finish(ctx);
   });
@@ -888,7 +895,7 @@
   /* --- 12: "Exactly where the engineers wanted." alanın sağ ön direği yakın: toz şeridin içinde kalır; sonra B'nin geniş planına açılır --- */
   shot('p9a-15-tamyer', k => k.c12, k => k.end, (ctx, t, u) => {
     const k = times(), p = E.ioC(seg(t, k.pull, k.end - .1)), push = lerp(1, 1.03, E.io(seg(t, k.c12, k.pull)));
-    const z = lerp(1.8 * push, 1.18, p), cx = lerp(800, 540, p), cy = lerp(1150, 1200, p), sy = lerp(960, 1000, p);
+    const z = lerp(1.8 * push, 1.18, p), cx = lerp(800, 540, p), cy = lerp(1270, 1200, p), sy = lerp(960, 1000, p);
     ctx.save(); cam(ctx, z, cx, cy, 540, sy);
     site(ctx, t, { fall: true, lineB: true, still: t < k.pull + .2 });
     airDustB(ctx, t, 18, 91, [-100, 800, 1300, 700], .6);
