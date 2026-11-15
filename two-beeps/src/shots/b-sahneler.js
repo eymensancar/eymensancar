@@ -233,31 +233,6 @@
     C.shape(ctx, [[-604, 900], [-516, 900], [-516, 980], [-604, 980]], P.paper, { lw: 3.4 });
     ctx.save(); ctx.font = '700 64px Rubik'; ctx.textAlign = 'center'; ctx.fillStyle = P.ink; ctx.fillText('P', -560, 964); ctx.restore();
   }
-  const RING = { cx: 560, cy: 1112, rx: 250, ry: 42, n: 9 };
-  function ringPt(i) { const a = Math.PI + i / RING.n * TAU; return [RING.cx + Math.cos(a) * RING.rx, RING.cy + Math.sin(a) * RING.ry]; }
-  function drawRing(ctx, t, front) {
-    const k = times(), broken = t >= k.ground;
-    for (let i = 0; i < RING.n; i++) {
-      const a = ringPt(i), b = ringPt(i + 1), mid = (a[1] + b[1]) / 2;
-      if ((mid > RING.cy) !== front) continue;
-      C.seed(300 + i);
-      if (broken && !front && i === 0) { // devrilen baca şeridi kopardı: sarkan iki uç
-        C.line(ctx, [[a[0], a[1] - 46], [a[0] + 30, a[1] - 20], [a[0] + 36, a[1] - 4]], 5, P.hazardDeep, .5);
-        C.line(ctx, [[b[0], b[1] - 46], [b[0] - 26, b[1] - 18]], 5, P.hazardDeep, .5);
-      } else {
-        const sag = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2 - 38;
-        C.line(ctx, [[a[0], a[1] - 46], [sag, my], [b[0], b[1] - 46]], 6, P.ink, .3);
-        C.line(ctx, [[a[0], a[1] - 46], [sag, my], [b[0], b[1] - 46]], 3.4, P.hazard, .3);
-      }
-    }
-    for (let i = 0; i < RING.n; i++) {
-      const a = ringPt(i); if ((a[1] > RING.cy + 1) !== front) continue;
-      C.seed(400 + i);
-      const p = C.shape(ctx, [[a[0] - 6, a[1]], [a[0] - 5, a[1] - 54], [a[0] + 5, a[1] - 54], [a[0] + 6, a[1]]], null, { lw: 0 });
-      C.hazardStripes(ctx, p, a[0] - 8, a[1] - 56, 16, 58, 7); C.ink(ctx, p, 3);
-    }
-  }
-
   /* ---- parçacıklar: tuğla ve toz (tohumlu, tamamen zamandan) ---- */
   const GRAV = 2200;
   function brickSet(ctx, tau, n, sb, spawn, size, groundY) {
@@ -335,11 +310,11 @@
     if (o.kaan) C.drawKaan(ctx, Object.assign({ x: WD.kX, y: WD.kY, s: WD.kS, seed: 11 }, o.kaan));
   }
   // Planlanan devrilme alanı (ortak TB.zone): bacanın sağ-önünde, Daisy'nin önünde. Baca bunun tersine, sola düşer.
-  const ZONE = { x: 800, y: 1310, w: 440, h: 124 };
+  const ZONE = { x: 800, y: 1240, w: 360, h: 100 };   // Animatör A ile aynı (TB.zoneA)
   function drawChalkArrow(ctx) { // bacadan alana giden tebeşir ok, yerde
     ctx.save(); ctx.strokeStyle = 'rgba(248,244,232,.85)'; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.setLineDash([26, 18]);
-    ctx.beginPath(); ctx.moveTo(WD.cx + 70, WD.cb + 22); ctx.quadraticCurveTo(650, 1190, 690, 1236); ctx.stroke(); ctx.setLineDash([]);
-    ctx.beginPath(); ctx.moveTo(660, 1236); ctx.lineTo(694, 1242); ctx.lineTo(694, 1206); ctx.stroke(); ctx.restore();
+    ctx.beginPath(); ctx.moveTo(WD.cx + 70, WD.cb + 22); ctx.quadraticCurveTo(620, 1180, 660, 1214); ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(632, 1214); ctx.lineTo(664, 1218); ctx.lineTo(662, 1186); ctx.stroke(); ctx.restore();
   }
   function drawClouds(ctx, t) { // yavaş kayan iki bulut (birerli)
     [[300, 120, 1.2, 9], [1050, 40, .9, 6]].forEach(([x0, y, sc, v], i) => {
