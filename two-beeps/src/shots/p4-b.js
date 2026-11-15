@@ -147,6 +147,7 @@
       const [hx, hy] = planW(Math.min(rx, 330) + 24, 80), out = E.inQ(seg(twos(t), k.rollEnd - .1, k.rollEnd + .35));
       handOnRoll(ctx, hx + out * 260, hy + out * 700, -.2, false);
     }
+    if (twos(t) < k.enter) { const [lx, ly] = planW(-330, 230); handOnRoll(ctx, lx, ly + 40, .25, true); }   // sol el kâğıdı tutar; sonra işaret eder
   }
   function deskLight(ctx) { lampWarm(ctx, .5); vignette(ctx, .45); }
   // Parmak yolu (çizim yerel koordinatı)
@@ -160,9 +161,9 @@
   function fingerAt(t) { // çizim yerel koordinatında parmak ucu + kolun açısı
     const k = times(), tw = twos(t);
     if (tw < k.cu16) {
-      const en = E.outC(seg(tw, k.enter, k.enter + .45));
+      const en = E.io(seg(tw, k.enter, k.enter + .4));
       const p = along(PATH15, E.io(seg(tw, k.trace0 + .15, k.trace1)));
-      return { p: [p[0] + (1 - en) * 520, p[1] + (1 - en) * 700], rot: .55, press: 0 };
+      return { p: [lerp(-300, p[0], en), lerp(170, p[1], en)], rot: .55, press: 0 };
     }
     if (tw < k.trace) {
       const press = Math.sin(Math.PI * seg(tw, k.tap, k.tap + .2));
@@ -262,14 +263,14 @@
     penCup(ctx, CUP[0], CUP[1], 1);
   }
   function deskTop(ctx, t, rx) {
-    const bg = cached('masa-ust', 1080, 1920, c => {
-      c.fillStyle = P.wood; c.fillRect(0, 0, 1080, 1920); C.seed(611);
-      for (let i = 0; i < 9; i++) C.line(c, [[-20, 120 + i * 220], [1100, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
-      for (let i = 0; i < 40; i++) C.line(c, [[rnd(i + 30) * 1080, rnd(i + 31) * 1920], [rnd(i + 30) * 1080 + 80 + rnd(i) * 120, rnd(i + 31) * 1920 + 4]], 1.4, 'rgba(63,39,17,.4)', 1);
+    const bg = cached('masa-ust', 2160, 2880, c => {
+      c.translate(540, 480); c.fillStyle = P.wood; c.fillRect(-540, -480, 2160, 2880); C.seed(611);
+      for (let i = -2; i < 11; i++) C.line(c, [[-560, 120 + i * 220], [1640, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
+      for (let i = 0; i < 80; i++) { const x = -540 + rnd(i + 30) * 2160, y = -480 + rnd(i + 31) * 2880; C.line(c, [[x, y], [x + 80 + rnd(i) * 120, y + 4]], 1.4, 'rgba(63,39,17,.4)', 1); }
       // diğer rulolar (üstte)
       [[340, 330, -.12, 300], [700, 300, .1, 240]].forEach(([x, y, r, L]) => { c.save(); c.translate(x, y); c.rotate(r); C.shape(c, [[-L / 2, -24], [L / 2, -24], [L / 2, 24], [-L / 2, 24]], '#dfe5e2', { lw: 4, shade: cc => C.blot(cc, [[-L / 2, 6], [L / 2, 6], [L / 2, 26], [-L / 2, 26]], '#b9c2bf', .7) }); C.shape(c, C.ell(L / 2, 0, 9, 24, 12), '#eef2f0', { lw: 3 }); c.restore(); });
     });
-    ctx.drawImage(bg, 0, 0);
+    ctx.drawImage(bg, -540, -480);
     // kalemlik (üstten): tek mavi kalem
     ctx.save(); ctx.translate(170, 470); C.seed(621);
     ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(12, 14, 64, 64, 0, 0, TAU); ctx.fill(); ctx.restore();
@@ -467,7 +468,7 @@
     const [z, fx, fy, sx, sy] = planCam(t);
     ctx.save(); cam(ctx, z, fx, fy, sx, sy);
     drawPlanScene(ctx, t);
-    if (withFinger) { const f = fingerAt(t), w = planW(f.p[0], f.p[1]); drawPointer(ctx, w[0], w[1], f.rot + PL.rot, .62, f.press); }
+    if (withFinger && twos(t) >= times().enter) { const f = fingerAt(t), w = planW(f.p[0], f.p[1]); drawPointer(ctx, w[0], w[1], f.rot + PL.rot, .62, f.press); }
     ctx.restore();
     deskLight(ctx);
   }

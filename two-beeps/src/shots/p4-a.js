@@ -8,7 +8,7 @@
      OFİS KAPISI: arka duvarın solunda, x -250…-40, y 90–630, menteşe sağda (x=-40), içeri (kameraya doğru) açılır; dışarısı gece avlu.
      Eski baret: kapının sağında çivide, çivi (25,250).
      Bu yarıda kapı açık bırakıldı; lamba S11'den (≈19,24 sn) itibaren yanık; telefon S6'dan sonra Kaan'ın elinde.
-   SON KARE (≈25,38 sn): üstten masa planı; drawSensorPlan masa planında (700,770), s 1.1, rot -0.03, kamera z≈1.55 (yerel (-210,-10)'a);
+   SON KARE (≈25,38 sn): üstten masa planı; drawSensorPlan masa planında (540,820), s 1.1, rot -0.03, kamera z≈1.55 (yerel (-210,-10)'a);
      çizim soldan rulo açılıyor, açık kısım yerel x < -80 (SENSOR yazısı/kutusu henüz rulonun altında); rulo yerel x=-80'de, Kaan'ın sağ eli rulonun ortasında. */
 (function () {
   'use strict';
@@ -471,7 +471,7 @@
 
   /* a12–a13 · S13 "Then I looked at the drawings." / S14 "They were of Daisy." — üstten masa: rulo soldan açılır (Daisy'nin çizimi),
      kalemlikte tek mavi kalem; sonra çizime yakın. SENSOR yazısı rulonun altında kalır (B açar). */
-  const PLAN = { x: 700, y: 770, s: 1.1, rot: -.03 };
+  const PLAN = { x: 540, y: 820, s: 1.1, rot: -.03 };
   function rollX(t) {
     const k = times();
     if (t < k.c14) return lerp(-372, -175, E.outC(seg(t, k.c13 + .12, k.c14 - .1)));

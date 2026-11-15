@@ -353,8 +353,8 @@
     const bg = blurredWorld('a-bg-ant', 1.7, 520, 1330, 9, {}, 540, 900);
     drawBg(ctx, bg, 1.04 + .05 * push, 0, -120 * lift);
     ctx.save();
-    ctx.translate(540, 960); ctx.scale(1 + .07 * push, 1 + .07 * push); ctx.translate(-540, -960 - 360 * lift);
-    const kx = 520, ky = 2100, s = 1.9, ang = tuftAngle(t);
+    ctx.translate(540, 960); ctx.scale(1 + .07 * push, 1 + .07 * push); ctx.translate(-540, -960 - 420 * lift);
+    const kx = 520, ky = 2700, s = 3.0, ang = tuftAngle(t);
     const expr = tw < .55 ? 'sheepish' : tw < k.droop0 ? 'smile' : 'tired';
     const blink = (tw >= .2 && tw < .3) || (tw >= 3.05 && tw < 3.15) ? 1 : 0;
     drawKaanTuft(ctx, kx, ky, s, ang, { expr, look: tw < .55 ? .6 : tw < k.droop0 ? .2 : -.3, blink });
@@ -394,11 +394,11 @@
     ctx.restore();
   }
   shot('p2a-03-dede', k => k.c3, k => k.c4, (ctx, t, u) => {
-    const z = lerp(1, 1.08, E.io(u));
+    const z = lerp(1.12, 1.24, E.io(u));
     ctx.fillStyle = '#5e3b1d'; ctx.fillRect(0, 0, 1080, 1920);
     C.seed(581); for (let i = 0; i < 14; i++) C.line(ctx, [[-20, 100 + i * 140 + rnd(i) * 30], [1100, 120 + i * 140 + rnd(i + 30) * 30]], 3, '#3f2711', 2);
-    ctx.save(); ctx.translate(380, 760); ctx.scale(z, z); ctx.translate(-380, -760);
-    ctx.save(); ctx.translate(560, 980); ctx.rotate(-.05);
+    ctx.save(); ctx.translate(420, 800); ctx.scale(z, z); ctx.translate(-420, -800);
+    ctx.save(); ctx.translate(760, 980); ctx.rotate(-.05);
     ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(-470, -700, 1000, 1500); ctx.restore();
     C.seed(582); C.shape(ctx, [[-500, -720], [560, -730], [560, 800], [-500, 790]], P.page, { lw: 5, shade: c => { C.blot(c, [[-520, 500], [580, 480], [580, 820], [-520, 820]], P.pageDk, .5); for (let i = 0; i < 40; i++) { c.fillStyle = 'rgba(154,120,70,.18)'; c.beginPath(); c.arc(-480 + rnd(600 + i) * 1020, -700 + rnd(700 + i) * 1480, 2 + rnd(800 + i) * 6, 0, TAU); c.fill(); } } });
     ctx.strokeStyle = 'rgba(90,110,130,.22)'; ctx.lineWidth = 2; for (let yy = -620; yy < 780; yy += 78) { ctx.beginPath(); ctx.moveTo(-500, yy); ctx.lineTo(560, yy); ctx.stroke(); }
@@ -502,7 +502,7 @@
     const k = times(), z = lerp(1.38, 1.46, E.io(u));
     // siperlik inince kamera 2 kare duraklar gibi küçük bir geri itme
     const nb = seg(t, k.nineteen, k.nineteen + .25);
-    ctx.save(); cam(ctx, z - .02 * Math.sin(nb * Math.PI), 815, 1310, 540, 760);
+    ctx.save(); cam(ctx, z - .02 * Math.sin(nb * Math.PI), 860, 1310, 540, 760);
     world(ctx, t, { kaan: kaanState(t), defne: defneState(t) });
     ctx.restore();
     finish(ctx);
@@ -521,7 +521,7 @@
     drawBg(ctx, bg, 1.05 + .03 * u);
     const d = defneState(t);
     ctx.save(); ctx.translate(540, 960); ctx.scale(1 + .04 * E.io(u), 1 + .04 * E.io(u)); ctx.translate(-540, -960);
-    defne(ctx, { x: 540, y: 1560, s: 1.75, expr: d.expr, look: tw < k.c10 + .5 ? -.3 : 0, blink: d.blink, cup: false, t, steam: true, rot: nod(t, [k.stampW], .012) });
+    defne(ctx, { x: 540, y: 1960, s: 2.5, expr: d.expr, look: tw < k.c10 + .5 ? -.3 : 0, blink: d.blink, cup: false, t, steam: true, rot: nod(t, [k.stampW], .012) });
     ctx.restore();
     // taş aşağıdan kalkar (outBack), iki el altında
     const up = E.outBack(seg(tw, k.c10 + .1, k.c10 + .6)), sy = lerp(1900, 1110, up), jit = (rnd(Math.floor(tw * 15)) - .5) * 3;
@@ -538,7 +538,7 @@
     const bg = cached('a-bg-hk', 1080, 1920, c => {
       const tmp = canvas(1080, 1920), g = tmp.getContext('2d');
       cam(g, 1.25, 430, 1300, 540, 900); world(g, 0, { noGrass: true });
-      g.setTransform(1, 0, 0, 1, 0, 0); C.drawKaan(g, { x: 560, y: 2900, s: 3.2, seed: 11, expr: 'determined', phone: false });
+      g.setTransform(1, 0, 0, 1, 0, 0); C.drawKaan(g, { x: 540, y: 2420, s: 3.0, seed: 11, expr: 'determined', phone: false });
       c.filter = 'blur(10px)'; c.drawImage(tmp, 0, 0); c.filter = 'none';
     });
     drawBg(ctx, bg, 1.06 + .02 * u);
