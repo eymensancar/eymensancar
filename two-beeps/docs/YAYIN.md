@@ -35,7 +35,7 @@ Sıra aynı kalır: son cümle → sessizlik → tek bip → kart. Kart `cues.en
 | 4 | `Daisy beeped at this wall.` | `Open the wall now` | `Leave it, follow the list` | `Ant left the crack. For now.` |
 | 5 | `Building nine is full of people.` | `Tell the city today` | `Get proof first` | `Ant kept nine quiet. Not for long.` |
 | 6 | `Your sister wants the truth.` | `Tell her everything` | `Make a joke, buy time` | `Defne asked: who is this professor?` |
-| 7 | `Nine is falling. Slowly.` | `Take reports to the city` | `Go straight to Mr. Hale` | `Ant took the reports to the city.` |
+| 7 | `Nine is falling. Slowly.` | `Take reports to the city` | `Go straight to Mr. Hale` | `Nine is falling. Just very slowly.` |
 | 8 | *Tahmin:* `Hale Tower comes down. Daisy...` | `Beeps twice` | `Stays silent` | `Hale said, "Empty my tower."` |
 | 9 | `Line ten was scratched out.` | `Respect it. Leave it.` | `Finish all ten lines` | `Ant read line ten. He decided.` |
 | 10 | *Açık:* `What should Ant build first?` | — | — | — |

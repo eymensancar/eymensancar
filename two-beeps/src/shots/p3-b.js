@@ -168,8 +168,15 @@
     ctx.save();
     if (t >= k.land - .05) { ctx.beginPath(); ctx.rect(-3000, -3000, 6000, 3008); ctx.clip(); }   // yerin altına geçen kısım görünmez
     ctx.translate(PIV[0], PIV[1]); ctx.rotate(a); ctx.translate(-PIV[0], -PIV[1]);
-    ctx.drawImage(sp, -SPR_BX, -SPR_BY);
-    if (t >= k.impact) { // darbe noktası: sağ ön ayakta çatlak
+    // yere değince ezilme: yatık kulede yerel x ekranda dikey; ayaklar (y > -620) %75, depo (y < -620) %18 basılır, ayaklar bükülür
+    const cr = t >= k.land ? E.outC(seg(t, k.land, k.land + .22)) : 0;
+    if (cr <= 0) ctx.drawImage(sp, -SPR_BX, -SPR_BY);
+    else [[-630, 80, 1 - .75 * cr, .16 * cr], [-1100, -610, 1 - .18 * cr, 0]].forEach(([y0, y1, sx, sk]) => {
+      ctx.save(); ctx.beginPath(); ctx.rect(-SPR_BX - 10, y0, TW.w + 20, y1 - y0); ctx.clip();
+      ctx.translate(PIV[0], 0); ctx.scale(sx, 1); ctx.transform(1, 0, sk, 1, 0, 0); ctx.translate(-PIV[0], 0);
+      ctx.drawImage(sp, -SPR_BX, -SPR_BY); ctx.restore();
+    });
+    if (t >= k.impact && cr <= 0) { // darbe noktası: sağ ön ayakta çatlak
       const g = E.outC(seg(t, k.impact, k.impact + .25)); C.seed(301);
       C.line(ctx, [[214, -250], [206, -232], [222, -214], [210, -196]].slice(0, 2 + Math.round(g * 2)), 4, P.ink, .5);
     }
@@ -224,7 +231,7 @@
     const k = times(), tau = t - k.land; if (tau < 0) return;
     chips(ctx, tau, 34, 12, (i, r) => { const along = r(1); return { x: PIV[0] - 60 - along * 960, y: -30 - r(2) * 60, vx: (r(3) - .5) * 460 - 60, vy: -260 - r(4) * 620 * (1 - along * .3) }; }, 1);
     const a = tau < 2.5 ? 1 : clamp(1 - (tau - 2.5) / 5, .3, 1);
-    dustCloud(ctx, tau, 120, 13, (i, r) => { const along = r(1); return { x: PIV[0] - 40 - along * 1040, y: -20 - r(2) * 40, r: 40 + r(3) * r(3) * 190, vx: (r(4) - .5) * 360 - 60 * along, rise: 50 + r(5) * r(5) * 760, grow: 1.0 + r(6) * .5, delay: (1 - along) * .1 + r(7) * .08, sink: 24 }; }, a, 9);
+    dustCloud(ctx, tau, 150, 13, (i, r) => { const along = r(1); return { x: PIV[0] - 40 - along * 1040, y: -20 - r(2) * 40, r: 55 + r(3) * r(3) * 250, vx: (r(4) - .5) * 420 - 70 * along, rise: 70 + r(5) * r(5) * 950, grow: 1.0 + r(6) * .5, delay: (1 - along) * .1 + r(7) * .08, sink: 24 }; }, a, 9);
   }
 
   /* ---- ekip: baretli siluetler ---- */
@@ -577,6 +584,7 @@
     }
     return LINE.length;
   }
+  const LET = { x: 540, y: 560, s: 2.2, rot: -.02 };
   function letterWithLine(ctx, o, n) {
     C.drawLetter(ctx, Object.assign({ kind: 'letter', lines: [], ring: true, seed: 81 }, o));
     if (n > 0) { ctx.save(); ctx.translate(o.x, o.y); ctx.rotate(o.rot || 0); ctx.scale(o.s, o.s); C.handwrite(ctx, LINE.slice(0, n), -146, -86, 23, P.ink, 17); ctx.restore(); }
@@ -585,8 +593,9 @@
     drawDesk(ctx, -260);
     lampLight(ctx, 250, 250, 1200, .2);
     const e = E.io(u);
-    ctx.save(); cam(ctx, lerp(1, 1.04, e), 540, 760);
-    letterWithLine(ctx, { x: 540, y: 760, s: 2.2, rot: -.02 }, 0);
+    // mektup yukarıda: satır üst üçte birde (y≈370), imza altyazı bandının üstünde (y≈980)
+    ctx.save(); cam(ctx, lerp(1, 1.04, e), 540, 371, 540, 371);
+    letterWithLine(ctx, LET, 0);
     ctx.restore();
     vignette(ctx, .5);
     finish(ctx);
@@ -595,8 +604,8 @@
     drawDesk(ctx, -400);
     lampLight(ctx, 250, 150, 1200, .2);
     const e = E.io(u);
-    ctx.save(); cam(ctx, lerp(1.35, 1.42, e), 470, 600, 540, 520);
-    letterWithLine(ctx, { x: 540, y: 760, s: 2.2, rot: -.02 }, lineChars(t));
+    ctx.save(); cam(ctx, lerp(1.08, 1.14, e), 520, 371, 540, 400);           // imza y≈1070 (< 1150)
+    letterWithLine(ctx, LET, lineChars(t));
     ctx.restore();
     vignette(ctx, .45);
     finish(ctx);

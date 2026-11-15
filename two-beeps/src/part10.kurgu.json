@@ -222,7 +222,7 @@
  "notlar": {
   "sureTahmini": 61.7,
   "kelime": 171,
-  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 3,0 bitiş (sonraki bölüm kartı yok)",
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 5,0 bitiş (sonraki bölüm kartı yok)",
   "acilis": {
    "kare0": "Kaan avludaki evin/ofisin önünde, elinde liste; kamera listeden eve kayar; 1. cümle büyük yazıyla.",
    "soru": "Neden kendi büyüdüğü yer?"
@@ -241,6 +241,7 @@
    "end": "t1 = voiceEnd"
   },
   "bitis": "'goodbye' sonrası 2,0 sn sessizlik (Daisy güneşte, ışık söner). Cagri (30-35): sade düz zemin, gerçek oyun simgesi ve 2-3 gerçek oyun karesi; altyazı aynı, karakter yok. Bitiş payı 3,0 sn: simge + 'Search \"Demolition Master: Tower Blast\"' + 'iPhone · free'. Tek bip ve sonraki bölüm kartı yok.",
-  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line).",
+  "yonetmen": "Eymen (15.11): son kart öbür bölümlerdeki gibi uzun olsun, oyun adı net okunsun; bitiş payı 3,0 → 5,0 sn."
  }
 }

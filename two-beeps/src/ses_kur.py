@@ -215,6 +215,15 @@ def kur(n, segs, rows, ozel, soru_acik=True, kuru=False):
         prev = r.get('prev') or re.sub(r'^Previously:\s*', '', (notlar.get('oncekiBolumde') or {}).get('metin', '')) or None
     tl = dict(part=n, parts=PARTS, title=K['title'])
     if K.get('next'): tl['next'] = K['next']
+    # tanıma aracı tek kelimelik bir cümleye sıfır süre verdiyse (ör. "Ant."), komşu boşluğun içinde makul bir süre aç: altyazı boş kalmasın
+    for _i, _s in enumerate(out):
+        if _s['t1'] - _s['t0'] < 0.2:
+            _lo = out[_i - 1]['t1'] + 0.12 if _i else 0.0
+            _hi = out[_i + 1]['t0'] - 0.12 if _i + 1 < len(out) else _s['t1'] + 0.6
+            _a = max(_lo, min(_s['t0'], _hi - 0.6)); _b = min(_hi, max(_s['t1'], _a + 0.6))
+            _s['t0'], _s['t1'] = round(_a, 3), round(_b, 3)
+            _n = len(_s['words'])
+            for _k, _w in enumerate(_s['words']): _w['t0'] = round(_a + (_b - _a) * _k / _n, 3); _w['t1'] = round(_a + (_b - _a) * (_k + 1) / _n, 3)
     tl.update(fps=30, w=1080, h=1920, duration=total, voice=f'out/part{n}-voice.wav', sentences=out, cues=cues)
     if prev: tl['prev'] = prev
     if soru: tl['soru'] = soru
