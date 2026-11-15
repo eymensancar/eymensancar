@@ -287,7 +287,7 @@
   }
   const SORU_DUR = 4.7;     // YAYIN.md: soru kartı ekranda 4,7 sn; daha kısa kartta satır gecikmeleri orantılı kısalır
   const cardScale = tl => Math.min(1, (tl.duration - tl.cues.endCard) / SORU_DUR);
-  const iconDelay = tl => tl.soru ? C.soru.dGame * cardScale(tl) : 0;
+  const iconDelay = tl => tl.soru ? (tl.next ? C.soru.dGame : 0.35) * cardScale(tl) : 0;   // son bölümde (next yok) oyun satırı hemen gelir
   function drawCornerIcon(ctx, t, tl) {
     const I = C.icon, ec = (tl.cues || {}).endCard; if (t < I.from) return;
     if (ec != null && t >= ec + iconDelay(tl)) return;       // bitiş kartında büyük simgeye dönüşür (drawEnd)
@@ -373,7 +373,7 @@
     });
     if (S.satir) { const a = at(Q.dSatir); txt(S.satir, cx, Q.ySatir, fit1(S.satir, 40, maxW, 28), P.paper, a); }
     // sonraki bölüm + Follow, ya da dizi kapanışı
-    const big = !tl.next, aN = at(Q.dGame);
+    const big = !tl.next, aN = at(big ? 0.35 : Q.dGame);   // son bölüm: THE END ve oyun satırı kartla birlikte, bütün kart süresince okunur (Eymen: oyun adı net görünsün)
     if (tl.next) {
       const A = `PART ${tl.next.part} · `, B = tl.next.title, Fw = 'Follow';
       let size = 68; const tw0 = s => { ctx.font = FONT(s); return ctx.measureText(A + B).width + 14 + s * .66 * 1.1 + 24 + ctx.measureText(Fw).width; };
