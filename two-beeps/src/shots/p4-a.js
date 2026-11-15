@@ -604,7 +604,7 @@
     const top = planToScreen(rx + d / 2, -262), bot = planToScreen(rx + d / 2, 262);
     const [hx, hy] = planToScreen(rx + 24, 80), [lx, ly] = planToScreen(-330, 230);
     const gR = [lerp(top[0], hx, v), lerp(top[1], hy - 30, v)], gL = [lerp(bot[0], lx, v), lerp(bot[1], ly + 10, v)];
-    reachArm(ctx, [lerp(1180, 1000, v), lerp(1750, 2150, v)], gR, 640, 560, 1, false, 681);
+    reachArm(ctx, [lerp(1260, 1000, v), lerp(820, 2150, v)], gR, 620, 520, -1, false, 681);
     reachArm(ctx, [lerp(360, 120, v), 2250], gL, 620, 520, -1, true, 682);
     ctx.restore();
     lampWarm(ctx, .5); vignette(ctx, .45); finish(ctx);

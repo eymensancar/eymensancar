@@ -1,14 +1,14 @@
 /* Part 10 · BUILD SOMETHING — Animatör B: cümle 17–35 ve bitiş (dizinin finali). Başlangıç (S16.t1 + S17.t0) / 2 ≈ 28,47 sn → tl.duration.
    YERLEŞİM (dünya koordinatları; p10-a ile aynı avlu, ofis sökülmüş hâl):
-   • AVLU: C.drawYard varsayılan alanı {0,0,1080,1920}, seed 7, mode 'day' (P2/P7 yerleşimi): ufuk y≈1075; çit üst y 1234, taban y 1344;
-     bahçe kapısı x 778–994; posta kutusu direği (670,1536). Baraka (ofis) SÖKÜLDÜ: yerinde gök + uzak şehir + zemin, yalnız beton taban
-     x 102–676, y 1267–1281 kalır (sol uçta kaldırılmış ilk taşın çukuru ≈(150,1274)).
-   • Daisy (640,1520) s .8, siperlik yarı kapalı; uyarı ışığı dünyada (640,1243); bom ucu ≈(546,833). Kuş tavanda, Daisy yereli (70,-334).
-   • Defne'nin çizim masası (p7-b ile aynı nesne) (330,1700) s .9, Defne masada oturur (330,1668).
+   • AVLU: p10-a ile birebir aynı "boş" plaka (ext + drawYard barakasız [skipShed] + footprint, kopya): ufuk y≈1075; çit üst y 1234,
+     taban y 1344; bahçe kapısı x 778–994; posta kutusu direği (670,1536). Baraka söküldü: beton şerit x 102–676, y 1267–1281 + toprak izi;
+     ilk taşın çukuru (122,1270), taş kenarda (40,1300).
+   • Daisy A'nın park yeri (900,1600) s .8, siperlik yarı kapalı; uyarı ışığı dünyada (900,1323); bom ucu ≈(806,912). Kuş tavanda, Daisy yereli (70,-334).
+   • Defne'nin çizim masası (A ile aynı) (240,1700) s .85, Defne masada oturur (240,1668). Kaan avluda dedenin bareti başında (A'nın kaanH'si).
    • NOT (17–18): A'nın son karesi: katlı not (540,760) s 1.08 iki elde, altında bulanık açık teneke; not ellerin hizasından ters çevrilir,
      (475,≈500)'e kalkar ve büyür (s≈1.45): dedenin yazısı üst üçte birde.
    • OKUL (19): p7-a'daki "SCHOOL OF ENGINEERING" binası (aynı çizim, yaz hâli); Kaan arkadan, açık kapıya yürür.
-   • ÇAĞRI (30–35): düz kâğıt zemin (#f1e8d4), gerçek simge ve telefon (pilot telefonu, .76 ölçek) ortada x 475; önemli öğe bitişte y<600.
+   • ÇAĞRI (30–35): düz kâğıt zemin (#f1e8d4), gerçek simge ve telefon (pilot telefonu, .7 ölçek) ortada x 475; önemli öğe bitişte y<600.
    Her şey timeline'dan (times()); karakterler ikişerli, kamera/toz birerli; bip penceresinde ışıktan başka hiçbir şey kıpırdamaz. Bitişte tek bip YOK. */
 (function () {
   'use strict';
