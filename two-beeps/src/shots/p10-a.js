@@ -469,7 +469,7 @@
       C.blot(c, [[0, -H], [W, -H], [W, H], [0, H]], '#e2d1a8', .55);
       for (let i = 0; i < 6; i++) { c.fillStyle = `rgba(160,118,62,${.06 + rnd(970 + i) * .1})`; c.beginPath(); c.arc(-W / 2 + rnd(975 + i) * W, -H / 2 + rnd(980 + i) * H, 4 + rnd(985 + i) * 12, 0, TAU); c.fill(); }
       if (bleed > 0) { // aynalı, soluk sızıntı: dedenin eğik yazısı (okunmaz)
-        c.save(); c.globalAlpha = .2 * bleed; c.scale(-1, 1);
+        c.save(); c.globalAlpha = .11 * bleed; c.filter = 'blur(2.5px)'; c.scale(-1, 1);
         C.handwrite(c, 'Ant.', -W / 2 + 60, -50, 56, '#3a3026', 31);
         C.handwrite(c, 'Now build something.', -W / 2 + 60, 40, 44, '#3a3026', 33);
         c.restore();
@@ -523,11 +523,11 @@
   }
 
   /* --- 1: "The last building on Grandpa's list is the one I grew up in." Kaan listeyle; kamera listeden ofis kapısına, adres levhası --- */
-  const KAAN1 = { x: 760, y: 1880, s: 1.12 };
+  const KAAN1 = { x: 990, y: 1880, s: 1.12 };
   shot('p10a-01-liste', k => 0, k => k.c2, (ctx, t, u) => {
     const k = times(), tw = twos(t);
     const e = E.io(seg(t, .5, k.grew + .25));
-    const z = lerp(1.18, 2.15, e), cx = lerp(740, PLATE[0] - 40, e), cy = lerp(1560, PLATE[1] + 40, e), sy = lerp(1270, 1000, e);
+    const z = lerp(1.18, 2.15, e), cx = lerp(880, PLATE[0] - 40, E.outQ(seg(t, .45, k.grew))), cy = lerp(1490, PLATE[1] + 40, e), sy = lerp(1270, 1130, e);
     ctx.save(); cam(ctx, z, cx, cy, 540, sy);
     ctx.drawImage(plate('closed'), PX0, 0);
     daisy(ctx, Object.assign({ hook: hookSw(t) }, DAISY));
@@ -747,7 +747,7 @@
   }
   shot('p10a-10-bosalt', k => k.c10, k => k.c11, (ctx, t, u) => {
     const k = times(), tw = twos(t), e = E.io(u);
-    ctx.save(); cam(ctx, lerp(1.18, 1.24, e), lerp(400, 380, e), 1300, 540, 860);
+    ctx.save(); cam(ctx, lerp(1.6, 1.68, e), lerp(420, 400, e), 1330, 540, 900);
     ctx.drawImage(plate('open'), PX0, 0);
     // Kaan: kapıdan çıkar, sola yığına yürür (yan, sola bakar); "office"te kutuyu bırakır
     const ku = E.io(seg(tw, k.c10 - .1, k.drop)), kxw = lerp(510, 330, ku), kyw = lerp(1300, 1440, ku), ks = .9 - (1790 - kyw) * .001;
