@@ -8,7 +8,7 @@
      (B'nin sürüşü buradan başlar.) 1080 dışı ve y>1920 için gök/zemin/çit uzatması bu dosyada (ext).
    - Kaan (400,1790) s .9; Defne (575,1800) s .9 (Kaan solda, Defne sağda). Kaan'ın sol elinde H K taşı, sağ eline kahve geçer;
      Defne'nin önde kendi kahvesi (item 'coffee'), koltuk altında beyaz baret + rulo çizim.
-   - Kesmede (24,93): Kaan ve Defne bahçe kapısına yürüyor (Kaan ≈(700,1500) s≈.61, Defne ≈(600,1640)); Daisy park yerinde.
+   - Kesmede (24,93): Kaan ve Defne bahçe kapısına yürüyor (Defne önde ≈(680,1620) s≈.72, Kaan arkada-solda ≈(610,1560) s≈.67); Daisy park yerinde.
    Karakterler ikişerli (15 poz/sn), kamera/toz/buhar birerli. Rastgelelik yalnız tohumlu (TB.rand). */
 (function () {
   'use strict';
@@ -220,7 +220,7 @@
     let x = DEFNE.x, y = DEFNE.y, s = DEFNE.s, bob = 0, rot = 0;
     const wu = seg(t, k.c4 - .1, k.c6 + .35);
     if (t < k.c6 + .35) { x = lerp(1330, DEFNE.x, E.outQ(wu)); const w = walk(t, k.c4 - .1, .44); const fade = 1 - E.inQ(seg(t, k.c6 - .05, k.c6 + .35)); bob = w.bob * fade; rot = w.rot * fade; }
-    if (t >= k.c14) { const u = seg(t, k.c14 - .2, k.end + 1.2); x = lerp(DEFNE.x, 640, u); y = lerp(DEFNE.y, 1590, u); s = .9 - (DEFNE.y - y) * .001; const w = walk(t, k.c14 - .2, .46); bob = w.bob * s; rot = w.rot; }
+    if (t >= k.c14) { const u = seg(t, k.c14 - .2, k.end + 1.2); x = lerp(DEFNE.x, 800, u); y = lerp(DEFNE.y, 1470, u); s = .9 - (DEFNE.y - y) * .001; const w = walk(t, k.c14 - .2, .46); bob = w.bob * s; rot = w.rot; }
     let expr = 'calm', look = 0, blink = 0;
     if (t < k.c6) look = -.6;
     else if (t < k.bad) { expr = 'smile'; look = -.9; }
@@ -242,7 +242,7 @@
   function kaanState(t) {
     const k = times(), tw = twos(t);
     let x = KAAN.x, y = KAAN.y, s = KAAN.s, bob = 0, rot = 0;
-    if (t >= k.c14) { const u = seg(t, k.c14 - .35, k.end + .55); x = lerp(KAAN.x, 760, u); y = lerp(KAAN.y, 1440, u); s = .9 - (KAAN.y - y) * .001; const w = walk(t, k.c14 - .35, .4); bob = w.bob * s; rot = w.rot; }
+    if (t >= k.c14) { const u = seg(t, k.c14 - .35, k.end + .55); x = lerp(KAAN.x, 660, u); y = lerp(KAAN.y, 1520, u); s = .9 - (KAAN.y - y) * .001; const w = walk(t, k.c14 - .35, .4); bob = w.bob * s; rot = w.rot; }
     let expr = 'calm', look = 0, blink = 0;
     if (t < k.c6) { expr = 'calm'; look = .7; }
     else if (t < k.bad) { expr = tw >= k.give - .1 ? 'smile' : 'calm'; look = .9; }
@@ -351,10 +351,10 @@
     const k = times(), tw = twos(t);
     const lift = E.io(seg(t, k.lift0, k.lift1)), push = E.io(seg(t, k.lift0, k.c3));
     const bg = blurredWorld('a-bg-ant', 1.7, 520, 1330, 9, {}, 540, 900);
-    drawBg(ctx, bg, 1.04 + .05 * push, 0, -120 * lift);
+    drawBg(ctx, bg, 1.16 + .05 * push, 0, -70 * lift);
     ctx.save();
-    ctx.translate(540, 960); ctx.scale(1 + .07 * push, 1 + .07 * push); ctx.translate(-540, -960 - 420 * lift);
-    const kx = 520, ky = 2700, s = 3.0, ang = tuftAngle(t);
+    ctx.translate(540, 960); ctx.scale(1 + .07 * push, 1 + .07 * push); ctx.translate(-540, -960 - 480 * lift);
+    const kx = 520, ky = 2770, s = 3.0, ang = tuftAngle(t);
     const expr = tw < .55 ? 'sheepish' : tw < k.droop0 ? 'smile' : 'tired';
     const blink = (tw >= .2 && tw < .3) || (tw >= 3.05 && tw < 3.15) ? 1 : 0;
     drawKaanTuft(ctx, kx, ky, s, ang, { expr, look: tw < .55 ? .6 : tw < k.droop0 ? .2 : -.3, blink });
@@ -521,10 +521,10 @@
     drawBg(ctx, bg, 1.05 + .03 * u);
     const d = defneState(t);
     ctx.save(); ctx.translate(540, 960); ctx.scale(1 + .04 * E.io(u), 1 + .04 * E.io(u)); ctx.translate(-540, -960);
-    defne(ctx, { x: 540, y: 1960, s: 2.5, expr: d.expr, look: tw < k.c10 + .5 ? -.3 : 0, blink: d.blink, cup: false, t, steam: true, rot: nod(t, [k.stampW], .012) });
+    defne(ctx, { x: 540, y: 1900, s: 2.5, expr: d.expr, look: tw < k.c10 + .5 ? -.3 : 0, blink: d.blink, cup: false, t, steam: true, rot: nod(t, [k.stampW], .012) });
     ctx.restore();
     // taş aşağıdan kalkar (outBack), iki el altında
-    const up = E.outBack(seg(tw, k.c10 + .1, k.c10 + .6)), sy = lerp(1900, 1110, up), jit = (rnd(Math.floor(tw * 15)) - .5) * 3;
+    const up = E.outBack(seg(tw, k.c10 + .1, k.c10 + .6)), sy = lerp(2050, 1250, up), jit = (rnd(Math.floor(tw * 15)) - .5) * 3;
     stoneBack(ctx, 560 + jit, sy, 1.2, .04);
     grip(ctx, 790 + jit, sy + 120, -.5, { s: .62 });
     grip(ctx, 330 + jit, sy + 120, -.5, { s: .62, flip: true });
