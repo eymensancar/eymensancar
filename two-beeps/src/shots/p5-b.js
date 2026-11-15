@@ -427,14 +427,14 @@
     twoShot(ctx, t, { z, fy: 960,
       d: { lean: .6, look: -.9, expr: 'serious', blink: blinkAt(tw, [k.c19 - .3]) },
       k: { expr: 'sheepish', look: tw >= k.point ? -1 : .5 },
-      top: c => { if (up > 0) drawPointer(c, lerp(560, 230, up), lerp(1900, 760, up), -.72, .95, 0); } });
+      top: c => { if (up > 0) drawPointer(c, lerp(260, 170, up), lerp(1900, 690, up), -.18, .8, 0); } });
     finish(ctx);
   });
 
   /* --- 19: "There was no bird." boş pencere: yalnız gece; hiçbir şey uçmaz --- */
   shot('p5b19-pencere', k => k.c19, k => k.c19b, (ctx, t, u) => {
     const z = lerp(1, 1.05, E.io(u));
-    ctx.save(); cam(ctx, z, 540, 760);
+    ctx.save(); cam(ctx, z, 540, 760, 540, 760);
     const bg = cached('pencere-ic', 1080, 1920, g => {
       g.fillStyle = P.wallOffice; g.fillRect(0, 0, 1080, 1920); C.seed(391);
       for (let i = 0; i < 7; i++) C.blot(g, C.ell(rnd(i + 25) * 1080, rnd(i + 35) * 1920, 120, 70, 12), P.wallOfficeDk, .3);
@@ -533,7 +533,7 @@
 
   /* --- 25: "And people still work in it." ışıklı pencereler, içeride küçük insanlar --- */
   shot('p5b25-insan', k => k.c25, k => k.endShot, (ctx, t, u) => {
-    const e = E.io(u), z = lerp(3.6, 3.8, e), cx = TG.tx + TG.tw * lerp(.42, .5, e), fy = TG.hz - 24.5 * TG.fh;
+    const e = E.io(u), z = lerp(2.5, 2.65, e), cx = TG.tx + TG.tw * lerp(.42, .5, e), fy = TG.hz - 24.5 * TG.fh;
     ctx.save(); cam(ctx, z, cx, fy, 540, 820);
     towerWorld(ctx);
     towerPeople(ctx, t, 16, 34, .9);
@@ -572,7 +572,7 @@
     const z = 1 + .03 * E.outC(seg(tf, k.endShot, k.endBeep - .3)) + .02 * seg(t, k.endBeep + .6, k.dur);
     ctx.save(); cam(ctx, z, 540, 420, 540, 420);
     ctx.drawImage(endBg(), 0, 0);
-    C.drawDaisy(ctx, { x: DY.x, y: DY.y, s: DY.s, seed: 23, beep: 0, mood: 'sleepy', hook: .02 * Math.sin(tf * 1.2), boom: 0 });
+    C.drawDaisy(ctx, { x: DY.x, y: DY.y, s: DY.s, seed: 23, beep: 0, mood: 'sleepy', hook: .02 * Math.sin(tf * 1.2), boom: 1 });
     ctx.save(); ctx.fillStyle = 'rgba(4,6,16,.42)'; ctx.fillRect(DY.x - 260, DY.y - 420, 620, 520); ctx.restore();   // Daisy gece gölgesinde
     ctx.save(); ctx.translate(DY.x, DY.y); ctx.scale(DY.s, DY.s); drawBeacon(ctx, v); ctx.restore();
     ctx.restore();

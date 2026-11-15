@@ -403,7 +403,7 @@
     ctx.restore();
     ctx.save(); cam(ctx, lerp(2.3, 2.15, E.io(u)), 810, 560, 540, 760);
     ctx.beginPath(); ctx.rect(CF.winX, CF.winY, CF.winW, CF.winH); ctx.clip();
-    drop(ctx, t, k.drop1, 760, 420, 9); drop(ctx, t, k.drop2, 880, 560, 11); drop(ctx, t, k.drop3, 700, 640, 8);
+    drop(ctx, t, k.drop1, 760, 420, 15); drop(ctx, t, k.drop2, 880, 560, 17); drop(ctx, t, k.drop3, 700, 640, 13);
     for (let i = 0; i < 40; i++) drop(ctx, t, k.rain - .1 + rnd(300 + i) * .9, CF.winX + 10 + rnd(340 + i) * (CF.winW - 20), CF.winY + 10 + rnd(380 + i) * CF.winH * .8, 5 + rnd(420 + i) * 6);
     ctx.restore();
     vignette(ctx, .35);
@@ -541,8 +541,9 @@
 
   /* --- 21: "As your engineer." yakın: Defne baretini panelden alıp takar --- */
   function helmetArm(ctx, hx, hy, put) { // baret tutan el (krem gömlek kolu aşağıdan)
-    limb(ctx, [hx + 60, hy + 40], [hx + 160, hy + 700], 40, 56, P.shirt, 701, 6);
-    C.seed(702); C.shape(ctx, C.ell(hx + 62, hy + 20, 34, 40, 14), P.dSkin, { lw: 6 });
+    limb(ctx, [hx + 120, hy + 300], [hx + 190, hy + 800], 44, 58, P.shirt, 701, 6);
+    limb(ctx, [hx + 66, hy + 30], [hx + 122, hy + 310], 30, 38, P.dSkin, 703, 6);
+    C.seed(702); C.shape(ctx, [[hx + 30, hy - 20], [hx + 70, hy - 50], [hx + 100, hy - 10], [hx + 96, hy + 50], [hx + 50, hy + 60]], P.dSkin, { lw: 6, shade: c => C.blot(c, [[hx + 70, hy - 60], [hx + 110, hy - 60], [hx + 110, hy + 60], [hx + 80, hy + 60]], P.dSkinDk, .5) });
   }
   shot('p6b21-baret', k => k.helmCU, k => k.serious, (ctx, t, u) => {
     const k = times(), tw = twos(t), z = DCU.z * lerp(1, 1.035, E.io(u));
@@ -554,7 +555,7 @@
     cabinScene(ctx, t, { kaan: { expr: 'smile', look: .8, glow: .6 }, defne: { expr: tw >= k.helmOn ? 'confident' : 'smile', look: -.5, dy: -4 * talk(tw, [21]) } });
     const onHead = tw >= k.helmOn;
     helmetShape(ctx, hx, hy + (onHead ? 22 + settle : 0) + (onHead ? 0 : 0), lerp(1.05, 1.32, lift), lerp(.08, -.04, lift));
-    if (armOut < 1) { ctx.save(); ctx.translate(0, armOut * 800); helmetArm(ctx, hx, hy, true); ctx.restore(); }
+    if (armOut < 1) { ctx.save(); ctx.translate(armOut * 420, armOut * 800); helmetArm(ctx, hx, hy, true); ctx.restore(); }
     ctx.restore();
     cabinLight(ctx, t, toScr(z, DCU.fx, DCU.fy, DCU.sx, DCU.sy));
     finish(ctx);
