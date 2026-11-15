@@ -17,18 +17,18 @@
  "koruma": { "_not": "yalnız tek seferlik efektlere (efekt, darbe); müzik ve sürekli sesler (ortam) sabit kalır", "fark": 15, "en_cok": -15, "tut": 0.06, "kelime_arasi": 4 },
  "hedef": { "lufs": -14.0, "tp": -1.0 },
  "satirlar": [
-  { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 0.53, "son": 7.47, "fadein": 0.25, "fadeout": 0.03, "not": "giriş/merak (tema 0,53-8): karanlık ofis, yanan telefon" },
-  { "t": 7.47, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 8.0, "son": 23.47, "fadein": 0.03, "fadeout": 0.03, "not": "oyunbaz (tema 8-24): telefon, Level 12, üç deneme; 'Grandpa.' sessizliğinde kısma penceresiyle çıkar" },
-  { "t": 23.47, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -9, "ss": 36.0, "son": ["B.bip", "beep"], "fadein": 0.03, "fadeout": 0.03, "not": "gerilim (tema 36-44): çizimler, sensör; temanın 43,5-44 inişi = 30,97-31,47, iki bipe yumuşak çıkış" },
+  { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -5, "ss": 0.53, "son": 7.47, "fadein": 0.25, "fadeout": 0.03, "not": "giriş/merak (tema 0,53-8): karanlık ofis, yanan telefon" },
+  { "t": 7.47, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8, "ss": 8.0, "son": 23.47, "fadein": 0.03, "fadeout": 0.03, "not": "oyunbaz (tema 8-24): telefon, Level 12, üç deneme; 'Grandpa.' sessizliğinde kısma penceresiyle çıkar" },
+  { "t": 23.47, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -12, "ss": 36.0, "son": ["B.bip", "beep"], "fadein": 0.03, "fadeout": 0.03, "not": "gerilim (tema 36-44): çizimler, sensör; temanın 43,5-44 inişi = 30,97-31,47, iki bipe yumuşak çıkış" },
   { "t": "s19.t1-0.05", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "'So Daisy was never grumpy.' geri döner (kısma bitişi s19.t1+0,35'ten 0,4 sn solmayla): sakin pad (tema 48-52)" },
   { "t": "s19.t1+3.95", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "sepya hatıralar: tema 48-52 tekrar" },
-  { "t": "s19.t1+7.95", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -9, "ss": 32, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "takvim (cümle 23-25): gerilim başı (tema 32-36); takvim kayarken kısma penceresiyle çıkar" },
+  { "t": "s19.t1+7.95", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -10, "ss": 32, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "takvim (cümle 23-25): gerilim başı (tema 32-36); takvim kayarken kısma penceresiyle çıkar" },
   { "t": "s27.t0-0.5", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 44, "son": "s29.t0-0.3", "fadein": 0.04, "fadeout": 0.45, "not": "yavaş itmeden sonra 'From the floor to the ceiling.': soru (tema 44+, Mi'de asılı); kapı hatırasından önce kendi solmasıyla biter" },
   { "t": "dur-1.0", "dosya": "music/vurgu-son.wav", "kat": "muzik", "db": -24, "ss": 0.8, "son": "dur", "fadein": 0.08, "fadeout": 0.35, "not": "son 1 sn kısık imza (pilot gibi; La La kısmı atlanır)" },
 
-  { "t": 0, "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -8, "son": "s20.t0-0.3", "dongu": true, "fadein": 0.6, "fadeout": 0.3, "not": "karanlık ofis oda tonu (A: 0-25,38; B: çizim masası); avludaki uykulu Daisy'ye kesmede biter" },
-  { "t": "s23.t0-0.35", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -8, "ss": 3.0, "son": "s29.t0-0.2", "dongu": true, "fadein": 0.05, "fadeout": 0.3, "not": "ofise dönüş (takvim, çatlak, yüz); sepya kapı hatırasında biter" },
-  { "t": "endCard", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -16, "ss": 6.0, "son": "dur", "dongu": true, "fadein": 0.5, "fadeout": 0.3, "not": "soru kartı: çok kısık oda tonu" },
+  { "t": 0, "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -21, "son": "s20.t0-0.3", "dongu": true, "fadein": 0.6, "fadeout": 0.3, "not": "karanlık ofis oda tonu (A: 0-25,38; B: çizim masası); avludaki uykulu Daisy'ye kesmede biter" },
+  { "t": "s23.t0-0.35", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -21, "ss": 3.0, "son": "s29.t0-0.2", "dongu": true, "fadein": 0.05, "fadeout": 0.3, "not": "ofise dönüş (takvim, çatlak, yüz); sepya kapı hatırasında biter" },
+  { "t": "endCard", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -24, "ss": 6.0, "son": "dur", "dongu": true, "fadein": 0.5, "fadeout": 0.3, "not": "soru kartı: çok kısık oda tonu" },
 
   { "t": "A.kapiGicirti", "dosya": "sfx/kapi-gicirti.wav", "kat": "efekt", "db": -9, "sure": 1.0, "fadeout": 0.35, "pan": -0.3, "not": "kapı aralanır (A.kapiGicirti)" },
   { "t": "A.fenerAcilir", "dosya": "sfx/fener-tik.wav", "kat": "efekt", "db": -10, "pan": 0.15, "not": "telefon feneri tık (A.fenerAcilir)" },
@@ -53,7 +53,7 @@
   { "t": "B.takvimTut", "dosya": "sfx/takvim-kavra.wav", "kat": "efekt", "db": -11, "pan": 0.25, "not": "el takvimi kavrar (B.takvimTut)" },
   { "t": "B.takvimKay", "dosya": "sfx/takvim-oturma.wav", "kat": "efekt", "db": -10, "pan": 0.3, "not": "takvim yerine oturur (B.takvimKay)" },
   { "t": "B.catlakCitirti", "dosya": "sfx/siva-catlak.wav", "kat": "efekt", "db": -9, "sure": 0.3, "fadeout": 0.08, "pan": 0.1, "not": "çatlak: çok kısa ince çıtırtı (B.catlakCitirti); ardından sessiz yavaş itme" },
-  { "t": "B.kapiHatiraBip", "dosya": "sfx/daisy-beep-hatira.wav", "kat": "bip", "db": -10.9, "not": "sepya kapı hatırası (cümle 29 'beeped'): iki bipten 12 dB alçak" },
+  { "t": "B.kapiHatiraBip", "dosya": "sfx/daisy-beep-hatira.wav", "kat": "bip", "db": -10.9, "son": "voiceEnd", "fadeout": 0.35, "not": "sepya kapı hatırası (cümle 29 'beeped'): iki bipten 12 dB alçak; yankı kuyruğu voiceEnd'de kesilir (tek bipin önü tam sessiz)" },
   { "t": ["B.sonBip", "endBeep"], "dosya": "sfx/daisy-beep-tek.wav", "kat": "bip", "db": -4.8, "not": "bitişte TEK bip (cues.endBeep = B.sonBip); önü ve arkası tam sessiz" }
  ],
  "kisma": [

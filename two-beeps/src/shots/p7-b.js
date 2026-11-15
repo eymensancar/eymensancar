@@ -559,7 +559,7 @@
         C.shape(ctx, [[-W * .34, -H * .3], [W * .34, -H * .3], [W * .34, -H * .06], [-W * .34, -H * .06]], P.paper, { lw: 3.4 });
         C.handwrite(ctx, 'No. 9', -W * .26, -H * .14, 96, INK_OLD, 361, { bold: true });
         C.handwrite(ctx, 'reports 1985 -', -W * .28, H * .06, 40, INK_OLD, 363);
-        C.handwrite(ctx, 'H. Kaya', W * .02, H * .38, 44, INK_OLD, 365);
+        C.handwrite(ctx, 'S. Kaya', W * .02, H * .38, 44, INK_OLD, 365);
         // dosya halkası
         ctx.save(); ctx.globalAlpha = .22; ctx.strokeStyle = P.coffee; ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(W * .24, H * .24, 60, .5, 5.6); ctx.stroke(); ctx.restore();
       }

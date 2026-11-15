@@ -8,7 +8,7 @@
      (dünya y = 730 + (i-1)·44). Alt kanat (10. mavi satır) arkaya katlı, görünmez. Rulo çizimler masanın üstünde (y≈300).
    - SON KARE (≈23,21 sn): defter SON SAYFADA açık; sol sayfada dedenin notu 4 satır tam ("They will not last." / "I should have said no." /
      "Take them down" / "before they fall."), sağ sayfa boş. Kamera z 1.6→1.66, dünya (356,860) ekranda (540,560); not ekranda y≈330–700.
-     Kaan'ın sol eli sol sayfanın sol alt köşesinde (handOnRoll dünya (168,1162), rot .42, flip). Liste solda kadraj kenarında, kısmen görünür.
+     Kaan'ın sol eli sol sayfanın sol alt köşesinde (handOnRoll dünya (215,1140), rot .22, flip). Liste solda kadraj kenarında, kısmen görünür.
    Zamanlar timeline'dan (times()); eller ikişerli, kamera/ışık birerli. Rastgelelik yalnız tohumlu. */
 (function () {
   'use strict';
@@ -726,7 +726,7 @@
         const tw = twos(t), act = fi >= 0 && fu < 1, away = E.inQ(seg(tw, t0 + .85, t0 + 1.15));
         const ex = act ? NB.x + 360 * Math.cos(Math.PI * fu) : NB.x + 350;
         handOnRoll(c, ex + 10, NB.y + 210 + away * 500, fu > .5 && act ? .3 : -.25, fu > .5 && act);
-        handOnRoll(c, NB.x - 372, NB.y + 262 + 60 * (1 - E.outC(seg(tw, t0 + .6, t0 + 1.2))), .42, true);
+        handOnRoll(c, NB.x - 325, NB.y + 240 + 60 * (1 - E.outC(seg(tw, t0 + .6, t0 + 1.2))), .22, true);
       }
     });
   });
@@ -734,13 +734,13 @@
   /* a11 · S10–S11 "They will not last." / "I should have said no." — son sayfaya yakın: dedenin eli satır satır belirir (üst üçte bir). */
   shot('a11-not', k => k.cI, k => k.cJ, (ctx, t, u) => {
     const z = lerp(1.9, 1.98, E.io(u));
-    topView(ctx, t, z, 356, lerp(838, 846, u), 540, 520, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 372, NB.y + 262, .42, true) });
+    topView(ctx, t, z, 356, lerp(838, 846, u), 540, 520, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 325, NB.y + 240, .22, true) });
   });
 
   /* a12 · S12 "Take them down before they fall." — biraz geniş: tüm not + sol başparmak sayfa kenarında. Son kare B'ye. */
   shot('a12-not', k => k.cJ, k => k.end, (ctx, t, u) => {
     const z = lerp(1.6, 1.66, E.io(u));
-    topView(ctx, t, z, 356, lerp(856, 862, u), 540, 560, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 370, NB.y + 258, .42, true) });
+    topView(ctx, t, z, 356, lerp(856, 862, u), 540, 560, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 325, NB.y + 240, .22, true) });
   });
 
   /* ================= SES EKİBİ İÇİN GÖRSEL ANLAR ================= */
