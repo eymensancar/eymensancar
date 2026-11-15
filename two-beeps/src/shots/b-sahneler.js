@@ -80,8 +80,7 @@
   /* ================= OYUN KARELERİ ================= */
   const GAME_N = 150, gameImgs = [];
   for (let i = 1; i <= GAME_N; i++) gameImgs.push(TB.img('assets/img/oyun/f' + String(i).padStart(4, '0') + '.jpg'));
-  const gameIdx = sec => (Math.floor(sec * FPS + 1e-6) % GAME_N + GAME_N) % GAME_N; // 0 tabanlı: dosya f(1+idx)
-  // Kareler gelmediyse aynı boyutta (450×800) yer tutucu: alacakaranlıkta oyun sahnesi, kuleler sırayla çöker.
+    // Kareler gelmediyse aynı boyutta (450×800) yer tutucu: alacakaranlıkta oyun sahnesi, kuleler sırayla çöker.
   const ph = { cv: null, idx: -1 };
   // Kurgu (meta.json): gece planında k2 başı (56–95) döner; telefonda k1 1–55 ("forty towers", DEMOLISHED! "Master"da),
   // "In the game"de TIME'S UP (96–115), sonuç kartı (116–131) dokunuşa kadar yavaşlatılır, 131'de basılır, kepenk + yeniden (132–150).
@@ -389,16 +388,15 @@
   }
   shot('b13-gece', k => k.start, k => k.phone, (ctx, t, u, tl) => {
     const k = times(), z = lerp(1, 1.07, E.io(u)), s = 2.5, kx = 500, ky = 1880;
-    const sec = t - k.start;
     ctx.save(); cam(ctx, z, 560, 900);
     drawRoom(ctx, t, k);
     const blink = (t > k.start + .9 && t < k.start + .9 + 3 / FPS) ? 1 : 0;
     C.drawKaan(ctx, { x: kx, y: ky, s, seed: 11, expr: 'calm', look: .5, blink });
-    kaanPhoneScreen(ctx, kx, ky, s, sec);
+    kaanPhoneScreen(ctx, kx, ky, s);
     drawBlanket(ctx, ky - 200 * s + 10);
     const m = ctx.getTransform(); ctx.restore();
     // karanlık + telefon ışığı (ekran kareye göre hafifçe titrer)
-    const pX = m.a * (kx + 92 * s) + m.e, pY = m.d * (ky - 236 * s) + m.f, fX = m.a * (kx + 6 * s) + m.e, fY = m.d * (ky - 460 * s) + m.f, br = frameBright(sec);
+    const pX = m.a * (kx + 92 * s) + m.e, pY = m.d * (ky - 236 * s) + m.f, fX = m.a * (kx + 6 * s) + m.e, fY = m.d * (ky - 460 * s) + m.f, br = frameBright(t);
     nightLight(ctx, [[pX, pY, 420, .95], [fX, fY, 420, .8 * br], [240, 500, 420, .45]], .8);
     ctx.save(); ctx.globalCompositeOperation = 'lighter';
     const g = ctx.createRadialGradient(pX, pY, 10, pX, pY, 420); g.addColorStop(0, `rgba(255,226,122,${.32 * br})`); g.addColorStop(1, 'rgba(255,226,122,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920);
@@ -417,7 +415,7 @@
     ctx.restore();
   }
   shot('b13-telefon', k => k.phone, k => k.cut15, (ctx, t, u, tl) => {
-    const k = times(), sec = t - k.start, z = lerp(.95, 1.04, E.io(u)), br = frameBright(sec);
+    const k = times(), z = 1.3 * lerp(.97, 1.03, E.io(u)), br = frameBright(t);
     // oda: karanlık, bulanık
     ctx.fillStyle = '#070b18'; ctx.fillRect(0, 0, 1080, 1920);
     const bg = cached('telefon-bg', 1080, 1920, c => {
@@ -429,31 +427,31 @@
     ctx.save(); ctx.globalCompositeOperation = 'lighter';
     const hg = ctx.createRadialGradient(540, 700, 200, 540, 700, 760); hg.addColorStop(0, `rgba(255,226,122,${.34 * br})`); hg.addColorStop(.5, `rgba(255,190,110,${.12 * br})`); hg.addColorStop(1, 'rgba(255,190,110,0)');
     ctx.fillStyle = hg; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
+    vignette(ctx, .55);
     // telefon (eğik), eller ikişerli titrer
     const tw = twos(t), jx = Math.sin(tw * 2.1) * 3, jy = Math.sin(tw * 1.3 + 1) * 3, rot = -.07 + Math.sin(tw * .8) * .006;
-    ctx.save(); ctx.translate(540 + jx, 700 + jy); ctx.rotate(rot); ctx.transform(1, 0, -.035, 1, 0, 0); ctx.scale(z, z);
+    ctx.save(); ctx.translate(540 + jx, 770 + jy); ctx.rotate(rot * .6); ctx.transform(1, 0, -.035, 1, 0, 0); ctx.scale(z, z);
     const SW = 486, SH = 864, BWd = 548, BHt = 1000;
     drawHandSide(ctx, -BWd / 2 + 10, 0, false, 6);
     C.seed(171); C.shape(ctx, rrectPts(-BWd / 2, -BHt / 2, BWd, BHt, 64, 6), P.steelDk, { lw: 7, shade: c => { c.fillStyle = 'rgba(255,255,255,.08)'; c.fillRect(-BWd / 2, -BHt / 2, 30, BHt); } });
     C.shape(ctx, [[-60, -BHt / 2 + 24], [60, -BHt / 2 + 24], [60, -BHt / 2 + 36], [-60, -BHt / 2 + 36]], '#0b0c10', { lw: 0 });
     ctx.save(); rrect(ctx, -SW / 2, -SH / 2, SW, SH, 34); ctx.clip();
-    ctx.drawImage(gameFrame(sec), -SW / 2, -SH / 2, SW, SH);
+    ctx.drawImage(gameFrame(t), -SW / 2, -SH / 2, SW, SH);
     // cam yansıması
     ctx.fillStyle = 'rgba(255,255,255,.07)'; ctx.beginPath(); ctx.moveTo(-SW / 2, -SH / 2 + 80); ctx.lineTo(-SW / 2 + 220, -SH / 2); ctx.lineTo(-SW / 2 + 300, -SH / 2); ctx.lineTo(-SW / 2, -SH / 2 + 180); ctx.fill();
     // dokunma halkası ("try again": tekrar)
-    const tapT = k.tap + .1, rd = t - tapT, TP = [70, 250];
+    const tapT = k.tap, rd = t - tapT, TP = [0, (505 / 800 - .5) * SH];   // "Try again" düğmesi (kare 116–131, y≈505)
     if (rd >= 0 && rd < .4) { ctx.strokeStyle = `rgba(255,255,255,${.9 * (1 - rd / .4)})`; ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(TP[0], TP[1], 20 + rd * 220, 0, TAU); ctx.stroke(); }
     ctx.restore();
     C.ink(ctx, (() => { const p = new Path2D(); const q = C.wobble(rrectPts(-SW / 2, -SH / 2, SW, SH, 34, 6), true, .5); p.moveTo(q[0][0], q[0][1]); q.forEach(v => p.lineTo(v[0], v[1])); p.closePath(); return p; })(), 4);
     // sağ başparmak: dokunmaya gelir, geri çekilir
-    const th = twos(t), inU = E.outC(seg(th, k.tap - .2, k.tap + .07)), outU = E.inQ(seg(th, k.tap + .3, k.tap + .55)), tu = inU * (1 - outU);
+    const th = ones(t), inU = E.outC(seg(th, k.tap - .3, k.tap)), outU = E.inQ(seg(th, k.tap + .2, k.tap + .45)), tu = inU * (1 - outU);
     const tx = lerp(330, TP[0] + 30, tu), ty = lerp(560, TP[1] + 50, tu);
     drawHandSide(ctx, BWd / 2 - 10, 0, true, 6);
     C.seed(172);
     C.shape(ctx, [[BWd / 2 + 60, 380], [tx + 50, ty - 30], [tx + 10, ty - 50], [tx - 30, ty - 30], [tx - 20, ty + 20], [BWd / 2 + 20, 470]], P.skin, { lw: 6, shade: c => C.blot(c, [[tx - 10, ty + 5], [BWd / 2 + 80, 420], [BWd / 2 + 80, 520], [tx, ty + 60]], P.skinDk, .5) });
     C.shape(ctx, [[tx - 22, ty - 34], [tx + 6, ty - 46], [tx + 18, ty - 24], [tx - 8, ty - 14]], '#e7b896', { lw: 3 });
     ctx.restore();
-    vignette(ctx, .55);
     finish(ctx);
   });
 
