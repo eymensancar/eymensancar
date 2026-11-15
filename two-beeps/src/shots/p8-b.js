@@ -433,7 +433,7 @@
     C.line(ctx, [[0, -396], [0, -270], [-4, -212]], lw * .5); C.shape(ctx, [[-30, -404], [30, -404], [26, -392], [-26, -392]], P.shirt, { lw: lw * .7 });
     C.shape(ctx, [[-22, -430], [24, -430], [24, -398], [-22, -398]], P.hSkinDk, { lw });
     C.shape(ctx, C.ell(2, -466, 48, 50, 30), P.hSkin, { lw, shade: c => C.blot(c, [[20, -530], [70, -530], [70, -400], [24, -410]], P.hSkinDk, .5) });
-    C.shape(ctx, [[-48, -470], [-44, -500], [46, -500], [50, -470], [40, -448], [-38, -448]], P.gray, { lw: lw * .8 });
+    C.shape(ctx, [[-50, -486], [-44, -452], [0, -436], [44, -452], [52, -486], [40, -470], [0, -456], [-40, -470]], P.gray, { lw: lw * .8 });
     C.shape(ctx, C.ell(-48, -466, 9, 13, 12), P.hSkinDk, { lw }); C.shape(ctx, C.ell(52, -466, 9, 13, 12), P.hSkinDk, { lw });
     if (o.hat !== false) { ctx.save(); ctx.translate(2, -514); hat(ctx, lw); ctx.restore(); }
     ctx.restore();
@@ -818,7 +818,7 @@
   /* --- 25: "They called his number." Numaratör yakın: 101 → 102 tık, sonra 103 + ding, üç kez yanıp söner; alttan Hale'in eli 103 numaralı fişi kaldırır --- */
   shot('p8b25-numara', k => k.num, k => k.stand0, (ctx, t, u) => {
     const k = times(), tw = twos(t), d = t - k.ding;
-    const num = d >= 0 ? 103 : t >= k.num + .3 ? 102 : 101;
+    const num = d >= 0 ? 103 : t >= k.num + .1 ? 102 : 101;
     const off = d < 0 ? 0 : d < 2 / FPS ? 1 : d < 1.0 ? (Math.floor((d - 2 / FPS) * 6) % 2 === 0 ? 0 : .75) : 0;
     const cx = NUMBOX.x + NUMBOX.w / 2, cy = NUMBOX.y + NUMBOX.h / 2;
     ctx.save(); cam(ctx, lerp(1.8, 1.88, E.io(u)), cx, cy + 60, 540, 520);
@@ -938,6 +938,7 @@
     get imzaKalem() { return f3(times().sign0); },                 // dolma kalem kâğıtta (≈0,9 sn)
     get adimlarKaya() { return f3(times().f4); },                  // genç Kaya uzaklaşır (adımlar, 1,6 sn)
     get tabelaAsilir() { return f3(times().hang); },               // altın levha yerine oturur (metal tık)
+    get numaratorTik() { return f3(times().num + .1); },             // 101→102 küçük tık (ding DEĞİL)
     get numaratorDing() { return f3(times().ding); },              // numaratör "ding" + sayı yanıp söner
     get fis() { return f3(times().ding + .2); },                   // fiş kâğıdı
     get kalkar() { return f3(times().rise); },                     // koltuk gıcırtısı, kalkış
