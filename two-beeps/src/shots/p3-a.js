@@ -361,7 +361,7 @@
   // s06  "He wants Grandpa's list."  Hale yakın; bakışı öndeki listeye iner
   shot('s06', (ctx, t, u, k) => {
     const tw = q2(t), z = lerp(1, 1.05, E.io(u));
-    ctx.drawImage(blurWorld('p3a-b06', 1.3, 760, 1300, 10, { kaan: null }), 0, 0);
+    ctx.drawImage(blurWorld('p3a-b06', 1.3, 640, 1300, 10, { kaan: null }), 0, 0);
     const down = E.io(seg(tw, k.listW - .35, k.listW + .1));
     ctx.save(); ctx.translate(540, 960); ctx.scale(z, z); ctx.translate(-540, -960);
     const hx = 620, hy = 1950, s = 2.55, neck = [hx, hy - 420 * s * 1.04];
@@ -385,7 +385,7 @@
     let arm = mix(rest, up, clamp(a1, 0, 1.08));
     if (tw > k.land - .4) arm = mix(mix(up, low, a2), low2, E.io(seg(tw, k.land + .1, k.land + .6)));
     const daisyAlert = tw >= k.crane - .05 && tw < k.crane + .5;
-    const camX = lerp(470, 400, E.io(seg(t, k.s07, k.land + .4))), z = lerp(1.25, 1.3, E.io(u));
+    const camX = lerp(480, 425, E.io(seg(t, k.s07, k.land + .4))), z = lerp(1.25, 1.3, E.io(u));
     ctx.save(); cam(ctx, z, camX, 1500);
     drawWorld(ctx, t, {
       door: true, daisy: { mood: daisyAlert ? 'alert' : 'sleepy' },
@@ -437,7 +437,7 @@
   // s10  "He counted the money anyway."  Hale açık kapıya yaslanmış, desteyi sayar
   shot('s10', (ctx, t, u, k) => {
     const tw = q2(t), z = lerp(1.0, 1.05, E.io(u));
-    ctx.drawImage(blurWorld('p3a-b10', 1.4, 380, 1420, 10, { kaan: { expr: 'serious', look: .8 }, heldList: false }), 0, 0);
+    ctx.drawImage(blurWorld('p3a-b10', 1.4, 400, 1420, 10, { kaan: { expr: 'serious', look: .8 }, heldList: false }), 0, 0);
     ctx.save(); ctx.translate(540, 960); ctx.scale(z, z); ctx.translate(-540, -960);
     const hs = 2.0, hx = 540, hy = 1420;
     ctx.save(); ctx.beginPath(); ctx.rect(0, 0, 1080, 1130); ctx.clip();
@@ -463,7 +463,7 @@
   // s11  "I thought:"  Kaan düşünür, telefon elinde
   shot('s11', (ctx, t, u, k) => {
     const tw = q2(t), z = lerp(1, 1.06, E.io(u));
-    ctx.drawImage(blurWorld('p3a-b11', 1.4, 330, 1380, 10, { hale: { look: -.8, flip: true }, door: true }), 0, 0);
+    ctx.drawImage(blurWorld('p3a-b11', 1.4, 400, 1380, 10, { hale: { look: -.8, flip: true }, door: true }), 0, 0);
     ctx.save(); ctx.translate(540, 960); ctx.scale(z, z); ctx.translate(-540, -960);
     const up = tw > S(11).words[1].t0;
     C.drawKaan(ctx, { x: 520, y: 2060, s: 2.6, seed: 11, phone: true, expr: up ? 'smile' : 'calm', look: up ? -.8 : .5, blink: blinkAt(t, [k.s11 + .15]) });
