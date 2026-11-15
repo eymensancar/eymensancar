@@ -802,18 +802,15 @@
   /* --- 24b: "…so nobody would ever read it." Hale'in omzunun üstünden: karşıda Kaan, cebinde katlı liste; Defne yanında. İtme listeye --- */
   shot('p8b24-liste', k => k.listW - .12, k => k.num, (ctx, t, u) => {
     const k = times(), tw = twos(t), e = E.io(u);
-    const hand = E.ioC(seg(tw, k.listW + 1.3, k.listW + 1.7));   // "read it"te Kaan'ın eli cebe gider
-    ctx.save(); cam(ctx, lerp(1.7, 2.3, e), lerp(260, KAAN.x - 40 * CHS, e), lerp(1100, KAAN.y - 196 * CHS, e), 560, 760);
+    ctx.save(); cam(ctx, lerp(1.5, 1.95, e), lerp(300, KAAN.x - 30 * CHS, e), lerp(1100, KAAN.y - 196 * CHS, e), 560, lerp(820, 980, e));
     wallA(ctx, t, {
       kaan: { hands: 'knees', expr: tw >= k.listW + 1.2 ? 'worried' : 'serious', look: .25, blink: blinkAt(tw, [k.listW + .9]) },
+      kaanHead: [tw >= k.listW + 1.2 ? .05 : 0, tw >= k.listW + 1.2 ? 8 : 0],
       defne: { expr: 'serious', look: .2, blink: blinkAt(tw, [k.listW + .4]) }
     });
-    if (hand > 0) { ctx.save(); ctx.translate(KAAN.x, KAAN.y); ctx.scale(CHS, CHS); C.seed(5401);
-      C.tube(ctx, [[60, -230], [lerp(70, 10, hand), lerp(-180, -220, hand)], [lerp(44, -40, hand), lerp(-152, -200, hand)]], 34, 30, P.jacket, 3.6);
-      C.shape(ctx, C.ell(lerp(44, -40, hand), lerp(-152, -200, hand), 15, 16, 14), P.skin, { lw: 3.6 }); ctx.restore(); }
     ctx.restore();
     // önde Hale'in sırtı (bulanık, sol alt): şapkasız baş + omuz
-    ctx.save(); ctx.filter = 'blur(5px)'; haleBack(ctx, { x: 130 - 30 * e, y: 2380, s: 2.5, hat: false }); ctx.restore();
+    ctx.save(); ctx.filter = 'blur(3px)'; haleBack(ctx, { x: 120 - 40 * e, y: 2330, s: 2.3, hat: false }); ctx.restore();
     vignette(ctx, .3);
     finish(ctx);
   });

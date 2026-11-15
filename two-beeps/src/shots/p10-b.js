@@ -5,8 +5,8 @@
      x 102–676, y 1267–1281 kalır (sol uçta kaldırılmış ilk taşın çukuru ≈(150,1274)).
    • Daisy (640,1520) s .8, siperlik yarı kapalı; uyarı ışığı dünyada (640,1243); bom ucu ≈(546,833). Kuş tavanda, Daisy yereli (70,-334).
    • Defne'nin çizim masası (p7-b ile aynı nesne) (330,1700) s .9, Defne masada oturur (330,1668).
-   • NOT (17–18): teneke kutu açık, aşağıda bulanık (≈(470,1560)); not iki elle tutulur, üç panel (üst "Ant.", orta "Now build something.",
-     alt boş), not ortası (475,600): yazı üst üçte birde.
+   • NOT (17–18): A'nın son karesi: katlı not (540,760) s 1.08 iki elde, altında bulanık açık teneke; not ellerin hizasından ters çevrilir,
+     (475,≈500)'e kalkar ve büyür (s≈1.45): dedenin yazısı üst üçte birde.
    • OKUL (19): p7-a'daki "SCHOOL OF ENGINEERING" binası (aynı çizim, yaz hâli); Kaan arkadan, açık kapıya yürür.
    • ÇAĞRI (30–35): düz kâğıt zemin (#f1e8d4), gerçek simge ve telefon (pilot telefonu, .76 ölçek) ortada x 475; önemli öğe bitişte y<600.
    Her şey timeline'dan (times()); karakterler ikişerli, kamera/toz birerli; bip penceresinde ışıktan başka hiçbir şey kıpırdamaz. Bitişte tek bip YOK. */
@@ -27,8 +27,8 @@
     const k = {};
     k.start = (S(16).t1 + S(17).t0) / 2;                  // A ile ortak kesme (≈28,47)
     k.ant = S(17).t0; k.now = S(18).t0;
-    k.f1 = k.start; k.f1e = k.start + .24;                // üst panel açılır: "Ant."
-    k.f2 = Math.max(k.f1e + .08, k.ant + .07); k.f2e = k.f2 + .26;   // alt kapak iner: "Now build something."
+    k.f1 = k.start + .03;                                 // not elde ters çevrilir (yatay eksen), "Ant." kelimesinde ön yüz
+    k.f2e = k.ant + .15;
     k.school = W(19, /^school/i, 4).t0 - .02;             // okul kapısı
     k.desk = (S(19).t1 + S(20).t0) / 2;                   // Defne masada
     k.top = W(20, /^new/i, 4).t0 - .12;                   // çizim (üstten)
@@ -254,79 +254,84 @@
   }
   const shot = (id, f0, f1, draw) => TB.shot({ id, t0: () => f0(times()), t1: () => f1(times()), draw });
 
-  /* ================= 17–18: NOT ================= */
-  const NOTE = { cx: 475, cy: 600, w: 740, h: 165 }, INK_OLD = '#3a3026', PAGE = '#eadfc2', PAGE_BK = '#ddd0b0';
-  function noteBg() {   // aşağıda bulanık: toprak, beton kenar, açık teneke
+  /* ================= 17–18: NOT =================
+     A'nın son karesinden devam: aynı katlı not (arka yüz, aynalı soluk yazı), ekran ortası (540,760), s 1.08, −0,04 rad, aynı iki el ve
+     aynı bulanık toprak/teneke zemini (p10-a dirt/stoneBed/tinTop/foldedNote/sideHand kopyası). Kaan notu tuttuğu yerden (yatay eksen)
+     ters çevirir; not yukarı kalkar ve büyür: ön yüzde dedenin el yazısı üst üçte birde. */
+  const INK_OLD = '#3a3026', NW = 520, NH = 330, NAX = 60;   // not yerel ölçüsü (A ile aynı), çevirme ekseni = ellerin tuttuğu çizgi
+  const N0 = { x: 540, y: 760, s: 1.08, rot: -.04 }, N1 = { x: 475, y: 380, s: 1.4, rot: -.02 };
+  function limb(ctx, A, B, wa, wb, fill, sd) {
+    const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L; C.seed(sd);
+    return C.shape(ctx, [[A[0] + nx * wa, A[1] + ny * wa], [B[0] + nx * wb, B[1] + ny * wb], [B[0] - nx * wb, B[1] - ny * wb], [A[0] - nx * wa, A[1] - ny * wa]], fill, { lw: 7, shade: c => C.blot(c, [[A[0] - nx * wa * .1, A[1] - ny * wa * .1], [B[0] - nx * wb * .1, B[1] - ny * wb * .1], [B[0] - nx * wb * 1.2, B[1] - ny * wb * 1.2], [A[0] - nx * wa * 1.2, A[1] - ny * wa * 1.2]], '#0b1f2a', .3) });
+  }
+  function sideHand(ctx, x, y, rot, s, o) {   // p10-a ile aynı el (yeşil ceket, sarı bileklik)
+    o = o || {}; ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(s, o.flipY ? -s : s); C.seed(o.sd || 451);
+    limb(ctx, [150, 10], [900, 40], 70, 96, P.jacket, (o.sd || 451) + 1);
+    C.shape(ctx, [[130, -66], [178, -70], [184, 74], [136, 78]], P.hazard, { lw: 5 });
+    C.shape(ctx, [[-20, -44], [40, -64], [128, -58], [140, 0], [128, 60], [40, 62], [-14, 40], [-30, 0]], P.skin, { lw: 6, shade: c => C.blot(c, [[40, 20], [150, 20], [150, 80], [40, 80]], P.skinDk, .5) });
+    C.line(ctx, [[-4, -18], [40, -14]], 3, P.skinDk, .3); C.line(ctx, [[-6, 14], [38, 16]], 3, P.skinDk, .3);
+    C.shape(ctx, [[40, -64], [10, -96], [-26, -92], [-20, -66], [20, -50]], P.skin, { lw: 5 });
+    ctx.restore();
+  }
+  function noteBg() {   // p10-a 'teneke-acik' ile aynı: toprak + taş yatağı + boş teneke, bulanık
     return cached('not-bg', 1080, 1920, c => {
       const tmp = canvas(1080, 1920), g = tmp.getContext('2d');
-      const gg = g.createLinearGradient(0, 0, 0, 1920); gg.addColorStop(0, '#b89a6e'); gg.addColorStop(1, '#8a6e4a'); g.fillStyle = gg; g.fillRect(0, 0, 1080, 1920);
-      for (let i = 0; i < 70; i++) C.blot(g, C.ell(rnd(8100 + i) * 1080, rnd(8200 + i) * 1920, 20 + rnd(8300 + i) * 60, 10 + rnd(8400 + i) * 30, 10), [P.groundDk, P.groundLt, P.dust, '#6e5a40'][i % 4], .45);
-      C.seed(8501); C.shape(g, [[-40, 80], [1120, 40], [1120, 360], [-40, 400]], P.concrete, { lw: 6, shade: c2 => C.blot(c2, [[-40, 300], [1120, 280], [1120, 380], [-40, 400]], P.concreteDk, .6) });
-      // boş, açık teneke (not elde): gövde + iç + yana yaslanmış kapak (drawTin'in renkleri)
-      g.save(); g.translate(500, 1560); g.scale(1.7, 1.7); C.seed(95);
-      C.shape(g, [[-200, -40], [200, -40], [196, 110], [-196, 110]], '#8f9aa3', { lw: 5, shade: c2 => C.blot(c2, [[90, -50], [210, -50], [210, 120], [110, 120]], '#5d6873', .6) });
-      C.shape(g, [[-200, -62], [200, -62], [196, -38], [-196, -38]], '#2e3238', { lw: 4 });
-      g.save(); g.translate(-40, -150); g.rotate(-.25); C.shape(g, [[-206, -20], [206, -20], [206, 6], [-206, 6]], '#a7b1b9', { lw: 5 }); g.restore();
+      g.translate(540, 760); g.scale(1.6, 1.6);
+      const dv = cached('toprak', 1600, 2400, d => {
+        d.fillStyle = '#b89a6c'; d.fillRect(0, 0, 1600, 2400); C.seed(931);
+        for (let i = 0; i < 140; i++) C.blot(d, C.ell(rnd(3000 + i) * 1600, rnd(3200 + i) * 2400, 20 + rnd(3400 + i) * 90, 10 + rnd(3600 + i) * 40, 10), i % 3 ? '#a88a5f' : '#cfb184', .45);
+        for (let i = 0; i < 260; i++) { d.fillStyle = i % 2 ? 'rgba(110,100,87,.55)' : 'rgba(227,204,160,.6)'; d.beginPath(); d.arc(rnd(3800 + i) * 1600, rnd(4000 + i) * 2400, 2 + rnd(4200 + i) * 6, 0, TAU); d.fill(); }
+      });
+      g.drawImage(dv, -800, -1200);
+      C.seed(941);
+      C.shape(g, [[-260, -150], [250, -164], [270, 150], [-250, 160]], '#7f6646', { lw: 0, shade: c2 => { C.blot(c2, [[-260, -160], [270, -170], [270, -90], [-260, -80]], '#5e4a32', .7); } });
+      g.save(); g.scale(.9, .9); C.seed(951); const W = 360, H = 230;
+      g.save(); g.globalAlpha = .35; g.fillStyle = '#2a2118'; g.beginPath(); g.ellipse(10, 14, W * .62, H * .66, 0, 0, TAU); g.fill(); g.restore();
+      C.shape(g, [[-W / 2, -H / 2], [W / 2, -H / 2 + 3], [W / 2 + 2, H / 2], [-W / 2 + 2, H / 2 + 2]], '#8f9aa3', { lw: 5, shade: c2 => C.blot(c2, [[W * .25, -H], [W, -H], [W, H], [W * .3, H]], '#5d6873', .5) });
+      C.shape(g, [[-W / 2 + 16, -H / 2 + 16], [W / 2 - 16, -H / 2 + 18], [W / 2 - 14, H / 2 - 14], [-W / 2 + 16, H / 2 - 14]], '#4c565f', { lw: 3 });
       g.restore();
       c.filter = 'blur(10px)'; c.drawImage(tmp, -20, -20, 1120, 1960); c.filter = 'none';
-      c.fillStyle = 'rgba(21,18,13,.18)'; c.fillRect(0, 0, 1080, 1920);
+      c.fillStyle = 'rgba(30,22,14,.25)'; c.fillRect(0, 0, 1080, 1920);
     });
   }
-  function notePanel(ctx, y0, h, front, which) {   // tek panel (yerel: not ortası 0,0), h işaretli: + aşağı, − yukarı
-    const w = NOTE.w, x0 = -w / 2, yA = Math.min(y0, y0 + h), hh = Math.abs(h); if (hh < .5) return;
-    C.seed(4100 + which);
-    C.shape(ctx, [[x0, yA], [x0 + w, yA], [x0 + w, yA + hh], [x0, yA + hh]], front ? PAGE : PAGE_BK, { lw: 3.2, amp: .5, shade: c => {
-      for (let q = 0; q < 6; q++) { c.fillStyle = `rgba(160,118,62,${.06 + rnd(4200 + which * 9 + q) * .1})`; c.beginPath(); c.arc(x0 + rnd(4300 + which * 9 + q) * w, yA + rnd(4400 + which * 9 + q) * hh, 4 + rnd(4500 + q) * 12, 0, TAU); c.fill(); }
-      if (!front) { c.fillStyle = 'rgba(120,90,50,.12)'; c.fillRect(x0, yA, w, hh); }
+  function noteSheet(ctx, front) {   // yerel (0,0) orta, NW×NH; ön yüz: dedenin yazısı; arka: aynalı soluk sızıntı (A ile aynı)
+    C.seed(961);
+    ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(-NW / 2 + 10, -NH / 2 + 12, NW, NH); ctx.restore();
+    C.shape(ctx, [[-NW / 2, -NH / 2], [NW / 2, -NH / 2 + 4], [NW / 2 - 2, NH / 2], [-NW / 2 + 2, NH / 2 - 2]], '#efe2c0', { lw: 4.4, shade: c => {
+      C.blot(c, front ? [[-NW, -NH], [0, -NH], [0, NH], [-NW, NH]] : [[0, -NH], [NW, -NH], [NW, NH], [0, NH]], '#e2d1a8', .55);
+      for (let i = 0; i < 6; i++) { c.fillStyle = `rgba(160,118,62,${.06 + rnd(970 + i) * .1})`; c.beginPath(); c.arc((front ? -1 : 1) * (-NW / 2 + rnd(975 + i) * NW), -NH / 2 + rnd(980 + i) * NH, 4 + rnd(985 + i) * 12, 0, TAU); c.fill(); }
+      if (!front) { c.save(); c.globalAlpha = .2; c.scale(-1, 1); C.handwrite(c, 'Ant.', -NW / 2 + 60, -50, 56, INK_OLD, 31); C.handwrite(c, 'Now build something.', -NW / 2 + 60, 40, 44, INK_OLD, 33); c.restore(); }
     } });
-  }
-  function drawNote(ctx, t) {
-    const k = times(), a = E.outC(seg(t, k.f1, k.f1e));
-    const c = lerp(-1, 1, E.io(seg(t, k.f2, k.f2e)));   // alt kapak: −1 orta panelin üstünde (arkası), +1 aşağı sarkar
-    const h = NOTE.h, top = -h / 2, bot = h / 2;
-    // üst panel A: orta panelin arkasından kalkar (önden görünür)
-    if (a > 0) {
-      ctx.save(); ctx.translate(0, top); ctx.scale(1, a); notePanel(ctx, 0, -h, true, 1);
-      ctx.save(); ctx.beginPath(); ctx.rect(-NOTE.w / 2, -h, NOTE.w, h); ctx.clip(); C.handwrite(ctx, 'Ant.', -300, -48, 104, INK_OLD, 31, { bold: true }); ctx.restore();
-      ctx.restore();
-      // kıvrım gölgesi
-      ctx.save(); ctx.globalAlpha = .18 * (1 - a * .6); ctx.fillStyle = P.ink; ctx.fillRect(-NOTE.w / 2, top - 6, NOTE.w, 6); ctx.restore();
+    C.line(ctx, [[2, -NH / 2 + 6], [0, NH / 2 - 4]], 3, 'rgba(138,106,64,.7)', .5);
+    ctx.save(); ctx.globalAlpha = .18; ctx.fillStyle = '#8a6a40'; ctx.fillRect(front ? -26 : 0, -NH / 2 + 6, 26, NH - 10); ctx.restore();
+    if (front) {   // dedenin el yazısı (drawTin notuyla aynı iki satır), net
+      C.handwrite(ctx, 'Ant.', -NW / 2 + 52, -46, 74, INK_OLD, 31, { bold: true });
+      C.handwrite(ctx, 'Now build something.', -NW / 2 + 48, 56, 41, INK_OLD, 33, { bold: true });
     }
-    // orta panel B
-    notePanel(ctx, top, h, true, 2);
-    C.handwrite(ctx, 'Now build something.', -312, 22, 62, INK_OLD, 33, { bold: true });
-    C.seed(4601); C.line(ctx, [[-NOTE.w / 2 + 6, top + 1], [NOTE.w / 2 - 6, top]], 1.8, 'rgba(120,90,50,.45)', .3);
-    // alt panel C
-    if (c < 0) {
-      ctx.save(); ctx.fillStyle = 'rgba(21,18,13,.16)'; ctx.fillRect(-NOTE.w / 2, bot + c * h, NOTE.w, -c * h + 8); ctx.restore();
-      notePanel(ctx, bot, c * h, false, 3);
-    } else {
-      notePanel(ctx, bot, c * h, true, 3);
-      if (c > .05) { C.seed(4602); C.line(ctx, [[-NOTE.w / 2 + 6, bot], [NOTE.w / 2 - 6, bot + 1]], 1.8, 'rgba(120,90,50,.45)', .3); }
-    }
-  }
-  function thumb(ctx, x, y, rot, sd) {   // başparmak notun önünde
-    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); C.seed(sd);
-    C.tube(ctx, [[0, 0], [0, -44], [4, -84]], 50, 40, P.skin, 6, { shade: c => C.blot(c, [[10, 10], [40, 10], [40, -90], [14, -90]], P.skinDk, .45) });
-    C.shape(ctx, [[-12, -82], [14, -84], [16, -60], [-10, -58]], '#e7b896', { lw: 3 });
-    ctx.restore();
   }
   shot('p10b17-not', k => k.start, k => k.school, (ctx, t, u) => {
-    const k = times(), tw = twos(t), z = lerp(1, 1.07, E.io(u));
-    ctx.save(); ctx.translate(540, 960); ctx.scale(1 + u * .03, 1 + u * .03); ctx.drawImage(noteBg(), -540, -960); ctx.restore();
-    // eller notu iki yandan tutar, nefesle kıpırdar (ikişerli)
-    const jy = Math.sin(tw * 1.6) * 3, jx = Math.sin(tw * 1.1 + 1) * 2, lift = (1 - E.outC(seg(t, k.start, k.start + .3))) * 26;
-    ctx.save(); cam(ctx, z, NOTE.cx, NOTE.cy, NOTE.cx, NOTE.cy); ctx.translate(jx, jy + lift); ctx.rotate(-.025 + Math.sin(tw * .9) * .004);
-    kaanHand(ctx, NOTE.cx - NOTE.w / 2 + 40, NOTE.cy + 250, .32, 1.25, 'flat', 611);
-    ctx.save(); ctx.translate(2 * NOTE.cx, 0); ctx.scale(-1, 1); kaanHand(ctx, NOTE.cx - NOTE.w / 2 + 40, NOTE.cy + 250, .32, 1.25, 'flat', 612); ctx.restore();
-    ctx.save(); ctx.translate(NOTE.cx, NOTE.cy); drawNote(ctx, t); ctx.restore();
-    thumb(ctx, NOTE.cx - NOTE.w / 2 + 8, NOTE.cy + 70, .25, 613);
-    thumb(ctx, NOTE.cx + NOTE.w / 2 - 8, NOTE.cy + 70, -.25, 614);
+    const k = times(), tw = twos(t);
+    ctx.save(); ctx.translate(540, 960); const bz = 1.03 + .05 * u; ctx.scale(bz, bz); ctx.translate(-540, -960); ctx.drawImage(noteBg(), 0, 0); ctx.restore();
+    ctx.fillStyle = 'rgba(30,22,14,.25)'; ctx.fillRect(0, 0, 1080, 1920);
+    // not kalkar, büyür (birerli), elde ters çevrilir (ikişerli)
+    const mv = E.ioC(seg(t, k.start, k.f2e + .1)), push = 1 + .05 * E.io(seg(t, k.f2e, k.school));
+    const s = lerp(N0.s, N1.s, mv) * push, rot = lerp(N0.rot, N1.rot, mv) + Math.sin(tw * .9) * .004;
+    const x = lerp(N0.x, N1.x, mv) + Math.sin(tw * 1.1 + 1) * 2, y = lerp(N0.y, N1.y, mv) + Math.sin(tw * 1.6) * 3 * mv;
+    const fl = E.io(seg(tw, k.f1, k.ant - .02)), cy = Math.cos(Math.PI * fl);
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(s, s);
+    ctx.save();
+    if (cy >= 0) { ctx.translate(0, NAX - cy * NAX); ctx.scale(1, Math.max(cy, .001)); noteSheet(ctx, false); }
+    else { ctx.translate(0, NAX - cy * NAX); ctx.scale(1, -cy); noteSheet(ctx, true); }
     ctx.restore();
-    // güneş + zerreler
-    sun(ctx, .7);
-    airDust(ctx, t, 18, 71, [0, 120, 1080, 1100], .8);
-    vignette(ctx, .32);
+    if (Math.abs(cy) < .9) { ctx.save(); ctx.globalAlpha = .25 * (1 - Math.abs(cy)); ctx.fillStyle = P.ink; ctx.fillRect(-NW / 2, NAX - Math.abs(cy) * NH, NW, Math.abs(cy) * NH * 2); ctx.restore(); }
+    ctx.restore();
+    // iki el notu kenarlarından tutar (A ile aynı yerleşim; çevirme ekseni ellerin hizası)
+    const c = Math.cos(rot), sn = Math.sin(rot), hw = 260 * s, hs = .8 * s / N0.s;
+    sideHand(ctx, x - hw * c + 30 * hs / .8, y - hw * sn + NAX * s, Math.PI * .78, hs, { sd: 521 });
+    sideHand(ctx, x + hw * c - 30 * hs / .8, y + hw * sn + NAX * s, Math.PI * .22, hs, { sd: 525, flipY: true });
+    sun(ctx, .45 * mv);
+    airDust(ctx, t, 14, 71, [100, 300, 880, 900], .6, '216,202,176');
+    vignette(ctx, .45);
     finish(ctx);
   });
 
@@ -698,8 +703,7 @@
   /* ================= SES EKİBİNE İŞARETLER (sn, bölüm zamanı) ================= */
   const f3 = x => +x.toFixed(3);
   TB.cuesB = {
-    get notAcilir1() { return f3(times().f1); },          // not: üst panel açılır (kâğıt, çok hafif)
-    get notAcilir2() { return f3(times().f2); },          // not: alt kapak iner (kâğıt)
+    get notCevrilir() { return f3(times().f1); },         // not elde ters çevrilir (kâğıt, çok hafif)
     get okulKapisi() { return f3(times().school); },      // okul, açık kapı; adımlar
     get kalemCizim() { return f3(times().top + .08); },   // kurşun kalem kâğıtta (≈1 sn)
     get kalemSmall() { return f3(times().small); },       // "small." yazılır
