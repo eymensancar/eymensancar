@@ -32,3 +32,6 @@ Sancar Games'in YouTube Shorts kanalı için 10 bölümlük dikey animasyon dizi
 
 ## Ses kuralı (Eymen, 15 Kasım 2026, kalıcı; bütün projelerde geçerli)
 Geçişlerde ve başka hiçbir yerde "whoosh/swoosh" türü gürültü süpürmesi (hışırtı, hava sesi, süpürge sürtünmesi gibi duyulan filtreli gürültü) kullanılmaz; Eymen kulak tırmalayıcı buluyor. Geçişler sessiz kalır ya da yumuşak, tonlu, kısa bir sesle vurgulanır. `baca-devrilme.wav` içindeki düşüş süpürmesi (1,9–2,75 sn) mikste kullanılmaz; yalnız yere çarpma kısmı kullanılır.
+
+## Müzik seviyesi (Eymen, 15 Kasım 2026, taslağı izledikten sonra; kalıcı)
+Arka plan müziği konuşmaya göre KISILIP AÇILMAZ (ducking yok): "müziği çok kesmiş". Müzik bölüm boyunca uygun, SABİT bir seviyede çalar; anlatıcı o seviyenin üstünde rahat duyulacak kadar öndedir. Yalnız hikâyenin bilerek sessiz anlarında (ör. "Real chimneys don't." öncesi, iki bip, bitiş) müzik yumuşak bir solmayla çıkar ve geri gelir; bu geçişler cümle cümle değil, sahne düzeyindedir.

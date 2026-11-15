@@ -28,12 +28,13 @@
     k.clonk1 = W(16, /^pulled/i, 1).t1 + .12;              // kol yerine oturur
     k.daisy = S(17).t0 - .25;
     k.beep = c.beep;
+    k.alert = W(17, /^beeped/i, 1).t0;                     // siperlik (göz kapağı) bipten ÖNCE kalkar
     k.freeze0 = c.beep - .3; k.freeze1 = c.beep + .57 + 10 / FPS; // bipten önce/sonra hiçbir şey kıpırdamaz
     k.shrug = S(18).t1 + .25;
     k.impact = c.fall - 8 / FPS;                           // top bacaya değer; 8 kare tutma, sonra düşüş
     k.release = k.impact - .5;                             // top bırakılır
     k.insert = k.release - .25;                            // kol sonuna kadar
-    k.shrugUp = k.insert - .5;
+    k.shrugUp = k.insert - .62;
     k.clonk2 = k.insert + .12;
     k.fall = c.fall; k.ground = c.fall + 1.45;             // bacanın yere çarpması
     k.wide = S(21).t0 - .15;
@@ -133,8 +134,8 @@
 
   function ballSw(t) {
     const k = times();
-    if (t < k.clonk1) return 0;
-    if (t < k.release) return SW0 * E.io(seg(t, k.clonk1, k.clonk1 + 1.3));
+    const idle = .03 * Math.sin(t * 2.3) * (1 - seg(t, k.clonk1, k.clonk1 + .4));   // rüzgârda hafif salınım
+    if (t < k.release) return idle + SW0 * E.io(seg(t, k.clonk1, k.clonk1 + 1.3));
     if (t < k.impact) return SW0 * Math.cos(OM * (t - k.release));
     const tau = t - k.impact, v0 = -SW0 * OM * Math.sin(OM * .5) * -.25;
     return Math.exp(-.55 * tau) * (SWC * Math.cos(OM * tau) + v0 / OM * Math.sin(OM * tau));
@@ -285,11 +286,11 @@
       const rise = s.rise * (1 - Math.exp(-tt / 1.1)) - (s.sink || 0) * Math.max(0, tt - 1.6);
       blobs.push([s.x + s.vx * (1 - Math.exp(-tt * 1.6)) / 1.6, s.y - rise, rad]);
     }
-    d.fillStyle = P.ink; blobs.forEach(([x, y, r]) => { d.beginPath(); d.arc(x, y, r + 6, 0, TAU); d.fill(); });
+    d.globalAlpha = .35; d.fillStyle = P.ink; blobs.forEach(([x, y, r]) => { d.beginPath(); d.arc(x, y, r + 3, 0, TAU); d.fill(); }); d.globalAlpha = 1;
     d.fillStyle = P.dust; blobs.forEach(([x, y, r]) => { d.beginPath(); d.arc(x, y, r, 0, TAU); d.fill(); });
     d.fillStyle = P.dustLt; blobs.forEach(([x, y, r]) => { d.beginPath(); d.arc(x - r * .16, y - r * .2, r * .8, 0, TAU); d.fill(); });
-    d.fillStyle = 'rgba(241,232,212,.5)'; blobs.forEach(([x, y, r]) => { d.beginPath(); d.arc(x - r * .3, y - r * .38, r * .38, 0, TAU); d.fill(); });
-    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = alpha; ctx.drawImage(dustCv, 0, 0); ctx.restore();
+    d.fillStyle = 'rgba(241,232,212,.35)'; blobs.forEach(([x, y, r]) => { d.beginPath(); d.arc(x - r * .3, y - r * .38, r * .38, 0, TAU); d.fill(); });
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = alpha * .72; ctx.drawImage(dustCv, 0, 0); ctx.restore();
   }
   function impactFx(ctx, t) {
     const k = times(), tau = t - k.impact; if (tau < 0) return;
@@ -304,7 +305,7 @@
     if (tau < 0) return;
     brickSet(ctx, tau, 46, 12, (i, r) => { const along = r(1); return { x: PIV[0] - 40 - along * 860, y: WD.cb - 40 - r(2) * 60, vx: (r(3) - .5) * 520 - 80, vy: -300 - r(4) * 700 * (1 - along * .4) }; }, 1);
     const a = (alphaMul == null ? 1 : alphaMul) * (tau < 3 ? 1 : clamp(1 - (tau - 3) / 5, .25, 1));
-    dustCloud(ctx, tau, 56, 13, (i, r) => { const along = r(1); return { x: PIV[0] + 40 - along * 960, y: WD.cb - 30 - r(2) * 40, r: 40 + r(3) * r(3) * 150 + (1 - along) * 20, vx: (r(4) - .5) * 220 - 60 * along, rise: 60 + r(5) * r(5) * 520, grow: 1.0 + r(6) * .5, delay: along * .12 + r(7) * .08, sink: 26 }; }, a, 9);
+    dustCloud(ctx, tau, 110, 13, (i, r) => { const along = r(1); return { x: PIV[0] + 40 - along * 960, y: WD.cb - 30 - r(2) * 40, r: 18 + r(3) * r(3) * 95, vx: (r(4) - .5) * 320 - 60 * along, rise: 30 + r(5) * r(5) * 620, grow: 1.0 + r(6) * .5, delay: along * .12 + r(7) * .08, sink: 26 }; }, a, 9);
   }
   function airDust(ctx, t, n, sb, box, a) { // havada asılı, yavaş sürüklenen zerreler (birerli)
     for (let i = 0; i < n; i++) {
@@ -315,21 +316,48 @@
 
   function daisyState(t) {
     const k = times(); const b = beepAt(t, k.beep);
-    return { beep: b.v, mood: (t >= k.beep + TONES[0][0] && t < k.push) ? 'alert' : 'sleepy' };
+    return { beep: 0, mood: (t >= k.alert && t < k.push) ? 'alert' : 'sleepy' };
   }
   // Bütün arsa, verilen zamanda.
   function drawWorld(ctx, t, o) {
     o = o || {}; const k = times();
     C.drawBackground(ctx, BG);
+    drawClouds(ctx, t);
     drawLot(ctx);
-    drawRing(ctx, t, false);
+    drawChalkArrow(ctx);
     drawChimney(ctx, t);
     drawPlinth(ctx, t);
-    drawRing(ctx, t, true);
     if (!o.noBall) drawBall(ctx, ballSw(t));
     if (!o.noDaisy) { const ds = daisyState(t); C.drawDaisy(ctx, { x: WD.dX, y: WD.dY, s: 1, seed: 23, hook: ballSw(t), beep: ds.beep, mood: ds.mood }); }
+    TB.zone(ctx, ZONE.x, ZONE.y, ZONE.w, ZONE.h, 1);
+    drawGrass(ctx, t);
     if (!o.noFx) { impactFx(ctx, t); groundFx(ctx, t, o.dustMul); }
     if (o.kaan) C.drawKaan(ctx, Object.assign({ x: WD.kX, y: WD.kY, s: WD.kS, seed: 11 }, o.kaan));
+  }
+  // Planlanan devrilme alanı (ortak TB.zone): bacanın sağ-önünde, Daisy'nin önünde. Baca bunun tersine, sola düşer.
+  const ZONE = { x: 800, y: 1310, w: 440, h: 124 };
+  function drawChalkArrow(ctx) { // bacadan alana giden tebeşir ok, yerde
+    ctx.save(); ctx.strokeStyle = 'rgba(248,244,232,.85)'; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.setLineDash([26, 18]);
+    ctx.beginPath(); ctx.moveTo(WD.cx + 70, WD.cb + 22); ctx.quadraticCurveTo(650, 1190, 690, 1236); ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(660, 1236); ctx.lineTo(694, 1242); ctx.lineTo(694, 1206); ctx.stroke(); ctx.restore();
+  }
+  function drawClouds(ctx, t) { // yavaş kayan iki bulut (birerli)
+    [[300, 120, 1.2, 9], [1050, 40, .9, 6]].forEach(([x0, y, sc, v], i) => {
+      const x = x0 + t * v; ctx.fillStyle = P.cloud; ctx.globalAlpha = .9;
+      [[0, 0, 80, 28], [-66, 12, 56, 22], [62, 10, 60, 24], [12, -20, 50, 28]].forEach(([a, b, rx, ry]) => { ctx.beginPath(); ctx.ellipse(x + a * sc, y + b * sc, rx * sc, ry * sc, 0, 0, TAU); ctx.fill(); });
+      ctx.globalAlpha = 1; void i;
+    });
+  }
+  function drawGrass(ctx, t) { // önde rüzgârda sallanan ot öbekleri (birerli)
+    for (let i = 0; i < 16; i++) {
+      const r = j => rnd(1500 + i * 9 + j), x = -400 + r(1) * 1900, y = 1180 + r(2) * 360, ph = r(3) * 6;
+      if (Math.abs(x - ZONE.x) < ZONE.w / 2 && Math.abs(y - ZONE.y) < ZONE.h / 2 + 30) continue;
+      for (let b = 0; b < 5; b++) {
+        const sw = Math.sin(t * 2.6 + ph + b * .5) * 7 + Math.sin(t * 5.1 + ph) * 2, hh = 22 + r(4 + b) * 20;
+        ctx.strokeStyle = P.weed; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(x + b * 5, y);
+        ctx.quadraticCurveTo(x + b * 5 + (b - 2) * 3, y - hh * .6, x + b * 5 + (b - 2) * 5 + sw, y - hh); ctx.stroke();
+      }
+    }
   }
   // Bulanık arka plan (yakın planlar için), bir kez çizilip saklanır.
   function blurredWorld(key, t, z, cx, cy, blur, o) {
@@ -457,8 +485,8 @@
 
   /* --- 15: sert kesme, gündüz, sessiz arsa --- */
   shot('b15-arsa', k => k.cut15, k => k.lever, (ctx, t, u, tl) => {
-    const z = lerp(.8, .815, u);
-    ctx.save(); cam(ctx, z, 640, 760);
+    const z = lerp(.72, .75, E.io(u));                      // çok yavaş itme; alan (sağ-ön) altyazının üstünde
+    ctx.save(); cam(ctx, z, 650, 1120);
     drawWorld(ctx, t, { kaan: { expr: 'calm', look: -.6, phone: true } });
     airDust(ctx, t, 26, 3, [-100, 700, 1400, 500], .7);
     ctx.restore();
@@ -528,8 +556,19 @@
     const bg = bgKey === 'post' ? blurredWorld('bg-daisy-post', bgT, 1.15, 640, 800, 7, { noDaisy: true, noBall: true }) : blurredWorld('bg-daisy-pre', bgT, 1.15, 1250, 800, 7, { noDaisy: true, noBall: true });
     drawBlurBg(ctx, bg, 1 + (z - 1.8) * .06);
     ctx.save(); cam(ctx, z, DAISY_CU.fx, DAISY_CU.fy, DAISY_CU.sx, DAISY_CU.sy);
-    C.drawDaisy(ctx, { x: 0, y: 0, s: 1, seed: 23, beep: beepV, mood, hook: SW0 });
+    C.drawDaisy(ctx, { x: 0, y: 0, s: 1, seed: 23, beep: 0, mood, hook: SW0 });
+    drawBeacon(ctx, beepV);
     ctx.restore();
+  }
+  // Uyarı ışığı tek başına (Daisy yerel koordinatı, s=1): bipte yalnız bu değişir; farlar yanmaz.
+  function drawBeacon(ctx, v) {
+    if (v <= 0) return;
+    ctx.save(); ctx.globalCompositeOperation = 'screen';
+    const g = ctx.createRadialGradient(0, -364, 8, 0, -364, 170); g.addColorStop(0, `rgba(${P.glow},${.85 * v})`); g.addColorStop(.4, `rgba(${P.glow},${.25 * v})`); g.addColorStop(1, `rgba(${P.glow},0)`);
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, -364, 170, 0, TAU); ctx.fill(); ctx.restore();
+    C.seed(23);
+    C.shape(ctx, C.ell(0, -346, 21, 25, 20, Math.PI, TAU), P.beaconOn, { lw: 5.6, shade: c => { c.fillStyle = 'rgba(255,240,200,.9)'; c.beginPath(); c.ellipse(-7, -360, 4, 8, .3, 0, TAU); c.fill(); } });
+    [-1, 1].forEach(d => [0, 1].forEach(k => { const r = 40 + k * 22, a0 = d < 0 ? Math.PI * .82 : -Math.PI * .18, a1 = d < 0 ? Math.PI * 1.18 : Math.PI * .18; C.line(ctx, C.ell(0, -352, r, r * .9, 8, a0, a1), 5.6 * (1 - k * .2) * Math.min(1, v * 1.5), null, .5); }));
   }
   function frozen(t) { const k = times(); return t >= k.freeze0 && t < k.freeze1 ? k.freeze0 : t; }
   shot('b17-bip', k => k.daisy, k => k.shrug, (ctx, t, u, tl) => {
@@ -540,29 +579,30 @@
     const idle = tf === t && t < k.freeze0 ? Math.sin(twos(t) * 40) * 1.2 : 0;
     const b = beepAt(t, k.beep);
     ctx.save(); ctx.translate(0, idle);
-    drawDaisyCU(ctx, t, z, b.v, b.after ? 'alert' : 'sleepy', 'pre', k.daisy);
+    drawDaisyCU(ctx, t, z, b.v, tf >= k.alert ? 'alert' : 'sleepy', 'pre', k.daisy);
     ctx.restore();
     finish(ctx);
   });
 
   /* --- 19: Kaan omuz silker --- */
-  function drawKaanSplit(ctx, o, headRot, rise) { // baş ayrı döner (boyun ekseni), gövde yükselir; ayaklar kadraj dışında
-    const s = o.s, neckY = o.y - 422 * s - rise;
-    ctx.save(); ctx.beginPath(); ctx.rect(-200, neckY, 1480, 2400); ctx.clip(); C.drawKaan(ctx, Object.assign({}, o, { y: o.y - rise })); ctx.restore();
-    ctx.save(); ctx.beginPath(); ctx.rect(-200, -400, 1480, neckY + 400 + 1.5); ctx.clip();
-    ctx.translate(o.x + 2 * s, neckY); ctx.rotate(headRot); ctx.translate(-(o.x + 2 * s), -neckY);
-    C.drawKaan(ctx, Object.assign({}, o, { y: o.y - rise })); ctx.restore();
+  // Omuz silkme: gövde+kollar (omuzlar, eller) baştan fazla kalkar ve hafif genişler, baş omuzların arasına gömülüp eğilir.
+  function drawKaanShrug(ctx, o, torsoRise, headRise, headRot, sx) {
+    const s = o.s, neck = o.y - 422 * s;
+    ctx.save(); ctx.translate(0, -torsoRise); ctx.beginPath(); ctx.rect(-400, neck, 1880, 2400); ctx.clip();
+    ctx.translate(o.x, 0); ctx.scale(sx, 1); ctx.translate(-o.x, 0); C.drawKaan(ctx, o); ctx.restore();
+    ctx.save(); ctx.translate(0, -headRise); ctx.beginPath(); ctx.rect(-400, -600, 1880, neck + 600 + 2); ctx.clip();
+    ctx.translate(o.x + 2 * s, neck); ctx.rotate(headRot); ctx.translate(-(o.x + 2 * s), -neck); C.drawKaan(ctx, o); ctx.restore();
   }
   shot('b19-omuz', k => k.shrug, k => k.insert, (ctx, t, u, tl) => {
     const k = times(), tw = twos(t);
-    const bg = blurredWorld('bg-kaan-pre', k.shrug, .9, 560, 640, 6, { noBall: true });
+    const bg = blurredWorld('bg-kaan-pre', k.shrug, .9, 700, 700, 6, {});
     drawBlurBg(ctx, bg, 1 + u * .02);
-    const dip = Math.sin(Math.PI * seg(tw, k.shrugUp - .14, k.shrugUp)) * -10;
-    const up = E.outBack(seg(tw, k.shrugUp, k.shrugUp + .14)) * 42;
-    const rise = dip + up, headRot = -.13 * E.outC(seg(tw, k.shrugUp, k.shrugUp + .14));
+    // beklenti (2 kare çökme) → 4 karede yukarı → 10 kare tutma → iniş
+    const dip = Math.sin(Math.PI * seg(tw, k.shrugUp - .14, k.shrugUp)) * -12;
+    const up = E.outBack(seg(tw, k.shrugUp, k.shrugUp + .14)) * (1 - E.io(seg(tw, k.shrugUp + .48, k.insert)));
     const look = tw >= k.shrugUp ? .8 : -.2;
     ctx.save(); cam(ctx, lerp(1, 1.03, u), 540, 960);
-    drawKaanSplit(ctx, { x: 500, y: 2250, s: 3.4, seed: 11, expr: 'calm', look, blink: 0 }, headRot, rise);
+    drawKaanShrug(ctx, { x: 500, y: 2250, s: 3.4, seed: 11, expr: 'calm', look, blink: 0 }, dip + up * 70, dip + up * 22, -.17 * up, 1 + .04 * up);
     ctx.restore();
     finish(ctx);
   });
@@ -581,14 +621,14 @@
   shot('b20-darbe', k => k.release, k => k.fall, (ctx, t, u, tl) => {
     const k = times(), cu = E.io(seg(t, k.release, k.impact));
     ctx.save(); shake(ctx, t);
-    cam(ctx, lerp(1.12, 1.3, cu), lerp(780, 660, cu), lerp(700, 790, cu));
+    cam(ctx, lerp(.86, 1.2, cu), lerp(700, 660, cu), lerp(1130, 880, cu));
     drawWorld(ctx, t, {});
     ctx.restore();
     finish(ctx);
   });
   shot('b20-devrilme', k => k.fall, k => k.wide, (ctx, t, u, tl) => {
     const k = times(), cu = E.io(seg(t, k.fall, k.ground + .3));
-    ctx.save(); cam(ctx, lerp(.98, .78, cu), lerp(520, 250, cu), lerp(780, 880, cu));
+    ctx.save(); cam(ctx, lerp(1.0, .7, cu), lerp(560, 330, cu), lerp(900, 1110, cu));
     drawWorld(ctx, t, {});
     ctx.restore();
     finish(ctx);
@@ -597,7 +637,7 @@
   /* --- 21: geniş plan, toz iner, kimse yok --- */
   shot('b21-genis', k => k.wide, k => k.kaan, (ctx, t, u, tl) => {
     const z = lerp(.62, .64, E.io(u)), tw = twos(t);
-    ctx.save(); cam(ctx, z, 480, 900);
+    ctx.save(); cam(ctx, z, 480, 1100);
     drawWorld(ctx, t, { kaan: { expr: 'worried', look: -.8, phone: true, blink: 0 } });
     airDust(ctx, t, 50, 4, [-500, 500, 1900, 800], .9);
     ctx.restore();

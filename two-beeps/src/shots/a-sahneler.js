@@ -330,17 +330,51 @@
   // =========================================================
   // a01  "Grandpa left me three things."  Kaan belden yukarı, üç numaralı etiket
   // =========================================================
+  // Kaan'ın elindeki katlı liste (Kaan yerel koordinatı; el drawKaan'daki gibi (86,-240))
+  function heldList(ctx, kx, ky, s, flut, t) {
+    ctx.save(); ctx.translate(kx, ky); ctx.scale(s, s);
+    ctx.translate(108, -262); ctx.rotate(-.12 + flut * .03);
+    const w = 112, h = 146, lw = 4.2;
+    C.seed(2201);
+    C.shape(ctx, [[-w / 2, -h / 2], [w / 2, -h / 2], [w / 2, h / 2], [-w / 2, h / 2]], PAPER_BK, {
+      lw, shade: c => {
+        // arkadan sızan soluk yazı
+        c.save(); c.globalAlpha = .22; for (let k = 0; k < 6; k++) { c.strokeStyle = INK_OLD; c.lineWidth = 2; c.beginPath(); const yy = -h / 2 + 22 + k * 20; c.moveTo(-w / 2 + 14, yy); for (let x = -w / 2 + 14; x < w / 2 - 12 - (k % 3) * 14; x += 6) c.lineTo(x, yy + Math.sin(x * .7 + k) * 3); c.stroke(); } c.restore();
+        C.blot(c, [[w * .1, -h], [w, -h], [w, h], [w * .25, h]], '#b8a479', .45);
+      }
+    });
+    // kat çizgisi
+    C.seed(2202); C.line(ctx, [[-w / 2 + 4, 0], [w / 2 - 4, 2]], 2, '#8a6a40', .5);
+    // alt kenardan belli belirsiz mavi karalama
+    ctx.save(); ctx.beginPath(); ctx.rect(-w / 2, h / 2 - 9, w, 12); ctx.clip();
+    ctx.strokeStyle = BLUE; ctx.globalAlpha = .75; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.beginPath();
+    for (let k = 0; k <= 12; k++) { const x = -w / 2 + 10 + k * (w - 26) / 12, y = h / 2 - 2 + (k % 2 ? -7 : 2); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.restore();
+    // rüzgârda kalkan köşe
+    const lift = 10 + flut * 8;
+    C.seed(2203); C.shape(ctx, [[w / 2, -h / 2], [w / 2 - 30, -h / 2], [w / 2 - lift * .6, -h / 2 + lift * .5], [w / 2, -h / 2 + 30]], PAPER, { lw: lw * .8, amp: .3 });
+    ctx.restore();
+    // el (drawKaan'daki el, kâğıdın önünde)
+    ctx.save(); ctx.translate(kx, ky); ctx.scale(s, s); C.seed(2204);
+    C.shape(ctx, C.ell(86, -240, 15, 15, 18), P.skin, { lw: 5.2 / Math.sqrt(s) });
+    C.line(ctx, [[78, -246], [92, -244]], 5.2 / Math.sqrt(s) * .45);
+    ctx.restore();
+  }
   shot('a01', (ctx, t) => {
     const t0 = 0, t1 = K('a02'), u = seg(t, t0, t1);
+    const tq = q2(t), thr = W(1, 4).t0;
+    // 0. kareden itibaren yavaş itme (baş üstü her zaman y ≥ 960: paket 1. cümleyi 690–910 bandında gösterir)
     ctx.save();
-    const z = 1 + .035 * E.io(u); cam(ctx, 540, 960 - 20 * u, z);
-    yard(ctx, 1240, u, 31);
-    // Kaan
-    const tq = q2(t), breath = Math.sin(tq * 2.4) * 4;
-    const thr = W(1, 4).t0;
-    const look = lerp(0, .7, E.outC(seg(tq, thr - .1, thr + .25)));
-    const blink = (tq > .9 && tq < 1.0) || (tq > thr + .55 && tq < thr + .65) ? 1 : 0;
-    C.drawKaan(ctx, { x: 330, y: 2250 + breath, s: 2.6, expr: 'calm', look, blink, phone: false, seed: 11 });
+    const z = 1 + .08 * E.outQ(u); ctx.translate(560, 990); ctx.scale(z, z); ctx.translate(-560, -990);
+    yard(ctx, 1380, u, 31);
+    const ks = 1.25, kx = 400, breath = Math.sin(tq * 2.4) * 3;
+    const ky = 960 + 580 * ks + 8 + breath;
+    // liste ilk 0,4 sn'de hafifçe kalkar; sonra Kaan listeden etiketlere bakar
+    const raise = E.outC(seg(tq, 0, .4));
+    const look = lerp(.55, -.1, E.io(seg(tq, thr - .15, thr + .2)));
+    const blink = (tq > 1.0 && tq < 1.1) || (tq > thr + .6 && tq < thr + .7) ? 1 : 0;
+    C.drawKaan(ctx, { x: kx, y: ky, s: ks, expr: 'calm', look, blink, phone: false, seed: 11 });
+    const flut = Math.sin(tq * 9) * .5 + Math.sin(tq * 5.3) * .5;
+    heldList(ctx, kx, ky + 26 * (1 - raise), ks, flut, t);
     ctx.restore();
     // üç etiket: "three" ile sırayla pat diye düşer
     for (let i = 0; i < 3; i++) {
@@ -438,18 +472,18 @@
   // =========================================================
   shot('a04', (ctx, t) => {
     const t0 = K('a04'), t1 = K('a05'), u = seg(t, t0, t1);
-    const tu = W(4, 3).t0 - .22;                 // "list" ile açılır
-    const half = E.io(seg(q2(t), tu, tu + .5));
-    const pu = E.io(seg(t, tu + .3, t1));        // yavaş itme
-    const fy = lerp(lerp(1080, 880, E.io(seg(t, tu, tu + .6))), 1010, pu);
-    const z = punch(t, t0, .08) * lerp(.98, 1.12, pu);
+    const tq = q2(t);
+    const tin = t0 + .02, tl = W(4, 3).t0;          // "list": kâğıt düzleşir
+    const slide = E.outC(seg(tq, tin, tin + .3));   // yazılı liste alttan kayarak masaya gelir
+    const flat = E.outBack(seg(tq, tl - .12, tl + .2));
+    const pu = E.io(seg(t, tl, t1));
+    const fy = lerp(830, 1010, pu), z = lerp(1.0, 1.14, pu) * punch(t, t0, .06);
     ctx.save(); cam(ctx, 540, fy, z);
     table(ctx, -400, -200, 1500, 2400);
-    const k = E.outC(seg(t, t0, t0 + .15));
-    ctx.translate(LX, LY + 30 * (1 - k));
-    const topY = half < .5 ? 450 : 450 - 450 * (-Math.cos(Math.PI * half));
-    listShadow(ctx, Math.min(topY, 450), 900, .35 * k);
-    drawList(ctx, { half, flap: 0 });
+    ctx.translate(LX + 120 * (1 - slide), LY + 700 * (1 - slide));
+    ctx.translate(350, 450); ctx.rotate(.12 * (1 - slide) - .02 * (1 - flat)); ctx.scale(1, lerp(.94, 1, flat)); ctx.translate(-350, -450);
+    listShadow(ctx, 0, 900, .35);
+    drawList(ctx, { half: 1, flap: 0 });
     ctx.restore();
     lampLight(ctx, 500, 760, 1250, 1);
     tag(ctx, 800, 250, swing(q2(t), t0, .2, 8), '3', 2034, { s: .8 });
@@ -547,6 +581,19 @@
     grain(ctx);
   });
 
+  // Gülle: b-sahneler.js drawBall ile aynı (Daisy yerel koordinatı, s=1: bom ucu (-118.8,-858.1), halat 455).
+  const D_TIP = [-118.8, -858.1], ROPE = 455, BALL_R = 58;
+  function drawBallD(ctx, dx, dy, s, sw) {
+    ctx.save(); ctx.translate(dx, dy); ctx.scale(s, s);
+    const bx = D_TIP[0] + Math.sin(sw) * ROPE, by = D_TIP[1] + Math.cos(sw) * ROPE, hk = [D_TIP[0] + Math.sin(sw) * 404, D_TIP[1] + Math.cos(sw) * 404];
+    C.seed(71);
+    C.line(ctx, [hk, [bx - Math.sin(sw) * BALL_R, by - Math.cos(sw) * BALL_R]], 6, P.ink, .2);
+    C.line(ctx, [hk, [bx - Math.sin(sw) * BALL_R, by - Math.cos(sw) * BALL_R]], 2.4, P.steelLt, .2);
+    C.shape(ctx, C.ell(bx, by, BALL_R, BALL_R, 26), P.steel, { lw: 5, shade: c => { C.blot(c, C.ell(bx + 18, by + 16, BALL_R * .9, BALL_R * .85, 18), P.steelDk, .8); c.fillStyle = 'rgba(255,255,255,.35)'; c.beginPath(); c.ellipse(bx - 20, by - 22, 14, 8, -.6, 0, TAU); c.fill(); } });
+    C.shape(ctx, C.ell(bx - Math.sin(sw) * (BALL_R + 4), by - Math.cos(sw) * (BALL_R + 4), 12, 9, 12), P.steelDk, { lw: 3 });
+    ctx.restore();
+  }
+
   // =========================================================
   // a08  "The crane is called Daisy."  Daisy avluya kameraya doğru gelir, durur, yaylanır.
   // =========================================================
@@ -565,7 +612,9 @@
     const s = lerp(.5, .92, arr), x = lerp(700, 520, arr), y = lerp(1040, 1150, arr) + Math.abs(Math.sin(tq * 22)) * 4 * (1 - arr);
     // fren yaylanması: burun öne eğilir
     ctx.save(); ctx.translate(x, y); ctx.transform(1, 0, 0, 1 - rock * .025, 0, 0); ctx.translate(-x, -y + rock * 6);
-    C.drawDaisy(ctx, { x, y, s, seed: 23, hook: Math.sin(Math.max(0, tq - tStop) * 6) * Math.exp(-Math.max(0, tq - tStop) * 2) * .25 + (1 - arr) * .12 });
+    const hk = Math.sin(Math.max(0, tq - tStop) * 4.2) * Math.exp(-Math.max(0, tq - tStop) * 1.2) * .2 + (1 - arr) * .1;
+    drawBallD(ctx, x, y, s, hk);
+    C.drawDaisy(ctx, { x, y, s, seed: 23, hook: hk });
     ctx.restore();
     dustAt(ctx, x - 90 * s, y, t, tStop - .05, 900, s * .7);
     dustAt(ctx, x + 90 * s, y, t, tStop, 910, s * .7);
@@ -592,7 +641,10 @@
     let ox = 0, oy = 0, sq = 0;
     [tC1, tC2, tC3].forEach((tc, i) => { const [a, b, c] = coughOffset(tq, tc); const m = i === 2 ? 1.5 : 1; ox += a * m; oy += b * m; sq = Math.max(sq, c); });
     ctx.save(); ctx.translate(bx + ox, by + oy); ctx.scale(1 + sq * .03, 1 - sq * .04); ctx.translate(-bx, -by);
-    C.drawDaisy(ctx, { x: bx, y: by, s, seed: 23, hook: Math.sin(tq * 2) * .03 });
+    let hk = Math.sin(tq * 2) * .03;
+    [tC1, tC2, tC3].forEach((tc, i) => { const d = tq - tc; if (d > 0) hk += (i === 2 ? .16 : .08) * Math.sin(d * 4.2) * Math.exp(-d * 1.1); });
+    drawBallD(ctx, bx, by, s, hk);
+    C.drawDaisy(ctx, { x: bx, y: by, s, seed: 23, hook: hk });
     ctx.restore();
     // cıvata: aynadan düşer, yerde zıplar ("older than my dad")
     if (tq >= tBolt) {
@@ -618,42 +670,112 @@
   // =========================================================
   // a10  "Job one: an old chimney, in an empty lot."  geniş plan: boş arsa, baca, çit. "JOB 1" etiketi.
   // =========================================================
+  // Dünya (b-sahneler.js ile aynı): ufuk 1060, baca tabanı (560,1100), baca boyu 870, Daisy önü (878,1180), gülle kancada.
+  const WD = { hz: 1060, cx: 560, cb: 1100, H: 870, bw: 130, tw: 78, dX: 878, dY: 1180 };
+  const BGW = { x: -1100, y: -800, w: 3300, h: 3600, horizon: (1060 + 800) / 3600, chimneyX: -1, seed: 5, dust: .25 };
+  // Planlanan devrilme alanı (TB.zone): bacanın SAĞ-ÖNÜ, Daisy'nin önünde. B ile ortak değer.
+  const ZONE = { cx: 800, cy: 1240, w: 360, h: 100 };
+  TB.zoneA = ZONE;
+  function worldChimney(ctx) { // b-sahneler.js chimneyCv ile aynı çizim (aynı tohumlar), yerinde
+    const cx = WD.cx, cb = WD.cb, ct = cb - WD.H, bw = WD.bw, tw = WD.tw, lw = 3.4; let n = 0; const R = () => TB.rand(9000 + n++);
+    const lx = (yy, s_) => { const u = (cb - yy) / (cb - ct); return cx + s_ * (bw / 2 + (tw / 2 - bw / 2) * u); };
+    C.seed(5);
+    C.shape(ctx, [[cx - bw / 2, cb], [cx - tw / 2, ct], [cx + tw / 2, ct], [cx + bw / 2, cb]], P.brick, {
+      lw, shade: g => {
+        let row = 0; for (let yy = cb - 13; yy > ct; yy -= 13, row++) {
+          const l = lx(yy, -1), r = lx(yy, 1);
+          g.strokeStyle = 'rgba(217,194,160,.5)'; g.lineWidth = 1.4; g.beginPath(); g.moveTo(l, yy + R() * 1.2); g.lineTo(r, yy + R() * 1.2); g.stroke();
+          for (let xx = l + (row % 2 ? 10 : 22); xx < r - 4; xx += 26) { g.beginPath(); g.moveTo(xx, yy); g.lineTo(xx + R() - .5, yy + 13); g.stroke(); if (R() < .09) { g.fillStyle = R() < .5 ? P.brickLt : P.brickDk; g.fillRect(xx + 1, yy + 1, 24, 11); } }
+        }
+        C.blot(g, [[cx + 6, ct - 10], [cx + 80, ct - 10], [cx + 90, cb + 10], [cx + 14, cb + 10]], P.brickDk, .55);
+        const sg = g.createLinearGradient(0, ct, 0, ct + 130); sg.addColorStop(0, 'rgba(58,44,36,.85)'); sg.addColorStop(1, 'rgba(58,44,36,0)'); g.fillStyle = sg; g.fillRect(cx - 80, ct, 160, 130);
+      }
+    });
+    [.32, .7].forEach(u => { const yy = cb - (cb - ct) * u, l = lx(yy, -1) - 6, r = lx(yy, 1) + 6; C.shape(ctx, [[l, yy - 9], [r, yy - 9], [r, yy + 7], [l, yy + 7]], P.brickDk, { lw: lw * .8 }); });
+    C.shape(ctx, [[cx - tw / 2 - 12, ct + 18], [cx + tw / 2 + 12, ct + 18], [cx + tw / 2 + 8, ct - 6], [cx - tw / 2 - 8, ct - 6]], P.brickDk, { lw });
+    C.shape(ctx, [[cx - tw / 2 - 4, ct - 6], [cx + tw / 2 + 4, ct - 6], [cx + tw / 2, ct - 14], [cx - tw / 2, ct - 14]], P.soot, { lw: lw * .8 });
+    C.line(ctx, [[cx - 14, cb - (cb - ct) * .46], [cx - 6, cb - (cb - ct) * .5], [cx - 12, cb - (cb - ct) * .55], [cx - 2, cb - (cb - ct) * .6]], 2.2, P.ink, .4);
+    // kaide (b: drawPlinth)
+    C.seed(55);
+    C.shape(ctx, [[cx - bw / 2 - 22, cb + 4], [cx + bw / 2 + 22, cb + 4], [cx + bw / 2 + 16, cb - 22], [cx - bw / 2 - 16, cb - 22]], P.concrete, { lw: 3.4, shade: c => C.blot(c, [[cx + 10, cb - 30], [cx + 100, cb - 30], [cx + 100, cb + 10], [cx + 20, cb + 10]], P.dustDk, .35) });
+  }
+  function worldLot(ctx) { // b-sahneler.js drawLot ile aynı (sol: boş otopark, P tabelası)
+    C.seed(61);
+    ctx.save(); ctx.globalAlpha = .55;
+    for (let i = 0; i < 8; i++) { const x = -720 + i * 150; C.line(ctx, [[x, 1122], [x - 60, 1290]], 7, P.paper, .6); }
+    C.line(ctx, [[-760, 1290], [420, 1290]], 7, P.paper, .5);
+    ctx.restore();
+    for (let i = 0; i < 7; i++) { const x = -690 + i * 150; C.shape(ctx, [[x - 46, 1262], [x + 30, 1262], [x + 28, 1276], [x - 48, 1276]], P.concrete, { lw: 2.6, amp: .5 }); }
+    C.line(ctx, [[-560, 1110], [-560, 960]], 6, P.steelDk, .3);
+    C.shape(ctx, [[-604, 900], [-516, 900], [-516, 980], [-604, 980]], P.paper, { lw: 3.4 });
+    ctx.save(); ctx.font = '700 64px Rubik'; ctx.textAlign = 'center'; ctx.fillStyle = P.ink; ctx.fillText('P', -560, 964); ctx.restore();
+  }
+  // =========================================================
+  // a10  "Job one: an old chimney, in an empty lot."  B'nin 29,0 geniş planıyla aynı yerleşim:
+  // baca ortada, sağda Daisy (gülle kancada, salınır), sağ-önde TB.zone; Kaan alanın şeridini gerer; tepeden bir tuğla düşer.
+  // =========================================================
   shot('a10', (ctx, t) => {
     const t0 = K('a10'), t1 = K('end'), u = seg(t, t0, t1);
     const tq = q2(t);
-    ctx.save(); cam(ctx, lerp(500, 470, E.io(u)), lerp(980, 1000, E.io(u)), lerp(1.0, 1.08, E.io(u)));
-    C.drawBackground(ctx, { x: -60, y: 0, w: 1200, h: 1960, horizon: .58, chimneyX: .4, seed: 5, dust: .3 });
+    const tj = W(12, 1).t0 - .04, tCh = W(12, 5).t0, tLot = W(12, 8).t0;
+    const pu = E.io(u);
+    ctx.save(); cam(ctx, lerp(650, 610, pu), lerp(1060, 1010, pu), lerp(.8, .86, pu) * punch(t, t0, .05));
+    C.drawBackground(ctx, BGW);
+    worldLot(ctx);
+    worldChimney(ctx);
+    TB.zone(ctx, ZONE.cx, ZONE.cy, ZONE.w, ZONE.h, 1);
+    // gülle salınımı (birerli: ışık/kamera gibi sürekli; kanca da aynı açıyla)
+    const sw = .07 * Math.sin((t - t0) * 2.6) + .03 * Math.sin((t - t0) * 4.1 + 1);
+    drawBallD(ctx, WD.dX, WD.dY, 1, sw);
+    C.drawDaisy(ctx, { x: WD.dX, y: WD.dY, s: 1, seed: 23, hook: sw, mood: 'sleepy' });
+    // Kaan: alanın sol-ön kazığından şeridi gerer; "Job one" ve "empty lot"ta iki çekiş (geriye yaslanır)
+    const kx = 380, ky = 1360, ks = 1;
+    const tug = t2 => { const d = tq - t2; return d < 0 ? 0 : Math.sin(Math.min(1, d / .5) * Math.PI); };
+    const lean = .05 * Math.max(tug(tj + .1), tug(tLot - .1));
+    const hand = [kx + (86 * Math.cos(-lean) + 240 * Math.sin(-lean)) * ks, ky + (-240 * Math.cos(-lean) + 86 * Math.sin(-lean)) * ks];
+    const post = [ZONE.cx - ZONE.w * .5, ZONE.cy + ZONE.h / 2 - Math.max(26, ZONE.w * .13) * .62];
+    const tight = Math.max(tug(tj + .1), tug(tLot - .1));
+    // şerit: rüzgârda dalgalanır, çekişte gerilir
+    const pts = []; for (let i = 0; i <= 16; i++) {
+      const v = i / 16, sag = Math.sin(v * Math.PI) * (34 * (1 - tight) + 6), wave = Math.sin(v * 9 - (t - t0) * 7) * 7 * Math.sin(v * Math.PI) * (1 - .7 * tight);
+      pts.push([lerp(post[0], hand[0], v), lerp(post[1], hand[1], v) + sag + wave]);
+    }
+    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.strokeStyle = P.ink; ctx.lineWidth = 10; ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.stroke();
+    ctx.setLineDash([16, 16]); ctx.strokeStyle = P.hazard; ctx.lineWidth = 6; ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+    ctx.save(); ctx.translate(kx, ky); ctx.rotate(-lean); ctx.translate(-kx, -ky);
+    C.drawKaan(ctx, { x: kx, y: ky, s: ks, seed: 11, expr: 'calm', look: .7, phone: false, blink: (tq > t0 + 1.2 && tq < t0 + 1.3) ? 1 : 0 });
+    ctx.restore();
+    // "old chimney": tepeden tek tuğla düşer, tabanda küçük toz (öncü ima)
+    if (t >= tCh) {
+      const d = t - tCh, ct = WD.cb - WD.H, g = 1400, yEnd = WD.cb - 14, y = Math.min(yEnd, ct + 4 + .5 * g * d * d), land = Math.sqrt(2 * (yEnd - ct - 4) / g);
+      const x = WD.cx - 46 - d * 22;
+      if (d < land) { ctx.save(); ctx.translate(x, y); ctx.rotate(d * 8); C.seed(990); C.shape(ctx, [[-12, -6], [12, -6], [12, 6], [-12, 6]], P.brick, { lw: 3, amp: .3 }); ctx.restore(); }
+      else { const dd = d - land; C.seed(991); C.shape(ctx, [[x - 12, yEnd + 4], [x + 12, yEnd + 2], [x + 12, yEnd + 14], [x - 12, yEnd + 14]], P.brick, { lw: 3, amp: .3 }); puff(ctx, x, yEnd - 6 - dd * 20, 14 + 30 * E.outC(Math.min(1, dd / .8)), P.dustLt, .9 * (1 - Math.min(1, dd / 1.1)), 992); }
+    }
     // savrulan toz zerreleri
     for (let i = 0; i < 26; i++) {
-      const px = ((TB.rand(i * 3) * 1300 + t * (40 + TB.rand(i) * 60)) % 1300) - 100, py = 1050 + TB.rand(i * 7) * 260 + Math.sin(t * 2 + i) * 8;
-      ctx.fillStyle = `rgba(216,202,176,${.35 + TB.rand(i * 5) * .4})`; ctx.beginPath(); ctx.arc(px, py, 2 + TB.rand(i * 11) * 3.5, 0, TAU); ctx.fill();
-    }
-    // yuvarlanan kuru ot ("empty lot")
-    const tw = W(12, 8).t0 - .5, d = tq - tw;
-    if (d > 0) {
-      const x = -60 + d * 300, y = 1300 - Math.abs(Math.sin(d * 5)) * 30, r = 34;
-      ctx.save(); ctx.translate(x, y); ctx.rotate(d * 7); C.seed(980);
-      for (let k = 0; k < 7; k++) { const a = k / 7 * Math.PI; C.line(ctx, C.ell(0, 0, r, r * (.4 + .6 * Math.abs(Math.cos(a))), 16).map(([px, py]) => [px * Math.cos(a) - py * Math.sin(a), px * Math.sin(a) + py * Math.cos(a)]), 2.6, '#8b7a4a', .8); }
-      ctx.restore();
+      const px = ((TB.rand(i * 3) * 1800 + t * (40 + TB.rand(i) * 60)) % 1800) - 300, py = 980 + TB.rand(i * 7) * 380 + Math.sin(t * 2 + i) * 8;
+      ctx.fillStyle = `rgba(216,202,176,${.35 + TB.rand(i * 5) * .4})`; ctx.beginPath(); ctx.arc(px, py, 2.4 + TB.rand(i * 11) * 4, 0, TAU); ctx.fill();
     }
     ctx.restore();
-    // JOB 1 etiketi: "Job one" ile düşer
-    const tj = W(12, 1).t0 - .04;
+    // JOB 1 etiketi: "Job one" ile düşer (bomdan uzakta, sol üst)
     if (t >= tj) {
       const k = E.outBack(seg(t, tj, tj + .22));
-      tag(ctx, 740, lerp(170, 310, k), swing(q2(t), tj + .12, .22, 7), 'JOB 1', 2100, { s: 1, w: 200, h: 110, font: 54, str: 90 });
+      tag(ctx, 250, lerp(190, 330, k), swing(q2(t), tj + .12, .22, 7), 'JOB 1', 2100, { s: 1, w: 200, h: 110, font: 54, str: 90 });
     }
     vignette(ctx, .25); grain(ctx);
   });
 
   // ---------- ses ekibi için önemli anlar (sn, timeline'dan) ----------
   const cue = {
+    listFlutter: () => 0,                             // 0. kare: elde katlı liste, rüzgârda kâğıt köşesi
     tagsDrop: () => W(1, 4).t0 - .04,                // üç etiket düşer (kâğıt "tık"lar, 0.16 sn arayla 3 kez)
     craneHookSwing: () => K('a02') + .22,            // kanca sallanır (zincir şıkırtısı)
     letterSlap: () => K('a03'),                       // mektup masaya çarpar
     debtStamp: () => W(3, 2).t0,                      // kırmızı damga "güm"
-    listSlap: () => K('a04'),                         // katlı liste masaya düşer
-    paperUnfold: () => W(4, 3).t0 - .22,              // kâğıt açılır (kagit-hisirti)
+    listSlide: () => K('a04') + .02,                  // yazılı liste masaya kayar (kagit-hisirti)
+    listFlatten: () => W(4, 3).t0 - .12,              // "list": kâğıt düzleşir (hafif hışırtı)
     fingerTrace: () => S(6).t0,                       // parmak satırlarda kayar
     flapUnfold: () => W(7, 2).t0 - .1,                // alt kanat açılır, mavi karalama görünür
     blueCloseup: () => K('a07'),                      // "In blue" yakın plan
@@ -669,7 +791,10 @@
     cough3: () => S(11).t1 + .08,                     // büyük öksürük + duman topu
     lotWide: () => K('a10'),                          // boş arsa: rüzgâr (ortam-bos-arsa-dongu)
     job1Tag: () => W(12, 1).t0 - .04,                 // JOB 1 etiketi düşer
-    tumbleweed: () => W(12, 8).t0 - .5,               // kuru ot yuvarlanır
+    tapeTug1: () => W(12, 1).t0 + .06,                // Kaan şeridi çeker (şerit gerilme)
+    brickDrop: () => W(12, 5).t0,                     // bacanın tepesinden tek tuğla düşer
+    brickLand: () => W(12, 5).t0 + Math.sqrt(2 * (870 - 18) / 1400), // tuğla yere değer (küçük 'tok')
+    tapeTug2: () => W(12, 8).t0 - .1,                 // ikinci çekiş
     cutToNight: () => K('end')                        // sert kesme (B)
   };
   TB.cuesA = {};
