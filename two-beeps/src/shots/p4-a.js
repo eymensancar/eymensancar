@@ -126,7 +126,22 @@
   const TRY_AGAIN = [225, 505], BUILDING = [225, 330];
 
   /* ================= DÜNYA: DEDENİN OFİSİ ================= */
-  function officeCv(lamp) { return cached('ofis' + (lamp ? 1 : 0), 2160, 1800, c => { c.scale(2, 2); C.drawOffice(c, { x: 0, y: 0, w: 1080, h: 900, lamp, phoneOn: false, seed: 21 }); }); }
+  // drawOffice çatlağı hep yerden tavana çizer; ipucu 26. cümleden önce açılmasın diye (B ile aynı yöntem) çatlak çizgileri
+  // (duvar çizimlerinden sonraki 11.–16. stroke) yalnız takvimin arkasına kırpılır: bu yarıda çatlak hiçbir karede görünmez.
+  const CAL_CLIP = [697, 276, 204, 258];
+  function officeCv(lamp) {
+    return cached('ofis' + (lamp ? 1 : 0), 2160, 1800, c => {
+      c.scale(2, 2); let n = 0;
+      const px = new Proxy(c, {
+        get(tg, k) {
+          if (k === 'stroke') return (...a) => { n++; if (n >= 11 && n <= 16) { tg.save(); tg.beginPath(); tg.rect(...CAL_CLIP); tg.clip(); tg.stroke(...a); tg.restore(); } else tg.stroke(...a); };
+          const v = tg[k]; return typeof v === 'function' ? v.bind(tg) : v;
+        },
+        set(tg, k, v) { tg[k] = v; return true; }
+      });
+      C.drawOffice(px, { x: 0, y: 0, w: 1080, h: 900, lamp, phoneOn: false, seed: 21 });
+    });
+  }
   const DOOR = { x0: -250, x1: -40, y0: 90, y1: 630 };
   const NAIL = [25, 250], PHONE = [528, 512], CUP = [300, 558], SOCKET = [700, 600];
   const SKETCH = [[150, 160, 190, 140, -.05, 0, '1981'], [390, 120, 170, 130, .04, 1, '1987'], [250, 360, 180, 130, .03, 2, '1994'], [480, 330, 160, 120, -.04, 3, '2003']];
