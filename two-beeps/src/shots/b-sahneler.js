@@ -281,7 +281,7 @@
   function impactFx(ctx, t) {
     const k = times(), tau = t - k.impact; if (tau < 0) return;
     brickSet(ctx, tau, 22, 7, (i, r) => ({ x: HIT[0] - r(1) * 20, y: HIT[1] + (r(2) - .5) * 50, vx: -150 - r(3) * 520, vy: -420 + r(4) * 380 }), .9);
-    dustCloud(ctx, tau, 14, 8, (i, r) => ({ x: HIT[0] - 10 - r(1) * 30, y: HIT[1] + (r(2) - .5) * 60, r: 26 + r(3) * 34, vx: -40 - r(4) * 190, rise: -10 + r(5) * 50, grow: .35, delay: r(6) * .06, sink: 20 }), clamp(1.2 - tau / 3.2), 3);
+    dustCloud(ctx, tau, 20, 8, (i, r) => ({ x: HIT[0] - 10 - r(1) * 30, y: HIT[1] + (r(2) - .5) * 60, r: 10 + r(3) * 24, vx: -80 - r(4) * 320, rise: -30 + r(5) * 110, grow: .25, delay: r(6) * .05, sink: 30 }), clamp(1.15 - tau / 1.1), 1.2);
   }
   function groundFx(ctx, t, alphaMul) {
     const k = times(), tau = t - k.ground; if (tau < -.6) return;
@@ -291,7 +291,7 @@
     if (tau < 0) return;
     brickSet(ctx, tau, 46, 12, (i, r) => { const along = r(1); return { x: PIV[0] - 40 - along * 860, y: WD.cb - 40 - r(2) * 60, vx: (r(3) - .5) * 520 - 80, vy: -300 - r(4) * 700 * (1 - along * .4) }; }, 1);
     const a = (alphaMul == null ? 1 : alphaMul) * (tau < 3 ? 1 : clamp(1 - (tau - 3) / 5, .25, 1));
-    dustCloud(ctx, tau, 40, 13, (i, r) => { const along = r(1); return { x: PIV[0] + 40 - along * 960, y: WD.cb - 30 - r(2) * 40, r: 60 + r(3) * 90 + (1 - along) * 20, vx: (r(4) - .5) * 160 - 50 * along, rise: 90 + r(5) * 240, grow: 1.0 + r(6) * .5, delay: along * .12 + r(7) * .08, sink: 26 }; }, a, 9);
+    dustCloud(ctx, tau, 56, 13, (i, r) => { const along = r(1); return { x: PIV[0] + 40 - along * 960, y: WD.cb - 30 - r(2) * 40, r: 40 + r(3) * r(3) * 150 + (1 - along) * 20, vx: (r(4) - .5) * 220 - 60 * along, rise: 60 + r(5) * r(5) * 520, grow: 1.0 + r(6) * .5, delay: along * .12 + r(7) * .08, sink: 26 }; }, a, 9);
   }
   function airDust(ctx, t, n, sb, box, a) { // havada asılı, yavaş sürüklenen zerreler (birerli)
     for (let i = 0; i < n; i++) {
@@ -374,7 +374,7 @@
     ctx.drawImage(darkCv, 0, 0);
   }
   shot('b13-gece', k => k.start, k => k.phone, (ctx, t, u, tl) => {
-    const k = times(), z = lerp(1, 1.07, E.io(u)), s = 1.55, kx = 520, ky = 1420;
+    const k = times(), z = lerp(1, 1.07, E.io(u)), s = 2.5, kx = 500, ky = 1880;
     const sec = t - k.start;
     ctx.save(); cam(ctx, z, 560, 900);
     drawRoom(ctx, t, k);
@@ -385,7 +385,7 @@
     const m = ctx.getTransform(); ctx.restore();
     // karanlık + telefon ışığı (ekran kareye göre hafifçe titrer)
     const pX = m.a * (kx + 92 * s) + m.e, pY = m.d * (ky - 236 * s) + m.f, fX = m.a * (kx + 6 * s) + m.e, fY = m.d * (ky - 460 * s) + m.f, br = frameBright(sec);
-    nightLight(ctx, [[pX, pY, 330, .95], [fX, fY, 300, .75 * br]], .86);
+    nightLight(ctx, [[pX, pY, 420, .95], [fX, fY, 420, .8 * br], [240, 500, 420, .45]], .8);
     ctx.save(); ctx.globalCompositeOperation = 'lighter';
     const g = ctx.createRadialGradient(pX, pY, 10, pX, pY, 420); g.addColorStop(0, `rgba(255,226,122,${.32 * br})`); g.addColorStop(1, 'rgba(255,226,122,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920);
     const g2 = ctx.createRadialGradient(fX, fY + 40, 10, fX, fY + 40, 220); g2.addColorStop(0, `rgba(255,226,122,${.14 * br})`); g2.addColorStop(1, 'rgba(255,226,122,0)'); ctx.fillStyle = g2; ctx.fillRect(0, 0, 1080, 1920);
@@ -492,9 +492,9 @@
     C.line(ctx, [pv, [KX, KY]], 30); C.line(ctx, [pv, [KX, KY]], 16, P.steelLt, .2);
     C.shape(ctx, C.ell(pv[0], pv[1], 46, 30, 18), P.steel, { lw: 5 });
     // el: topuzu kavrayan yumruk, kol sağ alttan gelir
-    const ex = KX + 520, ey = KY + 980;
+    const ex = KX + 620, ey = KY + 900;
     C.seed(212);
-    C.shape(ctx, [[KX + 40, KY - 40], [ex + 180, ey - 120], [ex + 20, ey + 120], [KX - 30, KY + 70]], P.jacket, { lw: 7, shade: c => C.blot(c, [[KX + 40, KY + 40], [ex + 200, ey - 40], [ex + 200, ey + 200], [KX, KY + 90]], P.jacketDk, .6) });
+    C.shape(ctx, [[KX + 40, KY - 50], [ex + 260, ey - 200], [ex - 40, ey + 160], [KX - 40, KY + 70]], P.jacket, { lw: 7, shade: c => C.blot(c, [[KX + 40, KY + 40], [ex + 200, ey - 40], [ex + 200, ey + 200], [KX, KY + 90]], P.jacketDk, .6) });
     C.shape(ctx, [[KX + 50, KY - 30], [KX + 120, KY + 30], [KX + 70, KY + 110], [KX - 4, KY + 60]], P.hazard, { lw: 6 });
     C.shape(ctx, C.ell(KX, KY, 50, 50, 22), '#1d1f24', { lw: 6 });
     C.shape(ctx, [[KX - 78, KY - 46], [KX + 40, KY - 70], [KX + 70, KY + 10], [KX + 30, KY + 70], [KX - 70, KY + 60], [KX - 96, KY + 6]], P.skin, { lw: 7, shade: c => C.blot(c, [[KX + 10, KY - 80], [KX + 90, KY - 80], [KX + 90, KY + 90], [KX + 20, KY + 90]], P.skinDk, .5) });
@@ -504,7 +504,7 @@
   shot('b16-kol', k => k.lever, k => k.daisy, (ctx, t, u, tl) => {
     const k = times(), z = lerp(1, 1.05, u);
     // kol yerine oturunca kamera 2 kare sarsılmaz; sadece panel bir piksel titrer (ağırlık)
-    ctx.save(); cam(ctx, z, 540, 900);
+    ctx.save(); cam(ctx, z * 1.35, 560, 760);
     drawLeverPanel(ctx, t); drawLeverAndHand(ctx, t, leverAngle(twos(t)));
     ctx.restore();
     finish(ctx);
@@ -513,7 +513,7 @@
   /* --- 17–18: Daisy, iki bip (bipte hiçbir şey kıpırdamaz) --- */
   const DAISY_CU = { z0: 1.86, z1: 2.04, fx: 0, fy: -230, sx: 470, sy: 820 };
   function drawDaisyCU(ctx, t, z, beepV, mood, bgKey, bgT) {
-    const bg = bgKey === 'post' ? blurredWorld('bg-daisy-post', bgT, 1.15, 640, 800, 7, { noDaisy: true, noBall: true }) : blurredWorld('bg-daisy-pre', bgT, 1.15, 640, 800, 7, { noDaisy: true, noBall: true });
+    const bg = bgKey === 'post' ? blurredWorld('bg-daisy-post', bgT, 1.15, 640, 800, 7, { noDaisy: true, noBall: true }) : blurredWorld('bg-daisy-pre', bgT, 1.15, 1250, 800, 7, { noDaisy: true, noBall: true });
     drawBlurBg(ctx, bg, 1 + (z - 1.8) * .06);
     ctx.save(); cam(ctx, z, DAISY_CU.fx, DAISY_CU.fy, DAISY_CU.sx, DAISY_CU.sy);
     C.drawDaisy(ctx, { x: 0, y: 0, s: 1, seed: 23, beep: beepV, mood, hook: SW0 });
@@ -546,16 +546,16 @@
     const bg = blurredWorld('bg-kaan-pre', k.shrug, .9, 560, 640, 6, { noBall: true });
     drawBlurBg(ctx, bg, 1 + u * .02);
     const dip = Math.sin(Math.PI * seg(tw, k.shrugUp - .14, k.shrugUp)) * -10;
-    const up = E.outBack(seg(tw, k.shrugUp, k.shrugUp + .14)) * 30;
+    const up = E.outBack(seg(tw, k.shrugUp, k.shrugUp + .14)) * 42;
     const rise = dip + up, headRot = -.13 * E.outC(seg(tw, k.shrugUp, k.shrugUp + .14));
     const look = tw >= k.shrugUp ? .8 : -.2;
     ctx.save(); cam(ctx, lerp(1, 1.03, u), 540, 960);
-    drawKaanSplit(ctx, { x: 520, y: 1770, s: 2.4, seed: 11, expr: 'calm', look, blink: 0 }, headRot, rise);
+    drawKaanSplit(ctx, { x: 500, y: 2250, s: 3.4, seed: 11, expr: 'calm', look, blink: 0 }, headRot, rise);
     ctx.restore();
     finish(ctx);
   });
   shot('b19-kol', k => k.insert, k => k.release, (ctx, t, u, tl) => {
-    ctx.save(); cam(ctx, 1.12, 560, 860);
+    ctx.save(); cam(ctx, 1.5, 520, 760);
     drawLeverPanel(ctx, t); drawLeverAndHand(ctx, t, leverAngle(ones(t)));
     ctx.restore();
     finish(ctx);
@@ -604,7 +604,7 @@
     const look = tw < k.kaan + .9 ? -.7 : 0, expr = tw >= k.luck ? 'calm' : 'worried';
     const blink = (tw >= k.kaan + .9 && tw < k.kaan + .9 + 3 / FPS) || (tw >= k.luck + .5 && tw < k.luck + .5 + 3 / FPS) ? 1 : 0;
     ctx.save(); cam(ctx, lerp(1, 1.05, E.io(u)), 540, 900);
-    C.drawKaan(ctx, { x: 530, y: 1690, s: 2.2, seed: 11, expr, look, blink, phone: true });
+    C.drawKaan(ctx, { x: 520, y: 2180, s: 3.2, seed: 11, expr, look, blink, phone: true });
     ctx.restore();
     airDust(ctx, t * 1.4, 18, 6, [-100, 200, 1300, 1400], 1);
     finish(ctx);
@@ -617,7 +617,7 @@
       c.translate(160, 140);
       const g = c.createLinearGradient(0, 0, 0, 1920); g.addColorStop(0, P.groundLt); g.addColorStop(1, P.groundDk); c.fillStyle = g; c.fillRect(-200, -200, 1500, 2400);
       for (let i = 0; i < 40; i++) C.blot(c, C.ell(rnd(i) * 1080, rnd(i + 50) * 1920, 60 + rnd(i + 90) * 100, 18 + rnd(i + 130) * 20, 12), i % 2 ? P.groundDk : P.dustLt, .3);
-      for (let i = 0; i < 110; i++) {
+      for (let i = 0; i < 64; i++) {
         const x = -60 + rnd(1000 + i) * 1200, y = -60 + rnd(2000 + i) * 2050;
         if (Math.abs(x - STONE.x) < STONE.w * .62 && Math.abs(y - STONE.y) < STONE.h * .7) continue;
         const w = 90 + rnd(3000 + i) * 60, h = 44 + rnd(4000 + i) * 16, r = (rnd(5000 + i) - .5) * 1.6;
@@ -764,7 +764,7 @@
     const k = times(), b = beepAt(t, k.endBeep, 1);
     const bg = blurredWorld('bg-daisy-post', k.ground + 6, 1.15, 640, 800, 7, { noDaisy: true, noBall: true });
     drawBlurBg(ctx, bg, 1.3);
-    ctx.save(); cam(ctx, 4.1, 0, -352, 540, 660);
+    ctx.save(); cam(ctx, 7.2, 0, -350, 520, 640);
     C.drawDaisy(ctx, { x: 0, y: 0, s: 1, seed: 23, beep: b.v, mood: 'sleepy', hook: .02 });
     ctx.restore();
     vignette(ctx, .5);
