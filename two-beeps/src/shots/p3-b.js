@@ -105,6 +105,17 @@
     ctx.restore();
   }
 
+  // Daisy'nin yeni takılan eski lastiği (p3-a.js daisyTire ile aynı çizim, etiketsiz): yan ön teker
+  function daisyTire(ctx, x, y, s) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.transform(.55, -.22, 0, 1, 120, 0);
+    const lw = 5.6 / Math.sqrt(s) * 1.25, u = 100; C.seed(6101);
+    C.shape(ctx, C.ell(u, -50, 51, 51, 28), '#45474c', { lw, shade: c => { C.blot(c, C.ell(u + 14, -40, 40, 44, 16), '#2c2e33', .6); C.blot(c, [[u - 40, -96], [u - 10, -100], [u - 16, -82], [u - 40, -80]], '#6c6f75', .7); } });
+    for (let k = 0; k < 8; k++) { const a = k / 8 * TAU + .3; C.line(ctx, [[u + Math.cos(a) * 42, -50 + Math.sin(a) * 42], [u + Math.cos(a) * 49, -50 + Math.sin(a) * 49]], lw * .35, '#6c6f75', .1); }
+    C.shape(ctx, C.ell(u, -50, 25, 25, 20), P.steel, { lw: lw * .7, shade: c => C.blot(c, C.ell(u + 8, -42, 22, 22, 16), P.steelDk, .6) });
+    C.shape(ctx, C.ell(u, -50, 10, 10, 12), P.steelLt, { lw: lw * .6 });
+    ctx.restore();
+  }
+
   /* ================= SU KULESİ: sprite (drawWaterTower'dan, bir kez) ================= */
   const TW = { area: 2000, cx: 1000, base: 1320, x0: 640, y0: 296, w: 720, h: 1032 };   // sprite içinde taban ortası (360,1024)
   function towerSprite() {
@@ -130,6 +141,7 @@
   const CREW = [[1180, 560, 0], [1380, 575, 1], [1560, 552, 2]];
   const HALE = { x: 1950, y: 520 }, CAR = { x: 2550, y: 470 };
   const TH_MAX = 1.53;
+  const WIDE = { z: .44, x: -130, y: -273 };
 
   function fallAngle(t) {
     const k = times(); if (t < k.fall0) return 0;
@@ -258,7 +270,7 @@
     if (!o.noTower) drawTower(ctx, t);
     if (!o.noFx) impactFx(ctx, t);
     if (!o.noBall) drawBall(ctx, ballSw(t));
-    if (!o.noDaisy) { const dx = o.daisyX == null ? DZ.x : o.daisyX; C.drawDaisy(ctx, { x: dx, y: DZ.y + (o.bob || 0), s: 1, seed: 23, hook: ballSw(t), beep: 0, mood: 'sleepy' }); }
+    if (!o.noDaisy) { const dx = o.daisyX == null ? DZ.x : o.daisyX; C.drawDaisy(ctx, { x: dx, y: DZ.y + (o.bob || 0), s: 1, seed: 23, hook: ballSw(t), beep: 0, mood: 'sleepy' }); daisyTire(ctx, dx, DZ.y + (o.bob || 0), 1); }
     if (!o.noFx) landFx(ctx, t);
     ctx.save(); ctx.translate(1380, 0); keepSign(ctx); ctx.restore();
     if (o.crew !== false) CREW.forEach(([x, y, i]) => { const w = o.crewWalk ? o.crewWalk(i) : { dx: 0, ph: 0, walk: false }; worker(ctx, x + w.dx, y, .95, 400 + i * 7, w.ph, w.walk, i === 1); });
@@ -293,7 +305,7 @@
   shot('p3b13-kule', k => k.start, k => k.crew, (ctx, t, u) => {
     const k = times(), e = E.io(u);
     const arrive = E.outC(seg(t, k.start - .3, k.start + 1.3)), dx = lerp(1250, DZ.x, arrive), bob = arrive < 1 ? Math.sin(twos(t) * 30) * 2.5 : 0;
-    ctx.save(); cam(ctx, lerp(.37, .40, e), lerp(-180, -200, e), -330);
+    ctx.save(); cam(ctx, lerp(.41, .44, e), -130, lerp(-300, -273, e));
     drawSite(ctx, t, { daisyX: dx, bob, hale: false, noFx: true });
     airDust(ctx, t, 40, 3, [-1700, -600, 3000, 900], .8);
     if (arrive < 1) { // Daisy'nin tekerleklerinden kalkan toz
@@ -330,7 +342,7 @@
   shot('p3b15-dusus', k => k.release + .02, k => k.plinth, (ctx, t) => {
     const k = times(), p = E.io(seg(t, k.pushD, k.plinth));
     ctx.save(); shake(ctx, t, k.land);
-    const z = lerp(.40, 1.7, p), sx = lerp(540 + (DZ.x + 260) * .40, 520, p), sy = lerp(960 + (DZ.y - 346 + 300) * .40, 640, p);
+    const z = lerp(WIDE.z, 1.7, p), sx = lerp(540 + (DZ.x - WIDE.x) * WIDE.z, 520, p), sy = lerp(960 + (DZ.y - 346 - WIDE.y) * WIDE.z, 640, p);
     cam(ctx, z, DZ.x, DZ.y - 346, sx, sy);
     drawSite(ctx, t, {});
     airDust(ctx, t, 40, 6, [-1600, -700, 2400, 900], .8);

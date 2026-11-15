@@ -179,6 +179,130 @@
     return { p: [p[0] + out * 360, p[1] + 36 + out * 560], rot: .5, press: 0 };
   }
 
+  /* ================= A'NIN DÜNYASI (src/shots/p4-a.js'den kopya: aynı ofis, aynı masa) ================= */
+  function rrect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  const DOOR = { x0: -250, x1: -40, y0: 90, y1: 630 };
+  const NAIL = [25, 250], PHONE = [528, 512], CUP = [300, 558], SOCKET = [700, 600];
+  const SKETCH = [[150, 160, 190, 140, -.05, 0, '1981'], [390, 120, 170, 130, .04, 1, '1987'], [250, 360, 180, 130, .03, 2, '1994'], [480, 330, 160, 120, -.04, 3, '2003']];
+
+  function sketch(ctx, cx, cy, w, h, rot, kind, year, sd) {
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); C.seed(sd);
+    ctx.save(); ctx.globalAlpha = .25; ctx.fillStyle = P.ink; ctx.fillRect(-w / 2 + 5, -h / 2 + 6, w, h); ctx.restore();
+    C.shape(ctx, [[-w / 2, -h / 2], [w / 2, -h / 2 + 2], [w / 2 - 2, h / 2], [-w / 2 + 1, h / 2 - 1]], kind % 2 ? P.page : '#efe4c8', { lw: 2.6, shade: c => C.blot(c, [[w * .1, -h / 2], [w / 2, -h / 2], [w / 2, h / 2], [w * .2, h / 2]], P.pageDk, .5) });
+    const pc = P.inkOld, gy = h * .32;
+    C.line(ctx, [[-w * .42, gy], [w * .42, gy]], 1.6, pc, .6);
+    if (kind === 0) {        // baca: dik + kesik yay + yerde
+      C.line(ctx, [[-w * .25, gy], [-w * .25, -h * .36], [-w * .14, -h * .36], [-w * .14, gy]], 1.8, pc, .5);
+      ctx.save(); ctx.setLineDash([5, 4]); ctx.strokeStyle = pc; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(-w * .2, gy, h * .62, -Math.PI / 2 + .15, -.25); ctx.stroke(); ctx.restore();
+      C.line(ctx, [[-w * .12, gy - 4], [w * .38, gy - 4], [w * .38, gy - 13], [-w * .12, gy - 13]], 1.6, pc, .4);
+    } else if (kind === 1) { // blok: kat çizgileri, X, ok
+      C.line(ctx, [[-w * .3, gy], [-w * .3, -h * .3], [w * .1, -h * .3], [w * .1, gy]], 1.8, pc, .5);
+      for (let i = 1; i < 4; i++) C.line(ctx, [[-w * .3, gy - i * h * .15], [w * .1, gy - i * h * .15]], 1, pc, .4);
+      C.line(ctx, [[-w * .3, gy], [w * .1, -h * .3]], 1.2, pc, .4); C.line(ctx, [[w * .1, gy], [-w * .3, -h * .3]], 1.2, pc, .4);
+      C.line(ctx, [[w * .16, -h * .2], [w * .34, -h * .02], [w * .34, gy - 6]], 1.4, pc, .4);
+    } else if (kind === 2) { // kule + devrilme alanı (taralı)
+      C.line(ctx, [[-w * .05, gy], [-w * .05, -h * .4], [w * .1, -h * .4], [w * .1, gy]], 1.8, pc, .5);
+      ctx.save(); ctx.strokeStyle = pc; ctx.lineWidth = 1; for (let i = 0; i < 7; i++) { ctx.beginPath(); ctx.moveTo(-w * .42 + i * 9, gy + 2); ctx.lineTo(-w * .42 + i * 9 + 10, gy - 8); ctx.stroke(); } ctx.restore();
+      C.line(ctx, [[-w * .1, -h * .3], [-w * .32, -h * .08], [-w * .34, gy - 12]], 1.2, pc, .4);
+    } else {                 // su kulesi
+      C.line(ctx, [[-w * .2, -h * .38], [w * .16, -h * .38], [w * .12, -h * .14], [-w * .16, -h * .14], [-w * .2, -h * .38]], 1.8, pc, .5);
+      C.line(ctx, [[-w * .14, -h * .14], [-w * .22, gy]], 1.4, pc, .4); C.line(ctx, [[w * .1, -h * .14], [w * .18, gy]], 1.4, pc, .4);
+      C.line(ctx, [[-w * .18, h * .05], [w * .14, h * .05]], 1, pc, .3);
+    }
+    C.handwrite(ctx, year, w * .1, h * .46, 15, pc, sd + 3);
+    C.shape(ctx, C.ell(0, -h / 2 + 7, 5, 5, 8), P.beaconOff, { lw: 1.6 });          // raptiye
+    ctx.restore();
+  }
+  function helmet(ctx, x, y) { // eski baret, çivide çene kayışıyla asılı (sarı değil: kirli beyaz)
+    C.seed(311);
+    C.shape(ctx, C.ell(x, y - 2, 3, 3, 6), P.steel, { lw: 1.6 });
+    C.line(ctx, [[x - 22, y + 46], [x, y + 2], [x + 22, y + 46]], 1.8, '#3a2c24', .3);
+    ctx.save(); ctx.translate(x, y + 70); ctx.rotate(-.06);
+    C.shape(ctx, [[-50, 8], [-46, -20], [-30, -40], [0, -48], [30, -40], [46, -20], [50, 8]], '#e3dccb', { lw: 2.6, shade: c => { C.blot(c, [[10, -50], [60, -50], [60, 10], [18, 10]], '#b9b0a0', .7); C.blot(c, C.ell(-18, -14, 9, 5, 8), '#9a8f7c', .5); } });
+    C.shape(ctx, [[-62, 6], [62, 6], [58, 16], [-58, 16]], '#d5ccba', { lw: 2.4 });
+    C.line(ctx, [[0, -48], [0, 6]], 1.4, 'rgba(21,18,13,.4)', .3);
+    C.line(ctx, [[-30, -26], [-18, -30]], 1.2, '#6e6457', .3); C.line(ctx, [[22, -16], [34, -8]], 1.2, '#6e6457', .3);
+    ctx.restore();
+  }
+  function penCup(ctx, x, y, k) { // kalemlik: iki kurşun kalem, bir kırmızı, TEK mavi (taze mürekkep)
+    ctx.save(); ctx.translate(x, y); ctx.scale(k, k); C.seed(321);
+    [[-8, -.24, '#8b6a3e'], [8, .22, P.brickDk], [0, .05, P.inkBlue], [-2, -.08, '#8b6a3e']].forEach(([dx, r, col], i) => {
+      ctx.save(); ctx.translate(dx, -30); ctx.rotate(r); C.shape(ctx, [[-2.6, -40 - i * 4], [2.6, -40 - i * 4], [2.6, 0], [-2.6, 0]], col, { lw: 1.2 }); ctx.restore();
+    });
+    C.shape(ctx, [[-16, -34], [16, -34], [14, 0], [-14, 0]], P.steelLt, { lw: 2, shade: c => C.blot(c, [[4, -40], [20, -40], [20, 4], [6, 4]], P.steel, .6) });
+    ctx.restore();
+  }
+  function drawWorld(ctx, t, o) {
+    o = o || {}; C.seed(341);
+    ctx.fillStyle = P.wallOffice; ctx.fillRect(-800, -700, 2600, 1330);
+    for (let i = 0; i < 9; i++) { const x = [-700, -520, -330, -160, 1100, 1250, 1420, 1600, -60][i], y = 80 + rnd(i + 9) * 420; C.blot(ctx, C.ell(x, y, 80 + rnd(i) * 90, 40 + rnd(i + 3) * 50, 12), P.wallOfficeDk, .25); }
+    ctx.fillStyle = '#2a302e'; ctx.fillRect(-800, -700, 2600, 640); C.line(ctx, [[-800, -60], [1800, -60]], 3);
+    ctx.fillStyle = P.floorWood; ctx.fillRect(-800, 630, 2600, 1100);
+    ctx.strokeStyle = 'rgba(21,18,13,.3)'; ctx.lineWidth = 2; for (let yy = 660; yy < 1720; yy += 36 + (yy - 630) * .08) { ctx.beginPath(); ctx.moveTo(-800, yy); ctx.lineTo(1800, yy + 4); ctx.stroke(); }
+    drawOfficeClip(ctx, Object.assign({}, OFF, { lamp: o.lamp, calendarMoved: o.cm || 0 }), o.full ? null : [OF.kx - 120, OF.cy + 3, 240, OF.ch - 6]);
+    if (o.full) { C.seed(351); C.line(ctx, [[OF.kx - 6, OF.top + 2], [OF.kx - 1, -30], [OF.kx - 4, -60]], 5, P.ink, 1.5); }
+    C.line(ctx, [[-800, 630], [0, 630]], 3.8); C.line(ctx, [[1080, 630], [1800, 630]], 3.8);
+    // kapı (arka duvarın solunda)
+    const D = DOOR, dw = D.x1 - D.x0;
+    C.shape(ctx, [[D.x0 - 14, D.y1], [D.x0 - 14, D.y0 - 14], [D.x1 + 14, D.y0 - 14], [D.x1 + 14, D.y1]], '#4a3420', { lw: 3 });
+    const op = o.door || 0;
+    if (op > 0) {
+      ctx.save(); ctx.beginPath(); ctx.rect(D.x0, D.y0, dw, D.y1 - D.y0); ctx.clip();
+      const g = ctx.createLinearGradient(0, D.y0, 0, D.y1); g.addColorStop(0, '#16224a'); g.addColorStop(.62, '#2a3a66'); g.addColorStop(.63, '#3a3f4e'); g.addColorStop(1, '#4a4a52');
+      ctx.fillStyle = g; ctx.fillRect(D.x0, D.y0, dw, D.y1 - D.y0);
+      ctx.fillStyle = 'rgba(238,242,255,.8)'; for (let i = 0; i < 6; i++) ctx.fillRect(D.x0 + 20 + rnd(i + 40) * 170, D.y0 + 20 + rnd(i + 50) * 200, 2.5, 2.5);
+      C.line(ctx, [[D.x0, D.y0 + 345], [D.x1, D.y0 + 341]], 2, '#1d2742', .5);           // çit hattı
+      ctx.restore();
+      if (o.kaanDoor) o.kaanDoor(ctx);
+    }
+    const th = op * 1.35, fx = D.x1 - dw * Math.cos(th), sp = Math.sin(th);
+    const panel = [[fx, D.y0 - 34 * sp], [D.x1, D.y0], [D.x1, D.y1], [fx, D.y1 + 26 * sp]];
+    C.shape(ctx, panel, op > 0 ? '#5a4029' : '#6f5134', { lw: 3.2, shade: c => C.blot(c, [[D.x1 - dw * .3, D.y0 - 40], [D.x1 + 10, D.y0 - 40], [D.x1 + 10, D.y1 + 30], [D.x1 - dw * .25, D.y1 + 30]], '#3f2711', .45) });
+    const kx = lerp(fx, D.x1, .14); C.shape(ctx, C.ell(kx, (D.y0 + D.y1) / 2 + 20, 6 * (1 - sp * .5) + 1, 6, 10), P.gold, { lw: 2 });
+    // baret, eskizler
+    helmet(ctx, NAIL[0], NAIL[1]);
+    SKETCH.forEach(([x, y, w, h, r, kd, yr], i) => sketch(ctx, x, y, w, h, r, kd, yr, 400 + i * 10));
+    // priz + kablo
+    C.shape(ctx, [[SOCKET[0] - 14, SOCKET[1] - 18], [SOCKET[0] + 14, SOCKET[1] - 18], [SOCKET[0] + 14, SOCKET[1] + 14], [SOCKET[0] - 14, SOCKET[1] + 14]], '#d9d2c2', { lw: 1.8 });
+    C.line(ctx, [[615, 648], [650, 652], [684, 640], [SOCKET[0], SOCKET[1] + 2]], 2.4, P.ink, .5);
+    return lerp(-175, -80, E.io(seg(t, k.c14, k.end)));
+  }
+  function deskTop(ctx, t, rx) {
+    const bg = cached('masa-ust', 1080, 1920, c => {
+      c.fillStyle = P.wood; c.fillRect(0, 0, 1080, 1920); C.seed(611);
+      for (let i = 0; i < 9; i++) C.line(c, [[-20, 120 + i * 220], [1100, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
+      for (let i = 0; i < 40; i++) C.line(c, [[rnd(i + 30) * 1080, rnd(i + 31) * 1920], [rnd(i + 30) * 1080 + 80 + rnd(i) * 120, rnd(i + 31) * 1920 + 4]], 1.4, 'rgba(63,39,17,.4)', 1);
+      // diğer rulolar (üstte)
+      [[340, 330, -.12, 300], [700, 300, .1, 240]].forEach(([x, y, r, L]) => { c.save(); c.translate(x, y); c.rotate(r); C.shape(c, [[-L / 2, -24], [L / 2, -24], [L / 2, 24], [-L / 2, 24]], '#dfe5e2', { lw: 4, shade: cc => C.blot(cc, [[-L / 2, 6], [L / 2, 6], [L / 2, 26], [-L / 2, 26]], '#b9c2bf', .7) }); C.shape(c, C.ell(L / 2, 0, 9, 24, 12), '#eef2f0', { lw: 3 }); c.restore(); });
+    });
+    ctx.drawImage(bg, 0, 0);
+    // kalemlik (üstten): tek mavi kalem
+    ctx.save(); ctx.translate(170, 470); C.seed(621);
+    ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(12, 14, 64, 64, 0, 0, TAU); ctx.fill(); ctx.restore();
+    C.shape(ctx, C.ell(0, 0, 62, 62, 24), P.steelLt, { lw: 4.4 }); C.shape(ctx, C.ell(0, 0, 50, 50, 20), '#3a3d45', { lw: 2 });
+    [[-22, -10, -2.3, '#8b6a3e'], [20, 14, .7, P.brickDk], [6, -22, -1.2, P.inkBlue], [-6, 22, 2.1, '#8b6a3e']].forEach(([x, y, a, col]) => {
+      ctx.save(); ctx.translate(x, y); ctx.rotate(a); C.shape(ctx, [[0, -7], [92, -7], [104, 0], [92, 7], [0, 7]], col, { lw: 3 }); ctx.restore();
+    });
+    ctx.restore();
+    // çizim kâğıdı: açık kısım (yerel x < rx) + rulo
+    ctx.save(); ctx.translate(PLAN.x, PLAN.y); ctx.rotate(PLAN.rot); ctx.scale(PLAN.s, PLAN.s);
+    ctx.save(); ctx.beginPath(); ctx.rect(-420, -320, rx + 420, 640); ctx.clip();
+    C.drawSensorPlan(ctx, { x: 0, y: 0, s: 1, seed: 97 });
+    // dedenin el yazısıyla "DAISY" + bom çizgisi (Daisy olduğu okunsun)
+    C.handwrite(ctx, 'DAISY', -362, -206, 34, P.inkOld, 631, { bold: true });
+    ctx.save(); ctx.strokeStyle = '#24408f'; ctx.lineWidth = 2.4;
+    ctx.stroke(C.pathOf(C.wobble([[-205, -110], [-100, -248]], false, .6), false)); ctx.stroke(C.pathOf(C.wobble([[-180, -110], [-86, -236]], false, .6), false));
+    for (let i = 1; i < 6; i++) { const a = i / 6; ctx.beginPath(); ctx.moveTo(lerp(-205, -100, a), lerp(-110, -248, a)); ctx.lineTo(lerp(-180, -86, a + .08), lerp(-110, -236, a + .08)); ctx.stroke(); }
+    ctx.restore();
+    ctx.restore();
+    // rulo silindiri
+    C.seed(641);
+    ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.fillRect(rx + 6, -280, 60, 576); ctx.restore();
+    C.shape(ctx, [[rx, -284], [rx + 46, -284], [rx + 46, 284], [rx, 284]], '#e4ebe9', { lw: 4.4, shade: c => { C.blot(c, [[rx + 26, -290], [rx + 50, -290], [rx + 50, 290], [rx + 26, 290]], '#aeb9b6', .8); } });
+    ctx.restore();
+  }
+  function handOnRoll(ctx, x, y, rot, flip) { // Kaan'ın kolu alttan gelir: ceket + sarı bileklik + el
+
   /* ================= OFİS ================= */
   const OFF = { x: 0, y: 0, w: 1080, h: 1920, seed: 7 };
   const OF = (() => { const a = OFF, kx = a.x + a.w * .74; return { kx, fl: a.y + a.h * .7, top: a.y, cx0: kx - a.w * .1, cy: a.y + a.h * .3, cw: a.w * .2, ch: a.h * .3, tx: a.x + a.w * .04, tw: a.w * .62, ty: a.y + a.h * .62, lamp: [a.x + a.w * (.04 + .62 * .9), a.y + a.h * .62 - 140] }; })();
