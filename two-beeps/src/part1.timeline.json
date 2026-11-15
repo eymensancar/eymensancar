@@ -9,7 +9,7 @@
  "fps": 30,
  "w": 1080,
  "h": 1920,
- "duration": 58.1,
+ "duration": 60.03,
  "voice": "out/part1-voice.wav",
  "sentences": [
   {
@@ -1007,5 +1007,13 @@
   "voiceEnd": 53.73,
   "endBeep": 54.68,
   "endCard": 55.33
+ },
+ "soru": {
+  "tur": "tahmin",
+  "durum": "Two beeps, then the fall.",
+  "a": "Just luck",
+  "b": "Daisy warned him",
+  "baslik": "YOUR GUESS?",
+  "satir": "Comment A or B · The answer comes in Part 4"
  }
 }

@@ -35,3 +35,13 @@ Geçişlerde ve başka hiçbir yerde "whoosh/swoosh" türü gürültü süpürme
 
 ## Müzik seviyesi (Eymen, 15 Kasım 2026, taslağı izledikten sonra; kalıcı)
 Arka plan müziği konuşmaya göre KISILIP AÇILMAZ (ducking yok): "müziği çok kesmiş". Müzik bölüm boyunca uygun, SABİT bir seviyede çalar; anlatıcı o seviyenin üstünde rahat duyulacak kadar öndedir. Yalnız hikâyenin bilerek sessiz anlarında (ör. "Real chimneys don't." öncesi, iki bip, bitiş) müzik yumuşak bir solmayla çıkar ve geri gelir; bu geçişler cümle cümle değil, sahne düzeyindedir.
+
+## Bölüm üretim adımları (N = 1..10)
+1. Metin: `src/partN.kurgu.json` (cümleler, nefes, mark; `notlar.isaretAni` işaret anları, `notlar.bitis` "tek bip" içeriyorsa bitişte tek bip). Bitiş sorusu ve sonraki bölümün "Previously" satırı `docs/YAYIN.md` "Bölüm bölüm" tablosundan okunur (metin değişince yalnız 2. adım yeniden çalışır; kurgu json'una `"soru": null` yazmak kartı kapatır).
+2. Ses ve zaman çizelgesi: `python3 src/ses_kur.py --part N` → `out/partN-voice.wav`, `src/partN.timeline.json` (bütün bölümler: `--part all`; kartı kapatmak: `--soru yok`; yalnız rapor: `--kuru`). Çıktıdaki kelime farkı ve "KUŞKULU" satırlarına bak.
+3. Sahneler: `src/shots/pN-a.js`, `src/shots/pN-b.js` (Part 1: eski adlar `a-sahneler.js`, `b-sahneler.js`). Zamanları `tl.sentences`/`tl.cues`'tan al; `t0`/`t1` fonksiyon olabilir (`tl => sayı`).
+4. İzleme: `python3 -m http.server 8800` → `http://localhost:8800/src/part.html?p=N&t=12.5` (boşluk oynatır).
+5. İnceleme kareleri: `node src/kontak.cjs --part N --step 1 --cols 6` → `out/partN-kontak.png`; tek kareler `--at 0,2.5,55`.
+6. Görüntü: `node src/kaydet.cjs --part N` → `out/partN-video.mp4` (önizleme: `--scale 0.5 --from 10 --to 14`).
+7. Ses miksi ve birleştirme: `src/partN.cues.json` hazırla, sonra `python3 src/miks.py --part N --mux` → `out/partN.mp4`.
+8. Denetim: `ffprobe out/partN.mp4` (1080×1920, 30 fps, süre = timeline `duration`), açılış (0–3 sn) ve bitiş kartı karelerine bak.

@@ -19,7 +19,10 @@
            lead: 2 * F, hold: 0.36, fadeIn: 3 * F, fadeOut: 4 * F, endFade: 3 * F },
     hook: { cx: 475, cy: 800, maxW: 800, size: 110, lh: 116, band: 240 },
     label: { x: 60, y: 240, h: 64, size: 42, pad: 22, until: 2.5, morph: 0.3, badgeH: 48, badgeSize: 32 },
+    prev: { x: 60, y: 392, w: 830, pad: 22, size: 42, tag: 28, until: 2.2, fade: 0.2 },
     icon: { x: 826, y: 236, s: 64, alpha: 0.7, from: 3.0, fade: 0.3 },
+    soru: { x0: 60, x1: 890, y0: 640, y1: 1400, yHead: 676, yDurum: 744, yChip: [806, 912], chipW: 760, chipH: 92, ySatir: 1050, yNext: 1126,
+            yDiv: 1184, yGame: 1294, yGameBig: 1290, dChips: 0.2, dSatir: 1.2, dGame: 1.8 },
     end: { x0: 60, x1: 890, y0: 752, y1: 1400, yTitle: 834, yFollow: 942, yDiv: 1008, icon: 128, yIcon: 1040, ySearch: 1222, ySmall: 1294 }
   };
   const FUNC = new Set('a an the in to of with my i i\'m and is was she he it its that about before at on for than her me so as but or'.split(' '));
@@ -251,21 +254,50 @@
     ctx.restore();
   }
 
+  /* ---------- "Previously" (2–10. bölümler): tl.prev, 0. kareden ~2,2 sn; etiketin altında küçük koyu bant ---------- */
+  function wrap(ctx, text, maxW) {           // kelime kaydırma (ctx.font önceden ayarlı)
+    const out = [[]]; text.split(/\s+/).forEach(w => { const l = out[out.length - 1], tr = l.concat([w]).join(' ');
+      if (l.length && ctx.measureText(tr).width > maxW) out.push([w]); else l.push(w); });
+    return out.map(l => l.join(' '));
+  }
+  function fitLines(ctx, text, maxW, size, minSize, maxLines) {
+    for (; size > minSize; size -= 2) { ctx.font = FONT(size); const ls = wrap(ctx, text, maxW); if (ls.length <= maxLines && ls.every(l => ctx.measureText(l).width <= maxW)) return { size, lines: ls }; }
+    ctx.font = FONT(minSize); return { size: minSize, lines: wrap(ctx, text, maxW) };
+  }
+  function drawPrev(ctx, t, tl) {
+    const R = C.prev; if (!tl.prev || t >= R.until + R.fade) return;
+    const a = 1 - TB.seg(t, R.until, R.until + R.fade);
+    const text = String(tl.prev).replace(/^Previously:\s*/i, '');
+    const f = fitLines(ctx, text, R.w - 2 * R.pad, R.size, 32, 2), lh = f.size * 1.12;
+    const h = R.pad * 0.8 + R.tag + 8 + f.lines.length * lh + R.pad * 0.6;
+    ctx.save(); ctx.globalAlpha = a;
+    rr(ctx, R.x, R.y, R.w, h, 18); ctx.fillStyle = 'rgba(10,8,5,.62)'; ctx.fill();
+    ctx.textBaseline = 'middle'; ctx.font = FONT(R.tag); ctx.fillStyle = P.hazard;
+    ctx.fillText('PREVIOUSLY', R.x + R.pad, R.y + R.pad * 0.8 + R.tag / 2);
+    ctx.font = FONT(f.size);
+    f.lines.forEach((l, i) => outlined(ctx, l, R.x + R.pad, R.y + R.pad * 0.8 + R.tag + 8 + lh * (i + 0.5), f.size, P.paper, 5, 3));
+    ctx.restore();
+  }
+
   /* ---------- köşe simgesi ve bitiş kartı ---------- */
   function endLayout(ctx, tl) {
     const nx = tl.next || {};
     return { a: `PART ${nx.part} · `, b: nx.title || '', follow: 'Follow · Part 2 is next'.replace('2', nx.part),
       search: 'Search "Demolition Master: Tower Blast"', small: 'iPhone · free' };
   }
+  const SORU_DUR = 4.7;     // YAYIN.md: soru kartı ekranda 4,7 sn; daha kısa kartta satır gecikmeleri orantılı kısalır
+  const cardScale = tl => Math.min(1, (tl.duration - tl.cues.endCard) / SORU_DUR);
+  const iconDelay = tl => tl.soru ? C.soru.dGame * cardScale(tl) : 0;
   function drawCornerIcon(ctx, t, tl) {
     const I = C.icon, ec = (tl.cues || {}).endCard; if (t < I.from) return;
-    if (ec != null && t >= ec) return;       // bitiş kartında büyük simgeye dönüşür (drawEnd)
+    if (ec != null && t >= ec + iconDelay(tl)) return;       // bitiş kartında büyük simgeye dönüşür (drawEnd)
     icon(ctx, I.x, I.y, I.s, I.alpha * TB.ease.outQ(TB.seg(t, I.from, I.from + I.fade)));
   }
   /* Bitiş kartı: cues.endCard'dan sona. Tek kart, x 60–890, y 752–1400 (Shorts arayüzüne ve üst üçteki
      uyarı ışığına değmez); sahne kararmaz, kart yarı saydam. Giriş 6 kare. */
   function drawEnd(ctx, t, tl) {
     const ec = (tl.cues || {}).endCard; if (ec == null || t < ec) return;
+    if (tl.soru || !tl.next) return drawSoru(ctx, t, tl);
     const E = endLayout(ctx, tl), K = C.end, k = (a, b) => TB.seg(t, ec + a * F, ec + b * F);
     const cx = (K.x0 + K.x1) / 2, kw = K.x1 - K.x0, kh = K.y1 - K.y0;
     const u0 = TB.ease.outC(k(0, 4));
@@ -301,11 +333,78 @@
       ctx.restore(); }
   }
 
+  /* Soru kartı (YAYIN.md "Kart"): kutu x 60–890, y 640–1400; satırlar veriden (tl.soru: tur, baslik, durum, a, b, satir, cip).
+     Sırayla: başlık + durum (0), A/B çipleri (0,2), çağrı satırı (1,2), sonraki bölüm + Follow ve oyun satırı (1,8).
+     Sonraki bölüm yoksa (10. bölüm) o satır dizi kapanışıdır ve oyun satırı büyür. tl.soru yoksa yalnız kapanış + oyun. */
+  function drawSoru(ctx, t, tl) {
+    const Q = C.soru, S = tl.soru || {}, ec = tl.cues.endCard, sc = cardScale(tl);
+    const at = (d, n) => TB.ease.outC(TB.seg(t, ec + d * sc, ec + d * sc + (n || 6) * F));
+    const cx = (Q.x0 + Q.x1) / 2, kw = Q.x1 - Q.x0, kh = Q.y1 - Q.y0, maxW = kw - 70;
+    // kutu (4 kare)
+    const u0 = at(0, 4);
+    ctx.save(); ctx.globalAlpha = u0;
+    ctx.translate(cx, Q.y0 + kh / 2); const z = TB.lerp(0.95, 1, u0); ctx.scale(z, z); ctx.translate(-cx, -(Q.y0 + kh / 2));
+    ctx.fillStyle = 'rgba(21,18,13,.45)'; rr(ctx, Q.x0 + 4, Q.y0 + 8, kw, kh, 30); ctx.fill();
+    rr(ctx, Q.x0, Q.y0, kw, kh, 30); ctx.fillStyle = 'rgba(21,18,13,.80)'; ctx.fill();
+    ctx.save(); rr(ctx, Q.x0, Q.y0, kw, kh, 30); ctx.clip(); stripes(ctx, Q.x0, Q.y1 - 18, kw, 18, 16);
+    ctx.globalAlpha *= .5; stripes(ctx, Q.x0 + 70, Q.yDiv - 3, kw - 140, 6, 6); ctx.restore();
+    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(245,178,28,.6)'; rr(ctx, Q.x0, Q.y0, kw, kh, 30); ctx.stroke();
+    ctx.restore();
+    const txt = (s, x, y, size, fill, a, align, st) => { ctx.save(); ctx.globalAlpha = a; ctx.font = FONT(size); ctx.textBaseline = 'middle'; ctx.textAlign = align || 'center'; outlined(ctx, s, x, y, size, fill, st || Math.max(4, size * .1), Math.max(3, size * .06)); ctx.restore(); };
+    const fit1 = (s, size, w, min) => { for (; size > (min || 30); size -= 2) { ctx.font = FONT(size); if (ctx.measureText(s).width <= w) break; } return size; };
+    if (S.durum) {
+      const a = at(0, 4);
+      txt(S.baslik || 'WHAT WOULD YOU DO?', cx, Q.yHead, 40, P.hazard, a);
+      const f = fitLines(ctx, S.durum, maxW, 60, 40, 2), lh = f.size * 1.05;
+      f.lines.forEach((l, i) => txt(l, cx, Q.yDurum + (i - (f.lines.length - 1) / 2) * lh + (1 - a) * 10, f.size, P.paper, a));
+    }
+    // çipler: A/B ya da (açık soru) iki bilgi satırı
+    const chips = S.a || S.b ? [['A', S.a], ['B', S.b]] : (S.cip || []).map(c => [null, c]);
+    chips.forEach(([L, s], i) => {
+      if (!s) return; const a = at(Q.dChips + i * 0.08), y = Q.yChip[i], w = Q.chipW, h = Q.chipH, x = cx - w / 2 + (1 - a) * 30;
+      ctx.save(); ctx.globalAlpha = a;
+      rr(ctx, x, y, w, h, 22); ctx.fillStyle = 'rgba(241,232,212,.10)'; ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = P.hazard; ctx.stroke();
+      let tx = x + 28;
+      if (L) { rr(ctx, x + 12, y + 12, h - 24, h - 24, 14); ctx.fillStyle = P.hazard; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = P.ink; ctx.stroke();
+        ctx.font = FONT(50); ctx.fillStyle = P.ink; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(L, x + h / 2, y + h / 2 + 1); tx = x + h + 12; }
+      const size = fit1(s, 50, x + w - 24 - tx, 30);
+      ctx.restore();
+      txt(s, L ? tx : cx + (1 - a) * 30, y + h / 2, size, P.paper, a, L ? 'left' : 'center');
+    });
+    if (S.satir) { const a = at(Q.dSatir); txt(S.satir, cx, Q.ySatir, fit1(S.satir, 40, maxW, 28), P.paper, a); }
+    // sonraki bölüm + Follow, ya da dizi kapanışı
+    const big = !tl.next, aN = at(Q.dGame);
+    if (tl.next) {
+      const A = `PART ${tl.next.part} · `, B = tl.next.title, Fw = 'Follow';
+      let size = 68; const tw0 = s => { ctx.font = FONT(s); return ctx.measureText(A + B).width + 14 + s * .66 * 1.1 + 24 + ctx.measureText(Fw).width; };
+      while (tw0(size) > maxW && size > 44) size -= 2;
+      let x = cx - tw0(size) / 2; const y = Q.yNext + (1 - aN) * 12;
+      ctx.save(); ctx.globalAlpha = aN; ctx.font = FONT(size); ctx.textBaseline = 'middle';
+      outlined(ctx, A, x, y, size, P.paper, 8, 5); x += ctx.measureText(A).width;
+      outlined(ctx, B, x, y, size, P.hazard, 8, 5); x += ctx.measureText(B).width + 14;
+      x += arrow(ctx, x, y + 2, size * .66, P.hazard) + 24; ctx.font = FONT(size);
+      outlined(ctx, Fw, x, y, size, P.paper, 8, 5); ctx.restore();
+    } else txt('TWO BEEPS · THE END', cx, Q.yNext + (1 - aN) * 12, 64, P.hazard, aN);
+    // oyun satırı: simge (köşeden uçar) + Search + "Demolition Master: Tower Blast" + iPhone · free
+    { const s = big ? 128 : 96, gap = 22, nm = '"Demolition Master: Tower Blast"';
+      const n1 = big ? 40 : 32, n3 = big ? 40 : 34; let n2 = big ? 56 : 48;
+      n2 = fit1(nm, n2, maxW - s - gap, 30);
+      ctx.font = FONT(n2); const bw = s + gap + ctx.measureText(nm).width, x0 = cx - bw / 2;
+      const yc = big ? Q.yGameBig : Q.yGame, ui = TB.ease.ioC(TB.seg(t, ec + iconDelay(tl), ec + iconDelay(tl) + 6 * F)), I = C.icon;
+      icon(ctx, TB.lerp(I.x, x0, ui), TB.lerp(I.y, yc - s / 2, ui), TB.lerp(I.s, s, ui), TB.lerp(I.alpha, 1, ui));
+      const tx = x0 + s + gap, lh = (n1 + n2 + n3) * 0.5;
+      txt('Search', tx, yc - lh + n1 * .2, n1, P.hazard, aN, 'left', 4);
+      txt(nm, tx, yc + n2 * .02, n2, P.paper, aN, 'left');
+      txt('iPhone · free', tx, yc + lh - n3 * .2, n3, P.hazard, aN, 'left', 4);
+    }
+  }
+
   TB.overlay(function (ctx, t, tl) {
     if (!L) { L = layout(ctx, tl); H = hookLayout(ctx, tl); TB.paket = { pages: L.pages, hook: H, C }; }
     vignette(ctx);
     drawHook(ctx, t, tl);
     drawSubs(ctx, t, tl);
+    drawPrev(ctx, t, tl);
     drawLabel(ctx, t, tl);
     drawCornerIcon(ctx, t, tl);
     drawEnd(ctx, t, tl);
