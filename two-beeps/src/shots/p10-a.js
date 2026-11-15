@@ -642,7 +642,7 @@
   }
 
   /* --- 6–7: soluk hatıra: dedenin eli 10. satırı yazar; sonra mavi kalemle karalar (yalnız el ve kalem) --- */
-  const LIST_M = { x: 520, y: 760, s: 1.5, rot: -.05 };
+  const LIST_M = { x: 520, y: 690, s: 1.5, rot: -.05 };
   function listToScr(lx, ly) { const c = Math.cos(LIST_M.rot), s = Math.sin(LIST_M.rot); return [LIST_M.x + (lx * c - ly * s) * LIST_M.s, LIST_M.y + (lx * s + ly * c) * LIST_M.s]; }
   function memoryDesk(ctx, t, n, scr, pen) {
     const k = times();
@@ -651,7 +651,7 @@
     // masa (ahşap) üstten
     ctx.fillStyle = P.wood; ctx.fillRect(-200, -200, 1480, 2400); C.seed(611);
     for (let i = -2; i < 11; i++) C.line(ctx, [[-220, 120 + i * 220], [1300, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
-    penCup(ctx, 930, 300, 2.2, pen === 'blue');
+    penCup(ctx, 960, 620, 2.2, pen === 'blue');
     ctx.save(); ctx.translate(LIST_M.x, LIST_M.y); ctx.rotate(LIST_M.rot); ctx.scale(LIST_M.s, LIST_M.s);
     listMemory(ctx, n, 0);
     ctx.restore();
