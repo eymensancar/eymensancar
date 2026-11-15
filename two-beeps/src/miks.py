@@ -173,8 +173,13 @@ def satir_sesi(r, Z, dur):
     if n <= 0:
         return None, 0
     if r.get('dongu'):
-        reps = int(math.ceil(n / x.shape[0])) + 1
-        y = np.concatenate([x[i0:]] + [x] * reps, axis=0)[:n]  # döngü dosyaları dikişsiz üretildi
+        if 'son' in r and 'sure' in r:                 # kırpılmış parçanın döngüsü (sure = parça boyu)
+            parca = x[i0:i0 + int(round(float(r['sure']) * SR))].copy()
+            k = int(0.004 * SR); parca[:k] *= np.linspace(0, 1, k)[:, None]; parca[-k:] *= np.linspace(1, 0, k)[:, None]
+            y = np.tile(parca, (int(math.ceil(n / parca.shape[0])) + 1, 1))[:n]
+        else:
+            reps = int(math.ceil(n / x.shape[0])) + 1
+            y = np.concatenate([x[i0:]] + [x] * reps, axis=0)[:n]  # döngü dosyaları dikişsiz üretildi
     else:
         y = x[i0:i0 + n]
     y = y.copy()
@@ -184,6 +189,18 @@ def satir_sesi(r, Z, dur):
     fo = max(float(r.get('fadeout', 0.05 if r.get('dongu') else 0.003)), 0.003)
     k = min(m, int(fi * SR)); y[:k] *= np.sin(0.5 * np.pi * np.arange(k) / k)[:, None] ** 2
     k = min(m, int(fo * SR)); y[m - k:] *= np.cos(0.5 * np.pi * np.arange(k) / k)[:, None] ** 2
+    if r.get('lp'):                                   # alçak geçiren (ör. hatıra bipi)
+        X = np.fft.rfft(y, axis=0); f = np.fft.rfftfreq(y.shape[0], 1 / SR)
+        y = np.fft.irfft(X / np.sqrt(1 + (f / float(r['lp'])) ** 4)[:, None], n=y.shape[0], axis=0)
+    if r.get('yanki'):                                # hafif oda yankısı: tohumlu üstel gürültü IR, ıslak oran
+        rng = np.random.default_rng(5)
+        L = int(0.9 * SR); tt = np.arange(L) / SR
+        ir = rng.standard_normal(L) * np.exp(-6.9 * tt / 0.9); ir[:int(0.012 * SR)] = 0
+        ir /= np.sqrt(np.sum(ir ** 2))
+        y = np.vstack([y, np.zeros((L, y.shape[1]))])
+        n2 = 1 << int(np.ceil(np.log2(y.shape[0] + L)))
+        wet = np.fft.irfft(np.fft.rfft(y, n2, axis=0) * np.fft.rfft(ir, n2)[:, None], n2, axis=0)[:y.shape[0]]
+        y = y + float(r['yanki']) * wet
     y *= db2a(r.get('db', 0))
     # panorama (sabit güç, ortada iki kanal 1.0: anlatıcıyla aynı ölçek)
     p = float(r.get('pan', 0))
@@ -323,7 +340,7 @@ def main():
         if k != 'bip':
             bus[k] = hp_fft(bus[k], 40)      # telefon: 40 Hz altı yalnız tepe payı yer
     kg = koruma(voice, sum(bus[k] for k in ARKA), cue.get('koruma', {}), tl)
-    for k in ('muzik', 'ortam', 'efekt'):          # darbe katı korumasız: boşluğa yerleştirilir
+    for k in ARKA:                                  # darbe de: korumanın etkisi yalnız cümle içinde
         bus[k] *= kg[:, None]
     bg = sum(bus[k] for k in ARKA)
     mix = voice + bg + bus['bip']
@@ -406,7 +423,7 @@ def olc(yol, tl, cue, Z, st, n):
                           for i in range(len(ss) - 1) if float(ss[i + 1]['t0']) - float(ss[i]['t1']) > 0.2))
     # bipler
     others = st['anlatici'] + st['arka']
-    for ad, t, L in [('iki bip', Z('beep'), 0.62), ('tek bip', Z('endBeep'), 0.28)]:
+    for ad, t, L in [('iki bip', Z('beep') + 0.04, 0.53), ('tek bip', Z('endBeep') + 0.04, 0.22)]:
         bp, ot = seg(st['bip'], t, t + L), seg(others, t, t + L)
         pre = seg(others, t - 0.3, t)
         print(f'{ad} @ {t:.2f}: bip RMS {rms_db(bp):.1f} tepe {a2db(np.abs(bp).max()):.1f} | geri kalan her şey RMS {rms_db(ot):.1f} '
@@ -421,11 +438,21 @@ def olc(yol, tl, cue, Z, st, n):
         x = seg(mix, a, b)
         print(f'  {ad:32s} {a:6.2f}-{b:6.2f}: RMS {rms_db(x):6.1f}  tepe {a2db(np.abs(x).max()):6.1f}')
     # telefon: darbelerde 120 Hz üstü
-    for ad, t in [('top darbe', Z('s19.t1') + 0.06), ('baca yere', Z('s20.t1') + 0.12)]:
+    darbeler = [('top darbe', Z(['B.topDarbe', 's19.t1+0.06'])), ('baca yere', Z(['B.bacaYereCarpma', 's20.t1+0.12']))]
+    for ad, t in darbeler:
         x = seg(st['darbe'], t, t + 0.4).mean(1)
         X = np.abs(np.fft.rfft(x)) ** 2; f = np.fft.rfftfreq(x.size, 1 / SR)
         print(f'{ad} @ {t:.2f}: 120 Hz üstü enerji %{100 * X[f >= 120].sum() / X.sum():.0f}, '
               f'tepe {a2db(np.abs(seg(st["darbe"], t, t + 0.4)).max()):.1f} dBFS')
+    # ses-görüntü kilidi: olayın ses başlangıcı (miksteki ilgili katmanda ilk -30 dB aşımı) ve kare numarası
+    fps = float(tl.get('fps', 30))
+    print('\nses-görüntü kilidi (cue -> ilk ses, kare):')
+    for ad, kat, t in [('iki bip, ton 1 (ışık +0,04)', 'bip', Z('beep') + 0.04), ('iki bip, ton 2 (ışık +0,37)', 'bip', Z('beep') + 0.37),
+                       *[(a_, 'darbe', t_) for a_, t_ in darbeler], ('tek bip (+0,04)', 'bip', Z('endBeep') + 0.04)]:
+        x = np.abs(seg(st[kat], t - 0.03, t + 0.2)).max(1)
+        esik = x.max() * db2a(-20); i = int(np.argmax(x > esik))
+        ts = t - 0.03 + i / SR
+        print(f'  {ad:28s} cue {t:7.3f} sn (kare {int(t * fps + 1e-6)}) -> ses {ts:7.3f} sn (kare {int(ts * fps + 1e-6)}), fark {1000 * (ts - t):+.0f} ms')
     gorseller(yol, tl, Z, st, mix, n)
 
 
