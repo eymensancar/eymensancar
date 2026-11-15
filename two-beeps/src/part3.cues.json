@@ -23,7 +23,7 @@
   { "t": "B.kuleYereCarpma+0.03", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 50.03, "son": 35.0, "fadein": 1.0, "fadeout": 0.04, "not": "iniş sonrası sakin Gm pad (tema 50-52), ızgaraya oturur" },
   { "t": 35.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 48, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "tema 48-52: damga, H K" },
   { "t": 39.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 48, "son": "s21.t0", "fadein": 0.04, "fadeout": 0.04, "not": "tema 48-52: Hale; donma sessizliğinde kisma ile çıkar, araba ile geri gelir" },
-  { "t": "s21.t0", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -10, "ss": 44, "son": "s25.t0-0.15", "fadein": 0.04, "fadeout": 0.45, "not": "akşam, mektup: soru bölümü (44-, Mi'de asılı); 'The ant is not ready.' sonrası solar, cümle 25 müziksiz (plan: sessizlik)" },
+  { "t": "s21.t0", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -12.5, "ss": 44, "son": "s25.t0-0.15", "fadein": 0.04, "fadeout": 0.45, "not": "akşam, mektup: soru bölümü (44-, Mi'de asılı); 'The ant is not ready.' sonrası solar, cümle 25 müziksiz (plan: sessizlik)" },
 
   { "t": 0, "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -9, "son": "B.daisyMotor", "dongu": true, "fadein": 0.3, "fadeout": 0.05, "not": "gündüz avlu/sokak" },
   { "t": "B.daisyMotor", "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -7, "ss": 8.0, "son": "s20.t1+0.55", "dongu": true, "fadein": 0.05, "fadeout": 0.08, "not": "iş 2 sahası; akşam avluya kesmeyle biter (p3b21-posta = s20.t1+0,55)" },
