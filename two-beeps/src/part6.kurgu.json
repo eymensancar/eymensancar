@@ -1,0 +1,178 @@
+{
+ "part": 6,
+ "title": "IRONLINE",
+ "next": {
+  "part": 7,
+  "title": "THE PROFESSOR"
+ },
+ "sentences": [
+  {
+   "text": "I found Ironline Demolition.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It was sitting across from me, eating my fries.",
+   "nefes": 0.5,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The third letter came on a Tuesday.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Same name.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "But this time I looked at the envelope.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "There was a coffee ring on it.",
+   "nefes": 0.6,
+   "mark": "ring",
+   "kim": "anlatici"
+  },
+  {
+   "text": "And only two people ever called me Ant.",
+   "nefes": 0.6,
+   "mark": "ant",
+   "kim": "anlatici"
+  },
+  {
+   "text": "I put it on the table.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Defne did not even pretend.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"You were nineteen and alone on a crane, Ant.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "I wanted them to stop you.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "Before a building did.\"",
+   "nefes": 0.7,
+   "mark": "confess",
+   "kim": "Defne"
+  },
+  {
+   "text": "I wanted to be angry.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It started raining instead.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "We sat in Daisy's cabin and shared one phone, like when we were kids.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Demolition Master, one turn each.",
+   "nefes": 0.15,
+   "mark": "game",
+   "kim": "anlatici"
+  },
+  {
+   "text": "She did Grandpa's voice.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"Plan first.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "Then press the button.\"",
+   "nefes": 0.5,
+   "mark": "plan",
+   "kim": "Defne"
+  },
+  {
+   "text": "\"I'll help you finish the list,\" she said.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "\"As your engineer.\"",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "Then she got serious.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"But first, tell me the truth.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "Who is this professor you keep quoting?\"",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "Defne"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 55.9,
+  "kelime": 141,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "acilis": {
+   "kare0": "Masa üstü: patates kızartması tabağı, karşıdan bir el bir kızartma çalar (kolu kadraj dışında); 1. cümle büyük yazıyla.",
+   "soru": "Ironline kim, neden karşısında oturuyor?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: Number nine has forty floors.",
+   "gorsel": "Gece, ışıklı 40 katlı kule",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "ring": "t1",
+   "ant": "t1",
+   "confess": "t1",
+   "game": "t0",
+   "plan": "t1",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "Daisy'nin kabininde Defne'nin kaşı kalkmış, Kaan'ın elinde telefon donar; tek bip, kart.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}

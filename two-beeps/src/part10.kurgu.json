@@ -1,0 +1,246 @@
+{
+ "part": 10,
+ "title": "BUILD SOMETHING",
+ "sentences": [
+  {
+   "text": "The last building on Grandpa's list is the one I grew up in.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Line ten is our yard.",
+   "nefes": 0.1,
+   "mark": "yard",
+   "kim": "anlatici"
+  },
+  {
+   "text": "His office.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The cracked wall behind the calendar.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Daisy tried to tell me on day two.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He wrote it down.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then he scratched it out.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I think he could not ask me.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "So I did not wait to be asked.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "We emptied the office.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Defne signed the plan.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Mr. Hale carried boxes.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "And Daisy made her last lift.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Under the first stone there was a tin.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Inside, a note.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Grandpa's handwriting.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"Ant.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "dede notu"
+  },
+  {
+   "text": "Now build something.\"",
+   "nefes": 0.2,
+   "mark": "note",
+   "kim": "dede notu"
+  },
+  {
+   "text": "I go back to school on Monday.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Defne is drawing a new office.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Small.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Strong.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Daisy is retired.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "She sits in the yard, in the sun.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "This morning she beeped.",
+   "nefes": 1.0,
+   "mark": "beep",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Twice.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I checked everything.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then I understood.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "She was just saying goodbye.",
+   "nefes": 1.72,
+   "mark": "goodbye",
+   "kim": "anlatici"
+  },
+  {
+   "text": "This story is made up.",
+   "nefes": 0.1,
+   "mark": "cta",
+   "kim": "anlatici",
+   "karakterDisi": true
+  },
+  {
+   "text": "Demolition Master is real.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici",
+   "karakterDisi": true
+  },
+  {
+   "text": "It is our small, free game on the App Store.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici",
+   "karakterDisi": true
+  },
+  {
+   "text": "It won't teach you real demolition.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici",
+   "karakterDisi": true
+  },
+  {
+   "text": "It's just fun to plan a fall.",
+   "nefes": 0.05,
+   "mark": null,
+   "kim": "anlatici",
+   "karakterDisi": true
+  },
+  {
+   "text": "We are Sancar Games.",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "anlatici",
+   "karakterDisi": true
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 61.7,
+  "kelime": 171,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 3,0 bitiş (sonraki bölüm kartı yok)",
+  "acilis": {
+   "kare0": "Kaan avludaki evin/ofisin önünde, elinde liste; kamera listeden eve kayar; 1. cümle büyük yazıyla.",
+   "soru": "Neden kendi büyüdüğü yer?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: I knew that address.",
+   "gorsel": "Lambaya tutulan liste, mavi çizgi",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "yard": "t0",
+   "note": "t0",
+   "beep": "t1+0.22 (iki bip dosyası)",
+   "goodbye": "t1",
+   "cta": "t0",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "'goodbye' sonrası 2,0 sn sessizlik (Daisy güneşte, ışık söner). Cagri (30-35): sade düz zemin, gerçek oyun simgesi ve 2-3 gerçek oyun karesi; altyazı aynı, karakter yok. Bitiş payı 3,0 sn: simge + 'Search \"Demolition Master: Tower Blast\"' + 'iPhone · free'. Tek bip ve sonraki bölüm kartı yok.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}

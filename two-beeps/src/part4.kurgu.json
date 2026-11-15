@@ -1,0 +1,207 @@
+{
+ "part": 4,
+ "title": "TWO BEEPS",
+ "next": {
+  "part": 5,
+  "title": "H AND K"
+ },
+ "sentences": [
+  {
+   "text": "Grandpa's phone had one app open.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I did not expect it to be mine.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I finally got into his office.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Dust, drawings, cold tea.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "And his phone, still on the charger.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "On the screen: Demolition Master.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Level twelve.",
+   "nefes": 0.2,
+   "mark": "game",
+   "kim": "anlatici"
+  },
+  {
+   "text": "He was stuck.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Grandpa.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Who took down real buildings for forty years.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I finished the level for him.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It took me three tries.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then I looked at the drawings.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "They were of Daisy.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Grandpa built something into her.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "A sensor.",
+   "nefes": 0.3,
+   "mark": "sensor",
+   "kim": "anlatici"
+  },
+  {
+   "text": "When the ground or the load is wrong, she beeps.",
+   "nefes": 1.05,
+   "mark": "beep",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Twice.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It means: stop.",
+   "nefes": 0.6,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "So Daisy was never grumpy.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Daisy was warning me.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "At the chimney, she was right.",
+   "nefes": 0.5,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then I saw the calendar on the wall.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It was hanging very low.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I moved it.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Behind it, a crack.",
+   "nefes": 0.6,
+   "mark": "crack",
+   "kim": "anlatici"
+  },
+  {
+   "text": "From the floor to the ceiling.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "And I remembered.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Daisy beeped at this door.",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "anlatici"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 59.2,
+  "kelime": 141,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "acilis": {
+   "kare0": "Şarjdaki telefon karanlık ofiste yanar; ekranda oyun simgesi ve 'Level 12'; 1. cümle büyük yazıyla.",
+   "soru": "Dedenin telefonunda hangi uygulama, neden?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: \"The ant is not ready.\"",
+   "gorsel": "Tek satırlık ikinci Ironline mektubu",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "game": "t0",
+   "sensor": "t1",
+   "beep": "t1+0.22 (iki bip dosyası)",
+   "crack": "t0",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "Kapı geniş planda, Daisy kapının önünde (P2'deki açıyla aynı); tek bip, kart.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}

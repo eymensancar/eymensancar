@@ -1,0 +1,191 @@
+{
+ "part": 5,
+ "title": "H AND K",
+ "next": {
+  "part": 6,
+  "title": "IRONLINE"
+ },
+ "sentences": [
+  {
+   "text": "H is for Hale.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "K is for Kaya.",
+   "nefes": 0.3,
+   "mark": "hk",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Kaya is my last name.",
+   "nefes": 0.6,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I found it in Grandpa's notebook.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Forty years ago, he and Mr. Hale were partners.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "They built fast.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "They built cheap.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nine buildings.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The same nine on my list.",
+   "nefes": 0.6,
+   "mark": "nine",
+   "kim": "anlatici"
+  },
+  {
+   "text": "On the last page, Grandpa wrote: \"They will not last.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici",
+   "alinti": "dede notu"
+  },
+  {
+   "text": "I should have said no.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "dede notu"
+  },
+  {
+   "text": "Take them down before they fall.\"",
+   "nefes": 0.5,
+   "mark": "note",
+   "kim": "dede notu"
+  },
+  {
+   "text": "So the list is not a job.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It is an apology.",
+   "nefes": 0.8,
+   "mark": "apology",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Defne read it over my shoulder.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "She was quiet for a long time.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then she asked, \"How are your exams going?\"",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici",
+   "alinti": "Defne"
+  },
+  {
+   "text": "I said, \"Look, a bird.\"",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "There was no bird.",
+   "nefes": 0.5,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I opened the game on my phone, just to not look at her.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then I read the ninth address again.",
+   "nefes": 0.15,
+   "mark": "address",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Slowly.",
+   "nefes": 0.5,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Number nine is not old.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It has forty floors.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "And people still work in it.",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "anlatici"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 57.0,
+  "kelime": 140,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş + 3 soru kartı",
+  "acilis": {
+   "kare0": "Tuğladaki H K damgası; parmak H'nin üstünden geçerken H'nin yanına 'ALE' tebeşirle yazılmaya başlar; 1. cümle büyük yazıyla.",
+   "soru": "Hale ile dede ne yaptı?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: Behind the calendar, a crack.",
+   "gorsel": "Kaldırılmış takvimin arkasındaki tavana uzanan çatlak",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "hk": "t1",
+   "nine": "t0",
+   "note": "t0 (el yazısı belirir)",
+   "apology": "t1",
+   "address": "t0",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "40 katlı kule gece, pencerelerde ışık, içeride küçük insan siluetleri; tek bip; 3 sn soru kartı; sonra bitiş kartı.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line).",
+  "soruKarti": {
+   "metin": "Warn the people, or ask Hale first?",
+   "sure": 3.0,
+   "zaman": "tek bipten sonra, bitiş kartından önce"
+  }
+ }
+}
