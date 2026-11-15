@@ -1,0 +1,192 @@
+{
+ "part": 1,
+ "title": "THE CHIMNEY",
+ "next": {
+  "part": 2,
+  "title": "THE ANT"
+ },
+ "sentences": [
+  {
+   "text": "Grandpa left me three things.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "A crane.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "A debt.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "And a list, with one line I'm not allowed to read.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Ten buildings to take down.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nine, in old black ink.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The tenth is scratched out.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "In blue.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "And the blue is fresh.",
+   "nefes": 0.8,
+   "mark": "ink",
+   "kim": "anlatici"
+  },
+  {
+   "text": "The crane is called Daisy.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "She is older than my dad, and she hates mornings.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Job one: an old chimney, in an empty lot.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The night before, I flattened forty towers in Demolition Master.",
+   "nefes": 0,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "In the game, you just try again.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Real chimneys don't.",
+   "nefes": 0.8,
+   "mark": "real",
+   "kim": "anlatici"
+  },
+  {
+   "text": "I pulled the lever.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Daisy beeped.",
+   "nefes": 1.05,
+   "mark": "beep",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Twice.",
+   "nefes": 0.35,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I ignored her.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The chimney fell the wrong way.",
+   "nefes": 0.5,
+   "mark": "fall",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nobody was near.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "My professor says, that's called luck.",
+   "nefes": 0.5,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "In the bricks, I found a stamp.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Two letters.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "H, and K.",
+   "nefes": 0.6,
+   "mark": "stamp",
+   "kim": "anlatici"
+  },
+  {
+   "text": "And I keep thinking about that beep.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Daisy beeped twice before it fell.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Like she knew.",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "anlatici"
+  }
+ ],
+ "notlar": {
+  "kelime": 139,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "isaretAni": {
+   "ink": "t0",
+   "real": "t0",
+   "beep": "t1+0.22 (iki bip dosyası)",
+   "fall": "t0",
+   "stamp": "t1",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "Daisy'nin uyarı ışığına yakın plan, tam sessizlik; tek bip, kart.",
+  "kaynak": "Pilotta src/ses_kur.py içindeki S listesinden taşındı (zamanlar aynı)."
+ }
+}

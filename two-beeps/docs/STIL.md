@@ -45,7 +45,7 @@ Oyunun kendi fontları (SIL OFL 1.1, `assets/fonts/`, lisans `assets/LICENSES.md
 Siluet testi: dördü de tek renk siyah gölge olarak ayırt edilmeli.
 - **Kaan (19):** ince uzun, bol petrol yeşili iş ceketi, iri botlar, yukarı kıvrık tek saç tutamı ("Ant": anten). Bilekte sarı reflektör, elinde oyun açık telefon. Yüz: iki nokta göz, iki kaş, tek ağız, burun kıvrımı; ifade kaş ve ağızla. Endişede göz küçülür, ter damlası çıkar.
 - **Daisy:** eski, kutu kabinli sarı mobil vinç. Ağzı yok. **Farlar göz,** farların üstündeki boyalı siperlik göz kapağı: normalde yarıya iner (uykulu, sabahları sevmez), iki bipte kalkar. Tavandaki uyarı ışığı iki bipte yanar; ses iki yanında iki kavisle gösterilir. Pas, göçük, eğri ayna yaşını anlatır. Kapıda elle boyanmış "DAISY".
-- **Defne:** Kaan'dan kısa, dik; topuz saç, beyaz baret, lacivert yelek, elinde rulo çizim ya da kahve. Sarı yok.
+- **Defne:** Kaan'dan kısa, dik; yüksek topuz + kalem, yuvarlak gözlük, lacivert yelek, krem gömlek, açık haki pantolon; elinde kahve, baret ya da rulo çizim. Sarı yok.
 - **Mr. Hale:** iri gövde, geniş omuz, kenarlı açık şapka, krem takım. Kalın kaş, bıyık; ifadeyi kaşlar taşır.
 - **Grandpa:** görünmez; yalnız elle çizilmiş el yazısı, defter, telefon.
 Özgünlük kuralı: ön cama göz, tampona ağız konmaz; Daisy'nin yüzü yalnız far + siperlik + ışık.
@@ -55,3 +55,13 @@ Siluet testi: dördü de tek renk siyah gölge olarak ayırt edilmeli.
 - Tehlike şeridi her karede bir yerde görünür (tampon, kanca, tabela).
 - Telefon ekranında gerçek oyun görüntüsü; çerçeve mürekkeple çizilir, içi değiştirilmez.
 - Bölüm etiketi ve bitiş kartı oyunun açılış ekranı gibi: Lilita One, beyaz/sarı iki satır, altta şerit.
+
+## API: 2–10. bölüm ekleri (`src/cizim.js`, kanıt `out/stil2.png`)
+Pilot fonksiyonları değişmedi (`stil.png` piksel piksel aynı). Karakterler ayak ortasından `(x,y)` ve `s` ile çizilir; mekânlar `{x,y,w,h}` alanını kırpar, 1080 genişlikte tasarlandı (küçük kare için `ctx.scale` ile küçült). Hepsi `seed` alır; seed'i sahne boyunca sabit tut.
+- **Ortak yüz:** `face(ctx, expr, {L,R,m,k,lw,look,blink})`, ifadeler `EXPR`: calm, smile, serious, worried, pale, surprised, sheepish, determined, tired, confident, frozen, regret. Her karakter aynı listeyi kullanır.
+- `drawKaan(ctx, {..., expr, pose})`: yeni ifadeler surprised, sheepish, determined, tired, smile. `pose`: 'sit' (`hands` 'phone'|'knees', `seat`, `glow`), 'side' (`step` -1..1), 'back'. Varsayılan (stand + calm/worried) pilotla aynı.
+- `drawDefne(ctx, {x,y,s,expr,pose,item,seat,look,blink})`: pose 'stand'|'sit'|'cross'; item 'coffee'|'helmet'|'roll'. Kaan'ın ~0.9'u; topuz + kalem, yuvarlak gözlük, lacivert yelek.
+- `drawHale(ctx, {x,y,s,expr,pose,hat,phone,seat})`: pose 'stand'|'sit'|'carry'; hat true|false|'hand' (9. bölüm).
+- **Mekânlar:** `drawYard` (mode 'day'|'dusk'|'night'|'rain', `letter`, `doorOpen`, `lightOn`, `t`), `drawOffice` (`calendarMoved` 0..1 çatlağı açar, `lamp`, `phoneOn`), `drawCabin` (gece yağmur, `people`, `glow`, `kaanExpr`, `defneExpr`, `t`), `drawWaitingRoom` (`number`, `chairs`), `drawWaterTower` (`mode`, `fall` 0..1), `drawOldBuilding` (`variant` 0 otopark, 1 tuğla blok, 2 depo, 3 sıvalı apartman, 4 eski sinema, 5 fabrika ofisi), `drawHaleTower` (`mode`, `empty`, `sink` 0..1), `drawCafe` (`letter`, `ring`, `fries` 0..1).
+- **Nesneler** (orta `(x,y)`, `s`, `rot`): `drawLetter` (`kind` 'letter'|'envelope', `ring`, `lines`), `drawNotebook` (`lastPage`), `drawTin` (`open`, `text`), `drawStamp` (b-sahneler'deki "H K" kabartması, `dust` 0..1), `drawSensorPlan`, `drawListLamp` (`reveal` 0..1, `address`).
+- **Yardımcılar:** `handwrite(ctx, text, x, y, size, col, seed)` (el yazısı), `tube` (kol/bacak), `coffeeCup`, `waitChair`, `rainFx(ctx, alan, t)`.
