@@ -1,13 +1,14 @@
 /* Part 5 · H AND K — Animatör B: cümle 13–25 ve bitiş görüntüsü. Başlangıç (S12.t1+S13.t0)/2 ≈ 23,21 sn, bitiş tl.duration.
-   YERLEŞİM (dünya koordinatları; A'nın p5-a.js'i ile aynı tutulur):
-   - MASA (üstten, gece, lamba sağ üstte): DESK ahşap; dedenin defteri NB (drawNotebook lastPage) solda, liste LST (pilot
-     a-sahneler drawList, 700×1000 yerel, katlı alt kanat = 10. satır görünmez) sağda. 9. satır yerel y 822 (karalama y 832).
-   - TERS AÇI (masadan Kaan'a bakış; ofisin ön duvarı, solda tek pencere x 40–330, y 260–640 ekran): Kaan oturur, ön planda
-     KA {x:420,y:2180,s:2.5}; Defne omzunun sağ arkasında DF {x:700,y:1800,s:2.3}; lamba ışığı önden-sağdan.
-   - PENCERE (iç): çerçeve ahşap, dışarısı gece gök + uzak çit + avlu lambası; kuş yok.
+   YERLEŞİM (dünya koordinatları; A'nın p5-a.js'i ile birebir):
+   - MASA (üstten, gece, lamba sağ üstte): A'nın ahşabı + rulolar; DEFTER drawNotebook {x:540,y:900,s:1} son sayfada (sol sayfada dedenin
+     4 satırı, sağ sayfa boş); LİSTE defterin solunda, sol üst (-222,651), ölçek .524, 9. satır dünya y≈1082; 10. satır arkaya katlı.
+     İlk karede kamera A'nın son karesi: z 1.66, dünya (356,862) → ekran (540,560); Kaan'ın sol eli (215,1140).
+   - TERS AÇI (masadan Kaan'a; ofisin ön duvarı, solda tek pencere ekran x 40–330, y 260–640): Kaan KA {x:420,y:2180,s:2.5},
+     Defne omzunun sağ arkasında DF {x:700,y:1900,s:2.5}; ışık önden (masa lambası).
+   - PENCERE (iç, yakın): gece gök + uzak çatılar + çit; kuş yok.
    - 9 NUMARA: drawHaleTower {x:0,y:0,w:1080,h:1920,mode:'night',towerX:.62} → kule x 507–831, üst y 115, taban hz 1651;
-     kapıdaki tabela (y≈1560–1600) hep önündeki eski çatıların (y>1330) arkasında kalır: okunmaz.
-   - BİTİŞ: gece avlu; kule uzakta solda (ekranda üst y≈110, taban ≈880 eski çatıların arkasında), Daisy önde sağda
+     kapıdaki "HALE" tabelası (y≈1560–1600) hep önündeki eski çatıların (üstleri y≈1310–1370) arkasında: okunmaz.
+   - BİTİŞ: gece avlu; kule uzakta solda (ekranda üst y≈100, gövdesi y≈800'de çatıların arkasında kesilir), Daisy önde sağda
      {x:790,y:872,s:.8} (uyarı ışığı ≈(790,595): üst üçte bir). Tek bip endBeep'te; kart altta. */
 (function () {
   'use strict';
@@ -185,33 +186,63 @@
   }
 
   /* ================= MASA (üstten) ================= */
-  const NB = { x: 300, y: 860, s: .6, rot: -.05 };         // dedenin defteri (son sayfa)
-  const LST = { x: 610, y: 560, s: .5, rot: .035 };        // liste: sol üst köşe + ölçek
-  const lstW = (lx, ly) => { const c = Math.cos(LST.rot), s = Math.sin(LST.rot); return [LST.x + (lx * c - ly * s) * LST.s, LST.y + (lx * s + ly * c) * LST.s]; };
+  const NB = { x: 540, y: 900 };                            // A ile aynı defter
+  const LST = { x: -222, y: 651, s: .524, rot: 0 };          // A ile aynı liste
+  const lstW = (lx, ly) => [LST.x + lx * LST.s, LST.y + ly * LST.s];
   function deskBg() {
     return cached('masa', 2160, 2880, c => {
       c.translate(540, 480); c.fillStyle = P.wood; c.fillRect(-540, -480, 2160, 2880); C.seed(611);
       for (let i = -2; i < 11; i++) C.line(c, [[-560, 120 + i * 220], [1640, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
       for (let i = 0; i < 80; i++) { const x = -540 + rnd(i + 30) * 2160, y = -480 + rnd(i + 31) * 2880; C.line(c, [[x, y], [x + 80 + rnd(i) * 120, y + 4]], 1.4, 'rgba(63,39,17,.4)', 1); }
+      [[340, 330, -.12, 300], [700, 300, .1, 240], [980, 420, .5, 360]].forEach(([x, y, r, L]) => { c.save(); c.translate(x, y); c.rotate(r); C.shape(c, [[-L / 2, -24], [L / 2, -24], [L / 2, 24], [-L / 2, 24]], '#dfe5e2', { lw: 4, shade: cc => C.blot(cc, [[-L / 2, 6], [L / 2, 6], [L / 2, 26], [-L / 2, 26]], '#b9c2bf', .7) }); C.shape(c, C.ell(L / 2, 0, 9, 24, 12), '#eef2f0', { lw: 3 }); c.restore(); });
+    });
+  }
+  function pageBlank(ctx, side) {                           // A'dan: drawNotebook'un sayfasını boşaltır
+    C.seed(side < 0 ? 931 : 932);
+    const pts = side < 0 ? [[-359, -232], [-9, -227], [-9, 233], [-359, 231]] : [[9, -227], [359, -232], [359, 231], [9, 233]];
+    ctx.save(); ctx.fillStyle = P.page; ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath(); ctx.fill(); ctx.clip();
+    const g = side < 0 ? ctx.createLinearGradient(-60, 0, 0, 0) : ctx.createLinearGradient(0, 0, 60, 0);
+    g.addColorStop(side < 0 ? 0 : 1, 'rgba(0,0,0,0)'); g.addColorStop(side < 0 ? 1 : 0, 'rgba(0,0,0,.25)'); ctx.fillStyle = g; ctx.fillRect(side < 0 ? -60 : 0, -240, 60, 480);
+    for (let i = 0; i < 6; i++) { ctx.fillStyle = `rgba(160,118,62,${.06 + rnd(i * 7 + (side + 5)) * .08})`; ctx.beginPath(); ctx.arc(side * (40 + rnd(i * 3 + side + 9) * 300), -220 + rnd(i * 5 + side + 7) * 440, 4 + rnd(i) * 10, 0, TAU); ctx.fill(); }
+    ctx.restore();
+    ctx.save(); ctx.strokeStyle = 'rgba(31,79,224,.18)'; ctx.lineWidth = 1.4;
+    for (let yy = -190; yy < 230; yy += 34) { ctx.beginPath(); if (side < 0) { ctx.moveTo(-350, yy); ctx.lineTo(-16, yy); } else { ctx.moveTo(16, yy); ctx.lineTo(350, yy); } ctx.stroke(); }
+    ctx.restore();
+  }
+  const NOTE = ['They will not last.', 'I should have said no.', 'Take them down', 'before they fall.'];
+  function bookCv() {
+    return cached('defter', 1640, 1120, c => {
+      c.setTransform(2, 0, 0, 2, 820, 560);
+      C.drawNotebook(c, { x: 0, y: 0, s: 1, seed: 91 }); pageBlank(c, -1); pageBlank(c, 1);
+      NOTE.forEach((s, i) => C.handwrite(c, s, -340, -160 + i * 68, 30, P.inkOld, 11 + i));
     });
   }
   function drawDesk(ctx) {
     ctx.drawImage(deskBg(), -540, -480);
-    C.drawNotebook(ctx, { x: NB.x, y: NB.y, s: NB.s, rot: NB.rot, lastPage: true, seed: 91 });
-    ctx.save(); ctx.translate(LST.x, LST.y); ctx.rotate(LST.rot); ctx.scale(LST.s, LST.s);
-    ctx.fillStyle = 'rgba(10,5,2,.35)'; ctx.fillRect(14, 16, 708, 902);
+    ctx.save(); ctx.translate(LST.x, LST.y); ctx.scale(LST.s, LST.s);
+    ctx.fillStyle = 'rgba(10,5,2,.35)'; C.seed(613); ctx.fill(C.pathOf(C.wobble([[14, 16], [722, 16], [722, 918], [14, 918]], true, 2, 12), true));
     ctx.drawImage(listCv(), -20, 0, 740, 1000);
     ctx.restore();
+    ctx.drawImage(bookCv(), NB.x - 410, NB.y - 280, 820, 560);
   }
-  function deskLight(ctx, a) {
-    ctx.save(); ctx.globalCompositeOperation = 'soft-light'; const g = ctx.createRadialGradient(860, 380, 60, 640, 760, 1200);
-    g.addColorStop(0, `rgba(255,214,140,${a == null ? .5 : a})`); g.addColorStop(1, 'rgba(40,24,10,.6)'); ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
-    vignette(ctx, .5);
+  function motes(ctx, t, box, n, sd, a, size) {             // A'dan: lambada süzülen toz
+    const [x0, y0, w, h] = box, tt = ones(t);
+    for (let i = 0; i < n; i++) {
+      const r1 = rnd(sd + i * 7), r2 = rnd(sd + i * 7 + 1), r3 = rnd(sd + i * 7 + 2), sp = .3 + r3 * .7;
+      const x = x0 + ((r1 * w + Math.sin(tt * .6 * sp + i) * 18 * sp + tt * 6 * sp) % w + w) % w;
+      const y = y0 + ((r2 * h - tt * 10 * sp + Math.sin(tt * .9 + i * 2) * 8) % h + h) % h;
+      ctx.fillStyle = `rgba(232,220,196,${a * (.55 + .45 * Math.sin(tt * 2 * sp + i))})`; ctx.beginPath(); ctx.arc(x, y, (size || 1.6) * (.6 + r3), 0, TAU); ctx.fill();
+    }
+  }
+  function deskLight(ctx) {                                   // A ile aynı ışık
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalCompositeOperation = 'soft-light'; const g = ctx.createRadialGradient(820, 380, 60, 640, 760, 1200);
+    g.addColorStop(0, 'rgba(255,214,140,.5)'); g.addColorStop(1, 'rgba(40,24,10,.6)'); ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
+    vignette(ctx, .45);
   }
   // Kaan'ın kolu alttan (masada duran el)
   function handOnDesk(ctx, x, y, rot, flip) {
     ctx.save(); ctx.translate(x, y); ctx.rotate(rot); if (flip) ctx.scale(-1, 1); C.seed(flip ? 652 : 651);
-    C.shape(ctx, [[-60, 120], [60, 120], [70, 900], [-70, 900]], P.jacket, { lw: 6, shade: c => C.blot(c, [[20, 110], [80, 110], [80, 900], [30, 900]], '#0b1f2a', .3) });
+    C.shape(ctx, [[-60, 120], [60, 120], [70, 700], [74, 1500], [-74, 1500], [-70, 700]], P.jacket, { lw: 6, shade: c => C.blot(c, [[20, 110], [80, 110], [80, 1500], [30, 1500]], '#0b1f2a', .3) });
     C.shape(ctx, [[-56, 100], [56, 100], [58, 136], [-58, 136]], P.hazard, { lw: 4.4 });
     C.shape(ctx, [[-52, 104], [-58, 30], [-40, -26], [-10, -44], [24, -40], [48, -16], [56, 40], [50, 104]], P.skin, { lw: 6, shade: c => C.blot(c, [[20, -50], [70, -50], [70, 110], [30, 110]], P.skinDk, .5) });
     C.line(ctx, [[-30, -20], [-26, 20]], 3, P.skinDk); C.line(ctx, [[-6, -32], [-4, 10]], 3, P.skinDk); C.line(ctx, [[18, -30], [16, 10]], 3, P.skinDk);
@@ -376,24 +407,26 @@
 
   /* --- 13: "So the list is not a job." masa üstten: defter + liste yan yana; Kaan'ın elleri masadan çekilir, kamera geri --- */
   shot('p5b13-masa', k => k.start, k => k.c14, (ctx, t, u) => {
-    const k = times(), tw = twos(t), e = E.io(u), z = lerp(1.22, .98, e), fx = lerp(540, 535, e), fy = lerp(830, 880, e);
-    ctx.save(); cam(ctx, z, fx, fy);
+    const k = times(), tw = twos(t), e = E.io(seg(t, k.start + .1, k.c14));
+    const z = lerp(1.66, .9, e), fx = lerp(356, 350, e), fy = lerp(862, 890, e), sy = lerp(560, 720, e);
+    ctx.save(); cam(ctx, z, fx, fy, 540, sy);
     drawDesk(ctx);
-    const out = E.inQ(seg(tw, k.job - .25, k.job + .45));
-    handOnDesk(ctx, 260 - out * 60, 1130 + out * 760, .22, true);
-    handOnDesk(ctx, 820 + out * 60, 1170 + out * 760, -.18, false);
+    const out = E.inQ(seg(tw, k.job - .25, k.job + .4));                // el masadan çekilir (Kaan geri çekilir)
+    handOnDesk(ctx, NB.x - 325 - out * 40, NB.y + 240 + out * 700, .22, true);
+    motes(ctx, t, [NB.x - 420, NB.y - 320, 840, 600], 40, 77, .45, 1.4);
     ctx.restore();
-    deskLight(ctx); airDust(ctx, t, 14, 13, [0, 300, 1080, 1100], .5);
+    deskLight(ctx);
     finish(ctx);
   });
 
   /* --- 14: "It is an apology." listenin üstü yakın; sessiz, çok yavaş itme --- */
   shot('p5b14-ozur', k => k.c14, k => k.c15, (ctx, t, u) => {
-    const e = E.io(u), [fx, fy] = lstW(330, 200), z = lerp(3.3, 3.55, e);
+    const e = E.io(u), [fx, fy] = lstW(330, 200), z = lerp(3.15, 3.4, e);
     ctx.save(); cam(ctx, z, fx + lerp(10, -6, e), fy, 540, 820);
     drawDesk(ctx);
+    motes(ctx, t, [LST.x, LST.y, 380, 300], 16, 78, .5, 1.2);
     ctx.restore();
-    deskLight(ctx, .45); airDust(ctx, t, 10, 14, [0, 300, 1080, 900], .55);
+    deskLight(ctx);
     finish(ctx);
   });
 
@@ -512,9 +545,9 @@
     const [fx, fy] = lstW(lx, ly);
     ctx.save(); cam(ctx, z, fx, fy, 540, sy);
     drawDesk(ctx);
-    const f = fingerOn9(t); if (f.en > 0) drawPointer(ctx, f.x, f.y, -.32 + LST.rot, .42, 0);
+    const f = fingerOn9(t); if (f.en > 0) drawPointer(ctx, f.x, f.y, -.32, .44, 0);
     ctx.restore();
-    deskLight(ctx, .5);
+    deskLight(ctx);
   }
   shot('p5b21-dokuz', k => k.c21, k => k.c22, (ctx, t, u) => {
     listCU(ctx, t, lerp(2.0, 2.5, E.io(u)), lerp(380, 330, E.io(u)), lerp(640, lineY(9) - 10, E.io(u)), 820);

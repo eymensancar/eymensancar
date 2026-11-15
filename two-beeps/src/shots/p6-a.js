@@ -250,7 +250,7 @@
     if (ev && o.kaanHand !== false) { // Kaan'ın eli zarfın sağ alt köşesinde; konunca çekilir
       const k = times(), tw = twos(t), back = E.inQ(seg(tw, k.slap + .12, k.slap + .5));
       const corner = rotP([150 * ENV.s, 80 * ENV.s], ev.rot);
-      flatHand(ctx, ev.x + corner[0] + back * 160, ev.y + corner[1] + back * 700, 1.25, .78, .2);
+      flatHand(ctx, ev.x + corner[0] + back * 500, ev.y + corner[1] + back * 1300, 1.25, .78, .2);
     }
     const h = o.hand !== false ? handState(t) : null;
     if (h) {
@@ -259,8 +259,7 @@
     }
     if (o.kaanRest) { // Kaan'ın elleri masada (2. cümle); "my fries"te sağ el kutuya uzanır
       const k = times(), tw = twos(t), g = E.outC(seg(tw, k.myFries - .05, k.myFries + .3)) - E.io(seg(tw, k.fries + .5, k.c3));
-      flatHand(ctx, lerp(780, 560, g), lerp(1330, 860, g), 1.25, .8, .1);
-      flatHand(ctx, 330, 1350, 1.25, .8, .15, true);
+      flatHand(ctx, lerp(720, 520, g), lerp(1420, 900, g), lerp(.75, .95, g), 1.25, .1);
     }
   }
 
@@ -282,7 +281,7 @@
   /* --- 1: "I found Ironline Demolition." üstten kızartma; karşıdan bir el (0. karede uzanıyor) --- */
   shot('p6a-01-kizartma', k => 0, k => k.c2, (ctx, t, u) => {
     ctx.fillStyle = '#c96a3e'; ctx.fillRect(0, 0, 1080, 1920);
-    ctx.save(); cam(ctx, lerp(1.34, 1.42, E.io(u)), lerp(330, 345, E.io(u)), 600, 470, 1120);
+    ctx.save(); cam(ctx, lerp(1.34, 1.42, E.io(u)), lerp(330, 345, E.io(u)), 600, 470, 1175);
     tableTop(ctx, t, { env: false });
     ctx.restore();
     vignette(ctx, .3);

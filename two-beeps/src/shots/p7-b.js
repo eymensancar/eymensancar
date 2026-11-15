@@ -408,7 +408,7 @@
     while (cx < 2600) { const bw = 120 + rnd(st.seed * 100 + n) * 200, bh = 120 + rnd(st.seed * 100 + n + 50) * 380; C.shape(ctx, [[cx, -60], [cx, -60 - bh], [cx + bw, -60 - bh], [cx + bw, -60]], P.far, { lw: 3, ink: P.far2, amp: .6 }); cx += bw + 14; n++; }
     const hzg = ctx.createLinearGradient(0, -300, 0, -40); hzg.addColorStop(0, 'rgba(240,226,194,0)'); hzg.addColorStop(1, 'rgba(240,226,194,.65)'); ctx.fillStyle = hzg; ctx.fillRect(-2600, -300, 5200, 262);
     const gg = ctx.createLinearGradient(0, -60, 0, 1400); gg.addColorStop(0, P.groundLt); gg.addColorStop(.35, P.ground); gg.addColorStop(1, P.groundDk);
-    ctx.fillStyle = gg; ctx.fillRect(-2600, -60, 5200, 1700);
+    ctx.fillStyle = gg; ctx.fillRect(-2600, -60, 5200, 1700); ctx.fillStyle = P.groundDk; ctx.fillRect(-2600, 1630, 5200, 2000);
     for (let i = 0; i < 24; i++) C.blot(ctx, C.ell(-2400 + rnd(st.seed + 4000 + i) * 4800, -20 + rnd(st.seed + 4100 + i) * 1200, 60 + rnd(4200 + i) * 120, 10 + rnd(4300 + i) * 12, 12), i % 2 ? P.groundDk : P.groundLt, .22);
   }
   function siteFence(ctx) {   // çit: tel örgü + şeritli bar (kameraya yakın, y=260)
@@ -650,9 +650,9 @@
     C.ink(ctx, (() => { const p = new Path2D(); const q = C.wobble(rrectPts(-SWd / 2, -SHd / 2, SWd, SHd, 34, 6), true, .5); p.moveTo(q[0][0], q[0][1]); q.forEach(v => p.lineTo(v[0], v[1])); p.closePath(); return p; })(), 4);
     // başparmak: binanın üstünde dolaşır ("nereden?"), sonra tabandaki noktaya dokunur
     const th = twos(t), hov = seg(th, k.start + .25, k.tap - .25);
-    const ang = hov * TAU * 1.1, hx = lerp(0, TAP[0], E.io(seg(th, k.tap - .55, k.tap))) + Math.cos(ang) * 70 * (1 - seg(th, k.tap - .5, k.tap)), hy = lerp(-150, TAP[1], E.io(seg(th, k.tap - .55, k.tap))) + Math.sin(ang) * 50 * (1 - seg(th, k.tap - .5, k.tap));
+    const ang = hov * TAU * 1.1, fade = 1 - seg(th, k.tap - .45, k.tap), hx = TAP[0] - 20 + Math.cos(ang) * 90 * fade, hy = TAP[1] - 120 * fade + Math.sin(ang) * 60 * fade;
     const inU = E.outC(seg(th, k.start, k.start + .35)), lift = t < k.tap ? 1 : 1 - .3 * seg(th, k.tap + .15, k.tap + .4);
-    const tx = lerp(330, hx + 30, inU * lift), ty = lerp(560, hy + 50, inU * lift) - (t < k.tap - .08 ? 14 : 0);
+    const tx = lerp(330, hx + 30, inU * lift), ty = lerp(560, hy + 50, inU * lift) - (t < k.tap - .08 ? 16 : 0);
     drawHandSide(ctx, BWd / 2 - 10, 0, true, 6);
     C.seed(172);
     C.shape(ctx, [[BWd / 2 + 60, 380], [tx + 50, ty - 30], [tx + 10, ty - 50], [tx - 30, ty - 30], [tx - 20, ty + 20], [BWd / 2 + 20, 470]], P.skin, { lw: 6, shade: c => C.blot(c, [[tx - 10, ty + 5], [BWd / 2 + 80, 420], [BWd / 2 + 80, 520], [tx, ty + 60]], P.skinDk, .5) });
@@ -727,7 +727,7 @@
     ctx.restore();
     // Defne önde solda (omuz + baş, Daisy'ye bakar)
     ctx.save();
-    drawDefneTalk(ctx, { x: 120, y: 2350, s: 2.6, seed: 31, expr: tw < k.lid + .25 ? 'confident' : 'smile', item: 'coffee', look: 1, blink: blinkAt(tw, [k.lid + .55]) }, .04 + .02 * Math.sin(tw * 4) * (tw < k.lid ? 1 : 0), 0, .03);
+    drawDefneTalk(ctx, { x: 130, y: 1980, s: 2.6, seed: 31, expr: tw < k.lid + .25 ? 'confident' : 'smile', item: 'coffee', look: 1, blink: blinkAt(tw, [k.lid + .55]) }, .04 + .02 * Math.sin(tw * 4) * (tw < k.lid ? 1 : 0), 0, .03);
     ctx.restore();
     vignette(ctx, .22);
     finish(ctx);
@@ -857,8 +857,8 @@
     drawFolder(ctx, open);
     // iki el dosyanın kenarlarında; açarken sağ el kapağı götürür
     const hr = open > 0 ? [lerp(330, -330 - 300 * open, open), 380 - 260 * Math.sin(open * Math.PI)] : [330, 380];
-    defneHand(ctx, -300, 470, -1.9, { s: .8 });
-    defneHand(ctx, hr[0], hr[1], -1.25 - open * .6, { s: .8 });
+    defneHand(ctx, -300, 440, 1.25, { s: .8 });
+    defneHand(ctx, hr[0], hr[1], .75 + open * .7, { s: .8 });
     ctx.restore();
     ctx.restore();
     vignette(ctx, .3);
@@ -921,7 +921,7 @@
     reportPage(ctx, .15 + .35 * seg(t, k.chart, k.slow));
     // parmak: eğriyi soldan sağa izler
     const gx = 120, gy = 520, gw = 520, gh = 330, pu = E.io(seg(tw, k.chart + .25, k.slow - .25)), v = .03 + .97 * (Math.exp(pu * 2.6) - 1) / (Math.exp(2.6) - 1);
-    defneHand(ctx, gx + pu * gw + 10, gy - v * gh * .92 + 30, -1.0, { s: .7 });
+    defneHand(ctx, gx + pu * gw + 10, gy - v * gh * .92 + 30, 1.05, { s: .7 });
     ctx.restore();
     // lamba ışığı
     ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(200, 600, 40, 200, 600, 900); g.addColorStop(0, 'rgba(255,210,122,.16)'); g.addColorStop(1, 'rgba(255,210,122,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
@@ -942,7 +942,7 @@
       daisy: { beep: beepV(t, k.endBeep), hook: Math.sin(ft * 1.1) * .025 },
       extra: [[SEAT.y, () => drawDefneTalk(ctx, { x: SEAT.x, y: SEAT.y, s: DESK.s, seed: 31, pose: 'sit', expr: talking ? (Math.floor(tw * 5) % 3 ? 'pale' : 'worried') : 'pale', look: .9, blink: blinkAt(tw, [k.end + .4]), seat: true }, talking ? .03 * Math.sin(tw * 7) : 0, 0, 0)],
         [DESK.y, () => drawDesk(ctx, DESK.x, DESK.y, DESK.s, { lamp: 1, roll: false, after: (c, lw) => { c.save(); c.translate(-20, -246); c.scale(.16, .06); c.rotate(0); C.seed(3999); C.shape(c, [[-350, -470], [350, -470], [350, 470], [-350, 470]], '#ece3cc', { lw: 20 }); c.restore(); coffee(c, 150, -246, .9, lw); coffee(c, 178, -230, .9, lw); } })]],
-      kaan: { x: 150, y: 1760, s: KAAN.s, expr: 'worried', look: .9, blink: blinkAt(tw, [k.slow + .9]), phone: false },
+      kaan: { x: 535, y: 1790, s: KAAN.s, expr: 'worried', look: .9, blink: blinkAt(tw, [k.slow + .9]), phone: false },
       noGrass: false
     });
     airDust(ctx, tf, 16, 61, [0, 900, 1080, 600], .6);

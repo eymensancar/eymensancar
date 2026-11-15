@@ -8,7 +8,7 @@
      (dünya y = 730 + (i-1)·44). Alt kanat (10. mavi satır) arkaya katlı, görünmez. Rulo çizimler masanın üstünde (y≈300).
    - SON KARE (≈23,21 sn): defter SON SAYFADA açık; sol sayfada dedenin notu 4 satır tam ("They will not last." / "I should have said no." /
      "Take them down" / "before they fall."), sağ sayfa boş. Kamera z 1.6→1.66, dünya (356,860) ekranda (540,560); not ekranda y≈330–700.
-     Kaan'ın sol başparmağı sol sayfanın alt kenarında (dünya ≈ (215,1140)). Liste solda kadraj kenarında, kısmen görünür.
+     Kaan'ın sol eli sol sayfanın sol alt köşesinde (handOnRoll dünya (168,1162), rot .42, flip). Liste solda kadraj kenarında, kısmen görünür.
    Zamanlar timeline'dan (times()); eller ikişerli, kamera/ışık birerli. Rastgelelik yalnız tohumlu. */
 (function () {
   'use strict';
@@ -194,7 +194,7 @@
         c.restore();
       }
       // tebeşir alanında düz, gölgeli beton parçası (yazı okunsun)
-      C.seed(31); C.shape(c, [[330, 850], [930, 838], [950, 1130], [310, 1140]], '#8f846f', { lw: 4.4, shade: cc => { C.blot(cc, [[620, 830], [960, 830], [960, 1150], [700, 1150]], '#7a705d', .5); for (let i = 0; i < 18; i++) C.blot(cc, C.ell(330 + rnd(70 + i) * 600, 850 + rnd(90 + i) * 280, 14 + rnd(i) * 30, 5 + rnd(i + 3) * 8, 10), '#a39883', .35); } });
+      C.seed(31); C.shape(c, [[340, 862], [520, 848], [610, 868], [760, 846], [940, 858], [958, 990], [932, 1128], [760, 1116], [600, 1140], [430, 1122], [318, 1132], [302, 1000]], '#8f846f', { lw: 4.4, shade: cc => { C.blot(cc, [[620, 830], [960, 830], [960, 1150], [700, 1150]], '#7a705d', .5); C.line(cc, [[610, 868], [640, 930], [612, 990]], 2.4, 'rgba(21,18,13,.55)', .6); C.line(cc, [[930, 1060], [880, 1090], [860, 1128]], 2.4, 'rgba(21,18,13,.55)', .6); for (let i = 0; i < 18; i++) C.blot(cc, C.ell(330 + rnd(70 + i) * 600, 850 + rnd(90 + i) * 280, 14 + rnd(i) * 30, 5 + rnd(i + 3) * 8, 10), '#a39883', .35); } });
       for (let i = 0; i < 24; i++) { const x = rnd(7000 + i) * 1080, y = rnd(7100 + i) * 1920; if (x > 300 && x < 960 && y > 830 && y < 1150) continue; C.blot(c, C.ell(x, y, 10 + rnd(7200 + i) * 22, 4 + rnd(7300 + i) * 6, 10), P.dustLt, .3); }
     });
   }
@@ -364,7 +364,7 @@
     C.shape(ctx, [[gx - 33, gy - 124], [gx + 33, gy - 124], [gx + 21, gy - 90], [gx + 36, gy - 21], [gx - 36, gy - 21], [gx - 21, gy - 90]], '#8a3a12', { lw: 0 });
     C.shape(ctx, C.ell(gx, gy - 6, 72, 15, 16), P.paper, { lw: 3.6 });
     // kapalı defter masada (hafif yukarıdan)
-    ctx.save(); ctx.translate(600, y0 + 34); C.seed(521);
+    ctx.save(); ctx.translate(640, y0 + 40); ctx.scale(1.35, 1.35); C.seed(521);
     ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(16, 30, 200, 26, 0, 0, TAU); ctx.fill(); ctx.restore();
     C.shape(ctx, [[-170, 10], [170, 6], [192, 30], [-188, 36]], P.page, { lw: 4 });
     C.shape(ctx, [[-176, -10], [166, -16], [190, 16], [-190, 22]], '#4a2e17', { lw: 4.4, shade: c => { C.blot(c, [[60, -20], [200, -20], [200, 30], [80, 30]], '#331f0e', .6); for (let i = 0; i < 10; i++) C.blot(c, C.ell(-170 + rnd(i + 60) * 340, -10 + rnd(i + 70) * 26, 14 + rnd(i) * 24, 3 + rnd(i + 2) * 4, 8), P.dustLt, .35); } });
@@ -378,7 +378,7 @@
     ctx.save(); cam(ctx, lerp(1.0, 1.07, E.io(u)), 540, 1000, 540, 1000);
     const lean = E.ioC(seg(tw, k.cB + .45, k.cB + .9));
     const bl = tw >= k.cB + .25 && tw < k.cB + .25 + 3 / FPS ? 1 : 0;
-    C.drawKaan(ctx, { x: 470, y: 1300 + lean * 16, s: 1.2, pose: 'sit', hands: 'knees', expr: lean > .5 ? 'serious' : 'calm', look: .35, blink: bl, seed: 11 });
+    C.drawKaan(ctx, { x: 450, y: 1340 + lean * 18, s: 1.5, pose: 'sit', hands: 'knees', expr: 'serious', look: .35, blink: bl, seed: 11 });
     deskFront(ctx, 1110);
     motes(ctx, t, [300, 500, 600, 600], 30, 41, .6, 1.6);
     ctx.restore();
@@ -442,8 +442,9 @@
       C.seed(942); for (let i = 0; i < 6; i++) C.shape(g, [[-113 + i * 40, 30], [-113 + i * 40, 30 - 20 - rnd(i + 3) * 30], [-80 + i * 40, 30 - 20 - rnd(i + 3) * 30], [-80 + i * 40, 30]], '#b9a682', { lw: 0 });
       // tabela
       C.line(g, [[-62, 30], [-62, -40]], 3, '#5b4a36', .3); C.line(g, [[62, 30], [62, -40]], 3, '#5b4a36', .3);
-      C.shape(g, [[-78, -70], [78, -72], [80, -38], [-80, -36]], '#7a6649', { lw: 2.2 });
-      g.font = '700 26px Rubik'; g.textAlign = 'center'; g.fillStyle = '#efe2c0'; g.fillText('H & K', 0, -45);
+      C.shape(g, [[-78, -76], [78, -77], [80, -54], [-80, -53]], '#7a6649', { lw: 2.2 });
+      g.font = '700 20px Rubik'; g.textAlign = 'center'; g.fillStyle = '#efe2c0'; g.fillText('H & K', 0, -58);
+      g.translate(0, 8);
       // genç Kaya (solda, ince, şapkasız, iş ceketi) ve genç Hale (sağda, iri, şapkalı, açık renk takım)
       const man = (x, wide, suit, hat) => {
         const sh = wide ? 30 : 21;
@@ -472,9 +473,9 @@
   }
   function signatures(ctx) {
     C.handwrite(ctx, 'Hale', -320, 150, 40, P.inkOld, 951, { bold: true });
-    partial(ctx, [[-326, 160], [-260, 168], [-200, 156], [-230, 150]], 1, 2.4, P.inkOld, 952);
+    partial(ctx, [[-326, 162], [-280, 168], [-230, 164], [-200, 158]], 1, 2.4, P.inkOld, 952);
     C.handwrite(ctx, 'Kaya', -150, 156, 40, P.inkOld, 953, { bold: true });
-    partial(ctx, [[-156, 166], [-90, 172], [-34, 160], [-56, 154]], 1, 2.4, P.inkOld, 954);
+    partial(ctx, [[-156, 168], [-110, 174], [-62, 170], [-34, 162]], 1, 2.4, P.inkOld, 954);
     C.line(ctx, [[-340, 196], [-30, 194]], 1.4, 'rgba(58,48,38,.5)', .3);
   }
   // Hızlı: üç bina kendiliğinden çizilir (sol sayfa). u1..u3 0..1
@@ -725,7 +726,7 @@
         const tw = twos(t), act = fi >= 0 && fu < 1, away = E.inQ(seg(tw, t0 + .85, t0 + 1.15));
         const ex = act ? NB.x + 360 * Math.cos(Math.PI * fu) : NB.x + 350;
         handOnRoll(c, ex + 10, NB.y + 210 + away * 500, fu > .5 && act ? .3 : -.25, fu > .5 && act);
-        handOnRoll(c, NB.x - 320, NB.y + 250 + 40 * (1 - E.outC(seg(tw, t0 + .6, t0 + 1.2))), .22, true);
+        handOnRoll(c, NB.x - 372, NB.y + 262 + 60 * (1 - E.outC(seg(tw, t0 + .6, t0 + 1.2))), .42, true);
       }
     });
   });
@@ -733,13 +734,13 @@
   /* a11 · S10–S11 "They will not last." / "I should have said no." — son sayfaya yakın: dedenin eli satır satır belirir (üst üçte bir). */
   shot('a11-not', k => k.cI, k => k.cJ, (ctx, t, u) => {
     const z = lerp(1.9, 1.98, E.io(u));
-    topView(ctx, t, z, 356, lerp(838, 846, u), 540, 520, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 330, NB.y + 250, .22, true) });
+    topView(ctx, t, z, 356, lerp(838, 846, u), 540, 520, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 372, NB.y + 262, .42, true) });
   });
 
   /* a12 · S12 "Take them down before they fall." — biraz geniş: tüm not + sol başparmak sayfa kenarında. Son kare B'ye. */
   shot('a12-not', k => k.cJ, k => k.end, (ctx, t, u) => {
     const z = lerp(1.6, 1.66, E.io(u));
-    topView(ctx, t, z, 356, lerp(856, 862, u), 540, 560, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 325, NB.y + 240, .22, true) });
+    topView(ctx, t, z, 356, lerp(856, 862, u), 540, 560, { list: 0, book: c => spread(c, 'last', {}, t), hands: c => handOnRoll(c, NB.x - 370, NB.y + 258, .42, true) });
   });
 
   /* ================= SES EKİBİ İÇİN GÖRSEL ANLAR ================= */

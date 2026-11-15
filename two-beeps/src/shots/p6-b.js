@@ -1,9 +1,9 @@
 /* Part 6 · IRONLINE — Animatör B: cümle 11–24 + bitiş. Başlangıç (S10.t1+S11.t0)/2 ≈ 23,68 sn, bitiş tl.duration.
    YERLEŞİM (dünya koordinatları; öbür yarı aynısını kullansın):
-   - KAFE (yandan, göz hizası): duvar #e9d3a8 / lambri #8a5a34, pencere x 610–1010, y 300–900 (Defne'nin arkasında, sağda; dışarısı
-     gri gün, sokak); masa üstü y 1250 (önde, kırmızı-krem), sarkıt lamba (430, 0→250). Defne masanın arkasında oturur:
-     drawDefne {x:540, y:1640, s:2.6, pose:'sit', item:'coffee'} (baş ≈ (540, 790)). Kaan karşıda (ters plan): drawKaan sit
-     {x:540, y:1660, s:2.4, hands:'knees'}, arkasında kapı + tabela. Patates kutusu masada solda, Defne'nin kahvesi elinde.
+   - KAFE: A'nın (src/shots/p6-a.js) "karşıdan" yerleşimi birebir: Defne (560,1500) s 2,2 sit, yüz ≈(560,780), elleri bardakta;
+     masa kenarı y 1196, bardak (560, taban 1262) k 3,2, zarf (483,1254), kızartma solda; pencere x 640–1010, y 300–900; lamba x 300;
+     Kaan arkadan sağ altta (930,2330) s 2. Kesmede yakın plan z 1,62, (560,800) → (540,760). Ters plan (bu dosya): Kaan (540,1560)
+     s 2,15 sit, eller masa altında; arkasında camlı kapı x 620–940 + MENU tahtası x 90–446; lamba x 780; kızartma sağda.
    - KABİN (Daisy içi, gece yağmur): C.drawCabin alanı CA {x:0, y:-200, w:1080, h:1920}; Kaan solda (324, 2142) s 3.53 sit/phone,
      Defne sağda (756, 2104) s 3.69 sit; baş merkezleri Kaan ≈ (330, 842), Defne ≈ (756, 897); telefon ≈ (303, 1500).
      Gösterge paneli üst kenarı y ≈ 1528→1490 (soldan sağa). Baret panelin sağında (905, 1520).
@@ -431,44 +431,35 @@
   /* ================= SAHNELER ================= */
   const shot = (id, f0, f1, draw) => TB.shot({ id, get t0() { return f0(times()); }, get t1() { return f1(times()); }, draw });
 
-  /* --- 11: "I wanted them to stop you." kafe, Defne karşıda (orta) --- */
+  /* --- 11: "I wanted them to stop you." A'nın yakın planı sürer (z 1,62 → 1,72), Defne konuşur --- */
+  function nodR(t, idx, amp) { return talk(t, idx) * (amp || .014); }
   shot('p6b11-defne', k => k.start, k => k.cu12, (ctx, t, u) => {
-    const k = times(), tw = twos(t), tk = talk(tw, [11]);
-    ctx.save(); cam(ctx, lerp(1.12, 1.18, E.io(u)), 560, 900);
-    cafeRoom(ctx, t, { rainU: 0 });
-    drawDefneAt(ctx, { x: DF_CAFE.x, y: DF_CAFE.y, s: DF_CAFE.s, item: 'coffee', expr: tw >= k.stop ? 'worried' : 'serious', look: -.25, lean: -.015 * tk, dy: -6 * tk, blink: blinkAt(tw, [k.start + .5]) });
-    cafeTable(ctx, { letter: true });
-    ctx.restore();
-    vignette(ctx, .3);
-    finish(ctx);
-  });
-
-  /* --- 12: "Before a building did." yakın; sonunda bakış yere --- */
-  shot('p6b12-yakin', k => k.cu12, k => k.kaan13, (ctx, t, u) => {
-    const k = times(), tw = twos(t), tk = talk(tw, [12]);
-    ctx.save(); cam(ctx, lerp(1.75, 1.86, E.io(u)), 545, 800, 540, 760);
-    cafeRoom(ctx, t, { rainU: 0 });
-    drawDefneAt(ctx, { x: DF_CAFE.x, y: DF_CAFE.y, s: DF_CAFE.s, item: 'coffee', expr: tw >= k.down ? 'regret' : 'worried', look: tw >= k.down ? .2 : -.3, lean: -.012 * tk + (tw >= k.down ? .015 : 0), dy: -5 * tk + (tw >= k.down ? 6 : 0) });
-    cafeTable(ctx, { letter: true });
-    ctx.restore();
-    vignette(ctx, .35);
-    finish(ctx);
-  });
-
-  /* --- 13: "I wanted to be angry." Kaan (ters plan): kaşlar çatılır, söze başlayacak --- */
-  shot('p6b13-kaan', k => k.kaan13, k => k.win, (ctx, t, u) => {
     const k = times(), tw = twos(t);
-    const inh = E.outC(seg(tw, k.inhale, k.inhale + .3));
-    ctx.save(); cam(ctx, lerp(1.5, 1.6, E.io(u)), 540, 840, 540, 760);
-    cafeRoom(ctx, t, { side: 'kaan' });
-    drawKaanAt(ctx, { x: KN_CAFE.x, y: KN_CAFE.y, s: KN_CAFE.s, hands: 'knees', expr: tw >= k.angry ? 'determined' : 'serious', look: tw >= k.inhale + .35 ? .9 : 0, dy: -8 * inh, blink: blinkAt(tw, [k.kaan13 + .5]) });
-    cafeTable(ctx, { side: 'kaan', letter: true });
-    ctx.restore();
-    vignette(ctx, .3);
+    const d = { expr: 'worried', look: tw >= k.stop ? .45 : .3, rot: -nodR(tw, [11]), bob: 6 * talk(tw, [11]), blink: blinkAt(tw, [k.start + .55]), t };
+    frontScene(ctx, t, d, lerp(1.62, 1.72, E.io(u)), 560, 800, 540, 760);
+    vignette(ctx, .36);
     finish(ctx);
   });
 
-  /* --- 14: "It started raining instead." pencere: ilk damlalar, sonra yağmur --- */
+  /* --- 12: "Before a building did." daha yakın; "did"den sonra bakış yere, sessizlik --- */
+  shot('p6b12-yakin', k => k.cu12, k => k.kaan13, (ctx, t, u) => {
+    const k = times(), tw = twos(t), dn = E.io(seg(tw, k.down, k.down + .35));
+    const d = { expr: tw >= k.down ? 'regret' : 'worried', look: lerp(.4, .05, dn), rot: -nodR(tw, [12]) + .012 * dn, bob: 5 * talk(tw, [12]) + 10 * dn, blink: 0, t };
+    frontScene(ctx, t, d, lerp(2.08, 2.2, E.io(u)), 560, 780, 540, 740);
+    vignette(ctx, .42);
+    finish(ctx);
+  });
+
+  /* --- 13: "I wanted to be angry." ters plan: Kaan, kaşlar çatılır; söze başlayacak, gözü pencereye kayar --- */
+  shot('p6b13-kaan', k => k.kaan13, k => k.win, (ctx, t, u) => {
+    const k = times(), tw = twos(t), inh = E.outC(seg(tw, k.inhale, k.inhale + .3));
+    const d = { expr: tw >= k.angry ? 'determined' : 'serious', look: tw >= k.inhale + .3 ? -.7 : .1, bob: -10 * inh, rot: tw >= k.angry ? -.01 * E.io(seg(tw, k.angry, k.angry + .3)) : 0, blink: blinkAt(tw, [k.kaan13 + .5]) };
+    kaanScene(ctx, t, d, lerp(1.8, 1.9, E.io(u)), 545, 820, 540, 760);
+    vignette(ctx, .36);
+    finish(ctx);
+  });
+
+  /* --- 14: "It started raining instead." pencere (Defne'nin arkası): ilk damlalar, sonra yağmur --- */
   function drop(ctx, t, t0, x, y, r) { // cama çarpan damla: küçük sıçrama, sonra aşağı süzülür
     const d = t - t0; if (d < 0) return;
     const sl = Math.min(140, Math.max(0, d - .25) * 90);
@@ -478,16 +469,16 @@
     ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.beginPath(); ctx.arc(x - r * .3, y + sl - r * .3, r * .28, 0, TAU); ctx.fill();
   }
   shot('p6b14-yagmur', k => k.win, k => k.ext, (ctx, t, u) => {
-    const k = times(), ru = E.inQ(seg(t, k.rain - .2, k.ext));
-    ctx.save(); cam(ctx, lerp(2.3, 2.15, E.io(u)), 810, 560, 540, 760);
-    cafeRoom(ctx, t, { rainU: ru });
+    const k = times(), ru = E.inQ(seg(t, k.rain - .2, k.ext)), z = lerp(2.25, 2.1, E.io(u)), cx = WIN.x + WIN.w / 2, cy = WIN.y + WIN.h / 2 + 20;
+    ctx.save(); cam(ctx, z, cx, cy, 540, 720);
+    ctx.drawImage(cafeRoom(), 0, 0); clouds(ctx, t);
+    windowRain(ctx, t, ru, c => {
+      drop(c, t, k.drop1, 760, 420, 11); drop(c, t, k.drop2, 900, 560, 12); drop(c, t, k.drop3, 700, 650, 10);
+      for (let i = 0; i < 40; i++) drop(c, t, k.rain - .1 + rnd(300 + i) * .9, WIN.x + 10 + rnd(340 + i) * (WIN.w - 20), WIN.y + 10 + rnd(380 + i) * WIN.h * .8, 3 + rnd(420 + i) * 3);
+    });
+    pendant(ctx, t);
     ctx.restore();
-    ctx.save(); cam(ctx, lerp(2.3, 2.15, E.io(u)), 810, 560, 540, 760);
-    ctx.beginPath(); ctx.rect(CF.winX, CF.winY, CF.winW, CF.winH); ctx.clip();
-    drop(ctx, t, k.drop1, 760, 420, 15); drop(ctx, t, k.drop2, 880, 560, 17); drop(ctx, t, k.drop3, 700, 640, 13);
-    for (let i = 0; i < 40; i++) drop(ctx, t, k.rain - .1 + rnd(300 + i) * .9, CF.winX + 10 + rnd(340 + i) * (CF.winW - 20), CF.winY + 10 + rnd(380 + i) * CF.winH * .8, 5 + rnd(420 + i) * 6);
-    ctx.restore();
-    vignette(ctx, .35);
+    vignette(ctx, .4);
     finish(ctx);
   });
 
