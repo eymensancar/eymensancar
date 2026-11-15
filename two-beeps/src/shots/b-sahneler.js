@@ -18,10 +18,12 @@
     const W = (i, re, n) => { const ws = S(i).words; const w = ws.find(x => re.test(x.w)); return w || ws[n == null ? 0 : Math.min(n, ws.length - 1)]; };
     const k = {};
     k.start = S(12).t1 + (S(13).t0 - S(12).t1) / 2;      // A ile ortak kesme (23,15)
-    k.phone = W(13, /^towers/i, 6).t0;                     // telefona yakın plan
-    k.tap = W(14, /^try/i, 5).t0;                          // "retry" dokunuşu
+    k.phone = W(13, /^flattened/i, 4).t0;                  // telefona yakın plan
+    k.tap = W(14, /^try/i, 5).t0 + .05;                    // "Try again" düğmesine basış (kare 131)
+    k.gameK1 = W(13, /^Master/i, 9).t1 - 54 / FPS;         // k1 (kare 1–55): DEMOLISHED! "Master"da
+    k.timesUp = S(14).t0 - .04;                            // k2 sonu (96–115): TIME'S UP
     k.cut15 = S(14).t1 + .25;                              // sert kesme: gündüz
-    k.lever = S(16).t0 - .15;
+    k.lever = S(16).t0 - .45;
     k.ant1 = W(16, /^pulled/i, 1).t0;                      // kol: beklenti
     k.clonk1 = W(16, /^pulled/i, 1).t1 + .12;              // kol yerine oturur
     k.daisy = S(17).t0 - .25;
@@ -81,12 +83,24 @@
   const gameIdx = sec => (Math.floor(sec * FPS + 1e-6) % GAME_N + GAME_N) % GAME_N; // 0 tabanlı: dosya f(1+idx)
   // Kareler gelmediyse aynı boyutta (450×800) yer tutucu: alacakaranlıkta oyun sahnesi, kuleler sırayla çöker.
   const ph = { cv: null, idx: -1 };
-  function gameFrame(sec) {
-    const i = gameIdx(sec), im = gameImgs[i];
+  // Kurgu (meta.json): gece planında k2 başı (56–95) döner; telefonda k1 1–55 ("forty towers", DEMOLISHED! "Master"da),
+  // "In the game"de TIME'S UP (96–115), sonuç kartı (116–131) dokunuşa kadar yavaşlatılır, 131'de basılır, kepenk + yeniden (132–150).
+  function gameSeqIdx(t) {
+    const k = times(), f = x => Math.floor(x * FPS + 1e-6);
+    if (t < k.gameK1) return 55 + f(t - k.start) % 40;
+    if (t < k.timesUp) return Math.min(54, f(t - k.gameK1));
+    const cardT = k.timesUp + 20 / FPS;
+    if (t < cardT) return 95 + Math.min(19, f(t - k.timesUp));
+    if (t < k.tap) return 115 + Math.min(14, Math.floor(15 * (t - cardT) / (k.tap - cardT)));
+    return Math.min(149, 130 + f(t - k.tap));
+  }
+  function gameFrame(t) {
+    const i = gameSeqIdx(t), im = gameImgs[i];
     if (im && im.complete && im.naturalWidth > 0) return im;
     if (!ph.cv) ph.cv = canvas(450, 800);
+    const sec = i / FPS;
     if (ph.idx === i) return ph.cv; ph.idx = i;
-    const g = ph.cv.getContext('2d'), tt = i / FPS;
+    const g = ph.cv.getContext('2d'), tt = sec;
     const sk = g.createLinearGradient(0, 0, 0, 560); sk.addColorStop(0, '#17202c'); sk.addColorStop(.55, '#2f3a4b'); sk.addColorStop(.86, '#7d4f3f'); sk.addColorStop(1, '#c9713e');
     g.fillStyle = sk; g.fillRect(0, 0, 450, 800);
     g.fillStyle = '#2a3444'; for (let x = 0; x < 450; x += 38) { const h = 40 + rnd(x + 3) * 90; g.fillRect(x, 560 - h, 34, h); }
@@ -107,7 +121,7 @@
     g.font = '500 16px Rubik'; g.fillStyle = 'rgba(255,255,255,.5)'; g.textAlign = 'center'; g.fillText('yer tutucu · f' + String(i + 1).padStart(4, '0'), 225, 740);
     return ph.cv;
   }
-  function frameBright(sec) { const i = gameIdx(sec); return .75 + .25 * Math.abs(Math.sin(i * .37)) + (i % 37 < 3 ? .25 : 0); }
+  function frameBright(t) { const i = gameSeqIdx(t); return .75 + .25 * Math.abs(Math.sin(i * .37)) + (i % 37 < 3 ? .25 : 0); }
 
   /* ================= DÜNYA: ARSA ================= */
   const WD = { hz: 1060, cx: 560, cb: 1100, H: 870, bw: 130, tw: 78, dX: 878, dY: 1180, kX: 1100, kY: 1450, kS: 1.0 };
@@ -362,7 +376,7 @@
   }
   function kaanPhoneScreen(ctx, x, y, s, sec) { // Kaan'ın elindeki telefonun ekranına gerçek oyun karesi
     ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.translate(92, -236); ctx.rotate(-.22);
-    ctx.beginPath(); ctx.rect(-9.5, -24.5, 19, 40); ctx.clip(); ctx.drawImage(gameFrame(sec), -11, -24.5, 22.5, 40); ctx.restore();
+    ctx.beginPath(); ctx.rect(-9.5, -24.5, 19, 40); ctx.clip(); ctx.drawImage(gameFrame(TB.t), -11, -24.5, 22.5, 40); ctx.restore();
   }
   let darkCv = null;
   function nightLight(ctx, holes, a) {

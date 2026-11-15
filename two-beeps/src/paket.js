@@ -19,8 +19,8 @@
            lead: 2 * F, hold: 0.36, fadeIn: 3 * F, fadeOut: 4 * F, endFade: 3 * F },
     hook: { cx: 475, cy: 800, maxW: 800, size: 110, lh: 116, drop: 4 * F },
     label: { x: 60, y: 240, h: 64, size: 42, pad: 22, until: 2.5, morph: 0.3, badgeH: 48, badgeSize: 32 },
-    icon: { x: 956, y: 236, s: 64, alpha: 0.7, from: 3.0, fade: 0.3 },
-    end: { morph: 0.36 }
+    icon: { x: 826, y: 236, s: 64, alpha: 0.7, from: 3.0, fade: 0.3 },
+    end: { x0: 60, x1: 890, y0: 752, y1: 1400, yTitle: 834, yFollow: 942, yDiv: 1008, icon: 128, yIcon: 1040, ySearch: 1222, ySmall: 1294 }
   };
   const FUNC = new Set('a an the in to of with my i i\'m and is was she he it its that about before at on for than her me so as but or'.split(' '));
   const clean = w => w.toLowerCase().replace(/[^a-z']/g, '');
@@ -196,13 +196,12 @@
       const ws = ln.map(w => ctx.measureText(w.w).width), tw = ws.reduce((a, b) => a + b, 0) + sp * (ln.length - 1);
       let x = Hc.cx - tw / 2; const y = Hc.cy + (li - (n - 1) / 2) * lh;
       ln.forEach((w, k) => {
-        const t0 = w.t0 - C.sub.lead, u = TB.seg(t, t0, t0 + Hc.drop);
-        if (t >= t0) {   // 0,0 sn'de ekran boş değil: ilk kelime sahneyle birlikte zaten yolda
-          ctx.save(); ctx.globalAlpha = aOut * TB.ease.outQ(Math.min(1, u * 1.6));
-          const dy = -46 * (1 - TB.ease.outBack(u));
-          outlined(ctx, w.w, x, y + dy, h.size, w.k === act ? P.hazard : P.paper, 10, 7);
-          ctx.restore();
-        }
+        // 0. karede cümlenin tamamı görünür; okunan kelime sarıya döner ve 3 kare hafifçe kalkar
+        const t0 = w.t0 - C.sub.lead, u = TB.seg(t, t0, t0 + 3 * F), done = t >= t0 ? 1 : 0;
+        ctx.save(); ctx.globalAlpha = aOut;
+        const dy = -8 * Math.sin(Math.PI * u) * done;
+        outlined(ctx, w.w, x, y + dy, h.size, w.k === act ? P.hazard : P.paper, 10, 7);
+        ctx.restore();
         x += ws[k] + sp;
       });
     });
@@ -220,8 +219,8 @@
     // dizi adı (altında, aynı 2,5 sn; yukarı kayarak söner)
     const ta = 1 - TB.seg(t, Lb.until, Lb.until + Lb.morph * 0.7);
     if (ta > 0) {
-      ctx.save(); ctx.globalAlpha = ta; ctx.font = FONT(36); ctx.textBaseline = 'middle';
-      outlined(ctx, 'TWO BEEPS', x + 4, y + Lb.h + 34 - 14 * (1 - ta), 36, P.paper, 6, 3); ctx.restore();
+      ctx.save(); ctx.globalAlpha = ta; ctx.font = FONT(52); ctx.textBaseline = 'middle';
+      outlined(ctx, 'TWO BEEPS', x + 2, y + Lb.h + 44 - 14 * (1 - ta), 52, P.paper, 7, 4); ctx.restore();
     }
     ctx.save();
     ctx.globalAlpha = TB.lerp(1, 0.92, u);
@@ -238,54 +237,50 @@
   /* ---------- köşe simgesi ve bitiş kartı ---------- */
   function endLayout(ctx, tl) {
     const nx = tl.next || {};
-    return {
-      a: `PART ${nx.part} · `, b: nx.title || '', follow: 'Follow so Daisy can find you.',
-      game: 'Demolition Master', store: 'free on the App Store'
-    };
+    return { a: `PART ${nx.part} · `, b: nx.title || '', follow: 'Follow · Part 2 is next'.replace('2', nx.part),
+      search: 'Search "Demolition Master: Tower Blast"', small: 'iPhone · free' };
   }
   function drawCornerIcon(ctx, t, tl) {
     const I = C.icon, ec = (tl.cues || {}).endCard; if (t < I.from) return;
     if (ec != null && t >= ec) return;       // bitiş kartında büyük simgeye dönüşür (drawEnd)
     icon(ctx, I.x, I.y, I.s, I.alpha * TB.ease.outQ(TB.seg(t, I.from, I.from + I.fade)));
   }
+  /* Bitiş kartı: cues.endCard'dan sona. Tek kart, x 60–890, y 752–1400 (Shorts arayüzüne ve üst üçteki
+     uyarı ışığına değmez); sahne kararmaz, kart yarı saydam. Giriş 6 kare. */
   function drawEnd(ctx, t, tl) {
     const ec = (tl.cues || {}).endCard; if (ec == null || t < ec) return;
-    const E = endLayout(ctx, tl), k = s => TB.seg(t, ec + s, ec + s + 0.2);
-    const u0 = TB.ease.outC(TB.seg(t, ec, ec + 0.22));
-    // sahne hafifçe kararır, tamamen kapanmaz
-    ctx.save(); ctx.globalAlpha = 0.28 * u0; ctx.fillStyle = '#0b0906'; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
-    // orta kart
-    const cx = 475, kx = 40, kw = 870, ky = 650, kh = 330;
+    const E = endLayout(ctx, tl), K = C.end, k = (a, b) => TB.seg(t, ec + a * F, ec + b * F);
+    const cx = (K.x0 + K.x1) / 2, kw = K.x1 - K.x0, kh = K.y1 - K.y0;
+    const u0 = TB.ease.outC(k(0, 4));
     ctx.save(); ctx.globalAlpha = u0;
-    ctx.translate(cx, ky + kh / 2); ctx.scale(TB.lerp(0.94, 1, u0), TB.lerp(0.94, 1, u0)); ctx.translate(-cx, -(ky + kh / 2));
-    rr(ctx, kx, ky, kw, kh, 30); ctx.fillStyle = 'rgba(21,18,13,.74)'; ctx.fill();
-    ctx.save(); rr(ctx, kx, ky, kw, kh, 30); ctx.clip(); stripes(ctx, kx, ky + kh - 18, kw, 18, 16); ctx.restore();
-    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(245,178,28,.55)'; rr(ctx, kx, ky, kw, kh, 30); ctx.stroke();
+    ctx.translate(cx, K.y0 + kh / 2); const sc = TB.lerp(0.95, 1, u0); ctx.scale(sc, sc); ctx.translate(-cx, -(K.y0 + kh / 2));
+    ctx.fillStyle = 'rgba(21,18,13,.45)'; rr(ctx, K.x0 + 4, K.y0 + 8, kw, kh, 30); ctx.fill();
+    rr(ctx, K.x0, K.y0, kw, kh, 30); ctx.fillStyle = 'rgba(21,18,13,.78)'; ctx.fill();
+    ctx.save(); rr(ctx, K.x0, K.y0, kw, kh, 30); ctx.clip(); stripes(ctx, K.x0, K.y1 - 18, kw, 18, 16);
+    ctx.globalAlpha *= .55; stripes(ctx, K.x0 + 70, K.yDiv - 3, kw - 140, 6, 6); ctx.restore();
+    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(245,178,28,.6)'; rr(ctx, K.x0, K.y0, kw, kh, 30); ctx.stroke();
     ctx.restore();
-    // başlık: PART 2 · THE ANT →
-    { const u = TB.ease.outBack(k(0.06)); let size = 90; ctx.font = FONT(size);
-      const aw = size * 0.66 * 1.1, gap = 18;
-      let tw = ctx.measureText(E.a + E.b).width + gap + aw;
-      while (tw > 800 && size > 60) { size -= 4; ctx.font = FONT(size); tw = ctx.measureText(E.a + E.b).width + gap + size * 0.66 * 1.1; }
-      const ah = size * 0.66; let x = cx - tw / 2; const y = 762 + (1 - u) * 26;
-      ctx.save(); ctx.globalAlpha = TB.clamp(u); ctx.textBaseline = 'middle';
+    const maxW = kw - 70;
+    // PART 2 · THE ANT →
+    { const u = TB.ease.outC(k(1, 6)); let size = 90; ctx.font = FONT(size);
+      const tw0 = s => { ctx.font = FONT(s); return ctx.measureText(E.a + E.b).width + 18 + s * 0.66 * 1.1; };
+      while (tw0(size) > maxW && size > 60) size -= 2;
+      const tw = tw0(size); let x = cx - tw / 2; const y = K.yTitle + (1 - u) * 16;
+      ctx.save(); ctx.globalAlpha = u; ctx.textBaseline = 'middle'; ctx.font = FONT(size);
       outlined(ctx, E.a, x, y, size, P.paper, 9, 6); x += ctx.measureText(E.a).width;
-      outlined(ctx, E.b, x, y, size, P.hazard, 9, 6); x += ctx.measureText(E.b).width + gap;
-      // ok: girişten sonra hafif sabit duruş (zıplamaz)
-      arrow(ctx, x, y + 2, ah, P.hazard);
-      ctx.restore(); }
-    { const u = TB.ease.outC(k(0.16)); ctx.save(); ctx.globalAlpha = u; ctx.font = FONT(52); ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
-      outlined(ctx, E.follow, cx, 900 + (1 - u) * 18, 52, P.paper, 7, 4); ctx.restore(); }
-    // alt satır: simge (köşeden uçarak büyür) + oyun adı
-    { const u = TB.ease.ioC(TB.seg(t, ec, ec + C.end.morph)), I = C.icon;
-      ctx.font = FONT(44); const w1 = ctx.measureText(E.game).width; ctx.font = FONT(36); const w2 = ctx.measureText(E.store).width;
-      const s = 96, gap = 22, tw = s + gap + Math.max(w1, w2), x0 = cx - tw / 2, y0 = 1332;
-      const ua = TB.ease.outC(k(0.24));
-      ctx.save(); ctx.globalAlpha = ua; rr(ctx, x0 - 22, y0 - 16, tw + 44, s + 32, 28); ctx.fillStyle = 'rgba(21,18,13,.78)'; ctx.fill(); ctx.restore();
-      icon(ctx, TB.lerp(I.x, x0, u), TB.lerp(I.y, y0, u), TB.lerp(I.s, s, u), TB.lerp(I.alpha, 1, u));
-      ctx.save(); ctx.globalAlpha = ua; ctx.textBaseline = 'middle'; const tx = x0 + s + gap + (1 - ua) * 14;
-      ctx.font = FONT(44); outlined(ctx, E.game, tx, y0 + 30, 44, P.paper, 5, 3);
-      ctx.font = FONT(36); outlined(ctx, E.store, tx, y0 + 72, 36, P.hazard, 5, 3);
+      outlined(ctx, E.b, x, y, size, P.hazard, 9, 6); x += ctx.measureText(E.b).width + 18;
+      arrow(ctx, x, y + 2, size * 0.66, P.hazard); ctx.restore(); }
+    // Follow · Part 2 is next
+    { const u = TB.ease.outC(k(2, 6)); ctx.save(); ctx.globalAlpha = u; ctx.font = FONT(56); ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+      outlined(ctx, E.follow, cx, K.yFollow + (1 - u) * 12, 56, P.paper, 7, 4); ctx.restore(); }
+    // oyun: simge köşeden uçup büyür, altında aranacak tam ad ve küçük satır
+    { const u = TB.ease.ioC(k(0, 6)), I = C.icon, s = K.icon;
+      icon(ctx, TB.lerp(I.x, cx - s / 2, u), TB.lerp(I.y, K.yIcon, u), TB.lerp(I.s, s, u), TB.lerp(I.alpha, 1, u));
+      const ua = TB.ease.outC(k(2, 6));
+      let size = 52; ctx.font = FONT(size); while (ctx.measureText(E.search).width > maxW && size > 34) { size -= 2; ctx.font = FONT(size); }
+      ctx.save(); ctx.globalAlpha = ua; ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+      outlined(ctx, E.search, cx, K.ySearch + (1 - ua) * 10, size, P.paper, 6, 4);
+      ctx.font = FONT(38); outlined(ctx, E.small, cx, K.ySmall + (1 - ua) * 10, 38, P.hazard, 5, 3);
       ctx.restore(); }
   }
 
