@@ -36,3 +36,11 @@ Sesler Freesound'un önizlemesinden ekran kaydıyla alındı ve kırpıldı. CC0
 | `sfx/kaynak/fs-tugla-dusme.wav` | Bricks Falling 2.wav | Benboncan | CC0 1.0 |
 | `sfx/kaynak/fs-kagit-hisirti.wav` | paper_rustling_03 | Spaghetto87 | CC0 1.0 |
 | `sfx/kaynak/fs-kalem-karalama.wav` | Pen Strokes and Scribbling (Compilation) | Sheyvan | CC0 1.0 |
+
+### OpenGameArt'tan adım sesleri (15 Kasım 2026)
+
+| Dosya | Kaynak | Yazar | Lisans |
+|---|---|---|---|
+| `sfx/kaynak/fantozzi/Fantozzi-SandL1…R3.wav`, `Fantozzi-StoneL1…R3.wav` (12 dosya; `Fantozzi-footsteps.7z` içindeki FLAC'lardan 48 kHz WAV'a çevrildi) | https://opengameart.org/content/fantozzis-footsteps-grasssand-stone (asıl: https://freesound.org/people/Fantozzi/packs/10338/) | Fantozzi | CC0 1.0 |
+
+Bunlardan `adim-toprak-*.wav` (Sand), `adim-cakil-*.wav` (Stone), `araba-kalkis.wav` ve `tas-kaldirma.wav` içindeki çakıl/toprak katmanları üretildi. `fs-dizel-rolanti.wav` → `daisy-motor-hareket`, `daisy-durus`, `daisy-son-kaldiris`; `fs-kagit-hisirti.wav` → `zarf-cekme`, `mektup-acma`, `kagit-*`, `takvim-*`, `liste-cebe`, `posta-zarf-dusme`; `fs-kalem-karalama.wav` → `kalem-satir`; park kuş kesiti → `sehir-uzak-dongu`.
