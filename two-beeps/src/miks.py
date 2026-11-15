@@ -146,7 +146,8 @@ const g=o=>{if(typeof o==='function'){try{o=o(TB.tl)}catch(e){o={}}};const r={};
  for(const [k,v] of Object.entries(o||{}))if(typeof v==='number'&&isFinite(v))r[k]=v;return r};
 process.stdout.write(JSON.stringify({A:g(TB.cuesA),B:g(TB.cuesB)}));"""
     try:
-        r = subprocess.run(['node', '-e', js, tl_yol, *shots], capture_output=True, text=True, timeout=30)
+        on = [f'{ROOT}/src/cizim.js'] if os.path.exists(f'{ROOT}/src/cizim.js') else []   # sahneler window.Cizim ister
+        r = subprocess.run(['node', '-e', js, tl_yol, *on, *shots], capture_output=True, text=True, timeout=30)
         return json.loads(r.stdout or '{}')
     except Exception as e:  # node yoksa tahminler kullanılır
         print('uyarı: animatör anları okunamadı:', e)
