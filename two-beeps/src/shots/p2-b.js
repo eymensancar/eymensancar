@@ -366,7 +366,7 @@
     C.line(ctx, [[600, 1400], [660, 1700], [640, 2100]], 4, P.jacketDk, 3);
     const PY = 1080, PX0 = 200, PX1 = 900;
     // telefon + el
-    const down = E.io(seg(tw, k.pocket + .3, k.pocketIn + .05)), up = E.inQ(seg(tw, k.pocketIn + .12, k.walk));
+    const down = E.io(seg(tw, k.pocket + .15, k.pocketIn)), up = E.outQ(seg(tw, k.pocketIn + .02, k.walk + .1));
     const py = lerp(520, PY + 420, down);
     // cep içindeki çıkıntı (telefon girdikçe belirir) + kumaştan sızan ekran ışığı
     const inside = clamp((py + 360 - PY) / 720);
@@ -383,8 +383,10 @@
     C.seed(803); C.shape(ctx, [[PX0, PY - 14], [PX1, PY - 22], [PX1 + 6, PY + 10], [PX0 - 4, PY + 18]], P.jacketDk, { lw: 5 });
     C.line(ctx, [[PX0 + 10, PY + 30], [PX1 - 10, PY + 22]], 2.5, 'rgba(21,18,13,.5)', .6);
     // el: telefonun üstünü kavrar, cebe bırakır, yukarı çekilir
-    const hx = 575 + 150, hy = py - 300 - up * 800;
-    grip(ctx, hx, hy, -2.0, { s: 1.05 });
+    // el telefonun üst kenarını yukarıdan tutar (kol sağ üstten); inerken bilek hafifçe döner, bırakınca yumuşakça sağ üste çekilir
+    const wrist = Math.sin(Math.PI * down) * .14 + down * .1 - up * .3;
+    const hx = 575 + 40 + up * 260 + Math.sin(Math.PI * down) * 14, hy = py - 330 - up * 520;
+    grip(ctx, hx, hy, -1.72 + wrist, { s: .95 });
     ctx.restore();
     finish(ctx);
   });
@@ -493,10 +495,11 @@
 
   /* --- 29–30: mektup — UNSAFE WORK; imza Ironline, köşede silik kahve halkası --- */
   const LET = { s: 2.5 };
-  const FOLD = 100;                                                      // alt kanat (imza + halka) katlı başlar
+  const FOLD = 100, TOPF = -40;   // üç katlı kâğıt: alt kanat (imza + halka) katlı başlar ve 30. cümlede açılır; üst kanat (antet, To/About) hep arkaya katlı
   function complaint(ctx, f) {
     f = f == null ? 1 : f;
-    ctx.save(); ctx.beginPath(); ctx.rect(-400, -400, 800, 400 + FOLD); ctx.clip(); complaintFull(ctx); ctx.restore();
+    ctx.save(); ctx.beginPath(); ctx.rect(-400, TOPF, 800, FOLD - TOPF); ctx.clip(); complaintFull(ctx); ctx.restore();
+    C.seed(853); C.line(ctx, [[-170, TOPF], [170, TOPF + 1]], 4.4, P.ink, .4);
     if (f > .01) { ctx.save(); ctx.translate(0, FOLD); ctx.scale(1, f); ctx.translate(0, -FOLD); ctx.beginPath(); ctx.rect(-400, FOLD, 800, 400); ctx.clip(); complaintFull(ctx);
       ctx.fillStyle = `rgba(110,100,87,${.35 * (1 - f)})`; ctx.fillRect(-180, FOLD, 360, 140); ctx.restore(); }
     C.seed(852); C.line(ctx, [[-170, FOLD], [170, FOLD - 1]], f > .01 ? 1.6 : 4.4, f > .01 ? 'rgba(21,18,13,.3)' : P.ink, .4); // kat izi / katlı kenar
@@ -521,13 +524,13 @@
     vignette(ctx, .35);
   }
   shot('p2b-satir', k => k.line, k => k.sign, (ctx, t, u) => {
-    const z = lerp(3.95, 4.1, E.io(u));                          // antet (IRONLINE) kadraj dışında: imza 30. cümlede açılır
-    letterShot(ctx, t, z, -20, lerp(-6, 4, E.io(u)), -.03, 600, 0);
+    // yazılar y 330–1100 ve x ≤ 890 içinde (rozet, simge, altyazı bandı boş); imza katlı
+    letterShot(ctx, t, lerp(2.96, 3.06, E.io(u)), -22, 0, -.03, 480, 0);
     finish(ctx);
   });
   shot('p2b-imza', k => k.sign, k => k.yard, (ctx, t, u) => {
-    const k = times(), e = E.io(seg(t, k.sign, k.ironline - .1));
-    letterShot(ctx, t, lerp(4.1, 2.9, e) + .08 * seg(t, k.ironline, k.yard), lerp(-20, -10, e), lerp(4, 150, e), -.03, lerp(600, 720, e), E.outBack(seg(twos(t), k.sign + .1, k.sign + .45)));
+    const k = times(), e = E.io(seg(t, k.sign, k.sign + .45));
+    letterShot(ctx, t, lerp(3.06, 2.9, e) + .03 * E.io(seg(t, k.ironline, k.yard)), -22, 0, -.03, lerp(480, 458, e), E.outBack(seg(twos(t), k.sign + .15, k.sign + .5)));
     finish(ctx);
   });
 
