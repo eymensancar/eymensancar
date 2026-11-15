@@ -22,3 +22,10 @@ Sancar Games'in YouTube Shorts kanalı için 10 bölümlük dikey animasyon dizi
 - Klasör: `/home/user/eymensancar/two-beeps/`. Yalnız sana söylenen dosyalara yaz. Dal değiştirme, commit atma, push etme (yönetmen yapar).
 - Belgeler Türkçe, kısa ve uygulanabilir: karar ver, gerekçeyi bir cümleyle yaz, seçenek sıralama.
 - Yönetmen: Claude 2. Takıldığın şeyi raporunun sonunda "Yönetmene soru" diye yaz.
+
+## Pilot üretim düzeni (15 Kasım)
+- Zaman çizelgesi: `src/part1.timeline.json` (`python3 src/ses_kur.py` üretir; elle değiştirme). Süre 57,2 sn. Cümleler `sentences[i]` (t0, t1, words), işaretler `cues`: `beep` (iki bipin başladığı an, "Daisy beeped." ile "Twice." arasında 1 sn boşluk var), `fall`, `stamp`, `voiceEnd`, `endBeep` (bitişteki TEK bip), `endCard`.
+- Motor: `src/motor.js` (sözleşme dosyanın başında). Sayfa `src/part1.html`. Her şey `renderAt(t)` ile zamandan çizilir; rastgelelik yalnız tohumlu.
+- Dosya sahipliği: Animatör A `src/shots/a-sahneler.js` (0–23,15 sn, cümle 1–12), Animatör B `src/shots/b-sahneler.js` (23,15–57,2 sn, cümle 13–28 ve bitiş görüntüsü), paketleme `src/paket.js` + `src/kaydet.cjs`, ses `src/miks.py`, oyun görüntüsü `assets/img/oyun/`. Kimse başkasının dosyasına, `cizim.js`'e, `motor.js`'e ya da `part1.html`'e yazmaz; ortak bir yardımcı gerekiyorsa kendi dosyasında tanımlar.
+- Yönetmen kararları: bölüm sonunda TEK bip (ikincisi bilerek yok). Bip anında başka hiçbir şey hareket etmez. İki bipin sesi `assets/sfx/daisy-beep.wav` (iki bip tek dosyada); görsel ışık ritmi STIL.md'deki gibi sesle aynı karede. Kaan'ın saç tutamı, yeşil ceketi ve Daisy'nin görünümü `cizim.js`'teki gibi kalır (karakter tutarlılığı).
+- Yerel izleme: `cd two-beeps && python3 -m http.server 8800`, sonra `http://localhost:8800/src/part1.html?t=12.5` (boşluk tuşu oynatır). Kare almak için Playwright: sayfayı aç, `TB_READY` bekle, `renderAt(t)` çağır, tuvalin ekran görüntüsünü al.
