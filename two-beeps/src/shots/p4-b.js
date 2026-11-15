@@ -592,7 +592,7 @@
     ctx.save(); cam(ctx, z, fx, fy);
     drawRoom(ctx, cm, false);
     // el: soldan girer, takvimin sol kenarını kavrar, birlikte sağa iter, sonra çekilir
-    const cx = OF.cx0 + cm * CM * OF.w * .2, ein = E.outC(seg(tw, k.move, k.grab + .1)), eout = E.inQ(seg(tw, k.slide1 + .02, k.slide1 + .4));
+    const cx = OF.cx0 + cm * CM * OFF.w * .2, ein = E.outC(seg(tw, k.move, k.grab + .1)), eout = E.inQ(seg(tw, k.slide1 + .02, k.slide1 + .4));
     const hx = cx + 6 - (1 - ein) * 260 - eout * 320, hy = OF.cy + OF.ch * .45 + (1 - ein) * 130 + eout * 210;
     if (eout < 1) drawSideHand(ctx, hx, hy, .3, .4);
     plaster(ctx, t, k.crack, crackX(OF.cy + OF.ch * .3), OF.cy + OF.ch * .3);
