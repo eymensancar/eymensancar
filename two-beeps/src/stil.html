@@ -30,8 +30,8 @@
     ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip(); draw(x,y,w,h); ctx.restore();
     C.seed(sd||1); C.ink(ctx,C.pathOf(C.wobble([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],true,1.2,16),true),6);
     if(label){ ctx.font='700 21px Rubik'; const tw=ctx.measureText(label).width;
-      C.seed((sd||1)+7); C.shape(ctx,[[x+14,y+h-46],[x+34+tw,y+h-48],[x+36+tw,y+h-14],[x+12,y+h-12]],P.ink,{lw:0,amp:.6});
-      ctx.fillStyle=P.paper; ctx.fillText(label,x+24,y+h-22); }
+      C.seed((sd||1)+7); C.shape(ctx,[[x,y],[x+22+tw,y],[x+24+tw,y+38],[x,y+40]],P.ink,{lw:0,amp:.6});
+      ctx.fillStyle=P.paper; ctx.fillText(label,x+11,y+28); }
   }
 
   // başlık
@@ -46,15 +46,16 @@
   panel(44,166,992,1010,'GÜNDÜZ AVLU · GENİŞ PLAN',(x,y,w,h)=>{
     C.drawBackground(ctx,{x,y,w,h,horizon:.56,chimneyX:.37,seed:5,dust:.5});
     C.drawDaisy(ctx,{x:x+640,y:y+800,s:.9,beep:1,seed:23,hook:.06});
-    C.drawKaan(ctx,{x:x+200,y:y+900,s:.98,expr:'calm',seed:11});
-    C.drawSubtitle(ctx,{text:'Daisy beeped. Twice. I ignored her.',x:x+w/2,y:y+h-108,size:64,maxW:820,hi:['twice']});
+    C.drawKaan(ctx,{x:x+190,y:y+850,s:.98,expr:'calm',seed:11});
+    const vg=ctx.createRadialGradient(x+w*.45,y+h*.45,h*.35,x+w*.5,y+h*.5,h*.8); vg.addColorStop(0,'rgba(21,18,13,0)'); vg.addColorStop(1,'rgba(21,18,13,.28)'); ctx.fillStyle=vg; ctx.fillRect(x,y,w,h);
+    C.drawSubtitle(ctx,{text:'Daisy beeped. Twice.\nI ignored her.',x:x+w/2,y:y+h-112,size:66,maxW:820,hi:['twice']});
   },2);
 
   // 2) Kaan yakın plan: iki ifade
   const cy2=1200, ph=320;
   const kaanBg=(x,y,w,h)=>{ const g=ctx.createLinearGradient(0,y,0,y+h); g.addColorStop(0,P.sky1); g.addColorStop(1,P.sky2); ctx.fillStyle=g; ctx.fillRect(x,y,w,h); };
-  panel(44,cy2,484,ph,'KAAN · SAKİN',(x,y,w,h)=>{ kaanBg(x,y,w,h); C.drawKaan(ctx,{x:x+w/2-12,y:y+h/2+470*2.15-10,s:2.15,expr:'calm',seed:11}); },3);
-  panel(552,cy2,484,ph,'KAAN · ENDİŞELİ',(x,y,w,h)=>{ kaanBg(x,y,w,h); C.drawKaan(ctx,{x:x+w/2-12,y:y+h/2+470*2.15-10,s:2.15,expr:'worried',look:.6,seed:11}); },4);
+  panel(44,cy2,484,ph,'KAAN · SAKİN',(x,y,w,h)=>{ kaanBg(x,y,w,h); C.drawKaan(ctx,{x:x+w/2-12,y:y+h/2+490*1.62+14,s:1.62,expr:'calm',seed:11}); },3);
+  panel(552,cy2,484,ph,'KAAN · ENDİŞELİ',(x,y,w,h)=>{ kaanBg(x,y,w,h); C.drawKaan(ctx,{x:x+w/2-12,y:y+h/2+490*1.62+14,s:1.62,expr:'worried',look:.6,seed:11}); },4);
 
   // 3) Daisy orta plan: normal / iki bip
   const cy3=1544;

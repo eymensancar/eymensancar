@@ -1,7 +1,7 @@
 /* Two Beeps — ortak çizim kitaplığı (Canvas 2D, dış istek yok).
    Kullanım: <script src="cizim.js"></script> sonra window.Cizim.drawKaan(ctx, {...}) vb.
    Kurallar docs/STIL.md içinde. Bütün şekiller tohumlu (seed) "el titremesi" ile çizilir:
-   aynı seed = aynı çizgi; çizgi kaynatma (line boil) için seed'i 4 karede bir değiştir. */
+   aynı seed = aynı çizgi. Seed'i bir karakter/sahne için sabit tut (kare kare değiştirme: titreme yapar). */
 (function (G) {
   'use strict';
 
@@ -129,8 +129,8 @@
     shape(ctx, [[-101, -262], [-76, -255], [-76, -240], [-102, -246]], P.hazard, { lw: lw * .7 });
     shape(ctx, ell(-89, -228, 14, 16, 18), P.skinDk, { lw });
     // bacaklar
-    shape(ctx, [[-44, -214], [-8, -214], [-14, -44], [-42, -44]], P.pantsDk, { lw });
-    shape(ctx, [[4, -214], [42, -214], [46, -44], [14, -44]], P.pants, { lw, shade: shadeR([[30, -220], [50, -220], [50, -40], [36, -40]]) });
+    shape(ctx, [[-42, -240], [-6, -240], [-14, -44], [-42, -44]], P.pantsDk, { lw });
+    shape(ctx, [[4, -240], [40, -240], [46, -44], [14, -44]], P.pants, { lw, shade: shadeR([[30, -250], [50, -250], [50, -40], [36, -40]]) });
     shape(ctx, [[-45, -62], [-12, -62], [-12, -44], [-44, -44]], P.pants, { lw: lw * .8 });
     shape(ctx, [[12, -62], [47, -62], [47, -44], [13, -44]], P.pantsDk, { lw: lw * .8 });
     // botlar (iri: siluet işareti)
@@ -138,11 +138,11 @@
     shape(ctx, [[10, -48], [50, -48], [56, -24], [82, -12], [84, 0], [8, 0]], P.boot, { lw, shade: (c) => blot(c, [[8, -10], [90, -10], [90, 4], [8, 4]], P.bootDk, .9) });
     line(ctx, [[60, -27], [64, -18]], lw * .6);
     // gövde: bol, kutu gibi iş ceketi
-    shape(ctx, [[-72, -398], [68, -398], [84, -300], [90, -198], [-84, -194], [-80, -300]], P.jacket, {
-      lw, shade: (c) => { blot(c, [[40, -400], [100, -400], [100, -190], [52, -190], [58, -300]], '#0b1f2a', .3); blot(c, [[-90, -222], [100, -226], [100, -180], [-90, -180]], '#0b1f2a', .25); }
+    shape(ctx, [[-68, -398], [64, -398], [80, -310], [84, -228], [-80, -224], [-76, -310]], P.jacket, {
+      lw, shade: (c) => { blot(c, [[38, -400], [100, -400], [100, -220], [50, -220], [56, -310]], '#0b1f2a', .3); blot(c, [[-90, -246], [100, -250], [100, -210], [-90, -210]], '#0b1f2a', .25); }
     });
-    line(ctx, [[4, -392], [6, -300], [8, -198]], lw * .55);
-    line(ctx, [[-60, -282], [-26, -284]], lw * .55); line(ctx, [[-60, -282], [-58, -252], [-28, -254], [-26, -284]], lw * .45);
+    line(ctx, [[4, -392], [6, -310], [6, -228]], lw * .55);
+    line(ctx, [[-56, -300], [-24, -302]], lw * .55); line(ctx, [[-56, -300], [-54, -270], [-26, -272], [-24, -302]], lw * .45);
     // yaka
     shape(ctx, [[-30, -402], [4, -366], [-18, -360], [-44, -392]], P.jacketDk, { lw: lw * .8 });
     shape(ctx, [[34, -402], [6, -366], [26, -360], [48, -392]], P.jacketDk, { lw: lw * .8 });
@@ -169,7 +169,7 @@
     shape(ctx, headPts, P.skin, { lw, shade: (c) => { blot(c, [[30, -540], [70, -540], [70, -400], [26, -410], [40, -470]], P.skinDk, .55); } });
     // saç: dağınık kâkül + yukarı kıvrık tutam (siluet imzası)
     shape(ctx, [[-44, -470], [-46, -505], [-30, -526], [-4, -534], [28, -530], [46, -512], [50, -486], [40, -490], [34, -500], [26, -490], [16, -502], [6, -492], [-6, -504], [-16, -492], [-26, -500], [-34, -478]], P.hair, { lw });
-    shape(ctx, [[-2, -528], [6, -560], [26, -584], [48, -580], [40, -570], [26, -566], [18, -548], [16, -526]], P.hair, { lw });
+    shape(ctx, [[-12, -526], [-6, -552], [8, -572], [30, -580], [46, -570], [44, -556], [36, -548], [38, -562], [26, -562], [14, -550], [12, -530]], P.hair, { lw });
     // YÜZ: iki nokta göz, iki kaş, tek ağız. Başka parça yok.
     const ex = o.expr || 'calm', lk = (o.look || 0) * 4, bl = o.blink || 0;
     const eyeY = -468;
@@ -227,7 +227,7 @@
       shape(ctx, [[18, -306], [140, -306], [146, -214], [18, -214]], P.glass, { lw: w, shade: (c) => { c.fillStyle = 'rgba(255,255,255,.18)'; c.fillRect(40, -320, 18, 140); } });
       line(ctx, [[4, -200], [164, -200]], w * .5); line(ctx, [[104, -206], [104, -110]], w * .5);
       // adı kapıda, elle boyanmış
-      ctx.save(); ctx.translate(52, -150); ctx.rotate(-.03); ctx.font = '400 40px "Lilita One"'; ctx.textAlign = 'center';
+      ctx.save(); ctx.translate(96, -150); ctx.rotate(-.03); ctx.font = '400 40px "Lilita One"'; ctx.textAlign = 'center';
       ctx.fillStyle = P.ink; ctx.fillText('DAISY', 2, 3); ctx.fillStyle = P.paper; ctx.fillText('DAISY', 0, 0); ctx.restore();
       // çamurluklar + tekerler
       [100, 450, 560].forEach((u) => {
@@ -267,6 +267,8 @@
     ctx.lineCap = 'round'; ctx.strokeStyle = P.ink; ctx.lineWidth = lw * 2.4; ctx.beginPath(); ctx.moveTo(0, 8); ctx.lineTo(0, 22); ctx.arc(-10, 32, 12, -.3, Math.PI * .9, false); ctx.stroke();
     ctx.strokeStyle = P.steelLt; ctx.lineWidth = lw * .9; ctx.stroke(); ctx.restore();
 
+    // ön tekerlerin önden görünen kısmı (kabin havada durmasın)
+    [-1, 1].forEach((d) => shape(ctx, [[d * 88 - 26, -74], [d * 88 + 26, -74], [d * 88 + 24, -2], [d * 88 - 24, -2]], P.tire, { lw }));
     // --- ön yüz ---
     shape(ctx, [[-122, -332], [122, -332], [124, -96], [-124, -96]], P.dBody, {
       lw, shade: (c) => {
@@ -425,8 +427,8 @@
   function drawSubtitle(ctx, o) {
     const P = PAL, size = o.size || 68, maxW = o.maxW || 860, hi = (o.hi || []).map((s) => s.toLowerCase());
     ctx.save(); ctx.font = `400 ${size}px "Lilita One"`; ctx.textBaseline = 'alphabetic';
-    const words = o.text.split(' '), lines = [[]]; let cur = 0; const sp = ctx.measureText(' ').width;
-    words.forEach((wd) => { const ww = ctx.measureText(wd).width; if (cur + ww > maxW && lines[lines.length - 1].length) { lines.push([]); cur = 0; } lines[lines.length - 1].push(wd); cur += ww + sp; });
+    const lines = [[]]; let cur = 0; const sp = ctx.measureText(' ').width;
+    o.text.split('\n').forEach((para, pi) => { if (pi) { lines.push([]); cur = 0; } para.split(' ').forEach((wd) => { const ww = ctx.measureText(wd).width; if (cur + ww > maxW && lines[lines.length - 1].length) { lines.push([]); cur = 0; } lines[lines.length - 1].push(wd); cur += ww + sp; }); });
     lines.forEach((ln, li) => {
       const tw = ln.reduce((a, wd) => a + ctx.measureText(wd).width, 0) + sp * (ln.length - 1);
       let px = (o.x || 540) - tw / 2; const py = (o.y || 1300) + li * size * 1.12;

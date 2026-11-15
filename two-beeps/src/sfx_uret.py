@@ -171,8 +171,8 @@ def tane(rng, f_alt, f_ust, uz_alt, uz_ust, q_alt=1.0, q_ust=3.0):
     return svf(n * e, f, rng.uniform(q_alt, q_ust), "bp")
 
 
-def dc_kes(x):
-    return svf(x, 22, 0.707, "hp")
+def dc_kes(x, fc=22):
+    return svf(x, fc, 0.707, "hp")
 
 
 def gercek_tepe(x):
@@ -320,7 +320,7 @@ def kalem_karalama():
         f = 3200 + 1600 * (tt / uz if i % 2 == 0 else 1 - tt / uz)       # yon degisince tini kayar
         z = svf(rng.standard_normal(len(tt)), f, 0.9, "bp") * e * dokusu
         z += 0.3 * svf(rng.standard_normal(len(tt)), 7000, 0.7, "hp") * e
-        ekle(y, z * rng.uniform(0.75, 1.0), t0)
+        ekle(y, z * rng.uniform(0.55, 1.0), t0)
         t0 += uz + rng.uniform(0.005, 0.02)
     return yanki(y, 0.2, 0.06, 0.006, 7000, 22)
 
@@ -331,10 +331,11 @@ def atesleme(rng, guc, sure=0.09):
     t = t_ax(sure)
     f = 72 * (1 + 0.04 * rng.standard_normal())
     cug = np.sin(TP * f * t) * np.exp(-t / 0.022) * (1 - np.exp(-t / 0.002))
-    puf = svf(rng.standard_normal(len(t)) * np.exp(-t / 0.018), 520, 0.8)
+    puf = svf(rng.standard_normal(len(t)) * np.exp(-t / 0.018), 850, 0.9)
     vuruntu = svf(rng.standard_normal(len(t)) * np.exp(-t / 0.0035), 2600, 2.2, "bp")
     sac = svf(rng.standard_normal(len(t)) * np.exp(-t / 0.03), 950, 4.0, "bp")
-    return guc * (1.0 * cug + 1.4 * puf + 0.45 * vuruntu * rng.uniform(0.6, 1.2) + 0.25 * sac)
+    cug = np.tanh(2 * cug) / np.tanh(2)
+    return guc * (0.6 * cug + 1.4 * puf + 1.3 * vuruntu * rng.uniform(0.6, 1.2) + 0.7 * sac)
 
 
 def motor_akis(rng, olaylar, sure, dongu=False):
@@ -364,8 +365,8 @@ def rolanti_olaylari(rng, sure, hiz, bas=0.0):
 
 def govde(y):
     """Motor govdesi ve kabin rengi: 180 Hz govde rezonansi, ust uclari yumusat."""
-    return fft_renk(y, lambda f: butter_lp(f, 3800, 2) * butter_hp(f, 45, 2)
-                    * (1 + 1.2 * np.exp(-((f - 180) / 60) ** 2)))
+    return fft_renk(y, lambda f: butter_lp(f, 3800, 2) * butter_hp(f, 60, 2)
+                    * (1 + 1.2 * np.exp(-((f - 180) / 60) ** 2)) * (1 + 0.8 * np.exp(-((f - 700) / 300) ** 2)))
 
 
 def dizel_rolanti():
@@ -436,7 +437,7 @@ def kol_cekme():
     ekle(y, modal([182, 431, 968, 1757, 2911], [0.25, 0.16, 0.09, 0.05, 0.03],
                   [0.5, 0.55, 0.4, 0.25, 0.15], 0.5, rng, 0.01), kl)
     tm = t_ax(0.15)
-    ekle(y, np.sin(TP * np.cumsum(90 * (60 / 90) ** (tm / 0.08)) / SR) * np.exp(-tm / 0.04) * 0.9, kl)
+    ekle(y, np.sin(TP * np.cumsum(90 * (60 / 90) ** (tm / 0.08)) / SR) * np.exp(-tm / 0.04) * 0.5, kl)
     ekle(y, tane(rng, 900, 1300, 0.02, 0.025, 0.8, 1.0) * 0.9, kl)
     return yanki(y, 0.35, 0.12, 0.012, 5000, 41)
 
@@ -455,16 +456,17 @@ def halat_gerilme():
             itki[int(tt * SR)] = rng.uniform(0.4, 1.0) * (0.4 + 0.6 * gerg[int(tt * SR)])
         tt += 1 / (30 + 70 * gerg[int(tt * SR)] + rng.uniform(-8, 8))
     gicir = sum(a * svf(itki, f, 18, "bp") for f, a in [(640, 1.0), (1370, 0.7), (2480, 0.45)])
-    y += gicir * 0.9
+    y += gicir * 2.0
     # gerilen celik halatin inleyisi: sertlikli tel, perde 95->140 Hz
     f = 95 + 45 * gerg ** 1.3
     faz = TP * np.cumsum(f) / SR
-    inle = sum(np.sin(n * faz * math.sqrt(1 + 0.002 * n * n)) / n for n in range(1, 13))
+    inle = sum(np.sin(n * faz * math.sqrt(1 + 0.002 * n * n)) / n * (0.4 if n == 1 else 1) for n in range(1, 13))
     inle *= (0.15 + 0.85 * gerg) * (1 + 0.3 * np.sin(TP * 5.5 * t))
+    inle *= np.clip((2.75 - t) / 0.45, 0, 1) ** 2                       # gerilme oturur, ses soner
     y += svf(inle, 2200, 0.8) * 0.12
-    y += svf(rng.standard_normal(len(t)), 300 + 300 * gerg, 0.7) * 0.15 * gerg
+    y += svf(rng.standard_normal(len(t)), 300 + 300 * gerg, 0.7) * 0.15 * gerg * np.clip((2.75 - t) / 0.45, 0, 1)
     # sonda bir telin yerine oturma "tink"i
-    ekle(y, modal([3120, 4870, 7010], [0.35, 0.2, 0.1], [1, 0.4, 0.2], 0.5, rng) * 0.25, 2.35)
+    ekle(y, modal([3120, 4870, 7010], [0.35, 0.2, 0.1], [1, 0.4, 0.2], 0.5, rng) * 0.12, 2.35)
     return yanki(y, 0.5, 0.15, 0.015, 5000, 42)
 
 
@@ -473,11 +475,12 @@ def darbe_cekirdek(rng, guc, f1=75, f2=38, sonum=0.35, crunch_sonum=0.4, sure=2.
     t = t_ax(sure)
     f = ustel_kayma(f1, f2, sure, 0.4)
     bum = np.sin(TP * np.cumsum(f) / SR) * np.exp(-t / sonum) * (1 - np.exp(-t / 0.002))
-    bum2 = np.sin(2 * TP * np.cumsum(f) / SR) * np.exp(-t / (sonum * 0.6)) * 0.35  # telefonda duyulsun
+    bum = np.tanh(2.5 * bum) / np.tanh(2.5) * 0.7                     # doyum: telefonda duyulan ust harmonikler
+    bum2 = np.sin(2 * TP * np.cumsum(f) / SR) * np.exp(-t / (sonum * 0.6)) * 0.5
     crunch = svf(rng.standard_normal(len(t)) * np.exp(-t / crunch_sonum),
                  ustel_kayma(2600, 280, sure, crunch_sonum * 2), 0.7)
     tik = svf(rng.standard_normal(len(t)) * np.exp(-t / 0.004), 1200, 0.7, "hp")
-    return guc * (bum + bum2 + 1.1 * crunch + 0.6 * tik)
+    return guc * (bum + bum2 + 1.5 * crunch + 0.7 * tik)
 
 
 def moloz(rng, y, bas, son, yogunluk, buyuk=0.3):
@@ -514,7 +517,7 @@ def tugla_catirti():
     y = buf(2.6)
     for i in range(3):                                                 # harc catlamasi
         ekle(y, tane(rng, 1500, 3000, 0.002, 0.006, 3, 6) * 1.2, 0.02 + 0.05 * i + rng.uniform(0, 0.02))
-    moloz(rng, y, 0.05, 2.3, 140, buyuk=0.45)
+    moloz(rng, y, 0.05, 2.3, 140, buyuk=0.22)
     return yanki(y, 0.5, 0.15, 0.02, 5000, 52)
 
 
@@ -633,9 +636,9 @@ def main():
     yaz("dizel-rolanti-dongu.wav", bitir(dizel_rolanti(), -6, 0.005, 0.005, dongu=True))
     yaz("kol-cekme.wav", bitir(kol_cekme()))
     yaz("halat-gerilme.wav", bitir(halat_gerilme()))
-    yaz("top-darbe.wav", bitir(top_darbe(), sol_son=0.3))
-    yaz("tugla-catirti.wav", bitir(tugla_catirti(), sol_son=0.2))
-    yaz("baca-devrilme.wav", bitir(baca_devrilme(), sol_son=1.0))
+    yaz("top-darbe.wav", bitir(dc_kes(dc_kes(top_darbe(), 40), 40), sol_son=0.3))
+    yaz("tugla-catirti.wav", bitir(dc_kes(dc_kes(tugla_catirti(), 40), 40), sol_son=0.2))
+    yaz("baca-devrilme.wav", bitir(dc_kes(dc_kes(baca_devrilme(), 40), 40), sol_son=1.0))
     yaz("ortam-bos-arsa-dongu.wav", bitir(ortam_bos_arsa(), -12, 0.005, 0.005, dongu=True))
     yaz("damga-kesif.wav", bitir(damga_kesif(), -4.5, sol_son=0.3))
     yaz("oyun-yikim.wav", bitir(oyun_yikim()))
