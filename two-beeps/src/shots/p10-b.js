@@ -203,7 +203,7 @@
   }
   function grass(ctx, t) {
     for (let i = 0; i < 18; i++) {
-      const r = j => rnd(1700 + i * 9 + j), x = -100 + r(1) * 1300, y = 1360 + r(2) * 700, ph = r(3) * 6;
+      const r = j => rnd(1700 + i * 9 + j), x = -100 + r(1) * 1300, y = 1640 + r(2) * 500, ph = r(3) * 6;
       for (let q = 0; q < 5; q++) {
         const sw = Math.sin(t * 2.4 + ph + q * .5) * 6 + Math.sin(t * 4.7 + ph) * 2, hh = 18 + r(4 + q) * 18;
         ctx.strokeStyle = P.weed; ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(x + q * 4, y);
@@ -310,7 +310,7 @@
      aynı bulanık toprak/teneke zemini (p10-a dirt/stoneBed/tinTop/foldedNote/sideHand kopyası). Kaan notu tuttuğu yerden (yatay eksen)
      ters çevirir; not yukarı kalkar ve büyür: ön yüzde dedenin el yazısı üst üçte birde. */
   const INK_OLD = '#3a3026', NW = 520, NH = 330, NAX = 60;   // not yerel ölçüsü (A ile aynı), çevirme ekseni = ellerin tuttuğu çizgi
-  const N0 = { x: 540, y: 760, s: 1.08, rot: -.04 }, N1 = { x: 475, y: 330, s: 1.4, rot: -.02 };
+  const N0 = { x: 540, y: 760, s: 1.08, rot: -.04 }, N1 = { x: 475, y: 362, s: 1.36, rot: -.02 };
   function limb(ctx, A, B, wa, wb, fill, sd) {
     const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L; C.seed(sd);
     return C.shape(ctx, [[A[0] + nx * wa, A[1] + ny * wa], [B[0] + nx * wb, B[1] + ny * wb], [B[0] - nx * wb, B[1] - ny * wb], [A[0] - nx * wa, A[1] - ny * wa]], fill, { lw: 7, shade: c => C.blot(c, [[A[0] - nx * wa * .1, A[1] - ny * wa * .1], [B[0] - nx * wb * .1, B[1] - ny * wb * .1], [B[0] - nx * wb * 1.2, B[1] - ny * wb * 1.2], [A[0] - nx * wa * 1.2, A[1] - ny * wa * 1.2]], '#0b1f2a', .3) });
@@ -356,8 +356,8 @@
     C.line(ctx, [[2, -NH / 2 + 6], [0, NH / 2 - 4]], 3, 'rgba(138,106,64,.7)', .5);
     ctx.save(); ctx.globalAlpha = .18; ctx.fillStyle = '#8a6a40'; ctx.fillRect(front ? -26 : 0, -NH / 2 + 6, 26, NH - 10); ctx.restore();
     if (front) {   // dedenin el yazısı (drawTin notuyla aynı iki satır), net
-      C.handwrite(ctx, 'Ant.', -NW / 2 + 52, -46, 74, INK_OLD, 31, { bold: true });
-      C.handwrite(ctx, 'Now build something.', -NW / 2 + 48, 56, 41, INK_OLD, 33, { bold: true });
+      C.handwrite(ctx, 'Ant.', -NW / 2 + 112, -40, 74, INK_OLD, 31, { bold: true });
+      C.handwrite(ctx, 'Now build something.', -NW / 2 + 70, 66, 41, INK_OLD, 33, { bold: true });
     }
   }
   shot('p10b17-not', k => k.start, k => k.school, (ctx, t, u) => {

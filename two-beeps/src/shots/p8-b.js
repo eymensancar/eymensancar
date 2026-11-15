@@ -802,7 +802,7 @@
   /* --- 24b: "…so nobody would ever read it." Hale'in omzunun üstünden: karşıda Kaan, cebinde katlı liste; Defne yanında. İtme listeye --- */
   shot('p8b24-liste', k => k.listW - .12, k => k.num, (ctx, t, u) => {
     const k = times(), tw = twos(t), e = E.io(u);
-    ctx.save(); cam(ctx, lerp(1.5, 1.95, e), lerp(300, KAAN.x - 30 * CHS, e), lerp(1100, KAAN.y - 196 * CHS, e), 560, lerp(820, 980, e));
+    ctx.save(); cam(ctx, lerp(1.45, 1.62, e), lerp(300, KAAN.x - 30 * CHS, e), lerp(1100, KAAN.y - 196 * CHS, e), 560, lerp(820, 1010, e));
     wallA(ctx, t, {
       kaan: { hands: 'knees', expr: tw >= k.listW + 1.2 ? 'worried' : 'serious', look: .25, blink: blinkAt(tw, [k.listW + .9]) },
       kaanHead: [tw >= k.listW + 1.2 ? .05 : 0, tw >= k.listW + 1.2 ? 8 : 0],
