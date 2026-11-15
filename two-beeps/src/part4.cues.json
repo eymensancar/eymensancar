@@ -54,7 +54,7 @@
   { "t": "B.takvimKay", "dosya": "sfx/takvim-oturma.wav", "kat": "efekt", "db": -10, "pan": 0.3, "not": "takvim yerine oturur (B.takvimKay)" },
   { "t": "B.catlakCitirti", "dosya": "sfx/siva-catlak.wav", "kat": "efekt", "db": -9, "sure": 0.3, "fadeout": 0.08, "pan": 0.1, "not": "çatlak: çok kısa ince çıtırtı (B.catlakCitirti); ardından sessiz yavaş itme" },
   { "t": "B.kapiHatiraBip", "dosya": "sfx/daisy-beep-hatira.wav", "kat": "bip", "db": -10.9, "son": "voiceEnd", "fadeout": 0.35, "not": "sepya kapı hatırası (cümle 29 'beeped'): iki bipten 12 dB alçak; yankı kuyruğu voiceEnd'de kesilir (tek bipin önü tam sessiz)" },
-  { "t": ["B.sonBip", "endBeep"], "dosya": "sfx/daisy-beep-tek.wav", "kat": "bip", "db": -4.8, "not": "bitişte TEK bip (cues.endBeep = B.sonBip); önü ve arkası tam sessiz" }
+  { "t": ["B.sonBip", "endBeep"], "dosya": "sfx/daisy-beep-tek.wav", "kat": "bip", "db": -4.8, "sure": 0.45, "fadeout": 0.1, "not": "bitişte TEK bip (cues.endBeep = B.sonBip); önü ve arkası tam sessiz" }
  ],
  "kisma": [
   { "t0": "s9.t0-0.35", "t1": "s9.t1+0.3", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 9: 'Grandpa.' sessizliği (baret)" },

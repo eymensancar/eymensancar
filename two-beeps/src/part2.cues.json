@@ -17,13 +17,13 @@
  "hedef": { "lufs": -14.0, "tp": -1.0 },
  "satirlar": [
   { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -1, "ss": 0, "son": "A.defterSessiz+0.2", "fadeout": 0.4, "not": "giriş (tema 0-8): merak; 3 'Grandpa' sessizliğine 0,4 sn solar" },
-  { "t": "s4.t0-0.12", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6, "ss": 8, "son": "A.sessizlik+0.2", "fadein": 0.4, "fadeout": 0.4, "not": "oyunbaz (tema 8-): Defne avluya gelir (A c4); 12 'She went quiet' sessizliğine solar" },
-  { "t": "s13.t0-0.12", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6.5, "ss": 28, "son": "beep-0.30", "fadein": 0.4, "fadeout": 0.03, "not": "konu değişir (A c13): tema 28-32, 32'de gerilim girer ('The door was locked' civarı); iki bip penceresinde kisma ile 0,4 sn solar" },
-  { "t": "s19.t1+0.25", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6, "ss": 8.94, "son": "s31.t0-8.09", "fadein": 0.03, "fadeout": 0.03, "not": "'Nothing.' sonrası telefon şakası: oyunbaz tema geri gelir (kisma 0,4 sn solmayla açar); ss 8,94 seçildi ki zarf anında dosya 20,0 ızgarasında olsun" },
+  { "t": "s4.t0-0.12", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6, "ss": 12, "son": "A.sessizlik+0.2", "fadein": 0.4, "fadeout": 0.4, "not": "oyunbaz (tema 12-): Defne avluya gelir (A c4); 12 'She went quiet' sessizliğine solar" },
+  { "t": "s13.t0-0.12", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6.5, "ss": 29.8, "son": "beep-0.30", "fadein": 0.4, "fadeout": 0.03, "not": "konu değişir (A c13): tema 29,8-32 (giriş solmayla, ızgara dışı başlangıç), 32 gerilimi 'We tried Grandpa's office'ta girer; iki bip penceresinde kisma ile 0,4 sn solar" },
+  { "t": "s19.t1+0.25", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6, "ss": 12.94, "son": "s31.t0-8.09", "fadein": 0.03, "fadeout": 0.03, "not": "'Nothing.' sonrası telefon şakası: oyunbaz tema geri gelir (kisma 0,4 sn solmayla açar); ss 12,94 seçildi ki zarf anında dosya 24,0 ızgarasında olsun" },
   { "t": "s31.t0-8.09", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8.5, "ss": 36, "son": "s31.t0-0.09", "fadein": 0.03, "fadeout": 0.4, "not": "'From the city' -> 'Ironline': gerilim (tema 36-44, ızgarada kesme); dosyanın 44'teki ana kesmesi (43,5-44 boş vuruş) cümle 31'in hemen önüne oturur" },
 
   { "t": 0, "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -7, "son": "voiceEnd", "dongu": true, "fadein": 0.3, "fadeout": 1.2, "not": "avlu rüzgârı, bölüm boyu sabit ve kısık; bip penceresinde susar, bitişte söner" },
-  { "t": "s7.t0-0.12", "dosya": "sfx/kaynak/fs-dizel-rolanti.wav", "kat": "ortam", "db": -15, "ss": 2.0, "son": "s10.t0-0.12", "fadein": 0.6, "fadeout": 0.03, "not": "7-9 Daisy kadrajda (rölanti, çok kısık); 10 Kaan'ın gözünden plana kesmeyle biter" },
+  { "t": "s7.t0-0.12", "dosya": "sfx/kaynak/fs-dizel-rolanti.wav", "kat": "ortam", "db": -18, "ss": 2.0, "son": "s10.t0-0.12", "fadein": 0.6, "fadeout": 0.03, "not": "7-9 Daisy kadrajda (rölanti, çok kısık); 10 Kaan'ın gözünden plana kesmeyle biter" },
   { "t": "s14.t0-0.12", "dosya": "sfx/kaynak/fs-dizel-rolanti.wav", "kat": "ortam", "db": -14, "ss": 7.0, "son": "B.daisyMotor+0.3", "fadein": 0.5, "fadeout": 0.3, "not": "14 geniş: Daisy park yerinde rölanti; harekete geçerken motora devreder" },
   { "t": "B.daisyDurus", "dosya": "sfx/kaynak/fs-dizel-rolanti.wav", "kat": "ortam", "db": -16, "ss": 9.0, "son": "B.telefonCep", "fadein": 0.3, "fadeout": 1.0, "not": "Daisy durduktan sonra rölanti (bip penceresinde susar), kanca ve telefon boyunca; cebe koyunca söner" },
 
