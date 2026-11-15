@@ -1,13 +1,14 @@
 /* Part 4 · Animatör B: cümle 15–29 ve bitiş görüntüsü. Başlangıç (S14.t1+S15.t0)/2 ≈ 25,38 sn, bitiş tl.duration.
-   YERLEŞİM (öbür yarı aynısını kullansın):
-   - OFİS: C.drawOffice(ctx, {x:0,y:0,w:1080,h:1920, seed:7, lamp:true}) (varsayılan alan). Gece, masa lambası yanık.
-     Çatlak x≈800 (alan.x + .74w), yerden (y 1344 = zemin çizgisi) tavana (y 0). Takvim kapalıyken x 691–907, y 576–1152;
-     calendarMoved 1'de x 907–1123. Masa x 43–713, üst yüzü y 1190; lamba x≈645. Tavan pervazı y 0'ın üstünde (bu dosyada çizilir).
-     Çatlağın takvim dışında kalan kısmı takvim kaydırılana kadar çizilmez (drawOffice onu hep çizer; burada kırpılır).
-   - SENSÖR ÇİZİMİ: masada, üstten; C.drawSensorPlan(ctx, {x:540, y:760, s:1, rot:-.03}). Kâğıttaki ışık simgesi yerel (-200,-126).
-   - AVLU (gece, şimdiki zaman / 2. bölüm kapı önü gündüz): C.drawYard varsayılan alan; ofis kapısı x 445–573, alt y 1267;
-     Daisy kapının sağ önünde: drawDaisy {x:760, y:1420, s:.9, boom:1} (kanca kabinin üstünde kalır).
-   - 1. BÖLÜM ARSASI (hatıra): pilotun b-sahneler.js dünyasının kopyası: baca tabanı (560,1100), Daisy (878,1180), alan TB.zone (800,1240). */
+   YERLEŞİM: A'nın (src/shots/p4-a.js) dünyası birebir kopyalandı (drawWorld, deskTop, handOnRoll, lampWarm):
+   - OFİS: drawOffice {x:0,y:0,w:1080,h:900,seed:21}; duvar/zemin çizgisi y=630, tavan çizgisi y=-60; kapı x -250…-40 (açık .92);
+     takvim x 691–907, y 270–540; çatlak x≈800, y 630 → 0 (bu dosyada -60'taki tavana uzatılır). Lamba yanık, telefon Kaan'da.
+     Takvim en çok calendarMoved .7 kayar (x 842–1058): drawOffice alanı x=1080'de kırptığı için 1'de takvim kesik görünür.
+     Çatlağın takvim dışındaki kısmı takvim kaydırılana kadar çizilmez (drawOffice onu hep çizer; burada stroke kırpılır).
+   - MASA (üstten): drawSensorPlan {x:540, y:820, s:1.1, rot:-.03}; rulo A'nın bıraktığı yerel x=-80'den açılır.
+     Kâğıttaki ışık simgesi yerel (-200,-126); ekranda (470,583)'e oturur = gerçek Daisy'nin ışığı (cam z 2.3, odak (0,-346)).
+   - AVLU (bugün gece / 2. bölüm kapı önü gündüz): drawYard varsayılan alan, seed 7; ofis kapısı x 445–569, alt y 1267;
+     Daisy kapının sağ önünde drawDaisy {x:760, y:1420, s:.9, boom:1}.
+   - 1. BÖLÜM ARSASI (hatıra): pilot b-sahneler.js dünyasının kopyası: baca tabanı (560,1100), Daisy (878,1180), alan TB.zone (800,1240). */
 (function () {
   'use strict';
   const C = window.Cizim, P = C.PAL, E = TB.ease, TAU = Math.PI * 2;
@@ -24,7 +25,8 @@
     const W = (i, re, n) => { const ws = S(i).words; return ws.find(x => re.test(x.w)) || ws[n == null ? 0 : Math.min(n, ws.length - 1)]; };
     const k = {};
     k.start = (S(14).t1 + S(15).t0) / 2;                 // A ile ortak kesme (≈25,38)
-    k.enter = S(15).t0 - .1;                              // parmak girer
+    k.rollEnd = k.start + .62;                            // rulo açılır
+    k.enter = W(15, /^something/i, 2).t0 - .2;            // sol el (işaret parmağı) girer
     k.trace0 = W(15, /^something/i, 2).t0;                // parmak kabin içine yürür
     k.trace1 = W(15, /^her/i, 4).t0;                      // sensör kutusuna varır
     k.cu16 = S(16).t0 - .18;                              // "A sensor.": yakın
@@ -70,8 +72,7 @@
 
   /* ================= YARDIMCILAR ================= */
   function cam(ctx, z, cx, cy, sx, sy) { ctx.translate(sx == null ? 540 : sx, sy == null ? 960 : sy); ctx.scale(z, z); ctx.translate(-cx, -cy); }
-  const bx = (z, fx) => Math.min(fx, OFF.x + OFF.w - 540 / z);   // ofis kamerası alanın sağ kenarını aşmaz
-  const toScr = (z, cx, cy, sx, sy) => (x, y) => [(sx == null ? 540 : sx) + (x - cx) * z, (sy == null ? 960 : sy) + (y - cy) * z];
+    const toScr = (z, cx, cy, sx, sy) => (x, y) => [(sx == null ? 540 : sx) + (x - cx) * z, (sy == null ? 960 : sy) + (y - cy) * z];
   function finish(ctx) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.filter = 'none'; ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; C.grain(ctx, 0, 0, 1080, 1920, .2); }
   function vignette(ctx, a, col) {
     const g = ctx.createRadialGradient(540, 860, 300, 540, 900, 1250); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, col || `rgba(7,11,24,${a})`);
@@ -134,27 +135,20 @@
   }
 
   /* ================= MASA + SENSÖR ÇİZİMİ ================= */
-  const PL = { x: 540, y: 760, s: 1, rot: -.03 };
+  const PL = { x: 540, y: 820, s: 1.1, rot: -.03 };          // A ile aynı (PLAN)
+  const PLAN = PL;
   const planW = (lx, ly) => { const c = Math.cos(PL.rot), s = Math.sin(PL.rot); return [PL.x + (lx * c - ly * s) * PL.s, PL.y + (lx * s + ly * c) * PL.s]; };
-  function drawDesk(ctx) {
-    const cv = cached('masa', 2200, 2400, c => {
-      c.translate(560, 500); c.scale(1.375, 1.5); c.fillStyle = P.wood; c.fillRect(-260, 0, 1600, 1600);
-      C.seed(301);
-      for (let y = -40; y < 1600; y += 150) { C.line(c, [[-260, y], [1340, y + 8]], 3, 'rgba(21,18,13,.55)', 1.2); for (let i = 0; i < 4; i++) C.line(c, [[-260 + rnd(y + i) * 600, y + 30 + i * 28], [200 + rnd(y + i + 9) * 1100, y + 34 + i * 28]], 1.6, 'rgba(63,39,17,.5)', 1.5); }
-      for (let i = 0; i < 40; i++) C.blot(c, C.ell(-260 + rnd(500 + i) * 1600, rnd(600 + i) * 1600, 30 + rnd(700 + i) * 90, 8 + rnd(800 + i) * 14, 10), i % 3 ? '#4a2e16' : '#6e4a28', .35);
-      c.fillStyle = 'rgba(216,202,176,.16)'; c.fillRect(-260, 0, 1600, 1600);                 // toz
-    });
-    ctx.drawImage(cv, -560, -500);
-  }
+  // rulo A'nın bıraktığı yerden (yerel x=-80) sağa açılır, sensör kutusu görünür
+  function rollX(t) { const k = times(); return lerp(-80, 520, E.io(seg(twos(t), k.start, k.rollEnd))); }
   function drawPlanScene(ctx, t) {
-    drawDesk(ctx);
-    C.drawSensorPlan(ctx, { x: PL.x, y: PL.y, s: PL.s, rot: PL.rot, seed: 97 });
+    const k = times(), rx = rollX(t);
+    deskTop(ctx, t, rx);
+    if (t < k.rollEnd + .4) { // A'nın sağ eli rulonun üstünde, ruloyla birlikte gider ve çekilir
+      const [hx, hy] = planW(Math.min(rx, 330) + 24, 80), out = E.inQ(seg(twos(t), k.rollEnd - .1, k.rollEnd + .35));
+      handOnRoll(ctx, hx + out * 260, hy + out * 700, -.2, false);
+    }
   }
-  // masa sahnesinin ışığı: lamba sağ üstten sıcak, köşeler karanlık
-  function deskLight(ctx) {
-    glow(ctx, 760, 420, 900, '255,210,122', .16);
-    vignette(ctx, .62);
-  }
+  function deskLight(ctx) { lampWarm(ctx, .5); vignette(ctx, .45); }
   // Parmak yolu (çizim yerel koordinatı)
   const PATH15 = [[-345, 10], [-270, 30], [-170, 60], [-90, 70], [-24, 74]];
   const PATH17 = [[-20, 46], [-20, -10], [-110, -10], [-200, -10], [-200, -60], [-200, -104]];
@@ -167,7 +161,7 @@
     const k = times(), tw = twos(t);
     if (tw < k.cu16) {
       const en = E.outC(seg(tw, k.enter, k.enter + .45));
-      const p = along(PATH15, E.io(seg(tw, k.trace0, k.trace1)));
+      const p = along(PATH15, E.io(seg(tw, k.trace0 + .15, k.trace1)));
       return { p: [p[0] + (1 - en) * 520, p[1] + (1 - en) * 700], rot: .55, press: 0 };
     }
     if (tw < k.trace) {
@@ -265,7 +259,7 @@
     // priz + kablo
     C.shape(ctx, [[SOCKET[0] - 14, SOCKET[1] - 18], [SOCKET[0] + 14, SOCKET[1] - 18], [SOCKET[0] + 14, SOCKET[1] + 14], [SOCKET[0] - 14, SOCKET[1] + 14]], '#d9d2c2', { lw: 1.8 });
     C.line(ctx, [[615, 648], [650, 652], [684, 640], [SOCKET[0], SOCKET[1] + 2]], 2.4, P.ink, .5);
-    return lerp(-175, -80, E.io(seg(t, k.c14, k.end)));
+    penCup(ctx, CUP[0], CUP[1], 1);
   }
   function deskTop(ctx, t, rx) {
     const bg = cached('masa-ust', 1080, 1920, c => {
@@ -302,10 +296,21 @@
     ctx.restore();
   }
   function handOnRoll(ctx, x, y, rot, flip) { // Kaan'ın kolu alttan gelir: ceket + sarı bileklik + el
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); if (flip) ctx.scale(-1, 1); C.seed(flip ? 652 : 651);
+    C.shape(ctx, [[-60, 120], [60, 120], [70, 700], [-70, 700]], P.jacket, { lw: 6, shade: c => C.blot(c, [[20, 110], [80, 110], [80, 700], [30, 700]], '#0b1f2a', .3) });
+    C.shape(ctx, [[-56, 100], [56, 100], [58, 136], [-58, 136]], P.hazard, { lw: 4.4 });
+    C.shape(ctx, [[-52, 104], [-58, 30], [-40, -26], [-10, -44], [24, -40], [48, -16], [56, 40], [50, 104]], P.skin, { lw: 6, shade: c => C.blot(c, [[20, -50], [70, -50], [70, 110], [30, 110]], P.skinDk, .5) });
+    C.line(ctx, [[-30, -20], [-26, 20]], 3, P.skinDk); C.line(ctx, [[-6, -32], [-4, 10]], 3, P.skinDk); C.line(ctx, [[18, -30], [16, 10]], 3, P.skinDk);
+    ctx.restore();
+  }
+  function lampWarm(ctx, a) {
+    ctx.save(); ctx.globalCompositeOperation = 'soft-light'; const g = ctx.createRadialGradient(820, 380, 60, 640, 760, 1200);
+    g.addColorStop(0, `rgba(255,214,140,${a})`); g.addColorStop(1, 'rgba(40,24,10,.6)'); ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
+  }
 
   /* ================= OFİS ================= */
-  const OFF = { x: 0, y: 0, w: 1080, h: 1920, seed: 7 };
-  const OF = (() => { const a = OFF, kx = a.x + a.w * .74; return { kx, fl: a.y + a.h * .7, top: a.y, cx0: kx - a.w * .1, cy: a.y + a.h * .3, cw: a.w * .2, ch: a.h * .3, tx: a.x + a.w * .04, tw: a.w * .62, ty: a.y + a.h * .62, lamp: [a.x + a.w * (.04 + .62 * .9), a.y + a.h * .62 - 140] }; })();
+  const OFF = { x: 0, y: 0, w: 1080, h: 900, seed: 21 };       // A ile aynı ofis
+  const OF = (() => { const a = OFF, kx = a.x + a.w * .74; return { kx, fl: a.y + a.h * .7, top: a.y, cx0: kx - a.w * .1, cy: a.y + a.h * .3, cw: a.w * .2, ch: a.h * .3, tx: a.x + a.w * .04, tw: a.w * .62, ty: a.y + a.h * .62, lamp: [a.x + a.w * (.04 + .62 * .9), a.y + a.h * .62 - 70] }; })();
   // drawOffice çatlağı hep çizer; takvim kaydırılana kadar yalnız takvimin arkasındaki kısım kalsın diye çatlak çizgileri kırpılır.
   // (Çatlak, duvar çizimlerinden sonraki 11.–16. stroke çağrısıdır: 2 çizim × 5 + çatlak 3 çizgi × 2.)
   function drawOfficeClip(ctx, o, crackClip) {
@@ -324,22 +329,12 @@
     });
     C.drawOffice(px, o);
   }
-  function drawCeiling(ctx) {
-    C.seed(331);
-    ctx.fillStyle = '#2a2f33'; ctx.fillRect(OFF.x - 400, OFF.y - 600, OFF.w + 800, 600);
-    for (let x = OFF.x - 400; x < OFF.x + OFF.w + 400; x += 120) C.line(ctx, [[x, OFF.y - 600], [x + 30, OFF.y - 40]], 2, 'rgba(0,0,0,.4)', 1);
-    C.shape(ctx, [[OFF.x - 400, OFF.y - 46], [OFF.x + OFF.w + 400, OFF.y - 46], [OFF.x + OFF.w + 400, OFF.y + 14], [OFF.x - 400, OFF.y + 14]], '#8d8a80', { lw: 4, shade: c => C.blot(c, [[OFF.x - 400, OFF.y - 4], [OFF.x + OFF.w + 400, OFF.y - 4], [OFF.x + OFF.w + 400, OFF.y + 16], [OFF.x - 400, OFF.y + 16]], '#5a5850', .8) });
-  }
-  // Ofis: cm takvim konumu; full true: çatlak bütün boyuyla
-  function drawRoom(ctx, cm, full) {
-    drawCeiling(ctx);
-    const clip = full ? null : [OF.kx - 120, OF.cy + 4, 240, OF.ch - 8];
-    drawOfficeClip(ctx, Object.assign({}, OFF, { lamp: true, calendarMoved: cm }), clip);
-  }
+  const CM = .7;    // takvim en çok bu kadar kayar: drawOffice alanı x=1080'de kırpar, takvim alan içinde kalsın
+  function drawRoom(ctx, cm, full) { drawWorld(ctx, TB.t, { lamp: true, door: .92, phone: false, cm: cm * CM, full }); }
   // Ofisin ışığı (gece): lamba havuzu + takvim/çatlak bölgesi; üst duvar ve köşeler karanlık
   function roomLight(ctx, S, extra, a, cry) {
-    const [lx, ly] = S(OF.lamp[0], OF.lamp[1] + 60), [cx, cy] = S(OF.kx, OF.cy + OF.ch * .5), [, y0] = S(0, 0), [, y1] = S(0, 100), z = (y1 - y0) / 100;
-    nightLight(ctx, [[lx, ly, 560 * z, .95, 440 * z], [cx, cy, 300 * z, .8, (cry || 460) * z]].concat(extra || []), a == null ? .78 : a);
+    const [lx, ly] = S(OF.lamp[0], OF.lamp[1] + 30), [cx, cy] = S(OF.kx, OF.cy + OF.ch * .5), [, y0] = S(0, 0), [, y1] = S(0, 100), z = (y1 - y0) / 100;
+    nightLight(ctx, [[lx, ly, 280 * z, .95, 220 * z], [cx, cy, 150 * z, .8, (cry || 230) * z]].concat(extra || []), a == null ? .78 : a);
   }
   // takvimi kaydıran el (sağa iter), kol soldan-alttan
   function drawSideHand(ctx, x, y, rot, s) {
@@ -367,12 +362,12 @@
     const tau = t - t0; if (tau < 0 || tau > 1.6) return;
     for (let i = 0; i < 7; i++) {
       const r = j => rnd(5100 + i * 7 + j), d = tau - r(1) * .25; if (d < 0) continue;
-      const px = x + (r(2) - .5) * 14 + d * (r(3) - .5) * 30, py = y + 4 + 520 * d * d;
-      ctx.fillStyle = i % 2 ? 'rgba(216,202,176,.95)' : 'rgba(152,140,122,.9)'; ctx.beginPath(); ctx.arc(px, py, 2 + r(4) * 3, 0, TAU); ctx.fill();
+      const px = x + (r(2) - .5) * 7 + d * (r(3) - .5) * 15, py = y + 4 + 260 * d * d;
+      ctx.fillStyle = i % 2 ? 'rgba(216,202,176,.95)' : 'rgba(152,140,122,.9)'; ctx.beginPath(); ctx.arc(px, py, 1 + r(4) * 1.6, 0, TAU); ctx.fill();
     }
   }
   // çatlağın kendi çizgisi (ışık sızması için; drawOffice ile aynı noktalar)
-  const CRACK = (() => { const a = OFF, kx = OF.kx; return [[kx - 6, a.y], [kx + 10, a.y + a.h * .12], [kx - 4, a.y + a.h * .24], [kx + 14, a.y + a.h * .36], [kx + 2, a.y + a.h * .48], [kx + 18, a.y + a.h * .6], [kx + 6, OF.fl]]; })();
+  const CRACK = (() => { const a = OFF, kx = OF.kx; return [[kx - 4, -60], [kx - 1, -30], [kx - 6, a.y], [kx + 10, a.y + a.h * .12], [kx - 4, a.y + a.h * .24], [kx + 14, a.y + a.h * .36], [kx + 2, a.y + a.h * .48], [kx + 18, a.y + a.h * .6], [kx + 6, OF.fl]]; })();
   const crackX = y => { for (let i = 0; i < CRACK.length - 1; i++) if (y <= CRACK[i + 1][1]) return lerp(CRACK[i][0], CRACK[i + 1][0], (y - CRACK[i][1]) / (CRACK[i + 1][1] - CRACK[i][1])); return CRACK[CRACK.length - 1][0]; };
 
   /* ================= AVLU + DAISY (bugün gece / 2. bölüm gündüz) ================= */
@@ -462,12 +457,11 @@
   // planCam: çizim sahnesi kamerası (z, odak dünya, ekran noktası)
   function planCam(t) {
     const k = times();
-    if (t < k.cu16) { const u = E.io(seg(t, k.start, k.cu16)), f = planW(-120, 40); return [lerp(1.2, 1.42, u), lerp(PL.x, f[0], u * .6), lerp(PL.y + 40, f[1] + 20, u * .6), 540, 700]; }
-    if (t < k.trace) { const u = E.io(seg(t, k.cu16, k.trace)), f = planW(-20, 66); return [lerp(2.5, 2.62, u), f[0], f[1], 540, 720]; }
-    // ışığa doğru: odak parmakla yürür, sonunda ışık simgesi (470,583) ekran noktasına oturur
+    if (t < k.cu16) { const u = E.io(seg(t, k.start, k.cu16)), a = planW(-210, -10), f = planW(-130, 40); return [lerp(1.55, 1.62, u), lerp(a[0], f[0], u), lerp(a[1], f[1], u), 540, 800]; }
+    if (t < k.trace) { const u = E.io(seg(t, k.cu16, k.trace)), f = planW(-20, 66); return [lerp(2.3, 2.4, u), f[0], f[1], 540, 720]; }
+    // ışığa doğru: odak parmakla yürür, sonunda ışık simgesi (470,583) ekran noktasına oturur (gerçek Daisy'nin ışığıyla aynı yer/boy)
     const u = E.io(seg(t, k.trace, k.lightArr + .1)), a = planW(-20, 30), b = planW(-200, -126);
-    const z = lerp(2.5, 2.3, u), sx = lerp(540, 470, u), sy = lerp(760, 583, u);
-    return [z, lerp(a[0], b[0], u), lerp(a[1], b[1], u), sx, sy];
+    return [lerp(2.3, 2.1, u), lerp(a[0], b[0], u), lerp(a[1], b[1], u), lerp(540, 470, u), lerp(760, 583, u)];
   }
   function planShot(ctx, t, withFinger) {
     const [z, fx, fy, sx, sy] = planCam(t);
@@ -509,7 +503,7 @@
 
   /* --- 19: "It means: stop." dedenin el yazısı, sessiz yakın plan --- */
   shot('p4b19-stop', k => k.stop, k => k.grumpy, (ctx, t, u) => {
-    const f = planW(150, 100), z = lerp(2.9, 3.15, E.io(u));
+    const f = planW(150, 100), z = lerp(2.65, 2.85, E.io(u));
     ctx.save(); cam(ctx, z, f[0], f[1], 540, 700);
     drawPlanScene(ctx, t);
     ctx.restore();
@@ -566,26 +560,26 @@
 
   /* --- 23: "Then I saw the calendar on the wall." ofis, Kaan takvime döner --- */
   shot('p4b23-ofis', k => k.cal, k => k.low, (ctx, t, u) => {
-    const k = times(), tw = twos(t), e = E.io(u), z = lerp(1.0, 1.08, e), fx = bx(z, lerp(540, 620, e)), fy = lerp(980, 940, e);
+    const k = times(), tw = twos(t), e = E.io(u), z = lerp(1.45, 1.55, e), fx = lerp(600, 660, e), fy = lerp(450, 420, e);
     ctx.save(); cam(ctx, z, fx, fy);
     drawRoom(ctx, 0, false);
     const look = tw < k.calWord - .2 ? .2 : 1;
-    C.drawKaan(ctx, { x: 360, y: 1800, s: 1.5, seed: 11, pose: 'side', expr: tw < k.calWord ? 'calm' : 'serious', look, step: 0 });
+    C.drawKaan(ctx, { x: 470, y: 780, s: 1.0, seed: 11, pose: 'side', expr: tw < k.calWord ? 'calm' : 'serious', look, step: 0 });
     const S = toScr(z, fx, fy);
     ctx.restore();
-    roomLight(ctx, S, [[...S(360, 1800 - 470 * 1.5), 260, .7]]);
+    roomLight(ctx, S, [[...S(480, 780 - 470), 260, .7]]);
     finish(ctx);
   });
 
   /* --- 24: "It was hanging very low." takvime yakın; çividen alt kenara, zemine eğilir --- */
   shot('p4b24-alcak', k => k.low, k => k.move, (ctx, t, u) => {
-    const e = E.io(u), z = 1.7, fx = bx(1.7, OF.kx - 10), fy = lerp(OF.cy - 60, OF.cy + OF.ch + 90, e);
+    const e = E.io(u), z = 3.0, fx = OF.kx - 10, fy = lerp(OF.cy - 40, OF.cy + OF.ch + 50, e);
     ctx.save(); cam(ctx, z, fx, fy);
     drawRoom(ctx, 0, false);
     const S = toScr(z, fx, fy);
     ctx.restore();
     roomLight(ctx, S);
-    airDust(ctx, t, 14, 12, [100, 200, 900, 1000], .5);
+    airDust(ctx, t, 14, 12, [100, 300, 900, 800], .5);
     finish(ctx);
   });
 
@@ -593,25 +587,25 @@
   function calMove(t) { const k = times(); return E.io(seg(twos(t), k.grab + .12, k.slide1)); }
   shot('p4b25-catlak', k => k.move, k => k.tilt, (ctx, t, u) => {
     const k = times(), tw = twos(t), cm = calMove(t);
-    const pu = E.io(seg(t, k.slide1 - .2, k.tilt)), z = lerp(1.32, 1.9, pu), fx = bx(z, lerp(OF.kx + 40, OF.kx + 6, pu)), fy = lerp(OF.cy + OF.ch * .42, OF.cy + OF.ch * .32, pu);
+    const pu = E.io(seg(t, k.slide1 - .2, k.tilt)), z = lerp(2.6, 3.7, pu), fx = (lerp(OF.kx + 40, OF.kx + 6, pu)), fy = lerp(OF.cy + OF.ch * .42, OF.cy + OF.ch * .32, pu);
     ctx.save(); cam(ctx, z, fx, fy);
     drawRoom(ctx, cm, false);
     // el: soldan girer, takvimin sol kenarını kavrar, birlikte sağa iter, sonra çekilir
-    const cx = OF.cx0 + cm * OF.w * .2, ein = E.outC(seg(tw, k.move, k.grab + .1)), eout = E.inQ(seg(tw, k.slide1 + .02, k.slide1 + .4));
-    const hx = cx + 10 - (1 - ein) * 520 - eout * 640, hy = OF.cy + OF.ch * .45 + (1 - ein) * 260 + eout * 420;
-    if (eout < 1) drawSideHand(ctx, hx, hy, .3, .78);
+    const cx = OF.cx0 + cm * CM * OF.w * .2, ein = E.outC(seg(tw, k.move, k.grab + .1)), eout = E.inQ(seg(tw, k.slide1 + .02, k.slide1 + .4));
+    const hx = cx + 6 - (1 - ein) * 260 - eout * 320, hy = OF.cy + OF.ch * .45 + (1 - ein) * 130 + eout * 210;
+    if (eout < 1) drawSideHand(ctx, hx, hy, .3, .4);
     plaster(ctx, t, k.crack, crackX(OF.cy + OF.ch * .3), OF.cy + OF.ch * .3);
     const S = toScr(z, fx, fy);
     ctx.restore();
-    roomLight(ctx, S, null, .82, 330);
+    roomLight(ctx, S, null, .82, 165);
     finish(ctx);
   });
 
   /* --- 27: "From the floor to the ceiling." fener çatlak boyunca yerden tavana --- */
   shot('p4b27-tavan', k => k.tilt, k => k.face, (ctx, t, u) => {
-    const k = times(), e = E.io(seg(t, k.tilt, k.ceil + .2)), z = 1.25;
-    const fy = lerp(OF.fl - 280, OF.top + 380, e), fx = bx(z, OF.kx - 20);
-    const by = lerp(OF.fl - 60, OF.top + 90, E.io(seg(t, k.tilt - .1, k.ceil + .1)));    // fener ışığı kameradan önde
+    const k = times(), e = E.io(seg(t, k.tilt, k.ceil + .2)), z = 2.3;
+    const fy = lerp(OF.fl - 150, OF.top + 120, e), fx = OF.kx - 20;
+    const by = lerp(OF.fl - 30, OF.top - 20, E.io(seg(t, k.tilt - .1, k.ceil + .1)));    // fener ışığı kameradan önde
     ctx.save(); cam(ctx, z, fx, fy);
     drawRoom(ctx, 1, true);
     const S = toScr(z, fx, fy);
@@ -625,7 +619,7 @@
   /* --- 28: "And I remembered." Kaan'ın yüzü --- */
   shot('p4b28-yuz', k => k.face, k => k.door, (ctx, t, u) => {
     const k = times(), tw = twos(t);
-    const bg = blurred('ofis-bg', 8, g => { cam(g, 1.3, OF.x + OF.w - 540 / 1.3, 760); drawRoom(g, 1, true); nightLight(g, [[540 + 60 * 1.3, 960, 420, .9, 700]], .8); });
+    const bg = blurred('ofis-bg', 8, g => { cam(g, 2.4, OF.kx - 60, 380); drawRoom(g, 1, true); nightLight(g, [[540 + 60 * 2.4, 960, 420, .9, 700]], .8); });
     ctx.drawImage(bg, 0, 0);
     const blink = tw >= k.rem + .45 && tw < k.rem + .45 + 3 / FPS ? 1 : 0;
     ctx.save(); cam(ctx, lerp(1, 1.04, E.io(u)), 540, 900);
@@ -652,21 +646,21 @@
   });
 
   /* --- Bitiş: çatlak üst üçte birde; endBeep'te TEK bip: Daisy'nin kırmızı ışığı çatlaktan bir kez sızar; kart altta --- */
-  const END = { z: 1.5, fx: OF.kx - 90, fy: 520 };
+  const END = { z: 2.6, fx: OF.kx - 60, fy: 292 };
   shot('p4b-son', k => k.endShot, k => k.dur + 1, (ctx, t, u) => {
     const k = times(), tf = freezeIn(t, k.endBeep, 1), v = beepAt(t, k.endBeep, 1);
-    const z = END.z * (1 + .025 * E.outC(seg(tf, k.endShot, k.endBeep - .3)) + .012 * seg(t, k.endBeep + .6, k.dur)), fx = bx(z, END.fx), fy = END.fy;
+    const z = END.z * (1 + .025 * E.outC(seg(tf, k.endShot, k.endBeep - .3)) + .012 * seg(t, k.endBeep + .6, k.dur)), fx = END.fx, fy = END.fy;
     ctx.save(); cam(ctx, z, fx, fy);
     drawRoom(ctx, 1, true);
     const S = toScr(z, fx, fy);
     ctx.restore();
-    roomLight(ctx, S, [[...S(OF.kx, 300), 380, .75, 520]], .82);
+    roomLight(ctx, S, [[...S(OF.kx, 140), 380, .75, 520]], .82);
     if (v > 0) { // kırmızı ışık çatlaktan sızar (yalnız tonun 6 karesi)
       ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
       const pts = CRACK.map(([x, y]) => S(x, y));
       [[46, .22], [22, .45], [9, .9], [4, 1]].forEach(([w, a]) => { ctx.strokeStyle = w > 5 ? `rgba(255,59,47,${a * v})` : `rgba(255,214,190,${a * v})`; ctx.lineWidth = w; ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke(); });
       ctx.restore();
-      const [gx, gy] = S(crackX(260), 260); glow(ctx, gx, gy, 420, P.glow, .35 * v);
+      const [gx, gy] = S(crackX(120), 120); glow(ctx, gx, gy, 420, P.glow, .35 * v);
     }
     // kart için yalnız alt kısım kararır; çatlağın üstü açıkta
     const dk = .6 * E.io(seg(t, k.endCard - .1, k.endCard + .2));

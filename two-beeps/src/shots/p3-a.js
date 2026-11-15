@@ -285,10 +285,10 @@
   });
   // s04  "His name is Mr. Hale."  kapı açılır, Hale iner, şapkasını düzeltir
   shot('s04', (ctx, t, u, k) => {
-    const tw = q2(t), d0 = k.s04 + .08, z = lerp(1.42, 1.5, E.io(u));
+    const tw = q2(t), d0 = k.s04 + .08, z = lerp(1.62, 1.7, E.io(u));
     const door = tw >= d0 + .27, mid = tw >= d0 + .13 && !door, inCar = tw < d0 + .27;
     const rise = E.outC(seg(tw, d0 + .27, d0 + .87));
-    ctx.save(); cam(ctx, z, 505, 1560);
+    ctx.save(); cam(ctx, z, 470, 1600);
     drawWorld(ctx, t, {
       door, doorMid: mid, haleInCar: inCar ? { look: -.8 } : null,
       kaan: { expr: tw < k.haleW ? 'calm' : 'serious', look: .8, blink: blinkAt(t, [k.haleW + .25]) }, heldList: true,

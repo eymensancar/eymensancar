@@ -5,7 +5,7 @@
      Planlanan alan TB.zone merkezi (-900,30), w 700: kule SOLA, alana düşer (1. bölümde baca alanın tersine düşmüştü).
      Ekip (baretli) çitin dışında x 1150–1550, y 560; Hale (1950,520), beyaz araba (2550,470) sağa bakar, sağa gider.
    • Damga: kulenin beton kaidesinin ön yüzü (yakın planda P1 ile aynı: STONE (560,760), rot −0,05, ekranda (540,480) civarı).
-   • Avlu (akşam, drawYard 1080×1920 alanı): posta kutusu (670,1288–1336), kapı x 778; Daisy avluda YD noktasında.
+   • Avlu (akşam): p3-a.js yerleşimi aynen: drawYard 0,0,1080,1920; posta kutusu ayağı (670,1536); Daisy (180,1450) s .55 + eski lastik; sokak y 1600–1880.
    • Masa (akşam): pencere üstte (Daisy'nin uyarı ışığı pencereden görünür, y≈380), mektup masada. */
 (function () {
   'use strict';
@@ -224,7 +224,7 @@
     const k = times(), tau = t - k.land; if (tau < 0) return;
     chips(ctx, tau, 34, 12, (i, r) => { const along = r(1); return { x: PIV[0] - 60 - along * 960, y: -30 - r(2) * 60, vx: (r(3) - .5) * 460 - 60, vy: -260 - r(4) * 620 * (1 - along * .3) }; }, 1);
     const a = tau < 2.5 ? 1 : clamp(1 - (tau - 2.5) / 5, .3, 1);
-    dustCloud(ctx, tau, 100, 13, (i, r) => { const along = r(1); return { x: PIV[0] - 40 - along * 1040, y: -20 - r(2) * 40, r: 18 + r(3) * r(3) * 100, vx: (r(4) - .5) * 300 - 50 * along, rise: 30 + r(5) * r(5) * 560, grow: 1.0 + r(6) * .5, delay: (1 - along) * .1 + r(7) * .08, sink: 24 }; }, a, 9);
+    dustCloud(ctx, tau, 120, 13, (i, r) => { const along = r(1); return { x: PIV[0] - 40 - along * 1040, y: -20 - r(2) * 40, r: 40 + r(3) * r(3) * 190, vx: (r(4) - .5) * 360 - 60 * along, rise: 50 + r(5) * r(5) * 760, grow: 1.0 + r(6) * .5, delay: (1 - along) * .1 + r(7) * .08, sink: 24 }; }, a, 9);
   }
 
   /* ---- ekip: baretli siluetler ---- */
@@ -305,7 +305,7 @@
   shot('p3b13-kule', k => k.start, k => k.crew, (ctx, t, u) => {
     const k = times(), e = E.io(u);
     const arrive = E.outC(seg(t, k.start - .3, k.start + 1.3)), dx = lerp(1250, DZ.x, arrive), bob = arrive < 1 ? Math.sin(twos(t) * 30) * 2.5 : 0;
-    ctx.save(); cam(ctx, lerp(.41, .44, e), -130, lerp(-300, -273, e));
+    ctx.save(); cam(ctx, lerp(.47, .5, e), 40, lerp(-300, -270, e));
     drawSite(ctx, t, { daisyX: dx, bob, hale: false, noFx: true });
     airDust(ctx, t, 40, 3, [-1700, -600, 3000, 900], .8);
     if (arrive < 1) { // Daisy'nin tekerleklerinden kalkan toz
@@ -485,27 +485,42 @@
   });
 
   /* ================= AKŞAM ================= */
-  // Avlu (A ile aynı drawYard; Daisy'nin avludaki yeri):
-  const YD = { x: 300, y: 1560, s: .55 };
-  const MB = { x: 670, y: 1312 };                                   // posta kutusu (drawYard 1080×1920'de)
-  function drawYardDusk(ctx, t, letter) {
-    C.drawYard(ctx, { x: -600, y: 0, w: 2280, h: 1920, mode: 'dusk', letter: false, seed: 7 });
-    void t; void letter;
+  // Avlu: p3-a.js yerleşimi (drawYard 0,0,1080,1920; çitin önünde sokak y 1600–1880; Daisy (180,1450) s .55; posta kutusu ayağı (670,1536)).
+  const YD = { x: 180, y: 1450, s: .55 };
+  const MB = { x: 670, y: 1312 };
+  function yardDusk() {
+    return cached('p3b-avlu', 1080, 2300, g => {
+      C.drawYard(g, { x: 0, y: 0, w: 1080, h: 1920, mode: 'dusk', seed: 7 });
+      g.fillStyle = P.groundDk; g.fillRect(0, 1918, 1080, 400);
+      C.seed(3301);
+      C.shape(g, [[-20, 1600], [1100, 1590], [1100, 1880], [-20, 1890]], '#b89a6e', { lw: 0, amp: 3 });
+      C.line(g, [[-20, 1600], [1100, 1590]], 3, P.dustDk, 1.5);
+      g.save(); g.globalAlpha = .3; g.strokeStyle = P.groundDk; g.lineWidth = 18; g.setLineDash([12, 9]);
+      [1680, 1800].forEach(y => { g.beginPath(); g.moveTo(-20, y); g.quadraticCurveTo(540, y - 8, 1100, y + 4); g.stroke(); }); g.restore();
+      g.fillStyle = 'rgba(10,17,36,.2)'; g.fillRect(0, 1918, 1080, 400);
+      g.fillStyle = 'rgba(10,17,36,.2)'; g.fillRect(0, 1595, 1080, 324);
+    });
+  }
+  function drawYardWorld(ctx, t) {
+    ctx.fillStyle = '#7d5a48'; ctx.fillRect(-1000, -1000, 3000, 1100);
+    ctx.drawImage(yardDusk(), 0, 0);
+    C.drawDaisy(ctx, { x: YD.x, y: YD.y, s: YD.s, seed: 23, beep: 0, mood: 'sleepy', hook: Math.sin(t * 1.3) * .03 });
+    daisyTire(ctx, YD.x, YD.y, YD.s);
   }
   shot('p3b21-posta', k => k.yard, k => k.env, (ctx, t, u) => {
     const k = times(), tw = twos(t);
-    ctx.save(); cam(ctx, lerp(1.35, 1.5, E.io(u)), MB.x - 40, MB.y + 40, 540, 760);
-    C.drawYard(ctx, { x: 0, y: 0, w: 1080, h: 1920, mode: 'dusk', letter: false });
-    // zarf yuvaya kayar (posta geldi): yuvadan aşağı kayıp ucu dışarıda kalır
+    ctx.fillStyle = P.groundDk; ctx.fillRect(0, 0, 1080, 1920);
+    ctx.save(); cam(ctx, lerp(1.5, 1.62, E.io(u)), 560, 1400, 540, 800);
+    drawYardWorld(ctx, t);
+    // zarf yuvaya düşer (posta geldi): ucu kutunun üstünde kalır
     if (t >= k.letter - .25) {
-      const q = E.outC(seg(t, k.letter - .25, k.letter + .1)), mx = MB.x, my = 1536 - 192 - 44 - 6 + lerp(-60, 0, q);
-      ctx.save(); ctx.beginPath(); ctx.rect(mx - 60, 1000, 120, 1536 - 192 - 46 - 1000); ctx.clip();
-      C.seed(360); C.shape(ctx, [[mx - 18, my], [mx + 16, my - 2], [mx + 18, my - 18], [mx - 16, my - 16]], P.paper, { lw: 2.6 }); ctx.restore();
-      const jig = t >= k.letter && t < k.letter + 2 / FPS ? 1 : 0; void jig;
+      const q = E.outC(seg(t, k.letter - .25, k.letter + .1)), mx = MB.x, my = 1294 + lerp(-70, 0, q);
+      ctx.save(); ctx.beginPath(); ctx.rect(mx - 60, 1000, 120, 298); ctx.clip();
+      C.seed(360); C.shape(ctx, [[mx - 18, my], [mx + 16, my - 2], [mx + 18, my - 22], [mx - 16, my - 20]], P.paper, { lw: 2.6 }); ctx.restore();
     }
-    // Kaan avlunun içinden posta kutusuna yürür (profil)
-    const wu = seg(tw, k.yard + .2, k.env - .25), kx = lerp(420, 600, E.io(wu));
-    C.drawKaan(ctx, { x: kx, y: 1536, s: .5, seed: 11, pose: 'side', step: wu > 0 && wu < 1 ? Math.sin(tw * 9) : 0, expr: 'calm' });
+    // Kaan sokaktan posta kutusuna yürür (profil)
+    const wu = seg(tw, k.yard + .15, k.env - .2), kx = lerp(330, 590, E.io(wu));
+    C.drawKaan(ctx, { x: kx, y: 1640, s: .62, seed: 11, pose: 'side', step: wu > 0 && wu < 1 ? Math.sin(tw * 9) : 0, expr: 'calm' });
     ctx.restore();
     vignette(ctx, .3);
     finish(ctx);
@@ -595,14 +610,13 @@
     });
   }
   const WINR = { x: 150, y: 120, w: 780, h: 470 };
-  function drawWindowView(ctx, beep) {
+  function drawWindowView(ctx, beep, tw) {
     ctx.save(); ctx.beginPath(); ctx.rect(WINR.x, WINR.y, WINR.w, WINR.h); ctx.clip();
-    // pencereden avlu: akşam, Daisy önde
-    const sc = .62 / YD.s * .55, bx = 560, by = 560;
+    // pencereden avlu: akşam, Daisy (p3-a yerleşimi)
+    const sc = .62 / YD.s, bx = 560, by = 560;
     ctx.save(); ctx.translate(bx, by); ctx.scale(sc, sc); ctx.translate(-YD.x, -YD.y);
-    C.drawYard(ctx, { x: -600, y: 0, w: 2280, h: 1920, mode: 'dusk' });
+    drawYardWorld(ctx, tw);
     ctx.restore();
-    C.drawDaisy(ctx, { x: bx, y: by, s: .62, seed: 23, beep: 0, mood: 'sleepy', hook: .02 });
     if (beep > 0) { ctx.save(); ctx.translate(bx, by); ctx.scale(.62, .62); drawBeacon(ctx, beep); ctx.restore(); }
     ctx.fillStyle = 'rgba(30,40,60,.18)'; ctx.fillRect(WINR.x, WINR.y, WINR.w, WINR.h);
     ctx.restore();
@@ -630,14 +644,12 @@
     const push = E.io(seg(tf, k.desk, k.end + .6)), post = Math.max(0, tf - k.freeze1) * .004 * (tf >= k.freeze1 ? 1 : 0);
     ctx.save(); cam(ctx, lerp(1, 1.06, push) + post, 540, lerp(820, 760, push), 540, 820);
     C.seed(395); for (let x = -100; x < 1200; x += 120) { ctx.fillStyle = 'rgba(7,11,24,.15)'; ctx.fillRect(x, -200, 50, 900); }
-    drawWindowView(ctx, b);
+    drawWindowView(ctx, b, tw);
     drawDesk(ctx, 660);
     C.shape(ctx, [[-60, 640], [1140, 640], [1140, 676], [-60, 676]], '#3f2711', { lw: 5 });    // masa kenarı (pencere altı)
     // mektup masada
     const lo = { x: 560, y: 1080, s: 1.55, rot: -.04 };
     letterWithLine(ctx, lo, LINE.length);
-    // kahve fincanı (masada, sol üst köşe)
-    C.coffeeCup && void 0;
     // Kaan'ın gölgesi: sağ alttan mektubun üstüne kayar; tutam satıra değer
     const sh = E.outC(seg(tw, k.desk + .25, k.desk + 1.5)), breath = Math.sin(tw * 1.6) * 6 * (tf >= k.end ? .5 : 1);
     ctx.save(); ctx.globalAlpha = .34; ctx.filter = 'blur(5px)';

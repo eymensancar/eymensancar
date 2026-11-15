@@ -8,7 +8,7 @@
      OFİS KAPISI: arka duvarın solunda, x -250…-40, y 90–630, menteşe sağda (x=-40), içeri (kameraya doğru) açılır; dışarısı gece avlu.
      Eski baret: kapının sağında çivide, çivi (25,250).
      Bu yarıda kapı açık bırakıldı; lamba S11'den (≈19,24 sn) itibaren yanık; telefon S6'dan sonra Kaan'ın elinde.
-   SON KARE (≈25,38 sn): üstten masa planı; drawSensorPlan merkezi ekranda (540,820), s 1.1, rot -0.03, kamera z≈1.55 (yerel (-210,-10)'a);
+   SON KARE (≈25,38 sn): üstten masa planı; drawSensorPlan masa planında (700,770), s 1.1, rot -0.03, kamera z≈1.55 (yerel (-210,-10)'a);
      çizim soldan rulo açılıyor, açık kısım yerel x < -80 (SENSOR yazısı/kutusu henüz rulonun altında); rulo yerel x=-80'de, Kaan'ın sağ eli rulonun ortasında. */
 (function () {
   'use strict';
@@ -28,7 +28,7 @@
     const k = {};
     k.c2 = mid(1);                          // telefona yakın (ayaklıkta)
     k.c3 = mid(2);                          // kapı
-    k.door = S(3).t0 - .25;                 // kapı aralanır (gıcırtı)
+    k.door = S(3).t0 - .38;                 // kapı aralanır (gıcırtı)
     k.step = W(3, /^got/i, 2).t0 - .1;      // Kaan içeri adım atar
     k.c4 = mid(3);                          // toz / çizim / çay
     k.d2 = W(4, /^drawings/i, 1).t0 - .14;  // fener çizime kayar
@@ -117,7 +117,7 @@
     if (t < k.tapB) return CARD;
     const sB = k.tapB + 7 / FPS; if (t < sB) return 131 + Math.min(6, fr(t, k.tapB));
     if (t < k.tapC) return 137;
-    return Math.min(55, 14 + fr(t, k.tapC));
+    return Math.min(55, 34 + fr(t, k.tapC));
   }
   function frame(i) {
     const im = gameImgs[i - 1]; if (im && im.complete && im.naturalWidth > 0) return im;
@@ -337,8 +337,11 @@
     const [hx, hy] = W2S(m, hand[0], hand[1]), [ax, ay] = W2S(m, aim[0], aim[1]);
     const [dx0, dy0] = W2S(m, DOOR.x0 + 105, DOOR.y0 + 300);
     const holes = [[dx0, dy0, 330, .55 * seg(op, .05, .5)]];
+    { const [ex, ey0] = W2S(m, DOOR.x0, DOOR.y0), [, ey1] = W2S(m, DOOR.x0, DOOR.y1), [bx1, by1] = W2S(m, DOOR.x1, DOOR.y1);   // kapı aralığından sızan gece ışığı
+      const a0 = (1 - seg(op, 0, .3)) * (.5 + .5 * seg(t, k.c3, k.door));
+      if (a0 > 0) holes.after = () => { ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = `rgba(120,150,220,${.5 * a0})`; ctx.fillRect(ex - 2, ey0, 5, ey1 - ey0); ctx.fillRect(ex, by1 - 3, bx1 - ex, 5); ctx.restore(); }; }
     if (on > 0) holes.push({ cone: [hx, hy, ax, ay, 150], s: .9 * on }, [hx, hy, 120, .6 * on]);
-    darkness(ctx, holes, .9);
+    darkness(ctx, holes, .9); if (holes.after) holes.after();
     if (on > 0) glow(ctx, ax, ay, 220, .16 * on, '255,243,196');
     vignette(ctx, .45); finish(ctx);
   });
@@ -460,7 +463,7 @@
   shot('a11-deneme', k => k.c12, k => k.c13, (ctx, t, u) => {
     const k = times(), idx = seqTries(t);
     darkRoomBg(ctx, true); screenHalo(ctx, 540, 700, 1); vignette(ctx, .5);
-    const bump = idx >= 28 && idx <= 55 ? 1 + .02 * (1 - E.outC(seg(t, k.tapC + 14 / FPS, k.tapC + 20 / FPS))) : 1;
+    const bump = idx >= 48 && idx <= 55 ? 1 + .02 * (1 - E.outC(seg(t, k.tapC + 14 / FPS, k.tapC + 20 / FPS))) : 1;
     phoneClose(ctx, t, { cx: 540, cy: 760, z: 1.3 * bump * lerp(1, 1.04, E.io(u)), rot: -.04, idx, hands: true, note: true,
       taps: [{ t: k.tapA, at: TRY_AGAIN }, { t: k.tapB, at: TRY_AGAIN }, { t: k.tapC, at: BUILDING }] });
     finish(ctx);
@@ -468,21 +471,21 @@
 
   /* a12–a13 · S13 "Then I looked at the drawings." / S14 "They were of Daisy." — üstten masa: rulo soldan açılır (Daisy'nin çizimi),
      kalemlikte tek mavi kalem; sonra çizime yakın. SENSOR yazısı rulonun altında kalır (B açar). */
-  const PLAN = { x: 540, y: 820, s: 1.1, rot: -.03 };
+  const PLAN = { x: 700, y: 770, s: 1.1, rot: -.03 };
   function rollX(t) {
     const k = times();
     if (t < k.c14) return lerp(-372, -175, E.outC(seg(t, k.c13 + .12, k.c14 - .1)));
     return lerp(-175, -80, E.io(seg(t, k.c14, k.end)));
   }
   function deskTop(ctx, t, rx) {
-    const bg = cached('masa-ust', 1080, 1920, c => {
-      c.fillStyle = P.wood; c.fillRect(0, 0, 1080, 1920); C.seed(611);
-      for (let i = 0; i < 9; i++) C.line(c, [[-20, 120 + i * 220], [1100, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
-      for (let i = 0; i < 40; i++) C.line(c, [[rnd(i + 30) * 1080, rnd(i + 31) * 1920], [rnd(i + 30) * 1080 + 80 + rnd(i) * 120, rnd(i + 31) * 1920 + 4]], 1.4, 'rgba(63,39,17,.4)', 1);
+    const bg = cached('masa-ust', 2160, 2880, c => {
+      c.translate(540, 480); c.fillStyle = P.wood; c.fillRect(-540, -480, 2160, 2880); C.seed(611);
+      for (let i = -2; i < 11; i++) C.line(c, [[-560, 120 + i * 220], [1640, 140 + i * 220 + (i % 2 ? 8 : -6)]], 2.6, 'rgba(21,18,13,.35)', 1.6);
+      for (let i = 0; i < 80; i++) { const x = -540 + rnd(i + 30) * 2160, y = -480 + rnd(i + 31) * 2880; C.line(c, [[x, y], [x + 80 + rnd(i) * 120, y + 4]], 1.4, 'rgba(63,39,17,.4)', 1); }
       // diğer rulolar (üstte)
       [[340, 330, -.12, 300], [700, 300, .1, 240]].forEach(([x, y, r, L]) => { c.save(); c.translate(x, y); c.rotate(r); C.shape(c, [[-L / 2, -24], [L / 2, -24], [L / 2, 24], [-L / 2, 24]], '#dfe5e2', { lw: 4, shade: cc => C.blot(cc, [[-L / 2, 6], [L / 2, 6], [L / 2, 26], [-L / 2, 26]], '#b9c2bf', .7) }); C.shape(c, C.ell(L / 2, 0, 9, 24, 12), '#eef2f0', { lw: 3 }); c.restore(); });
     });
-    ctx.drawImage(bg, 0, 0);
+    ctx.drawImage(bg, -540, -480);
     // kalemlik (üstten): tek mavi kalem
     ctx.save(); ctx.translate(170, 470); C.seed(621);
     ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(12, 14, 64, 64, 0, 0, TAU); ctx.fill(); ctx.restore();
@@ -523,7 +526,7 @@
   function planToScreen(lx, ly) { const c = Math.cos(PLAN.rot), s = Math.sin(PLAN.rot); return [PLAN.x + (lx * c - ly * s) * PLAN.s, PLAN.y + (lx * s + ly * c) * PLAN.s]; }
   shot('a12-rulo', k => k.c13, k => k.c14, (ctx, t, u) => {
     const rx = rollX(twos(t)), z = lerp(1.0, 1.06, E.io(u));
-    ctx.save(); cam(ctx, z, 540, 860);
+    ctx.save(); cam(ctx, z, 540, 900);
     deskTop(ctx, t, rx);
     const [hx, hy] = planToScreen(rx + 24, 80), [lx, ly] = planToScreen(-330, 230);
     handOnRoll(ctx, lx, ly + 40, .25, true);
@@ -535,7 +538,8 @@
     const rx = rollX(twos(t)), z = lerp(1.35, 1.55, E.io(u)), [fx, fy] = planToScreen(-210, -10);
     ctx.save(); cam(ctx, z, fx, fy, 540, 800);
     deskTop(ctx, t, rx);
-    const [hx, hy] = planToScreen(rx + 24, 80);
+    const [hx, hy] = planToScreen(rx + 24, 80), [lx, ly] = planToScreen(-330, 230);
+    handOnRoll(ctx, lx, ly + 40, .25, true);
     handOnRoll(ctx, hx, hy, -.2, false);
     ctx.restore();
     lampWarm(ctx, .5); vignette(ctx, .45); finish(ctx);
@@ -555,7 +559,7 @@
     get dokunus2() { return +times().tapA.toFixed(3); },
     get timesUp2() { return +(times().tapA + 7 / FPS).toFixed(3); },
     get dokunus3() { return +times().tapB.toFixed(3); },
-    get dokunusBina() { return +times().tapC.toFixed(3); },            // yıkım başlar (kare 14), DEMOLISHED! ≈ +14 kare
+    get dokunusBina() { return +times().tapC.toFixed(3); },            // yıkım sürer (kare 34), DEMOLISHED! damgası +14 kare (kare 48)
     get demolished() { return +(times().tapC + 14 / FPS).toFixed(3); },
     get kagitRulo() { return +(times().c13 + .12).toFixed(3); }         // rulo açılır (kâğıt sesi, ≈0,8 sn)
   };
