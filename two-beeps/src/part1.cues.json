@@ -2,7 +2,7 @@
  "_belge": "Part 1 ses yerleşimi. Okuyan: src/miks.py. Zaman (t, son): sayı ya da ifade. Adlar: s1..s28 (cümle; .t0 .t1), beep fall stamp voiceEnd endBeep endCard (timeline cues), dur (bölüm süresi), A.x / B.x (animatörlerin TB.cuesA / TB.cuesB anları). Liste verilirse ilk çözülebilen kullanılır: [\"A.kol\", \"s16.t1-0.39\"]. Satır alanları: t, dosya (assets/ altına göre; '@tink' betik içi sentez), kat (muzik|ortam|efekt|bip), db, ss (dosyada başlangıç sn), sure ya da son (kırpma), fadein, fadeout, pan (-1..1), dongu (true: son'a kadar döngü), not.",
  "konusma_kisma": { "atak": 0.15, "birakma": 0.4, "db": { "muzik": -8, "ortam": -4, "efekt": -3, "bip": 0 } },
  "anlatici": { "dosya": "../out/part1-voice.wav", "db": 0 },
- "koruma": { "fark": 14, "en_cok": -15, "tut": 0.08, "kelime_arasi": 6 },
+ "koruma": { "fark": 15, "en_cok": -15, "tut": 0.06, "kelime_arasi": 4 },
  "hedef": { "lufs": -14.0, "tp": -1.0 },
  "satirlar": [
   { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 0, "son": 28.0, "fadeout": 0.05, "not": "giriş 0-8 + oyunbaz 8-28; 28. sn ölçü çizgisinde müzik çekilir, oyun sesi tek kalır" },
