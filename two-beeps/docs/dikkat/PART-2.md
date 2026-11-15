@@ -37,15 +37,15 @@ Makine dosyası: `src/part2.kurgu.json` (# = cümle sırası). Tahmini süre 57,
 0. karede tutam yaylanıyor, 1. cümle ekranda. Akla gelen soru: "Neden Ant, başka kim derdi?" Önceki bölümde: Daisy'nin yanan ışığı + `Previously: Daisy beeped twice. Then it fell.`
 
 ## İpuçları
-- **İki bip (16–17):** P1 kalıbı aynen (6 yanık / 4 sönük / 6 yanık, ses aynı karede). Bu sırada başka hiçbir şey kıpırdamaz. Kapı kadrajda olmalı, P4 sonu buna döner.
+- **İki bip (16–17):** P1 kalıbı aynen (6 yanık / 4 sönük / 6 yanık, ses aynı karede). Bu sırada başka hiçbir şey kıpırdamaz. Kapı kadrajda; P4 sonu buna döner.
 - **Takvim (19):** pencereden 1,5 sn; söylenmez, işaretlenmez.
-- **Kahve halkası (30):** imza planının köşesinde, soluk; vurgu yok. Defne'nin elindeki kahve (6) ile aynı fincan rengi.
+- **Kahve halkası (30):** imza planının köşesinde, soluk; vurgu yok.
 - **H K (11):** P1 planının kopyası; tanıma için aynı açı.
 - **"Ant":** dede el yazısı (3), P6'da aynı yazı tekrar görünür.
 
 ## En riskli 2 an
-1. **4–9 (tanıtım + replik, ≈ 8 sn):** konuşma var, olay yok. Önlem: Defne yürür, kahve el değiştirir, Daisy'nin siperliği iner; her 2 sn'de bir hareket.
+1. **4–9 (tanıtım + replik, ≈ 8 sn):** olay yok. Önlem: Defne yürür, kahve el değiştirir, siperlik iner; her 2 sn'de bir hareket.
 2. **20–24 (telefon şakası):** dikkat oyuna kayıp hikâye kopabilir. Önlem: oyun ekranı ≤3 sn, şaka Defne'nin kaşında kalır; logo yok.
 
 ## Bitiş
-"Nobody... heard of them." ardından Daisy'nin ışığı üst üçte birde; voiceEnd+0,95'te tek bip, +1,6'da kart `PART 3 · MR. HALE →`. Müzik solmuş, yalnız rüzgâr.
+"Nobody... heard of them." ardından Daisy'nin ışığı üst üçte birde; voiceEnd+0,95'te tek bip, +1,6'da kart `PART 3 · MR. HALE →`. Müzik solar.
