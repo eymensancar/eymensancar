@@ -8,7 +8,8 @@
   ["kesme -> cümle 15 sonu (müzik+efekt+ortam)", "s14.t1+0.27", "s15.t1", "arka"],
   ["bitiş, bip öncesi", "voiceEnd+0.10", "endBeep-0.01", "miks"],
   ["bitiş, bip sonrası", "endBeep+0.40", "endCard-0.01", "miks"],
-  ["bitiş kartı (rüzgâr + vurgu)", "endCard", "dur", "miks"]
+  ["soru kartı, vurgu öncesi (müzik)", "endCard", "dur-1.0", "muzik"],
+  ["soru kartı (rüzgâr + vurgu)", "endCard", "dur", "miks"]
  ],
  "anlatici": { "dosya": "../out/part1-voice.wav", "db": 0 },
 "koruma": { "_not": "yalnız tek seferlik efektlere (efekt, darbe); müzik ve sürekli sesler (ortam, motor) sabit kalır", "fark": 15, "en_cok": -15, "tut": 0.06, "kelime_arasi": 4 },
@@ -47,9 +48,9 @@
   { "t": 41.73, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "tema 48-52 tekrar" },
   { "t": 45.73, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "sure": 4, "fadein": 0.04, "fadeout": 0.04, "not": "tema 48-52 tekrar" },
   { "t": 49.73, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 44, "son": "voiceEnd", "fadein": 0.04, "fadeout": 0.45, "not": "cümle 26-28 soru: La La | Re' ... Mi' çözülmeden; voiceEnd'de biter" },
-  { "t": "B.hatiraIsik", "dosya": "sfx/daisy-beep.wav", "kat": "bip", "db": -16.8, "lp": 1800, "yanki": 0.5, "not": "cümle 27 hatıra karesi: iki bip hatıra gibi (-12 dB, 1,8 kHz alçak geçiren, hafif yankı)" },
-  { "t": "endBeep", "dosya": "sfx/daisy-beep.wav", "kat": "bip", "db": -4.8, "ss": 0, "sure": 0.30, "fadeout": 0.06, "not": "bitişte TEK bip: dosyanın yalnız ilk tonu (0-0,30), cues.endBeep = B.sonBip" },
-  { "t": "endCard", "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -17, "ss": 11.0, "son": "dur", "fadein": 0.5, "fadeout": 0.3, "not": "bitiş kartı: çok hafif rüzgâr" },
+  { "t": "B.hatiraIsik", "dosya": "sfx/daisy-beep-hatira.wav", "kat": "bip", "db": -16.8, "not": "cümle 27 hatıra karesi: hazır hatıra bipi (alçak geçiren + yankı), -12 dB" },
+  { "t": "endBeep", "dosya": "sfx/daisy-beep-tek.wav", "kat": "bip", "db": -4.8, "not": "bitişte TEK bip: hazır dosya (ton 0,04-0,24), cues.endBeep = B.sonBip" },
+  { "t": "endCard", "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -17, "ss": 11.0, "son": "dur", "fadein": 0.5, "fadeout": 0.3, "not": "soru kartı (55,33-60,03): müzik yok, çok hafif rüzgâr" },
   { "t": "dur-1.0", "dosya": "music/vurgu-son.wav", "kat": "muzik", "db": -24, "ss": 0.8, "son": "dur", "fadein": 0.08, "fadeout": 0.35, "not": "yönetmen kararı: son 1 sn kısık imza; La La kısmı atlanır (Mi + akor), tek bipten sonra 'ikinci bip' duyulmasın" }
  ],
  "kisma": [

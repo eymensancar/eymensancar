@@ -234,7 +234,7 @@
   }
 
   /* ================= TERS AÇI: Kaan + Defne (ofisin ön duvarı, pencere solda) ================= */
-  const KA = { x: 420, y: 2180, s: 2.5 }, DF = { x: 700, y: 1800, s: 2.3 };
+  const KA = { x: 420, y: 2180, s: 2.5 }, DF = { x: 700, y: 1900, s: 2.5 };
   const WIN = { x: 40, y: 260, w: 290, h: 380 };         // ters açıda pencere (ekran)
   function nightOutside(g, x, y, w, h, sd) {           // pencereden görünen gece (boş gök, çit, uzak çatılar)
     const sk = g.createLinearGradient(0, y, 0, y + h); sk.addColorStop(0, '#03050c'); sk.addColorStop(.7, '#0d1630'); sk.addColorStop(1, '#1d2742');
@@ -332,16 +332,32 @@
   function towerWorld(ctx) { C.drawHaleTower(ctx, TW); oldRoofs(ctx, 1500); }
   // pencerelerde küçük insan siluetleri (dünya koordinatı; yakın planda görünür)
   function towerPeople(ctx, t, k0, k1, a) {
-    const { tx, tw, hz, fh } = TG, cw = tw / 6;
+    const { tx, tw, hz, fh } = TG, cw = tw / 6, u = fh / 38, INKD = '#22180f';
     for (let k = k0; k <= k1; k++) for (let q = 0; q < 6; q++) {
-      if (!lit(k, q) || rnd(k * 13 + q * 3 + 1) > .7) continue;
-      const x0 = tx + cw * q + 3, y1 = hz - k * fh - 2, w = cw - 6, r = rnd(k * 17 + q + 5), kind = Math.floor(r * 3);
-      const sx = x0 + w * (.25 + rnd(k * 3 + q * 11) * .5) + (kind === 2 ? Math.sin(t * .5 + k + q) * w * .12 : 0), u = fh / 38;
-      ctx.save(); ctx.globalAlpha = a; ctx.fillStyle = '#2a1e14';
-      ctx.beginPath(); ctx.arc(sx, y1 - 24 * u, 4.2 * u, 0, TAU); ctx.fill();
-      if (kind === 0) { ctx.fillRect(sx - 5 * u, y1 - 19 * u, 10 * u, 12 * u); ctx.fillRect(sx + 8 * u, y1 - 18 * u, 9 * u, 7 * u); }      // masada, ekran
-      else { ctx.fillRect(sx - 4.5 * u, y1 - 19 * u, 9 * u, 19 * u); }                                                               // ayakta
+      if (!lit(k, q)) continue;
+      const x0 = tx + cw * q + 3, y0 = hz - (k + 1) * fh + 3, w = cw - 6, h = fh - 5, y1 = y0 + h;
+      ctx.save(); ctx.beginPath(); ctx.rect(x0, y0, w, h); ctx.clip();
+      const g = ctx.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, 'rgba(255,236,170,.95)'); g.addColorStop(1, 'rgba(232,170,90,.95)');
+      ctx.fillStyle = g; ctx.fillRect(x0, y0, w, h);
+      ctx.fillStyle = 'rgba(255,250,225,.9)'; ctx.fillRect(x0 + w * .2, y0, w * .6, 2.2 * u);                // tavan lambası
+      const r = rnd(k * 17 + q + 5), kind = r < .45 ? 0 : r < .75 ? 1 : 2, n = rnd(k * 13 + q * 3 + 1);
+      if (n < .78) {
+        ctx.globalAlpha = a; ctx.fillStyle = INKD;
+        const sx = x0 + w * (.3 + rnd(k * 3 + q * 11) * .4) + (kind === 2 ? Math.sin(t * .6 + k * 1.3 + q) * w * .18 : 0);
+        if (kind === 0) {           // masada oturan, önünde ekran
+          ctx.fillRect(x0, y1 - 10 * u, w, 2.4 * u);
+          ctx.fillStyle = 'rgba(200,225,255,.95)'; ctx.fillRect(sx + 7 * u, y1 - 19 * u, 9 * u, 6.5 * u); ctx.fillStyle = INKD; ctx.fillRect(sx + 11 * u, y1 - 13 * u, 1.6 * u, 3 * u);
+          ctx.beginPath(); ctx.arc(sx, y1 - 21 * u, 3.6 * u, 0, TAU); ctx.fill();
+          ctx.beginPath(); ctx.moveTo(sx - 6 * u, y1 - 9 * u); ctx.quadraticCurveTo(sx - 6 * u, y1 - 17 * u, sx, y1 - 17 * u); ctx.quadraticCurveTo(sx + 6 * u, y1 - 17 * u, sx + 6 * u, y1 - 9 * u); ctx.fill();
+        } else {                    // ayakta (biri yavaşça yürür)
+          ctx.beginPath(); ctx.arc(sx, y1 - 25 * u, 3.4 * u, 0, TAU); ctx.fill();
+          ctx.beginPath(); ctx.moveTo(sx - 5 * u, y1 - 11 * u); ctx.quadraticCurveTo(sx - 5.5 * u, y1 - 21 * u, sx, y1 - 21 * u); ctx.quadraticCurveTo(sx + 5.5 * u, y1 - 21 * u, sx + 5 * u, y1 - 11 * u); ctx.fill();
+          ctx.fillRect(sx - 3.6 * u, y1 - 12 * u, 3 * u, 12 * u); ctx.fillRect(sx + .6 * u, y1 - 12 * u, 3 * u, 12 * u);
+          if (kind === 1) { ctx.fillStyle = P.paper; ctx.fillRect(sx + 5 * u, y1 - 16 * u, 2.6 * u, 3.4 * u); }   // elinde kâğıt bardak
+        }
+      }
       ctx.restore();
+      ctx.save(); ctx.strokeStyle = 'rgba(21,18,13,.6)'; ctx.lineWidth = 1.2; ctx.strokeRect(x0, y0, w, h); ctx.restore();
     }
   }
 
@@ -360,7 +376,7 @@
 
   /* --- 13: "So the list is not a job." masa üstten: defter + liste yan yana; Kaan'ın elleri masadan çekilir, kamera geri --- */
   shot('p5b13-masa', k => k.start, k => k.c14, (ctx, t, u) => {
-    const k = times(), tw = twos(t), e = E.io(u), z = lerp(1.32, 1.0, e), fx = lerp(560, 560, e), fy = lerp(860, 900, e);
+    const k = times(), tw = twos(t), e = E.io(u), z = lerp(1.22, .98, e), fx = lerp(540, 535, e), fy = lerp(830, 880, e);
     ctx.save(); cam(ctx, z, fx, fy);
     drawDesk(ctx);
     const out = E.inQ(seg(tw, k.job - .25, k.job + .45));
@@ -373,7 +389,7 @@
 
   /* --- 14: "It is an apology." listenin üstü yakın; sessiz, çok yavaş itme --- */
   shot('p5b14-ozur', k => k.c14, k => k.c15, (ctx, t, u) => {
-    const e = E.io(u), [fx, fy] = lstW(330, 230), z = lerp(2.5, 2.7, e);
+    const e = E.io(u), [fx, fy] = lstW(330, 200), z = lerp(3.3, 3.55, e);
     ctx.save(); cam(ctx, z, fx + lerp(10, -6, e), fy, 540, 820);
     drawDesk(ctx);
     ctx.restore();
@@ -536,7 +552,7 @@
     const e = E.io(u), z = lerp(2.5, 2.65, e), cx = TG.tx + TG.tw * lerp(.42, .5, e), fy = TG.hz - 24.5 * TG.fh;
     ctx.save(); cam(ctx, z, cx, fy, 540, 820);
     towerWorld(ctx);
-    towerPeople(ctx, t, 16, 34, .9);
+    towerPeople(ctx, t, 6, 36, .9);
     ctx.restore();
     vignette(ctx, .45);
     finish(ctx);
@@ -555,14 +571,14 @@
       while (cx < 1080) { const bw = 40 + rnd(i + 900) * 70, bh = 60 + rnd(i + 950) * 150; C.shape(g, [[cx, 900], [cx, 880 - bh], [cx + bw, 880 - bh], [cx + bw, 900]], '#121a28', { lw: 1.6, ink: '#0b0f18', amp: .4 }); g.fillStyle = 'rgba(255,210,122,.5)'; for (let yy = 890 - bh; yy < 880; yy += 14) for (let xx = cx + 6; xx < cx + bw - 6; xx += 12) if (rnd(xx * 3 + yy) < .18) g.fillRect(xx, yy, 4, 6); cx += bw + 3; i++; }
       // kule (yalnız gövde: kendi göğünü kırp)
       g.save(); cam(g, END.z, END.wx, END.wy, END.sx, END.sy);
-      g.beginPath(); g.rect(TG.tx - 5, TG.ty - TW.h * .05 - 10, TG.tw + 10, TG.hz - TG.ty + TW.h * .05 + 10); g.rect(TG.tx + TG.tw / 2 - 8, TG.ty - TW.h * .05 - 10, 16, TW.h * .05 + 10); g.clip();
+      g.beginPath(); g.rect(TG.tx - 5, TG.ty - TW.h * .05 - 10, TG.tw + 10, TG.hz - TG.ty + TW.h * .05 + 10 - TG.fh * 4.5); g.rect(TG.tx + TG.tw / 2 - 8, TG.ty - TW.h * .05 - 10, 16, TW.h * .05 + 10); g.clip();
       C.drawHaleTower(g, TW);
       g.restore();
       // kulenin tabanı önündeki eski çatılar (tabela burada kalır)
       C.seed(621); cx = -30; i = 0;
-      while (cx < 1080) { const bw = 90 + rnd(i + 1000) * 110, bh = 70 + rnd(i + 1050) * 70; C.shape(g, [[cx, 1000], [cx, 930 - bh], [cx + bw, 930 - bh], [cx + bw, 1000]], i % 2 ? '#161d2b' : '#1b2232', { lw: 2.2, ink: '#090c14', amp: .5 }); if (rnd(i + 1100) < .5) { g.fillStyle = 'rgba(255,200,110,.5)'; g.fillRect(cx + bw * .3, 950 - bh, 14, 18); } cx += bw + 4; i++; }
+      while (cx < 1080) { const bw = 90 + rnd(i + 1000) * 110, bh = 150 + rnd(i + 1050) * 60; C.shape(g, [[cx, 1000], [cx, 930 - bh], [cx + bw, 930 - bh], [cx + bw, 1000]], i % 2 ? '#161d2b' : '#1b2232', { lw: 2.2, ink: '#090c14', amp: .5 }); if (rnd(i + 1100) < .5) { g.fillStyle = 'rgba(255,200,110,.5)'; g.fillRect(cx + bw * .3, 950 - bh, 14, 18); } cx += bw + 4; i++; }
       // avlu zemini + çit
-      const gg = g.createLinearGradient(0, 930, 0, 1920); gg.addColorStop(0, '#3a3428'); gg.addColorStop(1, '#1d1a14'); g.fillStyle = gg; g.fillRect(0, 930, 1080, 990);
+      const gg = g.createLinearGradient(0, 930, 0, 1920); gg.addColorStop(0, '#2a271f'); gg.addColorStop(1, '#121009'); g.fillStyle = gg; g.fillRect(0, 930, 1080, 990);
       g.save(); g.globalAlpha = .5; g.strokeStyle = '#4a4636'; g.lineWidth = 1.4; for (let fx = -20; fx < 1080; fx += 14) { g.beginPath(); g.moveTo(fx, 852); g.lineTo(fx + 40, 930); g.moveTo(fx + 40, 852); g.lineTo(fx, 930); g.stroke(); } g.restore();
       C.seed(631); C.line(g, [[0, 850], [1080, 852]], 3, '#4a4636', .8);
     });
@@ -572,8 +588,16 @@
     const z = 1 + .03 * E.outC(seg(tf, k.endShot, k.endBeep - .3)) + .02 * seg(t, k.endBeep + .6, k.dur);
     ctx.save(); cam(ctx, z, 540, 420, 540, 420);
     ctx.drawImage(endBg(), 0, 0);
+    // kartın altında da kule yaşar: iki pencerenin ışığı söner/yanar (bip penceresinin dışında)
+    ctx.save(); cam(ctx, END.z, END.wx, END.wy, END.sx, END.sy);
+    [[31, 2, k.endCard + 1.4], [35, 1, k.endCard + 2.2], [24, 4, k.endCard + 3.1]].forEach(([fk, q, at]) => {
+      if (t < at) return;
+      ctx.fillStyle = lit(fk, q) ? '#22344a' : 'rgba(255,210,122,.8)'; ctx.fillRect(TG.tx + TG.tw * q / 6 + 3, TG.hz - (fk + 1) * TG.fh + 3, TG.tw / 6 - 6, TG.fh - 5);
+    });
+    ctx.restore();
+    ctx.filter = 'brightness(.62) saturate(.85)';                                                            // Daisy gece gölgesinde
     C.drawDaisy(ctx, { x: DY.x, y: DY.y, s: DY.s, seed: 23, beep: 0, mood: 'sleepy', hook: .02 * Math.sin(tf * 1.2), boom: 1 });
-    ctx.save(); ctx.fillStyle = 'rgba(4,6,16,.42)'; ctx.fillRect(DY.x - 260, DY.y - 420, 620, 520); ctx.restore();   // Daisy gece gölgesinde
+    ctx.filter = 'none';
     ctx.save(); ctx.translate(DY.x, DY.y); ctx.scale(DY.s, DY.s); drawBeacon(ctx, v); ctx.restore();
     ctx.restore();
     if (v > 0) glow(ctx, (DY.x - 540) * z + 540, (DY.y - 346 * DY.s - 420) * z + 420, 360, P.glow, .3 * v);

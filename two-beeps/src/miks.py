@@ -453,7 +453,8 @@ def olc(yol, tl, cue, Z, st, n):
                           for i in range(len(ss) - 1) if float(ss[i + 1]['t0']) - float(ss[i]['t1']) > 0.2))
     # bipler
     others = st['anlatici'] + st['arka']
-    for ad, t, L in [('iki bip', Z('beep') + 0.04, 0.53), ('tek bip', Z('endBeep') + 0.04, 0.22)]:
+    ikibip = 'beep' in tl['cues']          # iki bipsiz bölümler (ör. P3) yalnız tek bipi ölçer
+    for ad, t, L in [*([('iki bip', Z('beep') + 0.04, 0.53)] if ikibip else []), ('tek bip', Z('endBeep') + 0.04, 0.22)]:
         bp, ot = seg(st['bip'], t, t + L), seg(others, t, t + L)
         pre = seg(others, t - 0.3, t)
         print(f'{ad} @ {t:.2f}: bip RMS {rms_db(bp):.1f} tepe {a2db(np.abs(bp).max()):.1f} | geri kalan her şey RMS {rms_db(ot):.1f} '
@@ -471,7 +472,7 @@ def olc(yol, tl, cue, Z, st, n):
         x = seg(mix if ne == 'miks' else st[ne], a, b)
         print(f'  {ad:40s} {a:6.2f}-{b:6.2f} [{ne}]: RMS {rms_db(x):6.1f}  tepe {a2db(np.abs(x).max()):6.1f}')
     # telefon: darbelerde 120 Hz üstü
-    darbeler = [('top darbe', Z(['B.topDarbe', 's19.t1+0.06'])), ('baca yere', Z(['B.bacaYereCarpma', 's20.t1+0.12']))]
+    darbeler = [('top darbe', Z(['B.topDarbe', 's19.t1+0.06'])), ('baca/kule yere', Z(['B.bacaYereCarpma', 'B.kuleYereCarpma', 's20.t1+0.12']))]
     for ad, t in darbeler:
         x = seg(st['darbe'], t, t + 0.4).mean(1)
         X = np.abs(np.fft.rfft(x)) ** 2; f = np.fft.rfftfreq(x.size, 1 / SR)
@@ -480,7 +481,7 @@ def olc(yol, tl, cue, Z, st, n):
     # ses-görüntü kilidi: olayın ses başlangıcı (miksteki ilgili katmanda ilk -30 dB aşımı) ve kare numarası
     fps = float(tl.get('fps', 30))
     print('\nses-görüntü kilidi (cue -> ilk ses, kare):')
-    for ad, kat, t in [('iki bip, ton 1 (ışık +0,04)', 'bip', Z('beep') + 0.04), ('iki bip, ton 2 (ışık +0,37)', 'bip', Z('beep') + 0.37),
+    for ad, kat, t in [*([('iki bip, ton 1 (ışık +0,04)', 'bip', Z('beep') + 0.04), ('iki bip, ton 2 (ışık +0,37)', 'bip', Z('beep') + 0.37)] if ikibip else []),
                        *[(a_, 'darbe', t_) for a_, t_ in darbeler], ('tek bip (+0,04)', 'bip', Z('endBeep') + 0.04)]:
         x = np.abs(seg(st[kat], t - 0.03, t + 0.2)).max(1)
         esik = x.max() * db2a(-20); i = int(np.argmax(x > esik))
@@ -495,12 +496,12 @@ def _oku_taze(yol):
 
 
 def gorseller(yol, tl, Z, st, mix, n):
-    o = os.path.dirname(yol)
+    o = os.path.join(os.path.dirname(yol), f'miks-part{n}')   # bölüm başına: aynı anda çalışan miksçiler çakışmasın
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', yol, '-lavfi',
                     'showwavespic=s=1800x360:split_channels=0:colors=#2b6cb0:scale=sqrt', '-frames:v', '1',
-                    f'{o}/miks-dalga.png'], check=True)
+                    f'{o}-dalga.png'], check=True)
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', yol, '-lavfi',
-                    'showspectrumpic=s=1600x512:mode=combined:scale=log:fscale=log:legend=1', f'{o}/miks-spektrum.png'],
+                    'showspectrumpic=s=1600x512:mode=combined:scale=log:fscale=log:legend=1', f'{o}-spektrum.png'],
                    check=True)
     try:
         from PIL import Image, ImageDraw
@@ -529,8 +530,8 @@ def gorseller(yol, tl, Z, st, mix, n):
         d.line(pts, fill=renk, width=2)
     d.text((L + 5, H - 12), 'RMS 50 ms (dBFS): black=voice  blue=music  green=ambience  red=sfx  purple=impact  orange=beep;  shaded=sentences',
            fill=(40, 40, 40))
-    im.save(f'{o}/miks-seviye.png')
-    print('görseller: out/miks-dalga.png, out/miks-spektrum.png, out/miks-seviye.png')
+    im.save(f'{o}-seviye.png')
+    print(f'görseller: {o}-dalga.png, {o}-spektrum.png, {o}-seviye.png')
 
 
 if __name__ == '__main__':
