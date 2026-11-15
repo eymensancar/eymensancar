@@ -55,7 +55,6 @@
     k.eng = S(20).t0 - .1;                                // ikili: "I'll help you finish the list"
     k.helmCU = S(21).t0 - .25;                            // yakın: baret
     k.helmOn = W(21, /^engineer/i, 2).t1 - .05;           // baret başa oturur
-    k.knock = k.helmOn + .3;                              // parmak boğumuyla baret "tok"
     k.serious = S(22).t0 - .1;                            // ikili: ciddileşir
     k.sober = W(22, /^serious/i, 3).t0;
     k.truth = S(23).t0 - .2;                              // yakın: Defne
@@ -540,7 +539,7 @@
     finish(ctx);
   });
 
-  /* --- 21: "As your engineer." yakın: Defne baretini panelden alıp takar, parmak boğumuyla "tok" --- */
+  /* --- 21: "As your engineer." yakın: Defne baretini panelden alıp takar --- */
   function helmetArm(ctx, hx, hy, put) { // baret tutan el (krem gömlek kolu aşağıdan)
     limb(ctx, [hx + 60, hy + 40], [hx + 160, hy + 700], 40, 56, P.shirt, 701, 6);
     C.seed(702); C.shape(ctx, C.ell(hx + 62, hy + 20, 34, 40, 14), P.dSkin, { lw: 6 });
@@ -550,16 +549,12 @@
     // baret: panelden (905,1520) kalkar, başın üstüne (756, 577) oturur
     const lift = E.ioC(seg(tw, k.helmCU + .05, k.helmOn)), hx = lerp(905, 756, lift), hy = lerp(1520, 600, lift) - Math.sin(lift * Math.PI) * 120;
     const settle = tw >= k.helmOn ? Math.exp(-(tw - k.helmOn) * 9) * Math.sin((tw - k.helmOn) * 30) * 6 : 0;
-    const armOut = E.inQ(seg(tw, k.helmOn + .1, k.helmOn + .45)), knock = tw >= k.knock && tw < k.knock + .3 ? Math.sin(seg(tw, k.knock, k.knock + .3) * TAU) : 0;
+    const armOut = E.inQ(seg(tw, k.helmOn + .1, k.helmOn + .45));
     ctx.save(); cam(ctx, z, DCU.fx, DCU.fy, DCU.sx, DCU.sy);
     cabinScene(ctx, t, { kaan: { expr: 'smile', look: .8, glow: .6 }, defne: { expr: tw >= k.helmOn ? 'confident' : 'smile', look: -.5, dy: -4 * talk(tw, [21]) } });
     const onHead = tw >= k.helmOn;
     helmetShape(ctx, hx, hy + (onHead ? 22 + settle : 0) + (onHead ? 0 : 0), lerp(1.05, 1.32, lift), lerp(.08, -.04, lift));
     if (armOut < 1) { ctx.save(); ctx.translate(0, armOut * 800); helmetArm(ctx, hx, hy, true); ctx.restore(); }
-    if (knock !== 0 || (tw >= k.knock - .15 && tw < k.knock + .5)) { // parmak boğumu baretin yanına iki kez
-      const kk = E.io(seg(tw, k.knock - .15, k.knock)) * (1 - E.io(seg(tw, k.knock + .3, k.knock + .5)));
-      ctx.save(); ctx.translate(0, (1 - kk) * 700); fingerHand(ctx, 650 + Math.max(0, knock) * 10, 640 + 60, -.5, 1.0); ctx.restore();
-    }
     ctx.restore();
     cabinLight(ctx, t, toScr(z, DCU.fx, DCU.fy, DCU.sx, DCU.sy));
     finish(ctx);
@@ -646,7 +641,6 @@
     get telefonElDegistirir() { return r3(times().hand0); },
     get dokunusDefne() { return r3(times().tapD); },         // "press"te basış: oyunda fabrika devrilir
     get baretTakilir() { return r3(times().helmOn); },
-    get baretTok() { return r3(times().knock); },            // parmak boğumuyla baret
     get hatira() { return r3(times().mem0); },               // sepya hatıra 0,5 sn (sessiz)
     get sonBip() { return r3(times().endBeep); }             // tek bip; ışık +0,04–0,24
   };
