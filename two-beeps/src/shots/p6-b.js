@@ -143,70 +143,151 @@
   }
   function frameBright(t) { const i = gameIdx(t); return i >= 1 && i < 30 || i >= 56 && i < 80 ? 1.15 : .9; }
 
-  /* ================= KAFE (yandan) ================= */
-  const CF = { wallTop: 0, wainY: 1020, winX: 610, winY: 300, winW: 400, winH: 600, tableY: 1250 };
-  function cafeWindow(ctx, t, rainU, opts) {
-    const { winX: x, winY: y, winW: w, winH: h } = CF; opts = opts || {};
-    C.seed(611);
-    const wp = C.shape(ctx, [[x, y], [x + w, y], [x + w, y + h], [x, y + h]], '#aeb9bd', { lw: 7 });
-    ctx.save(); ctx.clip(wp);
-    const g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, lerp(0, 1, rainU) > .5 ? '#7d8790' : '#9fb0b8'); g.addColorStop(1, '#c9cfc9'); ctx.fillStyle = g; ctx.fillRect(x, y, w, h);
-    // sokak: karşı binalar (gri), kaldırım
-    C.seed(612);
-    for (let i = 0; i < 5; i++) { const bx = x - 20 + i * 96, bh = 180 + rnd(620 + i) * 220; C.shape(ctx, [[bx, y + h * .78], [bx, y + h * .78 - bh], [bx + 88, y + h * .78 - bh], [bx + 88, y + h * .78]], i % 2 ? '#a9a59a' : '#b9b3a4', { lw: 2.5, ink: '#8e8a80' });
-      for (let r = 0; r < 4; r++) { ctx.fillStyle = 'rgba(70,80,90,.35)'; ctx.fillRect(bx + 16, y + h * .78 - bh + 26 + r * 46, 20, 26); ctx.fillRect(bx + 52, y + h * .78 - bh + 26 + r * 46, 20, 26); } }
-    ctx.fillStyle = '#8f8a80'; ctx.fillRect(x, y + h * .78, w, h * .22);
-    ctx.fillStyle = 'rgba(70,74,80,.18)'; ctx.fillRect(x, y, w, h);
-    if (rainU > 0) { ctx.save(); ctx.globalAlpha = .55 * rainU; C.rainFx(ctx, { x, y, w, h }, t); ctx.restore(); ctx.fillStyle = `rgba(60,70,82,${.22 * rainU})`; ctx.fillRect(x, y, w, h); }
-    ctx.fillStyle = 'rgba(255,255,255,.14)'; ctx.beginPath(); ctx.moveTo(x + w * .1, y); ctx.lineTo(x + w * .3, y); ctx.lineTo(x, y + h * .5); ctx.lineTo(x, y + h * .2); ctx.fill();
-    if (opts.drops) opts.drops(ctx);
+  /* ================= KAFE — KARŞIDAN (A'nın p6-a.js yerleşiminin kopyası: cafeRoom, pendant, clouds, friesSide, tableFront, defneFront) ================= */
+  const FV = { dx: 560, dy: 1500, ds: 2.2, edge: 1196, cupX: 560, cupBase: 1262, cupK: 3.2, envX: 483.5, envY: 1254, envS: .915 };
+  const WIN = { x: 640, y: 300, w: 370, h: 600 };
+  function airDust(ctx, t, n, sb, box, a) {
+    for (let i = 0; i < n; i++) {
+      const r = j => rnd(sb * 777 + i * 11 + j), x = box[0] + ((r(1) * box[2] + t * (8 + r(2) * 26)) % box[2]), y = box[1] + r(3) * box[3] + Math.sin(t * .7 + r(4) * 6) * 12;
+      ctx.fillStyle = `rgba(241,232,212,${a * (.25 + r(5) * .45)})`; ctx.beginPath(); ctx.arc(x, y, 2 + r(6) * 3.5, 0, TAU); ctx.fill();
+    }
+  }
+  function steam(ctx, x, y, k, t, sd, a) {
+    ctx.save(); ctx.lineCap = 'round';
+    for (let i = 0; i < 3; i++) {
+      const ph = ((t * .55 + rnd(sd + i)) % 1), h = 70 * k;
+      ctx.strokeStyle = `rgba(255,252,240,${(a == null ? .5 : a) * Math.sin(ph * Math.PI)})`; ctx.lineWidth = 3.2 * k;
+      ctx.beginPath();
+      for (let j = 0; j <= 10; j++) { const v = j / 10, yy = y - ph * h * .6 - v * h, xx = x + (i - 1) * 7 * k + Math.sin(v * 5 + t * 2.2 + i * 2) * 6 * k * v; j ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); }
+      ctx.stroke();
+    }
     ctx.restore();
-    C.line(ctx, [[x + w / 2, y], [x + w / 2, y + h]], 9, '#6b4a2c');
-    C.line(ctx, [[x, y + h * .42], [x + w, y + h * .42]], 9, '#6b4a2c');
-    C.shape(ctx, [[x - 18, y + h], [x + w + 18, y + h], [x + w + 22, y + h + 22], [x - 22, y + h + 22]], '#8a5a34', { lw: 5 });
   }
-  function cafeRoom(ctx, t, o) {
-    o = o || {};
-    ctx.fillStyle = '#e9d3a8'; ctx.fillRect(-400, -400, 1880, CF.wainY + 400);
-    C.seed(601); for (let i = 0; i < 8; i++) C.blot(ctx, C.ell(rnd(601 + i) * 1080, rnd(640 + i) * 1000, 90 + rnd(660 + i) * 120, 50, 12), '#d8bf91', .35);
-    // lambri
-    ctx.fillStyle = '#8a5a34'; ctx.fillRect(-400, CF.wainY, 1880, 1300);
-    ctx.strokeStyle = 'rgba(21,18,13,.3)'; ctx.lineWidth = 3; for (let x = -380; x < 1480; x += 70) { ctx.beginPath(); ctx.moveTo(x, CF.wainY + 10); ctx.lineTo(x, 2400); ctx.stroke(); }
-    C.line(ctx, [[-400, CF.wainY], [1480, CF.wainY]], 7, '#5e3b1d');
-    if (o.side === 'kaan') {
-      // Kaan'ın arkası: kapı (camlı) + menü tahtası
-      C.seed(621); C.shape(ctx, [[60, 220], [400, 220], [400, 1020], [60, 1020]], '#6f5134', { lw: 6 });
-      C.shape(ctx, [[110, 280], [350, 280], [350, 600], [110, 600]], '#b9c3c6', { lw: 5, shade: c => { c.fillStyle = 'rgba(255,255,255,.2)'; c.fillRect(150, 270, 30, 340); } });
-      C.shape(ctx, [[640, 260], [960, 250], [968, 640], [646, 650]], '#2b2f2a', { lw: 6 });
-      ctx.save(); ctx.translate(800, 330); ctx.rotate(-.02); ctx.font = '400 54px "Lilita One"'; ctx.textAlign = 'center'; ctx.fillStyle = P.paper; ctx.fillText('MENU', 0, 20);
-      ctx.font = '500 30px Rubik'; ['fries ....... 3', 'coffee ..... 2', 'tea ........... 1', 'pie ........... 4'].forEach((s, i) => ctx.fillText(s, 0, 90 + i * 56)); ctx.restore();
-    } else {
-      cafeWindow(ctx, t, o.rainU || 0);
-      // duvarda küçük çerçeve (vinç çizimi)
-      C.seed(631); C.shape(ctx, [[140, 360], [390, 350], [394, 560], [144, 570]], P.page, { lw: 5 });
-      ctx.save(); ctx.strokeStyle = 'rgba(21,18,13,.55)'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(190, 530); ctx.lineTo(190, 450); ctx.lineTo(260, 450); ctx.lineTo(260, 530); ctx.moveTo(225, 450); ctx.lineTo(340, 390); ctx.lineTo(340, 470); ctx.stroke(); ctx.restore();
-    }
-    // sarkıt lamba
-    C.line(ctx, [[430, -200], [430, 210]], 4, P.ink, .3);
-    C.seed(641); C.shape(ctx, [[370, 270], [490, 270], [460, 200], [400, 200]], '#2f6f73', { lw: 5 });
-    glow(ctx, 430, 300, 320, '255,210,122', .22);
+  function postmark(ctx) {
+    ctx.save(); ctx.translate(-128, -12); ctx.rotate(-.18); ctx.strokeStyle = 'rgba(58,48,38,.75)'; ctx.fillStyle = 'rgba(58,48,38,.8)';
+    ctx.lineWidth = 2.6; ctx.beginPath(); ctx.arc(0, 0, 34, 0, TAU); ctx.stroke(); ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(0, 0, 27, 0, TAU); ctx.stroke();
+    ctx.font = '700 17px Rubik'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('TUE', 0, 1);
+    ctx.lineWidth = 2.2; for (let i = 0; i < 3; i++) { ctx.beginPath(); for (let x = 38; x <= 120; x += 4) { const y = -12 + i * 12 + Math.sin(x * .16) * 4; x === 38 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); } ctx.stroke(); }
+    ctx.restore();
   }
-  function cafeTable(ctx, o) {
-    o = o || {};
-    C.seed(651);
-    C.shape(ctx, [[-60, CF.tableY], [1140, CF.tableY], [1140, CF.tableY + 60], [-60, CF.tableY + 60]], '#c96a3e', { lw: 7, shade: c => C.blot(c, [[-60, CF.tableY + 36], [1140, CF.tableY + 36], [1140, CF.tableY + 66], [-60, CF.tableY + 66]], '#a8532c', .8) });
-    ctx.fillStyle = '#5e3b1d'; ctx.fillRect(-60, CF.tableY + 60, 1200, 1200);
-    if (o.fries !== false) { // patates kutusu (masanın solunda)
-      ctx.save(); ctx.translate(o.side === 'kaan' ? 860 : 190, CF.tableY + 6); C.seed(652);
-      for (let i = 0; i < 7; i++) { ctx.save(); ctx.translate(-50 + i * 17, -96 + rnd(653 + i) * 18); ctx.rotate((rnd(660 + i) - .5) * .5); C.shape(ctx, [[-8, -40], [8, -40], [8, 50], [-8, 50]], i % 3 ? P.hazardHi : '#e8b65c', { lw: 3.4 }); ctx.restore(); }
-      C.shape(ctx, [[-80, -80], [80, -80], [64, 0], [-64, 0]], P.paper, { lw: 5, shade: c => { c.fillStyle = P.beaconOn; for (let x = -80; x < 80; x += 36) c.fillRect(x, -90, 16, 100); } });
-      ctx.restore();
-    }
-    if (o.letter) { // zarf masada (A'nın 8. cümlesi)
-      ctx.save(); ctx.translate(o.side === 'kaan' ? 300 : 760, CF.tableY + 26); ctx.scale(1, .32); C.drawLetter(ctx, { x: 0, y: 0, s: .55, kind: 'envelope', ring: true }); ctx.restore();
-    }
+  function envFront(ctx, x, y, s, rot) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+    C.drawLetter(ctx, { kind: 'envelope', x: 0, y: 0, s, rot: 0, ring: true, seed: 82 });
+    ctx.scale(s, s); postmark(ctx);
+    ctx.restore();
   }
-  const DF_CAFE = { x: 540, y: 1640, s: 2.6 }, KN_CAFE = { x: 540, y: 1660, s: 2.4 };
+  function wallAndLambri(g) {
+    C.seed(6700);
+    g.fillStyle = '#7d5541'; g.fillRect(0, 0, 1080, 1920);
+    for (let i = 0; i < 9; i++) C.blot(g, C.ell(rnd(6710 + i) * 1080, rnd(6720 + i) * 1000, 80 + rnd(6730 + i) * 120, 30 + rnd(6740 + i) * 40, 12), '#6a4535', .35);
+  }
+  function lambri(g) { C.shape(g, [[-20, 980], [1100, 980], [1100, 1300], [-20, 1300]], '#5e3b1d', { lw: 4, shade: c => { c.strokeStyle = 'rgba(21,18,13,.35)'; c.lineWidth = 3; for (let x = 40; x < 1080; x += 120) { c.beginPath(); c.moveTo(x, 1000); c.lineTo(x, 1300); c.stroke(); } } }); }
+  function cafeRoom() {
+    return cached('p6-kafe', 1080, 1920, g => {
+      wallAndLambri(g);
+      const { x: wx, y: wy, w: ww, h: wh } = WIN;
+      const sky = g.createLinearGradient(0, wy, 0, wy + wh); sky.addColorStop(0, '#9aa7b0'); sky.addColorStop(1, '#cdd2cf'); g.fillStyle = sky; g.fillRect(wx, wy, ww, wh);
+      g.save(); g.beginPath(); g.rect(wx, wy, ww, wh); g.clip();
+      let bx = wx - 10, i = 0; while (bx < wx + ww) { const bw = 50 + rnd(6750 + i) * 70, bh = 120 + rnd(6760 + i) * 230; C.shape(g, [[bx, wy + wh], [bx, wy + wh - bh], [bx + bw, wy + wh - bh], [bx + bw, wy + wh]], P.far, { lw: 2, ink: P.far2, amp: .5 }); bx += bw + 8; i++; }
+      g.fillStyle = '#9b9488'; g.fillRect(wx, wy + wh - 60, ww, 60);
+      C.line(g, [[wx + 280, wy + wh - 60], [wx + 280, wy + 160]], 6, P.steelDk, .4); C.shape(g, C.ell(wx + 280, wy + 150, 18, 12, 10), P.steelDk, { lw: 2.4 });
+      g.restore();
+      C.shape(g, [[wx, wy], [wx + ww, wy], [wx + ww, wy + wh], [wx, wy + wh]], null, { lw: 7 });
+      C.line(g, [[wx + ww / 2, wy], [wx + ww / 2, wy + wh]], 6); C.line(g, [[wx, wy + wh * .42], [wx + ww, wy + wh * .42]], 6);
+      C.shape(g, [[wx - 20, wy + wh], [wx + ww + 20, wy + wh], [wx + ww + 20, wy + wh + 22], [wx - 20, wy + wh + 22]], '#5e3b1d', { lw: 4 });
+      lambri(g);
+      C.shape(g, [[110, 520], [330, 510], [334, 760], [114, 766]], P.page, { lw: 5 });
+      C.line(g, [[150, 730], [150, 580], [300, 560]], 4, P.inkOld, .6); C.line(g, [[300, 560], [300, 640]], 2.4, P.inkOld, .4); C.line(g, [[130, 732], [200, 732]], 4, P.inkOld, .4);
+    });
+  }
+  // Kaan'ın arkasındaki duvar (ters plan; A'nın renkleri): camlı kapı + menü tahtası
+  function cafeRoomKaan() {
+    return cached('p6b-kafe-kaan', 1080, 1920, g => {
+      wallAndLambri(g);
+      C.seed(621); C.shape(g, [[620, 230], [940, 230], [940, 990], [620, 990]], '#4a2e17', { lw: 6 });
+      C.shape(g, [[670, 290], [890, 290], [890, 600], [670, 600]], '#b9c3c6', { lw: 5, shade: c => { c.fillStyle = 'rgba(255,255,255,.2)'; c.fillRect(705, 280, 30, 330); } });
+      C.shape(g, ell2(905, 760, 12), P.gold || P.hazardDeep, { lw: 3 });
+      lambri(g);
+      C.shape(g, [[90, 300], [440, 290], [446, 690], [96, 700]], '#2b2f2a', { lw: 6 });
+      g.save(); g.translate(268, 370); g.rotate(-.02); g.font = '400 54px "Lilita One"'; g.textAlign = 'center'; g.fillStyle = P.paper; g.fillText('MENU', 0, 20);
+      g.font = '500 30px Rubik'; ['fries ........ 3', 'coffee ...... 2', 'tea ............ 1', 'pie ............ 4'].forEach((s, i) => g.fillText(s, 0, 92 + i * 56)); g.restore();
+    });
+  }
+  const ell2 = (x, y, r) => C.ell(x, y, r, r, 12);
+  function pendant(ctx, t, x) {
+    x = x == null ? 300 : x;
+    const sw = Math.sin(t * 1.1) * .015; ctx.save(); ctx.translate(x, -40); ctx.rotate(sw); C.seed(6780);
+    C.line(ctx, [[0, 0], [0, 300]], 3, P.ink, .2);
+    C.shape(ctx, [[-70, 370], [-34, 300], [34, 300], [70, 370]], P.jacketDk, { lw: 5 });
+    C.shape(ctx, C.ell(0, 372, 24, 10, 12), P.lamp, { lw: 3 });
+    ctx.restore();
+    ctx.save(); ctx.globalCompositeOperation = 'screen'; const gl = ctx.createRadialGradient(x, 360, 20, x, 420, 620); gl.addColorStop(0, 'rgba(255,210,122,.45)'); gl.addColorStop(1, 'rgba(255,210,122,0)'); ctx.fillStyle = gl; ctx.fillRect(-300, -200, 1700, 1400); ctx.restore();
+  }
+  function clouds(ctx, t) {
+    ctx.save(); ctx.beginPath(); ctx.rect(WIN.x, WIN.y, WIN.w, WIN.h); ctx.clip();
+    for (let i = 0; i < 4; i++) { const x = 600 + ((rnd(6790 + i) * 500 + t * (6 + i * 3)) % 520), y = 330 + rnd(6795 + i) * 160; ctx.fillStyle = 'rgba(240,242,238,.5)'; ctx.beginPath(); ctx.ellipse(x, y, 70 + i * 12, 18 + i * 4, 0, 0, TAU); ctx.fill(); }
+    ctx.restore();
+  }
+  function friesSide(ctx, dx) {
+    dx = dx || 0; C.seed(6800);
+    for (let i = 0; i < 9; i++) { const x = dx + 150 + i * 16 + (rnd(6810 + i) - .5) * 10, h = 60 + rnd(6820 + i) * 50, r = (rnd(6830 + i) - .5) * .5;
+      ctx.save(); ctx.translate(x, 1120); ctx.rotate(r); C.shape(ctx, [[-8, -h], [8, -h], [8, 30], [-8, 30]], i % 3 ? P.hazardHi : '#e8b65c', { lw: 3.2, amp: .4 }); ctx.restore(); }
+    C.shape(ctx, [[dx + 118, 1110], [dx + 302, 1110], [dx + 286, 1236], [dx + 134, 1236]], P.paper, { lw: 5, shade: c => { c.fillStyle = P.beaconOn; for (let x = dx + 118; x < dx + 300; x += 40) c.fillRect(x, 1100, 18, 150); } });
+  }
+  function tableFront(ctx) {
+    C.seed(6840);
+    C.shape(ctx, [[-30, FV.edge], [1110, FV.edge], [1110, 1960], [-30, 1960]], '#c96a3e', { lw: 6, shade: c => { c.strokeStyle = 'rgba(21,18,13,.16)'; c.lineWidth = 3; for (let i = -1200; i < 1400; i += 90) { c.beginPath(); c.moveTo(540 + i * .5, FV.edge); c.lineTo(540 + i * 1.6, 1960); c.stroke(); } C.blot(c, [[-30, FV.edge], [1110, FV.edge], [1110, FV.edge + 26], [-30, FV.edge + 26]], '#a8532c', .45); } });
+  }
+  function defneFront(ctx, d) {
+    const sc = .9 * FV.ds, lw = 5.2 / Math.sqrt(sc);
+    ctx.save(); ctx.translate(FV.dx, 1330 + (d.bob || 0)); ctx.rotate(d.rot || 0); ctx.translate(-FV.dx, -1330);
+    C.drawDefne(ctx, { x: FV.dx, y: FV.dy, s: FV.ds, pose: 'sit', seat: false, seed: 31, expr: d.expr, look: d.look, blink: d.blink });
+    ctx.restore();
+    tableFront(ctx);
+    friesSide(ctx);
+    ctx.save(); ctx.translate(FV.envX, FV.envY); ctx.scale(1, .32); envFront(ctx, 0, 0, FV.envS, 0); ctx.restore();
+    ctx.save(); ctx.translate(FV.dx, 1330 + (d.bob || 0)); ctx.rotate((d.rot || 0) * .4); ctx.translate(-FV.dx, -1330 - (d.bob || 0));
+    C.seed(6850); C.coffeeCup(ctx, FV.cupX, FV.cupBase - 20 * FV.cupK, lw, FV.cupK);
+    ctx.restore();
+    ctx.save(); ctx.translate(FV.dx, 1330 + (d.bob || 0)); ctx.rotate(d.rot || 0); ctx.translate(-FV.dx, -1330);
+    C.seed(6851); [[-22, -176], [22, -178]].forEach(([hx, hy]) => C.shape(ctx, C.ell(FV.dx + hx * sc * 1.05, FV.dy + hy * sc, 12 * sc, 13 * sc, 14), P.dSkin, { lw, shade: c => C.blot(c, C.ell(FV.dx + hx * sc * 1.05 + 4 * sc, FV.dy + hy * sc + 4 * sc, 9 * sc, 9 * sc, 10), P.dSkinDk, .5) }));
+    ctx.restore();
+    steam(ctx, FV.cupX, FV.cupBase - 48 * FV.cupK - 6, 1.8, d.t, 31, .45);
+  }
+  function kaanOTS(ctx, t) { const br = Math.sin(t * 1.5) * 4; C.drawKaan(ctx, { x: 930, y: 2330 + br, s: 2.0, seed: 11, pose: 'back' }); }
+  // pencerede yağmur: ru 0..1 (yağmur yoğunluğu), drops(ctx) damlalar
+  function windowRain(ctx, t, ru, drops) {
+    ctx.save(); ctx.beginPath(); ctx.rect(WIN.x, WIN.y, WIN.w, WIN.h); ctx.clip();
+    if (ru > 0) { ctx.fillStyle = `rgba(60,70,82,${.3 * ru})`; ctx.fillRect(WIN.x, WIN.y, WIN.w, WIN.h); ctx.globalAlpha = .6 * ru; C.rainFx(ctx, { x: WIN.x, y: WIN.y, w: WIN.w, h: WIN.h }, t); ctx.globalAlpha = 1; }
+    if (drops) drops(ctx);
+    ctx.restore();
+    C.line(ctx, [[WIN.x + WIN.w / 2, WIN.y], [WIN.x + WIN.w / 2, WIN.y + WIN.h]], 6); C.line(ctx, [[WIN.x, WIN.y + WIN.h * .42], [WIN.x + WIN.w, WIN.y + WIN.h * .42]], 6);
+  }
+  function frontScene(ctx, t, d, z, cx, cy, sx, sy, ru) {
+    ctx.save(); cam(ctx, z, cx, cy, sx, sy);
+    ctx.drawImage(cafeRoom(), 0, 0); clouds(ctx, t); if (ru) windowRain(ctx, t, ru);
+    pendant(ctx, t);
+    defneFront(ctx, d);
+    kaanOTS(ctx, t);
+    airDust(ctx, t, 14, 91, [0, 300, 1080, 900], .5);
+    ctx.restore();
+  }
+  // Kaan (ters plan): masanın arkasında oturur, eller masa altında; masada zarf + kızartma (sağda)
+  const KV = { x: 540, y: 1560, s: 2.15 };
+  function kaanScene(ctx, t, d, z, cx, cy, sx, sy) {
+    ctx.save(); cam(ctx, z, cx, cy, sx, sy);
+    ctx.drawImage(cafeRoomKaan(), 0, 0);
+    pendant(ctx, t, 780);
+    const piv = [KV.x, 1330];
+    ctx.save(); ctx.translate(piv[0], piv[1] + (d.bob || 0)); ctx.rotate(d.rot || 0); ctx.translate(-piv[0], -piv[1]);
+    C.drawKaan(ctx, { x: KV.x, y: KV.y, s: KV.s, seed: 11, pose: 'sit', seat: false, hands: 'knees', expr: d.expr, look: d.look, blink: d.blink });
+    ctx.restore();
+    tableFront(ctx);
+    friesSide(ctx, 640);
+    ctx.save(); ctx.translate(560, 1262); ctx.scale(1, .32); ctx.rotate(Math.PI); envFront(ctx, 0, 0, FV.envS, 0); ctx.restore();
+    airDust(ctx, t, 14, 92, [0, 300, 1080, 900], .5);
+    ctx.restore();
+  }
   function drawDefneAt(ctx, d) { // Defne, kalçasından eğilebilir
     const piv = [d.x, d.y - 150 * d.s * .9];
     ctx.save(); ctx.translate(piv[0], piv[1]); ctx.rotate(d.lean || 0); ctx.translate(-piv[0], -piv[1] + (d.dy || 0));
