@@ -614,7 +614,8 @@
       }
       kaanHandPen(ctx, px + lift * .4, py - lift, .1 - lift * .002);
       // tık izi: halka (yalnız uçta, kısa)
-      if (q >= 0 && t >= k.taps[q] && t - k.taps[q] < .14) {   // halka yalnız tıktan sonra çizilir (eksi yarıçap üç kareyi bozuyordu) ctx.save(); ctx.strokeStyle = `rgba(21,18,13,${.5 * (1 - (t - k.taps[q]) / .14)})`; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(tipX(q + 1), tipY(q + 1), Math.max(0, 10 + (t - k.taps[q]) * 160), 0, TAU); ctx.stroke(); ctx.restore(); }
+      // halka yalnız tıktan sonra çizilir (eksi yarıçap üç kareyi bozuyordu)
+      if (q >= 0 && t >= k.taps[q] && t - k.taps[q] < .14) { ctx.save(); ctx.strokeStyle = `rgba(21,18,13,${.5 * (1 - (t - k.taps[q]) / .14)})`; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(tipX(q + 1), tipY(q + 1), Math.max(0, 10 + (t - k.taps[q]) * 160), 0, TAU); ctx.stroke(); ctx.restore(); }
     } else {
       // kalem bırakılır: liste üstüne yatar, küçük sekme; el çekilir
       const bounce = dropU < 1 ? (1 - dropU) * 26 : Math.abs(Math.sin((t - k.done - .12) * 18)) * 6 * Math.exp(-(t - k.done - .12) * 8);
