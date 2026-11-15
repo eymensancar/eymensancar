@@ -454,7 +454,8 @@ def olc(yol, tl, cue, Z, st, n):
     # bipler
     others = st['anlatici'] + st['arka']
     ikibip = 'beep' in tl['cues']          # iki bipsiz bölümler (ör. P3) yalnız tek bipi ölçer
-    for ad, t, L in [*([('iki bip', Z('beep') + 0.04, 0.53)] if ikibip else []), ('tek bip', Z('endBeep') + 0.04, 0.22)]:
+    tekbip = 'endBeep' in tl['cues']       # tek bipsiz bölüm (P10, dizinin sonu) yalnız iki bipi ölçer
+    for ad, t, L in [*([('iki bip', Z('beep') + 0.04, 0.53)] if ikibip else []), *([('tek bip', Z('endBeep') + 0.04, 0.22)] if tekbip else [])]:
         bp, ot = seg(st['bip'], t, t + L), seg(others, t, t + L)
         pre = seg(others, t - 0.3, t)
         print(f'{ad} @ {t:.2f}: bip RMS {rms_db(bp):.1f} tepe {a2db(np.abs(bp).max()):.1f} | geri kalan her şey RMS {rms_db(ot):.1f} '
@@ -482,7 +483,7 @@ def olc(yol, tl, cue, Z, st, n):
     fps = float(tl.get('fps', 30))
     print('\nses-görüntü kilidi (cue -> ilk ses, kare):')
     for ad, kat, t in [*([('iki bip, ton 1 (ışık +0,04)', 'bip', Z('beep') + 0.04), ('iki bip, ton 2 (ışık +0,37)', 'bip', Z('beep') + 0.37)] if ikibip else []),
-                       *[(a_, 'darbe', t_) for a_, t_ in darbeler], ('tek bip (+0,04)', 'bip', Z('endBeep') + 0.04)]:
+                       *[(a_, 'darbe', t_) for a_, t_ in darbeler], *([('tek bip (+0,04)', 'bip', Z('endBeep') + 0.04)] if tekbip else [])]:
         x = np.abs(seg(st[kat], t - 0.03, t + 0.2)).max(1)
         esik = x.max() * db2a(-20); i = int(np.argmax(x > esik))
         ts = t - 0.03 + i / SR

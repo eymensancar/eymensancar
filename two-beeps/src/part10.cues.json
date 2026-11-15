@@ -1,0 +1,61 @@
+{
+ "_belge": "Part 10 · BUILD SOMETHING ses yerleşimi (dizinin SON bölümü). Okuyan: src/miks.py (biçim: src/part1.cues.json _belge, docs/MIKS.md). Efektler animatörlerin TB.cuesA / TB.cuesB adlarına bağlı. Müzik planı: açılış sade pad (tema 2-8, 48-52, 54-57; temanın 'uzaktan iki bip'i 1,0-1,25 ve 52 sn bipleri bilerek alınmadı); 'I think he could not ask me.' sessiz; baret/kutular oyunbaz tema (8-16) ve Daisy'nin son kaldırışında tema açıkça (16-21, +3 dB); not ('Ant.' / 'Now build something.') müziksiz, en az 2,5 sn sakin; okul/çizim/güneş sıcak pad + temanın ilk üç notası; iki bip penceresinde her şey susar; kontrol montajı müziksiz, üç kısa tık; 'Then I understood.' Gm pad, 'goodbye' ile solar; ~2 sn tam sessizlik; karakter dışı çağrıda tema sıcak ve sabit yeniden başlar (4-16); son kart vurgu-son baştan (iki nota bip figürü dahil) + tema kuyruğu, kart boyunca söner. Bitişte TEK BİP YOK (dizinin sonu). KALICI KURAL: whoosh/swoosh, hava, hışırtı türü gürültü süpürmesi yok; müzik konuşmaya göre kısılmaz.",
+ "konusma_kisma": { "_not": "yalnız --ducking ile; varsayılan KAPALI (Eymen: müzik konuşmaya göre kısılıp açılmaz)", "atak": 0.15, "birakma": 0.4, "db": { "muzik": -8, "ortam": -4, "efekt": -3, "darbe": -3, "bip": 0 } },
+ "muzik_lufs": -29,
+ "olcum_sessizlik": [
+  ["'I think he could not ask me.' (müzik)", "s8.t0-0.25", "s8.t1+0.2", "muzik"],
+  ["not: 'Ant. / Now build something.' (müzik)", "B.notAcilir1-0.15", "s19.t0-0.3", "muzik"],
+  ["iki bip penceresi (müzik+ortam+efekt)", "beep-0.30", "beep+0.90", "arka"],
+  ["iki bip -> 'Then I understood.' (müzik)", "beep-0.30", "s28.t0-0.6", "muzik"],
+  ["'goodbye' sonrası tam sessizlik (miks)", "s29.t1+0.15", "cta-0.12", "miks"],
+  ["son kart (vurgu + tema kuyruğu, miks)", "endCard", "dur", "miks"]
+ ],
+ "anlatici": { "dosya": "../out/part10-voice.wav", "db": 0 },
+ "koruma": { "_not": "yalnız tek seferlik efektlere (efekt, darbe); müzik ve sürekli sesler (ortam) sabit kalır", "fark": 15, "en_cok": -15, "tut": 0.06, "kelime_arasi": 4 },
+ "hedef": { "lufs": -14.0, "tp": -1.0 },
+ "satirlar": [
+  { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 2.0, "sure": 6.0, "fadein": 0.3, "fadeout": 0.04, "not": "açılış, sade: Dm9 pad + temanın ilk üç notası (tema 2-8); uzaktan iki bip (tema 1,0-1,25) bilerek atlandı" },
+  { "t": 6.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 48.0, "sure": 4.0, "fadein": 0.04, "fadeout": 0.04, "not": "ofis, çatlak hatırası, kapı bipi hatırası: yalnız Gm pad (tema 48-52); hatıralar sessiz" },
+  { "t": 10.0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 54.0, "son": "s8.t0-0.25", "fadein": 0.04, "fadeout": 0.4, "not": "dedenin eli yazar ve karalar: çok sade, nabızsız Si♭maj7(#11) pad (tema 54-57; 52 sn bipleri alınmaz); 'I think he could not ask me.' öncesi solar" },
+  { "t": "s9.t0-0.3", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8, "ss": 8.0, "son": "A.barakaKalkar-0.03", "fadein": 0.3, "fadeout": 0.03, "not": "baret, kutular, imza, Hale: oyunbaz (tema 8-16, tema/cevap, yumuşak tıkırtı)" },
+  { "t": "A.barakaKalkar-0.03", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6, "ss": 16.0, "son": "B.notAcilir1-0.55", "fadein": 0.03, "fadeout": 0.4, "not": "Daisy'nin son kaldırışı: tema açıkça (tema 16-21, Fa majörde tema; aynı ızgarada +2 dB); taş, teneke, 'Grandpa's handwriting'; not açılmadan solar" },
+  { "t": "s19.t0-0.3", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 48.0, "sure": 4.0, "fadein": 0.6, "fadeout": 0.04, "not": "okul, Defne'nin çizimi: sıcak Gm pad (tema 48-52) notun sessizliğinden yumuşak dönüş" },
+  { "t": "s19.t0+3.7", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6.5, "ss": 4.0, "sure": 4.0, "fadein": 0.04, "fadeout": 0.04, "not": "'Small. Strong.' ve 'Daisy is retired.': Dm9 pad + temanın ilk üç notası (tema 4-8)" },
+  { "t": "s19.t0+7.7", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 48.0, "son": "beep-0.3", "fadein": 0.04, "fadeout": 0.4, "not": "güneşte Daisy: Gm pad (tema 48-52); iki bipten önce solar" },
+  { "t": "s28.t0-0.5", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -5, "ss": 48.0, "son": "s29.t1+0.05", "fadein": 0.6, "fadeout": 0.45, "not": "'Then I understood.' / 'She was just saying goodbye.': yalnız Gm pad; veda ışığıyla birlikte solar (46,15'te sıfır)" },
+  { "t": "cta-0.04", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -6, "ss": 4.0, "sure": 4.0, "fadein": 0.5, "fadeout": 0.04, "not": "karakter dışı çağrı: tema sıcak ve sade yeniden başlar (tema 4-8: pad + ilk üç nota)" },
+  { "t": "cta+3.96", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8, "ss": 8.0, "son": "endCard+0.3", "fadein": 0.04, "fadeout": 0.5, "not": "çağrı sürer: tema/cevap (tema 8-~15,5, yumuşak pizz), sabit seviye; son kartta vurgu-son'a devreder" },
+  { "t": "endCard", "dosya": "music/vurgu-son.wav", "kat": "muzik", "db": -9, "ss": 0, "son": "dur", "fadein": 0.01, "fadeout": 0.4, "not": "son kart: vurgu-son baştan (iki nota 'bip' figürü + Mi + Si♭maj7(#11)): dizinin imzası" },
+  { "t": "endCard+0.3", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -9, "ss": 56.5, "son": "dur", "fadein": 0.8, "fadeout": 3.0, "not": "son kart: tema kuyruğu (Si♭maj7(#11) pad, vurgu-son'la aynı akor) kart boyunca yumuşakça söner" },
+
+  { "t": 0, "dosya": "sfx/ortam-bos-arsa-dongu.wav", "kat": "ortam", "db": -18, "son": "s19.t0-0.3", "dongu": true, "fadein": 0.5, "fadeout": 0.5, "not": "avlu: çok kısık rüzgâr (açılıştan not sonuna); notta kısma penceresiyle neredeyse susar" },
+  { "t": "s19.t0-0.3", "dosya": "sfx/sehir-uzak-dongu.wav", "kat": "ortam", "db": -19, "ss": 3.0, "son": "s29.t1+0.05", "dongu": true, "fadein": 0.6, "fadeout": 0.45, "not": "okul, çizim, güneşte Daisy, kontrol, veda: çok kısık uzak şehir; iki bipte susar; 'goodbye' ile söner" },
+
+  { "t": "A.kapiAcilir", "dosya": "sfx/kapi-gicirti.wav", "kat": "efekt", "db": -13, "sure": 1.0, "fadeout": 0.35, "pan": -0.25, "not": "ofis kapısı açılır (A.kapiAcilir)" },
+  { "t": "A.baretTakilir", "dosya": "sfx/kutu-koyma.wav", "kat": "efekt", "db": -16, "sure": 0.3, "fadeout": 0.1, "lp": 2500, "pan": 0.1, "not": "baret başa oturur: kitaplıkta baret sesi yok, kutu-koyma'nın kısa tok gövdesi, kısık (A.baretTakilir)" },
+  { "t": "A.kutuBirakilir", "dosya": "sfx/kutu-koyma.wav", "kat": "efekt", "db": -11, "sure": 0.6, "fadeout": 0.2, "pan": -0.15, "not": "kutu yığına (A.kutuBirakilir)" },
+  { "t": "A.haleAdim", "dosya": "sfx/adim-cakil-4.wav", "kat": "efekt", "db": -15, "pan": 0.15, "not": "Hale'nin ağır adımları (A.haleAdim), kısık" },
+  { "t": "A.siperlikKalkar", "dosya": "sfx/daisy-siperlik-kalkar.wav", "kat": "efekt", "db": -15, "pan": 0.1, "not": "Daisy uyanır: siperlik kalkar (A.siperlikKalkar)" },
+  { "t": "A.siperlikKalkar+0.1", "dosya": "sfx/daisy-son-kaldiris.wav", "kat": "efekt", "db": -10, "son": "A.tasKalkar-0.05", "fadein": 0.05, "fadeout": 0.5, "pan": 0.1, "not": "DAISY'NİN SON KALDIRIŞI: motor yüklenir, hidrolik, tambur tıkları; baraka kalkar (A.barakaKalkar); taşa geçerken söner" },
+  { "t": "A.tasKalkar", "dosya": "sfx/tas-kaldirma.wav", "kat": "efekt", "db": -11, "sure": 0.4, "fadeout": 0.1, "not": "taş kalkar: yalnız kısa ilk kısım, kısık (P2 gibi; dosyadaki 0,95 vuruşu alınmaz)" },
+  { "t": "A.teneke", "dosya": "@tink", "kat": "efekt", "db": -12, "pan": -0.1, "not": "tenekeye dokunuş: ince metal tını (A.teneke)" },
+  { "t": "A.kapakAcilir-0.3", "dosya": "sfx/teneke-kapak.wav", "kat": "efekt", "db": -9, "ss": 0.2, "sure": 1.2, "fadeout": 0.4, "not": "teneke kapağı açılır: dosyadaki pop 0,3 sn = A.kapakAcilir" },
+  { "t": "B.notAcilir1", "dosya": "sfx/mektup-acma.wav", "kat": "efekt", "db": -19, "sure": 0.35, "fadein": 0.005, "fadeout": 0.15, "not": "not açılır: gerçek kâğıt, çok kısa ve kısık (B.notAcilir1); notAcilir2 'Ant.' üstüne düştüğü için sessiz" },
+  { "t": "B.okulKapisi", "dosya": "sfx/adim-toprak-4.wav", "kat": "efekt", "db": -17, "pan": -0.1, "not": "okul kapısı: adımlar, kısık (B.okulKapisi)" },
+  { "t": "B.siperlik", "dosya": "sfx/daisy-siperlik-kalkar.wav", "kat": "efekt", "db": -14, "sure": 0.4, "fadeout": 0.1, "pan": 0.1, "not": "siperlik bipten önce kalkar (B.siperlik): küçük metal tık, bip değil; bipten 0,34 sn önce biter" },
+  { "t": ["B.bip", "beep"], "dosya": "sfx/daisy-beep.wav", "kat": "bip", "db": -4.8, "not": "SON İKİ BİP: her zamanki daisy-beep.wav (soft değil: Kaan telaşlanır, uyarı gibi); dosya başı = cues.beep = B.bip; ışık +0,04 / +0,37" },
+  { "t": "B.elZemin", "dosya": "sfx/adim-cakil-tek.wav", "kat": "efekt", "db": -14, "sure": 0.18, "fadeout": 0.06, "pan": -0.15, "not": "kontrol 1: avuç zemine (B.elZemin), kısa tık" },
+  { "t": "B.elKanca", "dosya": "sfx/kanca-zincir.wav", "kat": "efekt", "db": -10, "sure": 0.22, "fadeout": 0.08, "pan": 0.15, "not": "kontrol 2: kanca (B.elKanca), kısa tık" },
+  { "t": "B.teraziDuvar", "dosya": "sfx/kutu-koyma.wav", "kat": "efekt", "db": -15, "sure": 0.2, "fadeout": 0.07, "lp": 2500, "pan": 0.05, "not": "kontrol 3: su terazisi duvara (B.teraziDuvar), kısa tok tık" },
+  { "t": "B.telefon1+1.6333", "dosya": "sfx/oyun-demolished.wav", "kat": "efekt", "db": -17, "son": "s33.t0", "fadeout": 0.01, "not": "telefon kadrajda: DEMOLISHED! (oyun karesi 47 = telefon1 + 0,1 + 46/30), bir kez, çok kısık" },
+  { "t": "B.telefon2+1.2833", "dosya": "sfx/oyun-yikim.wav", "kat": "efekt", "db": -19, "ss": 0.9, "sure": 0.7, "fadein": 0.005, "fadeout": 0.05, "not": "telefon kadrajda: planlı devrilmede COMBO ×2.00 (kare 93): yalnız oyunun kasa/ödül kuyruğu, çok kısık (süpürme kısmı 0,1-0,9 KULLANILMAZ)" }
+ ],
+ "kisma": [
+  { "t0": "s8.t0-0.25", "t1": "s8.t1+0.2", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 8: 'I think he could not ask me.' sessizliği (boş masa)" },
+  { "t0": "B.notAcilir1-0.15", "t1": "s19.t0-0.3", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 17-18: not açılır, 'Ant. / Now build something.': müzik yok (dizinin doruğu)" },
+  { "t0": "B.notAcilir1-0.15", "t1": "s19.t0-0.3", "katlar": ["ortam"], "db": -10, "solma": 0.4, "not": "notta rüzgâr yalnız nefes kadar" },
+  { "t0": "beep-0.30", "t1": "beep+1.30", "katlar": ["muzik", "ortam", "efekt", "darbe"], "db": -90, "solma": 0.4, "not": "SON iki bip tek başına" },
+  { "t0": "beep-0.30", "t1": "s28.t0-0.6", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "'Twice.' ve kontrol montajı müziksiz" },
+  { "t0": "s29.t1+0.1", "t1": "cta-0.12", "katlar": ["muzik", "ortam", "efekt", "darbe"], "db": -90, "solma": 0.05, "not": "plan 29: 'goodbye' sonrası ~2 sn tam sessizlik (ışık söner)" }
+ ]
+}
