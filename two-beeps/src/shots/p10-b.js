@@ -721,7 +721,7 @@
     const fin = E.io(seg(t, k.cta, k.cta + .3));
     ctx.save(); ctx.globalAlpha = fin;
     paperBg(ctx);
-    const m = ctaMix(t), end = E.io(seg(t, k.endCard - .05, k.endCard + .3));
+    const m = ctaMix(t), end = E.io(seg(t, k.endCard - .32, k.endCard - .02)), mv = E.io(seg(t, k.endCard, k.endCard + .3));   // önce başlık+simge tamamen söner, sonra SANCAR GAMES yerine oturur
     // başlık ölçüsü
     const tSize = lerp(88, 66, m); ctx.font = FONT(tSize); const sp = ctx.measureText(' ').width;
     const w1 = ctx.measureText('Demolition').width, w2 = ctx.measureText('Master').width, tw = w1 + sp + w2;
@@ -746,7 +746,7 @@
     // SANCAR GAMES (küçük düz yazı; bitiş kartı gelince kartın üstünde tek başına kalır)
     const ba = E.outQ(seg(t, k.sancar - 2 / FPS, k.sancar + 4 / FPS));
     if (ba > 0) {
-      const bs = lerp(44, 64, end), by = lerp(628, 470, end);
+      const bs = lerp(44, 64, mv), by = lerp(628, 470, mv);
       ctx.save(); ctx.globalAlpha = fin * ba; ctx.font = FONT(bs); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const txt = 'SANCAR GAMES'; ctx.fillStyle = P.ink;
       ctx.letterSpacing = '4px'; ctx.fillText(txt, cx, by + (1 - ba) * 8); ctx.letterSpacing = '0px';
