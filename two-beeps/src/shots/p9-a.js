@@ -477,6 +477,7 @@
   }
   function safeWorld(ctx, t, o) {
     const tw = twos(t);
+    ctx.fillStyle = P.groundDk; ctx.fillRect(-500, 2000, 2000, 1200);
     ctx.drawImage(safeBase(), -500, -300);
     crowd(ctx, t, -480, 1500, 1288, .3, 71, 46, .2, true);
     barrierLine(ctx, -500, 1500, 1310, 52, 140, 2.6);
@@ -609,6 +610,7 @@
   shot('p9a-01-kapi', k => 0, k => k.c2, (ctx, t, u) => {
     const e = E.io(u), z = lerp(2.0, 1.7, e), cy = lerp(1556, 1532, e);
     ctx.save(); cam(ctx, z, 540, cy);
+    ctx.fillStyle = '#1d2028'; ctx.fillRect(-600, 1640, 2300, 900);
     ctx.drawImage(towerNight(), 0, 0);
     towerLights(ctx, t);
     lobby(ctx, 1);
@@ -886,7 +888,7 @@
   /* --- 12: "Exactly where the engineers wanted." alanın sağ ön direği yakın: toz şeridin içinde kalır; sonra B'nin geniş planına açılır --- */
   shot('p9a-15-tamyer', k => k.c12, k => k.end, (ctx, t, u) => {
     const k = times(), p = E.ioC(seg(t, k.pull, k.end - .1)), push = lerp(1, 1.03, E.io(seg(t, k.c12, k.pull)));
-    const z = lerp(2.6 * push, 1.18, p), cx = lerp(870, 540, p), cy = lerp(1180, 1200, p), sy = lerp(960, 1000, p);
+    const z = lerp(1.8 * push, 1.18, p), cx = lerp(800, 540, p), cy = lerp(1150, 1200, p), sy = lerp(960, 1000, p);
     ctx.save(); cam(ctx, z, cx, cy, 540, sy);
     site(ctx, t, { fall: true, lineB: true, still: t < k.pull + .2 });
     airDustB(ctx, t, 18, 91, [-100, 800, 1300, 700], .6);
