@@ -4,7 +4,7 @@
 Kullanım:
   python3 src/miks.py                  # Part 1: out/part1-miks.wav + ölçüm raporu + out/miks-*.png
   python3 src/miks.py --mux            # ayrıca out/part1-video.mp4 varsa out/part1.mp4
-  python3 src/miks.py --bolum 2        # src/part2.timeline.json + src/part2.cues.json
+  python3 src/miks.py --part 2         # (= --bolum 2) src/part2.timeline.json + src/part2.cues.json, sahneler shots/p2-a.js, p2-b.js
   python3 src/miks.py --cues baska.json --anim anlar.json --olcme
 
 Bölüme özgü her şey cue dosyasında (biçim: dosyanın "_belge" alanı ve docs/MIKS.md).
@@ -126,12 +126,18 @@ class Zaman:
         return float(eval(e, {'__builtins__': {}}, self.ns))
 
 
-def anim_oku(tl_yol, yol=None):
-    """Animatör anları: --anim JSON ({"A":{..},"B":{..}}) ya da src/shots/*.js içindeki TB.cuesA/TB.cuesB."""
+def anim_oku(tl_yol, yol=None, n=1):
+    """Animatör anları: --anim JSON ({"A":{..},"B":{..}}) ya da src/shots/pN-a.js / pN-b.js içindeki TB.cuesA/TB.cuesB
+    (Part 1'de dosya yoksa eski adlar a-sahneler.js / b-sahneler.js; src/part.html ile aynı eşleme)."""
     if yol:
         return json.load(open(yol))
-    shots = sorted(os.path.join(ROOT, 'src', 'shots', f) for f in os.listdir(os.path.join(ROOT, 'src', 'shots'))
-                   if f.endswith('.js')) if os.path.isdir(os.path.join(ROOT, 'src', 'shots')) else []
+    sd = os.path.join(ROOT, 'src', 'shots')
+    eski = {1: {'a': 'a-sahneler.js', 'b': 'b-sahneler.js'}}
+    shots = []
+    for k in ('a', 'b'):
+        for f in (f'p{n}-{k}.js', eski.get(n, {}).get(k)):
+            if f and os.path.exists(os.path.join(sd, f)):
+                shots.append(os.path.join(sd, f)); break
     if not shots:
         return {}
     js = r"""
@@ -300,7 +306,7 @@ def sinirla(x, esik_db, blok=48, atak_db=1.2, birak_db=0.04):
 # ------------------------------------------------------------------ ana
 def main():
     ap = argparse.ArgumentParser(description='Two Beeps bölüm miksi')
-    ap.add_argument('--bolum', type=int, default=1)
+    ap.add_argument('--bolum', '--part', type=int, default=1)
     ap.add_argument('--tl', help='zaman çizelgesi (varsayılan src/partN.timeline.json)')
     ap.add_argument('--cues', help='cue listesi (varsayılan src/partN.cues.json)')
     ap.add_argument('--anim', help='animatör anları JSON {"A":{...},"B":{...}} (verilmezse src/shots/*.js okunur)')
@@ -317,7 +323,7 @@ def main():
     out = a.out or f'{ROOT}/out/part{n}-miks.wav'
     tl = json.load(open(tl_yol))
     cue = json.load(open(cue_yol))
-    anim = anim_oku(tl_yol, a.anim)
+    anim = anim_oku(tl_yol, a.anim, n)
     if anim.get('A') or anim.get('B'):
         print('animatör anları:', anim)
     Z = Zaman(tl, anim)

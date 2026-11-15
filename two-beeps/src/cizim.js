@@ -1266,8 +1266,73 @@
     ctx.restore();
   }
 
+  /* ================= MR. HALE'İN ARABASI =================
+     Büyük, eski tarz beyaz sedan; amblem yok, gerçek modele benzemez (kutu gövde, düz bagaj, krom şerit, yuvarlak çift far).
+     Zemin ortası (x,y). opts: s, view 'side' (sağa bakar) | 'front34' (ön yüz kameraya, gövde sağa-arkaya), door (ön kapı açık),
+     dust (0..1 arkada toz bulutu, uzaklaşırken), wheel (radyan, jant dönüşü), flip, seed. Boy ≈ 920 × 300 birim (s=1). */
+  const CAR = { white: '#f2efe6', whiteDk: '#cfcabd', whiteSh: '#b3ad9f', chrome: '#c9ced3', chromeDk: '#7f868d', glass: '#3a5566', seat: '#6b2a20' };
+  // yan profil, u: önden geriye 0..920, v: yukarı negatif
+  const CAR_SIDE = [[0, -74], [-8, -150], [16, -188], [210, -198], [292, -300], [560, -302], [640, -204], [880, -194], [912, -152], [908, -74]];
+  function carSide(ctx, lw, o, interiorDoor) {
+    const W = CAR;
+    shape(ctx, CAR_SIDE, W.white, { lw, shade: (c) => { blot(c, [[-20, -120], [940, -120], [940, -60], [-20, -60]], W.whiteDk, .8); blot(c, [[300, -300], [560, -300], [560, -290], [300, -290]], '#fff', .5); } });
+    shape(ctx, [[302, -288], [420, -290], [420, -206], [228, -204]], W.glass, { lw: lw * .8, shade: (c) => { c.fillStyle = 'rgba(255,255,255,.2)'; c.fillRect(330, -300, 16, 110); } });
+    shape(ctx, [[436, -290], [552, -290], [620, -206], [436, -206]], W.glass, { lw: lw * .8, shade: (c) => { c.fillStyle = 'rgba(255,255,255,.2)'; c.fillRect(470, -300, 14, 110); } });
+    if (interiorDoor) shape(ctx, [[222, -200], [428, -200], [428, -84], [230, -84]], '#2a1d16', { lw: lw * .8, shade: (c) => blot(c, [[300, -190], [420, -190], [420, -110], [310, -110]], W.seat, .9) });
+    else { line(ctx, [[222, -200], [230, -84]], lw * .5); line(ctx, [[262, -168], [292, -168]], lw * .9, W.chromeDk); }
+    line(ctx, [[428, -204], [432, -84]], lw * .5); line(ctx, [[640, -200], [640, -86]], lw * .5); line(ctx, [[470, -168], [500, -168]], lw * .9, W.chromeDk);
+    line(ctx, [[10, -140], [905, -136]], lw * 1.3, W.chrome, .4); // krom şerit
+    shape(ctx, [[-14, -96], [40, -96], [40, -66], [-14, -66]], W.chrome, { lw: lw * .8 }); shape(ctx, [[870, -96], [920, -96], [920, -66], [870, -66]], W.chrome, { lw: lw * .8 });
+    shape(ctx, [[892, -176], [912, -174], [912, -150], [894, -150]], '#c8362a', { lw: lw * .7 }); // stop
+    [[170, -60], [740, -60]].forEach(([u, v]) => {
+      shape(ctx, ell(u, v - 6, 92, 74, 22, Math.PI, TAU), W.whiteSh, { lw: lw * .8, open: true });
+      shape(ctx, ell(u, v, 62, 62, 28), P2.tire, { lw });
+      shape(ctx, ell(u, v, 40, 40, 22), '#e9e5da', { lw: lw * .6 });
+      shape(ctx, ell(u, v, 26, 26, 18), W.chrome, { lw: lw * .6 });
+      const a = o.wheel || 0; for (let i = 0; i < 4; i++) { const q = a + i * Math.PI / 2; line(ctx, [[u + Math.cos(q) * 8, v + Math.sin(q) * 8], [u + Math.cos(q) * 22, v + Math.sin(q) * 22]], lw * .4, W.chromeDk, .1); }
+    });
+  }
+  function carDust(ctx, x0, y0, dir, d) {
+    if (!d) return; const n = Math.round(4 + d * 8);
+    for (let i = 0; i < n; i++) { const r = (40 + i * 18) * (.6 + d * .6), px = x0 + dir * (i * 46 + hrand(i + 3) * 30), py = y0 - r * .5 - hrand(i + 9) * 20;
+      blot(ctx, ell(px, py, r, r * .7, 16), i % 2 ? P2.dustLt : P2.dust, (.55 - i / n * .45) * Math.min(1, d * 1.6)); }
+  }
+  function drawCar(ctx, o) {
+    o = o || {}; const s = o.s || 1, lw = lineW(o, s, 5.4), W = CAR, view = o.view || 'side';
+    seed(o.seed || 61); ctx.save(); ctx.translate(o.x || 0, o.y || 0); ctx.scale(o.flip ? -s : s, s);
+    ctx.save(); ctx.globalAlpha = .25; ctx.fillStyle = P2.ink;
+    if (view === 'side') { ctx.beginPath(); ctx.ellipse(0, 4, 470, 18, 0, 0, TAU); ctx.fill(); }
+    else { ctx.beginPath(); ctx.moveTo(-170, 6); ctx.lineTo(170 + DX * 920, 6 + DY * 920); ctx.lineTo(170 + DX * 920, 26 + DY * 920); ctx.lineTo(-170, 26); ctx.fill(); }
+    ctx.restore();
+    if (view === 'side') {
+      carDust(ctx, -470, 0, -1, o.dust || 0);
+      ctx.save(); ctx.translate(460, 0); ctx.scale(-1, 1); carSide(ctx, lw, o, !!o.door); ctx.restore();
+      shape(ctx, ell(452, -164, 10, 14, 12), '#fff3c4', { lw: lw * .6 }); // yandan far ucu (önde)
+      if (o.door) { // açık ön kapı: menteşe önde, kameraya doğru açılmış
+        shape(ctx, [[236, -292], [320, -262], [322, -78], [240, -90]], W.white, { lw, shade: (c) => blot(c, [[290, -270], [330, -270], [330, -70], [296, -70]], W.whiteDk, .7) });
+        shape(ctx, [[246, -282], [300, -262], [300, -196], [246, -206]], W.glass, { lw: lw * .7 });
+        line(ctx, [[252, -150], [310, -146]], lw * .9, W.chrome, .3);
+      }
+    } else { // front34
+      ctx.save(); ctx.transform(DX, DY, 0, 1, 160, 0); carSide(ctx, lw, o, false); ctx.restore();
+      carDust(ctx, 160 + DX * 940, DY * 940, 1, o.dust || 0);
+      const P = (u, v, xo) => [xo + DX * u, v + DY * u];
+      shape(ctx, [P(0, -188, -160), P(0, -188, 160), P(210, -198, 160), P(210, -198, -160)], W.white, { lw, shade: (c) => blot(c, [P(80, -200, -170), P(80, -200, 170), P(90, -195, 170), P(90, -195, -170)], W.whiteDk, .5) }); // kaput
+      shape(ctx, [P(210, -198, -140), P(210, -198, 160), P(292, -300, 140), P(292, -300, -120)], W.glass, { lw, shade: (c) => { c.fillStyle = 'rgba(255,255,255,.18)'; c.beginPath(); c.moveTo(...P(210, -198, -60)); c.lineTo(...P(210, -198, -20)); c.lineTo(...P(292, -300, 0)); c.lineTo(...P(292, -300, -40)); c.fill(); } });
+      shape(ctx, [P(292, -300, -120), P(292, -300, 140), P(560, -302, 140), P(560, -302, -120)], '#fbf9f3', { lw });
+      // ön yüz: ızgara, çift yuvarlak far, krom tampon
+      shape(ctx, [[-164, -190], [164, -190], [168, -74], [-168, -74]], W.white, { lw, shade: (c) => blot(c, [[-170, -110], [170, -110], [170, -70], [-170, -70]], W.whiteDk, .8) });
+      shape(ctx, [[-84, -172], [84, -172], [84, -104], [-84, -104]], W.chromeDk, { lw: lw * .8 });
+      for (let yy = -162; yy < -104; yy += 12) line(ctx, [[-80, yy], [80, yy]], lw * .5, W.chrome, .2);
+      [-1, 1].forEach((d) => [0, 1].forEach((k) => { const cx = d * (110 + k * 32); shape(ctx, ell(cx, -146, 15, 15, 14), W.chrome, { lw: lw * .7 }); shape(ctx, ell(cx, -146, 10, 10, 12), '#fff3c4', { lw: lw * .5 }); }));
+      [-1, 1].forEach((d) => shape(ctx, [[d * 100 - 30, -76], [d * 100 + 30, -76], [d * 100 + 28, -2], [d * 100 - 28, -2]], P2.tire, { lw }));
+      shape(ctx, [[-180, -100], [180, -100], [184, -68], [-184, -68]], W.chrome, { lw, shade: (c) => { c.fillStyle = 'rgba(255,255,255,.5)'; c.fillRect(-180, -96, 360, 6); } });
+    }
+    ctx.restore();
+  }
+
   G.Cizim = { PAL, seed, wobble, ell, pathOf, ink, shape, line, blot, grain, hazardStripes, drawKaan, drawDaisy, drawBackground, drawSubtitle,
     tube, face, EXPR, handwrite, drawDefne, drawHale, coffeeCup, waitChair, rainFx,
     drawYard, drawOffice, drawCabin, drawWaitingRoom, drawWaterTower, drawOldBuilding, drawHaleTower, drawCafe,
-    drawLetter, drawNotebook, drawTin, drawStamp, drawSensorPlan, drawListLamp };
+    drawLetter, drawNotebook, drawTin, drawStamp, drawSensorPlan, drawListLamp, drawCar };
 })(typeof window !== 'undefined' ? window : globalThis);

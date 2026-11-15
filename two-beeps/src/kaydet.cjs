@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* Two Beeps — kare kare kayıt.
-   node src/kaydet.cjs [--from 10 --to 14] [--out out/part1-video.mp4] [--scale 0.5] [--page src/part1.html] [--bg]
+   node src/kaydet.cjs [--part N] [--from 10 --to 14] [--out out/partN-video.mp4] [--scale 0.5] [--page src/part.html?p=N] [--bg]
    Kendi yerel sunucusunu açar (port 8803; doluysa boş bir port), sayfayı 1080×1920 yükler, TB_READY bekler,
    her kare için renderAt(i/fps) çağırıp tuvali JPEG olarak alır ve ffmpeg'e (image2pipe) verir.
    Süre, fps ve boyut timeline'dan okunur. Çıktı: H.264, yuv420p, crf 16, sessiz. */
@@ -43,9 +43,9 @@ async function openPage(o = {}) {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   const errors = [];
-  page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+  page.on('console', m => { if (m.type() === 'error' && !/Failed to load resource.*404/.test(m.text())) errors.push(m.text()); });   // 404: olmayan sahne dosyası (beklenen)
   page.on('pageerror', e => errors.push(String(e)));
-  await page.goto(`http://127.0.0.1:${port}/${o.page || 'src/part1.html'}`);
+  await page.goto(`http://127.0.0.1:${port}/${o.page || `src/part.html?p=${+(o.part || 1)}`}`);
   await page.waitForFunction(() => window.TB_READY === true, null, { timeout: 60000 });
   if (o.bg) await page.evaluate(() => { // paket denemesi için düz gri/örnek arka plan (sahnelerin altına değil, yerine)
     TB.shots.length = 0;
@@ -70,7 +70,7 @@ async function record(o) {
   const f1 = o.to != null ? Math.min(total, Math.round(+o.to * fps)) : total;
   const scale = +(o.scale || 1);
   const W = Math.round(tl.w * scale / 2) * 2, Hh = Math.round(tl.h * scale / 2) * 2;
-  const out = path.resolve(o.out || path.join(ROOT, 'out', 'part1-video.mp4'));
+  const out = path.resolve(o.out || path.join(ROOT, 'out', `part${+(o.part || 1)}-video.mp4`));
   fs.mkdirSync(path.dirname(out), { recursive: true });
 
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',

@@ -17,7 +17,7 @@
     safeL: 60, safeR: 890,
     sub: { cx: 480, cy: 1300, maxW: 780, size: 72, minSize: 56, lh: 82, stroke: 8, maxWords: 4,
            lead: 2 * F, hold: 0.36, fadeIn: 3 * F, fadeOut: 4 * F, endFade: 3 * F },
-    hook: { cx: 475, cy: 800, maxW: 800, size: 110, lh: 116, drop: 4 * F },
+    hook: { cx: 475, cy: 800, maxW: 800, size: 110, lh: 116, band: 240 },
     label: { x: 60, y: 240, h: 64, size: 42, pad: 22, until: 2.5, morph: 0.3, badgeH: 48, badgeSize: 32 },
     icon: { x: 826, y: 236, s: 64, alpha: 0.7, from: 3.0, fade: 0.3 },
     end: { x0: 60, x1: 890, y0: 752, y1: 1400, yTitle: 834, yFollow: 942, yDiv: 1008, icon: 128, yIcon: 1040, ySearch: 1222, ySmall: 1294 }
@@ -170,21 +170,38 @@
   /* ---------- kanca: 1. cümle ortada büyük, kelimeler sesle düşer ---------- */
   let H = null;
   function hookLayout(ctx, tl) {
-    const s = tl.sentences[0], Hc = C.hook; let size = Hc.size; ctx.font = FONT(size);
+    const s = tl.sentences[0], Hc = C.hook, OBJ = /^(me|him|her|it|us|them|you)$/;
     const ws = s.words.map((w, k) => ({ w: w.w, t0: w.t0, t1: w.t1, k }));
-    // iki dengeli satır (en uzun satır en kısa olacak biçimde)
-    let bestCut = ws.length, bestW = 1e9;
-    for (let c = 1; c <= ws.length; c++) {
-      const ls = [ws.slice(0, c), ws.slice(c)].filter(l => l.length);
-      let w = Math.max(...ls.map(l => ctx.measureText(l.map(x => x.w).join(' ')).width));
-      if (c < ws.length && /^(me|him|her|it|us|them|you)$/.test(clean(ws[c].w))) w += 400;   // nesne zamiri fiilinden ayrılmaz
-      if (c < ws.length && FUNC.has(clean(ws[c - 1].w)) && !/^(me|him|her|it|us|them|you)$/.test(clean(ws[c - 1].w))) w += 250;
-      if (w < bestW - 1) { bestW = w; bestCut = c; }
+    const lw = l => ctx.measureText(l.map(x => x.w).join(' ')).width;
+    // L satıra en dengeli bölme: en uzun satır + ceza (nesne zamiri fiilinden, satır sonu işlev kelimesinden ayrılmaz)
+    function best(L) {
+      let res = null; const n = ws.length;
+      (function rec(i, cuts) {
+        if (cuts.length === L - 1) {
+          const ls = []; let a = 0; for (const c of cuts.concat([n])) { ls.push(ws.slice(a, c)); a = c; }
+          let w = Math.max(...ls.map(lw)), raw = w;
+          for (const c of cuts) {
+            if (OBJ.test(clean(ws[c].w))) w += 400;
+            if (FUNC.has(clean(ws[c - 1].w)) && !OBJ.test(clean(ws[c - 1].w))) w += 250;
+          }
+          if (!res || w < res.w - 1) res = { w, raw, lines: ls };
+          return;
+        }
+        for (let c = i + 1; c <= n - (L - 1 - cuts.length); c++) rec(c, cuts.concat([c]));
+      })(0, []);
+      return res;
     }
-    const lines = [ws.slice(0, bestCut), ws.slice(bestCut)].filter(l => l.length);
-    while (size > 64) { ctx.font = FONT(size); if (lines.every(l => ctx.measureText(l.map(x => x.w).join(' ')).width <= Hc.maxW)) break; size -= 4; }
+    let size = Hc.size, pick = null;
+    for (; size >= 56 && !pick; size -= 4) {
+      ctx.font = FONT(size); const lh = Hc.lh * size / Hc.size;
+      for (let L = 1; L <= Math.min(4, ws.length); L++) {
+        if (L * lh > Hc.band) break;
+        const r = best(L); if (r && r.raw <= Hc.maxW) { pick = { lines: r.lines, size }; break; }
+      }
+    }
+    if (!pick) { size = 56; ctx.font = FONT(size); pick = { lines: best(Math.min(4, ws.length)).lines, size }; }
     const ns = tl.sentences[1];
-    return { s, lines, size, show1: Math.min(s.t1 + C.sub.hold + 0.1, ns ? ns.t0 - C.sub.lead - F : 1e9) };
+    return { s, lines: pick.lines, size: pick.size, show1: Math.min(s.t1 + C.sub.hold + 0.1, ns ? ns.t0 - C.sub.lead - F : 1e9) };
   }
   function drawHook(ctx, t, tl) {
     const Hc = C.hook, h = H; if (t >= h.show1) return;

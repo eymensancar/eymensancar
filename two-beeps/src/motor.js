@@ -3,7 +3,10 @@
 
    Sahne ekleme (src/shots/*.js):
      TB.shot({ id:'a01-liste', t0:0, t1:2.6, draw(ctx, t, u, tl){ ... } })
-       t  = bölüm zamanı (sn), u = sahne içi 0..1, tl = part1.timeline.json
+       t0/t1: sayı, getter ya da fonksiyon (tl => sayı); fonksiyonlar boot'ta timeline yüklendikten sonra çözülür.
+       t  = bölüm zamanı (sn), u = sahne içi 0..1, tl = partN.timeline.json
+   Bölüm sayfası: src/part.html?p=N → shots/pN-a.js, shots/pN-b.js (yoksa atlanır; Part 1 için eski adlar
+     shots/a-sahneler.js / b-sahneler.js eşlenir), sonra paket.js, TB.boot('partN.timeline.json').
        Sahneler zamanı kendi aralarında boşluksuz kaplar; üst üste binerse sonra eklenen üstte çizilir (geçiş için).
        Sahne 1080×1920 tuvalin tamamını çizer (arka plan dahil). ctx her sahneden önce save/restore edilir.
    Üst katman (src/paket.js): TB.overlay(function(ctx, t, tl){ ... })  — altyazı, etiket, simge, bitiş kartı.
@@ -58,6 +61,10 @@
   TB.boot = async url => {
     ctx = document.getElementById('c').getContext('2d');
     TB.tl = await (await fetch(url)).json();
+    for (const s of TB.shots) for (const k of ['t0', 't1']) {       // fonksiyon t0/t1 → sayı (getter'lar olduğu gibi kalır)
+      const d = Object.getOwnPropertyDescriptor(s, k);
+      if (d && 'value' in d && typeof d.value === 'function') s[k] = +d.value(TB.tl);
+    }
     await Promise.all(['400 40px "Lilita One"', '500 20px Rubik', '700 20px Rubik'].map(f => document.fonts.load(f, 'Aa')));
     await Promise.all(pend);
     renderAt(+new URLSearchParams(location.search).get('t') || 0);

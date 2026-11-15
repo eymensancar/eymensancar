@@ -39,18 +39,24 @@
   C.seed(4); const strip=C.shape(ctx,[[40,92],[1040,92],[1040,104],[40,104]],null,{lw:0}); C.hazardStripes(ctx,strip,36,88,1010,20,16); C.ink(ctx,strip,3);
 
   // 1) boy sırası
-  panel(40,114,1000,410,'BOY SIRASI',(x,y,w,h)=>{
+  panel(40,114,720,410,'BOY SIRASI',(x,y,w,h)=>{
     sky(x,y,w,h); ctx.fillStyle=P.ground; ctx.fillRect(x,y+h-46,w,46); C.line(ctx,[[x,y+h-46],[x+w,y+h-46]],3,P.groundDk,.5);
     ctx.save(); ctx.strokeStyle='rgba(21,18,13,.18)'; ctx.lineWidth=1.5; ctx.setLineDash([6,8]); for(let k=1;k<=6;k++){ const yy=y+h-46-k*60; ctx.beginPath(); ctx.moveTo(x,yy); ctx.lineTo(x+w,yy); ctx.stroke(); } ctx.restore();
-    const gy=y+h-40, s=.62;
-    C.drawDefne(ctx,{x:x+110,y:gy,s,expr:'calm',item:'coffee'});
-    C.drawKaan(ctx,{x:x+290,y:gy,s,expr:'calm'});
-    C.drawKaan(ctx,{x:x+450,y:gy,s,pose:'side',expr:'calm',step:.4});
-    C.drawKaan(ctx,{x:x+600,y:gy,s,pose:'back'});
-    C.drawHale(ctx,{x:x+800,y:gy,s,expr:'confident'});
+    const gy=y+h-40, s=.6;
+    C.drawDefne(ctx,{x:x+80,y:gy,s,expr:'calm',item:'coffee'});
+    C.drawKaan(ctx,{x:x+215,y:gy,s,expr:'calm'});
+    C.drawKaan(ctx,{x:x+340,y:gy,s,pose:'side',expr:'calm',step:.4});
+    C.drawKaan(ctx,{x:x+460,y:gy,s,pose:'back'});
+    C.drawHale(ctx,{x:x+615,y:gy,s,expr:'confident'});
     ctx.font='700 15px Rubik'; ctx.fillStyle=P.ink; ctx.textAlign='center';
-    [['DEFNE',110],['KAAN',290],['YANDAN',450],['ARKADAN',600],['MR. HALE',800]].forEach(([t,dx])=>ctx.fillText(t,x+dx,y+h-12)); ctx.textAlign='left';
+    [['DEFNE',80],['KAAN',215],['YANDAN',340],['ARKADAN',460],['MR. HALE',615]].forEach(([t,dx])=>ctx.fillText(t,x+dx,y+h-12)); ctx.textAlign='left';
   },2);
+
+  // 1b) Hale'nin arabası: ön çeyrek (geliş) + yandan, kapı açık / tozla uzaklaşma
+  const carBox=(x,y,w,h)=>{ sky(x,y,w,h); ctx.fillStyle=P.ground; ctx.fillRect(x,y+h-24,w,24); C.line(ctx,[[x,y+h-24],[x+w,y+h-24]],2.4,P.groundDk,.5); };
+  panel(770,114,270,134,'ARABA · GELİŞ',(x,y,w,h)=>{ carBox(x,y,w,h); C.drawCar(ctx,{view:'front34',x:x+62,y:y+h-12,s:.21}); },81,true);
+  panel(770,252,270,134,'KAPI AÇIK',(x,y,w,h)=>{ carBox(x,y,w,h); C.drawCar(ctx,{view:'side',door:true,x:x+w/2,y:y+h-14,s:.27}); },82,true);
+  panel(770,390,270,134,'DROVE AWAY · TOZ',(x,y,w,h)=>{ carBox(x,y,w,h); C.drawCar(ctx,{view:'side',dust:1,wheel:.6,x:x+w/2+50,y:y+h-14,s:.22}); },83,true);
 
   // 2) ifadeler: 3 sıra × 5
   const ex=[
