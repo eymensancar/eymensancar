@@ -132,14 +132,15 @@
     shape(ctx, [[-101, -262], [-76, -255], [-76, -240], [-102, -246]], P.hazard, { lw: lw * .7 });
     shape(ctx, ell(-89, -228, 14, 16, 18), P.skinDk, { lw });
     // bacaklar
-    shape(ctx, [[-42, -240], [-6, -240], [-14, -44], [-42, -44]], P.pantsDk, { lw });
-    shape(ctx, [[4, -240], [40, -240], [46, -44], [14, -44]], P.pants, { lw, shade: shadeR([[30, -250], [50, -250], [50, -40], [36, -40]]) });
-    shape(ctx, [[-45, -62], [-12, -62], [-12, -44], [-44, -44]], P.pants, { lw: lw * .8 });
-    shape(ctx, [[12, -62], [47, -62], [47, -44], [13, -44]], P.pantsDk, { lw: lw * .8 });
+    const wst = o.step || 0, wla = Math.max(0, wst) * 24, wra = Math.max(0, -wst) * 24, up = (d, f) => { if (!d) return f(); ctx.save(); ctx.translate(0, -d); f(); ctx.restore(); }; // yürüyüş: ayak kaldırma (step 0 = eski çizim)
+    up(wla, () => { shape(ctx, [[-42, -240], [-6, -240], [-14, -44], [-42, -44]], P.pantsDk, { lw }); });
+    up(wra, () => { shape(ctx, [[4, -240], [40, -240], [46, -44], [14, -44]], P.pants, { lw, shade: shadeR([[30, -250], [50, -250], [50, -40], [36, -40]]) }); });
+    up(wla, () => { shape(ctx, [[-45, -62], [-12, -62], [-12, -44], [-44, -44]], P.pants, { lw: lw * .8 }); });
+    up(wra, () => { shape(ctx, [[12, -62], [47, -62], [47, -44], [13, -44]], P.pantsDk, { lw: lw * .8 }); });
     // botlar (iri: siluet işareti)
-    shape(ctx, [[-50, -48], [-8, -48], [-4, -16], [-2, 0], [-66, 0], [-62, -20]], P.bootDk, { lw });
-    shape(ctx, [[10, -48], [50, -48], [56, -24], [82, -12], [84, 0], [8, 0]], P.boot, { lw, shade: (c) => blot(c, [[8, -10], [90, -10], [90, 4], [8, 4]], P.bootDk, .9) });
-    line(ctx, [[60, -27], [64, -18]], lw * .6);
+    up(wla, () => { shape(ctx, [[-50, -48], [-8, -48], [-4, -16], [-2, 0], [-66, 0], [-62, -20]], P.bootDk, { lw }); });
+    up(wra, () => { shape(ctx, [[10, -48], [50, -48], [56, -24], [82, -12], [84, 0], [8, 0]], P.boot, { lw, shade: (c) => blot(c, [[8, -10], [90, -10], [90, 4], [8, 4]], P.bootDk, .9) }); });
+    up(wra, () => { line(ctx, [[60, -27], [64, -18]], lw * .6); });
     // gövde: bol, kutu gibi iş ceketi
     shape(ctx, [[-68, -398], [64, -398], [80, -310], [84, -228], [-80, -224], [-76, -310]], P.jacket, {
       lw, shade: (c) => { blot(c, [[38, -400], [100, -400], [100, -220], [50, -220], [56, -310]], '#0b1f2a', .3); blot(c, [[-90, -246], [100, -250], [100, -210], [-90, -210]], '#0b1f2a', .25); }
@@ -608,8 +609,9 @@
       ctx.restore();
     } else if (pose === 'back') {
       ctx.save(); ctx.globalAlpha = .22; ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(0, 2, 92, 13, 0, 0, TAU); ctx.fill(); ctx.restore();
-      shape(ctx, [[-42, -240], [-4, -240], [-12, -44], [-42, -44]], P.pants, { lw }); shape(ctx, [[4, -240], [42, -240], [44, -44], [12, -44]], P.pantsDk, { lw });
-      shape(ctx, [[-52, -50], [-8, -50], [-6, 0], [-56, 0]], P.bootDk, { lw }); shape(ctx, [[8, -50], [50, -50], [54, 0], [6, 0]], P.boot, { lw });
+      const bst = o.step || 0, bla = Math.max(0, bst) * 24, bra = Math.max(0, -bst) * 24, upb = (d, f) => { if (!d) return f(); ctx.save(); ctx.translate(0, -d); f(); ctx.restore(); };
+      upb(bla, () => { shape(ctx, [[-42, -240], [-4, -240], [-12, -44], [-42, -44]], P.pants, { lw }); }); upb(bra, () => { shape(ctx, [[4, -240], [42, -240], [44, -44], [12, -44]], P.pantsDk, { lw }); });
+      upb(bla, () => { shape(ctx, [[-52, -50], [-8, -50], [-6, 0], [-56, 0]], P.bootDk, { lw }); }); upb(bra, () => { shape(ctx, [[8, -50], [50, -50], [54, 0], [6, 0]], P.boot, { lw }); });
       tube(ctx, [[-62, -392], [-88, -320], [-94, -250]], 44, 34, P.jacket, lw); tube(ctx, [[60, -392], [86, -320], [92, -250]], 44, 34, P.jacketDk, lw);
       cuff(ctx, [-88, -320], [-94, -250], lw); cuff(ctx, [86, -320], [92, -250], lw);
       hand(ctx, -94, -238, 14, P.skinDk, lw); hand(ctx, 92, -238, 14, P.skinDk, lw);
