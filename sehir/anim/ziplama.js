@@ -55,7 +55,8 @@
     if (jumped || v > Z.inisSesAlt) SO.ses.olay('in', { hiz: v, zemin: ctx.world.zemin(ps.x, ps.z) });
     hard = clamp((v - Z.sertAlt) / (Z.sertUst - Z.sertAlt), 0, 1); hard2 = clamp((hard - .25) / .75, 0, 1);
     landH = Z.inisTut * hard2; landD = lerp(lerp(Z.inisDur, Z.inisKos, m), Z.inisSert, hard); landR = lerp(lerp(.55, .45, m), 1, hard2);
-    landT = 0; landC = 0; A0 = ps.airBlend; phase = 'land'; jumped = false; ps.landK = hard;
+    landT = 0; landC = 0; A0 = ps.airBlend; jumped = false; ps.landK = hard;
+    phase = A0 < .05 && hard === 0 ? '' : 'land'; // hava pozuna girilmemiş küçük düşüş: yalnız ses
   }
 
   SO.anim.register({ name: 'ziplama', order: 20,
@@ -70,14 +71,15 @@
       if (!ps.grounded && prevG && !jumped && !pending) coyote = Z.kenar; else if (!ps.grounded) coyote -= dt;
       const h = ps.y - ps.groundY;
 
-      if (phase === 'air') {
+      if (buf > 0 && !ps.grounded && coyote > 0 && !jumped && !pending) takeoff(ps, true); // kenar toleransı
+      else if (phase === 'air') {
         if (pending) { pending = false; if (ps.grounded) { phase = ''; jumped = false; } else tS = lerp(.067, .1, runM); } // fizik zıplamayı bu adımda uyguladı
         else if (ps.grounded) land(ctx, ps);
       } else if (phase === 'start') {
         prepT += dt;
         if (!ps.grounded) takeoff(ps, true); else if (prepT >= prepDur - 1e-6) takeoff(ps, false);
       } else {
-        if (!ps.grounded) { if (buf > 0 && coyote > 0) takeoff(ps, true); else if (ps.airTime > Z.dusmeSure || h > Z.dusmeYuk) { phase = 'air'; jumped = false; } }
+        if (!ps.grounded) { if (ps.airTime > Z.dusmeSure || h > Z.dusmeYuk) { phase = 'air'; jumped = false; } }
         else if (!prevG && !phase && ps.fallSpeed > Z.inisSesAlt) land(ctx, ps); // hava pozuna girmeden biten kısa ama hızlı düşüş
       }
       if (phase === 'land') {

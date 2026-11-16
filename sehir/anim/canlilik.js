@@ -24,6 +24,7 @@
     bakisMaksDur: 75, bakisMaksYuru: 42, bakisMaksDepar: 20, // toplam bakış açısı sınırı (omurga + boyun + baş)
     bakisKamDur: .8, bakisKamYuru: .5, bakisKamDepar: .25,    // kamera yönüne ilgi (açının ne kadarına döner)
     bakisArkaBas: 105, bakisArkaSon: 145,                     // kamera yönü bu açıdan sonra bırakılır (arkaya bakmaya çalışmaz)
+    ilgiTabanDur: .8, ilgiTabanYuru: .35, ilgiSonme: .6,       // kamera sabitken kamera yönüne ilginin indiği oran ve sönme hızı (1/sn)
     bakisOnde: .5, bakisOndeMaks: 32,                         // gidiş yönüne öncü bakış (istenen yön - gövde yönü)
     payOmurga: .2, payBoyun: .32, payBas: .48,                // toplam açının paylaşımı (omurga payı 3 kemiğe bölünür)
     basMaks: 60,                                              // baş + boyun toplam yön sınırı (klip ve donus katmanının verdiği dahil)
@@ -70,7 +71,7 @@
   const S = {
     yorgunluk: 0, nefesFaz: 0, nefes: 0, icCek: 0,
     by: yayYap(), bp: yayYap(),                   // bakış: yön, eğim (derece)
-    pvx: 0, pvz: 0, af: 0, al: 0, pyaw: null, yawHiz: 0, ilk: true,
+    pkam: null, ilgi: 1, pvx: 0, pvz: 0, af: 0, al: 0, pyaw: null, yawHiz: 0, ilk: true,
     gP: yayYap(), bP: yayYap(), kP: yayYap(), gR: yayYap(), gT: yayYap(), kT: yayYap(), // atalet yayları (derece)
     iB: yayYap(), iO: yayYap(), sonInis: -9,      // iniş: baş, omuz
     durT: 0, durW: 0, ag: yayYap(), agHedef: 0, agSonra: 0, agYon: 1,
@@ -119,8 +120,8 @@
     ek.neck_01.x += .5 * nf * (1 - .5 * yo); ek.Head.x += .55 * nf * (1 - .6 * yo);   // baş yerinde kalır; yorgunken nefesle birlikte oynar
     ek.clavicle_l.z += .95 * nfP; ek.clavicle_r.z -= .95 * nfP;                       // omuzlar kalkar
     ek.upperarm_l.z -= .6 * nfP; ek.upperarm_r.z += .6 * nfP;                         // kollar sarkık kalır
-    // yorgun duruş: gövde biraz öne, baş biraz düşük (yalnız yavaşken)
-    const yd = yo * yo * (1 - hareket) * TN.nefes; ek.spine_01.x += 2.2 * yd; ek.spine_02.x += 2.2 * yd; ek.Head.x += 2.5 * yd; ek.upperarm_l.x -= 3 * yd; ek.upperarm_r.x -= 3 * yd;
+    // yorgun duruş: gövde biraz öne kamburlaşır, baş kalkık kalır (yalnız yavaşken)
+    const yd = yo * yo * (1 - hareket) * TN.nefes; ek.spine_01.x += 1.8 * yd; ek.spine_02.x += 2 * yd; ek.neck_01.x -= 1.2 * yd; ek.Head.x -= 1.6 * yd;
 
     /* ---- dururken: ağırlık aktarma ve seyrek küçük hareketler ---- */
     const duruyor = yerde && hiz < .12 && ps.wantMag < .08 && (ps.airBlend || 0) < .05;
@@ -137,8 +138,8 @@
     yay(S.ag, S.agHedef, duruyor ? 2.3 : 6, 1, dt);
     S.salT += dt; const dW = S.durW * TN.durus, a = S.ag.x * TN.agirlikAci * TN.durus;
     // kalça ağırlık bacağına doğru hafifçe kalkar, omuzlar karşı yönde dengeler, baş düz kalır
-    ek.pelvis.z -= a; ek.pelvis.y += .5 * a; ek.spine_01.z += .85 * a; ek.spine_02.z += .65 * a; ek.spine_03.z += .4 * a; ek.spine_02.y -= .5 * a;
-    ek.neck_01.z -= .45 * a; ek.Head.z -= .45 * a; ek.upperarm_l.z -= .6 * a; ek.upperarm_r.z -= .6 * a;
+    ek.pelvis.z -= a; ek.pelvis.y += .5 * a; ek.spine_01.z += 1.0 * a; ek.spine_02.z += .8 * a; ek.spine_03.z += .5 * a; ek.spine_02.y -= .5 * a;
+    ek.neck_01.z -= .6 * a; ek.Head.z -= .6 * a; ek.upperarm_l.z -= 1.0 * a; ek.upperarm_r.z -= 1.0 * a;
     // çok yavaş salınım (denge): Idle döngüsüyle çakışmayan iki periyot
     const s1 = Math.sin(S.salT * .53 + 1.3), s2 = Math.sin(S.salT * .31 + .4), s3 = Math.sin(S.salT * .83);
     ek.spine_01.z += .35 * s1 * dW; ek.spine_02.x += .3 * s2 * dW; ek.spine_03.y += .5 * s3 * dW; ek.Head.z -= .3 * s1 * dW; ek.Head.y += .8 * s2 * dW; ek.Head.x -= .3 * s2 * dW;
@@ -185,7 +186,10 @@
     const kr = wrapA(cam.yaw - ps.yaw) / D, kra = Math.abs(kr);
     // kamera arkadan öne geçtikçe (karakter kameraya doğru yürürken) kamera yönü bırakılır: ne arkaya bakmaya çalışır ne kameraya dik dik bakar
     const kamW = 1 - ss(lerp(TN.bakisArkaBas, TN.bakisArkaBas - 12, hareket), lerp(TN.bakisArkaSon, TN.bakisArkaSon - 12, hareket), kra);
-    let hy = clamp(kr * kamK, -maks, maks) * kamW, hp = clamp(((cam.pitch == null ? .16 : cam.pitch) - .16) / D * .3, -6, 13) * kamW * (1 - .5 * depar);
+    // ilgi: oyuncu kamerayı çevirirken tam ilgi; kamera sabit kalınca (ör. ekrana göre yana koşarken) bakış yavaşça öne döner
+    const kamHiz = S.pkam == null ? 0 : Math.abs(wrapA(cam.yaw - S.pkam)) / dt; S.pkam = cam.yaw;
+    const taban = lerp(TN.ilgiTabanDur, TN.ilgiTabanYuru, hareket), ilgiH = kamHiz > .12 ? 1 : taban; S.ilgi = SO.damp(S.ilgi, ilgiH, ilgiH > S.ilgi ? 7 : TN.ilgiSonme, dt);
+    let hy = clamp(kr * kamK, -maks, maks) * kamW * S.ilgi, hp = clamp(((cam.pitch == null ? .16 : cam.pitch) - .16) / D * .3, -6, 13) * kamW * (1 - .5 * depar);
     if (ps.wantMag > .08) hy += clamp(wrapA(Math.atan2(ps.wantX, ps.wantZ) - ps.yaw) / D * TN.bakisOnde, -TN.bakisOndeMaks, TN.bakisOndeMaks); // baş dönüşe önce girer
     hy += clamp(S.yawHiz * .07 / D, -10, 10) * hareket;
     hy += S.bakinYaw * S.durW; hp += S.bakinPitch * S.durW;

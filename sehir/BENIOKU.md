@@ -47,7 +47,7 @@ Her katman tek dosyadır ve `SO.anim.register({ name, order, init(ctx), update(c
 | `anim/donus.js` | 5 | `ps.yaw`, `ps.yawRate`, `ps.lean`, `ps.leanFwd`; dönüş, yatma. Ek alanlar: `ps.turnSlow` (hız çarpanı 0..1, 1 = kısma yok; fizik henüz okumuyor), `ps.pivot` (0 yok, 1 sert dönüşte fren, 2 dönme), `ps.turnTwist` (üst gövde + başa verilen ön dönüş, rad). `ps.lean` işareti: + = karakterin sağına (sola dönerken negatif). Ayarlar `SO.tune.donus` |
 | `anim/hareket.js` | 10 | dur/yürü/hafif koşu/depar karışımı, `ps.gait`, `ps.phase`, `ps.stride`, adım olayı (`SO.ses.olay('adim', …)`) |
 | `anim/ziplama.js` | 20 | `input.jump` tüketimi, `ps.jumpNow`, `ps.airBlend`, `ps.jumpPhase`, `ps.speedScale`, zıplama/iniş olayları |
-| `anim/canlilik.js` | 30 | nefes, ağırlık aktarma, baş bakışı, dururken küçük hareketler (çoğu `post`) |
+| `anim/canlilik.js` | 30 | nefes, ağırlık aktarma, baş bakışı, dururken küçük hareketler, atalet, iniş sarsıntısı (hepsi `post`, klip ağırlığına dokunmaz). Yazdığı alanlar: `ps.yorgunluk` (0..1), `ps.nefes` (-1..1), `ps.bakisYaw`, `ps.bakisPitch` (rad, gövdeye göre), `ps.agirlik` (-1..1; + = ağırlık sol bacakta), `ps.durusOlay`. Ayarlar `SO.tune.canlilik` (`siddet` hepsini kısar; 0 = kapalı). Dokunduğu kemikler: pelvis (en çok 2,5° dönüş, konum yok), spine_01–03, neck_01, Head, clavicle_l/r, upperarm_l/r |
 | `anim/ayak.js` | 40 | ayakların zemine oturması, `ps.rootDy` |
 
 `SO.ps` alanlarının tam listesi ve kimin yazdığı `cekirdek.js` başında. `SO.tune` içinde her katman kendi adında bir alt nesne açabilir (`SO.tune.hareket = {...}`).

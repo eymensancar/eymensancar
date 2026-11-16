@@ -5,7 +5,7 @@
    Dururken evre T.durEvre'de (0.08) bekler: sol ayak önde/yerde, sağ ayak arkada kalkmak üzere (Idle_Loop duruşuna en yakın an).
 
    KLİP ÖLÇÜMLERİ (kök sabit, klip 240 örnekle oynatılıp ayak ucu (ball) ve bilek (foot) kemiklerinin konumundan; klip süresinin kesri olarak):
-     klip          süre    sol temas  sağ temas  basış (ayak başına)  döngü uzunluğu (yerdeki ayağın geriye hızı, m/döngü)
+     klip          süre    sol temas  sağ temas  basış (ayak başına)   döngü uzunluğu (yerdeki ayağın geriye hızı, m/döngü)
      Walk_Loop     1.333   0.000      0.500      0.56 döngü           1.305  (klibin kendi hızı 0.98 m/sn)
      Jog_Fwd_Loop  0.933   0.035      0.535      0.14 döngü           5.50   (klibin kendi hızı 5.9 m/sn: çok uzun, sıçramalı adım)
      Sprint_Loop   0.667   0.045      0.595      0.15 döngü           5.95   (klibin kendi hızı 8.9 m/sn; sol→sağ 0.55, sağ→sol 0.45: bakışımsız)
@@ -27,7 +27,7 @@
     // ölçülen döngü uzunlukları (m) ve temas evreleri (klip kesri: [sol temas, sağ temas])
     yuruBoy: 1.305, kosBoy: 5.50, deparBoy: 5.95,
     yuruTemas: [0, .5], kosTemas: [.035, .535], deparTemas: [.045, .595],
-    yuruBasis: .56, kosBasis: .14, deparBasis: .15,   // ayağın yerde kaldığı evre aralığı (temastan sonra)
+    yuruBasis: .5, kosBasis: .14, deparBasis: .15,   // ayağın yerde kaldığı evre aralığı (temastan sonra)
     // istenen kadans (döngü/sn = dakikadaki adım / 120): dururken, yavaş yürüyüş (0.55 × yürüme), yürüme, hafif koşu, depar hızlarında
     kadans: [.62, .80, .98, 1.26, 1.52],
     olcekle: true, olcekMin: .45, olcekMax: 1.22,     // adım ölçekleme sınırları
@@ -36,7 +36,7 @@
     karisim: 22                                       // klip ağırlıklarının hıza uyma hızı (1/sn; duvara sürtünme gibi hız titremelerini süzer)
   }, SO.tune.hareket || {});
 
-  let A, K, loco = 0, g = 1, s = 1, acc = T.durEvre, fired = 0, warpAmt = 0;
+  let A, K, loco = 0, g = 1, s = 1, acc = T.durEvre, fired = 0, warpL = 0, warpR = 0;
   const w = [1, 0, 0];
 
   const frac = x => x - Math.floor(x);
@@ -68,10 +68,11 @@
       loco = SO.damp(loco, hedef, hedef > loco ? T.kalkis : T.durus, dt); if (loco < .002 && hedef === 0) loco = 0; if (loco > .998) loco = 1;
 
       // 3) adım uzunluğu ve evre hızı. Karışımın döngü uzunluğu = Σ ağırlık × klip uzunluğu × eşleme eğimi (o andaki yarı döngüde).
-      let ph = frac(acc), Lm = 0, Lort = 0; for (let i = 0; i < 3; i++) { Lm += w[i] * K[i].L * egim(K[i], ph); Lort += w[i] * K[i].L; }
+      // Sol ayak hep ilk yarıda (evre 0..0.5), sağ ayak ikinci yarıda basar; eşleme eğimi yarıdan yarıya değişiyorsa (depar) fark bacak başına ölçekle kapatılır, ritim eşit kalır.
+      let ph = frac(acc), LmL = 0, LmR = 0, Lort = 0; for (let i = 0; i < 3; i++) { LmL += w[i] * K[i].L * egim(K[i], 0); LmR += w[i] * K[i].L * egim(K[i], .5); Lort += w[i] * K[i].L; }
       const C = kadans(v, tn), sH = T.olcekle ? clamp(v / (C * Lort), T.olcekMin, T.olcekMax) : 1;
       s = loco < .02 ? sH : SO.damp(s, sH, 14, dt);
-      let hiz = v / (s * Lm); // döngü/sn: yerdeki ayağın geriye hızı (s × Lm × hiz) = zemin hızı
+      let hiz = v / (s * Lort); // döngü/sn: yerdeki ayağın geriye hızı (s × Lort × hiz) = zemin hızı
 
       const durEvre = frac(T.durEvre);
       if (loco === 0) { acc = durEvre; fired = 0; hiz = 0; }
@@ -97,21 +98,21 @@
       // 6) duyurular
       ps.gait = loco * g; ps.phase = ph; ps.stride = s * Lort; ps.cadence = hiz; ps.strideScale = s;
       ps.plantL = lerp(1, clamp(pl, 0, 1), loco); ps.plantR = lerp(1, clamp(pr, 0, 1), loco);
-      warpAmt = (s - 1) * loco * base;
+      warpL = (s * Lort / LmL - 1) * loco * base; warpR = (s * Lort / LmR - 1) * loco * base;
     },
 
     // adım ölçekleme: her bacakta ayak ucunun kalçaya göre ileri uzaklığı s ile çarpılır; bilek o kadar kaydırılır, uyluk/baldır iki kemikli çözümle döner, ayağın dünya yönü korunur
     post(ctx) {
-      if (!T.olcekle || Math.abs(warpAmt) < .004) return;
+      if (!T.olcekle || (Math.abs(warpL) < .004 && Math.abs(warpR) < .004)) return;
       const ch = ctx.char, B = ctx.bones; ch.root.updateMatrixWorld(true);
       const e = ch.root.matrixWorld.elements; fwd.set(e[8], e[9], e[10]).normalize();
-      bacak(B.pelvis, B.thigh_l, B.calf_l, B.foot_l, B.ball_l); bacak(B.pelvis, B.thigh_r, B.calf_r, B.foot_r, B.ball_r);
+      bacak(warpL, B.pelvis, B.thigh_l, B.calf_l, B.foot_l, B.ball_l); bacak(warpR, B.pelvis, B.thigh_r, B.calf_r, B.foot_r, B.ball_r);
     } });
 
   const fwd = new T3.Vector3(), a = new T3.Vector3(), b = new T3.Vector3(), c = new T3.Vector3(), tt = new T3.Vector3(), toe = new T3.Vector3(), v1 = new T3.Vector3(), v2 = new T3.Vector3(), v3 = new T3.Vector3(), ax0 = new T3.Vector3(), ax1 = new T3.Vector3(), sc = new T3.Vector3(), pp = new T3.Vector3();
   const qp = new T3.Quaternion(), qa = new T3.Quaternion(), qb = new T3.Quaternion(), qc = new T3.Quaternion(), r0 = new T3.Quaternion(), r1 = new T3.Quaternion(), r2 = new T3.Quaternion(), R = new T3.Quaternion(), qn = new T3.Quaternion();
   const acos = x => Math.acos(clamp(x, -1, 1));
-  function bacak(ust, uyluk, baldir, ayak, uc) {
+  function bacak(warpAmt, ust, uyluk, baldir, ayak, uc) {
     ust.matrixWorld.decompose(pp, qp, sc); uyluk.matrixWorld.decompose(a, qa, sc); baldir.matrixWorld.decompose(b, qb, sc); ayak.matrixWorld.decompose(c, qc, sc); toe.setFromMatrixPosition(uc.matrixWorld);
     const kay = warpAmt * v1.subVectors(toe, a).dot(fwd); tt.copy(c).addScaledVector(fwd, kay);
     const lab = v1.subVectors(b, a).length(), lcb = v2.subVectors(c, b).length(), lat = clamp(v3.subVectors(tt, a).length(), .05, (lab + lcb) * .998);

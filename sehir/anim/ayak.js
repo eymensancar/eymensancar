@@ -24,13 +24,13 @@
     minBall: .012,     // parmak kökü zeminin en az bu kadar üstünde kalır (klip karışımında hafif gömülmeyi alır)
     swing0: .03, swing1: .14, // bilek, restAnkle'ın bu kadar üstündeyse "basıyor" (0) … "salınımda" (1)
     upK: 30, downK: 16, // ayak zemini yumuşatması: yükselirken hızlı (kaldırıma takılmasın), inerken daha sakin
-    toe: .6,           // zemin, bilekten parmak köküne giden yolun bu oranındaki noktada da ölçülür (parmak ucu kaldırım kenarına değince ayak havaya kalkmasın)
+    toe: .6,           // yere basan ayakta zemin, bilekten parmak köküne giden yolun bu oranındaki noktada da ölçülür (parmak ucu kaldırım kenarına değince ayak havaya kalkmasın); topuk kalkınca parmak köküne kadar uzar
     ahead: .10,        // ayağın gidiş yönünde kaç saniye ilerisindeki zemine bakılır (basamağa varmadan kalkmaya başlar)
     hipK: 10,          // kalça yüksekliği yumuşatması
     maxOff: .32,       // bir ayağın ps.y'ye göre en çok kayması (m)
     reach: .995,       // bacak en çok boyunun bu oranına kadar uzar (diz kilitlenip sıçramasın)
     onK: 10, offK: 18, // katman ağırlığı: yere inince açılma / havalanınca kapanma hızı
-    lock: true, lockSpeed: .12, lockBreak: .2, lockIn: 10, lockOut: 8, lockOutMove: 14, stepLift: .03
+    lock: true, lockSpeed: .12, lockBreak: .2, lockIn: 30, lockOut: 8, lockOutMove: 14, stepLift: .03
   };
   const V3 = T3.Vector3, Q = T3.Quaternion;
   const A = new V3(), K = new V3(), F = new V3(), Bp = new V3(), T = new V3(), ab = new V3(), cb = new V3(), ac = new V3(), at = new V3(), ax0 = new V3(), ax1 = new V3(), tmp = new V3(), sc = new V3();
@@ -85,7 +85,7 @@
         L.lockW = damp(L.lockW, L.lockOn ? 1 : 0, L.lockOn ? tn.lockIn : standing ? tn.lockOut : tn.lockOutMove, dt); if (L.lockW < .001 && !L.lockOn) L.lockW = 0;
         const lw = L.lockW * L.lockW * (3 - 2 * L.lockW) * w, dx = (L.lx - F.x) * lw, dz = (L.lz - F.z) * lw; L.tx = F.x + dx; L.tz = F.z + dz;
         // ayağın altındaki zemin: bilek + ayak ortası + gidiş yönünde biraz ilerisi; en yükseği
-        const ax = vx * tn.ahead, az = vz * tn.ahead, bx = L.tx + (Bp.x - F.x) * tn.toe, bz = L.tz + (Bp.z - F.z) * tn.toe;
+        const ax = vx * tn.ahead, az = vz * tn.ahead, toe = 1 + (tn.toe - 1) * L.p, bx = L.tx + (Bp.x - F.x) * toe, bz = L.tz + (Bp.z - F.z) * toe;
         let g = Math.max(world.groundY(L.tx, L.tz), world.groundY(bx, bz));
         if (vm > .2) g = Math.max(g, world.groundY(L.tx + ax, L.tz + az), world.groundY(bx + ax, bz + az), world.groundY(L.tx + ax * .5, L.tz + az * .5));
         L.g = isin ? g : damp(L.g, g, g > L.g ? tn.upK : tn.downK, dt);
