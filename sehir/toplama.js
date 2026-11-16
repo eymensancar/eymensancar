@@ -21,6 +21,8 @@
    El nesneye tam yetişemiyorsa (uzakta/arkada) nesne son 0,06 sn'de ele doğru çekilir.
 
    ARAYÜZ: SO.envanter = { dal, tas (salt okunur sayılar), say, adet(tur), ekle(tur, adet), harca(tur, adet), dinle(fn) }.
+   Envanter yalnız yerden toplananları değil bütün eşyaları tutar: `ekle` tür tablosundaki (TUR) ve oyun.js'in eşya tablosundaki (SO.esya) türleri
+   kabul eder; hepsi aynı kayıtta (`say`) saklanır. Üstteki sayaç yalnız TUR'dakileri (dal, taş) gösterir.
    SO.toplama = { init, update, yakin, al(), TUR, turEkle, say(x, z, yaricap), durum(), kodla(), coz(metin) }.
 
    KAYIT: localStorage `acik-dunya-envanter-v1` = { v: 1, say: { dal, tas }, alinan: "hücre:ssss;hücre:ss..." } (hücre = 36 tabanında hücre anahtarı,
@@ -99,7 +101,7 @@
   const envanter = SO.envanter = {
     say,
     adet: tur => say[tur] || 0,
-    ekle(tur, adet) { adet = adet == null ? 1 : adet | 0; if (!TUR[tur] || !adet) return say[tur] || 0; say[tur] = Math.max(0, (say[tur] || 0) + adet); degisti(tur); return say[tur]; },
+    ekle(tur, adet) { adet = adet == null ? 1 : adet | 0; if ((!TUR[tur] && !(SO.esya && SO.esya[tur])) || !adet) return say[tur] || 0; say[tur] = Math.max(0, (say[tur] || 0) + adet); degisti(tur); return say[tur]; },
     harca(tur, adet) { adet = adet == null ? 1 : adet | 0; if ((say[tur] || 0) < adet) return false; say[tur] -= adet; degisti(tur); return true; },
     dinle(fn) { dinleyen.push(fn); }
   };
@@ -110,7 +112,7 @@
   const anahtar = (ci, cj) => (ci + 512) * 1024 + (cj + 512);
   function alindiYaz(k, id) { let a = alinan.get(k); if (a) alinan.delete(k); else a = []; if (!a.includes(id)) { a.push(id); alinanSay++; } alinan.set(k, a);
     while (alinanSay > KAYIT_EN_COK) { const ilk = alinan.keys().next().value; if (ilk === k) break; alinanSay -= alinan.get(ilk).length; alinan.delete(ilk); } }
-  function kodla() { const p = []; alinan.forEach((a, k) => p.push(k.toString(36) + ':' + a.map(i => (i < 16 ? '0' : '') + i.toString(16)).join(''))); const s = {}; turAd.forEach(t => { if (say[t]) s[t] = say[t]; }); return JSON.stringify({ v: 1, say: s, alinan: p.join(';') }); }
+  function kodla() { const p = []; alinan.forEach((a, k) => p.push(k.toString(36) + ':' + a.map(i => (i < 16 ? '0' : '') + i.toString(16)).join(''))); const s = {}; for (const t in say) if (say[t] > 0) s[t] = say[t]; return JSON.stringify({ v: 1, say: s, alinan: p.join(';') }); }
   function coz(metin) {
     const o = JSON.parse(metin); if (!o || o.v !== 1) return false;
     alinan.clear(); alinanSay = 0; for (const t in say) delete say[t];
@@ -143,7 +145,8 @@
       const e = .5, ex = (gy(x + e, z) - gy(x - e, z)) / (2 * e), ez = (gy(x, z + e) - gy(x, z - e)) / (2 * e), eg = Math.hypot(ex, ez); if (eg > .75) continue;
       c.x = x; c.z = z; c.h = h; c.egim = eg; c.biyom = w.biyom(x, z); c.agac = da; c.kaya = dk;
       c.kiyi = 1 - sm(.7, 3.2, h); c.yamac = sm(.24, .5, Math.max(eg, egimF(x + 6, z + 3), egimF(x - 4, z + 5), egimF(x + 2, z - 6)));
-      let tur = null, top = 0; for (const ad of turAd) { top += TUR[ad].olasilik(c); if (u < top) { tur = ad; break; } } if (!tur) continue;
+      const tk = SO.tasarim && SO.tasarim.toplama ? SO.tasarim.toplama(x, z) : null; // elle tasarım katmanı (tasarim.js, `kaynak` alanı): { dal, tas } çarpan, { dalEk, tasEk } ek olasılık
+      let tur = null, top = 0; for (const ad of turAd) { top += tk ? TUR[ad].olasilik(c) * (tk[ad] == null ? 1 : tk[ad]) + (tk[ad + 'Ek'] || 0) : TUR[ad].olasilik(c); if (u < top) { tur = ad; break; } } if (!tur) continue;
       const Tr = TUR[tur], s = lerp(Tr.boy[0], Tr.boy[1], r3), sek = Math.min(Tr.n - 1, Math.floor(r1 * Tr.n));
       nV.set(-ex, 1, -ez).normalize(); qE.setFromUnitVectors(UP, nV); qY.setFromAxisAngle(UP, r2 * TAU);
       ogeler.push({ id, k, tur, sek, x, y: h, z, s, q: qE.clone().multiply(qY), ton: Tr.ton ? Tr.ton(c, (r3 * 7.31) % 1) : null, tut: Tr.tut * s, ag: null, yuva: -1 });

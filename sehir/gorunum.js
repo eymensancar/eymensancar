@@ -44,7 +44,8 @@
     isikF(n.x, n.y, n.z, x, z, t3); A.isik[o3] = t3[0]; A.isik[o3 + 1] = t3[1]; A.isik[o3 + 2] = t3[2];
     cimRenk(x, z, tw, t3); const yuk = sm(120, 230, h) * .25; A.c0[o3] = lerp(t3[0], .62, yuk) * 255; A.c0[o3 + 1] = lerp(t3[1], .64, yuk) * 255; A.c0[o3 + 2] = lerp(t3[2], .5, yuk) * 255;
     for (let q = 0; q < 3; q++) { let a = 0, b = 0; for (let k = 0; k < 5; k++) { a += TOPRAK[k][q] * tw[k]; b += KAYA[k][q] * tw[k]; } A.c1[o3 + q] = a * 255; A.cK[o3 + q] = b * 255; }
-    const toprak = Math.max(tw[4], cimli * Math.max(yama(x, z, tw[1]), sm(.07, .17, dik) * .45)), kum = Math.max(tw[2], kiyi * deniz), kar = Math.max(tw[3], sm(230, 290, h + (n.y - .8) * 120)), cakil = kiyi * (1 - deniz) * (1 - tw[2]) * (1 - tw[3] * .6);
+    let toprak = Math.max(tw[4], cimli * Math.max(yama(x, z, tw[1]), sm(.07, .17, dik) * .45)), kum = Math.max(tw[2], kiyi * deniz), kar = Math.max(tw[3], sm(230, 290, h + (n.y - .8) * 120)), cakil = kiyi * (1 - deniz) * (1 - tw[2]) * (1 - tw[3] * .6);
+    const tz = SO.tasarim && SO.tasarim.zemin ? SO.tasarim.zemin(x, z) : null; if (tz) { toprak = Math.max(toprak, tz.toprak); kum = Math.max(kum, tz.kum); cakil = Math.max(cakil, tz.cakil); } // elle tasarım katmanı: patika, çıplak toprak, kumsal (tasarim.js)
     A.aw[o4] = toprak * 255; A.aw[o4 + 1] = kum * 255; A.aw[o4 + 2] = kar * 255; A.aw[o4 + 3] = cakil * 255;
     A.ak[o4] = (n.x * .5 + .5) * 255; A.ak[o4 + 1] = (n.z * .5 + .5) * 255; A.ak[o4 + 2] = sm(.12, .32, dik) * 255; A.ak[o4 + 3] = 0;
   }
@@ -242,6 +243,7 @@ void main() {
       let yog, s = .32 + boy * .26;
       if (b < 2) { yog = (1 - yama(x, z, tw[1])) * (.3 + .7 * sm(.3, .62, vnoise(x / 10, z / 10, 95))); cimRenk(x, z, tw, tc); }
       else if (b === 2) { yog = .14; tc[0] = .73; tc[1] = .66; tc[2] = .38; s *= .9; } else { yog = .16; tc[0] = .52; tc[1] = .2; tc[2] = .3; }
+      if (SO.tasarim && SO.tasarim.zemin) { const tz = SO.tasarim.zemin(x, z); if (tz) yog *= 1 - Math.min(1, Math.max(tz.toprak, tz.kum, tz.cakil) * 1.2); } // tasarlanmış çıplak zeminde (patika, kumsal) ot yok
       if (u2 > yog) continue; isikF(-hx / L, 2 / L, -hz / L, x, z, tl);
       P[o] = x; P[o + 1] = h - .03; P[o + 2] = z; P[o + 3] = s; C[o] = tc[0] * tl[0]; C[o + 1] = tc[1] * tl[1]; C[o + 2] = tc[2] * tl[2];
       C[o + 3] = Math.min(.999, aci) + (b < 2 && cc < .1 ? 1 + Math.floor(cc * 30) : 0); } // %10'u çiçekli: 1 beyaz, 2 sarı, 3 mor
