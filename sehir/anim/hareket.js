@@ -65,7 +65,7 @@
     },
 
     update(ctx, dt) {
-      const ps = ctx.ps, tn = ctx.tune, v = ps.speed, base = 1 - ps.airBlend;
+      const ps = ctx.ps, tn = ctx.tune, v = ps.speed, base = (1 - ps.airBlend) * (1 - (ps.yuzmeBlend || 0)); // yüzerken taban ağırlıkları yüzme kliplerine bırakılır (anim/yuzme.js)
       K.forEach(k => { k.temas = T[k.t]; k.L = T[k.boy]; k.basis = T[k.b]; });
 
       // 1) klip karışımı hıza göre: yürü → hafif koşu → depar. Yürüme ile koşu ayrı yürüyüşlerdir (birinde çift destek, ötekinde uçuş var): yarı yarıya
@@ -89,7 +89,7 @@
       let ph = frac(acc), LmL = 0, LmR = 0, Lort = 0; for (let i = 0; i < 3; i++) { LmL += w[i] * K[i].L * egim(K[i], 0); LmR += w[i] * K[i].L * egim(K[i], .5); Lort += w[i] * K[i].L; }
       // İstenen kadanstan adım ölçeği; her bacağın ölçeği kendi basışı sırasında yavaş değişir (yerdeki ayak ölçek değişince kayar), havadayken çabuk.
       //    Evre hızı o an yerde olan bacağın ölçeğinden çıkar: basış sırasında hız değişirse kadans değişir, ayak yerinde kalır.
-      const C = kadans(v, tn), sH = T.olcekle ? clamp(v / (C * Lort), T.olcekMin, T.olcekMax) : 1, tL = sH * Lort / LmL, tR = sH * Lort / LmR;
+      const C = kadans(v, tn) * (ps.adimAgir || 1), sH = T.olcekle ? clamp(v / (C * Lort), T.olcekMin, T.olcekMax) : 1, tL = sH * Lort / LmL, tR = sH * Lort / LmR;
       let pl = 0, pr = 0; for (let i = 0; i < 3; i++) { if (ph < K[i].basis) pl += w[i]; if (frac(ph + .5) < K[i].basis) pr += w[i]; }
       if (loco < .02 || !T.olcekle) { sL = tL; sR = tR; } else { const yavas = loco > .9 ? T.olcekBasis : 16; sL = SO.damp(sL, tL, pl > .5 ? yavas : 16, dt); sR = SO.damp(sR, tR, pr > .5 ? yavas : 16, dt); }
       const boy = pl > .5 ? sL * LmL : pr > .5 ? sR * LmR : .5 * (sL * LmL + sR * LmR); // o anki döngü uzunluğu (m)
@@ -113,7 +113,7 @@
 
       // 5) adım olayı: evre 0'ı (sol) ya da 0.5'i (sağ) ileri yönde her geçişte tam bir kez; havadayken ve dururken yok
       const idx = Math.floor(acc * 2 + 1e-9);
-      if (idx > fired) { fired = idx; if (ps.grounded && ps.airBlend < .5 && loco > .3 && dt > 0) SO.ses.olay('adim', { zemin: ctx.world.zemin(ps.x, ps.z), hiz: v, ayak: idx % 2 ? 'r' : 'l' }); }
+      if (idx > fired) { fired = idx; if (ps.grounded && ps.airBlend < .5 && loco > .3 && dt > 0 && !ps.yuzme && !(ps.yuzmeBlend > .5)) SO.ses.olay('adim', { zemin: ctx.world.zemin(ps.x, ps.z), hiz: v, ayak: idx % 2 ? 'r' : 'l' }); }
       if (acc > 64) { acc -= 64; fired -= 128; }
 
       // 6) duyurular

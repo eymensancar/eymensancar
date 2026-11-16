@@ -72,8 +72,9 @@
       st.lx = ps.x; st.lz = ps.z; st.has = true;
       // ağırlık: yerdeyken açık (iniş klibi sürerken de: ps.airBlend hâlâ yüksek olabilir ama ayaklar zemine oturmalı); havada kapalı;
       // yere çok yaklaşmış düşüşte önceden açılmaya başlar ki iniş karesinde ayak kaldırıma gömülmesin
-      const wT = ps.grounded ? 1 : (ps.vy < 0 && ps.y - ps.groundY < tn.preLand) ? 1 : 0; st.w = isin ? wT : damp(st.w, wT, wT < st.w ? tn.offK : tn.onK, dt); const w = st.w;
-      const standing = tn.lock && ps.grounded && ps.speed < tn.lockSpeed && ps.wantMag < .08 && (ps.airBlend || 0) < .05 && Math.abs(ps.yawRate || 0) < .3;
+      const wT = ps.grounded ? 1 : (ps.vy < 0 && ps.y - ps.groundY < tn.preLand) ? 1 : 0; st.w = isin ? wT : damp(st.w, wT, wT < st.w ? tn.offK : tn.onK, dt);
+      const kap = clamp(ps.ikKapat || 0, 0, 1), w = st.w * (1 - kap); // ps.ikKapat: yüzme/tırmanma sırasında katman o kadar kapanır
+      const standing = tn.lock && kap < .05 && ps.grounded && ps.speed < tn.lockSpeed && ps.wantMag < .08 && (ps.airBlend || 0) < .05 && Math.abs(ps.yawRate || 0) < .3;
       const idt = dt > 1e-5 ? 1 / dt : 0;
       for (const L of legs) {
         F.setFromMatrixPosition(L.foot.matrixWorld); Bp.setFromMatrixPosition(L.ball.matrixWorld);

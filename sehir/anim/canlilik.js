@@ -124,7 +124,7 @@
     const yd = yo * yo * (1 - hareket) * TN.nefes; ek.spine_01.x += 1.8 * yd; ek.spine_02.x += 2 * yd; ek.neck_01.x -= 1.2 * yd; ek.Head.x -= 1.6 * yd;
 
     /* ---- dururken: ağırlık aktarma ve seyrek küçük hareketler ---- */
-    const duruyor = yerde && hiz < .12 && ps.wantMag < .08 && (ps.airBlend || 0) < .05;
+    const duruyor = yerde && hiz < .12 && ps.wantMag < .08 && (ps.airBlend || 0) < .05 && !((ps.ikKapat || 0) > .3); // yüzerken/tırmanırken ağırlık aktarma ve küçük duruş hareketleri yok
     if (duruyor) S.durT += dt; else { S.durT = 0; S.olay = null; S.agHedef = 0; }
     S.durW = SO.damp(S.durW, duruyor && S.durT > .35 ? 1 : 0, duruyor ? 2.5 : 9, dt);
     if (duruyor) {

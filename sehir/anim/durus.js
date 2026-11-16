@@ -103,7 +103,8 @@
     },
     post(ctx, dt) {
       if (!T.on || !B.pelvis || !B.neck_01) { st.egim = st.kaldir = st.kisit = 0; return; }
-      const ps = ctx.ps, yaw = ps.yaw, sy = Math.sin(yaw), cy = Math.cos(yaw), hava = clamp(ps.airBlend || 0, 0, 1);
+      const ps = ctx.ps, yaw = ps.yaw, sy = Math.sin(yaw), cy = Math.cos(yaw), hava = clamp(ps.airBlend || 0, 0, 1), acik = 1 - clamp(ps.ikKapat || 0, 0, 1);
+      if (acik < .001) { st.egim = st.kaldir = st.kisit = st.indir = 0; has = false; return; } // ps.ikKapat: yüzme/tırmanma sırasında düzeltme o kadar kapanır
       // kök: ana.js'in bu kare yazacağı yer ve yatma (ayak.js de aynısını yapar); kemiklerin dünya konumu bu kareye ait olsun
       kok.position.set(ps.x, ps.y, ps.z); kok.rotation.order = 'YXZ'; kok.rotation.set(ps.leanFwd || 0, yaw, ps.lean || 0); kok.updateMatrixWorld(true);
       const isin = !has || Math.hypot(ps.x - lx, ps.z - lz) > 1.5; has = true; lx = ps.x; lz = ps.z;
@@ -113,11 +114,11 @@
       // 1) ağırlıklar ve karışmış düzeltme
       let top = 0; for (let i = 0; i < 4; i++) { wgt[i] = Math.max(0, act[i].getEffectiveWeight()); top += wgt[i]; }
       if (top > 1) { for (let i = 0; i < 4; i++) wgt[i] /= top; top = 1; } wgt[4] = 1 - top;
-      for (const k in T.duzelt.dur) { let s = 0; for (let i = 0; i < 5; i++) s += wgt[i] * ((T.duzelt[AD[i]] || {})[k] || 0); mix[k] = s * D; }
+      for (const k in T.duzelt.dur) { let s = 0; for (let i = 0; i < 5; i++) s += wgt[i] * ((T.duzelt[AD[i]] || {})[k] || 0); mix[k] = s * D * acik; }
       // uçuş evresi: kalçanın zıplaması sıkıştırıldığı oranda ayakların yerden kesilmesi de sıkıştırılır (alçaktaki ayağın boşluğu kadar ikisi birden iner)
       let bos = 1e9, oran = 0; for (let i = 0; i < 4; i++) { const k = T.kalca[AD[i]]; if (k) oran += wgt[i] * (1 - k.sik); }
       for (const L of legs) { L.f.setFromMatrixPosition(L.foot.matrixWorld); bos = Math.min(bos, L.f.y - ps.y - restA, L.ball ? tmp.setFromMatrixPosition(L.ball.matrixWorld).y - ps.y - T.ucBos : 1e9); }
-      const in_ = Math.max(0, bos) * clamp(oran, 0, 1); st.indir = in_;
+      const in_ = Math.max(0, bos) * clamp(oran, 0, 1) * acik; st.indir = in_;
       for (const L of legs) { L.f.y -= in_; L.p = 1 - smooth(.03, .14, L.f.y - ps.y - restA); }
       let once = 0; for (const ad of ZINCIR) { const a = mix[ad] || 0; don(B[ad], X, a - once); once = a; }
       don(B.thigh_l, X, -mix.pelvis); don(B.thigh_r, X, -mix.pelvis);
@@ -128,13 +129,13 @@
       let egim = govdeEgimi(sy, cy); st.kisit = 0;
       const e0 = T.egimYumusak * D, e1 = T.egimEnCok * D;
       if (egim > e0 && e1 > e0) {
-        const hedef = e0 + (e1 - e0) * (1 - Math.exp(-(egim - e0) / (e1 - e0))), geri = (egim - hedef) * (1 - hava);
+        const hedef = e0 + (e1 - e0) * (1 - Math.exp(-(egim - e0) / (e1 - e0))), geri = (egim - hedef) * (1 - hava) * acik;
         if (geri > 1e-4) { don(B.pelvis, X, -geri); don(B.thigh_l, X, geri); don(B.thigh_r, X, geri); B.pelvis.updateWorldMatrix(false, true); egim -= geri; st.kisit = geri / D; }
       }
       st.egim = egim / D;
 
       // 3) kalça yüksekliği
-      let hd = 0; const kl = T.kalca; for (let i = 0; i < 4; i++) { const k = kl[AD[i]]; if (k) hd += wgt[i] * (k.hedefUst - (k.klipUst - y0) * k.sik - y0); }
+      let hd = 0; const kl = T.kalca; for (let i = 0; i < 4; i++) { const k = kl[AD[i]]; if (k) hd += wgt[i] * (k.hedefUst - (k.klipUst - y0) * k.sik - y0); } hd *= acik;
       let h = hd;
       if (hd > 0) for (const L of legs) {
         A.setFromMatrixPosition(L.thigh.matrixWorld); K.setFromMatrixPosition(L.calf.matrixWorld); F.setFromMatrixPosition(L.foot.matrixWorld);

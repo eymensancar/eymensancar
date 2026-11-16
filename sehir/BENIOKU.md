@@ -24,6 +24,7 @@
 | `kamera.js` | kamera; `SO.cam` |
 | `ses.js`, `ses/` | sesler; `SO.ses` |
 | `anim/*.js` | hareket katmanları (aşağıda) |
+| `harita.js` | küçük harita, tam harita, keşif sisi; `SO.harita` |
 | `ana.js` | sahne, girdi, hep yatay ekran, döngü |
 | `model/` | modeller, `LISANS.md`, `KLIPLER.md` |
 | `test/cek.cjs` | başsız tarayıcıda sabit adımla çalıştırıp kare alan araç |
@@ -71,6 +72,13 @@ Yön: ileri = `(sin yaw, cos yaw)`; model +Z'ye bakar. Birim metre, saniye, rady
 - `solids`: yüklü hücrelerdeki çarpışma kutuları `{ x0, x1, z0, z1, top, duz }` (`duz`: üstüne çıkılabilir).
 - `zemin(x, z)`: `'su'` (sığ su) | `'cim'` | `'kaldirim'`. `biyom(x, z)`: `'vadi' | 'orman' | 'col' | 'kar' | 'kizil'`. `ortam(x, z)`: ortam sesi düzeyleri. `renk(x, z)`: harita rengi `[r, g, b]`. `HALF` = 16000, `start` = doğuş noktası.
 - `update(cam)`: her karede akış (parça üretimi, atma) ve gizleme (görüş alanı, mesafe, tepenin arkası).
+
+## Harita (`SO.harita`, `harita.js`)
+Sağ üstte küçük yuvarlak harita (`#hMini`, 72 px; oyuncu ortada ok, kuzey yukarı, 360 m'lik pencere). Dokununca (ya da `M` tuşu) tam harita açılır (`#hTam`); haritaya ya da `YAKIN`/`DÜNYA` düğmesine dokunmak "Tüm dünya" (32 km) ile oyuncu merkezli "Yakın" (3,2 km) arasında geçer; küçük harita, kapat düğmesi ya da `Esc` kapatır. Tam harita açıkken oyun sürer; perdenin boş yerine dokunuş çubuğa/kameraya gider, panoya dokunuş gitmez.
+- **Keşif sisi:** dünya 16 m'lik hücrelere bölünür (2000 × 2000, hücre başına 1 bit = 500 KB). Oyuncu her 8 m'de çevresindeki 100 m'yi açar; açılan yer kapanmaz. Gidilmeyen yer sistir (`--sis`).
+- **Renk:** `SO.world.renk` yalnız açılan hücreler için, hücre başına bir kez çağrılır; kare başına en çok 48 hücre / 1,5 ms. Doku 2 km'lik karolarda, yalnız açılan karolar için ayrılır (karo başına 62 KB).
+- **Kayıt:** `localStorage` anahtarı `acik-dunya-harita-v1` (satır-uzunluk kodlaması + base64; yalnız açık/kapalı bilgisi, renk yok). 10 sn'de bir ve sayfa gizlenirken yazılır; `?test` kipinde okunmaz/yazılmaz.
+- **Deneme:** `SO.harita.durum()` (`acik` hücre sayısı, `bekleyen` renk sırası, `bellek`, `kayit` boyutu), `SO.harita.acikMi(x, z)`, `SO.harita.ac()/kapat()`, `SO.harita.gorunum('dunya' | 'yakin')`, `SO.harita.ciz()` (hemen yeniden çiz), `SO.harita.kodla()/coz(metin)`.
 
 ## Fizik durumları (`fizik.js`)
 - Su: `ps.suDerin` (m). Sığda (0,25–1,2 m) hız yarıya kadar düşer. Derinlik 1,3 m'yi geçince `ps.yuzme = true`: karakter su yüzeyinde tutulur (`ps.y` ≈ −1,38), hız `tune.yuz` (1,45) / KOŞ ile `tune.yuzHizli` (2,3), zıplama yok; 1,1 m'nin altına inince biter. `ps.yuzmeAt` son değişim anı. Yüzerken `ps.grounded` true kalır.
