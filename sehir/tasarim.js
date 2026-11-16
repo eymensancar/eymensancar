@@ -71,8 +71,9 @@
   }
 
   /* ---------- nokta başına ortak gürültü (tembel: yalnız isteyen şekil hesaplatır) ---------- */
-  let gx = 0, gz = 0, gt = 0, g1v = 0, g1ok = false, g2v = 0, g2ok = false, mik = 1;
+  let gx = 0, gz = 0, gt = 0, g1v = 0, g1ok = false, g2v = 0, g2ok = false, g3v = 0, g3ok = false, mik = 1;
   const G1 = () => { if (!g1ok) { g1ok = true; g1v = fbm2(gx / 31, gz / 31, gt + 1) - .5; } return g1v; };  // ince (≈ 30 m), −.5 … .5
+  const G3 = () => { if (!g3ok) { g3ok = true; g3v = fbm2(gx / 83, gz / 83, gt + 3) - .5; } return g3v; };  // geniş, G2'den bağımsız (kıvrım için ikinci eksen)
   const G2 = () => { if (!g2ok) { g2ok = true; g2v = fbm2(gx / 97, gz / 97, gt + 2) - .5; } return g2v; };  // geniş (≈ 100 m)
 
   /* ---------- şekil ilkelleri ----------
@@ -90,16 +91,16 @@
         if (p.pr) t += G2() * p.pr * .9 * t; if (t >= 1) return y; let k; if (p.pf === 0) { k = 1 - t * t; k *= k; } else if (p.pf === 1) { k = 1 - t; k *= k; } else k = 1 - sm(p.dz, 1, t);
         return y + p.H * k * (1 + (p.pr ? G1() * p.pr * .7 : 0)); } },
     // sırt: çizgi(ler) boyunca dağ sırtı; nokta [x, z, yükseklik, yarı genişlik]. kollar: yan sırt çizgileri. Parçaların en büyüğü alınır (birleşim)
-    sirt: { kur(p) { p.H = say(p.yukseklik, 40); p.W = say(p.genislik, 120); p.pf = PROF[p.profil || 'yuvarlak']; p.pr = say(p.puruz, .35); if (!p.cizgi) hata('sirt: cizgi yok');
-        const S = yiginKur([p.cizgi].concat(p.kollar || []), false, p.H, p.W); let w = 0; for (let i = 0; i < S.n; i++) w = Math.max(w, S.wa[i], S.wb[i]); p.K = [{ S, R: w * 1.25, Ri: 0 }]; },
-      f(p, e, x, z, y) { const S = e.S, segs = e.segs, wob = p.pr ? G2() * p.pr * .8 : 0; let en = 0;
+    sirt: { kur(p) { p.H = say(p.yukseklik, 40); p.W = say(p.genislik, 120); p.pf = PROF[p.profil || 'yuvarlak']; p.pr = say(p.puruz, .35); if (!p.cizgi) hata('sirt: cizgi yok'); p.kv = say(p.kivrim, p.W * .35);
+        const S = yiginKur([p.cizgi].concat(p.kollar || []), false, p.H, p.W); let w = 0; for (let i = 0; i < S.n; i++) w = Math.max(w, S.wa[i], S.wb[i]); p.wm = w; p.K = [{ S, R: w * 1.25 + p.kv, Ri: 0 }]; },
+      f(p, e, x, z, y) { const S = e.S, segs = e.segs, wob = p.pr ? G2() * p.pr * .8 : 0; let en = 0; if (p.kv) { x += G2() * 2 * p.kv; z += G3() * 2 * p.kv; }
         for (let q = 0; q < segs.length; q++) { const i = segs[q], px = x - S.ax[i], pz = z - S.az[i]; let t = (px * S.dx[i] + pz * S.dz[i]) * S.il[i]; t = t < 0 ? 0 : t > 1 ? 1 : t; const ex = px - S.dx[i] * t, ez = pz - S.dz[i] * t;
           let tt = Math.sqrt(ex * ex + ez * ez) / (S.wa[i] + (S.wb[i] - S.wa[i]) * t); tt += wob * tt; if (tt >= 1) continue; let k = 1 - tt; if (p.pf === 1) k = k * Math.sqrt(k); else { k = 1 - tt * tt; k *= k; } const c = (S.va[i] + (S.vb[i] - S.va[i]) * t) * k; if (c > en) en = c; }
         return en > 0 ? y + en * (1 + (p.pr ? G1() * p.pr * .6 : 0)) : y; } },
     // vadi / oluk: çizgi boyunca alçaltma; nokta [x, z, derinlik (ya da kot), yarı genişlik]. kot verilirse taban o mutlak yüksekliğe iner (yalnız alçaltır)
-    vadi: { kur(p) { p.kotlu = p.kot != null; p.D = p.kotlu ? +p.kot : say(p.derinlik, 10); p.W = say(p.genislik, 60); p.to = say(p.taban, p.profil === 'v' ? 0 : .3); p.pr = say(p.puruz, .25);
-        const S = tekCizgi(p, p.D, p.W); let w = 0; for (let i = 0; i < S.n; i++) w = Math.max(w, S.wa[i], S.wb[i]); p.K = [{ S, R: w * 1.2, Ri: 0 }]; },
-      f(p, e, x, z, y) { const S = e.S, segs = e.segs, wob = p.pr ? G2() * p.pr * .7 : 0; let en = 0, ev = 0;
+    vadi: { kur(p) { p.kotlu = p.kot != null; p.D = p.kotlu ? +p.kot : say(p.derinlik, 10); p.W = say(p.genislik, 60); p.to = say(p.taban, p.profil === 'v' ? 0 : .3); p.pr = say(p.puruz, .25); p.kv = say(p.kivrim, p.W * .25);
+        const S = tekCizgi(p, p.D, p.W); let w = 0; for (let i = 0; i < S.n; i++) w = Math.max(w, S.wa[i], S.wb[i]); p.K = [{ S, R: w * 1.2 + p.kv, Ri: 0 }]; },
+      f(p, e, x, z, y) { const S = e.S, segs = e.segs, wob = p.pr ? G2() * p.pr * .7 : 0; let en = 0, ev = 0; if (p.kv) { x += G3() * 2 * p.kv; z += G2() * 2 * p.kv; }
         for (let q = 0; q < segs.length; q++) { const i = segs[q], px = x - S.ax[i], pz = z - S.az[i]; let t = (px * S.dx[i] + pz * S.dz[i]) * S.il[i]; t = t < 0 ? 0 : t > 1 ? 1 : t; const ex = px - S.dx[i] * t, ez = pz - S.dz[i] * t;
           let tt = Math.sqrt(ex * ex + ez * ez) / (S.wa[i] + (S.wb[i] - S.wa[i]) * t); tt += wob * tt; if (tt >= 1) continue; const k = 1 - sm(p.to, 1, tt), v = S.va[i] + (S.vb[i] - S.va[i]) * t;
           if (p.kotlu) { if (k > en) { en = k; ev = v; } } else if (v * k > en) en = v * k; }
@@ -140,9 +141,9 @@
         for (let k = 0; k < n; k++) { const hs = Math.min(S.L - 1e-6, k * ad); while (i < S.n - 1 && hs > s + S.len[i]) { s += S.len[i]; i++; } const t = (hs - s) / S.len[i]; H[k] = once(S.ax[i] + S.dx[i] * t, S.az[i] + S.dz[i] * t); }
         if (p.rampa) { const a = H[0], b = H[n - 1]; for (let k = 0; k < n; k++) H[k] = a + (b - a) * k / (n - 1); }
         else { const w = Math.round(p.yu / ad / 2); if (w > 0) for (let tur = 0; tur < 2; tur++) { const C = H.slice(); for (let k = 1; k < n - 1; k++) { let t = 0, c = 0; for (let j = Math.max(0, k - w); j <= Math.min(n - 1, k + w); j++) { t += C[j]; c++; } H[k] = t / c; } } }
-        p.Hp = H; p.ad = ad; },
+        p.Hp = H; p.adm = ad; },
       f(p, e, x, z, y) { if (!p.Hp || yakin(e.S, e.segs, x, z) >= p.g / 2 + p.kn) return y; const w = (1 - sm(p.g / 2, p.g / 2 + p.kn, U.d)) * p.gc; if (w <= 0) return y;
-        const q = U.s / p.ad, k = Math.min(p.Hp.length - 2, Math.floor(q)), yc = p.Hp[k] + (p.Hp[k + 1] - p.Hp[k]) * (q - k); mik *= 1 - w * .6; return y + (yc - y) * w; } },
+        const q = U.s / p.adm, k = Math.min(p.Hp.length - 2, Math.floor(q)), yc = p.Hp[k] + (p.Hp[k + 1] - p.Hp[k]) * (q - k); mik *= 1 - w * .6; return y + (yc - y) * w; } },
     // kıyı: çizgi kıyı çizgisidir. su: suyun kaldığı taraf ('sol' | 'sag'). Su yanı 0'ın altına iner, kara yanı sahilden başlayıp yükselir (kıyıyı iki yönden de zorlar)
     kiyi: { kur(p) { p.yon = p.su === 'sol' ? -1 : p.su === 'sag' ? 1 : hata('kiyi: su "sol" ya da "sag" olmalı'); p.D = say(p.derinlik, 5); p.ac = say(p.acik, 40); p.sg = say(p.suGenislik, 250); p.sh = say(p.sahil, 14); p.sY = say(p.sahilY, 1.2); p.ym = say(p.yamac, .25); p.et = say(p.etki, 120); p.pr = say(p.puruz, 6); p.uc = say(p.uc, 60);
         p.K = [{ S: tekCizgi(p, 0, 0), R: Math.max(p.sg, p.et) + p.pr, Ri: 0 }]; },
@@ -177,7 +178,7 @@
     const i0 = Math.max(0, Math.floor((S.x0 - R) / HC) - B.gi), i1 = Math.min(B.gn - 1, Math.floor((S.x1 + R) / HC) - B.gi), j0 = Math.max(0, Math.floor((S.z0 - R) / HC) - B.gj), j1 = Math.min(B.gm - 1, Math.floor((S.z1 + R) / HC) - B.gj), yc = HC * .7072, Rm = Math.max(R, Ri) + yc;
     for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) { const cx = (B.gi + i + .5) * HC, cz = (B.gj + j + .5) * HC; let e = null;
       if (S.tip === 'd') { if (Math.hypot(cx - S.cx, cz - S.cz) - S.r > R + yc) continue; e = { p, S, segs: null, ic: false }; }
-      else { const L = []; for (let k = 0; k < S.n; k++) { const px = cx - S.ax[k], pz = cz - S.az[k]; let t = (px * S.dx[k] + pz * S.dz[k]) * S.il[k]; t = t < 0 ? 0 : t > 1 ? 1 : t; let lim = Rm; if (S.tip === 'l' && p.sirtGibi) lim = Math.max(S.wa[k], S.wb[k]) * 1.25 + yc; if (Math.hypot(px - S.dx[k] * t, pz - S.dz[k] * t) <= lim) L.push(k); }
+      else { const L = []; for (let k = 0; k < S.n; k++) { const px = cx - S.ax[k], pz = cz - S.az[k]; let t = (px * S.dx[k] + pz * S.dz[k]) * S.il[k]; t = t < 0 ? 0 : t > 1 ? 1 : t; let lim = Rm; if (S.tip === 'l' && p.sirtGibi) lim = Math.max(S.wa[k], S.wb[k]) * 1.25 + (p.kv || 0) + yc; if (Math.hypot(px - S.dx[k] * t, pz - S.dz[k] * t) <= lim) L.push(k); }
         if (L.length) e = { p, S, segs: Int32Array.from(L), ic: false }; else if (S.tip === 'c' && icinde(S, cx, cz)) e = { p, S, segs: null, ic: true }; else continue; }
       const q = j * B.gn + i; (G[q] = G[q] || []).push(e); }
   }
@@ -201,7 +202,8 @@
     const m = B.mikro === false ? { genlik: 0 } : B.mikro || {}; B.mg = say(m.genlik, .4); B.mo = say(m.olcek, 24);
   }
   const cr = (a, b, c, d, t) => b + .5 * t * (c - a + t * (2 * a - 5 * b + 4 * c - d + t * (3 * (b - c) + d - a))); // Catmull-Rom
-  function izgaraY(T, x, z) { const u = clamp((x - T.x0) / T.ad, 0, T.nx - 1.0001), v = clamp((z - T.z0) / T.ad, 0, T.nz - 1.0001), i = Math.floor(u), j = Math.floor(v), fu = u - i, fv = v - j, Y = T.Y, nx = T.nx, r = [0, 0, 0, 0];
+  const crR = [0, 0, 0, 0];
+  function izgaraY(T, x, z) { const u = clamp((x - T.x0) / T.ad, 0, T.nx - 1.0001), v = clamp((z - T.z0) / T.ad, 0, T.nz - 1.0001), i = Math.floor(u), j = Math.floor(v), fu = u - i, fv = v - j, Y = T.Y, nx = T.nx, r = crR;
     for (let q = 0; q < 4; q++) { const o = clamp(j + q - 1, 0, T.nz - 1) * nx, i0 = i > 0 ? i - 1 : 0, i2 = i + 1, i3 = i + 2 < nx ? i + 2 : nx - 1; r[q] = cr(Y[o + i0], Y[o + i], Y[o + i2], Y[o + i3], fu); } return cr(r[0], r[1], r[2], r[3], fv); }
 
   /* ---------- bölgeler ---------- */
@@ -225,7 +227,7 @@
       for (let j = 0; j < B.wm; j++) for (let i = 0; i < B.wn; i++) B.w[j * B.wn + i] = sm(0, B.gc, Math.max(0, isaretli(K, null, B.x0 + i * 16, B.z0 + j * 16)));
       const kat = H.katmanlar.slice().sort((a, b) => a.sira - b.sira || a.no - b.no);
       for (const k of kat) for (const n of k.nesneler) B.nesneler.push(Object.assign({ katman: k.ad }, n));
-      for (const k of kat) k.sekiller.forEach((v, i) => { const D = SEKIL[v.tip] || hata('bilinmeyen şekil tipi: ' + v.tip + ' (' + B.id + '/' + k.ad + ' #' + i + ')'), p = Object.assign({}, v, { D, katman: k.ad, no: i, sira: B.S.length, sirtGibi: v.tip === 'sirt' || v.tip === 'vadi' || v.tip === 'oluk' });
+      for (const k of kat) k.sekiller.forEach((v, i) => { const D = SEKIL[v.tip] || hata('bilinmeyen şekil tipi: ' + v.tip + ' (' + B.id + '/' + k.ad + ' #' + i + ')'), p = Object.assign({}, v, { def: D, katman: k.ad, no: i, sira: B.S.length, sirtGibi: v.tip === 'sirt' || v.tip === 'vadi' || v.tip === 'oluk' });
         try { D.kur(p, B); } catch (e) { hata(B.id + '/' + k.ad + ' sekiller[' + i + '] (' + v.tip + '): ' + e.message.replace('tasarim: ', '')); }
         B.S.push(p); for (const q of p.K) dizinEkle(B, B.gy, p, q.S, q.R, q.Ri);
         const S0 = p.K[0].S;
@@ -247,17 +249,17 @@
   }
   // şekillerin dünyaya bağlı ön hesapları (patika boy kesiti, düzlüğün kendiliğinden yüksekliği): arazi.js yüklendikten sonra, ilk yükseklik çağrısında bir kez
   function prosH(x, z) { yakala = true; try { return SO.world.yukseklikF(x, z); } finally { yakala = false; } }
-  function tembelYap() { if (!SO.world || !SO.world.yukseklikF) return; tembelTamam = true; for (const B of aktif) for (const p of B.S) if (p.D.tembel) p.D.tembel(p, B, (x, z) => hesap(B, x, z, prosH(x, z), p.sira)); }
+  function tembelYap() { if (!SO.world || !SO.world.yukseklikF) return; tembelTamam = true; for (const B of aktif) for (const p of B.S) if (p.def.tembel) p.def.tembel(p, B, (x, z) => hesap(B, x, z, prosH(x, z), p.sira)); }
 
   /* ---------- kanca: yükseklik ---------- */
   function wAl(B, x, z) { const u = (x - B.x0) / 16, v = (z - B.z0) / 16, i = Math.floor(u), j = Math.floor(v); if (i < 0 || j < 0 || i >= B.wn - 1 || j >= B.wm - 1) return 0; const o = j * B.wn + i, W = B.w, a = W[o], b = W[o + 1], c = W[o + B.wn], d = W[o + B.wn + 1]; if (a + b + c + d === 0) return 0; const fu = u - i, fv = v - j; return a + (b - a) * fu + (c - a) * fv + (a - b - c + d) * fu * fv; }
   // bölgenin tasarlanmış yüksekliği (kenar karışımı ve mikro engebe hariç); son: bu sıradan önceki şekiller uygulanır
   function hesap(B, x, z, h, son) {
-    gx = x; gz = z; gt = B.tohum; g1ok = g2ok = false; mik = 1;
+    gx = x; gz = z; gt = B.tohum; g1ok = g2ok = g3ok = false; mik = 1;
     const T = B.T; let y = T.kip === 'prosedurel' ? (T.carpan === 1 ? h + T.ek : T.orta + (h - T.orta) * T.carpan + T.ek) : T.kip === 'duz' ? T.y : izgaraY(T, x, z);
     if (B.eg) y += (fbm2(x / B.eg.o, z / B.eg.o, gt + 5) - .5) * 2 * B.eg.g;
     const c = B.gy[(Math.floor(z / HC) - B.gj) * B.gn + Math.floor(x / HC) - B.gi];
-    if (c) for (let k = 0; k < c.length; k++) { const e = c[k], p = e.p; if (p.sira >= son) break; y = p.D.f(p, e, x, z, y); }
+    if (c) for (let k = 0; k < c.length; k++) { const e = c[k], p = e.p; if (p.sira >= son) break; y = p.def.f(p, e, x, z, y); }
     return y;
   }
   function yukseklik(x, z, h) {
@@ -275,7 +277,7 @@
   function yerlesim(px, pz, D) {
     if (!derli) derle();
     for (let q = 0; q < aktif.length; q++) { const B = aktif[q]; if (px < B.x0 || px > B.x1 || pz < B.z0 || pz > B.z1) continue; const w = wAl(B, px, pz); if (w <= 0) continue;
-      gx = px; gz = pz; gt = B.tohum; g1ok = g2ok = false;
+      gx = px; gz = pz; gt = B.tohum; g1ok = g2ok = g3ok = false;
       let m = lerp(1, B.vr, w), kesA = 0, kesH = 0, n = 0;
       const c = B.ga[(Math.floor(pz / HC) - B.gj) * B.gn + Math.floor(px / HC) - B.gi];
       if (c) for (let k = 0; k < c.length; k++) { const e = c[k], a = e.p, sf = a.sinif;
@@ -307,7 +309,7 @@
   function zemin(x, z) {
     if (!derli) derle(); let var_ = false;
     for (let q = 0; q < aktif.length; q++) { const B = aktif[q]; if (x < B.x0 || x > B.x1 || z < B.z0 || z > B.z1) continue; const c = B.gzm[(Math.floor(z / HC) - B.gj) * B.gn + Math.floor(x / HC) - B.gi]; if (!c) continue; const w = wAl(B, x, z); if (w <= 0) continue;
-      if (!var_) { var_ = true; Z.toprak = Z.cakil = Z.kum = 0; } gx = x; gz = z; gt = B.tohum; g1ok = g2ok = false;
+      if (!var_) { var_ = true; Z.toprak = Z.cakil = Z.kum = 0; } gx = x; gz = z; gt = B.tohum; g1ok = g2ok = g3ok = false;
       for (let k = 0; k < c.length; k++) { const e = c[k], a = e.p;
         if (a.sinif === 'zp') { const p = a.p; if (yakin(e.S, e.segs, x, z) < p.g / 2 + 4) { const v = (1 - sm(p.g / 2 + .4, p.g / 2 + 3.2, U.d)) * p.tp * w; if (v > Z.toprak) Z.toprak = v; } }
         else if (a.sinif === 'zk') { const p = a.p; if (yakin(e.S, e.segs, x, z) < BUYUK) { const sd = U.d * U.yan * p.yon + G2() * p.pr * 2, v = sm(-p.sh - 3, -p.sh * .6, sd) * (1 - sm(1, 5, sd)) * ucSon(p, e.S) * w; if (v > Z.kum) Z.kum = v; } }
@@ -317,7 +319,7 @@
   function toplama(x, z) {
     if (!derli) derle(); let var_ = false;
     for (let q = 0; q < aktif.length; q++) { const B = aktif[q]; if (x < B.x0 || x > B.x1 || z < B.z0 || z > B.z1) continue; const c = B.ga[(Math.floor(z / HC) - B.gj) * B.gn + Math.floor(x / HC) - B.gi]; if (!c) continue;
-      for (let k = 0; k < c.length; k++) { const e = c[k], a = e.p; if (a.sinif !== 'k') continue; gx = x; gz = z; gt = B.tohum; g1ok = g2ok = false; const v = alanAgirlik(a, e, x, z) * wAl(B, x, z); if (v <= 0) continue;
+      for (let k = 0; k < c.length; k++) { const e = c[k], a = e.p; if (a.sinif !== 'k') continue; gx = x; gz = z; gt = B.tohum; g1ok = g2ok = g3ok = false; const v = alanAgirlik(a, e, x, z) * wAl(B, x, z); if (v <= 0) continue;
         if (!var_) { var_ = true; TP.dal = TP.tas = 1; TP.dalEk = TP.tasEk = 0; } TP.dal *= lerp(1, a.dal, v); TP.tas *= lerp(1, a.tas, v); TP.dalEk += a.dalEk * v; TP.tasEk += a.tasEk * v; } }
     return var_ ? TP : null;
   }

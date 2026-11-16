@@ -15,7 +15,8 @@
    (ve sayfada touch-action: none olduğu) için sürükleme elle yazıldı: parmağın SAHNEYE göre dikey hareketi alınır.
 
    Klavye: F vur (basılıyken) · 1/2/3 el yuvası · I ya da Tab çanta · B çekiç · T tablet · Esc kapat;
-   yerleştirme kipinde Enter yerleştir, R döndür, Esc iptal. */
+   yerleştirme kipinde Enter yerleştir, R döndür, Esc iptal.
+   (F ve 1/2/3'ü oyun.js de dinler; çift işlem olmasın diye el seçimi yalnız o değiştirmediyse buradan yapılır.) */
 (function () {
   'use strict';
   const SO = window.SO;
@@ -30,18 +31,18 @@
     kazma: '<path d="M5.5 20 14.4 8" ' + K + ' stroke-width="2.8"/><path d="M6.5 5.6c5-1.8 10.6.4 13.6 6.6" ' + K + ' stroke-width="3.4"/>',
     mizrak: '<path d="M4.5 19.5 15 9" ' + K + ' stroke-width="2.6"/><path d="M13 7.4 20.6 3.4l-4 7.6z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
     canta: '<path d="M6 10a6 6 0 0 1 12 0v8.5a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M9.5 5.2v-.7a2.5 2.5 0 0 1 5 0v.7M9 13.5h6V17H9z" ' + K + ' stroke-width="2.2"/>',
-    tablet: '<path d="M3.5 6.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M8.5 12 15 8.8M8.5 12l6.5 3.2" ' + K + ' stroke-width="1.8"/><circle cx="8.3" cy="12" r="1.9" fill="currentColor"/><circle cx="15.4" cy="8.6" r="1.9" fill="currentColor"/><circle cx="15.4" cy="15.4" r="1.9" fill="currentColor"/>',
+    tablet: '<path d="M3.5 6.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M13.4 7 9.2 12.6h3l-1.2 4.4 4.4-5.8h-3z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>',
     cekic: '<path d="M5.5 20 14 10" ' + K + ' stroke-width="2.8"/><rect x="10" y="4.6" width="11" height="5.8" rx="1.3" transform="rotate(45 15.5 7.5)" fill="currentColor" stroke="currentColor" stroke-width="1.2"/>',
     kilit: '<rect x="6" y="11" width="12" height="9" rx="2" fill="currentColor"/><path d="M8.6 11V8.2a3.4 3.4 0 0 1 6.8 0V11" ' + K + ' stroke-width="2.4"/>',
     tik: '<path d="M5 12.8 9.6 17.4 19 7.4" ' + K + ' stroke-width="3.2"/>',
     carpi: '<path d="M6 6l12 12M18 6 6 18" ' + K + ' stroke-width="3.2"/>',
     dondur: '<path d="M19.2 12a7.2 7.2 0 1 1-2.4-5.4" ' + K + ' stroke-width="2.8"/><path d="M17.6 2.8v4.4h-4.4" ' + K + ' stroke-width="2.8"/>',
     kutu: '<path d="M12 3.5 20 8v8l-8 4.5L4 16V8z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 8l8 4.5L20 8M12 12.5v8" ' + K + ' stroke-width="2"/>',
-    ok: '<path d="M9 5.5 15.5 12 9 18.5" ' + K + ' stroke-width="3"/>'
+    sok: '<path d="M4.5 19.5 10 14M13 5l6 6-3.2 3.2-6-6zM7.5 7.5 5 5M16.5 16.5 19 19M6 12H3.5M12 18v2.5" ' + K + ' stroke-width="2.4"/>'
   };
   const el = {};
   let acik = '', sekme = 'yapi', secEsya = null, kirli = true, sure = 0, kurulu = false, odakDon = null;
-  const imza = { durum: '', eller: '', vur: '', panel: '', kip: '' };
+  const imza = { durum: '', eller: '', vur: '', panel: '', kip: '', sok: '' };
   const abone = { oyun: false, env: false, yapi: false };
   const onceki = {}; let oncekiHazir = false, sonSeviye = null;
   const notlar = [];
@@ -60,7 +61,7 @@
   // { ok, kilitli, eksik }: modülün kendi denetimi varsa o, yoksa girdi/envanter ve teknoloji tablosundan
   function denetle(sor, girdi, tek) {
     const eksik = {}; let tam = true; for (const k in (girdi || {})) { const v = adet(k); if (v < girdi[k]) { eksik[k] = girdi[k] - v; tam = false; } }
-    const t = tek ? teknoloji(tek) : null, kilit = !!(tek && t && !t.acik), r = guvenli(sor, null);
+    const t = tek ? teknoloji(tek) : null, kilit = tek ? (SO.oyun && SO.oyun.teknolojiAcik ? !guvenli(() => SO.oyun.teknolojiAcik(tek), true) : !!(t && !t.acik)) : false, r = guvenli(sor, null);
     if (r && typeof r === 'object') return { ok: !!r.ok, kilitli: r.kilitli != null ? !!r.kilitli : kilit, eksik: r.eksik || eksik };
     return { ok: tam && !kilit, kilitli: kilit, eksik };
   }
@@ -78,9 +79,11 @@
     const s = document.createElement('div'); s.className = 'not' + (vurgu ? ' vurgu' : ''); const kayit = { el: s, t: simdi, tur: tur || null, n: n || 0, z: 0 }; notYaz(kayit, String(metin));
     el.bildirim.appendChild(s); notlar.push(kayit); notSure(kayit);
   }
+  // oyun.js kazanım, seviye, üretim ve teknoloji bildirimlerini kendi gönderiyorsa (SO.oyun.bildirimler) arayüz aynısını yinelemez
+  const oyunBildirir = () => !!(SO.oyun && SO.oyun.bildirimler);
   function envFark(tur) {
     const say = guvenli(() => SO.envanter.say, null); if (!say) return;
-    const bak = t => { const v = say[t] | 0, o = onceki[t] | 0; if (oncekiHazir && v > o) bildir('+' + (v - o) + ' ' + ad(t).toLocaleLowerCase('tr'), false, t, v - o); onceki[t] = v; };
+    const bak = t => { const v = say[t] | 0, o = onceki[t] | 0; if (oncekiHazir && v > o && !oyunBildirir()) bildir('+' + (v - o) + ' ' + ad(t).toLocaleLowerCase('tr'), false, t, v - o); onceki[t] = v; };
     if (tur) bak(tur); else { for (const t in say) bak(t); for (const t in onceki) if (!(t in say)) onceki[t] = 0; }
     oncekiHazir = true;
   }
@@ -94,13 +97,14 @@
     yaz(el.can, el.canD, c, o.can, o.canMax, 'Can'); yaz(el.aclik, el.aclikD, a, o.aclik, o.aclikMax, 'Açlık');
     el.sevNo.textContent = sv; el.xpD.style.transform = 'scaleX(' + x + ')'; el.seviye.setAttribute('aria-valuenow', Math.round(x * 100));
     el.seviye.setAttribute('aria-valuetext', 'Seviye ' + sv + (o.xpGerek ? ', deneyim ' + Math.round(sayi(o.xp, 0)) + ' / ' + Math.round(o.xpGerek) : ''));
-    if (sonSeviye != null && sv > sonSeviye) bildir('Seviye ' + sv + '!', true); sonSeviye = sv;
+    if (sonSeviye != null && sv > sonSeviye && !oyunBildirir()) bildir('Seviye ' + sv + '!', true); sonSeviye = sv;
   }
 
   /* ---------- el yuvaları ve vurma düğmesi ---------- */
-  function vurSimge(id) { if (!id) return [svg(IK.yumruk), 'Vur']; const s = String(id);
-    if (s.indexOf('balta') >= 0) return [svg(IK.balta), 'Kes']; if (s.indexOf('kazma') >= 0) return [svg(IK.kazma), 'Kaz']; if (s.indexOf('mizrak') >= 0) return [svg(IK.mizrak), 'Sapla'];
-    const e = esya(id); return [e && e.simge ? sarmala(e.simge) : svg(IK.yumruk), 'Vur']; }
+  // vurma düğmesi: eldeki eşyanın kendi simgesi (yuvadakiyle aynı); tabloda simge yoksa adına göre balta/kazma/mızrak, el boşsa yumruk
+  function vurSimge(id) { if (!id) return [svg(IK.yumruk), 'Vur']; const s = String(id), e = esya(id), kendi = e && e.simge ? sarmala(e.simge) : '';
+    if (s.indexOf('balta') >= 0) return [kendi || svg(IK.balta), 'Kes']; if (s.indexOf('kazma') >= 0) return [kendi || svg(IK.kazma), 'Kaz']; if (s.indexOf('mizrak') >= 0) return [kendi || svg(IK.mizrak), 'Sapla'];
+    return [kendi || svg(IK.yumruk), e && e.sinif === 'yiyecek' ? 'Ye' : 'Vur']; }
   function ellerCiz() {
     const e = eller(), im = e.yuva.join(',') + '|' + e.secili + '|' + (SO.esya ? 1 : 0); if (im === imza.eller) return; imza.eller = im;
     for (let i = 0; i < 3; i++) { const b = el.yuva[i], id = e.yuva[i], sec = e.secili === i;
@@ -115,6 +119,14 @@
     const k = guvenli(() => SO.yapi.kip, null) || null, im = k ? k.id + '|' + (k.uygun === false ? 0 : 1) : ''; if (im === imza.kip) return; const onceydi = !!imza.kip; imza.kip = im;
     const var_ = !!k; el.padR.classList.toggle('kip', var_); el.yerlestir.hidden = el.dondur.hidden = el.iptal.hidden = !var_; el.vur.hidden = el.zipla.hidden = var_;
     if (var_) { const uy = k.uygun !== false; el.yerlestir.classList.toggle('soluk', !uy); el.yerlestir.setAttribute('aria-disabled', uy ? 'false' : 'true'); if (!onceydi) { SO.input.vur = false; el.vur.classList.remove('on'); if (acik) kapat(); } }
+  }
+
+  const NEDEN = { dolu: 'Burası dolu', destek: 'Dayanacağı bir yer yok', egim: 'Zemin çok eğimli', su: 'Suya kurulmaz', kilitli: 'Kilitli', malzeme: 'Malzeme yetmiyor' };
+  // sökme: yapi.js önündeki parçayı SO.yapi.sokulebilir ile duyurur ({ ad, iade, engel }); yerleştirme kipinde yoktur
+  function sokCiz() {
+    const b = guvenli(() => SO.yapi.sokulebilir, null) || null, im = b ? b.id + '|' + b.ad + '|' + (b.engel || '') + '|' + JSON.stringify(b.iade || {}) : ''; if (im === imza.sok) return; imza.sok = im;
+    el.sok.hidden = !b; if (!b) return; el.sok.classList.toggle('soluk', !!b.engel); const ia = Object.keys(b.iade || {}).map(k => b.iade[k] + ' ' + ad(k).toLocaleLowerCase('tr')).join(', ');
+    el.sok.setAttribute('aria-label', 'Sök: ' + (b.ad || '') + (ia ? ' (geri gelir: ' + ia + ')' : '') + (b.engel ? '. ' + b.engel : ''));
   }
 
   /* ---------- paneller ---------- */
@@ -132,7 +144,8 @@
   function dugmeDurum() { [['canta', el.bCanta], ['cekic', el.bCekic], ['tablet', el.bTablet]].forEach(p => { const a = acik === p[0]; p[1].classList.toggle('on', a); p[1].setAttribute('aria-expanded', a ? 'true' : 'false'); }); }
   function malzeme(girdi) { let h = ''; for (const k in (girdi || {})) { const v = adet(k), g = girdi[k]; h += '<span class="mlz' + (v < g ? ' eksik' : '') + '" title="' + kacis(ad(k)) + '">' + simge(k) + '<b>' + v + '/' + g + '</b><span class="gizli"> ' + kacis(ad(k)) + (v < g ? ' (eksik)' : '') + '</span></span>'; } return h; }
   const kacis = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  function kilitNot(tek) { const t = teknoloji(tek); return t && t.seviye != null ? 'Seviye ' + t.seviye + '\'de tablette açılır' : 'Tablette açılır'; }
+  function kilitNot(tek) { const t = teknoloji(tek), sv = sayi((SO.oyuncu || {}).seviye, 1); if (!t || t.seviye == null) return 'Tablette açılır';
+    return sv >= t.seviye ? 'Tablette açılabilir: ' + (t.ad || tek) + (t.puan ? ' · ' + t.puan + ' puan' : '') : 'Seviye ' + t.seviye + '\'de tablette açılır'; }
 
   // Panelin gösterdiği her şeyin modeli; imzası değişmedikçe DOM'a dokunulmaz.
   function model() {
@@ -196,7 +209,7 @@
     } else if (d.tek) {
       if (b.classList.contains('acik')) return;
       const t = teknoloji(d.tek), r = b.getAttribute('aria-disabled') === 'true' ? null : guvenli(() => SO.oyun.teknolojiAc(d.tek), null);
-      if (r && r.ok) bildir((t && t.ad ? t.ad : 'Teknoloji') + ' açıldı', true); else { const n = b.querySelector('.neden'); bildir((r && r.neden) || (n && n.textContent) || 'Açılamadı'); salla(b); }
+      if (r && r.ok) { if (!oyunBildirir()) bildir('Açıldı: ' + (t && t.ad ? t.ad : 'teknoloji'), true); } else { const n = b.querySelector('.neden'); bildir((r && r.neden) || (n && n.textContent) || 'Açılamadı'); salla(b); }
     }
     kirli = true; panelCiz();
   }
@@ -204,7 +217,7 @@
   function altTik(e) {
     const b = e.target.closest('button'); if (!b) return;
     if (b.dataset.yuva != null) { const i = +b.dataset.yuva, e2 = eller();
-      if (e2.yuva[i]) guvenli(() => SO.oyun.cikar(i)); else if (secEsya && esya(secEsya) && (esya(secEsya).sinif === 'alet' || esya(secEsya).sinif === 'silah')) guvenli(() => SO.oyun.kusan(secEsya, i)); }
+      if (e2.yuva[i]) guvenli(() => SO.oyun.cikar(i)); else if (secEsya && esya(secEsya) && esya(secEsya).sinif !== 'malzeme') guvenli(() => SO.oyun.kusan(secEsya, i)); }
     else if (b === el.pEylem && secEsya) {
       if (b.dataset.is === 'ye') guvenli(() => SO.oyun.ye(secEsya));
       else { const e2 = eller(); let i = e2.yuva.indexOf(null); if (i < 0) i = e2.secili >= 0 ? e2.secili : 0; guvenli(() => SO.oyun.kusan(secEsya, i)); }
@@ -244,18 +257,19 @@
   function init() {
     if (kurulu) return;
     ['wrap', 'stage', 'panel', 'bildirim', 'padR'].forEach(k => { el[k] = al(k); });
-    Object.assign(el, { can: al('dCan'), aclik: al('dAclik'), seviye: al('seviye'), sevNo: al('sevNo'), xpD: al('xpD'), vur: al('bVur'), zipla: al('bJump'), yerlestir: al('bYerlestir'), dondur: al('bDondur'), iptal: al('bIptal'),
+    Object.assign(el, { can: al('dCan'), aclik: al('dAclik'), seviye: al('seviye'), sevNo: al('sevNo'), xpD: al('xpD'), vur: al('bVur'), sok: al('bSok'), zipla: al('bJump'), yerlestir: al('bYerlestir'), dondur: al('bDondur'), iptal: al('bIptal'),
       bCanta: al('bCanta'), bCekic: al('bCekic'), bTablet: al('bTablet'), govde: al('pGovde'), kaydir: al('pKaydir'), pBaslik: al('pBaslik'), pSekme: al('pSekme'), sekYapi: al('sekYapi'), sekEl: al('sekEl'), pPuan: al('pPuan'), pAlt: al('pAlt'), pAd: al('pAd'), pSinif: al('pSinif'), pEylem: al('pEylem'), pKapat: al('pKapat') });
-    if (!el.panel || !el.can || !el.vur || !el.govde) return;                                           // index.html'de arayüz öğeleri yoksa sessizce çık
+    if (!el.panel || !el.can || !el.vur || !el.govde || !el.sok) return;                                           // index.html'de arayüz öğeleri yoksa sessizce çık
     el.canD = el.can.querySelector('b'); el.aclikD = el.aclik.querySelector('b'); el.yuva = [0, 1, 2].map(i => al('bYuva' + i)); el.pYuva = [0, 1, 2].map(i => al('pYuva' + i));
     el.bCanta.innerHTML = svg(IK.canta); el.bCekic.innerHTML = svg(IK.cekic); el.bTablet.innerHTML = svg(IK.tablet); el.pKapat.innerHTML = svg(IK.carpi);
-    el.yerlestir.innerHTML = svg(IK.tik) + '<span>Yerleştir</span>'; el.dondur.innerHTML = svg(IK.dondur) + '<span>Döndür</span>'; el.iptal.innerHTML = svg(IK.carpi) + '<span>İptal</span>';
+    el.yerlestir.innerHTML = svg(IK.tik) + '<span>Yerleştir</span>'; el.dondur.innerHTML = svg(IK.dondur) + '<span>Döndür</span>'; el.iptal.innerHTML = svg(IK.carpi) + '<span>İptal</span>'; el.sok.innerHTML = svg(IK.sok) + '<span>Sök</span>';
     kurulu = true;
 
     el.yuva.forEach((b, i) => b.addEventListener('click', () => { guvenli(() => SO.oyun.elSec(i)); kirli = true; ellerCiz(); }));
     el.bCanta.addEventListener('click', () => ac('canta')); el.bCekic.addEventListener('click', () => ac('cekic')); el.bTablet.addEventListener('click', () => ac('tablet'));
     tut(el.vur, () => { SO.input.vur = true; }, () => { SO.input.vur = false; });
-    el.yerlestir.addEventListener('click', () => { const k = guvenli(() => SO.yapi.kip, null); if (k && k.uygun === false) { bildir('Buraya yerleşmez'); salla(el.yerlestir); return; } guvenli(() => SO.yapi.onayla()); kipCiz(); });
+    el.yerlestir.addEventListener('click', () => { const k = guvenli(() => SO.yapi.kip, null); if (k && k.uygun === false) { bildir(NEDEN[k.neden] || 'Buraya yerleşmez'); salla(el.yerlestir); return; } guvenli(() => SO.yapi.onayla()); kipCiz(); });
+    el.sok.addEventListener('click', () => { const b = guvenli(() => SO.yapi.sokulebilir, null); if (b && b.engel) { bildir(b.engel); salla(el.sok); return; } guvenli(() => SO.yapi.sok()); imza.sok = '?'; sokCiz(); });
     el.dondur.addEventListener('click', () => { guvenli(() => SO.yapi.dondur()); }); el.iptal.addEventListener('click', () => { guvenli(() => SO.yapi.iptal()); kipCiz(); });
 
     // panel: dokunuş sahneye (çubuk/kamera) gitmez; dışına dokunuş kapatır (ve sahneye gider: oyun sürer)
@@ -267,10 +281,11 @@
     const tam = al('hTam'); if (tam && window.MutationObserver) new MutationObserver(() => { if (!tam.hidden && acik) kapat(); }).observe(tam, { attributes: true, attributeFilter: ['hidden'] });
     if (window.ResizeObserver) new ResizeObserver(kaydirGoster).observe(el.govde);
 
+    let tusOnce = -2; addEventListener('keydown', e => { tusOnce = eller().secili; }, true); // 1/2/3'ü oyun.js de işliyorsa (seçim değişmişse) yinelenmez
     addEventListener('keydown', e => {
       if (e.ctrlKey || e.metaKey || e.altKey) return; const k = e.key.length === 1 ? e.key.toLowerCase() : e.key, kip = guvenli(() => SO.yapi.kip, null);
       if (k === 'f') { if (!e.repeat && !kip) { SO.input.vur = true; el.vur.classList.add('on'); } }
-      else if (k === '1' || k === '2' || k === '3') { if (!e.repeat) { guvenli(() => SO.oyun.elSec(+k - 1)); kirli = true; } }
+      else if (k === '1' || k === '2' || k === '3') { if (!e.repeat) { if (eller().secili === tusOnce) guvenli(() => SO.oyun.elSec(+k - 1)); kirli = true; } }
       else if (k === 'i' || k === 'Tab') { e.preventDefault(); if (!e.repeat) ac('canta'); }
       else if (k === 'b') { if (!e.repeat) ac('cekic'); }
       else if (k === 't') { if (!e.repeat) ac('tablet'); }
@@ -283,7 +298,7 @@
     if (SO.input.vur === undefined) SO.input.vur = false;
     aboneOl(); envFark(); yenile();
   }
-  function yenile() { if (!kurulu) return; kirli = false; durumCiz(); ellerCiz(); kipCiz(); if (acik) panelCiz(); }
+  function yenile() { if (!kurulu) return; kirli = false; durumCiz(); ellerCiz(); kipCiz(); sokCiz(); if (acik) panelCiz(); }
   function update(dt) {
     if (!kurulu) return; kipCiz(); sure += dt;
     if (!kirli && sure < YOKLA) return;

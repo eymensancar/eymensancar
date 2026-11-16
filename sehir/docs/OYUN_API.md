@@ -43,7 +43,7 @@ Betik sırası (index.html, sabit): … `toplama.js` → `oyun.js` → `yapi.js`
 | `yatak` | Yatak | 4 | 2 | yapı: yatak (ileride doğuş noktası), masa |
 | `sandik` | Sandık | 5 | 2 | yapı: sandık |
 | `tas_yapi` | Taş yapı | 5 | 3 | yapı: taş zemin, taş duvar |
-| `yay` | Yay ve ok | 5 | 3 | masa tarifi: yay, ok |
+| `yay` | Yay ve ok | 5 | 3 | ileride (masa tarifi: yay, ok; eşyaları henüz yok) |
 | `demir_alet` | Demir aletler | 6 | 4 | masa tarifi: demir balta, demir kazma (ileride) |
 | `tarla` | Tarla | 6 | 3 | yapı: tarla |
 | `zirh` | Zırh | 7 | 4 | ileride |
@@ -55,3 +55,15 @@ Betik sırası (index.html, sabit): … `toplama.js` → `oyun.js` → `yapi.js`
 | `atesli_silah` | Ateşli silah | 10 | 10 | ileride: tüfek |
 
 Eşya id'leri (`SO.esya`): malzeme `dal`, `tas`, `odun`, `lif`, `cakmaktasi`, `ip`, `tahta`; alet `tas_balta`, `tas_kazma`; silah `mizrak`; yiyecek `bogurtlen`.
+
+## oyun.js'in sözleşmeye ekledikleri (adlar/imzalar değişmedi; hepsi ek)
+- `SO.oyun.teknolojiAcik(id)` → bool. `teknolojiAc` → `neden`: `'yok' | 'acik' | 'seviye' | 'puan'`.
+- `SO.oyun.uretebilir(id)` sonucunda ek alan `masaGerek` (masa tarifi ve yakında üretim masası yok; o zaman `ok` false). Masa araması: `SO.yapi.yakin('uretim_masasi', 3.5)`.
+- `SO.oyun.dinle` → `ne` değerlerine ek: `'olum'` (yeniden doğuş). `'can'` ve `'aclik'` tam sayı değişince gelir (her karede değil).
+- `SO.oyun.kusan(id, i)`: `i` verilmezse ilk boş yuva; yalnız alet/silah/yiyecek kuşanılır (malzeme `false`). Eşya çantada kalır (yuva yalnız gösterir); sayısı 0'a inince yuva kendiliğinden boşalır. Üretilen yeni alet boş yuvaya kendiliğinden girer, el boşsa seçilir.
+- `SO.oyun.eldeki()` → seçili eşya id'si ya da `null`. `SO.oyun.hedef` → önündeki vurulabilir nesne `{ id, sinif, tur, can, canMax, x, z }` ya da `null` (can çubuğu için; 0,12 sn'de bir yenilenir).
+- `SO.esya[id]` ek alanları: alet/silah `vurus`, `hasar: { agac, kaya, cali, kaktus }`; yiyecek `besin`, `sifa`. `SO.tarifler[]` ek alan `xp`.
+- Yiyecek seçiliyken `SO.input.vur` = ye (hareketli); `SO.oyun.ye(id)` doğrudan yer (hareketsiz).
+- `SO.oyun.hasar(n, neden)`, `SO.oyun.xpIcin(seviye)`, `SO.oyun.bildirimler` (son 40 bildirim), `SO.oyun.durum()`, `kodla()/coz()`, `sifirla()`.
+- `SO.envanter.ekle` artık `SO.esya`'daki bütün türleri kabul eder (önceden yalnız dal/taş).
+- Klavye: `F` = `SO.input.vur`, `1`/`2`/`3` = `elSec` (oyun.js bağlar; arayüz ayrıca bağlamasın).

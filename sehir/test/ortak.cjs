@@ -19,7 +19,7 @@ async function ac(secenek) {
   pg.on('pageerror', e => hatalar.push(e.message)); pg.on('console', m => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) hatalar.push(m.text()); });
   const kapat = async () => { await b.close(); srv.close(); };
   await pg.goto(`http://localhost:${port}/?test${s.tasarim ? '&tasarim=' + encodeURIComponent(s.tasarim) : ''}`);
-  try { await pg.waitForFunction(() => window.SO && window.SO.ready, null, { timeout: 180000 }); }
+  try { await pg.waitForFunction(() => (window.SO && window.SO.ready) || /Açılamadı/.test((document.getElementById('load') || {}).textContent || ''), null, { timeout: 180000 }); if (!(await pg.evaluate(() => !!window.SO.ready))) throw new Error('x'); }
   catch (e) { const yazi = await pg.evaluate(() => (document.getElementById('load') || {}).textContent).catch(() => ''); await kapat(); throw new Error('Oyun açılmadı: ' + yazi + '\n' + hatalar.join('\n')); }
   if (s.gizle !== false) await pg.addStyleTag({ content: '#joy,.pad,#fps,#hMini,#envanter,#hTam,#arayuz,.arayuz,[id^="ui"],[id^="ar"]{display:none!important}' });
   await pg.evaluate(SAYFA);

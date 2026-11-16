@@ -34,7 +34,8 @@
     esyaEgim: .35, citEgim: 1.2,
     gizle: 420, cizgiUzak: 170, kutuUzak: 90,
     kes: 1.0,                   // oyuncu-kamera arasındaki yapıların açıldığı yarıçap (m); 0 = kapalı
-    sokUzak: 1.1, vurgu: true   // sökme hedefi: oyuncunun bu kadar önündeki nokta; hedefin çerçevesi çizilsin mi
+    sokUzak: 1.1, vurgu: true,  // sökme hedefi: oyuncunun bu kadar önündeki nokta; hedefin çerçevesi çizilsin mi
+    xTusu: true                 // klavyede X = sök (arayüz kendi düğmesini/tuşunu bağlarsa false yapar; Enter/R/Esc arayüzde)
   };
   const yuv = v => Math.round(v * 100) / 100, hyp = Math.hypot;
 
@@ -495,6 +496,7 @@
     kurulu = true; kayitOku(); kutuYaz(); cizYaz();
     if (SO.envanter && SO.envanter.dinle) SO.envanter.dinle(() => { denetKirli = true; });
     if (SO.oyun && SO.oyun.dinle) SO.oyun.dinle(ne => { if (ne === 'teknoloji') denetKirli = true; });
+    addEventListener('keydown', e => { if (!tn.xTusu || e.repeat || e.ctrlKey || e.metaKey || e.altKey || kip || (e.key !== 'x' && e.key !== 'X')) return; const h = e.target && e.target.tagName; if (h === 'INPUT' || h === 'TEXTAREA') return; sok(); });
     addEventListener('visibilitychange', () => { if (document.hidden && kayitT) kayitYaz(); }); addEventListener('pagehide', () => { if (kayitT) kayitYaz(); });
   }
   function update(dt) {

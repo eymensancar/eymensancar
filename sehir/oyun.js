@@ -16,7 +16,7 @@
      His: değme anında yonga/taş kırığı/yaprak parçacıkları ve kamerada 1–2 cm'lik kısa sarsıntı.
    EL YUVALARI: SO.eller.yuva[3] eşya kimliği tutar (sayı çantada kalır; sayı 0'a inerse yuva boşalır). Seçili alet sağ ele (hand_r) bağlı küçük
      bir 3B ağ olarak görünür (düz renk + üç basamaklı gölge + mürekkep dış çizgi). Sap elin +Z ekseninde (başparmak tarafı), parmaklara doğru yatık.
-     Mızrak yürürken yatay taşınır, saplarken parmak ekseni boyunca ileri döner. Yiyecek seçiliyken vur = ye (Consume klibi, sol el).
+     Mızrak yürürken yatık taşınır, saplarken elin duruşundan bağımsız olarak bakılan yöne uzanır. Yiyecek seçiliyken vur = ye (Consume klibi, sol el).
    KAYIT: localStorage `acik-dunya-oyun-v1` = { v: 1, o: { can, aclik, seviye, xp, puan }, el: { yuva, secili }, tek: [açık teknoloji id'leri],
      kal: [kaldırılan nesne id'leri], kesif: "kare;kare;…" (36 tabanı) }. Değişiklikten 3 sn sonra, 20 sn'de bir ve sayfa gizlenirken yazılır;
      `?test` kipinde okunmaz/yazılmaz. Eşya sayıları toplama.js'in kaydında (`acik-dunya-envanter-v1`, `say`).
@@ -244,9 +244,9 @@
     elGuncelle();
   }
   /* bağlama: sap elin +Z ekseninden parmaklara (+Y) doğru `aci` kadar yatık; vuran yüz parmak tarafına bakar. ofs: avuç ortası (el ekseninde, m).
-     mızrak: taşırken hafif yatık (yatay), saplarken parmak ekseni boyunca (aci2) */
-  const BAG = { balta: { aci: 50, ofs: [-.028, .085, .012] }, kazma: { aci: 42, ofs: [-.028, .085, .012] }, mizrak: { aci: 12, aci2: 88, ofs: [-.03, .08, .01] }, yemis: { aci: 0, ofs: [-.045, .09, .02] } };
-  const bX = new T3.Vector3(), bY = new T3.Vector3(), bZ = new T3.Vector3(), bM = new T3.Matrix4();
+     mızrak saplarken bu bağlama yerine bakılan yöne çevrilir (aletGuncelle) */
+  const BAG = { balta: { aci: 50, ofs: [-.028, .085, .012] }, kazma: { aci: 42, ofs: [-.028, .085, .012] }, mizrak: { aci: 12, ofs: [-.03, .08, .01] }, yemis: { aci: 0, ofs: [-.045, .09, .02] } };
+  const bX = new T3.Vector3(), bY = new T3.Vector3(), bZ = new T3.Vector3(), bM = new T3.Matrix4(), bQ = new T3.Quaternion(), bQ2 = new T3.Quaternion();
   function baglaYaz(g, ad, k) { const b = BAG[ad], a = lerp(b.aci, b.aci2 == null ? b.aci : b.aci2, k) * Math.PI / 180, o = b.ofs;
     bY.set(0, Math.sin(a), Math.cos(a)); bZ.set(0, Math.cos(a), -Math.sin(a)); bX.crossVectors(bY, bZ); bM.makeBasis(bX, bY, bZ); g.quaternion.setFromRotationMatrix(bM); g.position.set(o[0], o[1], o[2]); }
   function elGuncelle() { // yuvalar: çantada kalmayan eşya yuvadan düşer; seçili aletin ağı görünür
@@ -258,7 +258,10 @@
     if (!tutac || !gorunen) return; const g = aletAg[gorunen], S = SO.vurAnim && SO.vurAnim.durum, ps = SO.ps;
     const sapla = gorunen === 'mizrak' && S && S.tur === 'mizrak' ? clamp(S.uyg * 1.6, 0, 1) : 0;
     if (gorunen === 'yemis' && tutacSol) { const sol = !!S && S.tur === 'ye' && S.uyg > .3; if ((g.parent === tutacSol) !== sol) (sol ? tutacSol : tutac).add(g); } // yerken sol elde (Consume klibi sol elle)
-    baglaYaz(g, gorunen, sapla); if (g.parent === tutacSol) g.position.x = -g.position.x;
+    baglaYaz(g, gorunen, 0); if (g.parent === tutacSol) g.position.x = -g.position.x;
+    if (sapla > 0) { // saplama: mızrak elin duruşundan bağımsız, karakterin baktığı yöne (hafif aşağı) uzanır
+      const p = g.parent; p.updateWorldMatrix(true, false); bY.set(Math.sin(ps.yaw), -.06, Math.cos(ps.yaw)).normalize(); bX.set(Math.cos(ps.yaw), 0, -Math.sin(ps.yaw)); bZ.crossVectors(bX, bY);
+      bM.makeBasis(bX, bY, bZ); bQ.setFromRotationMatrix(bM); p.getWorldQuaternion(bQ2); g.quaternion.slerp(bQ2.invert().multiply(bQ), sapla); }
     g.visible = !(ps.yuzmeBlend > .5) && !(ps.tirmanBlend > .3); // yüzerken ve tırmanırken alet görünmez (eller meşgul)
   }
 

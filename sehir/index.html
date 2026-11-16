@@ -17,9 +17,12 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
 #padR .btn{position:absolute}
 #bVur,#bYerlestir{width:64px;height:64px;right:var(--kr);bottom:22px}
 #bJump,#bDondur{width:60px;height:60px;right:calc(var(--kr) + 76px);bottom:34px}
-#bAl,#bIptal{width:54px;height:54px;right:calc(var(--kr) + 59px);bottom:105px;font-size:14px}
+#bAl,#bIptal{width:54px;height:54px;right:calc(var(--kr) + 59px);bottom:105px}
+#bAl{font-size:14px}
 #bRun{width:56px;height:56px;right:calc(var(--kr) + 146px);bottom:24px;font-size:13px}
 #bVur svg{width:34px;height:34px}
+#bSok{width:54px;height:54px;right:calc(var(--kr) + 125px);bottom:98px}
+#bSok.soluk{opacity:.55}
 #padR.kip #bAl{display:none}
 .btn.yb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font:700 9.5px/1 var(--ui);background:var(--paper);cursor:pointer}
 .btn.yb svg{width:22px;height:22px}
@@ -178,6 +181,7 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
       <button class="btn" id="bAl" type="button" hidden>AL</button>
       <button class="btn" id="bRun" type="button">KOŞ</button>
       <button class="btn" id="bVur" type="button" aria-label="Vur"></button>
+      <button class="btn yb" id="bSok" type="button" hidden></button>
       <button class="btn yb" id="bYerlestir" type="button" hidden></button>
       <button class="btn yb" id="bDondur" type="button" hidden></button>
       <button class="btn yb" id="bIptal" type="button" hidden></button>
