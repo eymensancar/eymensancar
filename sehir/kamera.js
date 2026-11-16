@@ -34,7 +34,7 @@
     thin: 1.0,          // bundan ince engeller (ağaç gövdesi, lamba direği) kamerayı yaklaştırmaz
     inK: 14, outK: 3.2, outHold: .3, // yaklaşma / uzaklaşma hızı, engel kalktıktan sonra bekleme (sn)
     whisk: [.22, .45, .7],  // yan ışın açıları (rad)
-    minD: 1.2, closeUp: .8, closeLook: .4, // minD'den yakında kamera yukarı çıkar, bakış noktası göğse iner
+    minD: 1.2, closeUp: .95, closeLook: .4, // minD'den yakında kamera yukarı çıkar, bakış noktası göğse iner
     floor: .3           // kamera zeminin en az bu kadar üstünde
   };
   let lastYaw = null, lastPitch = null, has = false, lastLanded = -9, holdT = 0, fovNow = 0, big = null, bigN = -1;
@@ -81,9 +81,10 @@
     lastYaw = st.yaw; lastPitch = st.pitch;
 
     // 1. yumuşak takip + ileriye bakma
-    const lm = Math.min(tn.leadMax, spd * tn.lead) * (st.cur == null ? 1 : clamp(st.cur / st.dist, 0, 1)), lx = spd > .05 ? ps.vx / spd * lm : 0, lz = spd > .05 ? ps.vz / spd * lm : 0;
+    const lm = Math.min(tn.leadMax, spd * tn.lead) * (st.cur == null ? 1 : smooth(tn.minD, st.dist, st.cur)), lx = spd > .05 ? ps.vx / spd * lm : 0, lz = spd > .05 ? ps.vz / spd * lm : 0;
     yay(Ld, 'x', 'vx', lx, tn.leadT, dt); yay(Ld, 'z', 'vz', lz, tn.leadT, dt);
-    yay(P, 'x', 'vx', tx + Ld.x, tn.followT, dt); yay(P, 'z', 'vz', tz + Ld.z, tn.followT, dt); yay(P, 'y', 'vy', ty, ps.grounded ? tn.followTY : tn.followTYAir, dt);
+    const fT = tn.followT * (st.cur == null ? 1 : .25 + .75 * clamp(st.cur / tn.minD, 0, 1)); // kamera çok yakınken sıkı takip (karakter kadrajdan çıkmasın)
+    yay(P, 'x', 'vx', tx + Ld.x, fT, dt); yay(P, 'z', 'vz', tz + Ld.z, fT, dt); yay(P, 'y', 'vy', ty, ps.grounded ? tn.followTY : tn.followTYAir, dt);
     disari(P, tn.margin + .02);
     st.px = P.x; st.py = P.y; st.pz = P.z;
 

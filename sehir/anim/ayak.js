@@ -13,7 +13,7 @@
      ayak bileğinin dünya dönüşü klipteki gibi bırakılır (taban düz kalır).
    - Dururken (hız ≈ 0) yere basan ayağın dünya XZ konumu kilitlenir; klip konumu kilitten çok uzaklaşırsa (lockBreak) ayak küçük bir
      adımla yeni yerine geçer.
-   - Havada (ps.grounded değil / ps.airBlend yüksek) ağırlık 0'a iner: katman tamamen kapanır.
+   - Havada (ps.grounded değil) ağırlık 0'a iner: katman tamamen kapanır; yere inmeden hemen önce (preLand) yeniden açılmaya başlar.
    Ayarlar: SO.tune.ayak. Dışarıya bilgi: SO.ayak (w, base, legs: ölçüm/deneme için). */
 (function () {
   'use strict';
@@ -29,7 +29,7 @@
     hipK: 10,          // kalça yüksekliği yumuşatması
     maxOff: .32,       // bir ayağın ps.y'ye göre en çok kayması (m)
     reach: .995,       // bacak en çok boyunun bu oranına kadar uzar (diz kilitlenip sıçramasın)
-    onK: 10, offK: 18, // katman ağırlığı: yere inince açılma / havalanınca kapanma hızı
+    onK: 22, offK: 18, preLand: .4, // katman ağırlığı: yere inince açılma / havalanınca kapanma hızı
     lock: true, lockSpeed: .12, lockBreak: .2, lockIn: 30, lockOut: 8, lockOutMove: 14, stepLift: .03
   };
   const V3 = T3.Vector3, Q = T3.Quaternion;
@@ -70,7 +70,9 @@
       root.position.set(ps.x, ps.y, ps.z); root.rotation.order = 'YXZ'; root.rotation.set(ps.leanFwd || 0, yaw, ps.lean || 0); root.updateMatrixWorld(true);
       const isin = !st.has || Math.hypot(ps.x - st.lx, ps.z - st.lz) > 1.5; // ilk kare ya da ışınlanma: yumuşatmaları sıfırla
       st.lx = ps.x; st.lz = ps.z; st.has = true;
-      const wT = ps.grounded ? clamp(1 - (ps.airBlend || 0) * 1.5, 0, 1) : 0; st.w = isin ? wT : damp(st.w, wT, wT < st.w ? tn.offK : tn.onK, dt); const w = st.w;
+      // ağırlık: yerdeyken açık (iniş klibi sürerken de: ps.airBlend hâlâ yüksek olabilir ama ayaklar zemine oturmalı); havada kapalı;
+      // yere çok yaklaşmış düşüşte önceden açılmaya başlar ki iniş karesinde ayak kaldırıma gömülmesin
+      const wT = ps.grounded ? 1 : (ps.vy < 0 && ps.y - ps.groundY < tn.preLand) ? 1 : 0; st.w = isin ? wT : damp(st.w, wT, wT < st.w ? tn.offK : tn.onK, dt); const w = st.w;
       const standing = tn.lock && ps.grounded && ps.speed < tn.lockSpeed && ps.wantMag < .08 && (ps.airBlend || 0) < .05 && Math.abs(ps.yawRate || 0) < .3;
       const idt = dt > 1e-5 ? 1 / dt : 0;
       for (const L of legs) {
@@ -85,7 +87,7 @@
         L.lockW = damp(L.lockW, L.lockOn ? 1 : 0, L.lockOn ? tn.lockIn : standing ? tn.lockOut : tn.lockOutMove, dt); if (L.lockW < .001 && !L.lockOn) L.lockW = 0;
         const lw = L.lockW * L.lockW * (3 - 2 * L.lockW) * w, dx = (L.lx - F.x) * lw, dz = (L.lz - F.z) * lw; L.tx = F.x + dx; L.tz = F.z + dz;
         // ayağın altındaki zemin: bilek + ayak ortası + gidiş yönünde biraz ilerisi; en yükseği
-        const ax = vx * tn.ahead, az = vz * tn.ahead, toe = 1 + (tn.toe - 1) * L.p, bx = L.tx + (Bp.x - F.x) * toe, bz = L.tz + (Bp.z - F.z) * toe;
+        const ax = vx * tn.ahead, az = vz * tn.ahead, toe = 1 + (tn.toe - 1) * (1 - smooth(.01, .04, F.y - ps.y - tn.restAnkle)), bx = L.tx + (Bp.x - F.x) * toe, bz = L.tz + (Bp.z - F.z) * toe;
         let g = Math.max(world.groundY(L.tx, L.tz), world.groundY(bx, bz));
         if (vm > .2) g = Math.max(g, world.groundY(L.tx + ax, L.tz + az), world.groundY(bx + ax, bz + az), world.groundY(L.tx + ax * .5, L.tz + az * .5));
         L.g = isin ? g : damp(L.g, g, g > L.g ? tn.upK : tn.downK, dt);
@@ -93,11 +95,11 @@
       }
       // kalça: yere basan ayaklardan alçaktakinin zemini (salınımdaki ayak, ötekinin değerine yaklaşır: kalçayı çekmez)
       const l = legs[0], r = legs[1], hi = Math.max(l.off, r.off), lo = Math.min(l.off + (hi - l.off) * (1 - l.p), r.off + (hi - r.off) * (1 - r.p));
-      st.base = (isin || w < .01) ? ps.y + lo * (w < .01 ? 0 : 1) : damp(st.base, ps.y + lo, tn.hipK, dt);
+      st.base = (isin || !ps.grounded) ? (ps.grounded ? ps.y + lo : ps.y) : damp(st.base, ps.y + lo, tn.hipK, dt); // havada kalça kaymaz
       st.base = clamp(st.base, ps.y - tn.maxOff, ps.y + tn.maxOff);
       const rootDy = ps.rootDy = (st.base - ps.y) * w;
       for (const L of legs) {
-        const lift = Math.max(0, tn.minBall - (L.by - ps.y)) * w, step = L.rel ? tn.stepLift * Math.sin(Math.PI * L.lockW) * w : 0;
+        const lift = Math.max(0, tn.minBall - (L.by - ps.y)) * (ps.grounded ? 1 : w), step = L.rel ? tn.stepLift * Math.sin(Math.PI * L.lockW) * w : 0;
         const dy = w * L.off - rootDy + lift + step; L.err = dy;
         if (Math.abs(dy) < 4e-4 && L.lockW === 0) continue;
         F.set(L.fx, L.fy, L.fz); T.set(L.tx, L.fy + dy, L.tz); ik(L, yaw);
