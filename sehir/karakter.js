@@ -15,7 +15,7 @@
     g.setAttribute('mask', new T3.BufferAttribute(out, 3));
   }
   async function build(scene) {
-    const [body, lib, hair] = await Promise.all([load('model/insan.json'), load('model/hareketler.wasm'), load('model/sac.json')]);
+    const [body, lib, hair, lib2] = await Promise.all([load('model/insan.json'), load('model/hareketler.wasm'), load('model/sac.json'), load('model/hareketler2.wasm')]);
     const root = new T3.Group(), model = body.scene; root.add(model); scene.add(root);
     const grad = gradient(), bones = {}, meshes = [];
     model.traverse(o => { if (o.isBone) bones[o.name] = o; if (o.isSkinnedMesh) meshes.push(o); });
@@ -41,7 +41,7 @@
     const sacAg = []; hair.scene.traverse(o => { if (o.isMesh) sacAg.push(o); }); sacAg.forEach(o => { o.material = sacMat; o.add(new T3.Mesh(o.geometry, hull(.008, false))); });
     root.add(hair.scene); hair.scene.updateMatrixWorld(true); if (bones.Head) bones.Head.attach(hair.scene);
     const mixer = new T3.AnimationMixer(model), clips = {}, actions = {};
-    lib.animations.forEach(c => { c.tracks = c.tracks.filter(t => !/^(root|Armature)\.(position|scale)$/.test(t.name)); clips[c.name] = c; });
+    lib.animations.concat(lib2.animations.filter(c => c.name !== 'A_TPose')).forEach(c => { c.tracks = c.tracks.filter(t => !/^(root|Armature)\.(position|scale)$/.test(t.name)); clips[c.name] = c; });
     // action(ad): klibin oynatıcısını verir (ağırlık 0 ile oynar durumda başlar; katman ağırlığı ve zamanı kendisi ayarlar)
     const action = name => { let a = actions[name]; if (!a) { const c = clips[name]; if (!c) throw new Error('klip yok: ' + name); a = actions[name] = mixer.clipAction(c); a.enabled = true; a.setEffectiveWeight(0); a.play(); } return a; };
     SO.char = { root, model, mixer, clips, actions, action, bones, RENK };

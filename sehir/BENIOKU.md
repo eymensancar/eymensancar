@@ -50,6 +50,8 @@ Her katman tek dosyadır ve `SO.anim.register({ name, order, init(ctx), update(c
 | `anim/ziplama.js` | 20 | `input.jump` tüketimi (arabellek 0,12 sn, kenar toleransı 0,10 sn), `ps.jumpNow`, `ps.airBlend` (hazırlık ve inişte yerdeyken de > 0 olabilir), `ps.jumpPhase` (`'' \| 'start' \| 'air' \| 'land'`), `ps.speedScale`, `ps.landK` (iniş şiddeti 0..1, yalnız `'land'` evresinde), zıplama/iniş olayları. `tune.gravity = 25`, `tune.jumpSpeed = 7` değerlerini bu katman kurar; ayarlar `SO.tune.ziplama`. Kenar toleransında (havadayken) kalkış hızını `ps.vy`/`ps.jumpedAt`/`ps.airTime` yazarak kendisi verir. `post`ta koşarak zıplamada `pelvis` ve `thigh_l/r` kemiklerini döndürür |
 | `anim/canlilik.js` | 30 | nefes, ağırlık aktarma, baş bakışı, dururken küçük hareketler, atalet, iniş sarsıntısı (hepsi `post`, klip ağırlığına dokunmaz). Yazdığı alanlar: `ps.yorgunluk` (0..1), `ps.nefes` (-1..1), `ps.bakisYaw`, `ps.bakisPitch` (rad, gövdeye göre), `ps.agirlik` (-1..1; + = ağırlık sol bacakta), `ps.durusOlay`. Ayarlar `SO.tune.canlilik` (`siddet` hepsini kısar; 0 = kapalı). Dokunduğu kemikler: pelvis (en çok 2,5° dönüş, konum yok), spine_01–03, neck_01, Head, clavicle_l/r, upperarm_l/r |
 | `anim/durus.js` | 35 | duruş düzeltmesi (yalnız `post`, `ps`'e yazmaz). Klipler bu modelde kambur oynuyor (göğüs 25–30° öne kırık, baş 13–23° düşük; hafif koşu klibinde gövde 25°, deparda 39° öne): oynayan taban klibin ağırlığıyla karışan sabit açılar (`SO.tune.durus.duzelt`) pelvis → spine_01–03 → neck_01 → Head zincirinden geri alınır (sonuç: dur ≈ 1°, yürü ≈ 4°, hafif koşu ≈ 8°, depar ≈ 15°; baş 3–6°). Toplam gövde eğimi (pelvis → boyun, `ps.leanFwd` dahil) yerdeyken `egimEnCok` (25°) ile sınırlanır. Kalçanın dikey zıplaması ve uçuştaki ayak boşluğu adım ölçeğine uysun diye sıkıştırılır (`kalca`; "çömelerek koşma" bundan gidiyor), bilekler önceki dünya konumuna iki kemikli çözümle geri konur (ayak kayması değişmez). Dokunduğu kemikler: pelvis (dönüş + konum), spine_01–03, neck_01, Head, upperarm_l/r, thigh/calf/foot_l/r. Kapatmak: `SO.tune.durus.on = false`; ölçüm: `SO.durus` (`egim`, `kaldir`, `indir`, `kisit`). Klip ölçümleri dosya başında |
+| `anim/yuzme.js` | 22 | sığ suda yürüme, yüzme klipleri, `ps.yuzmeBlend`, su olayları |
+| `anim/tirmanma.js` | 24 | düz kayalara çıkma (`ps.kilit` ile konumu sürer), `ps.tirmanBlend` |
 | `anim/ayak.js` | 40 | ayakların zemine oturması, `ps.rootDy` |
 
 **Ayak katmanı (`anim/ayak.js`) notları:** `post` başında kökü `(ps.x, ps.y, ps.z)` + `(leanFwd, yaw, lean)` ile yerine koyup `updateMatrixWorld` çağırır (ana.js aynı değerleri `rootDy` ekleyerek hemen sonra yazar); bu yüzden `ps.yaw/lean/leanFwd` en geç `update` içinde yazılmış olmalı. Yalnız `thigh/calf/foot_l/r` kemiklerine ve `ps.rootDy`'ye dokunur; bacak kemiklerine `post`ta dokunan başka katman 40'tan küçük `order` ile çalışmalı. Her ayak, altındaki zemine (`world.groundY`) göre iki kemikli ters kinematikle oturur; kalça yere basan alçak ayağa göre iner/kalkar (`ps.y + ps.rootDy` fiziğin basamak yumuşatmasından bağımsızdır). Havada kapalıdır (yere değmeden hemen önce açılmaya başlar; iniş klibi sürerken açıktır). Dururken ayak dünya konumu kilitlenir. Ayarlar `SO.tune.ayak` (`on: false` katmanı kapatır), ölçüm için `SO.ayak` (`w` ağırlık, `legs[i].off/p/lockW`).
@@ -60,10 +62,27 @@ Her katman tek dosyadır ve `SO.anim.register({ name, order, init(ctx), update(c
 
 Yön: ileri = `(sin yaw, cos yaw)`; model +Z'ye bakar. Birim metre, saniye, radyan. Hızlar: yürüme 1,55, hafif koşu 3,6, depar 6,4 m/sn (çubuk yarıdan azsa yürür, tam itilince hafif koşar, KOŞ basılıyken depar).
 
+## Dünya (`SO.world`, `arazi.js`)
+32 km × 32 km, parça parça üretilir (hiçbir şey saklanmaz; tek bir yükseklik işlevi). Ortada yeşil vadi (başlangıç, ~9 km), kuzey orman, doğu çöl, batı karlı dağlar, güney kızıl diyar. Deniz ve nehir/göl yüzeyi her yerde y = 0 (`SO.world.SU`).
+- `groundY(x, z)`: arazi yüksekliği (çizilen yüzeyle birebir). `suDerinlik(x, z)`: o noktadaki su derinliği (m; kara ise 0).
+- `destekY(x, z, y)`: ayak altındaki destek: arazi ya da (ayak hizası tepesine yakınsa) üstünde durulan düz kaya.
+- `collide(x, z, r, y)`: ağaç/kaya kutularının dışına iter; `y` verilirse üstünde durulan düz kaya itmez.
+- `basamak(x, z, dx, dz, uzak, y)`: o yönde `uzak` m içinde tepesi şimdiki destekten ≥ 0,3 m yüksek ilk **düz tepeli kaya** → `{ top, yukseklik, x, z, ust: [x, z] }` ya da `null`. Düz kayalar üç boyda: 0,5 m (diz), 1,0 m (bel), 1,8 m (boy); enine ölçek 0,9–1,4.
+- `solids`: yüklü hücrelerdeki çarpışma kutuları `{ x0, x1, z0, z1, top, duz }` (`duz`: üstüne çıkılabilir).
+- `zemin(x, z)`: `'su'` (sığ su) | `'cim'` | `'kaldirim'`. `biyom(x, z)`: `'vadi' | 'orman' | 'col' | 'kar' | 'kizil'`. `ortam(x, z)`: ortam sesi düzeyleri. `renk(x, z)`: harita rengi `[r, g, b]`. `HALF` = 16000, `start` = doğuş noktası.
+- `update(cam)`: her karede akış (parça üretimi, atma) ve gizleme (görüş alanı, mesafe, tepenin arkası).
+
+## Fizik durumları (`fizik.js`)
+- Su: `ps.suDerin` (m). Sığda (0,25–1,2 m) hız yarıya kadar düşer. Derinlik 1,3 m'yi geçince `ps.yuzme = true`: karakter su yüzeyinde tutulur (`ps.y` ≈ −1,38), hız `tune.yuz` (1,45) / KOŞ ile `tune.yuzHizli` (2,3), zıplama yok; 1,1 m'nin altına inince biter. `ps.yuzmeAt` son değişim anı. Yüzerken `ps.grounded` true kalır.
+- `ps.kilit = true`: fizik konuma dokunmaz; konumu bir katman (tırmanma) sürer, bitince `false` yapar ve hızları sıfırlar/ayarlar.
+- `ps.ikKapat` (0..1): ayak yerleştirme ve duruş düzeltmesi bu kadar kapatılır (yüzme, tırmanma sırasında).
+
 ## Ses olayları (`SO.ses.olay(ad, bilgi)`)
 - `adim` `{ zemin: 'asfalt' | 'kaldirim' | 'cim', hiz, ayak: 'l' | 'r' }`
 - `zipla` `{}`
 - `in` `{ hiz, zemin }` (yere değiş hızı m/sn)
+- `su_gir` `{ hiz }` (suya girip yüzmeye başlama), `su_cik` `{}`, `kulac` `{ hiz }` (yüzerken her kulaç), `adim` olayında `zemin: 'su'` (sığ suda yürüme)
+- `tutun` `{}` (tırmanırken el kayaya değer), `tirman` `{ yukseklik }` (kendini yukarı çekme/üste çıkış)
 
 Sesler `ses/*.mp3` (gerçek kayıt, kamu malı; kaynaklar `ses/LISANS.md`). Zemin başına yürüme ve koşu için ayrı adım takımı var; 2,6 m/sn üstünde koşu takımı çalar. Ortam: şehir uğultusu hep çalar, parkta (şehir içindeki çim) üstüne kuş katmanı gelir. Düzeyler `SO.tune.ses` içinde; `SO.ses.durum()` yüklenen dosya sayısını, hataları ve çalınan ses sayılarını verir. Ses ilk dokunuşta açılır; `?test` kipinde `init()` çağrılmadıkça sessizdir.
 

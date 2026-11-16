@@ -23,7 +23,7 @@
     SO.time += dt; girdi(); SO.fizik.update(dt); SO.anim.update(dt);
     const ps = SO.ps, ch = SO.char; ch.root.position.set(ps.x, ps.y + (ps.rootDy || 0), ps.z); ch.root.rotation.order = 'YXZ'; ch.root.rotation.set(ps.leanFwd || 0, ps.yaw, ps.lean || 0); // yatma: ayak tabanından döner
     golge.position.set(ps.x, ps.groundY + .03, ps.z); const hs = 1 - Math.min(.5, (ps.y - ps.groundY) / 3); golge.scale.set(hs, hs, 1);
-    SO.kamera.update(cam, dt); if (SO.world.update) { cam.updateMatrixWorld(); SO.world.update(cam); } SO.ses.update(dt); renderer.render(scene, cam);
+    SO.kamera.update(cam, dt); if (SO.world.update) { cam.updateMatrixWorld(); SO.world.update(cam); } SO.ses.update(dt); if (SO.harita) SO.harita.update(dt); renderer.render(scene, cam);
   }
   SO.step = step;
   let last = 0, fpsN = 0, fpsT = 0; const fpsEl = document.getElementById('fps');
@@ -49,14 +49,18 @@
     if (e.pointerId === joyId) { const [x, y] = toStage(e); let dx = x - joyC[0], dy = y - joyC[1]; const m = Math.hypot(dx, dy), R = 52; if (m > R) { dx *= R / m; dy *= R / m; } joyV.x = dx / R; joyV.y = -dy / R; knob.style.transform = `translate(${dx}px,${dy}px)`; }
     else if (e.pointerId === camId) { const [x, y] = toStage(e), c = SO.cam; c.yaw = wrapA(c.yaw - (x - camL[0]) * .0075); c.pitch = clamp(c.pitch + (y - camL[1]) * .005, -.12, 1.1); camL = [x, y]; }
   });
-  const endP = e => { if (e.pointerId === joyId) { joyId = null; joyV.x = joyV.y = 0; knob.style.transform = 'none'; } if (e.pointerId === camId) camId = null; };
+  const endP = e => { if (e.pointerId === joyId) { joyId = null; joyV.x = joyV.y = 0; knob.style.transform = 'none'; if (SO.kosYaz) SO.kosYaz(false); } if (e.pointerId === camId) camId = null; };
   stage.addEventListener('pointerup', endP); stage.addEventListener('pointercancel', endP); stage.addEventListener('contextmenu', e => e.preventDefault());
   const hold = (id, k, tap) => { const el = document.getElementById(id); el.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); dokun(); SO.input[k] = true; el.classList.add('on'); try { el.setPointerCapture(e.pointerId); } catch (x) { } });
     const up = () => { if (!tap) SO.input[k] = false; el.classList.remove('on'); }; el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up); el.addEventListener('lostpointercapture', up); };
-  hold('bRun', 'run'); hold('bJump', 'jump', true);
+  hold('bJump', 'jump', true);
+  // KOŞ: aç/kapa (basılı tutmak gerekmez). Çubuk bırakılınca kendiliğinden kapanır.
+  const bRun = document.getElementById('bRun'); let kosAcik = false; const kosYaz = v => { kosAcik = v; SO.input.run = v || !!KD.Shift; bRun.classList.toggle('on', v); bRun.setAttribute('aria-pressed', v ? 'true' : 'false'); };
+  bRun.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); dokun(); kosYaz(!kosAcik); });
+  SO.kosYaz = kosYaz;
   const KD = {}; const keySync = () => { kb.x = (KD.d || KD.ArrowRight ? 1 : 0) - (KD.a || KD.ArrowLeft ? 1 : 0); kb.y = (KD.w || KD.ArrowUp ? 1 : 0) - (KD.s || KD.ArrowDown ? 1 : 0); };
   addEventListener('keydown', e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; if (['w', 'a', 's', 'd', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'Shift'].includes(k)) e.preventDefault(); dokun(); KD[k] = 1; keySync(); if (k === 'Shift') SO.input.run = true; if (k === ' ' && !e.repeat) SO.input.jump = true; });
-  addEventListener('keyup', e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; KD[k] = 0; keySync(); if (k === 'Shift') SO.input.run = false; });
+  addEventListener('keyup', e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; KD[k] = 0; keySync(); if (k === 'Shift') SO.input.run = kosAcik; });
   addEventListener('blur', () => { for (const k in KD) KD[k] = 0; keySync(); SO.input.run = false; });
   addEventListener('resize', layout); if (window.ResizeObserver) new ResizeObserver(layout).observe(document.getElementById('wrap'));
   SO.joy = joyV; // test: SO.joy.x / SO.joy.y yazılarak çubuk taklit edilir
@@ -68,7 +72,7 @@
       layout(); SO.world.build(scene, renderer); const ch = await SO.karakter.build(scene);
       const ps = SO.ps; ps.x = SO.world.start.x; ps.z = SO.world.start.z; ps.y = ps.groundY = SO.world.groundY(ps.x, ps.z); ps.yaw = Math.PI; SO.cam.yaw = Math.PI;
       SO.anim.init({ char: ch, mixer: ch.mixer, action: ch.action, bones: ch.bones, clips: ch.clips, ps, input: SO.input, tune: SO.tune, world: SO.world, get time() { return SO.time; } });
-      step(0); yuk.hidden = true; SO.ready = true;
+      if (SO.harita) SO.harita.init(); step(0); yuk.hidden = true; SO.ready = true;
     } catch (e) { yuk.textContent = 'Açılamadı: ' + e.message; console.error(e); }
   })();
   requestAnimationFrame(frame);
