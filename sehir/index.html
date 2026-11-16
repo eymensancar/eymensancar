@@ -3,7 +3,7 @@
 <style>
 /* Yerleşim: tek ekranlık 3B oyun. Sahne hep yatay: ekran dikeyse sahne 90° döndürülür.
    Solda sanal çubuk, sağda düğmeler; boş yere sürükleme kamerayı çevirir. Tek görünüş, tema yok. */
-:root{--ink:#15120d;--paper:#f1e8d4;--accent:#f5b21c;--sky:#8fbadb;--shade:rgba(21,18,13,.55);--font:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--ui:system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+:root{--ink:#15120d;--paper:#f1e8d4;--accent:#f5b21c;--sky:#8fbadb;--shade:rgba(21,18,13,.55);--sis:#a9b1b3;--sis-acik:#c6cccc;--harita-dis:#2b2721;--harita-ok:#e5482d;--harita-perde:rgba(21,18,13,.42);--font:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--ui:system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
 @font-face{font-family:'Lilita One';font-weight:400;src:url(lilita.woff2) format('woff2')}
 [hidden]{display:none!important}
 html,body{height:100%;margin:0}
@@ -20,17 +20,38 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
 #joy{position:absolute;width:132px;height:132px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.42);left:34px;bottom:26px;pointer-events:none}
 #knob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.9);box-shadow:0 3px 0 var(--shade)}
 #fps{position:absolute;top:10px;left:22px;background:rgba(21,18,13,.6);color:var(--paper);padding:4px 9px;border-radius:8px;font-size:13px;font-variant-numeric:tabular-nums;pointer-events:none}
+/* Harita: sağ üstte küçük harita düğmesi; dokununca sahnenin üstünde tam harita (zemin dokunuşu geçirir: çubuk ve düğmeler çalışmayı sürdürür) */
+#hMini{position:absolute;top:22px;right:max(26px,env(safe-area-inset-right,0px));width:72px;height:72px;overflow:hidden;background:var(--sis);cursor:pointer}
+#hMini.on{background:var(--sis);transform:none;box-shadow:0 4px 0 var(--shade);border-color:var(--accent);outline:2px solid var(--ink)}
+#hMiniC{width:66px;height:66px;display:block;border-radius:50%;pointer-events:none}
+#hTam{position:absolute;inset:0;display:grid;place-items:center;background:var(--harita-perde);pointer-events:none}
+#hPano{position:relative;pointer-events:auto;line-height:0}
+#hTamC{display:block;width:300px;height:300px;border:3px solid var(--ink);border-radius:12px;background:var(--sis);box-shadow:0 5px 0 var(--shade);cursor:pointer;touch-action:none}
+#hDugme{position:absolute;left:100%;top:0;margin-left:10px;display:flex;flex-direction:column;gap:10px}
+#hDugme .btn{width:50px;height:50px;font-size:11px;letter-spacing:.02em;background:var(--paper);cursor:pointer}
+#hDugme .btn svg{width:22px;height:22px}
+#hDugme .btn:active{background:var(--accent);transform:translateY(3px);box-shadow:0 1px 0 var(--shade)}
 #load{position:absolute;inset:0;display:grid;place-items:center;background:var(--sky);font:400 22px var(--font);text-align:center;padding:0 16px}
 </style>
 <div id="wrap">
   <div id="stage">
     <canvas id="c"></canvas>
     <span id="fps">…</span>
+    <div id="hTam" role="dialog" aria-label="Harita" hidden>
+      <div id="hPano">
+        <canvas id="hTamC" role="img" aria-label="Harita"></canvas>
+        <div id="hDugme">
+          <button class="btn" id="hKapat" type="button" aria-label="Haritayı kapat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></button>
+          <button class="btn" id="hGorunum" type="button" aria-label="Yakın görünüme geç">YAKIN</button>
+        </div>
+      </div>
+    </div>
     <div id="joy"><div id="knob"></div></div>
     <div class="pad" id="padR">
       <button class="btn" id="bRun" type="button">KOŞ</button>
       <button class="btn" id="bJump" type="button" aria-label="Zıpla"><svg viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
+    <button class="btn" id="hMini" type="button" aria-label="Haritayı aç" aria-expanded="false" aria-controls="hTam"><canvas id="hMiniC" width="66" height="66" aria-hidden="true"></canvas></button>
     <div id="load">Dünya çiziliyor…</div>
   </div>
 </div>
