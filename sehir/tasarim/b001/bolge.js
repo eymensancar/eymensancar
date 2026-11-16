@@ -1,6 +1,6 @@
 /* b001 — Doğuş bölgesi "İki Irmak Arası". BÖLGE TANIMI + ANA İSKELET (baş tasarımcı). Plan: tasarim/b001/TASARIM.md · Kılavuz: tasarim/KILAVUZ.md
    Bu dosyada: sınır, geçiş bandı, taban, doğuş, BÜYÜK FORMLAR (≥ 150 m ölçekli sırt/tepe/geçit) ve ilgi noktalarının ANA LİSTESİ.
-   Orta/küçük arazi ayrıntısı arazi.js'te, su su.js'te, düzlük/patika yerlesim.js'te, bitki/taş bitki.js'te, tek nesneler isaret.js'te (iş bölümü: TASARIM.md § 9).
+   Orta/küçük arazi ayrıntısı arazi.js'te, su ve patikalar su.js'te, düzlük/taşlık/kaynak yerlesim.js'te, koru/çalı/zemin bitki.js'te, tek nesneler isaret.js'te (iş bölümü: TASARIM.md § 10).
 
    Taban kararı: prosedürel arazi AYNEN korunur (carpan 1). Gerekçe: (1) iki ırmak (Batı Irmağı, Nal Irmağı) algoritmadan geliyor; sınırda kopmadan
    sürmeleri ancak böyle kesin; (2) sınırda yükseklik farkı sıfır olduğundan geçiş bandında yapay şev oluşmaz; (3) makro kompozisyon (iki ırmak arasında

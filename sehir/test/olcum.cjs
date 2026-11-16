@@ -64,9 +64,9 @@ function olc(A) {
   const noktalar = TA.noktalar().filter(q => ic(q.x, q.z));
   // en kısa yol (Dijkstra, 8 komşu). hız: kara 3,6; sığ su yavaşlar; derin su yüzme 1,45 (yuzme = false ise geçilmez)
   function yol(yuzme) {
-    const T = new Float32Array(n).fill(Infinity), hiz = new Float32Array(n);
+    const T = new Float64Array(n).fill(Infinity), hiz = new Float32Array(n);
     for (let q = 0; q < n; q++) { const d = -H[q]; hiz[q] = d > 1.2 ? (yuzme ? 1.45 : 0) : d > .25 ? 3.6 * (1 - .55 * Math.min(1, (d - .25) / .95)) : E[q] > LIM ? 0 : 3.6; }
-    const heap = new Int32Array(n * 4 + 16), key = new Float32Array(n * 4 + 16); let hn = 0;
+    const heap = new Int32Array(n * 4 + 16), key = new Float64Array(n * 4 + 16); let hn = 0;
     const it = (q, k) => { let i = hn++; while (i > 0) { const p = (i - 1) >> 1; if (key[p] <= k) break; heap[i] = heap[p]; key[i] = key[p]; i = p; } heap[i] = q; key[i] = k; };
     const cek = () => { const q = heap[0], lk = key[--hn], lq = heap[hn]; let i = 0; for (;;) { let ch = 2 * i + 1; if (ch >= hn) break; if (ch + 1 < hn && key[ch + 1] < key[ch]) ch++; if (key[ch] >= lk) break; heap[i] = heap[ch]; key[i] = key[ch]; i = ch; } heap[i] = lq; key[i] = lk; return q; };
     if (ic(d0.x, d0.z)) { const s = hucre(d0.x, d0.z); if (!hiz[s]) hiz[s] = 3.6; T[s] = 0; it(s, 0); }
