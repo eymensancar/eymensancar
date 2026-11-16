@@ -18,6 +18,7 @@
   const BIYOM = ['vadi', 'orman', 'col', 'kar', 'kizil'];
   const RENK = { vadi: '#8e9a5e', orman: '#6b7c45', col: '#e0c79a', kar: '#eef1ec', kizil: '#a8503a' }, KAYA = { vadi: '#978c78', orman: '#8a826f', col: '#c9a074', kar: '#93a0a8', kizil: '#5a2b2e' };
   const start = { x: 0, z: 0 };
+  const TS = SO.tasarim || null; // elle tasarım katmanı (varsa): yukseklik(x,z,h), yerlesim(px,pz,d), ekNesneler(ci,cj,HUCRE), dogus
   function agirlik(x, z, out) { // [vadi (orta), orman (kuzey), çöl (doğu), kar (batı), kızıl (güney)], toplam 1
     const wx = x + (fbm(x / 3000, z / 3000, 5, 3) - .5) * 5200, wz = z + (fbm(x / 3000, z / 3000, 9, 3) - .5) * 5200, r = Math.hypot(wx, wz), th = Math.atan2(wx, -wz);
     const m = 1 - sm(3800, 5200, r), sek = c => 1 - sm(.42, .58, Math.abs(SO.wrapA(th - c)) / (Math.PI / 2)), k = 1 - m;
@@ -38,6 +39,7 @@
       let hr = 1.6 + (h - 1.6) * vad; hr = lerp(hr, -2.8, 1 - sm(.004, .017, rv)); hr = lerp(hr, -3.6, lk * (1 - sm(25, 70, h))); h = lerp(h, hr, rw); }
     // kıyı: dünyanın kenarına doğru denize iner
     const kenar = Math.max(Math.abs(x), Math.abs(z)) + (fbm(x / 1500, z / 1500, 13, 2) - .5) * 1800; h = lerp(h, -40, sm(HALF - 2600, HALF - 500, kenar));
+    if (TS && TS.yukseklik) return TS.yukseklik(x, z, h); // elle tasarım katmanı (tasarim.js): tasarlanmış bölgelerde yüksekliği biçimlendirir
     const ds = Math.hypot(x - start.x, z - start.z); if (ds < 60) h = lerp(h, start.h, 1 - sm(22, 60, ds)); // başlangıç düzlüğü
     return h;
   }
@@ -136,27 +138,44 @@
   const vcMat = GR.nesneMat(uFar, uCam), hullMat = kucul(new T3.MeshBasicMaterial({ color: INK, side: T3.BackSide }));
   function hucreUret(ci, cj) {
     const R = rnd((ci * 73856093) ^ (cj * 19349663) ^ 911), x0 = ci * HUCRE, z0 = cj * HUCRE, G = {}, kutular = [], ww = [0, 0, 0, 0, 0]; let maxY = -1e9, minY = 1e9;
-    for (let z = 4; z < HUCRE; z += 8) for (let x = 4; x < HUCRE; x += 8) {
+    const nesne = [], ekle = (tur, px, pz, h, s, ry, id) => { const T = TUR[tur], yuvarlak = tur.startsWith('kaya'); if (kaldirilan.has(id)) return;
+      const L = (G[tur] = G[tur] || []); L.push(T[3] ? mat4(px, h - .15, pz, ry, s, 1 + .15 / T[3]) : mat4(px, h - .08, pz, ry, s));
+      // çarpışma kutusu: görünen nesnenin içine sığan kare. Kayaların tepesine çıkılabilir (2,3 m'ye kadar).
+      const cr = T[2] * s, ust = T[3] ? h + T[3] : yuvarlak ? h - .08 + 1.02 * s : h + 3, cikilir = !!T[3] || (yuvarlak && 1.02 * s <= 2.3); let kutu = null;
+      if (cr > 0) { kutu = { x0: px - cr, x1: px + cr, z0: pz - cr, z1: pz + cr, top: ust, duz: cikilir }; kutular.push(kutu); }
+      nesne.push({ id, tur, sinif: SINIF(tur), x: px, z: pz, h, s, kutu, sira: L.length - 1 }); if (h > maxY) maxY = h; if (h < minY) minY = h; };
+    let say = -1;
+    for (let z = 4; z < HUCRE; z += 8) for (let x = 4; x < HUCRE; x += 8) { say++;
       const px = x0 + x + (R() - .5) * 7, pz = z0 + z + (R() - .5) * 7, u = R(), u2 = R(), rs = R(), rr = R(); if (Math.hypot(px - start.x, pz - start.z) < 12) continue;
       const h = groundY(px, pz); if (h < .6) continue; agirlik(px, pz, ww);
       let b = 0, acc = ww[0]; while (b < 4 && u > acc) { b++; acc += ww[b]; }
       const eg = egim(px, pz);
       // taş kuralı (doğal görünüm): kayalar su kıyısında (alçak taşkın yatağı) ve dik yamaçların dibinde/üstünde toplanır; açık düzlükte neredeyse hiç olmaz
       const kiyi = (1 - sm(1.6, 6, h)) * .85, yamac = sm(.22, .5, Math.max(eg, egim(px + 9, pz + 4), egim(px - 6, pz + 8), egim(px + 3, pz - 9))), kume = .35 + .65 * sm(.4, .65, fbm(px / 90, pz / 90, 22, 2));
-      const koru = sm(.5, .68, fbm(px / 260, pz / 260, 21, 2)), tas = b === 0 || b === 1 ? Math.max(kiyi, yamac) * kume : sm(.56, .72, fbm(px / 230, pz / 230, 22, 2)), tb = tablo(b, b === 1 ? .35 + koru * .65 : koru, tas);
-      let tur = null, t = 0; for (const [ad, p] of tb) { t += p; if (u2 < t) { tur = ad; break; } } if (!tur) continue;
+      const D = { b, biyom: BIYOM[b], h, egim: eg, koru: sm(.5, .68, fbm(px / 260, pz / 260, 21, 2)), tas: 0, yasak: false, tur: null, olcek: 0 };
+      D.tas = b === 0 || b === 1 ? Math.max(kiyi, yamac) * kume : sm(.56, .72, fbm(px / 230, pz / 230, 22, 2));
+      if (TS && TS.yerlesim) TS.yerlesim(px, pz, D); // tasarım katmanı yoğunlukları değiştirebilir, yasaklayabilir ya da türü doğrudan seçebilir
+      if (D.yasak) continue;
+      let tur = D.tur; if (!tur) { const tb = tablo(b, b === 1 ? .35 + D.koru * .65 : D.koru, D.tas); let t = 0; for (const [ad, p] of tb) { t += p; if (u2 < t) { tur = ad; break; } } } if (!tur || !TUR[tur]) continue;
       const T = TUR[tur], yuvarlak = tur.startsWith('kaya'), kayaMi = yuvarlak || tur.startsWith('duz'); if (eg > (kayaMi ? .9 : .5) || (T[3] && eg > .3)) continue; if (b === 3 && tur === 'camKar' && h > 260) continue;
-      const s = T[3] ? .9 + rs * .5 : (kayaMi ? .45 + rs * rs * 2.0 : tur === 'cali' ? .7 + rs * .7 : .85 + rs * .5) * (b === 1 && tur.startsWith('yaprakli') ? 1.2 : 1);
-      (G[tur] = G[tur] || []).push(T[3] ? mat4(px, h - .15, pz, rr * TAU, s, 1 + .15 / T[3]) : mat4(px, h - .08, pz, rr * TAU, s));
-      // çarpışma kutusu: görünen nesnenin içine sığan kare (görünmez köşeye takılma olmasın). Kayaların tepesine çıkılabilir (2,3 m'ye kadar).
-      const cr = T[2] * s, ust = T[3] ? h + T[3] : yuvarlak ? h - .08 + 1.02 * s : h + 3, cikilir = !!T[3] || (yuvarlak && 1.02 * s <= 2.3);
-      if (cr > 0) kutular.push({ x0: px - cr, x1: px + cr, z0: pz - cr, z1: pz + cr, top: ust, duz: cikilir });
-      if (h > maxY) maxY = h; if (h < minY) minY = h;
+      const s = D.olcek || (T[3] ? .9 + rs * .5 : (kayaMi ? .45 + rs * rs * 2.0 : tur === 'cali' ? .7 + rs * .7 : .85 + rs * .5) * (b === 1 && tur.startsWith('yaprakli') ? 1.2 : 1));
+      ekle(tur, px, pz, h, s, rr * TAU, ci + ',' + cj + ',' + say);
     }
-    const H = { ci, cj, kutular, ana: [], cizgi: [], c: new T3.Vector3(x0 + HUCRE / 2, (maxY > -1e8 ? (minY + maxY) / 2 : groundY(x0 + HUCRE / 2, z0 + HUCRE / 2)) + 4, z0 + HUCRE / 2), r: HUCRE * .75 + (maxY > -1e8 ? (maxY - minY) / 2 : 0) + 8, tepe: (maxY > -1e8 ? maxY : 0) + 9, gizli: false };
-    Object.keys(G).forEach(tur => { const ms = G[tur], mk = (g, m, arr) => { const im = new T3.InstancedMesh(g, m, ms.length); ms.forEach((q, i) => im.setMatrixAt(i, q)); im.instanceMatrix.needsUpdate = true; im.frustumCulled = false; im.matrixAutoUpdate = false; scene.add(im); arr.push(im); }; mk(geo[tur].g, vcMat, H.ana); mk(geo[tur].o, hullMat, H.cizgi); });
+    // tasarım katmanının tek tek yerleştirdiği nesneler (işaret ağaçları, özel kayalar...): [{ tur, x, z, s, ry, id }]
+    if (TS && TS.ekNesneler) for (const e of TS.ekNesneler(ci, cj, HUCRE) || []) if (TUR[e.tur]) ekle(e.tur, e.x, e.z, groundY(e.x, e.z), e.s || 1, e.ry || 0, e.id || ('t' + ci + ',' + cj + ',' + e.tur + ',' + Math.round(e.x) + ',' + Math.round(e.z)));
+    const H = { ci, cj, kutular, nesne, ag: {}, ana: [], cizgi: [], c: new T3.Vector3(x0 + HUCRE / 2, (maxY > -1e8 ? (minY + maxY) / 2 : groundY(x0 + HUCRE / 2, z0 + HUCRE / 2)) + 4, z0 + HUCRE / 2), r: HUCRE * .75 + (maxY > -1e8 ? (maxY - minY) / 2 : 0) + 8, tepe: (maxY > -1e8 ? maxY : 0) + 9, gizli: false };
+    Object.keys(G).forEach(tur => { const ms = G[tur], mk = (g, m, arr) => { const im = new T3.InstancedMesh(g, m, ms.length); ms.forEach((q, i) => im.setMatrixAt(i, q)); im.instanceMatrix.needsUpdate = true; im.frustumCulled = false; im.matrixAutoUpdate = false; scene.add(im); arr.push(im); }; H.ag[tur] = []; mk(geo[tur].g, vcMat, H.ana); H.ag[tur].push(H.ana[H.ana.length - 1]); mk(geo[tur].o, hullMat, H.cizgi); });
     return H;
   }
+  /* nesne arayüzü (kesme/kazma için): sınıf 'agac' | 'kaya' | 'cali' | 'kaktus' | 'kristal' | 'mantar' */
+  const SINIF = t => t.startsWith('yaprakli') || t.startsWith('cam') ? 'agac' : t.startsWith('kaya') || t.startsWith('duz') ? 'kaya' : t.startsWith('kristal') ? 'kristal' : t;
+  const kaldirilan = new Set();
+  // (x,z) çevresinde r içinde, filtreye uyan en yakın nesne → { id, tur, sinif, x, z, h, s } ya da null
+  function yakinNesne(x, z, r, filtre) { let en = null, ed = r * r; hucreler.forEach(H => { if (x < H.ci * HUCRE - r || x > (H.ci + 1) * HUCRE + r || z < H.cj * HUCRE - r || z > (H.cj + 1) * HUCRE + r) return; for (const n of H.nesne) { if (n.yok) continue; const d = (n.x - x) * (n.x - x) + (n.z - z) * (n.z - z); if (d < ed && (!filtre || filtre(n))) { ed = d; en = n; } } }); return en; }
+  // nesneyi dünyadan kaldırır (kesilen ağaç, kırılan kaya); kalıcıdır (kaldirilanlar() ile kaydedilir, kaldirilanYukle ile geri verilir)
+  const SIFIR = new T3.Matrix4().makeScale(0, 0, 0);
+  function nesneKaldir(id) { kaldirilan.add(id); let oldu = false; hucreler.forEach(H => { for (const n of H.nesne) if (n.id === id && !n.yok) { n.yok = true; oldu = true; const ag = H.ag[n.tur]; if (ag) { for (const m of ag) { m.setMatrixAt(n.sira, SIFIR); m.instanceMatrix.needsUpdate = true; } } const ci = H.cizgi.find(m => m.geometry === geo[n.tur].o); if (ci) { ci.setMatrixAt(n.sira, SIFIR); ci.instanceMatrix.needsUpdate = true; } if (n.kutu) { const k = H.kutular.indexOf(n.kutu); if (k >= 0) H.kutular.splice(k, 1); } } }); if (oldu) solidsYenile(); return oldu; }
+  const kaldirilanlar = () => Array.from(kaldirilan), kaldirilanYukle = ids => { for (const id of ids || []) kaldirilan.add(id); };
   function hucreAt(H) { H.ana.concat(H.cizgi).forEach(m => { scene.remove(m); m.dispose && m.dispose(); }); }
   function solidsYenile() { solids.length = 0; hucreler.forEach(H => { for (const k of H.kutular) solids.push(k); }); }
 
@@ -213,6 +232,7 @@
     // başlangıç: merkezin yakınında, suya yakın, düz ve alçak bir yer ara
     start.h = 0; let en = null; for (let k = 0; k < 900; k++) { const a = k * 2.399963, r = 30 + k * 2.2, x = Math.cos(a) * r, z = Math.sin(a) * r; start.x = 1e9; const h = yukseklikF(x, z); if (h < 2.5 || h > 9) continue;
       const e = Math.hypot(yukseklikF(x + 12, z) - yukseklikF(x - 12, z), yukseklikF(x, z + 12) - yukseklikF(x, z - 12)) / 24; if (e > .06) continue; let suVar = false; for (let q = 0; q < 8 && !suVar; q++) suVar = yukseklikF(x + Math.cos(q * .785) * 70, z + Math.sin(q * .785) * 70) < -.5; if (!suVar) continue; en = { x, z, h }; break; }
+    if (TS && TS.dogus) { start.x = 1e9; en = { x: TS.dogus.x, z: TS.dogus.z, h: 0 }; }
     if (!en) en = { x: 0, z: 0, h: Math.max(3, (start.x = 1e9, yukseklikF(0, 0))) }; start.x = en.x; start.z = en.z; start.h = en.h;
     planla(start.x, start.z); isle(1e9); sonMerkez = [start.x, start.z];
   }
@@ -238,5 +258,5 @@
   const ortam = (x, z) => { const w = agirlik(x, z, [0, 0, 0, 0, 0]); return { sehir: 0, kus: Math.round(clamp(w[0] * .9 + w[1], 0, 1) * 5) / 5 }; };
   // harita rengi: (x,z) noktasının haritadaki rengi [r,g,b] 0..255 (su mavi; kara biyom rengi, yükseklikle açılır)
   function renk(x, z) { const h = yukseklikF(x, z); if (h < SU) return h < -6 ? [70, 130, 165] : [105, 165, 190]; const w = agirlik(x, z, [0, 0, 0, 0, 0]); let r = 0, g = 0, b = 0; for (let q = 0; q < 5; q++) { r += cB[q].r * w[q]; g += cB[q].g * w[q]; b += cB[q].b * w[q]; } const k = (h > 240 ? 1.12 : .82 + clamp(h / 320, 0, .3)) * 255; if (h > 240) { r = lerp(r, .93, .7); g = lerp(g, .95, .7); b = lerp(b, .93, .7); } return [Math.min(255, r * k) | 0, Math.min(255, g * k) | 0, Math.min(255, b * k) | 0]; }
-  SO.world = { build, update, solids, groundY, destekY, kameraZemin, kameraEngel: false, suDerinlik, collide, inside, basamak, zemin, ortam, biyom, renk, yukseklikF, HALF, SU, start, durum: () => ({ dugum: dugum.map(m => m.size), hucre: hucreler.size, kuyruk: kuyruk.length, solids: solids.length }) };
+  SO.world = { build, update, yakinNesne, nesneKaldir, kaldirilanlar, kaldirilanYukle, solids, groundY, destekY, kameraZemin, kameraEngel: false, suDerinlik, collide, inside, basamak, zemin, ortam, biyom, renk, yukseklikF, HALF, SU, start, durum: () => ({ dugum: dugum.map(m => m.size), hucre: hucreler.size, kuyruk: kuyruk.length, solids: solids.length }) };
 })();
