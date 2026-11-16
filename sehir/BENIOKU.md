@@ -1,9 +1,10 @@
-# Şehir Denemesi
+# Açık Dünya Denemesi
 
-Üç boyutlu, arkadan bakışlı (üçüncü şahıs) şehirde yürüme denemesi. Telefon için, hep yatay. Konu ve amaç henüz yok: önce görünüş ve hareket kalitesi. Çizim tarzı "mürekkep + düz renk" (Two Beeps animasyonunun kalemi), ama o dizinin ya da Yıkım Ustası'nın hiçbir karakteri, mekânı ve öğesi burada **yok** (Eymen, 16 Kasım 2026).
+Üç boyutlu, arkadan bakışlı (üçüncü şahıs) açık dünyada yürüme denemesi. Telefon için, hep yatay. Oyun fikri `docs/FIKIR.md` içinde (açık dünyada gitgide gelişme); şimdilik yalnız dünya ve hareket kalitesi. Klasör adı `sehir` ilk denemeden kaldı. Çizim tarzı "mürekkep + düz renk" (Two Beeps animasyonunun kalemi), ama o dizinin ya da Yıkım Ustası'nın hiçbir karakteri, mekânı ve öğesi burada **yok** (Eymen, 16 Kasım 2026).
 
 ## Eymen'in kuralları
-- Sıradan bir insan, sıradan bir şehir. İnşaat alanı, çatlak bina, vinç, dizi karakteri yok.
+- Sıradan bir insan. İnşaat alanı, çatlak bina, vinç, dizi karakteri yok.
+- Dünya şehir değil: biyom biyom açık harita (çayır, orman, çöl, karlı dağ, kızıl diyar); her biyomun gelişmişlik seviyesi ileride farklı olacak.
 - Ekrandaki "tozlu" kâğıt greni filtresi yok.
 - Ağaç, lamba gibi nesneler gerçek 3B.
 - Hareketler çok gerçekçi olmalı (koşma, zıplama, dönme, her olasılık).
@@ -17,7 +18,7 @@
 | `lib/` | three.js r128 ve GLTFLoader (yerel kopya) |
 | `kalem.js` | çizim kalemi (Canvas 2B; `Cizim.shape/line/blot/...`). Yalnız dokuları çizmek için |
 | `cekirdek.js` | `SO` ad alanı: yardımcılar, `SO.ps` (oyuncu durumu), `SO.input`, `SO.tune`, `SO.anim` (katman kaydı) |
-| `dunya.js` | şehir: bloklar, binalar, park, ağaç, lamba; `SO.world` (çarpışma, zemin yüksekliği, zemin türü) |
+| `arazi.js` | açık dünya: biyomlu ada (yükseklik ızgarası, biyom ağırlıkları, ağaç/kaya/kaktüs/kristal), deniz; `SO.world` (zemin yüksekliği, çarpışma, zemin türü, biyom, ortam sesi düzeyi, bölge gizleme) |
 | `karakter.js` | model + hareket klipleri + çizgi film boyama; `SO.char` |
 | `fizik.js` | hız, yerçekimi, zıplama anı, çarpışma |
 | `kamera.js` | kamera; `SO.cam` |

@@ -155,7 +155,8 @@
     let y = 'sehir';
     try { const w = SO.world, ps = SO.ps; if (w.zemin(ps.x, ps.z) === 'cim') y = (Math.abs(ps.x) <= w.HALF && Math.abs(ps.z) <= w.HALF) ? 'park' : 'kir'; } catch (e) { }
     yer = y;
-    const hs = AYAR.ortam * (y === 'park' ? AYAR.parkSehir : y === 'kir' ? AYAR.kirSehir : 1), hk = AYAR.kus * (y === 'park' ? 1 : y === 'kir' ? AYAR.kirKus : 0);
+    let hs = AYAR.ortam * (y === 'park' ? AYAR.parkSehir : y === 'kir' ? AYAR.kirSehir : 1), hk = AYAR.kus * (y === 'park' ? 1 : y === 'kir' ? AYAR.kirKus : 0);
+    try { if (SO.world.ortam) { const o = SO.world.ortam(SO.ps.x, SO.ps.z); hs = AYAR.ortam * o.sehir; hk = AYAR.kus * o.kus; yer = 'arazi'; } } catch (e) { } // açık dünya: düzeyleri dünya söyler (şehir uğultusu yok, kuşlar çayır ve ormanda)
     if (hs !== hedefSehir || hk !== hedefKus) {     // yalnız hedef değişince zamanla: her karede yazmak cızırtı yapar
       const t = ctx.currentTime; hedefSehir = hs; hedefKus = hk;
       sehirG.gain.cancelScheduledValues(t); sehirG.gain.setTargetAtTime(hs, t, AYAR.gecis);

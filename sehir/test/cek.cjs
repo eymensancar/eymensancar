@@ -16,7 +16,7 @@ const root = path.join(__dirname, '..'); const TYPES = { '.js': 'text/javascript
   const b = await chromium.launch({ args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'] });
   const pg = await b.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 }); const errs = [];
   pg.on('pageerror', e => errs.push(e.message)); pg.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
-  await pg.goto(`http://localhost:${port}/?test`);
+  await pg.goto(`http://localhost:${port}/${sen.sayfa || ''}?test`); // "sayfa": başka bir sayfa (ör. "arazi.html")
   try { await pg.waitForFunction(() => window.SO && window.SO.ready, null, { timeout: 120000 }); } catch (e) { console.error('AÇILMADI', errs.join('\n')); await b.close(); srv.close(); process.exit(1); }
   await pg.addStyleTag({ content: '#joy,.pad,#fps{display:none!important}' });
   await pg.evaluate(s => { const SO = window.SO; SO.cam.mode = s.kamera || 'yan'; if (s.uzaklik) SO.cam.dist = s.uzaklik; else if (SO.cam.mode !== 'takip') SO.cam.dist = 4.2; if (s.konum) { Object.assign(SO.ps, s.konum); SO.ps.y = SO.ps.groundY = SO.world.groundY(SO.ps.x, SO.ps.z); } SO.cam.yaw = Math.PI; }, sen);
