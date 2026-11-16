@@ -23,7 +23,7 @@
     SO.time += dt; girdi(); SO.fizik.update(dt); SO.anim.update(dt);
     const ps = SO.ps, ch = SO.char; ch.root.position.set(ps.x, ps.y + (ps.rootDy || 0), ps.z); ch.root.rotation.order = 'YXZ'; ch.root.rotation.set(ps.leanFwd || 0, ps.yaw, ps.lean || 0); // yatma: ayak tabanından döner
     golge.visible = !(ps.yuzmeBlend > .3) && !(ps.suDerin > .15); golge.position.set(ps.x, ps.groundY + .03, ps.z); const hs = 1 - Math.min(.5, (ps.y - ps.groundY) / 3); golge.scale.set(hs, hs, 1);
-    SO.kamera.update(cam, dt); if (SO.world.update) { cam.updateMatrixWorld(); SO.world.update(cam); } SO.ses.update(dt); if (SO.harita) SO.harita.update(dt); if (SO.toplama) SO.toplama.update(dt); renderer.render(scene, cam);
+    SO.kamera.update(cam, dt); if (SO.world.update) { cam.updateMatrixWorld(); SO.world.update(cam); } SO.ses.update(dt); if (SO.harita) SO.harita.update(dt); if (SO.toplama) SO.toplama.update(dt); if (SO.oyun) SO.oyun.update(dt); if (SO.yapi) SO.yapi.update(dt); if (SO.arayuz) SO.arayuz.update(dt); renderer.render(scene, cam);
   }
   SO.step = step;
   let last = 0, fpsN = 0, fpsT = 0; const fpsEl = document.getElementById('fps');
@@ -72,7 +72,7 @@
       layout(); SO.world.build(scene, renderer); const ch = await SO.karakter.build(scene);
       const ps = SO.ps; ps.x = SO.world.start.x; ps.z = SO.world.start.z; ps.y = ps.groundY = SO.world.groundY(ps.x, ps.z); ps.yaw = Math.PI; SO.cam.yaw = Math.PI;
       SO.anim.init({ char: ch, mixer: ch.mixer, action: ch.action, bones: ch.bones, clips: ch.clips, ps, input: SO.input, tune: SO.tune, world: SO.world, get time() { return SO.time; } });
-      if (SO.harita) SO.harita.init(); if (SO.toplama) SO.toplama.init(); step(0); yuk.hidden = true; SO.ready = true;
+      if (SO.harita) SO.harita.init(); if (SO.toplama) SO.toplama.init(); if (SO.oyun) SO.oyun.init(); if (SO.yapi) SO.yapi.init(); if (SO.arayuz) SO.arayuz.init(); step(0); yuk.hidden = true; SO.ready = true;
     } catch (e) { yuk.textContent = 'Açılamadı: ' + e.message; console.error(e); }
   })();
   requestAnimationFrame(frame);

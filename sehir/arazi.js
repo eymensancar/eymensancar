@@ -177,7 +177,8 @@
   function nesneKaldir(id) { kaldirilan.add(id); let oldu = false; hucreler.forEach(H => { for (const n of H.nesne) if (n.id === id && !n.yok) { n.yok = true; oldu = true; const ag = H.ag[n.tur]; if (ag) { for (const m of ag) { m.setMatrixAt(n.sira, SIFIR); m.instanceMatrix.needsUpdate = true; } } const ci = H.cizgi.find(m => m.geometry === geo[n.tur].o); if (ci) { ci.setMatrixAt(n.sira, SIFIR); ci.instanceMatrix.needsUpdate = true; } if (n.kutu) { const k = H.kutular.indexOf(n.kutu); if (k >= 0) H.kutular.splice(k, 1); } } }); if (oldu) solidsYenile(); return oldu; }
   const kaldirilanlar = () => Array.from(kaldirilan), kaldirilanYukle = ids => { for (const id of ids || []) kaldirilan.add(id); };
   function hucreAt(H) { H.ana.concat(H.cizgi).forEach(m => { scene.remove(m); m.dispose && m.dispose(); }); }
-  function solidsYenile() { solids.length = 0; hucreler.forEach(H => { for (const k of H.kutular) solids.push(k); }); }
+  const ekKutular = []; // oyuncunun yaptığı yapıların çarpışma kutuları (yapi.js yazar, sonra SO.world.kutuYenile() çağırır)
+  function solidsYenile() { solids.length = 0; hucreler.forEach(H => { for (const k of H.kutular) solids.push(k); }); for (const k of ekKutular) solids.push(k); }
 
   /* ---------- akış: istenen parçalar, üretim kuyruğu, görünürlük ---------- */
   let su, sonMerkez = null, kuyruk = [], sayac = 0;
@@ -258,5 +259,5 @@
   const ortam = (x, z) => { const w = agirlik(x, z, [0, 0, 0, 0, 0]); return { sehir: 0, kus: Math.round(clamp(w[0] * .9 + w[1], 0, 1) * 5) / 5 }; };
   // harita rengi: (x,z) noktasının haritadaki rengi [r,g,b] 0..255 (su mavi; kara biyom rengi, yükseklikle açılır)
   function renk(x, z) { const h = yukseklikF(x, z); if (h < SU) return h < -6 ? [70, 130, 165] : [105, 165, 190]; const w = agirlik(x, z, [0, 0, 0, 0, 0]); let r = 0, g = 0, b = 0; for (let q = 0; q < 5; q++) { r += cB[q].r * w[q]; g += cB[q].g * w[q]; b += cB[q].b * w[q]; } const k = (h > 240 ? 1.12 : .82 + clamp(h / 320, 0, .3)) * 255; if (h > 240) { r = lerp(r, .93, .7); g = lerp(g, .95, .7); b = lerp(b, .93, .7); } return [Math.min(255, r * k) | 0, Math.min(255, g * k) | 0, Math.min(255, b * k) | 0]; }
-  SO.world = { build, update, yakinNesne, nesneKaldir, kaldirilanlar, kaldirilanYukle, solids, groundY, destekY, kameraZemin, kameraEngel: false, suDerinlik, collide, inside, basamak, zemin, ortam, biyom, renk, yukseklikF, HALF, SU, start, durum: () => ({ dugum: dugum.map(m => m.size), hucre: hucreler.size, kuyruk: kuyruk.length, solids: solids.length }) };
+  SO.world = { build, update, ekKutular, kutuYenile: solidsYenile, yakinNesne, nesneKaldir, kaldirilanlar, kaldirilanYukle, solids, groundY, destekY, kameraZemin, kameraEngel: false, suDerinlik, collide, inside, basamak, zemin, ortam, biyom, renk, yukseklikF, HALF, SU, start, durum: () => ({ dugum: dugum.map(m => m.size), hucre: hucreler.size, kuyruk: kuyruk.length, solids: solids.length }) };
 })();
