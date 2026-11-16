@@ -26,7 +26,7 @@
   const SO = window.SO, T3 = THREE, clamp = SO.clamp;
   const G = 2, DUVAR_H = 2.4, KAYIT = 'acik-dunya-yapi-v1', INK = 0x15120d, YON = [[0, 1], [1, 0], [0, -1], [-1, 0]];
   const tn = SO.tune.yapi = {
-    uzak: 2.8, esyaUzak: 2.2,   // önizlemenin oyuncuya uzaklığı (m); kamera aşağı bakınca yaklaşır
+    uzak: 2.8, esyaUzak: 2.5,   // önizlemenin oyuncuya uzaklığı (m); kamera aşağı bakınca yaklaşır
     yon: 'kamera',              // önizleme yönü: 'kamera' (bakış yönü) | 'karakter' (karakterin yüzü)
     zeminUst: .10,              // ilk zemin araziden bu kadar yukarıda (yürüyerek çıkılabilsin: < 0,28)
     egim: 1.0, kazik: 2.0,      // ilk zeminde hücre içi en çok yükseklik farkı; eklenen zeminin altında en çok boşluk
@@ -352,7 +352,7 @@
     else { yaz(id, mat(P.x, P.y, P.z, P.r)); if (id === 'kamp_atesi') yaz('alev', mat(P.x, P.y, P.z, P.r)); }
   }
   const aglar = {}, uOy = { value: new T3.Vector3() }, uKes = { value: 1 }, uZaman = { value: 0 };
-  let anaMat, cizgiMat, alevMat, onizMat, cizgiAg;
+  let anaMat, cizgiMat, alevMat, onizMat, onizIcMat, cizgiAg;
   // oyuncu ile kamera arasında kalan yüzeyleri noktalı açan gölgelendirici eki (ev içinde karakter görünsün)
   function kesEkle(s) {
     s.uniforms.uOy = uOy; s.uniforms.uKes = uKes;
@@ -387,6 +387,7 @@
   float kY = clamp((position.y - .08) / .5, 0.0, 1.0);
   transformed.x += sin(fzY + position.y * 9.0) * .05 * kY; transformed.z += cos(fzY * 1.31 + position.y * 7.0) * .05 * kY; transformed.y *= 1.0 + .13 * sin(fzY * 1.7) * kY;`); };
     onizMat = new T3.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: .62, depthWrite: false });
+    onizIcMat = new T3.MeshBasicMaterial({ transparent: true, opacity: .2, depthWrite: false, depthTest: false });
   }
   function alevGeo() { const P = [], C = [], kat = (r, h, y, c) => { const g = new T3.ConeGeometry(r, h, 6).toNonIndexed(); g.translate(0, y + h / 2, 0); const A = g.attributes.position.array; for (let i = 0; i < A.length; i += 3) { P.push(A[i], A[i + 1], A[i + 2]); const k = clamp((A[i + 1] - y) / h, 0, 1); C.push(c[0] + k * .0, c[1] - k * .25, c[2]); } };
     kat(.2, .62, .1, [1, .62, .12]); kat(.11, .4, .12, [1, .9, .35]); const g = new T3.BufferGeometry(); g.setAttribute('position', new T3.Float32BufferAttribute(P, 3)); g.setAttribute('color', new T3.Float32BufferAttribute(C, 3)); return g; }
@@ -411,11 +412,12 @@
     SO.world.kutuYenile(); }
 
   /* ---------- önizleme ---------- */
-  const onizHavuz = {}, onizAcik = [], UYGUN = new T3.Color(.62, 1.25, .62), DEGIL = new T3.Color(1.35, .5, .42);
+  const onizHavuz = {}, onizAcik = [], UYGUN = new T3.Color(.62, 1.25, .62), DEGIL = new T3.Color(1.35, .5, .42), UYGUN_IC = new T3.Color(.55, 1, .6), DEGIL_IC = new T3.Color(1, .35, .3);
   function onizGizle() { for (const m of onizAcik) m.visible = false; onizAcik.length = 0; }
   function onizCiz(P) { onizGizle(); const say = {};
     parcaCiz(P, (ad, M) => { if (ad === 'alev') return; const h = onizHavuz[ad] || (onizHavuz[ad] = []), i = say[ad] = (say[ad] || 0) + 1; let m = h[i - 1];
-      if (!m) { m = new T3.Mesh(aglar[ad].geo, onizMat); m.matrixAutoUpdate = false; m.frustumCulled = false; m.renderOrder = 5; SO.scene.add(m); h.push(m); }
+      if (!m) { m = new T3.Mesh(aglar[ad].geo, onizMat); m.matrixAutoUpdate = false; m.frustumCulled = false; m.renderOrder = 5; SO.scene.add(m); h.push(m);
+        const x = new T3.Mesh(aglar[ad].geo, onizIcMat); x.matrixAutoUpdate = false; x.frustumCulled = false; x.renderOrder = 4; m.add(x); } // soluk ikiz: karakterin/arazinin arkasında kalsa da seçilir
       m.matrix.copy(M); m.matrixWorldNeedsUpdate = true; m.visible = true; onizAcik.push(m); }, null); }
   const yonAci = () => tn.yon === 'karakter' ? SO.ps.yaw : SO.cam.yaw, yonV = () => { const a = yonAci(); return [Math.sin(a), Math.cos(a)]; };
   function onizGuncelle(zorla) {
@@ -423,7 +425,7 @@
     const px = ps.x + fx * u, pz = ps.z + fz * u, an = t.id + '|' + anahtarBul(t, px, pz) + '|' + donus;
     if (an === sonAnahtar && !denetKirli && !zorla) return; sonAnahtar = an; denetKirli = false;
     const A = adayBul(t, px, pz), yb = yapabilir(t.id); if (!A.neden && !yb.ok) A.neden = yb.kilitli ? 'kilitli' : 'malzeme'; aday = A;
-    const P = hazirla({ tur: t, a: A.a, b: A.b, r: A.r, y: A.y }); if (t.yer === 'merdiven' && A.neden) P.h = clamp(P.h, .3, 1.2); onizCiz(P); onizMat.color.copy(A.neden ? DEGIL : UYGUN);
+    const P = hazirla({ tur: t, a: A.a, b: A.b, r: A.r, y: A.y }); if (t.yer === 'merdiven' && A.neden) P.h = clamp(P.h, .3, 1.2); onizCiz(P); onizMat.color.copy(A.neden ? DEGIL : UYGUN); onizIcMat.color.copy(A.neden ? DEGIL_IC : UYGUN_IC);
     const uygun = !A.neden; if (kip.uygun !== uygun || kip.neden !== A.neden) { kip.uygun = uygun; kip.neden = A.neden; bildir('kip'); }
   }
 
