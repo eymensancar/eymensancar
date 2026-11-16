@@ -1,0 +1,43 @@
+<title>Two Beeps Sokağı</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Yerleşim: tek ekranlık oyun; tuval bütün alanı kaplar, kontroller alt köşelerde yüzer. Tek görünüş (çizgi film gündüzü), tema yok. */
+:root{--ink:#15120d;--paper:#f1e8d4;--hazard:#f5b21c;--sky:#8fbadb;--shade:rgba(21,18,13,.55);--font:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;color-scheme:light}
+@font-face{font-family:'Lilita One';font-weight:400;src:url(lilita.woff2) format('woff2')}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0}
+body{background:var(--sky);color:var(--ink);font-family:var(--font);overflow:hidden;overscroll-behavior:none;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#wrap{position:relative;height:100%;overflow:hidden}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pad{position:absolute;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:flex-end}
+#padL{left:max(16px,env(safe-area-inset-left,0px))}
+#padR{right:max(16px,env(safe-area-inset-right,0px))}
+.btn{width:68px;height:68px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.78);color:var(--ink);font:700 15px/1 system-ui,-apple-system,'Segoe UI',sans-serif;display:grid;place-items:center;padding:0;touch-action:none;box-shadow:0 4px 0 var(--shade)}
+.btn svg{width:30px;height:30px}
+.btn.on{background:var(--hazard);transform:translateY(3px);box-shadow:0 1px 0 var(--shade)}
+.btn:focus-visible{outline:3px solid var(--hazard);outline-offset:3px}
+#bAct{background:var(--hazard)}
+#bAct[disabled]{opacity:.35}
+#top{position:absolute;top:calc(8px + env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;font-size:14px}
+#fps{background:rgba(21,18,13,.6);color:var(--paper);padding:4px 9px;border-radius:8px;font-variant-numeric:tabular-nums}
+#full{pointer-events:auto;width:auto;height:auto;border-radius:10px;padding:7px 12px;font-size:13px;box-shadow:0 3px 0 var(--shade)}
+#hint{position:absolute;left:50%;top:22%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;font-size:17px;text-align:center;max-width:80%}
+#load{position:absolute;inset:0;display:grid;place-items:center;background:var(--sky);font-size:22px}
+</style>
+<div id="wrap">
+  <canvas id="c"></canvas>
+  <div id="top"><span id="fps">…</span><button class="btn" id="full" type="button">Tam ekran</button></div>
+  <div id="hint" hidden>Telefonu yan çevir: oyun yatay</div>
+  <div class="pad" id="padL">
+    <button class="btn" id="bL" type="button" aria-label="Sola yürü"><svg viewBox="0 0 24 24"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="btn" id="bR" type="button" aria-label="Sağa yürü"><svg viewBox="0 0 24 24"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <div class="pad" id="padR">
+    <button class="btn" id="bRun" type="button">KOŞ</button>
+    <button class="btn" id="bAct" type="button" disabled>BİP</button>
+    <button class="btn" id="bJump" type="button" aria-label="Zıpla"><svg viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <div id="load">Sokak çiziliyor…</div>
+</div>
+<script src="cizim.js"></script>
+<script src="oyun.js"></script>
