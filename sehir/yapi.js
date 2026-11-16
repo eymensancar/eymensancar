@@ -152,8 +152,8 @@
       for (const [x, e] of [[-.5, .05], [0, -.04], [.5, .03]]) k.kutuk([x - e, .04, .05], [x + e, .98, .05], .03, .022, o_(KIRIS, { lif: 1, seg: 5 }));
       return { geo: k.bitir(), cizgi: [[-1, .4, -.04, 1, .5, .04], [-1, .8, -.04, 1, .9, .04]] }; },
     // merdiven: beş basamak; birim yükseklik (y = 0 zemin üstü, y = -1 dip; örnekte yükseklikle ölçeklenir); yerel +z zemine bakar
-    merdiven() { const k = Kurucu(); for (let i = 0; i < 5; i++) { const z1 = 1 - i * .4, z0 = z1 - .4, ust = -(i + 1) / 6; k.kutu(-.56, -1.2, z0 + .01, .56, ust - .05, z1, o_(i % 2 ? TAS2 : TAS, { ton: (rs() - .5) * .1 })); k.kutu(-.6, ust - .05, z0 - .02, .6, ust, z1, o_(i % 2 ? TAHTA2 : TAHTA, { lif: 0 })); }
-      return { geo: k.bitir(), cizgi: [[-.6, -1.2, -1, .6, -1 / 6, 1]] }; },
+    merdiven() { const k = Kurucu(), cz = []; for (let i = 0; i < 5; i++) { const z1 = 1 - i * .4, z0 = z1 - .4, ust = -(i + 1) / 6; cz.push([-.6, -1.2, z0, .6, ust, z1]); k.kutu(-.56, -1.2, z0 + .01, .56, ust - .05, z1, o_(i % 2 ? TAS2 : TAS, { ton: (rs() - .5) * .1 })); k.kutu(-.6, ust - .05, z0 - .02, .6, ust, z1, o_(i % 2 ? TAHTA2 : TAHTA, { lif: 0 })); }
+      return { geo: k.bitir(), cizgi: cz }; },
     // yatak: 1 × 2 m; baş ucu yerel +z
     yatak() { const k = Kurucu(); for (const [x, z] of [[-.45, -.94], [.45, -.94], [-.45, .94], [.45, .94]]) k.kutuk([x, 0, z], [x, z > 0 ? .98 : .56, z], .055, .05, o_(KIRIS, { lif: 1 }));
       for (const s of [-1, 1]) k.kutu(s * .5, .16, -.94, s * .42, .3, .94, o_(KIRIS, { lif: 2 }));
@@ -359,7 +359,7 @@
     s.vertexShader = 'varying vec3 vDunya;\n' + s.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\n vec4 wpY = vec4(transformed, 1.0);\n#ifdef USE_INSTANCING\n wpY = instanceMatrix * wpY;\n#endif\n vDunya = (modelMatrix * wpY).xyz;');
     s.fragmentShader = 'uniform vec3 uOy; uniform float uKes; varying vec3 vDunya;\n' + s.fragmentShader.replace('void main() {', `void main() {
   if (uKes > 0.0) { vec3 ckY = uOy - cameraPosition; float LY = length(ckY); vec3 dY = ckY / max(LY, 1e-3); vec3 wY = vDunya - cameraPosition; float tY = dot(wY, dY);
-    if (tY < LY - 0.3) { float rY = length(wY - dY * tY); float eY = smoothstep(uKes * 0.55, uKes, rY); if (eY <= fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715))))) discard; } }`);
+    if (tY < LY - 0.3 && vDunya.y > uOy.y - 0.8) { float rY = length(wY - dY * tY); float eY = smoothstep(uKes * 0.55, uKes, rY); if (eY <= fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715))))) discard; } }`);
   }
   function malzemeKur() {
     const GUN = (SO.gorunum && SO.gorunum.GUN) || new T3.Vector3(-.5, .8, .35).normalize(), atlas = atlasCiz();

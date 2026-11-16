@@ -123,8 +123,8 @@
       f(p, e, x, z, y) { const w = sm(-p.kn, 0, isaretli(e.S, e, x, z) + (p.pr ? G2() * p.pr * 2 : 0)); return w > 0 ? y - p.D * w : y; } },
     // göl: su altına inen havza (su yüzeyi y = 0). İçeride sahanlık (sığ kıyı şeridi) + derine iniş; dışarıda arazi kıyıya doğru alçalır
     gol: { kur(p) { p.D = say(p.derinlik, 4); p.sh = say(p.sahanlik, 8); p.in = say(p.inis, 14); p.ym = say(p.yamac, .2); p.et = say(p.etki, 120); p.pr = say(p.puruz, 5); p.ky = say(p.kiyiY, .3); if (!p.alan) hata('gol: alan yok');
-        p.K = [{ S: alanKur(p.alan), R: p.et + p.pr, Ri: p.sh + p.in + p.pr }]; },
-      f(p, e, x, z, y) { const s = isaretli(e.S, e, x, z) + (p.pr ? G2() * p.pr * 2 : 0); if (s <= -p.et) return y;
+        p.K = [{ S: alanKur(p.alan), R: p.et + p.pr * 1.6, Ri: p.sh + p.in + p.pr * 1.6 }]; },
+      f(p, e, x, z, y) { const s = isaretli(e.S, e, x, z) + (p.pr ? G2() * p.pr * 2 + G1() * p.pr * 1.2 : 0); if (s <= -p.et) return y;
         if (s >= 0) { const hd = p.ky - (p.ky + .55) * sm(0, p.sh, s) - (p.D - .55) * sm(p.sh, p.sh + p.in, s); return y < hd ? y : hd; }
         const yy = smin(y, p.ky - s * p.ym, 2); return y + (yy - y) * (1 - sm(p.et * .7, p.et, -s)); } },
     // nehir: çizgi boyunca yatak (su yüzeyi y = 0: yatak 0'ın altına iner, çevre arazi nehre doğru alçalır). nokta [x, z, genişlik]. sig: [{ nokta: [x, z], uzunluk }] yürünerek geçilen sığ geçitler

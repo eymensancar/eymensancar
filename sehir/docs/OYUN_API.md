@@ -17,11 +17,14 @@ Betik sırası (index.html, sabit): … `toplama.js` → `oyun.js` → `yapi.js`
 - Kayıt: `localStorage` anahtarı `acik-dunya-oyun-v1` (try/catch; `?test` kipinde yok).
 
 ## `yapi.js` (inşa) sağlar
-- **`SO.yapilar`**: `[{ id, ad, sinif: 'yapi' | 'esya', girdi: { tur: adet }, teknoloji: id | null, simge }]` (duvar, zemin, çatı, çit, kapı, yatak, masa, üretim masası, fırın, kamp ateşi…).
-- **`SO.yapi.basla(id)`**: yerleştirme kipini açar (önünde yarı saydam önizleme; ızgaraya oturur); **`SO.yapi.onayla()`**, **`SO.yapi.iptal()`**, **`SO.yapi.dondur()`**; `SO.yapi.kip` (`null` | `{ id, uygun }`); **`SO.yapi.yakin(id, r)`** → yakındaki yapı ya da null; `SO.yapi.dinle(fn)`.
-- Malzemeyi `SO.envanter.harca` ile düşer; `SO.oyun.uretebilir` benzeri denetim için `SO.yapi.yapabilir(id)` → `{ ok, eksik, kilitli }`.
-- Çarpışma: yerleştirilen yapıların kutularını `SO.world.ekKutular` dizisine yazar (arazi.js bunu `solids`'e katar).
-- Kayıt: `acik-dunya-yapi-v1`.
+- **`SO.yapilar`**: `[{ id, ad, sinif: 'yapi' | 'esya', girdi: { tur: adet }, teknoloji: id | null, simge }]`. Şimdiki id'ler: yapı `zemin`, `duvar`, `kapi` (kapılı duvar), `pencere` (pencereli duvar), `cati` (düz), `cati_egik`, `merdiven`, `cit`; eşya `kamp_atesi`, `uretim_masasi`, `yatak`, `masa`, `firin`, `sandik`. (Ek alan `yer`: `'zemin' | 'kenar' | 'cati' | 'merdiven' | 'esya'`: oturma kuralı.)
+- **`SO.yapi.basla(id)`** → bool: yerleştirme kipini açar (önünde yarı saydam önizleme; ızgaraya oturur). Kilitliyse ya da malzeme yetmiyorsa açmaz, `false` döner. **`SO.yapi.onayla()`** → bool (kurduysa `true`; kipte kalır, malzeme bitince kip kendiliğinden kapanır), **`SO.yapi.iptal()`**, **`SO.yapi.dondur()`** (zemin/eşya/eğik çatı: 90° çevirir; duvar/çit/merdiven: hücrenin sıradaki uygun kenarına geçer); `SO.yapi.kip` (`null` | `{ id, uygun, neden }`; `neden`: `''` | `'dolu'` | `'destek'` (duvar zemin kenarı, çatı duvar ister) | `'egim'` | `'su'` | `'malzeme'` | `'kilitli'`); **`SO.yapi.yakin(id, r = 3)`** → o türden en yakın yapı `{ id, x, y, z, uzak }` ya da `null`; `SO.yapi.dinle(fn)`: `fn(ne)`, `ne`: `'kip'` (kip açıldı/kapandı/uygunluk değişti) | `'kur'` | `'sok'` | `'hedef'` (sökülebilir parça değişti).
+- Malzemeyi `SO.envanter.harca` ile düşer; `SO.oyun.uretebilir` benzeri denetim için `SO.yapi.yapabilir(id)` → `{ ok, eksik, kilitli }` (kilit: `SO.oyun.teknolojiAcik`).
+- **Sökme:** `SO.yapi.sokulebilir` → `null` | `{ id, ad, x, y, z, iade: { tur: adet }, engel: null | 'Önce duvarı sök' … }` (kipte değilken oyuncunun önündeki parça; sarı çerçeveyle gösterilir; `engel` doluysa önce ona bağlı parça sökülmeli); **`SO.yapi.sok()`** → bool (malzemenin yarısı geri gelir). Arayüz bağlayana kadar klavyede `X` (arayüz kendi düğmesini bağlayınca `SO.tune.yapi.xTusu = false` yapsın). `Enter`/`R`/`Esc` arayüzde.
+- Önizleme yönü kameranın baktığı yöndür (`SO.tune.yapi.yon = 'karakter'` ile karakterin yüzü olur); kamera aşağı baktıkça önizleme yaklaşır.
+- Çarpışma: yerleştirilen yapıların kutularını `SO.world.ekKutular` dizisine yazar (arazi.js bunu `solids`'e katar); kutularda ek alan `yapi: true`. Zemin ve basamaklar `duz: true`; çatının kutusu yok.
+- Ses olayları (ses.js henüz çalmıyor): `SO.ses.olay('kur', { tur })`, `SO.ses.olay('sok', { tur })`.
+- Kayıt: `acik-dunya-yapi-v1` = `{ v: 1, p }` (biçim `yapi.js` başında). Deneme: `SO.yapi.durum()`, `kodla()`, `coz(metin)`, `temizle()`, `yerlestir(id, a, b, r, y)` (denetimsiz), `parcalar`, `aday`.
 
 ## `arayuz.js` (arayüz) sağlar
 - Ekran düzeni `docs/YOL_HARITASI.md`'de. Yalnız okur ve yukarıdaki işlevleri çağırır; oyun durumunu kendi tutmaz.

@@ -132,7 +132,7 @@ function olc(A) {
     { ad: 'Yerleşim seçeneği: 5–6', deger: String(yerlesim.length), ok: noktalar.length ? yerlesim.length >= 5 : null },
     { ad: 'Tek noktadan bütün harita görünmez: doğuştan görünen kara < %50', deger: '%' + (karaK ? Math.round(gorK / karaK * 100) : 0), ok: karaK ? gorK / karaK < .5 : null },
     { ad: 'Dev boş düzlük yok', deger: bosK.length + ' boş düzlük', ok: bosK.length === 0 },
-    { ad: 'Uzun olaysız yürüyüş yok: en geniş boşluk < 150 m (≈ 40 sn koşu)', deger: bosluk.length ? Math.round(bosluk[0].uzunluk) + ' m' : 'boşluk yok', ok: !bosluk.length || bosluk[0].uzunluk < 150 },
+    { ad: 'Uzun olaysız yürüyüş yok: en yakın ağaç/kaya/ilgi noktasına uzaklık hiçbir yerde > 120 m değil', deger: 'en çok ' + Math.round(enCok) + ' m', ok: enCok <= 120 },
     { ad: 'Bütün ilgi noktalarına yürüyerek erişim', deger: nk.filter(q => q.erisim !== 'yürüyerek').length + ' sorunlu', ok: noktalar.length ? nk.every(q => q.erisim === 'yürüyerek') : null },
     { ad: 'Kapalı cep yok (alan içinde, ≥ 300 m²)', deger: cepler.filter(q => !q.kenar).length + ' cep', ok: cepler.filter(q => !q.kenar).length === 0 }
   ];

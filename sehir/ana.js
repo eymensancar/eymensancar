@@ -70,7 +70,7 @@
     try {
       if (document.fonts && document.fonts.load) await document.fonts.load("30px 'Lilita One'").catch(() => { });
       layout(); SO.world.build(scene, renderer); const ch = await SO.karakter.build(scene);
-      const ps = SO.ps; ps.x = SO.world.start.x; ps.z = SO.world.start.z; ps.y = ps.groundY = SO.world.groundY(ps.x, ps.z); ps.yaw = Math.PI; SO.cam.yaw = Math.PI;
+      const ps = SO.ps; ps.x = SO.world.start.x; ps.z = SO.world.start.z; ps.y = ps.groundY = SO.world.groundY(ps.x, ps.z); ps.yaw = Math.PI; if (SO.tasarim && SO.tasarim.dogus && SO.tasarim.dogus.yon != null) ps.yaw = Math.PI - SO.tasarim.dogus.yon * Math.PI / 180; /* tasarlanmış doğuş yönü (pusula derecesi) */ SO.cam.yaw = ps.yaw;
       SO.anim.init({ char: ch, mixer: ch.mixer, action: ch.action, bones: ch.bones, clips: ch.clips, ps, input: SO.input, tune: SO.tune, world: SO.world, get time() { return SO.time; } });
       if (SO.harita) SO.harita.init(); if (SO.toplama) SO.toplama.init(); if (SO.oyun) SO.oyun.init(); if (SO.yapi) SO.yapi.init(); if (SO.arayuz) SO.arayuz.init(); step(0); yuk.hidden = true; SO.ready = true;
     } catch (e) { yuk.textContent = 'Açılamadı: ' + e.message; console.error(e); }

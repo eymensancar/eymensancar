@@ -15,13 +15,13 @@
    Sağ el kemiği (hand_r) eksenleri: +Y parmak yönü, −X avuç içi, +Z başparmak tarafı (sap bu eksende durur; oyun.js aleti buna göre bağlar).
    Melee_Hook ölçüldü, kullanılmadı: dönerek atılan alçak bir kroşe (bilek 0,69 m'de, gövde 1,4 m öne atılıyor); yerinde vuruş için uygun değil.
 
-   ZAMAN ÇİZELGESİ (düğmeye basıştan; duran karakter; hız çarpanları T.tur içinde):
+   ZAMAN ÇİZELGESİ (düğmeye basıştan; duran karakter; 60 kare/sn'de ölçüldü; hız çarpanları T.tur içinde):
      tür      klip                ilk değme   art arda vuruş aralığı   bırakınca çıkış
-     balta    TreeChopping_Loop   0,47 sn     0,88 sn                  değmeden 0,18 sn sonra karışarak çıkar
-     kazma    Sword_Attack        0,33 sn     0,90 sn                  değmeden 0,16 sn sonra
-     yumruk   Punch_Cross         0,13 sn     0,62 sn                  değmeden 0,17 sn sonra
-     mizrak   Punch_Cross         0,13 sn     0,72 sn                  değmeden 0,19 sn sonra
-     ye       Consume             0,32 sn     0,99 sn                  ağza değdikten 0,35 sn sonra
+     balta    TreeChopping_Loop   0,50 sn     0,88 sn                  değmeden 0,18 sn sonra karışarak çıkar
+     kazma    Sword_Attack        0,35 sn     0,90 sn                  değmeden 0,15 sn sonra
+     yumruk   Punch_Cross         0,15 sn     0,63 sn                  değmeden 0,17 sn sonra
+     mizrak   Punch_Cross         0,15 sn     0,73 sn                  değmeden 0,20 sn sonra
+     ye       Consume             0,35 sn     1,00 sn                  ağza değdikten 0,35 sn sonra
    Vuruş: `ilk` anından başlar, `deg` anında S.deger; `cik` anına gelince düğme hâlâ basılıysa (basla yeniden çağrılmışsa) klip sonuna
    kadar oynar ve başa sarar (döngü klibinde 0'a, ötekilerde `ilk`e: iki uçtaki duruş aynı), basılı değilse taban harekete karışarak çıkar.
 
@@ -29,7 +29,7 @@
    klibinin payı), ps.vurYavas (hız çarpanı 0..1; 1 = kısma yok. FİZİK OKUMALI: hedef hız bununla çarpılır, `ps.toplaYavas` gibi).
    Her kare ps.airBlend = max(ps.airBlend, ps.vurBlend): taban hareket (hareket.js) böyle bastırılır (tırmanma/toplamadaki yol). ps.ikKapat'a
    dokunmaz (ayak yerleştirme açık). Çubuk itilmiyorken ps.yaw'ı hedefe çevirir. Yerden kesilince, yüzünce, ps.kilit gelince, yerden alma
-   başlayınca iptal olur (S.iptal bir kare true). Kemiklere elle dokunmaz. Ayarlar SO.tune.vurus, ölçüm SO.vurAnim.durum. */
+   başlayınca iptal olur (S.iptal bir kare true). Kemiklere elle dokunmaz; ama payı varken karıştırıcıyı her kemiği her kare yeniden yazmaya zorlar (update içindeki not). Ayarlar SO.tune.vurus, ölçüm SO.vurAnim.durum. */
 (function () {
   'use strict';
   const SO = window.SO, clamp = SO.clamp, wrapA = SO.wrapA;
@@ -84,6 +84,10 @@
     if (S.on && S.faz === 'cik' && S.w <= 0) { S.on = false; S.faz = ''; }
     const tb = S.w * S.w * (3 - 2 * S.w);
     // taban hareket bu kareye geçen karede duyurulan payla girdi (hareket.js order 10): klip de o payla oynar, toplam hep 1 kalır
+    /* three.js karıştırıcısı, bir kemiğin karışmış değeri önceki kareyle bit bit aynıysa kemiğe YAZMAZ. Klip bir duruşta beklerken (Consume'da el
+       ağızdayken, kesmede alet hedefteyken) sonraki katmanların `post`ta eklediği dönüşler (durus.js) silinmez, kare kare birikir (gövde katlanır).
+       Bu katmanın payı varken karıştırıcının "önceki değer" belleği bozulur: her kemik her kare yeniden yazılır. */
+    if ((S.uyg > 0 || S.w > 0) && ctx.mixer._bindings) for (const b of ctx.mixer._bindings) { const n = b.valueSize, buf = b.buffer; if (buf && n && buf.length >= 3 * n) for (let i = n; i < 3 * n; i++) buf[i] = NaN; }
     for (const ad in akt) { const a = akt[ad], benim = D && D.klip === ad; a.setEffectiveWeight(benim ? S.uyg : 0); if (benim) a.time = clamp(S.t, 0, D.son - .001); }
     ps.vur = S.on && S.faz !== 'cik'; ps.vurTur = S.on ? S.tur : ''; ps.vurBlend = tb; ps.vurYavas = ps.vur && D ? D.yavas : 1;
     if (S.uyg > 0 || tb > 0) ps.airBlend = Math.max(ps.airBlend || 0, tb);
