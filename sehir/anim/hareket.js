@@ -30,13 +30,14 @@
     yuruBasis: .5, kosBasis: .14, deparBasis: .15,   // ayağın yerde kaldığı evre aralığı (temastan sonra)
     // istenen kadans (döngü/sn = dakikadaki adım / 120): dururken, yavaş yürüyüş (0.55 × yürüme), yürüme, hafif koşu, depar hızlarında
     kadans: [.62, .80, .98, 1.26, 1.52],
-    olcekle: true, olcekMin: .45, olcekMax: 1.22,     // adım ölçekleme sınırları
+    olcekle: true, olcekMin: .45, olcekMax: 1.22, olcekBasis: 4,     // adım ölçekleme sınırları
     durEvre: .08,                                     // dururken beklenen evre
     kalkis: 13, durus: 8.5,                           // dur ↔ hareket ağırlık geçiş hızları (1/sn)
-    karisim: 22                                       // klip ağırlıklarının hıza uyma hızı (1/sn; duvara sürtünme gibi hız titremelerini süzer)
+    gecis: [.22, .5],                                // yürü → koşu geçiş bandı (walk..jog aralığının kesri)
+    karisim: 18                                       // klip ağırlıklarının hıza uyma hızı (1/sn)
   }, SO.tune.hareket || {});
 
-  let A, K, loco = 0, g = 1, s = 1, acc = T.durEvre, fired = 0, warpL = 0, warpR = 0;
+  let A, K, loco = 0, g = 1, sL = 1, sR = 1, acc = T.durEvre, fired = 0, warpL = 0, warpR = 0;
   const w = [1, 0, 0];
 
   const frac = x => x - Math.floor(x);
@@ -58,9 +59,14 @@
       const ps = ctx.ps, tn = ctx.tune, v = ps.speed, base = 1 - ps.airBlend;
       K.forEach(k => { k.temas = T[k.t]; k.L = T[k.boy]; k.basis = T[k.b]; });
 
-      // 1) klip karışımı hıza göre: yürü (≤ walk) → hafif koşu (jog) → depar (sprint). Hız fizikte ivmeyle değiştiği için geçiş kendiliğinden ~0,15-0,2 sn sürer.
-      const gh = v <= tn.walk ? 1 : v <= tn.jog ? 1 + smooth(tn.walk, tn.jog, v) : 2 + smooth(tn.jog, tn.sprint, v);
-      g = loco < .02 ? gh : SO.damp(g, gh, T.karisim, dt);
+      // 1) klip karışımı hıza göre: yürü → hafif koşu → depar. Yürüme ile koşu ayrı yürüyüşlerdir (birinde çift destek, ötekinde uçuş var): yarı yarıya
+      //    karışımları ayağı yerde kaydırır. Bu yüzden geçiş dar bir hız bandında (T.gecis; 2,0-2,6 m/sn) ve zamanda yumuşatılarak yapılır; bandın altında
+      //    adım ölçeğiyle uzayan yürüyüş, üstünde kısalan koşu oynar. Koşu ↔ depar aynı tür yürüyüş olduğundan doğrusal karışır.
+      const dj = tn.jog - tn.walk, gh = v <= tn.jog ? 1 + smooth(tn.walk + T.gecis[0] * dj, tn.walk + T.gecis[1] * dj, v) : 2 + clamp((v - tn.jog) / (tn.sprint - tn.jog), 0, 1);
+      //    Ayrıca geçiş yalnız koşu klibinin uçuş anında ilerler (iki ayak da havada): yerdeki ayak bir klibin basışından ötekinin basışına kaydırılmaz, kalkar/iner.
+      if (loco < .5) g = loco < .02 ? gh : SO.damp(g, gh, T.karisim, dt);
+      else { const h = frac(frac(acc) * 2) * .5, ucus = h > T.kosBasis + .01 && h < .47; let gn = SO.damp(g, gh, T.karisim, dt); if (!ucus) gn = g >= 2 ? Math.max(2, gn) : g > 1.001 || gn > 1.001 ? (gh >= 2 && g >= 1.999 ? gn : g) : gn; g = gn; }
+      if (Math.abs(g - gh) < .002) g = gh;
       w[0] = clamp(2 - g, 0, 1); w[2] = clamp(g - 2, 0, 1); w[1] = 1 - w[0] - w[2];
 
       // 2) dur ↔ hareket: hızdan hedef, zamanda yumuşatılmış (yürümede hız 0,1 sn'de değişir; poz o kadar çabuk değişirse sıçrar)
@@ -70,16 +76,20 @@
       // 3) adım uzunluğu ve evre hızı. Karışımın döngü uzunluğu = Σ ağırlık × klip uzunluğu × eşleme eğimi (o andaki yarı döngüde).
       // Sol ayak hep ilk yarıda (evre 0..0.5), sağ ayak ikinci yarıda basar; eşleme eğimi yarıdan yarıya değişiyorsa (depar) fark bacak başına ölçekle kapatılır, ritim eşit kalır.
       let ph = frac(acc), LmL = 0, LmR = 0, Lort = 0; for (let i = 0; i < 3; i++) { LmL += w[i] * K[i].L * egim(K[i], 0); LmR += w[i] * K[i].L * egim(K[i], .5); Lort += w[i] * K[i].L; }
-      const C = kadans(v, tn), sH = T.olcekle ? clamp(v / (C * Lort), T.olcekMin, T.olcekMax) : 1;
-      s = loco < .02 ? sH : SO.damp(s, sH, 14, dt);
-      let hiz = v / (s * Lort); // döngü/sn: yerdeki ayağın geriye hızı (s × Lort × hiz) = zemin hızı
+      // İstenen kadanstan adım ölçeği; her bacağın ölçeği kendi basışı sırasında yavaş değişir (yerdeki ayak ölçek değişince kayar), havadayken çabuk.
+      //    Evre hızı o an yerde olan bacağın ölçeğinden çıkar: basış sırasında hız değişirse kadans değişir, ayak yerinde kalır.
+      const C = kadans(v, tn), sH = T.olcekle ? clamp(v / (C * Lort), T.olcekMin, T.olcekMax) : 1, tL = sH * Lort / LmL, tR = sH * Lort / LmR;
+      let pl = 0, pr = 0; for (let i = 0; i < 3; i++) { if (ph < K[i].basis) pl += w[i]; if (frac(ph + .5) < K[i].basis) pr += w[i]; }
+      if (loco < .02 || !T.olcekle) { sL = tL; sR = tR; } else { const yavas = loco > .9 ? T.olcekBasis : 16; sL = SO.damp(sL, tL, pl > .5 ? yavas : 16, dt); sR = SO.damp(sR, tR, pr > .5 ? yavas : 16, dt); }
+      const boy = pl > .5 ? sL * LmL : pr > .5 ? sR * LmR : .5 * (sL * LmL + sR * LmR); // o anki döngü uzunluğu (m)
+      let hiz = v / boy; // döngü/sn: yerdeki ayağın geriye hızı (boy × hiz) = zemin hızı
 
       const durEvre = frac(T.durEvre);
       if (loco === 0) { acc = durEvre; fired = 0; hiz = 0; }
       else if (ps.wantMag < .08 && v < .9 && ps.grounded) {
         // duruş: yarım adımda donmasın. Evre en yakın yoldan duruş evresine götürülür (ayak az kalkmışsa geri konur, yoksa adım tamamlanır).
         let ileri = frac(durEvre - ph); const d = ileri > .74 ? ileri - 1 : ileri;
-        let adim = d * (1 - Math.exp(-10 * dt)); const enaz = Math.min(Math.abs(d), .9 * dt), ust = 2.6 * dt;
+        let adim = d * (1 - Math.exp(-10 * dt)); const enaz = Math.min(Math.abs(d), .9 * dt), ust = 2.1 * dt;
         adim = Math.sign(d) * clamp(Math.abs(adim), enaz, ust); if (d > 0) adim = Math.max(adim, Math.min(d, hiz * dt));
         acc += adim; hiz = dt > 0 ? adim / dt : 0;
       } else acc += hiz * dt;
@@ -87,7 +97,7 @@
 
       // 4) klipleri evreye oturt, ağırlıkları yaz (havada taban ağırlıkları 1 - airBlend ile kısılır)
       A.idle.setEffectiveWeight((1 - loco) * base);
-      let pl = 0, pr = 0;
+      pl = pr = 0;
       for (let i = 0; i < 3; i++) { const k = K[i]; k.a.time = frac(esle(k, ph)) * k.D; k.a.setEffectiveWeight(w[i] * loco * base); if (ph < k.basis) pl += w[i]; if (frac(ph + .5) < k.basis) pr += w[i]; }
 
       // 5) adım olayı: evre 0'ı (sol) ya da 0.5'i (sağ) ileri yönde her geçişte tam bir kez; havadayken ve dururken yok
@@ -96,9 +106,9 @@
       if (acc > 64) { acc -= 64; fired -= 128; }
 
       // 6) duyurular
-      ps.gait = loco * g; ps.phase = ph; ps.stride = s * Lort; ps.cadence = hiz; ps.strideScale = s;
+      ps.gait = loco * g; ps.phase = ph; ps.stride = boy; ps.cadence = hiz; ps.strideScale = .5 * (sL + sR);
       ps.plantL = lerp(1, clamp(pl, 0, 1), loco); ps.plantR = lerp(1, clamp(pr, 0, 1), loco);
-      warpL = (s * Lort / LmL - 1) * loco * base; warpR = (s * Lort / LmR - 1) * loco * base;
+      warpL = (sL - 1) * loco * base; warpR = (sR - 1) * loco * base;
     },
 
     // adım ölçekleme: her bacakta ayak ucunun kalçaya göre ileri uzaklığı s ile çarpılır; bilek o kadar kaydırılır, uyluk/baldır iki kemikli çözümle döner, ayağın dünya yönü korunur
