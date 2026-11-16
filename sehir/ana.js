@@ -22,7 +22,7 @@
   function step(dt) {
     SO.time += dt; girdi(); SO.fizik.update(dt); SO.anim.update(dt);
     const ps = SO.ps, ch = SO.char; ch.root.position.set(ps.x, ps.y + (ps.rootDy || 0), ps.z); ch.root.rotation.order = 'YXZ'; ch.root.rotation.set(ps.leanFwd || 0, ps.yaw, ps.lean || 0); // yatma: ayak tabanından döner
-    golge.position.set(ps.x, ps.groundY + .03, ps.z); const hs = 1 - Math.min(.5, (ps.y - ps.groundY) / 3); golge.scale.set(hs, hs, 1);
+    golge.visible = !(ps.yuzmeBlend > .3) && !(ps.suDerin > .15); golge.position.set(ps.x, ps.groundY + .03, ps.z); const hs = 1 - Math.min(.5, (ps.y - ps.groundY) / 3); golge.scale.set(hs, hs, 1);
     SO.kamera.update(cam, dt); if (SO.world.update) { cam.updateMatrixWorld(); SO.world.update(cam); } SO.ses.update(dt); if (SO.harita) SO.harita.update(dt); renderer.render(scene, cam);
   }
   SO.step = step;

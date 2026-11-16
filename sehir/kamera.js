@@ -61,7 +61,7 @@
   function update(cam, dt) {
     const ps = SO.ps;
     if (st.mode !== 'takip') { fovYaz(cam, st.fov); has = false; lastYaw = null;
-      const d = st.dist, a = ps.yaw + ({ yan: Math.PI / 2, on: 0, arka: Math.PI, capraz: Math.PI * .22 })[st.mode]; cam.position.set(ps.x + Math.sin(a) * d, ps.groundY + 1.25, ps.z + Math.cos(a) * d); cam.lookAt(V.set(ps.x, ps.groundY + 1.0, ps.z)); return; }
+      const d = st.dist, a = ps.yaw + ({ yan: Math.PI / 2, on: 0, arka: Math.PI, capraz: Math.PI * .22 })[st.mode]; cam.position.set(ps.x + Math.sin(a) * d, Math.max(ps.groundY + 1.25, (SO.world.SU || 0) + .9), ps.z + Math.cos(a) * d); cam.lookAt(V.set(ps.x, ps.groundY + 1.0, ps.z)); return; }
     const tx = ps.x, ty = ps.y + st.height, tz = ps.z, spd = ps.speed || 0;
     if (!has || Math.hypot(P.x - tx, P.z - tz) > 8) { has = true; P.x = tx; P.y = ty; P.z = tz; P.vx = P.vy = P.vz = 0; Ld.x = Ld.z = Ld.vx = Ld.vz = 0; st.cur = null; dip.x = dip.v = 0; lastLanded = ps.landedAt; st.kick = 0; holdT = 0; }
 

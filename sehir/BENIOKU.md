@@ -83,7 +83,8 @@ Sağ üstte küçük yuvarlak harita (`#hMini`, 72 px; oyuncu ortada ok, kuzey y
 ## Fizik durumları (`fizik.js`)
 - Su: `ps.suDerin` (m). Sığda (0,25–1,2 m) hız yarıya kadar düşer. Derinlik 1,3 m'yi geçince `ps.yuzme = true`: karakter su yüzeyinde tutulur (`ps.y` ≈ −1,38), hız `tune.yuz` (1,45) / KOŞ ile `tune.yuzHizli` (2,3), zıplama yok; 1,1 m'nin altına inince biter. `ps.yuzmeAt` son değişim anı. Yüzerken `ps.grounded` true kalır.
 - `ps.kilit = true`: fizik konuma dokunmaz; konumu bir katman (tırmanma) sürer, bitince `false` yapar ve hızları sıfırlar/ayarlar.
-- `ps.ikKapat` (0..1): ayak yerleştirme ve duruş düzeltmesi bu kadar kapatılır (yüzme, tırmanma sırasında).
+- `ps.ikKapat` (0..1): ayak yerleştirme ve duruş düzeltmesi bu kadar kapatılır. Yüzme katmanı her karenin başında kendi payına eşitler; tırmanma yalnız `Math.max` ile yükseltir.
+- Yüzme katmanının alanları: `ps.yuzmeBlend` (yüzme kliplerinin payı; taban hareket `1 − yuzmeBlend` ile çarpılır), `ps.yuzmeEvre`, `ps.yuzmeIleri`, `ps.yuzmeDy` (bilgi), `ps.adimAgir` (sığ suda kadans çarpanı).
 
 ## Ses olayları (`SO.ses.olay(ad, bilgi)`)
 - `adim` `{ zemin: 'asfalt' | 'kaldirim' | 'cim', hiz, ayak: 'l' | 'r' }`
