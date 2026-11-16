@@ -92,7 +92,7 @@ Sağ üstte küçük yuvarlak harita (`#hMini`, 72 px; oyuncu ortada ok, kuzey y
 - `su_gir` `{ hiz }` (suya girip yüzmeye başlama), `su_cik` `{}`, `kulac` `{ hiz }` (yüzerken her kulaç), `adim` olayında `zemin: 'su'` (sığ suda yürüme)
 - `tutun` `{}` (tırmanırken el kayaya değer), `tirman` `{ yukseklik }` (kendini yukarı çekme/üste çıkış)
 
-Sesler `ses/*.mp3` (gerçek kayıt, kamu malı; kaynaklar `ses/LISANS.md`). Zemin başına yürüme ve koşu için ayrı adım takımı var; 2,6 m/sn üstünde koşu takımı çalar. Ortam: şehir uğultusu hep çalar, parkta (şehir içindeki çim) üstüne kuş katmanı gelir. Düzeyler `SO.tune.ses` içinde; `SO.ses.durum()` yüklenen dosya sayısını, hataları ve çalınan ses sayılarını verir. Ses ilk dokunuşta açılır; `?test` kipinde `init()` çağrılmadıkça sessizdir.
+Sesler `ses/*.mp3` (gerçek kayıt, kamu malı; kaynaklar `ses/LISANS.md`). Su: sığ suda adım `ps.suDerin`'e göre hafiften dolguna gider; su ortamı (`ortam_su`) oyuncunun çevresinde `world.suDerinlik` örneklenerek (0,4 sn'de bir; 4, 10, 30 m halkaları) açılır, yüzerken biraz öne gelir. `'cim'` zemini çölde kum, karlı dağda kar adım takımına döner (`world.biyom`). `tirman` sesi ayrı kayıt değil, mevcut kayıtların birleşimidir. Zemin başına yürüme ve koşu için ayrı adım takımı var; 2,6 m/sn üstünde koşu takımı çalar. Ortam: şehir uğultusu hep çalar, parkta (şehir içindeki çim) üstüne kuş katmanı gelir. Düzeyler `SO.tune.ses` içinde; `SO.ses.durum()` yüklenen dosya sayısını, hataları ve çalınan ses sayılarını verir. Ses ilk dokunuşta açılır; `?test` kipinde `init()` çağrılmadıkça sessizdir.
 
 ## Deneme aracı
 ```

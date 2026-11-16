@@ -9,7 +9,11 @@
    Kullanım: hazırlıkta Jump_Start 0 → 0,067; havada yükselirken Jump_Start 0,07 → 0,40, tepe/düşüşte Jump_Loop, yere ~0,2 sn kala
    Jump_Land'in 0. karesi (bacaklar yere uzanır); inişte Jump_Land 0'dan ileri oynar, şiddete göre ne kadar derine indiği ve
    ne kadar çabuk taban harekete (dur/koşu) bırakıldığı değişir. Üç klibin toplam ağırlığı = ps.airBlend.
-   Yazdığı alanlar: ps.jumpNow, ps.airBlend, ps.jumpPhase, ps.speedScale, ps.landK (iniş şiddeti 0..1; iniş bitince 0). */
+   Yazdığı alanlar: ps.jumpNow, ps.airBlend, ps.jumpPhase, ps.speedScale, ps.landK (iniş şiddeti 0..1; iniş bitince 0),
+   ps.jumpBasAt (zıplama düğmesine son basış anı; tırmanma katmanı havada tutunma için okur).
+   Tırmanma (anim/tirmanma.js, order 24): yerdeyken zıplama isteğinde önce SO.tirman.dene(ctx) sorulur; true dönerse zıplama yapılmaz.
+   ps.kilit sürerken bu katman durur (evre '', kendi payı söner). ps.airBlend = max(bu katmanın payı, ps.tirmanBlend): taban hareket
+   (hareket.js yalnız 1 - ps.airBlend ile çarpar) tırmanış boyunca böyle bastırılır; zıplama kliplerinin ağırlığı yalnız kendi payıdır. */
 (function () {
   'use strict';
   const SO = window.SO, T3 = THREE, clamp = SO.clamp, lerp = SO.lerp;
@@ -37,6 +41,7 @@
   };
   let aS, aL, aD;                       // Jump_Start, Jump_Loop, Jump_Land oynatıcıları
   let phase = '', buf = 0, coyote = 0, prevG = true, jumped = false, pending = false;
+  let kendi = 0;                        // bu katmanın kendi hava payı (ps.airBlend = max(kendi, ps.tirmanBlend))
   let prepT = 0, prepDur = .1, runM = 0, tS = 0, landT = 0, landC = 0, hard = 0, hard2 = 0, landH = 0, landD = .3, landR = 1, A0 = 1, prepA = 0;
   const sh = [0, 0, 0];                 // klip payları (start, loop, land), toplamı 1
   let pitch = 0, split = 0, onSol = true; const qP = new T3.Quaternion(), qX = new T3.Quaternion(), qI = new T3.Quaternion(), X = new T3.Vector3(1, 0, 0);
@@ -67,7 +72,13 @@
     },
     update(ctx, dt) {
       const ps = ctx.ps, inp = ctx.input, tn = ctx.tune;
-      if (inp.jump) { inp.jump = false; buf = Z.arabellek; } else buf -= dt;
+      if (inp.jump) { inp.jump = false; buf = Z.arabellek; ps.jumpBasAt = SO.time; } else buf -= dt;
+      // tırmanma (anim/tirmanma.js) konumu sürerken zıplama katmanı durur: kendi payı söner, taban hareket tırmanış payı kadar bastırılır
+      ps.airBlend = kendi;
+      if (ps.kilit) { phase = ''; buf = 0; coyote = 0; jumped = false; pending = false; prevG = true; pitch = SO.damp(pitch, 0, 16, dt); split = SO.damp(split, 0, 16, dt);
+        kendi = SO.damp(kendi, 0, 14, dt); if (kendi < .002) kendi = 0; const top = sh[0] + sh[1] + sh[2] || 1;
+        aS.setEffectiveWeight(kendi * sh[0] / top); aL.setEffectiveWeight(kendi * sh[1] / top); aD.setEffectiveWeight(kendi * sh[2] / top);
+        ps.airBlend = Math.max(kendi, ps.tirmanBlend || 0); ps.jumpPhase = ''; ps.speedScale = 1; ps.landK = 0; return; }
       if (!ps.grounded && prevG && !jumped && !pending) coyote = Z.kenar; else if (!ps.grounded) coyote -= dt;
       const h = ps.y - ps.groundY;
 
@@ -87,7 +98,9 @@
         if (!ps.grounded) { phase = ''; ps.landK = 0; }
         else if (landT >= landH + landD) { phase = ''; ps.landK = 0; }
       }
-      if (buf > 0 && ps.grounded && (phase === '' || (phase === 'land' && (hard < Z.inisKilit || landT >= landH)))) startPrep(ps);
+      if (buf > 0 && ps.grounded && (phase === '' || (phase === 'land' && (hard < Z.inisKilit || landT >= landH)))) {
+        // önce tırmanma: önünde bel/boy hizasında düz kaya varsa zıplamak yerine tırmanır (true dönerse ps.kilit kurulmuştur)
+        if (SO.tirman && SO.tirman.dene && SO.tirman.dene(ctx)) { buf = 0; phase = ''; ps.landK = 0; } else startPrep(ps); }
       prevG = ps.grounded;
 
       // ---- ağırlıklar ve klip zamanları ----
@@ -117,6 +130,7 @@
       aS.time = tS; aD.time = phase === 'land' ? Math.min(landC, 1.2) : 0;
       aS.setEffectiveWeight(A * sh[0] / top); aL.setEffectiveWeight(A * sh[1] / top); aD.setEffectiveWeight(A * sh[2] / top);
       ps.jumpPhase = phase; ps.speedScale = scale;
+      kendi = ps.airBlend; if (ps.tirmanBlend > kendi) ps.airBlend = ps.tirmanBlend; // tırmanıştan çıkış: taban hareket tırmanış payı sönene kadar bastırılı kalır
 
       // gövdenin havada öne/arkaya yatması (post'ta kalçaya uygulanır): koşarak kalkışta öne atılım, düşerken ayaklar öne
       let hedef = 0; if (phase === 'air' && !pending) { const m = clamp(ps.speed / tn.jog, 0, 1.4), s = ps.vy / tn.jumpSpeed; hedef = m * (s > 0 ? Z.egimIleri * Math.min(1, s * 1.6) : -Z.egimGeri * Math.min(1, -s * 1.6)); }

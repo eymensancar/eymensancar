@@ -47,9 +47,9 @@
     ileriGir: 5, ileriCik: 3.2,         // o payın değişme hızı (1/sn)
     kadans: [.6, .75, 1.05],            // kulaç/sn: dururken (kalkışta), tune.yuz hızında, tune.yuzHizli hızında
     kadansEnAz: .45,                    // başlamış kulaç en az bu hızla sürer (hız düşse de kol havada donmaz)
-    kulacEvre: .47, basEvre: .4,        // kulaç olayının evresi; dururken beklenen evre (ilk hareket kol çekişi olsun)
-    batikDur: -.10, batikIleri: -.07, batikHizli: -.05, // kökün su yüzeyine göre yüksekliği (m): su üstünde dururken / ileri / hızlı
-    egimIleri: 9, egimHizli: 5,         // ileri yüzerken gövdenin baş yukarı eğimi (derece): baş suyun üstünde, bacaklar batık
+    kulacEvre: .47, basEvre: .36,       // kulaç olayının evresi; dururken beklenen evre (ilk hareket kol çekişi olsun)
+    batikDur: -.10, batikIleri: -.03, batikHizli: -.03, // kökün su yüzeyine göre yüksekliği (m): su üstünde dururken / ileri / hızlı
+    egimIleri: 10, egimHizli: 6,         // ileri yüzerken gövdenin baş yukarı eğimi (derece): baş suyun üstünde, bacaklar batık
     basKaldir: 0,                       // ileri yüzerken başa ek kaldırma (derece)
     suzulme: .07, suzulmeHizli: .1,     // kulaç ritminde ileri-geri süzülme (m, tepe-tepe)
     donOmega: 4.2, donHiz: 2.6,         // suda gövde yönünün ps.yaw'ı izleme yayı (1/sn) ve en yüksek dönüş hızı (rad/sn)
@@ -60,7 +60,7 @@
     sigAlt: .15, sigUst: .95,           // adım ağırlaşmasının başladığı ve tam olduğu derinlik (m)
     agir: .72,                          // tam derinlikte kadans çarpanı
     diz: 24, baldir: 34,                // salınımdaki bacağa en çok ek: uyluk öne, diz bükme (derece)
-    dizSig: [.1, .32], dizDerin: [.5, .95], dizDerinPay: .4, // diz kaldırma derinliğe göre: sığda tam (ayak sudan çıkar), derinde bu paya iner
+    dizSig: [.1, .32], dizDerin: [.4, .8], dizDerinPay: .25, // diz kaldırma derinliğe göre: sığda tam (ayak sudan çıkar), derinde bu paya iner
     govde: 7,                           // tam derinlikte yürürken gövdenin ek öne eğimi (derece)
     kol: 16, kolDerin: 30, dirsek: 28   // kolların yana açılması (derece): bel derinliğinde / göğüs derinliğinde; göğüs derinliğinde dirsek bükme
   }, SO.tune.yuzme || {});
@@ -122,7 +122,7 @@
         const C = v <= tn.yuz ? lerp(T.kadans[0], T.kadans[1], clamp(v / tn.yuz, 0, 1)) : lerp(T.kadans[1], T.kadans[2], clamp((v - tn.yuz) / (tn.yuzHizli - tn.yuz), 0, 1.3));
         acc += Math.max(C * smooth(0, .5, v), T.kadansEnAz) * dt;
         const idx = Math.floor(acc - T.kulacEvre) + 1;
-        if (idx > fired) { fired = idx; if (yuz && fw > .35 && pay > .5 && dt > 0) SO.ses.olay('kulac', { hiz: v }); }
+        if (idx > fired) { fired = idx; if (yuz && fw > .12 && pay > .5 && dt > 0) SO.ses.olay('kulac', { hiz: v }); }
         if (acc > 64) { acc -= 64; fired -= 64; }
       }
       aF.time = frac(acc) * aF.getClip().duration;

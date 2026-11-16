@@ -37,11 +37,11 @@
     parkSehir: .6,      // parktayken şehir uğultusu bu orana iner
     kirSehir: .4, kirKus: .3,   // şehir dışındaki çimde
     gecis: 1.6,         // sn: ortam katmanları arası geçişin zaman sabiti
-    kumOran: .8, karOran: .9,   // kum (çöl) ve kar adımları sert zemine göre
-    suAdim: 1,          // sığ suda adım düzeyi (bel derinliğinde); bilek derinliğinde suSig ile çarpılır
-    suSig: .45,
-    suGir: .8, suCik: .7,   // yüzmeye başlama şapı, sudan çıkışta süzülme
-    kulac: .55,         // kulaç (sakin; hızlı yüzmede biraz artar)
+    kumOran: .8, karOran: .7,   // kum (çöl) ve kar adımları sert zemine göre
+    suAdim: 1.15,         // sığ suda adım düzeyi (bel derinliğinde); bilek derinliğinde suSig ile çarpılır
+    suSig: .55,
+    suGir: .6, suCik: .7,   // yüzmeye başlama şapı, sudan çıkışta süzülme
+    kulac: .7,          // kulaç (sakin; hızlı yüzmede biraz artar)
     tutun: .55, tirman: .7,   // tırmanma: elin kayaya basışı, kendini yukarı çekme
     su: .8,             // su ortamı düzeyi (suyun içinde/kıyısında); uzaklaştıkça azalır
     suYuzme: 1.3,       // yüzerken su ortamı bu kadar öne gelir

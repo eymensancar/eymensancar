@@ -1,11 +1,13 @@
 # Sesler: kaynak ve lisans
 
-Bütün sesler gerçek kayıttır; sentez ses, müzik ve hava/süpürme (whoosh) sesi yoktur. Hepsi kamu malıdır (CC0 ya da Public Domain Mark): atıf zorunlu değildir, ticari kullanım ve yeniden dağıtım serbesttir. Lisans her kaynağın kendi sayfasında 16 Kasım 2026'da görülmüştür.
+Bütün sesler gerçek kayıttır; sentez ses, müzik ve hava/süpürme (whoosh) sesi yoktur. Hepsi kamu malıdır (CC0 ya da Public Domain Mark): atıf zorunlu değildir, ticari kullanım ve yeniden dağıtım serbesttir. Lisans her kaynağın kendi sayfasında 16 Kasım 2026'da görülmüştür. Rüzgâr ortamı da yoktur.
 
 | Kaynak | Yapan | Lisans |
 |---|---|---|
 | BigSoundBank (bigsoundbank.com), her sesin sayfasında "License CC0 (public domain)" | Joseph SARDIN | CC0 1.0 |
 | Internet Archive, "Various Walking Sounds D.D.Teoli Jr." | D.D.Teoli Jr. | Public Domain Mark 1.0 |
+| BigSoundBank, başka yapanların kayıtları (sayfasında yine "License CC0 (public domain)") | DenisChardonnet (no 245) | CC0 1.0 |
+| OpenGameArt (opengameart.org), "Fantozzi's Footsteps (Grass/Sand & Stone)", sayfasında "License(s): CC0" | Fantozzi (yükleyen: qubodup) | CC0 1.0 |
 
 ## Dosyalar
 
@@ -23,10 +25,22 @@ Bütün sesler gerçek kayıttır; sentez ses, müzik ve hava/süpürme (whoosh)
 | `zipla_cim2.mp3`, `in_cim2.mp3` | aynısı, ikinci kayıt | "Jumping on grass #2" (no 1840) https://bigsoundbank.com/jumping-on-grass-2-s1840.html | CC0 |
 | `ortam_sehir.mp3` | sakin şehir uğultusu (uzak yol sesi, gece) | "Night after rain" (no 621), Joseph SARDIN https://bigsoundbank.com/night-after-rain-s0621.html (12–48. sn) | CC0 |
 | `ortam_park.mp3` | şehirde bahçe tarafı kuşları (karatavuk, çalıkuşu, ötleğen) | "Birds in the City #1" (no 3575), Joseph SARDIN https://bigsoundbank.com/birds-in-the-city-1-s3575.html (42,5–78,5. sn) | CC0 |
+| `su_adim1…6.mp3` | sığ suda adım (su birikintisinde ayakkabıyla yürüme), tek adım | "Shoes in the Water" (no 690), Joseph SARDIN https://bigsoundbank.com/shoes-in-the-water-s0690.html (1,78 / 4,36 / 34,55 / 32,46 / 38,33 / 49,15. sn) | CC0 |
+| `kulac1…5.mp3` | kulaç: elin suyun içinde çekilmesi (küvette elle çalkalama) | "Swirl in the water" (no 192), Joseph SARDIN https://bigsoundbank.com/swirl-in-the-water-s0192.html (3,41 / 5,89 / 11,37 / 16,23 / 18,10. sn) | CC0 |
+| `su_gir1.mp3` | suya giriş şapı (büyük su teknesine atılan iri taş) | "Splash, Big #1" (no 1519), Joseph SARDIN https://bigsoundbank.com/splash-big-1-s1519.html | CC0 |
+| `su_gir2.mp3` | aynısı, başka kayıt | "Splash, Big #3" (no 1521), Joseph SARDIN https://bigsoundbank.com/splash-big-3-s1521.html | CC0 |
+| `su_cik1.mp3` | sudan çıkış: çalkantı, süzülme, birkaç damla | "Water: swirls and flow" (no 245), DenisChardonnet https://bigsoundbank.com/water-swirls-and-flow-s0245.html (0,99–2,89. sn) | CC0 |
+| `tutun1…3.mp3` | tırmanmada elin/ayakkabının taşa basışı: taş basamağa ayakkabı vuruşu, yalnız vuruş anı | "Step, Shoe on Stone Staircase" (no 606), Joseph SARDIN https://bigsoundbank.com/step-shoe-on-stone-staircase-s0606.html (1,51 / 2,29 / 11,98. sn) | CC0 |
+| `kar1…6.mp3` | karda adım | "Steps in the snow #3" (no 3363), Joseph SARDIN https://bigsoundbank.com/steps-in-the-snow-3-s3363.html (3,84 / 5,65 / 10,29 / 14,02 / 20,39 / 26,81. sn) | CC0 |
+| `kum1…6.mp3` | kumda adım (kaynakta tek tek kesilmiş adımlar: SandL1, R1, L2, R2, L3, R3) | "Fantozzi's Footsteps (Grass/Sand & Stone)", Fantozzi https://opengameart.org/content/fantozzis-footsteps-grasssand-stone | CC0 |
+| `ortam_su.mp3` | su ortamı: kıyıda hafif dalgacık şıpırtısı + ince dere çağıltısı (iki kaydın karışımı) | "Pontoon, marina" (no 1444; 58,5–88,5. sn) https://bigsoundbank.com/pontoon-marina-s1444.html ve "Watercourse 5.1" / "Watercourse 5.2" (no 3136: 2–32. sn solda; no 3137: 20–50. sn sağda) https://bigsoundbank.com/watercourse-5-1-s3136.html https://bigsoundbank.com/watercourse-5-2-s3137.html, hepsi Joseph SARDIN | CC0 |
 
 ## Yapılan işlem
 
 - **Adımlar:** kaynak kayda hafif gürültü azaltma (tayf kapısı, en çok 10 dB), 70 Hz altı kesildi (çimde 120 Hz altı ve 6,5 kHz üstü). Tek adımlar vuruşun 3 ms öncesinden kırpıldı (çimde hışırtının en gür yerinden 120 ms önce), sonu kısıldı, tek kanala indirildi, 44,1 kHz. Hepsi aynı gürlüğe getirildi (en gür 100 ms'lik bölümün ortalaması −24 dBFS; tepe en çok −3 dBFS).
 - **Zıplama/iniş:** her sıçrama kaydı ikiye bölündü. Kalkış: inişten önceki 0,28 sn (5,5 kHz üstü kesildi, 17–29 dB yükseltildi: kayıtta çok kısık). İniş: vuruştan başlayan 0,42 sn.
 - **Ortam:** 36 sn'lik bölüm kırpıldı, stereo. Şehir: 45 Hz altı ve 5,5 kHz üstü kesildi (kayıt cihazı hışırtısı), −26 LUFS. Kuşlar: 6 kHz üstü 4 dB kısıldı, −29 LUFS. Dikişsiz döngü dosyada değil kodda yapılır (`ses.js` → `donguYap`).
-- **Biçim:** MP3 (LAME), adımlar tek kanal 112 kb/sn, ortam stereo 96 kb/sn. Toplam 43 dosya, 1,08 MB.
+- **Su, tırmanma, kar, kum (ikinci parti):** aynı ölçüt. Su adımı 0,50 sn (90 Hz altı kesildi), kulaç 0,85 sn, suya giriş 1,35 sn (9 kHz üstü kesildi; kaynakta birkaç örneklik kırpılma var), sudan çıkış 1,9 sn, tutunma 0,17 sn (110 Hz altı ve 5 kHz üstü kesildi: yalnız tok vuruş), kar 0,42 sn, kum kaynaktaki boyunda (0,30–0,40 sn). Gürlük: adımlar −24, kulaç −26, tutunma ve sudan çıkış −27, suya giriş −19 dBFS (en gür 100 ms). Gürültü azaltma yalnız su adımı, kulaç, tutunma ve karda.
+- **Su ortamı:** iskele kaydından 30 sn (140 Hz altı ve 7 kHz üstü kesildi, +4,5 dB) ile iki dere kaydı (350 Hz altı ve 8 kHz üstü kesildi; biri sola, biri sağa ağırlıklı, +1 dB) karıştırıldı; −28 LUFS, stereo.
+- **Tırmanma (`tirman` olayı):** ayrı kaydı yok; kodda `zipla_sert*` (itiş eforu) + `tutun*` + `kaldirim_yuru*` (üste basan iki adım) birleşimi.
+- **Biçim:** MP3 (LAME), tek sesler tek kanal 112 kb/sn, ortam stereo 96 kb/sn. Toplam 73 dosya, 1,71 MB.

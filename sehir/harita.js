@@ -34,6 +34,7 @@
   let el = null, gorunum = 'dunya', acikMi = false, kenar = 300;
   const cizim = { mini: { t: 9, x: 1e9, z: 1e9, yaw: 9, s: -1 }, tam: { t: 9, x: 1e9, z: 1e9, yaw: 9, s: -1 } };
   let sure = 0, renkler = null, sisDesen = null;
+  const YAZILIM = { willReadFrequently: true };             // putImageData ile beslenen tuvaller baştan bellekte dursun (sonradan ekran kartından geri alınması takılma yapıyor)
   const ara = {};                                           // ara tuvaller (hücre başına 1 piksel)
 
   /* ---------- keşif ızgarası ---------- */
@@ -65,14 +66,14 @@
 
   /* ---------- kayıt: satır-uzunluk kodlaması + base64 ---------- */
   function kodla() {
-    const out = [], toplam = N * N, nb = bits.length; let deger = 0, kosu = 0, p = 0;
+    const out = [], toplam = N * N; let deger = 0, kosu = 0, p = 0;
     const yaz = v => { while (v > 127) { out.push((v & 127) | 128); v = Math.floor(v / 128); } out.push(v); };
     while (p < toplam) {
       if ((p & 7) === 0 && p + 8 <= toplam) { const by = bits[p >> 3]; if (by === (deger ? 255 : 0)) { kosu += 8; p += 8; continue; } }
       const b = (bits[p >> 3] >> (p & 7)) & 1; if (b === deger) kosu++; else { yaz(kosu); deger = b; kosu = 1; } p++;
     }
     yaz(kosu); let s = ''; for (let i = 0; i < out.length; i += 8192) s += String.fromCharCode.apply(null, out.slice(i, i + 8192));
-    return JSON.stringify({ v: 1, h: H, n: N, d: btoa(s) }); // nb kullanılmıyor: toplam bit sayısı N*N
+    return JSON.stringify({ v: 1, h: H, n: N, d: btoa(s) });
   }
   // kayıt metnini bit dizisine çözer; geçersizse null
   function coz(metin) {
@@ -111,13 +112,13 @@
   function sisKur() {
     const S = 96, c = document.createElement('canvas'); c.width = c.height = S; const x = c.getContext('2d'), rnd = SO.rnd(7);
     x.fillStyle = renkler.sis; x.fillRect(0, 0, S, S);
-    for (let k = 0; k < 16; k++) { const bx = rnd() * S, by = rnd() * S, br = 12 + rnd() * 20; x.globalAlpha = .2 + rnd() * .25;
+    for (let k = 0; k < 9; k++) { const bx = rnd() * S, by = rnd() * S, br = 26 + rnd() * 22; x.globalAlpha = k % 3 ? .3 : .06;
       for (let ox = -S; ox <= S; ox += S) for (let oy = -S; oy <= S; oy += S) { const g = x.createRadialGradient(bx + ox, by + oy, 0, bx + ox, by + oy, br);
-        g.addColorStop(0, k % 3 ? renkler.sisAcik : renkler.dis); g.addColorStop(1, 'rgba(0,0,0,0)'); if (k % 3 === 0) x.globalAlpha = .07; x.fillStyle = g; x.fillRect(bx + ox - br, by + oy - br, br * 2, br * 2); } }
+        g.addColorStop(0, k % 3 ? renkler.sisAcik : renkler.dis); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(bx + ox - br, by + oy - br, br * 2, br * 2); } }
     sisDesen = c;
   }
   function ovKur() {
-    const B = Math.ceil(N / OV); ov = new ImageData(B, B); ovC = document.createElement('canvas'); ovC.width = ovC.height = B; ovX = ovC.getContext('2d'); ovKirli = [B, B, -1, -1];
+    const B = Math.ceil(N / OV); ov = new ImageData(B, B); ovC = document.createElement('canvas'); ovC.width = ovC.height = B; ovX = ovC.getContext('2d', YAZILIM); ovKirli = [B, B, -1, -1];
     karolar.forEach((im, k) => { const ti = k % TN, tj = (k - ti) / TN, d = im.data; for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) { const o = (y * T + x) * 4; if (d[o + 3]) ovYaz(ti * T + x, tj * T + y, d[o], d[o + 1], d[o + 2]); } });
   }
   function tuvalBoy(cv, css) { const dpr = Math.min(window.devicePixelRatio || 1, 2), px = Math.round(css * dpr); if (cv.width !== px || cv.height !== px) { cv.width = cv.height = px; } return px / css; }
@@ -136,12 +137,14 @@
     }
     // ara tuval: pencereyi (bir hücre payıyla) hücre başına 1 piksel olarak karolardan topla
     const i0 = hucre(sol) - 1, j0 = hucre(ust) - 1, n = Math.ceil(m / H) + 3; let a = ara[ad];
-    if (!a || a.n !== n) { const c = document.createElement('canvas'); c.width = c.height = n; a = ara[ad] = { c, x: c.getContext('2d'), n }; }
+    if (!a || a.n !== n) { const c = document.createElement('canvas'), b = document.createElement('canvas'); c.width = c.height = b.width = b.height = n; a = ara[ad] = { c, x: c.getContext('2d', YAZILIM), b, bx: b.getContext('2d', YAZILIM), n }; }
     a.x.clearRect(0, 0, n, n);
     for (let tj = Math.max(0, Math.floor(j0 / T)); tj <= Math.min(TN - 1, Math.floor((j0 + n - 1) / T)); tj++) for (let ti = Math.max(0, Math.floor(i0 / T)); ti <= Math.min(TN - 1, Math.floor((i0 + n - 1) / T)); ti++) {
       const im = karolar.get(tj * TN + ti); if (!im) continue; const dx = ti * T - i0, dy = tj * T - j0, sx = Math.max(0, -dx), sy = Math.max(0, -dy), sw = Math.min(T, n - dx) - sx, sh = Math.min(T, n - dy) - sy;
       if (sw > 0 && sh > 0) a.x.putImageData(im, dx, dy, sx, sy, sw, sh); }
-    x.drawImage(a.c, (i0 * H - HALF - sol) * k, (j0 * H - HALF - ust) * k, n * H * k, n * H * k); return k;
+    // sis kenarını yumuşat: yarım piksel kaydırılmış dört kopyanın ortalaması (≈ 3 × 3 hücrelik bulanıklık), sonra yumuşatmalı büyütme
+    a.bx.clearRect(0, 0, n, n); for (let q = 0; q < 4; q++) { a.bx.globalAlpha = 1 / (q + 1); a.bx.drawImage(a.c, q & 1 ? .5 : -.5, q & 2 ? .5 : -.5); } a.bx.globalAlpha = 1;
+    x.drawImage(a.b, (i0 * H - HALF - sol) * k, (j0 * H - HALF - ust) * k, n * H * k, n * H * k); return k;
   }
   // oyuncu oku: (x, y) noktasında, baktığı yöne dönük (kuzey yukarı; ileri = (sin yaw, cos yaw), +z güney = aşağı)
   function ok(x, px, py, yaw, s) {
