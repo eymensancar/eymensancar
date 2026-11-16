@@ -59,6 +59,8 @@ Yön: ileri = `(sin yaw, cos yaw)`; model +Z'ye bakar. Birim metre, saniye, rady
 - `zipla` `{}`
 - `in` `{ hiz, zemin }` (yere değiş hızı m/sn)
 
+Sesler `ses/*.mp3` (gerçek kayıt, kamu malı; kaynaklar `ses/LISANS.md`). Zemin başına yürüme ve koşu için ayrı adım takımı var; 2,6 m/sn üstünde koşu takımı çalar. Ortam: şehir uğultusu hep çalar, parkta (şehir içindeki çim) üstüne kuş katmanı gelir. Düzeyler `SO.tune.ses` içinde; `SO.ses.durum()` yüklenen dosya sayısını, hataları ve çalınan ses sayılarını verir. Ses ilk dokunuşta açılır; `?test` kipinde `init()` çağrılmadıkça sessizdir.
+
 ## Deneme aracı
 ```
 node test/cek.cjs '<senaryo JSON>' cikti.png [--olc]

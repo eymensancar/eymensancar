@@ -30,10 +30,10 @@
     yuruBasis: .5, kosBasis: .14, deparBasis: .15,   // ayağın yerde kaldığı evre aralığı (temastan sonra)
     // istenen kadans (döngü/sn = dakikadaki adım / 120): dururken, yavaş yürüyüş (0.55 × yürüme), yürüme, hafif koşu, depar hızlarında
     kadans: [.62, .80, .98, 1.26, 1.52],
-    olcekle: true, olcekMin: .45, olcekMax: 1.22, olcekBasis: 4,     // adım ölçekleme sınırları
+    olcekle: true, olcekMin: .45, olcekMax: 1.22, olcekBasis: .6,     // adım ölçekleme sınırları
     durEvre: .08,                                     // dururken beklenen evre
     kalkis: 13, durus: 8.5,                           // dur ↔ hareket ağırlık geçiş hızları (1/sn)
-    gecis: [.22, .5],                                // yürü → koşu geçiş bandı (walk..jog aralığının kesri)
+    gecis: [.22, .5], gecisEvre: [.22, .47],                                // yürü → koşu geçiş bandı (walk..jog aralığının kesri)
     karisim: 18                                       // klip ağırlıklarının hıza uyma hızı (1/sn)
   }, SO.tune.hareket || {});
 
@@ -63,9 +63,10 @@
       //    karışımları ayağı yerde kaydırır. Bu yüzden geçiş dar bir hız bandında (T.gecis; 2,0-2,6 m/sn) ve zamanda yumuşatılarak yapılır; bandın altında
       //    adım ölçeğiyle uzayan yürüyüş, üstünde kısalan koşu oynar. Koşu ↔ depar aynı tür yürüyüş olduğundan doğrusal karışır.
       const dj = tn.jog - tn.walk, gh = v <= tn.jog ? 1 + smooth(tn.walk + T.gecis[0] * dj, tn.walk + T.gecis[1] * dj, v) : 2 + clamp((v - tn.jog) / (tn.sprint - tn.jog), 0, 1);
-      //    Ayrıca geçiş yalnız koşu klibinin uçuş anında ilerler (iki ayak da havada): yerdeki ayak bir klibin basışından ötekinin basışına kaydırılmaz, kalkar/iner.
+      //    Ayrıca geçiş yalnız yarım döngünün ikinci bölümünde ilerler (T.gecisEvre): o sırada yürüyüşün yerdeki ayağı da koşunun aynı ayağı da gövdenin arkasındadır,
+      //    öne giden ayak ikisinde de havadadır; yani ayak en az yer değiştirir ve bir sonraki temas yeni yürüyüşün teması olur.
       if (loco < .5) g = loco < .02 ? gh : SO.damp(g, gh, T.karisim, dt);
-      else { const h = frac(frac(acc) * 2) * .5, ucus = h > T.kosBasis + .01 && h < .47; let gn = SO.damp(g, gh, T.karisim, dt); if (!ucus) gn = g >= 2 ? Math.max(2, gn) : g > 1.001 || gn > 1.001 ? (gh >= 2 && g >= 1.999 ? gn : g) : gn; g = gn; }
+      else { const h = frac(frac(acc) * 2) * .5, ucus = h > T.gecisEvre[0] && h < T.gecisEvre[1]; let gn = SO.damp(g, gh, T.karisim, dt); if (!ucus) gn = g >= 2 ? Math.max(2, gn) : g > 1.001 || gn > 1.001 ? (gh >= 2 && g >= 1.999 ? gn : g) : gn; g = gn; }
       if (Math.abs(g - gh) < .002) g = gh;
       w[0] = clamp(2 - g, 0, 1); w[2] = clamp(g - 2, 0, 1); w[1] = 1 - w[0] - w[2];
 
