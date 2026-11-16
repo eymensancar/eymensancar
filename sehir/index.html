@@ -19,6 +19,7 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
 .btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 #joy{position:absolute;width:132px;height:132px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.42);left:34px;bottom:26px;pointer-events:none}
 #knob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.9);box-shadow:0 3px 0 var(--shade)}
+#envanter{position:absolute;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;pointer-events:none;font:700 14px/1 var(--ui);color:var(--ink)}
 #fps{position:absolute;top:10px;left:22px;background:rgba(21,18,13,.6);color:var(--paper);padding:4px 9px;border-radius:8px;font-size:13px;font-variant-numeric:tabular-nums;pointer-events:none}
 /* Harita: sağ üstte küçük harita düğmesi; dokununca sahnenin üstünde tam harita (zemin dokunuşu geçirir: çubuk ve düğmeler çalışmayı sürdürür) */
 #hMini{position:absolute;top:22px;right:max(26px,env(safe-area-inset-right,0px));width:72px;height:72px;overflow:hidden;background:var(--sis);cursor:pointer}
@@ -46,8 +47,10 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
         </div>
       </div>
     </div>
+    <div id="envanter" hidden></div>
     <div id="joy"><div id="knob"></div></div>
     <div class="pad" id="padR">
+      <button class="btn" id="bAl" type="button" hidden>AL</button>
       <button class="btn" id="bRun" type="button">KOŞ</button>
       <button class="btn" id="bJump" type="button" aria-label="Zıpla"><svg viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
@@ -73,4 +76,5 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
 <script src="anim/durus.js"></script>
 <script src="anim/ayak.js"></script>
 <script src="harita.js"></script>
+<script src="toplama.js"></script>
 <script src="ana.js"></script>

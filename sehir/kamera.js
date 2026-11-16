@@ -42,7 +42,8 @@
   // kritik sönümlü yay (hedefe taşmadan yaklaşır); o[k] konum, o[vk] hız
   function yay(o, k, vk, hedef, sure, dt) { const w = 2 / Math.max(1e-4, sure), x = w * dt, e = 1 / (1 + x + .48 * x * x + .235 * x * x * x), d = o[k] - hedef, t = (o[vk] + w * d) * dt; o[vk] = (o[vk] - w * t) * e; o[k] = hedef + (d + t) * e; }
   const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
-  function solids() { const s = SO.world.solids; if (s.length !== bigN) { bigN = s.length; big = s.filter(q => Math.min(q.x1 - q.x0, q.z1 - q.z0) >= tn.thin); } return big; }
+  const BOS = [];
+  function solids() { if (!SO.world.kameraEngel) return BOS; /* açık dünyada kaya ve ağaçlar kamerayı itmez (kaya üstündeyken kamera kayanın içine giriyordu); yalnız zemin ve kaya tepesi sayılır */ const s = SO.world.solids; if (s.length !== bigN) { bigN = s.length; big = s.filter(q => Math.min(q.x1 - q.x0, q.z1 - q.z0) >= tn.thin); } return big; }
   // bakış noktasını büyütülmüş kutuların dışına it (takip gecikmesi/ileriye bakma yüzünden duvara girmesin)
   function disari(o, m) { for (const s of solids()) { const x0 = s.x0 - m, x1 = s.x1 + m, z0 = s.z0 - m, z1 = s.z1 + m; if (o.x > x0 && o.x < x1 && o.z > z0 && o.z < z1) { const l = o.x - x0, r = x1 - o.x, t = o.z - z0, b = z1 - o.z, k = Math.min(l, r, t, b); if (k === l) o.x = x0; else if (k === r) o.x = x1; else if (k === t) o.z = z0; else o.z = z1; } } }
   // (ox,oz)'den (dx,dz) birim yönünde en çok D kadar giden ışının büyütülmüş kutulara ilk değdiği yatay uzaklık
@@ -107,7 +108,11 @@
     if (st.cur > kesin) { st.cur = kesin; holdT = tn.outHold; } // kamera hiçbir karede duvarın içine giremez
     const d = Math.max(.05, st.cur), yakin = smooth(0, 1, 1 - d / tn.minD);
     const cx = P.x + bx * cp * d, cz = P.z + bz * cp * d;
-    let cy = P.y + sp * d + yakin * tn.closeUp + dip.x; cy = Math.max(SO.world.groundY(cx, cz) + tn.floor, cy);
+    let cy = P.y + sp * d + yakin * tn.closeUp + dip.x; const zem = SO.world.kameraZemin || SO.world.groundY;
+    // arazi: kamera ile karakter arasına tepe giriyorsa kamera yükselir (bakış doğrusu zeminin üstünde kalır); kameranın kendisi de zeminin/kaya tepesinin üstünde
+    { let kaldir = 0; for (let k = 1; k <= 5; k++) { const t = k / 6, need = zem(P.x + (cx - P.x) * t, P.z + (cz - P.z) * t) + .35 - (P.y + .35 + (cy - P.y - .35) * t); if (need > 0) kaldir = Math.max(kaldir, need / t); }
+      st.kaldir = st.kaldir == null ? kaldir : damp(st.kaldir, kaldir, kaldir > st.kaldir ? 14 : 4, dt); cy += st.kaldir; }
+    cy = Math.max(zem(cx, cz) + tn.floor, cy);
     cam.position.set(cx, cy, cz); cam.lookAt(V.set(P.x, P.y + .35 - yakin * tn.closeLook + dip.x * .6, P.z));
   }
   SO.kamera = { update };
