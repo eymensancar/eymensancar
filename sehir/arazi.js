@@ -33,12 +33,18 @@
     if (w[2] > 0) h += w[2] * (12 + cont * 14 + (1 - Math.abs(2 * fbm(x / 160, z / 160, 6, 2) - 1)) * 14 + sm(.6, .68, fbm(x / 900, z / 900, 7, 2)) * 58 + (det - .5) * 2);
     if (w[3] > 0) h += w[3] * (60 + cont * 120 + Math.pow(rid, 1.5) * 430 + (hill - .5) * 70 + (det - .5) * 8);
     if (w[4] > 0) { const tv = fbm(x / 800, z / 800, 8, 3) * 6; h += w[4] * (22 + (Math.floor(tv) + sm(.75, 1, tv % 1)) * 15 + Math.pow(rid, 3) * 60 + (det - .5) * 4); }
+    // MAKRO 1: kara ve deniz. Tek dev kara yok: ortada ana kara, kıyıya yakın adalar, koylar, yarımadalar; dünyanın büyük kısmı okyanus.
+    const r0 = Math.hypot(x, z), C = fbm(x / 6000, z / 6000, 31, 4) + .30 - .52 * sm(3000, 15500, r0) - sm(14600, 15700, Math.max(Math.abs(x), Math.abs(z))), I = fbm(x / 2100, z / 2100, 33, 3);
+    const adaM = sm(.30, .46, C) * (1 - sm(.5, .56, C)), kara = adaM > 0 ? Math.max(C, lerp(C, .5 + (I - .69) * 1.1, adaM)) : C; // adalar yalnız kıyıya yakın denizde (yüzerek ulaşılır)
+    // MAKRO 2: dağ sıraları. Sırt çizgileri uzun zincirler oluşturur; bölgesel maske bazı yerleri dağlık, bazılarını ovalık bırakır; aralarında geçitler kalır.
+    const dagM = sm(.40, .64, fbm(x / 9500, z / 9500, 36, 2)), dagR = Math.pow(1 - Math.abs(2 * fbm(x / 4600, z / 4600, 35, 3) - 1), 2.3);
+    h += dagR * dagM * 480 * sm(.04, .22, kara - .5) * (1 - w[0] * .8) * (.7 + hill * .6);
     // nehir vadileri ve göller (vadi ve ormanda tam, kızıl diyarda yarım): arazi nehre doğru alçalır, yatak deniz seviyesinin altına iner
     const rw = w[0] + w[1] + w[4] * .5;
     if (rw > .01) { const rv = Math.abs(fbm(x / 1150, z / 1150, 11, 2) - .5), vad = Math.pow(sm(0, .13, rv), .8), lk = sm(.63, .76, fbm(x / 600, z / 600, 12, 2));
       let hr = 1.6 + (h - 1.6) * vad; hr = lerp(hr, -2.8, 1 - sm(.004, .017, rv)); hr = lerp(hr, -3.6, lk * (1 - sm(25, 70, h))); h = lerp(h, hr, rw); }
-    // kıyı: dünyanın kenarına doğru denize iner
-    const kenar = Math.max(Math.abs(x), Math.abs(z)) + (fbm(x / 1500, z / 1500, 13, 2) - .5) * 1800; h = lerp(h, -40, sm(HALF - 2600, HALF - 500, kenar));
+    // kıyı: içeriden kıyıya doğru arazi alçalır (kıyı ovaları, kumsallar), deniz açıldıkça derinleşir
+    h = lerp(-1.5 - 45 * sm(0, .12, .5 - kara), h * (.25 + .75 * sm(.0, .16, kara - .5)), sm(-.02, .10, kara - .5));
     if (TS && TS.yukseklik) return TS.yukseklik(x, z, h); // elle tasarım katmanı (tasarim.js): tasarlanmış bölgelerde yüksekliği biçimlendirir
     const ds = Math.hypot(x - start.x, z - start.z); if (ds < 60) h = lerp(h, start.h, 1 - sm(22, 60, ds)); // başlangıç düzlüğü
     return h;

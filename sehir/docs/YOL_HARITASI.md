@@ -20,3 +20,7 @@ Ekran düzeni (telefon, yatay; az düğme):
 ## Durum (16 Kasım 2026, 17:35 TSİ)
 - Yayındaki sürüm: gerçek dokular, yüzme, tırmanma, harita (kıstırma, işaret), yerden dal/taş toplama; 32 km akışlı arazi.
 - Başlanan işler (bu oturum): (a) arayüz iskeleti ve temel mekanikler, (b) makro arazi üretiminin ilkelere göre yenilenmesi, (c) elle tasarım katmanı ve araçları, (d) ilk 4 km² (doğuş bölgesi) tasarım-deneme döngüsü.
+- Makro arazi (arazi.js) yenilendi: ana kara + yarımadalar, koylar, kıyıya yakın adalar ve açıkta adalar (dünyanın ~%65'i okyanus), bölgesel dağ sıraları (1000 m'ye varan zirveler), kıyıya doğru alçalan ovalar. Biyom yerleşimi hâlâ dört yöne göre (ileride iklim alanlarına çevrilecek).
+- arazi.js'te nesne kimliği/kaldırma arayüzü (`yakinNesne`, `nesneKaldir`) ve elle tasarım kancaları (`SO.tasarim`) hazır.
+- Çalışan ekip (bitenler buraya işlenecek): arayüz (`arayuz.js`, index.html), oyun çekirdeği (`oyun.js`, `anim/vurus.js`), inşa (`yapi.js`), elle tasarım katmanı ve araçları (`tasarim.js`, `tasarim/`, `test/kusbakisi.cjs`, `test/manzara.cjs`, `test/yuru.cjs`, `test/olcum.cjs`).
+- Sıradaki: araçlar bitince b001 (doğuş bölgesi, ~4 km²) için 5 tasarımcı + 5 psikolog-testçi döngüsü; sonra birleşik deneme ve yayın.

@@ -28,3 +28,30 @@ Betik sırası (index.html, sabit): … `toplama.js` → `oyun.js` → `yapi.js`
 - `SO.arayuz.bildir(metin)`: kısa bildirim (ör. "+1 odun", "Seviye 2").
 - Paneller: çanta (envanter ızgarası; eşyaya dokununca yuvaya kuşanma/yeme), çekiç (iki sekme: "Yapı" = `SO.yapilar`, "El işi" = `SO.tarifler`; yapılabilenler belirgin, eksik malzeme kırmızı), tablet (`SO.teknoloji`: seviye sırasına göre; kilitli/açılabilir/açık).
 - Yerleştirme kipindeyken (`SO.yapi.kip`) ekranda "Yerleştir", "Döndür", "İptal" düğmeleri.
+
+## Teknoloji id'leri (`SO.teknoloji`, oyun.js; `SO.yapilar[].teknoloji` ve `SO.tarifler[].teknoloji` bunları kullanır)
+`teknoloji: null` = kilitsiz. Açık mı diye bakmak için: **`SO.oyun.teknolojiAcik(id)`** → bool (`null`/tanımsız id için `true`). Tablo `oyun.js` yüklenirken (init'ten önce) hazırdır.
+
+| id | Ad | Seviye | Puan | Açtığı şeyler (öneri) |
+|---|---|---|---|---|
+| `tas_alet` | Taş aletler | 1 | 0 (açık gelir) | taş balta, taş kazma, mızrak (el işi) |
+| `kamp_atesi` | Kamp ateşi | 2 | 1 | yapı: kamp ateşi |
+| `uretim_masasi` | Üretim masası | 2 | 1 | yapı: üretim masası; masa tarifleri (ip, tahta) |
+| `ahsap_yapi` | Ahşap yapı | 3 | 2 | yapı: ahşap zemin, duvar, çatı, kapı |
+| `cit` | Çit | 3 | 1 | yapı: çit |
+| `firin` | Fırın | 4 | 2 | yapı: fırın |
+| `yatak` | Yatak | 4 | 2 | yapı: yatak (ileride doğuş noktası), masa |
+| `sandik` | Sandık | 5 | 2 | yapı: sandık |
+| `tas_yapi` | Taş yapı | 5 | 3 | yapı: taş zemin, taş duvar |
+| `yay` | Yay ve ok | 5 | 3 | masa tarifi: yay, ok |
+| `demir_alet` | Demir aletler | 6 | 4 | masa tarifi: demir balta, demir kazma (ileride) |
+| `tarla` | Tarla | 6 | 3 | yapı: tarla |
+| `zirh` | Zırh | 7 | 4 | ileride |
+| `kuyu` | Su kuyusu | 7 | 3 | yapı: kuyu |
+| `degirmen` | Değirmen ve çark | 8 | 5 | ileride (ilk mekanik güç) |
+| `barut` | Barut | 8 | 5 | ileride |
+| `celik` | Çelik | 9 | 6 | ileride |
+| `elektrik` | Elektrik | 9 | 8 | ileride |
+| `atesli_silah` | Ateşli silah | 10 | 10 | ileride: tüfek |
+
+Eşya id'leri (`SO.esya`): malzeme `dal`, `tas`, `odun`, `lif`, `cakmaktasi`, `ip`, `tahta`; alet `tas_balta`, `tas_kazma`; silah `mizrak`; yiyecek `bogurtlen`.
