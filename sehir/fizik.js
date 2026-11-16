@@ -18,6 +18,7 @@
     if (!ps.yuzme) { hedef *= ps.speedScale == null ? 1 : ps.speedScale; // katmanlar geçici olarak kısabilir (ör. yere inişte)
       hedef *= ps.turnSlow == null ? 1 : ps.turnSlow;                      // dönüş katmanı sert/yerinde dönüşte kısar
       hedef *= ps.toplaYavas == null ? 1 : ps.toplaYavas;                // yerden alma sırasında yavaşlama (anim/toplama.js)
+      hedef *= ps.vurYavas == null ? 1 : ps.vurYavas;                    // vuruş (kesme, kazma) sırasında yavaşlama (anim/vurus.js)
       if (derin > .25 && ps.grounded) hedef *= 1 - (belUstu ? .3 : .55) * SO.clamp((derin - .25) / .95, 0, 1); } // sığ suda yürümek yavaşlatır
     const tx = ps.wantX * hedef, tz = ps.wantZ * hedef, dvx = tx - ps.vx, dvz = tz - ps.vz, dv = Math.hypot(dvx, dvz);
     if (dv > 1e-5) { const hizlaniyor = hedef > ps.speed - .01, a = ps.yuzme ? tn.suIvme : (hizlaniyor ? tn.accel : tn.decel) * (ps.grounded ? 1 : tn.airControl), k = Math.min(1, a * dt / dv); ps.vx += dvx * k; ps.vz += dvz * k; }
