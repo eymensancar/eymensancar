@@ -4,6 +4,8 @@ Hepsi **CC0 1.0 (kamu malı)**, yapımcı Quaternius (https://quaternius.com). A
 
 | Dosya | Kaynak paket | Not |
 |---|---|---|
-| `hareketler.glb` | Universal Animation Library [Standard] (itch.io: quaternius/universal-animation-library) | 43 hareket, 65 kemikli iskelet; yerinde (kök hareketsiz) sürüm |
-| `insan.gltf`, `insan.bin`, `ten.jpg`, `ten-koyu.jpg`, `goz.png` | Universal Base Characters [Standard] (Superhero_Male_FullBody) | Aynı iskelet. Normal ve pürüz haritaları çıkarıldı, ten dokusu 1024 px'e küçültüldü |
-| `sac.gltf`, `sac.bin` | Universal Base Characters [Standard] (Hair_SimpleParted) | Dokusuz; renk kodda veriliyor |
+| `hareketler.wasm` | Universal Animation Library [Standard] (itch.io: quaternius/universal-animation-library) | 43 hareket, 65 kemikli iskelet; yerinde (kök hareketsiz) sürüm |
+| `insan.json`, `insan.wasm`, `ten.jpg`, `ten-koyu.jpg`, `goz.png` | Universal Base Characters [Standard] (Superhero_Male_FullBody) | Aynı iskelet. Normal ve pürüz haritaları çıkarıldı, ten dokusu 1024 px'e küçültüldü |
+| `sac.json`, `sac.wasm` | Universal Base Characters [Standard] (Hair_SimpleParted) | Dokusuz; renk kodda veriliyor |
+
+Dosya uzantıları: yayınlandığı yer `.glb`, `.gltf` ve `.bin` uzantılarını sunmadığı için model dosyaları `.wasm` (ikili veri) ve `.json` (glTF metni) adıyla duruyor. İçerik aynı: `hareketler.wasm` bir GLB dosyasıdır, `insan.json`/`sac.json` glTF'tir.

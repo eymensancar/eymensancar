@@ -1,4 +1,4 @@
-# Hareket klipleri (`model/hareketler.glb`)
+# Hareket klipleri (`model/hareketler.wasm`)
 
 30 kare/sn, yerinde (kök ilerlemez). `ctx.action('Ad')` ile alınır.
 

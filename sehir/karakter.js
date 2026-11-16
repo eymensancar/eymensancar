@@ -15,7 +15,7 @@
     g.setAttribute('mask', new T3.BufferAttribute(out, 3));
   }
   async function build(scene) {
-    const [body, lib, hair] = await Promise.all([load('model/insan.gltf'), load('model/hareketler.glb'), load('model/sac.gltf')]);
+    const [body, lib, hair] = await Promise.all([load('model/insan.json'), load('model/hareketler.wasm'), load('model/sac.json')]);
     const root = new T3.Group(), model = body.scene; root.add(model); scene.add(root);
     const grad = gradient(), bones = {}, meshes = [];
     model.traverse(o => { if (o.isBone) bones[o.name] = o; if (o.isSkinnedMesh) meshes.push(o); });

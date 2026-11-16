@@ -7,7 +7,7 @@
    --olc: her adımda oyuncu durumu ve ayak kemiklerinin dünya konumunu JSON olarak yazar (<çıktı>.json): ayak kayması ölçümü için.
    jump: adımın ilk karesinde bir kez basılır. jx/jy sanal çubuk (jy ileri +; yön kameraya göredir, kamera 'takip' değilse camYaw=π varsayılır). */
 const { chromium } = require('playwright'); const http = require('http'), fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
-const root = path.join(__dirname, '..'); const TYPES = { '.js': 'text/javascript', '.html': 'text/html; charset=utf-8', '.json': 'application/json', '.gltf': 'model/gltf+json', '.glb': 'model/gltf-binary', '.bin': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.ogg': 'audio/ogg', '.mp3': 'audio/mpeg', '.wav': 'audio/wav' };
+const root = path.join(__dirname, '..'); const TYPES = { '.js': 'text/javascript', '.html': 'text/html; charset=utf-8', '.json': 'application/json', '.gltf': 'model/gltf+json', '.glb': 'model/gltf-binary', '.wasm': 'application/wasm', '.bin': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.ogg': 'audio/ogg', '.mp3': 'audio/mpeg', '.wav': 'audio/wav' };
 (async () => {
   const arg = process.argv[2], out = process.argv[3] || 'cek.png', olc = process.argv.includes('--olc');
   const sen = JSON.parse(arg.trim().startsWith('{') ? arg : fs.readFileSync(arg, 'utf8')); const [W, H] = sen.boyut || [480, 360];
