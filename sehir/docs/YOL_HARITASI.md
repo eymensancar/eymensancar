@@ -24,3 +24,9 @@ Ekran düzeni (telefon, yatay; az düğme):
 - arazi.js'te nesne kimliği/kaldırma arayüzü (`yakinNesne`, `nesneKaldir`) ve elle tasarım kancaları (`SO.tasarim`) hazır.
 - Çalışan ekip (bitenler buraya işlenecek): arayüz (`arayuz.js`, index.html), oyun çekirdeği (`oyun.js`, `anim/vurus.js`), inşa (`yapi.js`), elle tasarım katmanı ve araçları (`tasarim.js`, `tasarim/`, `test/kusbakisi.cjs`, `test/manzara.cjs`, `test/yuru.cjs`, `test/olcum.cjs`).
 - Sıradaki: araçlar bitince b001 (doğuş bölgesi, ~4 km²) için 5 tasarımcı + 5 psikolog-testçi döngüsü; sonra birleşik deneme ve yayın.
+
+### Durum güncellemesi (16 Kasım 2026, 22:30 TSİ)
+- Bitti ve yayında (Sürüm 6): arayüz (`arayuz.js`), oyun çekirdeği (`oyun.js`, `anim/vurus.js`), inşa (`yapi.js`), elle tasarım katmanı ve araçları (`tasarim.js`, `tasarim/KILAVUZ.md`, `test/kusbakisi|manzara|yuru|olcum.cjs`). Sözleşme: `docs/OYUN_API.md`.
+- b001 (doğuş bölgesi, ≈ 4,3 km², "İki Irmak Arası"): baş tasarımcının planı `tasarim/b001/TASARIM.md` ve iskeleti `tasarim/b001/bolge.js` bitti. Dört uzman çalışıyor: `arazi.js` (arazi yontucusu), `su.js` (su ve patika), `yerlesim.js` (yerleşim ve kaynak), `bitki.js` + `isaret.js` (bitki ve işaretler).
+- Sıradaki: uzmanlar bitince birleşik bakış → 5 psikolog-testçi turu (her biri farklı oyuncu tipi; `test/yuru.cjs`, `manzara`, `olcum` ile; ne hissetti, ne yaptı, nerede boşluk/sıkılma var) → baş tasarımcı ve uzmanlarla düzeltme turu → birleşik deneme → yayın.
+- Bekleyen küçük işler: yeni ses olayları için kayıtlar (vur, kir, uret, seviye, ye, kur, sok, al), ağaç devrilme hareketi, nesne sarsılması, çarpışma kutularına alt sınır (ikinci kat), harita renklerinin yeni dokulara uyması.
