@@ -3,7 +3,7 @@
 <style>
 /* Yerleşim: tek ekranlık 3B oyun. Sahne hep yatay: ekran dikeyse sahne 90° döndürülür.
    Solda sanal çubuk, sağda düğmeler; boş yere sürükleme kamerayı çevirir. Tek görünüş, tema yok. */
-:root{--ink:#15120d;--paper:#f1e8d4;--accent:#f5b21c;--sky:#8fbadb;--shade:rgba(21,18,13,.55);--sis:#a9b1b3;--sis-acik:#c6cccc;--harita-dis:#2b2721;--harita-ok:#e5482d;--harita-perde:rgba(21,18,13,.42);--font:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--ui:system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+:root{--ink:#15120d;--paper:#f1e8d4;--accent:#f5b21c;--sky:#8fbadb;--shade:rgba(21,18,13,.55);--sis:#a9b1b3;--sis-acik:#c6cccc;--harita-dis:#2b2721;--harita-ok:#e5482d;--harita-isaret:#f5b21c;--harita-perde:rgba(21,18,13,.42);--font:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--ui:system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
 @font-face{font-family:'Lilita One';font-weight:400;src:url(lilita.woff2) format('woff2')}
 [hidden]{display:none!important}
 html,body{height:100%;margin:0}
@@ -27,7 +27,7 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
 #hMiniC{width:66px;height:66px;display:block;border-radius:50%;pointer-events:none}
 #hTam{position:absolute;inset:0;display:grid;place-items:center;background:var(--harita-perde);pointer-events:none}
 #hPano{position:relative;pointer-events:auto;line-height:0}
-#hTamC{display:block;width:300px;height:300px;border:3px solid var(--ink);border-radius:12px;background:var(--sis);box-shadow:0 5px 0 var(--shade);cursor:pointer;touch-action:none}
+#hTamC{display:block;width:300px;height:300px;border:3px solid var(--ink);border-radius:12px;background:var(--sis);box-shadow:0 5px 0 var(--shade);cursor:grab;touch-action:none}
 #hDugme{position:absolute;left:100%;top:0;margin-left:10px;display:flex;flex-direction:column;gap:10px}
 #hDugme .btn{width:50px;height:50px;font-size:10px;background:var(--paper);cursor:pointer}
 #hDugme .btn svg{width:22px;height:22px}
@@ -40,10 +40,11 @@ body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidde
     <span id="fps">…</span>
     <div id="hTam" role="dialog" aria-label="Harita" hidden>
       <div id="hPano">
-        <canvas id="hTamC" role="img" aria-label="Harita"></canvas>
+        <canvas id="hTamC" role="img" aria-label="Harita; gidilmeyen yerler sisli. Sürükleyerek kaydır, iki parmakla yakınlaştır, dokunarak işaret koy."></canvas>
         <div id="hDugme">
           <button class="btn" id="hKapat" type="button" aria-label="Haritayı kapat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></button>
-          <button class="btn" id="hGorunum" type="button" aria-label="Yakın görünüme geç">YAKIN</button>
+          <button class="btn" id="hOrtala" type="button" aria-label="Haritayı bana ortala" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5.5" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+          <button class="btn" id="hIsaretSil" type="button" aria-label="İşareti kaldır" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-6.2-6-10.6a6 6 0 0 1 12 0C18 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg></button>
         </div>
       </div>
     </div>
