@@ -105,3 +105,7 @@ The game Ant plays is real: search "Demolition Master: Tower Blast" on the App S
 - Takvim: 18–27 Kasım, her gün bir bölüm, 21:00 TSİ (publishAt 18:00 UTC).
 - TikTok hesabı yok. Instagram'ı Eymen kendi paylaşır: her bölümün dosyası ve kısa İngilizce açıklaması ona gönderilir.
 - 10. bölümün bitiş kartı öbür bölümlerdeki gibi uzun (≈4,7 sn) olur; oyun adı net okunmalı (bölüm ≈64 sn olabilir).
+
+## Eymen'in kararları (16 Kasım 2026)
+- On bölümün videoları onaylandı.
+- **Zamanlama henüz kurulmadı.** 17 Kasım akşamı Wi-Fi videosunun (17.11 01:00 TSİ) verisiyle birlikte en verimli yayın saatine bakılır; dizi o saate sabitlenir. `youtube-otomasyon` klasörlerindeki `publishAt` (şimdilik 18:00 UTC) o karara göre güncellenir, sonra yüklenir.
