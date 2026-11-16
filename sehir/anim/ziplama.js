@@ -11,6 +11,7 @@
    ne kadar çabuk taban harekete (dur/koşu) bırakıldığı değişir. Üç klibin toplam ağırlığı = ps.airBlend.
    Yazdığı alanlar: ps.jumpNow, ps.airBlend, ps.jumpPhase, ps.speedScale, ps.landK (iniş şiddeti 0..1; iniş bitince 0),
    ps.jumpBasAt (zıplama düğmesine son basış anı; tırmanma katmanı havada tutunma için okur).
+   Yüzerken (ps.yuzme) zıplama isteği yutulur: hazırlığa girilmez, 'zipla' olayı gönderilmez.
    Tırmanma (anim/tirmanma.js, order 24): yerdeyken zıplama isteğinde önce SO.tirman.dene(ctx) sorulur; true dönerse zıplama yapılmaz.
    ps.kilit sürerken bu katman durur (evre '', kendi payı söner). ps.airBlend = max(bu katmanın payı, ps.tirmanBlend): taban hareket
    (hareket.js yalnız 1 - ps.airBlend ile çarpar) tırmanış boyunca böyle bastırılır; zıplama kliplerinin ağırlığı yalnız kendi payıdır. */
@@ -73,6 +74,7 @@
     update(ctx, dt) {
       const ps = ctx.ps, inp = ctx.input, tn = ctx.tune;
       if (inp.jump) { inp.jump = false; buf = Z.arabellek; ps.jumpBasAt = SO.time; } else buf -= dt;
+      if (ps.yuzme) { buf = 0; coyote = 0; if (phase === 'start') phase = ''; } // derin suda zıplama yok: hazırlık, 'zipla' olayı ve hava payı başlamaz
       // tırmanma (anim/tirmanma.js) konumu sürerken zıplama katmanı durur: kendi payı söner, taban hareket tırmanış payı kadar bastırılır
       ps.airBlend = kendi;
       if (ps.kilit) { phase = ''; buf = 0; coyote = 0; jumped = false; pending = false; prevG = true; pitch = SO.damp(pitch, 0, 16, dt); split = SO.damp(split, 0, 16, dt);

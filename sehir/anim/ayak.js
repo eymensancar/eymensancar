@@ -18,6 +18,8 @@
 (function () {
   'use strict';
   const SO = window.SO, T3 = THREE, clamp = SO.clamp, damp = SO.damp;
+  // ayak altındaki destek: arazi ya da üstünde durulan düz kaya (kaya üstünde ayaklar kayaya gömülmesin)
+  const yerY = (world, ps, x, z) => world.destekY ? world.destekY(x, z, ps.y + .05) : world.groundY(x, z);
   const tn = SO.tune.ayak = {
     on: true,
     restAnkle: .103,   // düz zeminde yere basan ayağın bilek yüksekliği (m)
@@ -89,8 +91,8 @@
         const lw = L.lockW * L.lockW * (3 - 2 * L.lockW) * w, dx = (L.lx - F.x) * lw, dz = (L.lz - F.z) * lw; L.tx = F.x + dx; L.tz = F.z + dz;
         // ayağın altındaki zemin: bilek + ayak ortası + gidiş yönünde biraz ilerisi; en yükseği
         const ax = vx * tn.ahead, az = vz * tn.ahead, toe = 1 + (tn.toe - 1) * (1 - smooth(.01, .04, F.y - ps.y - tn.restAnkle)), bx = L.tx + (Bp.x - F.x) * toe, bz = L.tz + (Bp.z - F.z) * toe;
-        let g = Math.max(world.groundY(L.tx, L.tz), world.groundY(bx, bz));
-        if (vm > .2) g = Math.max(g, world.groundY(L.tx + ax, L.tz + az), world.groundY(bx + ax, bz + az), world.groundY(L.tx + ax * .5, L.tz + az * .5));
+        let g = Math.max(yerY(world, ps, L.tx, L.tz), yerY(world, ps, bx, bz));
+        if (vm > .2) g = Math.max(g, yerY(world, ps, L.tx + ax, L.tz + az), yerY(world, ps, bx + ax, bz + az), yerY(world, ps, L.tx + ax * .5, L.tz + az * .5));
         L.g = isin ? g : damp(L.g, g, g > L.g ? tn.upK : tn.downK, dt);
         L.off = clamp(L.g - ps.y, -tn.maxOff, tn.maxOff);
       }

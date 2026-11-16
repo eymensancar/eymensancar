@@ -1,7 +1,7 @@
 /* Tırmanma katmanı (order 24; kol çözümü order 45): düz tepeli kayalara çıkma. Tek düğme (zıplama) ile, yüksekliğe göre üç davranış.
 
    KARAR (zıplama tuşu; anim/ziplama.js yerdeyken basışta SO.tirman.dene() çağırır). Yön: çubuk itiliyorsa o yön, değilse bakılan yön.
-   Menzil (karakterin merkezinden kayanın yüzüne): 0,75 m + 0,14 sn × hız (koşarken ≈ 1,25 m, deparda ≈ 1,65 m).
+   Menzil (karakterin merkezinden kayanın görünen kenarına): 1,0 m + 0,14 sn × hız (koşarken ≈ 1,5 m, deparda ≈ 1,9 m).
    y = kayanın tepesi − ayak hizası:
      y < 0,65 m  (diz)  : normal zıplama. Çubuk bırakılmışsa ya da kayaya doğruysa, havadayken kayaya doğru hız tamamlanır (üstüne konar).
      0,65–1,35 m (bel)  : elle destek alarak aşma ('bel'): hizalan → sıçra, sol el kenara basar → dizler karna → üstte koşu adımıyla çık.
@@ -41,17 +41,18 @@
   const K = SO.tune.tirmanma = Object.assign({
     on: true,
     diz: .65, bel: 1.35, boy: 2.1,   // m: yükseklik eşikleri (altı normal zıplama | elle destek | tutun-çek | üstü yok)
-    menzil: .75, menzilHiz: .14,     // m, sn: karar menzili = menzil + menzilHiz × hız
+    menzil: 1.0, menzilHiz: .14,      // m, sn: karar menzili = menzil + menzilHiz × hız
     aci: .45,                         // kayanın yüzüne en az bu kadar dönük olmalı (yön · yüz normali)
     hizaSure: .13, hizaBoy: .15,     // sn: yaklaşma hizası (bel / boy)
+    hizaHiz: 3.2,                     // m/sn: hizalanırken kökün en çok hızı (uzaksa hizalama uzar)
     durus: .42,                       // m: aşmadan önce kökün kenara uzaklığı
     bitis: .42,                       // m: bitişte kökün kenardan içeride durduğu yer
     asSure: .5, asSureY: .3,         // sn: aşma süresi = asSure + asSureY × yükseklik (1 m → 0,8 sn)
-    sicraSure: .26, asilSure: .24, cekSure: .52, // sn: boy hizasında sıçrama, asılma, çekiliş
-    asili: 1.55,                      // m: asılıyken kök tepeden bu kadar aşağıda (kollar hafif kırık)
-    cokme: .06,                       // m: asılınca ağırlığın oturması
-    gogus: 1.0,                       // m: çekiliş sonunda kök tepeden bu kadar aşağıda (kenar göğüs/bel hizasında)
-    govde: .3,                        // m: asılıyken kökün kaya yüzüne uzaklığı
+    sicraSure: .26, asilSure: .26, cekSure: .46, // sn: boy hizasında sıçrama, asılma, çekiliş
+    asili: 1.62,                      // m: kenarı yakaladığı anda kök tepeden bu kadar aşağıda (kollar kırık)
+    cokme: .16,                       // m: asılınca ağırlığın oturması (kollar gerilir: kök tepeden 1,78 m aşağıda)
+    ustSure: .5,                      // sn: çekilişten sonra üste aşma (destekten ayağa)
+    govde: .25,                        // m: asılıyken kökün kaya yüzüne uzaklığı
     elYan: .26, elIleri: .1, elYuk: .055, // m: bileğin kenara göre yeri (yana, içeri, tepenin üstünde)
     cikis: .22,                       // sn: bitişte taban harekete dönüş
     havaAlt: .25, havaUst: 1.75, havaAsili: 1.2, havaUzak: .7, havaBasis: .35, // havada tutunma sınırları
@@ -110,7 +111,7 @@
       x0: ps.x, z0: ps.z, y0: ps.y, yaw0: ps.yaw, yawT: Math.atan2(h.fx, h.fz), lean0: ps.leanFwd || 0, v0: Math.max(0, ps.vx * h.fx + ps.vz * h.fz), yuk: h.yuk });
     T.s0 = (ps.x - h.ex) * h.fx + (ps.z - h.ez) * h.fz; T.l0 = (ps.x - h.ex) * h.fz - (ps.z - h.ez) * h.fx; T.s = T.s0; T.y = ps.y; T.lean = T.lean0;
     T.yA = Math.max(T.y0 + (havada ? -.05 : .1), h.top - K.asili);   // asılma yüksekliği
-    if (T.tur === 'boy') fazaGir(havada ? 'sicra' : 'hiza'); else fazaGir(havada ? 'as' : 'hiza');
+    if (T.tur === 'boy') fazaGir(havada ? 'sicra' : 'hiza'); else fazaGir(!havada ? 'hiza' : h.yuk < .5 ? 'as' : 'cek');
     ps.kilit = true; ps.grounded = false; ps.vy = 0; ps.jumpNow = false; ps.tirman = T.tur; yardim = null;
     return true;
   }
@@ -118,15 +119,26 @@
     const h = T.h; T.faz = f; T.t = 0; T.sF = T.s; T.yF = T.y;
     if (f === 'hiza') { T.sure = T.tur === 'boy' ? K.hizaBoy : K.hizaSure;
       // aşmadan önce durulacak yer: koşarken hızı keserek değil taşıyarak; dururken en çok bir adımlık kayma
-      T.sH = T.tur === 'boy' ? yuz(h, T.y0 + .3) - K.govde : Math.min(-K.durus, Math.max(T.s0 + T.v0 * T.sure * .8, -.55 - .12 * T.v0)); }
+      T.sH = T.tur === 'boy' ? yuz(h, T.y0 + .3) - K.govde : Math.min(-K.durus, Math.max(T.s0 + T.v0 * T.sure * .8, -.55 - .12 * T.v0));
+      T.sure = Math.max(T.sure, Math.abs(T.sH - T.s0) / Math.max(K.hizaHiz, T.v0)); } // uzaktaysa kayarak değil, bir adım süresinde gelir
     else if (f === 'sicra') T.sure = T.havada ? .14 : K.sicraSure;
     else if (f === 'asil') T.sure = K.asilSure;
-    else if (f === 'cek') { T.yC = h.top - K.gogus; T.sure = K.cekSure * Math.sqrt(clamp((T.yC - T.y) / .55, .25, 1.6)); if (T.yC < T.y + .05) { T.yC = T.y; T.sure = .12; } }
-    else if (f === 'as') { T.tau0 = (T.tur === 'bel' && !T.havada) ? .05 : .13; const kalan = h.top - T.y;
-      T.sure = (K.asSure + K.asSureY * clamp(kalan, .3, 1.4)) * (T.tau0 > .1 ? .82 : 1) * (1 - .12 * clamp(T.v0 / SO.tune.jog, 0, 1)); }
+    else if (f === 'cek') { T.yC = h.top - DESTEK - .02; T.sure = K.cekSure * Math.sqrt(clamp((T.yC - T.y) / .55, .2, 1.7)); if (T.yC < T.y + .03) { T.yC = T.y; T.sure = .14; } }
+    else if (f === 'as') { const tam = T.tur === 'bel' && !T.havada, r0 = h.top - T.y, adim = !tam && r0 < .5; T.tau0 = tam ? .05 : adim ? .42 : .27; T.r0 = r0; T.adim = adim;
+      // adim: havadan, tepe diz hizasında → el desteği yok, klibin son yarısı (bacaklar açılır, öndeki ayak tepeye basar, üstüne yükselir)
+      // ileri: destek elinin (kenarın elIleri kadar içinde) klipteki yerine göre kök; tam aşmada el 0,20'de basar, gövde üstünden öne geçer
+      T.sK = tam ? [[.07, T.sF], [.2, Math.max(T.sF, -.18)], [.267, -.01], [.333, .15], [.4, .2], [TAUSON, h.sB]] : adim ? [[.42, T.sF], [.5, Math.max(T.sF, -.2)], [TAUSON, h.sB]] : [[.27, T.sF], [.43, Math.max(T.sF, .16)], [TAUSON, h.sB]];
+      T.sure = adim ? .34 : tam ? (K.asSure + K.asSureY * clamp(r0, .5, 1.4)) * (1 - .24 * clamp(T.v0 / SO.tune.jog, 0, 1)) : K.ustSure; }
     else if (f === 'cik') T.sure = K.cikis;
   }
-  const Yn = t => ss(.07, .47, t), Sn = t => ss(.10, .62, t);
+  // anahtarlardan geçen yumuşak eğri (Catmull-Rom, eşit aralıklı olmayan anahtarlar; uçlarda sabit)
+  function egri(k, t) { const n = k.length; if (t <= k[0][0]) return k[0][1]; if (t >= k[n - 1][0]) return k[n - 1][1]; let i = 0; while (t > k[i + 1][0]) i++;
+    const a = k[i], b = k[i + 1], h = b[0] - a[0], u = (t - a[0]) / h, m = j => j <= 0 || j >= n - 1 ? 0 : (k[j + 1][1] - k[j - 1][1]) / (k[j + 1][0] - k[j - 1][0]);
+    const u2 = u * u, u3 = u2 * u; return (2 * u3 - 3 * u2 + 1) * a[1] + (u3 - 2 * u2 + u) * h * m(i) + (-2 * u3 + 3 * u2) * b[1] + (u3 - u2) * h * m(i + 1); }
+  /* Aşma (ClimbUp_1m) için kökün tepeye göre yeri, klip zamanına bağlı. R: kök tepeden kaç m aşağıda. 0,27–0,37 arası destek: sol bilek (kök
+     uzayında 0,67–0,72) ve karna çekili ayaklar (0,53–0,62) tepe hizasında → 0,54. Sonra öne atılan sol ayak (parmak 0,44 → 0,03) tepeye basar
+     ve bacak açılırken kök onun üstünde yükselir (ayak tepede sabit kalır): R = parmağın kök uzayındaki yüksekliği. */
+  const RK = [[.27, .54], [.37, .54], [.47, .42], [.5, .39], [.533, .35], [.567, .28], [.6, .16], [.633, .05], [.667, 0]], DESTEK = .54, TAUSON = .664;
 
   D.dene = function (ctx) { // zıplama katmanı çağırır (yerdeyken zıplama isteği): true = tırmanış başladı, zıplama yapılmaz
     const ps = ctx.ps; if (!K.on || T.on || ps.yuzme || ps.kilit || !ps.grounded) return false;
@@ -150,7 +162,7 @@
       if (y.t > 1.2 || (y.havada && ps.grounded) || ps.kilit || ps.yuzme) yardim = null;
       else if (y.havada && ps.y < h.top + .6) { const vf = ps.vx * h.fx + ps.vz * h.fz, iste = ps.wantMag < .15 || ps.wantX * h.fx + ps.wantZ * h.fz > .3;
         const s = (ps.x - h.ex) * h.fx + (ps.z - h.ez) * h.fz; // kutu yüzüne göre (eksi = önünde)
-        if (iste && s < .45) { const gerek = clamp((.5 - s) / .34, 1.2, K.dizHiz); if (vf < gerek) { ps.vx += h.fx * (gerek - vf); ps.vz += h.fz * (gerek - vf); } } } }
+        if (iste && s < .5) { const gerek = clamp((.75 - s) / .34, 1.6, K.dizHiz); if (vf < gerek) { ps.vx += h.fx * (gerek - vf); ps.vz += h.fz * (gerek - vf); } } } }
     /* --- havada tutunma --- */
     if (!T.on && K.on && !ps.grounded && !ps.kilit && !ps.yuzme && dt > 0) {
       const bas = SO.time - (ps.jumpBasAt == null ? -9 : ps.jumpBasAt) < K.havaBasis && ps.airTime > .08, it = ps.wantMag > .2;
@@ -173,24 +185,27 @@
         T.y = T.yF - K.cokme * (1 - Math.exp(-u * 5)) / (1 - Math.exp(-5)); T.s = yuz(h, T.y + .3) - K.govde; T.wAs = 1; T.wCr = T.wTr = 0; T.ikL = T.ikR = 1;
         if (u >= 1) fazaGir('cek');
       } else if (T.faz === 'cek') { // çekiliş: ağır başlar, hızlanır, göğüs kenara gelince yavaşlar
-        const e = u * u * u * (u * (u * 6 - 15) + 10); T.y = lerp(T.yF, T.yC, e); T.s = yuz(h, T.y + .3) - K.govde; T.ikL = T.ikR = 1;
-        T.wTr = ss(.45, 1, u); T.wAs = 1 - T.wTr; T.wCr = 0; T.tau = .13;
+        const e = u * u * u * (u * (u * 6 - 15) + 10); T.y = lerp(T.yF, T.yC, e); const sT = yuz(h, T.y + .3) - K.govde;
+        if (T.tur === 'bel') { const g = ss(0, .4, u); T.s = lerp(T.sF, sT, g); lat = 1 - g; yaw = T.yaw0 + wrapA(T.yawT - T.yaw0) * g; T.ikL = T.ikR = ss(.1, .55, u); } // havadan, alçak kenar
+        else { T.s = sT; T.ikL = T.ikR = 1; }
+        T.wTr = ss(.3, .9, u); T.wAs = 1 - T.wTr; T.wCr = 0; T.tau = .27; // dizler karna: destek pozuna
         if (u >= 1) fazaGir('as');
       } else if (T.faz === 'as') { // üste aşma: ClimbUp_1m; kök önce yukarı, ayaklar tepeyi geçince öne
-        const tau = lerp(T.tau0, .62, u), y0n = Yn(T.tau0), s0n = Sn(T.tau0); T.tau = tau; T.wTr = 1; T.wAs = T.wCr = 0;
-        T.y = T.yF + (h.top - T.yF) * (Yn(tau) - y0n) / (1 - y0n);
-        const sIst = T.sF + (h.sB - T.sF) * (Sn(tau) - s0n) / (1 - s0n), sinir = lerp(Math.min(T.sF, -.3), h.sB, ss(h.top - .62, h.top - .36, T.y)); T.s = Math.min(sIst, sinir);
-        if (T.havada && T.tur === 'bel') { const e = ss(0, .3, u); lat = 1 - e; yaw = T.yaw0 + wrapA(T.yawT - T.yaw0) * e; }
-        if (T.tau0 < .1) { T.ikL = ss(.12, .2, tau) * (1 - ss(.37, .46, tau)); T.ikR = 0; }
-        else { const gir = T.tur === 'bel' ? ss(0, .12, u) : 1; T.ikL = gir * (1 - ss(.37, .46, tau)); T.ikR = gir * (1 - ss(.26, .36, tau)); }
+        const tau = lerp(T.tau0, TAUSON, u), tam = T.tau0 < .1; T.tau = tau; T.wTr = 1; T.wAs = T.wCr = 0;
+        const yuksel = T.r0 > DESTEK ? T.r0 - (T.r0 - DESTEK) * ss(.07, .27, tau) : T.r0; // itişle destek hizasına
+        T.y = h.top - (tau < .27 ? yuksel : Math.min(yuksel, egri(RK, tau))); T.s = egri(T.sK, tau);
+        if (tam) { T.ikL = ss(.12, .2, tau) * (1 - ss(.37, .46, tau)); T.ikR = 0; }
+        else if (T.adim) { T.ikL = T.ikR = 0; if (T.havada && T.tur === 'bel') { const g = ss(0, .5, u); lat = 1 - g; yaw = T.yaw0 + wrapA(T.yawT - T.yaw0) * g; } }
+        else { T.ikL = 1 - ss(.4, .5, tau); T.ikR = 1 - ss(.3, .4, tau); }
         if (u >= 1) { bitir(ps); fazaGir('cik'); }
-      } else if (T.faz === 'cik') { hedefTb = 0; T.tau = Math.min(.66, T.tau + dt * .55); T.ikL = T.ikR = 0;
+      } else if (T.faz === 'cik') { hedefTb = 0; T.tau = TAUSON; T.ikL = T.ikR = 0;
         if (u >= 1 || !ps.grounded) { T.on = false; T.faz = ''; T.tur = ''; } }
 
       if (ps.kilit && T.faz !== 'cik') {
         // eğik yüzde gövde yüze yatar (kök ayak tabanından döner): omuzlar kenarın dibinde kalsın
         if (T.faz === 'sicra' || T.faz === 'asil' || T.faz === 'cek') lean = clamp(Math.atan2(-K.govde - T.s, 1.41), 0, .3) * (T.faz === 'sicra' ? u : 1);
         else if (T.faz === 'as') lean = T.leanF * (1 - ss(0, .35, u));
+        if (T.faz === 'cek' && T.tur === 'bel') lean *= ss(0, .4, u);
         if (T.faz !== 'as') T.leanF = lean; T.lean = lean;
         const l = T.l0 * lat; ps.x = h.ex + h.fx * T.s + h.fz * l; ps.z = h.ez + h.fz * T.s - h.fx * l; ps.y = T.y; ps.yaw = wrapA(yaw); ps.yawRate = 0; ps.lean = 0;
         ps.leanFwd = T.faz === 'hiza' ? lerp(T.lean0, 0, u) : lean;
@@ -198,7 +213,7 @@
         // sesler
         if (!T.sesR && T.ikR > .97) { T.sesR = true; SO.ses.olay('tutun', {}); }
         if (!T.sesL && T.ikL > .97) { T.sesL = true; SO.ses.olay('tutun', {}); }
-        if (!T.sesT && (T.faz === 'cek' || (T.faz === 'as' && T.tau > .24))) { T.sesT = true; SO.ses.olay('tirman', { yukseklik: T.yuk }); }
+        if (!T.sesT && (T.faz === 'cek' || (T.faz === 'as' && T.tau > .22 && !T.adim))) { T.sesT = true; SO.ses.olay('tirman', { yukseklik: T.yuk }); }
       }
       T.tb = hedefTb ? Math.min(1, T.tb + dt / .11) : Math.max(0, T.tb - dt / K.cikis);
     } else if (T.tb > 0) T.tb = Math.max(0, T.tb - dt / K.cikis);
@@ -217,7 +232,7 @@
   function kol(b, yan, hedef, kutup, parmak, basYon, w) { // yan: 'l' | 'r'; hedef: bileğin dünya konumu; parmak: parmakların yönü; basYon: işaret parmağı tarafı
     const ust = b['upperarm_' + yan], alt = b['lowerarm_' + yan], el = b['hand_' + yan]; if (!ust || !alt || !el || w < .002) return;
     ust.getWorldPosition(A); alt.getWorldPosition(B); el.getWorldPosition(C);
-    const l1 = A.distanceTo(B), l2 = B.distanceTo(C); Hd.copy(C).lerp(hedef, w);
+    const l1 = A.distanceTo(B), l2 = B.distanceTo(C); Hd.copy(C).lerp(hedef, w); Hd.y += .16 * Math.sin(Math.PI * w); // el kenara yukarıdan iner, bırakırken kalkar (kayanın içinden süzülmez)
     Dir.subVectors(Hd, A); const d = clamp(Dir.length(), Math.abs(l1 - l2) + .01, (l1 + l2) * .995); Dir.normalize();
     const ca = clamp((l1 * l1 + d * d - l2 * l2) / (2 * l1 * d), -1, 1), sa = Math.sqrt(1 - ca * ca);
     // dirsek: hedef yönüne dik düzlemde kutup yönü ile şimdiki dirsek yönünün karışımı
@@ -237,10 +252,12 @@
     if (!T.on || (T.ikL < .002 && T.ikR < .002)) return;
     const ps = ctx.ps, h = T.h, kok = ctx.char.root, b = ctx.bones, lx = h.fz, lz = -h.fx;
     kok.position.set(ps.x, ps.y + (ps.rootDy || 0), ps.z); kok.rotation.order = 'YXZ'; kok.rotation.set(ps.leanFwd || 0, ps.yaw, ps.lean || 0); kok.updateMatrixWorld(true);
-    hL.set(h.ex + h.fx * (h.eL + K.elIleri) + lx * K.elYan, h.yL + K.elYuk, h.ez + h.fz * (h.eL + K.elIleri) + lz * K.elYan);
-    hR.set(h.ex + h.fx * (h.eR + K.elIleri) - lx * K.elYan, h.yR + K.elYuk, h.ez + h.fz * (h.eR + K.elIleri) - lz * K.elYan);
+    // asılıyken parmaklar kenara takılır (bilek kenarın hemen içinde); destekte avuç kenarın elIleri kadar içine basar
+    const ustte = ss(h.top - 1.25, h.top - .9, ps.y), il = lerp(.035, K.elIleri, ustte);
+    hL.set(h.ex + h.fx * (h.eL + il) + lx * K.elYan, h.yL + K.elYuk, h.ez + h.fz * (h.eL + il) + lz * K.elYan);
+    hR.set(h.ex + h.fx * (h.eR + il) - lx * K.elYan, h.yR + K.elYuk, h.ez + h.fz * (h.eR + il) - lz * K.elYan);
     // dirsek kutbu: asılıyken dışa ve hafif aşağı; destekte (omuz elin üstünde) dışa ve geriye
-    const ustte = ss(h.top - 1.25, h.top - .9, ps.y), dis = lerp(.9, .55, ustte), geri = lerp(.15, .85, ustte), asagi = lerp(.45, 0, ustte);
+    const dis = lerp(.9, .55, ustte), geri = lerp(.15, .85, ustte), asagi = lerp(.45, 0, ustte);
     kL.set(lx * dis - h.fx * geri, -asagi, lz * dis - h.fz * geri); kR.set(-lx * dis - h.fx * geri, -asagi, -lz * dis - h.fz * geri);
     pr.set(h.fx, -.08, h.fz); yL.set(-lx, 0, -lz); yR.set(lx, 0, lz);
     kol(b, 'l', hL, kL, pr, yL, T.ikL); kol(b, 'r', hR, kR, pr, yR, T.ikR);
