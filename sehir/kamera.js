@@ -20,12 +20,12 @@
   const tn = SO.tune.kamera = {
     followT: .12,       // yatay takip yumuşatma süresi (sn)
     followTY: .16,      // dikey takip (yerdeyken: kaldırım basamağı)
-    followTYAir: .42,   // dikey takip (havadayken: zıplama kamerayı sarsmasın)
-    lead: .2, leadMax: 1.2, leadT: .55, // ileriye bakma: hız × lead sn, en çok leadMax m, yumuşatma süresi
+    followTYAir: 1.1,   // dikey takip (havadayken: zıplama kamerayı sarsmasın)
+    lead: .2, leadMax: 1.2, leadT: .35, // ileriye bakma: hız × lead sn, en çok leadMax m, yumuşatma süresi
     autoDelay: 1.2,     // elle çevirmeden sonra otomatik dönmenin başlaması (sn)
     autoRamp: .9,       // başladıktan sonra tam güce ulaşma (sn)
-    autoK: [.55, 1.5],  // dönme hızı katsayısı (1/sn): yürürken … deparda
-    autoMax: 1.5,       // en çok açısal hız (rad/sn)
+    autoK: [.2, .55],  // dönme hızı katsayısı (1/sn): yürürken … deparda
+    autoMax: .8,        // en çok açısal hız (rad/sn)
     autoBack: [1.75, 2.2], // gidiş yönü ile kamera arasındaki açı bu aralıkta sönerek kapanır (kameraya doğru yürürken dönmez)
     pitchRest: .16, pitchK: .45, // otomatik dönerken dikey açı da yavaşça buna döner
     fovAdd: 7, distAdd: .7, kickK: 2.6, // depar: görüş açısı + kamera uzaklığı
@@ -33,7 +33,7 @@
     margin: .3,         // kameranın duvara en çok yaklaşması (m)
     thin: 1.0,          // bundan ince engeller (ağaç gövdesi, lamba direği) kamerayı yaklaştırmaz
     inK: 14, outK: 3.2, outHold: .3, // yaklaşma / uzaklaşma hızı, engel kalktıktan sonra bekleme (sn)
-    whisk: [.22, .45],  // yan ışın açıları (rad)
+    whisk: [.22, .45, .7],  // yan ışın açıları (rad)
     minD: 1.2, closeUp: .8, closeLook: .4, // minD'den yakında kamera yukarı çıkar, bakış noktası göğse iner
     floor: .3           // kamera zeminin en az bu kadar üstünde
   };
@@ -81,7 +81,7 @@
     lastYaw = st.yaw; lastPitch = st.pitch;
 
     // 1. yumuşak takip + ileriye bakma
-    const lm = Math.min(tn.leadMax, spd * tn.lead), lx = spd > .05 ? ps.vx / spd * lm : 0, lz = spd > .05 ? ps.vz / spd * lm : 0;
+    const lm = Math.min(tn.leadMax, spd * tn.lead) * (st.cur == null ? 1 : clamp(st.cur / st.dist, 0, 1)), lx = spd > .05 ? ps.vx / spd * lm : 0, lz = spd > .05 ? ps.vz / spd * lm : 0;
     yay(Ld, 'x', 'vx', lx, tn.leadT, dt); yay(Ld, 'z', 'vz', lz, tn.leadT, dt);
     yay(P, 'x', 'vx', tx + Ld.x, tn.followT, dt); yay(P, 'z', 'vz', tz + Ld.z, tn.followT, dt); yay(P, 'y', 'vy', ty, ps.grounded ? tn.followTY : tn.followTYAir, dt);
     disari(P, tn.margin + .02);
@@ -99,7 +99,7 @@
     // 5. çarpışma
     const cp = Math.cos(st.pitch), sp = Math.sin(st.pitch), D = st.dist + tn.distAdd * st.kick, Dh = Math.max(.01, D * cp), bx = -Math.sin(st.yaw), bz = -Math.cos(st.yaw);
     const kesin = isin(P.x, P.z, bx, bz, Dh, tn.margin) / Dh * D; let hedef = kesin;
-    for (const a of tn.whisk) for (const sg of [-1, 1]) { const ang = st.yaw + sg * a, dw = isin(P.x, P.z, -Math.sin(ang), -Math.cos(ang), Dh, tn.margin) / Dh * D; if (dw < D) { const pay = a / (tn.whisk[tn.whisk.length - 1] * 1.6); hedef = Math.min(hedef, dw + (D - dw) * pay); } }
+    for (const a of tn.whisk) for (const sg of [-1, 1]) { const ang = st.yaw + sg * a, dw = isin(P.x, P.z, -Math.sin(ang), -Math.cos(ang), Dh, tn.margin) / Dh * D; if (dw < D) { const pay = a / (tn.whisk[tn.whisk.length - 1] * 1.25); hedef = Math.min(hedef, dw + (D - dw) * pay); } }
     if (st.cur == null) st.cur = hedef;
     else if (hedef < st.cur) { st.cur = damp(st.cur, hedef, tn.inK, dt); holdT = tn.outHold; }
     else { holdT -= dt; if (holdT <= 0) st.cur = damp(st.cur, hedef, tn.outK, dt); }

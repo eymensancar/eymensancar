@@ -6,7 +6,7 @@
 
    KLİP ÖLÇÜMLERİ (kök sabit, klip 240 örnekle oynatılıp ayak ucu (ball) ve bilek (foot) kemiklerinin konumundan; klip süresinin kesri olarak):
      klip          süre    sol temas  sağ temas  basış (ayak başına)   döngü uzunluğu (yerdeki ayağın geriye hızı, m/döngü)
-     Walk_Loop     1.333   0.000      0.500      0.56 döngü           1.305  (klibin kendi hızı 0.98 m/sn)
+     Walk_Loop     1.333   0.000      0.500      0.50 döngü           1.305  (klibin kendi hızı 0.98 m/sn)
      Jog_Fwd_Loop  0.933   0.035      0.535      0.14 döngü           5.50   (klibin kendi hızı 5.9 m/sn: çok uzun, sıçramalı adım)
      Sprint_Loop   0.667   0.045      0.595      0.15 döngü           5.95   (klibin kendi hızı 8.9 m/sn; sol→sağ 0.55, sağ→sol 0.45: bakışımsız)
    Depar klibinin bakışımsızlığı parçalı doğrusal zaman eşlemesiyle düzeltilir (yarı döngü başına ayrı eğim; eğim adım uzunluğuna da girer).
@@ -18,8 +18,15 @@
    yerdeki ayağın geriye hızı tam olarak s × klip hızı olur ve zemin hızına eşitlenir. T.olcekle = false ise ölçekleme kapanır
    (kadans = hız / klip uzunluğu; kayma yine yok ama koşu ağır çekim görünür).
 
-   Yazdığı ps alanları: gait, phase, stride (tam döngü, m; tek adım = stride / 2), cadence (döngü/sn), strideScale (s), plantL, plantR (0..1: ayak yerde mi; kliplerden).
-   Deneme: node test/cek.cjs '{"kamera":"yan","adimlar":[{"sure":0.5},{"sure":3,"jy":1}],"kareler":[1,1.1,1.2,1.3,1.4,1.5]}' /tmp/hareket/x.png --olc */
+   Ölçek bacak başına tutulur ve ayak yerdeyken neredeyse sabit kalır (yerdeki ayağın ölçeği değişirse ayak kayar); o sırada hız değişirse kadans değişir.
+
+   ÖLÇÜLEN KAYMA (düz yolda, ayak ucu yerdeyken dünya konumunun ileri-geri oynaması): yürüme tam basışta 1-2 mm, hafif koşu 2-6 mm, depar 5-13 mm.
+   Kliplerden gelen ve bu katmanın düzeltmediği: yürümede ayak kalkmadan hemen önce ayak ucunun ~5 cm öne sürünmesi (evre 0.50-0.57, Walk_Loop'un kendisinde var).
+   Yürü ↔ koşu geçişinde ve duruşta ayak 10-30 cm yer değiştirir (pozlar arası geçiş; kök o sırada neredeyse duruyor). Ayak kilidi (anim/ayak.js) plantL/R ile giderebilir.
+
+   Yazdığı ps alanları: gait (0 dur, 1 yürü, 2 hafif koşu, 3 depar), phase, stride (o anki tam döngü uzunluğu, m; tek adım = stride / 2), cadence (döngü/sn),
+   strideScale (iki bacağın ölçek ortalaması), plantL, plantR (0..1: kliplere göre o ayak yerde ve sabit mi; dururken 1).
+   Deneme: node test/cek.cjs '{"kamera":"yan","adimlar":[{"sure":0.5},{"sure":3,"jy":1}],"kareler":[2,2.1,2.2,2.3,2.4,2.5]}' /tmp/hareket/x.png --olc */
 (function () {
   'use strict';
   const SO = window.SO, T3 = THREE, clamp = SO.clamp, lerp = SO.lerp;
@@ -30,10 +37,12 @@
     yuruBasis: .5, kosBasis: .14, deparBasis: .15,   // ayağın yerde kaldığı evre aralığı (temastan sonra)
     // istenen kadans (döngü/sn = dakikadaki adım / 120): dururken, yavaş yürüyüş (0.55 × yürüme), yürüme, hafif koşu, depar hızlarında
     kadans: [.62, .80, .98, 1.26, 1.52],
-    olcekle: true, olcekMin: .45, olcekMax: 1.22, olcekBasis: .6,     // adım ölçekleme sınırları
+    olcekle: true, olcekMin: .45, olcekMax: 1.22,     // adım ölçekleme aç/kapa ve sınırları
+    olcekBasis: .6,                                   // ayak yerdeyken o bacağın ölçeğinin değişme hızı (1/sn; küçük = ayak kaymaz, kadans hıza uyar)
     durEvre: .08,                                     // dururken beklenen evre
     kalkis: 13, durus: 8.5,                           // dur ↔ hareket ağırlık geçiş hızları (1/sn)
-    gecis: [.22, .5], gecisEvre: [.22, .47],                                // yürü → koşu geçiş bandı (walk..jog aralığının kesri)
+    gecis: [.22, .5],                                 // yürü ↔ koşu geçişinin hız bandı (walk..jog aralığının kesri)
+    gecisEvre: [.22, .47],                            // yürü ↔ koşu geçişinin ilerleyebildiği yarım döngü aralığı
     karisim: 18                                       // klip ağırlıklarının hıza uyma hızı (1/sn)
   }, SO.tune.hareket || {});
 
@@ -65,9 +74,10 @@
       const dj = tn.jog - tn.walk, gh = v <= tn.jog ? 1 + smooth(tn.walk + T.gecis[0] * dj, tn.walk + T.gecis[1] * dj, v) : 2 + clamp((v - tn.jog) / (tn.sprint - tn.jog), 0, 1);
       //    Ayrıca geçiş yalnız yarım döngünün ikinci bölümünde ilerler (T.gecisEvre): o sırada yürüyüşün yerdeki ayağı da koşunun aynı ayağı da gövdenin arkasındadır,
       //    öne giden ayak ikisinde de havadadır; yani ayak en az yer değiştirir ve bir sonraki temas yeni yürüyüşün teması olur.
-      if (loco < .5) g = loco < .02 ? gh : SO.damp(g, gh, T.karisim, dt);
-      else { const h = frac(frac(acc) * 2) * .5, ucus = h > T.gecisEvre[0] && h < T.gecisEvre[1]; let gn = SO.damp(g, gh, T.karisim, dt); if (!ucus) gn = g >= 2 ? Math.max(2, gn) : g > 1.001 || gn > 1.001 ? (gh >= 2 && g >= 1.999 ? gn : g) : gn; g = gn; }
-      if (Math.abs(g - gh) < .002) g = gh;
+      const h = frac(frac(acc) * 2) * .5, pencere = loco < .5 || (h > T.gecisEvre[0] && h < T.gecisEvre[1]);
+      let gn = loco < .02 ? gh : SO.damp(g, gh, T.karisim, dt); if (Math.abs(gn - gh) < .004) gn = gh;
+      if (!pencere) gn = g >= 2 ? Math.max(2, gn) : g <= 1 ? 1 : g; // pencere dışında: koşu/depar 2'nin altına inmez, yürüyüş 1'de kalır, yarım kalmış geçiş bekler
+      g = gn;
       w[0] = clamp(2 - g, 0, 1); w[2] = clamp(g - 2, 0, 1); w[1] = 1 - w[0] - w[2];
 
       // 2) dur ↔ hareket: hızdan hedef, zamanda yumuşatılmış (yürümede hız 0,1 sn'de değişir; poz o kadar çabuk değişirse sıçrar)
