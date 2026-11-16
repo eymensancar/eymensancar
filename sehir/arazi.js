@@ -8,7 +8,7 @@
 (function () {
   'use strict';
   const SO = window.SO, T3 = THREE, S = Cizim, TAU = Math.PI * 2, rnd = SO.rnd, clamp = SO.clamp, lerp = SO.lerp;
-  const HALF = 16000, INK = 0x15120d, SU = 0;
+  const HALF = 16000, INK = 0x15120d, SU = 0, GR = SO.gorunum; // GR: görünüm (gorunum.js): malzemeler, dokular, köşe öznitelikleri, çim, gök
   const sm = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
   function hash(ix, iz, s) { let h = Math.imul(ix, 374761393) ^ Math.imul(iz, 668265263) ^ Math.imul(s, 1274126177); h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; }
   function vnoise(x, z, s) { const ix = Math.floor(x), iz = Math.floor(z), fx = x - ix, fz = z - iz, ux = fx * fx * (3 - 2 * fx), uz = fz * fz * (3 - 2 * fz), a = hash(ix, iz, s), b = hash(ix + 1, iz, s), c = hash(ix, iz + 1, s), d = hash(ix + 1, iz + 1, s); return a + (b - a) * ux + (c - a) * uz + (a - b - c + d) * ux * uz; }
@@ -101,21 +101,18 @@
   function uret(lv, i, j) {
     const L = LV[lv], x0 = i * L.size, z0 = j * L.size, c = L.cell, G = N1 + 2, hh = new Float32Array(G * G);
     for (let b = 0; b < G; b++) for (let a = 0; a < G; a++) hh[b * G + a] = yukseklikF(x0 + (a - 1) * c, z0 + (b - 1) * c);
-    const nv = N1 * N1 + 4 * N1, pos = new Float32Array(nv * 3), uv = new Float32Array(nv * 2), col = new Float32Array(nv * 3), H = new Float32Array(N1 * N1), idx = []; let minY = 1e9, maxY = -1e9;
+    const nv = N1 * N1 + 4 * N1, pos = new Float32Array(nv * 3), A = GR.diziler(nv), H = new Float32Array(N1 * N1), idx = []; let minY = 1e9, maxY = -1e9;
     for (let b = 0; b < N1; b++) for (let a = 0; a < N1; a++) {
       const o = b * N1 + a, x = x0 + a * c, z = z0 + b * c, g = (b + 1) * G + a + 1, h = hh[g]; H[o] = h; if (h < minY) minY = h; if (h > maxY) maxY = h;
-      tn.set(hh[g - 1] - hh[g + 1], 2 * c, hh[g - G] - hh[g + G]).normalize(); agirlik(x, z, tw); tc.setRGB(0, 0, 0); tk.setRGB(0, 0, 0);
-      for (let q = 0; q < 5; q++) { tc.r += cB[q].r * tw[q]; tc.g += cB[q].g * tw[q]; tc.b += cB[q].b * tw[q]; tk.r += cK[q].r * tw[q]; tk.g += cK[q].g * tw[q]; tk.b += cK[q].b * tw[q]; }
-      tc.lerp(tk, sm(.2, .42, 1 - tn.y)); tc.lerp(karC, sm(230, 290, h + (tn.y - .8) * 120)); tc.lerp(kum, (1 - sm(.4, 1.8, h)) * (1 - tw[3] * .6));
-      const d = tn.dot(SUN), golge = d > .78 ? 1 : d > .62 ? .92 : d > .45 ? .82 : .7, ton = .96 + vnoise(x / 9, z / 9, 77) * .08;
-      pos[o * 3] = x; pos[o * 3 + 1] = h; pos[o * 3 + 2] = z; uv[o * 2] = x / 14; uv[o * 2 + 1] = z / 14; col[o * 3] = tc.r * golge * ton; col[o * 3 + 1] = tc.g * golge * ton; col[o * 3 + 2] = tc.b * golge * ton;
+      tn.set(hh[g - 1] - hh[g + 1], 2 * c, hh[g - G] - hh[g + G]).normalize(); agirlik(x, z, tw);
+      pos[o * 3] = x; pos[o * 3 + 1] = h; pos[o * 3 + 2] = z; GR.kose(A, o, x, z, h, tn, tw); // renk/doku ağırlıkları/ışık: gorunum.js
     }
     for (let b = 0; b < NC; b++) for (let a = 0; a < NC; a++) { const o = b * N1 + a; idx.push(o, o + N1, o + 1, o + 1, o + N1, o + N1 + 1); }
     // etek: komşu düzeyle arada açıklık görünmesin diye kenarlardan aşağı inen şerit
-    let s = N1 * N1; const kenar = (get, ters) => { const b0 = s; for (let k = 0; k < N1; k++) { const o = get(k); pos[s * 3] = pos[o * 3]; pos[s * 3 + 1] = pos[o * 3 + 1] - L.skirt; pos[s * 3 + 2] = pos[o * 3 + 2]; uv[s * 2] = uv[o * 2]; uv[s * 2 + 1] = uv[o * 2 + 1]; col[s * 3] = col[o * 3]; col[s * 3 + 1] = col[o * 3 + 1]; col[s * 3 + 2] = col[o * 3 + 2]; s++; }
+    let s = N1 * N1; const kenar = (get, ters) => { const b0 = s; for (let k = 0; k < N1; k++) { const o = get(k); pos[s * 3] = pos[o * 3]; pos[s * 3 + 1] = pos[o * 3 + 1] - L.skirt; pos[s * 3 + 2] = pos[o * 3 + 2]; GR.etekKopya(A, s, o); s++; }
       for (let k = 0; k < NC; k++) { const a = get(k), b = get(k + 1), c2 = b0 + k, d2 = b0 + k + 1; if (ters) idx.push(a, c2, b, b, c2, d2); else idx.push(a, b, c2, b, d2, c2); } };
     kenar(k => k, false); kenar(k => NC * N1 + k, true); kenar(k => k * N1, true); kenar(k => k * N1 + NC, false);
-    const g = new T3.BufferGeometry(); g.setAttribute('position', new T3.BufferAttribute(pos, 3)); g.setAttribute('uv', new T3.BufferAttribute(uv, 2)); g.setAttribute('color', new T3.BufferAttribute(col, 3)); g.setIndex(idx);
+    const g = new T3.BufferGeometry(); g.setAttribute('position', new T3.BufferAttribute(pos, 3)); GR.geoBagla(g, A); g.setIndex(idx);
     g.boundingSphere = new T3.Sphere(new T3.Vector3(x0 + L.size / 2, (minY + maxY) / 2, z0 + L.size / 2), Math.hypot(L.size * .71, (maxY - minY) / 2 + L.skirt));
     const m = new T3.Mesh(g, yerMat); m.matrixAutoUpdate = false; m.visible = false; scene.add(m);
     return { i, j, lv, H, mesh: m, minY, maxY, cx: x0 + L.size / 2, cz: z0 + L.size / 2, gizli: false };
@@ -136,7 +133,7 @@
   /* ---------- nesne hücreleri (256 m) ---------- */
   const HUCRE = 256, hucreler = new Map(), solids = [], geo = {}, uFar = { value: 440 }, uCam = { value: new T3.Vector3() };
   const kucul = m => { m.onBeforeCompile = s => { s.uniforms.uFar = uFar; s.uniforms.uCam = uCam; s.vertexShader = 'uniform float uFar; uniform vec3 uCam;\n' + s.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n#ifdef USE_INSTANCING\n vec3 ip = (modelMatrix * instanceMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xyz; transformed *= 1.0 - smoothstep(uFar - 90.0, uFar, distance(ip, uCam));\n#endif'); }; return m; };
-  const vcMat = kucul(new T3.MeshBasicMaterial({ vertexColors: true })), hullMat = kucul(new T3.MeshBasicMaterial({ color: INK, side: T3.BackSide }));
+  const vcMat = GR.nesneMat(uFar, uCam), hullMat = kucul(new T3.MeshBasicMaterial({ color: INK, side: T3.BackSide }));
   function hucreUret(ci, cj) {
     const R = rnd((ci * 73856093) ^ (cj * 19349663) ^ 911), x0 = ci * HUCRE, z0 = cj * HUCRE, G = {}, kutular = [], ww = [0, 0, 0, 0, 0]; let maxY = -1e9, minY = 1e9;
     for (let z = 4; z < HUCRE; z += 8) for (let x = 4; x < HUCRE; x += 8) {
@@ -201,19 +198,18 @@
     for (let lv = 0; lv < 3; lv++) { const yar = LV[lv].size * .71; let q = 0; dugum[lv].forEach(n => { q++; let g = !acik(lv, n); if (g && lv < 2) { if ((sayac + q) % 12 === 0) n.gizli = tepeArkasi(cam, n.cx, n.cz, n.maxY + 3, yar); g = !n.gizli; } n.mesh.visible = g; }); }
     let q = 0; hucreler.forEach(H => { q++; const d = Math.hypot(H.c.x - cam.position.x, H.c.z - cam.position.z); sph.center.copy(H.c); sph.radius = H.r; let gor = d < uFar.value + HUCRE * .75 && fr.intersectsSphere(sph);
       if (gor) { if ((sayac + q) % 10 === 0) H.gizli = tepeArkasi(cam, H.c.x, H.c.z, H.tepe, HUCRE * .6); gor = !H.gizli; } const yakin = gor && d < 190 + HUCRE * .75; for (const m of H.ana) m.visible = gor; for (const m of H.cizgi) m.visible = yakin; });
-    su.position.set(cam.position.x, SU, cam.position.z); uCam.value.copy(cam.position);
+    su.position.set(cam.position.x, SU, cam.position.z); uCam.value.copy(cam.position); GR.kare(cam);
   }
   function build(sc, renderer) {
     scene = sc; maxAniso = Math.min(4, renderer.capabilities.getMaxAnisotropy());
     scene.fog = new T3.Fog(0xcfe2ea, 380, 3600);
-    scene.background = new T3.CanvasTexture(canvasOf(16, 512, g => { const gr = g.createLinearGradient(0, 0, 0, 512); gr.addColorStop(0, '#6fa8d6'); gr.addColorStop(.5, '#b4d4e6'); gr.addColorStop(.72, '#e6eef0'); gr.addColorStop(1, '#e6eef0'); g.fillStyle = gr; g.fillRect(0, 0, 16, 512); }));
+    GR.kur(scene, renderer, { agirlik, groundY }); // gök kubbesi, sis rengi, çim tutamları
     SO.camera.far = 9000; SO.camera.updateProjectionMatrix();
     const R = rnd(7), cloudT = [0, 1, 2].map(i => new T3.CanvasTexture(canvasOf(300, 130, g => { g.scale(.7, .7); g.translate(210, 90); S.seed(70 + i); [[0, 0, 120, 44], [-100, 16, 80, 32], [96, 12, 90, 36], [20, -28, 70, 30]].forEach(([dx, dy, rx, ry]) => S.blot(g, S.ell(dx, dy, rx * (1 + i * .15), ry, 20), '#f8f1e2', 1)); })));
     const bulut = new T3.Group(); for (let i = 0; i < 22; i++) { const a = R() * TAU, d = 900 + R() * 2600, s = new T3.Sprite(new T3.SpriteMaterial({ map: cloudT[i % 3], fog: false, transparent: true, opacity: .95, depthWrite: false })); s.scale.set(380 + R() * 320, 150 + R() * 90, 1); s.position.set(Math.sin(a) * d, 520 + R() * 420, Math.cos(a) * d); bulut.add(s); } scene.add(bulut); build.bulut = bulut;
-    const lekeT = new T3.CanvasTexture(canvasOf(512, 512, g => { const r = rnd(5); g.fillStyle = '#f4f4f4'; g.fillRect(0, 0, 512, 512); for (let i = 0; i < 46; i++) { const koyu = r() < .55; S.blot(g, S.ell(r() * 512, r() * 512, 16 + r() * 46, 8 + r() * 18, 10), koyu ? '#8a8a8a' : '#ffffff', koyu ? .16 : .55); } g.strokeStyle = 'rgba(0,0,0,.10)'; g.lineWidth = 2.5; for (let i = 0; i < 30; i++) { const x = r() * 512, y = r() * 512; g.beginPath(); g.moveTo(x, y); g.lineTo(x - 4, y - 12); g.moveTo(x, y); g.lineTo(x + 5, y - 14); g.stroke(); } }));
-    lekeT.wrapS = lekeT.wrapT = T3.RepeatWrapping; lekeT.anisotropy = maxAniso; yerMat = new T3.MeshBasicMaterial({ map: lekeT, vertexColors: true });
-    su = new T3.Mesh(new T3.PlaneGeometry(9000, 9000), new T3.MeshBasicMaterial({ color: 0x5f9db6, transparent: true, opacity: .84 })); su.rotation.x = -Math.PI / 2; su.renderOrder = 2; scene.add(su);
-    Object.keys(TUR).forEach(k => { const p = TUR[k][0](); geo[k] = { g: partsToGeo(p), o: partsToGeo(p, TUR[k][1]) }; });
+    yerMat = GR.yerMat();
+    su = new T3.Mesh(new T3.PlaneGeometry(9000, 9000), GR.suMat()); su.rotation.x = -Math.PI / 2; su.renderOrder = 2; scene.add(su);
+    Object.keys(TUR).forEach(k => { const p = TUR[k][0](); geo[k] = { g: GR.nesneGeo(p, k), o: partsToGeo(p, TUR[k][1] * GR.ayar.cizgi) }; });
     // başlangıç: merkezin yakınında, suya yakın, düz ve alçak bir yer ara
     start.h = 0; let en = null; for (let k = 0; k < 900; k++) { const a = k * 2.399963, r = 30 + k * 2.2, x = Math.cos(a) * r, z = Math.sin(a) * r; start.x = 1e9; const h = yukseklikF(x, z); if (h < 2.5 || h > 9) continue;
       const e = Math.hypot(yukseklikF(x + 12, z) - yukseklikF(x - 12, z), yukseklikF(x, z + 12) - yukseklikF(x, z - 12)) / 24; if (e > .06) continue; let suVar = false; for (let q = 0; q < 8 && !suVar; q++) suVar = yukseklikF(x + Math.cos(q * .785) * 70, z + Math.sin(q * .785) * 70) < -.5; if (!suVar) continue; en = { x, z, h }; break; }

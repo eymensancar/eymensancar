@@ -25,6 +25,7 @@
 | `ses.js`, `ses/` | sesler; `SO.ses` |
 | `anim/*.js` | hareket katmanları (aşağıda) |
 | `harita.js` | küçük harita, tam harita, keşif sisi; `SO.harita` |
+| `toplama.js` | yerdeki toplanabilir nesneler (dal, taş), AL düğmesi, sayaç, kayıt; `SO.toplama`, `SO.envanter` |
 | `ana.js` | sahne, girdi, hep yatay ekran, döngü |
 | `model/` | modeller, `LISANS.md`, `KLIPLER.md` |
 | `test/cek.cjs` | başsız tarayıcıda sabit adımla çalıştırıp kare alan araç |
@@ -34,7 +35,7 @@
 2. `SO.fizik.update(dt)`: hız, konum, yer/hava.
 3. `SO.anim.update(dt)`: katmanların `update(ctx, dt)` → `mixer.update(dt)` → katmanların `post(ctx, dt)`.
 4. Kök düğüm: konum `(ps.x, ps.y + ps.rootDy, ps.z)`, dönüş (YXZ) `(ps.leanFwd, ps.yaw, ps.lean)`.
-5. `SO.kamera.update(cam, dt)`, `SO.ses.update(dt)`, çizim.
+5. `SO.kamera.update(cam, dt)`, `SO.ses.update(dt)`, `SO.harita.update(dt)`, `SO.toplama.update(dt)`, çizim.
 
 ## Hareket katmanları
 Her katman tek dosyadır ve `SO.anim.register({ name, order, init(ctx), update(ctx, dt), post(ctx, dt) })` ile eklenir. `order` küçük olan önce çalışır.
@@ -54,6 +55,7 @@ Her katman tek dosyadır ve `SO.anim.register({ name, order, init(ctx), update(c
 | `anim/yuzme.js` | 22 | sığ suda yürüme, yüzme klipleri, `ps.yuzmeBlend`, su olayları |
 | `anim/tirmanma.js` | 24 (+ kol çözümü 45) | düz kayalara çıkma; tek düğme (zıplama). `ziplama.js` yerdeyken zıplama isteğinde `SO.tirman.dene(ctx)` sorar. Tepe − ayak: < 0,65 m normal zıplama (kayaya doğru hız tamamlanır, üstüne konar) · 0,65–1,35 m `'bel'`: elle destek alıp aşma (`ClimbUp_1m`) · 1,35–2,1 m `'boy'`: çömel, sıçra, tutun, asıl, çekil, aş · daha yüksek: zıplama. Havadayken çubuk kayaya itiliyorsa ya da zıplamaya yeniden basıldıysa ve tepe ayaktan 0,25–1,75 m yukarıdaysa kenarı yakalar (zıplayıp yetişilen daha yüksek kayalar böyle çıkılır). Yazdığı alanlar: `ps.kilit`, `ps.tirmanBlend` (0..1), `ps.tirman` (`'' \| 'bel' \| 'boy'`), `ps.tirmanFaz` (`'' \| 'hiza' \| 'sicra' \| 'asil' \| 'cek' \| 'as' \| 'cik'`); kilit altında `ps.x/y/z, yaw, yawRate, lean, leanFwd, vx/vy/vz, grounded (false)`; her kare `ps.airBlend = max(airBlend, tirmanBlend)` (taban hareket böyle bastırılır) ve `ps.ikKapat = max(ikKapat, tirmanBlend)`. Kayanın görünen ağına ışın atıp gerçek kenarı ve yüz eğimini ölçer; `post`ta (order 45, ayak katmanından sonra) `upperarm/lowerarm/hand_l/r` kemiklerini dünya uzayında iki kemikli çözümle kenara oturtur. Ayarlar `SO.tune.tirmanma`, ölçüm `SO.tirman.durum`; klip ölçümleri dosya başında |
 | `anim/ayak.js` | 40 | ayakların zemine oturması, `ps.rootDy` |
+| `anim/toplama.js` | 26 (+ gövde 36, kol 46) | yerden alma hareketi (`Farm_Harvest` zamanı sıkıştırılarak: iniş 0,30 sn, el değer, doğrulma 0,42 sn; sağ kol ters kinematikle nesneye uzanır, gerekirse kalça iner/bel eğilir). `toplama.js` `SO.toplaAnim.basla(x, y, z)` ile başlatır; el değdiği karede `SO.toplaAnim.durum.deger` true olur. Yazdığı alanlar: `ps.topla`, `ps.toplaFaz` (`'' \| 'in' \| 'tut' \| 'kalk'`), `ps.toplaBlend` (0..1), `ps.toplaYavas` (hız çarpanı 0..1; **fizik okumalı**, aşağıda). Her kare `ps.airBlend = max(ps.airBlend, ps.toplaBlend)` (taban hareket bastırılır); `ps.ikKapat`'a dokunmaz (ayak yerleştirme açık). Çubuk boşken `ps.yaw`'ı nesneye çevirir. Yerden kesilince/yüzünce/`ps.kilit` gelince iptal olur. Dokunduğu kemikler: pelvis (konum), spine_01, spine_03, neck_01, Head, thigh/calf/foot_l/r (order 36: `durus.js`'in 'hava' düzeltmesini kendi düzeltmesiyle değiştirir), upperarm_r, lowerarm_r (46). Ayarlar `SO.tune.toplama`; klip ölçümleri ve zaman çizelgesi dosya başında |
 
 **Ayak katmanı (`anim/ayak.js`) notları:** `post` başında kökü `(ps.x, ps.y, ps.z)` + `(leanFwd, yaw, lean)` ile yerine koyup `updateMatrixWorld` çağırır (ana.js aynı değerleri `rootDy` ekleyerek hemen sonra yazar); bu yüzden `ps.yaw/lean/leanFwd` en geç `update` içinde yazılmış olmalı. Yalnız `thigh/calf/foot_l/r` kemiklerine ve `ps.rootDy`'ye dokunur; bacak kemiklerine `post`ta dokunan başka katman 40'tan küçük `order` ile çalışmalı. Her ayak, altındaki zemine (`world.groundY`) göre iki kemikli ters kinematikle oturur; kalça yere basan alçak ayağa göre iner/kalkar (`ps.y + ps.rootDy` fiziğin basamak yumuşatmasından bağımsızdır). Havada kapalıdır (yere değmeden hemen önce açılmaya başlar; iniş klibi sürerken açıktır). Dururken ayak dünya konumu kilitlenir. Ayarlar `SO.tune.ayak` (`on: false` katmanı kapatır), ölçüm için `SO.ayak` (`w` ağırlık, `legs[i].off/p/lockW`).
 
@@ -83,10 +85,20 @@ Sağ üstte küçük yuvarlak harita (`#hMini`, 72 px; 360 m'lik pencere, kuzey 
 - **Kayıt:** `localStorage` anahtarı `acik-dunya-harita-v1` = `{ v, h, n, d, i }` (`d`: satır-uzunluk kodlaması + base64, yalnız açık/kapalı bilgisi; `i`: işaret `[x, z]`, yoksa alan yok). 10 sn'de bir ve sayfa gizlenirken yazılır; `?test` kipinde okunmaz/yazılmaz.
 - **Deneme:** `SO.harita.durum()` (`acik` hücre sayısı, `bekleyen` renk sırası, `bellek`, `kayit` boyutu), `SO.harita.acikMi(x, z)`, `SO.harita.ac()/kapat()/ortala()`, `SO.harita.gorunum({ x, z, m })` (merkez ve genişlik; boş çağrı o anki görünümü verir), `SO.harita.ciz()` (hemen yeniden çiz), `SO.harita.kodla()/coz(metin)`.
 
+## Toplama (`SO.toplama`, `SO.envanter`, `toplama.js`)
+Yerde elle toplanabilen küçük nesneler: **dal** (0,5–0,9 m) ve **taş** (13–22 cm). Tür tablosu `SO.toplama.TUR` (yeni tür: `SO.toplama.turEkle(ad, tanim)`, `init`'ten önce).
+- **Yerleşim:** 48 m'lik hücreler, oyuncunun çevresinde 5×5; hücre başına 16×16 aday nokta (tohum hücre koordinatından), kimlik = hücre + aday sırası. Dallar ağaç gövdelerinin 0,5–6,5 m çevresinde sık (ağaçlar `SO.world.solids`'ten okunur), açıkta seyrek; taşlar kayaların dibinde, su kıyısındaki alçak şeritte ve dik yamaç yakınında sık, çayırda seyrek. Çölde/kızıl diyarda dal neredeyse yok, taş çok. Suda, kutuların içinde, çok dik yerde yok. Doğuş noktasının 100 m çevresinde ≈ 26 dal, 47 taş.
+- **Çizim:** tür × biçim başına tek ortak `InstancedMesh` (6 çizim çağrısı), ağaç/kaya ile aynı malzeme (`SO.gorunum.nesneGeo/nesneMat`); matrisler yalnız hücre kümesi değişince ya da nesne alınınca yazılır; 92 m'de küçülerek kaybolur. Alınabilecek nesne biraz parlar.
+- **Alma:** 1,3 m içindeki en uygun nesne (öndeki öncelikli) `SO.toplama.yakin`; o varken `AL` düğmesi (`#bAl`) görünür. `AL` / `E` tuşu / `SO.input.act = true` → alış. Basılı tutulursa menzile giren her nesne sırayla alınır (art arda ≈ 0,4 sn). Yüzerken, tırmanırken, havadayken yok.
+- **Sayaç:** `#envanter` (üst orta): tür simgesi + sayı, ilk nesneye kadar gizli. `SO.envanter.dal`, `.tas`, `.adet(tur)`, `.ekle(tur, adet)`, `.harca(tur, adet)` (yetmezse `false`), `.dinle(fn)`.
+- **Kayıt:** `localStorage` anahtarı `acik-dunya-envanter-v1` = `{ v: 1, say: { dal, tas }, alinan: "hücre:ssss;..." }` (alınan nesnelerin kimlikleri; en çok 6000, dolunca en eski hücreler unutulur ve oradaki nesneler yeniden belirir; en çok ≈ 20 KB). Alıştan 2 sn sonra ve sayfa gizlenirken yazılır; `?test` kipinde okunmaz/yazılmaz.
+- **Deneme:** `SO.toplama.durum()`, `SO.toplama.say(x, z, yaricap)` (tür başına sayı), `SO.toplama.al()`, `SO.toplama.kodla()/coz(metin)`, `SO.toplaAnim.durum`.
+
 ## Fizik durumları (`fizik.js`)
 - Su: `ps.suDerin` (m). Sığda (0,25–1,2 m) hız yarıya kadar düşer. Derinlik 1,3 m'yi geçince `ps.yuzme = true`: karakter su yüzeyinde tutulur (`ps.y` ≈ −1,38), hız `tune.yuz` (1,45) / KOŞ ile `tune.yuzHizli` (2,3), zıplama yok; 1,1 m'nin altına inince biter. `ps.yuzmeAt` son değişim anı. Yüzerken `ps.grounded` true kalır.
 - `ps.kilit = true`: fizik konuma dokunmaz; konumu bir katman (tırmanma) sürer, bitince `false` yapar ve hızları sıfırlar/ayarlar.
 - `ps.ikKapat` (0..1): ayak yerleştirme ve duruş düzeltmesi bu kadar kapatılır. Yüzme katmanı her karenin başında kendi payına eşitler; tırmanma yalnız `Math.max` ile yükseltir.
+- `ps.toplaYavas` (0..1; 1 = kısma yok): yerden alma sırasında hız çarpanı (`anim/toplama.js` yazar: inişte ve kavramada 0,1; doğrulurken 1'e döner). Fizik hedef hızı bununla çarpmalı (`ps.speedScale` ve `ps.turnSlow` gibi).
 - Yüzme katmanının alanları: `ps.yuzmeBlend` (yüzme kliplerinin payı; taban hareket `1 − yuzmeBlend` ile çarpılır), `ps.yuzmeEvre`, `ps.yuzmeIleri`, `ps.yuzmeDy` (bilgi), `ps.adimAgir` (sığ suda kadans çarpanı).
 
 ## Ses olayları (`SO.ses.olay(ad, bilgi)`)
@@ -95,6 +107,7 @@ Sağ üstte küçük yuvarlak harita (`#hMini`, 72 px; 360 m'lik pencere, kuzey 
 - `in` `{ hiz, zemin }` (yere değiş hızı m/sn)
 - `su_gir` `{ hiz }` (suya girip yüzmeye başlama), `su_cik` `{}`, `kulac` `{ hiz }` (yüzerken her kulaç), `adim` olayında `zemin: 'su'` (sığ suda yürüme)
 - `tutun` `{}` (tırmanırken el kayaya değer), `tirman` `{ yukseklik }` (kendini yukarı çekme/üste çıkış)
+- `al` `{ tur: 'dal' | 'tas' }` (yerden bir şey alındı: elin nesneye değdiği an; `toplama.js` gönderir)
 
 Sesler `ses/*.mp3` (gerçek kayıt, kamu malı; kaynaklar `ses/LISANS.md`). Su: sığ suda adım `ps.suDerin`'e göre hafiften dolguna gider; su ortamı (`ortam_su`) oyuncunun çevresinde `world.suDerinlik` örneklenerek (0,4 sn'de bir; 4, 10, 30 m halkaları) açılır, yüzerken biraz öne gelir. `'cim'` zemini çölde kum, karlı dağda kar adım takımına döner (`world.biyom`). `tirman` sesi ayrı kayıt değil, mevcut kayıtların birleşimidir. Zemin başına yürüme ve koşu için ayrı adım takımı var; 2,6 m/sn üstünde koşu takımı çalar. Ortam: şehir uğultusu hep çalar, parkta (şehir içindeki çim) üstüne kuş katmanı gelir. Düzeyler `SO.tune.ses` içinde; `SO.ses.durum()` yüklenen dosya sayısını, hataları ve çalınan ses sayılarını verir. Ses ilk dokunuşta açılır; `?test` kipinde `init()` çağrılmadıkça sessizdir.
 
