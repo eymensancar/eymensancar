@@ -19,7 +19,7 @@
     /* Oyuncu durumu. Kim yazar:
        fizik.js   : x,y,z, vx,vy,vz, speed (yatay hız m/sn), grounded, groundY, fallSpeed (yere değdiği andaki düşüş hızı), airTime, landedAt, jumpedAt
        ana.js     : wantX, wantZ (kameraya göre istenen yön, birim vektör), wantMag (0..1), wantRun
-       anim/donus : yaw (karakterin baktığı yön, radyan; ileri = (sin yaw, cos yaw)), yawRate (rad/sn), lean (yana yatma, rad; + = sola),
+       anim/donus : yaw (karakterin baktığı yön, radyan; ileri = (sin yaw, cos yaw)), yawRate (rad/sn), lean (yana yatma, rad; + = karakterin sağına, yani sola dönerken eksi),
                     leanFwd (öne/arkaya yatma, rad; + = öne). ana.js bunları kök düğüme uygular (ayak tabanından döner).
        anim/ayak  : rootDy (kökün dikey kayması, m; kalçayı indirmek için)
        anim/ziplama: airBlend (0..1; havadayken taban hareketlerin ağırlığı 1-airBlend ile çarpılır), jumpPhase ('' | 'start' | 'air' | 'land')

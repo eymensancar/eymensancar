@@ -44,7 +44,7 @@ Her katman tek dosyadır ve `SO.anim.register({ name, order, init(ctx), update(c
 
 | Katman | `order` | Sahibi olduğu şeyler |
 |---|---|---|
-| `anim/donus.js` | 5 | `ps.yaw`, `ps.yawRate`, `ps.lean`, `ps.leanFwd`; dönüş, yatma |
+| `anim/donus.js` | 5 | `ps.yaw`, `ps.yawRate`, `ps.lean`, `ps.leanFwd`; dönüş, yatma. Ek alanlar: `ps.turnSlow` (hız çarpanı 0..1, 1 = kısma yok; fizik henüz okumuyor), `ps.pivot` (0 yok, 1 sert dönüşte fren, 2 dönme), `ps.turnTwist` (üst gövde + başa verilen ön dönüş, rad). `ps.lean` işareti: + = karakterin sağına (sola dönerken negatif). Ayarlar `SO.tune.donus` |
 | `anim/hareket.js` | 10 | dur/yürü/hafif koşu/depar karışımı, `ps.gait`, `ps.phase`, `ps.stride`, adım olayı (`SO.ses.olay('adim', …)`) |
 | `anim/ziplama.js` | 20 | `input.jump` tüketimi, `ps.jumpNow`, `ps.airBlend`, `ps.jumpPhase`, `ps.speedScale`, zıplama/iniş olayları |
 | `anim/canlilik.js` | 30 | nefes, ağırlık aktarma, baş bakışı, dururken küçük hareketler (çoğu `post`) |

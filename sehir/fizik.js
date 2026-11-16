@@ -6,7 +6,8 @@
   function update(dt) {
     const ps = SO.ps, tn = SO.tune, w = SO.world;
     let hedef = 0; if (ps.wantMag > .08) hedef = ps.wantRun ? tn.sprint : ps.wantMag > .55 ? tn.jog : tn.walk * Math.max(.55, ps.wantMag / .55);
-    hedef *= ps.speedScale == null ? 1 : ps.speedScale; // katmanlar geçici olarak kısabilir (ör. yere inişte)
+    hedef *= ps.speedScale == null ? 1 : ps.speedScale;
+    hedef *= ps.turnSlow == null ? 1 : ps.turnSlow; // dönüş katmanı sert/yerinde dönüşte kısar // katmanlar geçici olarak kısabilir (ör. yere inişte)
     const tx = ps.wantX * hedef, tz = ps.wantZ * hedef, dvx = tx - ps.vx, dvz = tz - ps.vz, dv = Math.hypot(dvx, dvz);
     if (dv > 1e-5) { const hizlaniyor = hedef > ps.speed - .01, a = (hizlaniyor ? tn.accel : tn.decel) * (ps.grounded ? 1 : tn.airControl), k = Math.min(1, a * dt / dv); ps.vx += dvx * k; ps.vz += dvz * k; }
     const [nx, nz] = w.collide(ps.x + ps.vx * dt, ps.z + ps.vz * dt, tn.radius);
