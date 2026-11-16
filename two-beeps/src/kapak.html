@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Two Beeps · kapak</title>
+<style>
+  @font-face{font-family:'Lilita One';font-weight:400;src:url(../assets/fonts/lilita-one-latin-400-normal.woff2) format('woff2')}
+  html,body{margin:0;background:#000}canvas{display:block}
+</style></head><body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+/* Kapak: ham görsel (assets/kapak/partN-ham.png, yazısız) + kodla etiket.
+   Üstte "TWO BEEPS", "PART N" rozeti, yanında "N/10" ve altında BAŞLIK. Yazılar x 60–880, y 110–1420 içinde (Shorts arayüzü alt 480 ve sağ 190 px'i kapatır). */
+window.kapak = async (n, title, o) => {
+  o = o || {};
+  const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+  await document.fonts.load('400 40px "Lilita One"', 'Aa');
+  const im = new Image(); im.src = `../assets/kapak/part${n}-ham.png`; await im.decode();
+  // kırpmadan doldur: oran neredeyse 9:16; farkı ortadan kırp
+  const s = Math.max(1080 / im.width, 1920 / im.height), w = im.width * s, h = im.height * s;
+  ctx.drawImage(im, (1080 - w) / 2, (1920 - h) / 2, w, h);
+  // üstte hafif koyulaşma (yazı her zeminde okunsun)
+  const g = ctx.createLinearGradient(0, 0, 0, 520); g.addColorStop(0, 'rgba(15,12,8,.55)'); g.addColorStop(1, 'rgba(15,12,8,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 520);
+  const F = px => `400 ${px}px "Lilita One"`, INK = '#15120d', HAZ = '#f5b21c', PAPER = '#f8f1e2';
+  const out = (t, x, y, px, col, lw) => { ctx.font = F(px); ctx.textBaseline = 'alphabetic'; ctx.lineJoin = 'round'; ctx.strokeStyle = INK; ctx.lineWidth = lw; ctx.strokeText(t, x, y); ctx.fillStyle = col; ctx.fillText(t, x, y); };
+  const x0 = 60, y0 = o.y || 150;
+  // TWO BEEPS
+  out('TWO BEEPS', x0, y0, 56, PAPER, 12);
+  // PART N rozeti (sarı, tehlike şeritli)
+  const tag = `PART ${n}`; ctx.font = F(66); const tw = ctx.measureText(tag).width, bx = x0, by = y0 + 28, bw = tw + 48, bh = 96;
+  ctx.fillStyle = INK; ctx.fillRect(bx - 6, by - 6, bw + 12, bh + 12 + 16);
+  ctx.fillStyle = HAZ; ctx.fillRect(bx, by, bw, bh);
+  ctx.save(); ctx.beginPath(); ctx.rect(bx, by + bh, bw, 16); ctx.clip();
+  for (let i = -2; i < bw / 22 + 2; i++) { ctx.fillStyle = i % 2 ? INK : HAZ; ctx.beginPath(); ctx.moveTo(bx + i * 22, by + bh + 16); ctx.lineTo(bx + i * 22 + 22, by + bh + 16); ctx.lineTo(bx + i * 22 + 34, by + bh); ctx.lineTo(bx + i * 22 + 12, by + bh); ctx.fill(); }
+  ctx.restore();
+  ctx.font = F(66); ctx.fillStyle = INK; ctx.textBaseline = 'alphabetic'; ctx.fillText(tag, bx + 24, by + 72);
+  // başlık (en çok 820 px; sığmazsa küçült)
+  let px = 112; ctx.font = F(px); while (ctx.measureText(title).width > 820 && px > 64) { px -= 4; ctx.font = F(px); }
+  out(title, x0, by + bh + 16 + px + 14, px, PAPER, Math.round(px * .2));
+  // N/10: PART rozetinin hemen sağında (altta karakterlerin üstüne denk geliyordu)
+  const nb = `${n}/10`; ctx.font = F(54); const nw = ctx.measureText(nb).width, nx = bx + bw + 26, ny = by + 70;
+  ctx.fillStyle = INK; ctx.fillRect(nx - 6, ny - 62, nw + 44, 82); ctx.fillStyle = PAPER; ctx.fillRect(nx, ny - 56, nw + 32, 70);
+  ctx.fillStyle = INK; ctx.fillText(nb, nx + 16, ny);
+  return cv.toDataURL('image/jpeg', 0.9);
+};
+</script></body></html>
