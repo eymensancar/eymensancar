@@ -22,11 +22,15 @@
       toplam T.egimEnCok'u geçmez (fazlası pelvisten geri alınır). Havadayken (ps.airBlend) sınır gevşer: zıplama ve iniş çömelmesi serbest.
    3. Kalça yüksekliği: klibin dikey zıplaması oyundaki adıma göre çok büyük (hafif koşu klibi 5,5 m'lik sıçramalı adım; kalça 24 cm inip çıkıyor). Adım
       kısalınca aynı çöküş "çömelerek koşma" görünür. Kalça yüksekliği y' = hedefUst − (klipUst − y) × sik ile sıkıştırılıp kaldırılır (T.kalca); bacak
-      yetişmiyorsa (yere basan ayak) kaldırma o kadar kısılır. Dururken kalça 2,5 cm kalkar (dizler 156° → ~168°).
+      yetişmiyorsa (yere basan ayak) kaldırma o kadar kısılır; uçuş evresinde alçaktaki ayağın yerden boşluğu da aynı oranda kısılır (yoksa karakter her adımda
+      engel atlar gibi havada kalır). Dururken kalça bacağın izin verdiği kadar (≈ 1 cm) kalkar: dizler 156° → 161°, arkadaki bacak düzleşir.
    4. Bilekler 1–3'ten ÖNCEKİ dünya konumuna iki kemikli çözümle geri konur (ayağın dünya yönü de aynı kalır): ayak kayması değişmez, ayak.js bacakları
       bu hâliyle görür.
    Dokunduğu kemikler: pelvis (dönüş + konum), spine_01–03, neck_01, Head, upperarm_l/r, thigh/calf/foot_l/r. ps'e yazmaz. Kapatmak: SO.tune.durus.on = false.
-   Ölçüm için SO.durus = { egim (son toplam gövde eğimi, derece), kaldir (m), kisit (üst sınırın geri aldığı derece) }. */
+   Ölçüm için SO.durus = { egim (son toplam gövde eğimi, derece), kaldir (kalça, m), indir (uçuşta ayaklar, m), kisit (üst sınırın geri aldığı derece) }.
+
+   SONUÇ (sabit hız, bütün katmanlar açık; önce → sonra): gövde eğimi dur 7,4° → 0,6° · yürü 11,3° → 3,9° · hafif koşu 25,0° → 7,6° · depar 41,4° → 15,5°;
+   baş eğimi 12,5/15/21/24° → 2,5/3/4/6°; hafif koşuda kalça 0,70–0,95 m → 0,88–0,95 m. Kalkış, duruş ve sert dönüşte en yüksek toplam eğim 21°. */
 (function () {
   'use strict';
   const SO = window.SO, T3 = THREE, clamp = SO.clamp, D = Math.PI / 180;
@@ -35,7 +39,7 @@
   const T = SO.tune.durus = Object.assign({
     on: true,
     /* dünya eğimine eklenecek açı (derece; + = öne). kol: üst kolun göğse göre ek açısı (+ = dirsek geriye), kolAc: kolun gövdeden yana açılması.
-       Hedeflenen sonuç (ölçülen klip değeri + düzeltme): dur gövde ≈ 1°, yürü ≈ 3°, hafif koşu ≈ 7°, depar ≈ 13° (+ donus'un 2,6°'si). */
+       Ölçülen sonuç (pelvis → boyun doğrusu): dur ≈ 1°, yürü ≈ 4°, hafif koşu ≈ 8°, depar ≈ 13° (+ donus'un 2,6°'si). */
     duzelt: {
       dur:   { pelvis: 0, spine_01: 0, spine_02: -1, spine_03: -22, neck_01: 3, Head: -10, kol: 0, kolAc: 0 },
       yuru:  { pelvis: 1.5, spine_01: 0, spine_02: -3.5, spine_03: -23, neck_01: 1, Head: -12, kol: 4, kolAc: 0 },
