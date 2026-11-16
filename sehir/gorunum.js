@@ -40,13 +40,13 @@
   const t3 = [0, 0, 0];
   // bir arazi köşesi: o = köşe sırası, (x, z, h), n = normal (THREE.Vector3), tw = biyom ağırlıkları [vadi, orman, çöl, kar, kızıl]
   function kose(A, o, x, z, h, n, tw) {
-    const o3 = o * 3, o4 = o * 4, cimli = tw[0] + tw[1], kiyi = 1 - sm(.3, 1.4, h), deniz = sm(12200, 13400, Math.max(Math.abs(x), Math.abs(z))), dik = 1 - n.y;
+    const o3 = o * 3, o4 = o * 4, cimli = tw[0] + tw[1], kiyi = 1 - sm(.15, 1.0, h), deniz = sm(12200, 13400, Math.max(Math.abs(x), Math.abs(z))), dik = 1 - n.y;
     isikF(n.x, n.y, n.z, x, z, t3); A.isik[o3] = t3[0]; A.isik[o3 + 1] = t3[1]; A.isik[o3 + 2] = t3[2];
     cimRenk(x, z, tw, t3); const yuk = sm(120, 230, h) * .25; A.c0[o3] = lerp(t3[0], .62, yuk) * 255; A.c0[o3 + 1] = lerp(t3[1], .64, yuk) * 255; A.c0[o3 + 2] = lerp(t3[2], .5, yuk) * 255;
     for (let q = 0; q < 3; q++) { let a = 0, b = 0; for (let k = 0; k < 5; k++) { a += TOPRAK[k][q] * tw[k]; b += KAYA[k][q] * tw[k]; } A.c1[o3 + q] = a * 255; A.cK[o3 + q] = b * 255; }
     const toprak = Math.max(tw[4], cimli * Math.max(yama(x, z, tw[1]), sm(.07, .17, dik) * .45)), kum = Math.max(tw[2], kiyi * deniz), kar = Math.max(tw[3], sm(230, 290, h + (n.y - .8) * 120)), cakil = kiyi * (1 - deniz) * (1 - tw[2]) * (1 - tw[3] * .6);
     A.aw[o4] = toprak * 255; A.aw[o4 + 1] = kum * 255; A.aw[o4 + 2] = kar * 255; A.aw[o4 + 3] = cakil * 255;
-    A.ak[o4] = (n.x * .5 + .5) * 255; A.ak[o4 + 1] = (n.z * .5 + .5) * 255; A.ak[o4 + 2] = sm(.15, .36, dik) * 255; A.ak[o4 + 3] = 0;
+    A.ak[o4] = (n.x * .5 + .5) * 255; A.ak[o4 + 1] = (n.z * .5 + .5) * 255; A.ak[o4 + 2] = sm(.12, .32, dik) * 255; A.ak[o4 + 3] = 0;
   }
   function etekKopya(A, s, o) { for (const k in A) { const a = A[k], n = k === 'aw' || k === 'ak' ? 4 : 3; for (let q = 0; q < n; q++) a[s * n + q] = a[o * n + q]; } }
   function geoBagla(g, A) { g.setAttribute('isik', new T3.BufferAttribute(A.isik, 3)); for (const k of ['c0', 'c1', 'cK']) g.setAttribute(k, new T3.BufferAttribute(A[k], 3, true)); g.setAttribute('aw', new T3.BufferAttribute(A.aw, 4, true)); g.setAttribute('ak', new T3.BufferAttribute(A.ak, 4, true)); }
@@ -238,7 +238,7 @@ void main() {
     dunya.agirlik((ci + .5) * HC, (cj + .5) * HC, tw); const cimli = tw[0] + tw[1];
     for (let m = 0; m < cimM; m++) { const o = (yuva * cimM + m) * 4, x = (ci + r()) * HC, z = (cj + r()) * HC, u = r(), u2 = r(), boy = r(), aci = r(), cc = r(); P[o + 3] = 0;
       let b = 0, acc = tw[0]; while (b < 4 && u > acc) { b++; acc += tw[b]; } if (b === 3) continue; // karda ot yok
-      const h = gy(x, z); if (h < 1.9 || h > 225) continue; const hx = gy(x + 1, z) - gy(x - 1, z), hz = gy(x, z + 1) - gy(x, z - 1), L = Math.hypot(hx, 2, hz); if (Math.hypot(hx, hz) / 2 > .36) continue;
+      const h = gy(x, z); if (h < 1.15 || h > 225) continue; const hx = gy(x + 1, z) - gy(x - 1, z), hz = gy(x, z + 1) - gy(x, z - 1), L = Math.hypot(hx, 2, hz); if (Math.hypot(hx, hz) / 2 > .36) continue;
       let yog, s = .32 + boy * .26;
       if (b < 2) { yog = (1 - yama(x, z, tw[1])) * (.3 + .7 * sm(.3, .62, vnoise(x / 10, z / 10, 95))); cimRenk(x, z, tw, tc); }
       else if (b === 2) { yog = .14; tc[0] = .73; tc[1] = .66; tc[2] = .38; s *= .9; } else { yog = .16; tc[0] = .52; tc[1] = .2; tc[2] = .3; }

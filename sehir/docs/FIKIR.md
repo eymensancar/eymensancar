@@ -19,3 +19,10 @@ Açık dünyada **gitgide gelişme** oyunu. Elle odun ve taş toplayarak başlar
 2. Sonrası tek seferde kurulamaz; adım adım: toplama, üretim, gelişme ağacı, yaratıklar, boss'lar, otomasyon.
 
 Karar bekleyenler: hikâye/amaç, oyunun adı, yaratıkların ve düşmanların görünüşü.
+
+## Harita tasarımı (sonraya, Eymen 16 Kasım)
+Büyük iş, şimdi değil: Palworld'ün haritası gibi "hiçbir şeye bu neden burada dedirtmeyen", doğal ama yine de yerleşecek güzel yerler sunan bir dünya. Şimdilik yalnız yeşil vadide küçük kurallar var; ileride bütün dünya elden geçecek.
+- Düzlük ortasında durup dururken kaya/ağaç olmaz. Kayalar ve büyük taşlar uçurum kenarlarında, dağ diplerinde, nehir ve göl kıyılarında olur.
+- Ağaçsız düzlükler de dümdüz değildir: yarım metrelik tümsekler, hafif eğimler.
+- Doğan oyuncu "nereye yerleşsem" diye düşünmeli: 5–6 iyi seçenek (yanında göl ya da nehir, çevresinde ağaç ve taş kaynağı olan yeşil düzlükler).
+- Haritada ileride işaretli yerler olacak (boss'lar, bölgeler); oyuncu haritayı kaydırıp yaklaştırarak bakacak.

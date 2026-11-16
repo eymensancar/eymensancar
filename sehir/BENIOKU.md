@@ -19,6 +19,7 @@
 | `kalem.js` | çizim kalemi (Canvas 2B; `Cizim.shape/line/blot/...`). Yalnız dokuları çizmek için |
 | `cekirdek.js` | `SO` ad alanı: yardımcılar, `SO.ps` (oyuncu durumu), `SO.input`, `SO.tune`, `SO.anim` (katman kaydı) |
 | `arazi.js` | açık dünya: biyomlu ada (yükseklik ızgarası, biyom ağırlıkları, ağaç/kaya/kaktüs/kristal), deniz; `SO.world` (zemin yüksekliği, çarpışma, zemin türü, biyom, ortam sesi düzeyi, bölge gizleme) |
+| `gorunum.js`, `doku/` | görünüm: arazi gölgelendiricisi (biyom ve eğime göre doku karışımı), nesne malzemesi, çim tutamları, su, gök; dokular CC0 (`doku/LISANS.md`); `SO.gorunum`, ayarlar `SO.tune.gorunum` |
 | `karakter.js` | model + hareket klipleri + çizgi film boyama; `SO.char` |
 | `fizik.js` | hız, yerçekimi, zıplama anı, çarpışma |
 | `kamera.js` | kamera; `SO.cam` |
