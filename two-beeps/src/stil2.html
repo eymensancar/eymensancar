@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Two Beeps — stil sayfası 2</title>
+<style>
+  @font-face{font-family:'Lilita One';font-weight:400;src:url(../assets/fonts/lilita-one-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+  @font-face{font-family:'Lilita One';font-weight:400;src:url(../assets/fonts/lilita-one-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+  @font-face{font-family:'Rubik';font-weight:500;src:url(../assets/fonts/rubik-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+  @font-face{font-family:'Rubik';font-weight:500;src:url(../assets/fonts/rubik-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+  @font-face{font-family:'Rubik';font-weight:700;src:url(../assets/fonts/rubik-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+  @font-face{font-family:'Rubik';font-weight:700;src:url(../assets/fonts/rubik-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+  html,body{margin:0;background:#15120d}
+  canvas{display:block;width:1080px;height:1920px}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="cizim.js"></script>
+<script>
+(async function(){
+  await Promise.all(['400 40px "Lilita One"','500 20px Rubik','700 20px Rubik'].map(f=>document.fonts.load(f,'AaĞİşı')));
+  const C=window.Cizim, P=C.PAL, cv=document.getElementById('c'), ctx=cv.getContext('2d');
+  ctx.fillStyle=P.paper; ctx.fillRect(0,0,1080,1920);
+
+  function panel(x,y,w,h,label,draw,sd,small){
+    ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip(); draw(x,y,w,h); ctx.restore();
+    C.seed(sd||1); C.ink(ctx,C.pathOf(C.wobble([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],true,1,16),true),small?4:5);
+    if(label){ ctx.font=`700 ${small?14:18}px Rubik`; const tw=ctx.measureText(label).width, lh=small?24:30;
+      C.seed((sd||1)+7); C.shape(ctx,[[x,y],[x+14+tw,y],[x+16+tw,y+lh],[x,y+lh+1]],P.ink,{lw:0,amp:.5});
+      ctx.fillStyle=P.paper; ctx.fillText(label,x+7,y+lh-(small?7:9)); }
+  }
+  const sky=(x,y,w,h)=>{ const g=ctx.createLinearGradient(0,y,0,y+h); g.addColorStop(0,P.sky1); g.addColorStop(1,P.sky2); ctx.fillStyle=g; ctx.fillRect(x,y,w,h); };
+
+  // başlık
+  ctx.font='400 72px "Lilita One"'; ctx.fillStyle=P.ink; ctx.fillText('TWO BEEPS',40,78);
+  ctx.font='700 22px Rubik'; ctx.textAlign='right'; ctx.fillText('STİL SAYFASI 2 · BÖLÜM 2–10',1040,48);
+  ctx.font='500 18px Rubik'; ctx.fillStyle='#6e6457'; ctx.fillText('karakterler · ifadeler · pozlar · mekânlar · nesneler',1040,76); ctx.textAlign='left';
+  C.seed(4); const strip=C.shape(ctx,[[40,92],[1040,92],[1040,104],[40,104]],null,{lw:0}); C.hazardStripes(ctx,strip,36,88,1010,20,16); C.ink(ctx,strip,3);
+
+  // 1) boy sırası
+  panel(40,114,720,410,'BOY SIRASI',(x,y,w,h)=>{
+    sky(x,y,w,h); ctx.fillStyle=P.ground; ctx.fillRect(x,y+h-46,w,46); C.line(ctx,[[x,y+h-46],[x+w,y+h-46]],3,P.groundDk,.5);
+    ctx.save(); ctx.strokeStyle='rgba(21,18,13,.18)'; ctx.lineWidth=1.5; ctx.setLineDash([6,8]); for(let k=1;k<=6;k++){ const yy=y+h-46-k*60; ctx.beginPath(); ctx.moveTo(x,yy); ctx.lineTo(x+w,yy); ctx.stroke(); } ctx.restore();
+    const gy=y+h-40, s=.6;
+    C.drawDefne(ctx,{x:x+80,y:gy,s,expr:'calm',item:'coffee'});
+    C.drawKaan(ctx,{x:x+215,y:gy,s,expr:'calm'});
+    C.drawKaan(ctx,{x:x+340,y:gy,s,pose:'side',expr:'calm',step:.4});
+    C.drawKaan(ctx,{x:x+460,y:gy,s,pose:'back'});
+    C.drawHale(ctx,{x:x+615,y:gy,s,expr:'confident'});
+    ctx.font='700 15px Rubik'; ctx.fillStyle=P.ink; ctx.textAlign='center';
+    [['DEFNE',80],['KAAN',215],['YANDAN',340],['ARKADAN',460],['MR. HALE',615]].forEach(([t,dx])=>ctx.fillText(t,x+dx,y+h-12)); ctx.textAlign='left';
+  },2);
+
+  // 1b) Hale'nin arabası: ön çeyrek (geliş) + yandan, kapı açık / tozla uzaklaşma
+  const carBox=(x,y,w,h)=>{ sky(x,y,w,h); ctx.fillStyle=P.ground; ctx.fillRect(x,y+h-24,w,24); C.line(ctx,[[x,y+h-24],[x+w,y+h-24]],2.4,P.groundDk,.5); };
+  panel(770,114,270,134,'ARABA · GELİŞ',(x,y,w,h)=>{ carBox(x,y,w,h); C.drawCar(ctx,{view:'front34',x:x+62,y:y+h-12,s:.21}); },81,true);
+  panel(770,252,270,134,'KAPI AÇIK',(x,y,w,h)=>{ carBox(x,y,w,h); C.drawCar(ctx,{view:'side',door:true,x:x+w/2,y:y+h-14,s:.27}); },82,true);
+  panel(770,390,270,134,'DROVE AWAY · TOZ',(x,y,w,h)=>{ carBox(x,y,w,h); C.drawCar(ctx,{view:'side',dust:1,wheel:.6,x:x+w/2+50,y:y+h-14,s:.22}); },83,true);
+
+  // 2) ifadeler: 3 sıra × 5
+  const ex=[
+    ['KAAN',[['surprised','şaşkın'],['sheepish','mahcup'],['determined','kararlı'],['tired','yorgun'],['smile','gülümser']],(o)=>C.drawKaan(ctx,o),468],
+    ['DEFNE',[['calm','sakin'],['serious','ciddi'],['worried','endişeli'],['pale','solgun'],['smile','gülümser']],(o)=>C.drawDefne(ctx,o),468*.9],
+    ['HALE',[['confident','emin'],['frozen','donakalmış'],['regret','pişman'],['regret','şapkasız',{hat:false}],['confident','şapka elde',{hat:'hand'}]],(o)=>C.drawHale(ctx,o),478*1.04]
+  ];
+  const ew=192, eh=134, ex0=40, ey0=534;
+  ex.forEach(([name,list,fn,hy],r)=>list.forEach(([e,lab,extra],i)=>{
+    const x=ex0+i*(ew+10), y=ey0+r*(eh+8), s=name==='HALE'?.78:1.05;
+    panel(x,y,ew,eh,(i===0?name+' · ':'')+lab,(x,y,w,h)=>{ sky(x,y,w,h); const big=extra&&extra.hat==='hand'; fn(Object.assign({x:x+w/2-6,y:big?y+204:y+h/2+hy*s+(name==='HALE'?(extra?-6:14):-12),s:big?.38:s,expr:e,look:e==='sheepish'?.8:0,phone:false},extra||{})); },10+r*5+i,true);
+  }));
+
+  // 3) pozlar
+  const py=ey0+3*(eh+8), pw=158, ph=236;
+  const poses=[
+    ['KAAN OTURUR',(x,y,w,h)=>C.drawKaan(ctx,{pose:'sit',x:x+w/2,y:y+h-6,s:.42,expr:'smile',glow:.4})],
+    ['KAAN · DİZLER',(x,y,w,h)=>C.drawKaan(ctx,{pose:'sit',hands:'knees',x:x+w/2,y:y+h-6,s:.42,expr:'tired'})],
+    ['DEFNE OTURUR',(x,y,w,h)=>C.drawDefne(ctx,{pose:'sit',item:'coffee',x:x+w/2,y:y+h-6,s:.46,expr:'serious'})],
+    ['KOLLAR KAVUŞUK',(x,y,w,h)=>C.drawDefne(ctx,{pose:'cross',x:x+w/2,y:y+h-6,s:.46,expr:'serious'})],
+    ['BEKLER',(x,y,w,h)=>C.drawHale(ctx,{pose:'sit',x:x+w/2,y:y+h-6,s:.38,expr:'regret',hat:false})],
+    ['KUTU TAŞIR',(x,y,w,h)=>C.drawHale(ctx,{pose:'carry',x:x+w/2,y:y+h-6,s:.38,expr:'calm'})]
+  ];
+  poses.forEach(([lab,fn],i)=>{ const x=40+i*(pw+10.4); panel(x,py,pw,ph,lab,(x,y,w,h)=>{ sky(x,y,w,h); ctx.fillStyle=P.ground; ctx.fillRect(x,y+h-10,w,10); fn(x,y,w,h); },30+i,true); });
+
+  // 4) mekânlar: 2 sıra × 4
+  const ly=py+ph+10, lw2=243, lh=206;
+  const locs=[
+    ['AVLU · GECE YAĞMUR',(a)=>C.drawYard(ctx,Object.assign(a,{mode:'rain',letter:true}))],
+    ['OFİS · ÇATLAK',(a)=>C.drawOffice(ctx,Object.assign(a,{calendarMoved:.75,lamp:true,phoneOn:true}))],
+    ['DAISY KABİNİ',(a)=>C.drawCabin(ctx,a)],
+    ['BEKLEME SALONU',(a)=>C.drawWaitingRoom(ctx,a)],
+    ['SU KULESİ',(a)=>C.drawWaterTower(ctx,a)],
+    ['ESKİ BİNA · 0',(a)=>C.drawOldBuilding(ctx,Object.assign(a,{variant:0}))],
+    ['HALE TOWER',(a)=>C.drawHaleTower(ctx,a)],
+    ['KAFE MASASI',(a)=>C.drawCafe(ctx,a)]
+  ];
+  locs.forEach(([lab,fn],i)=>{ const x=40+(i%4)*(lw2+9.6), y=ly+Math.floor(i/4)*(lh+8); panel(x,y,lw2,lh,lab,(x,y,w,h)=>{ const k=w/1080; ctx.translate(x,y); ctx.scale(k,k); fn({x:0,y:0,w:1080,h:h/k}); },50+i,true); });
+
+  // 5) nesneler
+  const oy=ly+2*(lh+8), ow=158, oh=1910-oy;
+  const objs=[
+    ['MEKTUP',(x,y,w,h)=>C.drawLetter(ctx,{x:x+w/2,y:y+h/2+12,s:.34,rot:-.05,ring:true})],
+    ['DEFTER · H&K',(x,y,w,h)=>C.drawNotebook(ctx,{x:x+w/2,y:y+h/2+14,s:.2})],
+    ['TENEKE + NOT',(x,y,w,h)=>C.drawTin(ctx,{x:x+w/2,y:y+h/2+30,s:.34,open:true})],
+    ['DAMGA',(x,y,w,h)=>C.drawStamp(ctx,{x:x+w/2,y:y+h/2+14,s:.42})],
+    ['SENSÖR ÇİZİMİ',(x,y,w,h)=>C.drawSensorPlan(ctx,{x:x+w/2,y:y+h/2+14,s:.2})],
+    ['LİSTE · LAMBA',(x,y,w,h)=>{ ctx.fillStyle='#1d2742'; ctx.fillRect(x,y,w,h); C.drawListLamp(ctx,{x:x+w/2,y:y+h/2+16,s:.24,reveal:.8}); }]
+  ];
+  objs.forEach(([lab,fn],i)=>{ const x=40+i*(ow+10.4); panel(x,oy,ow,oh,lab,(x,y,w,h)=>{ if(i!==5){ ctx.fillStyle=i===3?P.groundLt:'#7a5130'; ctx.fillRect(x,y,w,h);} fn(x,y,w,h); },70+i,true); });
+
+  C.grain(ctx,0,0,1080,1920,.2);
+  document.title='ready';
+})();
+</script>
+</body>
+</html>

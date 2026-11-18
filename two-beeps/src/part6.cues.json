@@ -1,0 +1,69 @@
+{
+ "_belge": "Part 6 · IRONLINE ses yerleşimi. Okuyan: src/miks.py (biçim: src/part1.cues.json _belge, docs/MIKS.md). Efektler animatörlerin TB.cuesA / TB.cuesB adlarına bağlı. Bu bölümde iki bip yok; bitişte tek bip. Müzik sıcak ve sabit (-29 LUFS); yalnız plan belgesinin sessizliklerinde (2, 6, 8 ipucu, 12 sonrası, 24) 0,4 sn solmayla çıkar. Müzik blokları tema-ana.wav'ın 4 sn kesme noktalarından başlar. KALICI KURAL: whoosh/swoosh, hava, hışırtı türü gürültü süpürmesi yok; müzik konuşmaya göre kısılmaz.",
+ "konusma_kisma": { "_not": "yalnız --ducking ile; varsayılan KAPALI (Eymen: müzik konuşmaya göre kısılıp açılmaz)", "atak": 0.15, "birakma": 0.4, "db": { "muzik": -8, "ortam": -4, "efekt": -3, "darbe": -3, "bip": 0 } },
+ "muzik_lufs": -29,
+ "olcum_sessizlik": [
+  ["plan 2 'eating my fries' sessizliği (müzik)", "s2.t0", "s2.t1", "muzik"],
+  ["halka yakın planı + gri hatıralar (müzik)", "A.halkaSessizlik", "A.defterAnt", "muzik"],
+  ["gri hatıra kareleri (müzik+ortam+efekt)", "A.hatiraP2", "A.defterAnt", "arka"],
+  ["zarf masaya / bardak halkaya, ipucu (müzik)", "s8.t0-0.35", "A.bardakKonur+0.5", "muzik"],
+  ["'Before a building did.' sonrası ağır sessizlik (müzik)", "s12.t0+1.55", "B.kabinDis", "muzik"],
+  ["'professor' hatırası (müzik+ortam+efekt)", "B.hatira", "B.hatira+0.5", "arka"],
+  ["plan 24 'Who is this professor' (müzik)", "s24.t0", "voiceEnd", "muzik"],
+  ["bitiş, bip öncesi", "voiceEnd+0.10", "endBeep-0.01", "miks"],
+  ["bitiş, bip sonrası", "endBeep+0.40", "endCard-0.01", "miks"],
+  ["soru kartı, vurgu öncesi (müzik)", "endCard", "dur-1.0", "muzik"],
+  ["soru kartı (kısık yağmur + vurgu)", "endCard", "dur", "miks"]
+ ],
+ "anlatici": { "dosya": "../out/part6-voice.wav", "db": 0 },
+ "koruma": { "_not": "yalnız tek seferlik efektlere (efekt, darbe); müzik ve sürekli sesler (ortam) sabit kalır", "fark": 15, "en_cok": -15, "tut": 0.06, "kelime_arasi": 4 },
+ "hedef": { "lufs": -14.0, "tp": -1.0 },
+ "satirlar": [
+  { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 0, "son": "s2.t0", "fadein": 0.03, "fadeout": 0.05, "not": "giriş/merak (tema 0-): kızartma tabağı, 'I found Ironline Demolition.'; plan 2 sessizliğine kısma penceresiyle solar" },
+  { "t": "s2.t1+0.1", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8.5, "ss": 8.0, "son": "A.halkaSessizlik+0.1", "fadein": 0.03, "fadeout": 0.05, "not": "sepya geri dönüş + zarf (cümle 3-5): oyunbaz (tema 8-); kısma 0,4 sn solmayla açar; halka yakın planında çıkar" },
+  { "t": "A.defterAnt-0.3", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "son": "s8.t0-0.2", "fadein": 0.03, "fadeout": 0.05, "not": "'only two people ever called me Ant': sakin pad (tema 48-52); ipucu sessizliğinde çıkar" },
+  { "t": "A.bardakKonur+0.5", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -3, "ss": 48, "sure": 4, "fadein": 0.03, "fadeout": 0.04, "not": "Defne'nin yüzü açılır, itiraf (cümle 9-10): sakin pad (tema 48-52)" },
+  { "t": "A.bardakKonur+4.5", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 44, "son": "s12.t0+1.55", "fadein": 0.04, "fadeout": 0.05, "not": "'I wanted them to stop you. Before a building did.': soru (tema 44+, nabızsız, Mi'de asılı); 'did.' sonrası ağır sessizliğe kısma penceresiyle çıkar" },
+  { "t": "B.kabinDis-0.3", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -9.5, "ss": 8.0, "son": "B.kabinDis+15.7", "fadein": 0.03, "fadeout": 0.04, "not": "gece avlu, kabin, tek telefon, oyun, dede taklidi, mühendis (cümle 15-22): oyunbaz (tema 8-24); dosya 24'te (4 sn ızgarası) gerilime geçer" },
+  { "t": "B.kabinDis+15.7", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -9, "ss": 32, "son": "s24.t0", "fadein": 0.03, "fadeout": 0.05, "not": "'But first, tell me the truth.': gerilim başı (tema 32-); plan 24 sessizliğinde kısma penceresiyle çıkar" },
+  { "t": "dur-1.0", "dosya": "music/vurgu-son.wav", "kat": "muzik", "db": -24, "ss": 0.8, "son": "dur", "fadein": 0.08, "fadeout": 0.35, "not": "son 1 sn kısık imza (pilot gibi; La La kısmı atlanır, tek bipten sonra ikinci bip duyulmasın)" },
+
+  { "t": 0, "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -12, "son": "s3.t0-0.12", "dongu": true, "fadein": 0.3, "fadeout": 0.05, "not": "kafe oda tonu (p6a-01/02); sepya posta kutusuna kesmede biter" },
+  { "t": "s5.t0-0.12", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -12, "ss": 2.0, "son": "A.hatiraP2", "dongu": true, "fadein": 0.05, "fadeout": 0.05, "not": "masaya dönüş, zarf, halka yakın planı; gri hatıra karelerine kesmede biter" },
+  { "t": "s8.t0-0.12", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -12, "ss": 5.0, "son": "B.kabinDis", "dongu": true, "fadein": 0.05, "fadeout": 0.05, "not": "masa: zarf, bardak, Defne, Kaan, pencere (cümle 8-14); gece avluya kesmede biter" },
+  { "t": "B.yagmurBaslar", "dosya": "sfx/yagmur-kabin-dongu.wav", "kat": "ortam", "db": -19, "son": "voiceEnd+0.05", "dongu": true, "fadein": 1.0, "fadeout": 0.45, "not": "yağmur başlar (pencere), avlu ve kabin planlarında sabit ve kısık sürer (tonlu damlalar, düz hışırtı yok); bitiş sessizliğinden önce söner" },
+  { "t": "endCard", "dosya": "sfx/yagmur-kabin-dongu.wav", "kat": "ortam", "db": -27, "ss": 5.0, "son": "dur", "dongu": true, "fadein": 0.5, "fadeout": 0.3, "not": "soru kartı: müzik yok, çok kısık yağmur" },
+
+  { "t": "A.postaZarf", "dosya": "sfx/posta-zarf-dusme.wav", "kat": "efekt", "db": -17, "lp": 2500, "pan": -0.1, "not": "sepya hatıra: zarf posta kutusuna düşer (çok alçak, alçak geçiren)" },
+  { "t": "A.zarfCekme", "dosya": "sfx/zarf-cekme.wav", "kat": "efekt", "db": -18, "sure": 0.4, "fadeout": 0.12, "lp": 2500, "not": "sepya hatıra: zarf kutudan çekilir (gerçek kâğıt, çok alçak)" },
+  { "t": "A.zarfDonme", "dosya": "sfx/zarf-cekme.wav", "kat": "efekt", "db": -15, "ss": 0.1, "sure": 0.3, "fadein": 0.01, "fadeout": 0.1, "pan": -0.1, "not": "zarf elde döner: kısa, kısık kâğıt" },
+  { "t": "A.tutamFiske", "dosya": "sfx/tutam-boing.wav", "kat": "efekt", "db": -17, "lp": 3000, "not": "sepya: Defne'nin parmağı tutamda (P2'deki boing), hatıra olduğu için çok alçak" },
+  { "t": "A.zarfMasaya-0.16", "dosya": "sfx/kagit-masaya.wav", "kat": "efekt", "db": -5, "pan": -0.08, "not": "İPUCU: zarf masaya (dosyada vuruş 0,16 = A.zarfMasaya); öncesi ve sonrası müziksiz" },
+  { "t": "A.zarfMasaya", "dosya": "sfx/masa-koyma.wav", "kat": "efekt", "db": -17, "sure": 0.3, "fadeout": 0.12, "lp": 1200, "pan": -0.08, "not": "zarfın altındaki el masaya değer: masa gövdesi, çok kısık" },
+  { "t": "A.bardakKonur", "dosya": "sfx/karton-bardak.wav", "kat": "efekt", "db": -7, "not": "İPUCU: karton bardak zarftaki halkaya oturur (yumuşak tok)" },
+
+  { "t": "B.damla1", "dosya": "sfx/kabin-cami-damla.wav", "kat": "efekt", "db": -6, "pan": 0.3, "not": "pencereye 1. damla" },
+  { "t": "B.damla2", "dosya": "sfx/kabin-cami-damla.wav", "kat": "efekt", "db": -7, "pan": 0.4, "not": "2. damla" },
+  { "t": "B.damla3", "dosya": "sfx/kabin-cami-damla.wav", "kat": "efekt", "db": -6, "pan": 0.22, "not": "3. damla; ardından yağmur döngüsü dolar" },
+
+  { "t": "B.dokunusKaan", "dosya": "sfx/telefon-dokunus.wav", "kat": "efekt", "db": -10, "not": "Kaan'ın başparmağı ekrana (B.dokunusKaan): oyunun SFX.place'i" },
+  { "t": "B.dokunusKaan+0.12", "dosya": "sfx/oyun-yikim.wav", "kat": "efekt", "db": -19, "ss": 0.70, "sure": 0.75, "son": "B.telefonElDegistirir+0.15", "dongu": true, "fadein": 0.005, "fadeout": 0.01, "not": "Shanty yıkılır (kare 1-55): yalnız kasa/ödül döngüsü (boom süpürmesi KULLANILMAZ)" },
+  { "t": "B.telefonElDegistirir+0.15", "dosya": "sfx/oyun-demolished.wav", "kat": "efekt", "db": -13, "son": "s17.t0-0.25", "fadeout": 0.008, "not": "DEMOLISHED! (kare 55 = dokunusKaan + 54/45 sn); dede taklidi planına kesmede sert biter" },
+  { "t": "B.telefonElDegistirir+0.2", "dosya": "sfx/oyun-kepenk.wav", "kat": "efekt", "db": -16, "son": "s17.t0-0.25", "fadeout": 0.008, "not": "el değişirken kepenk kareleri (137-150)" },
+  { "t": "B.dokunusDefne", "dosya": "sfx/telefon-dokunus.wav", "kat": "efekt", "db": -10, "not": "'press'te Defne'nin basışı (B.dokunusDefne)" },
+  { "t": "B.dokunusDefne+0.05", "dosya": "sfx/oyun-yikim.wav", "kat": "efekt", "db": -15, "ss": 0.70, "sure": 0.75, "son": "s20.t0-0.1", "dongu": true, "fadein": 0.005, "fadeout": 0.008, "not": "fabrika devrilir (kare 56-95): kasa/ödül döngüsü; ikili plana kesmede (k.eng) sert biter" },
+
+  { "t": "B.baretTakilir", "dosya": "sfx/kutu-koyma.wav", "kat": "efekt", "db": -17, "sure": 0.3, "fadeout": 0.1, "lp": 2500, "pan": 0.15, "not": "baret başa oturur: kitaplıkta baret sesi yok, kutu-koyma'nın kısa tok gövdesi, çok kısık" },
+
+  { "t": ["B.sonBip", "endBeep"], "dosya": "sfx/daisy-beep-tek.wav", "kat": "bip", "db": -4.8, "not": "bitişte TEK bip (cues.endBeep = B.sonBip); önü ve arkası tam sessiz, yağmur da susar" }
+ ],
+ "kisma": [
+  { "t0": "s2.t0-0.3", "t1": "s2.t1+0.3", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 2: 'It was sitting across from me, eating my fries.' sessizlik; yalnız oda tonu" },
+  { "t0": "A.halkaSessizlik", "t1": "A.defterAnt", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 6: kahve halkası yakın planı + P2/P3 gri hatıralar sessiz" },
+  { "t0": "s8.t0-0.35", "t1": "A.bardakKonur+0.5", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 8 ipucu: zarf masaya, bardak halkaya; öncesi ve sonrası kısa sessizlik" },
+  { "t0": "s12.t0+1.55", "t1": "B.kabinDis", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "'Before a building did.' sonrası ağır sessizlik: Kaan'ın yüzü, kızgınlık, pencere, üç damla, yağmur başlar" },
+  { "t0": "s24.t0", "t1": "endCard-0.05", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 24: 'Who is this professor' sessizlik; müzik bölüm sonuna kadar dönmez" },
+  { "t0": "B.hatira", "t1": "B.hatira+0.5", "katlar": ["muzik", "ortam", "efekt", "darbe"], "db": -90, "solma": 0.05, "not": "'professor' sepya hatırası (P1) sessiz: yağmur da susar" },
+  { "t0": "voiceEnd+0.05", "t1": "endCard-0.05", "katlar": ["muzik", "ortam", "efekt", "darbe"], "db": -90, "solma": 0.05, "not": "bitiş: tam sessizlik, yalnız tek bip (yağmur da bip penceresinde susar)" }
+ ]
+}

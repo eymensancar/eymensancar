@@ -1,0 +1,93 @@
+{
+ "_belge": "Part 8 · NUMBER NINE ses yerleşimi. Okuyan: src/miks.py (biçim: src/part1.cues.json _belge, docs/MIKS.md). Efektler animatörlerin TB.cuesA / TB.cuesB adlarına bağlı. Müzik blokları tema-ana.wav'ın 4 sn kesme noktalarından (giriş tema 2-6 ve uzaktan iki bip 1,0-1,25 bilerek alınmadı: bu bölümde iki bip yok); oyunbaz -> rapor/çatlakta ikili nabız -> belediye oyunbaz -> 'For an hour nobody spoke.' müziksiz (yalnız oda tonu + hızlanan saat) -> telefon oyunbaz -> Hale yakın ve itiraf boyunca yalnız Gm pad (tema 48-52 döngü), 'He took the blame.' müziksiz -> numara/kalkış soru biçimi (tema 44-, Mi'de asılı) -> 'Empty my tower.' öncesi ve sonrası tam sessizlik, bitişte tek bip. Sepya hatıralar: çok alçak, alçak geçirenli (lp), hafif yankılı. KALICI KURAL: whoosh/swoosh, hava, hışırtı, sürtünme türü gürültü yok; müzik konuşmaya göre kısılmaz. Bilerek sessiz: A.kalemCizgi6-8 (listede çizgi), A.catlakBaslar (raporda kalem çizgisi = sürtünme), A.numaratorAkar (saat tek başına kalsın), A.telefonIsik, B.telefonGirer (kumaş kayması), B.hatiraBeton, B.adimlarGise (voiceEnd sonrası bitiş sessizliği).",
+ "konusma_kisma": { "_not": "yalnız --ducking ile; varsayılan KAPALI (Eymen: müzik konuşmaya göre kısılıp açılmaz)", "atak": 0.15, "birakma": 0.4, "db": { "muzik": -8, "ortam": -4, "efekt": -3, "darbe": -3, "bip": 0 } },
+ "muzik_lufs": -29,
+ "olcum_sessizlik": [
+  ["'For an hour nobody spoke.' (müzik)", "A.saatHizli-0.15", "s13.t0-0.4", "muzik"],
+  ["'He took the blame.' (müzik)", "s22.t0-0.2", "s23.t0-0.25", "muzik"],
+  ["'Empty my tower.' öncesi -> voiceEnd (arka)", "s28.t1+0.3", "voiceEnd", "arka"],
+  ["bitiş, bip öncesi", "voiceEnd+0.10", "endBeep-0.01", "miks"],
+  ["bitiş, bip sonrası", "endBeep+0.40", "endCard-0.01", "miks"],
+  ["soru kartı, vurgu öncesi (müzik)", "endCard", "dur-1.0", "muzik"],
+  ["soru kartı (oda tonu + vurgu)", "endCard", "dur", "miks"]
+ ],
+ "anlatici": { "dosya": "../out/part8-voice.wav", "db": 0 },
+ "koruma": { "_not": "yalnız tek seferlik efektlere (efekt, darbe); müzik ve sürekli sesler (ortam) sabit kalır", "fark": 15, "en_cok": -15, "tut": 0.06, "kelime_arasi": 4 },
+ "hedef": { "lufs": -14.0, "tp": -1.0 },
+ "satirlar": [
+  { "t": 0, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -4, "ss": 2.0, "son": 2.95, "fadein": 0.3, "fadeout": 0.04, "not": "kapıda HALE: merak (tema 2-4,95; pad + temanın ilk notaları); altın yakın planında (c2) biter" },
+  { "t": 2.95, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 48.0, "son": 4.17, "fadein": 0.04, "fadeout": 0.04, "not": "'In gold.' (S, yakın plan): sade Gm pad (tema 48-49,2); tema 5-6'daki melodi notaları cümle 2'yi örtüyordu (fark 5,9 dB)" },
+  { "t": 4.17, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -10, "ss": 8.0, "son": 9.505, "fadein": 0.04, "fadeout": 0.04, "not": "'Six, seven and eight...': oyunbaz (tema 8-13,3): üç bina, liste, kule; rapor kesmesinde biter" },
+  { "t": 9.505, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -11, "ss": 32.0, "son": 14.03, "fadein": 0.04, "fadeout": 0.04, "not": "rapor, çatlak, yıllar: ikili nabız (tema 32-36,5, gerilim başı); belediye kesmesinde biter" },
+  { "t": 14.03, "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -12.5, "ss": 16.0, "son": "A.saatHizli-0.15", "fadein": 0.04, "fadeout": 0.4, "not": "belediye, numara gag'ı, Hale, iki fiş: oyunbaz (tema 16-24,2); saat planında (c12) sessizliğe solar" },
+  { "t": "s13.t0-0.36", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -12.5, "ss": 24.0, "son": "s17.t0-0.26", "fadein": 0.4, "fadeout": 0.04, "not": "'Then I saw his phone.' -> aynı oyun, 'Badly.', ekrana bakış: oyunbaz (tema 24-30); Hale yakın planında (c17) biter" },
+  { "t": "s17.t0-0.26", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -7, "ss": 48.0, "sure": 4.0, "son": "s22.t0-0.2", "dongu": true, "fadein": 0.04, "fadeout": 0.4, "not": "Hale yakın, 'So did Kaya.', şapka, itiraf: yalnız sade Gm pad (tema 48-52 döngü; nabız ve melodi yok); 'He took the blame.' sessizliğine solar" },
+  { "t": "s23.t0-0.25", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8, "ss": 48.0, "sure": 4.0, "son": "s26.t1", "dongu": true, "fadein": 0.4, "fadeout": 0.04, "not": "'I took the company.' / liste / numara ding / kalkış: aynı pad yumuşak döner (ding sade padin üstünde tek başına duyulur); 'He stood up.' bitişinde soru biçimine geçer" },
+  { "t": "s26.t1", "dosya": "music/tema-ana.wav", "kat": "muzik", "db": -8, "ss": 44.0, "son": "s28.t1+0.3", "fadein": 0.04, "fadeout": 0.4, "not": "ayağa kalktıktan sonra, şapka, omuzlar: soru biçimi (tema 44-45'in yüksek ilk saniyesi cümle 26-27 arasındaki boşluğa düşer) (tema 44-, nabız yok, Mi'de asılı); 'Empty my tower.' öncesi sessizliğe solar" },
+  { "t": "dur-1.0", "dosya": "music/vurgu-son.wav", "kat": "muzik", "db": -24, "ss": 0.8, "son": "dur", "fadein": 0.08, "fadeout": 0.35, "not": "son 1 sn kısık imza (pilot gibi; La La kısmı atlanır)" },
+
+  { "t": 0, "dosya": "sfx/sehir-uzak-dongu.wav", "kat": "ortam", "db": -15, "son": 9.505, "dongu": true, "fadein": 0.4, "fadeout": 0.05, "not": "dış: kapı, sonbahar, kule: çok kısık uzak şehir; rapor kesmesinde biter" },
+  { "t": 9.505, "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -25, "son": 14.03, "dongu": true, "fadein": 0.05, "fadeout": 0.05, "not": "rapor masası: çok kısık oda tonu" },
+  { "t": 14.03, "dosya": "sfx/sehir-uzak-dongu.wav", "kat": "ortam", "db": -15, "ss": 6.0, "son": 15.91, "dongu": true, "fadein": 0.05, "fadeout": 0.05, "not": "belediye kaldırımı: uzak şehir; salona (numara makinesi) kesmede biter" },
+  { "t": 15.91, "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -20, "son": "B.hatiraBeton", "dongu": true, "fadein": 0.05, "fadeout": 0.3, "not": "belediye bekleme salonu oda tonu (sabit); 'For an hour nobody spoke.' boyunca tek zemin bu" },
+  { "t": "B.hatiraBeton", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -27, "ss": 3.0, "son": "B.tabelaAsilir+0.6", "dongu": true, "lp": 900, "fadein": 0.3, "fadeout": 0.3, "not": "sepya hatıralar: salon uzaklaşır (alçak geçiren, çok kısık)" },
+  { "t": "B.tabelaAsilir+0.6", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -20, "ss": 6.0, "son": "voiceEnd", "dongu": true, "fadein": 0.3, "fadeout": 0.05, "not": "salona dönüş; 'Empty my tower.' öncesi sessizlikte (kisma) çıkar" },
+
+  { "t": "A.altinParilti", "dosya": "@tink", "kat": "efekt", "db": -24, "sure": 0.18, "fadeout": 0.12, "pan": 0.1, "not": "altın HALE harflerinde parıltı: tek, çok hafif tonlu tık (süpürme değil)" },
+  { "t": "A.bina6Darbe", "dosya": "sfx/su-kulesi-yere.wav", "kat": "efekt", "db": -9, "sure": 0.45, "fadein": 0.002, "fadeout": 0.2, "pan": -0.15, "not": "bina 6 iner: kısa gürleme (A.bina6Darbe)" },
+  { "t": "A.bina7Darbe", "dosya": "sfx/beton-parcalari.wav", "kat": "efekt", "db": -7, "ss": 0.12, "sure": 0.42, "fadein": 0.002, "fadeout": 0.2, "pan": 0.15, "not": "bina 7: beton parçaları (A.bina7Darbe)" },
+  { "t": "A.bina8Darbe", "dosya": "sfx/su-kulesi-yere.wav", "kat": "efekt", "db": -10, "ss": 0.25, "sure": 0.45, "fadein": 0.002, "fadeout": 0.2, "pan": 0.05, "not": "bina 8: aynı gürlemenin başka kesiti (A.bina8Darbe); listedeki çizgiler sessiz" },
+
+  { "t": "A.sayfa1995", "dosya": "sfx/kaynak/fs-kagit-hisirti.wav", "kat": "efekt", "db": -9, "ss": 1.56, "sure": 0.16, "fadein": 0.005, "fadeout": 0.07, "pan": 0.1, "not": "rapor sayfası 1995: gerçek kâğıt kesiti, kısa ve kısık" },
+  { "t": "A.sayfa2005", "dosya": "sfx/kaynak/fs-kagit-hisirti.wav", "kat": "efekt", "db": -11, "ss": 2.91, "sure": 0.15, "fadein": 0.005, "fadeout": 0.07, "pan": 0.1, "not": "sayfa 2005" },
+  { "t": "A.sayfa2015", "dosya": "sfx/kaynak/fs-kagit-hisirti.wav", "kat": "efekt", "db": -10, "ss": 0.72, "sure": 0.16, "fadein": 0.005, "fadeout": 0.07, "pan": 0.1, "not": "sayfa 2015" },
+  { "t": "A.sayfa2025", "dosya": "sfx/kaynak/fs-kagit-hisirti.wav", "kat": "efekt", "db": -11, "ss": 1.56, "sure": 0.18, "fadein": 0.005, "fadeout": 0.08, "pan": 0.1, "not": "sayfa 2025 (son)" },
+
+  { "t": "A.belediyeAdim", "dosya": "sfx/adim-toprak-4.wav", "kat": "efekt", "db": -18, "sure": 1.7, "fadeout": 0.25, "pan": -0.05, "not": "kaldırımda iki çift adım (A.belediyeAdim), kısık" },
+  { "t": "A.fisKopar", "dosya": "sfx/kaynak/fs-kagit-hisirti.wav", "kat": "efekt", "db": -9, "ss": 2.91, "sure": 0.14, "fadein": 0.003, "fadeout": 0.05, "pan": 0.15, "not": "numara fişi koparılır: kısa gerçek kâğıt (A.fisKopar)" },
+  { "t": "A.numarator087_088", "dosya": "sfx/kart-klips.wav", "kat": "efekt", "db": -13, "pan": 0.2, "not": "numaratör 087->088: küçük mekanik tık (ding değil)" },
+  { "t": "A.oturma-0.25", "dosya": "sfx/sandalye.wav", "kat": "efekt", "db": -15, "sure": 0.9, "fadeout": 0.3, "not": "plastik sandalyeye oturma (dosyadaki tepe 0,30 sn = A.oturma+0,05)" },
+
+  { "t": "A.saatHizli-0.05", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -12, "ss": 1.0, "sure": 0.14, "fadeout": 0.05, "pan": 0.25, "not": "saat ilerler, hızlanan tik 1/9 (dosyada tık 0,05 sn = A.saatHizli)" },
+  { "t": "A.saatHizli+0.45", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -12, "ss": 1.0, "sure": 0.14, "fadeout": 0.05, "pan": 0.25, "not": "tik 2 (aralık 0,50)" },
+  { "t": "A.saatHizli+0.83", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -12, "ss": 1.0, "sure": 0.14, "fadeout": 0.05, "pan": 0.25, "not": "tik 3 (0,38)" },
+  { "t": "A.saatHizli+1.12", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -12, "ss": 1.0, "sure": 0.14, "fadeout": 0.05, "pan": 0.25, "not": "tik 4 (0,29)" },
+  { "t": "A.saatHizli+1.34", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -12.5, "ss": 1.0, "sure": 0.12, "fadeout": 0.05, "pan": 0.25, "not": "tik 5 (0,22)" },
+  { "t": "A.saatHizli+1.51", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -13, "ss": 1.0, "sure": 0.12, "fadeout": 0.05, "pan": 0.25, "not": "tik 6 (0,17)" },
+  { "t": "A.saatHizli+1.64", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -13.5, "ss": 1.0, "sure": 0.11, "fadeout": 0.05, "pan": 0.25, "not": "tik 7 (0,13)" },
+  { "t": "A.saatHizli+1.74", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -14, "ss": 1.0, "sure": 0.1, "fadeout": 0.04, "pan": 0.25, "not": "tik 8 (0,10)" },
+  { "t": "A.saatHizli+1.82", "dosya": "sfx/saat-tiktak-dongu.wav", "kat": "efekt", "db": -15, "ss": 1.0, "sure": 0.1, "fadeout": 0.04, "pan": 0.25, "not": "tik 9 (0,08); ardından yalnız oda tonu, müzik 'Then I saw his phone.' öncesi döner" },
+
+  { "t": "B.telefonGirer-0.97", "dosya": "sfx/telefon-dokunus.wav", "kat": "efekt", "db": -17, "not": "Hale'in aceleci başparmağı ekrana (p8b14-hale-tel, başparmak inişi 26,19 = kesme+0,31); telefon kadrajda" },
+  { "t": "B.timesUp", "dosya": "sfx/oyun-timesup.wav", "kat": "efekt", "db": -14, "son": "B.telefonDokunus-0.05", "fadeout": 0.01, "not": "'Badly.': oyunun TIME'S UP damgası (B.timesUp); Hale'in ekranı kadrajda" },
+  { "t": "B.telefonDokunus", "dosya": "sfx/telefon-dokunus.wav", "kat": "efekt", "db": -9, "not": "kalın başparmak 'Try again'e (B.telefonDokunus), tok tık; telefon sesleri Hale yakın planında (c17) biter" },
+
+  { "t": "B.sapkaCikar-0.2", "dosya": "sfx/sapka-cikarma.wav", "kat": "efekt", "db": -15, "fadeout": 0.15, "pan": 0.1, "not": "şapka başından kalkar (B.sapkaCikar; dosyadaki keçe tepesi 0,23 sn)" },
+  { "t": "B.sapkaDiz-0.2", "dosya": "sfx/sapka-cikarma.wav", "kat": "efekt", "db": -19, "ss": 0.15, "sure": 0.35, "fadeout": 0.12, "pan": 0.1, "not": "şapka dizine iner (B.sapkaDiz), çok hafif" },
+
+  { "t": "B.torbaVurus", "dosya": "sfx/kumas-pat.wav", "kat": "efekt", "db": -20, "lp": 900, "yanki": 0.25, "not": "sepya: genç Hale beton torbasına vurur 1/3 (alçak geçiren, çok alçak)" },
+  { "t": "B.torbaVurus+0.314", "dosya": "sfx/kumas-pat.wav", "kat": "efekt", "db": -21, "lp": 900, "yanki": 0.25, "not": "torba 2/3 (el ritmi |sin(10t)|, 0,314 sn)" },
+  { "t": "B.torbaVurus+0.628", "dosya": "sfx/kumas-pat.wav", "kat": "efekt", "db": -22, "lp": 900, "yanki": 0.25, "not": "torba 3/3" },
+  { "t": "B.catlak", "dosya": "sfx/siva-catlak.wav", "kat": "efekt", "db": -17, "sure": 0.65, "fadeout": 0.15, "lp": 1200, "yanki": 0.25, "not": "sepya: betonda kuru çatlak (B.catlak), alçak geçiren" },
+  { "t": "B.kagitKayar", "dosya": "sfx/kagit-masaya.wav", "kat": "efekt", "db": -20, "lp": 1200, "yanki": 0.2, "not": "sepya: kâğıt masaya (B.kagitKayar), kısa, alçak geçiren" },
+  { "t": "B.imzaKalem", "dosya": "sfx/kalem-tink.wav", "kat": "efekt", "db": -24, "sure": 0.3, "fadeout": 0.15, "lp": 1500, "yanki": 0.2, "not": "sepya imza: yalnız kalem ucunun kâğıda değişi, tek çok kısık tonlu tık (kalem-satir KULLANILMADI, sürtünme yok)" },
+  { "t": "B.adimlarKaya", "dosya": "sfx/adim-tahta-2.wav", "kat": "efekt", "db": -21, "lp": 900, "yanki": 0.3, "fadeout": 0.2, "not": "sepya: genç Kaya uzaklaşır, adım 1-2" },
+  { "t": "B.adimlarKaya+0.95", "dosya": "sfx/adim-tahta-tek.wav", "kat": "efekt", "db": -25, "sure": 0.5, "lp": 800, "yanki": 0.3, "fadeout": 0.2, "not": "adım 3, uzakta ('He took the blame.' müziksiz)" },
+  { "t": "B.tabelaAsilir", "dosya": "sfx/fener-tik.wav", "kat": "efekt", "db": -19, "lp": 1800, "yanki": 0.25, "not": "sepya: altın levha yerine oturur, küçük metal tık (B.tabelaAsilir)" },
+
+  { "t": "B.numaratorTik", "dosya": "sfx/kart-klips.wav", "kat": "efekt", "db": -13, "pan": 0.2, "not": "numaratör 101->102: küçük tık (ding değil)" },
+  { "t": "B.numaratorDing", "dosya": "sfx/numarator-ding.wav", "kat": "efekt", "db": -14, "pan": 0.15, "fadeout": 0.6, "not": "'They called his number.': numaratör ding (B.numaratorDing); cümleden 20 ms önce" },
+  { "t": "B.fis", "dosya": "sfx/kaynak/fs-kagit-hisirti.wav", "kat": "efekt", "db": -13, "ss": 0.72, "sure": 0.14, "fadein": 0.003, "fadeout": 0.06, "not": "fiş kâğıdı (B.fis), kısa ve kısık" },
+  { "t": "B.kalkar", "dosya": "sfx/sandalye.wav", "kat": "efekt", "db": -17, "sure": 1.0, "fadeout": 0.3, "not": "Hale kalkar: koltuk (B.kalkar)" },
+  { "t": "B.sapkaBasa-0.2", "dosya": "sfx/sapka-cikarma.wav", "kat": "efekt", "db": -16, "fadeout": 0.15, "pan": -0.05, "not": "şapka başa (B.sapkaBasa)" },
+
+  { "t": ["B.sonBip", "endBeep"], "dosya": "sfx/daisy-beep-tek.wav", "kat": "bip", "db": -4.8, "not": "bitişte TEK bip (cues.endBeep = B.sonBip); önü ve arkası tam sessiz. Bu bölümde iki bip yok" },
+  { "t": "endCard", "dosya": "sfx/oda-tonu-dongu.wav", "kat": "ortam", "db": -24, "ss": 6.0, "son": "dur", "dongu": true, "fadein": 0.5, "fadeout": 0.3, "not": "soru kartı: müzik yok, çok kısık oda tonu" }
+ ],
+ "kisma": [
+  { "t0": "A.saatHizli-0.15", "t1": "s13.t0-0.36", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 12: 'For an hour nobody spoke.' müziksiz: yalnız oda tonu ve hızlanan saat; 'Then I saw his phone.' ile müzik döner" },
+  { "t0": "s22.t0-0.2", "t1": "s23.t0-0.25", "katlar": ["muzik"], "db": -90, "solma": 0.4, "not": "plan 22: 'He took the blame.' sessizlik (dede imzası yakın); yalnız çok kısık sepya adımlar" },
+  { "t0": "s28.t1+0.3", "t1": "endCard-0.05", "katlar": ["muzik", "ortam", "efekt", "darbe"], "db": -90, "solma": 0.4, "not": "plan 29: 'Empty my tower.' öncesi ve sonrası tam sessizlik + bitiş" },
+  { "t0": "voiceEnd", "t1": "endCard-0.05", "katlar": ["muzik", "ortam", "efekt", "darbe"], "db": -90, "solma": 0.05, "not": "bitiş: tam sessizlik, yalnız tek bip" }
+ ]
+}

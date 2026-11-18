@@ -1,0 +1,195 @@
+{
+ "part": 9,
+ "title": "THE EMPTY TOWER",
+ "next": {
+  "part": 10,
+  "title": "BUILD SOMETHING"
+ },
+ "sentences": [
+  {
+   "text": "Two hundred people walked out of a tower today.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Almost nobody knew the whole reason.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It took six weeks.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Not us.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Specialists, from three cities.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Our job was small: clear the street, and wait behind the line.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The night before, I did not open the game.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I did not need practice.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I needed sleep.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "At noon, forty floors sat down into their own dust.",
+   "nefes": 0.15,
+   "mark": "fall",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Slowly.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Exactly where the engineers wanted.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nobody got a scratch.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Mr. Hale watched from beside Daisy.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He took off his hat.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Daisy stayed silent.",
+   "nefes": 0.15,
+   "mark": "silent",
+   "kim": "anlatici"
+  },
+  {
+   "text": "For once.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nine buildings.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nine lines in black ink.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Done.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "That night I held the list up to the lamp.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The blue ink was fresh.",
+   "nefes": 0.4,
+   "mark": "ink",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Grandpa scratched that line out this year.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "With his own pen.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Under it, I could finally read an address.",
+   "nefes": 0.6,
+   "mark": "reveal",
+   "kim": "anlatici"
+  },
+  {
+   "text": "I knew that address.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I have known it my whole life.",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "anlatici"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 57.8,
+  "kelime": 143,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "acilis": {
+   "kare0": "Kule kapılarından küçük insan seli boşalır, yavaş geniş plan; 1. cümle büyük yazıyla.",
+   "soru": "Neden bütün bir kule boşaltılıyor?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: \"Empty my tower.\"",
+   "gorsel": "Ayağa kalkan Hale, şapka elinde",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "fall": "t0 (yıkım başlar)",
+   "silent": "t1 (ışık sönük kalır)",
+   "ink": "t1",
+   "reveal": "t0",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "Lambaya tutulan liste; mavi çizginin altında adres belli belirsiz, okunmaz. Tek bip, kart.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}

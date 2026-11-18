@@ -1,0 +1,57 @@
+{
+  "count": 150,
+  "w": 450,
+  "h": 800,
+  "fps": 30,
+  "kaynak": "Demolition Master (www/, ?debug), İngilizce arayüz, src/oyun_cek.cjs",
+  "klipler": [
+    {
+      "klip": "k1",
+      "ham": [
+        33,
+        87
+      ],
+      "kareler": [
+        1,
+        55
+      ],
+      "ne": "Bölüm 3 \"Shanty\": dinamit ve C4 patlar, tuğla bina yana yatıp çöker, toz, +altın yazıları, COMBO, DEMOLISHED! damgası"
+    },
+    {
+      "klip": "k2",
+      "ham": [
+        76,
+        135
+      ],
+      "kareler": [
+        56,
+        115
+      ],
+      "ne": "Bölüm 5 boss \"Old Textile Mill\" (süre 2 sn): C4 patlar, beton kule yana yatıp yıkılır, COMBO x2.00, süre biter: TIME'S UP damgası"
+    },
+    {
+      "klip": "k3",
+      "ham": [
+        3,
+        24
+      ],
+      "kareler": [
+        116,
+        137
+      ],
+      "ne": "Gerçek \"Time's up\" sonuç kartı (Try again / Shop / Main menu), \"Try again\"e basılır, kepenk iner (Old Textile Mill etiketi)"
+    },
+    {
+      "klip": "k3",
+      "ham": [
+        60,
+        72
+      ],
+      "kareler": [
+        138,
+        150
+      ],
+      "ne": "Kepenk açılır: aynı bölüm baştan, bina yeniden ayakta (TIME 73 s)"
+    }
+  ]
+}

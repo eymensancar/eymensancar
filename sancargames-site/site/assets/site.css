@@ -388,3 +388,12 @@ html[lang=tr] .d{line-height:1.06}
   .hero-team{justify-self:center;width:min(92%,440px);margin-top:12px}
   .hero .copy{justify-self:start;max-width:none}
 }
+/* Kedi Yuvası (18.11): geniş anahtar görsel, ana sayfada ikinci satırda ortalı kart, yatay oyun görüntüleri */
+.keyart.ky{aspect-ratio:2000/921;-webkit-mask-image:url(img/paint-mask-wide.png);mask-image:url(img/paint-mask-wide.png)}
+.keyart.ky .sen{top:30%;bottom:auto;height:25%}
+.tile .keyart.ky{width:100%}
+.tile.t-ky{grid-column:3 / span 8}
+.gallery .shot{flex:none;width:clamp(300px,52vw,640px);scroll-snap-align:start;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(15,15,17,.5)}
+.gallery .shot img{display:block;width:100%;height:auto}
+.ghero .keyart.ky,.ghero .keyart.fd{align-self:center}
+@media (max-width:820px){.keyart.ky{-webkit-mask-image:url(img/paint-mask-tb.png);mask-image:url(img/paint-mask-tb.png)}.tile.t-ky{grid-column:1 / span 12}}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Two Beeps — stil sayfası</title>
+<style>
+  @font-face{font-family:'Lilita One';font-weight:400;src:url(../assets/fonts/lilita-one-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+  @font-face{font-family:'Lilita One';font-weight:400;src:url(../assets/fonts/lilita-one-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+  @font-face{font-family:'Rubik';font-weight:500;src:url(../assets/fonts/rubik-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+  @font-face{font-family:'Rubik';font-weight:500;src:url(../assets/fonts/rubik-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+  @font-face{font-family:'Rubik';font-weight:700;src:url(../assets/fonts/rubik-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+  @font-face{font-family:'Rubik';font-weight:700;src:url(../assets/fonts/rubik-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+  html,body{margin:0;background:#15120d}
+  canvas{display:block;width:1080px;height:1920px}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="cizim.js"></script>
+<script>
+(async function(){
+  await Promise.all(['400 40px "Lilita One"','500 20px Rubik','700 20px Rubik'].map(f=>document.fonts.load(f,'AaĞİşı')));
+  const C=window.Cizim, P=C.PAL, cv=document.getElementById('c'), ctx=cv.getContext('2d');
+
+  // kâğıt zemin
+  ctx.fillStyle=P.paper; ctx.fillRect(0,0,1080,1920);
+
+  // panel: kırpılmış çizim alanı + elle çizilmiş çerçeve + etiket
+  function panel(x,y,w,h,label,draw,sd){
+    ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip(); draw(x,y,w,h); ctx.restore();
+    C.seed(sd||1); C.ink(ctx,C.pathOf(C.wobble([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],true,1.2,16),true),6);
+    if(label){ ctx.font='700 21px Rubik'; const tw=ctx.measureText(label).width;
+      C.seed((sd||1)+7); C.shape(ctx,[[x,y],[x+22+tw,y],[x+24+tw,y+38],[x,y+40]],P.ink,{lw:0,amp:.6});
+      ctx.fillStyle=P.paper; ctx.fillText(label,x+11,y+28); }
+  }
+
+  // başlık
+  ctx.font='400 92px "Lilita One"'; ctx.fillStyle=P.ink; ctx.fillText('TWO BEEPS',44,104);
+  ctx.fillStyle=P.hazard; ctx.save(); ctx.lineWidth=10; ctx.strokeStyle=P.ink; ctx.lineJoin='round';
+  ctx.restore();
+  ctx.font='700 25px Rubik'; ctx.fillStyle=P.ink; ctx.textAlign='right';
+  ctx.fillText('STİL SAYFASI · PART 1',1036,62); ctx.font='500 22px Rubik'; ctx.fillStyle='#6e6457'; ctx.fillText('Lilita One + Rubik · 1080×1920 · 30 fps',1036,96); ctx.textAlign='left';
+  C.seed(4); const strip=C.shape(ctx,[[44,124],[1036,124],[1036,142],[44,142]],null,{lw:0}); C.hazardStripes(ctx,strip,40,120,1000,26,20); C.ink(ctx,strip,4);
+
+  // 1) ana kare: bacalı boş arsa, Kaan, Daisy (iki bip), altyazı
+  panel(44,166,992,1010,'GÜNDÜZ AVLU · GENİŞ PLAN',(x,y,w,h)=>{
+    C.drawBackground(ctx,{x,y,w,h,horizon:.56,chimneyX:.37,seed:5,dust:.5});
+    C.drawDaisy(ctx,{x:x+640,y:y+800,s:.9,beep:1,seed:23,hook:.06});
+    C.drawKaan(ctx,{x:x+190,y:y+850,s:.98,expr:'calm',seed:11});
+    const vg=ctx.createRadialGradient(x+w*.45,y+h*.45,h*.35,x+w*.5,y+h*.5,h*.8); vg.addColorStop(0,'rgba(21,18,13,0)'); vg.addColorStop(1,'rgba(21,18,13,.28)'); ctx.fillStyle=vg; ctx.fillRect(x,y,w,h);
+    C.drawSubtitle(ctx,{text:'Daisy beeped. Twice.\nI ignored her.',x:x+w/2,y:y+h-112,size:66,maxW:820,hi:['twice']});
+  },2);
+
+  // 2) Kaan yakın plan: iki ifade
+  const cy2=1200, ph=320;
+  const kaanBg=(x,y,w,h)=>{ const g=ctx.createLinearGradient(0,y,0,y+h); g.addColorStop(0,P.sky1); g.addColorStop(1,P.sky2); ctx.fillStyle=g; ctx.fillRect(x,y,w,h); };
+  panel(44,cy2,484,ph,'KAAN · SAKİN',(x,y,w,h)=>{ kaanBg(x,y,w,h); C.drawKaan(ctx,{x:x+w/2-12,y:y+h/2+490*1.62+14,s:1.62,expr:'calm',seed:11}); },3);
+  panel(552,cy2,484,ph,'KAAN · ENDİŞELİ',(x,y,w,h)=>{ kaanBg(x,y,w,h); C.drawKaan(ctx,{x:x+w/2-12,y:y+h/2+490*1.62+14,s:1.62,expr:'worried',look:.6,seed:11}); },4);
+
+  // 3) Daisy orta plan: normal / iki bip
+  const cy3=1544;
+  const daisyBg=(x,y,w,h,dark)=>{ ctx.fillStyle=dark?'#2a2f3a':P.sky2; ctx.fillRect(x,y,w,h); ctx.fillStyle=dark?'#1d2028':P.ground; ctx.fillRect(x,y+h-40,w,40); };
+  panel(44,cy3,484,ph,'DAISY · NORMAL (UYKULU)',(x,y,w,h)=>{ daisyBg(x,y,w,h); C.drawDaisy(ctx,{x:x+190,y:y+h+20,s:.82,beep:0,seed:23}); },5);
+  panel(552,cy3,484,ph,'DAISY · İKİ BİP',(x,y,w,h)=>{ daisyBg(x,y,w,h); C.drawDaisy(ctx,{x:x+190,y:y+h+20,s:.82,beep:1,seed:23}); },6);
+
+  // 4) palet şeridi
+  const pals=[['AVLU',[P.sky0,P.sky2,P.ground,P.brick,P.hazard]],['GECE OFİS',[P.night,P.night2,P.lamp,P.wood,P.screen]],['TOZ',[P.dustLt,P.dust,P.dustDk,P.ink,P.paper]]];
+  let px=44; const py=1882;
+  ctx.font='700 18px Rubik';
+  pals.forEach(([name,cols],gi)=>{ ctx.fillStyle=P.ink; ctx.fillText(name,px,py+4); let sx=px+ctx.measureText(name).width+12;
+    cols.forEach((c,i)=>{ C.seed(gi*10+i+40); C.shape(ctx,C.ell(sx+14,py-3,14,14,14),c,{lw:3.2,amp:.6}); sx+=34; }); px=sx+24; });
+
+  C.grain(ctx,0,0,1080,1920,.2);
+  document.title='ready';
+})();
+</script>
+</body>
+</html>

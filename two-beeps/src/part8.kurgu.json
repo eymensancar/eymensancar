@@ -1,0 +1,207 @@
+{
+ "part": 8,
+ "title": "NUMBER NINE",
+ "next": {
+  "part": 9,
+  "title": "THE EMPTY TOWER"
+ },
+ "sentences": [
+  {
+   "text": "Building number nine has Mr. Hale's name on the door.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "In gold.",
+   "nefes": 0.4,
+   "mark": "gold",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Six, seven and eight came down in the autumn.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "That left the big one.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Hale Tower.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Grandpa's reports say the foundation is cracking.",
+   "nefes": 0.1,
+   "mark": "crack",
+   "kim": "anlatici"
+  },
+  {
+   "text": "A little more every year.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "We took the reports to the city.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "They told us to take a number and wait.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Mr. Hale was already there.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Waiting too.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "For an hour nobody spoke.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then I saw his phone.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He was playing the same game as me.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Badly.",
+   "nefes": 0.4,
+   "mark": "game",
+   "kim": "anlatici"
+  },
+  {
+   "text": "He looked at my screen.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"You rush the first move.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "So did Kaya.\"",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "Then he said the rest, quietly.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"The cheap concrete was my idea.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "When it went wrong, your grandfather signed the papers.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "He took the blame.",
+   "nefes": 0.1,
+   "mark": "blame",
+   "kim": "Hale"
+  },
+  {
+   "text": "I took the company.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "I wanted your list so nobody would ever read it.\"",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "They called his number.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He stood up.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"He carried it for forty years.",
+   "nefes": 0.1,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "I can carry the last one.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "Empty my tower.\"",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "Hale"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 59.3,
+  "kelime": 156,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "acilis": {
+   "kare0": "Cam kapıda altın 'HALE' harfleri; kamera kapıdan kulenin tepesine yavaşça kalkar; 1. cümle büyük yazıyla.",
+   "soru": "Neden dokuzuncu bina Hale'in?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: Number nine is already falling.",
+   "gorsel": "Raporda temel çatlağı çizimi",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "gold": "t1",
+   "crack": "t0",
+   "game": "t1",
+   "blame": "t1",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "Hale ayakta, şapkası elinde, sırası gelmiş numaratör; tek bip, kart.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}

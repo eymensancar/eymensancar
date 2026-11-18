@@ -1,0 +1,185 @@
+{
+ "part": 7,
+ "title": "THE PROFESSOR",
+ "next": {
+  "part": 8,
+  "title": "NUMBER NINE"
+ },
+ "sentences": [
+  {
+   "text": "I have been quoting my professor since the first video.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I don't have a professor.",
+   "nefes": 0.8,
+   "mark": "professor",
+   "kim": "anlatici"
+  },
+  {
+   "text": "I left engineering school in March.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I sat down for an exam.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I knew the answers.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "My hands just stopped.",
+   "nefes": 0.6,
+   "mark": "hands",
+   "kim": "anlatici"
+  },
+  {
+   "text": "I walked out and never went back.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I told nobody.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "That night I played Demolition Master until morning.",
+   "nefes": 0.3,
+   "mark": "game",
+   "kim": "anlatici"
+  },
+  {
+   "text": "It did not teach me engineering.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "A game can't do that.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It just reminded me that I like working out where to start.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Defne did not shout.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "She said, \"Okay.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici",
+   "alinti": "Defne"
+  },
+  {
+   "text": "Then stop lying to Daisy too.\"",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "And she moved her desk into the yard.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "With her signature, the city gave us our permit back.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Three, four, five.",
+   "nefes": 0.15,
+   "mark": "permit",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Three more old buildings came down, slow and safe.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then she opened Grandpa's reports on number nine.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "She read for an hour.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then she went pale.",
+   "nefes": 0.6,
+   "mark": "pale",
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"Ant.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "Number nine is already falling.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "Just very slowly.\"",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "Defne"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 56.4,
+  "kelime": 145,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "acilis": {
+   "kare0": "Kaan doğrudan kameraya bakar, eli boş; arkasında P1'deki 'my professor' karesi buzlu bir hatıra olarak; 1. cümle büyük yazıyla.",
+   "soru": "Profesör yoksa, kimi alıntılıyordu?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: Who is this professor?",
+   "gorsel": "Kabinde Defne'nin sorgulayan bakışı",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "professor": "t1",
+   "hands": "t1",
+   "game": "t0",
+   "permit": "t0 (sayılar)",
+   "pale": "t1",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "Dedenin raporunda kesit çizimi; temel çizgisindeki çatlak çok yavaş uzar. Tek bip, kart.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}

@@ -1,0 +1,220 @@
+{
+ "part": 2,
+ "title": "THE ANT",
+ "next": {
+  "part": 3,
+  "title": "MR. HALE"
+ },
+ "sentences": [
+  {
+   "text": "My sister calls me Ant.",
+   "nefes": 0.2,
+   "mark": "ant",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Only one other person ever did.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Grandpa.",
+   "nefes": 0.6,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Defne is an engineer.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "A real one.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "She came to the yard with coffee and bad news.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"Sell it, Ant.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "The crane, the land, the list.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "You are nineteen.\"",
+   "nefes": 0.5,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "I showed her the stamp from the chimney.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "H and K.",
+   "nefes": 0.5,
+   "mark": "stamp",
+   "kim": "anlatici"
+  },
+  {
+   "text": "She went quiet.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then she changed the subject.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "We tried Grandpa's office.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "The door was locked.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "And when I drove Daisy past it, she beeped.",
+   "nefes": 1.05,
+   "mark": "beep",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Twice.",
+   "nefes": 0.35,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "There was nothing on the hook.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nothing.",
+   "nefes": 0.6,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Defne looked at my phone.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"Study notes?\"",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "Defne"
+  },
+  {
+   "text": "It was not study notes.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It was a tower, halfway down.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I put it in my pocket.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then I checked the mailbox.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "One letter.",
+   "nefes": 0.15,
+   "mark": "letter",
+   "kim": "anlatici"
+  },
+  {
+   "text": "From the city.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Someone had reported me.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Unsafe work.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It was signed: Ironline Demolition.",
+   "nefes": 0.5,
+   "mark": "ironline",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Nobody in this town has ever heard of them.",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "anlatici"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 57.3,
+  "kelime": 139,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "acilis": {
+   "kare0": "Defne'nin parmağı Kaan'ın saç tutamına (anten) dokunur, tutam yaylanır; 1. cümle büyük yazıyla.",
+   "soru": "Ona neden Ant deniyor, başka kim derdi?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: Daisy beeped twice. Then it fell.",
+   "gorsel": "Daisy'nin yanan uyarı ışığı, yakın plan (P1 bitiş karesi)",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "ant": "t0",
+   "stamp": "t1",
+   "beep": "t1+0.22 (iki bip dosyası)",
+   "letter": "t0",
+   "ironline": "t1",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "Mektupta 'IRONLINE DEMOLITION' imzası üst üçte birde; mektup zarfının köşesinde silik kahve halkası. Tek bip, kart.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}

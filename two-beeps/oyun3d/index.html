@@ -1,0 +1,42 @@
+<title>Two Beeps Şehri</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Yerleşim: tek ekranlık 3B oyun. Sahne hep yatay: ekran dikeyse sahne 90° döndürülür (telefonun dönme kilidine bağlı değil).
+   Solda sanal çubuk, sağda düğmeler; boş yere sürükleme kamerayı çevirir. Tek görünüş, tema yok. */
+:root{--ink:#15120d;--paper:#f1e8d4;--hazard:#f5b21c;--sky:#8fbadb;--shade:rgba(21,18,13,.55);--font:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--ui:system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+@font-face{font-family:'Lilita One';font-weight:400;src:url(lilita.woff2) format('woff2')}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0}
+body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidden;overscroll-behavior:none;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#wrap{position:relative;height:100%;overflow:hidden}
+#stage{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;touch-action:none}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pad{position:absolute;bottom:18px;display:flex;gap:12px;align-items:flex-end}
+#padR{right:max(22px,env(safe-area-inset-right,0px))}
+.btn{width:66px;height:66px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.8);color:var(--ink);font:700 15px/1 var(--ui);display:grid;place-items:center;padding:0;touch-action:none;box-shadow:0 4px 0 var(--shade)}
+.btn svg{width:30px;height:30px}
+.btn.on{background:var(--hazard);transform:translateY(3px);box-shadow:0 1px 0 var(--shade)}
+.btn:focus-visible{outline:3px solid var(--hazard);outline-offset:3px}
+#bAct{background:var(--hazard)}
+#bAct[disabled]{opacity:.35}
+#joy{position:absolute;width:132px;height:132px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.42);left:34px;bottom:26px;pointer-events:none}
+#knob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.9);box-shadow:0 3px 0 var(--shade)}
+#fps{position:absolute;top:10px;left:22px;background:rgba(21,18,13,.6);color:var(--paper);padding:4px 9px;border-radius:8px;font-size:13px;font-variant-numeric:tabular-nums;pointer-events:none}
+#load{position:absolute;inset:0;display:grid;place-items:center;background:var(--sky);font:400 22px var(--font);text-align:center;padding:0 16px}
+</style>
+<div id="wrap">
+  <div id="stage">
+    <canvas id="c"></canvas>
+    <span id="fps">…</span>
+    <div id="joy"><div id="knob"></div></div>
+    <div class="pad" id="padR">
+      <button class="btn" id="bRun" type="button">KOŞ</button>
+      <button class="btn" id="bAct" type="button" disabled>BİP</button>
+      <button class="btn" id="bJump" type="button" aria-label="Zıpla"><svg viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div id="load">Şehir çiziliyor…</div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="cizim.js"></script>
+<script src="oyun3d.js"></script>

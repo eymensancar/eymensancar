@@ -1,0 +1,250 @@
+<title>Açık Dünya Denemesi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Yerleşim: tek ekranlık 3B oyun. Sahne hep yatay: ekran dikeyse sahne 90° döndürülür.
+   Solda sanal çubuk, sağda düğmeler; boş yere sürükleme kamerayı çevirir. Tek görünüş, tema yok. */
+:root{--ink:#15120d;--paper:#f1e8d4;--accent:#f5b21c;--sky:#8fbadb;--shade:rgba(21,18,13,.55);--sis:#a9b1b3;--sis-acik:#c6cccc;--harita-dis:#2b2721;--harita-ok:#e5482d;--harita-isaret:#f5b21c;--harita-perde:rgba(21,18,13,.42);--can:#dc4a31;--aclik:#e3942c;--xp:#f5b21c;--eksik:#b82c14;--tamam:#2f7a40;--kagit-acik:#f9f3e3;--kagit-koyu:#e3d7bb;--cam:rgba(241,232,212,.8);--oluk:rgba(21,18,13,.5);--soluk:rgba(21,18,13,.62);--cizgi:rgba(21,18,13,.3);--kr:max(26px,env(safe-area-inset-right,0px));--kl:max(22px,env(safe-area-inset-left,0px));--font:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--ui:system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+@font-face{font-family:'Lilita One';font-weight:400;src:url(lilita.woff2) format('woff2')}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0}
+body{background:var(--sky);color:var(--ink);font-family:var(--ui);overflow:hidden;overscroll-behavior:none;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#wrap{position:relative;height:100%;overflow:hidden}
+#stage{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;touch-action:none}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* .pad = ekran arayüzü parçası (test/cek.cjs bu sınıfı gizler). Sağ alt grup başparmak yayı: köşede vur, solunda zıpla, üstünde AL, en solda KOŞ. */
+.pad{position:absolute}
+#padR{right:0;bottom:0;width:0;height:0}
+#padR .btn{position:absolute}
+#bVur,#bYerlestir{width:64px;height:64px;right:var(--kr);bottom:22px}
+#bJump,#bDondur{width:60px;height:60px;right:calc(var(--kr) + 76px);bottom:34px}
+#bAl,#bIptal{width:54px;height:54px;right:calc(var(--kr) + 59px);bottom:105px}
+#bAl{font-size:14px}
+#bRun{width:56px;height:56px;right:calc(var(--kr) + 146px);bottom:24px;font-size:13px}
+#bVur svg{width:34px;height:34px}
+#bSok{width:54px;height:54px;right:calc(var(--kr) + 125px);bottom:98px}
+#bSok.soluk{opacity:.55}
+#padR.kip #bAl{display:none}
+.btn.yb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font:700 9.5px/1 var(--ui);background:var(--paper);cursor:pointer}
+.btn.yb svg{width:22px;height:22px}
+#bYerlestir{background:var(--accent)}
+#bYerlestir.soluk{background:var(--paper);opacity:.5}
+.btn.yb:active{transform:translateY(3px);box-shadow:0 1px 0 var(--shade)}
+.btn{width:70px;height:70px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.8);color:var(--ink);font:700 15px/1 var(--ui);display:grid;place-items:center;padding:0;touch-action:none;box-shadow:0 4px 0 var(--shade)}
+.btn svg{width:30px;height:30px}
+.btn.on{background:var(--accent);transform:translateY(3px);box-shadow:0 1px 0 var(--shade)}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+#joy{position:absolute;width:132px;height:132px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.42);left:34px;bottom:26px;pointer-events:none}
+#knob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;border:3px solid var(--ink);background:rgba(241,232,212,.9);box-shadow:0 3px 0 var(--shade)}
+#envanter{position:absolute;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;pointer-events:none;font:700 14px/1 var(--ui);color:var(--ink)}
+#envanter{display:none!important} /* sayaç yerine çanta paneli ve "+1 dal" bildirimi var (arayuz.js) */
+#fps{position:absolute;top:55px;left:var(--kl);background:rgba(21,18,13,.5);color:var(--paper);padding:2px 6px;border-radius:6px;font-size:10px;font-variant-numeric:tabular-nums;pointer-events:none}
+/* Sol üst: can ve açlık. Üst orta: seviye. Altında bildirimler. */
+#durum{top:16px;left:var(--kl);display:grid;gap:5px;pointer-events:none}
+.cubuk{display:flex;align-items:center;gap:5px}
+.cubuk svg{width:17px;height:17px;flex:none;overflow:visible}
+.cubuk i{display:block;width:94px;height:13px;box-sizing:border-box;border:2px solid var(--ink);border-radius:7px;background:var(--oluk);overflow:hidden;box-shadow:0 2px 0 var(--shade)}
+.cubuk b{display:block;height:100%;transform-origin:0 50%;transition:transform .25s ease-out}
+#dCan b{background:var(--can)}
+#dAclik b{background:var(--aclik)}
+.cubuk.az i{animation:azYan .9s ease-in-out infinite}
+@keyframes azYan{50%{background:var(--paper)}}
+#seviye{top:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;pointer-events:none}
+#sevNo{position:relative;z-index:1;min-width:26px;height:26px;box-sizing:border-box;padding:0 5px;border:3px solid var(--ink);border-radius:13px;background:var(--xp);font:400 15px/20px var(--font);text-align:center;box-shadow:0 2px 0 var(--shade)}
+#seviye i{display:block;width:150px;height:11px;box-sizing:border-box;margin-left:-7px;border:2px solid var(--ink);border-radius:0 6px 6px 0;background:var(--oluk);overflow:hidden;box-shadow:0 2px 0 var(--shade)}
+#xpD{display:block;height:100%;background:var(--xp);transform-origin:0 50%;transform:scaleX(0);transition:transform .25s ease-out}
+#bildirim{top:44px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;z-index:6}
+.not{padding:3px 11px;border:2px solid var(--ink);border-radius:999px;background:var(--paper);font:700 12.5px/1.25 var(--ui);white-space:nowrap;box-shadow:0 2px 0 var(--shade);animation:notGir .18s ease-out;transition:opacity .25s,transform .25s}
+.not.vurgu{background:var(--accent)}
+.not.cik{opacity:0;transform:translateY(-6px)}
+.not.art{animation:notArt .2s ease-out}
+@keyframes notGir{from{opacity:0;transform:translateY(8px)}}
+@keyframes notArt{40%{transform:scale(1.14)}}
+/* Sağ üst, küçük haritanın altı: 3 el yuvası + çanta (tek çubuk, 4 bölme) */
+#eller{top:92px;right:var(--kr);display:flex;flex-direction:column;gap:2px;border:3px solid var(--ink);border-radius:12px;background:var(--ink);overflow:hidden;box-shadow:0 4px 0 var(--shade)}
+#eller .btn,.pyuva{position:relative;width:44px;height:44px;border:0;border-radius:0;box-shadow:none;background:var(--paper);cursor:pointer;display:grid;place-items:center;padding:0;color:var(--ink)}
+#eller .btn svg,.pyuva svg{width:28px;height:28px}
+#eller .btn.on{transform:none;background:var(--accent)}
+#eller .btn.sec,.pyuva.sec{background:var(--accent);box-shadow:inset 0 0 0 3px var(--ink)}
+#eller .btn:focus-visible,.pyuva:focus-visible{outline-offset:-4px;outline-color:var(--harita-ok)}
+.yno{position:absolute;left:4px;top:3px;font:700 9px/1 var(--ui);opacity:.55}
+.bos .yno{left:0;right:0;top:50%;margin-top:-7px;font-size:14px;opacity:.3;text-align:center}
+.ysim{display:grid;place-items:center}
+/* Alt orta: tablet ve çekiç (çubuk ile KOŞ arasında) */
+#padO{left:calc(50% - 30px);bottom:22px;transform:translateX(-50%);display:flex;gap:10px}
+#padO .btn{width:48px;height:48px;cursor:pointer}
+#padO .btn svg{width:26px;height:26px}
+/* Paneller (çanta, çekiç, tablet): tek kap, sahnenin üstünde; gövde kendi içinde kayar */
+#panel{top:44px;bottom:11px;left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 284px));display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;background:var(--paper);box-shadow:0 5px 0 var(--shade);overflow:hidden;font:600 13px/1.25 var(--ui);z-index:5;outline:0}
+#panel button{font:inherit;color:inherit;touch-action:none;-webkit-tap-highlight-color:transparent;cursor:pointer}
+#panel button:focus-visible{outline:3px solid var(--harita-ok);outline-offset:-3px}
+.pust{flex:none;display:flex;align-items:center;gap:8px;height:46px;padding:0 0 0 12px;background:var(--kagit-koyu);border-bottom:3px solid var(--ink)}
+#pBaslik{margin:0;font:400 19px/1 var(--font)}
+#pSekme{display:flex;gap:4px;margin-left:4px}
+#pSekme button{height:44px;padding:0 4px;border:0;background:none}
+#pSekme button span{display:block;padding:7px 12px;border:2px solid var(--cizgi);border-radius:999px;font-weight:700}
+#pSekme button[aria-selected=true] span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+#pPuan{margin-left:4px;padding:5px 11px;border:2px solid var(--ink);border-radius:999px;background:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+#pPuan b{font:400 15px/1 var(--font)}
+#pKapat{margin-left:auto;width:46px;height:46px;border:0;background:none;display:grid;place-items:center;padding:0}
+#pKapat svg{width:30px;height:30px;box-sizing:border-box;padding:5px;border:2px solid var(--ink);border-radius:50%;background:var(--paper)}
+.pkap{position:relative;flex:1;min-height:0;display:flex}
+#pGovde{flex:1;min-width:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding:8px 10px 2px;touch-action:none}
+#pGovde::-webkit-scrollbar{display:none}
+#pKaydir{position:absolute;right:2px;top:0;width:4px;border-radius:2px;background:var(--soluk);pointer-events:none}
+.bosluk{margin:18px 8px;text-align:center;color:var(--soluk)}
+.gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.izg{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:6px;padding-bottom:6px}
+.es{position:relative;aspect-ratio:1;min-height:50px;border:2px solid var(--ink);border-radius:10px;background:var(--kagit-acik);display:grid;place-items:center;padding:0}
+.es svg{width:30px;height:30px}
+.es b{position:absolute;right:3px;bottom:2px;padding:0 3px;border-radius:5px;background:var(--kagit-acik);font:700 11px/1.2 var(--ui);font-variant-numeric:tabular-nums}
+.es.sec{background:var(--accent);box-shadow:inset 0 0 0 2px var(--ink)}
+.es.sec b{background:var(--accent)}
+.sat{display:flex;align-items:center;gap:10px;width:100%;min-height:50px;box-sizing:border-box;margin:0 0 6px;padding:5px 10px 5px 8px;border:2px solid var(--cizgi);border-radius:10px;background:none;text-align:left}
+.sat.olur{border-color:var(--ink);background:var(--kagit-acik);box-shadow:0 2px 0 var(--shade)}
+.sat.olur:active{background:var(--accent)}
+.sat .sim{flex:none;width:34px;height:34px;display:grid;place-items:center}
+.sat .sim svg{width:30px;height:30px}
+.sat .orta{flex:1;min-width:0;display:grid;gap:3px}
+.sat .adi{font-weight:700;font-size:14px}
+.sat:not(.olur) .adi,.sat:not(.olur) .sim{color:var(--soluk)}
+.sat.kilitli .sim{opacity:.45}
+.etk{font:700 9.5px/1 var(--ui);font-style:normal;padding:2px 5px;border:1.5px solid currentColor;border-radius:5px;vertical-align:1px;text-transform:uppercase;letter-spacing:.03em}
+.mlzler{display:flex;flex-wrap:wrap;gap:2px 10px}
+.mlz{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.mlz svg{width:17px;height:17px}
+.mlz.eksik b{color:var(--eksik)}
+.neden{font-size:11.5px;font-weight:600;color:var(--soluk)}
+.sag{flex:none;display:inline-flex;align-items:center;gap:4px;font-weight:700}
+.sag svg{width:18px;height:18px}
+.sag.yap{padding:6px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--accent)}
+.sag.kilit{color:var(--soluk)}
+.sag.tamam{color:var(--tamam)}
+.sat.tek{min-height:46px;padding-left:12px}
+.sat.tek.acik{border-color:var(--tamam);background:none}
+.sat.tek.acik .adi{color:var(--ink)}
+.grup{display:flex;align-items:center;gap:5px;margin:6px 2px 6px;font:400 14px/1 var(--font);letter-spacing:.02em}
+.grup:first-child{margin-top:0}
+.grup svg{width:14px;height:14px}
+.grup.ileri{color:var(--soluk)}
+.grup::after{content:'';flex:1;height:2px;background:var(--cizgi)}
+.salla{animation:salla .28s}
+@keyframes salla{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+#pAlt{flex:none;display:flex;align-items:center;gap:10px;min-height:54px;padding:5px 8px;border-top:3px solid var(--ink);background:var(--kagit-koyu)}
+.pyuvalar{flex:none;display:flex;gap:2px;border:2px solid var(--ink);border-radius:10px;background:var(--ink);overflow:hidden}
+.pbilgi{flex:1;min-width:0;display:grid;gap:2px}
+#pAd{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pAd.soluk{color:var(--soluk)}
+#pSinif{font-size:11.5px;color:var(--soluk)}
+#pEylem{flex:none;min-width:76px;height:44px;padding:0 14px;border:3px solid var(--ink);border-radius:999px;background:var(--accent);font-weight:700;font-size:14px;box-shadow:0 3px 0 var(--shade)}
+#pEylem:active{transform:translateY(2px);box-shadow:0 1px 0 var(--shade)}
+@media (prefers-reduced-motion:reduce){.not,.not.art,.salla,.cubuk.az i{animation:none}.cubuk b,#xpD{transition:none}}
+/* Harita: sağ üstte küçük harita düğmesi; dokununca sahnenin üstünde tam harita (zemin dokunuşu geçirir: çubuk ve düğmeler çalışmayı sürdürür) */
+#hMini{position:absolute;top:14px;right:max(26px,env(safe-area-inset-right,0px));width:72px;height:72px;overflow:hidden;background:var(--sis);cursor:pointer}
+#hMini.on{background:var(--sis);transform:none;box-shadow:0 4px 0 var(--shade);border-color:var(--accent);outline:2px solid var(--ink)}
+#hMiniC{width:66px;height:66px;display:block;border-radius:50%;pointer-events:none}
+#hTam{position:absolute;inset:0;display:grid;place-items:center;background:var(--harita-perde);pointer-events:none}
+#hPano{position:relative;pointer-events:auto;line-height:0}
+#hTamC{display:block;width:300px;height:300px;border:3px solid var(--ink);border-radius:12px;background:var(--sis);box-shadow:0 5px 0 var(--shade);cursor:grab;touch-action:none}
+#hDugme{position:absolute;left:100%;top:0;margin-left:10px;display:flex;flex-direction:column;gap:10px}
+#hDugme .btn{width:50px;height:50px;font-size:10px;background:var(--paper);cursor:pointer}
+#hDugme .btn svg{width:22px;height:22px}
+#hDugme .btn:active{background:var(--accent);transform:translateY(3px);box-shadow:0 1px 0 var(--shade)}
+#load{position:absolute;inset:0;display:grid;place-items:center;background:var(--sky);font:400 22px var(--font);text-align:center;padding:0 16px}
+</style>
+<div id="wrap">
+  <div id="stage">
+    <canvas id="c"></canvas>
+    <span id="fps">…</span>
+    <div class="pad" id="durum">
+      <div class="cubuk" id="dCan" role="progressbar" aria-label="Can" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6S3.2 15.2 3.2 9.2a4.7 4.7 0 0 1 8.8-2.4 4.7 4.7 0 0 1 8.8 2.4c0 6-8.8 11.4-8.8 11.4z" fill="var(--can)" stroke="var(--ink)" stroke-width="2.6" stroke-linejoin="round"/></svg><i><b></b></i></div>
+      <div class="cubuk" id="dAclik" role="progressbar" aria-label="Açlık" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.2 14 5.4 18.8" fill="none" stroke="var(--ink)" stroke-width="5.6" stroke-linecap="round"/><path d="M10.2 14 5.4 18.8" fill="none" stroke="var(--paper)" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="14.4" cy="9.4" rx="6.6" ry="5.2" transform="rotate(-42 14.4 9.4)" fill="var(--aclik)" stroke="var(--ink)" stroke-width="2.4"/></svg><i><b></b></i></div>
+    </div>
+    <div class="pad" id="seviye" role="progressbar" aria-label="Seviye" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="sevNo">1</span><i><b id="xpD"></b></i></div>
+    <div class="pad" id="bildirim" role="status" aria-live="polite"></div>
+    <div id="hTam" role="dialog" aria-label="Harita" hidden>
+      <div id="hPano">
+        <canvas id="hTamC" role="img" aria-label="Harita; gidilmeyen yerler sisli. Sürükleyerek kaydır, iki parmakla yakınlaştır, dokunarak işaret koy."></canvas>
+        <div id="hDugme">
+          <button class="btn" id="hKapat" type="button" aria-label="Haritayı kapat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></button>
+          <button class="btn" id="hOrtala" type="button" aria-label="Haritayı bana ortala" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5.5" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+          <button class="btn" id="hIsaretSil" type="button" aria-label="İşareti kaldır" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-6.2-6-10.6a6 6 0 0 1 12 0C18 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div id="envanter" hidden></div>
+    <div id="joy"><div id="knob"></div></div>
+    <div class="pad" id="padO">
+      <button class="btn" id="bTablet" type="button" aria-label="Tablet: teknoloji" aria-expanded="false" aria-controls="panel"></button>
+      <button class="btn" id="bCekic" type="button" aria-label="Çekiç: yapı ve el işi" aria-expanded="false" aria-controls="panel"></button>
+    </div>
+    <div class="pad" id="padR">
+      <button class="btn" id="bAl" type="button" hidden>AL</button>
+      <button class="btn" id="bRun" type="button">KOŞ</button>
+      <button class="btn" id="bVur" type="button" aria-label="Vur"></button>
+      <button class="btn yb" id="bSok" type="button" hidden></button>
+      <button class="btn yb" id="bYerlestir" type="button" hidden></button>
+      <button class="btn yb" id="bDondur" type="button" hidden></button>
+      <button class="btn yb" id="bIptal" type="button" hidden></button>
+      <button class="btn" id="bJump" type="button" aria-label="Zıpla"><svg viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <button class="btn" id="hMini" type="button" aria-label="Haritayı aç" aria-expanded="false" aria-controls="hTam"><canvas id="hMiniC" width="66" height="66" aria-hidden="true"></canvas></button>
+    <div class="pad" id="eller" role="group" aria-label="El yuvaları ve çanta">
+      <button class="btn bos" id="bYuva0" type="button" aria-pressed="false" aria-label="El yuvası 1: boş"><span class="yno" aria-hidden="true">1</span><span class="ysim"></span></button>
+      <button class="btn bos" id="bYuva1" type="button" aria-pressed="false" aria-label="El yuvası 2: boş"><span class="yno" aria-hidden="true">2</span><span class="ysim"></span></button>
+      <button class="btn bos" id="bYuva2" type="button" aria-pressed="false" aria-label="El yuvası 3: boş"><span class="yno" aria-hidden="true">3</span><span class="ysim"></span></button>
+      <button class="btn" id="bCanta" type="button" aria-label="Çanta" aria-expanded="false" aria-controls="panel"></button>
+    </div>
+    <div class="pad" id="panel" role="dialog" aria-label="Çanta" tabindex="-1" hidden>
+      <div class="pust">
+        <h2 id="pBaslik">Çanta</h2>
+        <div id="pSekme" role="tablist" hidden><button type="button" id="sekYapi" role="tab" aria-selected="true"><span>Yapı</span></button><button type="button" id="sekEl" role="tab" aria-selected="false"><span>El işi</span></button></div>
+        <span id="pPuan" hidden></span>
+        <button type="button" id="pKapat" aria-label="Kapat"></button>
+      </div>
+      <div class="pkap"><div id="pGovde"></div><div id="pKaydir" hidden></div></div>
+      <div id="pAlt" hidden>
+        <div class="pyuvalar" role="group" aria-label="El yuvaları">
+          <button type="button" class="pyuva bos" id="pYuva0" data-yuva="0"><span class="yno" aria-hidden="true">1</span><span class="ysim"></span></button>
+          <button type="button" class="pyuva bos" id="pYuva1" data-yuva="1"><span class="yno" aria-hidden="true">2</span><span class="ysim"></span></button>
+          <button type="button" class="pyuva bos" id="pYuva2" data-yuva="2"><span class="yno" aria-hidden="true">3</span><span class="ysim"></span></button>
+        </div>
+        <div class="pbilgi"><span id="pAd"></span><span id="pSinif"></span></div>
+        <button type="button" id="pEylem" hidden>Ele al</button>
+      </div>
+    </div>
+    <div id="load">Dünya çiziliyor…</div>
+  </div>
+</div>
+<script src="lib/three.min.js"></script>
+<script src="lib/GLTFLoader.js"></script>
+<script src="kalem.js"></script>
+<script src="cekirdek.js"></script>
+<script src="tasarim.js"></script>
+<script src="tasarim/b001/bolge.js"></script>
+<script src="tasarim/b001/arazi.js"></script>
+<script src="tasarim/b001/su.js"></script>
+<script src="tasarim/b001/yerlesim.js"></script>
+<script src="tasarim/b001/bitki.js"></script>
+<script src="tasarim/b001/isaret.js"></script>
+<script src="gorunum.js"></script>
+<script src="arazi.js"></script>
+<script src="karakter.js"></script>
+<script src="fizik.js"></script>
+<script src="kamera.js"></script>
+<script src="ses.js"></script>
+<script src="anim/donus.js"></script>
+<script src="anim/hareket.js"></script>
+<script src="anim/ziplama.js"></script>
+<script src="anim/canlilik.js"></script>
+<script src="anim/yuzme.js"></script>
+<script src="anim/tirmanma.js"></script>
+<script src="anim/toplama.js"></script>
+<script src="anim/vurus.js"></script>
+<script src="anim/durus.js"></script>
+<script src="anim/ayak.js"></script>
+<script src="harita.js"></script>
+<script src="toplama.js"></script>
+<script src="oyun.js"></script>
+<script src="yapi.js"></script>
+<script src="arayuz.js"></script>
+<script src="ana.js"></script>

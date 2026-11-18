@@ -1,0 +1,184 @@
+{
+ "part": 3,
+ "title": "MR. HALE",
+ "next": {
+  "part": 4,
+  "title": "TWO BEEPS"
+ },
+ "sentences": [
+  {
+   "text": "A man in a white car offered me more money than this whole yard is worth.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "For a piece of paper.",
+   "nefes": 0.5,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "His name is Mr. Hale.",
+   "nefes": 0.2,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He builds half the city.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He wants Grandpa's list.",
+   "nefes": 0.3,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"Not the crane.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "Not the land.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "Hale"
+  },
+  {
+   "text": "Just the list.\"",
+   "nefes": 0.6,
+   "mark": "list",
+   "kim": "Hale"
+  },
+  {
+   "text": "I said I would think about it.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He counted the money anyway.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "I thought: in Demolition Master, gold buys upgrades.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Here it buys Daisy one used tire.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Job two was a small water tower.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "This time, a licensed crew, a fence, everyone far back.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "It came down clean.",
+   "nefes": 0.5,
+   "mark": "clean",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Same stamp in the concrete.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "H and K.",
+   "nefes": 0.6,
+   "mark": "stamp",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Mr. Hale saw it.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "He stopped in the middle of a sentence.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "Then he drove away.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "That evening, a second letter came.",
+   "nefes": 0.15,
+   "mark": "letter",
+   "kim": "anlatici"
+  },
+  {
+   "text": "Ironline again.",
+   "nefes": 0.15,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "One line.",
+   "nefes": 0.4,
+   "mark": null,
+   "kim": "anlatici"
+  },
+  {
+   "text": "\"The ant is not ready.\"",
+   "nefes": 0.7,
+   "mark": "ant",
+   "kim": "mektup"
+  },
+  {
+   "text": "Whoever is writing these knows what Grandpa called me.",
+   "nefes": 0,
+   "mark": "end",
+   "kim": "anlatici"
+  }
+ ],
+ "notlar": {
+  "sureTahmini": 57.4,
+  "kelime": 140,
+  "sureHesabi": "kayıttaki gerçek cümle süreleri (assets/voice/kelimeler.json) + 0,35 baş + 0,28 taban × aralar + nefesler + 4,3 bitiş",
+  "acilis": {
+   "kare0": "Beyaz araba avlu kapısında durur, camdan kalın bir para destesi uzanır; 1. cümle büyük yazıyla.",
+   "soru": "Bir kâğıt nasıl bütün avludan değerli olur?"
+  },
+  "oncekiBolumde": {
+   "metin": "Previously: Someone reported me. Signed: Ironline.",
+   "gorsel": "Ironline imzalı şikâyet mektubu",
+   "zaman": "0,0–2,5 sn, bölüm etiketinin altında; ek süre yok"
+  },
+  "isaretAni": {
+   "list": "t1",
+   "clean": "t1 (su kulesi oturur)",
+   "stamp": "t1",
+   "letter": "t0",
+   "ant": "t0",
+   "end": "t1 = voiceEnd"
+  },
+  "bitis": "'The ant is not ready.' mektubu masada; Kaan'ın saç tutamı mektubun üstüne gölge düşürür. Tek bip, kart.",
+  "altyazi": "Altyazı kayıttan (ASR) değil, bu dosyadaki metinden yazılır (ASR: Ant→aunt, Defne→daphne, Ironline→iron line)."
+ }
+}
