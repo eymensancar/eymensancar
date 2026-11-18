@@ -4,6 +4,8 @@ import json, os, html, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get('SG_OUT') or os.path.join(HERE, 'site')
 STORE = 'https://apps.apple.com/app/id6823286892'
+# her oyunun App Store sayfası (Sayı Yolu yayına girince buraya eklenir ve G'de live=True yapılır)
+STORES = {'yk': STORE, 'fd': 'https://apps.apple.com/app/id6827192752', 'ky': 'https://apps.apple.com/app/id6832325312'}
 YT = 'https://www.youtube.com/@demolitionmastergame'
 IG = 'https://www.instagram.com/demolitionmaster.game/'
 MAIL = 'support@sancargames.com'
@@ -14,6 +16,7 @@ AR = '<span class="ar" aria-hidden="true">→</span>'
 ARU = '<span class="ar" aria-hidden="true">↗</span>'
 
 P = {'home': ('index.html', 'en/index.html'), 'yk': ('yikim-ustasi.html', 'en/demolition-master.html'),
+     'fd': ('fenerli-dedektif/index.html', 'en/fenerli-dedektif/index.html'), 'ky': ('kedi-yuvasi.html', 'en/cat-haven.html'),
      'sy': ('sayi-yolu.html', 'en/number-path.html'), 'sup': ('destek.html', 'en/support.html'),
      'pyk': ('gizlilik-yikim-ustasi.html', 'en/privacy-demolition-master.html'),
      'psy': ('gizlilik-sayi-yolu.html', 'en/privacy-number-path.html'),
@@ -41,14 +44,14 @@ L = {
    about='An independent studio making puzzle and physics games for iPhone and iPad.', lang_h='Language', follow='Follow', help='Help', bygame='By game', bygame_p='Help and privacy pages for each game.', allpol='Support and privacy pages for all games'),
 }
 
-def badge(t, cls=''): return f'<a class="badge {cls}" href="{STORE}" target="_blank" rel="noopener">{APPLE}<span><small>{t["badge_s"]}</small><b>{t["badge_b"]}</b></span></a>'
+def badge(t, cls='', store=STORE): return f'<a class="badge {cls}" href="{store}" target="_blank" rel="noopener">{APPLE}<span><small>{t["badge_s"]}</small><b>{t["badge_b"]}</b></span></a>'
 
 
 IGS = 'https://www.instagram.com/sancargamesofficial/'
 def jsonld(key, lang, title, desc):
     org = {'@type': 'Organization', '@id': 'https://sancargames.com/#org', 'name': 'Sancar Games',
            'url': 'https://sancargames.com/', 'logo': 'https://sancargames.com/assets/img/favicon-512.png', 'image': 'https://sancargames.com/assets/img/og-team.jpg',
-           'email': 'support@sancargames.com', 'sameAs': [IGS, YT, IG, STORE]}
+           'email': 'support@sancargames.com', 'sameAs': [IGS, YT, IG] + list(STORES.values())}
     g = [org]
     if key == 'home':
         g.append({'@type': 'WebSite', 'name': 'Sancar Games', 'url': 'https://sancargames.com/', 'inLanguage': lang, 'publisher': {'@id': 'https://sancargames.com/#org'}})
@@ -57,6 +60,13 @@ def jsonld(key, lang, title, desc):
                   'alternateName': 'Demolition Master: Tower Blast' if lang == 'tr' else 'Yıkım Ustası',
                   'description': desc, 'url': url(key, lang), 'operatingSystem': 'iOS', 'applicationCategory': 'GameApplication',
                   'gamePlatform': 'iPhone', 'installUrl': STORE, 'sameAs': [STORE, YT, IG],
+                  'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'},
+                  'publisher': {'@id': 'https://sancargames.com/#org'}, 'inLanguage': lang})
+    if key in ('fd', 'ky'):
+        nm = {('fd', 'tr'): 'Fenerli Dedektif', ('fd', 'en'): 'Lantern Detective', ('ky', 'tr'): 'Kedi Yuvası', ('ky', 'en'): 'Cat Haven: Hide and Seek'}
+        g.append({'@type': ['MobileApplication', 'VideoGame'], 'name': nm[(key, lang)], 'alternateName': nm[(key, 'en' if lang == 'tr' else 'tr')],
+                  'description': desc, 'url': url(key, lang), 'operatingSystem': 'iOS', 'applicationCategory': 'GameApplication',
+                  'gamePlatform': ['iPhone', 'iPad'], 'installUrl': STORES[key], 'sameAs': [STORES[key]],
                   'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'},
                   'publisher': {'@id': 'https://sancargames.com/#org'}, 'inLanguage': lang})
     if key == 'sy':
@@ -122,7 +132,7 @@ def page(key, lang, title, desc, body, cur=None, ogimg='assets/img/og-team.jpg')
 <footer class="foot">
   <div class="wrap cols">
     <div class="about"><a class="logo" href="{a('home')}" aria-label="Sancar Games"><img class="wm" src="{A('assets/img/logo-w.svg')}" alt="Sancar Games" width="140" height="80"></a><p>{t['about']}</p></div>
-    <div class="col"><h4>{t['games']}</h4><ul><li><a href="{a('yk')}">{t['yk']}</a></li><li><a href="{a('sy')}">{t['sy']}</a></li><li><a href="{gl}">{t['fd']}</a></li></ul></div>
+    <div class="col"><h4>{t['games']}</h4><ul><li><a href="{a('yk')}">{t['yk']}</a></li><li><a href="{a('fd')}">{t['fd']}</a></li><li><a href="{a('ky')}">{t['ky']}</a></li><li><a href="{a('sy')}">{t['sy']}</a></li></ul></div>
     <div class="col"><h4>{t['support']}</h4><ul><li><a href="{a('sup')}">{t['support']}</a></li><li><a href="{a('pyk')}">{t['privacy']}: {t['yk']}</a></li><li><a href="{a('psy')}">{t['privacy']}: {t['sy']}</a></li><li><a href="{a('pfd')}">{t['privacy']}: {t['fd']}</a></li><li><a href="{a('pky')}">{t['privacy']}: {t['ky']}</a></li></ul></div>
     <div class="col"><h4>{t['contact']}</h4><ul><li><a href="mailto:{MAIL}">{MAIL}</a></li><li><a href="mailto:{INFO}">{INFO}</a></li><li><a href="{rel(me, other)}" hreflang="{'en' if lang == 'tr' else 'tr'}">{t['other_label']}</a></li></ul></div>
   </div>
@@ -165,6 +175,15 @@ def keyart_fd(me, alt):
             f'<img class="kb" src="{I(me,"fd-key-dark.jpg")}" alt="" width="1672" height="941"{lz}>'
             f'<img class="kl" src="{I(me,"fd-key-lit.jpg")}" alt="" width="1672" height="941"{lz}>'
             f'<span class="sen" aria-hidden="true"></span></figure>')
+def keyart_ky(me, alt, eager=False):
+    # Kedi Yuvası: mahalle parkı (oyunun kendi görüntüsü), geniş boya maskesiyle
+    lz = '' if eager else ' loading="lazy" decoding="async"'
+    return (f'<figure class="keyart ky" role="img" aria-label="{html.escape(alt)}">'
+            f'<img class="kb" src="{I(me,"ky-key.jpg")}" alt="" width="2000" height="921"{lz}>'
+            f'<span class="sen" aria-hidden="true"></span></figure>')
+def shot(me, n, alt=''):
+    # yatay oyun görüntüsü (Kedi Yuvası)
+    return f'<div class="shot"><img src="{I(me, n)}" alt="{html.escape(alt)}" width="1600" height="737" loading="lazy" decoding="async"></div>'
 def vphone(me, alt, cls=''):
     v = rel(me, 'assets/media/yk-loop.mp4'); po = I(me, 'yk-screen.jpg')
     return f'<div class="phone {cls}"><video data-auto src="{v}" poster="{po}" autoplay muted loop playsinline preload="metadata" aria-label="{html.escape(alt)}"></video></div>'
@@ -176,7 +195,8 @@ H = {
    feat_lead='Kulenin taşıyıcı noktasını bul, patlayıcıyı doğru yere koy ve tek hamlede indir. Her bina gerçek fizikle, parça parça çöker.',
    games_h='Oyunlar', games_p='Her biri birkaç dakikada oynanır. Bırakması zor olan kısım.',
    sy_p='Her kareden bir kez geçen tek bir yol çiz; kırmızı sayılara tam o adımda bas. Her gün yeni bir bulmaca.', sy_k='Yol çizme bulmacası',
-   fd_p='Karanlık odalarda fenerini gezdir, gizli ipuçlarını bul, şifreli sandığı aç ve kapıdan çık.', fd_k='Işıkla çözülen kaçış odaları',
+   fd_p='Karanlık odalarda fenerini gezdir, saklı ipuçlarını birleştir ve gizemi çöz. Çocuklar ve aileler için 20 dava, 30 oda.', fd_k='Işıkla çözülen gizemler',
+   ky_p='Parkta, pazarda, limanda saklanan sokak kedilerinin kuyruğunu bul, sessizce yaklaş ve hepsini yuvasına kavuştur.',
    m_k='Stüdyo', m_alt='Yıkım Ustası, Sayı Yolu filizi ve Fenerli Dedektif tilkisi birlikte poz veriyor', m_q='Her bölümü <mark>elle</mark> tasarlıyor, her oyunu oynayarak dengeliyoruz.',
    m_p='Sancar Games küçük bir ekip. Fikirden yayına kadar tasarımı, kodu, sesi ve çeviriyi kendimiz yapıyoruz. Hedefimiz basit: açtığın anda anlaşılan, kapattıktan sonra aklında kalan oyunlar.',
    c_h='Bize yazın', c_p='Genellikle iki iş günü içinde dönüyoruz.', c_sup='Oyunlarla ilgili destek', c_info='İş birliği ve basın',
@@ -186,7 +206,8 @@ H = {
    feat_lead="Find the tower's load-bearing point, place the charge in the right spot and bring it down in one move. Every building collapses piece by piece with real physics.",
    games_h='Games', games_p='Each one plays in a few minutes. Putting it down is the hard part.',
    sy_p='Draw one path that visits every square once and hit each red number on exactly that step. A new puzzle every day.', sy_k='Path-drawing puzzle',
-   fd_p='Sweep your lantern through dark rooms, find hidden clues, crack the coded chest and escape.', fd_k='Escape rooms solved with light',
+   fd_p='Sweep your lantern through dark rooms, put the hidden clues together and solve the mystery. 20 cases and 30 rooms for kids and families.', fd_k='Mysteries solved with light',
+   ky_p='Spot the tails of street cats hiding in the park, at the market and by the harbor, sneak up and bring every one of them home.',
    m_k='Studio', m_alt='The Demolition Master, the Number Path sprout and the Lantern Detective fox posing together', m_q='We design every level <mark>by hand</mark> and balance every game by playing it.',
    m_p='Sancar Games is a small team. From idea to release we do the design, code, sound and translation ourselves. Our goal is simple: games you understand the moment you open them and remember after you close them.',
    c_h='Write to us', c_p='We usually reply within two business days.', c_sup='Help with our games', c_info='Partnerships and press',
@@ -230,10 +251,14 @@ for lang in ('tr', 'en'):
         {keyart_sy(me, t['sy'])}
         <div class="cap"><h3 class="d d-s">{t['sy']}</h3><span class="pill soon">{t['soon']}</span><p>{h['sy_p']}</p><span class="tl">{t['more']} {AR}</span></div>
       </a>
-      <div class="tile t-fd rv" style="--i:1">
+      <a class="tile t-fd rv" style="--i:1" href="{a('fd')}">
         {keyart_fd(me, t['fd'])}
-        <div class="cap"><h3 class="d d-s">{t['fd']}</h3><span class="pill soon">{t['soon']}</span><p>{h['fd_p']}</p></div>
-      </div>
+        <div class="cap"><h3 class="d d-s">{t['fd']}</h3><span class="pill live">{t['live']}</span><p>{h['fd_p']}</p><span class="tl">{t['more']} {AR}</span></div>
+      </a>
+      <a class="tile t-ky rv" href="{a('ky')}">
+        {keyart_ky(me, t['ky'])}
+        <div class="cap"><h3 class="d d-s">{t['ky']}</h3><span class="pill live">{t['live']}</span><p>{h['ky_p']}</p><span class="tl">{t['more']} {AR}</span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -284,17 +309,45 @@ G = {
          ('A new puzzle every day','Solve the daily puzzle and keep your streak going.'),
          ('New twists','As you progress, new mechanics such as rocks, walls, arrows and portals join the board.')],
    rows_h='How to play', social=False),
+ ('fd','tr'): dict(title='Fenerli Dedektif · Sancar Games', name='Fenerli Dedektif', icon='icon-fd.jpg', live=True,
+   lead='Karanlık odalarda parmağınla feneri gezdir, saklı eşyaları bul, ipuçlarını defterine yaz ve gizemi çöz. 7–11 yaş çocuklar ve aileler için mantık yürütmeyi öğreten bir bulmaca oyunu.',
+   meta='Ücretsiz · iPhone ve iPad · 20 dil', band=None, gal=['lantern-1.jpg', 'lantern-2.jpg', 'lantern-3.jpg', 'lantern-4.jpg', 'lantern-5.jpg'],
+   rows=[('20 gizem dosyası','Kayıp kedi Pamuk nerede? Pastayı kim yedi? Pati izlerini mor ışıkla takip et, parmak izlerini eşleştir, limon mürekkebiyle yazılmış mektubu oku, mors alfabesini çöz.'),
+         ('30 macera odası','Anahtarlar, aynalar, renkli kristaller, şifreli sandıklar ve gizli geçitler. Harita seni yerin altındaki gizemli bir sığınağa indirir.'),
+         ('Okumayan da oynar','Hikâyeler, ipuçları ve sorular doğal bir sesle okunur. Hesap gerekmez, internetsiz oynanır; dış bağlantılar ebeveyn kapısının arkasındadır.')],
+   rows_h='Neler var', social=False),
+ ('fd','en'): dict(title='Lantern Detective · Sancar Games', name='Lantern Detective', icon='icon-fd.jpg', live=True,
+   lead='Move your lantern through dark rooms, find hidden objects, write the clues in your notebook and solve the mystery. A puzzle game for children aged 7 to 11 and their families that teaches logical thinking.',
+   meta='Free · iPhone and iPad · 20 languages', band=None, gal=['lantern-1.jpg', 'lantern-2.jpg', 'lantern-3.jpg', 'lantern-4.jpg', 'lantern-5.jpg'],
+   rows=[('20 mystery files','Where is Pamuk the missing cat? Who ate the cake? Follow paw prints with a purple light, match fingerprints, read a letter written in lemon ink and decode Morse code.'),
+         ('30 adventure rooms','Keys, mirrors, colored crystals, code chests and secret passages. The map leads you down into a mysterious underground shelter.'),
+         ('Pre-readers can play','Stories, clues and questions are read aloud in a natural voice. No account, plays offline, and outside links sit behind a parental gate.')],
+   rows_h="What's inside", social=False),
+ ('ky','tr'): dict(title='Kedi Yuvası · Sancar Games', name='Kedi Yuvası', icon='icon-ky.jpg', live=True,
+   lead='Sokak kedileri parkta, pazarda, limanda ve çatılarda saklanıyor. Kuyruklarını bul, sessizce yaklaş, yakala ve hepsini sıcacık yuvalarına kavuştur.',
+   meta='Ücretsiz · iPhone ve iPad · 20 dil', band=None, gal=[], shots=['ky-1.jpg', 'ky-2.jpg', 'ky-3.jpg', 'ky-4.jpg'],
+   rows=[('Kuyruğu gördün mü?','Kediler çalıların, tezgâhların, kayıkların ve bacaların arkasına saklanır; çoğu zaman yalnızca kuyruk ucu görünür. Dikkatli bak, sessizce yaklaş.'),
+         ('30 bölüm, 3 zorluk','Mahalle parkından karlı kışa, tren istasyonundan lunaparka, gece treninden sisli limana: kolay, zor ve usta parkurlar.'),
+         ('20 kedi, 20 huy','Uykucu Sarman, sinsice yaklaşan Bal, koşarken görünmez olan Duman, zikzak kaçan Zencefil. Yıldız topla, yeni kedileri aç.')],
+   rows_h='Nasıl oynanır', social=False),
+ ('ky','en'): dict(title='Cat Haven: Hide and Seek · Sancar Games', name='Cat Haven', icon='icon-ky.jpg', live=True,
+   lead='Street cats are hiding in the park, at the market, by the harbor and on the rooftops. Spot their tails, sneak up, catch them and bring every one of them home.',
+   meta='Free · iPhone and iPad · 20 languages', band=None, gal=[], shots=['ky-1.jpg', 'ky-2.jpg', 'ky-3.jpg', 'ky-4.jpg'],
+   rows=[('See that tail?','Cats hide behind bushes, market stalls, boats and chimneys, and often only the tip of a tail peeks out. Look closely and move quietly.'),
+         ('30 levels, 3 difficulties','From the neighborhood park to a snowy winter, from the train station to the fair, from a night train to a foggy harbor: easy, hard and master courses.'),
+         ('20 cats, 20 personalities','Sleepy Marmalade, Honey who creeps closer, Smokey who turns almost invisible, zigzagging Ginger. Collect stars to unlock new cats.')],
+   rows_h='How to play', social=False),
 }
 for (k, lang), g in G.items():
     t = L[lang]; me = P[k][0 if lang == 'tr' else 1]
     a = lambda kk: rel(me, P[kk][0 if lang == 'tr' else 1])
-    pol = 'pyk' if k == 'yk' else 'psy'
-    vis = keyart(me, g['name'], eager=True) if k == 'yk' else keyart_sy(me, g['name'], eager=True)
-    acts = (badge(t) + f'<span class="meta">{g["meta"]}</span>') if g['live'] else f'<span class="meta">{g["meta"]}</span>'
-    h1 = 'Demolition Master: Tower Blast' if (k, lang) == ('yk', 'en') else g['name']
+    pol = 'p' + k
+    vis = {'yk': keyart, 'sy': keyart_sy, 'ky': keyart_ky}[k](me, g['name'], eager=True) if k != 'fd' else keyart_fd(me, g['name'])
+    acts = (badge(t, store=STORES[k]) + f'<span class="meta">{g["meta"]}</span>') if g['live'] else f'<span class="meta">{g["meta"]}</span>'
+    h1 = {('yk', 'en'): 'Demolition Master: Tower Blast', ('ky', 'en'): 'Cat Haven: Hide and Seek'}.get((k, lang), g['name'])
     rows = ''.join(f'<div class="row rv" style="--i:{i}"><h3 class="d d-s">{x}</h3><p>{y}</p></div>' for i, (x, y) in enumerate(g['rows']))
     band = f'<div class="band mask"><img data-par src="{I(me, g["band"])}" alt="" width="1080" height="608" loading="lazy"></div>' if g['band'] else ''
-    gal = ''.join(phone(me, n, cls='settle') for n in g['gal'])
+    gal = ''.join(phone(me, n, cls='settle') for n in g['gal']) + ''.join(shot(me, n, g['name']) for n in g.get('shots', []))
     social = ''
     if g['social']:
         social = f'''<section class="sec" style="padding-top:0" aria-label="{t['follow']}"><div class="wrap"><div class="biglinks rv">
@@ -318,11 +371,11 @@ for (k, lang), g in G.items():
   <div class="sec-head"><h2 class="d d-m rv">{g['rows_h']}</h2></div>
   <div class="rows">{rows}</div>
 </div></section>
-{'' if (g['band'] or not g['gal']) else '<section class="sec" style="padding-top:0"><div class="wrap"><div class="gallery">'+gal+'</div></div></section>'}
+{'' if (g['band'] or not gal) else '<section class="sec" style="padding-top:0"><div class="wrap"><div class="gallery">'+gal+'</div></div></section>'}
 {social}
 {help_}
 '''
-    page(k, lang, g['title'], g['lead'], body, cur='games', ogimg='assets/img/' + (g['band'] or (g['gal'][0] if g['gal'] else 'yk-key-bg.jpg')))
+    page(k, lang, g['title'], g['lead'], body, cur='games', ogimg='assets/img/' + ({'fd': 'og-fd.jpg', 'ky': 'og-ky.jpg'}.get(k) or g['band'] or (g['gal'][0] if g['gal'] else 'yk-key-bg.jpg')))
 
 # ---------------- destek ve gizlilik: içerik eski build.py'den ----------------
 src = open(os.path.join(HERE, 'content.py'), encoding='utf-8').read()
