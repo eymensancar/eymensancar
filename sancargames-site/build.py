@@ -217,6 +217,22 @@ for lang in ('tr', 'en'):
     t = L[lang]; h = H[lang]; me = P['home'][0 if lang == 'tr' else 1]
     a = lambda k: rel(me, P[k][0 if lang == 'tr' else 1])
     ykname = t['yk'] if lang == 'tr' else 'Demolition Master: Tower Blast'
+    # yayındaki her oyun Yıkım Ustası'yla aynı kalıpta: simge, ad, kısa yazı, App Store düğmesi ve "Oyunu incele"
+    FE = [('yk', ykname, h['feat_lead'], keyart(me, h['yk_alt'])),
+          ('fd', t['fd'], h['fd_p'], keyart_fd(me, t['fd'])),
+          ('ky', t['ky'] if lang == 'tr' else 'Cat Haven: Hide and Seek', h['ky_p'], keyart_ky(me, t['ky']))]
+    feats = ''.join(f'''<section class="feature f-{k}" aria-labelledby="f-{k}">
+  <div class="wrap body">
+    <div class="txt">
+      <img class="icon rv" src="{I(me, 'icon-' + k + '.jpg')}" alt="" width="88" height="88" loading="lazy">
+      <h2 class="d d-l rv" id="f-{k}" style="--i:2;margin-top:18px">{nm}</h2>
+      <p class="lead rv" style="--i:3">{ld}</p>
+      <div class="acts rv" style="--i:4">{badge(t, store=STORES[k])}<a class="tl" href="{a(k)}">{t['more']} {AR}</a></div>
+    </div>
+    <div class="shots">{art}</div>
+  </div>
+</section>
+''' for k, nm, ld, art in FE)
     body = f'''<section class="hero" aria-label="Sancar Games">
   <div class="wrap grid">
     <figure class="hero-team intro" style="--i:1"><img src="{I(me,'team-w.webp')}" alt="{h['m_alt']}" width="902" height="892" fetchpriority="high" decoding="async"></figure>
@@ -231,33 +247,13 @@ for lang in ('tr', 'en'):
   </div>
 </section>
 
-<section class="feature" aria-labelledby="f-yk">
-  <div class="wrap body">
-    <div class="txt">
-      <img class="icon rv" src="{I(me,'icon-yk.jpg')}" alt="" width="88" height="88" loading="lazy">
-      <h2 class="d d-l rv" id="f-yk" style="--i:2;margin-top:18px">{ykname}</h2>
-      <p class="lead rv" style="--i:3">{h['feat_lead']}</p>
-      <div class="acts rv" style="--i:4">{badge(t)}<a class="tl" href="{a('yk')}">{t['more']} {AR}</a></div>
-    </div>
-    <div class="shots">{keyart(me, h['yk_alt'])}</div>
-    </div>
-  </div>
-</section>
-
+{feats}
 <section class="sec games-rest" aria-label="{h['games_h']}">
   <div class="wrap">
     <div class="mag">
       <a class="tile t-sy rv" href="{a('sy')}">
         {keyart_sy(me, t['sy'])}
         <div class="cap"><h3 class="d d-s">{t['sy']}</h3><span class="pill soon">{t['soon']}</span><p>{h['sy_p']}</p><span class="tl">{t['more']} {AR}</span></div>
-      </a>
-      <a class="tile t-fd rv" style="--i:1" href="{a('fd')}">
-        {keyart_fd(me, t['fd'])}
-        <div class="cap"><h3 class="d d-s">{t['fd']}</h3><span class="pill live">{t['live']}</span><p>{h['fd_p']}</p><span class="tl">{t['more']} {AR}</span></div>
-      </a>
-      <a class="tile t-ky rv" href="{a('ky')}">
-        {keyart_ky(me, t['ky'])}
-        <div class="cap"><h3 class="d d-s">{t['ky']}</h3><span class="pill live">{t['live']}</span><p>{h['ky_p']}</p><span class="tl">{t['more']} {AR}</span></div>
       </a>
     </div>
   </div>
