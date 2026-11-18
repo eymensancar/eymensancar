@@ -221,7 +221,7 @@ for lang in ('tr', 'en'):
     FE = [('yk', ykname, h['feat_lead'], keyart(me, h['yk_alt'])),
           ('fd', t['fd'], h['fd_p'], keyart_fd(me, t['fd'])),
           ('ky', t['ky'] if lang == 'tr' else 'Cat Haven: Hide and Seek', h['ky_p'], keyart_ky(me, t['ky']))]
-    feats = ''.join(f'''<section class="feature f-{k}" aria-labelledby="f-{k}">
+    feats = ''.join(f'''<section class="feature f-{k}{' light' if k == 'fd' else ''}" aria-labelledby="f-{k}">
   <div class="wrap body">
     <div class="txt">
       <img class="icon rv" src="{I(me, 'icon-' + k + '.jpg')}" alt="" width="88" height="88" loading="lazy">

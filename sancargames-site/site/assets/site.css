@@ -399,4 +399,8 @@ html[lang=tr] .d{line-height:1.06}
 @media (max-width:820px){.keyart.ky{-webkit-mask-image:url(img/paint-mask-tb.png);mask-image:url(img/paint-mask-tb.png)}.tile.t-ky{grid-column:1 / span 12}}
 /* 18.11: yayındaki oyunlar Yıkım Ustası kalıbında (koyu tanıtım bölümü); kartlarda yalnız Sayı Yolu (yakında) kalır, ortada */
 @media (min-width:821px){.games-rest .tile.t-sy{grid-column:4 / span 6}.feature.f-fd .shots .keyart,.feature.f-ky .shots .keyart{max-width:680px}}
-.feature + .feature .body{padding-top:clamp(24px,3vw,48px)}
+/* bir koyu bir açık: Yıkım Ustası koyu, Fenerli Dedektif açık, Kedi Yuvası koyu */
+.feature.light{background:var(--paper);color:var(--ink)}
+.feature.light .lead{color:var(--mute)}
+.feature.light .badge{border-color:#000}
+.feature.light .icon{box-shadow:0 12px 30px -12px rgba(0,0,0,.35)}
