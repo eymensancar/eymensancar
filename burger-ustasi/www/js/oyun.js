@@ -257,7 +257,7 @@ function yukseklik(tb){const y=tb.querySelector('.bu-yigin');return y?y.getBound
 function harca(n,el){if(!n)return;S.kasa-=n;S.gider+=n;hud({sure:250});const r=rel(el);yazi(r.cx+5*cq(),r.y+r.h*.35,`−${n}${PARA()}`,'mini')}
 
 /* ================= ızgara ================= */
-function buildGrill(){const n=2+(SAVE.up.slot?1:0);grillEl.querySelectorAll('.gs').forEach(e=>e.remove());S.izgara=[];
+function buildGrill(){const n=2+(SAVE.up.slot?1:0);grillEl.querySelectorAll('.gs').forEach(e=>e.remove());S.izgara=[];grillEl.classList.toggle('g3',n>2);
   for(let i=0;i<n;i++){const b=document.createElement('button');b.className='gs';b.setAttribute('aria-label',t('grill')+' '+(i+1));b.addEventListener('click',()=>izgara(i));grillEl.appendChild(b);const g={el:b,st:0,t:0};S.izgara.push(g);bosGoz(g)}
   $('grillT').textContent=t('grill')}
 function bosGoz(g){g.st=0;g.t=0;g.el.className='gs';g.el.style.removeProperty('--pis');g.el.innerHTML=`<span class="sil"><img src="${RAW}" alt=""></span>`}
@@ -283,7 +283,7 @@ function spawn(){const bos=[0,1,2].filter(i=>!S.cust[i]&&S.slotT[i]<=S.now);cons
   const i=bos.includes(1)&&n===0?1:bos[Math.floor(Math.random()*bos.length)];
   const sip=S.rehber?['bunBot','patty','cheese','bunTop']:VERI.siparis(S.gun,Math.random),who=pickWho();
   const el=document.createElement('div');el.className='cust';
-  el.innerHTML=`<div class="bub"><div class="sip">${BURGER.siparis(sip,{gen:'28.6cqw'})}</div><div class="sabir"><b></b></div></div><div class="yuz" role="img" aria-label="${who?who.ad:''}"></div>`;
+  el.innerHTML=`<div class="bub"><div class="sip">${BURGER.siparis(sip,{gen:'27.6cqw'})}</div><div class="sabir"><b></b></div></div><div class="yuz" role="img" aria-label="${who?who.ad:''}"></div>`;
   queue.children[i].appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
   const sb=typeof S.cfg.sabirSiparis==='function'?S.cfg.sabirSiparis(sip):(VERI.sabirSiparis?VERI.sabirSiparis(sip,S.gun,SAVE.up):S.cfg.sabir);
   const max=S.rehber?Math.max(240,sb*6):sb;
@@ -295,7 +295,7 @@ function cikar(c,tur,gec=0){if(S.cust[c.i]!==c)return false;S.cust[c.i]=null;c.g
   c.el.classList.remove('hedef');
   zaman(()=>{c.el.classList.add('cik',tur==='mutlu'?'mutlu-git':tur==='kizgin'?'kizgin-git':'normal-git');
     setTimeout(()=>{c.el.classList.add('out');setTimeout(()=>c.el.remove(),500)},anim)},gec);
-  S.bitti++;if(c.rehberli)S.rehber=false;hud();return true}
+  S.bitti++;if(c.rehberli)S.rehber=false;hud({sessiz:true});return true}
 function custAdim(dt){S.cust.forEach(c=>{if(!c)return;c.p-=dt;const f=Math.max(0,c.p/c.max);
   c.fill.style.width=(f*100).toFixed(2)+'%';c.fill.style.background=sabirRenk(f);
   const r=VERI.ruh(f);if(r!==c.ruh){c.ruh=r;c.el.classList.toggle('kizgin',r==='kizgin')}
@@ -410,8 +410,10 @@ function rehber(zorla){if(!S.on||!S.rehber||S.bitis){if(rehberHedef)rehberGizle(
   if(el.classList.contains('gs')){   // ızgara: gözün sağında, ok sola bakar
     x=r.x+r.w+2.4*c1;y=r.cy-h/2;tp.classList.add('yan');if(x+w>W-2*c1){x=sinir(r.cx-w/2);y=r.y-h-2.4*c1;tp.classList.remove('yan')}}
   else if(el.classList.contains('tabak')){   // tabak: tezgâhın üst şeridinin hemen altında, ok tabağa iner
-    x=sinir(r.cx-w/2);y=ct.y+3.6*c1;const yg=rel(el.querySelector('.tab'));if(y+h+2*c1>yg.y)y=Math.max(ct.y-h-1*c1,yg.y-h-2.4*c1)}
-  else{x=sinir(r.cx-w/2);y=r.y-h-2.4*c1}   // tepsi kutusu: üstünde
+    const gr=rel(grillEl);x=Math.min(W-w-2*c1,Math.max(gr.x+gr.w+1.2*c1,r.cx-w/2));y=ct.y+3.6*c1;const yg=rel(el.querySelector('.tab'));if(y+h+2*c1>yg.y)y=Math.max(ct.y-h-1*c1,yg.y-h-2.4*c1)}
+  else{x=r.x+r.w+2.2*c1;y=r.cy-h/2;tp.classList.add('yan');   // tepsi kutusu: yanında (tabak etiketlerinin üstüne binmez)
+    if(x+w>W-2*c1){x=r.x-w-2.2*c1;tp.classList.add('sag')}
+    if(x<2*c1){x=sinir(r.cx-w/2);y=r.y-h-2.4*c1;tp.classList.remove('yan','sag')}}
   tp.style.left=x+'px';tp.style.top=y+'px';if(!tp.classList.contains('yan'))tp.style.setProperty('--ok',Math.max(12,Math.min(w-12,r.cx-x))+'px');
   if(surukleEl){const hd=document.createElement('div');hd.className='el';hd.innerHTML=ic('el');FX.appendChild(hd);
     const to=surukleEl==='cop'?rel(COP):rel(surukleEl.yuzEl),s=6*c1,fr=rel(el.querySelector('.tab'));
@@ -429,7 +431,7 @@ function startDay(d,hemen){yeniOturum();S.gun=d;S.cfg=VERI.gun(d,SAVE.up);S.kasa
   const yeni=VERI.MALZEME.find(m=>m.gun===d&&d>1);
   const go=()=>{$('ov').hidden=true;S.on=true;S.paused=false;ses('gun_basla');donguBasla();rehber()};
   if(hemen){go();return}
-  const w=pickWho(),mf=w&&window.Musteri?`<span class="mf">${Musteri.draw(w.m,'happy')}</span>`:ic('gulen');
+  const w=pickWho(),mf=w&&window.Musteri?`<i class="mf">${Musteri.draw(w.m,'happy')}</i>`:ic('gulen');
   card(`<h2>${t('dayT',d)}</h2><div class="info"><span>${mf}${t('cust',S.cfg.musteri)}</span><span>${PARA()}${fmt(S.kasa)}</span></div><p>${t('dayP')}</p>`+
     (yeni&&ANAHTAR().includes(yeni.k)?`<div class="newing"><span class="im">${BURGER.simge(yeni.k)}</span><span>${t('newT')}<br>${t('ing')[yeni.k]}</span></div>`:'')+
     `<div class="btns"><button class="btn" id="go">${ic('oynat')}${t('start')}</button></div>`);
@@ -499,13 +501,15 @@ function adim(dt){S.now+=dt;if(S.bitis){izgaraAdim(dt);return}const n=S.cust.fil
 const UPI={cook:'ates',pat:'kumsaati',tip:'kese',slot:'izgara'};
 function heroFaces(){if(!WHO.length||!window.Musteri)return;const a=WHO[Math.floor(Math.random()*WHO.length)];let b;do{b=WHO[Math.floor(Math.random()*WHO.length)]}while(b===a&&WHO.length>1);
   $('heroA1').innerHTML=Musteri.draw(a.m,'happy');$('heroA2').innerHTML=Musteri.draw(b.m,'love')}
+// ana menü burgeri: kahraman alanına sığacak boyda (kısa ekranda logoya binmesin)
+function heroCiz(){const c=cq()||3.9,h=$('heroB').closest('.hero').clientHeight||40*c;const ym=Math.max(14*c,Math.min(34*c,h-15*c));
+  $('heroB').innerHTML=BURGER.yigin(['bunBot','patty','cheese','lettuce','tomato','bunTop'],{gen:Math.round(Math.min(40*c,ym*1.3)),yukMax:Math.round(ym),yeni:false})}
 function openHome(){yeniOturum();S.on=false;S.paused=false;S.bitis=false;rehberGizle();FX.innerHTML='';heroFaces();$('ov').hidden=true;$('home').hidden=false;document.documentElement.lang=SAVE.lang;
   $('playBtn').innerHTML=ic('oynat')+(SAVE.day>1?t('cont',SAVE.day):t('play'));$('logo2').textContent=t('logo2');
   $('langBtn').innerHTML=ic('dil')+`<span class="${SAVE.lang==='tr'?'on':''}">TR</span><span class="${SAVE.lang==='en'?'on':''}">EN</span>`;$('langBtn').setAttribute('aria-label',t('lang'));$('credit').textContent=t('credit');
   $('hKasa').textContent=fmt(SAVE.coins);$('hKasaI').innerHTML=PARA();
   $('hEfekt').innerHTML=ic(SAVE.ayar.efekt?'ses_acik':'ses_kapali');$('hEfekt').classList.toggle('kapali',!SAVE.ayar.efekt);$('hEfekt').setAttribute('aria-label',t('fx'));
   $('hMuzik').innerHTML=ic('muzik');$('hMuzik').classList.toggle('kapali',!SAVE.ayar.muzik);$('hMuzik').setAttribute('aria-label',t('music'));
-  const c=cq()||3.9;$('heroB').innerHTML=BURGER.yigin(['bunBot','patty','cheese','lettuce','tomato','bunTop'],{gen:Math.round(40*c),yukMax:Math.round(34*c),yeni:false});
   const G=VERI.GELISTIR;
   $('ups').innerHTML=['cook','pat','tip','slot'].map(k=>{const u=G[k],l=SAVE.up[k]|0,mx=l>=u.max,c=u.cost(l),kilit=k==='slot'&&SAVE.day<4;
     return `<button class="up ${kilit?'kilit':mx?'max':SAVE.coins<c?'no':''}" data-u="${k}" aria-label="${t('up')[k][0]}"><span class="e">${ic(UPI[k])}</span><b>${t('up')[k][0]}</b><small>${t('up')[k][1]}</small>`+
@@ -513,7 +517,7 @@ function openHome(){yeniOturum();S.on=false;S.paused=false;S.bitis=false;rehberG
       `<span class="c">${kilit?ic('kilit')+t('lockDay',4):mx?t('max'):PARA()+fmt(c)}</span></button>`}).join('');
   $('ups').querySelectorAll('.up').forEach(b=>b.onclick=()=>{const k=b.dataset.u,u=G[k],l=SAVE.up[k]|0,c=u.cost(l);
     if(b.classList.contains('kilit')||l>=u.max){ses('uyari');return}if(SAVE.coins<c){ses('uyari');tit();return}
-    SAVE.coins-=c;SAVE.up[k]=l+1;save();ses('satin');tit('orta');openHome();const nb=$('ups').querySelector(`[data-u="${k}"]`);if(nb)nb.classList.add('aldi')})}
+    SAVE.coins-=c;SAVE.up[k]=l+1;save();ses('satin');tit('orta');openHome();const nb=$('ups').querySelector(`[data-u="${k}"]`);if(nb)nb.classList.add('aldi')});heroCiz()}
 $('playBtn').onclick=()=>{ses('tik');startDay(SAVE.day)};
 $('langBtn').onclick=()=>{SAVE.lang=SAVE.lang==='tr'?'en':'tr';save();ses('tik');openHome()};
 $('hEfekt').onclick=()=>{SAVE.ayar.efekt=!SAVE.ayar.efekt;sesAyar();ses('tik');openHome()};
@@ -522,14 +526,14 @@ $('hMuzik').onclick=()=>{SAVE.ayar.muzik=!SAVE.ayar.muzik;sesAyar();ses('tik');o
 /* ================= ekran uyumu ================= */
 // müşteri yüzü sokakta kalan yüksekliğe göre (iki sıralı baloncuk için pay bırakılır); burger tezgâhın ~%70'i
 const OLC={gen:'26cqw',yuk:'31cqw'};
-const BUB_PAY=34;   // en yüksek baloncuk (iki sıra simge + sabır + kuyruk), cqw
+const BUB_PAY=31;   // en yüksek baloncuk (iki sıra simge + sabır + kuyruk), cqw
 function fit(){const c=cq(),H=APP.clientHeight;if(!c)return;
   APP.style.setProperty('--kh',Math.min(23,Math.max(15.5,16+(H/c-180)*.25)).toFixed(2)+'cqw');
-  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(18*c,Math.min(36*c,(h-3*c-BUB_PAY*c)/1.2));APP.style.setProperty('--yz',yz+'px')}
+  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(20*c,Math.min(36*c,(h-3*c-BUB_PAY*c+3*c)/1.2));APP.style.setProperty('--yz',yz+'px')}
   const ct=$('counter').clientHeight;if(ct){const W=APP.clientWidth,gen=Math.min(28*c,(W-37*c)/2-3*c);OLC.gen=Math.round(gen)+'px';OLC.yuk=Math.round(Math.max(26*c,ct-14.5*c))+'px';
     TB.forEach(x=>x.querySelector('.yig').style.width=OLC.gen)}
   if(S.tabak)[0,1].forEach(i=>cizTabak(i,false))}
-addEventListener('resize',()=>{fit();if(S.on)rehber(true)});
+addEventListener('resize',()=>{fit();if(!$('home').hidden)heroCiz();if(S.on)rehber(true)});
 TB.forEach((_,i)=>surukleBagla(i));
 sokakCiz();
 
