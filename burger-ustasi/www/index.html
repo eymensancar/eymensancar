@@ -32,7 +32,23 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .cust{position:relative;display:flex;flex-direction:column;align-items:center;transform:translateY(120%);opacity:0;transition:transform .45s cubic-bezier(.2,1.2,.4,1),opacity .25s}
 .cust.in{transform:none;opacity:1}
 .cust.out{transform:translateY(120%);opacity:0;transition:transform .4s ease-in,opacity .4s}
-.cust .who{width:25cqw;height:25cqw;object-fit:contain;object-position:bottom;animation:bob 1.6s ease-in-out infinite;transform-origin:50% 100%;filter:drop-shadow(0 1cqw .6cqw rgba(0,0,0,.25))}
+.cust .who{width:25cqw;height:25cqw;display:flex;align-items:flex-end;justify-content:center;transform-origin:50% 100%;filter:drop-shadow(0 1cqw .6cqw rgba(0,0,0,.25))}
+.who svg,.hero .f svg{width:100%;height:100%;display:block}
+/* müşteri yüzleri (www/musteri.js): duygu animasyonları */
+@keyframes mu-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes mu-tap{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+@keyframes mu-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+@keyframes mu-sink{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@keyframes mu-rise{0%{transform:translateY(4px);opacity:0}40%{opacity:1}100%{transform:translateY(-12px);opacity:0}}
+@keyframes mu-drip{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
+@keyframes mu-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@keyframes mu-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.mu{transform-box:view-box;transform-origin:60px 140px}
+.m-happy{animation:mu-hop 1s ease-in-out infinite}.m-wait{animation:mu-sink 2.6s ease-in-out infinite}.m-imp{animation:mu-tap .5s ease-in-out infinite}
+.m-angry{animation:mu-shake .22s linear infinite}.m-love{animation:mu-hop .8s ease-in-out infinite}.m-sad{animation:mu-sink 3s ease-in-out infinite}
+.mu .blink{animation:mu-blink 4s infinite;transform-box:fill-box;transform-origin:center}
+svg .st{animation:mu-rise 1.1s ease-out infinite}svg .st.d2{animation-delay:.37s}svg .st.d3{animation-delay:.74s}
+svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pulse .8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 .cust.happy .who{animation:hop .45s ease-out 2}
 .cust.angry .who{animation:shake .35s linear 3;filter:drop-shadow(0 0 1.2cqw #e11)}
 .cust.hurry .who{animation:bob .5s ease-in-out infinite}
@@ -143,7 +159,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 @keyframes fly{from{opacity:0;transform:translate(-50%,0) scale(.6)}20%{opacity:1;transform:translate(-50%,-4cqw) scale(1.1)}to{opacity:0;transform:translate(-50%,-16cqw)}}
 @keyframes pop{from{transform:scale(.5);opacity:0}}
 @keyframes fade{from{opacity:0}}
-@media (prefers-reduced-motion:reduce){.cust .who,.hero .bg,.hero .f,.hint,.gs.done{animation:none}}
+@media (prefers-reduced-motion:reduce){.cust .who,.hero .bg,.hero .f,.hint,.gs.done,.mu,.mu *,svg .st,svg .sw,svg .tr,svg .hb{animation:none}}
 </style></head><body>
 <div id="app">
   <div class="hud">
@@ -168,7 +184,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
   <div class="home" id="home">
     <div class="top"><div class="chip"><i>🪙</i><span id="hCoins">0</span></div><button class="lang" id="langBtn">EN</button></div>
     <div class="logo">BURGER<small id="logo2">USTASI</small></div>
-    <div class="hero"><img class="bg" src="g/bun.svg" alt=""><img class="f f1" src="g/a2.webp" alt=""><img class="f f2" src="g/a5.webp" alt=""><img class="f f3" src="g/fries.webp" alt=""></div>
+    <div class="hero"><img class="bg" src="g/bun.svg" alt=""><div class="f f1" id="heroA"></div><div class="f f2" id="heroB"></div><img class="f f3" src="g/fries.webp" alt=""></div>
     <button class="btn" id="playBtn">OYNA</button>
     <div class="ups" id="ups"></div>
     <div class="credit" id="credit"></div>
@@ -176,6 +192,8 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 
   <div class="ov" id="ov" hidden><div class="card" id="card"></div></div>
 </div>
+<script src="musteri.js"></script>
+<script src="karakterler.js"></script>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
@@ -188,7 +206,7 @@ const T={
   wrong:'Yanlış sipariş!',burnt:'Yandı!',needBun:'Önce ekmek!',gone:'Gitti!',tip:'bahşiş',combo:n=>`Seri x${n}!`,grillFull:'Izgara dolu',
   ing:{bun:'Ekmek',patty:'Köfte',cheese:'Peynir',lettuce:'Marul',tomato:'Domates',onion:'Soğan',bacon:'Pastırma',egg:'Yumurta',pickle:'Turşu'},
   up:{cook:['Hızlı ızgara','Köfte daha çabuk pişer'],pat:['Sabırlı müşteri','Daha uzun beklerler'],tip:['Cömert bahşiş','Daha çok altın'],slot:['Geniş ızgara','3. ızgara gözü']},max:'TAM',lv:n=>`Sv ${n}`,
-  credit:'Yiyecek görselleri: Bluc (itch.io) · Hayvanlar: BITTI Studio (itch.io)'},
+  credit:'Yiyecek görselleri: Bluc (itch.io)'},
  en:{day:n=>`Day ${n}`,play:'PLAY',cont:n=>`PLAY · Day ${n}`,grill:'Grill',logo2:'MASTER',newIng:'NEW',lockDay:n=>`Day ${n}`,
   dayT:n=>`Day ${n}`,dayP:(n,c)=>`${c} customers are coming today. Lose three and the shop closes!`,start:'Start',newT:'New ingredient!',
   winT:'Day complete!',winP:(s,t)=>`${s} orders · ${t} in tips`,next:'Next day',home:'Main menu',failT:'Shop closed!',failP:'Too many customers left. Try again, and be quicker!',retry:'Try again',
@@ -196,7 +214,7 @@ const T={
   wrong:'Wrong order!',burnt:'Burnt!',needBun:'Bun first!',gone:'Left!',tip:'tip',combo:n=>`Combo x${n}!`,grillFull:'Grill is full',
   ing:{bun:'Bun',patty:'Patty',cheese:'Cheese',lettuce:'Lettuce',tomato:'Tomato',onion:'Onion',bacon:'Bacon',egg:'Egg',pickle:'Pickle'},
   up:{cook:['Fast grill','Patties cook quicker'],pat:['Patient customers','They wait longer'],tip:['Big tippers','More gold'],slot:['Wide grill','A 3rd grill slot']},max:'MAX',lv:n=>`Lv ${n}`,
-  credit:'Food art: Bluc (itch.io) · Animals: BITTI Studio (itch.io)'}};
+  credit:'Food art: Bluc (itch.io)'}};
 // ---- kayıt ----
 const KEY='burgerustasi.v1';
 const SAVE=Object.assign({day:1,coins:0,stars:{},up:{cook:0,pat:0,tip:0,slot:0},lang:(navigator.language||'tr').toLowerCase().startsWith('tr')?'tr':'en',seen:[]},(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}})());
@@ -206,7 +224,10 @@ const t=(k,...a)=>{const v=T[SAVE.lang][k];return typeof v==='function'?v(...a):
 const ING=[['cheese',1],['lettuce',2],['tomato',3],['onion',5],['bacon',7],['egg',9],['pickle',11]];   // [malzeme, açıldığı gün]
 const SVGI={bun:1,cheese:1,patty:1,raw:1};   // kendi çizimlerimiz (açık renk ekmek, sarı cheddar, yuvarlak köfte)
 const src=k=>'g/'+k+(SVGI[k]?'.svg':'.webp');
-const WHO=Array.from({length:16},(_,i)=>'a'+(i+1));
+// müşteriler: elle ayarlanmış 200 karakter (www/karakterler.js; kaynağı tools/musteri/). Yüz duyguya göre çizilir (www/musteri.js)
+const WHO=window.KARAKTERLER||[];
+function pickWho(){const busy=S.cust.filter(Boolean).map(c=>c.who);let k,n=0;do{k=WHO[Math.floor(Math.random()*WHO.length)];n++}while(busy.includes(k)&&n<20);return k}
+function face(c,e){if(!c.who||c.emo===e)return;c.emo=e;c.face.innerHTML=window.Musteri.draw(c.who.m,e)}
 const UPS={cook:{e:'🔥',max:4,cost:l=>40+l*45},pat:{e:'⏳',max:4,cost:l=>50+l*50},tip:{e:'💰',max:4,cost:l=>60+l*60},slot:{e:'🍳',max:1,cost:()=>250}};
 const dayCfg=d=>({n:Math.min(16,5+d),gap:Math.max(2.6,6.2-d*.28),maxQ:d<2?2:3,pat:Math.max(13,24-d*.6)+SAVE.up.pat*2.5,
   extras:d<2?[0,1]:d<4?[0,2]:d<7?[1,3]:[1,4]});
@@ -263,12 +284,12 @@ function makeOrder(){const open=unlocked(S.day),[a,b]=S.cfg.extras,n=Math.min(op
   for(let i=body.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));if(S.day>3)[body[i],body[j]]=[body[j],body[i]]}   // ilk günlerde köfte hep altta
   return ['bunBot',...body,'bunTop']}
 function spawn(){const free=S.cust.map((c,i)=>c?-1:i).filter(i=>i>=0&&i<3);const act=S.cust.filter(Boolean).length;if(!free.length||act>=S.cfg.maxQ||S.left<=0)return false;
-  const i=free[Math.floor(Math.random()*free.length)],order=makeOrder(),who=WHO[Math.floor(Math.random()*WHO.length)];
+  const i=free[Math.floor(Math.random()*free.length)],order=makeOrder(),who=pickWho();
   const el=document.createElement('div');el.className='cust';
-  el.innerHTML=`<div class="bub">${ordIcons(order)}<div class="pat"><b></b></div></div><img class="who" src="g/${who}.webp" alt="">`;
+  el.innerHTML=`<div class="bub">${ordIcons(order)}<div class="pat"><b></b></div></div><div class="who" role="img" aria-label="${who?who.ad:''}"></div>`;
   el.onclick=()=>deliver(i);queue.children[i].appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
-  const max=S.cfg.pat+order.length*2.2+(S.guide?40:0);S.cust[i]={el,order,max,p:max,bar:el.querySelector('.pat'),fill:el.querySelector('.pat b')};S.left--;tone(660,.06,'triangle',.07);return true}
-function leave(i,happy){const c=S.cust[i];if(!c)return;S.cust[i]=null;c.el.classList.add(happy?'happy':'angry');c.el.querySelector('.bub').style.visibility='hidden';
+  const max=S.cfg.pat+order.length*2.2+(S.guide?40:0);const c=S.cust[i]={el,order,max,p:max,bar:el.querySelector('.pat'),fill:el.querySelector('.pat b'),who,face:el.querySelector('.who'),emo:'',hold:S.now+1.4};face(c,'happy');S.left--;tone(660,.06,'triangle',.07);return true}
+function leave(i,happy){const c=S.cust[i];if(!c)return;S.cust[i]=null;face(c,happy?'love':'sad');c.el.classList.add(happy?'happy':'angry');c.el.querySelector('.bub').style.visibility='hidden';
   setTimeout(()=>{c.el.classList.add('out');setTimeout(()=>c.el.remove(),450)},happy?700:800)}
 // ---- oyuncu hamleleri ----
 function deny(el,msg){SFX.bad();vib(30);fly(el,msg,true)}
@@ -291,7 +312,7 @@ function trashStack(){if(!S.stack.length)return;requestAnimationFrame(()=>stackE
 $('trash').onclick=()=>{if(!S.on||S.paused||!S.stack.length)return;audio();SFX.tap();S.combo=0;trashStack();guide()};
 function deliver(i){if(!S.on||S.paused)return;audio();const c=S.cust[i];if(!c)return;
   if(S.stack[S.stack.length-1]!=='bunTop'){deny(c.el,t('notReady'));return}
-  if(keyOf(c.order)!==keyOf(S.stack)){S.combo=0;c.p-=2;deny(c.el,t('wrong'));return}   // yanlış müşteri: burger tabakta kalır
+  if(keyOf(c.order)!==keyOf(S.stack)){S.combo=0;c.p-=2;face(c,'angry');c.hold=S.now+1.2;deny(c.el,t('wrong'));return}   // yanlış müşteri: burger tabakta kalır
   const fresh=c.p/c.max,base=6+(c.order.length-2)*3;S.combo++;
   const tip=Math.round(base*(.15+fresh*.55)*(1+SAVE.up.tip*.3))+(S.combo>=3?Math.min(10,S.combo):0),gain=base+tip;
   SAVE.coins+=gain;S.earn+=gain;S.tips+=tip;S.served++;save();
@@ -335,14 +356,16 @@ let last=0;
 function loop(now){if(!S.on||S.paused)return;const dt=Math.min(.1,(now-last)/1000);last=now;S.now+=dt;
   if(S.left>0&&S.now>=S.nextAt){if(spawn()){S.nextAt=S.now+S.cfg.gap*(.75+Math.random()*.5);guide()}else S.nextAt=S.now+.4}
   if(S.left>0&&!S.cust.some(Boolean)&&S.nextAt-S.now>1)S.nextAt=S.now+.5;   // tezgâh boşsa bekletme
-  S.cust.forEach((c,i)=>{if(!c)return;c.p-=dt;const f=Math.max(0,c.p/c.max);c.fill.style.width=(f*100)+'%';c.bar.className='pat'+(f<.25?' low':f<.55?' mid':'');c.el.classList.toggle('hurry',f<.25);
+  S.cust.forEach((c,i)=>{if(!c)return;c.p-=dt;const f=Math.max(0,c.p/c.max);c.fill.style.width=(f*100)+'%';c.bar.className='pat'+(f<.25?' low':f<.55?' mid':'');c.el.classList.toggle('hurry',f<.25);if(S.now>=c.hold)face(c,f<.25?'angry':f<.5?'imp':'wait');
     if(c.p<=0){S.lost++;S.combo=0;SFX.bad();vib([40,60,40]);fly(c.el,t('gone'),true);leave(i,false);S.guide=false;hud();guide();checkEnd()}});
   const ct=cookT();S.grill.forEach(g=>{if(!g.st)return;const b=g.el.querySelector('.ring b');
     if(g.st===1){g.t+=dt;if(b)b.style.width=Math.min(100,g.t/ct*100)+'%';if(g.t>=ct){g.st=2;g.el.className='gs done';g.el.querySelector('img').src=src('patty')}}
     if(g.st===2&&S.ready<SHELF){S.ready++;clearGrill(g);drawShelf(true);SFX.ready();guide()}});   // raf doluysa ızgarada bekler
   requestAnimationFrame(loop)}
 // ---- ana ekran ve geliştirmeler ----
-function openHome(){S.on=false;$('ov').hidden=true;$('home').hidden=false;document.documentElement.lang=SAVE.lang;$('playBtn').textContent=SAVE.day>1?t('cont',SAVE.day):t('play');
+function heroFaces(){if(!WHO.length||!window.Musteri)return;const a=WHO[Math.floor(Math.random()*WHO.length)];let b;do{b=WHO[Math.floor(Math.random()*WHO.length)]}while(b===a&&WHO.length>1);
+  $('heroA').innerHTML=Musteri.draw(a.m,'happy');$('heroB').innerHTML=Musteri.draw(b.m,'love')}
+function openHome(){heroFaces();S.on=false;$('ov').hidden=true;$('home').hidden=false;document.documentElement.lang=SAVE.lang;$('playBtn').textContent=SAVE.day>1?t('cont',SAVE.day):t('play');
   $('logo2').textContent=t('logo2');$('langBtn').textContent=SAVE.lang==='tr'?'EN':'TR';$('credit').textContent=t('credit');$('hCoins').textContent=SAVE.coins;
   $('ups').innerHTML=Object.keys(UPS).filter(k=>k!=='slot'||true).slice(0,3).concat(SAVE.day>=4?['slot']:[]).slice(0,SAVE.day>=4?4:3).map(k=>{const u=UPS[k],l=SAVE.up[k],mx=l>=u.max,c=u.cost(l);
     return `<button class="up ${mx?'max':SAVE.coins<c?'no':''}" data-u="${k}"><span class="e">${u.e}</span><b>${t('up')[k][0]}</b><small>${mx?'':t('lv',l+1)+' · '}${t('up')[k][1]}</small><span class="c">${mx?t('max'):'🪙 '+c}</span></button>`}).join('');
