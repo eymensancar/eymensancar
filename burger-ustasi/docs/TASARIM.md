@@ -127,3 +127,15 @@ Bu bölüm yukarıdakilerle çelişirse bu bölüm geçerlidir.
   - **Dik tutulursa** (`orientation: portrait`): "Telefonu yan çevir" ekranı (`#cevir`, kendi dönen telefon çizimimiz, emoji yok); oyun sürüyorsa duraklar (`yonKontrol`). Bilgisayarda dar/uzun pencerede de görünür ("pencereyi genişlet").
 - **iOS paketlenince (Capacitor, `ios/` henüz yok):** `ios/App/App/Info.plist` içinde `UISupportedInterfaceOrientations` ve `UISupportedInterfaceOrientations~ipad` yalnız `UIInterfaceOrientationLandscapeLeft` ve `UIInterfaceOrientationLandscapeRight` olacak (Kedi Yuvası'ndaki gibi); `UIRequiresFullScreen` = YES (iPad'de bölünmüş ekranda dik pencere olmasın). Capacitor'da `viewport-fit=cover` zaten var; güvenli alan `env()` ile geliyor.
 - **Deneme (yatay):** cihazlar SE 568×320, iPhone 15 852×393 (yan paylar 59, alt 21), Pro Max 932×430, iPad 1024×768 ve 1366×1024, bilgisayar 1280×800 ve 1440×900; ayrıca dik 393×852 ("çevir" ekranı).
+
+## 4. Hedef görünüm: mutfak (Eymen, 21 Kasım)
+Referans: `docs/referans/mutfak-gunduz.png` ve `mutfak-aksam.png` (ChatGPT ile üretilmiş taslak; kendisi oyunda kullanılmaz, yalnız yön). Eymen: "Tasarım bu olacak." Görseldeki kaymalar (ızgara vb.) yok sayılır; malzemeler bizim çizimlerimiz olur.
+- **Önden bakılan, sıcak bir burger mutfağı:** kırmızı-beyaz damalı fayans duvar, paslanmaz davlumbaz, sarkan lambalar, duvarda neon burger tabelası, raflarda saksı ve paket kutuları, pencereden şehir; gündüz ve akşam ışığı (gün içinde ya da günlere göre değişebilir).
+- **Ekmek dolabı** (camlı ısıtıcı, solda): ekmek buradan alınır.
+- **Izgara** (ortada, 6 göz): başta 2 göz açık, diğerleri kilitli (asma kilit); geliştirmeyle açılır. Köfteler gözlerde pişer, duman çıkar.
+- **Malzeme küvetleri** (paslanmaz, iki sıra): her malzeme kendi küvetinde, içi o malzemeyle dolu görünür; kilitliler kapalı/boş.
+- **Soslar** (önde iki kâse, kaşıklı: ketçap, mayonez).
+- **Hazırlık tahtası** (önde ortada ahşap kesme tahtası): burger burada yapılır. (Bizde iki tabak vardı; tahtada iki çalışma yeri ya da iki tahta olarak uyarlanır.)
+- **Fritöz sepetleri** (sağ önde): ileri seviyelerde **patates kızartması** ve **soğan halkası** açılır; yan ürün olarak pişirilir, sipariş yanında istenir.
+- **İçecek makinesi** (sağda, 3 musluk) ileride.
+- Müşteriler ve siparişler bu mutfak görünümüyle nasıl birleşeceği uygulama turunda kararlaştırılır.
