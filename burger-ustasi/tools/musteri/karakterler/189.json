@@ -1,0 +1,27 @@
+{
+ "no": "189",
+ "ad": "Kimya öğretmeni Hülya",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 0,
+  "ten": 0,
+  "sac": 9,
+  "sacRenk": 1,
+  "kas": 0,
+  "goz": 2,
+  "burun": 3,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 2,
+  "sapka": 0,
+  "kiyafet": 2,
+  "kRenk": 3,
+  "ek": 2,
+  "ozel": {
+   "sacOn": "<path d=\"M26.5 60L26.5 58.2L26.5 56.3L26.6 54.5L26.7 52.7L26.9 50.9L27.1 49L27.3 47.3L27.6 45.5L28 43.7L28.4 42L28.9 40.3L29.5 38.6L30.2 37L31 35.4L31.9 33.9L32.9 32.4L34 31L35.2 29.7L36.6 28.5L38.1 27.3L39.7 26.2L41.4 25.3L43.2 24.4L45.2 23.7L47.3 23L49.6 22.5L52 22L54.5 21.7L57.2 21.6L60 21.5L62.8 21.6L65.5 21.7L68 22L70.4 22.5L72.7 23L74.8 23.7L76.8 24.4L78.6 25.3L80.3 26.2L81.9 27.3L83.4 28.5L84.8 29.7L86 31L87.1 32.4L88.1 33.9L89 35.4L89.8 37L90.5 38.6L91.1 40.3L91.6 42L92 43.7L92.4 45.5L92.7 47.3L92.9 49L93.1 50.9L93.3 52.7L93.4 54.5L93.5 56.3L93.5 58.2L93.5 60L95 77Q93 82 85 80C86 64 87 52 85 46C82 41 68 39 53 35Q49 32 47 29C39 31 34 40 34 54C34 64 34 72 35 80Q27 82 25 77Z\" fill=\"#3b2a20\"/><path d=\"M50 23C61 25 85 30 89 56M53 30C63 32 81 37 86 50M42 25C37 27 33 33 30 42\" stroke=\"#5e5048\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M53 24Q61 23 67 26\" stroke=\"#766a63\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "<path d=\"M25 76V52C25 12 95 12 95 52V76Q60 83 25 76Z\" fill=\"#35261d\"/>",
+   "kulak": ""
+  }
+ },
+ "not": "Oval yüz, en açık ten. Koyu kahve küt saç elle: solda ayrım, perçem sağa yatıp kaşın üstünden şakağa iner; iki yanda kulakları örten, çene hizasında içe kıvrılan uçlar (kulak katmanı boş), arka kütle aynı boyda. Kare gözlük, ben, hardal balıkçı yaka."
+}

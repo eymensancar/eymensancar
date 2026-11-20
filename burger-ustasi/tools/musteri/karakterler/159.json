@@ -7,8 +7,8 @@
   "ten": 6,
   "sac": 11,
   "sacRenk": 4,
-  "kas": 2,
-  "goz": 4,
+  "kas": 3,
+  "goz": 1,
   "burun": 1,
   "biyik": 0,
   "sakal": 0,
@@ -16,7 +16,13 @@
   "sapka": 2,
   "kiyafet": 4,
   "kRenk": 2,
-  "ek": 0
+  "ek": 0,
+  "ozel": {
+   "sacArka": "<path d=\"M60 16C34 16 20 32 20 52Q15 57 19 62Q15 67 19 72Q15 77 19 82Q15 87 19 92Q26 98 34 94L86 94Q94 98 101 92Q105 87 100 82Q105 77 100 72Q105 67 100 62Q105 57 100 52C100 32 86 16 60 16Z\" fill=\"#934420\"/>",
+   "sacOn": "<path d=\"M31.0 38C23.0 38 21.0 44 21.5 52Q18.0 58 20.5 65Q17.0 72 20.0 80Q17.0 87 23.0 93Q28.0 96 32.0 92Q28.0 86 30.0 79Q27.0 72 29.5 64Q26.5 56 28.5 50Q29.5 44 31.0 38Z\" fill=\"#b5562c\"/><path d=\"M25.0 50Q22.0 58 24.0 66Q21.0 74 24.0 84\" stroke=\"#934420\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M89.0 38C97.0 38 99.0 44 98.5 52Q102.0 58 99.5 65Q103.0 72 100.0 80Q103.0 87 97.0 93Q92.0 96 88.0 92Q92.0 86 90.0 79Q93.0 72 90.5 64Q93.5 56 91.5 50Q90.5 44 89.0 38Z\" fill=\"#b5562c\"/><path d=\"M95.0 50Q98.0 58 96.0 66Q99.0 74 96.0 84\" stroke=\"#934420\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M30 42Q40 34 54 37Q46 41 40 47Q36 44 30 42ZM90 42Q80 34 66 37Q74 41 80 47Q84 44 90 42Z\" fill=\"#b5562c\"/>",
+   "sapka": "<path d=\"M26 37C24 8 50 4 66 6C88 9 98 22 94 37Z\" fill=\"#e0a43a\"/><path d=\"M42 10Q38 22 39 34M54 6Q51 20 52 34M66 6.5Q66 20 66 34M78 10Q80 22 80 34\" stroke=\"#c08529\" stroke-width=\"1.2\" fill=\"none\" opacity=\".8\"/><rect x=\"24\" y=\"31\" width=\"72\" height=\"10.5\" rx=\"5.2\" fill=\"#c08529\"/><path d=\"M30 33v6M36 33v6M42 33v6M48 33v6M54 33v6M60 33v6M66 33v6M72 33v6M78 33v6M84 33v6M90 33v6\" stroke=\"#a87322\" stroke-width=\"1.1\"/>",
+   "kulak": ""
+  }
  },
- "not": ""
+ "not": "Kızıl dalgalı saç elle: arkada omuza inen dalgalı kütle (ozel.sacArka), önde yüzü çerçeveleyen dalgalı yan tutamlar ve berenin altından çıkan şakak saçları (ozel.sacOn, kulaklar örtülü). Hardal renkli örgü bere elle (ozel.sapka): kıvrık bant alında, kaşların üstünde; yeşil kapüşonlu."
 }

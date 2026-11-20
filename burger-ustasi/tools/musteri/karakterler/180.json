@@ -1,0 +1,31 @@
+{
+ "no": 180,
+ "ad": "Tenisçi Bora",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 0,
+  "ten": 0,
+  "sac": 3,
+  "sacRenk": 5,
+  "kas": 4,
+  "goz": 1,
+  "burun": 7,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 1,
+  "kRenk": 9,
+  "ek": 0,
+  "ozel": {
+   "sacOn": "<path d=\"M30 39C26 30 28 22 35 17C32 14 32 11 33 9C37 12 40 13 44 13C47 8 53 6 58 9C59 6 61 4 64 2.5C63.5 6 64.5 8.5 67 10C73 9 80 12 84 16C87 15 90 13.5 93 13C91.5 16.5 89.5 19.5 88.5 22C92 28 92 34 90 39Q60 27 30 39Z\" fill=\"#d99a3c\"/><path d=\"M44 16Q50 20 52 27M62 11Q64 18 62 25M77 16Q76 22 72 27M38 22Q42 27 42 32\" stroke=\"#b0761f\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M48 13Q56 11 62 13\" stroke=\"#efc271\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M91.4 45C93.5 50 93 55 91.5 59.5L89.5 56L87.5 59C87.4 54 87 49 86 44Z\" fill=\"#d99a3c\"/><path d=\"M28.6 45C26.5 50 27 55 28.5 59.5L30.5 56L32.5 59C32.6 54 33 49 34 44Z\" fill=\"#d99a3c\"/><path d=\"M30 38.5Q60 26 90 38.5L91.5 46.5Q60 34 28.5 46.5Z\" fill=\"#f7f6f0\"/><path d=\"M29.3 42.5Q60 30 90.7 42.5\" stroke=\"#e8483b\" stroke-width=\"2\" fill=\"none\"/><path d=\"M57 31C58.5 37 57.5 41 55 45.5C60.5 43 63.5 38 63.5 31Z\" fill=\"#d99a3c\"/><path d=\"M60 33Q60.5 38 58 42\" stroke=\"#b0761f\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": ""
+  },
+  "ayar": {
+   "kas": {
+    "y": 1.5
+   }
+  }
+ },
+ "not": "Dağınık sarı saç elle (ozel.sacOn): tepede yumuşak kıvrık uçlar, alında kırmızı çizgili beyaz ter bandı kafa eğrisini izler, bandın altından şakaklarda kulak üstüne inen tutamlar, ortada banda düşen perçem. Kaşlar 1,5 aşağı ki banda değmesin. Polo yaka (gömlek, turkuaz)."
+}

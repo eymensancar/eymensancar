@@ -1,0 +1,29 @@
+{
+ "no": 141,
+ "ad": "Aerobik hocası Nesrin",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 1,
+  "ten": 4,
+  "sac": 6,
+  "sacRenk": 2,
+  "kas": 1,
+  "goz": 1,
+  "burun": 7,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 0,
+  "kRenk": 9,
+  "ek": 4,
+  "renk": {
+   "sac": "#4a2f20"
+  },
+  "ozel": {
+   "sacArka": "<ellipse cx=\"60\" cy=\"48\" rx=\"44\" ry=\"36\" fill=\"#4a2f20\"/><circle cx=\"20.2\" cy=\"64.9\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"15.6\" cy=\"55.8\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"14\" cy=\"46\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"15.6\" cy=\"36.7\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"20.2\" cy=\"28\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"27.5\" cy=\"20.5\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"37\" cy=\"14.8\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"48.1\" cy=\"11.2\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"60\" cy=\"10\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"71.9\" cy=\"11.2\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"83\" cy=\"14.8\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"92.5\" cy=\"20.5\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"99.8\" cy=\"28\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"104.4\" cy=\"36.7\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"106\" cy=\"46\" r=\"10.5\" fill=\"#4a2f20\"/><circle cx=\"104.4\" cy=\"55.8\" r=\"9\" fill=\"#4a2f20\"/><circle cx=\"99.8\" cy=\"64.9\" r=\"10.5\" fill=\"#4a2f20\"/><path d=\"M15.4 55.3q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M15.4 38.7q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M26.3 24.4q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M45.1 16.1q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M66.9 16.1q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M85.7 24.4q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M96.6 38.7q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M96.6 55.3q4 -5 8 0\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacOn": "<path d=\"M22.5 43.8L22.8 43.1L23 42.5L23.3 41.8L23.6 41.2L23.9 40.5L24.2 39.9L24.5 39.2L24.9 38.6L25.3 38L25.6 37.4L26 36.8L26.5 36.2L26.9 35.6L27.4 35L27.8 34.4L28.3 33.9L28.8 33.3L29.4 32.8L29.9 32.2L30.5 31.7L31.1 31.2L31.7 30.7L32.3 30.3L33 29.8L33.6 29.3L34.3 28.9L35 28.5L35.7 28.1L36.5 27.7L37.2 27.3L38 26.9L38.8 26.6L39.6 26.3L40.5 26L41.3 25.7L42.2 25.4L43.1 25.1L44 24.8L44.9 24.6L45.8 24.4L46.8 24.2L47.8 24L48.8 23.8L49.8 23.7L50.9 23.5L51.9 23.4L53 23.3L54.1 23.2L55.3 23.1L56.4 23.1L57.6 23L58.8 23L60 23L61.2 23L62.4 23L63.6 23.1L64.7 23.1L65.9 23.2L67 23.3L68.1 23.4L69.1 23.5L70.2 23.7L71.2 23.8L72.2 24L73.2 24.2L74.2 24.4L75.1 24.6L76 24.8L76.9 25.1L77.8 25.4L78.7 25.7L79.5 26L80.4 26.3L81.2 26.6L82 26.9L82.8 27.3L83.5 27.7L84.3 28.1L85 28.5L85.7 28.9L86.4 29.3L87 29.8L87.7 30.3L88.3 30.7L88.9 31.2L89.5 31.7L90.1 32.2L90.6 32.8L91.2 33.3L91.7 33.9L92.2 34.4L92.6 35L93.1 35.6L93.5 36.2L94 36.8L94.4 37.4L94.7 38L95.1 38.6L95.5 39.2L95.8 39.9L96.1 40.5L96.4 41.2L96.7 41.8L97 42.5L97.2 43.1L97.5 43.8L93.5 44Q60 16 26.5 44Z\" fill=\"#4a2f20\"/><circle cx=\"32.6\" cy=\"28.1\" r=\"7\" fill=\"#4a2f20\"/><circle cx=\"41.7\" cy=\"22.9\" r=\"7\" fill=\"#4a2f20\"/><circle cx=\"50.9\" cy=\"19.3\" r=\"7\" fill=\"#4a2f20\"/><circle cx=\"60\" cy=\"18\" r=\"7\" fill=\"#4a2f20\"/><circle cx=\"69.1\" cy=\"19.3\" r=\"7\" fill=\"#4a2f20\"/><circle cx=\"78.3\" cy=\"22.9\" r=\"7\" fill=\"#4a2f20\"/><circle cx=\"87.4\" cy=\"28.1\" r=\"7\" fill=\"#4a2f20\"/><path d=\"M40 24q4 -4 8 0M54 18q4 -4 8 0M68 20q4 -4 8 0M33 33q3 -4 7 -1M80 31q4 -3 7 1\" stroke=\"#7a5038\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M25 51Q60 24 95 51L94.5 42.5Q60 15 25.5 42.5Z\" fill=\"#f07aa6\"/><path d=\"M27 47Q60 21 93 47\" stroke=\"#fff\" stroke-width=\"1.6\" fill=\"none\" stroke-dasharray=\"4 3\" opacity=\".8\"/><path d=\"M25 51Q60 24 95 51\" stroke=\"#d4558a\" stroke-width=\"1.2\" fill=\"none\"/>"
+  }
+ },
+ "not": "80ler aerobik: kabarık kıvırcık bulut başın arkasında (sacArka, daireler), tepede kafayı saran kıvırcık kapak (sacOn) ve alnı saran pembe kesik çizgili ter bandı; bant kaşların üstünde, kulaklar ve altın küpeler açıkta."
+}

@@ -1,0 +1,28 @@
+{
+ "no": 182,
+ "ad": "Caz trompetçisi Ömer",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 1,
+  "ten": 7,
+  "sac": 5,
+  "sacRenk": 0,
+  "kas": 1,
+  "goz": 2,
+  "burun": 4,
+  "biyik": 5,
+  "sakal": 2,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 1,
+  "kRenk": 6,
+  "ek": 0,
+  "ozel": {
+   "sacArka": "<ellipse cx=\"60\" cy=\"38\" rx=\"41\" ry=\"33\" fill=\"#1e1a18\"/><circle cx=\"100.0\" cy=\"38.0\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"97.6\" cy=\"48.9\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"90.6\" cy=\"58.6\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"29.4\" cy=\"58.6\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"22.4\" cy=\"48.9\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"20.0\" cy=\"38.0\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"22.4\" cy=\"27.1\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"29.4\" cy=\"17.4\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"40.0\" cy=\"10.3\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"53.1\" cy=\"6.5\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"66.9\" cy=\"6.5\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"80.0\" cy=\"10.3\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"90.6\" cy=\"17.4\" r=\"8\" fill=\"#1e1a18\"/><circle cx=\"97.6\" cy=\"27.1\" r=\"8\" fill=\"#1e1a18\"/>",
+   "sacOn": "<path d=\"M27 58C23 50 22 40 25 28H95C98 40 97 50 93 58C93 50 90 43.5 80 41.5C70 39.5 50 39.5 40 41.5C30 43.5 27 50 27 58Z\" fill=\"#1e1a18\"/><path d=\"M34.5 17a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M53.5 11a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M69.5 13a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M85.5 22a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M93.5 40a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M21.5 38a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M44.5 25a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M65.5 23a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M27.5 26a2.5 2.5 0 1 1 2.5 2.5\" stroke=\"#3a312c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sakal": "<path d=\"M56.5 90Q60 88.5 63.5 90Q62.5 94.5 60 96.5Q57.5 94.5 56.5 90Z\" fill=\"#1e1a18\"/>",
+   "kiyafet": "<path d=\"M50 92h20v18q-10 6 -20 0z\" fill=\"#543321\"/><path d=\"M14 140C14 116 30 106 60 106C90 106 106 116 106 140Z\" fill=\"#2d3a4a\"/><path d=\"M60 116L47 105L52 120ZM60 116L73 105L68 120Z\" fill=\"#fff\" stroke=\"#d9d9d9\" stroke-width=\"1\"/><circle cx=\"60\" cy=\"126\" r=\"1.6\" fill=\"#1f2935\"/><circle cx=\"60\" cy=\"134\" r=\"1.6\" fill=\"#1f2935\"/><path d=\"M60 115L50 110V121ZM60 115L70 110V121Z\" fill=\"#d8433b\"/><rect x=\"57.5\" y=\"112.5\" width=\"5\" height=\"5\" rx=\"1.5\" fill=\"#b8352e\"/>"
+  }
+ },
+ "not": "Afro elle: arkada kabarık bulut (ozel.sacArka, büyük elips + kenarda yuvarlaklar), önde alın çizgisi yuvarlak, şakaklarda kulak üstüne iner (ozel.sacOn); seyrek bukle izleri. Keçi sakal yerine alt dudak altında küçük tutam (ozel.sakal), hiçbir duyguda ağza değmiyor; kalem bıyık. Lacivert gömlek, kırmızı papyon (ozel.kiyafet)."
+}

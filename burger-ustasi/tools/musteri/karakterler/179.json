@@ -9,14 +9,28 @@
   "sacRenk": 7,
   "kas": 0,
   "goz": 2,
-  "burun": 2,
+  "burun": 7,
   "biyik": 0,
   "sakal": 0,
   "gozluk": 2,
   "sapka": 0,
   "kiyafet": 3,
   "kRenk": 4,
-  "ek": 4
+  "ek": 4,
+  "renk": {
+   "sac": "#b3b7bc"
+  },
+  "ozel": {
+   "sacOn": "<path d=\"M24.6 55.8L24.8 54.4L25.1 53.1L25.4 51.7L25.7 50.4L26.1 49.1L26.6 47.8L27 46.6L27.6 45.3L28.1 44.1L28.7 42.9L29.4 41.8L30.1 40.6L30.8 39.5L31.6 38.5L32.5 37.4L33.3 36.4L34.3 35.5L35.2 34.5L36.3 33.6L37.4 32.8L38.5 32L39.7 31.2L40.9 30.5L42.2 29.8L43.5 29.2L44.9 28.6L46.4 28.1L47.9 27.6L49.4 27.2L51 26.8L52.7 26.5L54.4 26.3L56.2 26.1L58.1 26L60 26L61.9 26L63.8 26.1L65.6 26.3L67.3 26.5L69 26.8L70.6 27.2L72.1 27.6L73.6 28.1L75.1 28.6L76.5 29.2L77.8 29.8L79.1 30.5L80.3 31.2L81.5 32L82.6 32.8L83.7 33.6L84.8 34.5L85.7 35.5L86.7 36.4L87.5 37.4L88.4 38.5L89.2 39.5L89.9 40.6L90.6 41.8L91.3 42.9L91.9 44.1L92.4 45.3L93 46.6L93.4 47.8L93.9 49.1L94.3 50.4L94.6 51.7L94.9 53.1L95.2 54.4L95.4 55.8L92.5 59C91 49 86 43 76 40C66 37 54 36 47 33C40 37 33 45 29.5 59Z\" fill=\"#b3b7bc\"/><path d=\"M47 30Q63 29 81 38M50 34Q62 35 74 38M45 31Q37 36 32 46\" stroke=\"#8d9298\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M56 27Q68 26 78 31\" stroke=\"#d3d6d9\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" opacity=\".8\"/>",
+   "sacArka": "<path d=\"M23 85C19 70 19 50 25 37C32 20 88 20 95 37C101 50 101 70 97 85Q93 91 87 87.5L33 87.5Q27 91 23 85Z\" fill=\"#b3b7bc\"/>",
+   "kiyafet": "<path d=\"M50 92h20v18q-10 6 -20 0z\" fill=\"#77482e\"/><path d=\"M14 140C14 116 30 106 60 106C90 106 106 116 106 140Z\" fill=\"#5d3a99\"/><path d=\"M47 106L60 132L73 106Z\" fill=\"#f4efe6\"/><path d=\"M47 106L56 126L43 117ZM73 106L64 126L77 117Z\" fill=\"#47297a\"/><circle cx=\"50.0\" cy=\"105.5\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"52.0\" cy=\"107.8\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"54.0\" cy=\"109.5\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"56.0\" cy=\"110.8\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"58.0\" cy=\"111.5\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"60.0\" cy=\"111.8\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"62.0\" cy=\"111.5\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"64.0\" cy=\"110.8\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"66.0\" cy=\"109.5\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"68.0\" cy=\"107.8\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"70.0\" cy=\"105.5\" r=\"1.7\" fill=\"#f7f3ea\" stroke=\"#cfc6b4\" stroke-width=\".6\"/><circle cx=\"40\" cy=\"124\" r=\"2.6\" fill=\"#f2c94c\" stroke=\"#c9a227\" stroke-width=\".8\"/>",
+   "ust": "<path d=\"M45 77q-3 4 -2 9M75 77q3 4 2 9\" stroke=\"#6a3f27\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>"
+  },
+  "ayar": {
+   "kas": {
+    "y": -2
+   }
+  }
  },
- "not": ""
+ "not": "Kır kısa küt saç elle: önde soldan ayrılan, alnın üstünden sağa kıvrılan kapak (ozel.sacOn), kulakların arkasından çene hizasına inen arka katman (ozel.sacArka), kulaklar ve küpeler açıkta. Kaşlar 2 yukarı ki kare gözlüğe binmesin. Ceket kendi çizimiyle: kravat yerine krem bluz, inci kolye ve broş (ozel.kiyafet). Gülme çizgileri ozel.ust."
 }

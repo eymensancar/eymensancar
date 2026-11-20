@@ -1,0 +1,28 @@
+{
+ "no": "188",
+ "ad": "Sörfçü Onur",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 2,
+  "ten": 3,
+  "sac": 2,
+  "sacRenk": 3,
+  "kas": 4,
+  "goz": 0,
+  "burun": 5,
+  "biyik": 0,
+  "sakal": 2,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 0,
+  "kRenk": 9,
+  "ek": 1,
+  "ozel": {
+   "sacOn": "<path d=\"M29 60L29 57.9L29 55.8L29.1 53.8L29.2 51.7L29.3 49.6L29.5 47.6L29.8 45.5L30 43.5L30.4 41.5L30.8 39.6L31.2 37.7L31.8 35.8L32.4 34L33.1 32.2L33.9 30.5L34.9 28.8L35.9 27.2L37 25.7L38.2 24.2L39.6 22.9L41.1 21.6L42.7 20.5L44.4 19.4L46.3 18.5L48.3 17.8L50.4 17.1L52.6 16.6L54.9 16.3L57.4 16.1L60 16L62.6 16.1L65.1 16.3L67.4 16.6L69.6 17.1L71.7 17.8L73.7 18.5L75.6 19.4L77.3 20.5L78.9 21.6L80.4 22.9L81.8 24.2L83 25.7L84.1 27.2L85.1 28.8L86.1 30.5L86.9 32.2L87.6 34L88.2 35.8L88.8 37.7L89.2 39.6L89.6 41.5L90 43.5L90.2 45.5L90.5 47.6L90.7 49.6L90.8 51.7L90.9 53.8L91 55.8L91 57.9L91 60L91 72Q93 78 89 79Q87 74 84 76C83 60 82 48 82 41C76 31 66 28 60 26C54 28 44 31 38 41C38 48 37 60 36 76Q33 74 31 79Q27 78 29 72Z\" fill=\"#d39a45\"/><path d=\"M60 17V26M54 19C46 23 38 31 33 54M66 19C74 23 82 31 87 54\" stroke=\"#9e7434\" stroke-width=\"1.3\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M44 20Q52 16 57 17\" stroke=\"#e0b87d\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "<path d=\"M25 52C25 7 95 7 95 52C97 70 93 82 98 90Q92 93 88 90Q86 94 82 90Q60 78 38 90Q34 94 32 90Q28 93 22 90C27 82 23 70 25 52Z\" fill=\"#ba883d\"/>",
+   "sakal": "<path d=\"M54 89Q60 87 66 89Q66 103 60 109Q54 103 54 89Z\" fill=\"#d39a45\"/><path d=\"M58 93l1 6M62 93l-1 6\" stroke=\"#9e7434\" stroke-width=\"1\" stroke-linecap=\"round\"/>",
+   "kulak": ""
+  }
+ },
+ "not": "Uzun yüz; güneşte açılmış sarı saç elle: ortadan ayrık perdeler alnı açık bırakıp şakaklardan kulakları örterek yanağa iner (kulak katmanı boş), arkada omuza inen dalgalı kütle (biraz koyu). Keçi sakal elle, kısa ve dar: ağzın altından çeneye (açık ağızlara değmez). sacRenk açık kahve: kaşlar koyu kalsın diye; saç rengi ozel çizimde. Çil."
+}

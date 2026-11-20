@@ -1,0 +1,37 @@
+{
+ "no": 183,
+ "ad": "Bahçıvan Zerrin",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 0,
+  "ten": 5,
+  "sac": 14,
+  "sacRenk": 2,
+  "kas": 0,
+  "goz": 0,
+  "burun": 0,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 3,
+  "kiyafet": 0,
+  "kRenk": 2,
+  "ek": 6,
+  "renk": {
+   "sac": "#5c3b26"
+  },
+  "ozel": {
+   "sapka": "<ellipse cx=\"60\" cy=\"33\" rx=\"46\" ry=\"7.5\" fill=\"#e8c77a\"/><ellipse cx=\"60\" cy=\"33\" rx=\"38\" ry=\"5\" fill=\"none\" stroke=\"#c9a75a\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><path d=\"M38 33C38 15 46 8 60 8C74 8 82 15 82 33Q60 37 38 33Z\" fill=\"#e8c77a\"/><path d=\"M45 16Q60 11 75 16M41 22Q60 17 79 22\" stroke=\"#c9a75a\" stroke-width=\"1\" fill=\"none\" stroke-dasharray=\"3 2.5\"/><path d=\"M38.3 27Q60 31 81.7 27L82 33Q60 37 38 33Z\" fill=\"#2fa36b\"/><path d=\"M76 31l7 -4l-1 7zM76 31l8 5l-6 2z\" fill=\"#258556\"/><circle cx=\"76.5\" cy=\"31.5\" r=\"2\" fill=\"#258556\"/><path d=\"M14.2 33.5A46 7.5 0 0 0 105.8 33.5\" stroke=\"#c9a75a\" stroke-width=\"1.6\" fill=\"none\"/>",
+   "sacArka": "<path d=\"M25 38C22 52 23 64 27 74L34 74L88 62C93 59 96.5 50 95 38Z\" fill=\"#5c3b26\"/>",
+   "sacOn": "<path d=\"M31.5 37C24 44 21.5 56 22.5 67C24 71 27.5 74 31.5 76L36 71C31.5 63 31 51 34 40Z\" fill=\"#5c3b26\"/><path d=\"M88.5 37C93.5 42 95 49 94 56L90.8 54.5C90.8 48 89 42 86 38.5Z\" fill=\"#5c3b26\"/><path d=\"M31 41Q60 36 89 41L88.5 44C80 41.5 70 42.5 60 42.5C50 42.5 40 41.5 31.5 44Z\" fill=\"#5c3b26\"/><path d=\"M28 47Q25.5 58 28.5 69\" stroke=\"#7d5539\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "kiyafet": "<path d=\"M50 92h20v18q-10 6 -20 0z\" fill=\"#94603d\"/><path d=\"M14 140C14 116 30 106 60 106C90 106 106 116 106 140Z\" fill=\"#e8735a\"/><path d=\"M48 107Q60 117 72 107\" stroke=\"#c95a42\" stroke-width=\"2.5\" fill=\"none\"/><path d=\"M42 140V122Q60 119 78 122V140Z\" fill=\"#4a6fa5\"/><path d=\"M34 111L44 123M86 111L76 123\" stroke=\"#4a6fa5\" stroke-width=\"5\" stroke-linecap=\"round\"/><circle cx=\"44.5\" cy=\"125\" r=\"1.8\" fill=\"#f2c94c\"/><circle cx=\"75.5\" cy=\"125\" r=\"1.8\" fill=\"#f2c94c\"/><rect x=\"53\" y=\"128\" width=\"14\" height=\"9\" rx=\"1.5\" fill=\"none\" stroke=\"#3a5885\" stroke-width=\"1.2\"/>",
+   "ust": "<ellipse cx=\"31\" cy=\"76\" rx=\"5.4\" ry=\"4.6\" fill=\"#5c3b26\" stroke=\"#3f2818\" stroke-width=\"1.1\" transform=\"rotate(-12 31 76)\"/><ellipse cx=\"32\" cy=\"83\" rx=\"5.050000000000001\" ry=\"4.6\" fill=\"#5c3b26\" stroke=\"#3f2818\" stroke-width=\"1.1\" transform=\"rotate(-12 32 83)\"/><ellipse cx=\"33.5\" cy=\"90\" rx=\"4.7\" ry=\"4.6\" fill=\"#5c3b26\" stroke=\"#3f2818\" stroke-width=\"1.1\" transform=\"rotate(-12 33.5 90)\"/><ellipse cx=\"35\" cy=\"97\" rx=\"4.3500000000000005\" ry=\"4.6\" fill=\"#5c3b26\" stroke=\"#3f2818\" stroke-width=\"1.1\" transform=\"rotate(-12 35 97)\"/><ellipse cx=\"36.5\" cy=\"104\" rx=\"4\" ry=\"4.6\" fill=\"#5c3b26\" stroke=\"#3f2818\" stroke-width=\"1.1\" transform=\"rotate(-12 36.5 104)\"/><ellipse cx=\"38\" cy=\"111\" rx=\"3.6500000000000004\" ry=\"4.6\" fill=\"#5c3b26\" stroke=\"#3f2818\" stroke-width=\"1.1\" transform=\"rotate(-12 38 111)\"/><rect x=\"35.5\" y=\"114\" width=\"6\" height=\"3.5\" rx=\"1.5\" fill=\"#2fa36b\" transform=\"rotate(-12 38.5 115.7)\"/><path d=\"M37 117.5Q36 123 38.5 126Q40 122 42 124Q41.5 120 40.5 117Z\" fill=\"#5c3b26\"/>"
+  },
+  "ayar": {
+   "kas": {
+    "y": 2
+   }
+  }
+ },
+ "not": "Hasır şapka elle (ozel.sapka): geniş kenar, kesik çizgi örgü dokusu, yeşil kurdele ve fiyonk; kenar kaşların üstünde, kaşlar 2 aşağı. Koyu kahve saç şapkanın altından: solda kulağı örtüp omuza inen tek örgüye bağlanır (ozel.sacOn + ozel.ust örgü, yeşil toka), sağda kulak arkasına taranmış; arka katman yalnız sol yanda uzun. Kıyafet kendi çizimiyle: mercan tişört üstüne kot bahçıvan tulumu (ozel.kiyafet). Allık."
+}

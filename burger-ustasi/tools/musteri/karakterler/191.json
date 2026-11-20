@@ -1,0 +1,27 @@
+{
+ "no": "191",
+ "ad": "Tenisçi Ilgın",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 2,
+  "ten": 4,
+  "sac": 12,
+  "sacRenk": 2,
+  "kas": 1,
+  "goz": 3,
+  "burun": 5,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 0,
+  "kRenk": 1,
+  "ek": 6,
+  "ozel": {
+   "sacArka": "<path d=\"M56 15C80 5 104 15 102 37C101 64 106 74 98 86C96 72 90 60 88 33C86 23 70 19 60 21Z\" fill=\"#5c3b26\"/><path d=\"M96 25C100 39 97 60 100 74\" stroke=\"#452c1d\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacOn": "<path d=\"M29.8 55.9L29.9 53.8L30 51.7L30.1 49.7L30.3 47.6L30.5 45.6L30.8 43.7L31.2 41.7L31.6 39.8L32 37.9L32.6 36L33.2 34.3L33.9 32.5L34.7 30.8L35.5 29.2L36.5 27.6L37.6 26.2L38.8 24.8L40.1 23.5L41.6 22.2L43.1 21.1L44.8 20.1L46.6 19.3L48.5 18.5L50.6 17.9L52.7 17.4L55 17.1L57.4 16.9L60 16.8L62.6 16.9L65 17.1L67.3 17.4L69.4 17.9L71.5 18.5L73.4 19.3L75.2 20.1L76.9 21.1L78.4 22.2L79.9 23.5L81.2 24.8L82.4 26.2L83.5 27.6L84.5 29.2L85.3 30.8L86.1 32.5L86.8 34.3L87.4 36L88 37.9L88.4 39.8L88.8 41.7L89.2 43.7L89.5 45.6L89.7 47.6L89.9 49.7L90 51.7L90.1 53.8L90.2 55.9L83 54C82 33 73 29 60 29C47 29 38 33 37 54Z\" fill=\"#5c3b26\"/><path d=\"M43 27Q48 20 58 18M77 27Q72 20 62 18\" stroke=\"#452c1d\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M34.5 32Q60 25 85.5 32L87.8 38Q60 31 32.2 38Z\" fill=\"#f07aa6\"/><path d=\"M36.5 33Q60 27 83.5 33\" stroke=\"#fff\" stroke-width=\"1.2\" fill=\"none\" opacity=\".7\"/><path d=\"M35.2 36.5Q60 30.5 84.8 36.5\" stroke=\"#fff\" stroke-width=\"1.2\" fill=\"none\" opacity=\".7\"/>",
+   "ust": "<ellipse cx=\"62\" cy=\"15\" rx=\"5\" ry=\"3.6\" fill=\"#f07aa6\"/>"
+  }
+ },
+ "not": "Uzun yüz, buğday ten. Saç geriye toplanmış (kafa eğrisinden 2,2 dışarıda), tepede pembe tokayla bağlı yüksek at kuyruğu sağa sallanıp omuza iner (sacArka). Pembe ter bandı alında kafa genişliğini izler, kaşların üstünde kalır. Allık, mavi tişört."
+}

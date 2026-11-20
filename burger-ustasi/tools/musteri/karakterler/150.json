@@ -1,0 +1,42 @@
+{
+ "no": 150,
+ "ad": "İtfaiyeci Kadir",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 5,
+  "ten": 5,
+  "sac": 2,
+  "sacRenk": 0,
+  "kas": 1,
+  "goz": 2,
+  "burun": 4,
+  "biyik": 2,
+  "sakal": 1,
+  "gozluk": 0,
+  "sapka": 5,
+  "kiyafet": 0,
+  "kRenk": 6,
+  "ek": 0,
+  "renk": {
+   "kiyafet": "#3a3f47"
+  },
+  "ozel": {
+   "sapka": "<path d=\"M28.2 44L28.6 43.2L29.2 42L29.9 40.9L30.7 39.7L31.5 38.7L32.3 37.6L33.2 36.6L34.1 35.6L35.1 34.7L36.1 33.7L37.2 32.9L38.3 32.1L39.5 31.3L40.8 30.6L42 29.9L43.4 29.2L44.8 28.6L46.3 28.1L47.8 27.6L49.3 27.2L51 26.9L52.7 26.6L54.4 26.3L56.2 26.1L58.1 26L60 26L61.9 26L63.8 26.1L65.6 26.3L67.3 26.6L69 26.9L70.7 27.2L72.2 27.6L73.7 28.1L75.2 28.6L76.6 29.2L78 29.9L79.2 30.6L80.5 31.3L81.7 32.1L82.8 32.9L83.9 33.7L84.9 34.7L85.9 35.6L86.8 36.6L87.7 37.6L88.5 38.7L89.3 39.7L90.1 40.9L90.8 42L91.4 43.2L91.8 44Z\" fill=\"#d93a2b\"/><path d=\"M60 26V40\" stroke=\"#a8281d\" stroke-width=\"5\"/><path d=\"M44 30Q40 35 37 42\" stroke=\"#ef6a55\" stroke-width=\"2.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M18 44Q20 38 34 39Q60 41 86 39Q100 38 102 44Q102 50 90 49Q60 46 30 49Q18 50 18 44Z\" fill=\"#a8281d\"/><path d=\"M49 41L47 22Q60 15 73 22L71 41Q60 43 49 41Z\" fill=\"#2b2f36\"/><circle cx=\"60\" cy=\"31\" r=\"6\" fill=\"#f2c94c\" stroke=\"#c9a227\" stroke-width=\"1.2\"/><path d=\"M60 26.5l1.4 3h3.2l-2.6 2l1 3.2l-3 -1.9l-3 1.9l1 -3.2l-2.6 -2h3.2z\" fill=\"#c8322b\"/>",
+   "ust": "<path d=\"M20 124Q60 118 100 124V131Q60 125 20 131Z\" fill=\"#f2d14a\"/><path d=\"M20 127.5Q60 121.5 100 127.5\" stroke=\"#c9ccd1\" stroke-width=\"2.2\" fill=\"none\"/>"
+  },
+  "ayar": {
+   "kas": {
+    "y": 2.5
+   },
+   "sapka": {
+    "y": -2
+   },
+   "sakal": {
+    "sx": 0.96,
+    "sy": 0.98,
+    "y": -1.5
+   }
+  }
+ },
+ "not": "İtfaiye kaskı elle: kırmızı kubbe kafayı sarar, geniş siper alında, önde rozetli kalkan; kask 2 yukarı ve kaşlar 2,5 aşağı ki siper kaşa değmesin; kısa siyah saç siperin altından şakaklarda görünür. Kirli sakal biraz daraltılıp yukarı alındı ki çene çizgisinin dışına taşmasın; fırça bıyık. Koyu ceket ve göğüste reflektörlü şerit (ozel.ust)."
+}

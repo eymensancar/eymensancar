@@ -16,7 +16,19 @@
   "sapka": 2,
   "kiyafet": 4,
   "kRenk": 8,
-  "ek": 0
+  "ek": 0,
+  "ayar": {
+   "sapka": {
+    "y": -3.5
+   },
+   "kas": {
+    "y": 1.5
+   }
+  },
+  "ozel": {
+   "sacArka": "<path d=\"M23 50C23 18 97 18 97 50L99 110Q93 117 85 113H35Q27 117 21 110Z\" fill=\"#3b2a20\"/>",
+   "sapka": "<path d=\"M22 44C22 11 98 11 98 44Z\" fill=\"#2a9aad\"/><path d=\"M33 33Q37 26 46 22.5\" stroke=\"#bfeaf1\" stroke-width=\"1.6\" fill=\"none\" stroke-linecap=\"round\" opacity=\".6\"/><rect x=\"21\" y=\"36\" width=\"78\" height=\"10\" rx=\"5\" fill=\"#1f7d8d\"/><path d=\"M26 37.5v7M31 37.5v7M36 37.5v7M41 37.5v7M46 37.5v7M51 37.5v7M56 37.5v7M61 37.5v7M66 37.5v7M71 37.5v7M76 37.5v7M81 37.5v7M86 37.5v7M91 37.5v7\" stroke=\"#176673\" stroke-width=\"1.2\"/><circle cx=\"60\" cy=\"13\" r=\"6.5\" fill=\"#f4f1ea\"/><circle cx=\"58\" cy=\"11\" r=\"2\" fill=\"#fff\"/>"
+  }
  },
- "not": ""
+ "not": "Bere elle (ozel.sapka): kıyafetten ayrı turkuaz, örgü bantlı, ponponlu; 3,5 birim yukarı alındı ki bant kaşları örtmesin, kaşlar 1,5 aşağı. Uzun düz arka saç omuz arkasında yumuşak biten kendi çizimi (ozel.sacArka). Varsayılan bere kaşların yarısını kapatıyordu."
 }

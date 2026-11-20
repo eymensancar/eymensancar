@@ -1,0 +1,33 @@
+{
+ "no": 148,
+ "ad": "Sahaf Şevket dede",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 0,
+  "ten": 2,
+  "sac": 1,
+  "sacRenk": 8,
+  "kas": 2,
+  "goz": 0,
+  "burun": 3,
+  "biyik": 6,
+  "sakal": 4,
+  "gozluk": 4,
+  "sapka": 0,
+  "kiyafet": 2,
+  "kRenk": 6,
+  "ek": 3,
+  "ozel": {
+   "sacArka": "<circle cx=\"30\" cy=\"40\" r=\"5\" fill=\"#e8e6e1\"/><circle cx=\"27\" cy=\"46\" r=\"6.5\" fill=\"#e8e6e1\"/><circle cx=\"25\" cy=\"53\" r=\"7\" fill=\"#e8e6e1\"/><circle cx=\"26\" cy=\"60\" r=\"6.5\" fill=\"#e8e6e1\"/><circle cx=\"29\" cy=\"66\" r=\"5.5\" fill=\"#e8e6e1\"/><circle cx=\"90\" cy=\"40\" r=\"5\" fill=\"#e8e6e1\"/><circle cx=\"93\" cy=\"46\" r=\"6.5\" fill=\"#e8e6e1\"/><circle cx=\"95\" cy=\"53\" r=\"7\" fill=\"#e8e6e1\"/><circle cx=\"94\" cy=\"60\" r=\"6.5\" fill=\"#e8e6e1\"/><circle cx=\"91\" cy=\"66\" r=\"5.5\" fill=\"#e8e6e1\"/>",
+   "sacOn": "<path d=\"M30 40Q36 46 35 56L34 66L28 66L28 44Z\" fill=\"#e8e6e1\"/><path d=\"M33 47q1 5 0 10\" stroke=\"#c9c5bd\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M90 40Q84 46 85 56L86 66L92 66L92 44Z\" fill=\"#e8e6e1\"/><path d=\"M87 47q-1 5 0 10\" stroke=\"#c9c5bd\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/><ellipse cx=\"50\" cy=\"31\" rx=\"8\" ry=\"4\" fill=\"#fff\" opacity=\".35\" transform=\"rotate(-20 50 31)\"/>",
+   "sakal": "<path d=\"M29.5 61C29.5 80 33 96 40 108Q44 118 50 123Q54 130 60 135Q66 130 70 123Q76 118 80 108C87 96 90.5 80 90.5 61L86 63Q80 70 72 75C70.5 93 49.5 93 48 75Q40 70 34 63Z\" fill=\"#e8e6e1\"/><path d=\"M47 96q2 9 6 16M73 96q-2 9 -6 16M60 100v20M40 82q2 8 5 13M80 82q-2 8 -5 13\" stroke=\"#c9c5bd\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "biyik": "<path d=\"M45 79C44 70 54 69 60 72C66 69 76 70 75 79C71 77 66 79 60 77C54 79 49 77 45 79Z\" fill=\"#dcd8d0\"/><path d=\"M50 73v3M54 72v4M66 72v4M70 73v3\" stroke=\"#c9c5bd\" stroke-width=\"1\"/>"
+  },
+  "ayar": {
+   "agiz": {
+    "y": 1.5
+   }
+  }
+ },
+ "not": "Kel; kulak arkasında kabarık beyaz tutamlar (ozel.sacArka), şakaktan sakala inen ince saç ve tepe parlaması (ozel.sacOn). Uzun sakal elle: favorilerden iner, dalgalı uçla göğse uzanır, ağız çevresi ağız biçiminde açık (gülerken ağız tam görünür); gür bıyık bir ton koyu ki sakaldan ayrılsın; ağız 1,5 aşağı. Burnun ucunda yarım okuma gözlüğü, kırışıklar, lacivert balıkçı yaka."
+}

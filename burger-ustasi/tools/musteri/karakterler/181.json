@@ -1,0 +1,28 @@
+{
+ "no": 181,
+ "ad": "Hostes Ceren",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 2,
+  "ten": 3,
+  "sac": 12,
+  "sacRenk": 1,
+  "kas": 3,
+  "goz": 2,
+  "burun": 0,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 3,
+  "kiyafet": 3,
+  "kRenk": 6,
+  "ek": 4,
+  "ozel": {
+   "sacOn": "<path d=\"M29.6 56.3L29.7 54.7L29.8 53L29.9 51.4L30 49.8L30.2 48.2L30.4 46.6L30.6 45L30.8 43.5L31.1 42L31.4 40.5L31.7 39.1L32.1 37.6L32.5 36.2L33 34.9L33.4 33.6L34 32.3L34.5 31L35.2 29.8L35.8 28.6L36.5 27.5L37.3 26.4L38.1 25.4L39 24.4L39.9 23.4L40.9 22.5L41.9 21.7L43.1 20.9L44.2 20.2L45.5 19.5L46.8 18.9L48.2 18.4L49.6 17.9L51.2 17.5L52.8 17.1L54.4 16.9L56.2 16.7L58.1 16.5L60 16.5L61.9 16.5L63.8 16.7L65.6 16.9L67.2 17.1L68.8 17.5L70.4 17.9L71.8 18.4L73.2 18.9L74.5 19.5L75.8 20.2L76.9 20.9L78.1 21.7L79.1 22.5L80.1 23.4L81 24.4L81.9 25.4L82.7 26.4L83.5 27.5L84.2 28.6L84.8 29.8L85.5 31L86 32.3L86.6 33.6L87 34.9L87.5 36.2L87.9 37.6L88.3 39.1L88.6 40.5L88.9 42L89.2 43.5L89.4 45L89.6 46.6L89.8 48.2L90 49.8L90.1 51.4L90.2 53L90.3 54.7L90.4 56.3L88.5 58C88 46 82 36 70 33C62 31 56 31 52 30C46 32 40 35 36.5 42C33.5 47 32.5 52 31.5 58Z\" fill=\"#3b2a20\"/><path d=\"M51 28Q42 29 37.5 36M53 27Q68 25 82 35\" stroke=\"#6a4e3c\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "",
+   "sapka": "<g transform=\"translate(0 2.5) rotate(13 66 14)\"><path d=\"M50 19V9Q66 4 82 9V19Q66 14 50 19Z\" fill=\"#2d3a4a\"/><ellipse cx=\"66\" cy=\"8.5\" rx=\"16\" ry=\"4\" fill=\"#3d4d61\"/><path d=\"M50 16.5Q66 11.5 82 16.5\" stroke=\"#e2b23c\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"66\" cy=\"10\" r=\"2.2\" fill=\"#e2b23c\"/></g>",
+   "kiyafet": "<path d=\"M50 92h20v18q-10 6 -20 0z\" fill=\"#c78f63\"/><path d=\"M14 140C14 116 30 106 60 106C90 106 106 116 106 140Z\" fill=\"#2d3a4a\"/><path d=\"M48 106L60 130L72 106Z\" fill=\"#f4f1ea\"/><path d=\"M48 106L56 126L44 116ZM72 106L64 126L76 116Z\" fill=\"#1f2935\"/><path d=\"M48 101Q60 109 72 101L73 106.5Q60 115 47 106.5Z\" fill=\"#d8433b\"/><path d=\"M52 104.5Q60 109 68 104.5\" stroke=\"#f4f1ea\" stroke-width=\"1.2\" fill=\"none\" stroke-dasharray=\"2 2\"/><path d=\"M66 107L72 121L67 119L64 122L65 108Z\" fill=\"#c23a32\"/><circle cx=\"66\" cy=\"108\" r=\"3\" fill=\"#d8433b\"/><circle cx=\"76\" cy=\"126\" r=\"1.6\" fill=\"#e2b23c\"/>"
+  }
+ },
+ "not": "Sıkı toplanmış koyu kahve saç elle (ozel.sacOn): alında ortaya yakın ayrım, saç geriye taranıp şakaklardan kulak üstüne iner. Lacivert hostes şapkası (ozel.sapka) hafif eğik, saçın üstüne oturuyor. Ceket kendi çizimiyle: krem bluz, boyunda kırmızı fular ve düğüm, rozet (ozel.kiyafet). Küpe, oval göz."
+}

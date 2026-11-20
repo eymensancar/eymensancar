@@ -16,7 +16,12 @@
   "sapka": 0,
   "kiyafet": 3,
   "kRenk": 1,
-  "ek": 3
+  "ek": 0,
+  "ozel": {
+   "ust": "<path d=\"M52 37.5q4 -1.4 8 0t8 0\" stroke=\"#c2845b\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M39.5 53.5l-3 -1.4M39.5 57l-3 1.1M80.5 53.5l3 -1.4M80.5 57l3 1.1\" stroke=\"#c2845b\" stroke-width=\"1\" stroke-linecap=\"round\"/>",
+   "sacOn": "<path d=\"M26.1 54.9L26.2 52.9L26.3 51L26.5 49L26.8 47.1L27.1 45.2L27.6 43.3L28.1 41.5L28.7 39.6L29.5 37.9L30.4 36.2L31.4 34.5L32.6 32.9L34 31.4L35.5 30L37.2 28.7L39 27.5L41 26.5L43.2 25.6L45.5 24.8L48 24.2L50.7 23.7L53.6 23.3L56.7 23.1L60 23L63.3 23.1L66.4 23.3L69.3 23.7L72 24.2L74.5 24.8L76.8 25.6L79 26.5L81 27.5L82.8 28.7L84.5 30L86 31.4L87.4 32.9L88.6 34.5L89.6 36.2L90.5 37.9L91.3 39.6L91.9 41.5L92.4 43.3L92.9 45.2L93.2 47.1L93.5 49L93.7 51L93.8 52.9L93.9 54.9C87.9 53 88.4 50 87.9 46C87 38 80 32 66 31C58 30.5 50 31.5 44 28C40 33 35.5 39 34 44C31.6 48 32.1 52 32.1 55Z\" fill=\"#9aa0a6\"/><path d=\"M44 28C54 22 70 20 82 28M50 28C60 25 70 25 78 29M44 28C41 31 39 34 37 38\" stroke=\"#7b8188\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M56 25.5Q65 23.5 73 25\" stroke=\"#c3c7cb\" stroke-width=\"1.6\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "<path d=\"M25 58L25.1 55.9L25.1 53.7L25.3 51.6L25.5 49.5L25.7 47.4L26.1 45.4L26.5 43.3L27.1 41.3L27.8 39.3L28.7 37.3L29.7 35.4L30.9 33.6L32.2 31.8L33.8 30.2L35.5 28.7L37.5 27.3L39.6 26.1L41.9 25L44.4 24.1L47.1 23.3L50 22.8L53.1 22.3L56.4 22.1L60 22L63.6 22.1L66.9 22.3L70 22.8L72.9 23.3L75.6 24.1L78.1 25L80.4 26.1L82.5 27.3L84.5 28.7L86.2 30.2L87.8 31.8L89.1 33.6L90.3 35.4L91.3 37.3L92.2 39.3L92.9 41.3L93.5 43.3L93.9 45.4L94.3 47.4L94.5 49.5L94.7 51.6L94.9 53.7L94.9 55.9L95 58Z\" fill=\"#7b8188\"/>"
+  }
  },
- "not": ""
+ "not": "Kır yandan ayrık saç elle: soldan ayrık, sağa taranmış kabarık üst, şakaklardan kulak üstüne iner (ozel.sacOn), arkada kafa hattını izleyen koyu kır katman (ozel.sacArka). Kırışık eki gür kaşlara çarptığı için tek alın çizgisi ve göz kenarı kırışıkları ozel.ust ile; uykulu göz, kanca burun, gür kır bıyık ağzı açık bırakır; ceket ve kravat."
 }

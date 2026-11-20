@@ -7,16 +7,28 @@
   "ten": 4,
   "sac": 2,
   "sacRenk": 1,
-  "kas": 1,
-  "goz": 1,
+  "kas": 0,
+  "goz": 0,
   "burun": 4,
   "biyik": 2,
   "sakal": 0,
   "gozluk": 0,
   "sapka": 1,
   "kiyafet": 1,
-  "kRenk": 3,
-  "ek": 0
+  "kRenk": 8,
+  "ek": 0,
+  "ayar": {
+   "kas": {
+    "y": 2
+   },
+   "sapka": {
+    "y": -3
+   }
+  },
+  "ozel": {
+   "sacOn": "<path d=\"M35.9 35.9L33.1 39L31 42L29.3 45.1L28 48.1L27 51.1L26.3 54.1L25.9 57.1L25.6 60.1L28 63L31 60.4L31.4 57.8L32 55.2L32.8 52.7L33.8 50.2L35.1 47.8L36.6 45.5L38.4 43.2L40.7 41Z\" fill=\"#3b2a20\"/><path d=\"M84.1 35.9L86.9 39L89 42L90.7 45.1L92 48.1L93 51.1L93.7 54.1L94.1 57.1L94.4 60.1L92 63L89 60.4L88.6 57.8L88 55.2L87.2 52.7L86.2 50.2L84.9 47.8L83.4 45.5L81.6 43.2L79.3 41Z\" fill=\"#3b2a20\"/>",
+   "sapka": "<path d=\"M30.5 43C29 22 44 15 60 15C76 15 91 22 89.5 43Z\" fill=\"#2a3f66\"/><path d=\"M60 15V41M45 18Q40 28 41 42M75 18Q80 28 79 42\" stroke=\"#1d2c49\" stroke-width=\"1.2\" fill=\"none\"/><circle cx=\"60\" cy=\"16\" r=\"2.4\" fill=\"#1d2c49\"/><path d=\"M62 22l-6 9h4l-3 8l8 -11h-4l3 -6z\" fill=\"#f2c94c\"/><path d=\"M29 41Q60 46 91 41Q93 47 85 49Q60 52.5 35 49Q27 47 29 41Z\" fill=\"#1d2c49\"/><path d=\"M36 46.5Q60 50 84 46.5\" stroke=\"#3a5285\" stroke-width=\"1.2\" fill=\"none\"/>"
+  }
  },
- "not": ""
+ "not": "Lacivert iş kepi elle çizildi (önden siperlik, yıldırım arması; ozel.sapka), 3 birim yukarıda ki kaşlar açıkta kalsın; kısa koyu kahve saç yalnız kepin altında şakaklardan kulağa iner (ozel.sacOn, kafa hattını izler). İnce kaşlar 2 aşağı, nokta göz, geniş burun, fırça bıyık; turuncu iş gömleği."
 }

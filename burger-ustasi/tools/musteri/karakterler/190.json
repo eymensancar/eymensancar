@@ -1,0 +1,27 @@
+{
+ "no": "190",
+ "ad": "Simitçi Kazım amca",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 5,
+  "ten": 5,
+  "sac": 1,
+  "sacRenk": 7,
+  "kas": 2,
+  "goz": 4,
+  "burun": 4,
+  "biyik": 6,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 1,
+  "kRenk": 2,
+  "ek": 3,
+  "ozel": {
+   "sapka": "<path d=\"M29.2 40C26.2 21 84.8 16 94.8 26C96.8 30 92.8 38 90.8 40Q60 37 29.2 40Z\" fill=\"#7a6a55\"/><path d=\"M33.2 28Q60 21 90.8 27M31.2 33Q60 27 92.8 32\" stroke=\"#928574\" stroke-width=\"1\" fill=\"none\" opacity=\".7\"/><path d=\"M29.2 40Q60 37 90.8 40\" stroke=\"#5c5040\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M32.2 39Q60 36 87.8 39Q84.8 44 60 44Q35.2 44 32.2 39Z\" fill=\"#5c5040\"/><circle cx=\"60\" cy=\"24\" r=\"2\" fill=\"#5c5040\"/>",
+   "sacOn": "<path d=\"M39.2 39C25 38 24 46 25 52C23 53 25 57 27 60L32 58C32 51 33 46 43.2 41Z\" fill=\"#9aa0a6\"/><path d=\"M27 46q2 4 0 8\" stroke=\"#7b8085\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M80.8 39C95 38 96 46 95 52C97 53 95 57 93 60L88 58C88 51 87 46 76.8 41Z\" fill=\"#9aa0a6\"/><path d=\"M93 46q-2 4 0 8\" stroke=\"#7b8085\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "<path d=\"M29 42C21 44 20 65 25 71L31 63Z\" fill=\"#8b9095\"/><path d=\"M91 42C99 44 100 65 95 71L89 63Z\" fill=\"#8b9095\"/>"
+  }
+ },
+ "not": "Armut yüz, esmer ten. Kasket elle: kafaya bant hizasında oturur, öne eğik tepe, kısa siper kaşların üstünde; altından kır yan saçlar şakaklardan kulak üstüne iner, arkada kulak arkası saç. Gür kır bıyık, uykulu gözler, kırışık."
+}

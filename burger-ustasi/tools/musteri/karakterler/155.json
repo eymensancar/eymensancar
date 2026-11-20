@@ -15,8 +15,12 @@
   "gozluk": 0,
   "sapka": 0,
   "kiyafet": 0,
-  "kRenk": 7,
-  "ek": 0
+  "kRenk": 0,
+  "ek": 0,
+  "ozel": {
+   "sacArka": "<path d=\"M74 22C92 12 106 26 102 46C100 58 104 70 98 82C96 70 90 62 92 50C94 38 88 32 80 31Z\" fill=\"#1e1a18\"/><path d=\"M95 30Q101 44 97 60\" stroke=\"#4a403a\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><ellipse cx=\"80\" cy=\"26\" rx=\"4\" ry=\"5\" transform=\"rotate(-35 80 26)\" fill=\"#e8483b\"/>",
+   "sacOn": "<path d=\"M26.6 54.9L26.7 52.8L26.9 50.8L27.1 48.7L27.4 46.7L27.8 44.7L28.2 42.7L28.8 40.8L29.4 38.9L30.2 37L31.1 35.3L32.1 33.5L33.3 31.9L34.6 30.3L36.1 28.9L37.7 27.5L39.5 26.3L41.5 25.2L43.6 24.3L45.9 23.4L48.4 22.7L51 22.2L53.8 21.8L56.8 21.6L60 21.5L63.2 21.6L66.2 21.8L69 22.2L71.6 22.7L74.1 23.4L76.4 24.3L78.5 25.2L80.5 26.3L82.3 27.5L83.9 28.9L85.4 30.3L86.7 31.9L87.9 33.5L88.9 35.3L89.8 37L90.6 38.9L91.2 40.8L91.8 42.7L92.2 44.7L92.6 46.7L92.9 48.7L93.1 50.8L93.3 52.8L93.4 54.9L89.9 55C86 47 85 41 81 36C74 31 67 30 60 30C53 30 46 31 39 36C35 41 34 47 30.1 55Z\" fill=\"#1e1a18\"/><path d=\"M42 27Q56 21 72 24\" stroke=\"#4a403a\" stroke-width=\"1.6\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M32.5 36.7Q60 22 87.5 36.7L90.1 43.9Q60 30 29.9 43.9Z\" fill=\"#f4f1ea\"/><path d=\"M31.2 40.3Q60 26 88.8 40.3\" stroke=\"#e8483b\" stroke-width=\"1.6\" fill=\"none\"/>"
+  }
  },
- "not": ""
+ "not": "Siyah saç geriye taranmış (ozel.sacOn, kafa hattından 2,5 dışarıda, şakaklar kulağa iner), yüksek at kuyruğu sağ arkadan sallanır, kırmızı tokalı (ozel.sacArka). Alnında kırmızı çizgili beyaz ter bandı kafa eğrisini izler; kaşlar bandın altında açıkta. Kırmızı spor tişörtü (bandın şeridiyle uyumlu)."
 }

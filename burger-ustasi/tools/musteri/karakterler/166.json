@@ -1,0 +1,34 @@
+{
+ "no": 166,
+ "ad": "Oto tamircisi Volkan",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 5,
+  "ten": 5,
+  "sac": 2,
+  "sacRenk": 0,
+  "kas": 1,
+  "goz": 2,
+  "burun": 1,
+  "biyik": 4,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 1,
+  "kRenk": 1,
+  "ek": 0,
+  "ozel": {
+   "sacOn": "<path d=\"M89.1 42.1L89.9 43.5L90.6 44.9L91.3 46.4L91.9 47.9L92.5 49.4L92.9 51L93.3 52.6L93.7 54.2L94 55.8L94.2 57.5L94.3 59.1L94.4 60.7L94.5 62.4L94.5 64.2L88.5 64.1L88.5 62.5L88.5 61L88.4 59.6L88.2 58.2L88 56.7L87.8 55.3L87.5 54L87.1 52.6L86.7 51.3L86.3 50L85.8 48.7L85.2 47.5L84.6 46.3L84 45.2Z\" fill=\"#1e1a18\"/><path d=\"M25.5 64.2L25.5 62.4L25.6 60.7L25.7 59.1L25.8 57.5L26 55.8L26.3 54.2L26.7 52.6L27.1 51L27.5 49.4L28.1 47.9L28.7 46.4L29.4 44.9L30.1 43.5L30.9 42.1L36 45.2L35.4 46.3L34.8 47.5L34.2 48.7L33.7 50L33.3 51.3L32.9 52.6L32.5 54L32.2 55.3L32 56.7L31.8 58.2L31.6 59.6L31.5 61L31.5 62.5L31.5 64.1Z\" fill=\"#1e1a18\"/>",
+   "sacArka": "",
+   "sapka": "<path d=\"M29.5 43.6L29.5 43.6L30.3 42.2L31.1 40.8L32.1 39.5L33.1 38.2L34.2 37L35.4 35.8L36.6 34.6L37.9 33.6L39.3 32.6L40.8 31.7L42.4 30.8L44 30L45.7 29.4L47.5 28.7L49.4 28.2L51.4 27.8L53.4 27.4L55.5 27.2L57.7 27.1L60 27L62.3 27.1L64.5 27.2L66.6 27.4L68.6 27.8L70.6 28.2L72.5 28.7L74.3 29.4L76 30L77.6 30.8L79.2 31.7L80.7 32.6L82.1 33.6L83.4 34.6L84.6 35.8L85.8 37L86.9 38.2L87.9 39.5L88.9 40.8L89.7 42.2L90.5 43.6L90.6 47Q60 40 29.4 47Z\" fill=\"#d8392e\"/><circle cx=\"44\" cy=\"33\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"54\" cy=\"30\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"66\" cy=\"30\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"76\" cy=\"33\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"38\" cy=\"40\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"49\" cy=\"37.5\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"60\" cy=\"36\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"71\" cy=\"37.5\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"82\" cy=\"40\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><circle cx=\"60\" cy=\"31\" r=\"1.3\" fill=\"#fff\" opacity=\".85\"/><path d=\"M30 46.2Q60 39 90 46.2\" stroke=\"#a22b23\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M90.5 41Q99 39 101 45Q97 46 94 44.5ZM91.5 45Q98 47 100 52.5Q95.5 52 91 48Z\" fill=\"#d8392e\"/><ellipse cx=\"91.5\" cy=\"43.8\" rx=\"3.6\" ry=\"3.2\" fill=\"#a22b23\"/><path d=\"M45 33q8 -3 15 -2\" stroke=\"#e26b62\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "ust": "<rect x=\"71\" y=\"118\" width=\"16\" height=\"8\" rx=\"2\" fill=\"#fff\"/><path d=\"M74 122h10\" stroke=\"#d8392e\" stroke-width=\"1.6\"/>",
+   "biyik": "<path d=\"M44.8 92.5V82Q45.3 75.6 60 75.3Q74.7 75.6 75.2 82V92.5Q73.4 94.3 71.6 92.5V82.8Q71 79.8 60 79.6Q49 79.8 48.4 82.8V92.5Q46.6 94.3 44.8 92.5Z\" fill=\"#1e1a18\"/>"
+  },
+  "ayar": {
+   "kas": {
+    "y": 1.5
+   }
+  }
+ },
+ "not": "Kırmızı puantiyeli bandana elle (ozel.sapka): kafayı sarar, alt kenarı alında, kaşların üstünde; düğüm ve uçlar sağ yanda kulağın üstünde. Altından kulağa inen kısa siyah favoriler (ozel.sacOn). At nalı bıyık elle: burnun altından başlar, uçları ağzın iki yanından çeneye iner, mutlu/kızgın açık ağzı örtmez. Mavi iş gömleği ve isim etiketi (ozel.ust)."
+}

@@ -16,7 +16,13 @@
   "sapka": 0,
   "kiyafet": 2,
   "kRenk": 9,
-  "ek": 3
+  "ek": 0,
+  "ozel": {
+   "sacOn": "<path d=\"M27 84L28 58L25 56L25 54L25 52L25.1 50L25.2 47.9L25.4 45.9L25.7 43.9L26 41.9L26.6 40L27.2 38.1L28.1 36.2L29.1 34.4L30.4 32.7L31.8 31L33.5 29.5L35.4 28.2L37.6 27L40 26L42.6 25.1L45.5 24.3L48.7 23.8L52.2 23.3L55.9 23.1L60 23L64.1 23.1L67.8 23.3L71.3 23.8L74.5 24.3L77.4 25.1L80 26L82.4 27L84.6 28.2L86.5 29.5L88.2 31L89.6 32.7L90.9 34.4L91.9 36.2L92.8 38.1L93.4 40L94 41.9L94.3 43.9L94.6 45.9L94.8 47.9L94.9 50L95 52L95 54L95 56L92 58L95 84Q92 86.5 88.5 84C89.5 74 91 62 89 50C87.5 43 82 37 76 34.5C66 37.5 47 34.5 36.5 41C34 44 32.5 48 31.5 52C29.5 62 30.5 74 31.5 84Q29 86.5 27 84Z\" fill=\"#e6e3dc\"/><path d=\"M73 27C66 32 50 33 39 39M76 34.5Q80 30 86 34\" stroke=\"#bdb8ae\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "<path d=\"M23 86V52C23 10 97 10 97 52V86Q92 90 86 87H34Q28 90 23 86Z\" fill=\"#cdc9c1\"/>",
+   "kulak": "",
+   "ust": "<path d=\"M38.5 51l-3 -1.4M38.5 54.5l-3 1M81.5 51l3 -1.4M81.5 54.5l3 1\" stroke=\"#8a5534\" stroke-width=\"1\" stroke-linecap=\"round\"/>"
+  }
  },
- "not": ""
+ "not": "Beyaz küt saç elle: önde yana taranmış kâkül alnı kaşların üstünde keser, yan saçlar kulakları örtüp çene üstünde biter (ozel.sacOn, kulak boş); arka katman biraz koyu gri ki derinlik olsun. Kırışık eki kaşlara çarptığı için göz kenarı kırışıkları ozel.ust ile; yarım gözlük, kirpikli göz, turkuaz balıkçı yaka."
 }
