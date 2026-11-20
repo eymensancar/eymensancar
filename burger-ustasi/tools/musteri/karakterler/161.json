@@ -16,11 +16,11 @@
   "sapka": 0,
   "kiyafet": 1,
   "kRenk": 2,
-  "ek": 1,
+  "ek": 5,
   "ozel": {
-   "sacOn": "<path d=\"M25.4 57L25.4 55.2L25.4 53.3L25.4 51.4L25.5 49.5L25.6 47.6L25.8 45.7L26.1 43.8L26.4 42L26.9 40.2L27.5 38.4L28.3 36.7L29.2 35L30.3 33.4L31.6 31.9L33.1 30.4L34.7 29.1L36.6 28L38.7 26.9L41 26L43.6 25.2L46.3 24.6L49.4 24.1L52.6 23.7L56.2 23.5L60 23.4L63.8 23.5L67.4 23.7L70.6 24.1L73.7 24.6L76.4 25.2L79 26L81.3 26.9L83.4 28L85.3 29.1L86.9 30.4L88.4 31.9L89.7 33.4L90.8 35L91.7 36.7L92.5 38.4L93.1 40.2L93.6 42L93.9 43.8L94.2 45.7L94.4 47.6L94.5 49.5L94.6 51.4L94.6 53.3L94.6 55.2L94.6 57L88 55C87.5 47 85 41 78 38.5C70 36 60 36.5 52 39C44 41.5 37 44 31.5 50L31.8 55.5Z\" fill=\"#8a5530\"/><path d=\"M84 30C74 31 62 33 50 39M78 27C68 28 58 31 47 36.5M88 36Q84 37 80 38.5\" stroke=\"#684024\" stroke-width=\"1.3\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M66 26Q74 26 80 29\" stroke=\"#a78064\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" opacity=\".7\"/>",
+   "sacOn": "<path d=\"M26 58L25.9 56.1L25.8 54.2L25.7 52.2L25.7 50.3L25.7 48.4L25.7 46.4L25.9 44.5L26.1 42.6L26.4 40.7L26.9 38.8L27.6 37L28.4 35.1L29.4 33.4L30.7 31.7L32.1 30.1L33.8 28.6L35.8 27.2L37.9 26L40.3 24.9L42.9 23.9L45.8 23.1L48.9 22.5L52.3 22L56 21.7L60 21.5L64 21.7L67.7 22L71.1 22.5L74.2 23.1L77.1 23.9L79.7 24.9L82.1 26L84.2 27.2L86.2 28.6L87.9 30.1L89.3 31.7L90.6 33.4L91.6 35.1L92.4 37L93.1 38.8L93.6 40.7L93.9 42.6L94.1 44.5L94.3 46.4L94.3 48.4L94.3 50.3L94.3 52.2L94.2 54.2L94.1 56.1L94 58L91 58Q90.5 64 88.5 67.5Q87.5 62 87.2 56C86.8 49 85.5 44 80 41C72 37 63 37.5 55 40C47 42.5 40 45 33 51.5Q35 46 37 43.5C34 46.5 32.5 51 32.5 56Q32.3 62 31.5 67.5Q29.5 64 29 58Z\" fill=\"#8a5530\"/><path d=\"M83 29.5C73 30.5 61 33.5 49 40.5M76 26.5C66 27.5 56 30.5 44 38M87 34Q85 36.5 81.5 39\" stroke=\"#684024\" stroke-width=\"1.3\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M64 25Q73 24.8 80 28\" stroke=\"#ab856a\" stroke-width=\"2.2\" fill=\"none\" stroke-linecap=\"round\" opacity=\".75\"/>",
    "sacArka": ""
   }
  },
- "not": "Kısa pixie saç kendi çizimiyle: kafayı saran kapak, sağdan sola savrulan kâkül sol şakakta biter, kaşlara inmez."
+ "not": "Kısa pixie saç kendi çizimiyle: tepede hacimli, kafayı saran kapak; sağdan sola savrulan kâkül sol şakakta sivri biter, kaşlara inmez; kulak önünde ince sivri favoriler; çil ve küçük küpe. Yeşil gömlek (veteriner önlüğü)."
 }
