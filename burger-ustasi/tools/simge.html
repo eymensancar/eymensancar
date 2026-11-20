@@ -1,0 +1,35 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simge Seti</title>
+<style>
+/* Burger Ustası simge seti deneme sayfası: her simge 24, 48 ve 96 px'te, açık ve koyu zeminde. */
+:root{--bg:#fff4dc;--fg:#2a1a10;--light:#fff4dc;--dark:#3a2416;--line:#e2cfa6}
+body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif}
+h1{margin:0 0 4px;font-size:22px}
+p{margin:0 0 14px;font-size:13px;opacity:.75}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.cell{border:2px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.cell h2{margin:0;padding:3px 8px;font-size:13px;font-weight:700;background:#f6e6c4}
+.row{display:flex;align-items:center;gap:12px;padding:8px 10px}
+.row.l{background:var(--light)}
+.row.d{background:var(--dark)}
+.ic{display:block;flex:none}
+.s24{width:24px;height:24px}.s48{width:48px;height:48px}.s96{width:96px;height:96px}
+.strip{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:12px;margin:0 0 14px}
+.strip.l{background:var(--light);border:2px solid var(--line)}.strip.d{background:var(--dark)}
+.strip .ic{width:32px;height:32px}
+</style></head><body>
+<h1>Burger Ustası: simge seti</h1>
+<p>www/js/simge.js → BU.SIMGE.svg(ad). Her simge 24, 48, 96 px; üst satır açık, alt satır koyu zemin.</p>
+<div class="strip l" id="sl"></div>
+<div class="strip d" id="sd"></div>
+<div class="grid" id="g"></div>
+<script src="../www/js/simge.js"></script>
+<script>
+const {svg,ADLAR}=BU.SIMGE,g=document.getElementById('g');
+const all=c=>ADLAR.map(a=>svg(a,c)).join('');
+document.getElementById('sl').innerHTML=all('');
+document.getElementById('sd').innerHTML=all('');
+g.innerHTML=ADLAR.map(a=>{const r=['s24','s48','s96'].map(s=>svg(a,s)).join('');
+  return `<div class="cell"><h2>${a}</h2><div class="row l">${r}</div><div class="row d">${r}</div></div>`}).join('');
+</script>
+</body></html>
