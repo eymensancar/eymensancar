@@ -21,7 +21,13 @@ const B=BU.BURGER;B.YOL='../www/g/';document.getElementById('buCss').textContent
 const SIRA=['bunBot','patty','cheese','lettuce','tomato','onion','bacon','egg','pickle'];
 const acik=n=>SIRA.slice(0,n);                          // kapanmamış (son katman en üstte)
 const kapali=n=>n<2?['bunBot']:[...SIRA.slice(0,n-1),'bunTop'];   // n katmanlı tam burger
-let h='';
+const YENI=['bunBot','premium','sauce','mushroom','jalapeno','onionring','avocado','cheese','bacon','patty'];
+const yeniK=n=>n<2?['bunBot']:[...YENI.slice(0,n-1),'bunTop'];
+const MAL=['bun','patty','cheese','lettuce','tomato','onion','bacon','egg','pickle','sauce','mushroom','jalapeno','onionring','avocado','premium'];
+let h='<h2>Malzeme simgeleri (g/s-*.svg), 96 / 48 / 28 px</h2>';
+[[96,'#fff'],[48,'#6d4410'],[28,'#fff']].forEach(([z,bg])=>{h+=`<div class="row" style="background:${bg};border-radius:8px;padding:8px;margin-bottom:6px">`+MAL.map(k=>`<div class="cell" style="width:${z}px"><span style="width:${z}px;height:${z}px;display:block">${B.simge(k)}</span>${z>40?k:''}</div>`).join('')+'</div>'});
+h+='<style>.cell img.bu-simge{width:100%;height:100%}</style>';
+h+='<h2>Her katman tek başına (ekmek arasında)</h2><div class="row">'+MAL.filter(k=>k!=='bun').map(k=>`<div class="cell"><div class="plate"><div class="lim" style="width:125px;height:160px">${B.yigin(['bunBot',k,'bunTop'],{gen:125,yukMax:160})}</div></div>${k}</div>`).join('')+'</div>';
 const yig=(title,gen,yuk,fn)=>{h+=`<h2>${title} (gen ${gen}, yukMax ${yuk})</h2><div class="row">`;
   for(let n=1;n<=10;n++){const ks=fn(n);h+=`<div class="cell"><div class="plate"><div class="lim" style="width:${gen}px;height:${yuk}px">${B.yigin(ks,{gen,yukMax:yuk})}</div></div>${n}</div>`}h+='</div>'};
 yig('Kapalı burger, 320 px tabak',93,118,kapali);
@@ -29,6 +35,8 @@ yig('Kapalı burger, 430 px tabak',125,160,kapali);
 yig('Açık yığın (üst ekmek yok), 320 px',93,118,acik);
 yig('Dar yer',93,70,kapali);
 yig('Büyük (ana menü)',200,200,kapali);
+yig('Yeni malzemeler, 430 px tabak',125,160,yeniK);
+yig('Yeni malzemeler, büyük',200,200,yeniK);
 // cqw dizesiyle
 h+='<h2>cqw dizesi: 320 px kapsayıcıda gen 29cqw, yukMax 37cqw</h2><div class="cq" style="width:320px"><div class="row" style="padding:6px">';
 for(let n=2;n<=10;n+=2)h+=`<div class="lim" style="width:29cqw;height:37cqw">${B.yigin(kapali(n),{gen:'29cqw',yukMax:'37cqw'})}</div>`;h+='</div></div>';
@@ -44,7 +52,12 @@ const ORD=[
  ['bunBot','patty','cheese','lettuce','tomato','onion','bacon','bunTop'],
  ['bunBot','patty','cheese','lettuce','tomato','onion','bacon','egg','bunTop'],
  ['bunBot','patty','cheese','lettuce','tomato','onion','bacon','egg','pickle','bunTop'],
- ['bunBot','patty','patty','patty','cheese','bacon','bacon','egg','pickle','bunTop']];
+ ['bunBot','patty','patty','patty','cheese','bacon','bacon','egg','pickle','bunTop'],
+ ['bunBot','patty','sauce','bunTop'],
+ ['bunBot','patty','cheese','mushroom','onionring','bunTop'],
+ ['bunBot','patty','jalapeno','jalapeno','avocado','sauce','bunTop'],
+ ['bunBot','premium','cheese','mushroom','onionring','sauce','bunTop'],
+ ['bunBot','premium','premium','sauce','sauce','avocado','jalapeno','onionring','mushroom','bunTop']];
 const sip=(title,gen)=>{h+=`<h2>${title} (gen ${gen})</h2><div class="row sky">`;
   ORD.forEach(o=>{h+=`<div class="cell"><div class="bub" style="width:${gen+12}px">${B.siparis(o,{gen})}<div class="pat"><b></b></div></div>${o.length} katman / ${B.grupla(o).length} simge</div>`});h+='</div>'};
 sip('Sipariş, 320 px ekran',88);
