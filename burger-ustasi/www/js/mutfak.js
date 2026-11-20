@@ -3,6 +3,8 @@
      tezgâh, lamba kabloları ve baca yukarı/yanlara devam eder; oyun ekranı boş kenar kalmasın diye kullanır): sahnenin SABİT arka planı (duvar, davlumbaz, lambalar, neon,
      raflar, pencere, tezgâh, ekmek dolabı gövdesi, ızgara gövdesi ve boş gözler, boş küvetler, sos kâseleri, tahta,
      fritöz, hazır tepsileri, içecek makinesi, çöp). aksam 0 = gündüz, 1 = akşam; renkler hesaplanır, filtre yok.
+   - ciz({katman:'on'}): aynı çizimin yalnız servis tezgâhı çizgisinden (SERVIS_Y) aşağısı + lambalar + davlumbaz (ön katman):
+     oyunda müşteriler arka ve ön katmanın arasında durur, gövdelerinin altı tezgâhın arkasında kalır.
    - YER: aynı 1600×900 koordinatında dokunma/yerleşim dikdörtgenleri {x,y,w,h}. İç içerik (küvetin içi, ekmekler,
      köfte…) başka modülden gelir ve dikdörtgenin İÇ alanına (IC kadar içeri) oturur.
    - Parçalar (her biri kendi viewBox'lı bağımsız <svg>; id kullanmaz, sayfada çok kez durabilir):
@@ -46,25 +48,33 @@ const R=(x,y,w,h)=>({x,y,w,h});
 const KUV_UST=['lettuce','tomato','pickle','onion','cheese','bacon'];
 const KUV_ALT=['mushroom','jalapeno','egg','avocado','premium','bos'];
 const KW=194,KH=112,KG=6;
-const SATIR1={x:205,y:502},SATIR2={x:155,y:622};
+const SATIR1={x:205,y:502},SATIR2={x:155,y:626};   // sıra arası 12: iPhone SE'de de dokunma kutusu 44 pt
 const kuvet={};
 KUV_UST.forEach((k,i)=>kuvet[k]=R(SATIR1.x+i*(KW+KG),SATIR1.y,KW,KH));
 KUV_ALT.forEach((k,i)=>kuvet[k]=R(SATIR2.x+i*(KW+KG),SATIR2.y,KW,KH));
-const GZW=154,GZH=112,GZG=8,GX0=418,GY0=236;
+const GZW=154,GZH=112,GZG=12,GX0=418,GY0=230;
 const izgara=[];
 for(let r=0;r<2;r++)for(let c=0;c<3;c++)izgara.push(R(GX0+c*(GZW+GZG),GY0+r*(GZH+GZG),GZW,GZH));
 const YER={
  ekmek:R(36,232,330,224),
  izgara,                                  // 0-2 üst sıra, 3-5 alt sıra (soldan sağa)
- hazir:R(906,236,114,232),                // pişmiş köfte bekleme tepsisi (ızgaranın sağ ucu)
+ hazir:R(906,230,114,236),                // pişmiş köfte bekleme tepsisi (ızgaranın sağ ucu)
  kuvet,
  sos:{sauce:R(60,746,172,110),mayo:R(244,746,172,110)},
  tahta:[R(494,746,298,110),R(800,746,298,110)],
  fritoz:{fries:R(1058,240,162,226),onionring:R(1228,240,162,226)},
  yanHazir:{fries:R(1134,744,222,112),onionring:R(1368,744,222,112)},
  cop:R(1440,548,142,182),
- icecek:R(1410,190,180,310)
+ icecek:R(1410,190,180,310),
+ // müşteriler: servis tezgâhının arkasında, damalı duvarın önünde (y < SERVIS_Y görünür; altı tezgâhın arkasında kalır).
+ // Her yer: yüz solda, sipariş baloncuğu sağda. Oyun (oyun.js) üst bilgi köşelere sığmazsa yerleri bu aralıkta sıkıştırır.
+ musteri:[R(255,-14,360,194),R(620,-14,360,194),R(985,-14,360,194)],
+ musteri4:[R(255,-14,268,194),R(529,-14,268,194),R(803,-14,268,194),R(1077,-14,268,194)],   // ileride 4 müşteri
+ yuz:[R(255,22,150,180),R(620,22,150,180),R(985,22,150,180)],                              // yüz kutusu, 150 birim (alt %16'sı tezgâhın arkasında)
+ balon:[R(400,-10,212,184),R(765,-10,212,184),R(1130,-10,212,184)],                        // baloncuk en çok bu kadar (yüzün sağında)
+ servis:R(-200,180,2000,50)                                                            // servis tezgâhı (müşteriler ona yaslanır)
 };
+const SERVIS_Y=180;   // müşterilerin görünen alt kenarı: ciz({katman:'on'}) bu çizginin altını (ve lambaları, davlumbazı) çizer
 // küvet/kâse/tepsi kenar payı: içerik bu kadar içeri oturur
 const IC={kuvet:10,sos:12,yanHazir:14,fritoz:10,izgara:8,hazir:10};
 
@@ -99,48 +109,47 @@ function duvar(){
      `<path d="${yol.cream}" fill="${C.cream}"/><path d="${yol.creamD}" fill="${mix(C.cream,C.grout,.18)}"/>`+
      `<path d="${par.red}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="3" stroke-linecap="round"/>`+
      `<path d="${par.cream}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>`;
-  // duvarın dibinde koyu kuşak (tezgâh arkası)
-  s+=`<rect x="${V.x0}" y="182" width="${V.x1-V.x0}" height="50" fill="#2a1006" fill-opacity=".10"/>`;
   return s}
 
 // ---------- davlumbaz ----------
+// ince ve yüksekte: müşterilerin başının üstünde kalır (alt kenarı y=-22). Telefonda çoğu ekranın üstünde, iPad'de baca görünür.
+const DAV={x:630,w:340,y:-22};
 function davlumbaz(){
-  let s='';
-  // arka panel (ızgaranın arkasındaki paslanmaz sıçrama paneli)
-  s+=rect(598,120,334,110,4,'url(#mt-stH)',O(3.5));
-  for(let x=616;x<930;x+=22)s+=line(`M${x} 140V226`,'#fff',2,.18);
-  s+=line('M598 176H932',C.stD,2.5,.6);
-  s+=parla(598,120,334,110,.18,.2,[[.1,.06],[.55,.12]]);
+  const x0=DAV.x,x1=DAV.x+DAV.w,cx=x0+DAV.w/2,yb=DAV.y;let s='';
   // baca
-  const by=Math.min(-10,V.y0-10);
-  s+=`<path d="M590 ${by}H940V52H590z" fill="url(#mt-stH)" ${O()}/>`+parla(590,by,350,52-by,.22,.4,[[.15,.08],[.5,.04]]);
-  s+=line('M600 22H930',C.stD,2.5,.5);
-  // gövde (yayvan)
-  s+=`<path d="M572 50H958L1010 112H520z" fill="url(#mt-stV)" ${O()}/>`;
-  s+=`<path d="M600 54L572 108M650 54l-10 54M890 54l12 54M934 54l30 54" stroke="#fff" stroke-opacity=".28" stroke-width="5" stroke-linecap="round"/>`;
-  // havalandırma kanatları
-  s+=rect(516,106,498,34,8,C.stL,O());
-  for(let x=540;x<=990;x+=25)s+=rect(x,113,13,20,4,C.stDeep);
-  s+=line('M528 112H1002',"#fff",2.5,.7);
-  s+=rect(508,136,514,12,6,C.stM,O(3.5));
+  const by=Math.min(yb-200,V.y0-10);
+  s+=`<path d="M${cx-62} ${by}H${cx+62}V${yb-70}H${cx-62}z" fill="url(#mt-stH)" ${O()}/>`+parla(cx-62,by,124,yb-70-by,.22,.4,[[.15,.1],[.5,.05]]);
+  for(let y=yb-110;y>by+20;y-=90)s+=line(`M${cx-62} ${y}H${cx+62}`,C.stD,2.5,.55);
+  // gövde (yayvan, alçak)
+  s+=`<path d="M${cx-108} ${yb-74}H${cx+108}L${x1} ${yb-34}H${x0}z" fill="url(#mt-stV)" ${O()}/>`;
+  s+=`<path d="M${cx-90} ${yb-70}l-22 32M${cx-40} ${yb-70}l-6 32M${cx+50} ${yb-70}l8 32M${cx+92} ${yb-70}l22 32" stroke="#fff" stroke-opacity=".28" stroke-width="5" stroke-linecap="round"/>`;
+  // havalandırma kanatları ve dudak
+  s+=rect(x0-4,yb-38,DAV.w+8,24,7,C.stL,O(3.5));
+  for(let x=x0+16;x<=x1-26;x+=22)s+=rect(x,yb-33,11,14,3,C.stDeep);
+  s+=line(`M${x0+8} ${yb-34}H${x1-8}`,'#fff',2.5,.7);
+  s+=rect(x0-10,yb-16,DAV.w+20,10,5,C.stM,O(3.5));
   return s}
 
 // ---------- lambalar ----------
-const LAMBA=[300,1100,1528];
-function lamba(x){
-  return line(`M${x} ${Math.min(-5,V.y0-5)}V30`,'#1d1715',4)+
-    rect(x-12,22,24,14,4,C.lamp,O(3))+
-    `<path d="M${x-64} 84Q${x-62} 44 ${x-24} 34H${x+24}Q${x+62} 44 ${x+64} 84z" fill="${C.lamp}" ${O()}/>`+
-    line(`M${x-44} 70Q${x-42} 50 ${x-20} 42`,'#fff',4,.25)+
-    `<ellipse cx="${x}" cy="84" rx="60" ry="7" fill="${C.warm}" ${O(3)}/>`}
+// iki lamba: solda raflarin üstünde ve sağda (müşterilerin başının üstünde, abajur alt kenarı LY)
+const LAMBA=[118,1188],LY=-22;
+function lamba(x){const d=LY-84;
+  return line(`M${x} ${Math.min(-5+d,V.y0-5)}V${30+d}`,'#1d1715',4)+
+    rect(x-12,22+d,24,14,4,C.lamp,O(3))+
+    `<path d="M${x-58} ${84+d}Q${x-56} ${46+d} ${x-22} ${36+d}H${x+22}Q${x+56} ${46+d} ${x+58} ${84+d}z" fill="${C.lamp}" ${O()}/>`+
+    line(`M${x-40} ${70+d}Q${x-38} ${52+d} ${x-18} ${44+d}`,'#fff',4,.25)+
+    `<ellipse cx="${x}" cy="${84+d}" rx="54" ry="7" fill="${C.warm}" ${O(3)}/>`}
 function lambaIsik(x,t){
-  const a=.03+.06*t;
-  return `<path d="M${x-56} 86L${x+56} 86L${x+300} 860L${x-300} 860z" fill="url(#mt-koni)" opacity="${r1(a*100)/100}"/>`+
-    `<path d="M${x-50} 86L${x+50} 86L${x+190} 700L${x-190} 700z" fill="url(#mt-koni)" opacity="${r1(a*.8*100)/100}"/>`}
+  const a=.03+.06*t,y=LY+2;
+  return `<path d="M${x-50} ${y}L${x+50} ${y}L${x+300} 860L${x-300} 860z" fill="url(#mt-koni)" opacity="${r1(a*100)/100}"/>`+
+    `<path d="M${x-44} ${y}L${x+44} ${y}L${x+190} 700L${x-190} 700z" fill="url(#mt-koni)" opacity="${r1(a*.8*100)/100}"/>`}
 function lambaAmpul(x,t){
-  return `<circle cx="${x}" cy="88" r="${r1(48+30*t)}" fill="url(#mt-par)" opacity="${r1((.55+.45*t)*100)/100}"/>`+
-    `<ellipse cx="${x}" cy="86" rx="22" ry="9" fill="#fffbe8"/>`}
+  return `<circle cx="${x}" cy="${LY+4}" r="${r1(44+28*t)}" fill="url(#mt-par)" opacity="${r1((.55+.45*t)*100)/100}"/>`+
+    `<ellipse cx="${x}" cy="${LY+2}" rx="20" ry="8" fill="#fffbe8"/>`}
 
+// ---------- duvardaki yerler (müşterilerin başının üstünde; telefonda çoğu ekranın üstünde kalır) ----------
+const PEN={x:230,y:-134};                          // pencere (352×104)
+const NEON='translate(1292 -142) scale(.8)';         // neon tabela (170×150 → 136×120), sağ lambanın sağında
 // ---------- neon ----------
 // burger tabelası, 170×150 kutuda
 const NEON_YOL={
@@ -233,15 +242,19 @@ function kutu(x,y,w,h){
   return rect(x,y,w,h,5,C.kraft,O(3.5))+rect(x,y,w,h*.22,5,C.kraftD,O(3))+line(`M${x+6} ${y+h*.22+5}H${x+w-6}`,'#fff',2.5,.35)+
    // kutu üstündeki burger damgası
    `<g fill="${mix(C.kraftD,K,.35)}"><path d="M${cx-r} ${cy-1}q0-${r} ${r}-${r}t${r} ${r}z"/><rect x="${cx-r-2}" y="${cy+2}" width="${2*r+4}" height="${r*.4}" rx="${r*.2}"/><path d="M${cx-r} ${cy+r*.6}h${2*r}q0 ${r*.5}-${r*.5} ${r*.5}h-${r}q-${r*.5} 0-${r*.5}-${r*.5}z"/></g>`}
+// servis tezgâhının sağ ucunda, üst üste paket kutuları (müşterilerin sağında)
 function kutular(){
-  return rect(1356,182,250,12,4,C.wood,O(3.5))+rect(1380,194,8,10,2,'#3a3330',O(2.5))+
-    kutu(1366,108,92,74)+kutu(1462,94,112,88)+kutu(1376,52,74,56)}
+  return kutu(1384,106,96,74)+kutu(1486,92,112,88)+kutu(1398,50,76,56)}
 
 // ---------- tezgâh ----------
 function tezgah(){
   let s='';
-  // arka kenar (duvar dibi)
   const a=V.x0-10,b=V.x1+10,w=b-a;
+  // servis tezgâhı: müşterilerin yaslandığı ahşap üst + paslanmaz ön yüz (müşterilerin gövdesi bunun arkasında)
+  s+=rect(a,192,w,40,0,'url(#mt-stV)',O(3.5));
+  for(let x=a+30;x<b;x+=60)s+=line(`M${x} 200V226`,'#fff',2,.16);
+  s+=rect(a,192,w,8,0,'#2a1006','fill-opacity=".22"');
+  s+=rect(a,SERVIS_Y,w,15,5,C.woodL,O(3.5))+rect(a,SERVIS_Y+9,w,6,0,C.wood)+line(`M${a+10} ${SERVIS_Y+4}H${b-10}`,'#fff',3,.45);
   s+=rect(a,212,w,20,4,C.stM,O(3.5))+line(`M${a+10} 217H${b-10}`,'#fff',2.5,.6);
   // mermer
   s+=rect(a,228,w,Math.max(690,V.y1-228),0,C.woodD);
@@ -510,12 +523,12 @@ function ciz(o={}){
   const vb=o.vb||{};V={x0:Math.min(0,vb.x!=null?vb.x:0),y0:Math.min(0,vb.y!=null?vb.y:0)};V.x1=Math.max(1600,(vb.x!=null?vb.x:0)+(vb.w||1600));V.y1=Math.max(900,(vb.y!=null?vb.y:0)+(vb.h||900));
   const VW=V.x1-V.x0,VH=V.y1-V.y0;
   pal(t);
-  let s=defs(t);
+  const on=o.katman==='on';
+  let s='';
   s+=duvar();
-  s+=raflar();
-  s+=pencere(t);
-  s+=davlumbaz();
-  s+=`<g transform="translate(1166 20)">${neonCiz(true,.45+.55*t)}</g>`;
+  s+=`<g transform="translate(0 -24)">${raflar()}</g>`;
+  s+=`<g transform="translate(${PEN.x-196} ${PEN.y-92})">${pencere(t)}</g>`;
+  s+=`<g transform="${NEON}">${neonCiz(true,.45+.55*t)}</g>`;
   s+=kutular();
   s+=tezgah();
   s+=ekmekDolabi(t);
@@ -534,13 +547,18 @@ function ciz(o={}){
     s+=`<rect x="${V.x0}" y="${V.y0}" width="${VW}" height="${VH}" fill="#4a1a04" opacity="${r1(.10*t*100)/100}"/>`;
     s+=`<rect x="${V.x0}" y="${V.y0}" width="${VW}" height="${VH}" fill="url(#mt-vin)" opacity="${r1(.58*t*100)/100}"/>`;
   }
+  s+=davlumbaz();
   // lamba ışıkları, ışık havuzları, ampuller
   LAMBA.forEach(x=>{s+=lambaIsik(x,t)});
   LAMBA.forEach(x=>{s+=`<ellipse cx="${x}" cy="620" rx="340" ry="220" fill="url(#mt-havuz)" opacity="${r1((.08+.2*t)*100)/100}"/>`});
-  LAMBA.forEach(x=>{s+=`<ellipse cx="${x}" cy="150" rx="150" ry="110" fill="url(#mt-havuz)" opacity="${r1((.15+.4*t)*100)/100}"/>`});
+  LAMBA.forEach(x=>{s+=`<ellipse cx="${x}" cy="${LY+70}" rx="150" ry="110" fill="url(#mt-havuz)" opacity="${r1((.15+.4*t)*100)/100}"/>`});
   LAMBA.forEach(x=>{s+=lamba(x)+lambaAmpul(x,t)});
   // neon akşam daha parlak: üstte bir kez daha parıltı
-  if(t>.05)s+=`<g transform="translate(1166 20)" opacity="${r1(t*.6*100)/100}">${neonCiz(true,1)}</g>`;
+  if(t>.05)s+=`<g transform="${NEON}" opacity="${r1(t*.6*100)/100}">${neonCiz(true,1)}</g>`;
+  // ön katman: yalnız servis tezgâhının çizgisinden aşağısı, lambalar ve davlumbaz (müşteriler iki katmanın arasında durur)
+  if(on){const lm=LAMBA.map(x=>`M${x-62} ${V.y0}H${x+62}V${LY+10}H${x-62}z`).join('');
+    s=`<clipPath id="mt-on"><path d="M${V.x0} ${SERVIS_Y}H${V.x1}V${V.y1}H${V.x0}z${lm}M${DAV.x-12} ${V.y0}H${DAV.x+DAV.w+12}V${DAV.y+2}H${DAV.x-12}z"/></clipPath><g clip-path="url(#mt-on)">${s}</g>`}
+  s=defs(t)+s;
   // aynı sayfada birden çok sahne: o.ek ile kimlikler ayrışır
   if(o.ek)s=s.replace(/(id="|url\(#)mt-/g,`$1mt${o.ek}-`);
   const kutu=o.vb?`${V.x0} ${V.y0} ${VW} ${VH}`:'0 0 1600 900';V={x0:0,y0:0,x1:1600,y1:900};

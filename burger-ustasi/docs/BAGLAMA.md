@@ -1,5 +1,7 @@
 # Mutfak turu: bağlama notları (oyun.js'i bağlayacak ajan için)
 
+**Müşteriler tezgâhın arkasında (6. tur):** sol sütun kalktı; `ciz({katman:'on'})`, `YER.musteri/musteri4/yuz/balon/servis`, `SERVIS_Y` eklendi. Ayrıntı `TASARIM.md` → 6. bölüm. Aşağıdaki "müşteri sütunu" notları eskidi.
+
 **Bağlandı (21 Kasım):** üç modül oyuna bağlandı; ne nasıl kullanıldı `TASARIM.md` → "Bağlandı (mutfak turu)". Bağlarken eklenenler: `MUTFAK.ciz({vb})` (görünür alan sahnenin dışına uzar: duvar, tezgâh, lamba kabloları, baca), `BURGER.siparis(...,{sutun, enAzSutun})` (dar baloncukta sütun sayısı).
 
 ## veri.js (ekonomi ajanının raporu, 21 Kasım)

@@ -1,6 +1,7 @@
 /* Burger Ustası 2.0: oynanış, arayüz, ekranlar (çekirdek).
    Modüller: BU.VERI (ekonomi), BU.SIMGE (simgeler), BU.SES (ses), BU.BURGER (çizim). Biri yoksa küçük bir yedekle çalışır.
-   Mutfak görünümü (5. tur): solda/üstte müşteri penceresi, kalan alan BU.MUTFAK sahnesi (gündüz → akşam).
+   Mutfak görünümü: BU.MUTFAK sahnesi ekranın tamamı (gündüz → akşam); müşteriler sahnenin içinde, servis tezgâhının arkasında
+   (6. tur, Eymen 21 Kasım: "Tezgâhın arkasında olacak doğal olarak müşteri"), sipariş baloncukları başlarının yanında.
    Akış: dolaptan ekmek / küvetten malzeme / hazır tepsisinden köfte seç → tahtadaki yere dokun (koy) → yığını müşteriye
    sürükle (teslim) ya da çöpe. Köfte ızgarada pişer, pişince hazır tepsisine uçar (en çok STOK_MAX). Yan ürünler (patates,
    soğan halkası) fritözde pişer, hazır kutusuna geçer (en çok 3); kutu müşteriye sürüklenir ya da seçilip müşteriye dokunulur.
@@ -151,7 +152,7 @@ const icinde=(p,r,pay=0)=>p.x>=r.x-pay&&p.x<=r.x+r.w+pay&&p.y>=r.y-pay&&p.y<=r.y
 // gecikmeli iş: gün değişirse (startDay/openHome) çalışmaz
 function zaman(fn,ms){const o=S.oturum;if(!ms){fn();return 0}return setTimeout(()=>{if(o===S.oturum)fn()},ms)}
 function fxEl(cls,html,x,y){const d=document.createElement('div');d.className=cls;if(html)d.innerHTML=html;d.style.left=x+'px';d.style.top=y+'px';FX.appendChild(d);return d}
-function yazi(x,y,html,cls,gec=0){zaman(()=>{const d=fxEl('yazi '+cls,html,x,y);setTimeout(()=>d.remove(),1500)},gec)}
+function yazi(x,y,html,cls,gec=0){y=Math.max(y,9*cq());const W=APP.clientWidth;x=Math.min(W-8*cq(),Math.max(8*cq(),x));zaman(()=>{const d=fxEl('yazi '+cls,html,x,y);setTimeout(()=>d.remove(),1500)},gec)}
 function uyari(el,msg){FX.querySelectorAll('.uyari').forEach(x=>x.remove());const r=rel(el);const d=document.createElement('div');d.className='uyari';d.textContent=msg;FX.appendChild(d);
   const w=d.offsetWidth,W=APP.clientWidth;d.style.left=Math.min(W-w/2-4,Math.max(w/2+4,r.cx))+'px';d.style.top=Math.max(d.offsetHeight+4,r.y+2*cq())+'px';setTimeout(()=>d.remove(),1350);ses('uyari');tit()}
 // küçük bir nesneyi yay çizerek uçurur (WAAPI). from/to: app içi merkez noktaları
@@ -184,29 +185,6 @@ const WHO=window.KARAKTERLER||[];
 function pickWho(){if(!WHO.length)return null;const busy=S.cust.filter(Boolean).map(c=>c.who);let k,n=0;do{k=WHO[Math.floor(Math.random()*WHO.length)];n++}while(busy.includes(k)&&n<20);return k}
 function face(c,e){if(!c.who||!window.Musteri||c.emo===e)return;c.emo=e;c.yuzEl.innerHTML=Musteri.draw(c.who.m,e)}
 
-/* ================= sokak sahnesi (kodla çizilir) ================= */
-// Yatay sahne: 1000×400 birim, alttan hizalı (xMidYMax slice); dar ekranda yanlar, geniş ekranda gökyüzü kırpılır.
-function sokakCiz(){const P=[],GW=1000;const r=(x,y,w,h,f,ek='')=>P.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" ${ek}/>`);
-  P.push('<defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc8f5"/><stop offset=".7" stop-color="#cdeefc"/><stop offset="1" stop-color="#fff2d6"/></linearGradient></defs>');
-  r(0,0,GW,400,'url(#sg)');
-  // bulutlar
-  const bulut=(x,y,s,cls)=>P.push(`<g class="bulut ${cls}"><g transform="translate(${x} ${y}) scale(${s})" fill="#fff" opacity=".92"><ellipse cx="0" cy="0" rx="26" ry="14"/><ellipse cx="22" cy="-8" rx="20" ry="16"/><ellipse cx="44" cy="2" rx="22" ry="12"/><ellipse cx="20" cy="6" rx="34" ry="10"/></g></g>`);
-  [[60,90,1,''],[250,60,.8,'b2'],[430,120,.6,''],[560,70,.9,'b2'],[720,110,.7,''],[880,55,.8,'b2'],[150,160,.5,'b2'],[800,170,.5,'']].forEach(([x,y,s,c])=>bulut(x,y,s,c));
-  // uzak binalar (dikey sahnedeki dizi yan yana tekrarlanır)
-  const UZ=[[0,190,70,'#e9b98d'],[60,165,60,'#f0c99a'],[115,200,50,'#e3ad86'],[160,175,80,'#f2cf9e'],[235,185,55,'#e7b58c'],[285,160,65,'#efc596'],[345,195,60,'#e5b088']];
-  for(let o=0;o<GW;o+=400)UZ.forEach(([x,y,w,c])=>{x+=o;if(x>GW)return;r(x,y,w,400-y,c,'opacity=".75"');
-    for(let yy=y+12;yy<330;yy+=22)for(let xx=x+8;xx<x+w-10;xx+=16)r(xx,yy,8,10,'#fff3cf','opacity=".55"')});
-  // yakın binalar: sıcak renkler, pencere sıraları, saçak
-  const YK=[[-10,230,95,'#e2774f','#b9512f'],[85,250,80,'#f2b45c','#c98a32'],[165,222,75,'#d9665a','#a8443b'],[240,245,85,'#f0a25a','#c47632'],[325,228,90,'#c96e8a','#9b4a64'],
-    [415,240,85,'#e2774f','#b9512f'],[500,224,80,'#7fb0c9','#4f7f99'],[580,248,90,'#f2b45c','#c98a32'],[670,226,78,'#d9665a','#a8443b'],[748,242,86,'#c96e8a','#9b4a64'],[834,230,82,'#f0a25a','#c47632'],[916,246,94,'#e2774f','#b9512f']];
-  YK.forEach(([x,y,w,c,k])=>{r(x,y,w,400-y,c,`stroke="#5a2f1a" stroke-width="2"`);r(x-3,y-6,w+6,8,k,`rx="2" stroke="#5a2f1a" stroke-width="2"`);
-    for(let yy=y+14;yy<322;yy+=28)for(let xx=x+10;xx<x+w-16;xx+=24){r(xx,yy,15,18,'#ffe7a3',`stroke="#5a2f1a" stroke-width="2" rx="2"`);P.push(`<path d="M${xx+7.5} ${yy}v18M${xx} ${yy+9}h15" stroke="#5a2f1a" stroke-width="1.5"/>`);r(xx-2,yy+18,19,3,k)}});
-  // kaldırım: karolar ve bordür
-  r(0,322,GW,78,'#e8cf9e');r(0,322,GW,6,'#c79a55');
-  for(let x=0;x<GW;x+=40)P.push(`<path d="M${x} 328v72" stroke="#d1b07a" stroke-width="2"/>`);
-  P.push(`<path d="M0 356h${GW}M0 384h${GW}" stroke="#d1b07a" stroke-width="2"/>`);
-  $('sahne').innerHTML=`<svg viewBox="0 0 ${GW} 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">${P.join('')}</svg>`}
-
 /* ================= üst bilgi ================= */
 // kasa sayısı yuvarlanarak artar/azalır. bekle: yolda olan (sikkeleri henüz varmamış) para
 let kasaGor=0,kasaRAF=0,bekle=0,canGor=3;
@@ -217,7 +195,7 @@ function kasaHedef(v,{sessiz=false,sure=350}={}){cancelAnimationFrame(kasaRAF);
   const a=kasaGor,t0=performance.now();kasaPop();
   const f=now=>{const u=Math.min(1,(now-t0)/sure),e=1-Math.pow(1-u,3);kasaGor=Math.round(a+(v-a)*e);kasaYaz(kasaGor);if(u<1)kasaRAF=requestAnimationFrame(f)};kasaRAF=requestAnimationFrame(f)}
 function hud(o={}){kasaHedef(S.kasa-bekle,o);
-  $('gunC').textContent=t('day',S.gun);$('prog').style.width=(S.cfg?100*S.bitti/S.cfg.musteri:0)+'%';
+  $('gunT').textContent=t('day',S.gun);$('prog').style.width=(S.cfg?100*S.bitti/S.cfg.musteri:0)+'%';
   const cn=$('canlar');cn.setAttribute('aria-label',t('lives')+' '+canGor);
   if(cn.children.length!==3)cn.innerHTML=[0,1,2].map(()=>'<span></span>').join('');
   [...cn.children].forEach((s,i)=>{const dolu=i<canGor,ad=dolu?'can':'can_bos';if(s.dataset.ad!==ad){if(s.dataset.ad==='can'&&!dolu){s.classList.remove('gitti');void s.offsetWidth;s.classList.add('gitti')}s.dataset.ad=ad;s.innerHTML=ic(ad)}s.classList.toggle('bos',!dolu)})}
@@ -268,8 +246,8 @@ const YANLAR=()=>VERI.YAN||['fries','onionring'];
 const YAN_MAX=VERI.YAN_STOK_MAX||3;
 // ızgara gözlerinin açılma sırası: önce alt sıra (oyuncuya yakın), soldan sağa; sonra üst sıra
 const GOZ_SIRA=[3,4,5,0,1,2];
-// dokunma kutuları: çizimin çevresindeki boşluğun yarısı kadar büyür (komşusuna binmez; 852×393'te hepsi ≥ 44 px)
-const HIT={kuvet:[3,4],goz:[4,4],sos:[6,6,14],tahta:[4,6,14],yanHazir:[6,6,14],hazir:[5,4],fritoz:[4,4],ekmek:[0,0],cop:[6,6]};
+// dokunma kutuları: çizimin çevresindeki boşluğun yarısı kadar büyür (komşusuna binmez; iPhone SE 568×320'de de hepsi ≥ 44 px)
+const HIT={kuvet:[3,6],goz:[4,6],sos:[6,2,14],tahta:[4,2,14],yanHazir:[6,2,14],hazir:[5,4],fritoz:[4,4],ekmek:[0,0],cop:[6,6]};
 let MK={kuvet:{},sos:{},fritoz:{},yanHazir:{},tahta:[],yig:[],goz:[]};
 function kur(cls,r,tur,html,{btn=true,attr=''}={}){const h=HIT[tur]||[0,0],E=genis(r,h[0],h[1],h[2]!=null?h[2]:h[1]);
   const el=document.createElement(btn?'button':'div');el.className='y '+cls;el.setAttribute('style',yuzde(E));if(btn)el.type='button';
@@ -352,7 +330,7 @@ function yanSec(k){if(!aktif()||!S.yanStok||S.yanStok[k]==null)return null;
 
 /* ================= tahta (iki çalışma yeri) ================= */
 // yığın: tahtanın üstünde, alt kenarı tahtanın ortasında; yukarı doğru küvetlerin üstüne binebilir (en çok YIG.yuk birim)
-const YIG={gen:220,yuk:270,taban:.72};
+const YIG={gen:220,yuk:200,taban:.74};
 function yigYer(i){const r=YER.tahta[i],cx=r.x+r.w/2,taban=r.y+r.h*YIG.taban;return {x:cx-YIG.gen/2,y:taban-YIG.yuk,w:YIG.gen,h:YIG.yuk}}
 function cizTabak(i,yeni){const el=MK.yig[i];if(!el)return;const ks=S.tabak[i];
   el.innerHTML=ks.length?yiginHtml(ks,!!yeni):'';MK.tahta[i].classList.toggle('dolu',!!ks.length)}
@@ -533,7 +511,8 @@ function tasi(d,e){const a=APP.getBoundingClientRect(),x=e.clientX-a.left,y=e.cl
   const h2=hedefBul(d);if(h2!==d.hedef){if(d.hedef)hedefIsaret(d.hedef,false);d.hedef=h2;if(h2)hedefIsaret(h2,true)}
   let gx=x-w/2,gy=y-h-lift;
   // müşterinin üstündeyken hayalet küçülür ve yüzün üstüne oturur: yüz görünür kalır
-  if(d.hedef&&d.hedef!=='cop'){const r=rel(d.hedef.yuzEl);gx=r.cx-w/2;gy=r.y+r.h*.25-h;g.classList.add('hedefte')}else g.classList.remove('hedefte');
+  // müşterinin üstündeyken hayalet küçülür ve servis tezgâhına, yüzün önüne iner: yüz ve baloncuk görünür kalır
+  if(d.hedef&&d.hedef!=='cop'){const r=rel(d.hedef.yuzEl),k=rel(d.hedef.el);gx=r.cx-w/2;gy=k.y+k.h-h*.78;g.classList.add('hedefte')}else g.classList.remove('hedefte');
   g.style.transform=`translate(${gx}px,${gy}px)`;
   d.golge.style.transform=`translate(${x}px,${y+1*cq()}px)`;d.golge.style.opacity=d.hedef?0:1}
 function hedefBul(d){const pts=[d.gm,{x:d.x,y:d.y}];
@@ -588,13 +567,17 @@ function rehber(zorla){if(!S.on||!S.rehber||S.bitis){if(rehberHedef)rehberGizle(
   if(!zorla&&anahtar===rehberHedef)return;rehberGizle();rehberHedef=anahtar;if(!el)return;
   el.classList.add('parla');
   const tp=document.createElement('div');tp.className='ipucu';tp.innerHTML=ic('el')+`<span>${msg}</span>`;FX.appendChild(tp);
-  const r=rel(el),w=tp.offsetWidth,h=tp.offsetHeight,W=APP.clientWidth,c1=cq(),hb=rel($('hud'));let x=Math.min(W-w-1.5*c1,Math.max(1.5*c1,r.cx-w/2)),y=r.y-h-2*c1;
-  // üstte yer yoksa (üst bilgiye biner) altına
-  if(y<hb.y+hb.h+.5*c1){y=r.y+r.h+2*c1;tp.classList.add('alt')}
+  const r=rel(el),w=tp.offsetWidth,h=tp.offsetHeight,W=APP.clientWidth,H=APP.clientHeight,c1=cq();let x=Math.min(W-w-1.5*c1,Math.max(1.5*c1,r.cx-w/2)),y=r.y-h-2*c1;
+  // üstte yer yoksa (ekranın üstü, üst bilgi ya da bir müşterinin baloncuğu) altına
+  const eng=engeller(),carp=yy=>yy<.5*c1||eng.some(e=>x<e.x+e.w&&x+w>e.x&&yy<e.y+e.h&&yy+h>e.y);
+  if(carp(y)){const y2=r.y+r.h+2*c1;if(y2+h<H-.5*c1&&!carp(y2)||y<.5*c1){y=y2;tp.classList.add('alt')}}
   tp.style.left=x+'px';tp.style.top=y+'px';tp.style.setProperty('--ok',Math.max(12,Math.min(w-12,r.cx-x))+'px');
   if(surukleEl){const hd=document.createElement('div');hd.className='el';hd.innerHTML=ic('el');FX.appendChild(hd);
     const to=surukleEl==='cop'?rel(MK.cop):rel(surukleEl.yuzEl),s=6*c1,yg=MK.yig[ti].querySelector('.bu-yigin'),fr=yg?rel(yg):r;
     try{elAnim=hd.animate([{transform:`translate(${fr.cx-s}px,${fr.cy-s}px) scale(1)`,opacity:0},{opacity:1,offset:.12},{transform:`translate(${fr.cx-s}px,${fr.cy-s}px) scale(.9)`,offset:.22},{transform:`translate(${to.cx-s}px,${to.cy-s}px) scale(.9)`,opacity:1,offset:.8},{transform:`translate(${to.cx-s}px,${to.cy-s}px) scale(1)`,opacity:0}],{duration:1800,iterations:Infinity,easing:'ease-in-out'})}catch(e){}}}
+
+// ipucunun binmemesi gerekenler: üst bilgi kümeleri ve müşteri baloncukları
+function engeller(){const a=[rel($('hudL')),rel($('hudR'))];S.cust.forEach(c=>{if(c&&!c.gitti){const b=c.el.querySelector('.bub');if(b)a.push(rel(b))}});return a}
 
 /* ================= gün akışı ================= */
 function aktif(){return S.on&&!S.paused&&!S.bitis&&S.can>0}
@@ -800,88 +783,92 @@ $('langBtn').onclick=()=>{SAVE.lang=SAVE.lang==='tr'?'en':'tr';save();ses('tik')
 $('hEfekt').onclick=()=>{SAVE.ayar.efekt=!SAVE.ayar.efekt;sesAyar();ses('tik');openHome()};
 $('hMuzik').onclick=()=>{SAVE.ayar.muzik=!SAVE.ayar.muzik;sesAyar();ses('tik');openHome()};
 
-/* ================= ekran uyumu (yatay): müşteri penceresi + mutfak ================= */
-// İki düzen, hangisinde sahne büyükse o (ölçek s = px / sahne birimi):
-//  'sol': solda dar müşteri sütunu (sipariş penceresi, 3 müşteri alt alta), sağda sahne; üst bilgi sahnenin duvarının üstünde.
-//         Telefonlar (19,5:9). Sahne genişliğe göre ölçeklenir; artan yükseklik duvarın yukarı uzamasıyla dolar.
-//  'ust': üstte müşteri şeridi (üst bilgi + 3 müşteri yan yana), altında sahnenin tamamı; iPad ve bilgisayar (4:3 … 16:10).
-//         Artan genişlik duvar ve tezgâhın yanlara uzamasıyla dolar. Böylece hiçbir boyda boş kenar kalmaz.
-// Sahnenin 0..1600 × 185..900 bölümü (oyun alanı) her zaman görünür; duvarın üstü süs, kırpılabilir/uzar.
+/* ================= ekran uyumu (yatay): mutfak ekranın tamamı, müşteriler tezgâhın arkasında ================= */
+// Sahne (1600×900 birim) tek ölçekle (s = px / birim) ekranın tamamını kaplar:
+//  s = min(güvenli genişlik / 1600, güvenli yükseklik / (870 − YTOP)). 870: tezgâhın ön kenarı (alt güvenli alanın üstünde),
+//  YTOP: müşterilerin başının üstü. Telefonda (19,5:9) yükseklik, iPad (4:3) ve bilgisayarda (16:10) genişlik belirler; artan
+//  yer duvarın yukarı uzamasıyla (davlumbaz bacası, lamba kabloları, pencere, neon görünür) ya da duvar ve tezgâhın yanlara
+//  uzamasıyla dolar (BU.MUTFAK.ciz({vb})). Hiçbir boyda boş kenar yok.
+// Müşteriler YER.musteri yerlerinde (servis tezgâhının arkası, SERVIS_Y çizgisinin üstü); üst bilgi kümeleri (#hudL, #hudR) bu
+// banda iniyorsa yerler aradaki boşluğa sıkışır. Yüz solda, sipariş baloncuğu sağda (custFit).
 const OLC={gen:'3rem',yuk:'2.4rem'};
-const LAY={mod:'',s:0,vb:'',ox:0,oy:0};
+const YTOP=-12,SERVIS_Y=YER.servis?YER.servis.y:180;
+const LAY={s:0,ox:0,oy:0,slot:[],bant:null};
 const pd=(el,a,b)=>{const s=getComputedStyle(el);return parseFloat(s[a])+parseFloat(s[b])};
 function guvenli(){const g=$('guv'),s=getComputedStyle(g);return {l:parseFloat(s.paddingLeft)||0,r:parseFloat(s.paddingRight)||0,t:parseFloat(s.paddingTop)||0,b:parseFloat(s.paddingBottom)||0}}
-function yerlesim(){const W=APP.clientWidth,H=APP.clientHeight,g=guvenli(),hudH=$('hud').offsetHeight||40,Wa=W-g.l-g.r;
-  // sol düzen
-  const Cmin=Math.max(116,Math.min(220,H*.36)),Cmax=Math.max(Cmin,Wa*.34);
-  let C=Math.max(Cmin,Math.min(Cmax,Wa-1600*(H-g.t-hudH)/900));
-  let sS=Math.min((Wa-C)/1600,(H-g.t-hudH)/715);
-  if(1600*sS<Wa-C)C=Math.min(Cmax,Wa-1600*sS);   // sahne yüksekliğe takıldıysa artan genişlik sütuna
-  // üst düzen: şerit = güvenli üst + üst bilgi + müşteriler (en az 96 px); sahnenin duvarına en çok 120 birim biner
-  const custMin=Math.max(96,H*.2);
-  const sU=Math.min(Wa/1600,(H-g.t-hudH-custMin)/780);
-  // 4:3'e yakın ekranlarda (iPad) üst şerit; daha yatıklarda (telefon, 16:10 bilgisayar) sol sütun: duvar, lambalar, neon görünür kalır
-  const mod=W/H<1.45&&sU>sS?'ust':'sol',s=mod==='ust'?sU:sS;
-  let ox,oy,pen;   // ox, oy: sahne başlangıcının (0,0) ekrandaki yeri; pen: müşteri penceresi kutusu
-  // sahnenin alt kenarı (870. birim, tahtanın altı) güvenli alanın üstünde: sahne o kadar yukarı kayar, tezgâh aşağı uzar
-  // (üst bilgi oyun alanına, 185. birimin altına inmesin)
-  const oyAyar=(s,ust)=>Math.min(H-900*s,Math.max(ust-185*s,H-g.b-870*s));
-  if(mod==='sol'){ox=g.l+C;oy=oyAyar(s,g.t+hudH);pen={x:0,y:0,w:g.l+C,h:H}}
-  else{ox=g.l+(Wa-1600*s)/2;oy=oyAyar(s,0);const band=Math.max(g.t+hudH+custMin,oy);pen={x:0,y:0,w:W,h:band}}
-  return {mod,s,ox,oy,pen,W,H,g,hudH,C}}
+function yerlesim(){const W=APP.clientWidth,H=APP.clientHeight,g=guvenli(),Wa=W-g.l-g.r,Ha=H-g.t-g.b;
+  const s=Math.min(Wa/1600,Ha/(870-YTOP));
+  const ox=g.l+(Wa-1600*s)/2,oy=H-g.b-870*s;   // tezgâhın ön kenarı alt güvenli alanın üstünde; fazla yükseklik duvara
+  return {s,ox,oy,W,H,g}}
+// müşteri yerleri (px, APP içinde): YER.musteri, üst bilgi kümelerine binmeyecek şekilde
+function slotYer(L){const {s,ox,oy,g,W}=L,N=YER.musteri,px=x=>ox+x*s,c=cq();
+  const ust=Math.max(g.t+.2*c,oy+(N[0].y)*s),alt=oy+SERVIS_Y*s;
+  let fl=g.l+.3*c,fr=W-g.r-.3*c;
+  const hl=rel($('hudL')),hr=rel($('hudR'));
+  if(hl.y+hl.h>ust+2)fl=Math.max(fl,hl.x+hl.w+.6*c);
+  if(hr.y+hr.h>ust+2)fr=Math.min(fr,hr.x-.6*c);
+  const L0=px(N[0].x),R0=px(N[N.length-1].x+N[N.length-1].w);let a,k=1;
+  if(R0-L0>fr-fl){k=(fr-fl)/(R0-L0);a=fl}else a=Math.min(Math.max(L0,fl),fr-(R0-L0));
+  LAY.bant={ust,alt,fl,fr};
+  return N.map(r=>({x:a+(px(r.x)-L0)*k,y:ust,w:r.w*s*k,h:alt-ust}))}
 let sahneAnahtar='';
-function sahneCiz(L){const ust=L.mod==='ust'?L.pen.h:0;
-  // görünür alan: mutfak kutusu (sol düzende sütunun sağı, üst düzende tüm genişlik) sahne birimiyle
-  const mx=L.mod==='sol'?L.ox:0,mw=L.W-mx;
-  const vb={x:Math.round((mx-L.ox)/L.s),y:Math.floor(-L.oy/L.s),w:Math.ceil(mw/L.s)+1,h:Math.ceil(L.H/L.s)+1};
-  MUT.style.left=mx+'px';MUT.style.width=mw+'px';
-  IC_.style.left=(L.ox-mx)+'px';IC_.style.top=L.oy+'px';IC_.style.width=1600*L.s+'px';IC_.style.height=900*L.s+'px';
-  const ana=vb.x+','+vb.y+','+vb.w+','+vb.h;if(ana===sahneAnahtar)return;sahneAnahtar=ana;
+function sahneCiz(L){
+  const vb={x:Math.floor(-L.ox/L.s),y:Math.floor(-L.oy/L.s),w:Math.ceil(L.W/L.s)+2,h:Math.ceil(L.H/L.s)+2};
+  IC_.style.left=L.ox+'px';IC_.style.top=L.oy+'px';IC_.style.width=1600*L.s+'px';IC_.style.height=900*L.s+'px';
+  const pw=vb.w*L.s,ph=vb.h*L.s,yer=i=>{i.style.left=(L.ox+vb.x*L.s)+'px';i.style.top=(L.oy+vb.y*L.s)+'px';i.style.width=pw+'px';i.style.height=ph+'px'};
+  const ana=vb.x+','+vb.y+','+vb.w+','+vb.h;if(ana===sahneAnahtar){['mtGun','mtAk','mtGunOn','mtAkOn'].forEach(k=>yer($(k)));return}sahneAnahtar=ana;
   // aynı oturumda eski sahne görüntüleri bırakılır
-  ['sahne0','sahne1'].forEach(k=>{const u=IMG.get(k);if(u&&u.startsWith('blob:'))try{URL.revokeObjectURL(u)}catch(e){}IMG.delete(k)});
+  ['sahne0','sahne1','on0','on1'].forEach(k=>{const u=IMG.get(k);if(u&&u.startsWith('blob:'))try{URL.revokeObjectURL(u)}catch(e){}IMG.delete(k)});
+  // arka: duvar ve her şey; ön: servis tezgâhından aşağısı + lambalar + davlumbaz (müşterilerin gövdesini örter)
   $('mtGun').src=imgUrl('sahne0',()=>MT.ciz({aksam:0,vb}));$('mtAk').src=imgUrl('sahne1',()=>MT.ciz({aksam:1,vb}));
-  const pw=vb.w*L.s,ph=vb.h*L.s;
-  [$('mtGun'),$('mtAk')].forEach(i=>{i.style.left=(L.ox-mx+vb.x*L.s)+'px';i.style.top=(L.oy+vb.y*L.s)+'px';i.style.width=pw+'px';i.style.height=ph+'px'})}
-// günün ikinci yarısı akşam (yumuşak geçiş): akşam katmanının saydamlığı
+  $('mtGunOn').src=imgUrl('on0',()=>MT.ciz({aksam:0,vb,katman:'on'}));$('mtAkOn').src=imgUrl('on1',()=>MT.ciz({aksam:1,vb,katman:'on'}));
+  ['mtGun','mtAk','mtGunOn','mtAkOn'].forEach(k=>yer($(k)))}
+// günün ikinci yarısı akşam (yumuşak geçiş): akşam katmanlarının saydamlığı; müşteriler de biraz kararır (--ak)
 function aksamGuncelle(hemen){const f=S.cfg?Math.max(0,Math.min(1,S.bitti/Math.max(1,S.cfg.musteri))):0;
-  const a=Math.max(0,Math.min(1,(f-.4)/.5)),v=a*a*(3-2*a);[$('mtAk'),$('penAk')].forEach(el=>{if(hemen)el.style.transition='none';el.style.opacity=v.toFixed(3);if(hemen){void el.offsetWidth;el.style.transition=''}})}
-// müşteri: yüz + baloncuk (sipariş simgeleri + sabır). Yerine iki biçimden hangisi sığarsa: 'yan' (yüz solda, baloncuk sağda) ya da
-// 'alt' (baloncuk üstte, yüz altında). Simge hücresi en büyük olan seçilir (en çok 11 birim).
+  const a=Math.max(0,Math.min(1,(f-.4)/.5)),v=a*a*(3-2*a);
+  [$('mtAk'),$('mtAkOn'),queue].forEach(el=>{if(hemen)el.style.transition='none';if(el===queue)el.style.setProperty('--ak',v.toFixed(3));else el.style.opacity=v.toFixed(3);if(hemen){void el.offsetWidth;el.style.transition=''}})}
+// müşteri: yüz + baloncuk (sipariş simgeleri + sabır), kendi yerinin (slot) içinde. İki biçim: 'yan' (yüz solda, baloncuk sağda;
+// her boyda olağan) ya da 'alt' (baloncuk üstte, yüz altında; yer dar ve uzunsa). Yüzün alt %16'sı tezgâhın arkasında.
+// Simge hücresi en büyük olan seçilir (en çok cIdeal); yüz telefonda en az 56 px.
 const SUTUN=n=>n<=3?n:n===4?2:n<=6?3:4;
 const grupSay=c=>BURGER.grupla?BURGER.grupla(sipKat(c)).length:new Set(sipKat(c).map(k=>k==='bunBot'||k==='bunTop'?'bun':k)).size;
-function custFit(c){const sl=c.el.parentNode;if(!sl)return;const u=cq(),W=sl.clientWidth,H=sl.clientHeight-Math.max(4,1.2*u);if(!W||!H)return;
-  const n=grupSay(c),yan=sipYan(c).length;
-  const krom=Math.max(10,2.8*u),dik=Math.max(18,2.2*u)+Math.max(6,.8*u)+2.4*u,oran=154/128*.86;   // yüzün alt %14ü (omuzlar) pervazın arkasında kalır   // baloncuk iç payı; dikey: dolgu+çerçeve+aralık+sabır
-  const cIdeal=Math.max(26,6.5*u),yMax=Math.min(34*u,W*.62);   // simge hücresi bundan büyük olmaz; artan yer yüze
-  const yMinYan=Math.max(26,Math.min(W*.34,H*.6/oran)),yMinAlt=Math.max(26,H*.4/oran);
+const YUZ_ORAN=154/128,YUZ_GIZ=.13,YUZ_GOR=YUZ_ORAN*(1-YUZ_GIZ),YUZ_PAY=.1;   // yüz yüksekliği/genişliği; tezgâhın arkasında kalan pay; görünen yükseklik/genişlik; baloncuğun yüz kutusunun boş sağ kenarına binebileceği pay
+function custFit(c){const R=LAY.slot[c.i];if(!R||!c.el.isConnected)return;const u=cq(),W=R.w,H=R.h;if(!W||!H)return;
+  const n=grupSay(c),yan=sipYan(c).length,bos=Math.max(3,.5*u);
+  const krom=Math.max(10,2.8*u)+2,dik=3.8*u+Math.max(6,2*u)+3;   // baloncuk iç payı (yatay: dolgu+çerçeve); dikey: dolgu+çerçeve+aralık+sabır çubuğu
+  const cIdeal=Math.max(26,6.5*u);
+  const yzHedef=Math.max(56,165*LAY.s);   // sahnenin ölçüsünde (165 birim), telefonda en az 56 px
   let en=null;const sec_=[];
   for(const bicim of ['yan','alt'])for(let col=1;col<=Math.min(4,n);col++){const sat=Math.ceil(n/col);
     const T=col+(yan?(sat>=yan?1:yan)+.34:0),hu=Math.max(T,2);let cell,yz;
-    if(bicim==='yan'){cell=Math.min((W-yMinYan-1*u-krom)/hu,(H*.96-dik)/sat,cIdeal);yz=Math.min(yMax,W-cell*hu-krom-1*u,H*.9/oran)}
-    else{cell=Math.min((W*.96-krom)/hu,(H-yMinAlt*oran-dik-1.6*u)/sat,cIdeal);yz=Math.min(yMax,W*.7,(H-sat*cell-dik-1.6*u)/oran)}
+    if(bicim==='yan'){yz=Math.min(yzHedef,(H-bos)/YUZ_GOR,W*.45);cell=Math.min((W-yz*(1-YUZ_PAY)-bos-krom)/hu,(H-2*bos-dik)/sat,cIdeal)}
+    else{cell=Math.min((W-2*bos-krom)/hu,cIdeal);yz=Math.min(yzHedef,W*.8,(H-sat*cell-dik-3*bos)/YUZ_GOR);
+      if(yz<yzHedef*.8)cell=Math.min(cell,(H-yzHedef*.8*YUZ_GOR-dik-3*bos)/sat),yz=Math.min(yzHedef,(H-sat*cell-dik-3*bos)/YUZ_GOR)}
     if(cell<=0||yz<=0)continue;
     sec_.push({bicim,col,sat,cell,hu,yz})}
-  // önce sipariş okunsun: en büyük hücrenin %70'inden küçük olanlar elenir; kalanlarda hücre ve yüz birlikte puanlanır (yüz hücrenin 3,2 katından büyükse fazlası sayılmaz)
+  // önce sipariş okunsun: en büyük hücrenin %80'inden küçük olanlar elenir; kalanlarda hücre ve yüz birlikte puanlanır
   const cm=Math.max(0,...sec_.map(x=>x.cell));
-  for(const x of sec_)if(x.cell>=cm*.7){const puan=x.cell+.6*Math.min(x.yz,x.cell*3.2);if(!en||puan>en.puan)en=Object.assign(x,{puan})}
-  if(!en)en={bicim:'yan',col:SUTUN(n),sat:1,cell:8,hu:3,yz:28};
-  const cell=Math.max(8,en.cell),gen=cell*en.hu,yz=Math.max(22,en.yz);
+  for(const x of sec_)if(x.cell>=cm*.8){const puan=x.cell+.5*Math.min(x.yz,x.cell*3.2)+(x.bicim==='yan'?.01:0);if(!en||puan>en.puan)en=Object.assign(x,{puan})}
+  if(!en)en={bicim:'yan',col:SUTUN(n),sat:1,cell:8,hu:3,yz:Math.min(yzHedef,H/YUZ_GOR)};
+  const cell=Math.max(8,en.cell),gen=cell*en.hu,yz=Math.max(22,en.yz),bw=Math.round(gen+krom);
   c.el.classList.toggle('alt',en.bicim==='alt');c.el.classList.toggle('yanli',en.bicim==='yan');
-  c.el.style.setProperty('--bw',Math.round(gen+krom)+'px');c.el.style.setProperty('--yz',Math.round(yz)+'px');
   const g=Math.round(gen)+'px',al=alindi(c),an=g+en.col+JSON.stringify(al);
-  if(c.gen!==an){c.gen=an;c.el.querySelector('.sip').innerHTML=BURGER.siparis(sipKat(c),{gen:g,yan:sipYan(c),alindi:al,enAzSutun:2,sutun:en.col})}}
+  if(c.gen!==an){c.gen=an;c.el.querySelector('.sip').innerHTML=BURGER.siparis(sipKat(c),{gen:g,yan:sipYan(c),alindi:al,enAzSutun:2,sutun:en.col})}
+  const bub=c.el.querySelector('.bub'),st=c.el.style;st.setProperty('--bw',bw+'px');st.setProperty('--yz',Math.round(yz)+'px');
+  const bh=bub.offsetHeight||(en.sat*cell+dik),yh=yz*YUZ_ORAN;
+  st.setProperty('--yb',(-yh*YUZ_GIZ).toFixed(1)+'px');
+  if(en.bicim==='yan'){const yw=yz*(1-YUZ_PAY),gw=yw+bos+bw,x0=Math.max(0,(W-gw)/2),bas=H-yh*(1-YUZ_GIZ)+yh*.36;   // baloncuk başın hizasında
+    st.setProperty('--yx',x0.toFixed(1)+'px');st.setProperty('--bx',(x0+yw+bos).toFixed(1)+'px');
+    st.setProperty('--by',Math.max(bos*.5,Math.min(H-bh-bos,bas-bh*.55)).toFixed(1)+'px')}
+  else{st.setProperty('--yx',((W-yz)/2).toFixed(1)+'px');st.setProperty('--bx',((W-bw)/2).toFixed(1)+'px');
+    st.setProperty('--by',Math.max(bos*.5,H-yh*(1-YUZ_GIZ)-bh-bos).toFixed(1)+'px')}}
 // dükkân paneli: mutfağın (sahip olunanlar), 3 sütun
 function shopFit(c){const p=$('shTepsi');if($('shop').hidden||p.hidden)return;const tt=p.querySelector('.tt');const n=Math.ceil(ANAHTAR().length/3);
   const H=p.clientHeight-pd(p,'paddingTop','paddingBottom')-(tt?tt.offsetHeight+1.6*c:0);
   APP.style.setProperty('--tkw',Math.max(24,Math.min(12*c,(H-(n-1)*1.2*c)/n)).toFixed(1)+'px')}
 function fit(){const c=cq();if(!c)return;const L=yerlesim();Object.assign(LAY,L);
-  APP.classList.toggle('ust-duzen',L.mod==='ust');APP.classList.toggle('sol-duzen',L.mod==='sol');
-  const P=$('pencere');P.style.left=L.pen.x+'px';P.style.top=L.pen.y+'px';P.style.width=L.pen.w+'px';P.style.height=L.pen.h+'px';
-  const hd=$('hud');
-  if(L.mod==='sol'){hd.style.left=(L.g.l+L.C)+'px';hd.style.right='0px';P.style.setProperty('--pl',L.g.l+'px');P.style.setProperty('--pt','0px')}
-  else{hd.style.left='0px';hd.style.right='0px';P.style.setProperty('--pl',L.g.l+'px');P.style.setProperty('--pt',(L.g.t+L.hudH)+'px')}
-  P.style.setProperty('--pr',(L.mod==='ust'?L.g.r:0)+'px');
   sahneCiz(L);APP.style.setProperty('--s',L.s.toFixed(4));
+  LAY.slot=slotYer(L);[...queue.children].forEach((sl,i)=>{const r=LAY.slot[i];if(!r)return;sl.style.left=r.x+'px';sl.style.top=r.y+'px';sl.style.width=r.w+'px';sl.style.height=r.h+'px'});
   // tahtadaki burger: genişlik ve en çok yükseklik sahne biriminden
   OLC.gen=Math.round(YIG.gen*L.s*.92)+'px';OLC.yuk=Math.round(YIG.yuk*L.s)+'px';APP.style.setProperty('--gen',OLC.gen);
   MK.yig&&MK.yig.forEach((y,i)=>{if(!y)return;y.setAttribute('style',yuzde(yigYer(i)))});
@@ -893,7 +880,6 @@ function cevirYaz(){$('cevirT').textContent=t('cevirT');$('cevirP').textContent=
 function yonKontrol(){if(DIK.matches&&S.on&&!S.paused&&!S.bitis)duraklat()}
 addEventListener('resize',()=>{fit();kartSigdir();if(!$('home').hidden)heroCiz();if(S.on)rehber(true);yonKontrol()});
 if(DIK.addEventListener)DIK.addEventListener('change',yonKontrol);
-sokakCiz();
 
 /* ================= test kancası ================= */
 if(DEBUG)window.__bu={S,SAVE,VERI,startDay,sec,koy,teslim,izgara,bitir,copeAt,adim,openHome,save,EKSIK,
