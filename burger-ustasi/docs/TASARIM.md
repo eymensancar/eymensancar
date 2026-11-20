@@ -84,3 +84,17 @@ Genel ad alanı: `window.BU = window.BU || {}`. Her dosya kendi alt nesnesini ta
 - Modüllerden: `BU.VERI`, `BU.SIMGE`, `BU.SES`, `BU.BURGER`. Modüller henüz yoksa geçici yedekle çalışmalı (`BU.SES||{cal(){}}` gibi) ama son hâlde gerçek modüller kullanılır.
 - Test kancası: `index.html?debug` → `window.__bu = {S, SAVE, VERI, startDay, sec(k), koy(tabak), teslim(tabak, musteriYeri), izgara(i), bitir(win)}`.
 - Kayıt: eski alanlar korunur; yeni alanlar (`ayar:{efekt,muzik}`) varsayılanla eklenir.
+
+## 2. tur eklemeleri (Eymen, 20 Kasım)
+Bu bölüm yukarıdakilerle çelişirse bu bölüm geçerlidir.
+
+### Başlangıç, hikâye, kira
+- **Yeni oyuncu 50 parayla başlar** (`SAVE.coins` yalnız hiç kayıt yoksa 50). Eski kayıtlar etkilenmez.
+- **Açılış hikâyesi** (ilk açılışta bir kez; ana menüde "Hikâye" düğmesiyle yeniden izlenir; dokununca geçilebilir): şehirde büyük, gösterişli bir zincir burgerci var (kurgusal ad; gerçek bir markaya benzemeyen bir ad seç). Sahibi kibirli rakip. Kısa sahnelerle: rakip seni/eski küçük dükkânı küçümser ve sokaktan siler → cebinde yalnız 50 para kalırsın → sokağın karşısında küçük, eski bir dükkânı kiralarsın → "Kirayı öde, müşterileri kazan, rakibi geç!" Sahneler kodla çizilir (SVG/CSS animasyonu), karakterler `Musteri.draw` ile (rakip ve kahraman `KARAKTERLER` içinden ya da kendi `m` nesneleriyle), metin TR/EN, ses `BU.SES`. 20–30 sn, 5–7 sahne, her sahnede tek kısa cümle. Emoji yok.
+- **Kira:** her gün sonunda kira kasadan düşer (gün sonu kartında ayrı satır). Kira günlere göre yavaş artar. Kira ödenemezse (kasa kiradan azsa) kasa eksiye düşer; eksi kasa ile yeni gün başlar ama malzeme ve geliştirme alınamaz; art arda 3 gün eksi kalırsa "dükkân kapandı" uyarısı ve kasa 50'ye sıfırlanır (satın alınanlar kalır). Kira, ilk günlerde kazancın küçük bir kısmı olmalı; oyuncu ilk 2–3 gün rahat kâr etmeli.
+
+### Malzemeler parayla açılır (güne göre değil)
+- Başta açık: ekmek, köfte. Diğer her malzeme **ana menüdeki Dükkân / Tedarikçi** ekranından parayla bir kez satın alınır; alınınca müşteriler onu sipariş etmeye başlar. Kilitli kutularda "Gün N" yerine kilit simgesi ve fiyat.
+- **Satış sırası ve yeni malzemeler:** peynir, marul, domates, soğan, turşu, pastırma, yumurta, ardından yeni pahalı malzemeler: sos (ketçap/özel sos), mantar, jalapeño, soğan halkası, avokado ve en son **altın/premium bir malzeme** (ör. trüf soslu, wagyu köfte: karar ekonomi ajanında). Toplam 12–13 satın alınabilir malzeme.
+- **Fiyat eğrisi (Eymen'in kesin şartı):** en iyi oyuncu bile **24 saat aralıksız oynasa son malzemeye ulaşamamalı.** İlk birkaç malzeme hızlı gelir (ilk 1–3 gün), sonra aralıklar uzar; ortalar birkaç saatlik oyun, sonlar onlarca saat. Her yeni malzeme menü fiyatını ve bahşişi artırdığı için yatırım hissi vermeli. Denge botu "gerçek oynama saati" (gün başına gerçek dakika) ile ölçer ve tablo verir: her malzemeye kaç saatte ulaşılıyor (yavaş/orta/hızlı).
+- Gün zorluğu (müşteri sayısı, sabır, sipariş büyüklüğü) güne göre artmaya devam eder; ama siparişler yalnız **sahip olunan** malzemelerden oluşur.
