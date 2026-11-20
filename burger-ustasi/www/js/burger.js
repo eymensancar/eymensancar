@@ -120,14 +120,15 @@ function grupla(ks){const ad=[],n={};const ekle=k=>{if(!n[k]){n[k]=0;ad.push(k)}
 // kaç sütun: hücre en çok gen/3, yükseklik en çok gen×0,75 kalsın
 const SUTUN=n=>n<=3?n:n===4?2:n<=6?3:4;
 const rozet=n=>`<svg class="bu-rozet" viewBox="0 0 40 28" aria-hidden="true"><rect x="2" y="2" width="36" height="24" rx="12" fill="#e5322b" stroke="${K}" stroke-width="3"/><text x="20" y="21" text-anchor="middle" font-size="19" font-weight="900" fill="#fff" font-family="inherit">×${n}</text></svg>`;
+// o.sutun: burger simgelerinin sütun sayısı (isteğe bağlı); o.enAzSutun: genişlik en az kaç hücre (varsayılan 3).
 // o.yan: ['fries','onionring',…] yan ürünler; burger ızgarasının sağında ince ayraçla ayrılmış ayrı hücre(ler). Aynı yan ürün ×N rozetiyle.
 // Yan ürünler: burger satırı yan ürün sayısından azsa yan yana, değilse alt alta (tek sütun). Toplam genişlik yine gen'i aşmaz.
 function siparis(ks,o={}){
   const gr=grupla(ks),g=olc(o.gen!=null?o.gen:'100%'),sin=o.sinif?' '+o.sinif:'';
   const al=o.alindi||{};   // isteğe bağlı: {anahtar:sayı} zaten konmuş/verilmiş olanlar (soluk); yan ürünler de aynı nesnede
   const yg=[];(o.yan||[]).forEach(k=>{const v=yg.find(x=>x.k===k);if(v)v.n++;else yg.push({k,n:1})});
-  const c=gr.length?Math.max(1,SUTUN(gr.length)):0,sat=c?Math.ceil(gr.length/c):0;
-  const yc=yg.length?(sat>=yg.length?1:yg.length):0,ay=c&&yc?.34:0,T=c+yc+ay,hu=100/Math.max(T,3);
+  const c=gr.length?Math.max(1,o.sutun?Math.min(o.sutun|0,gr.length):SUTUN(gr.length)):0,sat=c?Math.ceil(gr.length/c):0;   // o.sutun: sütun sayısı (verilmezse sayıya göre)
+  const yc=yg.length?(sat>=yg.length?1:yg.length):0,ay=c&&yc?.34:0,T=c+yc+ay,hu=100/Math.max(T,o.enAzSutun||3);   // o.enAzSutun: dar baloncukta 3'ten az hücre genişliği
   const hucre=(x,w,ek='')=>`<span class="bu-hucre${ek}${al[x.k]>=x.n?' bu-tamam':''}" data-k="${x.k}" style="width:${+w.toFixed(4)}%">${simge(x.k)}${x.n>1?rozet(x.n):''}</span>`;
   const izg=c?`<div class="bu-izgara" style="width:${+(hu*c).toFixed(3)}%">`+gr.map(x=>hucre(x,100/c)).join('')+'</div>':'';
   if(!yc)return `<div class="bu-siparis${sin}" data-n="${gr.length}" style="width:${yaz(g.n,g.u)}">${izg}</div>`;

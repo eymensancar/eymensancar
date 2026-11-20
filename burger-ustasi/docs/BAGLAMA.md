@@ -1,5 +1,7 @@
 # Mutfak turu: bağlama notları (oyun.js'i bağlayacak ajan için)
 
+**Bağlandı (21 Kasım):** üç modül oyuna bağlandı; ne nasıl kullanıldı `TASARIM.md` → "Bağlandı (mutfak turu)". Bağlarken eklenenler: `MUTFAK.ciz({vb})` (görünür alan sahnenin dışına uzar: duvar, tezgâh, lamba kabloları, baca), `BURGER.siparis(...,{sutun, enAzSutun})` (dar baloncukta sütun sayısı).
+
 ## veri.js (ekonomi ajanının raporu, 21 Kasım)
 Değişmeyenler: acik, eskiSahip, siradaki, fiyatAc, alabilir, kira, gunSonu, katmanMaliyet, katmanSatis, bahsis, ruh, yuz, pisme, siparis(gun,R,sahip) (yalnız katman dizisi döner).
 Genişleyenler (eski çağrılar aynı): maliyet(katmanlar, yan?) ({katmanlar,yan} de kabul); fiyat(siparis, up, yan?); dogruMu (nesne biçimi; içinde yan ürün olan burger hep yanlış); odeme (dizi → eski; nesne → odemeTam); sabirSiparis (yan ürünlü sipariş +5 sn); gun() yeni alanlar: yanOlas, izgara (göz sayısı).

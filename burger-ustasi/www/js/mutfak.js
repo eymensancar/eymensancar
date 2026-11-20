@@ -1,5 +1,6 @@
 /* Burger Ustası: mutfak sahnesi (BU.MUTFAK). DOM'a dokunmaz, SVG metni döndürür.
-   - ciz({aksam:0..1}) → tek <svg viewBox="0 0 1600 900">: sahnenin SABİT arka planı (duvar, davlumbaz, lambalar, neon,
+   - ciz({aksam:0..1, vb:{x,y,w,h}}) → tek <svg viewBox="0 0 1600 900"> (vb verilirse görünür alan o kadar uzar: duvar,
+     tezgâh, lamba kabloları ve baca yukarı/yanlara devam eder; oyun ekranı boş kenar kalmasın diye kullanır): sahnenin SABİT arka planı (duvar, davlumbaz, lambalar, neon,
      raflar, pencere, tezgâh, ekmek dolabı gövdesi, ızgara gövdesi ve boş gözler, boş küvetler, sos kâseleri, tahta,
      fritöz, hazır tepsileri, içecek makinesi, çöp). aksam 0 = gündüz, 1 = akşam; renkler hesaplanır, filtre yok.
    - YER: aynı 1600×900 koordinatında dokunma/yerleşim dikdörtgenleri {x,y,w,h}. İç içerik (küvetin içi, ekmekler,
@@ -36,6 +37,8 @@ const PAL={
  inside:['#f7dca8','#f6b868']
 };
 let C={};   // o anki renkler
+// çizilen alan: varsayılan sahne 0..1600 × 0..900; ciz({vb}) ile yukarı/yanlara uzatılır (duvar, tezgâh, lamba kabloları, baca uzar)
+let V={x0:0,y0:0,x1:1600,y1:900};
 const pal=t=>{C={};for(const k in PAL)C[k]=mix(PAL[k][0],PAL[k][1],t)};
 
 // ---------- yerler ----------
@@ -80,10 +83,10 @@ const golge=(x,y,w,h,op=.16)=>[10,6,2].map((p,i)=>rect(x-p,y-p*.4,w+2*p,h+p*1.2,
 
 // ---------- duvar ----------
 function duvar(){
-  const T=52,rows=5,cols=Math.ceil(1600/T)+1;
-  let s=rect(0,0,1600,232,0,C.grout);
+  const T=52,j0=Math.min(0,Math.floor((V.y0+28)/T)-1),i0=Math.min(0,Math.floor((V.x0+14)/T)-1),i1=Math.max(Math.ceil(1600/T)+1,Math.ceil((V.x1+14)/T)+1);
+  let s=rect(V.x0,V.y0,V.x1-V.x0,232-V.y0,0,C.grout);
   const yol={red:'',redD:'',redL:'',cream:'',creamD:''},par={red:'',cream:''};
-  for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
+  for(let j=j0;j<5;j++)for(let i=i0;i<i1;i++){
     const x=i*T-14,y=j*T-28,h=hash(i,j),chk=(i+j)%2===0;
     // sol yarı belirgin dama, sağa doğru kırmızı ağırlıklı (referanstaki gibi serpiştirilmiş krem)
     const oran=x<620?.92:x<1000?.5:.42;
@@ -97,7 +100,7 @@ function duvar(){
      `<path d="${par.red}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="3" stroke-linecap="round"/>`+
      `<path d="${par.cream}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>`;
   // duvarın dibinde koyu kuşak (tezgâh arkası)
-  s+=`<rect x="0" y="182" width="1600" height="50" fill="#2a1006" fill-opacity=".10"/>`;
+  s+=`<rect x="${V.x0}" y="182" width="${V.x1-V.x0}" height="50" fill="#2a1006" fill-opacity=".10"/>`;
   return s}
 
 // ---------- davlumbaz ----------
@@ -109,7 +112,8 @@ function davlumbaz(){
   s+=line('M598 176H932',C.stD,2.5,.6);
   s+=parla(598,120,334,110,.18,.2,[[.1,.06],[.55,.12]]);
   // baca
-  s+=`<path d="M590 -10H940V52H590z" fill="url(#mt-stH)" ${O()}/>`+parla(590,-10,350,62,.22,.4,[[.15,.08],[.5,.04]]);
+  const by=Math.min(-10,V.y0-10);
+  s+=`<path d="M590 ${by}H940V52H590z" fill="url(#mt-stH)" ${O()}/>`+parla(590,by,350,52-by,.22,.4,[[.15,.08],[.5,.04]]);
   s+=line('M600 22H930',C.stD,2.5,.5);
   // gövde (yayvan)
   s+=`<path d="M572 50H958L1010 112H520z" fill="url(#mt-stV)" ${O()}/>`;
@@ -124,7 +128,7 @@ function davlumbaz(){
 // ---------- lambalar ----------
 const LAMBA=[300,1100,1528];
 function lamba(x){
-  return line(`M${x} -5V30`,'#1d1715',4)+
+  return line(`M${x} ${Math.min(-5,V.y0-5)}V30`,'#1d1715',4)+
     rect(x-12,22,24,14,4,C.lamp,O(3))+
     `<path d="M${x-64} 84Q${x-62} 44 ${x-24} 34H${x+24}Q${x+62} 44 ${x+64} 84z" fill="${C.lamp}" ${O()}/>`+
     line(`M${x-44} 70Q${x-42} 50 ${x-20} 42`,'#fff',4,.25)+
@@ -198,7 +202,7 @@ function pencere(t){
 function raflar(){
   let s='';
   // dikey boru
-  s+=rect(184,-10,12,240,4,'#3a3330',O(3));
+  s+=rect(184,Math.min(-10,V.y0-10),12,240-Math.min(0,V.y0),4,'#3a3330',O(3));
   // raf 1
   s+=rect(-10,112,186,13,4,C.wood,O(3.5))+rect(20,125,8,16,2,'#3a3330',O(2.5))+rect(140,125,8,16,2,'#3a3330',O(2.5));
   // kaktüs saksısı
@@ -237,21 +241,23 @@ function kutular(){
 function tezgah(){
   let s='';
   // arka kenar (duvar dibi)
-  s+=rect(-10,212,1620,20,4,C.stM,O(3.5))+line('M0 217H1600','#fff',2.5,.6);
+  const a=V.x0-10,b=V.x1+10,w=b-a;
+  s+=rect(a,212,w,20,4,C.stM,O(3.5))+line(`M${a+10} 217H${b-10}`,'#fff',2.5,.6);
   // mermer
-  s+=rect(-10,228,1620,690,0,C.woodD);
-  s+=`<path d="M-10 228H1610V862H44Q-10 862 -10 808z" fill="url(#mt-mer)" ${O()}/>`;
+  s+=rect(a,228,w,Math.max(690,V.y1-228),0,C.woodD);
+  s+=`<path d="M${a} 228H${b}V862H${a+54}Q${a} 862 ${a} 808z" fill="url(#mt-mer)" ${O()}/>`;
   // damarlar
   const vy=[[0,560,'M0 560q120-30 260 10t300-6 280 24 330-20 300 12 160-8'],[0,680,'M0 690q160 20 300-14t340 10 260-22 360 18 360-12'],[0,800,'M30 800q200-24 420 6t380-10 360 20 410-14'],[0,620,'M140 640q60-40 140-30M980 760q60-26 150-14M1180 600q80 20 160-6']];
   vy.forEach(v=>{s+=line(v[2],C.vein,2.2,.7)});
   s+=line('M300 590q40 10 70 30M1240 820q30-20 70-18M700 640q30 20 70 14',C.vein,1.6,.6);
   // ön kenar
-  s+=`<path d="M44 860H1610V878H40Q-10 878 -10 824V806Q-10 860 44 860z" fill="${C.marbD}" ${O(3.5)}/>`;
-  s+=line('M48 864H1600','#fff',3,.7);
+  s+=`<path d="M${a+54} 860H${b}V878H${a+50}Q${a} 878 ${a} 824V806Q${a} 860 ${a+54} 860z" fill="${C.marbD}" ${O(3.5)}/>`;
+  s+=line(`M${a+58} 864H${b-10}`,'#fff',3,.7);
   // ahşap ön panel
-  s+=`<path d="M-10 878H1610V910H-10z" fill="${C.wood}" ${O(3.5)}/>`;
-  for(let x=46;x<1600;x+=44)s+=line(`M${x} 882V906`,C.woodD,3,.8);
-  s+=line('M20 882H1600',C.woodL,3,.7);
+  const yb=Math.max(910,V.y1+10);
+  s+=`<path d="M${a} 878H${b}V${yb}H${a}z" fill="${C.wood}" ${O(3.5)}/>`;
+  for(let x=46+44*Math.floor((a-46)/44);x<b;x+=44)if(x>a+20)s+=line(`M${x} 882V${yb-4}`,C.woodD,3,.8);
+  s+=line(`M${a+30} 882H${b-10}`,C.woodL,3,.7);
   return s}
 
 // ---------- ekmek dolabı ----------
@@ -501,6 +507,8 @@ function defs(t){
 // ---------- sahne ----------
 function ciz(o={}){
   const t=Math.max(0,Math.min(1,+o.aksam||0));
+  const vb=o.vb||{};V={x0:Math.min(0,vb.x!=null?vb.x:0),y0:Math.min(0,vb.y!=null?vb.y:0)};V.x1=Math.max(1600,(vb.x!=null?vb.x:0)+(vb.w||1600));V.y1=Math.max(900,(vb.y!=null?vb.y:0)+(vb.h||900));
+  const VW=V.x1-V.x0,VH=V.y1-V.y0;
   pal(t);
   let s=defs(t);
   s+=duvar();
@@ -522,9 +530,9 @@ function ciz(o={}){
   s+=camYansima(.12);
   // akşam: genel kararma ve köşe gölgesi (sahnenin üstü daha koyu)
   if(t>0){
-    s+=`<rect width="1600" height="232" fill="#3a0e10" opacity="${r1(.22*t*100)/100}"/>`;
-    s+=`<rect width="1600" height="900" fill="#4a1a04" opacity="${r1(.10*t*100)/100}"/>`;
-    s+=`<rect width="1600" height="900" fill="url(#mt-vin)" opacity="${r1(.58*t*100)/100}"/>`;
+    s+=`<rect x="${V.x0}" y="${V.y0}" width="${VW}" height="${232-V.y0}" fill="#3a0e10" opacity="${r1(.22*t*100)/100}"/>`;
+    s+=`<rect x="${V.x0}" y="${V.y0}" width="${VW}" height="${VH}" fill="#4a1a04" opacity="${r1(.10*t*100)/100}"/>`;
+    s+=`<rect x="${V.x0}" y="${V.y0}" width="${VW}" height="${VH}" fill="url(#mt-vin)" opacity="${r1(.58*t*100)/100}"/>`;
   }
   // lamba ışıkları, ışık havuzları, ampuller
   LAMBA.forEach(x=>{s+=lambaIsik(x,t)});
@@ -535,7 +543,8 @@ function ciz(o={}){
   if(t>.05)s+=`<g transform="translate(1166 20)" opacity="${r1(t*.6*100)/100}">${neonCiz(true,1)}</g>`;
   // aynı sayfada birden çok sahne: o.ek ile kimlikler ayrışır
   if(o.ek)s=s.replace(/(id="|url\(#)mt-/g,`$1mt${o.ek}-`);
-  return `<svg class="mt-sahne" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg>`}
+  const kutu=o.vb?`${V.x0} ${V.y0} ${VW} ${VH}`:'0 0 1600 900';V={x0:0,y0:0,x1:1600,y1:900};
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="mt-sahne" viewBox="${kutu}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg>`}
 
 // ---------- parçalar ----------
 function kilitIc(){
