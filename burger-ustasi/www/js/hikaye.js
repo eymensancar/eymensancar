@@ -147,7 +147,7 @@ function toz(n,x,y){let s='';for(let i=0;i<n;i++){const a=i/n*Math.PI*2+rnd(-.2,
 const CSS=`
 .hk{position:absolute;inset:0;z-index:60;overflow:hidden;container-type:size;background:#2b1a12;color:${INK};font-family:"Baloo 2","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer;animation:hk-fade .35s both}
 .hk *{box-sizing:border-box}
-.hk.hk-son{animation:hk-out .35s ease-in both;pointer-events:none}
+.hk.hk-son{animation:hk-out .35s ease-in both}
 .hk-sahne{--u:min(1cqw,.55cqh);--yer:max(27%,calc(var(--u)*44));position:absolute;inset:0;overflow:hidden;background:var(--gok,linear-gradient(#8fd3ff,#d9f3ff))}
 .hk-kam{position:absolute;inset:0;transform-origin:50% 60%;will-change:transform}
 .hk-yer{position:absolute;left:-30%;right:-30%;bottom:0;height:var(--yer);background:linear-gradient(#c79a55 0 calc(var(--u)*1.2),#e9c58a calc(var(--u)*1.2) calc(var(--u)*11),#b48a55 calc(var(--u)*11) calc(var(--u)*12.2),#5d5560 calc(var(--u)*12.2));}
@@ -158,6 +158,7 @@ const CSS=`
 .hk-kisi{aspect-ratio:128/230;transform-origin:50% 100%}
 .hk-kisi.ayna>svg{transform:scaleX(-1)}
 .hk-golge{position:absolute;height:calc(var(--u)*3);border-radius:50%;background:rgba(40,20,5,.28);transform:translateX(-50%)}
+.hk-dunya .hk-bulut,.hk-yagmur .hk-bulut{position:absolute}
 .hk-bulut{color:#fff;opacity:.95}
 .hk-sehir svg{height:calc(var(--u)*46)!important}
 .hk-bulut.gri{color:#9aa3ad}
@@ -340,7 +341,7 @@ function cssKur(){
 /* ---------------- sahneler ---------------- */
 // her sahne: {ad, sure (ms, otomatik geçiş), gecis ('iris'|'kay'), html(L), olay: [[ms, fn(kok)]]}
 const SAHNE=[
- {ad:'rakip',sure:4200,gecis:'iris',
+ {ad:'rakip',sure:4000,gecis:'iris',
   html:L=>`<div class="hk-yildizlar" style="${at(-50,0,100)}">${parcalar('yildiz',7,-48,120,96,50)}</div>`+sehir(-80,160,'#4f3c93')+`<div class="hk-isik" style="${at(-30,40,16)}"></div><div class="hk-isik i2" style="${at(14,40,16)}"></div>`
    +bulut(-46,128,26,'kay')+bulut(28,140,20,'kay')
    +`<div style="${at(-30,0,60)}">${rakipBina(L)}</div>`
@@ -348,7 +349,7 @@ const SAHNE=[
    +`<div class="hk-yildizlar" style="${at(-50,0,100)}">${parcalar('yildiz',16,-36,10,72,110)}</div>`
    +`<div class="hk-golge" style="${at(37,-9,24)}"></div><div class="hk-kisi r1" style="${at(22,-9,30)}">${kisi(RAKIP,'happy','rakip')}</div>`,
   olay:[[400,()=>ses('satin')],[2000,()=>ses('gun_bitti')]]},
- {ad:'alay',sure:4400,gecis:'iris',
+ {ad:'alay',sure:4200,gecis:'iris',
   html:L=>`<div class="hk-yildizlar" style="${at(-50,0,100)}">${parcalar('yildiz',6,-48,110,96,50)}</div>`+sehir(-80,160,'#5a4598')+bulut(-40,120,22)
    +`<div style="${at(4,0,60)}">${rakipBina(L)}</div>`
    +`<div class="kucul" style="${at(-50,0,46)};transform-origin:50% 100%">${eskiDukkan(L,false)}</div>`
@@ -363,7 +364,7 @@ const SAHNE=[
    +`<div class="hk-eski" style="${at(-44,0,50)};transform-origin:50% 100%">${eskiDukkan(L,true)}</div>`
    +toz(12,-19,0)
    +`<div class="hk-golge" style="${at(30,-9,26)}"></div><div class="hk-kisi" style="${at(15,-9,30)}">${kisi(KAHRAMAN,'sad','kahraman')}</div>`
-   +`<div class="hk-yagmur" style="${at(14,46,32)};height:${U(30)}">${bulut(0,12,32,'gri')}<div style="position:absolute;left:0;bottom:0;width:100%;height:100%">${parcalar('yagmur',11,3,-10,26,16)}</div></div>`,
+   +`<div class="hk-yagmur" style="${at(14,40,32)};height:${U(30)}">${bulut(0,12,32,'gri')}<div style="position:absolute;left:0;bottom:0;width:100%;height:100%">${parcalar('yagmur',11,3,-10,26,16)}</div></div>`,
   olay:[[550,()=>ses('cop')],[1300,()=>ses('uyari')],[2500,()=>ses('can_gitti')],[3000,()=>ses('gun_kayip')]]},
  {ad:'cep',sure:4000,gecis:'iris',
   html:L=>`<div class="hk-golge" style="${at(0,-6,40)}"></div><div class="hk-kisi" style="${at(-22,-8,44)}">${kisi(KAHRAMAN,'wait','kahraman')}</div>`
@@ -371,7 +372,7 @@ const SAHNE=[
    +`<div class="hk-yildizlar" style="${at(-50,0,100)}">${parcalar('yildiz',6,-30,20,60,60)}</div>`,
   ust:L=>`<div class="hk-sayac" data-sayac>${simge('para')}<span>0</span></div>`,
   olay:'para'},
- {ad:'kirala',sure:4800,gecis:'kay',
+ {ad:'kirala',sure:4600,gecis:'kay',
   html:L=>sehir(-80,160,'#a9d3ee')+bulut(-48,124,26,'kay')+bulut(20,136,22,'kay')
    +`<div style="${at(-16,0,60)}">${yeniDukkan()}</div>`
    +`<div class="hk-kiralik" style="${at(-11,25,21)}">${L.kiralik}</div>`
@@ -388,7 +389,7 @@ const SAHNE=[
    +`<div class="hk-ok" style="${at(-6,26,15)}">${simge('ileri')}</div>`,
   ust:L=>`<div class="hk-hedefler">${[['para',0],['gulen',1],['yildiz',2]].map(([s,i])=>`<div class="hk-hedef"><span>${simge(s)}</span><b>${L.hedef[i]}</b></div>`).join('')}</div>`,
   olay:[[150,()=>ses('teslim_normal')],[850,()=>ses('teslim_mutlu')],[1550,()=>ses('satin')],[2300,()=>ses('teslim_kizgin')]]},
- {ad:'baslik',sure:4200,gecis:'iris',
+ {ad:'baslik',sure:4000,gecis:'iris',
   html:L=>`<div class="hk-tabak" style="${at(-30,-1,60)}"></div><div class="hk-burger" style="${at(-24,3,48)}">${BU.BURGER&&BU.BURGER.yigin?BU.BURGER.yigin(['bunBot','patty','cheese','lettuce','tomato','bunTop'],{gen:'48em',yeni:false}):''}</div>`
    +`<div class="hk-golge" style="${at(-34,-8,22)}"></div><div class="hk-kisi" style="${at(-48,-10,26)}">${kisi(KAHRAMAN,'love','kahraman')}</div>`
    +`<div class="hk-yildizlar" style="${at(-50,170,100)}">${parcalar('konfeti',26,0,0,100,0)}</div>`,
