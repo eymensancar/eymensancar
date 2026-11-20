@@ -108,7 +108,7 @@ function st(no){return S[no]||{}}
 function show(){if(!K.length){$('who').textContent='Karakter yok';return}
   const k=K[i],s=st(k.no);try{localStorage.setItem(KEY+'-i',i)}catch(e){}
   $('hero').innerHTML=M.draw(k.m,E[emo])+(s.d?`<span class="tag ${s.d}">${s.d==='ok'?'Tamam':'Düzelt'}</span>`:'');
-  $('who').innerHTML=`#${k.no} · ${esc(k.ad||'')}<small>${M.PARTS.cinsiyet[k.m.cinsiyet]} · ${M.PARTS.sac[k.m.sac]} saç${k.m.sakal?' · '+M.PARTS.sakal[k.m.sakal]:''}${k.m.biyik?' · '+M.PARTS.biyik[k.m.biyik]+' bıyık':''}${k.m.sapka?' · '+M.PARTS.sapka[k.m.sapka]:''}</small>`;
+  $('who').innerHTML=`#${k.no} · ${esc(k.ad||'')}<small>${M.PARTS.cinsiyet[k.m.cinsiyet]} · fotoğrafa dokun: sıradaki duygu</small>`;
   $('num').value=`${i+1} / ${K.length}`;
   $('six').innerHTML=E.map(e=>`<div>${M.draw(k.m,e)}${EN[e]}</div>`).join('');
   $('txt').value=s.n||'';
