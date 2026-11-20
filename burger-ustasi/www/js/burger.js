@@ -2,7 +2,7 @@
    - KATMAN: yandan görünen katmanlar, 200 birim genişlik. Her biri {h: yükseklik, bin: alttaki katmanın üstüne binme payı, sik: sıkışınca saklanabilecek en çok pay oranı, svg}.
    - yigin(katmanlar,{gen,yukMax,yeni}): tabaktaki yığın. Katmanlar alttan üste mutlak konumla dizilir; yükseklik yukMax'ı aşarsa önce dolgular daha çok biner, yetmezse bütün burger orantılı küçülür. Asla yukMax'ı aşmaz.
    - siparis(katmanlar,{gen}): baloncuk içi simge ızgarası. Ekmek tek simge (alt+üst), aynı malzeme birden çoksa tek simge + "×2" rozeti. Hücreler sabit oranlı, asla üst üste binmez, genişlik gen'i aşmaz.
-   - simge(k): malzeme görseli (<img>). Görsellerin yolu BU.BURGER.YOL (varsayılan 'g/').
+   - simge(k): malzeme görseli (<img>), src(k): yalnız yolu. Hepsi kendi SVG'miz g/s-<k>.svg. Görsellerin yolu BU.BURGER.YOL (varsayılan 'g/').
    - CSS: oyunun bir <style>'a koyacağı metin. Bütün sınıflar 'bu-' önekli. */
 (function(){
 'use strict';
@@ -27,23 +27,47 @@ const KATMAN={
  lettuce:{h:32,bin:14,sik:.45,svg:
   `<path d="M2 11q13-10 25 0t24 0 24 0 25 0 24 0 24 0 25 0 25 0v8q-6 12-16 6-8 10-20 2-10 9-22 0-12 8-24 0-12 9-24 0-12 8-24 0-10 8-20-2-10 6-17-6z" fill="#6fca47" ${O}/>`+
   L('M14 12q7-5 13 0M62 12q7-5 13 0M111 12q7-5 13 0M160 12q7-5 13 0','#b5ee8c',3)+L('M40 22q8 3 16 0M120 22q8 3 16 0','#3f9a26',3)},
- tomato:{h:28,bin:12,sik:.45,svg:
-  `<rect x="6" y="5" width="92" height="18" rx="9" fill="#ee4a32" ${O}/><rect x="102" y="5" width="92" height="18" rx="9" fill="#ee4a32" ${O}/>`+
-  L('M18 11h40M114 11h40','#ff9a80',3)+
-  `<g fill="#ffd36b"><ellipse cx="70" cy="15" rx="4" ry="2.4"/><ellipse cx="84" cy="15" rx="4" ry="2.4"/><ellipse cx="166" cy="15" rx="4" ry="2.4"/><ellipse cx="180" cy="15" rx="4" ry="2.4"/></g>`},
- onion:{h:24,bin:10,sik:.45,svg:
-  `<g fill="#fbf3ff" stroke="#9b4fd0" stroke-width="5"><rect x="6" y="5" width="66" height="14" rx="7"/><rect x="128" y="5" width="66" height="14" rx="7"/><rect x="64" y="5" width="72" height="14" rx="7"/></g>`+
-  L('M80 12h40M18 12h20M150 12h30','#c99be8',3)},
+ tomato:{h:34,bin:8,sik:.45,svg:
+  `<rect x="6" y="5" width="92" height="24" rx="11" fill="#ee4a32" ${O}/><rect x="102" y="5" width="92" height="24" rx="11" fill="#ee4a32" ${O}/>`+
+  L('M18 12h40M114 12h40','#ff9a80',4)+
+  `<g fill="#ffd36b"><ellipse cx="70" cy="19" rx="4.5" ry="3"/><ellipse cx="84" cy="19" rx="4.5" ry="3"/><ellipse cx="166" cy="19" rx="4.5" ry="3"/><ellipse cx="180" cy="19" rx="4.5" ry="3"/></g>`},
+ onion:{h:30,bin:7,sik:.45,svg:
+  `<g fill="#fbf3ff" stroke="#9b4fd0" stroke-width="5"><rect x="6" y="5" width="66" height="20" rx="10"/><rect x="128" y="5" width="66" height="20" rx="10"/><rect x="64" y="5" width="72" height="20" rx="10"/></g>`+
+  L('M80 13h40M18 13h20M150 13h30','#c99be8',4)},
  bacon:{h:30,bin:12,sik:.45,svg:
   `<path d="M2 10q16-10 33 0t33 0 32 0 32 0 33 0 33 0v10q-16 10-33 0t-33 0-32 0-32 0-33 0-33 0z" fill="#b8321f" ${O}/>`+
   L('M12 15q12-8 23 0t33 0 32 0 32 0 33 0 23 0','#f3b0a0',4)},
- egg:{h:36,bin:13,sik:.4,svg:
+ egg:{h:36,bin:8,sik:.4,svg:
   `<path d="M8 22q0-11 15-11h20q8-7 20-4 6-3 14 0h46q10-4 18 0h34q17 0 17 12 0 12-17 12H23Q8 31 8 22z" fill="#fff" ${O}/>`+
   `<path d="M74 16q0-13 26-13t26 13z" fill="#ffb21f" ${O}/>`+L('M88 9q8-3 14-2','#ffe08a',3)+L('M22 18h20M140 18h24','#eee6dc',3)},
- pickle:{h:26,bin:11,sik:.45,svg:
-  `<g fill="#5c9e2e" ${O}><rect x="8" y="5" width="56" height="16" rx="8"/><rect x="72" y="5" width="56" height="16" rx="8"/><rect x="136" y="5" width="56" height="16" rx="8"/></g>`+
-  L('M18 11h26M82 11h26M146 11h26','#9fd66a',3)+
-  `<g fill="#3e7a1c"><circle cx="52" cy="15" r="2"/><circle cx="116" cy="15" r="2"/><circle cx="180" cy="15" r="2"/></g>`},
+ pickle:{h:32,bin:8,sik:.45,svg:
+  `<g fill="#5c9e2e" ${O}><rect x="8" y="5" width="56" height="22" rx="11"/><rect x="72" y="5" width="56" height="22" rx="11"/><rect x="136" y="5" width="56" height="22" rx="11"/></g>`+
+  L('M18 12h26M82 12h26M146 12h26','#9fd66a',4)+
+  `<g fill="#3e7a1c"><circle cx="50" cy="19" r="2.4"/><circle cx="56" cy="15" r="2"/><circle cx="114" cy="19" r="2.4"/><circle cx="120" cy="15" r="2"/><circle cx="178" cy="19" r="2.4"/><circle cx="184" cy="15" r="2"/></g>`},
+ // ---- 2. tur malzemeleri ----
+ sauce:{h:30,bin:18,sik:.5,svg:
+  `<path d="M6 10Q6 4 14 4H186Q194 4 194 10Q194 17 186 17H170Q164 17 164 22Q164 28 157 28Q150 28 150 22Q150 17 144 17H112Q106 17 106 23Q106 29 99 29Q92 29 92 23Q92 17 86 17H58Q52 17 52 21Q52 25 46 25Q40 25 40 21Q40 17 34 17H14Q6 17 6 10Z" fill="#e0321f" ${O}/>`+
+  L('M18 9h52M118 9h44','#ff9a80',3.5)},
+ mushroom:{h:30,bin:10,sik:.45,svg:
+  [2,49,96,143].map(x=>`<path d="M${x} 26Q${x} 4 ${x+28} 4Q${x+56} 4 ${x+56} 26Z" fill="#f3e2c6" ${O}/>`+L(`M${x+7} 22Q${x+8} 10 ${x+28} 10Q${x+48} 10 ${x+49} 22`,'#9a6236',5)+`<path d="M${x} 26Q${x} 4 ${x+28} 4Q${x+56} 4 ${x+56} 26Z" fill="none" ${O}/>`).join('')+
+  L('M14 15q4-5 10-6M108 15q4-5 10-6','#fffaf0',3)},
+ jalapeno:{h:26,bin:9,sik:.45,svg:
+  [27,75,125,173].map(x=>`<ellipse cx="${x}" cy="13" rx="23" ry="9" fill="#2f8f2a" ${O}/><ellipse cx="${x}" cy="13" rx="12" ry="4.2" fill="#d8ef9a" stroke="#1f6a1b" stroke-width="2"/><ellipse cx="${x}" cy="13" rx="5" ry="1.8" fill="#2f8f2a"/>`).join('')+
+  L('M12 9q6-3 12-3M110 9q6-3 12-3','#a6e07a',3)},
+ onionring:{h:38,bin:10,sik:.35,svg:
+  `<path d="M14 7q9-5 18 0t18 0 18 0 18 0 18 0 18 0 18 0 18 0 18 0q12 0 12 12 0 12-12 12q-9 5-18 0t-18 0-18 0-18 0-18 0-18 0-18 0-18 0-18 0Q2 31 2 19 2 7 14 7Z" fill="#e9a23b" ${O}/>`+
+  `<g fill="#b8661c"><rect x="28" y="14" width="5" height="4" rx="1"/><rect x="70" y="22" width="5" height="4" rx="1"/><rect x="112" y="13" width="5" height="4" rx="1"/><rect x="150" y="22" width="5" height="4" rx="1"/><rect x="178" y="15" width="5" height="4" rx="1"/></g>`+
+  `<g fill="#f8d27a"><rect x="48" y="21" width="5" height="4" rx="1"/><rect x="92" y="18" width="5" height="4" rx="1"/><rect x="132" y="22" width="5" height="4" rx="1"/><rect x="18" y="22" width="5" height="4" rx="1"/></g>`+
+  L('M20 13h40M120 12h30','#ffe2a0',4)},
+ avocado:{h:28,bin:10,sik:.45,svg:
+  [2,50,98,146].map(x=>`<path d="M${x} 22Q${x+20} 2 ${x+54} 7Q${x+44} 24 ${x} 22Z" fill="#d6e98a" ${O}/>`+L(`M${x+6} 17Q${x+22} 5 ${x+50} 8`,'#3e6e1e',5)).join('')+
+  L('M14 20q12-3 26-4M110 20q12-3 26-4','#f3f9cf',3)},
+ premium:{h:52,bin:12,sik:.5,svg:
+  `<path d="M22 10h156q20 0 20 18t-20 18H22Q2 46 2 28T22 10z" fill="#8c4426" ${O}/>`+
+  L('M14 34q8 6 22 6h128q14 0 22-6','#5a2a14',5)+L('M22 26q14 5 28-1t26 3 30-2 26 2 26-3 22 2','#d39a84',3.5)+
+  `<g fill="#ffcf33" stroke="${K}" stroke-width="3" stroke-linejoin="round"><path d="M64 12l14-9 18 3-3 9-20 4z"/><path d="M118 11l10-7 14 4-4 7-14 1z"/><path d="M160 14l8-6 10 4-4 6z"/><path d="M28 14l8-5 9 4-5 5z"/></g>`+
+  L('M70 9l18-3M124 8l10-2','#fff6b0',3)+
+  `<path d="M186 -2q1.5 6 7 7.5q-5.5 1.5-7 7.5q-1.5-6-7-7.5q5.5-1.5 7-7.5z" fill="#fff7c2" stroke="${K}" stroke-width="2.5" stroke-linejoin="round"/>`},
  bunTop:{h:84,bin:16,sik:.15,svg:
   `<path d="M5 74Q5 6 100 6t95 68q0 6-6 6H11q-6 0-6-6z" fill="#f4c676" ${O}/>`+
   L('M14 70h172','#d99a48',5)+L('M30 44Q44 18 84 14','#fde6b4',6)+
@@ -56,9 +80,10 @@ const olc=v=>{if(typeof v==='number')return {n:v,u:'px'};const m=/^\s*(-?[\d.]+)
 const yaz=(n,u)=>+n.toFixed(3)+u;
 
 // konumlar: s = sıkışma (0..1), her katmanın alt kenarının yüksekliği (birim) ve toplam yükseklik
+// s<0: gevşeme (yer artınca binme azalır, s=-1'de binmenin %40'ı kalır)
 function yerles(ks,s){const y=[];let ust=0;
   ks.forEach((k,i)=>{const d=KATMAN[k]||KATMAN.patty;let b=0;
-    if(i>0){const once=KATMAN[ks[i-1]]||KATMAN.patty;b=d.bin+s*d.sik*(d.h-d.bin);b=Math.min(b,once.h-13)}   // alttakinin üstünden en az ~8 birim görünsün
+    if(i>0){const once=KATMAN[ks[i-1]]||KATMAN.patty;b=s<0?d.bin*(1+.6*s):d.bin+s*d.sik*(d.h-d.bin);b=Math.min(b,once.h-13)}   // alttakinin üstünden en az ~8 birim görünsün
     const a=Math.max(0,ust-b);y.push(a);ust=Math.max(ust,a+d.h)});
   return {y,H:ust}}
 
@@ -70,6 +95,8 @@ function yigin(ks,o={}){
     if(p.H>butce){let lo=0,hi=1;const tam=yerles(ks,1);
       if(tam.H>butce){s=1;p=tam;olcek=butce/p.H}
       else{for(let i=0;i<18;i++){const m=(lo+hi)/2;if(yerles(ks,m).H>butce)lo=m;else hi=m}s=hi;p=yerles(ks,s)}}
+    else if(ks.length>2){const gev=yerles(ks,-1);   // yer bol: bindirmeyi azalt, yığın kalan yüksekliğe yayılsın
+      if(gev.H<=butce){s=-1;p=gev}else{let lo=-1,hi=0;for(let i=0;i<18;i++){const m=(lo+hi)/2;if(yerles(ks,m).H>butce)lo=m;else hi=m}s=hi;p=yerles(ks,s)}}
     genS=yaz(g.n*olcek,g.u);yukS=yaz(g.n*olcek*p.H/200,g.u)}
   else if(ym){p=yerles(ks,.6);genS=`min(${yaz(g.n,g.u)},calc(${yaz(ym.n,ym.u)} * ${+(200/p.H).toFixed(4)}))`;yukS='auto'}   // birimler farklı: CSS min()
   else{genS=yaz(g.n,g.u);yukS=yaz(g.n*p.H/200,g.u)}
@@ -79,9 +106,12 @@ function yigin(ks,o={}){
       return `<span class="bu-ly bu-${k}${yeni&&i===son?' bu-yeni':''}" style="bottom:${+(100*p.y[i]/p.H).toFixed(3)}%;height:${+(100*d.h/p.H).toFixed(3)}%"><svg viewBox="0 0 200 ${d.h}" preserveAspectRatio="none" aria-hidden="true">${d.svg}</svg></span>`}).join('')+'</div>'}
 
 // ---- simgeler ----
-const SVGI={bun:1,cheese:1,patty:1,raw:1};
+// bütün malzemeler kendi çizimimiz: g/s-<k>.svg (KATMAN biçemi). Listede olmayan anahtar eski dosyaya düşer (raw.svg vb.).
+const SIM={bun:1,patty:1,cheese:1,lettuce:1,tomato:1,onion:1,bacon:1,egg:1,pickle:1,sauce:1,mushroom:1,jalapeno:1,onionring:1,avocado:1,premium:1};
+const ESKI={raw:'raw.svg'};
 const ANA=k=>k==='bunBot'||k==='bunTop'?'bun':k;
-function simge(k,sinif=''){k=ANA(k);const B=BU.BURGER.YOL;return `<img class="bu-simge${sinif?' '+sinif:''}" src="${B}${k}${SVGI[k]?'.svg':'.webp'}" alt="" draggable="false">`}
+const src=k=>{k=ANA(k);return BU.BURGER.YOL+(SIM[k]?'s-'+k+'.svg':ESKI[k]||k+'.webp')};
+function simge(k,sinif=''){return `<img class="bu-simge${sinif?' '+sinif:''}" src="${src(k)}" alt="" draggable="false">`}
 
 // sipariş: ekmek (tek simge) + ortadakiler, aynı malzeme gruplanır (×N rozeti). Sıra: ilk görülüş sırası
 function grupla(ks){const ad=[],n={};const ekle=k=>{if(!n[k]){n[k]=0;ad.push(k)}n[k]++};
@@ -106,14 +136,14 @@ const CSS=`
 @keyframes bu-dus{0%{transform:translateY(-160%);opacity:.2}60%{opacity:1}100%{transform:translateY(0)}}
 .bu-siparis{display:block;max-width:100%;box-sizing:border-box}
 .bu-siparis .bu-izgara{display:flex;flex-wrap:wrap;justify-content:center;margin-inline:auto}
-.bu-siparis .bu-hucre{position:relative;display:block;box-sizing:border-box;aspect-ratio:1;padding:0}
+.bu-siparis .bu-hucre{position:relative;display:block;box-sizing:border-box;aspect-ratio:1;padding:0;overflow:visible}
 .bu-siparis .bu-simge{display:block;width:96%;height:96%;margin:2%;object-fit:contain}
-.bu-siparis .bu-rozet{position:absolute;right:0;bottom:0;width:64%;height:auto;overflow:visible}
+.bu-siparis .bu-rozet{position:absolute;right:-10%;bottom:-8%;width:46%;height:auto;overflow:visible}
 .bu-siparis .bu-tamam .bu-simge{opacity:.28;filter:grayscale(.6)}
 img.bu-simge{-webkit-user-drag:none;user-select:none}
 @media (prefers-reduced-motion:reduce){.bu-yigin .bu-yeni{animation:none}}
 `;
 
-BU.BURGER={KATMAN,yigin,siparis,simge,grupla,CSS,YOL:'g/'};
+BU.BURGER={KATMAN,yigin,siparis,simge,src,grupla,CSS,YOL:'g/'};
 if(typeof module!=='undefined')module.exports=BU.BURGER;
 })();

@@ -1,0 +1,14 @@
+# Cihaz ve dokunma incelemesi (20 Kasım)
+Çıktılar: /tmp/claude-0/-home-user/8066dee7-8627-553b-a97c-0e1bfc2ce9b4/scratchpad/inc-cihaz/ (tara.cjs: 7 cihaz × TR/EN × 9 ekran; olc.js ölçüm; dokun.cjs CDP dokunuş; shots/). Satırlar o anki dosyalara göre.
+
+1. **YÜKSEK: Oran 1,56'dan kısa ekranlarda (masaüstü 1280×800/720, 1366×768; claude.ai artifact'i bilgisayarda böyle açılır) tepsinin 2. sırası 16–18 px kesik, 3. ızgara gözü tezgâhtan taşıyor; gün sonu kartı kayıyor.** İçerik ~155,6 cqw, #app genişliği calc(100dvh/1.5). Düzelt: `#app{width:min(100vw,540px,calc((100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))/1.6))}` (telefonlar etkilenmez).
+2. **YÜKSEK: Üst bilgi taşıyor**: "Gün 12" + −50 ile 1–2 px, 5 haneli kasa ile 4–9 px duraklat ekrandan taşıyor; SE'de kasa yazısı kutusundan çıkıyor (`.chip.kasa{min-width:24cqw}`). Düzelt: `.hud{gap:1cqw;padding-left:2cqw;padding-right:2cqw}`, `.chip{padding:0 2.4cqw 0 1cqw}`, `.chip.kasa{min-width:min-content;flex:0 0 auto}`, `.chip.gun{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}`, `.canlar span{width:6.8cqw;height:6.8cqw}`. Büyük sayılar için kısaltma (12,3B) da düşünülebilir.
+3. **ORTA: 44 px altı dokunma alanları**: SE'de .hb 35,8, ana menü efekt/müzik 35,8, dil 56×35,8, kart düğmeleri .btn 41,6 yükseklik, duraklatmadaki .tg 38,4; mini'de .hb 42. Düzelt: `.hb,.home .lang{position:relative}`, `.hb::before,.home .lang::before{content:"";position:absolute;inset:min(0px,calc((11.2cqw - 44px)/2))}`, `.btn{min-height:max(44px,13cqw)}`, `.tg{min-height:max(44px,12cqw)}`.
+4. **ORTA: 3 müşteri + iki sıralı siparişte baloncuklar ilerleme çubuğunun altına giriyor, tenteyi tamamen kapatıyor.** fit() yüz boyunu tek sıra baloncuğa göre hesaplıyor (oyun.js:388 `(h+4*c-24*c-2*c)/1.2`). Düzelt: 24*c → 32*c ya da en yüksek .bub ölçülüp --yz yeniden hesaplansın; gerekirse `.queue{top:3cqw}`.
+5. **ORTA: Ana menüde döndürülmüş logo, müzik ve dil düğmelerinin alt kısmındaki dokunuşları yutuyor.** `.logo{pointer-events:none}`.
+6. DÜŞÜK: Geliştirme kartlarında fiyat etiketi 4. pip'i örtüyor: `.up{padding-bottom:4.6cqw}`, `.up .c{bottom:-3.2cqw}`.
+7. DÜŞÜK: SE'de küçük yazılar 8–9 px (`.ing .ad`, `.tno`, `.grill small`, `.cop small`, `.up small`, `.credit`): `font-size:max(10px, …cqw)`.
+8. DÜŞÜK: 1. gün rehber balonu ızgara ve tabak etiketlerini örtüyor (rehber(), oyun.js:301–303).
+9. iOS Safari'de (artifact) iki parmakla yakınlaştırma büyük olasılıkla çalışır: `#app{touch-action:none}`, `.ov{touch-action:pan-y}`, `document.addEventListener('gesturestart',e=>e.preventDefault())`.
+
+Sorun bulunmayanlar: gerçek dokunuşla seç→koy, sürükle-bırak teslim, çöp, geri dönme çalışıyor; kaydırma, uzun basışta seçim/menü yok; yatay kaydırma yok; 10 katmanlı yığın taşmıyor; kartlar telefonlarda sığıyor; güvenli alan taklidinde hiçbir dokunma alanı güvensiz banda düşmüyor; uzun İngilizce metinler sığıyor.
