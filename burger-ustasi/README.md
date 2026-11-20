@@ -1,13 +1,14 @@
 # Burger Ustası (çalışma adı)
 
-Dikey oynanan, hafif yukarıdan bakılan sipariş oyunu: müşteriler tezgâha gelir, baloncuktaki burgeri aynı sırayla hazırlarsın (ekmek → ızgarada köfte → malzemeler → ekmek). Saf HTML/CSS/JS, tek dosya: `www/index.html`, görseller `www/g/`. Şimdilik claude.ai artifact'inde geliştiriliyor.
+**Yatay** oynanan (21 Kasım'dan beri; telefon dik tutulursa "yan çevir" ekranı), hafif yukarıdan bakılan sipariş oyunu: müşteriler tezgâha gelir, baloncuktaki burgeri aynı sırayla hazırlarsın (ekmek → ızgarada köfte → malzemeler → ekmek). Saf HTML/CSS/JS, tek dosya: `www/index.html`, görseller `www/g/`. Şimdilik claude.ai artifact'inde geliştiriliyor.
 
 - **Akış:** ekmek → malzemeler (sıra serbest) → ekmekle kapat → burgeri **müşteriye sürükle**. Köfte ızgarada pişer, pişince tepsideki Köfte kutusuna geçer. İki tabak, çöp, sabır çubuğu, üç can.
 - **Ekonomi (2. tur, 20 Kasım):** yeni oyuncu **50 parayla** başlar, yalnız ekmek ve köfte açık. Öbür 13 malzeme (peynir … avokado, en son **Altın Wagyu**) ana menüdeki **Dükkân**'dan **parayla, sırayla** alınır; müşteriler yalnız sahip olunan malzemeleri ister. Her gün sonunda **kira** düşer; kasa eksiye düşebilir, eksi kasayla alışveriş yok, 3 gün art arda eksi kalırsa dükkân kapanır (kasa 50, malzemeler kalır). Geliştirmeler de dükkânda. Ayrıntı ve denge tabloları `docs/DENGE.md`.
-- **Hikâye:** ilk açılışta kısa açılış hikâyesi (rakip Bombastik Burger); ana menüdeki "Hikâye" ile yeniden izlenir.
+- **Hikâye:** açılış hikâyesi kaldırıldı (Eymen, 21 Kasım); oyun doğrudan ana menüyle açılır.
+- **Düzen:** üstte ince üst bilgi, solda sokak (3 müşteri) ve tezgâh (ızgara, iki tabak, çöp), sağda 15 kutuluk malzeme tepsisi (3×5). Ayrıntı `docs/TASARIM.md` → "3. tur".
 - **Kayıt:** `localStorage` anahtarı `burgerustasi.v1` (eski kayıtlar korunur; eski oyuncu açtığı malzemeleri kaybetmez). Diller: Türkçe ve İngilizce (`js/oyun.js` içinde `T`).
-- **Test kancası:** `index.html?debug` → `window.__bu` (`startDay`, `bitir`, `openShop`, `malAl`, `upAl`, `hikaye`, `SAVE`…); `?nostory` açılış hikâyesini atlar.
-- **Dosyalar:** `www/index.html` (düzen, CSS), `www/js/oyun.js` (oynanış, ekranlar, dükkân), `js/veri.js` (ekonomi), `js/burger.js` (burger ve malzeme çizimi), `js/simge.js` (simgeler), `js/ses.js` (ses sentezi), `js/hikaye.js` (açılış hikâyesi), `musteri.js` + `karakterler.js` (müşteri yüzleri). Tasarım sözleşmesi `docs/TASARIM.md`, denge botu `scripts/denge.mjs`.
+- **Test kancası:** `index.html?debug` → `window.__bu` (`startDay`, `bitir`, `openShop`, `malAl`, `upAl`, `fit`, `SAVE`…).
+- **Dosyalar:** `www/index.html` (düzen, CSS), `www/js/oyun.js` (oynanış, ekranlar, dükkân), `js/veri.js` (ekonomi), `js/burger.js` (burger ve malzeme çizimi), `js/simge.js` (simgeler), `js/ses.js` (ses sentezi), `musteri.js` + `karakterler.js` (müşteri yüzleri). Tasarım sözleşmesi `docs/TASARIM.md`, denge botu `scripts/denge.mjs`.
 
 ## Görseller (itch.io)
 - Yiyecekler, tente, yıldız: **Food Icon Pack, Bluc** (https://bluc.itch.io/food-icon-pack). Ticari kullanım serbest, **atıf zorunlu** ("Icons by Bluc"; oyunda ana ekranın altında yazıyor, mağaza açıklamasına da eklenecek). Paketi olduğu gibi yeniden dağıtmak yasak: depoda yalnız oyunun kullandığı küçültülmüş görseller var.

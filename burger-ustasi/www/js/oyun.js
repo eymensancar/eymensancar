@@ -33,8 +33,8 @@ const YSES={ac(){},cal(){},muzik(){},ayar(){},durdur(){},ADLAR:[]};
 // çizim yedeği: yollar BU.BURGER.src varsa ondan (g/s-<k>.svg), yoksa aynı adlandırmayla
 const YB=(()=>{const src=k=>{k=k==='bunBot'||k==='bunTop'?'bun':k;return BU.BURGER&&BU.BURGER.src?BU.BURGER.src(k):'g/s-'+k+'.svg'};
   return {src,simge:k=>`<img src="${src(k)}" alt="">`,CSS:'',
-    yigin:(ks,o)=>`<div class="bu-yigin" style="display:flex;flex-direction:column-reverse;align-items:center;width:${typeof o.gen==='number'?o.gen+'px':o.gen}">`+ks.map((k,i)=>`<span class="${i===ks.length-1&&o.yeni!==false?'bu-yeni':''}" style="display:block;width:100%;height:${o.yukMax?'calc('+(typeof o.yukMax==='number'?o.yukMax+'px':o.yukMax)+'/'+Math.max(4,ks.length)+')':'4cqw'};background:${k.startsWith('bun')?'#f4c676':'#8a4a26'};border:2px solid #3a1d0c;border-radius:9px"></span>`).join('')+'</div>',
-    siparis:(ks)=>'<div style="display:flex;flex-wrap:wrap;justify-content:center">'+['bun',...ks.slice(1,-1)].map(k=>`<img src="${src(k)}" style="width:8cqw" alt="">`).join('')+'</div>'}})();
+    yigin:(ks,o)=>`<div class="bu-yigin" style="display:flex;flex-direction:column-reverse;align-items:center;width:${typeof o.gen==='number'?o.gen+'px':o.gen}">`+ks.map((k,i)=>`<span class="${i===ks.length-1&&o.yeni!==false?'bu-yeni':''}" style="display:block;width:100%;height:${o.yukMax?'calc('+(typeof o.yukMax==='number'?o.yukMax+'px':o.yukMax)+'/'+Math.max(4,ks.length)+')':'.4rem'};background:${k.startsWith('bun')?'#f4c676':'#8a4a26'};border:2px solid #3a1d0c;border-radius:9px"></span>`).join('')+'</div>',
+    siparis:(ks)=>'<div style="display:flex;flex-wrap:wrap;justify-content:center">'+['bun',...ks.slice(1,-1)].map(k=>`<img src="${src(k)}" style="width:.8rem" alt="">`).join('')+'</div>'}})();
 function modul(ad,yedek,adlar){const m=BU[ad];if(!m){EKSIK.push(ad);return yedek}
   const eks=adlar.filter(k=>m[k]===undefined);if(!eks.length)return m;
   eks.forEach(k=>EKSIK.push(ad+'.'+k));const o=Object.create(m);eks.forEach(k=>o[k]=yedek[k]);return o}
@@ -69,9 +69,10 @@ const T={
   credit:'Yiyecek görselleri: Bluc (itch.io)',sound:'Ses',lang:'Dil',pause:'Duraklat',lives:'Can',bin:'B',mil:'M',ondalik:',',
   shop:'Dükkân',shopSub:'Malzeme ve geliştirme',tabIng:'Malzemeler',tabUp:'Geliştirmeler',buy:'Satın al',owned:'Alındı',locked:'Önce öncekini al',
   adds:'menü fiyatına',porsiyon:n=>`Porsiyonu ${n}`,need:n=>`${n} daha lazım`,negShop:'Kasa ekside: kasa artıya geçene kadar alışveriş yok.',
-  trayT:'Tepsin',negKisa:'Kasa ekside',story:'Hikâye',bought:'Tepsiye eklendi!',lockTap:'Ana menüdeki Dükkân\'dan alınır',allOwned:'Bütün malzemeler senin!',
+  trayT:'Tepsin',negKisa:'Kasa ekside',bought:'Tepsiye eklendi!',lockTap:'Ana menüdeki Dükkân\'dan alınır',allOwned:'Bütün malzemeler senin!',
   kira:'Kira',kiraBugun:'Bugünün kirası',easier:'Müşteriler bugün biraz daha sabırlı',easierNext:'Sonraki denemede müşteriler daha sabırlı olacak.',
-  closedT:'Dükkân kapandı!',closedP:'Bombastik Bey güldü… 50 parayla yeniden başlıyorsun (malzemelerin duruyor).',devam:'Devam',
+  closedT:'Dükkân kapandı!',closedP:n=>`Kasa ${n} gün art arda ekside kaldı. 50 parayla yeniden başlıyorsun (malzemelerin duruyor).`,devam:'Devam',
+  cevirT:'Telefonu yan çevir',cevirP:'Burger Ustası yatay ekranda oynanır. Bilgisayarda pencereyi genişlet.',
   eksiUyari:(n,m)=>`Kasa ekside (${n}/${m} gün). ${m} gün art arda eksi kalırsa dükkân kapanır!`,yeniMal:n=>n>1?`${n} yeni malzeme!`:'Yeni malzeme!'},
  en:{day:n=>`Day ${n}`,play:'PLAY',cont:n=>`PLAY · Day ${n}`,grill:'Grill',logo2:'MASTER',plate:n=>`Plate ${n}`,trash:'Trash',newIng:'NEW',lockDay:n=>`Day ${n}`,
   dayT:n=>`Day ${n}`,dayP:'Build the burger and drag it to the customer. Lose three lives and the shop closes.',cust:n=>`${n} customers`,start:'Start',newT:'New ingredient!',
@@ -89,19 +90,20 @@ const T={
   credit:'Food art: Bluc (itch.io)',sound:'Sound',lang:'Language',pause:'Pause',lives:'Lives',bin:'K',mil:'M',ondalik:'.',
   shop:'Shop',shopSub:'Ingredients and upgrades',tabIng:'Ingredients',tabUp:'Upgrades',buy:'Buy',owned:'Owned',locked:'Buy the previous one first',
   adds:'to the menu price',porsiyon:n=>`Costs ${n} a serving`,need:n=>`${n} more needed`,negShop:'Your cash is below zero: no shopping until it is back above zero.',
-  trayT:'Your tray',negKisa:'Cash below zero',story:'Story',bought:'Added to your tray!',lockTap:'Buy it in the Shop on the main menu',allOwned:'You own every ingredient!',
+  trayT:'Your tray',negKisa:'Cash below zero',bought:'Added to your tray!',lockTap:'Buy it in the Shop on the main menu',allOwned:'You own every ingredient!',
   kira:'Rent',kiraBugun:'Today\'s rent',easier:'Customers are a bit more patient today',easierNext:'Customers will be more patient on the next try.',
-  closedT:'Shop closed!',closedP:'Mr. Bombastic laughed… You start again with 50 coins (you keep your ingredients).',devam:'Continue',
+  closedT:'Shop closed!',closedP:n=>`Your cash stayed below zero for ${n} days in a row. You start again with 50 coins (you keep your ingredients).`,devam:'Continue',
+  cevirT:'Turn your phone sideways',cevirP:'Burger Master is played in landscape. On a computer, make the window wider.',
   eksiUyari:(n,m)=>`Cash below zero (${n}/${m} days). ${m} days in a row below zero and the shop closes!`,yeniMal:n=>n>1?`${n} new ingredients!`:'New ingredient!'}};
 
 /* ================= kayıt ================= */
 const KEY='burgerustasi.v1';
 const cihazDili=()=>(navigator.language||'tr').toLowerCase().startsWith('tr')?'tr':'en';
 // 2. tur: coins eksi olabilir; mal = dükkânda alınan malzemeler (ekmek, köfte hariç), eksi = art arda eksi gün,
-// hikaye = açılış hikâyesi izlendi mi, kolay = {g: gün, n: o gün art arda kayıp} (sabır kolaylığı), yeni = son günden beri alınanlar
+// hikaye = eski açılış hikâyesi izlendi mi (hikâye kaldırıldı, Eymen 21 Kasım; alan eski kayıtlarda zararsız kalır), kolay = {g: gün, n: o gün art arda kayıp} (sabır kolaylığı), yeni = son günden beri alınanlar
 const SAVE=(()=>{let o={},ham=null;try{ham=localStorage.getItem(KEY);o=JSON.parse(ham)||{}}catch(e){}if(!o||typeof o!=='object'||Array.isArray(o))o={};
   const ilk=!ham||!Object.keys(o).length;   // hiç kayıt yok: yeni oyuncu
-  const d={day:1,coins:ilk?(VERI.BASLANGIC|0||50):0,stars:{},up:{cook:0,pat:0,tip:0,slot:0},lang:cihazDili(),seen:[],ayar:{efekt:true,muzik:true},eksi:0,hikaye:false,kolay:{g:0,n:0},yeni:[]};
+  const d={day:1,coins:ilk?(VERI.BASLANGIC|0||50):0,stars:{},up:{cook:0,pat:0,tip:0,slot:0},lang:cihazDili(),seen:[],ayar:{efekt:true,muzik:true},eksi:0,kolay:{g:0,n:0},yeni:[]};
   const s=Object.assign({},d,o);s.up=Object.assign({},d.up,o.up&&typeof o.up==='object'?o.up:{});s.ayar=Object.assign({},d.ayar,o.ayar&&typeof o.ayar==='object'?o.ayar:{});
   if(!Array.isArray(s.seen))s.seen=[];if(!s.stars||typeof s.stars!=='object'||Array.isArray(s.stars))s.stars={};
   // geliştirme düzeyleri 0…max tam sayı (bozuk kayıtta pişme süresi eksiye düşmesin)
@@ -112,7 +114,7 @@ const SAVE=(()=>{let o={},ham=null;try{ham=localStorage.getItem(KEY);o=JSON.pars
   const SIRA=VERI.SATIN_SIRA||[];
   if(!Array.isArray(s.mal))s.mal=ilk?[]:(VERI.eskiSahip?VERI.eskiSahip(s.day):[]);
   s.mal=SIRA.filter(k=>s.mal.includes(k));
-  s.eksi=Math.max(0,Math.floor(+s.eksi||0));s.hikaye=s.hikaye===true;
+  s.eksi=Math.max(0,Math.floor(+s.eksi||0));
   if(!s.kolay||typeof s.kolay!=='object')s.kolay={g:0,n:0};s.kolay={g:s.kolay.g|0,n:Math.max(0,Math.min(3,s.kolay.n|0))};
   if(!Array.isArray(s.yeni))s.yeni=[];s.yeni=s.yeni.filter(k=>s.mal.includes(k));return s})();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(SAVE))}catch(e){}};
@@ -136,7 +138,8 @@ function sesAyar(){try{SES.ayar({efekt:SAVE.ayar.efekt,muzik:SAVE.ayar.muzik});S
 ['gesturestart','gesturechange'].forEach(ev=>document.addEventListener(ev,e=>e.preventDefault(),{passive:false}));
 
 /* ================= yardımcılar ================= */
-const cq=()=>APP.clientWidth/100;
+// birim (px): 1rem = 10 birim (index.html: güvenli yüksekliğin %1'i ya da güvenli genişliğin 1/190'ı, hangisi küçükse)
+const cq=()=>parseFloat(getComputedStyle(document.documentElement).fontSize)/10||APP.clientWidth/190;
 function rel(el){const r=el.getBoundingClientRect(),a=APP.getBoundingClientRect();return {x:r.left-a.left,y:r.top-a.top,w:r.width,h:r.height,cx:r.left-a.left+r.width/2,cy:r.top-a.top+r.height/2}}
 const icinde=(p,r,pay=0)=>p.x>=r.x-pay&&p.x<=r.x+r.w+pay&&p.y>=r.y-pay&&p.y<=r.y+r.h+pay;
 // gecikmeli iş: gün değişirse (startDay/openHome) çalışmaz
@@ -176,24 +179,27 @@ function pickWho(){if(!WHO.length)return null;const busy=S.cust.filter(Boolean).
 function face(c,e){if(!c.who||!window.Musteri||c.emo===e)return;c.emo=e;c.yuzEl.innerHTML=Musteri.draw(c.who.m,e)}
 
 /* ================= sokak sahnesi (kodla çizilir) ================= */
-function sokakCiz(){const P=[];const r=(x,y,w,h,f,ek='')=>P.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" ${ek}/>`);
+// Yatay sahne: 1000×400 birim, alttan hizalı (xMidYMax slice); dar ekranda yanlar, geniş ekranda gökyüzü kırpılır.
+function sokakCiz(){const P=[],GW=1000;const r=(x,y,w,h,f,ek='')=>P.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" ${ek}/>`);
   P.push('<defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc8f5"/><stop offset=".7" stop-color="#cdeefc"/><stop offset="1" stop-color="#fff2d6"/></linearGradient></defs>');
-  r(0,0,400,400,'url(#sg)');
+  r(0,0,GW,400,'url(#sg)');
   // bulutlar
   const bulut=(x,y,s,cls)=>P.push(`<g class="bulut ${cls}"><g transform="translate(${x} ${y}) scale(${s})" fill="#fff" opacity=".92"><ellipse cx="0" cy="0" rx="26" ry="14"/><ellipse cx="22" cy="-8" rx="20" ry="16"/><ellipse cx="44" cy="2" rx="22" ry="12"/><ellipse cx="20" cy="6" rx="34" ry="10"/></g></g>`);
-  bulut(40,70,1,'');bulut(250,40,.8,'b2');bulut(320,120,.6,'');bulut(150,150,.5,'b2');
-  // uzak binalar
-  [[0,190,70,'#e9b98d'],[60,165,60,'#f0c99a'],[115,200,50,'#e3ad86'],[160,175,80,'#f2cf9e'],[235,185,55,'#e7b58c'],[285,160,65,'#efc596'],[345,195,60,'#e5b088']].forEach(([x,y,w,c])=>{r(x,y,w,400-y,c,'opacity=".75"');
+  [[60,90,1,''],[250,60,.8,'b2'],[430,120,.6,''],[560,70,.9,'b2'],[720,110,.7,''],[880,55,.8,'b2'],[150,160,.5,'b2'],[800,170,.5,'']].forEach(([x,y,s,c])=>bulut(x,y,s,c));
+  // uzak binalar (dikey sahnedeki dizi yan yana tekrarlanır)
+  const UZ=[[0,190,70,'#e9b98d'],[60,165,60,'#f0c99a'],[115,200,50,'#e3ad86'],[160,175,80,'#f2cf9e'],[235,185,55,'#e7b58c'],[285,160,65,'#efc596'],[345,195,60,'#e5b088']];
+  for(let o=0;o<GW;o+=400)UZ.forEach(([x,y,w,c])=>{x+=o;if(x>GW)return;r(x,y,w,400-y,c,'opacity=".75"');
     for(let yy=y+12;yy<330;yy+=22)for(let xx=x+8;xx<x+w-10;xx+=16)r(xx,yy,8,10,'#fff3cf','opacity=".55"')});
   // yakın binalar: sıcak renkler, pencere sıraları, saçak
-  const B=[[-10,230,95,'#e2774f','#b9512f'],[85,250,80,'#f2b45c','#c98a32'],[165,222,75,'#d9665a','#a8443b'],[240,245,85,'#f0a25a','#c47632'],[325,228,90,'#c96e8a','#9b4a64']];
-  B.forEach(([x,y,w,c,k])=>{r(x,y,w,400-y,c,`stroke="#5a2f1a" stroke-width="2"`);r(x-3,y-6,w+6,8,k,`rx="2" stroke="#5a2f1a" stroke-width="2"`);
+  const YK=[[-10,230,95,'#e2774f','#b9512f'],[85,250,80,'#f2b45c','#c98a32'],[165,222,75,'#d9665a','#a8443b'],[240,245,85,'#f0a25a','#c47632'],[325,228,90,'#c96e8a','#9b4a64'],
+    [415,240,85,'#e2774f','#b9512f'],[500,224,80,'#7fb0c9','#4f7f99'],[580,248,90,'#f2b45c','#c98a32'],[670,226,78,'#d9665a','#a8443b'],[748,242,86,'#c96e8a','#9b4a64'],[834,230,82,'#f0a25a','#c47632'],[916,246,94,'#e2774f','#b9512f']];
+  YK.forEach(([x,y,w,c,k])=>{r(x,y,w,400-y,c,`stroke="#5a2f1a" stroke-width="2"`);r(x-3,y-6,w+6,8,k,`rx="2" stroke="#5a2f1a" stroke-width="2"`);
     for(let yy=y+14;yy<322;yy+=28)for(let xx=x+10;xx<x+w-16;xx+=24){r(xx,yy,15,18,'#ffe7a3',`stroke="#5a2f1a" stroke-width="2" rx="2"`);P.push(`<path d="M${xx+7.5} ${yy}v18M${xx} ${yy+9}h15" stroke="#5a2f1a" stroke-width="1.5"/>`);r(xx-2,yy+18,19,3,k)}});
   // kaldırım: karolar ve bordür
-  r(0,322,400,78,'#e8cf9e');r(0,322,400,6,'#c79a55');
-  for(let x=0;x<400;x+=40)P.push(`<path d="M${x} 328v72" stroke="#d1b07a" stroke-width="2"/>`);
-  P.push('<path d="M0 356h400M0 384h400" stroke="#d1b07a" stroke-width="2"/>');
-  $('sahne').innerHTML=`<svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">${P.join('')}</svg>`}
+  r(0,322,GW,78,'#e8cf9e');r(0,322,GW,6,'#c79a55');
+  for(let x=0;x<GW;x+=40)P.push(`<path d="M${x} 328v72" stroke="#d1b07a" stroke-width="2"/>`);
+  P.push(`<path d="M0 356h${GW}M0 384h${GW}" stroke="#d1b07a" stroke-width="2"/>`);
+  $('sahne').innerHTML=`<svg viewBox="0 0 ${GW} 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">${P.join('')}</svg>`}
 
 /* ================= üst bilgi ================= */
 // kasa sayısı yuvarlanarak artar/azalır. bekle: yolda olan (sikkeleri henüz varmamış) para
@@ -313,12 +319,12 @@ function spawn(){const bos=[0,1,2].filter(i=>!S.cust[i]&&S.slotT[i]<=S.now);cons
   const i=bos.includes(1)&&n===0?1:bos[Math.floor(Math.random()*bos.length)];
   const sip=S.rehber?['bunBot','patty',...(S.acik.includes('cheese')?['cheese']:[]),'bunTop']:VERI.siparis(S.gun,Math.random,SAVE.mal),who=pickWho();
   const el=document.createElement('div');el.className='cust';
-  el.innerHTML=`<div class="bub"><div class="sip">${BURGER.siparis(sip,{gen:'27.6cqw'})}</div><div class="sabir"><b></b></div></div><div class="yuz" role="img" aria-label="${who?who.ad:''}"></div>`;
+  el.innerHTML=`<div class="bub"><div class="sip"></div><div class="sabir"><b></b></div></div><div class="yuz" role="img" aria-label="${who?who.ad:''}"></div>`;
   queue.children[i].appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
   const sb=typeof S.cfg.sabirSiparis==='function'?S.cfg.sabirSiparis(sip):(VERI.sabirSiparis?VERI.sabirSiparis(sip,S.gun,SAVE.up):S.cfg.sabir);
   const max=S.rehber?Math.max(240,sb*6):Math.round(sb*(1+.15*S.kolay));   // art arda kayıpta sabır +%15 (en çok +%45)
   const c=S.cust[i]={i,el,sip,max,p:max,who,yuzEl:el.querySelector('.yuz'),fill:el.querySelector('.sabir b'),emo:'',ruh:'mutlu',tut:0,heyecan:false,rehberli:S.rehber};
-  face(c,'happy');S.kalan--;return true}
+  custFit(c);face(c,'happy');S.kalan--;return true}
 // müşteri hemen sıradan çıkar (ikinci teslim, sabır, hedef olamaz); yalnız çıkış animasyonu gecikir
 function cikar(c,tur,gec=0){if(S.cust[c.i]!==c)return false;S.cust[c.i]=null;c.gitti=true;c.heyecan=false;
   const anim=tur==='mutlu'?800:tur==='kizgin'?900:500;S.slotT[c.i]=S.now+(gec+anim+550)/1000;
@@ -399,7 +405,7 @@ function birak(d){if(d.hedef)hedefIsaret(d.hedef,false);
     hayaletUc(d,to,{s:.35,sure:200}).then(()=>{torba(to);bitir_(d)});teslim(d.ti,h.i,200);return}
   geriDon(d)}
 function torba(p){const d=fxEl('torba',TORBA,p.x,p.y);
-  try{d.animate([{transform:'scale(.3)',opacity:0},{transform:'scale(1.15)',opacity:1,offset:.35},{transform:'scale(1)',opacity:1,offset:.7},{transform:'translateY(3cqw) scale(.9)',opacity:0}],{duration:800,easing:'ease-out',fill:'forwards'})}catch(e){}
+  try{d.animate([{transform:'scale(.3)',opacity:0},{transform:'scale(1.15)',opacity:1,offset:.35},{transform:'scale(1)',opacity:1,offset:.7},{transform:'translateY(.3rem) scale(.9)',opacity:0}],{duration:800,easing:'ease-out',fill:'forwards'})}catch(e){}
   setTimeout(()=>d.remove(),850)}
 const TORBA='<svg viewBox="0 0 48 52" aria-hidden="true"><path d="M8 14h32l3 34H5z" fill="#d9a86a" stroke="#2a1a10" stroke-width="3" stroke-linejoin="round"/><path d="M8 14l3-8h26l3 8" fill="#c48d4e" stroke="#2a1a10" stroke-width="3" stroke-linejoin="round"/><path d="M17 14q0-8 7-8t7 8" fill="none" stroke="#2a1a10" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="30" r="7" fill="#d2281e" stroke="#2a1a10" stroke-width="2.5"/><path d="M20.5 30h7" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>';
 function geriDon(d){if(d.hedef)hedefIsaret(d.hedef,false);d.hedef=null;const yg=TB[d.ti].querySelector('.yig'),r=rel(yg);
@@ -437,12 +443,11 @@ function rehber(zorla){if(!S.on||!S.rehber||S.bitis){if(rehberHedef)rehberGizle(
   const tp=document.createElement('div');tp.className='ipucu';tp.innerHTML=ic('el')+`<span>${msg}</span>`;FX.appendChild(tp);
   const r=rel(el),w=tp.offsetWidth,h=tp.offsetHeight,W=APP.clientWidth,c1=cq(),ct=rel($('counter'));let x,y;
   const sinir=v=>Math.min(W-w-2*c1,Math.max(2*c1,v));
-  if(el.classList.contains('gs')){   // ızgara: gözün sağında, ok sola bakar
-    x=r.x+r.w+2.4*c1;y=r.cy-h/2;tp.classList.add('yan');if(x+w>W-2*c1){x=sinir(r.cx-w/2);y=r.y-h-2.4*c1;tp.classList.remove('yan')}}
+  if(el.classList.contains('gs')){   // ızgara: ızgaranın üstünde (tezgâhın arka şeridi), ok göze iner; tabakları örtmez
+    const gr=rel(grillEl);x=sinir(r.cx-w/2);y=gr.y-h-1.6*c1}
   else if(el.classList.contains('tabak')){   // tabak: tezgâhın üst şeridinin hemen altında, ok tabağa iner
     const gr=rel(grillEl);x=Math.min(W-w-2*c1,Math.max(gr.x+gr.w+1.2*c1,r.cx-w/2));y=ct.y+3.6*c1;const yg=rel(el.querySelector('.tab'));if(y+h+2*c1>yg.y)y=Math.max(ct.y-h-1*c1,yg.y-h-2.4*c1)}
-  else{x=r.x+r.w+2.2*c1;y=r.cy-h/2;tp.classList.add('yan');   // tepsi kutusu: yanında (tabak etiketlerinin üstüne binmez)
-    if(x+w>W-2*c1){x=r.x-w-2.2*c1;tp.classList.add('sag')}
+  else{const tr=rel(tray);x=tr.x-w-1.6*c1;y=Math.max(rel($('street')).y,r.cy-h/2);tp.classList.add('yan','sag');   // tepsi kutusu: tepsinin solunda, ok kutunun satırını gösterir (öbür kutuları örtmez)
     if(x<2*c1){x=sinir(r.cx-w/2);y=r.y-h-2.4*c1;tp.classList.remove('yan','sag')}}
   tp.style.left=x+'px';tp.style.top=y+'px';if(!tp.classList.contains('yan'))tp.style.setProperty('--ok',Math.max(12,Math.min(w-12,r.cx-x))+'px');
   if(surukleEl){const hd=document.createElement('div');hd.className='el';hd.innerHTML=ic('el');FX.appendChild(hd);
@@ -459,18 +464,19 @@ function startDay(d,hemen){yeniOturum();S.gun=d;S.acik=ACIK();S.cfg=VERI.gun(d,S
   S.kalan=S.cfg.musteri;S.bitti=0;S.seri=0;S.tabak=[[],[]];S.koyNo=[0,0];S.sec=null;S.stok=0;S.ucan=0;S.cust=[null,null,null];S.slotT=[0,0,0];S.now=0;S.nextAt=.8;S.bitis=false;S.on=false;S.paused=false;
   S.rehber=d===1&&!SAVE.seen.includes('tut');
   [...queue.children].forEach(s=>s.innerHTML='');FX.innerHTML='';TB.forEach(x=>x.classList.remove('tasiniyor','parla','wob'));
-  buildTray();buildGrill();cizTabak(0);cizTabak(1);kasaGor=S.kasa;hud({sessiz:true});sesBtn();$('home').hidden=true;$('copT').textContent=t('trash');$('copI').innerHTML=ic('cop');COP.setAttribute('aria-label',t('trash'));
+  buildTray();buildGrill();cizTabak(0);cizTabak(1);kasaGor=S.kasa;hud({sessiz:true});sesBtn();$('home').hidden=true;$('shop').hidden=true;APP.classList.remove('dukkanda');$('copT').textContent=t('trash');$('copI').innerHTML=ic('cop');COP.setAttribute('aria-label',t('trash'));
   $('durBtn').innerHTML=ic('duraklat');$('durBtn').setAttribute('aria-label',t('pause'));$('kasaI').innerHTML=PARA();fit();
   const yeni=S.yeniler;
-  const go=()=>{$('ov').hidden=true;S.on=true;S.paused=false;ses('gun_basla');donguBasla();rehber()};
+  const go=()=>{$('ov').hidden=true;S.on=true;S.paused=false;ses('gun_basla');donguBasla();rehber();yonKontrol()};
   if(hemen){go();return}
   const w=pickWho(),mf=w&&window.Musteri?`<i class="mf">${Musteri.draw(w.m,'happy')}</i>`:ic('gulen');
   const kr=VERI.kira?VERI.kira(d):(S.cfg.kira|0);
-  card(`<h2>${t('dayT',d)}</h2><div class="info"><span>${mf}${t('cust',S.cfg.musteri)}</span><span class="${S.kasa<0?'neg':''}">${PARA()}${fmt(S.kasa)}</span></div>`+
+  // yatay kart: solda bilgiler (müşteri, kasa, kira, kolaylık), sağda açıklama, yeni malzemeler ve Başla
+  card(`<h2>${t('dayT',d)}</h2><div class="kol"><div class="info"><span>${mf}${t('cust',S.cfg.musteri)}</span><span class="${S.kasa<0?'neg':''}">${PARA()}${fmt(S.kasa)}</span></div>`+
     `<div class="kirasatir">${ic('kira')}<span>${t('kiraBugun')}</span><b>${fmt(kr)}${PARA()}</b></div>`+
-    (S.kolay?`<div class="kolay">${ic('kumsaati')}<span>${t('easier')}</span></div>`:'')+`<p>${t('dayP')}</p>`+
+    (S.kolay?`<div class="kolay">${ic('kumsaati')}<span>${t('easier')}</span></div>`:'')+`</div><div class="kol"><p>${t('dayP')}</p>`+
     (yeni.length?`<div class="newing"><span class="ims">${yeni.slice(-3).map(k=>`<span class="im">${BURGER.simge(k)}</span>`).join('')}</span><span>${t('yeniMal',yeni.length)}<br>${yeni.map(k=>t('ing')[k]).join(', ')}</span></div>`:'')+
-    `<div class="btns"><button class="btn" id="go">${ic('oynat')}${t('start')}</button></div>`);
+    `</div><div class="btns"><button class="btn" id="go">${ic('oynat')}${t('start')}</button></div>`,'iki basi');
   $('go').onclick=()=>{ses('tik');go()}}
 // can biterse kısa bir an sonra kaybedilir; müşteriler bitince kazanılır. Sonuç hemen kaydedilir, kart gecikir.
 function kontrol(){if(!S.on||S.bitis)return;
@@ -493,11 +499,11 @@ function sonKart(win){S.on=false;S.bitis=false;rehberGizle();FX.querySelectorAll
   const t0=win?.25+3*.3:.3;   // satırlar yıldızlardan sonra
   const sat=(ad,v,i,cls='',ik='')=>`<div class="r${cls}" style="--g:${(t0+i*G/1000).toFixed(2)}s"><span>${ik?ic(ik):''}${t(ad)}</span>${n(v,i)}</div>`;
   const ek=S.kapandi?'':SAVE.eksi>0?`<div class="eksi">${ic('kira')}<span>${t('eksiUyari',SAVE.eksi,VERI.KAPANIS_GUN||3)}</span></div>`:'';
-  card(`<h2>${t(win?'winT':'failT')}</h2>`+(win?`<div class="stars">${[1,2,3].map(i=>`<span class="${i<=st?'dolu':'bos'}" style="--g:${(.25+(i-1)*.3).toFixed(2)}s">${ic(i<=st?'yildiz':'yildiz_bos')}</span>`).join('')}</div>`:`<p>${t('failP')}<br><small>${t('easierNext')}</small></p>`)+
-    `<div class="tablo">${sat('gelir',adim[0],0)}${sat('bahsis',adim[1],1)}${sat('gider',adim[2],2)}${sat('kira',adim[3],3,' kira','kira')}${sat('net',net,4,' net')}</div>`+
+  card(`<h2>${t(win?'winT':'failT')}</h2><div class="kol orta">`+(win?`<div class="stars">${[1,2,3].map(i=>`<span class="${i<=st?'dolu':'bos'}" style="--g:${(.25+(i-1)*.3).toFixed(2)}s">${ic(i<=st?'yildiz':'yildiz_bos')}</span>`).join('')}</div>`:`<p>${t('failP')}<br><small>${t('easierNext')}</small></p>`)+
     `<div class="yuzler" style="--g:${(t0+5*G/1000).toFixed(2)}s"><span title="${SAVE.lang==='tr'?'Mutlu':'Happy'}">${ic('gulen')}${S.sayi.mutlu}</span><span>${ic('somurtkan')}${S.sayi.somurtkan}</span><span>${ic('kizgin')}${S.sayi.kizgin}</span></div>`+
-    `<div class="info"><span class="${!S.kapandi&&SAVE.coins<0?'neg':''}">${t('kasa')}: ${PARA()}${fmt(S.kapandi?S.kasa-S.kira:SAVE.coins)}</span></div>`+ek+
-    `<div class="btns"><button class="btn" id="nx">${ic(win?'ileri':'tekrar')}${t(win?'next':'retry')}</button><button class="btn alt" id="hm">${ic('ev')}${t('home')}</button></div>`,'son');
+    `<div class="info"><span class="${!S.kapandi&&SAVE.coins<0?'neg':''}">${t('kasa')}: ${PARA()}${fmt(S.kapandi?S.kasa-S.kira:SAVE.coins)}</span></div>`+ek+`</div>`+
+    `<div class="kol"><div class="tablo">${sat('gelir',adim[0],0)}${sat('bahsis',adim[1],1)}${sat('gider',adim[2],2)}${sat('kira',adim[3],3,' kira','kira')}${sat('net',net,4,' net')}</div></div>`+
+    `<div class="btns yan"><button class="btn" id="nx">${ic(win?'ileri':'tekrar')}${t(win?'next':'retry')}</button><button class="btn alt" id="hm">${ic('ev')}${t('home')}</button></div>`,'son iki');
   $('card').style.setProperty('--bg',(t0+6*G/1000).toFixed(2)+'s');
   // yıldız sesleri (artan perde: ses modülünde 'yildiz:1..3' varsa o, yoksa 'pisti')
   if(win)for(let i=1;i<=st;i++)setTimeout(()=>{if(!$('ov').hidden&&$('card').classList.contains('son'))ses(sesVar('yildiz:'+i)?'yildiz:'+i:'pisti')},(.25+(i-1)*.3+.35)*1000);
@@ -511,15 +517,22 @@ function sonKart(win){S.on=false;S.bitis=false;rehberGizle();FX.querySelectorAll
   // dükkân kapandıysa önce kapanış kartı, sonra seçilen yere
   const sonra=fn=>()=>{ses('tik');if(S.kapandi){S.kapandi=false;kapanisKart(fn)}else fn()};
   $('nx').onclick=sonra(()=>startDay(win?S.gun+1:S.gun));$('hm').onclick=sonra(openHome)}
-// "Dükkân kapandı": Bombastik Bey güler, kasa 50'ye döner, malzemeler kalır
-function kapanisKart(sonra){const R=BU.HIKAYE&&BU.HIKAYE.RAKIP;
-  const yz=R&&window.Musteri?`<div class="rakip"><i>${Musteri.draw(R,'happy')}</i><b>HA HA HA!</b></div>`:'';
-  card(`<h2>${t('closedT')}</h2>${yz}<p>${t('closedP')}</p><div class="info"><span>${t('kasa')}: ${PARA()}${fmt(SAVE.coins)}</span></div>`+
-    `<div class="btns"><button class="btn" id="kpD">${ic('ileri')}${t('devam')}</button></div>`,'kapanis');
+// "Dükkân kapandı": kepengi inmiş dükkân, kasa 50'ye döner, malzemeler kalır
+const KEPENK='<svg viewBox="0 0 160 150" aria-hidden="true"><rect x="8" y="22" width="144" height="124" rx="5" fill="#e2774f" stroke="#2a1a10" stroke-width="5"/>'+
+  [0,1,2,3,4,5,6,7].map(i=>`<rect x="${4+i*19}" y="6" width="19" height="22" fill="${i%2?'#a96a68':'#ad0000'}"/>`).join('')+
+  '<rect x="4" y="6" width="152" height="22" rx="3" fill="none" stroke="#2a1a10" stroke-width="5"/>'+[0,1,2,3,4,5,6,7].map(i=>`<path d="M${4+i*19} 28a9.5 9 0 0 0 19 0" fill="#6e0505" stroke="#2a1a10" stroke-width="3"/>`).join('')+
+  '<rect x="24" y="46" width="112" height="96" fill="#c3ccd6" stroke="#2a1a10" stroke-width="4"/>'+[56,66,76,86,96,106,116,126].map(y=>`<path d="M26 ${y}h108" stroke="#7d8794" stroke-width="3"/>`).join('')+
+  '<rect x="24" y="130" width="112" height="12" fill="#8d97a3" stroke="#2a1a10" stroke-width="4"/>'+
+  '<path d="M73 118v-6a7 7 0 0 1 14 0v6" fill="none" stroke="#2a1a10" stroke-width="4"/><rect x="68" y="116" width="24" height="17" rx="4" fill="#ffc21a" stroke="#2a1a10" stroke-width="3.5"/><circle cx="80" cy="124" r="2.6" fill="#2a1a10"/>'+
+  '<g class="sal" style="transform-box:fill-box"><circle cx="80" cy="38" r="3.4" fill="#2a1a10"/><path d="M80 38L58 58M80 38l22 20" stroke="#2a1a10" stroke-width="3"/>'+
+  '<rect x="48" y="56" width="64" height="32" rx="6" fill="#fff4dc" stroke="#2a1a10" stroke-width="4"/><path d="M70 63l20 18M90 63L70 81" stroke="#d2281e" stroke-width="6" stroke-linecap="round"/></g></svg>';
+function kapanisKart(sonra){
+  card(`<div class="kol orta kepenk">${KEPENK}</div><div class="kol"><h2>${t('closedT')}</h2><p>${t('closedP',VERI.KAPANIS_GUN||3)}</p><div class="info"><span>${t('kasa')}: ${PARA()}${fmt(SAVE.coins)}</span></div>`+
+    `<div class="btns"><button class="btn" id="kpD">${ic('ileri')}${t('devam')}</button></div></div>`,'kapanis iki');
   ses('gun_kayip');tit('ag');$('kpD').onclick=()=>{ses('tik');sonra()}}
 function konfeti(){const k=document.createElement('div');k.className='konfeti';const R=['#ff5b4f','#ffc21a','#37c25a','#4fb3ff','#ff8ad8','#fff'];let h='';
   for(let i=0;i<46;i++){const sk=i%5===0,x=Math.random()*100,du=1.8+Math.random()*1.6,de=Math.random()*.7;
-    h+=`<i class="${sk?'sk':''}" style="left:${x}%;${sk?'':`background:${R[i%R.length]};`}--dx:${((Math.random()-.5)*30).toFixed(1)}cqw;--r:${Math.round(360+Math.random()*540)*(Math.random()<.5?-1:1)}deg;animation-duration:${du.toFixed(2)}s;animation-delay:${de.toFixed(2)}s">${sk?PARA():''}</i>`}
+    h+=`<i class="${sk?'sk':''}" style="left:${x}%;${sk?'':`background:${R[i%R.length]};`}--dx:${((Math.random()-.5)*3).toFixed(2)}rem;--r:${Math.round(360+Math.random()*540)*(Math.random()<.5?-1:1)}deg;animation-duration:${du.toFixed(2)}s;animation-delay:${de.toFixed(2)}s">${sk?PARA():''}</i>`}
   k.innerHTML=h;$('ov').appendChild(k);setTimeout(()=>k.remove(),4000)}
 function card(html,cls=''){$('ov').querySelectorAll('.konfeti').forEach(e=>e.remove());const c=$('card');c.className='card'+(cls?' '+cls:'');c.style.removeProperty('--bg');c.style.zoom='';c.innerHTML=html;$('ov').hidden=false;kartSigdir()}
 // kart ekrandan uzunsa (kısa/yatık ekran) orantılı küçülür; yine de sığmazsa katman kaydırılır
@@ -528,7 +541,7 @@ function kartSigdir(){const c=$('card'),ov=$('ov');if(ov.hidden)return;c.style.z
 function duraklat(){if(!S.on||S.paused||S.bitis)return;S.paused=true;rehberGizle();surukleIptal();
   const tgl=(id,on,ikon,ad)=>`<button class="tg${on?'':' kapali'}" id="${id}" aria-pressed="${on}"><span class="ti">${ic(ikon)}</span><span class="d">${t(ad)}<small>${t(on?'on':'off')}</small></span></button>`;
   const kart=()=>{card(`<h2>${t('pauseT')}</h2><div class="ayarlar">${tgl('pE',SAVE.ayar.efekt,SAVE.ayar.efekt?'ses_acik':'ses_kapali','fx')}${tgl('pM',SAVE.ayar.muzik,'muzik','music')}</div>`+
-    `<div class="btns"><button class="btn" id="rs">${ic('oynat')}${t('resume')}</button><button class="btn alt" id="hm">${ic('ev')}${t('home')}</button></div>`);
+    `<div class="btns yan"><button class="btn" id="rs">${ic('oynat')}${t('resume')}</button><button class="btn alt" id="hm">${ic('ev')}${t('home')}</button></div>`,'dur');
     $('pE').onclick=()=>{SAVE.ayar.efekt=!SAVE.ayar.efekt;sesAyar();sesBtn();kart();ses('tik')};$('pM').onclick=()=>{SAVE.ayar.muzik=!SAVE.ayar.muzik;sesAyar();sesBtn();kart();ses('tik')};
     $('rs').onclick=()=>{ses('tik');S.paused=false;$('ov').hidden=true;donguBasla();rehber(true)};
     // gün yarıda bırakılırsa o güne kadar harcanan para gider, kazanç sayılmaz (gün tekrar oynanır)
@@ -565,7 +578,7 @@ function openHome(){yeniOturum();S.on=false;S.paused=false;S.bitis=false;rehberG
   const n=alinabilir();
   $('shopBtn').innerHTML=`<span class="si">${ic('dukkan')}</span><span class="st"><b>${t('shop')}</b><small>${t('shopSub')}</small></span>`+(n?`<span class="rz" aria-hidden="true">${n}</span>`:'');
   $('shopBtn').classList.toggle('var',!!n);$('shopBtn').setAttribute('aria-label',t('shop')+(n?' ('+n+')':''));
-  $('storyBtn').innerHTML=`<span class="si">${ic('kitap')}</span><b>${t('story')}</b>`;$('storyBtn').setAttribute('aria-label',t('story'));
+  cevirYaz();
   heroCiz()}
 
 /* ================= dükkân (tedarikçi) ================= */
@@ -584,7 +597,7 @@ function openShop(tab){if(tab)SH.tab=tab;SH.mesgul=false;$('shop').hidden=false;
   document.querySelectorAll('#shop .sh-tabs button').forEach(b=>{const on=b.dataset.tab===SH.tab;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);
     b.innerHTML=(b.dataset.tab==='mal'?`<span class="ti">${BURGER.simge('cheese')}</span>`:`<span class="ti">${ic('ates')}</span>`)+t(b.dataset.tab==='mal'?'tabIng':'tabUp')});
   const u=$('shUyari');u.hidden=SAVE.coins>=0;u.innerHTML=ic('kira')+`<span>${t('negShop')}</span>`;
-  shopListe();$('shList').scrollTop=0}
+  shopListe();$('shList').scrollTop=0;shopFit(cq())}
 let shKasaGor=0,shRAF=0;
 function shopKasa(v,sure){cancelAnimationFrame(shRAF);const yaz=x=>{$('shKasa').textContent=fmt(x);$('shKasaC').classList.toggle('neg',x<0)};
   if(!sure){shKasaGor=v;yaz(v);return}const a=shKasaGor,t0=performance.now();
@@ -638,45 +651,61 @@ $('shBack').onclick=()=>{ses('tik');openHome()};
 document.querySelectorAll('#shop .sh-tabs button').forEach(b=>b.onclick=()=>{if(SH.mesgul||SH.tab===b.dataset.tab)return;ses('tik');SH.tab=b.dataset.tab;openShop()});
 $('shopBtn').onclick=()=>{ses('tik');openShop('mal')};
 
-/* ================= hikâye ================= */
-function hikaye(){if(!BU.HIKAYE){SAVE.hikaye=true;save();openHome();return}
-  openHome();$('home').hidden=true;
-  BU.HIKAYE.oynat(APP,{dil:SAVE.lang,sesAc:sesKilit,muzik:sesAcik&&!!SAVE.ayar.muzik,yol:(BURGER.YOL||'g/'),bitince:()=>{SAVE.hikaye=true;save();openHome()}})}
-$('storyBtn').onclick=()=>{ses('tik');hikaye()};
 $('playBtn').onclick=()=>{ses('tik');startDay(SAVE.day)};
 $('langBtn').onclick=()=>{SAVE.lang=SAVE.lang==='tr'?'en':'tr';save();ses('tik');openHome()};
 $('hEfekt').onclick=()=>{SAVE.ayar.efekt=!SAVE.ayar.efekt;sesAyar();ses('tik');openHome()};
 $('hMuzik').onclick=()=>{SAVE.ayar.muzik=!SAVE.ayar.muzik;sesAyar();ses('tik');openHome()};
 
-/* ================= ekran uyumu ================= */
-// müşteri yüzü sokakta kalan yüksekliğe göre (iki sıralı baloncuk için pay bırakılır); burger tezgâhın ~%70'i
-const OLC={gen:'26cqw',yuk:'31cqw'};
-const BUB_PAY=31;   // en yüksek baloncuk (iki sıra simge + sabır + kuyruk), cqw
-// tepsi: 15 kutu. 5×3; yükseklik yetmezse 8+7 (kutu ≥ 46 px kalıyorsa), o da olmazsa sokak biraz kısalır. Kutu boyu --kh.
-function trayFit(c,H){const q=s=>document.querySelector(s);
-  const ust=q('.hud').offsetHeight+q('.prog').offsetHeight-3*c;
-  const cs=getComputedStyle(tray),pad=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom)+parseFloat(cs.borderTopWidth);
-  const kalan=H-ust-50*c-46*c-pad,MIN=46;   // sokak ve tezgâhın en az boyları dışında tepsiye kalan
-  let sat=3,ara=2*c,kh=(kalan-2*ara)/3;
-  if(kh<MIN&&10.6*c>=MIN){sat=2;ara=1.6*c;kh=(kalan-ara)/2}
-  kh=Math.max(MIN,Math.min(15*c,kh*.8));
-  tray.classList.toggle('r2',sat===2);APP.style.setProperty('--kh',kh.toFixed(1)+'px');
-  // en kötü durum: sokak en az boyundan verir
-  const acik=ust+50*c+46*c+pad+sat*kh+(sat-1)*ara-H;APP.style.setProperty('--stmin',acik>0?Math.max(36*c,50*c-acik).toFixed(1)+'px':'50cqw')}
-function fit(){const c=cq(),H=APP.clientHeight;if(!c)return;
-  trayFit(c,H);
-  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(20*c,Math.min(36*c,(h-3*c-BUB_PAY*c+3*c)/1.2));APP.style.setProperty('--yz',yz+'px')}
-  const ct=$('counter').clientHeight;if(ct){const W=APP.clientWidth,gen=Math.min(28*c,(W-37*c)/2-3*c);OLC.gen=Math.round(gen)+'px';OLC.yuk=Math.round(Math.max(26*c,ct-14.5*c))+'px';
-    TB.forEach(x=>x.querySelector('.yig').style.width=OLC.gen)}
-  if(S.tabak)[0,1].forEach(i=>cizTabak(i,false))}
-addEventListener('resize',()=>{fit();kartSigdir();if(!$('home').hidden)heroCiz();if(S.on)rehber(true)});
+/* ================= ekran uyumu (yatay) ================= */
+// Bütün boylar birimden (cq) ve gerçek kutu ölçülerinden: tepsi kutusu (--kh, --kg), ızgara gözü (--gz), tabaktaki burger (OLC, --gen),
+// müşteri yüzü ve baloncuğu (custFit, müşteri başına), dükkân tepsisi (--tkw).
+const OLC={gen:'3rem',yuk:'2.4rem'};
+const pd=(el,a,b)=>{const s=getComputedStyle(el);return parseFloat(s[a])+parseFloat(s[b])};
+// tepsi: 15 kutu, 3 sütun × 5 satır; kutu yüksekliği tepsinin iç yüksekliğinden (en az 44 px, en çok 19 birim)
+function trayFit(c){const H=tray.clientHeight-pd(tray,'paddingTop','paddingBottom');if(H<=0)return;
+  let kg=Math.max(1.4*c,Math.min(2.2*c,H*.03)),kh=(H-4*kg)/5;
+  if(kh<44){kg=Math.max(4,1*c);kh=(H-4*kg)/5}
+  kh=Math.max(44,Math.min(19*c,kh));APP.style.setProperty('--kh',kh.toFixed(1)+'px');APP.style.setProperty('--kg',kg.toFixed(1)+'px')}
+// ızgara gözü: tezgâhın iç yüksekliğinden (etiket ve çerçeve payı düşülür), en az 44 px
+function grillFit(c){const ct=$('counter'),ih=ct.clientHeight-pd(ct,'paddingTop','paddingBottom');
+  const gz=Math.max(44,Math.min(16*c,ih-Math.max(10,2.6*c)-1*c-2.4*c-1.6*c-1*c));APP.style.setProperty('--gz',gz.toFixed(1)+'px')}
+// müşteri: baloncuk (sipariş simgeleri + sabır) yüzün üstünde; ikisi birlikte yerine (slot) sığar.
+// Simge hücresi ızgaranın sütun/satır sayısına göre en büyük boyda (en çok 10 birim); yüz kalan yükseklikten (en az 17, en çok 30 birim).
+const SUTUN=n=>n<=3?n:n===4?2:n<=6?3:4;
+const grupSay=sip=>BURGER.grupla?BURGER.grupla(sip).length:new Set(sip.map(k=>k==='bunBot'||k==='bunTop'?'bun':k)).size;
+function custFit(c){const sl=c.el.parentNode;if(!sl)return;const u=cq(),W=sl.clientWidth,H=sl.clientHeight;if(!W||!H)return;
+  const n=grupSay(c.sip),col=Math.max(1,SUTUN(n)),hu=Math.max(col,3),sat=Math.ceil(n/col);
+  const krom=3.8*u,pay=1*u+1.2*u+1.4*u+.8*u+2.2*u+2*u;   // baloncuk yatay iç payı; dikey: dolgu, çerçeve, aralık, sabır, kuyruk
+  const yzMin=Math.min(17*u,W*.5),yzMax=Math.min(30*u,W*.62);
+  const bwMax=Math.min(W,44*u);
+  const cell=Math.max(4*u,Math.min((bwMax-krom)/hu,(H-pay-yzMin*1.2)/sat,10*u));
+  const gen=cell*hu,yz=Math.max(yzMin,Math.min(yzMax,(H-pay-sat*cell-.5*u)/1.2));
+  c.el.style.setProperty('--bw',Math.round(gen+krom)+'px');c.el.style.setProperty('--yz',Math.round(yz)+'px');
+  const g=Math.round(gen)+'px';if(c.gen!==g){c.gen=g;c.el.querySelector('.sip').innerHTML=BURGER.siparis(c.sip,{gen:g})}}
+// dükkân tepsisi: 3 sütun × 5 satır simge, panelin yüksekliğine sığar
+function shopFit(c){const p=$('shTepsi');if($('shop').hidden||p.hidden)return;const tt=p.querySelector('.tt');
+  const H=p.clientHeight-pd(p,'paddingTop','paddingBottom')-(tt?tt.offsetHeight+1.6*c:0);
+  APP.style.setProperty('--tkw',Math.max(24,Math.min(12*c,(H-4*1.2*c)/5)).toFixed(1)+'px')}
+function fit(){const c=cq();if(!c)return;
+  trayFit(c);grillFit(c);
+  // burger: tabak sütununa sığan genişlik; yükseklik tezgâhın iç yüksekliğinden (tabak ve tahta payı düşülür)
+  const tb=TB[0],ih=tb.clientHeight;if(ih){const gen=Math.max(18*c,Math.min(32*c,tb.clientWidth-3*c));OLC.gen=Math.round(gen)+'px';OLC.yuk=Math.round(Math.max(14*c,ih-7.4*c))+'px';
+    APP.style.setProperty('--gen',OLC.gen)}
+  if(S.tabak)[0,1].forEach(i=>cizTabak(i,false));
+  S.cust.forEach(x=>x&&custFit(x));shopFit(c)}
+// telefon dik tutulursa "yan çevir" ekranı (CSS) görünür; oyun duraklar
+const DIK=window.matchMedia?matchMedia('(orientation: portrait)'):{matches:false};
+function cevirYaz(){$('cevirT').textContent=t('cevirT');$('cevirP').textContent=t('cevirP')}
+function yonKontrol(){if(DIK.matches&&S.on&&!S.paused&&!S.bitis)duraklat()}
+addEventListener('resize',()=>{fit();kartSigdir();if(!$('home').hidden)heroCiz();if(S.on)rehber(true);yonKontrol()});
+if(DIK.addEventListener)DIK.addEventListener('change',yonKontrol);
 TB.forEach((_,i)=>surukleBagla(i));
 sokakCiz();
 
 /* ================= test kancası ================= */
 if(DEBUG)window.__bu={S,SAVE,VERI,startDay,sec,koy,teslim,izgara,bitir,copeAt,adim,openHome,save,EKSIK,
-  openShop,malAl,upAl,hikaye,alinabilir,buildTray,
+  openShop,malAl,upAl,alinabilir,buildTray,fit,
   basla:()=>{const g=$('go');if(g)g.click()},musteri:()=>S.cust.map(c=>c&&{sip:c.sip,f:c.p/c.max,ruh:c.ruh,emo:c.emo})};
-// ilk açılışta (hikâye izlenmediyse) önce hikâye, sonra ana menü
-if(!SAVE.hikaye&&!/[?&]nostory\b/.test(location.search))hikaye();else openHome();fit();
+// açılış: doğrudan ana menü (açılış hikâyesi kaldırıldı, Eymen 21 Kasım)
+openHome();fit();
 })();

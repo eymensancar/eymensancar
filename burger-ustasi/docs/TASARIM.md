@@ -2,7 +2,7 @@
 
 Bu belge bütün ajanların ortak sözleşmesidir. Her ajan YALNIZ kendi dosyalarına yazar; başka modülün dosyasına dokunmaz. Arayüz (fonksiyon adları, alanlar) burada yazıldığı gibi olmalı; değiştirmek gerekirse son raporda söyle, kendi başına değiştirme.
 
-Oyun: dikey iPhone oyunu, saf HTML/CSS/JS, `www/` klasörü, claude.ai artifact'inde ve sonra Capacitor ile iOS. Diller: Türkçe ve İngilizce. Kayıt anahtarı `burgerustasi.v1` (eski kayıt bozulmamalı: `day, coins, stars, up{cook,pat,tip,slot}, lang, seen`).
+Oyun: **yatay** iPhone oyunu (21 Kasım'dan beri; aşağıdaki "3. tur" bölümüne bak; önceden dikeydi), saf HTML/CSS/JS, `www/` klasörü, claude.ai artifact'inde ve sonra Capacitor ile iOS. Diller: Türkçe ve İngilizce. Kayıt anahtarı `burgerustasi.v1` (eski kayıt bozulmamalı: `day, coins, stars, up{cook,pat,tip,slot}, lang, seen`).
 
 ## Kesin kurallar (Eymen)
 - **Hiç emoji yok.** Para, can, duraklat, çöp, ateş, kum saati, kese, yıldız, kilit, ses, ev, tekrar… her simge kendi SVG'miz (`js/simge.js`). Metinde de emoji yok.
@@ -39,7 +39,7 @@ Oyun: dikey iPhone oyunu, saf HTML/CSS/JS, `www/` klasörü, claude.ai artifact'
 11. **Geliştirmeler** (ana menü, eskisi gibi): hızlı ızgara, sabırlı müşteri, cömert bahşiş, 3. ızgara gözü. Simgeleri kendi SVG'miz.
 12. **İlk gün rehberi:** sıradaki doğru hamleyi parlatır ve kısa yazı gösterir (ekmeği seç → tabağa dokun → ızgaraya dokun → köfteyi seç → tabağa dokun → peynir… → ekmekle kapat → burgeri müşteriye sürükle). Rehberde müşteri çok sabırlı.
 
-## Ekran düzeni (dikey, en çok 540 px genişlik; ölçüler cqw)
+## Ekran düzeni (ESKİ: dikey; 21 Kasım'dan beri yatay, bkz. "3. tur")
 Yukarıdan aşağı: üst bilgi (kasa, gün, canlar, ses, duraklat) → gün ilerleme çubuğu → sokak/tente altında **3 müşteri yeri** (baloncuk: sipariş simgeleri + sabır çubuğu; altında yüz) → tezgâh: solda **ızgara** (2–3 göz), ortada **iki tabak** yan yana, sağda **çöp** → altta **malzeme tepsisi** (ekmek, köfte (stok rozeti), peynir… 10 kutu; 5×2 ızgara; kilitliler "Gün N"). Her dokunma alanı en az 44×44 pt. iPhone SE (320×568) ile Pro Max (430×932) ve iPad (büyütülmüş) arası bozulmadan sığmalı; çentik ve alt çubuk güvenli alan.
 
 ## Modüller ve dosyalar (her biri bir ajanın)
@@ -90,7 +90,7 @@ Bu bölüm yukarıdakilerle çelişirse bu bölüm geçerlidir.
 
 ### Başlangıç, hikâye, kira
 - **Yeni oyuncu 50 parayla başlar** (`SAVE.coins` yalnız hiç kayıt yoksa 50). Eski kayıtlar etkilenmez.
-- **Açılış hikâyesi** (ilk açılışta bir kez; ana menüde "Hikâye" düğmesiyle yeniden izlenir; dokununca geçilebilir): şehirde büyük, gösterişli bir zincir burgerci var (kurgusal ad; gerçek bir markaya benzemeyen bir ad seç). Sahibi kibirli rakip. Kısa sahnelerle: rakip seni/eski küçük dükkânı küçümser ve sokaktan siler → cebinde yalnız 50 para kalırsın → sokağın karşısında küçük, eski bir dükkânı kiralarsın → "Kirayı öde, müşterileri kazan, rakibi geç!" Sahneler kodla çizilir (SVG/CSS animasyonu), karakterler `Musteri.draw` ile (rakip ve kahraman `KARAKTERLER` içinden ya da kendi `m` nesneleriyle), metin TR/EN, ses `BU.SES`. 20–30 sn, 5–7 sahne, her sahnede tek kısa cümle. Emoji yok.
+- ~~**Açılış hikâyesi**~~ **kaldırıldı (Eymen, 21 Kasım).** Eski tarif: (ilk açılışta bir kez; ana menüde "Hikâye" düğmesiyle yeniden izlenir; dokununca geçilebilir): şehirde büyük, gösterişli bir zincir burgerci var (kurgusal ad; gerçek bir markaya benzemeyen bir ad seç). Sahibi kibirli rakip. Kısa sahnelerle: rakip seni/eski küçük dükkânı küçümser ve sokaktan siler → cebinde yalnız 50 para kalırsın → sokağın karşısında küçük, eski bir dükkânı kiralarsın → "Kirayı öde, müşterileri kazan, rakibi geç!" Sahneler kodla çizilir (SVG/CSS animasyonu), karakterler `Musteri.draw` ile (rakip ve kahraman `KARAKTERLER` içinden ya da kendi `m` nesneleriyle), metin TR/EN, ses `BU.SES`. 20–30 sn, 5–7 sahne, her sahnede tek kısa cümle. Emoji yok.
 - **Kira:** her gün sonunda kira kasadan düşer (gün sonu kartında ayrı satır). Kira günlere göre yavaş artar. Kira ödenemezse (kasa kiradan azsa) kasa eksiye düşer; eksi kasa ile yeni gün başlar ama malzeme ve geliştirme alınamaz; art arda 3 gün eksi kalırsa "dükkân kapandı" uyarısı ve kasa 50'ye sıfırlanır (satın alınanlar kalır). Kira, ilk günlerde kazancın küçük bir kısmı olmalı; oyuncu ilk 2–3 gün rahat kâr etmeli.
 
 ### Malzemeler parayla açılır (güne göre değil)
@@ -102,7 +102,7 @@ Bu bölüm yukarıdakilerle çelişirse bu bölüm geçerlidir.
 ### Bağlandı (2. tur, 20 Kasım)
 - **Ad:** premium malzemenin anahtarı `premium` (çizim: altın taçlı wagyu köfte), TR "Altın Wagyu", EN "Golden Wagyu". Yeni malzemeler: sos/Sauce, mantar/Mushroom, jalapeño/Jalapeño, soğan halkası/Onion rings (tepside kısa ad "Halka"/"Rings"), avokado/Avocado.
 - **Kayıt** (`burgerustasi.v1`): yeni alanlar `mal` (dükkânda alınanlar, SATIN_SIRA sırasında), `eksi` (art arda eksi gün), `hikaye` (açılış hikâyesi izlendi mi), `kolay` ({g: gün, n: o gün art arda kayıp}), `yeni` (son günden beri alınanlar: gün başı kartında ve tepside "YENİ"). Hiç kayıt yoksa `coins` = 50. Eski kayıtta `mal` yoksa `VERI.eskiSahip(day)` (1. turda açılmış olanlar kalır). `coins` artık eksi olabilir. Eski kayıtta `hikaye` yok, o yüzden hikâye bir kez gösterilir.
-- **Hikâye** (`js/hikaye.js`): ilk açılışta ana menüden önce; ana menüdeki "Hikâye" düğmesiyle yeniden. `?nostory` açılışta atlar (deneme için). Dükkân kapanınca kartta Bombastik Bey (`BU.HIKAYE.RAKIP`) güler.
+- ~~**Hikâye**~~ kaldırıldı (Eymen, 21 Kasım): `js/hikaye.js` ve `tools/hikaye.html` silindi, ana menüde Hikâye düğmesi yok, `?nostory` yok. Eski tarif: (`js/hikaye.js`): ilk açılışta ana menüden önce; ana menüdeki "Hikâye" düğmesiyle yeniden. `?nostory` açılışta atlar (deneme için). Dükkân kapanınca kartta Bombastik Bey (`BU.HIKAYE.RAKIP`) güler.
 - **Dükkân** (ana menüdeki büyük sarı düğme; alınabilir şey varsa kırmızı rozette sayısı): iki sekme. *Malzemeler*: SATIN_SIRA sırasıyla kartlar (simge, ad, "+N menü fiyatına", porsiyon maliyeti, durum: Alındı / Satın al / kilit + fiyat "Önce öncekini al"); yalnız sıradaki alınır; eksi kasada üstte neden yazar, düğme kapalı. Satın alınca kart parlar, sikkeler kasadan karta akar, malzeme alttaki "Tepsin" şeridindeki yerine uçar, `satin` sesi. *Geliştirmeler*: ana menüden **buraya taşındı** (para harcanan tek yer dükkân; ana menü sadeleşti: Oyna, Dükkân, Hikâye).
 - **Tepsi:** 15 kutu, 5×3. Kutu boyu `fit()` → `trayFit()` ile ekran yüksekliğinden (en az 46 px, en çok 15cqw); çok yatık ekranda 8+7'ye geçer (kutu ≥46 px kalıyorsa), o da olmazsa sokak biraz kısalır. Kilitli kutuda kilit ve fiyat; dokununca "Ana menüdeki Dükkân'dan alınır".
 - **Siparişler** `VERI.siparis(gun, R, SAVE.mal)`, gün ayarı `VERI.gun(d, up, SAVE.mal)`. İlk gün rehberinin siparişi peynir yoksa ekmek + köfte.
@@ -111,3 +111,19 @@ Bu bölüm yukarıdakilerle çelişirse bu bölüm geçerlidir.
 - **Sesler:** `yildiz:1..3` (artan perdeli zil; gün sonu yıldızları), yeni malzemelerin `birak:*` sesleri. Ses bağlamı kullanıcı dokunmadan kurulmaz (konsolda tarayıcı uyarısı olmasın).
 - **Simgeler:** `dukkan`, `kira`, `kitap` eklendi.
 - Kart ekrandan uzunsa (kısa/yatık ekran) orantılı küçülür (`kartSigdir`); katman artık üstü kesilmeden kaydırılır.
+
+## 3. tur: yatay ekran, hikâye yok (Eymen, 21 Kasım)
+Bu bölüm yukarıdakilerle çelişirse bu bölüm geçerlidir.
+
+- **Açılış hikâyesi kaldırıldı.** Oyun doğrudan ana menüyle açılır. Ana menüde yalnız OYNA ve Dükkân. "Dükkân kapandı" kartında Bombastik Bey yok; yerine kepengi inmiş, kilitli dükkân çizimi (kodla, `KEPENK`) ve "Kasa 3 gün art arda ekside kaldı…" yazısı. 50 parayla başlangıç, kira, eksi kasa, dükkân, malzemeler değişmedi. Kayıttaki `hikaye` alanı eski kayıtlarda kalabilir, okunmaz.
+- **Oyun yatay.** Renkler, çizimler, simgeler, animasyonlar aynı; yalnız düzen yataya taşındı.
+  - **Birim:** `1rem = 10 birim`, birim = min(güvenli yükseklik / 100, güvenli genişlik / 190) (`index.html`, `html{font-size}`). Bütün ölçüler bu birimle; JS'te `cq()` bir birimin px değeri. iPhone'da (19,5:9) yükseklik, iPad'de (4:3) ve bilgisayarda genişlik belirler; ikisinde de boş kenar ya da taşma olmaz, iPad'de fazladan yükseklik sokağa ve tepsiye gider.
+  - **Güvenli alan:** `--sl --sr --st --sb` (env() değerleri). Yatay iPhone'da çentik ve ana ekran çubuğu yanlarda: üst bilgi, müşteri sırası, ızgara ve tepsi kutuları bu payların içinde; zemin (gök, tente, tezgâh, tepsi) kenara kadar uzanır.
+  - **Düzen (`#app` ızgarası):** üstte boydan boya ince üst bilgi (kasa, gün, gün çubuğu, canlar, ses, duraklat). Solda sokak: tente (CSS çizimi, `g/awning.webp` renkleri), yan yana 3 müşteri, pervaz; altında tezgâh (yüksekliğin ~%36'sı): ızgara (gözler yan yana, 2 ya da 3), iki tabak, çöp. Sağda malzeme tepsisi: 15 kutu, 3 sütun × 5 satır, köfte stok rozetiyle.
+  - **Ölçüler `fit()` içinde:** tepsi kutu yüksekliği `--kh` (en az 44 px), satır aralığı `--kg`; ızgara gözü `--gz` (en az 44 px); tabaktaki burgerin genişliği/yüksekliği `OLC` ve `--gen`; müşteri başına `custFit()`: sipariş hücresi (en çok 10 birim) baloncuğa, yüz (17–30 birim) kalan yüksekliğe; dükkân tepsisi `--tkw`.
+  - **Sokak sahnesi** 1000×400 birimlik geniş SVG (`sokakCiz`), alttan hizalı.
+  - **Kartlar** iki sütunlu (`.card.iki`, `.kol`), düğmeler yan yana (`.btns.yan`); kart yine sığmazsa `kartSigdir` küçültür.
+  - **Ana menü:** solda logo ve burger (iki müşteri), sağda OYNA ve Dükkân, altta atıf. **Dükkân:** üstte geri, başlık, sekmeler, kasa; solda kayan liste, sağda "Tepsin" paneli (oyundaki tepsi gibi 3 sütun).
+  - **Dik tutulursa** (`orientation: portrait`): "Telefonu yan çevir" ekranı (`#cevir`, kendi dönen telefon çizimimiz, emoji yok); oyun sürüyorsa duraklar (`yonKontrol`). Bilgisayarda dar/uzun pencerede de görünür ("pencereyi genişlet").
+- **iOS paketlenince (Capacitor, `ios/` henüz yok):** `ios/App/App/Info.plist` içinde `UISupportedInterfaceOrientations` ve `UISupportedInterfaceOrientations~ipad` yalnız `UIInterfaceOrientationLandscapeLeft` ve `UIInterfaceOrientationLandscapeRight` olacak (Kedi Yuvası'ndaki gibi); `UIRequiresFullScreen` = YES (iPad'de bölünmüş ekranda dik pencere olmasın). Capacitor'da `viewport-fit=cover` zaten var; güvenli alan `env()` ile geliyor.
+- **Deneme (yatay):** cihazlar SE 568×320, iPhone 15 852×393 (yan paylar 59, alt 21), Pro Max 932×430, iPad 1024×768 ve 1366×1024, bilgisayar 1280×800 ve 1440×900; ayrıca dik 393×852 ("çevir" ekranı).
