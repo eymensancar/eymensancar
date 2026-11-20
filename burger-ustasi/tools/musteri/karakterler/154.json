@@ -1,0 +1,22 @@
+{
+ "no": 154,
+ "ad": "Emekli kaptan İsmet dede",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 1,
+  "ten": 2,
+  "sac": 1,
+  "sacRenk": 8,
+  "kas": 2,
+  "goz": 0,
+  "burun": 1,
+  "biyik": 0,
+  "sakal": 3,
+  "gozluk": 0,
+  "sapka": 1,
+  "kiyafet": 2,
+  "kRenk": 6,
+  "ek": 3
+ },
+ "not": ""
+}

@@ -1,0 +1,22 @@
+{
+ "no": 160,
+ "ad": "Mahalle muhtarı Kâzım",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 3,
+  "ten": 3,
+  "sac": 3,
+  "sacRenk": 7,
+  "kas": 2,
+  "goz": 4,
+  "burun": 3,
+  "biyik": 6,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 3,
+  "kRenk": 1,
+  "ek": 3
+ },
+ "not": ""
+}

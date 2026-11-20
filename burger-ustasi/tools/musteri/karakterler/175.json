@@ -1,0 +1,22 @@
+{
+ "no": 175,
+ "ad": "Dağcı Gülcan",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 1,
+  "ten": 5,
+  "sac": 10,
+  "sacRenk": 1,
+  "kas": 1,
+  "goz": 1,
+  "burun": 0,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 2,
+  "kiyafet": 4,
+  "kRenk": 8,
+  "ek": 0
+ },
+ "not": ""
+}

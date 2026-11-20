@@ -1,0 +1,22 @@
+{
+ "no": 158,
+ "ad": "Sörfçü Emir",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 2,
+  "ten": 0,
+  "sac": 6,
+  "sacRenk": 5,
+  "kas": 4,
+  "goz": 2,
+  "burun": 7,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 0,
+  "kRenk": 9,
+  "ek": 1
+ },
+ "not": ""
+}

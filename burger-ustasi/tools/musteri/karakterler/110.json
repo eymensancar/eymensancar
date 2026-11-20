@@ -23,9 +23,12 @@
   "ayar": {
    "sapka": {
     "sx": 1.12,
+    "y": -2.5
+   },
+   "kas": {
     "y": 1
    }
   }
  },
- "not": "Aşçı şapkası geniş armut kafaya göre yatayda büyütüldü; altından şakaklara inen kısa saç kendi çizimiyle; pala bıyık."
+ "not": "Aşçı şapkası geniş armut kafaya göre yatayda büyütüldü ve 2,5 birim yukarı, kaşlar 1 birim aşağı: şapka bandı mutlu yüzde bile kaşlara değmez; altından şakaklara inen kısa saç kendi çizimiyle (şapkayla arada boşluk yok); pala bıyık."
 }

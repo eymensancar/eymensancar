@@ -1,0 +1,22 @@
+{
+ "no": 156,
+ "ad": "Elektrikçi Bülent",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 5,
+  "ten": 4,
+  "sac": 2,
+  "sacRenk": 1,
+  "kas": 1,
+  "goz": 1,
+  "burun": 4,
+  "biyik": 2,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 1,
+  "kiyafet": 1,
+  "kRenk": 3,
+  "ek": 0
+ },
+ "not": ""
+}

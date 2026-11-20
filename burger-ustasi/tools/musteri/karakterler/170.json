@@ -1,0 +1,22 @@
+{
+ "no": 170,
+ "ad": "Kaptan İsmail",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 1,
+  "ten": 2,
+  "sac": 2,
+  "sacRenk": 8,
+  "kas": 2,
+  "goz": 1,
+  "burun": 1,
+  "biyik": 0,
+  "sakal": 3,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 3,
+  "kRenk": 6,
+  "ek": 3
+ },
+ "not": ""
+}

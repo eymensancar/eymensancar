@@ -1,0 +1,22 @@
+{
+ "no": 153,
+ "ad": "Matematik öğretmeni Nevin",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 2,
+  "ten": 1,
+  "sac": 10,
+  "sacRenk": 1,
+  "kas": 0,
+  "goz": 2,
+  "burun": 2,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 2,
+  "sapka": 0,
+  "kiyafet": 1,
+  "kRenk": 4,
+  "ek": 2
+ },
+ "not": ""
+}
