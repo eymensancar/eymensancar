@@ -171,10 +171,10 @@ function koy(i){if(!aktif())return false;const ks=S.tabak[i],tb=TB[i],k=S.sec,so
   ks.push(kat);harca(fiyat,tb);
   // avuçtaki malzeme tabağa uçar, sonra katman düşer
   const kut=tray.querySelector(`[data-k="${k}"] .al`)||tray.querySelector(`[data-k="${k}"]`);
-  if(kut){const a=rel(kut),r=rel(tb.querySelector('.yig')),hedef={x:r.cx,y:r.y+r.h-yukseklik(ks)-6*cq()};
+  if(kut){const a=rel(kut),r=rel(tb.querySelector('.yig')),hedef={x:r.cx,y:r.y+r.h-yukseklik(tb)-6*cq()};
     ucur(`<span class="im2">${BURGER.simge(k)}</span>`,{x:a.cx,y:a.cy},hedef,{sure:150,yay:-4,s0:1.2,s1:1,cls:'mal'})}
   cizTabak(i,true);ses('birak:'+kat);tit();rehber();return true}
-function yukseklik(ks){const y=TB[0].querySelector('.bu-yigin');return y?y.getBoundingClientRect().height:ks.length*4*cq()}
+function yukseklik(tb){const y=tb.querySelector('.bu-yigin');return y?y.getBoundingClientRect().height:0}
 function harca(n,el){if(!n)return;S.kasa-=n;S.gider+=n;hud();const r=rel(el);yazi(r.cx+5*cq(),r.y+r.h*.35,`−${n}${PARA()}`,'mini')}
 
 /* ================= ızgara ================= */
@@ -225,11 +225,11 @@ function teslim(ti,ci,gec=0){if(!aktif())return null;const ks=S.tabak[ti],c=S.cu
   const o=VERI.odeme(c.sip,ks.slice(),f,SAVE.up,seri);
   S.tabak[ti]=[];cizTabak(ti,false);
   const gelir=(o.ucret||0)+(o.bahsis||0);S.kasa+=gelir;S.gelir+=gelir;S.bahsis+=o.bahsis||0;
-  const yr=rel(c.yuzEl),x=yr.cx,y=yr.y+yr.h*.25;
+  const yr=rel(c.yuzEl),x=yr.cx,y=yr.y+yr.h*.12;
   let tur;
   if(o.dogru&&o.ruh==='mutlu'){tur='mutlu';S.seri++;S.sayi.mutlu++;
     setTimeout(()=>{face(c,'love');ses('teslim_mutlu');tit('orta');hud()},gec);
-    yazi(x,y,`+${o.ucret}${PARA()}`,'iyi',gec);if(o.bahsis)yazi(x+2*cq(),y+9*cq(),`<span class="s">+${o.bahsis}${PARA()}</span><small>${t('tip')}</small>`,'bahsis',gec+260)}
+    yazi(x,y,`+${o.ucret}${PARA()}`,'iyi',gec);if(o.bahsis)yazi(Math.min(APP.clientWidth-12*cq(),Math.max(12*cq(),x+6*cq())),y-9*cq(),`<span class="s">+${o.bahsis}${PARA()}</span><small>${t('tip')}</small>`,'bahsis',gec+260)}
   else if(o.dogru&&o.ruh==='somurtkan'){tur='normal';S.seri=0;S.sayi.somurtkan++;
     setTimeout(()=>{face(c,'wait');ses('teslim_normal');hud()},gec)}   // somurtkan: efekt yok
   else{tur='kizgin';S.seri=0;S.sayi.kizgin++;if(!o.dogru)S.yanlis++;
@@ -251,7 +251,7 @@ function surukleBagla(i){const el=TB[i];
   el.addEventListener('pointercancel',e=>{const d=S.surukle;if(!d||d.id!==e.pointerId)return;S.surukle=null;if(d.drag)geriDon(d)});
   el.addEventListener('lostpointercapture',e=>{const d=S.surukle;if(!d||d.id!==e.pointerId)return;S.surukle=null;if(d.drag)geriDon(d)})}
 function baslat(d){d.drag=true;const tb=TB[d.ti];const yg=tb.querySelector('.bu-yigin');
-  const g=document.createElement('div');g.className='hayalet';g.innerHTML=`<div class="gov">${BURGER.yigin(S.tabak[d.ti],{gen:OLC.gen,yukMax:OLC.yuk,yeni:false})}</div>`;FX.appendChild(g);d.el=g;
+  const g=document.createElement('div');g.className='hayalet';g.innerHTML=`<div class="gov">${BURGER.yigin(S.tabak[d.ti],{gen:OLC.gen,yukMax:OLC.yuk,yeni:false})}</div>`;g.style.width=OLC.gen;FX.appendChild(g);d.el=g;
   tb.classList.add('tasiniyor');ses('al');tit();rehberGizle()}
 function tasi(d,e){const a=APP.getBoundingClientRect(),x=e.clientX-a.left,y=e.clientY-a.top;d.x=x;d.y=y;
   const g=d.el,w=g.offsetWidth,h=g.offsetHeight,lift=6*cq();
@@ -299,7 +299,8 @@ function rehber(zorla){if(!S.on||!S.rehber){if(rehberHedef)rehberGizle();return}
   el.classList.add('parla');
   const tp=document.createElement('div');tp.className='ipucu';tp.innerHTML=ic('el')+`<span>${msg}</span>`;FX.appendChild(tp);
   const r=rel(el),w=tp.offsetWidth,h=tp.offsetHeight,W=APP.clientWidth;let x=Math.min(W-w-2*cq(),Math.max(2*cq(),r.cx-w/2)),y=r.y-h-2.4*cq();
-  if(y<rel($('street')).y+2*cq()){y=r.y+r.h+2.4*cq();tp.classList.add('alt')}
+  if(el.classList.contains('tabak'))y=r.y+.5*cq();   // tabakta: yazı tezgâhın içinde, müşterilerin üstüne binmez
+  else if(y<rel($('street')).y+2*cq()){y=r.y+r.h+2.4*cq();tp.classList.add('alt')}
   tp.style.left=x+'px';tp.style.top=y+'px';tp.style.setProperty('--ok',Math.max(12,Math.min(w-12,r.cx-x))+'px');
   if(surukleEl){const hd=document.createElement('div');hd.className='el';hd.innerHTML=ic('el');FX.appendChild(hd);
     const to=surukleEl==='cop'?rel(COP):rel(surukleEl.yuzEl),s=6*cq();
@@ -383,8 +384,8 @@ $('hMuzik').onclick=()=>{SAVE.ayar.muzik=!SAVE.ayar.muzik;sesAyar();ses('tik');o
 const OLC={gen:'23cqw',yuk:'31cqw'};
 function fit(){const c=cq(),H=APP.clientHeight;if(!c)return;
   // uzun ekranda tepsi kutuları biraz uzar
-  APP.style.setProperty('--kh',Math.min(20,Math.max(16,16+(H/c-180)*.12)).toFixed(2)+'cqw');
-  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(20*c,Math.min(32*c,(h-26*c)*.7));APP.style.setProperty('--yz',yz+'px')}
+  APP.style.setProperty('--kh',Math.min(23,Math.max(15.5,16+(H/c-180)*.25)).toFixed(2)+'cqw');
+  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(18*c,Math.min(32*c,(h+4*c-24*c-2*c)/1.2));APP.style.setProperty('--yz',yz+'px')}
   const ct=$('counter').clientHeight;if(ct){const gen=Math.min(25*c,(APP.clientWidth-41*c)/2-3*c);OLC.gen=Math.round(gen)+'px';OLC.yuk=Math.round(Math.max(26*c,ct-15*c))+'px';
     TB.forEach(x=>x.querySelector('.yig').style.width=OLC.gen)}
   if(S.tabak)[0,1].forEach(i=>cizTabak(i,false))}
