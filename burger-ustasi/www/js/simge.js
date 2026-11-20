@@ -42,7 +42,7 @@ can_bos:`<path d="${HEART}" fill="#e3dccf" ${O}/><path d="M43 17.5c0 8-6 16-19 2
 duraklat:`<rect x="10" y="7" width="10.5" height="34" rx="4" fill="#5fb1f0" ${O}/><rect x="27.5" y="7" width="10.5" height="34" rx="4" fill="#5fb1f0" ${O}/><path d="M11.5 31h7.5v6.5q0 2-2 2h-3.5q-2 0-2-2zM29 31h7.5v6.5q0 2-2 2H31q-2 0-2-2z" fill="#3a8fd0"/><rect x="10" y="7" width="10.5" height="34" rx="4" fill="none" ${O}/><rect x="27.5" y="7" width="10.5" height="34" rx="4" fill="none" ${O}/>`+H('M14 12v8')+H('M31.5 12v8'),
 oynat:`<path d="M13 9.5q0-4.5 4-2.3l22.5 13.6q4 2.4 0 4.8L17 39.2q-4 2.2-4-2.3z" fill="#3cc45a" ${O}/><path d="M13 30l26.5-5.4q.4 0 .4.6-.4.6-.4.6L17 39.2q-4 2.2-4-2.3z" fill="#2a9a44"/><path d="M13 9.5q0-4.5 4-2.3l22.5 13.6q4 2.4 0 4.8L17 39.2q-4 2.2-4-2.3z" fill="none" ${O}/>`+H('M17.5 13v8'),
 
-ses_acik:SPEAKER+`<path d="M31 17.5q4 6.5 0 13M36 12.5q8 11.5 0 23" fill="none" stroke="${K}" stroke-width="3.4" stroke-linecap="round"/>`,
+ses_acik:SPEAKER+BAND('M31.5 18q3.6 6 0 12M37.5 13q7.6 11 0 22','#ffc21a',2.6),
 ses_kapali:SPEAKER+BAND('M31 18l11 12M42 18L31 30','#e5322b',3.6),
 
 muzik:`<path d="M18.5 35V11.5l20-5V30" fill="none" stroke="${K}" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/><path d="M18.5 35V11.5l20-5V30" fill="none" stroke="#8c5ad8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M18.5 11.5l20-5v6l-20 5z" fill="#8c5ad8" ${O}/>`
