@@ -74,7 +74,7 @@
     pisme0: 4.0, pismeUp: 0.5,                            // köfte pişme süresi (sn)
     ciftKofte: 6, ciftKofteOlas: 0.25,                    // bu günden sonra çift köfte olasılığı
     tekrarGun: 10, tekrarOlas: 0.2,                       // bu günden sonra başka bir malzeme de iki kez
-    zorTavan: 40,                                         // bu günden sonra zorluk artmaz
+    zorTavan: 18,                                         // bu günden sonra zorluk artmaz
     kira0: 10, kiraKat: 10                                // kira = kira0 + kiraKat × ⌊√(gün − 1)⌋, 5'e yuvarlı
   };
 
@@ -233,7 +233,7 @@
   // gün başına ekstra malzeme sayısı [en az, en çok] (köfte dışında)
   function ekstraAralik(d) {
     d = zg(d);
-    return d < 2 ? [0, 1] : d < 5 ? [1, 2] : d < 8 ? [1, 3] : d < 11 ? [2, 3] : d < 17 ? [2, 4] : d < 30 ? [3, 4] : [3, 5];
+    return d < 2 ? [0, 1] : d < 5 ? [1, 2] : d < 8 ? [1, 3] : d < 11 ? [2, 3] : d < 17 ? [2, 4] : [3, 4];
   }
   // havuz: siparişe girebilecek malzemeler (ekmek, köfte hariç)
   function havuz(g, sahip) {

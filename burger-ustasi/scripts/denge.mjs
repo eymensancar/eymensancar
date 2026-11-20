@@ -34,8 +34,9 @@ const V = require('../www/js/veri.js');
 if (process.env.DENGE_AYAR) Object.assign(V.AYAR, JSON.parse(process.env.DENGE_AYAR));
 
 const SAAT = process.argv[2] === 'saat';
-const N = SAAT ? +(process.argv[3] || 8) : +(process.argv[2] || 300);
-const MD = process.argv[SAAT ? 4 : 3] === 'md';
+const TAVAN = process.argv[2] === 'tavan';
+const N = TAVAN ? +(process.argv[3] || 200) : SAAT ? +(process.argv[3] || 8) : +(process.argv[2] || 300);
+const MD = process.argv[SAAT || TAVAN ? 4 : 3] === 'md';
 const GUNLER = 15;
 const GUN_ARASI = 10;     // gün kartı + dükkân (sn)
 const SAAT_MAX = +(process.env.SAAT_MAX || 120);   // uzun oyunda en çok kaç gerçek saat
@@ -277,7 +278,26 @@ const med = a => { const b = a.slice().sort((x, y) => x - y); return b.length ? 
 const y = (x, n = 0) => x.toFixed(n);
 const p = x => Math.round(x * 100) + '%';
 
-if (SAAT) {
+if (TAVAN) {
+  // zorluk tavanı: belli günlerde, bütün malzemeler ya da ilk 4 malzeme, geliştirmesiz / tam geliştirmeli
+  const hep = V.SATIN_SIRA.slice(), dort = V.SATIN_SIRA.slice(0, 4);
+  const tam = { cook: 4, pat: 4, tip: 4, slot: 1 }, yok = { cook: 0, pat: 0, tip: 0, slot: 0 };
+  const durum = [['4 malzeme, geliştirmesiz', dort, yok], ['4 malzeme, tam geliştirme', dort, tam], ['13 malzeme, geliştirmesiz', hep, yok], ['13 malzeme, tam geliştirme', hep, tam]];
+  const gunler = [5, 10, 15, 18, 40, 300];
+  for (const [k, B] of Object.entries(BECERI)) {
+    const R = mulberry(777 + k.length);
+    console.log(MD ? `\n**${B.ad} oyuncu**: kazanma oranı / mutlu oranı / gün kârı (kira öncesi)\n` : `\n== ${B.ad}`);
+    if (MD) { console.log('| Durum | ' + gunler.map(g => `Gün ${g}`).join(' | ') + ' |'); console.log('|---|' + gunler.map(() => '---|').join('')); }
+    for (const [ad, sahip, up] of durum) {
+      const h = gunler.map(d => {
+        const r = Array.from({ length: N }, () => oynaGun(d, { ...up }, 1000, B, R, sahip.slice()));
+        const tes = ort(r.map(x => x.teslim)) || 1;
+        return `${p(ort(r.map(x => x.kazandi ? 1 : 0)))} / ${p(ort(r.map(x => x.mutlu)) / tes)} / ${y(ort(r.map(x => x.net)))}`;
+      });
+      console.log(MD ? `| ${ad} | ${h.join(' | ')} |` : ad.padEnd(28) + h.map(x => x.padStart(18)).join(''));
+    }
+  }
+} else if (SAAT) {
   const ADLAR = { cheese: 'Peynir', lettuce: 'Marul', tomato: 'Domates', onion: 'Soğan', pickle: 'Turşu', bacon: 'Pastırma', egg: 'Yumurta',
     sauce: 'Sos', mushroom: 'Mantar', jalapeno: 'Jalapeño', onionring: 'Soğan halkası', avocado: 'Avokado', truffle: 'Trüf (premium)' };
   const sonuc = {};
