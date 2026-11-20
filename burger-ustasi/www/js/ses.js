@@ -216,6 +216,13 @@
   };
   BIRAK.bunBot = BIRAK.bunTop = BIRAK.bun;
   BIRAK.raw = BIRAK.patty;
+  // 2. turun malzemeleri (dükkânda alınanlar)
+  BIRAK.sauce = { f0: 120, v: 0.36, kf: 700, kv: 0.18, ek: function (c, o, t) { ton(c, o, t + 0.01, { f: 380, f2: 180, gl: 0.06, dur: 0.09, v: 0.1 }); } };
+  BIRAK.mushroom = { f0: 150, v: 0.4, kf: 1400, kv: 0.2 };
+  BIRAK.jalapeno = { f0: 205, v: 0.32, kf: 2100, kv: 0.15, ek: function (c, o, t) { ton(c, o, t + 0.01, { f: 1050, f2: 700, gl: 0.03, dur: 0.05, v: 0.07, tip: 'triangle' }); } };
+  BIRAK.onionring = { f0: 175, v: 0.36, kf: 2600, kv: 0.16, ek: citir(3, 3400, 0.07) };
+  BIRAK.avocado = { f0: 125, v: 0.42, kf: 900, kv: 0.22 };
+  BIRAK.premium = { f0: 92, v: 0.56, kf: 760, kv: 0.3, ek: function (c, o, t) { zil(c, o, t + 0.03, { f: 2093, v: 0.05, dur: 0.5, oran: [1, 2.41], gen: [1, 0.3] }); } };
 
   // ---------- efektler ----------
   var SES = {
@@ -342,6 +349,14 @@
       arpej(c, o, t + 0.08, [72, 76, 79, 84, 88], 0.05, 0.075, 0.25);
       zil(c, o, t + 0.36, { f: 2637, v: 0.055, dur: 0.7, oran: [1, 2.41], gen: [1, 0.25] });
     },
+    // Gün sonu yıldızı: parlak "ding", her yıldızda perde yükselir (yildiz:1, :2, :3)
+    yildiz: function (c, o, t, alt) {
+      var n = Math.max(1, Math.min(3, parseInt(alt, 10) || 1)), f = [1568, 1976, 2349][n - 1];
+      zil(c, o, t, { f: f, v: 0.13 + 0.02 * n, dur: 0.8 + 0.25 * n, oran: [1, 2.41, 3.87], gen: [1, 0.35, 0.15] });
+      ton(c, o, t, { f: f / 2, tip: 'triangle', v: 0.06, dur: 0.18, a: 0.002 });
+      ton(c, o, t + 0.003, { f: f * 1.003, v: 0.05, dur: 0.6, a: 0.001 });
+      if (n === 3) arpej(c, o, t + 0.12, [84, 88, 91, 96], 0.05, 0.05, 0.25);
+    },
     // Can gitti: "bonk" + inen ikinci ton
     can_gitti: function (c, o, t) {
       tok(c, o, t, { f0: 110, v: 0.42, kf: 1000, kv: 0.2 });
@@ -354,7 +369,8 @@
   var ADLAR = ['sec', 'birak', 'birak:bun', 'birak:bunBot', 'birak:bunTop', 'birak:patty', 'birak:cheese', 'birak:lettuce',
     'birak:tomato', 'birak:onion', 'birak:bacon', 'birak:egg', 'birak:pickle', 'izgara', 'pisti', 'al', 'geri',
     'teslim_mutlu', 'teslim_normal', 'teslim_kizgin', 'yanlis', 'kacti', 'cop', 'uyari', 'gun_basla', 'gun_bitti',
-    'gun_kayip', 'tik', 'satin', 'can_gitti'];
+    'gun_kayip', 'tik', 'satin', 'can_gitti', 'yildiz:1', 'yildiz:2', 'yildiz:3',
+    'birak:sauce', 'birak:mushroom', 'birak:jalapeno', 'birak:onionring', 'birak:avocado', 'birak:premium'];
 
   // ---------- müzik ----------
   // 112 BPM, hafif shuffle, Do majör. 16 ölçü (A 8 + B 8), 4 geçişte bir tam tekrar (64 ölçü ≈ 2 dk 17 sn).
@@ -522,6 +538,8 @@
     guncelleMuzik();
   }
   function hazir() {
+    // kullanıcı henüz hiç dokunmadıysa ses bağlamı kurulmaz (tarayıcı izin vermez, uyarı basar); ilk dokunuşta ac() kurar
+    if (!ctx && W.navigator && navigator.userActivation && !navigator.userActivation.hasBeenActive) return false;
     if (!ctx) ac();
     if (!ctx) return false;
     if (ctx.state === 'running') return true;

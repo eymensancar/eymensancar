@@ -107,11 +107,29 @@ el:`<path d="M16 22V9a4.6 4.6 0 0 1 9.2 0v10.5h7.3a5.4 5.4 0 0 1 5.4 5.4V32q0 9-
  +`<path d="M25.2 19.5v5.5M25.2 26.5h12.6M26.5 32.6h11.2M12.6 28.6q6.4-1 9.4 1.6 1.6 1.4 3.6 1.4" fill="none" stroke="${K}" stroke-width="2.3" stroke-linecap="round"/>`
  +`<rect x="13.5" y="40.5" width="23" height="5.5" rx="2" fill="#e8483b" ${O}/>`+H('M19.3 10v8',2.4),
 
+// dükkân: tenteli küçük dükkân vitrini (kırmızı-beyaz çizgili tente, kapı, vitrin)
+dukkan:`<path d="M8 22h32v19q0 2-2 2H10q-2 0-2-2z" fill="#fff4dc" ${O}/><path d="M8 37h32v4q0 2-2 2H10q-2 0-2-2z" fill="#e3d5bc"/><path d="M8 22h32v19q0 2-2 2H10q-2 0-2-2z" fill="none" ${O}/>`
+ +`<rect x="27" y="27" width="9" height="16" rx="1.5" fill="#c9783a" ${O2}/><circle cx="29.5" cy="35.5" r="1.1" fill="${K}"/>`
+ +`<rect x="12" y="27" width="11" height="9" rx="1.5" fill="#8fd3ff" ${O2}/>${H('M14.5 29.5l3-1.5',2)}`
+ +`<path d="M5 13l3-7h32l3 7v5q0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2Q5 21.2 5 18z" fill="#fff"/>`
+ +`<path d="M5 13l3-7h6.4l-2.2 7v5q0 3.2-3.6 3.2Q5 21.2 5 18zM17.8 6h6.4v12q0 3.2-3.2 3.2t-3.2-3.2zM30.6 6h6.4l3 7v5q0 3.2-3.2 3.2t-3.2-3.2v-5z" fill="#e5322b"/>`
+ +`<path d="M5 13l3-7h32l3 7v5q0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2-3.2 0-3.2-3.2 0 3.2-3.2 3.2Q5 21.2 5 18z" fill="none" ${O}/><path d="M5 13h38" stroke="${K}" stroke-width="2"/>`,
+
+// kira: anahtar ve üstünde sikkeli etiket
+kira:`<circle cx="15" cy="30" r="9.5" fill="#ffc21a" ${O}/><circle cx="15" cy="30" r="3.4" fill="#fff4dc" ${O2}/><path d="M23 26.5l17-9.5 2.6 4.6-3.6 2 1.8 3.2-3.4 1.9-1.8-3.2-3 1.7 1.6 2.9-3.4 1.9-1.6-2.9-3.4 1.9z" fill="#ffc21a" ${O}/>`
+ +`<path d="M7.5 33.5q2 5 7.5 5.5" fill="none" stroke="#d68f00" stroke-width="2.4" stroke-linecap="round"/>`+H('M9.5 26q1.5-3 4.5-4',2.2)
+ +`<path d="M28 7.5h13q2 0 2 2v6q0 2-2 2H28l-4-5z" fill="#fff" ${O2}/><circle cx="35" cy="12.5" r="3" fill="#ffc21a" stroke="${K}" stroke-width="1.6"/>`,
+
+// hikâye: açık kitap, sayfalarda çizgi, üstünde yıldız
+kitap:`<path d="M24 13q-8-5-18-3v28q10-2 18 3 8-5 18-3V10q-10-2-18 3z" fill="#fff4dc" ${O}/><path d="M6 33v5q10-2 18 3 8-5 18-3v-5q-10-2-18 3-8-5-18-3z" fill="#e3d5bc"/><path d="M24 13q-8-5-18-3v28q10-2 18 3 8-5 18-3V10q-10-2-18 3z" fill="none" ${O}/>`
+ +`<path d="M24 13v28" stroke="${K}" stroke-width="2.4"/><path d="M10 17q5-1 10 1.5M10 23q5-1 10 1.5M28 18.5q5-2.5 10-1.5M28 24.5q5-2.5 10-1.5" fill="none" stroke="#c9a77a" stroke-width="2" stroke-linecap="round"/>`
+ +`<path d="M5 41q9-2.5 19 2 10-4.5 19-2" fill="none" stroke="#e5322b" stroke-width="3" stroke-linecap="round"/>`+SPARK(40,7,5),
+
 'artı':`<path d="M19 6.5h10q2 0 2 2V17h8.5q2 0 2 2v10q0 2-2 2H31v8.5q0 2-2 2H19q-2 0-2-2V31H8.5q-2 0-2-2V19q0-2 2-2H17V8.5q0-2 2-2z" fill="#3cc45a" ${O}/><path d="M7 26.5h34v2.5q0 2-2 2h-8v8.5q0 2-2 2h-8q-2 0-2-2V31H9q-2 0-2-2z" fill="#2a9a44"/><path d="M19 6.5h10q2 0 2 2V17h8.5q2 0 2 2v10q0 2-2 2H31v8.5q0 2-2 2H19q-2 0-2-2V31H8.5q-2 0-2-2V19q0-2 2-2H17V8.5q0-2 2-2z" fill="none" ${O}/>`+H('M20.5 11v6')+H('M11 21h4')
 };
 S.arti=S['artı']; // ASCII yazımı da çalışsın
 
-const ADLAR=['para','kasa','can','can_bos','duraklat','oynat','ses_acik','ses_kapali','muzik','cop','ates','kumsaati','kese','izgara','yildiz','yildiz_bos','kilit','ev','tekrar','ileri','tik','carpi','gulen','somurtkan','kizgin','dil','el','artı'];
+const ADLAR=['para','kasa','can','can_bos','duraklat','oynat','ses_acik','ses_kapali','muzik','cop','ates','kumsaati','kese','izgara','yildiz','yildiz_bos','kilit','ev','tekrar','ileri','tik','carpi','gulen','somurtkan','kizgin','dil','el','artı','dukkan','kira','kitap'];
 
 function svg(ad,sinif=''){
   const ic=S[ad]||'';

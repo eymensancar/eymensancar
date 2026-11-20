@@ -2,10 +2,12 @@
 
 Dikey oynanan, hafif yukarıdan bakılan sipariş oyunu: müşteriler tezgâha gelir, baloncuktaki burgeri aynı sırayla hazırlarsın (ekmek → ızgarada köfte → malzemeler → ekmek). Saf HTML/CSS/JS, tek dosya: `www/index.html`, görseller `www/g/`. Şimdilik claude.ai artifact'inde geliştiriliyor.
 
-- **Akış (12 Kasım):** ekmek → malzemeler (sıra serbest) → ekmekle kapat → **müşteriye dokunarak teslim et**. Köfte ızgarada pişer, pişince kendiliğinden "Hazır" rafına geçer (en çok 3); rafa dokununca burgere eklenir. Yanma yok.
-- **Oynanış:** gün gün ilerler; her gün daha çok ve daha sabırsız müşteri, belirli günlerde yeni malzeme (2 marul, 3 domates, 5 soğan, 7 pastırma, 9 yumurta, 11 turşu). 3 müşteri kaçarsa gün başarısız. Altınla 4 geliştirme (hızlı ızgara, sabır, bahşiş, 3. ızgara gözü).
-- **Kayıt:** `localStorage` anahtarı `burgerustasi.v1`. Diller: Türkçe ve İngilizce (`T` sözlüğü).
-- **Test kancası:** `index.html?debug` → `window.__bu`.
+- **Akış:** ekmek → malzemeler (sıra serbest) → ekmekle kapat → burgeri **müşteriye sürükle**. Köfte ızgarada pişer, pişince tepsideki Köfte kutusuna geçer. İki tabak, çöp, sabır çubuğu, üç can.
+- **Ekonomi (2. tur, 20 Kasım):** yeni oyuncu **50 parayla** başlar, yalnız ekmek ve köfte açık. Öbür 13 malzeme (peynir … avokado, en son **Altın Wagyu**) ana menüdeki **Dükkân**'dan **parayla, sırayla** alınır; müşteriler yalnız sahip olunan malzemeleri ister. Her gün sonunda **kira** düşer; kasa eksiye düşebilir, eksi kasayla alışveriş yok, 3 gün art arda eksi kalırsa dükkân kapanır (kasa 50, malzemeler kalır). Geliştirmeler de dükkânda. Ayrıntı ve denge tabloları `docs/DENGE.md`.
+- **Hikâye:** ilk açılışta kısa açılış hikâyesi (rakip Bombastik Burger); ana menüdeki "Hikâye" ile yeniden izlenir.
+- **Kayıt:** `localStorage` anahtarı `burgerustasi.v1` (eski kayıtlar korunur; eski oyuncu açtığı malzemeleri kaybetmez). Diller: Türkçe ve İngilizce (`js/oyun.js` içinde `T`).
+- **Test kancası:** `index.html?debug` → `window.__bu` (`startDay`, `bitir`, `openShop`, `malAl`, `upAl`, `hikaye`, `SAVE`…); `?nostory` açılış hikâyesini atlar.
+- **Dosyalar:** `www/index.html` (düzen, CSS), `www/js/oyun.js` (oynanış, ekranlar, dükkân), `js/veri.js` (ekonomi), `js/burger.js` (burger ve malzeme çizimi), `js/simge.js` (simgeler), `js/ses.js` (ses sentezi), `js/hikaye.js` (açılış hikâyesi), `musteri.js` + `karakterler.js` (müşteri yüzleri). Tasarım sözleşmesi `docs/TASARIM.md`, denge botu `scripts/denge.mjs`.
 
 ## Görseller (itch.io)
 - Yiyecekler, tente, yıldız: **Food Icon Pack, Bluc** (https://bluc.itch.io/food-icon-pack). Ticari kullanım serbest, **atıf zorunlu** ("Icons by Bluc"; oyunda ana ekranın altında yazıyor, mağaza açıklamasına da eklenecek). Paketi olduğu gibi yeniden dağıtmak yasak: depoda yalnız oyunun kullandığı küçültülmüş görseller var.

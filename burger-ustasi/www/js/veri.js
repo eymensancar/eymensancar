@@ -14,7 +14,7 @@
  *
  * Maliyet (malzeme tabağa konunca, köfte ızgaraya konunca kasadan düşer):
  *   köfte 6, peynir 3, ekmek 2 (alt ekmekte bir kez; üst ekmek bedava) …
- *   en pahalısı trüf (premium) 10. Liste MALZEME'de.
+ *   en pahalısı Altın Wagyu (premium) 10. Liste MALZEME'de.
  * Menü fiyatı: alt ekmek + ortadaki her katmanın "satis" değeri toplanır, en
  *   yakın 5'e yuvarlanır (en az 15). satis SATIN_SIRA boyunca hiç azalmaz:
  *   sonradan alınan malzeme ortalama siparişi pahalılaştırır (yatırım hissi).
@@ -52,7 +52,7 @@
     { k: 'jalapeno',  maliyet: 3, satis: 15, fiyatAc: 40000,  gun: 99 },
     { k: 'onionring', maliyet: 4, satis: 18, fiyatAc: 80000,  gun: 99 },
     { k: 'avocado',   maliyet: 6, satis: 22, fiyatAc: 200000, gun: 99 },
-    { k: 'truffle',   maliyet: 10, satis: 32, fiyatAc: 600000, gun: 99 }
+    { k: 'premium',   maliyet: 10, satis: 32, fiyatAc: 600000, gun: 99 }
   ];
   var MAL = {};
   MALZEME.forEach(function (m) { MAL[m.k] = m; });

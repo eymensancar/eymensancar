@@ -7,6 +7,7 @@
        yol: tente görselinin klasörü (varsayılan BU.BURGER.YOL ya da 'g/').
      BU.HIKAYE.durdur()   her şeyi hemen kaldırır, bitince çağrılmaz.
      BU.HIKAYE._git(i)    (deneme) i. sahneye atlar.
+     BU.HIKAYE.RAKIP, KAHRAMAN   Musteri.draw için karakter nesneleri (oyun: dükkân kapandı kartı).
      BU.HIKAYE.SAHNELER   sahne adları; BU.HIKAYE.METIN {tr:[…], en:[…]} sahne cümleleri.
    Hikâye: Bombastik Burger (rakip zincir, sahibi Bombastik Bey / Mr. Bombastic) → alay → küçük dükkân kapanır →
    cepte 50 para → karşıdaki eski dükkân kiralanır → "Kirayı öde, müşterileri kazan, rakibi geç!" → oyunun adı.
@@ -471,5 +472,5 @@ function oynat(kap,o){
 }
 function durdur(){S.son=true;kaldir()}
 
-BU.HIKAYE={oynat,durdur,_git:i=>{if(S.kok&&SAHNE[i])goster(i)},SAHNELER:SAHNE.map(s=>s.ad),METIN:{tr:METIN.tr.s.slice(0,-1),en:METIN.en.s.slice(0,-1)}};
+BU.HIKAYE={oynat,durdur,RAKIP,KAHRAMAN,_git:i=>{if(S.kok&&SAHNE[i])goster(i)},SAHNELER:SAHNE.map(s=>s.ad),METIN:{tr:METIN.tr.s.slice(0,-1),en:METIN.en.s.slice(0,-1)}};
 })();

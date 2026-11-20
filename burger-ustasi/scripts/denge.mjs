@@ -299,7 +299,7 @@ if (TAVAN) {
   }
 } else if (SAAT) {
   const ADLAR = { cheese: 'Peynir', lettuce: 'Marul', tomato: 'Domates', onion: 'Soğan', pickle: 'Turşu', bacon: 'Pastırma', egg: 'Yumurta',
-    sauce: 'Sos', mushroom: 'Mantar', jalapeno: 'Jalapeño', onionring: 'Soğan halkası', avocado: 'Avokado', truffle: 'Trüf (premium)' };
+    sauce: 'Sos', mushroom: 'Mantar', jalapeno: 'Jalapeño', onionring: 'Soğan halkası', avocado: 'Avokado', premium: 'Altın Wagyu (premium)' };
   const son_ = V.SATIN_SIRA[V.SATIN_SIRA.length - 1];
   const sonuc = {};
   for (const [k, B] of Object.entries(BECERI)) {

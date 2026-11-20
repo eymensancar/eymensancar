@@ -36,9 +36,9 @@ Bütün paralar tam sayı. Malzeme tabağa konunca (köfte ızgaraya konunca) ma
 | 10 | Jalapeño | `jalapeno` | 40.000 | 3 | 15 |
 | 11 | Soğan halkası | `onionring` | 80.000 | 4 | 18 |
 | 12 | Avokado | `avocado` | 200.000 | 6 | 22 |
-| 13 | **Trüf** (premium: trüf mantarı dilimleri / trüf sosu) | `truffle` | 600.000 | 10 | 32 |
+| 13 | **Altın Wagyu** (premium: altın taçlı wagyu köfte; EN Golden Wagyu) | `premium` | 600.000 | 10 | 32 |
 
-Dükkân fiyatı her adımda ~2 katına çıkar (avokado ve trüf 2,5 ve 3 kat): ilk üçü 1–3. günde, ortadakiler birkaç saatte, son ikisi onlarca saatte gelir (aşağıdaki saat tablosu).
+Dükkân fiyatı her adımda ~2 katına çıkar (avokado ve Altın Wagyu 2,5 ve 3 kat): ilk üçü 1–3. günde, ortadakiler birkaç saatte, son ikisi onlarca saatte gelir (aşağıdaki saat tablosu).
 
 **Menü fiyatı** = alt ekmeğin ve ortadaki her katmanın `satis` değerinin toplamı, en yakın 5'e yuvarlanır (en az 15). Geliştirmeler fiyatı değiştirmez. `satis` dükkân sırası boyunca hiç azalmaz ve siparişte malzeme `satis` ağırlığıyla seçilir (pahalı malzeme daha sık istenir): böylece **her yeni malzeme ortalama burger fiyatını ve bahşişi artırır**.
 
@@ -49,8 +49,8 @@ Dükkân fiyatı her adımda ~2 katına çıkar (avokado ve trüf 2,5 ve 3 kat):
 | + peynir, marul, domates | 14 | 35 | 11 | 3 |
 | Çift köfte, peynir, pastırma, yumurta | 23 | 60 | 18 | 5 |
 | Köfte, sos, mantar, soğan halkası | 17 | 60 | 18 | 5 |
-| Köfte, jalapeño, soğan halkası, avokado, trüf | 31 | 105 | 32 | 9 |
-| Çift köfte, trüf, avokado, soğan halkası, jalapeño | 37 | 120 | 36 | 10 |
+| Köfte, jalapeño, soğan halkası, avokado, Altın Wagyu | 31 | 105 | 32 | 9 |
+| Çift köfte, Altın Wagyu, avokado, soğan halkası, jalapeño | 37 | 120 | 36 | 10 |
 
 **Bahşiş** (yalnız doğru ve mutlu teslimde): fiyatın %8'i (sabır 2/3'teyken) ile %30'u (sabır doluyken) arası, kalan sabırla düz artar. "Cömert bahşiş" her düzeyde +%25. Art arda 3. mutlu teslimden sonra seri payı: +1, +2 … en çok +5. En az 1.
 
@@ -134,8 +134,8 @@ Oyuncu modeli:
 ## Sonuçlar
 
 Özet:
-- **Kesin şart sağlanıyor:** hızlı oyuncu premium malzemeye (trüf) ancak **~54 gerçek saatte** (799. gün) ulaşıyor; 16 hızlı oyuncunun en erkeni 54,0 saat. 24 saat aralıksız oynayan hızlı oyuncu ancak avokadoya (23,5 sa) varır, trüf için 600.000 paranın üçte birini bile biriktiremez. Hızlı oyuncunun gelir hızı müşteri akışıyla sınırlı (günün süresi beceriden çok müşterilerin gelişine bağlı: gün başına ~245 sn), o yüzden bottan daha iyi bir insan da kayda değer biçimde hızlı olamaz.
-- **Orta oyuncu** trüfe ~96 saatte (1.262. gün) ulaşıyor. İlk üç malzeme 1–3. günde (5 dakikada), soğan ilk yarım saatte, turşu–mantar 1–8 saatte, jalapeño–soğan halkası 13–22 saatte, avokado 42 saatte.
+- **Kesin şart sağlanıyor:** hızlı oyuncu premium malzemeye (Altın Wagyu) ancak **~54 gerçek saatte** (799. gün) ulaşıyor; 16 hızlı oyuncunun en erkeni 54,0 saat. 24 saat aralıksız oynayan hızlı oyuncu ancak avokadoya (23,5 sa) varır, Altın Wagyu için 600.000 paranın üçte birini bile biriktiremez. Hızlı oyuncunun gelir hızı müşteri akışıyla sınırlı (günün süresi beceriden çok müşterilerin gelişine bağlı: gün başına ~245 sn), o yüzden bottan daha iyi bir insan da kayda değer biçimde hızlı olamaz.
+- **Orta oyuncu** Altın Wagyu'ya ~96 saatte (1.262. gün) ulaşıyor. İlk üç malzeme 1–3. günde (5 dakikada), soğan ilk yarım saatte, turşu–mantar 1–8 saatte, jalapeño–soğan halkası 13–22 saatte, avokado 42 saatte.
 - **İlerleme hissi:** her yeni malzeme saatlik kazancı artırıyor. Hızlı oyuncu: 2. saatte 10,6 bin/sa (6 malzeme), 6. saatte 15 bin (9), 10. saatte 16 bin (10), 20. saatte 17,6 bin (11), 41. saatte 19,4 bin (12). Orta oyuncu: 5 bin → 7,5 → 8,3 → 9 → 10,2 → 11,3 bin/sa.
 - **İlk günler rahat:** 1. gün kâr 72–86, kira 10; 2. gün kâr 98–129, kira 20. Peynir 1. gün, marul 2. gün, domates 3. gün (orta ve hızlı) alınıyor.
 - **Zorluk tavanı (18. gün):** orta oyuncu geliştirmesiz ilk denemede %70–80, tam geliştirmeyle %90+ kazanıyor (mutlu oranı %55); 40. ve 300. gün 18. günle aynı. Hızlı oyuncu her günü kazanıyor (%91–95 mutlu).
@@ -157,7 +157,7 @@ Oyuncu modeli:
 | Jalapeño | 40000 | > 120 sa | 13.3 sa, gün 179 | 7.2 sa, gün 110 |
 | Soğan halkası | 80000 | > 120 sa | 22.3 sa, gün 294 | 12.2 sa, gün 182 |
 | Avokado | 200000 | > 120 sa | 42.1 sa, gün 554 | 23.5 sa, gün 348 |
-| Trüf (premium) | 600000 | > 120 sa | 96.0 sa, gün 1262 | 54.5 sa, gün 799 |
+| Altın Wagyu (premium) | 600000 | > 120 sa | 96.0 sa, gün 1262 | 54.5 sa, gün 799 |
 | Geliştirme cook (tam) |  | > 120 sa | 2.5 sa, gün 38 | 1.4 sa, gün 24 |
 | Geliştirme pat (tam) |  | > 120 sa | 3.3 sa, gün 48 | 1.8 sa, gün 31 |
 | Geliştirme tip (tam) |  | > 120 sa | 3.8 sa, gün 54 | 2.0 sa, gün 34 |
