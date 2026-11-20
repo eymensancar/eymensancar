@@ -12,6 +12,7 @@ const FACES=[ // wT alın, wM yanak, wB çene yarı genişliği; yT tepe, yM yan
  {n:'uzun',wT:25,wM:28,wB:15,yT:19,yM:60,yB:104},{n:'kare',wT:29,wM:31,wB:30,yT:26,yM:60,yB:97},
  {n:'kalp',wT:33,wM:32,wB:10,yT:26,yM:58,yB:99},{n:'armut',wT:24,wM:33,wB:31,yT:29,yM:63,yB:98}];
 const P={
+ cinsiyet:['kadın','erkek'],
  yuz:FACES.map(f=>f.n),
  ten:SKIN.map((_,i)=>'ten '+(i+1)),
  sac:['kel','yanlar','kısa','yan ayrık','kirpi','afro','kıvırcık','ibik','perçem','küt','uzun düz','dalgalı','at kuyruğu','topuz','iki örgü','kabarık'],
@@ -80,9 +81,10 @@ function eyeBase(t,x,y,s=1){const r=v=>(v*s).toFixed(2);
    case 'kirpikli':{const o=x<60?-1:1;return `<ellipse cx="${x}" cy="${y}" rx="${r(3.4)}" ry="${r(4.6)}" fill="${INK}"/><circle cx="${x+1}" cy="${y-1.6}" r="1.2" fill="#fff"/><path d="M${x+o*3} ${y-3.5}l${o*3} -2.5M${x+o*3.6} ${y-1}l${o*3.4} -1" stroke="${INK}" stroke-width="1.5" stroke-linecap="round"/>`}
   }return ''}
 function eyes(m,e,F,skin){const y=F.yM-5,dx=12,L=60-dx,R=60+dx;
-  if(e==='happy')return `<path d="M${L-5} ${y+1}q5 -7 10 0M${R-5} ${y+1}q5 -7 10 0" stroke="${INK}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`;
+  if(e==='happy')return `<path d="M${L-5} ${y+1}q5 -7 10 0M${R-5} ${y+1}q5 -7 10 0" stroke="${INK}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`+(m.cinsiyet===0?`<path d="M${L-5} ${y+1}l-3 -2M${R+5} ${y+1}l3 -2" stroke="${INK}" stroke-width="1.8" stroke-linecap="round"/>`:'');
   if(e==='love')return [L,R].map(x=>`<path class="hb" d="M${x} ${y+6}l-6.5 -6.5a3.9 3.9 0 0 1 6.5 -4.4a3.9 3.9 0 0 1 6.5 4.4z" fill="#e8384f"/>`).join('');
-  let s=`<g class="blink">${eyeBase(m.goz,L,y,e==='imp'?1.18:1)}${eyeBase(m.goz,R,y,e==='imp'?1.18:1)}</g>`;
+  const lash=m.cinsiyet===0&&P.goz[m.goz]!=='kirpikli'?`<path d="M${L-4} ${y-3}l-3 -2.4M${R+4} ${y-3}l3 -2.4" stroke="${INK}" stroke-width="1.6" stroke-linecap="round"/>`:'';
+  let s=`<g class="blink">${eyeBase(m.goz,L,y,e==='imp'?1.18:1)}${eyeBase(m.goz,R,y,e==='imp'?1.18:1)}${lash}</g>`;
   if(e==='angry')s+=`<path d="M${L-8} ${y-8}L${L+6} ${y-1}L${L+6} ${y-9}ZM${R+8} ${y-8}L${R-6} ${y-1}L${R-6} ${y-9}Z" fill="${skin}"/><path d="M${L-7} ${y-5.5}L${L+5} ${y-1}M${R+7} ${y-5.5}L${R-5} ${y-1}" stroke="${INK}" stroke-width="2" stroke-linecap="round"/>`;
   if(e==='sad')s+=`<path d="M${L-7} ${y-1}L${L+6} ${y-6}L${L-7} ${y-8}ZM${R+7} ${y-1}L${R-6} ${y-6}L${R+7} ${y-8}Z" fill="${skin}"/><path d="M${L-6} ${y-1.5}L${L+5} ${y-5.5}M${R+6} ${y-1.5}L${R-5} ${y-5.5}" stroke="${INK}" stroke-width="1.8" stroke-linecap="round"/>`;
   return s}
@@ -111,14 +113,14 @@ function nose(i,F,skin){const x=60,y=F.yM+6,d=dark(skin,.18),dd=dark(skin,.35);
    case 'çizgi':return `<path d="M${x} ${y-8}L${x-3} ${y+4}L${x+3} ${y+4}" stroke="${dd}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
   }return ''}
 /* ---------- ağız (duyguya göre) ---------- */
-function mouth(e,F){const x=60,y=F.yM+20;
+function mouth(e,F,lip){const x=60,y=F.yM+20,LC=lip?'#c4455a':INK;
   switch(e){
-   case 'happy':return `<path d="M${x-10} ${y-2}Q${x} ${y+13} ${x+10} ${y-2}Z" fill="#6b2422" stroke="${INK}" stroke-width="1.8" stroke-linejoin="round"/><path d="M${x-8.5} ${y-1}h17v2.6q-8.5 2.2 -17 0z" fill="#fff"/><path d="M${x-4} ${y+6}q4 -3.5 8 0q-4 2.6 -8 0z" fill="#e8737b"/>`;
-   case 'love':return `<path d="M${x-7} ${y-1}Q${x} ${y+9} ${x+7} ${y-1}Z" fill="#6b2422" stroke="${INK}" stroke-width="1.8" stroke-linejoin="round"/><path d="M${x-3} ${y+3.5}q3 -2.5 6 0q-3 2 -6 0z" fill="#e8737b"/>`;
-   case 'wait':return `<path d="M${x-6} ${y}q6 3.5 12 0" stroke="${INK}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+   case 'happy':return `<path d="M${x-10} ${y-2}Q${x} ${y+13} ${x+10} ${y-2}Z" fill="#6b2422" stroke="${LC}" stroke-width="${lip?2.6:1.8}" stroke-linejoin="round"/><path d="M${x-8.5} ${y-1}h17v2.6q-8.5 2.2 -17 0z" fill="#fff"/><path d="M${x-4} ${y+6}q4 -3.5 8 0q-4 2.6 -8 0z" fill="#e8737b"/>`;
+   case 'love':return `<path d="M${x-7} ${y-1}Q${x} ${y+9} ${x+7} ${y-1}Z" fill="#6b2422" stroke="${LC}" stroke-width="${lip?2.6:1.8}" stroke-linejoin="round"/><path d="M${x-3} ${y+3.5}q3 -2.5 6 0q-3 2 -6 0z" fill="#e8737b"/>`;
+   case 'wait':return `<path d="M${x-6} ${y}q6 3.5 12 0" stroke="${LC}" stroke-width="${lip?3:2.2}" fill="none" stroke-linecap="round"/>`;
    case 'imp':return `<rect x="${x-8}" y="${y-3}" width="16" height="7" rx="3" fill="#fff" stroke="${INK}" stroke-width="1.6"/><path d="M${x-3} ${y-3}v7M${x+2} ${y-3}v7" stroke="${INK}" stroke-width="1"/>`;
-   case 'angry':return `<path d="M${x-10} ${y+5}Q${x} ${y-7} ${x+10} ${y+5}Z" fill="#6b2422" stroke="${INK}" stroke-width="1.8" stroke-linejoin="round"/><path d="M${x-7} ${y+2.4}Q${x} ${y-3.4} ${x+7} ${y+2.4}l-1 1.6q-6 -3.6 -12 0z" fill="#fff"/>`;
-   case 'sad':return `<path d="M${x-7} ${y+4}q7 -7 14 0" stroke="${INK}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+   case 'angry':return `<path d="M${x-10} ${y+5}Q${x} ${y-7} ${x+10} ${y+5}Z" fill="#6b2422" stroke="${LC}" stroke-width="${lip?2.6:1.8}" stroke-linejoin="round"/><path d="M${x-7} ${y+2.4}Q${x} ${y-3.4} ${x+7} ${y+2.4}l-1 1.6q-6 -3.6 -12 0z" fill="#fff"/>`;
+   case 'sad':return `<path d="M${x-7} ${y+4}q7 -7 14 0" stroke="${LC}" stroke-width="${lip?3:2.2}" fill="none" stroke-linecap="round"/>`;
   }return ''}
 /* ---------- bıyık ve sakal ---------- */
 function mustache(i,F,c){const x=60,y=F.yM+14,dc=dark(c);
@@ -189,22 +191,34 @@ function draw(m,e='wait'){const F=FACES[m.yuz],skin=SKIN[m.ten],hc=HAIRC[m.sacRe
   const ears=`<g fill="${skin}"><ellipse cx="${60-F.wM}" cy="${F.yM}" rx="6" ry="8"/><ellipse cx="${60+F.wM}" cy="${F.yM}" rx="6" ry="8"/></g><path d="M${60-F.wM-1} ${F.yM-3}q-2 3 0 6M${60+F.wM+1} ${F.yM-3}q2 3 0 6" stroke="${dark(skin,.25)}" stroke-width="1.4" fill="none"/>`;
   const head=`<path d="${headPath(F)}" fill="${skin}"/>`;
   const browC=m.sacRenk===8?dark(hc,.25):m.sacRenk>=9?HAIRC[1]:hc;
-  const body=hairBack(m.sac,F,hc)+clothes(m.kiyafet,cc,skin)+ears+head+extras(m.ek,F,skin,hc)+cheeks(m.ek,e,F)+beard(m.sakal,F,hc)+mouth(e,F)+mustache(m.biyik,F,hc)+nose(m.burun,F,skin)+eyes(m,e,F,skin)+brows(m,e,F,browC)+glasses(m.gozluk,F)+hairFront(m.sac,F,hc)+hat(m.sapka,F,cc);
+  const body=hairBack(m.sac,F,hc)+clothes(m.kiyafet,cc,skin)+ears+head+extras(m.ek,F,skin,hc)+cheeks(m.ek,e,F)+beard(m.sakal,F,hc)+mouth(e,F,m.cinsiyet===0)+mustache(m.biyik,F,hc)+nose(m.burun,F,skin)+eyes(m,e,F,skin)+brows(m,e,F,browC)+glasses(m.gozluk,F)+hairFront(m.sac,F,hc)+hat(m.sapka,F,cc);
   return `<svg viewBox="-4 -14 128 154" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="mu m-${e}">${body}</g>${moodFx(e,F)}</svg>`}
 
+/* cinsiyete göre izin verilen seçenekler (adlarla) */
+const ALLOW={
+ kadın:{yuz:['oval','yuvarlak','uzun','kalp','armut'],sac:['perçem','küt','uzun düz','dalgalı','at kuyruğu','topuz','iki örgü','kıvırcık','afro','kısa'],
+   kas:['ince','kemerli','kalın'],goz:['oval','iri','kirpikli','boncuk','nokta'],burun:['nokta','kalkık','çizgi','sivri','patates'],
+   biyik:['yok'],sakal:['yok'],kiyafet:['tişört','gömlek','balıkçı yaka','kapüşonlu','ceket ve kravat'],sapka:['yok','kep','bere','fötr','aşçı','ters kep']},
+ erkek:{sac:['kel','yanlar','kısa','yan ayrık','kirpi','afro','kıvırcık','ibik','kabarık','perçem'],goz:['nokta','boncuk','oval','iri','uykulu'],
+   ek:['yok','çil','ben','kırışık']}
+};
+function allowed(m,k){const g=P.cinsiyet[m.cinsiyet|0],a=ALLOW[g]&&ALLOW[g][k];return a?a.map(n=>P[k].indexOf(n)):P[k].map((_,i)=>i)}
+function coerce(m){for(const k of Object.keys(P)){if(k==='cinsiyet')continue;const a=allowed(m,k);if(!a.includes(m[k]))m[k]=a[Math.abs(m[k]|0)%a.length]}return m}
 function rng(seed){let s=seed>>>0;return()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 const pickW=(r,w)=>{let t=w.reduce((a,b)=>a+b,0),x=r()*t;for(let i=0;i<w.length;i++){if((x-=w[i])<0)return i}return w.length-1};
-function random(seed){const r=rng(seed),n=k=>Math.floor(r()*P[k].length);
-  const m={yuz:n('yuz'),ten:n('ten'),sac:n('sac'),kas:n('kas'),goz:n('goz'),burun:n('burun'),kiyafet:n('kiyafet'),kRenk:n('kRenk')};
+function random(seed){const r=rng(seed);const m={cinsiyet:r()<.5?0:1};const W=m.cinsiyet===0;
+  const n=k=>{const a=allowed(m,k);return a[Math.floor(r()*a.length)]};
+  Object.assign(m,{yuz:n('yuz'),ten:n('ten'),sac:n('sac'),kas:n('kas'),goz:n('goz'),burun:n('burun'),kiyafet:n('kiyafet'),kRenk:n('kRenk')});
   const old=r()<.18;
   m.sacRenk=old?(r()<.5?7:8):pickW(r,[14,14,10,8,5,8,4,1,1,1.2,1.2]);
-  m.biyik=r()<.3?1+Math.floor(r()*7):0;
-  m.sakal=r()<.3?1+Math.floor(r()*6):0;
+  m.biyik=!W&&r()<.35?1+Math.floor(r()*7):0;
+  m.sakal=!W&&r()<.35?1+Math.floor(r()*6):0;
   m.gozluk=r()<(old?.6:.25)?pickW(r,[0,5,5,2,old?4:1,.6]):0;
   m.sapka=r()<.28?1+Math.floor(r()*7):0;
-  m.ek=old?3:pickW(r,[10,3,2,0,3,1.5,2]);
+  m.ek=old?3:W?pickW(r,[6,3,2,0,5,2,4]):pickW(r,[10,3,2,0,0,0,0]);
+  if(W&&old&&r()<.5)m.ek=4;
   if(m.sapka&&['afro','ibik','topuz','kabarık','kirpi'].includes(P.sac[m.sac]))m.sapka=0;
-  return m}
-function total(){return Object.keys(P).reduce((a,k)=>a*P[k].length,1)}
-window.Musteri={draw,random,PARTS:P,total,EMOTIONS:['happy','wait','imp','angry','love','sad']};
+  return coerce(m)}
+function total(){return ['kadın','erkek'].reduce((t,g)=>{const m={cinsiyet:P.cinsiyet.indexOf(g)};return t+Object.keys(P).filter(k=>k!=='cinsiyet').reduce((a,k)=>a*allowed(m,k).length,1)},0)}
+window.Musteri={draw,random,PARTS:P,total,allowed,coerce,EMOTIONS:['happy','wait','imp','angry','love','sad']};
 })();

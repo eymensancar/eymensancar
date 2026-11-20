@@ -67,7 +67,7 @@ h2{font-size:20px;margin:34px 0 8px}
 
 <div class="wrap">
   <h1>Burger Ustası: karikatür müşteri üretici</h1>
-  <p class="lead">Müşteriler parçalardan kurulur: yüz şekli, ten, saç, kaş, göz, burun, bıyık, sakal, gözlük, şapka, kıyafet ve ayrıntılar. Her müşteri altı duyguyu da yaşar. Hepsi kodla çiziliyor, telif tamamen bizim.</p>
+  <p class="lead">Müşteriler parçalardan kurulur: önce kadın ya da erkek, sonra yüz şekli, ten, saç, kaş, göz, burun, bıyık, sakal, gözlük, şapka, kıyafet ve ayrıntılar. Her müşteri altı duyguyu da yaşar. Hepsi kodla çiziliyor, telif tamamen bizim.</p>
   <div class="count">Olası birleşim sayısı: <b id="cnt"></b></div>
 
   <div class="ed">
@@ -78,7 +78,7 @@ h2{font-size:20px;margin:34px 0 8px}
     </div>
     <div class="card">
       <div class="rows" id="rows"></div>
-      <p class="note">Oklarla parçaları değiştir. Rastgele müşteride bıyık, sakal, gözlük ve şapka her müşteride çıkmaz; yaşlı müşterilerde kır saç ve gözlük daha sık.</p>
+      <p class="note">Oklarla parçaları değiştir. Önce kadın mı erkek mi seçilir, parçalar ona göre gelir: kadınlarda bıyık ve sakal yok, saç ve kaşlar ayrı. Rastgele müşteride bıyık, sakal, gözlük ve şapka her müşteride çıkmaz; yaşlı müşterilerde kır saç ve gözlük daha sık.</p>
     </div>
   </div>
 
@@ -102,7 +102,7 @@ h2{font-size:20px;margin:34px 0 8px}
 <script>
 const M=window.Musteri,P=M.PARTS,E=M.EMOTIONS;
 const EN={happy:'mutlu',wait:'bekliyor',imp:'sabırsız',angry:'kızgın',love:'bayıldı',sad:'üzgün'};
-const LABEL={yuz:'Yüz',ten:'Ten',sac:'Saç',sacRenk:'Saç rengi',kas:'Kaş',goz:'Göz',burun:'Burun',biyik:'Bıyık',sakal:'Sakal',gozluk:'Gözlük',sapka:'Şapka',kiyafet:'Kıyafet',kRenk:'Kıyafet rengi',ek:'Ayrıntı'};
+const LABEL={cinsiyet:'Kadın / erkek',yuz:'Yüz',ten:'Ten',sac:'Saç',sacRenk:'Saç rengi',kas:'Kaş',goz:'Göz',burun:'Burun',biyik:'Bıyık',sakal:'Sakal',gozluk:'Gözlük',sapka:'Şapka',kiyafet:'Kıyafet',kRenk:'Kıyafet rengi',ek:'Ayrıntı'};
 let seed=Math.floor(Math.random()*1e6),cur=M.random(seed),emo='happy';
 document.getElementById('cnt').textContent=M.total().toLocaleString('tr-TR');
 function paint(){
@@ -110,12 +110,12 @@ function paint(){
   document.getElementById('seed').textContent=seed===null?'özel':seed;
   document.getElementById('emos').innerHTML=E.map(e=>`<button data-e="${e}" class="${e===emo?'on':''}">${EN[e]}</button>`).join('');
   document.getElementById('six').innerHTML=E.map(e=>`<div>${M.draw(cur,e)}${EN[e]}</div>`).join('');
-  document.getElementById('rows').innerHTML=Object.keys(LABEL).map(k=>`<div class="row"><span class="k">${LABEL[k]}</span><button data-k="${k}" data-d="-1" aria-label="${LABEL[k]} önceki">‹</button><span class="v">${P[k][cur[k]]}<small>${cur[k]+1} / ${P[k].length}</small></span><button data-k="${k}" data-d="1" aria-label="${LABEL[k]} sonraki">›</button></div>`).join('');
+  document.getElementById('rows').innerHTML=Object.keys(LABEL).map(k=>`<div class="row"><span class="k">${LABEL[k]}</span><button data-k="${k}" data-d="-1" aria-label="${LABEL[k]} önceki">‹</button><span class="v">${P[k][cur[k]]}<small>${M.allowed(cur,k).indexOf(cur[k])+1} / ${M.allowed(cur,k).length}</small></span><button data-k="${k}" data-d="1" aria-label="${LABEL[k]} sonraki">›</button></div>`).join('');
 }
 document.addEventListener('click',ev=>{
   const b=ev.target.closest('button');if(!b)return;
   if(b.dataset.e){emo=b.dataset.e;paint();return}
-  if(b.dataset.k){const k=b.dataset.k,n=P[k].length;cur[k]=(cur[k]+(+b.dataset.d)+n)%n;seed=null;paint();return}
+  if(b.dataset.k){const k=b.dataset.k,a=M.allowed(cur,k),i=a.indexOf(cur[k]);cur[k]=a[(i+(+b.dataset.d)+a.length)%a.length];if(k==='cinsiyet')M.coerce(cur);seed=null;paint();return}
   if(b.dataset.s){seed=+b.dataset.s;cur=M.random(seed);paint();window.scrollTo({top:0,behavior:'smooth'});return}
   if(b.id==='rnd'){seed=Math.floor(Math.random()*1e6);cur=M.random(seed);paint()}
   if(b.id==='crowdBtn')crowd();
