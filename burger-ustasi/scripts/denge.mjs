@@ -29,7 +29,7 @@ const MD = process.argv[3] === 'md';
 const GUNLER = 15;
 
 const BECERI = {
-  yavas: { ad: 'Yavaş', tap: 0.85, dusun: 1.6, surukle: 1.4, hata: 0.05, fark: 0.5, ileri: 0 },
+  yavas: { ad: 'Yavaş', tap: 0.85, dusun: 1.6, surukle: 1.4, hata: 0.04, fark: 0.6, ileri: 0 },
   orta:  { ad: 'Orta',  tap: 0.60, dusun: 0.9, surukle: 1.0, hata: 0.03, fark: 0.7, ileri: 1 },
   hizli: { ad: 'Hızlı', tap: 0.40, dusun: 0.5, surukle: 0.7, hata: 0.015, fark: 0.85, ileri: 2 },
 };

@@ -42,11 +42,11 @@
   var AYAR = {
     fiyatKat: 2.25, fiyatYuv: 5, fiyatMin: 15,
     bahsisMin: 0.08, bahsisMax: 0.30, bahsisUp: 0.25, seriMax: 5,
-    musteri0: 5, musteriMax: 18,
-    aralikTaban: 5.0, aralikKatman: 1.6, aralikAdim: 0.15, // gelme aralığının ortası (sn) = taban + katman × beklenen ortadaki katman − adım × (gün − 1)
-    sabir0: 30, sabirAdim: 0.9, sabirMin: 19,             // siparişten bağımsız taban sabır (sn)
-    sabirKatman: 4.0,                                     // ekmek dışındaki her katman için ek sabır (sn)
-    sabirUp: 0.12,                                        // "Sabırlı müşteri" her düzeyde +%12
+    musteri0: 5, musteriMax: 20,
+    aralikTaban: 10.5, aralikKatman: 1.6, aralikAdim: 0.38, // gelme aralığının ortası (sn) = taban + katman × beklenen ortadaki katman − adım × (gün − 1)
+    sabir0: 15.5, sabirAdim: 0.35, sabirMin: 10,            // siparişten bağımsız taban sabır (sn)
+    sabirKatman: 3.5,                                     // ekmek dışındaki her katman için ek sabır (sn)
+    sabirUp: 0.10,                                        // "Sabırlı müşteri" her düzeyde +%10
     pisme0: 4.0, pismeUp: 0.5,                            // köfte pişme süresi (sn)
     ciftKofte: 6, ciftKofteOlas: 0.25,                    // bu günden sonra çift köfte olasılığı
     tekrarGun: 10, tekrarOlas: 0.2                        // bu günden sonra başka bir malzeme de iki kez
@@ -55,11 +55,13 @@
   var STOK_MAX = 6;
   var KAT_MAX = 10;   // bir tabakta en çok katman
 
+  // geliştirme fiyatları düzey düzey (l = şu anki düzey, 0'dan başlar)
+  function basamak(a) { return function (l) { l = l | 0; return a[Math.min(l, a.length - 1)]; }; }
   var GELISTIR = {
-    cook: { max: 4, cost: function (l) { return 150 + l * 90; } },   // 150 240 330 420
-    pat:  { max: 4, cost: function (l) { return 180 + l * 100; } },  // 180 280 380 480
-    tip:  { max: 4, cost: function (l) { return 200 + l * 110; } },  // 200 310 420 530
-    slot: { max: 1, cost: function () { return 450; } }
+    cook: { max: 4, cost: basamak([300, 450, 700, 950]) },   // köfte 0,5 sn daha çabuk pişer
+    pat:  { max: 4, cost: basamak([350, 500, 750, 1000]) },   // müşteri sabrı +%10
+    tip:  { max: 4, cost: basamak([350, 550, 800, 1100]) },  // bahşiş +%25
+    slot: { max: 1, cost: basamak([800]) }                   // 3. ızgara gözü
   };
 
   function U(up) {
@@ -153,7 +155,7 @@
 
   // gün başına ekstra malzeme sayısı [en az, en çok] (köfte dışında)
   function ekstraAralik(d) {
-    return d < 2 ? [0, 1] : d < 4 ? [1, 2] : d < 7 ? [1, 3] : d < 10 ? [2, 3] : d < 13 ? [2, 4] : [3, 4];
+    return d < 2 ? [0, 1] : d < 5 ? [1, 2] : d < 8 ? [1, 3] : d < 11 ? [2, 3] : d < 17 ? [2, 4] : [3, 4];
   }
   // bir siparişte ortalama kaç ortadaki katman (köfte + ekstralar + tekrarlar) var
   function beklenenKatman(d) {
@@ -170,7 +172,7 @@
     return {
       musteri: Math.min(AYAR.musteriMax, AYAR.musteri0 + d),
       aralik: [Math.round(orta * 0.75 * 10) / 10, Math.round(orta * 1.25 * 10) / 10],
-      sira: d < 2 ? 2 : 3,
+      sira: d < 3 ? 2 : 3,
       sabir: tam(taban * (1 + AYAR.sabirUp * up.pat)),
       sabirSiparis: function (siparis) { return sabirSiparis(siparis, d, up); },
       ekstra: ekstra

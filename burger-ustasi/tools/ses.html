@@ -1,0 +1,61 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ses Denemesi</title>
+<style>
+/* Burger Ustası ses deneme sayfası: her ses için düğme, müzik, ayarlar, seviye göstergesi, çevrimdışı tepe ölçümü. */
+:root{--bg:#fff4dc;--fg:#2a1a10;--line:#e2cfa6;--btn:#ffd36b;--btn2:#f6e6c4;--ok:#3cc45a;--warn:#f2c230;--bad:#e5322b}
+body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif}
+h1{margin:0 0 4px;font-size:22px}h2{font-size:16px;margin:18px 0 8px}
+p{margin:0 0 12px;font-size:13px;opacity:.75}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+button{min-height:44px;border:2px solid var(--fg);border-radius:10px;background:var(--btn);color:var(--fg);font:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:4px 8px}
+button:active{transform:translateY(2px)}
+button.alt{background:var(--btn2)}button.on{background:var(--ok);color:#fff}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+label{display:flex;gap:6px;align-items:center;min-height:44px;font-weight:700}
+.meter{position:relative;height:18px;border:2px solid var(--fg);border-radius:9px;background:#fff;overflow:hidden;margin:6px 0}
+.meter i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--ok),var(--warn) 70%,var(--bad))}
+.meter b{position:absolute;top:0;bottom:0;width:3px;background:var(--fg);left:0}
+#sayi{font-size:13px;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;background:#fff}
+td,th{border:1px solid var(--line);padding:3px 8px;text-align:right}td:first-child,th:first-child{text-align:left}
+.k{color:var(--bad);font-weight:700}
+</style></head><body>
+<h1>Burger Ustası: sesler</h1>
+<p>Web Audio ile sentez, dosya yok. İlk dokunuşta ses açılır. Aynı ses 30 ms içinde ikinci kez çalmaz.</p>
+<div class="bar">
+  <button id="mz" class="alt">Müzik: kapalı</button>
+  <label><input type="checkbox" id="aE" checked> Efekt</label>
+  <label><input type="checkbox" id="aM" checked> Müzik ayarı</label>
+  <button id="dur" class="alt">Durdur</button>
+  <button id="olc" class="alt">Tepe ölç</button>
+</div>
+<div class="meter"><i id="mi"></i><b id="mp"></b></div>
+<div id="sayi">tepe 0.000 · rms 0.000</div>
+<h2>Efektler</h2>
+<div class="grid" id="grid"></div>
+<h2>Ölçüm</h2>
+<div id="sonuc"><p>"Tepe ölç" çevrimdışı işler: sınırlayıcısız (ham) ve sınırlayıcılı tepe, rms.</p></div>
+<script src="../www/js/ses.js"></script>
+<script>
+var S=BU.SES,$=function(i){return document.getElementById(i)};
+S.ADLAR.forEach(function(ad){var b=document.createElement('button');b.textContent=ad;b.dataset.ad=ad;b.onclick=function(){S.ac();S.cal(ad)};$('grid').appendChild(b)});
+var mzAcik=false;
+$('mz').onclick=function(){S.ac();mzAcik=!mzAcik;S.muzik(mzAcik);this.textContent='Müzik: '+(mzAcik?'açık':'kapalı');this.className=mzAcik?'on':'alt'};
+$('aE').onchange=function(){S.ac();S.ayar({efekt:this.checked})};
+$('aM').onchange=function(){S.ac();S.ayar({muzik:this.checked})};
+$('dur').onclick=function(){S.durdur();mzAcik=false;$('mz').textContent='Müzik: kapalı';$('mz').className='alt'};
+var tepeTut=0,tepeT=0;
+(function don(){var v=S.seviye(),n=performance.now();if(v.tepe>=tepeTut||n-tepeT>900){tepeTut=v.tepe;tepeT=n}
+  $('mi').style.width=Math.min(100,v.rms*300)+'%';$('mp').style.left='calc('+Math.min(100,tepeTut*100)+'% - 3px)';
+  $('sayi').textContent='tepe '+v.tepe.toFixed(3)+' · rms '+v.rms.toFixed(3)+' · '+JSON.stringify(S.durum());requestAnimationFrame(don)})();
+window.olcHepsi=function(){
+  var is=S.ADLAR.map(function(ad){return Promise.all([S._olc(ad,true),S._olc(ad,false)]).then(function(r){return {ad:ad,ham:r[0],son:r[1]}})});
+  is.push(Promise.all([S._olcMuzik(0,256,true),S._olcMuzik(0,256,false)]).then(function(r){return {ad:'müzik geçiş 1-2 (32 ölçü)',ham:r[0],son:r[1]}}).then(function(a){return Promise.all([S._olcMuzik(512,512,true),S._olcMuzik(512,512,false)]).then(function(r){return [a,{ad:'müzik geçiş 3-4 (32 ölçü)',ham:r[0],son:r[1]}]})}));
+  return Promise.all(is).then(function(r){return [].concat.apply([],r)});
+};
+$('olc').onclick=function(){$('sonuc').innerHTML='<p>ölçülüyor…</p>';olcHepsi().then(function(r){
+  var h='<table><tr><th>ses</th><th>ham tepe</th><th>tepe</th><th>rms</th><th>süre</th></tr>';
+  r.forEach(function(x){h+='<tr><td>'+x.ad+'</td><td class="'+(x.ham.tepe>=1?'k':'')+'">'+x.ham.tepe.toFixed(3)+'</td><td>'+x.son.tepe.toFixed(3)+'</td><td>'+x.son.rms.toFixed(3)+'</td><td>'+x.son.sure.toFixed(1)+'</td></tr>'});
+  $('sonuc').innerHTML=h+'</table>'})};
+</script>
+</body></html>
