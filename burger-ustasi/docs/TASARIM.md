@@ -139,3 +139,19 @@ Referans: `docs/referans/mutfak-gunduz.png` ve `mutfak-aksam.png` (ChatGPT ile �
 - **Fritöz sepetleri** (sağ önde): ileri seviyelerde **patates kızartması** ve **soğan halkası** açılır; yan ürün olarak pişirilir, sipariş yanında istenir.
 - **İçecek makinesi** (sağda, 3 musluk) ileride.
 - Müşteriler ve siparişler bu mutfak görünümüyle nasıl birleşeceği uygulama turunda kararlaştırılır.
+
+## 5. Mutfak turu: kararlar ve modül sözleşmesi (Eymen, 21 Kasım)
+Bu bölüm öncekilerle çelişirse bu geçerlidir. Referans: `docs/referans/mutfak-gunduz.png`, `mutfak-aksam.png`.
+- **Ekran (yatay):** bir kenarda müşteriler (varsayılan: solda dar sütun, sipariş penceresi/tezgâhı; 3 müşteri), kalan büyük alan mutfak. Burger tahtadan müşteriye sürüklenir.
+- **Soğan halkası burgerin içine KONMAZ**; yalnız yan ürün. Yan ürünler: **patates kızartması (fries)** ve **soğan halkası (onionring)**: fritöz sepetinde pişer (dokun → pişer → hazır kutusuna geçer), siparişin yanında istenir (ileri seviyelerde, satın alınınca), burgerle birlikte ya da ayrı olarak müşteriye verilir; sipariş tam olmadan (burger + istenen yan ürün) ödeme olmaz/yanlış sayılmaz kuralını ekonomi ajanı netleştirir (öneri: müşteri iki parçayı da alınca öder; sabır sürer).
+- **Soslar:** ketçap (`sauce` anahtarı ketçap olur) ve **mayonez (`mayo`, yeni)**: önde iki kâse; burger katmanı olarak eklenir.
+- **Küvetler (2 sıra × 6):** üst: lettuce, tomato, pickle, onion, cheese, bacon; alt: mushroom, jalapeno, egg, avocado, premium, (1 boş yer: ileride). Ekmek camlı dolaptan, köfte ızgaradan (pişen köfte ızgarada hazır bekler ya da ızgaranın önündeki hazır tepsisine geçer: çekirdek ajanı ölçerek karar verir; stok sayısı görünür).
+- **Izgara 6 göz:** başta 2 açık; `slot` geliştirmesi 4 düzeye çıkar (her düzey bir göz).
+- **Hazırlık tahtası:** üstünde iki çalışma yeri (iki burger yan yana); seç→koy aynen.
+- Gündüz/akşam: günün ilk yarısı gündüz, ikinci yarısı akşam ışığı (yumuşak geçiş).
+
+### Modüller
+- **`www/js/mutfak.js` → `BU.MUTFAK`** (çizim; DOM yok): `ciz({aksam:0..1})` → tek SVG metni (viewBox `0 0 1600 900`, sahnenin sabit arka planı: duvar, davlumbaz, lambalar, neon, raflar, pencere, tezgâh, ekmek dolabı gövdesi, ızgara gövdesi, boş küvetler, sos kâseleri, tahta, fritöz, içecek makinesi). `YER` = aynı koordinatlarda dokunma/yerleşim dikdörtgenleri: `{ekmek, izgara:[6], hazir, kuvet:{anahtar:rect}, sos:{sauce,mayo}, tahta:[2], fritoz:{fries,onionring}, yanHazir:{fries,onionring}, cop, icecek}`. Ayrıca parça çizimleri: `kilit()`, `izgaraGoz(durum)`, `duman()`, `neon(acik)`. Deneme: `tools/mutfak.html`.
+- **`www/js/burger.js` (ek):** `KATMAN.mayo`; `onionring` katmanı kaldırılır (KATMAN'dan çıkar; simgesi kalır); `kuvetIci(k)` → küvetin içini dolduran o malzemenin yığını (SVG, 200×120 viewBox, bizim çizgi film biçemimiz, referanstaki gibi dolu görünen); `ekmekDolabi()` içi (raflarda ekmekler); `yan(k, durum)` → fries/onionring: 'cig' sepette, 'pisiyor', 'hazir' kutuda (servis kutusu, üstünde kendi işaretimiz); `sosKase(k)` içi; simgeler `g/s-mayo.svg`, `g/s-fries.svg`.
+- **`www/js/veri.js` (ek):** yukarıdaki kuralların ekonomisi (mayo, fries, onionring yan ürün, 6 göz, sipariş yan ürünü, ödeme), denge botu ve DENGE.md.
+- **Çekirdek (`index.html`, `oyun.js`)** bunlar bitince bağlanır.
