@@ -1,0 +1,22 @@
+{
+ "no": 3,
+ "ad": "Üniversiteli Ece",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 4,
+  "ten": 2,
+  "sac": 12,
+  "sacRenk": 2,
+  "kas": 3,
+  "goz": 5,
+  "burun": 5,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 4,
+  "kRenk": 4,
+  "ek": 1
+ },
+ "not": ""
+}

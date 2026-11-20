@@ -1,0 +1,22 @@
+{
+ "no": 15,
+ "ad": "Yazılımcı Emre",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 0,
+  "ten": 3,
+  "sac": 15,
+  "sacRenk": 1,
+  "kas": 1,
+  "goz": 1,
+  "burun": 0,
+  "biyik": 0,
+  "sakal": 1,
+  "gozluk": 2,
+  "sapka": 0,
+  "kiyafet": 4,
+  "kRenk": 6,
+  "ek": 0
+ },
+ "not": ""
+}

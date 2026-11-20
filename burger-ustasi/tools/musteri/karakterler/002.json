@@ -1,0 +1,22 @@
+{
+ "no": 2,
+ "ad": "İnşaat ustası Rıza",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 3,
+  "ten": 4,
+  "sac": 2,
+  "sacRenk": 0,
+  "kas": 1,
+  "goz": 0,
+  "burun": 4,
+  "biyik": 3,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 5,
+  "kiyafet": 0,
+  "kRenk": 8,
+  "ek": 0
+ },
+ "not": ""
+}

@@ -1,0 +1,22 @@
+{
+ "no": 16,
+ "ad": "Bankacı Ayşe",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 2,
+  "ten": 7,
+  "sac": 10,
+  "sacRenk": 0,
+  "kas": 3,
+  "goz": 2,
+  "burun": 2,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 3,
+  "kRenk": 6,
+  "ek": 2
+ },
+ "not": ""
+}

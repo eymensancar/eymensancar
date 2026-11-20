@@ -1,0 +1,22 @@
+{
+ "no": 10,
+ "ad": "Müzisyen Deniz",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 1,
+  "ten": 6,
+  "sac": 5,
+  "sacRenk": 0,
+  "kas": 1,
+  "goz": 3,
+  "burun": 0,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 0,
+  "kRenk": 3,
+  "ek": 4
+ },
+ "not": ""
+}

@@ -1,0 +1,22 @@
+{
+ "no": 4,
+ "ad": "Aşçı Hasan",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 1,
+  "ten": 3,
+  "sac": 2,
+  "sacRenk": 1,
+  "kas": 2,
+  "goz": 1,
+  "burun": 1,
+  "biyik": 6,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 4,
+  "kiyafet": 1,
+  "kRenk": 7,
+  "ek": 0
+ },
+ "not": ""
+}

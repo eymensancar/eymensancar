@@ -1,0 +1,22 @@
+{
+ "no": 1,
+ "ad": "Emekli öğretmen Nermin",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 0,
+  "ten": 1,
+  "sac": 13,
+  "sacRenk": 8,
+  "kas": 0,
+  "goz": 2,
+  "burun": 7,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 4,
+  "sapka": 0,
+  "kiyafet": 2,
+  "kRenk": 4,
+  "ek": 3
+ },
+ "not": ""
+}

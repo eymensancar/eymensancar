@@ -1,0 +1,22 @@
+{
+ "no": 12,
+ "ad": "Fatma nine",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 5,
+  "ten": 3,
+  "sac": 2,
+  "sacRenk": 7,
+  "kas": 0,
+  "goz": 0,
+  "burun": 0,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 1,
+  "sapka": 0,
+  "kiyafet": 2,
+  "kRenk": 0,
+  "ek": 3
+ },
+ "not": ""
+}

@@ -1,0 +1,22 @@
+{
+ "no": 6,
+ "ad": "Emekli saatçi Hüseyin dede",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 2,
+  "ten": 2,
+  "sac": 1,
+  "sacRenk": 8,
+  "kas": 2,
+  "goz": 4,
+  "burun": 3,
+  "biyik": 5,
+  "sakal": 0,
+  "gozluk": 1,
+  "sapka": 0,
+  "kiyafet": 2,
+  "kRenk": 2,
+  "ek": 3
+ },
+ "not": ""
+}

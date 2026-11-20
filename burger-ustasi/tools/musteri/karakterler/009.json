@@ -1,0 +1,22 @@
+{
+ "no": 9,
+ "ad": "Avukat Murat",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 3,
+  "ten": 1,
+  "sac": 3,
+  "sacRenk": 1,
+  "kas": 1,
+  "goz": 0,
+  "burun": 2,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 2,
+  "sapka": 0,
+  "kiyafet": 3,
+  "kRenk": 6,
+  "ek": 0
+ },
+ "not": ""
+}
