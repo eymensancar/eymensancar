@@ -1,0 +1,75 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mutfak sahnesi</title>
+<link rel="stylesheet" href="../www/fonts/fonts.css">
+<style>
+body{margin:0;padding:16px;background:#2b1a12;color:#fff4dc;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif}
+h2{margin:18px 0 8px;font-size:18px}
+.bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:10px;font-size:14px}
+.bar input[type=range]{width:220px}
+.sahne{position:relative;width:100%;max-width:1600px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000}
+.sahne>svg{position:absolute;inset:0}
+.yer{position:absolute;inset:0;pointer-events:none}
+.yer i{position:absolute;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800;font-size:12px;color:#fff;text-shadow:0 1px 2px #000;background:rgba(40,160,255,.32);outline:2px solid rgba(40,160,255,.9);outline-offset:-2px;border-radius:4px}
+.yer i.kucuk{background:rgba(255,60,60,.4);outline-color:#ff3c3c}
+.yer.gizli{display:none}
+.ust{position:absolute}
+.parcalar{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.parca{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:#e9c38a}
+.parca>div{background:#5d656e;border-radius:8px;padding:6px}
+/* tek görünüm: ?tek=1 (ekran görüntüsü), ?tel=1 telefon düzeni (852×393: solda müşteri sütunu, sahne %75) */
+body.tek{padding:0;overflow:hidden}
+body.tek .bar,body.tek h2,body.tek .parcalar,body.tek #ikinci{display:none}
+body.tek .sahne{width:100vw;height:100vh;max-width:none;aspect-ratio:auto;border-radius:0}
+body.tel{padding:0;overflow:hidden;background:#3a2416}
+body.tel .bar,body.tel h2,body.tel .parcalar,body.tel #ikinci{display:none}
+body.tel .tel-kol{position:absolute;left:0;top:0;bottom:0;width:25vw;background:repeating-linear-gradient(90deg,#8fd3ff 0 20px,#a8ddff 20px 40px);display:flex;align-items:center;justify-content:center;color:#2a1a10;font-size:12px}
+body.tel #birinci{position:absolute;right:0;top:50%;transform:translateY(-50%);width:75vw;aspect-ratio:16/9;max-width:none;border-radius:0}
+</style><style id="mtCss"></style></head><body>
+<div class="bar">
+ <label>Akşam <input id="ak" type="range" min="0" max="1" step=".01" value="0"> <b id="akv">0</b></label>
+ <label><input id="yerAc" type="checkbox"> YER dikdörtgenleri</label>
+ <label><input id="ornek" type="checkbox"> Örnek içerik (kilit, kapak, ızgara durumları, duman)</label>
+ <span id="olc"></span>
+</div>
+<h2>Gündüz / ayarlı</h2>
+<div class="sahne" id="birinci"></div>
+<h2 id="ikinci-b">Akşam (aksam=1)</h2>
+<div class="sahne" id="ikinci"></div>
+<h2>Parçalar</h2>
+<div class="parcalar" id="parcalar"></div>
+<script src="../www/js/mutfak.js"></script>
+<script>
+const M=BU.MUTFAK,q=new URLSearchParams(location.search);
+document.getElementById('mtCss').textContent=M.CSS;
+if(q.get('tek'))document.body.classList.add('tek');
+if(q.get('tel')){document.body.classList.add('tel');const k=document.createElement('div');k.className='tel-kol';k.textContent='müşteriler';document.body.prepend(k)}
+const pct=(r)=>`left:${r.x/16}%;top:${r.y/9}%;width:${r.w/16}%;height:${r.h/9}%`;
+function yerler(){const out=[];const ekle=(ad,r)=>out.push([ad,r]);
+  ekle('ekmek',M.YER.ekmek);M.YER.izgara.forEach((r,i)=>ekle('izgara'+i,r));ekle('hazir',M.YER.hazir);
+  for(const k in M.YER.kuvet)ekle(k,M.YER.kuvet[k]);for(const k in M.YER.sos)ekle('sos:'+k,M.YER.sos[k]);
+  M.YER.tahta.forEach((r,i)=>ekle('tahta'+i,r));for(const k in M.YER.fritoz)ekle('fritoz:'+k,M.YER.fritoz[k]);
+  for(const k in M.YER.yanHazir)ekle('yanHazir:'+k,M.YER.yanHazir[k]);ekle('cop',M.YER.cop);ekle('icecek',M.YER.icecek);return out}
+// sahne px ölçeğine göre 44 pt altı alanlar kırmızı
+function katman(el){const s=el.clientWidth/1600;
+  return `<div class="yer${document.getElementById('yerAc').checked||q.get('yer')?'':' gizli'}">`+yerler().map(([a,r])=>`<i class="${Math.min(r.w,r.h)*s<44?'kucuk':''}" style="${pct(r)}">${a}</i>`).join('')+'</div>'}
+function ornek(){if(!(document.getElementById('ornek').checked||q.get('ornek')))return '';
+  const Y=M.YER;let h='';
+  const durum=['pisiyor','hazir','cig','kilitli','kilitli','kilitli'];
+  Y.izgara.forEach((r,i)=>{h+=`<div class="ust" style="${pct(r)}">${M.izgaraGoz(durum[i])}</div>`});
+  [Y.izgara[0],Y.izgara[1]].forEach(r=>{h+=`<div class="ust" style="${pct({x:r.x+30,y:r.y-90,w:95,h:130})}">${M.duman()}</div>`});
+  ['avocado','premium','bos'].forEach(k=>{h+=`<div class="ust" style="${pct(Y.kuvet[k])}">${M.kuvetKapak()}</div>`});
+  return h}
+function ciz(el,ak){el.innerHTML=M.ciz({aksam:ak,ek:el.id})+ornek()+katman(el)}
+function hepsi(){const ak=q.get('aksam')!=null?+q.get('aksam'):+document.getElementById('ak').value;
+  document.getElementById('akv').textContent=ak;ciz(document.getElementById('birinci'),ak);
+  if(!q.get('tek')&&!q.get('tel'))ciz(document.getElementById('ikinci'),1);
+  const el=document.getElementById('birinci'),s=el.clientWidth/1600;
+  document.getElementById('olc').textContent=`ölçek ${s.toFixed(3)} px/birim`}
+['ak','yerAc','ornek'].forEach(id=>document.getElementById(id).addEventListener('input',hepsi));
+addEventListener('resize',hepsi);hepsi();
+const P=document.getElementById('parcalar');
+const kutu=(ad,html,w,h)=>`<div class="parca"><div style="width:${w}px;height:${h}px">${html}</div>${ad}</div>`;
+P.innerHTML=M.GOZ_DURUM.map(d=>kutu('izgaraGoz '+d,M.izgaraGoz(d),155,112)).join('')+kutu('kilit',M.kilit(),52,56)+kutu('kuvetKapak',M.kuvetKapak(),194,112)+
+  kutu('duman',M.duman(),100,140)+kutu('neon(true)',M.neon(true),170,140)+kutu('neon(false)',M.neon(false),170,140);
+</script>
+</body></html>

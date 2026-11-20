@@ -21,13 +21,14 @@ const B=BU.BURGER;B.YOL='../www/g/';document.getElementById('buCss').textContent
 const SIRA=['bunBot','patty','cheese','lettuce','tomato','onion','bacon','egg','pickle'];
 const acik=n=>SIRA.slice(0,n);                          // kapanmamış (son katman en üstte)
 const kapali=n=>n<2?['bunBot']:[...SIRA.slice(0,n-1),'bunTop'];   // n katmanlı tam burger
-const YENI=['bunBot','premium','sauce','mushroom','jalapeno','onionring','avocado','cheese','bacon','patty'];
+const YENI=['bunBot','premium','sauce','mushroom','jalapeno','mayo','avocado','cheese','bacon','patty'];
 const yeniK=n=>n<2?['bunBot']:[...YENI.slice(0,n-1),'bunTop'];
-const MAL=['bun','patty','cheese','lettuce','tomato','onion','bacon','egg','pickle','sauce','mushroom','jalapeno','onionring','avocado','premium'];
+const MAL=['bun','patty','cheese','lettuce','tomato','onion','bacon','egg','pickle','sauce','mayo','mushroom','jalapeno','avocado','premium','fries','onionring'];
+const KAT=MAL.filter(k=>k!=='bun'&&B.KATMAN[k]);
 let h='<h2>Malzeme simgeleri (g/s-*.svg), 96 / 48 / 28 px</h2>';
 [[96,'#fff'],[48,'#6d4410'],[28,'#fff']].forEach(([z,bg])=>{h+=`<div class="row" style="background:${bg};border-radius:8px;padding:8px;margin-bottom:6px">`+MAL.map(k=>`<div class="cell" style="width:${z}px"><span style="width:${z}px;height:${z}px;display:block">${B.simge(k)}</span>${z>40?k:''}</div>`).join('')+'</div>'});
 h+='<style>.cell img.bu-simge{width:100%;height:100%}</style>';
-h+='<h2>Her katman tek başına (ekmek arasında)</h2><div class="row">'+MAL.filter(k=>k!=='bun').map(k=>`<div class="cell"><div class="plate"><div class="lim" style="width:125px;height:160px">${B.yigin(['bunBot',k,'bunTop'],{gen:125,yukMax:160})}</div></div>${k}</div>`).join('')+'</div>';
+h+='<h2>Her katman tek başına (ekmek arasında)</h2><div class="row">'+KAT.map(k=>`<div class="cell"><div class="plate"><div class="lim" style="width:125px;height:160px">${B.yigin(['bunBot',k,'bunTop'],{gen:125,yukMax:160})}</div></div>${k}</div>`).join('')+'</div>';
 const yig=(title,gen,yuk,fn)=>{h+=`<h2>${title} (gen ${gen}, yukMax ${yuk})</h2><div class="row">`;
   for(let n=1;n<=10;n++){const ks=fn(n);h+=`<div class="cell"><div class="plate"><div class="lim" style="width:${gen}px;height:${yuk}px">${B.yigin(ks,{gen,yukMax:yuk})}</div></div>${n}</div>`}h+='</div>'};
 yig('Kapalı burger, 320 px tabak',93,118,kapali);
@@ -54,13 +55,60 @@ const ORD=[
  ['bunBot','patty','cheese','lettuce','tomato','onion','bacon','egg','pickle','bunTop'],
  ['bunBot','patty','patty','patty','cheese','bacon','bacon','egg','pickle','bunTop'],
  ['bunBot','patty','sauce','bunTop'],
- ['bunBot','patty','cheese','mushroom','onionring','bunTop'],
+ ['bunBot','patty','cheese','mushroom','mayo','bunTop'],
  ['bunBot','patty','jalapeno','jalapeno','avocado','sauce','bunTop'],
- ['bunBot','premium','cheese','mushroom','onionring','sauce','bunTop'],
- ['bunBot','premium','premium','sauce','sauce','avocado','jalapeno','onionring','mushroom','bunTop']];
+ ['bunBot','premium','cheese','mushroom','mayo','sauce','bunTop'],
+ ['bunBot','premium','premium','sauce','sauce','avocado','jalapeno','mayo','mushroom','bunTop']];
 const sip=(title,gen)=>{h+=`<h2>${title} (gen ${gen})</h2><div class="row sky">`;
   ORD.forEach(o=>{h+=`<div class="cell"><div class="bub" style="width:${gen+12}px">${B.siparis(o,{gen})}<div class="pat"><b></b></div></div>${o.length} katman / ${B.grupla(o).length} simge</div>`});h+='</div>'};
 sip('Sipariş, 320 px ekran',88);
 sip('Sipariş, 430 px ekran',118);
+// ---- 5. tur: mutfak parçaları ----
+h+=`<style>
+.mut{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.tub{position:relative;width:200px;height:120px;padding:10px;border-radius:14px;background:linear-gradient(#d7dbe0,#9aa1aa);box-shadow:inset 0 0 0 3px #3a1d0c,inset 0 6px 0 7px #eef1f4}
+.tub>.ic{position:absolute;inset:10px;border-radius:10px;background:linear-gradient(#5f666f,#8b929b);overflow:hidden}
+.dolap{position:relative;width:240px;height:168px;padding:12px;border-radius:16px;background:#8f969e;box-shadow:inset 0 0 0 3px #3a1d0c}
+.dolap>.ic{position:absolute;inset:12px;border-radius:8px;overflow:hidden}
+.dolap>.cam{position:absolute;inset:12px;border-radius:8px;background:linear-gradient(115deg,rgba(255,255,255,.28) 0 18%,rgba(255,255,255,0) 18% 60%,rgba(255,255,255,.14) 60% 66%,rgba(255,255,255,0) 66%);pointer-events:none}
+.kase{position:relative;width:200px;height:120px;padding:9px;border-radius:20px;background:linear-gradient(#e7eaee,#a3aab3);box-shadow:inset 0 0 0 3px #3a1d0c}
+.kase>.ic{position:absolute;inset:9px}
+.kase>.ks{position:absolute;left:9px;width:200px;height:200px;bottom:9px}
+.sepetk{width:200px;height:160px;border-radius:10px;background:#5b4636}
+.sepetk.fr{background:linear-gradient(#5b4636 0 55%,#3a2c22 55%)}
+.dur{display:flex;flex-direction:column;gap:4px;align-items:center;font-size:12px;color:#e9c38a}
+.mini{display:flex;gap:6px;align-items:flex-end}
+.mini>span{display:block}
+</style>`;
+h+='<h2>Küvet içleri: kuvetIci(k), viewBox 200×120 (gri küvet çerçevesi tools içindir)</h2><div class="mut">';
+[...B.KUVETLER,'(boş)'].forEach(k=>{h+=`<div class="dur"><div class="tub"><div class="ic">${B.kuvetIci(k)}</div></div>${k}</div>`});h+='</div>';
+h+='<h2>Küvetler küçük (oyundaki boy, ~110 px) ve akşam ışığı</h2><div class="mut" style="background:#3a2416;padding:10px;border-radius:12px">';
+B.KUVETLER.forEach(k=>{h+=`<div class="tub" style="width:110px;height:66px;padding:6px"><div class="ic" style="inset:6px">${B.kuvetIci(k)}</div></div>`});h+='</div>';
+h+='<div class="mut" style="background:#3a2416;padding:10px;border-radius:12px;margin-top:6px;filter:sepia(.35) saturate(1.25) brightness(.82) hue-rotate(-8deg)">';
+B.KUVETLER.forEach(k=>{h+=`<div class="tub" style="width:110px;height:66px;padding:6px"><div class="ic" style="inset:6px">${B.kuvetIci(k)}</div></div>`});h+='</div>';
+h+='<h2>Ekmek dolabı içi: ekmekDolabi(), viewBox 200×140 · sos kâseleri: sosKase(k) 200×120 + sosKasik(k) 200×200</h2><div class="mut">';
+h+=`<div class="dur"><div class="dolap"><div class="ic">${B.ekmekDolabi()}</div><div class="cam"></div></div>dolap (cam tools içindir)</div>`;
+h+=`<div class="dur"><div style="width:200px;height:140px">${B.ekmekDolabi()}</div>çıplak</div>`;
+['sauce','mayo'].forEach(k=>{h+=`<div class="dur"><div class="kase"><div class="ic">${B.sosKase(k)}</div><div class="ks">${B.sosKasik(k)}</div></div>${k}</div>`});
+['sauce','mayo'].forEach(k=>{h+=`<div class="dur"><div style="width:200px;height:120px">${B.sosKase(k)}</div>${k} çıplak</div>`});
+h+='</div>';
+h+='<h2>Yan ürünler: yan(k, durum), viewBox 200×160 · cig / pisiyor / hazir / kutu</h2>';
+B.YANLAR.forEach(k=>{h+='<div class="mut" style="margin-bottom:8px">';B.YAN_DURUM.forEach(d=>{h+=`<div class="dur"><div class="sepetk${d==='pisiyor'?' fr':''}">${B.yan(k,d)}</div>${k} · ${d}</div>`});
+ h+=`<div class="dur"><div class="mini"><span style="width:96px;height:96px">${B.simge(k)}</span><span style="width:48px;height:48px">${B.simge(k)}</span><span style="width:28px;height:28px">${B.simge(k)}</span></div>simge('${k}')</div>`;
+ h+=`<div class="dur"><div class="mini" style="background:#fff;padding:6px;border-radius:8px">${B.YAN_DURUM.map(d=>`<span style="width:60px;height:48px">${B.yan(k,d)}</span>`).join('')}</div>küçük (60 px)</div></div>`});
+h+='<h2>Simgeler: mayo, fries (sauce ve onionring yanında)</h2><div class="row" style="background:#fff;border-radius:8px;padding:8px">'+['sauce','mayo','fries','onionring','bun','cheese'].map(k=>`<div class="cell" style="width:96px"><span style="width:96px;height:96px;display:block">${B.simge(k)}</span>${k}</div>`).join('')+'</div>';
+const YORD=[
+ [['bunBot','patty','bunTop'],['fries']],
+ [['bunBot','patty','cheese','bunTop'],['onionring']],
+ [['bunBot','patty','cheese','lettuce','bunTop'],['fries','onionring']],
+ [['bunBot','patty','cheese','lettuce','tomato','bunTop'],['fries']],
+ [['bunBot','patty','cheese','lettuce','tomato','onion','mayo','bunTop'],['fries','onionring']],
+ [['bunBot','patty','patty','cheese','bacon','egg','pickle','sauce','bunTop'],['fries','fries']],
+ [['bunBot','premium','cheese','mushroom','mayo','sauce','avocado','jalapeno','bunTop'],['onionring','fries']],
+ [[],['fries']]];
+const ysip=(title,gen)=>{h+=`<h2>${title} (gen ${gen})</h2><div class="row sky">`;
+  YORD.forEach(([o,y],i)=>{const al=i===3?{bun:1,patty:1,fries:1}:{};h+=`<div class="cell"><div class="bub" style="width:${gen+12}px"><div class="lim2" style="width:${gen}px">${B.siparis(o,{gen,yan:y,alindi:al})}</div><div class="pat"><b></b></div></div>${B.grupla(o).length} + ${y.join(',')}${i===3?' (bir kısmı verildi)':''}</div>`});h+='</div>'};
+ysip('Yan ürünlü sipariş, 320 px',88);
+ysip('Yan ürünlü sipariş, 430 px',118);
 document.getElementById('out').innerHTML=h;
 </script></body></html>

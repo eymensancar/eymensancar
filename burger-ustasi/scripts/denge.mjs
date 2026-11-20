@@ -27,6 +27,11 @@
 //   - İki tabak: en acil iki müşteri için aynı anda burger yapılır.
 //   - Izgara: bekleyen siparişlerin köftesi kadar (hızlı oyuncu biraz fazla) pişirilir.
 //   - Kızgın müşteriye de burger verilir (can gitmesin diye).
+//   - 5. tur: ızgara 2 + slot göz (en çok 6). Yan ürün (fries, onionring) isteyen müşteri
+//     burgeri ve yan ürünü ayrı ayrı alır (VERI.teslimParca); ilk parçada sabır dolar.
+//     Fritöz: her yan ürünün bir sepeti, dokun (1 dokunuş) → pişer → hazır kutusu (en çok
+//     YAN_STOK_MAX). Bekleyen yan ürün siparişi kadar pişirilir; hazır olanı en acil
+//     müşteriye sürükler. Yan üründe de hata olur (iki yan ürün varsa öbürü verilir).
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const V = require('../www/js/veri.js');
@@ -76,28 +81,49 @@ function oynaGun(d, up, coins, B, R, sahip) {
   let kasa = coins, can = 3, seri = 0, t = 0, kalan = cfg.musteri, sonraki = 1.0;
   const yer = [null, null, null];
   const tabak = [0, 1].map(() => ({ yig: [], inan: [], m: null, hata: false, copa: false }));
-  const izg = Array.from({ length: 2 + up.slot }, () => ({ k: -1 }));   // k: kalan pişme; -1 boş; 0 pişti bekliyor
+  const izg = Array.from({ length: V.izgaraGoz(up) }, () => ({ k: -1 }));   // k: kalan pişme; -1 boş; 0 pişti bekliyor
   let stok = 0, sec = null, mesgul = 0, is = null;
+  const yanlar = V.acikYan(sahip);
+  const fr = {}, ys = {};   // fritöz sepeti (k: kalan pişme), hazır yan ürün sayısı
+  for (const y of yanlar) { fr[y] = { k: -1 }; ys[y] = 0; }
+  st.yanIst = 0; st.yanVer = 0;
   const har = c => { kasa -= c; st.gider += c; };
   const sure = x => x * (0.8 + R() * 0.45);
 
   function gelen() {
     const bos = [0, 1, 2].filter(i => !yer[i]);
     if (!bos.length || yer.filter(Boolean).length >= cfg.sira || kalan <= 0) return false;
-    const s = V.siparis(d, R, sahip), mx = cfg.sabirSiparis(s);
-    yer[bos[Math.floor(R() * bos.length)]] = { s, mx, p: mx, tb: -1 };
+    const tam = V.siparisTam(d, R, sahip), mx = cfg.sabirSiparis(tam);
+    if (tam.yan) st.yanIst++;
+    yer[bos[Math.floor(R() * bos.length)]] = { s: tam.katmanlar, yan: tam.yan, durum: V.yeniDurum(tam), bOk: false, yOk: !tam.yan, mx, p: mx, tb: -1 };
     kalan--; return true;
   }
-  function teslim(ti) {
-    const tb = tabak[ti], m = tb.m;
-    const o = V.odeme(m.s, tb.yig, Math.max(0, m.p / m.mx), up, seri);
-    if (!o.dogru) { st.yanlis++; seri = 0; }
+  // bir parçayı (burger ya da yan ürün) müşteriye ver
+  function ver(m, parca) {
+    const o = V.teslimParca(m.durum, parca, Math.max(0, m.p / m.mx), up, seri);
+    m.durum = o.durum;
+    if (o.sonuc === 'parca') { m.p = Math.min(m.mx, m.p + o.sabirEk * m.mx); return; }
+    if (o.sonuc === 'yanlis') { st.yanlis++; seri = 0; }
     else if (o.ruh === 'mutlu') { st.mutlu++; seri++; }
     else if (o.ruh === 'somurtkan') { st.somurtkan++; seri = 0; }
     else { st.kizgin++; seri = 0; }
     kasa += o.ucret + o.bahsis; st.gelir += o.ucret + o.bahsis; st.bahsis += o.bahsis; can -= o.can;
-    yer[yer.indexOf(m)] = null;
+    const i = yer.indexOf(m); if (i >= 0) yer[i] = null;
+    for (const tb of tabak) if (tb.m === m) tb.m = null;
+  }
+  function teslim(ti) {
+    const tb = tabak[ti], m = tb.m;
+    const yig = tb.yig;
     Object.assign(tb, { yig: [], inan: [], m: null, hata: false, copa: false });
+    m.bOk = true; m.tb = -1;
+    ver(m, yig);
+  }
+  function yanVer(m) {
+    let y = m.yan;
+    if (yanlar.length > 1 && R() < B.hata) y = yanlar.find(x => x !== m.yan);
+    if (ys[y] <= 0) y = m.yan;
+    ys[y]--; m.yOk = true; st.yanVer++;
+    ver(m, y);
   }
   function cope(ti) { st.cop++; if (tabak[ti].m) tabak[ti].m.tb = -1; Object.assign(tabak[ti], { yig: [], inan: [], m: null, hata: false, copa: false }); }
   function koy(ti, k) {
@@ -118,7 +144,12 @@ function oynaGun(d, up, coins, B, R, sahip) {
       const tb = tabak[i];
       if (tb.yig[tb.yig.length - 1] !== 'bunTop') continue;
       if (tb.copa) return [sure(B.surukle), () => cope(i)];
-      if (tb.m && yer.includes(tb.m)) return [sure(B.surukle), () => { if (yer.includes(tb.m)) teslim(i); else tb.m = null; }];
+      if (tb.m && yer.includes(tb.m)) { const m = tb.m; return [sure(B.surukle), () => { if (tb.m === m && yer.includes(m)) teslim(i); else tb.m = null; }]; }
+    }
+    // 1b) hazır yan ürünü bekleyen en acil müşteriye ver
+    if (yanlar.length) {
+      const m = musteriler.filter(m => !m.yOk && ys[m.yan] > 0).sort((a, b) => a.p - b.p)[0];
+      if (m) return [sure(B.surukle), () => { if (yer.includes(m) && !m.yOk && ys[m.yan] > 0) yanVer(m); }];
     }
     // 2) sahipsiz kalmış yığın: uyan müşteriye ver, yoksa çöp
     for (let i = 0; i < 2; i++) {
@@ -126,7 +157,7 @@ function oynaGun(d, up, coins, B, R, sahip) {
       if (tb.m && !yer.includes(tb.m)) tb.m = null;
       if (!tb.m && tb.yig.length) {
         const kapali = tb.yig[tb.yig.length - 1] === 'bunTop';
-        const aday = musteriler.filter(m => m.tb < 0 && (kapali ? V.dogruMu(m.s, tb.inan) : altKume(m.s, tb.inan.slice(1))))
+        const aday = musteriler.filter(m => m.tb < 0 && !m.bOk && (kapali ? V.dogruMu(m.s, tb.inan) : altKume(m.s, tb.inan.slice(1))))
           .sort((a, b) => a.p - b.p)[0];
         if (aday) { tb.m = aday; aday.tb = i; continue; }
         return [sure(B.surukle), () => cope(i)];
@@ -134,6 +165,7 @@ function oynaGun(d, up, coins, B, R, sahip) {
     }
     // 3) ızgara
     const istenen = musteriler.reduce((a, m) => {
+      if (m.bOk) return a;
       if (m.tb >= 0) return a + eksik(m.s, tabak[m.tb].inan.slice(1)).filter(k => k === 'patty').length;
       return a + orta(m.s).filter(k => k === 'patty').length;
     }, 0) + (kalan > 0 ? B.ileri : 0);
@@ -141,11 +173,18 @@ function oynaGun(d, up, coins, B, R, sahip) {
     const bosGoz = izg.find(g => g.k < 0);
     if (bosGoz && istenen > stok + pisen && stok + pisen < V.STOK_MAX)
       return [sure(B.tap), () => { bosGoz.k = pis; har(V.katmanMaliyet('patty')); }];
+    // 3b) fritöz: bekleyen yan ürün siparişi kadar
+    for (const y of yanlar) {
+      if (fr[y].k >= 0) continue;
+      const ist = musteriler.filter(m => !m.yOk && m.yan === y).length;
+      if (ist > ys[y] && ys[y] < V.YAN_STOK_MAX)
+        return [sure(B.tap), () => { fr[y].k = V.yanPisme(up, y); har(V.maliyet([], y)); }];
+    }
     // 4) boş tabağa en acil müşteriyi al (siparişi oku)
     for (let i = 0; i < 2; i++) {
       const tb = tabak[i];
       if (tb.m || tb.yig.length) continue;
-      const m = musteriler.filter(m => m.tb < 0).sort((a, b) => a.p - b.p)[0];
+      const m = musteriler.filter(m => m.tb < 0 && !m.bOk).sort((a, b) => a.p - b.p)[0];
       if (m) { m.tb = i; tb.m = m; return [sure(B.dusun), () => {}]; }
     }
     // 5) en acil müşterinin tabağına sıradaki malzeme
@@ -178,11 +217,16 @@ function oynaGun(d, up, coins, B, R, sahip) {
     for (let i = 0; i < 3; i++) {
       const m = yer[i]; if (!m) continue;
       m.p -= dt;
-      if (m.p <= 0) { yer[i] = null; st.kacan++; seri = 0; can--; }
+      if (m.p <= 0) { yer[i] = null; st.kacan++; seri = 0; can--; for (const tb of tabak) if (tb.m === m) tb.m = null; }
     }
     for (const g of izg) {
       if (g.k > 0) { g.k -= dt; if (g.k <= 0) g.k = 0; }
       if (g.k === 0 && stok < V.STOK_MAX) { stok++; g.k = -1; }
+    }
+    for (const y of yanlar) {
+      const g = fr[y];
+      if (g.k > 0) { g.k -= dt; if (g.k <= 0) g.k = 0; }
+      if (g.k === 0 && ys[y] < V.YAN_STOK_MAX) { ys[y]++; g.k = -1; }
     }
     if (can <= 0) break;
     if (t >= mesgul) {
@@ -240,7 +284,7 @@ function kampanya(B, R) {
       if (al.length) alim.push(d);
     } while (!st.kazandi && deneme < 5);
     ilk.deneme = deneme; ilk.sonundaKazandi = st.kazandi;
-    ilk.coins = o.coins; ilk.upTop = o.up.cook + o.up.pat + o.up.tip + o.up.slot; ilk.mal = o.sahip.length;
+    ilk.coins = o.coins; ilk.upTop = o.up.cook + o.up.pat + o.up.tip + o.up.slot; ilk.mal = o.sahip.length; ilk.goz = V.izgaraGoz(o.up);
     gunler.push(ilk);
   }
   return { gunler, alim };
@@ -280,9 +324,11 @@ const p = x => Math.round(x * 100) + '%';
 
 if (TAVAN) {
   // zorluk tavanı: belli günlerde, bütün malzemeler ya da ilk 4 malzeme, geliştirmesiz / tam geliştirmeli
-  const hep = V.SATIN_SIRA.slice(), dort = V.SATIN_SIRA.slice(0, 4);
-  const tam = { cook: 4, pat: 4, tip: 4, slot: 1 }, yok = { cook: 0, pat: 0, tip: 0, slot: 0 };
-  const durum = [['4 malzeme, geliştirmesiz', dort, yok], ['4 malzeme, tam geliştirme', dort, tam], ['13 malzeme, geliştirmesiz', hep, yok], ['13 malzeme, tam geliştirme', hep, tam]];
+  const hep = V.SATIN_SIRA.slice(), dort = V.SATIN_SIRA.slice(0, 4), yansiz = hep.filter(k => !V.yanMi(k));
+  const tam = { cook: 4, pat: 4, tip: 4, slot: V.GELISTIR.slot.max }, yok = { cook: 0, pat: 0, tip: 0, slot: 0 };
+  const durum = [['4 malzeme, geliştirmesiz', dort, yok], ['4 malzeme, tam geliştirme', dort, tam],
+    [`${yansiz.length} katman (yan ürünsüz), tam gel.`, yansiz, tam],
+    [`${hep.length} malzeme, geliştirmesiz`, hep, yok], [`${hep.length} malzeme, tam geliştirme`, hep, tam]];
   const gunler = [5, 10, 15, 18, 40, 300];
   for (const [k, B] of Object.entries(BECERI)) {
     const R = mulberry(777 + k.length);
@@ -299,7 +345,8 @@ if (TAVAN) {
   }
 } else if (SAAT) {
   const ADLAR = { cheese: 'Peynir', lettuce: 'Marul', tomato: 'Domates', onion: 'Soğan', pickle: 'Turşu', bacon: 'Pastırma', egg: 'Yumurta',
-    sauce: 'Sos', mushroom: 'Mantar', jalapeno: 'Jalapeño', onionring: 'Soğan halkası', avocado: 'Avokado', premium: 'Altın Wagyu (premium)' };
+    sauce: 'Ketçap', mayo: 'Mayonez', mushroom: 'Mantar', jalapeno: 'Jalapeño', fries: 'Patates kızartması (yan)',
+    onionring: 'Soğan halkası (yan)', avocado: 'Avokado', premium: 'Altın Wagyu (premium)' };
   const son_ = V.SATIN_SIRA[V.SATIN_SIRA.length - 1];
   const sonuc = {};
   for (const [k, B] of Object.entries(BECERI)) {
@@ -358,7 +405,7 @@ if (TAVAN) {
         bahsis: ort(g.map(x => x.bahsis)), mutlu: ort(g.map(x => x.mutlu)), somurtkan: ort(g.map(x => x.somurtkan)),
         kizgin: ort(g.map(x => x.kizgin)), kacan: ort(g.map(x => x.kacan)), yanlis: ort(g.map(x => x.yanlis)),
         mutluOran: ort(g.map(x => x.mutlu)) / tes, coins: ort(g.map(x => x.coins)), up: ort(g.map(x => x.upTop)), mal: ort(g.map(x => x.mal)),
-        sure: ort(g.map(x => x.sure)),
+        sure: ort(g.map(x => x.sure)), goz: ort(g.map(x => x.goz)),
       });
     }
     sonuc[k] = { satir, alim: ort(oyun.map(o => o.alim.length)) };
@@ -367,9 +414,9 @@ if (TAVAN) {
     const B = BECERI[k];
     if (MD) {
       console.log(`\n### ${B.ad} oyuncu (dokunuş ${B.tap} sn, sipariş okuma ${B.dusun} sn, sürükleme ${B.surukle} sn, hata %${B.hata * 100})\n`);
-      console.log('| Gün | Müşteri | Kazanma (ilk deneme) | Süre (sn) | Gelir | Gider | Net kâr | Kira | Bahşiş | Mutlu | Somurtkan | Kızgın | Kaçan | Yanlış | Mutlu oranı | Malzeme (alınan) | Geliştirme | Kasa |');
-      console.log('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
-      for (const s of r.satir) console.log(`| ${s.gun} | ${s.musteri} | ${p(s.kazan)} | ${y(s.sure)} | ${y(s.gelir)} | ${y(s.gider)} | ${y(s.net)} | ${y(s.kira)} | ${y(s.bahsis)} | ${y(s.mutlu, 1)} | ${y(s.somurtkan, 1)} | ${y(s.kizgin, 1)} | ${y(s.kacan, 1)} | ${y(s.yanlis, 1)} | ${p(s.mutluOran)} | ${y(s.mal, 1)} | ${y(s.up, 1)} | ${y(s.coins)} |`);
+      console.log('| Gün | Müşteri | Kazanma (ilk deneme) | Süre (sn) | Gelir | Gider | Net kâr | Kira | Bahşiş | Mutlu | Somurtkan | Kızgın | Kaçan | Yanlış | Mutlu oranı | Malzeme (alınan) | Geliştirme | Izgara gözü | Kasa |');
+      console.log('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+      for (const s of r.satir) console.log(`| ${s.gun} | ${s.musteri} | ${p(s.kazan)} | ${y(s.sure)} | ${y(s.gelir)} | ${y(s.gider)} | ${y(s.net)} | ${y(s.kira)} | ${y(s.bahsis)} | ${y(s.mutlu, 1)} | ${y(s.somurtkan, 1)} | ${y(s.kizgin, 1)} | ${y(s.kacan, 1)} | ${y(s.yanlis, 1)} | ${p(s.mutluOran)} | ${y(s.mal, 1)} | ${y(s.up, 1)} | ${y(s.goz, 1)} | ${y(s.coins)} |`);
     } else {
       console.log(`\n== ${B.ad} oyuncu (${N} oyun)`);
       console.log('gün müş kazan sonra  gelir  gider   net kira bahş  mutlu somur kızgn kaçan yanlş  m%  mal   up  kasa süre');
