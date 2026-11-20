@@ -10,13 +10,27 @@
   "kas": 2,
   "goz": 1,
   "burun": 1,
-  "biyik": 0,
+  "biyik": 6,
   "sakal": 3,
   "gozluk": 0,
   "sapka": 0,
   "kiyafet": 3,
   "kRenk": 6,
-  "ek": 3
+  "ek": 0,
+  "ayar": {
+   "kas": {
+    "y": 4,
+    "sy": 0.85
+   },
+   "sapka": {
+    "y": -2.5
+   }
+  },
+  "ozel": {
+   "sacArka": "",
+   "sacOn": "<path d=\"M25 37L33.5 37Q30.5 44 31.5 52Q32.5 58 31 64L26 64Q24.4 50 25 37Z\" fill=\"#e8e6e1\"/><path d=\"M95 37L86.5 37Q89.5 44 88.5 52Q87.5 58 89 64L94 64Q95.6 50 95 37Z\" fill=\"#e8e6e1\"/><path d=\"M28 42v8M92 42v8\" stroke=\"#c3bfb7\" stroke-width=\"1\" stroke-linecap=\"round\"/>",
+   "sapka": "<path d=\"M27.5 34L19 20Q17 15 23 14Q60 5 97 14Q103 15 101 20L92.5 34Z\" fill=\"#fbfbf7\" stroke=\"#d9d6cc\" stroke-width=\"1.2\"/><path d=\"M27 33H93L94 43Q60 40 26 43Z\" fill=\"#1f2a3a\"/><path d=\"M27 37.5H93\" stroke=\"#d4a72c\" stroke-width=\"1.4\"/><path d=\"M26 42.5Q60 39.5 94 42.5C86 47 74 48 60 48C46 48 34 47 26 42.5Z\" fill=\"#141a24\"/><path d=\"M36 44.8Q60 47 84 44.8\" stroke=\"#3a4558\" stroke-width=\"1.2\" fill=\"none\"/><path d=\"M60 27l3.2 3.6l4.6 -1.4l-2 4.4l2 4.4l-4.6 -1.4l-3.2 3.6l-3.2 -3.6l-4.6 1.4l2 -4.4l-2 -4.4l4.6 1.4z\" fill=\"#e6b93a\" stroke=\"#a37d16\" stroke-width=\".8\" transform=\"translate(0 -1) scale(1)\"/>"
+  }
  },
- "not": ""
+ "not": "Kaptan şapkası elle (ozel.sapka): beyaz tepe, lacivert bant, altın şerit ve arma, siper alında; 2,5 birim yukarı ki kaşlar görünsün. Kaşlar 4 aşağı, biraz basık. Varsayılan kapak saç tepeyi örtmüyordu; onun yerine şapkanın altından inen beyaz favoriler (ozel.sacOn) tam sakalla birleşiyor. Arka saç kaldırıldı."
 }

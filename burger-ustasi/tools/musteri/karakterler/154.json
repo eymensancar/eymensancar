@@ -10,13 +10,24 @@
   "kas": 2,
   "goz": 0,
   "burun": 1,
-  "biyik": 0,
+  "biyik": 6,
   "sakal": 3,
   "gozluk": 0,
   "sapka": 1,
   "kiyafet": 2,
   "kRenk": 6,
-  "ek": 3
+  "ek": 0,
+  "ozel": {
+   "ust": "<path d=\"M37.5 55l-3.5 -1.5M37.5 58.5l-3.5 1.5M82.5 55l3.5 -1.5M82.5 58.5l3.5 1.5\" stroke=\"#c98f68\" stroke-width=\"1.2\" stroke-linecap=\"round\"/>",
+   "sacOn": "<path d=\"M31.0 36C26.0 35 22.0 37 21.5 42C19.5 45 21.0 49 23.0 50C21.5 53 22.5 58 25.0 63L31.5 63C32.0 55 30.5 48 31.5 42C32.0 39 32.0 37 31.0 36Z\" fill=\"#e8e6e1\"/><path d=\"M26.0 42q2 3 0 6M28.0 52q1.5 3 0 6\" stroke=\"#c9c6bf\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M89.0 36C94.0 35 98.0 37 98.5 42C100.5 45 99.0 49 97.0 50C98.5 53 97.5 58 95.0 63L88.5 63C88.0 55 89.5 48 88.5 42C88.0 39 88.0 37 89.0 36Z\" fill=\"#e8e6e1\"/><path d=\"M94.0 42q2 3 0 6M92.0 52q1.5 3 0 6\" stroke=\"#c9c6bf\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sapka": "<path d=\"M23 31L16 17Q60 -1 104 17L97 31Z\" fill=\"#fbfaf6\" stroke=\"#d9d4c8\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><path d=\"M24 28H96V37Q60 40 24 37Z\" fill=\"#22304a\"/><path d=\"M29 36Q60 41 91 36Q92 40 85 42Q60 45.5 35 42Q28 40 29 36Z\" fill=\"#141a26\"/><path d=\"M37 39.5Q60 43 83 39.5\" stroke=\"#3b4660\" stroke-width=\"1.2\" fill=\"none\"/><path d=\"M60 25l-5 -6h10z\" fill=\"#f2c94c\" stroke=\"#c9a227\" stroke-width=\".8\"/><circle cx=\"60\" cy=\"23\" r=\"3.2\" fill=\"#f2c94c\" stroke=\"#c9a227\" stroke-width=\".8\"/><path d=\"M28 28.5H92\" stroke=\"#c9a227\" stroke-width=\"1.4\"/>",
+   "sacArka": ""
+  },
+  "ayar": {
+   "kas": {
+    "y": 2.5
+   }
+  }
  },
- "not": ""
+ "not": "Kel; beyaz yan saçlar kaptan şapkasının bandından dalgalı inip tam sakala bağlanır (ozel.sacOn). Kaptan şapkası elle çizildi (beyaz tepe, lacivert bant, siyah siperlik, altın arma; ozel.sapka), siperlik kaşların üstünde biter; gür kaşlar 2,5 aşağı. Alın kırışığı kaşlara çarptığı için kaldırıldı, göz kenarı kırışıkları ozel.ust ile. Beyaz gür bıyık ve tam sakal ağzı açık bırakır."
 }

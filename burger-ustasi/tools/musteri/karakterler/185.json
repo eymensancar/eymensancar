@@ -7,9 +7,9 @@
   "ten": 2,
   "sac": 13,
   "sacRenk": 4,
-  "kas": 2,
+  "kas": 3,
   "goz": 5,
-  "burun": 5,
+  "burun": 7,
   "biyik": 0,
   "sakal": 0,
   "gozluk": 0,
@@ -19,8 +19,8 @@
   "ek": 1,
   "ozel": {
    "sacArka": "<circle cx=\"60\" cy=\"17\" r=\"13\" fill=\"#b5562c\"/><path d=\"M50 13Q58 4 68 11M52 20Q60 14 70 19\" stroke=\"#8d4322\" stroke-width=\"1.4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M53 7Q58 4 63 6\" stroke=\"#c88061\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>",
-   "sacOn": "<path d=\"M25.8 54.8L25.8 53.2L25.8 51.6L25.9 50L26 48.4L26.1 46.8L26.3 45.2L26.5 43.7L26.8 42.1L27.2 40.6L27.7 39.1L28.3 37.6L29 36.2L29.8 34.8L30.7 33.5L31.8 32.2L33 31L34.4 29.9L35.9 28.9L37.5 27.9L39.3 27.1L41.3 26.3L43.4 25.7L45.7 25.1L48.2 24.6L50.8 24.3L53.7 24L56.7 23.9L60 23.8L63.3 23.9L66.3 24L69.2 24.3L71.8 24.6L74.3 25.1L76.6 25.7L78.7 26.3L80.7 27.1L82.5 27.9L84.1 28.9L85.6 29.9L87 31L88.2 32.2L89.3 33.5L90.2 34.8L91 36.2L91.7 37.6L92.3 39.1L92.8 40.6L93.2 42.1L93.5 43.7L93.7 45.2L93.9 46.8L94 48.4L94.1 50L94.2 51.6L94.2 53.2L94.2 54.8L87 52C86 46 72 38 60 38C48 38 34 46 33 52Z\" fill=\"#b5562c\"/><path d=\"M44 40Q50 29 58 25M76 40Q70 29 62 25M36 46Q40 32 50 27M84 46Q80 32 70 27\" stroke=\"#8d4322\" stroke-width=\"1.3\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M51 23Q60 19 69 23\" stroke=\"#3fb6c8\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\"/>",
-   "ust": "<path d=\"M34 51C30 60 35 70 32 76C37 70 36 60 38 51Z\" fill=\"#b5562c\"/><path d=\"M86 51C90 60 85 70 88 76C83 70 84 60 82 51Z\" fill=\"#b5562c\"/>"
+   "sacOn": "<path d=\"M25.8 54.8L25.8 53.2L25.8 51.6L25.9 50L26 48.4L26.1 46.8L26.3 45.2L26.5 43.7L26.8 42.1L27.2 40.6L27.7 39.1L28.3 37.6L29 36.2L29.8 34.8L30.7 33.5L31.8 32.2L33 31L34.4 29.9L35.9 28.9L37.5 27.9L39.3 27.1L41.3 26.3L43.4 25.7L45.7 25.1L48.2 24.6L50.8 24.3L53.7 24L56.7 23.9L60 23.8L63.3 23.9L66.3 24L69.2 24.3L71.8 24.6L74.3 25.1L76.6 25.7L78.7 26.3L80.7 27.1L82.5 27.9L84.1 28.9L85.6 29.9L87 31L88.2 32.2L89.3 33.5L90.2 34.8L91 36.2L91.7 37.6L92.3 39.1L92.8 40.6L93.2 42.1L93.5 43.7L93.7 45.2L93.9 46.8L94 48.4L94.1 50L94.2 51.6L94.2 53.2L94.2 54.8L87 52C86 35 75 31 60 31C45 31 34 35 33 52Z\" fill=\"#b5562c\"/><path d=\"M46 30Q51 27 57 24M74 30Q69 27 63 24M33 48Q36 34 47 26M87 48Q84 34 73 26\" stroke=\"#8d4322\" stroke-width=\"1.3\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M51 23Q60 19 69 23\" stroke=\"#3fb6c8\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "ust": "<path d=\"M33 51C33 57 36 61 34 66C33 61 30 57 30 51Z\" fill=\"#b5562c\"/><path d=\"M87 51C87 57 84 61 86 66C87 61 90 57 90 51Z\" fill=\"#b5562c\"/>"
   }
  },
  "not": "Kalp yüz, kızıl saç geriye taranmış: ön kapak kafanın üst eğrisinden 2,2 birim dışarıda (headPath örnekleriyle), şakakta kulağın üstünde biter; yüksek topuz ve turkuaz saç bandı sacArka; yanaklara inen ince tutamlar ozel.ust."

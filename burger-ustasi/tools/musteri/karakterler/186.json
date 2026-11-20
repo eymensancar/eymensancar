@@ -1,0 +1,32 @@
+{
+ "no": "186",
+ "ad": "Emekli kaptan Rasim dede",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 3,
+  "ten": 1,
+  "sac": 1,
+  "sacRenk": 8,
+  "kas": 2,
+  "goz": 1,
+  "burun": 1,
+  "biyik": 6,
+  "sakal": 3,
+  "gozluk": 0,
+  "sapka": 0,
+  "kiyafet": 2,
+  "kRenk": 6,
+  "ek": 3,
+  "ozel": {
+   "sacOn": "<path d=\"M34 34C28 32 26 42 28 48C25 52 26 56 29 59C27 63 29 66 30 66L34 64Z\" fill=\"#e8e6e1\"/><path d=\"M31 42q2 4 0 8M31 50q2 4 0 8\" stroke=\"#bebdb9\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M86 34C92 32 94 42 92 48C95 52 94 56 91 59C93 63 91 66 90 66L86 64Z\" fill=\"#e8e6e1\"/><path d=\"M89 42q-2 4 0 8M89 50q-2 4 0 8\" stroke=\"#bebdb9\" stroke-width=\"1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sapka": "<path d=\"M31 30C23 22 25 12 50 11C60 10 80 10 95 16C99 20 95 27 89 30Z\" fill=\"#f6f4ee\" stroke=\"#d8d3c6\" stroke-width=\"1.4\"/><path d=\"M30 29Q60 25 90 29L90 38Q60 34 30 38Z\" fill=\"#24324a\"/><path d=\"M32 37Q60 33 88 37\" stroke=\"#e0b53a\" stroke-width=\"1.8\" fill=\"none\"/><path d=\"M34 37Q60 32 86 37Q83 43 60 44Q37 43 34 37Z\" fill=\"#14161c\"/><path d=\"M48 40Q60 38 68 39\" stroke=\"#fff\" stroke-width=\"1.2\" opacity=\".35\" fill=\"none\"/><path d=\"M60 25l3.5 3.5l-3.5 3.5l-3.5 -3.5z\" fill=\"#e0b53a\"/><path d=\"M53 30q3 -3 5 0M67 30q-3 -3 -5 0\" stroke=\"#e0b53a\" stroke-width=\"1.4\" fill=\"none\"/>",
+   "sakal": "<path d=\"M28 60C28 80.35 27 103 60 105C93 103 92 80.35 92 60L87 61C85 68 78 70 76 72C76 94 44 94 44 72C42 70 35 68 33 61Z\" fill=\"#e8e6e1\"/><path d=\"M50 98l2 4M60 100v4M70 98l-2 4M35 74l2 3M85 74l-2 3\" stroke=\"#bebdb9\" stroke-width=\"1.1\" stroke-linecap=\"round\"/>"
+  },
+  "ayar": {
+   "sapka": {
+    "y": -6
+   }
+  }
+ },
+ "not": "Kaptan şapkası elle (beyaz tepe, lacivert bant, altın kordon ve arma, siyah siper; alında, kaşların üstünde). Beyaz yan saçlar şapkanın altından şakaklardan inip tam sakala bağlanır; gür beyaz bıyık, kırışıklar."
+}

@@ -1,0 +1,33 @@
+{
+ "no": 147,
+ "ad": "Kaykaycı Melodi",
+ "m": {
+  "cinsiyet": 0,
+  "yuz": 1,
+  "ten": 6,
+  "sac": 14,
+  "sacRenk": 1,
+  "kas": 1,
+  "goz": 2,
+  "burun": 5,
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 7,
+  "kiyafet": 0,
+  "kRenk": 2,
+  "ek": 1,
+  "ozel": {
+   "alt": "<ellipse cx=\"60\" cy=\"29\" rx=\"24\" ry=\"6\" fill=\"#d39a1e\"/>",
+   "sacArka": "<path d=\"M30 48Q20 54 23 64L31 62Z\" fill=\"#3b2a20\"/><ellipse cx=\"23\" cy=\"60\" rx=\"6.2\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M20 59q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"22.7\" cy=\"68.5\" rx=\"5.9\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M19.7 67.5q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"22.4\" cy=\"77\" rx=\"5.5\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M19.4 76q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"22.1\" cy=\"85.5\" rx=\"5.2\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M19.1 84.5q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"21.8\" cy=\"94\" rx=\"4.8\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M18.8 93q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"21.5\" cy=\"102.5\" rx=\"4.5\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M18.5 101.5q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><rect x=\"17.2\" y=\"109\" width=\"8\" height=\"5\" rx=\"2\" fill=\"#2fa36b\"/><path d=\"M18.7 114l-1 6h7l-1 -6z\" fill=\"#3b2a20\"/><path d=\"M90 48Q100 54 97 64L89 62Z\" fill=\"#3b2a20\"/><ellipse cx=\"97\" cy=\"60\" rx=\"6.2\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M94 59q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"97.3\" cy=\"68.5\" rx=\"5.9\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M94.3 67.5q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"97.6\" cy=\"77\" rx=\"5.5\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M94.6 76q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"97.9\" cy=\"85.5\" rx=\"5.2\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M94.9 84.5q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"98.2\" cy=\"94\" rx=\"4.8\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M95.2 93q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><ellipse cx=\"98.5\" cy=\"102.5\" rx=\"4.5\" ry=\"5.6\" fill=\"#3b2a20\" stroke=\"#2a1d16\" stroke-width=\"1.2\"/><path d=\"M95.5 101.5q3 3 6 0\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/><rect x=\"94.8\" y=\"109\" width=\"8\" height=\"5\" rx=\"2\" fill=\"#2fa36b\"/><path d=\"M96.3 114l-1 6h7l-1 -6z\" fill=\"#3b2a20\"/>",
+   "sacOn": "<path d=\"M23.4 62L23.4 60.7L23.4 59.3L23.5 58L23.6 56.7L23.7 55.4L23.8 54.1L23.9 52.8L24.1 51.5L24.4 50.2L24.6 49L24.9 47.7L25.2 46.5L25.6 45.3L26 44.1L26.5 43L27 41.9L27.6 40.8L28.2 39.7L28.9 38.6L29.6 37.6L30.4 36.6L31.3 35.7L32.2 34.8L33.2 33.9L34.2 33.1L35.4 32.3L36.6 31.5L37.8 30.8L39.2 30.2L40.6 29.5L42.2 29L43.8 28.5L45.5 28L47.2 27.6L49.1 27.2L51.1 26.9L53.2 26.7L55.3 26.5L57.6 26.4L60 26.4L62.4 26.4L64.7 26.5L66.8 26.7L68.9 26.9L70.9 27.2L72.8 27.6L74.5 28L76.2 28.5L77.8 29L79.4 29.5L80.8 30.2L82.2 30.8L83.4 31.5L84.6 32.3L85.8 33.1L86.8 33.9L87.8 34.8L88.7 35.7L89.6 36.6L90.4 37.6L91.1 38.6L91.8 39.7L92.4 40.8L93 41.9L93.5 43L94 44.1L94.4 45.3L94.8 46.5L95.1 47.7L95.4 49L95.6 50.2L95.9 51.5L96.1 52.8L96.2 54.1L96.3 55.4L96.4 56.7L96.5 58L96.6 59.3L96.6 60.7L96.6 62L91 58C89 50 84 44 70 43Q60 46 50 43C36 44 31 50 29 58Z\" fill=\"#3b2a20\"/><path d=\"M33 52q2 -4 6 -7M87 52q-2 -4 -6 -7\" stroke=\"#2a1d16\" stroke-width=\"1\" fill=\"none\"/>",
+   "sapka": "<path d=\"M22.6 62L22.6 60.6L22.6 59.3L22.7 57.9L22.8 56.6L22.9 55.2L23 53.9L23.2 52.6L23.4 51.3L23.6 50L23.9 48.7L24.2 47.4L24.5 46.2L24.9 45L25.3 43.8L25.8 42.6L26.3 41.4L26.9 40.3L27.6 39.2L28.3 38.2L29 37.1L29.8 36.1L30.7 35.2L31.6 34.2L32.6 33.3L33.7 32.5L34.9 31.7L36.1 30.9L37.4 30.2L38.8 29.5L40.2 28.9L41.8 28.3L43.4 27.7L45.1 27.3L47 26.8L48.9 26.5L50.9 26.2L53 25.9L55.2 25.7L57.6 25.6L60 25.6L62.4 25.6L64.8 25.7L67 25.9L69.1 26.2L71.1 26.5L73 26.8L74.9 27.3L76.6 27.7L78.2 28.3L79.8 28.9L81.2 29.5L82.6 30.2L83.9 30.9L85.1 31.7L86.3 32.5L87.4 33.3L88.4 34.2L89.3 35.2L90.2 36.1L91 37.1L91.7 38.2L92.4 39.2L93.1 40.3L93.7 41.4L94.2 42.6L94.7 43.8L95.1 45L95.5 46.2L95.8 47.4L96.1 48.7L96.4 50L96.6 51.3L96.8 52.6L97 53.9L97.1 55.2L97.2 56.6L97.3 57.9L97.4 59.3L97.4 60.6L97.4 62Q60 33 22.6 62Z\" fill=\"#f2b630\"/><path d=\"M22.6 62Q60 33 97.4 62\" stroke=\"#d39a1e\" stroke-width=\"3\" fill=\"none\"/><path d=\"M51 40Q60 27 69 40Z\" fill=\"#3b2a20\"/><path d=\"M51 40Q60 27 69 40\" stroke=\"#d39a1e\" stroke-width=\"2\" fill=\"none\"/><rect x=\"53\" y=\"33\" width=\"14\" height=\"3\" rx=\"1.5\" fill=\"#fff\" opacity=\".9\"/><path d=\"M60 27V30M44 31Q47 38 49 36M76 31Q73 38 71 36\" stroke=\"#d39a1e\" stroke-width=\"1.2\" fill=\"none\"/><circle cx=\"60\" cy=\"26.5\" r=\"2.2\" fill=\"#d39a1e\"/>"
+  },
+  "ayar": {
+   "kas": {
+    "y": 1.5
+   }
+  }
+ },
+ "not": ""
+}

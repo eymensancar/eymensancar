@@ -1,0 +1,41 @@
+{
+ "no": 146,
+ "ad": "Country müzisyeni Cengiz",
+ "m": {
+  "cinsiyet": 1,
+  "yuz": 3,
+  "ten": 3,
+  "sac": 2,
+  "sacRenk": 1,
+  "kas": 1,
+  "goz": 1,
+  "burun": 1,
+  "biyik": 4,
+  "sakal": 6,
+  "gozluk": 0,
+  "sapka": 6,
+  "kiyafet": 1,
+  "kRenk": 1,
+  "ek": 0,
+  "renk": {
+   "kiyafet": "#4f74a8"
+  },
+  "ozel": {
+   "sapka": "<path d=\"M37 37L39.5 12Q47 5 53 10Q60 15 67 10Q73 5 80.5 12L83 37Z\" fill=\"#d9bf8c\"/><path d=\"M53 10Q60 15 67 10Q63 20 60 21Q57 20 53 10Z\" fill=\"#c4a874\"/><rect x=\"38\" y=\"28\" width=\"44\" height=\"5\" fill=\"#6b4226\"/><circle cx=\"74\" cy=\"30.5\" r=\"2\" fill=\"#e8e3d6\"/><path d=\"M10 25Q14 41 60 41Q106 41 110 25Q103 35 60 35Q17 35 10 25Z\" fill=\"#c9ab76\"/><path d=\"M14 30Q24 38 60 38Q96 38 106 30\" stroke=\"#b39561\" stroke-width=\"1.2\" fill=\"none\"/>",
+   "biyik": "<path d=\"M42.5 93V77Q44 69.5 60 71Q76 69.5 77.5 77V93Q75 95 73 93V78Q71 74.5 60 75Q49 74.5 47 78V93Q45 95 42.5 93Z\" fill=\"#3b2a20\"/>"
+  },
+  "ayar": {
+   "kas": {
+    "y": 2.5
+   },
+   "biyik": {
+    "y": 0.5
+   },
+   "burun": {
+    "y": -2,
+    "s": 0.85
+   }
+  }
+ },
+ "not": "Açık renk kovboy şapkası elle çizildi (kıvrık kenar alında, kaşlar 2,5 aşağı ki kenara değmesin); kısa saç şapka altında şakaklarda görünür, favorilerle birleşir. At nalı bıyık elle: kollar ağzın iki yanından iner, hiçbir duyguda ağzı örtmez; bıyık yarım birim aşağı, burun 2 yukarı ve biraz küçük ki üst üste binmesin. Kot gömlek."
+}

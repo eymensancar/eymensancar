@@ -18,11 +18,10 @@
   "kiyafet": 4,
   "kRenk": 6,
   "ozel": {
-   "alt": "<path d=\"M29 32L15 36Q11 41 17 43L29 40Z\" fill=\"#b8352b\"/>",
-   "sakal": "<path d=\"M54 93Q60 91 66 93Q65 99 60 102Q55 99 54 93Z\" fill=\"#1e1a18\"/>",
+   "sakal": "<path d=\"M55 90.8Q60 89.3 65 90.8Q64 96 60 98.5Q56 96 55 90.8Z\" fill=\"#1e1a18\"/>",
    "sacOn": "<path d=\"M24.7 45.2L24.2 46.9L23.8 48.6L23.4 50.3L23.1 52L22.9 53.7L22.7 55.5L22.6 57.2L22.5 58.9L22.5 60.7L22.5 62.5L22.5 63Q26 65 29.5 62.9L29.5 62.9L29.5 61.2L29.5 59.6L29.6 57.6L29.8 55.6L30 53.7L30.2 51.9L30.6 50.1L31 48.4L31.3 47.4Q28 43.2 24.7 45.2Z\" fill=\"#1e1a18\"/><path d=\"M95.3 45.2L95.8 46.9L96.2 48.6L96.6 50.3L96.9 52L97.1 53.7L97.3 55.5L97.4 57.2L97.5 58.9L97.5 60.7L97.5 62.5L97.5 63Q94 65 90.5 62.9L90.5 62.9L90.5 61.2L90.5 59.6L90.4 57.6L90.2 55.6L90 53.7L89.8 51.9L89.4 50.1L89 48.4L88.7 47.4Q92 43.2 95.3 45.2Z\" fill=\"#1e1a18\"/>",
    "sapka": "<path d=\"M22.6 49.2L23 47.5L23.5 45.8L24 44.1L24.7 42.4L25.4 40.8L26.3 39.2L27.3 37.6L28.4 36.1L29.6 34.7L31 33.3L32.4 32.1L34 30.9L35.8 29.8L37.6 28.8L39.1 28.1L40.7 27.5L42.3 26.9L44.1 26.4L45.9 25.9L47.7 25.5L49.7 25.2L51.7 24.9L53.9 24.7L56.1 24.6L58.4 24.5L60 24.5L62.4 24.5L64.7 24.6L66.8 24.8L68.9 25L71 25.3L72.9 25.7L74.7 26.1L76.5 26.5L78.2 27.1L79.8 27.7L81.4 28.3L82.8 29L84.7 30L86.4 31.2L88 32.4L89.4 33.7L90.7 35.1L91.9 36.5L93 38L93.9 39.6L94.8 41.2L95.5 42.8L96.1 44.5L96.7 46.2L97.1 47.9L97.4 49.2C95.4 41 70 39 60 39C50 39 24.6 41 22.6 49.2Z\" fill=\"#e8483b\"/><path d=\"M60 24.5V30M45 27.5Q50 27 48 38M75 27.5Q70 27 72 38\" stroke=\"#b8352b\" stroke-width=\"1\" fill=\"none\"/><circle cx=\"60\" cy=\"25.5\" r=\"2.4\" fill=\"#b8352b\"/><path d=\"M52 39.5V34Q60 27 68 34V39.5Z\" fill=\"#1e1a18\"/><rect x=\"50\" y=\"35\" width=\"20\" height=\"3.6\" rx=\"1.8\" fill=\"#b8352b\"/><rect x=\"57.5\" y=\"34.6\" width=\"5\" height=\"4.4\" rx=\"1\" fill=\"#f2b630\"/>"
   }
  },
- "not": "Ters kep elle: kafayı saran kırmızı tepe, önde ayar kayışı ve açıklıktan görünen saç; siper başın arkasından sola taşar (ozel.alt). Altında kısa favoriler; keçi sakal elle küçültüldü (dudak altından çenenin hemen altına, gülerken ağza değmez); uykulu gözler, koyu kapüşonlu."
+ "not": "Ters kep elle: kafayı saran kırmızı tepe, önde ayar kayışı ve açıklıktan görünen saç (siper arkada kaldığı için önden görünmez; yandan taşan siper kaldırıldı). Altında kısa favoriler; keçi sakal elle küçültülüp çeneye çekildi (dudak altından çene ucuna, boyna sarkmaz, gülerken ağza değmez); uykulu gözler, koyu kapüşonlu."
 }
