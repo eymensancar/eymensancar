@@ -187,12 +187,38 @@ function moodFx(e,F){const {yT,yM,wM}=F;
   if(e==='love')return `<path class="hb" d="M${60+wM+4} ${yT+6}l-5 -5a3 3 0 0 1 5 -3.3a3 3 0 0 1 5 3.3z" fill="#e8384f"/>`;
   return ''}
 
-function draw(m,e='wait'){const F=FACES[m.yuz],skin=SKIN[m.ten],hc=HAIRC[m.sacRenk],cc=CLOTHC[m.kRenk];
+/* Elle ayar (her karakterin kendi düzeltmesi):
+   m.ayar[katman] = {x, y, s, sx, sy, r}: katmanı çapa noktasına göre kaydır (x, y), büyüt (s ya da sx/sy), döndür (r derece).
+   m.ozel[katman] = '<path …/>': o katmanın çizimini tamamen değiştir (ayar yine uygulanır). m.ozel.alt / m.ozel.ust: başın altına / en üste ek çizim.
+   m.renk = {sac, ten, kiyafet}: renk numarası yerine doğrudan renk (#rrggbb).
+   Katmanlar ve çapaları: sacArka, sacOn, sapka (tepe), kulak, bas, sakal (çene), agiz, biyik, burun, goz, kas, gozluk, ek (yüz). */
+const LAYERS=['sacArka','kiyafet','kulak','bas','ek','sakal','agiz','biyik','burun','goz','kas','gozluk','sacOn','sapka'];
+function tf(svg,a,ax,ay){if(!a||!svg)return svg;const sx=a.sx!=null?a.sx:a.s!=null?a.s:1,sy=a.sy!=null?a.sy:a.s!=null?a.s:1;
+  return `<g transform="translate(${ax+(a.x||0)} ${ay+(a.y||0)}) rotate(${a.r||0}) scale(${sx} ${sy}) translate(${-ax} ${-ay})">${svg}</g>`}
+function draw(m,e='wait'){const F=FACES[m.yuz],R=m.renk||{},skin=R.ten||SKIN[m.ten],hc=R.sac||HAIRC[m.sacRenk],cc=R.kiyafet||CLOTHC[m.kRenk];
+  const A=m.ayar||{},O=m.ozel||{};
   const ears=`<g fill="${skin}"><ellipse cx="${60-F.wM}" cy="${F.yM}" rx="6" ry="8"/><ellipse cx="${60+F.wM}" cy="${F.yM}" rx="6" ry="8"/></g><path d="M${60-F.wM-1} ${F.yM-3}q-2 3 0 6M${60+F.wM+1} ${F.yM-3}q2 3 0 6" stroke="${dark(skin,.25)}" stroke-width="1.4" fill="none"/>`;
-  const head=`<path d="${headPath(F)}" fill="${skin}"/>`;
-  const browC=m.sacRenk===8?dark(hc,.25):m.sacRenk>=9?HAIRC[1]:hc;
-  const body=hairBack(m.sac,F,hc)+clothes(m.kiyafet,cc,skin)+ears+head+extras(m.ek,F,skin,hc)+cheeks(m.ek,e,F)+beard(m.sakal,F,hc)+mouth(e,F,m.cinsiyet===0)+mustache(m.biyik,F,hc)+nose(m.burun,F,skin)+eyes(m,e,F,skin)+brows(m,e,F,browC)+glasses(m.gozluk,F)+hairFront(m.sac,F,hc)+hat(m.sapka,F,cc);
-  return `<svg viewBox="-4 -14 128 154" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="mu m-${e}">${body}</g>${moodFx(e,F)}</svg>`}
+  const browC=R.sac?hc:m.sacRenk===8?dark(hc,.25):m.sacRenk>=9?HAIRC[1]:hc;
+  const L={
+    sacArka:[()=>hairBack(m.sac,F,hc),60,F.yT],
+    kiyafet:[()=>clothes(m.kiyafet,cc,skin),60,110],
+    kulak:[()=>ears,60,F.yM],
+    bas:[()=>`<path d="${headPath(F)}" fill="${skin}"/>`,60,F.yM],
+    ek:[()=>extras(m.ek,F,skin,hc)+cheeks(m.ek,e,F),60,F.yM],
+    sakal:[()=>beard(m.sakal,F,hc),60,F.yB],
+    agiz:[()=>mouth(e,F,m.cinsiyet===0),60,F.yM+20],
+    biyik:[()=>mustache(m.biyik,F,hc),60,F.yM+14],
+    burun:[()=>nose(m.burun,F,skin),60,F.yM+6],
+    goz:[()=>eyes(m,e,F,skin),60,F.yM-5],
+    kas:[()=>brows(m,e,F,browC),60,F.yM-15],
+    gozluk:[()=>glasses(m.gozluk,F),60,F.yM-5],
+    sacOn:[()=>hairFront(m.sac,F,hc),60,F.yT],
+    sapka:[()=>hat(m.sapka,F,cc),60,F.yT]};
+  let body=O.alt||'';
+  for(const k of LAYERS){const [fn,ax,ay]=L[k];const svg=O[k]!=null?O[k]:fn();body+=tf(svg,A[k],ax,ay)}
+  body+=O.ust||'';
+  return `<svg viewBox="-4 -14 128 154" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="mu m-${e}">${body}</g>${tf(moodFx(e,F),A.sapka&&{y:A.sapka.y},60,F.yT)}</svg>`}
+function anchors(m){const F=FACES[m.yuz];return {sacArka:[60,F.yT],kiyafet:[60,110],kulak:[60,F.yM],bas:[60,F.yM],ek:[60,F.yM],sakal:[60,F.yB],agiz:[60,F.yM+20],biyik:[60,F.yM+14],burun:[60,F.yM+6],goz:[60,F.yM-5],kas:[60,F.yM-15],gozluk:[60,F.yM-5],sacOn:[60,F.yT],sapka:[60,F.yT],face:F}}
 
 /* cinsiyete göre izin verilen seçenekler (adlarla) */
 const ALLOW={
@@ -220,5 +246,5 @@ function random(seed){const r=rng(seed);const m={cinsiyet:r()<.5?0:1};const W=m.
   if(m.sapka&&['afro','ibik','topuz','kabarık','kirpi'].includes(P.sac[m.sac]))m.sapka=0;
   return coerce(m)}
 function total(){return ['kadın','erkek'].reduce((t,g)=>{const m={cinsiyet:P.cinsiyet.indexOf(g)};return t+Object.keys(P).filter(k=>k!=='cinsiyet').reduce((a,k)=>a*allowed(m,k).length,1)},0)}
-window.Musteri={draw,random,PARTS:P,total,allowed,coerce,EMOTIONS:['happy','wait','imp','angry','love','sad']};
+window.Musteri={draw,random,PARTS:P,total,allowed,coerce,LAYERS,anchors,FACES,SKIN,HAIRC,CLOTHC,EMOTIONS:['happy','wait','imp','angry','love','sad']};
 })();
