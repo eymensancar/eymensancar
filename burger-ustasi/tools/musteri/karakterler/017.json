@@ -7,7 +7,7 @@
   "ten": 6,
   "sac": 6,
   "sacRenk": 7,
-  "kas": 2,
+  "kas": 1,
   "goz": 0,
   "burun": 3,
   "biyik": 6,
@@ -16,7 +16,32 @@
   "sapka": 3,
   "kiyafet": 1,
   "kRenk": 2,
-  "ek": 3
+  "ek": 0,
+  "renk": {
+   "sac": "#a9a69f"
+  },
+  "ozel": {
+   "sacOn": "<circle cx=\"33.8\" cy=\"38\" r=\"5\" fill=\"#a9a69f\"/><path d=\"M32.2 37.5a1.8 1.8 0 1 1 2.6 1.4\" stroke=\"#86827a\" stroke-width=\"1\" fill=\"none\"/><circle cx=\"32.4\" cy=\"45\" r=\"5\" fill=\"#a9a69f\"/><path d=\"M30.8 44.5a1.8 1.8 0 1 1 2.6 1.4\" stroke=\"#86827a\" stroke-width=\"1\" fill=\"none\"/><circle cx=\"31.6\" cy=\"54\" r=\"4.2\" fill=\"#a9a69f\"/><path d=\"M30.0 53.5a1.8 1.8 0 1 1 2.6 1.4\" stroke=\"#86827a\" stroke-width=\"1\" fill=\"none\"/><circle cx=\"86.2\" cy=\"38\" r=\"5\" fill=\"#a9a69f\"/><path d=\"M84.6 37.5a1.8 1.8 0 1 1 2.6 1.4\" stroke=\"#86827a\" stroke-width=\"1\" fill=\"none\"/><circle cx=\"87.6\" cy=\"45\" r=\"5\" fill=\"#a9a69f\"/><path d=\"M86.0 44.5a1.8 1.8 0 1 1 2.6 1.4\" stroke=\"#86827a\" stroke-width=\"1\" fill=\"none\"/><circle cx=\"88.4\" cy=\"54\" r=\"4.2\" fill=\"#a9a69f\"/><path d=\"M86.8 53.5a1.8 1.8 0 1 1 2.6 1.4\" stroke=\"#86827a\" stroke-width=\"1\" fill=\"none\"/>",
+   "ust": "<path d=\"M38 53l-3 -1.5M38 57l-3 1M82 53l3 -1.5M82 57l3 1M43 72q-3 6 -1 10M77 72q3 6 1 10\" stroke=\"#5f3924\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "",
+   "sapka": "<ellipse cx=\"60\" cy=\"31\" rx=\"43\" ry=\"6\" fill=\"#4e3f30\"/><path d=\"M35 30L37 9Q60 15 83 9L85 30Z\" fill=\"#6f5a45\"/><path d=\"M54 12Q60 16 66 12\" stroke=\"#4e3f30\" stroke-width=\"1.4\" fill=\"none\"/><rect x=\"35\" y=\"22\" width=\"50\" height=\"5\" fill=\"#3b2c20\"/><path d=\"M17 31A43 6 0 0 0 103 31Q60 27.5 17 31Z\" fill=\"#5b4a39\"/>"
+  },
+  "ayar": {
+   "sapka": {
+    "y": 2.5,
+    "sx": 1.04
+   },
+   "kas": {
+    "y": 2
+   },
+   "biyik": {
+    "sy": 0.8,
+    "y": 0.5
+   },
+   "agiz": {
+    "y": 2
+   }
+  }
  },
- "not": ""
+ "not": "Kahverengi fötr şapka elle (kıyafetten ayrı renk), alına oturtuldu; kaşlar 2 aşağı ki şapka kenarına değmesin; arkadaki kıvırcık bulut kaldırıldı (şapkanın üstünden taşıyordu); altından şakaklarda kır kıvırcık tutamlar (ozel.sacOn); gür kır bıyık basık, ağız 2 aşağı ki örtülmesin; kırışıklar ozel.ust."
 }

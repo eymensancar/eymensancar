@@ -1,0 +1,31 @@
+{
+ "no": 127,
+ "ad": "Hatice nine",
+ "m": {
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 4,
+  "sapka": 0,
+  "ek": 0,
+  "cinsiyet": 0,
+  "yuz": 5,
+  "ten": 1,
+  "sac": 6,
+  "sacRenk": 8,
+  "kas": 0,
+  "goz": 2,
+  "burun": 1,
+  "kiyafet": 2,
+  "kRenk": 9,
+  "renk": {
+   "sac": "#a9a59c"
+  },
+  "ozel": {
+   "sacArka": "",
+   "sacOn": "<path d=\"M24.1 59.4L23.2 57.5L22.6 55.5L22.5 53.6L23 51.7L24 50L25.5 48.5L26.4 46.9L26.2 44.8L26.3 42.8L27 41L28.2 39.5L29.9 38.3L31.9 37.5L32.8 35.8L33.5 33.8L34.6 32L36.2 30.7L38.1 29.9L40.3 29.6L42.6 29.6L44 27.8L45.8 26.2L47.8 25.2L49.5 24.8L51.4 25L53.3 25.7L55.1 25.9L56.8 24.7L58.7 23.9L60 23.6L62 23.9L63.8 24.7L65.5 25.9L67.3 25.8L69.2 25.2L71 25L72.7 25.3L74.7 26.4L76.4 28L77.9 29.8L80.1 29.8L82.3 30.2L84.2 31L85.8 32.4L86.8 34.1L87.5 36.2L88.4 37.8L90.3 38.7L92 39.9L93.2 41.4L93.9 43.3L94 45.3L93.7 47.4L94.7 49L96.1 50.5L97.1 52.2L97.6 54L97.5 56L96.8 57.9L95.9 59.4Q92.6 61.9 89.4 59.9L89.4 59.9L89.2 57.9L88.9 56L88.6 54.1L88.1 52.3L87.5 50.5L87.1 49.4C85.1 43 70 38 60 38C50 38 34.9 43 32.9 49.4L32.9 49.4L32.2 51.2L31.7 53L31.3 54.9L31 56.8L30.7 58.7L30.6 59.9Q27.4 61.9 24.1 59.4Z\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/><circle cx=\"38.0\" cy=\"39.2\" r=\"5\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/><circle cx=\"45.3\" cy=\"37.8\" r=\"5\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/><circle cx=\"52.7\" cy=\"36.4\" r=\"5\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/><circle cx=\"60.0\" cy=\"35.0\" r=\"5\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/><circle cx=\"67.3\" cy=\"36.4\" r=\"5\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/><circle cx=\"74.7\" cy=\"37.8\" r=\"5\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/><circle cx=\"82.0\" cy=\"39.2\" r=\"5\" fill=\"#e4e1da\" stroke=\"#bdb9b0\" stroke-width=\"1\"/>",
+   "ust": "<path d=\"M37 56l-3 -1.2M37 60l-3 1M83 56l3 -1.2M83 60l3 1M43 76q-3 5 -1 9M77 76q3 5 1 9\" stroke=\"#c9a58d\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "gozluk": "<path d=\"M40 59h16q0 6 -8 6t-8 -6zM64 59h16q0 6 -8 6t-8 -6z\" fill=\"#fff\" fill-opacity=\".2\" stroke=\"#2a1f1a\" stroke-width=\"2\"/><path d=\"M56 59h8M40 59.5L29 56M80 59.5L91 56\" stroke=\"#2a1f1a\" stroke-width=\"2\" fill=\"none\"/>"
+  }
+ },
+ "not": "Beyaz kısa perma elle: kafa çizgisini saran kabarık kenarlı kapak, alında bukleler (kaşların üstünde biter); arkadaki hazır kıvırcık bulut kaldırıldı. renk.sac gri tutuldu ki kaşlar görünsün. Yarım gözlüğe kulağa giden saplar eklendi. Alın kırışıkları kaşlarla çakıştığı için hazır kırışık yerine göz kenarı ve gülme çizgileri ozel.ust ile."
+}

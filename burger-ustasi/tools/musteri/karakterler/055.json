@@ -1,0 +1,38 @@
+{
+ "no": 55,
+ "ad": "Emekli Hüseyin dede",
+ "m": {
+  "biyik": 6,
+  "sakal": 0,
+  "gozluk": 4,
+  "sapka": 0,
+  "ek": 0,
+  "cinsiyet": 1,
+  "yuz": 5,
+  "ten": 2,
+  "sac": 1,
+  "sacRenk": 8,
+  "kas": 1,
+  "goz": 4,
+  "burun": 1,
+  "kiyafet": 2,
+  "kRenk": 2,
+  "ozel": {
+   "sacArka": "<path d=\"M33 41C23 41 18 51 19 61C19 68 22 73 26 74C24 67 28 51 33 47Z\" fill=\"#e8e6e1\"/><path d=\"M26 46q-5 5 -5 12M23 49q-3 6 -2 14\" stroke=\"#c5c4bf\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M87 41C97 41 102 51 101 61C101 68 98 73 94 74C96 67 92 51 87 47Z\" fill=\"#e8e6e1\"/><path d=\"M94 46q5 5 5 12M97 49q3 6 2 14\" stroke=\"#c5c4bf\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacOn": "<path d=\"M90 44L91 46L91.8 48L92.6 50L93.1 52L93.6 54L94 56L89.1 58L89 56L88.6 54L88.1 52L87.6 50L86.8 48L86 46L85 44ZM30 44L29 46L28.2 48L27.4 50L26.9 52L26.4 54L26 56L30.9 58L31 56L31.4 54L31.9 52L32.4 50L33.2 48L34 46L35 44Z\" fill=\"#e8e6e1\"/><ellipse cx=\"50\" cy=\"38\" rx=\"8\" ry=\"4\" fill=\"#fff\" opacity=\".35\" transform=\"rotate(-20 50 38)\"/>",
+   "ust": "<path d=\"M39 56l-3.5 -1.5M39 59.5l-3.5 1M81 56l3.5 -1.5M81 59.5l3.5 1M51 39q4.5 -1.6 9 0t9 0M44 76q-3 5 -1 9M76 76q3 5 1 9\" stroke=\"#a88468\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\" opacity=\"1\"/>"
+  },
+  "ayar": {
+   "biyik": {
+    "y": 0,
+    "sy": 0.7,
+    "sx": 0.95
+   },
+   "burun": {
+    "y": -1.5,
+    "s": 0.9
+   }
+  }
+ },
+ "not": "Kel; beyaz yan saçlar başın arkasından kulağın üstüne sarılır (ozel.sacArka) ve şakakta ince tutam (ozel.sacOn). Alın kırışıkları kaşların üstüne alındı (ozel.ust); gür beyaz bıyık basık, ağzı örtmez."
+}

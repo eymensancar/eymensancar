@@ -1,0 +1,43 @@
+{
+ "no": 65,
+ "ad": "Çiftlik sahibi Cemal",
+ "m": {
+  "biyik": 4,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 6,
+  "ek": 0,
+  "cinsiyet": 1,
+  "yuz": 4,
+  "ten": 1,
+  "sac": 2,
+  "sacRenk": 2,
+  "kas": 1,
+  "goz": 0,
+  "burun": 3,
+  "kiyafet": 1,
+  "kRenk": 0,
+  "ozel": {
+   "sacOn": "<path d=\"M86 32L88.2 34L89.7 36L90.8 38L91.6 40L92.2 42L92.6 44L92.9 46L93.1 48L93.2 50L93.3 52L93.3 54L87 57L87 55L87 53L87 51L86.9 49L86.7 47L86.5 45L86.1 43L85.6 41L84.9 39L84 37L82.7 35L80.9 33ZM34 32L31.8 34L30.3 36L29.2 38L28.4 40L27.8 42L27.4 44L27.1 46L26.9 48L26.8 50L26.7 52L26.7 54L33 57L33 55L33 53L33 51L33.1 49L33.3 47L33.5 45L33.9 43L34.4 41L35.1 39L36 37L37.3 35L39.1 33Z\" fill=\"#5c3b26\"/>"
+  },
+  "ayar": {
+   "sapka": {
+    "y": -8,
+    "sx": 1.04
+   },
+   "kas": {
+    "y": 1
+   },
+   "burun": {
+    "y": -2,
+    "s": 0.85
+   },
+   "biyik": {
+    "y": -1,
+    "sy": 0.8,
+    "sx": 0.92
+   }
+  }
+ },
+ "not": "Kovboy şapkası alnın üstüne kaldırıldı (kaşlar her duyguda açık), altından kahve favoriler; kanca burun küçültüldü, at nalı bıyık kısaltıldı."
+}

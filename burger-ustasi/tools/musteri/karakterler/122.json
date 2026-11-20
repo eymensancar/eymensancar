@@ -1,0 +1,37 @@
+{
+ "no": 122,
+ "ad": "Emekli albay Necati dede",
+ "m": {
+  "biyik": 3,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "ek": 3,
+  "cinsiyet": 1,
+  "yuz": 2,
+  "ten": 0,
+  "sac": 1,
+  "sacRenk": 7,
+  "kas": 2,
+  "goz": 0,
+  "burun": 3,
+  "kiyafet": 3,
+  "kRenk": 2,
+  "renk": {
+   "kiyafet": "#6f7a45"
+  },
+  "ayar": {
+   "biyik": {
+    "y": -1
+   },
+   "agiz": {
+    "y": 1.5
+   }
+  },
+  "ozel": {
+   "sacArka": "<circle cx=\"31.0\" cy=\"44\" r=\"6\" fill=\"#9aa0a6\"/><circle cx=\"28.0\" cy=\"51\" r=\"7.5\" fill=\"#9aa0a6\"/><circle cx=\"27.0\" cy=\"59\" r=\"7.5\" fill=\"#9aa0a6\"/><circle cx=\"29.0\" cy=\"66\" r=\"6\" fill=\"#9aa0a6\"/><circle cx=\"33.0\" cy=\"40\" r=\"5\" fill=\"#9aa0a6\"/><circle cx=\"89.0\" cy=\"44\" r=\"6\" fill=\"#9aa0a6\"/><circle cx=\"92.0\" cy=\"51\" r=\"7.5\" fill=\"#9aa0a6\"/><circle cx=\"93.0\" cy=\"59\" r=\"7.5\" fill=\"#9aa0a6\"/><circle cx=\"91.0\" cy=\"66\" r=\"6\" fill=\"#9aa0a6\"/><circle cx=\"87.0\" cy=\"40\" r=\"5\" fill=\"#9aa0a6\"/>",
+   "sacOn": "<path d=\"M31.9 37.3L31.4 39.2L31 41.2L30.6 43.1L30.3 45.1L30.1 47.1L29.9 49.1L29.7 51.2L29.6 53.3L29.6 55.3L29.5 57.4L29.5 59.5L29.5 61.3L29.5 61.9Q32.8 63.9 36 61.7L36 61.7L36 60L36 58L36 56L36.1 54L36.2 52.1L36.3 50.2L36.5 48.3L36.7 46.4L37 44.6L37.3 42.8L37.6 41.1L38 39.5L38.1 39.1Q35 35.3 31.9 37.3Z\" fill=\"#9aa0a6\"/><path d=\"M88.1 37.3L88.6 39.2L89 41.2L89.4 43.1L89.7 45.1L89.9 47.1L90.1 49.1L90.3 51.2L90.4 53.3L90.4 55.3L90.5 57.4L90.5 59.5L90.5 61.3L90.5 61.9Q87.2 63.9 84 61.7L84 61.7L84 60L84 58L84 56L83.9 54L83.8 52.1L83.7 50.2L83.5 48.3L83.3 46.4L83 44.6L82.7 42.8L82.4 41.1L82 39.5L81.9 39.1Q85 35.3 88.1 37.3Z\" fill=\"#9aa0a6\"/><path d=\"M33 46q2 4 0 8M87 46q-2 4 0 8\" stroke=\"#7b8085\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><ellipse cx=\"51\" cy=\"27\" rx=\"8\" ry=\"3.6\" fill=\"#fff\" opacity=\".4\" transform=\"rotate(-20 51 27)\"/>"
+  }
+ },
+ "not": "Kel; kulakların arkasında kabarık kır saç bulutları (ozel.sacArka), önde şakaktan kulak altına inen tutamlar (ozel.sacOn), tepede parlama. Pala bıyık 1 yukarı, ağız 1,5 aşağı ki gülerken bıyık ağzı örtmesin; kanca burun, kırışıklar; haki ceket."
+}

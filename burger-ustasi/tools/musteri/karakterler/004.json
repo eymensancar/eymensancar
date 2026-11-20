@@ -1,13 +1,13 @@
 {
  "no": 4,
- "ad": "Aşçı Hasan",
+ "ad": "Aşçı Hasan usta",
  "m": {
   "cinsiyet": 1,
   "yuz": 1,
   "ten": 3,
   "sac": 2,
   "sacRenk": 1,
-  "kas": 2,
+  "kas": 1,
   "goz": 1,
   "burun": 1,
   "biyik": 6,
@@ -16,7 +16,25 @@
   "sapka": 4,
   "kiyafet": 1,
   "kRenk": 7,
-  "ek": 0
+  "ek": 0,
+  "ozel": {
+   "sacOn": "<path d=\"M29.880740654555126 38L24.638683479270355 57Q26.138683479270355 58.5 28.138683479270355 57L35.880740654555126 38Z\" fill=\"#3b2a20\"/><path d=\"M90.11925934544487 38L95.36131652072964 57Q93.86131652072964 58.5 91.86131652072964 57L84.11925934544487 38Z\" fill=\"#3b2a20\"/>"
+  },
+  "ayar": {
+   "kas": {
+    "y": 1.5
+   },
+   "sapka": {
+    "y": -2,
+    "sx": 1.05
+   },
+   "biyik": {
+    "sy": 0.8
+   },
+   "agiz": {
+    "y": 2
+   }
+  }
  },
- "not": ""
+ "not": "Aşçı şapkası alnın üstünde; altından yalnız şakak saçı çıkar (ozel.sacOn); gür bıyık basık, ağız 2 birim aşağıda ki bıyık açık ağzı örtmesin."
 }

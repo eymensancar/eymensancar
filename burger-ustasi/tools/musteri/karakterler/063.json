@@ -1,0 +1,35 @@
+{
+ "no": 63,
+ "ad": "Aşçı Musa",
+ "m": {
+  "biyik": 1,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "ek": 0,
+  "cinsiyet": 1,
+  "yuz": 1,
+  "ten": 7,
+  "sac": 2,
+  "sacRenk": 0,
+  "kas": 1,
+  "goz": 1,
+  "burun": 1,
+  "kiyafet": 1,
+  "kRenk": 7,
+  "ozel": {
+   "sacOn": "<path d=\"M89.1 37L90.7 39L92 41L93.1 43L93.9 45L94.6 47L95.1 49L95.5 51L95.8 53L96 55L96.2 57L96.3 59L90 61L90 59L89.9 57L89.7 55L89.5 53L89.2 51L88.8 49L88.3 47L87.6 45L86.8 43L85.7 41L84.4 39L82.8 37ZM30.9 37L29.3 39L28 41L26.9 43L26.1 45L25.4 47L24.9 49L24.5 51L24.2 53L24 55L23.8 57L23.7 59L30 61L30 59L30.1 57L30.3 55L30.5 53L30.8 51L31.2 49L31.7 47L32.4 45L33.2 43L34.3 41L35.6 39L37.2 37Z\" fill=\"#1e1a18\"/>",
+   "sapka": "<path d=\"M28.6 39V24C19.6 18 25.6 0 46 6C50 -7 70 -7 74 6C94.4 0 100.4 18 91.4 24V39Q60 40.5 28.6 39Z\" fill=\"#fff\" stroke=\"#d9d2c4\" stroke-width=\"1.6\"/><path d=\"M28.6 29Q60 31 91.4 29\" stroke=\"#d9d2c4\" stroke-width=\"1.4\" fill=\"none\"/><path d=\"M50 14v9M60 10v13M70 14v9\" stroke=\"#e6e0d4\" stroke-width=\"1.3\" stroke-linecap=\"round\"/>"
+  },
+  "ayar": {
+   "burun": {
+    "y": -1,
+    "s": 0.9
+   },
+   "kas": {
+    "y": 1
+   }
+  }
+ },
+ "not": "Aşçı şapkası elle çizildi: bandı kafa genişliğinde, alt kenarı alnı izler, kaşların üstünde; altından kısa favoriler."
+}

@@ -1,0 +1,34 @@
+{
+ "no": 132,
+ "ad": "Kahveci Ali dede",
+ "m": {
+  "biyik": 6,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "ek": 3,
+  "cinsiyet": 1,
+  "yuz": 5,
+  "ten": 4,
+  "sac": 1,
+  "sacRenk": 8,
+  "kas": 2,
+  "goz": 4,
+  "burun": 1,
+  "kiyafet": 3,
+  "kRenk": 3,
+  "ayar": {
+   "biyik": {
+    "y": -0.5,
+    "sy": 0.85
+   },
+   "agiz": {
+    "y": 2.5
+   }
+  },
+  "ozel": {
+   "sacOn": "<path d=\"M28.7 44L27.9 45.6L27.3 47.3L26.7 48.9L26.1 50.6L25.7 52.4L25.3 54.1L25 55.9L24.8 57.6L24.6 59.4L24.5 61.2L24.5 63L24.5 64.9L24.5 66.9Q28.3 68.9 32 66.7L32 66.7L32 64.9L32 63L32 61.1L32.2 59.2L32.4 57.4L32.7 55.5L33.1 53.7L33.6 52L34.1 50.3L34.8 48.6L35.4 47.4Q32 42 28.7 44Z\" fill=\"#e8e6e1\"/><path d=\"M91.3 44L92.1 45.6L92.7 47.3L93.3 48.9L93.9 50.6L94.3 52.4L94.7 54.1L95 55.9L95.2 57.6L95.4 59.4L95.5 61.2L95.5 63L95.5 64.9L95.5 66.9Q91.7 68.9 88 66.7L88 66.7L88 64.9L88 63L88 61.1L87.8 59.2L87.6 57.4L87.3 55.5L86.9 53.7L86.4 52L85.9 50.3L85.2 48.6L84.6 47.4Q88 42 91.3 44Z\" fill=\"#e8e6e1\"/><path d=\"M28 51q2 5 0 10M92 51q-2 5 0 10\" stroke=\"#bab8b4\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/><ellipse cx=\"52\" cy=\"36\" rx=\"7\" ry=\"3.2\" fill=\"#fff\" opacity=\".35\" transform=\"rotate(-20 52 36)\"/>"
+  }
+ },
+ "not": "Kel; yanlarda kafa çizgisini izleyen beyaz saç tutamları, tepede parlama. Gür beyaz bıyık basık ve yarım birim yukarı, ağız 2,5 aşağı ki gülerken ağız açık kalsın; patates burun, uykulu gözler, kırışıklar."
+}

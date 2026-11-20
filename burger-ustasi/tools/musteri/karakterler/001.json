@@ -16,7 +16,15 @@
   "sapka": 0,
   "kiyafet": 2,
   "kRenk": 4,
-  "ek": 3
+  "ek": 0,
+  "renk": {
+   "sac": "#a9a59c"
+  },
+  "ozel": {
+   "sacOn": "<path d=\"M26.6 49L26.7 47.7L27 46.3L27.2 45L27.5 43.6L27.8 42.3L28.2 41L28.6 39.8L29 38.5L29.5 37.3L30.1 36.1L30.7 34.9L31.4 33.8L32.1 32.6L32.9 31.6L33.7 30.5L34.6 29.5L35.6 28.6L36.7 27.7L37.8 26.8L39 26L40.3 25.3L41.6 24.6L43 23.9L44.6 23.3L46.2 22.8L47.9 22.3L49.6 21.9L51.5 21.6L53.5 21.3L55.6 21.2L57.7 21L60 21L60 21L62.3 21L64.4 21.2L66.5 21.3L68.5 21.6L70.4 21.9L72.1 22.3L73.8 22.8L75.4 23.3L77 23.9L78.4 24.6L79.7 25.3L81 26L82.2 26.8L83.3 27.7L84.4 28.6L85.4 29.5L86.3 30.5L87.1 31.6L87.9 32.6L88.6 33.8L89.3 34.9L89.9 36.1L90.5 37.3L91 38.5L91.4 39.8L91.8 41L92.2 42.3L92.5 43.6L92.8 45L93 46.3L93.3 47.7L93.4 49L91.8 52.5L91.4 55L87.9 55.5L86.3 43L84.5 42L82.8 41L81 40.1L79.3 39.3L77.5 38.6L75.8 37.9L74 37.3L72.3 36.7L70.5 36.3L68.8 35.9L67 35.6L65.3 35.3L63.5 35.1L61.8 35L60 35L58.2 35L56.5 35.1L54.7 35.3L53 35.6L51.2 35.9L49.5 36.3L47.7 36.7L46 37.3L44.2 37.9L42.5 38.6L40.7 39.3L39 40.1L37.2 41L35.5 42L33.7 43L33.7 43L32.1 55.5L28.6 55L28.2 52.5Z\" fill=\"#e4e1da\"/><path d=\"M40 40Q44 30 56 25.5M48 36Q52 29 58 25M80 40Q76 30 64 25.5M72 36Q68 29 62 25\" stroke=\"#b2b0aa\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "sacArka": "<circle cx=\"60\" cy=\"16\" r=\"13\" fill=\"#e4e1da\"/><path d=\"M51 11q9 -6 18 0M50 17q10 -5 20 0\" stroke=\"#b2b0aa\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>",
+   "ust": "<path d=\"M38 52l-3 -1.5M38 56l-3 1M82 52l3 -1.5M82 56l3 1M44 73q-3 5 -1 9M76 73q3 5 1 9\" stroke=\"#b39682\" stroke-width=\"1.1\" fill=\"none\" stroke-linecap=\"round\"/>"
+  }
  },
- "not": ""
+ "not": "Beyaz saç kendi kapağıyla çizildi (kafa tepesini tam örter, alın çizgisi kaşların üstünde, topuza giden teller); topuz ozel.sacArka; renk.sac gri tutuldu ki kaşlar görünsün; kırışıklar ozel.ust ile göz kenarı ve gülme çizgisi."
 }

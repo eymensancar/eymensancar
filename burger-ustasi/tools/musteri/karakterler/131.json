@@ -1,0 +1,26 @@
+{
+ "no": 131,
+ "ad": "Öğrenci Ayşegül",
+ "m": {
+  "biyik": 0,
+  "sakal": 0,
+  "gozluk": 0,
+  "sapka": 0,
+  "ek": 0,
+  "cinsiyet": 0,
+  "yuz": 1,
+  "ten": 5,
+  "sac": 14,
+  "sacRenk": 0,
+  "kas": 0,
+  "goz": 3,
+  "burun": 5,
+  "kiyafet": 0,
+  "kRenk": 3,
+  "ozel": {
+   "sacArka": "<ellipse cx=\"24.0\" cy=\"60\" rx=\"6.20\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"23.4\" cy=\"68.5\" rx=\"5.85\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"22.8\" cy=\"77\" rx=\"5.50\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"22.2\" cy=\"85.5\" rx=\"5.15\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"21.6\" cy=\"94\" rx=\"4.80\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"21.0\" cy=\"102.5\" rx=\"4.45\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><path d=\"M18.4 108q2 6 0 9M22.4 108q-2 6 0 9\" stroke=\"#1e1a18\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\"/><circle cx=\"20.4\" cy=\"107\" r=\"3.4\" fill=\"#e8483b\"/><ellipse cx=\"96.0\" cy=\"60\" rx=\"6.20\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"96.6\" cy=\"68.5\" rx=\"5.85\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"97.2\" cy=\"77\" rx=\"5.50\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"97.8\" cy=\"85.5\" rx=\"5.15\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"98.4\" cy=\"94\" rx=\"4.80\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><ellipse cx=\"99.0\" cy=\"102.5\" rx=\"4.45\" ry=\"5.6\" fill=\"#1e1a18\" stroke=\"#4a3a33\" stroke-width=\"1.2\"/><path d=\"M97.6 108q2 6 0 9M101.6 108q-2 6 0 9\" stroke=\"#1e1a18\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\"/><circle cx=\"99.6\" cy=\"107\" r=\"3.4\" fill=\"#e8483b\"/>",
+   "sacOn": "<path d=\"M22.5 59.8L22.6 58.1L22.7 56.3L22.8 54.6L23 52.8L23.3 51.1L23.6 49.4L24 47.7L24.4 46L25 44.4L25.6 42.8L26.3 41.2L27.2 39.7L28.1 38.2L29.2 36.8L30.3 35.4L31.6 34.1L33.1 32.9L34.6 31.7L36.3 30.6L38.1 29.7L40 28.8L41.6 28.2L43.2 27.7L44.9 27.2L46.7 26.8L48.6 26.4L50.5 26.1L52.5 25.9L54.7 25.7L56.9 25.6L59.2 25.5L60 25.5L62.3 25.5L64.6 25.6L66.8 25.8L68.8 26L70.8 26.3L72.7 26.6L74.5 27L76.2 27.5L77.9 28L79.5 28.6L81 29.2L82.8 30.1L84.6 31.2L86.2 32.3L87.7 33.5L89 34.7L90.3 36.1L91.4 37.5L92.4 38.9L93.3 40.4L94 42L94.7 43.6L95.3 45.2L95.8 46.9L96.2 48.6L96.6 50.3L96.9 52L97.1 53.7L97.3 55.5L97.4 57.2L97.5 58.9L97.5 59.8Q94.5 62 91.5 60L91.5 60L91.4 58.3L91.3 56.7L91.2 54.8L90.9 52.8L90.6 51L90.2 49.2C89.2 39.2 72 40 60 33C48 40 30.8 39.2 29.8 49.2L29.8 49.2L29.4 51L29.1 52.8L28.8 54.8L28.7 56.7L28.6 58.3L28.5 60Q25.5 62 22.5 59.8Z\" fill=\"#1e1a18\"/><path d=\"M60 26V33\" stroke=\"#4a3a33\" stroke-width=\"1.4\"/>"
+  }
+ },
+ "not": "Ortadan ayrık saç kendi kapağıyla (ayrım çizgisi, şakaklar kulağın üstüne kadar); iki örgü kulak hizasının arkasından omuza iner, kırmızı tokalı; iri gözler, sarı tişört."
+}
