@@ -25,14 +25,14 @@ const FACE=(ten,yanak,ic)=>`<circle cx="24" cy="25" r="18.5" fill="${ten}" ${O}/
 
 const S={
 // altın sikke: kenarı, üstünde kabartma burger işaretimiz, yanında parıltı
-para:`<circle cx="22" cy="27.5" r="17" fill="#c98500" ${O}/><circle cx="22" cy="25" r="17" fill="#ffc21a" ${O}/><circle cx="22" cy="25" r="12.2" fill="none" stroke="#e39a00" stroke-width="2.2"/>`
- +`<g fill="#c47a00"><path d="M13.5 22.6q0-8.6 8.5-8.6t8.5 8.6q0 1.2-1.2 1.2H14.7q-1.2 0-1.2-1.2z"/><path d="M12.6 26.3q2.4-1.6 4.7 0t4.7 0 4.7 0 4.7 0v2.2q-2.4 1.6-4.7 0t-4.7 0-4.7 0-4.7 0z"/><path d="M13.6 30.4h16.8q0 4.4-4 4.4h-8.8q-4 0-4-4.4z"/></g><g fill="#ffe27a"><ellipse cx="19" cy="18.6" rx="1.3" ry=".8"/><ellipse cx="24.4" cy="17.4" rx="1.3" ry=".8"/><ellipse cx="22" cy="21" rx="1.3" ry=".8"/></g>`
+para:`<circle cx="22" cy="28.5" r="17" fill="#d68f00" ${O}/><circle cx="22" cy="25" r="17" fill="#ffc21a" ${O}/><circle cx="22" cy="25" r="12.2" fill="none" stroke="#e39a00" stroke-width="2.2"/>`
+ +`<g fill="#bf7200"><path d="M13.5 22.6q0-8.6 8.5-8.6t8.5 8.6q0 1.2-1.2 1.2H14.7q-1.2 0-1.2-1.2z"/><path d="M12.6 26.3q2.4-1.6 4.7 0t4.7 0 4.7 0 4.7 0v2.2q-2.4 1.6-4.7 0t-4.7 0-4.7 0-4.7 0z"/><path d="M13.6 30.4h16.8q0 4.4-4 4.4h-8.8q-4 0-4-4.4z"/></g><g fill="#ffe27a"><ellipse cx="19" cy="18.6" rx="1.3" ry=".8"/><ellipse cx="24.4" cy="17.4" rx="1.3" ry=".8"/><ellipse cx="22" cy="21" rx="1.3" ry=".8"/></g>`
  +H('M9.5 21q2-7 8.5-9.5')+SPARK(40,9,6),
 
 // yazar kasa: ekranı yukarıda, tuşlar, çekmece; sevimli yuvarlak hatlar
 kasa:`<path d="M21 13v5h6v-5" fill="#9aa0a6" ${O}/><rect x="13.5" y="4.5" width="21" height="10" rx="3" fill="#3cc45a" ${O}/><path d="M18 9.5h5M26 9.5h4" stroke="#c9f5b0" stroke-width="2.4" stroke-linecap="round"/>`
  +`<path d="M10 33l3-13.5q.6-2.5 3-2.5h16q2.4 0 3 2.5L38 33z" fill="#e8483b" ${O}/><path d="M11.4 27h25.2L38 33H10z" fill="#c4352a"/><path d="M10 33l3-13.5q.6-2.5 3-2.5h16q2.4 0 3 2.5L38 33z" fill="none" ${O}/>`
- +`<g fill="#fff4dc" ${O2}><rect x="16" y="20.5" width="4.4" height="3.4" rx="1.2"/><rect x="21.8" y="20.5" width="4.4" height="3.4" rx="1.2"/><rect x="27.6" y="20.5" width="4.4" height="3.4" rx="1.2"/><rect x="15.2" y="26" width="4.4" height="3.4" rx="1.2"/><rect x="21.8" y="26" width="4.4" height="3.4" rx="1.2"/><rect x="28.4" y="26" width="4.4" height="3.4" rx="1.2"/></g>`
+ +`<g fill="#fff4dc"><rect x="15.6" y="20" width="4.8" height="3.6" rx="1.4"/><rect x="21.6" y="20" width="4.8" height="3.6" rx="1.4"/><rect x="27.6" y="20" width="4.8" height="3.6" rx="1.4"/><rect x="14.6" y="26" width="5.2" height="3.6" rx="1.4"/><rect x="21.4" y="26" width="5.2" height="3.6" rx="1.4"/><rect x="28.2" y="26" width="5.2" height="3.6" rx="1.4"/></g>`
  +`<rect x="5" y="33" width="38" height="11" rx="3" fill="#ffc21a" ${O}/><path d="M18 38.5h12" stroke="${K}" stroke-width="3" stroke-linecap="round"/>`
  +H('M17.5 8h0')+H('M14.5 22.5l1-3.6'),
 
@@ -103,10 +103,9 @@ dil:`<circle cx="21" cy="25" r="17" fill="#5fb1f0" ${O}/><path d="M9.5 15.5q5 1 
  +`<path d="M29 29q0-4 4-4h7.5q4 0 4 4v5q0 4-4 4h-3.5l-4 4.5v-4.5q-4 0-4-4z" fill="#fff4dc" ${O}/><path d="M33 35.5l3-7.5 3 7.5M34 33h4" fill="none" stroke="${K}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`+H('M9.5 22q1.2-5 4.6-8'),
 
 // el: yukarıyı gösteren işaret parmağı (rehber); beyaz çizgi film eldiveni
-el:`<path d="M15.5 25V9a4.6 4.6 0 0 1 9.2 0v14" fill="#fff" ${O}/>`
- +`<path d="M11.5 29q0-6.5 6.5-6.5h14.5q6 0 6 6v5q0 8-8 8H19.5q-8 0-8-8z" fill="#fff" ${O}/><path d="M12.5 35q1 6.5 7 6.5h11q7.4 0 7.6-7q-12 3.6-25.6.5z" fill="#e3dccf"/><path d="M11.5 29q0-6.5 6.5-6.5h14.5q6 0 6 6v5q0 8-8 8H19.5q-8 0-8-8z" fill="none" ${O}/>`
- +`<path d="M24.7 22.5q-.2 5 4.3 5t4.5-5M28.9 27.5q0 4.5 4.6 4.5 4.6 0 5-4.5" fill="none" stroke="${K}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 28.5q6-.6 9.5 3.6" fill="none" stroke="${K}" stroke-width="2.4" stroke-linecap="round"/>`
- +`<rect x="14" y="40.5" width="22" height="5.5" rx="2" fill="#e8483b" ${O}/>`+H('M18.4 10.5v8',2.4)+H('M15 27.5q.6-1.4 2-2',2),
+el:`<path d="M16 22V9a4.6 4.6 0 0 1 9.2 0v10.5h7.3a5.4 5.4 0 0 1 5.4 5.4V32q0 9-9 9h-7.6q-9 0-9-9v-5q0-4 3.7-5z" fill="#fff" ${O}/><path d="M12.6 35q1.6 6 8.4 6h7.6q8.2 0 8.9-7.6-12.6 3.6-24.9 1.6z" fill="#e3dccf"/><path d="M16 22V9a4.6 4.6 0 0 1 9.2 0v10.5h7.3a5.4 5.4 0 0 1 5.4 5.4V32q0 9-9 9h-7.6q-9 0-9-9v-5q0-4 3.7-5z" fill="none" ${O}/>`
+ +`<path d="M25.2 19.5v5.5M25.2 26.5h12.6M26.5 32.6h11.2M12.6 28.6q6.4-1 9.4 1.6 1.6 1.4 3.6 1.4" fill="none" stroke="${K}" stroke-width="2.3" stroke-linecap="round"/>`
+ +`<rect x="13.5" y="40.5" width="23" height="5.5" rx="2" fill="#e8483b" ${O}/>`+H('M19.3 10v8',2.4),
 
 'artı':`<path d="M19 6.5h10q2 0 2 2V17h8.5q2 0 2 2v10q0 2-2 2H31v8.5q0 2-2 2H19q-2 0-2-2V31H8.5q-2 0-2-2V19q0-2 2-2H17V8.5q0-2 2-2z" fill="#3cc45a" ${O}/><path d="M7 26.5h34v2.5q0 2-2 2h-8v8.5q0 2-2 2h-8q-2 0-2-2V31H9q-2 0-2-2z" fill="#2a9a44"/><path d="M19 6.5h10q2 0 2 2V17h8.5q2 0 2 2v10q0 2-2 2H31v8.5q0 2-2 2H19q-2 0-2-2V31H8.5q-2 0-2-2V19q0-2 2-2H17V8.5q0-2 2-2z" fill="none" ${O}/>`+H('M20.5 11v6')+H('M11 21h4')
 };

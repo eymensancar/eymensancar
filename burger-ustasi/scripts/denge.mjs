@@ -86,7 +86,7 @@ function oynaGun(d, up, coins, B, R) {
     yer[yer.indexOf(m)] = null;
     Object.assign(tb, { yig: [], inan: [], m: null, hata: false, copa: false });
   }
-  function cope(ti) { st.cop++; Object.assign(tabak[ti], { yig: [], inan: [], m: null, hata: false, copa: false }); }
+  function cope(ti) { st.cop++; if (tabak[ti].m) tabak[ti].m.tb = -1; Object.assign(tabak[ti], { yig: [], inan: [], m: null, hata: false, copa: false }); }
   function koy(ti, k) {
     const tb = tabak[ti];
     if (k === 'bun') { const kat = tb.yig.length ? 'bunTop' : 'bunBot'; tb.yig.push(kat); tb.inan.push(kat); har(V.katmanMaliyet(kat)); return; }
