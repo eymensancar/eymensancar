@@ -3,20 +3,29 @@
  * DOM yok; tarayıcıda window.BU.VERI, Node'da module.exports.
  * Bütün paralar TAM SAYI.
  *
+ * 2. tur (20 Kasım): malzemeler güne göre değil PARAYLA açılır.
+ *   - Başta yalnız ekmek ve köfte. Diğerleri dükkânda SATIN_SIRA sırasıyla
+ *     birer kez alınır (fiyatAc). Sahip olunanlar "sahip" (anahtar dizisi ya da
+ *     {anahtar:true} nesnesi) olarak fonksiyonlara verilir.
+ *   - Yeni oyuncu BASLANGIC (50) parayla başlar. Her gün sonunda kira(gun) düşer.
+ *     Kasa eksiye düşebilir; eksi kasayla satın alma yok; KAPANIS_GUN (3) gün art
+ *     arda eksi kalırsa dükkân kapanır, kasa SIFIRLA (50) olur (alınanlar kalır).
+ *     Bunun hepsi gunSonu() içinde.
+ *
  * Maliyet (malzeme tabağa konunca, köfte ızgaraya konunca kasadan düşer):
- *   köfte 6, pastırma 4, peynir 3, ekmek 2 (alt ekmekte bir kez; üst ekmek bedava),
- *   domates 2, yumurta 2, marul 1, soğan 1, turşu 1.
- * Menü fiyatı: maliyet × 2,25, en yakın 5'e yuvarlanır (en az 15).
- *   Örnek: ekmek+köfte (8) → 20, ekmek+köfte+peynir (11) → 25.
- *   Fiyat oyunun her yerinde aynı: geliştirmeler fiyatı değil bahşişi artırır.
+ *   köfte 6, peynir 3, ekmek 2 (alt ekmekte bir kez; üst ekmek bedava) …
+ *   en pahalısı trüf (premium) 9. Liste MALZEME'de.
+ * Menü fiyatı: alt ekmek + ortadaki her katmanın "satis" değeri toplanır, en
+ *   yakın 5'e yuvarlanır (en az 15). satis SATIN_SIRA boyunca hiç azalmaz:
+ *   sonradan alınan malzeme ortalama siparişi pahalılaştırır (yatırım hissi).
+ *   Örnek: ekmek+köfte → 20, +peynir → 25.
  * Bahşiş (yalnız doğru + mutlu teslimde): fiyatın %8'i (sabır 2/3'teyken) ile
  *   %30'u (sabır tam doluyken) arası, "Cömert bahşiş" her düzeyde +%25,
  *   art arda 3. mutlu teslimden sonra seri payı (+1 … +5). En az 1.
  * Ruh hâli (f = kalan sabır oranı, 0…1):
  *   f > 2/3 mutlu ('happy'), 2/3 ≥ f > 1/3 somurtkan ('wait', f ≤ 0,5'te 'imp'),
  *   f ≤ 1/3 kızgın ('angry'), f = 0 kaçar (oyun tarafı; bir can).
- * Ödeme: doğru+mutlu → fiyat+bahşiş; doğru+somurtkan → fiyat; doğru+kızgın → 0
- *   (malzeme parası boşa gitti = zarar); yanlış → 0 ve bir can.
+ * Zorluk güne göre artar, ZOR_TAVAN gününde durur (300. gün de 40. gün kadar zor).
  * Denge değerleri AYAR içinde; botu (scripts/denge.mjs) çalıştırıp ayarlandı,
  *   sonuçlar docs/DENGE.md.
  */
@@ -24,44 +33,64 @@
   'use strict';
   var BU = root.BU = root.BU || {};
 
+  // k: anahtar, maliyet: porsiyon maliyeti, satis: menü fiyatına katkısı,
+  // fiyatAc: dükkânda satın alma fiyatı (0 = başta açık),
+  // gun: ESKİ (1. tur) açılış günü; yalnız acik(sayı) ve eski kayıt dönüşümü için
+  //   (2. turda gelen malzemelerde 99 = eski düzende hiç yoktu).
   var MALZEME = [
-    { k: 'bun',     gun: 1,  maliyet: 2 },
-    { k: 'patty',   gun: 1,  maliyet: 6 },
-    { k: 'cheese',  gun: 1,  maliyet: 3 },
-    { k: 'lettuce', gun: 2,  maliyet: 1 },
-    { k: 'tomato',  gun: 3,  maliyet: 2 },
-    { k: 'onion',   gun: 5,  maliyet: 1 },
-    { k: 'bacon',   gun: 7,  maliyet: 4 },
-    { k: 'egg',     gun: 9,  maliyet: 2 },
-    { k: 'pickle',  gun: 11, maliyet: 1 }
+    { k: 'bun',       maliyet: 2, satis: 5,  fiyatAc: 0,      gun: 1 },
+    { k: 'patty',     maliyet: 6, satis: 14, fiyatAc: 0,      gun: 1 },
+    { k: 'cheese',    maliyet: 3, satis: 6,  fiyatAc: 30,     gun: 1 },
+    { k: 'lettuce',   maliyet: 1, satis: 6,  fiyatAc: 80,     gun: 2 },
+    { k: 'tomato',    maliyet: 2, satis: 6,  fiyatAc: 160,    gun: 3 },
+    { k: 'onion',     maliyet: 1, satis: 7,  fiyatAc: 500,    gun: 5 },
+    { k: 'pickle',    maliyet: 1, satis: 7,  fiyatAc: 1200,   gun: 11 },
+    { k: 'bacon',     maliyet: 4, satis: 9,  fiyatAc: 2500,   gun: 7 },
+    { k: 'egg',       maliyet: 2, satis: 9,  fiyatAc: 5000,   gun: 9 },
+    { k: 'sauce',     maliyet: 2, satis: 10, fiyatAc: 10000,  gun: 99 },
+    { k: 'mushroom',  maliyet: 3, satis: 12, fiyatAc: 20000,  gun: 99 },
+    { k: 'jalapeno',  maliyet: 3, satis: 13, fiyatAc: 40000,  gun: 99 },
+    { k: 'onionring', maliyet: 4, satis: 15, fiyatAc: 80000,  gun: 99 },
+    { k: 'avocado',   maliyet: 5, satis: 18, fiyatAc: 160000, gun: 99 },
+    { k: 'truffle',   maliyet: 9, satis: 30, fiyatAc: 400000, gun: 99 }
   ];
   var MAL = {};
   MALZEME.forEach(function (m) { MAL[m.k] = m; });
+  // dükkânda gösterim ve satın alma sırası (ekmek, köfte başta açık)
+  var SATIN_SIRA = MALZEME.filter(function (m) { return m.fiyatAc > 0; }).map(function (m) { return m.k; });
+  var TEMEL = ['bun', 'patty'];
+  var YENI_GUN = 99;
 
   // denge ayarları (bot ile ayarlandı)
   var AYAR = {
-    fiyatKat: 2.25, fiyatYuv: 5, fiyatMin: 15,
+    fiyatYuv: 5, fiyatMin: 15,
     bahsisMin: 0.08, bahsisMax: 0.30, bahsisUp: 0.25, seriMax: 5,
     musteri0: 5, musteriMax: 20,
     aralikTaban: 10.5, aralikKatman: 1.6, aralikAdim: 0.38, // gelme aralığının ortası (sn) = taban + katman × beklenen ortadaki katman − adım × (gün − 1)
+    aralikMin: 6,                                         // gelme aralığının ortası en az (sn)
     sabir0: 15.5, sabirAdim: 0.35, sabirMin: 10,            // siparişten bağımsız taban sabır (sn)
     sabirKatman: 3.5,                                     // ekmek dışındaki her katman için ek sabır (sn)
     sabirUp: 0.10,                                        // "Sabırlı müşteri" her düzeyde +%10
     pisme0: 4.0, pismeUp: 0.5,                            // köfte pişme süresi (sn)
     ciftKofte: 6, ciftKofteOlas: 0.25,                    // bu günden sonra çift köfte olasılığı
-    tekrarGun: 10, tekrarOlas: 0.2                        // bu günden sonra başka bir malzeme de iki kez
+    tekrarGun: 10, tekrarOlas: 0.2,                       // bu günden sonra başka bir malzeme de iki kez
+    zorTavan: 40,                                         // bu günden sonra zorluk artmaz
+    kira0: 10, kiraKat: 10                                // kira = kira0 + kiraKat × ⌊√(gün − 1)⌋, 5'e yuvarlı
   };
 
   var STOK_MAX = 6;
   var KAT_MAX = 10;   // bir tabakta en çok katman
+  var BASLANGIC = 50; // yeni oyuncunun parası
+  var KAPANIS_GUN = 3; // art arda bu kadar gün eksi kasa → dükkân kapanır
+  var SIFIRLA = 50;   // kapanınca kasa buna döner
 
   // geliştirme fiyatları düzey düzey (l = şu anki düzey, 0'dan başlar)
   function basamak(a) { return function (l) { l = l | 0; return a[Math.min(l, a.length - 1)]; }; }
   var GELISTIR = {
-    cook: { max: 4, cost: basamak([300, 450, 700, 950]) },   // köfte 0,5 sn daha çabuk pişer
-    pat:  { max: 4, cost: basamak([350, 500, 750, 1000]) },   // müşteri sabrı +%10
-    tip:  { max: 4, cost: basamak([350, 550, 800, 1100]) },  // bahşiş +%25
-    slot: { max: 1, cost: basamak([800]) }                   // 3. ızgara gözü
+    cook: { max: 4, cost: basamak([300, 600, 1200, 2400]) },   // köfte 0,5 sn daha çabuk pişer
+    pat:  { max: 4, cost: basamak([350, 700, 1400, 2800]) },   // müşteri sabrı +%10
+    tip:  { max: 4, cost: basamak([400, 800, 1600, 3200]) },   // bahşiş +%25
+    slot: { max: 1, cost: basamak([1000]) }                    // 3. ızgara gözü
   };
 
   function U(up) {
@@ -71,11 +100,53 @@
   function tam(x) { return Math.round(x); }
   // katman adı → malzeme anahtarı
   function anahtar(k) { return k === 'bunBot' || k === 'bunTop' ? 'bun' : k; }
+  // zorluk günü: tavanda durur
+  function zg(d) { return Math.min(Math.max(1, d | 0), AYAR.zorTavan); }
 
-  function acik(gun) {
-    gun = gun | 0;
-    return MALZEME.filter(function (m) { return m.gun <= gun || m.k === 'bun' || m.k === 'patty'; })
-      .map(function (m) { return m.k; });
+  // sahip: sayı (ESKİ: o güne kadar açılanlar), anahtar dizisi ya da {anahtar:true/sayı} nesnesi.
+  // Dönen dizi MALZEME sırasında; ekmek ve köfte her zaman var.
+  function acik(sahip) {
+    if (typeof sahip === 'number' || typeof sahip === 'string' && sahip !== '' && !isNaN(+sahip)) {
+      var g = +sahip | 0;   // ESKİ davranış: 1. turun günleri
+      return MALZEME.filter(function (m) { return m.fiyatAc === 0 || m.gun <= g && m.gun < YENI_GUN; })
+        .map(function (m) { return m.k; });
+    }
+    var var_ = {};
+    if (Array.isArray(sahip)) sahip.forEach(function (k) { var_[k] = 1; });
+    else if (sahip && typeof sahip === 'object') Object.keys(sahip).forEach(function (k) { if (sahip[k]) var_[k] = 1; });
+    return MALZEME.filter(function (m) { return m.fiyatAc === 0 || var_[m.k]; }).map(function (m) { return m.k; });
+  }
+
+  // eski kayıt dönüşümü: 1. turda o güne kadar açılmış malzemeler (satın alınmış sayılır)
+  function eskiSahip(gun) {
+    return acik(Math.max(1, gun | 0)).filter(function (k) { return TEMEL.indexOf(k) < 0; });
+  }
+  // dükkânda sıradaki alınabilir malzeme (yoksa null)
+  function siradaki(sahip) {
+    var a = acik(sahip);
+    for (var i = 0; i < SATIN_SIRA.length; i++) if (a.indexOf(SATIN_SIRA[i]) < 0) return SATIN_SIRA[i];
+    return null;
+  }
+  function fiyatAc(k) { var m = MAL[k]; return m ? m.fiyatAc : 0; }
+  // satın alınabilir mi: eksi kasayla hiçbir şey alınamaz
+  function alabilir(kasa, fiyat) { kasa = kasa | 0; return kasa >= 0 && kasa >= (fiyat | 0); }
+
+  // gün sonu kirası: 10, 20 (2. gün), 30 (5.), 40 (10.), 50 (17.) … 200 (362.) …
+  function kira(gun) {
+    gun = Math.max(1, gun | 0);
+    var k = AYAR.kira0 + AYAR.kiraKat * Math.floor(Math.sqrt(gun - 1));
+    return (Math.round(k / 5) * 5) | 0;
+  }
+  // gün sonu: kira düşer, eksi kasa sayılır. eksiGun: bugüne kadar art arda eksi kalınan gün.
+  // → {kasa, kira, eksiGun, kapandi}. kapandi true ise kasa SIFIRLA'ya döndü.
+  function gunSonu(kasa, gun, eksiGun) {
+    var kr = kira(gun);
+    var k = (kasa | 0) - kr, e = eksiGun | 0, kap = false;
+    if (k < 0) {
+      e++;
+      if (e >= KAPANIS_GUN) { k = SIFIRLA; e = 0; kap = true; }
+    } else e = 0;
+    return { kasa: k | 0, kira: kr, eksiGun: e, kapandi: kap };
   }
 
   // katman maliyeti: alt ekmek ekmek fiyatı, üst ekmek bedava
@@ -89,10 +160,16 @@
     (katmanlar || []).forEach(function (k) { t += katmanMaliyet(k); });
     return t | 0;
   }
+  function katmanSatis(k) {
+    if (k === 'bunTop') return 0;
+    var m = MAL[anahtar(k)];
+    return m ? m.satis : 0;
+  }
 
   function fiyat(siparis, up) {
-    var c = maliyet(siparis);
-    var p = Math.round(c * AYAR.fiyatKat / AYAR.fiyatYuv) * AYAR.fiyatYuv;
+    var t = 0;
+    (siparis || []).forEach(function (k) { t += katmanSatis(k); });
+    var p = Math.round(t / AYAR.fiyatYuv) * AYAR.fiyatYuv;
     return Math.max(AYAR.fiyatMin, p) | 0;
   }
 
@@ -104,7 +181,7 @@
     var b = fiyat(siparis, up) * oran * (1 + AYAR.bahsisUp * up.tip);
     seri = seri | 0;
     if (seri >= 3) b += Math.min(AYAR.seriMax, seri - 2);
-    return Math.max(1, tam(b));
+    return Math.max(1, tam(b)) | 0;
   }
 
   function ruh(f) {
@@ -147,7 +224,7 @@
 
   function sabirSiparis(siparis, d, up) {
     up = U(up);
-    d = Math.max(1, d | 0);
+    d = zg(d);
     var taban = Math.max(AYAR.sabirMin, AYAR.sabir0 - AYAR.sabirAdim * (d - 1));
     var ek = Math.max(0, (siparis ? siparis.length : 4) - 2) * AYAR.sabirKatman;
     return tam((taban + ek) * (1 + AYAR.sabirUp * up.pat));
@@ -155,41 +232,53 @@
 
   // gün başına ekstra malzeme sayısı [en az, en çok] (köfte dışında)
   function ekstraAralik(d) {
-    return d < 2 ? [0, 1] : d < 5 ? [1, 2] : d < 8 ? [1, 3] : d < 11 ? [2, 3] : d < 17 ? [2, 4] : [3, 4];
+    d = zg(d);
+    return d < 2 ? [0, 1] : d < 5 ? [1, 2] : d < 8 ? [1, 3] : d < 11 ? [2, 3] : d < 17 ? [2, 4] : d < 30 ? [3, 4] : [3, 5];
+  }
+  // havuz: siparişe girebilecek malzemeler (ekmek, köfte hariç)
+  function havuz(g, sahip) {
+    var a = sahip === undefined ? acik(g) : acik(sahip);
+    return a.filter(function (k) { return k !== 'bun' && k !== 'patty'; });
   }
   // bir siparişte ortalama kaç ortadaki katman (köfte + ekstralar + tekrarlar) var
-  function beklenenKatman(d) {
-    var e = ekstraAralik(d), n = Math.min(acik(d).length - 2, (e[0] + e[1]) / 2);
-    return 1 + n + (d >= AYAR.ciftKofte ? AYAR.ciftKofteOlas : 0) + (d >= AYAR.tekrarGun ? AYAR.tekrarOlas : 0);
+  function beklenenKatman(d, sahip) {
+    var e = ekstraAralik(d), n = Math.min(havuz(d, sahip).length, (e[0] + e[1]) / 2);
+    d = zg(d);
+    return 1 + n + (d >= AYAR.ciftKofte ? AYAR.ciftKofteOlas : 0) + (d >= AYAR.tekrarGun && n > 0 ? AYAR.tekrarOlas : 0);
   }
 
-  function gun(d, up) {
+  // gün ayarı. sahip verilmezse eski davranış (o güne kadar açılanlar).
+  function gun(d, up, sahip) {
     up = U(up);
     d = Math.max(1, d | 0);
+    var z = zg(d);
     var ekstra = ekstraAralik(d);
-    var orta = AYAR.aralikTaban + AYAR.aralikKatman * beklenenKatman(d) - AYAR.aralikAdim * (d - 1);
-    var taban = Math.max(AYAR.sabirMin, AYAR.sabir0 - AYAR.sabirAdim * (d - 1));
+    var orta = Math.max(AYAR.aralikMin, AYAR.aralikTaban + AYAR.aralikKatman * beklenenKatman(d, sahip) - AYAR.aralikAdim * (z - 1));
+    var taban = Math.max(AYAR.sabirMin, AYAR.sabir0 - AYAR.sabirAdim * (z - 1));
     return {
       musteri: Math.min(AYAR.musteriMax, AYAR.musteri0 + d),
       aralik: [Math.round(orta * 0.75 * 10) / 10, Math.round(orta * 1.25 * 10) / 10],
       sira: d < 3 ? 2 : 3,
       sabir: tam(taban * (1 + AYAR.sabirUp * up.pat)),
       sabirSiparis: function (siparis) { return sabirSiparis(siparis, d, up); },
-      ekstra: ekstra
+      ekstra: ekstra,
+      kira: kira(d)
     };
   }
 
-  function siparis(g, rastgele) {
+  // sipariş: yalnız sahip olunan malzemelerden (sahip verilmezse eski: o güne kadar açılanlar)
+  function siparis(g, rastgele, sahip) {
     var R = typeof rastgele === 'function' ? rastgele : Math.random;
     g = Math.max(1, g | 0);
+    var z = zg(g);
     var ek = ekstraAralik(g);
-    var havuz = acik(g).filter(function (k) { return k !== 'bun' && k !== 'patty'; });
-    var n = Math.min(havuz.length, ek[0] + Math.floor(R() * (ek[1] - ek[0] + 1)));
+    var h = havuz(g, sahip);
+    var n = Math.min(h.length, ek[0] + Math.floor(R() * (ek[1] - ek[0] + 1)));
     var secilen = [];
-    for (var i = 0; i < n; i++) secilen.push(havuz.splice(Math.floor(R() * havuz.length), 1)[0]);
+    for (var i = 0; i < n; i++) secilen.push(h.splice(Math.floor(R() * h.length), 1)[0]);
     var orta = ['patty'];
-    if (g >= AYAR.ciftKofte && R() < AYAR.ciftKofteOlas) orta.push('patty');
-    if (g >= AYAR.tekrarGun && secilen.length && R() < AYAR.tekrarOlas)
+    if (z >= AYAR.ciftKofte && R() < AYAR.ciftKofteOlas) orta.push('patty');
+    if (z >= AYAR.tekrarGun && secilen.length && R() < AYAR.tekrarOlas)
       secilen.push(secilen[Math.floor(R() * secilen.length)]);
     orta = orta.concat(secilen).slice(0, KAT_MAX - 2);
     if (g > 3) {   // ilk günlerde köfte hep altta; sonra karışık (sıra önemsiz)
@@ -206,8 +295,11 @@
   }
 
   BU.VERI = {
-    MALZEME: MALZEME, STOK_MAX: STOK_MAX, KAT_MAX: KAT_MAX, GELISTIR: GELISTIR, AYAR: AYAR,
-    acik: acik, maliyet: maliyet, katmanMaliyet: katmanMaliyet, fiyat: fiyat, bahsis: bahsis,
+    MALZEME: MALZEME, SATIN_SIRA: SATIN_SIRA, STOK_MAX: STOK_MAX, KAT_MAX: KAT_MAX, GELISTIR: GELISTIR, AYAR: AYAR,
+    BASLANGIC: BASLANGIC, KAPANIS_GUN: KAPANIS_GUN, SIFIRLA: SIFIRLA,
+    acik: acik, eskiSahip: eskiSahip, siradaki: siradaki, fiyatAc: fiyatAc, alabilir: alabilir,
+    kira: kira, gunSonu: gunSonu,
+    maliyet: maliyet, katmanMaliyet: katmanMaliyet, katmanSatis: katmanSatis, fiyat: fiyat, bahsis: bahsis,
     ruh: ruh, yuz: yuz, dogruMu: dogruMu, odeme: odeme, gun: gun, sabirSiparis: sabirSiparis,
     siparis: siparis, pisme: pisme
   };
