@@ -281,7 +281,7 @@ ML = f'<a href="mailto:{MAIL}">{MAIL}</a>'
 # Buradaki her cümle oyunun kodundan doğrulandı (14 Kasım 2026). Oyunda reklam, ölçüm, izin ya da
 # satın alma değişirse ÖNCE bu metin güncellenir. Sayı Yolu yayınlanacak hâline göre yazıldı (Eymen, 14 Kasım):
 # AdMob oraya bu metne uyacak biçimde kurulur (kişiselleştirme yok, takip izni sorulmaz, AB'de onay formu).
-POL_DATE = {'tr': '20 Kasım 2026', 'en': '20 November 2026'}
+POL_DATE = {'tr': '21 Kasım 2026', 'en': '21 November 2026'}
 POL_H = {
  'tr': ['Bizim topladığımız bilgiler', 'Cihazında saklananlar', 'Reklamlar', 'İstatistikler ve hata raporları', 'İzinler ve Apple hizmetleri',
         'Satın almalar ve dış bağlantılar', 'Çocuklar', 'Hakların', 'Değişiklikler', 'İletişim'],
@@ -334,7 +334,7 @@ pol('pyk', {'tr': 'Yıkım Ustası', 'en': 'Demolition Master'}, {
   perm=["Takip izni: yukarıda “Reklamlar” bölümünde anlatıldı.", "Game Center: oyun Apple Game Center'da oturum açmanı isteyebilir. Oturum tamamen Apple tarafından yönetilir; Game Center hesap bilgilerin bize iletilmez.",
         "Bildirimler: izin verirsen oyun hatırlatmaları cihazında planlar. Hatırlatmalar iPhone'un kendisinde oluşturulur; bunun için hiçbir sunucuya bilgi gönderilmez. iPhone Ayarlar → Bildirimler bölümünden kapatabilirsin.",
         'Oyun kamera, mikrofon, fotoğraf, rehber ya da konum izni istemez.'],
-  buy=["Oyunda uygulama içi satın alma vardır. Satın almalar tamamen Apple tarafından App Store üzerinden işlenir. Ödeme bilgilerini biz görmeyiz; oyun yalnızca neyi satın aldığını öğrenir ki içeriği açabilsin.", "Oyundaki bağlantılar App Store'u, bu sitedeki destek sayfasını, YouTube ve Instagram sayfalarımızı ya da iPhone'un paylaşım penceresini açabilir; bu hizmetler kendi gizlilik kurallarına tabidir."],
+  buy=["Oyunda uygulama içi satın alma vardır. Satın almalar tamamen Apple tarafından App Store üzerinden işlenir. Ödeme bilgilerini biz görmeyiz; oyun yalnızca neyi satın aldığını öğrenir ki içeriği açabilsin.", "Oyundaki bağlantılar App Store'u, bu sitedeki destek sayfasını, YouTube ve Instagram sayfalarımızı ya da iPhone'un paylaşım penceresini açabilir; bu hizmetler kendi gizlilik kurallarına tabidir.", "Oyun, kardeş oyunlarımızın (Fenerli Dedektif, Kedi Yuvası, Sayı Yolu) tanıtımını gösterip göstermeyeceğine karar vermek için bu oyunların cihazında yüklü olup olmadığına bakar; başka hiçbir uygulamaya bakmaz. Tanıtımla ne kadar ilgilendiğin (dokunuşlar, oynama süresi) yalnızca cihazında ölçülür, tanıtımın ne sıklıkta çıkacağını ayarlamak için kullanılır ve hiçbir yere gönderilmez."],
   rights=['Kullanım istatistikleri ve hata raporları kimliğinle eşleşmez; uygulamayı silmek kurulum kimliğini sıfırlar.']),
  'en': dict(
   we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The only data that reaches us is the usage statistics and crash reports described below, which are not matched to your identity.',
@@ -348,7 +348,7 @@ pol('pyk', {'tr': 'Yıkım Ustası', 'en': 'Demolition Master'}, {
   perm=['Tracking permission: described under “Ads” above.', 'Game Center: the game may ask you to sign in to Apple Game Center. Sign-in is handled entirely by Apple; your Game Center account details are not shared with us.',
         'Notifications: if you allow them, the game schedules reminders on your device. Reminders are created on the iPhone itself; no information is sent to any server for this. You can turn them off in iPhone Settings → Notifications.',
         'The game does not ask for camera, microphone, photo, contacts or location permission.'],
-  buy=['The game has in-app purchases. Purchases are processed entirely by Apple through the App Store. We never see your payment details; the game only learns what you bought so it can unlock it.', 'Links in the game may open the App Store, the support page on this website, our YouTube and Instagram pages or the iPhone share sheet; those services are subject to their own privacy rules.'],
+  buy=['The game has in-app purchases. Purchases are processed entirely by Apple through the App Store. We never see your payment details; the game only learns what you bought so it can unlock it.', 'Links in the game may open the App Store, the support page on this website, our YouTube and Instagram pages or the iPhone share sheet; those services are subject to their own privacy rules.', "To decide whether to show promotions for our other games (Lantern Detective, Cat Haven, Number Path), the game checks whether those games are installed on your device; it does not check for any other app. How much you interact with a promotion (taps, play time) is measured only on your device, is used to adjust how often promotions appear, and is not sent anywhere."],
   rights=['Usage statistics and crash reports are not matched to your identity, and deleting the app resets the installation ID.']),
 })
 
