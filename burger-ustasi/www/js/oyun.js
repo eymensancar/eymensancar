@@ -153,7 +153,7 @@ function sec(k){if(!aktif())return S.sec;if(!VERI.acik(S.gun).includes(k))return
 
 /* ================= tabaklar ================= */
 function cizTabak(i,yeni){const el=TB[i].querySelector('.yig');const ks=S.tabak[i];
-  el.innerHTML=ks.length?BURGER.yigin(ks,{gen:'23cqw',yukMax:'31cqw',yeni:!!yeni}):'';
+  el.innerHTML=ks.length?BURGER.yigin(ks,{gen:OLC.gen,yukMax:OLC.yuk,yeni:!!yeni}):'';
   TB[i].querySelector('.tno').textContent=t('plate',i+1);
   if(yeni){el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump')}}
 function koy(i){if(!aktif())return false;const ks=S.tabak[i],tb=TB[i],k=S.sec,son=ks[ks.length-1];
@@ -173,7 +173,7 @@ function koy(i){if(!aktif())return false;const ks=S.tabak[i],tb=TB[i],k=S.sec,so
   const kut=tray.querySelector(`[data-k="${k}"] .al`)||tray.querySelector(`[data-k="${k}"]`);
   if(kut){const a=rel(kut),r=rel(tb.querySelector('.yig')),hedef={x:r.cx,y:r.y+r.h-yukseklik(ks)-6*cq()};
     ucur(`<span class="im2">${BURGER.simge(k)}</span>`,{x:a.cx,y:a.cy},hedef,{sure:150,yay:-4,s0:1.2,s1:1,cls:'mal'})}
-  cizTabak(i,true);ses('birak:'+(kat.startsWith('bun')?'bun':kat));tit();rehber();return true}
+  cizTabak(i,true);ses('birak:'+kat);tit();rehber();return true}
 function yukseklik(ks){const y=TB[0].querySelector('.bu-yigin');return y?y.getBoundingClientRect().height:ks.length*4*cq()}
 function harca(n,el){if(!n)return;S.kasa-=n;S.gider+=n;hud();const r=rel(el);yazi(r.cx+5*cq(),r.y+r.h*.35,`−${n}${PARA()}`,'mini')}
 
@@ -251,7 +251,7 @@ function surukleBagla(i){const el=TB[i];
   el.addEventListener('pointercancel',e=>{const d=S.surukle;if(!d||d.id!==e.pointerId)return;S.surukle=null;if(d.drag)geriDon(d)});
   el.addEventListener('lostpointercapture',e=>{const d=S.surukle;if(!d||d.id!==e.pointerId)return;S.surukle=null;if(d.drag)geriDon(d)})}
 function baslat(d){d.drag=true;const tb=TB[d.ti];const yg=tb.querySelector('.bu-yigin');
-  const g=document.createElement('div');g.className='hayalet';g.innerHTML=`<div class="gov">${BURGER.yigin(S.tabak[d.ti],{gen:'23cqw',yukMax:'31cqw',yeni:false})}</div>`;FX.appendChild(g);d.el=g;
+  const g=document.createElement('div');g.className='hayalet';g.innerHTML=`<div class="gov">${BURGER.yigin(S.tabak[d.ti],{gen:OLC.gen,yukMax:OLC.yuk,yeni:false})}</div>`;FX.appendChild(g);d.el=g;
   tb.classList.add('tasiniyor');ses('al');tit();rehberGizle()}
 function tasi(d,e){const a=APP.getBoundingClientRect(),x=e.clientX-a.left,y=e.clientY-a.top;d.x=x;d.y=y;
   const g=d.el,w=g.offsetWidth,h=g.offsetHeight,lift=6*cq();
@@ -380,7 +380,14 @@ $('hMuzik').onclick=()=>{SAVE.ayar.muzik=!SAVE.ayar.muzik;sesAyar();ses('tik');o
 
 /* ================= ekran uyumu ================= */
 // müşteri yüzü sokakta kalan yüksekliğe göre (baloncuk için pay bırakılır)
-function fit(){const st=$('street');const h=st.clientHeight,c=cq();if(!h)return;const yz=Math.max(20*c,Math.min(30*c,(h-24*c)/1.2*.83));APP.style.setProperty('--yz',yz+'px')}
+const OLC={gen:'23cqw',yuk:'31cqw'};
+function fit(){const c=cq(),H=APP.clientHeight;if(!c)return;
+  // uzun ekranda tepsi kutuları biraz uzar
+  APP.style.setProperty('--kh',Math.min(20,Math.max(16,16+(H/c-180)*.12)).toFixed(2)+'cqw');
+  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(20*c,Math.min(32*c,(h-26*c)*.7));APP.style.setProperty('--yz',yz+'px')}
+  const ct=$('counter').clientHeight;if(ct){const gen=Math.min(25*c,(APP.clientWidth-41*c)/2-3*c);OLC.gen=Math.round(gen)+'px';OLC.yuk=Math.round(Math.max(26*c,ct-15*c))+'px';
+    TB.forEach(x=>x.querySelector('.yig').style.width=OLC.gen)}
+  if(S.tabak)[0,1].forEach(i=>cizTabak(i,false))}
 addEventListener('resize',()=>{fit();if(S.on)rehber(true)});
 TB.forEach((_,i)=>surukleBagla(i));
 

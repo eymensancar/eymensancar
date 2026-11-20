@@ -28,7 +28,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .prog{position:relative;z-index:8;margin:0 3cqw;height:2.4cqw;border-radius:2cqw;background:rgba(0,0,0,.2);overflow:hidden;flex:none}
 .prog b{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd84a,#ff9d1a);border-radius:2cqw;transition:width .4s}
 /* ---------- sokak ve müşteriler ---------- */
-.street{position:relative;flex:1 1 auto;min-height:56cqw;z-index:3}
+.street{position:relative;flex:1.4 1 56cqw;min-height:56cqw;z-index:3}
 .street::before{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(#f3d9a6,#e2b877);border-top:1cqw solid #c79a55}
 .street::after{content:"";position:absolute;left:0;right:0;bottom:34%;height:34%;background:linear-gradient(90deg,#b9dff5 0 12%,#a6d2ee 12% 30%,#c4e6f8 30% 47%,#9fcdea 47% 66%,#bfe2f6 66% 83%,#abd6f0 83%);clip-path:polygon(0 40%,12% 40%,12% 10%,30% 10%,30% 55%,47% 55%,47% 0,66% 0,66% 35%,83% 35%,83% 20%,100% 20%,100% 100%,0 100%);opacity:.7}
 .awning{position:absolute;left:-4cqw;right:-4cqw;top:-3cqw;z-index:1;pointer-events:none}
@@ -67,11 +67,11 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 svg .st{animation:mu-rise 1.1s ease-out infinite}svg .st.d2{animation-delay:.37s}svg .st.d3{animation-delay:.74s}
 svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pulse .8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 /* ---------- tezgâh ---------- */
-.counter{position:relative;z-index:4;flex:none;height:52cqw;background:linear-gradient(#b17a2c,#8a5a1c 55%,#6d4410);border-top:1.4cqw solid #4a2c08;box-shadow:inset 0 2cqw 0 rgba(255,255,255,.12),0 -1cqw 2cqw rgba(0,0,0,.18);display:grid;grid-template-columns:22cqw 1fr 1fr 15cqw;gap:1cqw;align-items:center;padding:1.4cqw 2cqw}
+.counter{position:relative;z-index:4;flex:1 1 52cqw;min-height:52cqw;max-height:74cqw;background:linear-gradient(#b17a2c,#8a5a1c 55%,#6d4410);border-top:1.4cqw solid #4a2c08;box-shadow:inset 0 2cqw 0 rgba(255,255,255,.12),0 -1cqw 2cqw rgba(0,0,0,.18);display:grid;grid-template-columns:22cqw 1fr 1fr 15cqw;gap:1cqw;align-items:center;padding:1.4cqw 2cqw}
 .counter::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 10cqw,rgba(0,0,0,.08) 10cqw 10.6cqw);pointer-events:none}
 .grill{position:relative;align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:1.2cqw;background:#3a3d44;border:.8cqw solid #17181c;border-radius:4cqw;padding:1.4cqw 1.2cqw;box-shadow:0 1cqw 0 rgba(0,0,0,.3)}
 .grill small{font-size:2.8cqw;font-weight:800;color:#ffd9a8;letter-spacing:.06em;text-transform:uppercase;line-height:1;text-align:center}
-.gs{position:relative;width:100%;flex:1 1 0;max-height:17cqw;min-height:13.8cqw;border-radius:3cqw;background:repeating-linear-gradient(90deg,#1c1d21 0 1.2cqw,#55585f 1.2cqw 2.1cqw);display:grid;place-items:center;box-shadow:inset 0 0 0 .6cqw #0d0e10;touch-action:manipulation}
+.gs{position:relative;width:100%;flex:1 1 0;max-height:20cqw;min-height:13.8cqw;border-radius:3cqw;background:repeating-linear-gradient(90deg,#1c1d21 0 1.2cqw,#55585f 1.2cqw 2.1cqw);display:grid;place-items:center;box-shadow:inset 0 0 0 .6cqw #0d0e10;touch-action:manipulation}
 .gs::before{content:"";position:absolute;inset:-1cqw}
 .gs .art{width:9cqw;height:9cqw;opacity:.5}
 .gs .art .ic{width:100%;height:100%}
@@ -100,7 +100,7 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .cop.yut{animation:yut .4s ease-out}
 /* ---------- malzeme tepsisi ---------- */
 .tray{position:relative;z-index:6;flex:none;background:#3a2412;border-top:1.2cqw solid #1f1208;padding:2.2cqw 2cqw calc(env(safe-area-inset-bottom,0px) + 2.4cqw);display:flex;flex-wrap:wrap;justify-content:center;gap:2cqw 1.6cqw}
-.ing{position:relative;width:17.6cqw;height:16cqw;border-radius:3.6cqw;background:var(--cream);border:.7cqw solid var(--ink);box-shadow:0 1.1cqw 0 #170d05;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2cqw;transition:transform .12s,box-shadow .12s,background .15s;touch-action:manipulation}
+.ing{position:relative;width:17.6cqw;height:var(--kh,16cqw);border-radius:3.6cqw;background:var(--cream);border:.7cqw solid var(--ink);box-shadow:0 1.1cqw 0 #170d05;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2cqw;transition:transform .12s,box-shadow .12s,background .15s;touch-action:manipulation}
 .ing .im{width:10.6cqw;height:10.6cqw;display:grid;place-items:center;transition:opacity .15s,transform .15s}
 .ing .im>*{width:100%;height:100%;max-width:100%;max-height:100%}
 .ing .im img,.ing .im svg{width:100%;height:100%;object-fit:contain}
