@@ -290,7 +290,7 @@ function ekmekDolabi(o){const id='bu-m'+(++UID);
    (o&&o.arka===false?'':`<rect width="200" height="140" rx="8" fill="url(#${id}a)"/><rect width="200" height="140" rx="8" fill="url(#${id}b)"/>`)+
    `<rect x="22" y="3" width="156" height="6" rx="3" fill="#fffbe8" stroke="${K}" stroke-width="1.6"/>`+
    raf(70)+ekmekUst(36,64,60)+ekmekUst(100,64,60)+ekmekUst(164,64,60)+
-   raf(130)+ekmekAlt(36,125,60)+ekmekAlt(100,125,60)+ekmekAlt(164,125,60)+
+   raf(133)+ekmekAlt(36,128,60)+ekmekAlt(100,128,60)+ekmekAlt(164,128,60)+
    (o&&o.arka===false?'':`<rect width="200" height="140" rx="8" fill="url(#${id}s)"/>`)+'</svg>'}
 
 // ---- sos kâseleri (viewBox 0 0 200 120) ve kaşık sapı (viewBox 0 0 200 200, alttaki 200×120 kâseyle çakışır) ----
@@ -302,7 +302,6 @@ function sosIc(k){const c=SOS[k]||SOS.sauce;
    Ls('M34 80Q60 98 104 96Q150 94 164 72Q168 56 140 48Q104 40 74 50Q56 58 66 70Q80 82 110 78Q134 74 128 60Q120 52 104 54',c.k,3.2)+
    Ls('M30 66Q36 48 60 46',c.p,4)+Ls('M80 40Q98 34 122 38',c.p,3.4)+Ls('M76 62Q84 70 104 70',c.p,2.6)+
    `<path d="M96 60Q92 40 112 30Q108 44 116 56Q108 62 96 60Z" fill="${c.a}" ${OK}/>`+Ls('M101 52Q101 42 108 36',c.p,2.4)+
-   `<ellipse cx="150" cy="42" rx="12" ry="5" fill="${c.k}"/>`+
    `<ellipse cx="30" cy="22" rx="10" ry="4" fill="#ffffff" opacity=".5"/><ellipse cx="174" cy="98" rx="7" ry="3" fill="#ffffff" opacity=".3"/>`}
 function sosKase(k,o){const id='bu-m'+(++UID);
   return kutu(o,'0 0 200 120','bu-sos bu-sos-'+(k==='mayo'?'mayo':'sauce'))+`<defs><clipPath id="${id}c"><path d="M4 26Q4 6 24 6H176Q196 6 196 26V94Q196 114 176 114H24Q4 114 4 94Z"/></clipPath>`+
@@ -335,15 +334,40 @@ function yigYan(k,durum,r,alan){   // alan: {x0,x1,y0,y1,aci} yığının kaplad
 const isaret=(x,y,s)=>`<g transform="translate(${x} ${y}) scale(${s})"><circle r="17" fill="#fff8e6" stroke="${K}" stroke-width="3"/>`+
   `<path d="M-10 -1Q-10 -11 0 -11T10 -1Z" fill="#f4c676" stroke="${K}" stroke-width="2.2" stroke-linejoin="round"/><rect x="-11" y="0" width="22" height="5" rx="2.5" fill="#6b381c" stroke="${K}" stroke-width="2.2"/>`+
   `<path d="M-10 6.5H10Q10 11 6 11H-6Q-10 11 -10 6.5Z" fill="#f4c676" stroke="${K}" stroke-width="2.2" stroke-linejoin="round"/><path d="M-11 0q3 2 6 0t6 0 6 0 5 0" stroke="#6fca47" stroke-width="2.4" fill="none" stroke-linecap="round"/></g>`;
-function yan(k,durum,o){k=k==='onionring'?'onionring':'fries';durum=KIZ[durum]?durum:'hazir';const r=tohum('yan-'+k+durum),id='bu-m'+(++UID);
-  const cls=`bu-yan bu-yan-${k} bu-yan-${durum}`;
-  if(durum==='kutu'){
-   if(k==='fries')return kutu(o,'0 0 200 160',cls)+`<path d="M58 54L142 54L136 70H64Z" fill="#a81c16" ${OK}/>`+yigYan(k,durum,r,{x0:68,x1:132,y0:20,y1:60,aci:34})+
+// fritöz sepetinin içi, üstten (viewBox 0 0 140 200; mutfak.js tel ve sapı kendisi çizer): yığın + pişerken yağ ve kabarcık
+function sepetIci(k,durum,o){const r=tohum('ic-'+k+durum),id='bu-m'+(++UID),cls=`bu-yan bu-yan-${k} bu-yan-${durum} bu-yan-ic`;let h='';
+  const alan=(x0,x1,y0,y1,dx,dy,ciz)=>{const n=[];for(let y=y0,i=0;y<=y1;y+=dy,i++)for(let x=x0+(i%2)*dx/2;x<=x1;x+=dx)n.push([x+(r()-.5)*dx*.6,y+(r()-.5)*dy*.6]);n.sort((a,b)=>a[1]-b[1]).forEach(ciz)};
+  if(k==='onionring'){const c=HAL[durum];
+    [[.78,24,26],[1,30,30]].forEach(([d,dx,dy],kat)=>{const cc=d<1?{a:koyu(c.a,d),g:c.g,n:koyu(c.n,d),p:koyu(c.p,.92)}:c;
+     alan(22,118,20+kat*10,180,dx+8,dy,([x,y])=>{const s=17+r()*3;h+=halka(Math.max(6+s,Math.min(134-s,x)),Math.max(6+s,Math.min(194-s,y)),s,r()*360,.82+r()*.18,cc,r)})})}
+  else{const c=KIZ[durum];
+    h+=`<rect x="12" y="12" width="116" height="176" rx="10" fill="${koyu(c.g,.85)}"/>`;
+    [[.82,22,16],[1,17,12]].forEach(([d,dx,dy])=>{const cc=d<1?{a:koyu(c.a,d),g:koyu(c.g,d),u:koyu(c.u,d),p:koyu(c.p,.9)}:c;
+     alan(18,122,18,182,dx,dy,([x,y])=>{const l=36+r()*14,a=(r()<.5?-35:35)+(r()-.5)*50,hy=Math.abs(Math.cos(a/57.3))*l/2+4,hx=Math.abs(Math.sin(a/57.3))*l/2+5;
+      h+=cubuk(Math.max(6+hx,Math.min(134-hx,x)),Math.max(6+hy,Math.min(194-hy,y)),l,a,cc)})})}
+  if(durum==='pisiyor'){
+   h+=`<rect x="4" y="4" width="132" height="192" rx="8" fill="#e09a26" opacity=".5"/>`+Ls('M14 30q20-6 40 0t40 0 32 0','#ffe7a0',3,' opacity=".7"')+Ls('M14 120q20-6 40 0t40 0 32 0','#ffe7a0',3,' opacity=".5"');
+   const kab=[[30,46,5],[96,36,4],[64,80,6],[112,96,4.4],[28,118,4],[80,140,5.4],[50,168,4],[110,170,5],[70,20,3.6],[118,140,3.4]];
+   h+=`<g class="bu-kab">`+kab.map(([x,y,s],i)=>`<circle cx="${x}" cy="${y}" r="${s}" fill="#fff3c0" fill-opacity=".85" stroke="#b87418" stroke-width="1.4" style="animation-delay:${f1(-i*.17)}s"/>`).join('')+'</g>'}
+  return kutu(o,'0 0 140 200',cls)+`<defs><clipPath id="${id}c"><rect x="4" y="4" width="132" height="192" rx="8"/></clipPath></defs><g clip-path="url(#${id}c)">${h}</g></svg>`}
+// servis kutusu tek başına (viewBox 0 0 200 160): müşteriye giden hâl
+function kutuTek(k,r){
+   if(k==='fries')return `<path d="M58 54L142 54L136 70H64Z" fill="#a81c16" ${OK}/>`+yigYan(k,'kutu',r,{x0:68,x1:132,y0:20,y1:60,aci:34})+
     `<path d="M52 62Q66 76 78 64Q90 76 100 64Q110 76 122 64Q134 76 148 62L136 152Q135 156 130 156H70Q65 156 64 152Z" fill="#e5322b" ${OK}/>`+
-    Ls('M60 80L68 146','#ff7a68',4)+Ls('M70 148H130','#b8221c',3)+isaret(100,112,1.05)+'</svg>';
-   return kutu(o,'0 0 200 160',cls)+`<path d="M34 78H166L160 92H40Z" fill="#a81c16" ${OK}/>`+yigYan(k,durum,r,{x0:52,x1:150,y0:44,y1:82})+
+    Ls('M60 80L68 146','#ff7a68',4)+Ls('M70 148H130','#b8221c',3)+isaret(100,112,1.05);
+   return `<path d="M34 78H166L160 92H40Z" fill="#a81c16" ${OK}/>`+yigYan(k,'kutu',r,{x0:52,x1:150,y0:44,y1:82})+
     `<path d="M28 86Q40 98 52 88Q64 98 76 88Q88 98 100 88Q112 98 124 88Q136 98 148 88Q160 98 172 86L160 150Q159 155 154 155H46Q41 155 40 150Z" fill="#e5322b" ${OK}/>`+
-    Ls('M36 100L44 146','#ff7a68',4)+Ls('M46 147H154','#b8221c',3)+isaret(100,122,.95)+'</svg>'}
+    Ls('M36 100L44 146','#ff7a68',4)+Ls('M46 147H154','#b8221c',3)+isaret(100,122,.95)}
+// yan(k,durum,o):
+//   'cig' | 'pisiyor' | 'hazir' → fritöz sepetinin içi, üstten, viewBox 0 0 140 200 (dikey; YER.fritoz iç alanı 142×206). o.yandan:true → yandan görünen tel sepet, viewBox 0 0 200 160.
+//   'kutu' → hazır tepsisi şeridi, viewBox 0 0 200 88 (YER.yanHazir iç alanı 194×84); o.adet (1–3, varsayılan 1) kutu yan yana. o.tek:true → tek kutu, viewBox 0 0 200 160 (elde/müşteriye uçarken).
+function yan(k,durum,o){k=k==='onionring'?'onionring':'fries';durum=KIZ[durum]?durum:'hazir';o=o||{};const r=tohum('yan-'+k+durum),id='bu-m'+(++UID);
+  const cls=`bu-yan bu-yan-${k} bu-yan-${durum}`;
+  if(durum!=='kutu'&&!o.yandan)return sepetIci(k,durum,o);
+  if(durum==='kutu'&&!o.tek){const n=Math.max(1,Math.min(3,o.adet|0||1)),sc=.54,adim=k==='fries'?60:70,x0=100-(n-1)*adim/2;let h='';
+   for(let i=0;i<n;i++)h+=`<g transform="translate(${f1(x0+i*adim-100*sc)} ${f1(86-156*sc)}) scale(${sc})">${kutuTek(k,tohum('kutu-'+k+i))}</g>`;
+   return kutu(o,'0 0 200 88',cls+' bu-yan-serit')+h+'</svg>'}
+  if(durum==='kutu')return kutu(o,'0 0 200 160',cls)+kutuTek(k,r)+'</svg>';
   // sepet: arka kenar y=44, ön kenar y=62, gövde y=62..150
   const sepet=`M28 62H172L164 146Q163 150 158 150H42Q37 150 36 146Z`;
   let h=kutu(o,'0 0 200 160',cls)+`<defs><clipPath id="${id}c"><path d="${sepet}"/></clipPath>`+

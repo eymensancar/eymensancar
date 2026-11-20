@@ -92,10 +92,15 @@ h+=`<div class="dur"><div style="width:200px;height:140px">${B.ekmekDolabi()}</d
 ['sauce','mayo'].forEach(k=>{h+=`<div class="dur"><div class="kase"><div class="ic">${B.sosKase(k)}</div><div class="ks">${B.sosKasik(k)}</div></div>${k}</div>`});
 ['sauce','mayo'].forEach(k=>{h+=`<div class="dur"><div style="width:200px;height:120px">${B.sosKase(k)}</div>${k} çıplak</div>`});
 h+='</div>';
-h+='<h2>Yan ürünler: yan(k, durum), viewBox 200×160 · cig / pisiyor / hazir / kutu</h2>';
-B.YANLAR.forEach(k=>{h+='<div class="mut" style="margin-bottom:8px">';B.YAN_DURUM.forEach(d=>{h+=`<div class="dur"><div class="sepetk${d==='pisiyor'?' fr':''}">${B.yan(k,d)}</div>${k} · ${d}</div>`});
- h+=`<div class="dur"><div class="mini"><span style="width:96px;height:96px">${B.simge(k)}</span><span style="width:48px;height:48px">${B.simge(k)}</span><span style="width:28px;height:28px">${B.simge(k)}</span></div>simge('${k}')</div>`;
- h+=`<div class="dur"><div class="mini" style="background:#fff;padding:6px;border-radius:8px">${B.YAN_DURUM.map(d=>`<span style="width:60px;height:48px">${B.yan(k,d)}</span>`).join('')}</div>küçük (60 px)</div></div>`});
+h+='<h2>Yan ürünler, fritöz sepetinin içi: yan(k, cig|pisiyor|hazir), viewBox 140×200 (fritöz iç alanı 142×206 gibi çerçevede) · hazır tepsisi: yan(k,"kutu",{adet}) 200×88 (iç alan 194×84)</h2>';
+h+=`<style>.fri{position:relative;width:162px;height:226px;border-radius:8px;background:#c9ccd2;box-shadow:inset 0 0 0 3px #3a1d0c}.fri>.ic{position:absolute;inset:10px;border-radius:6px;background:linear-gradient(#f2b84a,#c77a1a)}
+.fri>.tel{position:absolute;left:16px;top:18px;right:16px;bottom:18px;border:3px solid #d8d4cc;outline:3px solid #3a1d0c;border-radius:6px;pointer-events:none}
+.tep{position:relative;width:222px;height:112px;border-radius:14px;background:#b9bec5;box-shadow:inset 0 0 0 3px #3a1d0c}.tep>.ic{position:absolute;inset:14px;border-radius:8px;background:#7c838c}</style>`;
+B.YANLAR.forEach(k=>{h+='<div class="mut" style="margin-bottom:8px">';['cig','pisiyor','hazir'].forEach(d=>{h+=`<div class="dur"><div class="fri"><div class="ic">${B.yan(k,d)}</div><div class="tel"></div></div>${k} · ${d}</div>`});
+ h+='<div style="display:flex;flex-direction:column;gap:8px">'+[1,2,3].map(n=>`<div class="dur"><div class="tep"><div class="ic">${B.yan(k,'kutu',{adet:n})}</div></div>kutu · adet ${n}</div>`).join('')+'</div>';
+ h+=`<div class="dur"><div class="sepetk" style="width:150px;height:120px">${B.yan(k,'kutu',{tek:true})}</div>kutu · tek (200×160)</div>`;
+ h+=`<div class="dur"><div class="mini"><span style="width:96px;height:96px">${B.simge(k)}</span><span style="width:48px;height:48px">${B.simge(k)}</span><span style="width:28px;height:28px">${B.simge(k)}</span></div>simge('${k}')</div></div>`;
+ h+='<div class="mut" style="margin-bottom:12px">'+['cig','pisiyor','hazir'].map(d=>`<div class="dur"><div class="sepetk${d==='pisiyor'?' fr':''}" style="width:150px;height:120px">${B.yan(k,d,{yandan:true})}</div>yandan · ${d}</div>`).join('')+'</div>'});
 h+='<h2>Simgeler: mayo, fries (sauce ve onionring yanında)</h2><div class="row" style="background:#fff;border-radius:8px;padding:8px">'+['sauce','mayo','fries','onionring','bun','cheese'].map(k=>`<div class="cell" style="width:96px"><span style="width:96px;height:96px;display:block">${B.simge(k)}</span>${k}</div>`).join('')+'</div>';
 const YORD=[
  [['bunBot','patty','bunTop'],['fries']],

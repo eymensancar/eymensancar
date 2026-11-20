@@ -18,3 +18,15 @@ Dikkat: tepsi/küvetler yalnız katmanlardan kurulmalı (yanMi/acikKatman ile s�
 
 ## mutfak.js (sahne ajanının raporu)
 BU.MUTFAK = {ciz({aksam,ek}), YER, IC, kilit, izgaraGoz(durum: bos|cig|pisiyor|hazir|kilitli), duman, neon, kuvetKapak, cam, kasik, CSS, KUV_UST, KUV_ALT, GOZ_DURUM}. Sahne viewBox 1600×900. İçerik YER dikdörtgeninin IC kenar payı kadar içine oturur (küvet 10, sos 12, yanHazir 14, fritöz 10, ızgara gözü 8, hazır tepsisi 10). cam() ekmeklerin üstüne (YER.ekmek). 852×393'te sahne %75 genişlikteyken (639 px) küvet 77×45, ızgara gözü 62×45, sos 69×44, tahta yeri 119×44 px: sahne bundan daralırsa 44 pt altına düşer; müşteri sütununu buna göre boyutlandır (gerekirse dokunma alanlarını görünmez büyüt).
+
+## burger.js (çizim ajanının raporu)
+- KATMAN.mayo eklendi; onionring KATMAN'dan çıktı (yigin onu sessizce atlar). oyun.js'te tek katmanlı çizimler ve malzeme listeleri onu hâlâ burger malzemesi sayıyorsa düzelt.
+- src()/simge(): mayo → g/s-mayo.svg, fries → g/s-fries.svg; onionring simgesi duruyor.
+- Hepsi tam <svg> metni döndürür, son parametre o isteğe bağlı ({x,y,w,h} verilirse dış SVG'ye gömülür; {sinif}):
+  - kuvetIci(k,o) viewBox 0 0 200 120 (11 malzeme: lettuce,tomato,pickle,onion,cheese,bacon,mushroom,jalapeno,egg,avocado,premium). Küvet iç alanı 174×92: tam doldurmak için preserveAspectRatio="none" denenebilir (denetlenmedi).
+  - ekmekDolabi(o) 0 0 200 140 (o.arka:false arka planı kaldırır); cam mutfak.js'te.
+  - sosKase(k,o) 0 0 200 120 ('sauce'|'mayo'); dolgu opak, kaşık deliği yok: mutfak.js'in kaşık sapı kâse dolgusunun ÜSTÜNE çizilmeli (ya da sosKasik(k,o) 0 0 200 200 kullan).
+  - yan(k,durum,o): 'cig'|'pisiyor'|'hazir' fritöz sepeti içi, üstten, 0 0 140 200 (dikey); {yandan:true} yandan sepet 0 0 200 160; 'kutu' hazır tepsisi şeridi 0 0 200 88 (o.adet 1–3); {tek:true} tek servis kutusu 0 0 200 160 (elde/uçarken).
+  - Listeler: KUVETLER, YANLAR, YAN_DURUM.
+- siparis(katmanlar,{gen,yan:['fries'],alindi}) yan ürünü ince ayraçla sağda gösterir; alindi yan ürünü de soldurur ({fries:1}).
+- CSS BU.BURGER.CSS içinde (yeni sınıflar bu-yanli, bu-ayrac, bu-yan-*, bu-kuvet-ici, bu-dolap, bu-sos…; animasyonlar bu-kab, bu-buhar, bu-par).
