@@ -43,7 +43,7 @@
     fiyatKat: 2.25, fiyatYuv: 5, fiyatMin: 15,
     bahsisMin: 0.08, bahsisMax: 0.30, bahsisUp: 0.25, seriMax: 5,
     musteri0: 5, musteriMax: 18,
-    aralik0: 9.0, aralikAdim: 0.32, aralikMin: 4.6,       // gelme aralığının ortası (sn)
+    aralikTaban: 5.0, aralikKatman: 1.6, aralikAdim: 0.15, // gelme aralığının ortası (sn) = taban + katman × beklenen ortadaki katman − adım × (gün − 1)
     sabir0: 30, sabirAdim: 0.9, sabirMin: 19,             // siparişten bağımsız taban sabır (sn)
     sabirKatman: 4.0,                                     // ekmek dışındaki her katman için ek sabır (sn)
     sabirUp: 0.12,                                        // "Sabırlı müşteri" her düzeyde +%12
@@ -56,10 +56,10 @@
   var KAT_MAX = 10;   // bir tabakta en çok katman
 
   var GELISTIR = {
-    cook: { max: 4, cost: function (l) { return 80 + l * 60; } },    // 80 140 200 260
-    pat:  { max: 4, cost: function (l) { return 100 + l * 70; } },   // 100 170 240 310
-    tip:  { max: 4, cost: function (l) { return 120 + l * 80; } },   // 120 200 280 360
-    slot: { max: 1, cost: function () { return 300; } }
+    cook: { max: 4, cost: function (l) { return 150 + l * 90; } },   // 150 240 330 420
+    pat:  { max: 4, cost: function (l) { return 180 + l * 100; } },  // 180 280 380 480
+    tip:  { max: 4, cost: function (l) { return 200 + l * 110; } },  // 200 310 420 530
+    slot: { max: 1, cost: function () { return 450; } }
   };
 
   function U(up) {
@@ -151,11 +151,21 @@
     return tam((taban + ek) * (1 + AYAR.sabirUp * up.pat));
   }
 
+  // gün başına ekstra malzeme sayısı [en az, en çok] (köfte dışında)
+  function ekstraAralik(d) {
+    return d < 2 ? [0, 1] : d < 4 ? [1, 2] : d < 7 ? [1, 3] : d < 10 ? [2, 3] : d < 13 ? [2, 4] : [3, 4];
+  }
+  // bir siparişte ortalama kaç ortadaki katman (köfte + ekstralar + tekrarlar) var
+  function beklenenKatman(d) {
+    var e = ekstraAralik(d), n = Math.min(acik(d).length - 2, (e[0] + e[1]) / 2);
+    return 1 + n + (d >= AYAR.ciftKofte ? AYAR.ciftKofteOlas : 0) + (d >= AYAR.tekrarGun ? AYAR.tekrarOlas : 0);
+  }
+
   function gun(d, up) {
     up = U(up);
     d = Math.max(1, d | 0);
-    var orta = Math.max(AYAR.aralikMin, AYAR.aralik0 - AYAR.aralikAdim * (d - 1));
-    var ekstra = d < 2 ? [0, 1] : d < 4 ? [1, 2] : d < 7 ? [1, 3] : d < 10 ? [2, 4] : d < 13 ? [2, 5] : [3, 5];
+    var ekstra = ekstraAralik(d);
+    var orta = AYAR.aralikTaban + AYAR.aralikKatman * beklenenKatman(d) - AYAR.aralikAdim * (d - 1);
     var taban = Math.max(AYAR.sabirMin, AYAR.sabir0 - AYAR.sabirAdim * (d - 1));
     return {
       musteri: Math.min(AYAR.musteriMax, AYAR.musteri0 + d),
@@ -170,7 +180,7 @@
   function siparis(g, rastgele) {
     var R = typeof rastgele === 'function' ? rastgele : Math.random;
     g = Math.max(1, g | 0);
-    var ek = gun(g).ekstra;
+    var ek = ekstraAralik(g);
     var havuz = acik(g).filter(function (k) { return k !== 'bun' && k !== 'patty'; });
     var n = Math.min(havuz.length, ek[0] + Math.floor(R() * (ek[1] - ek[0] + 1)));
     var secilen = [];

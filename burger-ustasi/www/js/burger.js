@@ -58,7 +58,7 @@ const yaz=(n,u)=>+n.toFixed(3)+u;
 // konumlar: s = sıkışma (0..1), her katmanın alt kenarının yüksekliği (birim) ve toplam yükseklik
 function yerles(ks,s){const y=[];let ust=0;
   ks.forEach((k,i)=>{const d=KATMAN[k]||KATMAN.patty;let b=0;
-    if(i>0){const once=KATMAN[ks[i-1]]||KATMAN.patty;b=d.bin+s*d.sik*(d.h-d.bin);b=Math.min(b,once.h-6)}   // alttakinin içine en çok kendi boyu kadar
+    if(i>0){const once=KATMAN[ks[i-1]]||KATMAN.patty;b=d.bin+s*d.sik*(d.h-d.bin);b=Math.min(b,once.h-13)}   // alttakinin üstünden en az ~8 birim görünsün
     const a=Math.max(0,ust-b);y.push(a);ust=Math.max(ust,a+d.h)});
   return {y,H:ust}}
 
