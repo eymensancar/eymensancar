@@ -281,7 +281,7 @@ ML = f'<a href="mailto:{MAIL}">{MAIL}</a>'
 # Buradaki her cümle oyunun kodundan doğrulandı (14 Kasım 2026). Oyunda reklam, ölçüm, izin ya da
 # satın alma değişirse ÖNCE bu metin güncellenir. Sayı Yolu yayınlanacak hâline göre yazıldı (Eymen, 14 Kasım):
 # AdMob oraya bu metne uyacak biçimde kurulur (kişiselleştirme yok, takip izni sorulmaz, AB'de onay formu).
-POL_DATE = {'tr': '14 Kasım 2026', 'en': '14 November 2026'}
+POL_DATE = {'tr': '20 Kasım 2026', 'en': '20 November 2026'}
 POL_H = {
  'tr': ['Bizim topladığımız bilgiler', 'Cihazında saklananlar', 'Reklamlar', 'İstatistikler ve hata raporları', 'İzinler ve Apple hizmetleri',
         'Satın almalar ve dış bağlantılar', 'Çocuklar', 'Hakların', 'Değişiklikler', 'İletişim'],
@@ -366,7 +366,7 @@ pol('psy', {'tr': 'Sayı Yolu', 'en': 'Number Path'}, {
         'Fotoğraf ve kamera: yalnızca tahtanın arkasına kendi fotoğrafını koymak istersen sorulur. Fotoğraf 24 saat boyunca tahtanın arkasında görünür ve yalnızca cihazında kalır.',
         'Mikrofon: yalnızca oyunun seslerini kendi sesinle değiştirmek için kısa bir kayıt yapmak istersen sorulur. Kayıt yalnızca cihazında kalır.',
         'Oyun rehber ya da konum izni istemez.'],
-  buy=["Oyunda gerçek parayla satın alma yoktur; dükkanda yalnızca oyunda kazanılan altın harcanır.", "Oyun, Yıkım Ustası tanıtımını gösterip göstermeyeceğine karar vermek için o oyunun cihazında yüklü olup olmadığına bakar; başka hiçbir uygulamaya bakmaz. Tanıtıma dokunursan App Store açılır; App Store kendi gizlilik kurallarına tabidir."]),
+  buy=["Oyunda gerçek parayla satın alma yoktur; dükkanda yalnızca oyunda kazanılan altın harcanır.", "Oyun, kardeş oyunlarımızın (Yıkım Ustası, Fenerli Dedektif, Kedi Yuvası) tanıtımını gösterip göstermeyeceğine karar vermek için bu oyunların cihazında yüklü olup olmadığına bakar; başka hiçbir uygulamaya bakmaz ve bu bilgiyi hiçbir yere göndermez. Tanıtıma dokunursan App Store açılır; App Store kendi gizlilik kurallarına tabidir."]),
  'en': dict(
   we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The only data that reaches us is the anonymous usage counts described below.'],
   dev=['Your game progress (levels, stars, best times, daily puzzle streak, hints, gold, shop items and settings) is stored only on your device and is not sent to us. The photo you put behind the board, your own music and the sounds you record also stay only on your device; they are not sent anywhere.'],
@@ -379,7 +379,7 @@ pol('psy', {'tr': 'Sayı Yolu', 'en': 'Number Path'}, {
         'Photos and camera: asked only if you want to put your own photo behind the board. The photo is shown behind the board for 24 hours and stays only on your device.',
         "Microphone: asked only if you want to make a short recording to replace the game's sounds with your own. The recording stays only on your device.",
         'The game does not ask for contacts or location permission.'],
-  buy=['The game has no real-money purchases; the shop only spends gold earned in the game.', 'To decide whether to show the Demolition Master promotion, the game checks whether that game is installed on your device; it does not check for any other app. If you tap the promotion, the App Store opens; the App Store is subject to its own privacy rules.']),
+  buy=['The game has no real-money purchases; the shop only spends gold earned in the game.', 'To decide whether to show promotions for our other games (Demolition Master, Lantern Detective, Cat Haven), the game checks whether those games are installed on your device; it does not check for any other app and does not send this information anywhere. If you tap the promotion, the App Store opens; the App Store is subject to its own privacy rules.']),
 })
 
 # --- Fenerli Dedektif: AdMob (çocuğa yönelik, kişiselleştirme yok, takip izni yok), ölçüm yok, satın alma yok, ebeveyn kapısı
@@ -417,8 +417,10 @@ pol('pky', {'tr': 'Kedi Yuvası', 'en': 'Cat Haven'}, {
        'Reklam isteklerini çocuklara yönelik olarak işaretleriz (“çocuğa yönelik içerik” ve “rıza yaşının altındaki kullanıcı” ayarları açıktır) ve yalnızca genel izleyiciye uygun reklamlara izin veririz. ' + NO_TRACK['tr'],
        G_TECH['tr'].format(idfa=''), UMP['tr']],
   stat=['Oyunda istatistik, analiz ya da hata raporu gönderen bir araç yoktur.'],
-  perm=['Oyun hiçbir izin istemez: takip, bildirim, kamera, mikrofon, fotoğraf, rehber ya da konum izni sorulmaz.'],
-  buy=['Oyunda satın alma yoktur.', 'Oyunda oyun dışına çıkan bir bağlantı yoktur; yalnızca reklama dokunursan reklamverenin sayfası açılır.'],
+  perm=['Bildirim izni isteğe bağlıdır: yalnızca günlük bölüm hatırlatmasını açarsan iOS izin sorar. Hatırlatma cihazında kurulan yerel bir bildirimdir; sunucudan gönderilmez ve bize hiçbir bilgi gitmez. İzni istediğin zaman iPhone Ayarlar’ından kapatabilirsin.',
+        'Oyun arada bir Apple’ın kendi değerlendirme penceresiyle oyunu puanlamanı isteyebilir; bu pencereyi Apple yönetir, oyun puanını ya da yorumunu görmez.',
+        'Bunun dışında izin istenmez: takip, kamera, mikrofon, fotoğraf, rehber ya da konum izni sorulmaz.'],
+  buy=['Oyunda satın alma yoktur.', 'Oyun, kardeş oyunlarımızın (Yıkım Ustası, Fenerli Dedektif, Sayı Yolu) tanıtımını gösterip göstermeyeceğine karar vermek için bu oyunların cihazında yüklü olup olmadığına bakar; başka hiçbir uygulamaya bakmaz ve bu bilgiyi hiçbir yere göndermez. Tanıtıma dokunursan App Store açılır.', 'Bunun dışında oyun dışına çıkan bir bağlantı yoktur; yalnızca reklama dokunursan reklamverenin sayfası açılır.'],
   kids=['Oyun her yaştan oyuncu içindir; reklam ayarları çocuklara uygun olacak şekilde yapıldı.']),
  'en': dict(
   we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The game sends us no data at all.'],
@@ -427,8 +429,10 @@ pol('pky', {'tr': 'Kedi Yuvası', 'en': 'Cat Haven'}, {
        'We mark ad requests as child-directed (“tag for child-directed treatment” and “tag for under age of consent” are on) and allow only ads suitable for a general audience. ' + NO_TRACK['en'],
        G_TECH['en'].format(idfa=''), UMP['en']],
   stat=['The game has no tool that sends statistics, analytics or crash reports.'],
-  perm=['The game asks for no permissions: it never asks for tracking, notification, camera, microphone, photo, contacts or location permission.'],
-  buy=['The game has no purchases.', "The game has no links that leave the game; only if you tap an ad does the advertiser's page open."],
+  perm=['Notification permission is optional: iOS asks for it only if you turn on the daily level reminder. The reminder is a local notification scheduled on your device; it is not sent from a server and no information reaches us. You can turn it off at any time in your iPhone Settings.',
+        "The game may occasionally ask you to rate it using Apple's own rating window; Apple manages this window and the game does not see your rating or review.",
+        'Apart from this, no permissions are requested: the game never asks for tracking, camera, microphone, photo, contacts or location permission.'],
+  buy=['The game has no purchases.', 'To decide whether to show promotions for our other games (Demolition Master, Lantern Detective, Number Path), the game checks whether those games are installed on your device; it does not check for any other app and does not send this information anywhere. If you tap a promotion, the App Store opens.', "Apart from this, the game has no links that leave the game; only if you tap an ad does the advertiser's page open."],
   kids=['The game is for players of all ages; ad settings were chosen to be suitable for children.']),
 })
 
