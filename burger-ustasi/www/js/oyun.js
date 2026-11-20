@@ -98,7 +98,7 @@ const cq=()=>APP.clientWidth/100;
 function rel(el){const r=el.getBoundingClientRect(),a=APP.getBoundingClientRect();return {x:r.left-a.left,y:r.top-a.top,w:r.width,h:r.height,cx:r.left-a.left+r.width/2,cy:r.top-a.top+r.height/2}}
 const icinde=(p,r,pay=0)=>p.x>=r.x-pay&&p.x<=r.x+r.w+pay&&p.y>=r.y-pay&&p.y<=r.y+r.h+pay;
 function yazi(x,y,html,cls,gec=0){const go=()=>{const d=document.createElement('div');d.className='yazi '+cls;d.innerHTML=html;d.style.left=x+'px';d.style.top=y+'px';FX.appendChild(d);setTimeout(()=>d.remove(),1400)};gec?setTimeout(go,gec):go()}
-function uyari(el,msg){const r=rel(el);const d=document.createElement('div');d.className='uyari';d.textContent=msg;FX.appendChild(d);
+function uyari(el,msg){FX.querySelectorAll('.uyari').forEach(x=>x.remove());const r=rel(el);const d=document.createElement('div');d.className='uyari';d.textContent=msg;FX.appendChild(d);
   const w=d.offsetWidth,W=APP.clientWidth;d.style.left=Math.min(W-w/2-4,Math.max(w/2+4,r.cx))+'px';d.style.top=Math.max(d.offsetHeight+4,r.y+2*cq())+'px';setTimeout(()=>d.remove(),1350);ses('uyari');tit()}
 // küçük bir nesneyi yay çizerek uçurur (WAAPI). from/to: app içi merkez noktaları
 function ucur(html,from,to,{sure=420,yay=-10,s0=1,s1=1,don=0,cls=''}={}){
@@ -259,8 +259,8 @@ function tasi(d,e){const a=APP.getBoundingClientRect(),x=e.clientX-a.left,y=e.cl
   const h2=hedefBul(d);if(h2!==d.hedef){if(d.hedef!==null)hedefIsaret(d.hedef,false);d.hedef=h2;if(h2!==null)hedefIsaret(h2,true)}}
 function hedefBul(d){const pts=[d.gm,{x:d.x,y:d.y}];
   if(pts.some(p=>icinde(p,rel(COP),3*cq())))return 'cop';
-  for(const c of S.cust){if(!c)continue;const r=rel(c.el);if(pts.some(p=>icinde(p,r,1.5*cq())))return c.i}
-  return null}
+  let en=null,ed=1e9;for(const c of S.cust){if(!c)continue;const r=rel(c.el);if(pts.some(p=>icinde(p,r,1.5*cq()))){const dd=Math.abs(d.gm.x-r.cx);if(dd<ed){ed=dd;en=c.i}}}
+  return en}
 function hedefIsaret(h,on){if(h==='cop')COP.classList.toggle('hedef',on);else{const c=S.cust[h];if(c)c.el.classList.toggle('hedef',on)}}
 function birak(d){const h=d.hedef;if(h!==null)hedefIsaret(h,false);
   if(h==='cop'){const r=rel(COP);hayaletUc(d,{x:r.cx,y:r.cy},{s:.25,don:40}).then(()=>bitir_(d));copeAt(d.ti);return}
@@ -365,7 +365,7 @@ function openHome(){S.on=false;S.paused=false;rehberGizle();FX.innerHTML='';hero
   $('hKasa').textContent=SAVE.coins;$('hKasaI').innerHTML=PARA();
   $('hEfekt').innerHTML=ic(SAVE.ayar.efekt?'ses_acik':'ses_kapali');$('hEfekt').classList.toggle('kapali',!SAVE.ayar.efekt);$('hEfekt').setAttribute('aria-label',t('fx'));
   $('hMuzik').innerHTML=ic('muzik');$('hMuzik').classList.toggle('kapali',!SAVE.ayar.muzik);$('hMuzik').setAttribute('aria-label',t('music'));
-  $('heroB').innerHTML=BURGER.yigin(['bunBot','patty','cheese','lettuce','tomato','bunTop'],{gen:'40cqw',yukMax:'36cqw',yeni:false});
+  $('heroB').innerHTML=BURGER.yigin(['bunBot','patty','cheese','lettuce','tomato','bunTop'],{gen:'46cqw',yukMax:'40cqw',yeni:false});
   const G=VERI.GELISTIR;
   $('ups').innerHTML=['cook','pat','tip','slot'].map(k=>{const u=G[k],l=SAVE.up[k]|0,mx=l>=u.max,c=u.cost(l),kilit=k==='slot'&&SAVE.day<4;
     return `<button class="up ${kilit?'kilit':mx?'max':SAVE.coins<c?'no':''}" data-u="${k}" aria-label="${t('up')[k][0]}"><span class="e">${ic(UPI[k])}</span><b>${t('up')[k][0]}</b><small>${t('up')[k][1]}</small>`+
@@ -385,7 +385,7 @@ const OLC={gen:'23cqw',yuk:'31cqw'};
 function fit(){const c=cq(),H=APP.clientHeight;if(!c)return;
   // uzun ekranda tepsi kutuları biraz uzar
   APP.style.setProperty('--kh',Math.min(23,Math.max(15.5,16+(H/c-180)*.25)).toFixed(2)+'cqw');
-  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(18*c,Math.min(32*c,(h+4*c-24*c-2*c)/1.2));APP.style.setProperty('--yz',yz+'px')}
+  const st=$('street'),h=st.clientHeight;if(h){const yz=Math.max(18*c,Math.min(36*c,(h+4*c-24*c-2*c)/1.2));APP.style.setProperty('--yz',yz+'px')}
   const ct=$('counter').clientHeight;if(ct){const gen=Math.min(25*c,(APP.clientWidth-41*c)/2-3*c);OLC.gen=Math.round(gen)+'px';OLC.yuk=Math.round(Math.max(26*c,ct-15*c))+'px';
     TB.forEach(x=>x.querySelector('.yig').style.width=OLC.gen)}
   if(S.tabak)[0,1].forEach(i=>cizTabak(i,false))}
