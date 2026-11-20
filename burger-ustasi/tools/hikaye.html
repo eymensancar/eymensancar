@@ -1,0 +1,39 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hikâye denemesi</title>
+<!-- Açılış hikâyesini (www/js/hikaye.js) oyunun modülleriyle oynatır. Adres seçenekleri: ?dil=en  ?w=320&h=568  ?az (hareketi azalt taklidi değil; sistem ayarı kullanılır) -->
+<style>
+html,body{margin:0;height:100%;background:#2b1a12;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;color:#fff4dc}
+body{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px;box-sizing:border-box}
+.bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.bar button{font:inherit;font-weight:800;padding:6px 14px;border-radius:10px;border:2px solid #2a1a10;background:#fff4dc;color:#2a1a10;cursor:pointer}
+#app{position:relative;width:390px;height:844px;container-type:inline-size;overflow:hidden;background:#2b1a12;border-radius:18px;box-shadow:0 0 0 2px #000}
+#durum{font-size:13px;opacity:.8}
+body.tam{padding:0;gap:0}body.tam .bar,body.tam #durum{display:none}body.tam #app{border-radius:0;box-shadow:none}
+</style></head><body>
+<div class="bar"><button id="tr">Türkçe</button><button id="en">English</button><button id="b320">320×568</button><button id="b390">390×844</button></div>
+<div id="app"></div>
+<div id="durum">Dokun: sonraki sahne · Geç: atla</div>
+<script src="../www/musteri.js"></script>
+<script src="../www/karakterler.js"></script>
+<script src="../www/js/simge.js"></script>
+<script src="../www/js/ses.js"></script>
+<script src="../www/js/burger.js"></script>
+<script src="../www/js/hikaye.js"></script>
+<script>
+BU.BURGER.YOL='../www/g/';
+const q=new URLSearchParams(location.search),app=document.getElementById('app'),durum=document.getElementById('durum');
+let dil=q.get('dil')==='en'?'en':'tr';
+if(q.has('tam'))document.body.classList.add('tam');
+function boyut(w,h){app.style.width=w+'px';app.style.height=h+'px'}
+boyut(+q.get('w')||390,+q.get('h')||844);
+function oyna(){durum.textContent='Oynuyor ('+dil+')';
+  BU.HIKAYE.oynat(app,{dil,yol:'../www/g/',bitince(){durum.textContent='Bitti: bitince() çağrıldı';
+    app.innerHTML='<div style="display:grid;place-items:center;height:100%;font-weight:900;font-size:22px">Ana menü burada açılır</div>'}})}
+document.getElementById('tr').onclick=()=>{dil='tr';oyna()};
+document.getElementById('en').onclick=()=>{dil='en';oyna()};
+document.getElementById('b320').onclick=()=>{boyut(320,568);oyna()};
+document.getElementById('b390').onclick=()=>{boyut(390,844);oyna()};
+oyna();
+</script>
+</body></html>

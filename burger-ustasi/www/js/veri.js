@@ -14,7 +14,7 @@
  *
  * Maliyet (malzeme tabağa konunca, köfte ızgaraya konunca kasadan düşer):
  *   köfte 6, peynir 3, ekmek 2 (alt ekmekte bir kez; üst ekmek bedava) …
- *   en pahalısı trüf (premium) 9. Liste MALZEME'de.
+ *   en pahalısı trüf (premium) 10. Liste MALZEME'de.
  * Menü fiyatı: alt ekmek + ortadaki her katmanın "satis" değeri toplanır, en
  *   yakın 5'e yuvarlanır (en az 15). satis SATIN_SIRA boyunca hiç azalmaz:
  *   sonradan alınan malzeme ortalama siparişi pahalılaştırır (yatırım hissi).
@@ -25,7 +25,7 @@
  * Ruh hâli (f = kalan sabır oranı, 0…1):
  *   f > 2/3 mutlu ('happy'), 2/3 ≥ f > 1/3 somurtkan ('wait', f ≤ 0,5'te 'imp'),
  *   f ≤ 1/3 kızgın ('angry'), f = 0 kaçar (oyun tarafı; bir can).
- * Zorluk güne göre artar, ZOR_TAVAN gününde durur (300. gün de 40. gün kadar zor).
+ * Zorluk güne göre artar, AYAR.zorTavan (18.) gününde durur (300. gün de 18. gün kadar zor).
  * Denge değerleri AYAR içinde; botu (scripts/denge.mjs) çalıştırıp ayarlandı,
  *   sonuçlar docs/DENGE.md.
  */
@@ -46,13 +46,13 @@
     { k: 'onion',     maliyet: 1, satis: 7,  fiyatAc: 500,    gun: 5 },
     { k: 'pickle',    maliyet: 1, satis: 7,  fiyatAc: 1200,   gun: 11 },
     { k: 'bacon',     maliyet: 4, satis: 9,  fiyatAc: 2500,   gun: 7 },
-    { k: 'egg',       maliyet: 2, satis: 9,  fiyatAc: 5000,   gun: 9 },
-    { k: 'sauce',     maliyet: 2, satis: 10, fiyatAc: 10000,  gun: 99 },
-    { k: 'mushroom',  maliyet: 3, satis: 12, fiyatAc: 20000,  gun: 99 },
-    { k: 'jalapeno',  maliyet: 3, satis: 13, fiyatAc: 40000,  gun: 99 },
-    { k: 'onionring', maliyet: 4, satis: 15, fiyatAc: 80000,  gun: 99 },
-    { k: 'avocado',   maliyet: 5, satis: 18, fiyatAc: 160000, gun: 99 },
-    { k: 'truffle',   maliyet: 9, satis: 30, fiyatAc: 400000, gun: 99 }
+    { k: 'egg',       maliyet: 2, satis: 10, fiyatAc: 5000,    gun: 9 },
+    { k: 'sauce',     maliyet: 2, satis: 11, fiyatAc: 10000,  gun: 99 },
+    { k: 'mushroom',  maliyet: 3, satis: 13, fiyatAc: 20000,  gun: 99 },
+    { k: 'jalapeno',  maliyet: 3, satis: 15, fiyatAc: 40000,  gun: 99 },
+    { k: 'onionring', maliyet: 4, satis: 18, fiyatAc: 80000,  gun: 99 },
+    { k: 'avocado',   maliyet: 6, satis: 22, fiyatAc: 200000, gun: 99 },
+    { k: 'truffle',   maliyet: 10, satis: 32, fiyatAc: 600000, gun: 99 }
   ];
   var MAL = {};
   MALZEME.forEach(function (m) { MAL[m.k] = m; });
@@ -75,7 +75,7 @@
     ciftKofte: 6, ciftKofteOlas: 0.25,                    // bu günden sonra çift köfte olasılığı
     tekrarGun: 10, tekrarOlas: 0.2,                       // bu günden sonra başka bir malzeme de iki kez
     zorTavan: 18,                                         // bu günden sonra zorluk artmaz
-    kira0: 10, kiraKat: 10                                // kira = kira0 + kiraKat × ⌊√(gün − 1)⌋, 5'e yuvarlı
+    kira0: 10, kiraKat: 10, kiraMax: 120                  // kira = kira0 + kiraKat × ⌊√(gün − 1)⌋, 5'e yuvarlı, en çok kiraMax
   };
 
   var STOK_MAX = 6;
@@ -131,11 +131,11 @@
   // satın alınabilir mi: eksi kasayla hiçbir şey alınamaz
   function alabilir(kasa, fiyat) { kasa = kasa | 0; return kasa >= 0 && kasa >= (fiyat | 0); }
 
-  // gün sonu kirası: 10, 20 (2. gün), 30 (5.), 40 (10.), 50 (17.) … 200 (362.) …
+  // gün sonu kirası: 10, 20 (2. gün), 30 (5.), 40 (10.), 50 (17.), 60 (26.) … 120 (122. günden sonra hep)
   function kira(gun) {
     gun = Math.max(1, gun | 0);
     var k = AYAR.kira0 + AYAR.kiraKat * Math.floor(Math.sqrt(gun - 1));
-    return (Math.round(k / 5) * 5) | 0;
+    return Math.min(AYAR.kiraMax, Math.round(k / 5) * 5) | 0;
   }
   // gün sonu: kira düşer, eksi kasa sayılır. eksiGun: bugüne kadar art arda eksi kalınan gün.
   // → {kasa, kira, eksiGun, kapandi}. kapandi true ise kasa SIFIRLA'ya döndü.
@@ -274,8 +274,16 @@
     var ek = ekstraAralik(g);
     var h = havuz(g, sahip);
     var n = Math.min(h.length, ek[0] + Math.floor(R() * (ek[1] - ek[0] + 1)));
+    // ağırlıklı seçim (yerine koymadan): pahalı malzeme (satis büyük) daha sık istenir,
+    // böylece her yeni malzeme ortalama siparişi pahalılaştırır
     var secilen = [];
-    for (var i = 0; i < n; i++) secilen.push(h.splice(Math.floor(R() * h.length), 1)[0]);
+    for (var i = 0; i < n; i++) {
+      var top = 0, j0;
+      for (j0 = 0; j0 < h.length; j0++) top += MAL[h[j0]].satis;
+      var x = R() * top;
+      for (j0 = 0; j0 < h.length - 1; j0++) { x -= MAL[h[j0]].satis; if (x < 0) break; }
+      secilen.push(h.splice(j0, 1)[0]);
+    }
     var orta = ['patty'];
     if (z >= AYAR.ciftKofte && R() < AYAR.ciftKofteOlas) orta.push('patty');
     if (z >= AYAR.tekrarGun && secilen.length && R() < AYAR.tekrarOlas)

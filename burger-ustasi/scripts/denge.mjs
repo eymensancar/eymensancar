@@ -300,6 +300,7 @@ if (TAVAN) {
 } else if (SAAT) {
   const ADLAR = { cheese: 'Peynir', lettuce: 'Marul', tomato: 'Domates', onion: 'Soğan', pickle: 'Turşu', bacon: 'Pastırma', egg: 'Yumurta',
     sauce: 'Sos', mushroom: 'Mantar', jalapeno: 'Jalapeño', onionring: 'Soğan halkası', avocado: 'Avokado', truffle: 'Trüf (premium)' };
+  const son_ = V.SATIN_SIRA[V.SATIN_SIRA.length - 1];
   const sonuc = {};
   for (const [k, B] of Object.entries(BECERI)) {
     const R = mulberry(4242 + k.length * 991);
@@ -328,7 +329,9 @@ if (TAVAN) {
   for (const k of sutun) {
     const r = sonuc[k];
     const sa = ort(r.map(o => o.t)) / 3600, gun = ort(r.map(o => o.d)), oy = ort(r.map(o => o.oynanan));
-    const line = `${BECERI[k].ad}: ${y(sa, 1)} saatte ${y(oy)} gün oynandı (ulaşılan gün ${y(gun)}, kaybedilen ${y(ort(r.map(o => o.kayip)))}, kapanış ${y(ort(r.map(o => o.kapanis)), 1)}); gün başına ${y(sa * 3600 / oy)} sn.`;
+    const pr = r.map(o => o.ulas[son_]).filter(Boolean).map(x => x.saat);
+    const erken = pr.length ? ` En erken premium: ${y(Math.min(...pr), 1)} sa (${pr.length}/${r.length} oyuncu ulaştı).` : ` Premiuma ulaşan yok.`;
+    const line = `${BECERI[k].ad}: ${y(sa, 1)} saatte ${y(oy)} gün oynandı (ulaşılan gün ${y(gun)}, kaybedilen ${y(ort(r.map(o => o.kayip)))}, kapanış ${y(ort(r.map(o => o.kapanis)), 1)}); gün başına ${y(sa * 3600 / oy)} sn.${erken}`;
     console.log(MD ? `\n- ${line}` : '\n' + line);
     // saatlik kazanç dilimleri
     const d0 = r[0].dilim;
