@@ -1,0 +1,145 @@
+{
+ "sesler": {
+  "cizirti": {
+   "dongu": true,
+   "pay": 0.5,
+   "uzunluk": 4.69,
+   "kb": 44.9
+  },
+  "fritoz": {
+   "dongu": true,
+   "pay": 0.5,
+   "uzunluk": 5.59,
+   "kb": 52.1
+  },
+  "fritoz_dal": {
+   "dosya": [
+    "fritoz_dal"
+   ]
+  },
+  "fritoz_al": {
+   "dosya": [
+    "fritoz_al"
+   ]
+  },
+  "hazir": {
+   "dosya": [
+    "hazir"
+   ]
+  },
+  "bicak": {
+   "dosya": [
+    "bicak1",
+    "bicak2",
+    "bicak3"
+   ]
+  },
+  "kon_ekmek": {
+   "dosya": [
+    "kon_ekmek1",
+    "kon_ekmek2",
+    "kon_ekmek3"
+   ]
+  },
+  "kon_kofte": {
+   "dosya": [
+    "kon_kofte1",
+    "kon_kofte2"
+   ]
+  },
+  "kon_peynir": {
+   "dosya": [
+    "kon_peynir1",
+    "kon_peynir2",
+    "kon_peynir3"
+   ]
+  },
+  "kon_tursu": {
+   "dosya": [
+    "kon_tursu1",
+    "kon_tursu2"
+   ]
+  },
+  "tepsi": {
+   "dosya": [
+    "tepsi1",
+    "tepsi2",
+    "tepsi3"
+   ]
+  },
+  "servis": {
+   "dosya": [
+    "servis1",
+    "servis2"
+   ]
+  },
+  "para": {
+   "dosya": [
+    "para1",
+    "para2",
+    "para3"
+   ]
+  },
+  "kasa": {
+   "dosya": [
+    "kasa"
+   ]
+  },
+  "dokun": {
+   "dosya": [
+    "dokun"
+   ]
+  },
+  "tik": {
+   "dosya": [
+    "tik"
+   ]
+  },
+  "uyari": {
+   "dosya": [
+    "uyari"
+   ]
+  },
+  "tamam": {
+   "dosya": [
+    "tamam"
+   ]
+  },
+  "gun_basla": {
+   "dosya": [
+    "gun_basla"
+   ]
+  },
+  "gun_sonu": {
+   "dosya": [
+    "gun_sonu"
+   ]
+  },
+  "satin": {
+   "dosya": [
+    "satin"
+   ]
+  }
+ },
+ "muzik": {
+  "muzik_oyun_a": {
+   "pay": 0.5,
+   "uzunluk": 17.43063,
+   "kb": 144.5,
+   "bpm": 110
+  },
+  "muzik_oyun_b": {
+   "pay": 0.5,
+   "uzunluk": 17.43063,
+   "kb": 144.5,
+   "bpm": 110
+  },
+  "muzik_menu": {
+   "pay": 0.5,
+   "uzunluk": 83.46825,
+   "kb": 495.4,
+   "bpm": 92
+  }
+ },
+ "toplamKB": 999
+}

@@ -7,7 +7,11 @@
    doğrama yok. Malzemeye dokun → tezgâhtaki tek burgere konur (önce alt ekmek, en son üst ekmek). Biten burgere dokun → tepsiye
    dokun; patates haznesine dokun → tepsiye dokun; tepsiye dokun → müşteriye dokun (tepsi müşteriye gider).
    Modüller: BU.VERI (ekonomi), BU.SIMGE (simgeler), BU.SES (ses). Müşteriler www/musteri.js + karakterler.js.
-   Zamanlayıcılar: her gün/ana menü geçişi S.oturum'u artırır; gecikmeli işler (zaman()) eski oturumdaysa çalışmaz. */
+   Zamanlayıcılar: her gün/ana menü geçişi S.oturum'u artırır; gecikmeli işler (zaman()) eski oturumdaysa çalışmaz.
+   9. tur (21 Kasım): gerçek sesler ve müzik (BU.SES, www/ses/), para uçuşu ve akan kasa, görünür seri, doğrama gamı,
+   dokunuş tepkisi (ezilme + kırıntı + titreşim), burger kapanınca kısa duraklama; CAN YOK (kaçan müşteri yalnız parasını ve
+   seriyi götürür); müşteriler tek hâlli görseller (www/g/karakter/, musteriGorsel); sol alttaki tablet Dükkân'ı açar (oyun durur);
+   "Hızlı ızgara" dükkândan kalktı (alınmışsa parası iade). */
 (()=>{'use strict';
 const BU=window.BU=window.BU||{};
 const $=id=>document.getElementById(id);
@@ -41,7 +45,9 @@ const T={
   kira:'Kira',kiraBugun:'Bugünün kirası',easier:'Müşteriler bugün biraz daha sabırlı',easierNext:'Sonraki denemede müşteriler daha sabırlı olacak.',
   closedT:'Dükkân kapandı!',closedP:n=>`Kasa ${n} gün art arda ekside kaldı. 50 parayla yeniden başlıyorsun (ızgaraların ve geliştirmelerin duruyor).`,devam:'Devam',
   cevirT:'Telefonu yan çevir',cevirP:'Burger Ustası yatay ekranda oynanır. Bilgisayarda pencereyi genişlet.',
-  eksiUyari:(n,m)=>`Kasa ekside (${n}/${m} gün). ${m} gün art arda eksi kalırsa dükkân kapanır!`,menu:'Menü',price:n=>`${n} para`},
+  eksiUyari:(n,m)=>`Kasa ekside (${n}/${m} gün). ${m} gün art arda eksi kalırsa dükkân kapanır!`,menu:'Menü',price:n=>`${n} para`,
+  seri:n=>`Seri ${n}`,hedef:(a,n)=>`${a}: ${n} kaldı`,hedefOk:a=>`${a} alınabilir!`,hedefBitti:'Dükkânda her şey alındı',tabletT:'DÜKKÂN',mutfaga:'Mutfağa dön',
+  servis:'Servis',kacan:'Kaçan',upN:(a,n)=>`${a} ${n}`,iade:n=>`"Hızlı ızgara" kalktı: ${n} para kasana geri kondu.`},
  en:{day:n=>`Day ${n}`,play:'PLAY',cont:n=>`PLAY · Day ${n}`,logo2:'MASTER',
   dayT:n=>`Day ${n}`,dayP:'Everyone wants the same: a cheeseburger with pickles and fries. Build it, put it on a tray, give it to the customer.',cust:n=>`${n} customers`,start:'Start',
   winT:'Day complete!',failT:'Shop closed!',failP:'You lost three lives. Try again!',next:'Next day',retry:'Try again',home:'Main menu',
@@ -62,7 +68,9 @@ const T={
   kira:'Rent',kiraBugun:'Today\'s rent',easier:'Customers are a bit more patient today',easierNext:'Customers will be more patient on the next try.',
   closedT:'Shop closed!',closedP:n=>`Your cash stayed below zero for ${n} days in a row. You start again with 50 coins (you keep your grills and upgrades).`,devam:'Continue',
   cevirT:'Turn your phone sideways',cevirP:'Burger Master is played in landscape. On a computer, make the window wider.',
-  eksiUyari:(n,m)=>`Cash below zero (${n}/${m} days). ${m} days in a row below zero and the shop closes!`,menu:'Menu',price:n=>`${n} coins`}};
+  eksiUyari:(n,m)=>`Cash below zero (${n}/${m} days). ${m} days in a row below zero and the shop closes!`,menu:'Menu',price:n=>`${n} coins`,
+  seri:n=>`Streak ${n}`,hedef:(a,n)=>`${a}: ${n} to go`,hedefOk:a=>`${a} ready to buy!`,hedefBitti:'You bought everything in the shop',tabletT:'SHOP',mutfaga:'Back to the kitchen',
+  servis:'Served',kacan:'Missed',upN:(a,n)=>`${a} ${n}`,iade:n=>`"Fast grill" was removed: ${n} coins were put back in your cash.`}};
 
 /* ================= kayıt ================= */
 const KEY='burgerustasi.v1';
@@ -78,11 +86,14 @@ const SAVE=(()=>{let o={},ham=null;try{ham=localStorage.getItem(KEY);o=JSON.pars
   const G=VERI.GELISTIR||{};['cook','pat','tip','slot'].forEach(k=>{const mx=(G[k]&&G[k].max)|0||4;s.up[k]=Math.max(0,Math.min(mx,Math.floor(+s.up[k]||0)))});
   if(s.lang!=='tr'&&s.lang!=='en')s.lang=cihazDili();s.ayar.efekt=s.ayar.efekt!==false;s.ayar.muzik=s.ayar.muzik!==false;
   s.coins=Math.round(+s.coins||0);s.day=Math.max(1,Math.floor(+s.day||1));
+  // 9. tur: "Hızlı ızgara" (cook) satılmıyor, etkisi yok; alınmış düzeylerin parası bir kez kasaya geri konur
+  if(s.up.cook>0&&VERI.cookIade){const n=VERI.cookIade(s.up.cook);s.coins+=n;s.iade=n;s.up.cook=0}
   if(!Array.isArray(s.mal))s.mal=ilk?[]:(VERI.eskiSahip?VERI.eskiSahip(s.day):[]);
   s.eksi=Math.max(0,Math.floor(+s.eksi||0));
   if(!s.kolay||typeof s.kolay!=='object')s.kolay={g:0,n:0};s.kolay={g:s.kolay.g|0,n:Math.max(0,Math.min(3,s.kolay.n|0))};
   if(!Array.isArray(s.yeni))s.yeni=[];return s})();
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(SAVE))}catch(e){}};
+const save=()=>{try{const o=Object.assign({},SAVE);delete o.iade;localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}};
+if(SAVE.iade)save();
 const t=(k,...a)=>{const v=T[SAVE.lang][k];return typeof v==='function'?v(...a):v};
 const tg=(k,...a)=>{const v=T[SAVE.lang].g[k];return typeof v==='function'?v(...a):v};
 function fmt(n){const a=Math.abs(n),s=n<0?'−':'';if(a<100000)return s+a;
@@ -90,9 +101,12 @@ function fmt(n){const a=Math.abs(n),s=n<0?'−':'';if(a<100000)return s+a;
 
 /* ================= ses ve dokunsal ================= */
 let sesAcik=false;
-function sesKilit(){if(sesAcik)return;sesAcik=true;try{SES.ac();SES.ayar({efekt:SAVE.ayar.efekt,muzik:SAVE.ayar.muzik});SES.muzik(!!SAVE.ayar.muzik)}catch(e){}}
+function sesKilit(){try{SES.ac()}catch(e){}if(sesAcik)return;sesAcik=true;try{SES.ayar({efekt:SAVE.ayar.efekt,muzik:SAVE.ayar.muzik});SES.muzik(!!SAVE.ayar.muzik)}catch(e){}}
 document.addEventListener('pointerdown',sesKilit,{capture:true});
-const ses=ad=>{if(!SAVE.ayar.efekt)return;try{SES.cal(ad)}catch(e){}};
+const ses=(ad,o)=>{if(!SAVE.ayar.efekt)return;try{SES.cal(ad,o)}catch(e){}};
+// döngüler (ızgara cızırtısı, fritöz): yalnız değişince bildir
+const dongu=(()=>{const son={};return(ad,v)=>{v=Math.round(v*100)/100;if(son[ad]===v)return;son[ad]=v;try{SES.dongu&&SES.dongu(ad,v)}catch(e){}}})();
+const muzikMod=m=>{try{SES.muzikMod&&SES.muzikMod(m)}catch(e){}};
 const sesVar=ad=>!!(SES.ADLAR&&SES.ADLAR.includes(ad));
 function tit(tur){try{const H=window.Capacitor&&Capacitor.Plugins&&Capacitor.Plugins.Haptics;
   if(H){tur==='ag'?H.notification({type:'ERROR'}):H.impact({style:tur==='orta'?'MEDIUM':'LIGHT'});return}
@@ -126,18 +140,23 @@ const DUR=[[0,[229,50,43]],[.3,[240,138,36]],[.6,[242,194,48]],[1,[60,196,90]]];
 function sabirRenk(f){f=Math.max(0,Math.min(1,f));for(let i=1;i<DUR.length;i++){const [b,cb]=DUR[i],[a,ca]=DUR[i-1];if(f<=b){const u=(f-a)/(b-a);return `rgb(${ca.map((v,j)=>Math.round(v+(cb[j]-v)*u)).join(',')})`}}return 'rgb(60,196,90)'}
 
 /* ================= durum ================= */
-const S={on:false,paused:false,gun:1,cfg:null,kasa:0,kasa0:0,gelir:0,gider:0,bahsis:0,sayi:{mutlu:0,somurtkan:0,kizgin:0},kacan:0,yanlis:0,can:3,kalan:0,bitti:0,seri:0,
+const S={on:false,paused:false,gun:1,cfg:null,kasa:0,kasa0:0,gelir:0,gider:0,bahsis:0,sayi:{mutlu:0,somurtkan:0,kizgin:0},kacan:0,yanlis:0,alis:0,kalan:0,bitti:0,seri:0,
   kolay:0,kira:0,kapandi:false,cust:[null,null,null],slotT:[0,0,0],now:0,nextAt:0,rehber:false,bitis:false,bitisT:0,oturum:0,yildiz:0,
   // mutfak
   izg:[],hk:0,hkUcan:0,hp:0,dogra:0,fr:{st:0,t:0,kalan:0},burger:[],tepsi:[{b:null,f:false},{b:null,f:false}],sec:null,mesgul:{}};
-const WHO=window.KARAKTERLER||[];
+// müşteriler: 20 karakter görseli (Eymen, yeşil ekrandan: tools/karakter/yesil.py → g/karakter/NN.webp, liste js/karakter.js).
+// Tek hâl: kızgın/sabırsız/üzgün yüz yok. Karakter çizimi TEK YERDEN: musteriGorsel(m) (ileride görsel değişirse yalnız burası).
+const WHO=BU.KARAKTER||[];
+const KAR_OLCEK=.62;   // görsel pikseli → sahne birimi (baş ~95 birim: masaların önünde doğru boyda; docs/inceleme/v5)
 function pickWho(){if(!WHO.length)return null;const busy=S.cust.filter(Boolean).map(c=>c.who);let k,n=0;do{k=WHO[Math.floor(Math.random()*WHO.length)];n++}while(busy.includes(k)&&n<20);return k}
-// müşteri gölgeli çizilir (index.html #musGolge: sıcak ışık, yumuşak gölge, kontur); yüz ve saç aynı kalır
-function golgeli(svg){return svg.replace(/(<svg[^>]*>)/,'$1<g filter="url(#musGolge)">').replace(/<\/svg>\s*$/,'</g></svg>')}
-function face(c,e){if(!c.who||!window.Musteri||c.emo===e)return;c.emo=e;c.yuzEl.innerHTML=golgeli(Musteri.draw(c.who.m,e))}
+function musteriSrc(m){return `g/karakter/${String(m.no).padStart(2,'0')}.webp`}
+// tam boy (sahnede, sahne biriminde) ya da 'bas' (kartlarda küçük: baş ve omuzlar)
+function musteriGorsel(m,tur){if(!m)return '';
+  if(tur==='bas')return `<i class="kb" style="background-image:url(${musteriSrc(m)})"></i>`;
+  return `<img class="kg" src="${musteriSrc(m)}" alt="" draggable="false">`}
 
 /* ================= üst bilgi ================= */
-let kasaGor=0,kasaRAF=0,bekle=0,canGor=3;
+let kasaGor=0,kasaRAF=0,bekle=0;
 function kasaYaz(v){$('kasa').textContent=fmt(v);$('kasaC').classList.toggle('neg',v<0)}
 function kasaPop(){const k=$('kasaC');k.classList.remove('pop');void k.offsetWidth;k.classList.add('pop')}
 function kasaHedef(v,{sessiz=false,sure=350}={}){cancelAnimationFrame(kasaRAF);
@@ -146,28 +165,40 @@ function kasaHedef(v,{sessiz=false,sure=350}={}){cancelAnimationFrame(kasaRAF);
   const f=now=>{const u=Math.min(1,(now-t0)/sure),e=1-Math.pow(1-u,3);kasaGor=Math.round(a+(v-a)*e);kasaYaz(kasaGor);if(u<1)kasaRAF=requestAnimationFrame(f)};kasaRAF=requestAnimationFrame(f)}
 function hud(o={}){kasaHedef(S.kasa-bekle,o);
   $('gunT').textContent=t('day',S.gun);$('prog').style.width=(S.cfg?100*S.bitti/S.cfg.musteri:0)+'%';
-  const cn=$('canlar');cn.setAttribute('aria-label',t('lives')+' '+canGor);
-  if(cn.children.length!==3)cn.innerHTML=[0,1,2].map(()=>'<span></span>').join('');
-  [...cn.children].forEach((s,i)=>{const dolu=i<canGor,ad=dolu?'can':'can_bos';if(s.dataset.ad!==ad){if(s.dataset.ad==='can'&&!dolu){s.classList.remove('gitti');void s.offsetWidth;s.classList.add('gitti')}s.dataset.ad=ad;s.innerHTML=ic(ad)}s.classList.toggle('bos',!dolu)})}
+  seriCiz();hedefCiz($('hedefC'),S.kasa-bekle)}
+// görünür seri: art arda bahşişli (mutlu) servis; 3'ten sonra rozet. Müşteri giderse sessizce söner.
+let seriGor=0;
+function seriCiz(){const el=$('seriC'),n=S.seri|0;if(!el)return;
+  if(n>=3){el.hidden=false;el.classList.remove('sondu');$('seriT').textContent=t('seri',n);if(n!==seriGor){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}}
+  else if(!el.hidden&&!el.classList.contains('sondu')){el.classList.add('sondu');setTimeout(()=>{if(el.classList.contains('sondu'))el.hidden=true},400)}
+  seriGor=n}
+// sıradaki hedef: dükkânda en ucuz alınmamış öğe ("3. ızgara: 120 kaldı"); kasa yetince "alınabilir"
+function sonrakiHedef(){let en=null;VERI.SATILIK.forEach(k=>{const d=upDurum(k);if(!d.mx&&(!en||d.c<en.c))en={k,c:d.c,l:d.l}});return en}
+function hedefAd(h){return h.k==='slot'?t('grillN',h.l+3):t('upN',t('up')[h.k][0],h.l+1)}
+function hedefCiz(el,kasa){if(!el)return;const h=sonrakiHedef();
+  const ik=h?(h.k==='slot'?'izgara':UPI[h.k]):'yildiz',ok=h&&kasa>=h.c&&kasa>=0,f=h?Math.max(0,Math.min(1,kasa/h.c)):1;
+  const txt=!h?t('hedefBitti'):ok?t('hedefOk',hedefAd(h)):t('hedef',hedefAd(h),fmt(h.c-Math.max(0,kasa)));
+  if(el.dataset.ik!==ik){el.dataset.ik=ik;el.querySelector('.i').innerHTML=ic(ik)}
+  el.querySelector('.ht').textContent=txt;el.querySelector('.prog b').style.width=(f*100).toFixed(1)+'%';el.classList.toggle('ok',!!ok)}
 function sesBtn(){const on=SAVE.ayar.efekt||SAVE.ayar.muzik;$('sesBtn').innerHTML=ic(on?'ses_acik':'ses_kapali');$('sesBtn').setAttribute('aria-label',t('sound'))}
 $('sesBtn').onclick=()=>{const on=SAVE.ayar.efekt||SAVE.ayar.muzik;SAVE.ayar.efekt=SAVE.ayar.muzik=!on;sesAyar();sesBtn();ses('tik')};
 
 /* ================= para efektleri ================= */
-function paraYagdir(from,miktar,gec){const o=S.oturum;const n=Math.max(4,Math.min(8,Math.round(miktar/6)+3));bekle+=miktar;let ilk=true;
+// para anı: bozukluklar müşteriden kasa rozetine TEK TEK uçar (ücret 3–5, bahşiş 1–2 parlak sikke); her biri varınca şıngırdar,
+// rozet zıplar ve kasa sayısı o sikkenin payı kadar AKARAK artar (ara değerler tam sayı, sonunda tam doğru).
+function paraYagdir(from,ucret,bah,gec){const o=S.oturum,miktar=ucret+bah;if(miktar<=0)return;
+  const n1=ucret>0?Math.max(3,Math.min(5,Math.round(ucret/12)+1)):0,n2=bah>0?(bah>=8?2:1):0,n=n1+n2;
+  const pay=[];for(let i=0;i<n1;i++)pay.push(Math.floor(ucret/n1)+(i<ucret%n1?1:0));for(let i=0;i<n2;i++)pay.push(Math.floor(bah/n2)+(i<bah%n2?1:0));
+  bekle+=miktar;
   zaman(()=>{const k=rel($('kasaI'));
-    for(let i=0;i<n;i++)zaman(()=>{const ox=(Math.random()-.5)*6*cq(),oy=(Math.random()-.5)*4*cq();
-      ucur(PARA(),{x:from.x+ox,y:from.y+oy},{x:k.cx,y:k.cy},{sure:450,yay:-8-Math.random()*6,s0:1,s1:.7,don:200,cls:'sikke',easing:'cubic-bezier(.5,0,.7,1)'}).then(()=>{
-        if(o!==S.oturum)return;if(ilk){ilk=false;bekle=Math.max(0,bekle-miktar);hud({sure:600})}
-        ses('tik');const c=$('kasaC');c.classList.add('tik');setTimeout(()=>c.classList.remove('tik'),90)})},i*60)},gec)}
+    for(let i=0;i<n;i++)zaman(()=>{const ox=(Math.random()-.5)*6*cq(),oy=(Math.random()-.5)*4*cq(),bh=i>=n1;
+      ucur(bh?ic('para','parlak'):PARA(),{x:from.x+ox,y:from.y+oy},{x:k.cx,y:k.cy},{sure:430+i*25,yay:-9-Math.random()*6,s0:bh?1.15:1,s1:.72,don:220,cls:'sikke'+(bh?' bah':''),easing:'cubic-bezier(.5,0,.7,1)'}).then(()=>{
+        if(o!==S.oturum)return;bekle=Math.max(0,bekle-pay[i]);hud({sure:260});
+        ses('para',{perde:bh?4:(i%3)*.5,ust:true,ses:bh?.9:.75});kasaPop();tit();
+        const c=$('kasaC');c.classList.add('tik');setTimeout(()=>c.classList.remove('tik'),90)})},i*95)},gec)}
 function parilti(x,y,gec){zaman(()=>sac(x,y,[0],8,{yay:9,yuk:-2,cls:'yildizcik',sure:700}),gec)}
-function kirikKalp(from,gec){const o=S.oturum;zaman(()=>{const hedefI=Math.max(0,canGor-1),sp=$('canlar').children[hedefI];const to=sp?rel(sp):{cx:APP.clientWidth-30*cq(),cy:8*cq()};
-  ucur(ic('can'),from,{x:to.cx,y:to.cy},{sure:520,yay:-12,s0:1.3,s1:.9,cls:'kalp'}).then(()=>{if(o!==S.oturum)return;canGor=Math.max(S.can,canGor-1);hud({sessiz:true});
-    const k=fxEl('kirik',`<span class="y1">${ic('can')}</span><span class="y2">${ic('can')}</span>`,to.cx-3.4*cq(),to.cy-3.4*cq());
-    try{k.children[0].animate([{transform:'none',opacity:1},{transform:`translate(${-2*cq()}px,${6*cq()}px) rotate(-30deg)`,opacity:0}],{duration:600,easing:'ease-in',fill:'forwards'});
-      k.children[1].animate([{transform:'none',opacity:1},{transform:`translate(${2*cq()}px,${6*cq()}px) rotate(30deg)`,opacity:0}],{duration:600,easing:'ease-in',fill:'forwards'})}catch(e){}
-    setTimeout(()=>k.remove(),700)})},gec)}
 function damga(c,metin,gec){zaman(()=>{const r=rel(c.yuzEl);const d=fxEl('damga',ic('carpi')+`<span>${metin}</span>`,r.cx,r.y+r.h*.35);setTimeout(()=>d.remove(),1400);
-  APP.classList.remove('sars');void APP.offsetWidth;APP.classList.add('sars');setTimeout(()=>APP.classList.remove('sars'),260)},gec)}
+  },gec)}   // ekran sallanması yok (Eymen, 9. tur)
 
 /* ================= mutfak: resim + parçalar (sahne birimi = resmin pikseli) ================= */
 const G='g/v3/';
@@ -181,7 +212,15 @@ const P={kuvetKofte:[1024,340,188,112],kuvetPatates:[1236,464,206,114],kofte:[10
 const HIT={ekmekUst:[192,262,352,168],ekmekAlt:[192,430,352,150],
   izg0:[592,300,208,154],izg1:[800,300,208,154],izg2:[576,454,218,146],izg3:[794,454,222,146],
   kofte:[1018,300,198,156],peynir:[1216,300,214,156],tursu:[1018,456,216,146],patates:[1234,456,214,146],
-  fritoz:[1440,282,262,330],cig:[1702,440,150,175],tezgah:[372,620,272,160],tepsi0:[694,620,300,170],tepsi1:[1000,620,300,170]};
+  fritoz:[1440,282,262,330],cig:[1702,440,150,175],tezgah:[372,620,272,160],tepsi0:[694,620,300,170],tepsi1:[1000,620,300,170],
+  tablet:[34,600,300,190]};   // 9. tur: sol alttaki tablet Dükkân'ı açar (sağ kısmı güvenli alanda, ≥ 44 pt)
+// basılınca ezilen görsel (resmin kendi parçası kırpılır, ya da üstteki parça): dokunuş tepkisi (ezVis)
+const VIS={ekmekUst:[205,335,330,85],ekmekAlt:[205,445,330,75],izg0:[596,333,202,120],izg1:[800,333,202,120],izg2:[583,458,208,135],izg3:[801,458,208,135],
+  kofte:[1015,338,198,118],peynir:[1213,338,195,118],tursu:[1022,458,205,138],patates:[1238,458,222,138],fritoz:[1435,283,282,310],cig:[1722,462,112,140],tablet:[34,615,192,167]};
+// basınca saçılan kırıntı renkleri (3–6 parça)
+const KIR={ekmekUst:['#f2b25a','#fbe0a4','#d98a2e'],ekmekAlt:['#f6d79a','#fff0c8','#e8b468'],kofte:['#7a3a1c','#a8572c','#5a2810'],peynir:['#ffcf3a','#ffe27a','#f2a91a'],
+  tursu:['#8cbf3a','#b8dc5a','#5f8f22'],patates:['#ffd36a','#fff0b0','#f2b233'],fritoz:['#ffd36a','#fff0b0'],cig:['#e7c48a','#c9a064','#f6e2b4'],izg:['#ffb347','#ff7a1a','#ffe08a'],
+  tezgah:['#f2b25a','#7a3a1c'],tepsi:['#fff4dc','#e2c9a0'],tablet:['#ffb84a','#ffd27a']};
 // ızgara merkezleri (0,1 açık; 2,3 resimde kilitli)
 const IZG=[{x:697,y:391,s:1.25},{x:902,y:391,s:1.25},{x:687,y:518,s:1.3},{x:905,y:518,s:1.3}];
 const HAZNE_K={x:1118,y:395},HAZNE_P={x:1338,y:520},SEPET={x:1570,y:388},CIG={x:1780,y:528};
@@ -234,11 +273,14 @@ function buildMutfak(){
   h.push(img('gosterge-bos',P.gosterge,'p" id="gstB'));
   h.push(`<svg class="rakam" id="gst" viewBox="0 0 57 41" style="left:${P.gosterge[0]}px;top:${P.gosterge[1]}px;width:${P.gosterge[2]}px;height:${P.gosterge[3]}px"></svg>`);
   h.push(`<i class="led kir" id="ledK" style="left:1520px;top:527px"></i><i class="led yes" id="ledY" style="left:1520px;top:558px"></i>`);
+  // doğrama: yığından alınan patates (her dokunuşta küçülür) ve yanında biriken dilimler
+  h.push(`<div class="dpat" id="dPat" style="left:${CIG.x-62}px;top:${CIG.y+38}px" hidden>${PATATES}</div><div class="dilimler" id="dDil" style="left:${CIG.x-150}px;top:${CIG.y+78}px"></div>`);
   // doğrama çubuğu (çiğ patateslerin üstünde)
   h.push(`<div class="dogra" id="dgr" style="left:1722px;top:440px;width:116px;height:18px" hidden>${Array.from({length:M.dograma},()=>'<i></i>').join('')}</div>`);
   // sipariş ekranı (askılı tablet): sağ yarısı oyunda yazılır
   h.push(img('tablet-bos',P.tablet,'p" id="tbB'));
   h.push(`<svg class="neon" id="tbN" viewBox="0 0 80 80" style="left:120px;top:637px;width:86px;height:86px"></svg>`);
+  h.push(`<div class="tbrz" id="tbRz" style="left:178px;top:612px" hidden></div>`);
   // tezgâh: hazırlık yeri (tahta) ve iki tepsi
   h.push(`<img class="tahta" src="${G}tahta.webp" alt="" style="left:${TEZGAH.x-130}px;top:${TEZGAH.y-51}px;width:260px;height:100px">`);
   h.push(`<div class="burger" id="brg" style="left:${TEZGAH.x-BW/2}px;top:${TEZGAH.y-200+14}px;width:${BW}px;height:200px"></div>`);
@@ -248,9 +290,28 @@ function buildMutfak(){
   $('parca').innerHTML=h.join('');
   MK={kvK:$('kvK'),kvP:$('kvP'),iz:[null,null,$('iz3'),$('iz4')],gk:[0,1,2,3].map(i=>$('gk'+i)),hl:[0,1,2,3].map(i=>$('hl'+i)),
     frPis:$('frPis'),frHaz:$('frHaz'),frKab:$('frKab'),frBuh:$('frBuh'),gst:$('gst'),ledK:$('ledK'),ledY:$('ledY'),dgr:$('dgr'),tbN:$('tbN'),
-    brg:$('brg'),tp:[$('tp0'),$('tp1')],hit:{}};
-  document.querySelectorAll('#parca .hit').forEach(el=>{MK.hit[el.dataset.h]=el;el.addEventListener('pointerdown',e=>{if(e.button>0)return;e.preventDefault();dokun(el.dataset.h,el)})});
-  MUSK.innerHTML='';BALON.innerHTML='';WFX.innerHTML=''}
+    brg:$('brg'),tp:[$('tp0'),$('tp1')],hit:{},dPat:$('dPat'),dDil:$('dDil'),tbRz:$('tbRz'),tahta:document.querySelector('#parca .tahta')};
+  document.querySelectorAll('#parca .hit').forEach(el=>{MK.hit[el.dataset.h]=el;el.addEventListener('pointerdown',e=>{if(e.button>0)return;e.preventDefault();if(aktif())basTepki(el.dataset.h);dokun(el.dataset.h,el)})});
+  MUSK.innerHTML='';BALON.innerHTML='';WFX.innerHTML='';$('ezK').innerHTML=''}
+// doğramada yığından alınan patates (resmin biçeminde: kalın koyu kontur, sıcak vurgu)
+const PATATES='<svg viewBox="0 0 124 90" aria-hidden="true"><path d="M14 52C8 30 30 10 62 11C96 12 118 28 114 50C110 74 86 84 58 82C32 80 18 70 14 52Z" fill="#d9a35a" stroke="#3a1d0c" stroke-width="5" stroke-linejoin="round"/>'+
+  '<path d="M26 40C32 24 52 18 70 19" fill="none" stroke="#f3d08e" stroke-width="6" stroke-linecap="round" opacity=".85"/><path d="M20 58C34 74 70 78 98 64" fill="none" stroke="#a8702e" stroke-width="5" stroke-linecap="round" opacity=".55"/>'+
+  '<circle cx="44" cy="46" r="3" fill="#8a5a24"/><circle cx="78" cy="36" r="2.6" fill="#8a5a24"/><circle cx="88" cy="58" r="3.2" fill="#8a5a24"/><circle cx="58" cy="64" r="2.4" fill="#8a5a24"/></svg>';
+// dokunuş tepkisi (60 ms kuralı): basıldığı anda nesne %7 ezilir ve hafifçe taşarak toparlanır, 3–6 kırıntı saçılır.
+// Resmin parçası (ekmek dolabı, hazne, ızgara, fritöz) kırpılıp ezilir; üstünde duran parça (köfte, kuvet, burger, tepsi) da birlikte.
+const EZ=[{transform:'scale(1,1)'},{transform:'scale(1.05,.93)',offset:.3},{transform:'scale(.98,1.03)',offset:.65},{transform:'scale(1,1)'}];
+function ezAnim(el,sure=180){if(!el||el.hidden)return;try{el.animate(EZ,{duration:sure,easing:'ease-out'})}catch(e){}}
+function basTepki(k){const v=VIS[k];
+  if(v){const d=document.createElement('div');d.className='ez';Object.assign(d.style,{left:v[0]+'px',top:v[1]+'px',width:v[2]+'px',height:v[3]+'px',backgroundPosition:`${-v[0]-240}px ${-v[1]-380}px`});
+    $('ezK').appendChild(d);ezAnim(d);setTimeout(()=>d.remove(),220)}
+  const ust={kofte:[MK.kvK],patates:[MK.kvP,$('patSec')],fritoz:[MK.frPis,MK.frHaz,MK.frKab],cig:[MK.dPat],tablet:[MK.tbN],tezgah:[MK.brg,MK.tahta],tepsi0:[MK.tp[0]],tepsi1:[MK.tp[1]]}[k]||[];
+  if(k.startsWith('izg')){const i=+k[3];ust.push(MK.gk[i],MK.iz[i])}
+  ust.forEach(el=>ezAnim(el));
+  const r=v||HIT[k],renk=KIR[k]||KIR[k.replace(/\d$/,'')]||(k.startsWith('izg')?KIR.izg:null);
+  if(r&&renk)kirinti(r[0]+r[2]/2,r[1]+r[3]*.35,renk,3+Math.floor(Math.random()*3),34)}
+// burger kapanınca kısa duraklama (hit-stop, 70 ms): yalnız görsel animasyonlar durur, zamanlayıcılar (sabır, ızgara, fritöz) sürer
+function hitStop(ms,sonra){let a=[];try{a=DUNYA.getAnimations({subtree:true}).filter(x=>x.playState==='running');a.forEach(x=>x.pause())}catch(e){}
+  setTimeout(()=>{a.forEach(x=>{try{x.play()}catch(e){}});sonra&&sonra()},ms)}
 // doğrama bıçağı: çelik ağız (ışıklı sırt), ahşap sap ve perçinler, kalın koyu kontur; sap sağ üstte, ağız aşağı iner
 const BICAK='<svg viewBox="0 0 140 120" aria-hidden="true"><defs><linearGradient id="bkA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f8"/><stop offset=".55" stop-color="#bcc4cc"/><stop offset="1" stop-color="#7e8894"/></linearGradient>'+
   '<linearGradient id="bkS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8622c"/><stop offset="1" stop-color="#5e2e10"/></linearGradient></defs>'+
@@ -271,10 +332,12 @@ function tepsiCiz(i,yeni){const tp=S.tepsi[i],el=MK.tp[i];
   el.querySelector('.ic-b').innerHTML=tp.b?`<div class="mini">${burgerHTML(tp.b)}</div>`:'';el.querySelector('.ic-f').innerHTML=tp.f===true?PORSIYON:'';
   el.classList.toggle('sec',S.sec==='tepsi'+i);el.classList.toggle('dolu',!!(tp.b||tp.f));
   if(yeni){el.classList.remove('kon');void el.offsetWidth;el.classList.add('kon')}}
-// sipariş ekranı: neon patates + bekleyen sipariş sayısı (burger simgesi resimde)
-function tabletCiz(){const n=S.cust.filter(c=>c&&!c.gitti).length;const key=n+'';if(MK.tbN.dataset.k===key)return;MK.tbN.dataset.k=key;
-  MK.tbN.innerHTML='<g class="nn"><path d="M14 12h26l-4 24H18z"/><path d="M17 12l-2-9M22 12l0-10M27 12l1-9M32 12l3-8M37 12l4-6"/><path d="M22 22h10"/></g>'+
-    `<text x="44" y="70" text-anchor="middle" class="nt">×${n}</text>`}
+// sol alttaki tablet (9. tur): Dükkân'ı açar. Ekranında neon tente + "DÜKKÂN"; şu an alınabilecek öğe sayısı rozette.
+// (Siparişler müşteri baloncuklarında görünüyor; tablet artık sipariş göstermiyor.)
+function tabletCiz(){const n=S.on?alinabilir(S.kasa):0,key=n+SAVE.lang;if(MK.tbN.dataset.k===key)return;MK.tbN.dataset.k=key;
+  MK.tbN.innerHTML='<g class="nn"><path d="M10 26h60l-6-14H16z"/><path d="M22 12l-3 14M34 12l-1 14M46 12l1 14M58 12l3 14"/><path d="M14 30v20h52V30"/><path d="M33 50V38h14v12"/></g>'+
+    `<text x="40" y="72" text-anchor="middle" class="nt tk">${t('tabletT')}</text>`;
+  MK.tbRz.hidden=!n;MK.tbRz.textContent=n}
 // fritöz göstergesi: kırmızı yedi parçalı rakamlar
 const SEG={0:'abcdef',1:'bc',2:'abged',3:'abgcd',4:'fgbc',5:'afgcd',6:'afgedc',7:'abc',8:'abcdefg',9:'abcdfg'};
 function rakam(ch,x){const s=SEG[ch]||'',w=11,hh=26,y=7,t=3;const p={a:[x,y,w,t],g:[x,y+hh/2-t/2,w,t],d:[x,y+hh-t,w,t],f:[x-1,y,t,hh/2],b:[x+w-t+1,y,t,hh/2],e:[x-1,y+hh/2,t,hh/2],c:[x+w-t+1,y+hh/2,t,hh/2]};
@@ -321,7 +384,8 @@ function dokun(k,el){if(!aktif())return;
   if(k==='fritoz')return fritoz();
   if(k==='cig')return dogra();
   if(k==='tezgah')return burgerSec();
-  if(k.startsWith('tepsi'))return tepsi(+k[5])}
+  if(k.startsWith('tepsi'))return tepsi(+k[5]);
+  if(k==='tablet'){ses('dokun');openShop(true);return true}}
 function secim(v){S.sec=v;burgerCiz();S.tepsi.forEach((_,i)=>tepsiCiz(i));MK.hit.patates.classList.toggle('sec',v==='patates');
   const sp=$('patSec');if(v==='patates'&&!sp){const d=document.createElement('div');d.id='patSec';d.className='patsec';d.innerHTML=PORSIYON;d.style.left=(HAZNE_P.x-50)+'px';d.style.top=(HAZNE_P.y-110)+'px';WFX.appendChild(d)}
   else if(v!=='patates'&&sp)sp.remove();
@@ -348,10 +412,13 @@ function malzeme(k,hk){if(S.sec)secim(null);
   if(son)son.style.visibility='hidden';if(gl&&(gl.classList.contains('gl')||gl.classList.contains('bz')))gl.style.visibility='hidden';
   const hy=TEZGAH.y+14-(hs-L.a)-L.h/2-34;
   ucW(`<img src="${G}${L.s}.webp" alt="">`,kay,{x:TEZGAH.x,y:hy},{w:BW,h:L.h,sure:250,yay:-80,s0:.9,s1:1,cls:'mal',easing:'cubic-bezier(.3,.2,.4,1)'}).then(()=>{
-    if(o!==S.oturum)return;burgerCiz(true);const b=MK.brg;b.classList.remove('bas','tamam');void b.offsetWidth;b.classList.add(kat==='bunTop'?'tamam':'bas');
-    zaman(()=>{ses('birak:'+(kat==='bunBot'||kat==='bunTop'?kat:k));if(kat==='bunTop'){const q=ekr(TEZGAH.x,TEZGAH.y-90);parilti(q.x,q.y,0)}},120);
+    if(o!==S.oturum)return;burgerCiz(true);const b=MK.brg;b.classList.remove('bas','tamam');
+    ses(k==='bun'?'kon_ekmek':'kon_'+(k==='patty'?'kofte':k==='cheese'?'peynir':'tursu'));
+    if(kat==='bunTop'){tit('orta');hitStop(70,()=>{if(o!==S.oturum)return;void b.offsetWidth;b.classList.add('tamam');ses('tamam');
+        const q=ekr(TEZGAH.x,TEZGAH.y-90);parilti(q.x,q.y,0);kirinti(TEZGAH.x,TEZGAH.y-110,['#fff4dc','#f2b25a','#fff'],6,50)})}
+    else{void b.offsetWidth;b.classList.add('bas')}
     rehber()});
-  ses('sec');tit();rehber();return true}
+  ses('dokun');tit();rehber();return true}
 // bir malzeme bu burgerde en çok kaç kez olabilir: bekleyen müşterilerin siparişlerinden (yoksa varsayılan sipariş)
 function enCok(k){let m=0;const ss=S.cust.filter(c=>c&&!c.gitti).map(c=>c.sip.katmanlar);if(!ss.length)ss.push(VERI.SIPARIS0.katmanlar);
   ss.forEach(ks=>{const n=ks.filter(x=>x===k).length;if(n>m)m=n});return Math.max(1,m)}
@@ -364,72 +431,90 @@ function izgara(i){const g=S.izg[i],k='izg'+i;if(!g)return false;
   if(g.st===2)return reddetH(k,t('pattyFull'));
   g.st=1;g.t=0;harca(VERI.katmanMaliyet('patty'),IZG[i].x,IZG[i].y-40);
   const el=MK.gk[i];izgaraCiz(i);izgaraIlerle(i);el.classList.remove('dus');void el.offsetWidth;el.classList.add('dus');
-  ses('izgara');tit();rehber();return true}
+  ses('kon_kofte',{perde:-2});tit();rehber();izgaraSes();return true}
+// ızgara cızırtısı: pişen köfte sayısına göre (1 köfte kısık, 4 köfte dolgun); köfte kalkınca söner
+function izgaraSes(){const n=S.izg.filter(g=>g.st===1||g.st===2).length;dongu('cizirti',n?Math.min(1,.45+.18*(n-1)):0)}
 function izgaraAdim(dt){const ps=VERI.izgaraPisme(SAVE.up);
-  S.izg.forEach((g,i)=>{if(g.st===1){g.t+=dt;izgaraIlerle(i);if(g.t>=ps){g.st=2;izgaraCiz(i);ses('pisti')}}
-    if(g.st===2&&S.hk+S.hkUcan<M.hazneKofte){g.st=0;izgaraCiz(i);S.hkUcan++;const o=S.oturum;
+  S.izg.forEach((g,i)=>{if(g.st===1){g.t+=dt;izgaraIlerle(i);if(g.t>=ps){g.st=2;izgaraCiz(i);ses('hazir',{perde:7,ses:.55})}}
+    if(g.st===2&&S.hk+S.hkUcan<M.hazneKofte){g.st=0;izgaraCiz(i);izgaraSes();S.hkUcan++;const o=S.oturum;
       ucW(`<img src="${G}kofte.webp" alt="">`,IZG[i],{x:HAZNE_K.x+(Math.random()-.5)*40,y:HAZNE_K.y},{w:102*IZG[i].s,h:58*IZG[i].s,sure:520,yay:-120,s0:1,s1:.9,don:-10,cls:'kof'}).then(()=>{
         if(o!==S.oturum)return;S.hkUcan=Math.max(0,S.hkUcan-1);S.hk=Math.min(M.hazneKofte,S.hk+1);kuvetCiz();
-        MK.kvK.classList.remove('kon');void MK.kvK.offsetWidth;MK.kvK.classList.add('kon');ses('birak:patty');rehber()})}})}
+        MK.kvK.classList.remove('kon');void MK.kvK.offsetWidth;MK.kvK.classList.add('kon');ses('kon_kofte',{ses:.6});rehber()})}})}
 
 // çiğ patates: her dokunuş doğrama çubuğunu doldurur; 10'da kendiliğinden fritöze. Fritöz doluyken (kızarıyor ya da bekliyor) red.
 function dogra(){if(S.fr.st!==0){const el=MK.hit.cig;sallaEl(el);uyari(el,S.fr.st===1?t('frying'):t('fryerBusy'));tit('ag');MK.dgr.hidden=false;MK.dgr.classList.remove('red');void MK.dgr.offsetWidth;MK.dgr.classList.add('red');setTimeout(()=>dograCiz(),500);return false}
   if(S.dogra>=M.dograma)return false;
-  S.dogra++;dograCiz();ses('dogra');tit();
+  S.dogra++;dograCiz();
+  // doğrama gamı: her dokunuşta bıçak sesi bir basamak yükselir (majör gam), 10.'da "tamam"
+  ses('bicak',{perde:GAM[S.dogra-1]-4,ust:true});tit();
+  patatesKucult();
   // bıçak darbesi ve patates kırıntıları
   const b=document.createElement('div');b.className='bicak';b.style.left=(CIG.x-70+Math.random()*24)+'px';b.style.top=(CIG.y-120+Math.random()*20)+'px';b.style.setProperty('--r',(-8+Math.random()*16)+'deg');
   b.innerHTML=BICAK;WFX.appendChild(b);setTimeout(()=>b.remove(),380);
   kirinti(CIG.x,CIG.y-10,['#fbe6a6','#f3d27a','#fff4d0'],5,46);
   const ci=MK.hit.cig;ci.classList.remove('vur');void ci.offsetWidth;ci.classList.add('vur');
   if(S.dogra>=M.dograma){const o=S.oturum;S.fr.st=-1;   // doğrandı: çubuklar fritöze uçuyor
-    setTimeout(()=>{if(o!==S.oturum)return;S.dogra=0;dograCiz()},350);
+    setTimeout(()=>{if(o!==S.oturum)return;ses('tamam',{perde:3,sabit:true})},90);
+    setTimeout(()=>{if(o!==S.oturum)return;S.dogra=0;dograCiz();patatesKucult()},350);
     const n=7;for(let j=0;j<n;j++)setTimeout(()=>{if(o!==S.oturum)return;
       ucW('<i class="cubuk"></i>',{x:CIG.x+(Math.random()-.5)*60,y:CIG.y-20},{x:SEPET.x+(Math.random()-.5)*110,y:SEPET.y+(Math.random()-.5)*20},{w:44,h:12,sure:420,yay:-110,s0:1,s1:.9,don:200+Math.random()*300,cls:'cub'})},j*45);
     setTimeout(()=>{if(o!==S.oturum)return;S.fr={st:1,t:VERI.fritozPisme(SAVE.up),kalan:M.haznePatates};harca(M.haznePatates*VERI.maliyet([],'fries'),SEPET.x,SEPET.y-60);
-      fritozCiz();ses('fritoz');kirinti(SEPET.x,SEPET.y,['#ffd36a','#fff0b0','#ffb733'],9,55);rehber()},n*45+400)}
+      fritozCiz();ses('fritoz_dal');dongu('fritoz',1);kirinti(SEPET.x,SEPET.y,['#ffd36a','#fff0b0','#ffb733'],9,55);rehber()},n*45+400)}
   rehber();return true}
-function fritozAdim(dt){const f=S.fr;if(f.st!==1)return;f.t-=dt;gostergeCiz();if(f.t<=0){f.st=2;f.t=0;fritozCiz();ses('pisti');rehber()}}
+const GAM=[0,2,4,5,7,9,11,12,14,16];
+// yığından alınan patates her dokunuşta küçülür, dilimler yanında birikir (10 dokunuş kuralı aynı)
+function patatesKucult(){const n=S.dogra,p=MK.dPat,d=MK.dDil;if(!p)return;
+  if(!n){p.hidden=true;d.innerHTML='';return}
+  p.hidden=false;p.style.setProperty('--k',(1-n*.06).toFixed(2));
+  if(d.children.length<n)for(let j=d.children.length;j<n;j++){const c=document.createElement('i');c.className='dl';
+    c.style.left=(8+(j%5)*20+Math.random()*6)+'px';c.style.top=(Math.floor(j/5)*-12+Math.random()*4)+'px';c.style.setProperty('--r',(-20+Math.random()*40)+'deg');d.appendChild(c)}}
+function fritozAdim(dt){const f=S.fr;if(f.st!==1)return;f.t-=dt;gostergeCiz();if(f.t<=0){f.st=2;f.t=0;fritozCiz();dongu('fritoz',.25);ses('hazir');rehber()}}
 // fritöze dokun: kızarmış patates hazneye (4 porsiyon; hazne doluysa kalanı sepette bekler)
 function fritoz(){const f=S.fr;
   if(f.st===1){const el=MK.hit.fritoz;sallaEl(el);uyari(el,t('frying'));return false}
   if(f.st===0||f.st===-1)return reddetH('fritoz',t('fryerEmpty'));
   const yer=M.haznePatates-S.hp;if(yer<=0)return reddetH('fritoz',t('friesFull'));
-  const n=Math.min(yer,f.kalan);f.kalan-=n;if(!f.kalan){f.st=0}fritozCiz();
-  const o=S.oturum;ses('al');tit();
+  const n=Math.min(yer,f.kalan);f.kalan-=n;if(!f.kalan){f.st=0;dongu('fritoz',0)}fritozCiz();
+  const o=S.oturum;ses('fritoz_al');tit();
   for(let j=0;j<n;j++)setTimeout(()=>{if(o!==S.oturum)return;
     ucW(`<img src="${G}patates-tutam.webp" alt="">`,{x:SEPET.x+(j-1.5)*30,y:SEPET.y},{x:HAZNE_P.x+(j-1.5)*28,y:HAZNE_P.y+4},{w:110,h:56,sure:460,yay:-120,s0:.8,s1:.9,cls:'tut'}).then(()=>{
-      if(o!==S.oturum)return;S.hp=Math.min(M.haznePatates,S.hp+1);kuvetCiz();MK.kvP.classList.remove('kon');void MK.kvP.offsetWidth;MK.kvP.classList.add('kon');ses('birak:pickle');rehber()})},j*90);
+      if(o!==S.oturum)return;S.hp=Math.min(M.haznePatates,S.hp+1);kuvetCiz();MK.kvP.classList.remove('kon');void MK.kvP.offsetWidth;MK.kvP.classList.add('kon');ses('kon_tursu',{perde:-3,ses:.6});rehber()})},j*90);
   return true}
 function patatesSec(){if(S.sec==='patates'){secim(null);return true}
   if(S.hp<=0)return reddetH('patates',t('noFries'));
-  secim('patates');ses('sec');tit();return true}
+  secim('patates');ses('dokun');tit();return true}
 function burgerSec(){const b=S.burger;if(!b.length)return reddetH('tezgah',t('needBun'));
   if(b[b.length-1]!=='bunTop')return reddetH('tezgah',t('notDone'));
-  secim(S.sec==='burger'?null:'burger');if(S.sec)ses('al');return true}
+  secim(S.sec==='burger'?null:'burger');ses('dokun');tit();return true}
 // tepsiye dokun: seçili burger/patates tepsiye kayar; seçim yoksa tepsi seçilir (sonra müşteriye dokun)
 function tepsi(i){const tp=S.tepsi[i];
   if(S.sec==='burger'){if(tp.b)return reddetH('tepsi'+i,t('trayFull'));
     const ks=S.burger.slice();S.burger=[];secim(null);burgerCiz();const yk=burgerYuk(ks),o=S.oturum;
     ucW(`<div class="mini">${burgerHTML(ks)}</div>`,{x:TEZGAH.x,y:TEZGAH.y-2-yk*.64},{x:TEPSI[i].x-43,y:TEPSI[i].y+32-yk*.425},{w:BW,h:yk,sure:300,yay:-60,s0:1/.78,s1:.85,cls:'brgu'}).then(()=>{
-      if(o!==S.oturum)return;tp.b=ks;tepsiCiz(i,true);ses('birak:bunTop');rehber()});
-    ses('al');tit();return true}
+      if(o!==S.oturum)return;tp.b=ks;tepsiCiz(i,true);ses('tepsi');rehber()});
+    tit();return true}
   if(S.sec==='patates'){if(tp.f)return reddetH('tepsi'+i,t('trayFries'));if(S.hp<=0){secim(null);return false}
     S.hp--;kuvetCiz();secim(null);const o=S.oturum;tp.f='ucuyor';
-    ucW(PORSIYON,{x:HAZNE_P.x,y:HAZNE_P.y-60},{x:TEPSI[i].x+62,y:TEPSI[i].y-30},{w:100,h:108,sure:300,yay:-50,s0:1,s1:.86,cls:'prs'}).then(()=>{if(o!==S.oturum)return;tp.f=true;tepsiCiz(i,true);ses('birak:cheese');rehber()});
-    ses('al');tit();return true}
+    ucW(PORSIYON,{x:HAZNE_P.x,y:HAZNE_P.y-60},{x:TEPSI[i].x+62,y:TEPSI[i].y-30},{w:100,h:108,sure:300,yay:-50,s0:1,s1:.86,cls:'prs'}).then(()=>{if(o!==S.oturum)return;tp.f=true;tepsiCiz(i,true);ses('tepsi',{perde:3,ses:.8});rehber()});
+    tit();return true}
   if(S.sec==='tepsi'+i){secim(null);return true}
   if(!tp.b&&!tp.f)return reddetH('tepsi'+i,t('emptyTray'));
   if(tp.f==='ucuyor')return false;
-  secim('tepsi'+i);ses('al');return true}
+  secim('tepsi'+i);ses('dokun');tit();return true}
 
 /* ================= müşteriler ================= */
+// müşteri: salondan yürüyerek gelir (yaylanarak, küçükten büyüyerek), arka tezgâhın arkasında durur (#musK y 311'de keser:
+// bel/göğüs hizasından görünür), hafifçe nefes alır. Ayak çizgisi MUS_AYAK; boy oranları görsellerdeki gibi (hepsi aynı ölçek).
+const MUS_AYAK=505;
 function spawn(){const bos=[0,1,2].filter(i=>!S.cust[i]&&S.slotT[i]<=S.now);const n=S.cust.filter(Boolean).length;if(!bos.length||n>=S.cfg.sira||S.kalan<=0)return false;
   const i=bos.includes(1)&&n===0?1:bos[Math.floor(Math.random()*bos.length)];
   const sip=VERI.siparis6();
   const who=pickWho();
-  const el=document.createElement('div');el.className='mus';el.style.left=(MUS_X[i]-MUS_W/2)+'px';
-  el.innerHTML=`<div class="yuz" role="img" aria-label="${who?who.ad:''}"></div>`;
-  const yon=i===0?-1:i===2?1:(Math.random()<.5?-1:1);el.style.setProperty('--gx',(yon*170)+'px');
+  const el=document.createElement('div');el.className='mus';
+  const w=who?who.w*KAR_OLCEK:MUS_W,h=who?who.h*KAR_OLCEK:400,ay=who?who.ayak*KAR_OLCEK:0;
+  Object.assign(el.style,{left:(MUS_X[i]-w/2)+'px',top:(MUS_AYAK-h+ay)+'px',width:w+'px',height:h+'px'});
+  el.innerHTML=`<div class="yuz">${musteriGorsel(who)}</div>`;
+  const yon=i===0?-1:i===2?1:(Math.random()<.5?-1:1);el.style.setProperty('--gx',(yon*230)+'px');
   MUSK.appendChild(el);
   const bub=document.createElement('div');bub.className='balon';bub.style.left=(MUS_X[i]+70)+'px';
   bub.innerHTML=`<div class="sip"><span class="b">${'<div class="mini">'+burgerHTML(sip.katmanlar)+'</div>'}</span><span class="f">${PORSIYON}</span></div><div class="sabir"><b></b></div>`;
@@ -439,23 +524,25 @@ function spawn(){const bos=[0,1,2].filter(i=>!S.cust[i]&&S.slotT[i]<=S.now);cons
   requestAnimationFrame(()=>requestAnimationFrame(()=>{el.classList.add('in');bub.classList.add('in')}));
   const sb=S.cfg.sabirSiparis(sip);
   const max=S.rehber?Math.max(240,sb*6):Math.round(sb*(1+.15*S.kolay));
-  const c=S.cust[i]={i,el,bub,hit,sip,durum:VERI.yeniDurum(sip),max,p:max,who,yuzEl:el.querySelector('.yuz'),fill:bub.querySelector('.sabir b'),emo:'',ruh:'mutlu',tut:0,rehberli:S.rehber};
+  const c=S.cust[i]={i,el,bub,hit,sip,durum:VERI.yeniDurum(sip),max,p:max,who,yuzEl:el.querySelector('.yuz'),fill:bub.querySelector('.sabir b'),ruh:'mutlu',rehberli:S.rehber};
   hit.addEventListener('pointerdown',e=>{if(e.button>0)return;e.preventDefault();musteriDokun(c)});
-  face(c,'happy');S.kalan--;tabletCiz();return true}
+  S.kalan--;tabletCiz();return true}
+// başın üstü (yazı, para): görselin üst kısmı, ekran koordinatında
+function basNokta(c){const r=rel(c.yuzEl),bs=c.who?c.who.bas/c.who.h:0;return {x:r.cx,y:r.y+r.h*(bs+.06),r}}
+// müşteri gider: tepsiyi aldıysa sevinip (zıplar) yürüyerek çıkar; süresi dolduysa tepkisiz yürüyerek çıkar (ceza sesi yok)
 function cikar(c,tur,gec=0){if(S.cust[c.i]!==c)return false;S.cust[c.i]=null;c.gitti=true;
-  const anim=tur==='mutlu'?900:tur==='kizgin'?900:500;S.slotT[c.i]=S.now+(gec+anim+700)/1000;
+  const anim=tur==='mutlu'?900:500;S.slotT[c.i]=S.now+(gec+anim+1100)/1000;
   c.hit.remove();
-  zaman(()=>{c.el.classList.add('cik',tur==='mutlu'?'mutlu-git':tur==='kizgin'?'kizgin-git':'normal-git');c.bub.classList.add('cik');
-    setTimeout(()=>{c.el.classList.add('out');c.bub.classList.add('out');setTimeout(()=>{c.el.remove();c.bub.remove()},650)},anim)},gec);
+  zaman(()=>{c.el.classList.add('cik',tur==='mutlu'?'mutlu-git':'normal-git');c.bub.classList.add('cik');
+    setTimeout(()=>{c.el.classList.add('out');c.bub.classList.add('out');setTimeout(()=>{c.el.remove();c.bub.remove()},1000)},anim)},gec);
   S.bitti++;if(c.rehberli){S.rehber=false;if(!SAVE.seen.includes('tut3')){SAVE.seen.push('tut3');save()}}hud({sessiz:true});tabletCiz();return true}
-function custAdim(dt){S.cust.forEach(c=>{if(!c)return;c.p-=dt;const f=Math.max(0,c.p/c.max);
+function custAdim(dt){let bekleyen=0;S.cust.forEach(c=>{if(!c)return;bekleyen++;c.p-=dt;const f=Math.max(0,c.p/c.max);
   c.fill.style.width=(f*100).toFixed(2)+'%';c.fill.style.background=sabirRenk(f);
-  const r=VERI.ruh(f);if(r!==c.ruh){c.ruh=r;c.el.classList.toggle('kizgin',r==='kizgin')}
-  if(S.now>=c.tut)face(c,VERI.yuz(f));
-  if(c.p<=0)kacti(c)})}
-function kacti(c){if(!cikar(c,'kizgin'))return;face(c,'angry');S.can=Math.max(0,S.can-1);S.kacan++;S.sayi.kizgin++;S.seri=0;
-  const r=rel(c.yuzEl);yazi(r.cx,r.y+r.h*.3,t('gone'),'kotu');ses('kacti');setTimeout(()=>ses('can_gitti'),180);tit('ag');
-  kirikKalp({x:r.cx,y:r.y+r.h*.4},120);kontrol();rehber()}
+  c.ruh=VERI.ruh(f);c.bub.classList.toggle('acil',f<.25&&f>0);   // son çeyrekte baloncuk hafifçe titrer (yüz ifadesi yok)
+  if(c.p<=0)kacti(c)});
+  try{SES.yogun&&SES.yogun(bekleyen>2)}catch(e){}}
+// süre doldu: müşteri yalnız gider. Can yok; o müşterinin parası ve seri kaçar (seri sessizce söner), gün sürer.
+function kacti(c){if(!cikar(c,'normal'))return;S.kacan++;S.seri=0;hud({sessiz:true});kontrol();rehber()}
 // baloncukta verilen parça soluklaşır
 function alindiCiz(c){const d=c.durum;c.bub.querySelector('.b').classList.toggle('alindi',!!(d&&d.burger));c.bub.querySelector('.f').classList.toggle('alindi',!!(d&&d.yan))}
 // müşteriye dokun: seçili tepsi o müşteriye gider
@@ -464,42 +551,45 @@ function musteriDokun(c){if(!aktif()||S.cust[c.i]!==c)return;
   const i=+S.sec[5],tp=S.tepsi[i];if(!tp.b&&!tp.f){secim(null);return}
   if(tp.f==='ucuyor')return;
   const parca={};if(tp.b)parca.katmanlar=tp.b;if(tp.f)parca.yan='fries';
-  // tepsi (içindekilerle) müşteriye kayar, yerine boş tepsi gelir
+  // tepsi (içindekilerle) müşteriye kayar, yerine boş tepsi gelir (uçuşta ses yok, yalnız varınca servis sesi)
   const kl=MK.tp[i].cloneNode(true);kl.removeAttribute('id');kl.classList.remove('sec','kon');kl.classList.add('giden');
   const x0=TEPSI[i].x,y0=TEPSI[i].y,x1=MUS_X[c.i],y1=MUS_ALT-6;
   kl.style.left=(x0-135)+'px';kl.style.top=(y0-56)+'px';WFX.appendChild(kl);
   try{kl.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${(x1-x0)*.55}px,${(y1-y0)*.5-40}px) scale(.8)`,offset:.55},{transform:`translate(${x1-x0}px,${y1-y0}px) scale(.62)`,opacity:1,offset:.85},{transform:`translate(${x1-x0}px,${y1-y0+40}px) scale(.55)`,opacity:0}],{duration:520,easing:'cubic-bezier(.4,0,.5,1)',fill:'forwards'})}catch(e){}
   setTimeout(()=>kl.remove(),620);
   S.tepsi[i]={b:null,f:false};secim(null);tepsiCiz(i);MK.tp[i].classList.remove('yeni');void MK.tp[i].offsetWidth;MK.tp[i].classList.add('yeni');
-  ses('al');tit();
+  tit();zaman(()=>ses('servis'),400);
   teslimEt(c,parca,430)}
 
 /* ================= teslim (parça parça) ================= */
+// Can yok (9. tur). Doğru + bahşişli (sabır > 2/3): fiyat + bahşiş, seri artar, kasa sesi seri kadar yarım ton yükselir.
+// Doğru, sabır ortada: yalnız fiyat (seri sıfırlanır). Doğru ama sabır ≤ 1/3: VERI kuralı, ödemez. Yanlış: ödemez, seri sıfırlanır.
 function teslimEt(c,parca,gec=0){const f=Math.max(0,c.p/c.max);
   const o=VERI.teslimParca(c.durum,parca,f,SAVE.up,S.seri);
   if(o.durum)c.durum=o.durum;
-  const yr=rel(c.yuzEl),x=yr.cx,y=yr.y+yr.h*.12;
+  const bn=basNokta(c),x=bn.x,y=bn.y,yr=bn.r;
   if(o.sonuc==='parca'){
-    if(o.sabirEk>0)c.p=Math.min(c.max,c.p+o.sabirEk*c.max);c.tut=S.now+(gec/1000)+.9;
-    zaman(()=>{face(c,'happy');alindiCiz(c);ses('teslim_normal');tit();const b=rel(c.bub);
+    if(o.sabirEk>0)c.p=Math.min(c.max,c.p+o.sabirEk*c.max);
+    zaman(()=>{alindiCiz(c);tit();const b=rel(c.bub);c.el.classList.remove('sevin1');void c.el.offsetWidth;c.el.classList.add('sevin1');
       yazi(b.cx,b.y,`${ic('tik')}<span>${t('gotPart')}</span>`,'iyi kucuk');c.bub.classList.remove('aldi1');void c.bub.offsetWidth;c.bub.classList.add('aldi1')},gec);
     rehber();return o}
   const ucret=o.ucret||0,bah=o.bahsis||0;S.kasa+=ucret+bah;S.gelir+=ucret;S.bahsis+=bah;
-  let tur;c.tut=1e9;
+  let tur;
   zaman(()=>{alindiCiz(c)},gec);
-  if(o.dogru&&o.ruh==='mutlu'){tur='mutlu';S.seri++;S.sayi.mutlu++;
-    zaman(()=>{face(c,'love');ses('teslim_mutlu');tit('orta');c.el.classList.add('sevin')},gec);
-    yazi(x,y,`+${ucret}${PARA()}`,'iyi',gec);parilti(x,yr.y+yr.h*.1,gec);
+  const para={x,y:y+(yr.h*.12)};
+  if(o.dogru&&o.ruh==='mutlu'){tur='mutlu';S.seri++;S.sayi.mutlu++;const sr=S.seri;
+    zaman(()=>{ses('kasa',{perde:Math.min(7,sr-1),ust:true});tit('orta');c.el.classList.add('sevin');kirinti(MUS_X[c.i],MUS_ALT-150,['#ffd84a','#fff','#ff9d1a','#ff6f61'],6,60)},gec);
+    yazi(x,y,`+${ucret}${PARA()}`,'iyi',gec);parilti(x,y,gec);
     if(bah){const W=APP.clientWidth,bx=x+12*cq();yazi(Math.min(W-14*cq(),Math.max(14*cq(),bx)),y-10*cq(),`${ic('kese')}<span>+${bah}</span><small>${t('tip')}</small>`,'bahsis',gec+400)}
-    paraYagdir({x,y:yr.y+yr.h*.45},ucret+bah,gec+150)}
+    paraYagdir(para,ucret,bah,gec+150)}
   else if(o.dogru&&o.ruh==='somurtkan'){tur='normal';S.seri=0;S.sayi.somurtkan++;
-    zaman(()=>{face(c,'wait');ses('teslim_normal');hud({sessiz:true})},gec)}
-  else{tur='kizgin';S.seri=0;S.sayi.kizgin++;if(!o.dogru)S.yanlis++;
-    zaman(()=>{face(c,'angry');c.bub.classList.add('ret');ses(o.dogru?'teslim_kizgin':'yanlis');tit('ag')},gec);
+    zaman(()=>{ses('kasa',{perde:-2,ses:.7});c.el.classList.add('sevin1')},gec);
+    yazi(x,y,`+${ucret}${PARA()}`,'iyi',gec);paraYagdir(para,ucret,0,gec+150)}
+  else{tur='normal';S.seri=0;S.sayi.kizgin++;if(!o.dogru)S.yanlis++;
+    zaman(()=>{c.bub.classList.add('ret');ses('uyari');tit('ag')},gec);
     damga(c,o.dogru?t('angryPay'):t('wrong'),gec);
     yazi(x,y-6*cq(),`−${o.kayip||0}${PARA()}`,'kotu',gec+200)}
-  if(o.can){S.can=Math.max(0,S.can-1);zaman(()=>ses('can_gitti'),gec+250);kirikKalp({x,y:yr.y+yr.h*.4},gec+250)}
-  cikar(c,tur,gec);if(tur!=='mutlu')hud({sessiz:tur==='normal'});kontrol();rehber();return o}
+  cikar(c,tur,gec);hud({sessiz:true});kontrol();rehber();return o}
 
 /* ================= rehber (yeni mutfakta ilk müşteri) ================= */
 let rehberHedef=null;
@@ -538,58 +628,64 @@ function rehber(zorla){if(!S.on||S.bitis||S.paused){if(rehberHedef)rehberGizle()
 function engeller(){const a=[rel($('hudL')),rel($('hudR'))];S.cust.forEach(c=>{if(c&&!c.gitti)a.push(rel(c.bub))});return a}
 
 /* ================= gün akışı ================= */
-function aktif(){return S.on&&!S.paused&&!S.bitis&&S.can>0}
+function aktif(){return S.on&&!S.paused&&!S.bitis}
 function yeniOturum(){S.oturum++;clearTimeout(S.bitisT);S.bitisT=0;cancelAnimationFrame(kasaRAF);bekle=0;loopNo++}
 function mutfakSifirla(){const n=VERI.izgaraGoz(SAVE.up);
   S.izg=[0,1,2,3].map(i=>({acik:i<n,st:0,t:0}));S.hk=M.hazir.patty;S.hkUcan=0;S.hp=M.hazir.fries;S.dogra=0;S.fr={st:0,t:0,kalan:0};
-  S.burger=[];S.tepsi=[{b:null,f:false},{b:null,f:false}];S.sec=null;S.koyNo=0}
+  S.burger=[];S.tepsi=[{b:null,f:false},{b:null,f:false}];S.sec=null;S.koyNo=0;dongu('cizirti',0);dongu('fritoz',0)}
 function startDay(d,hemen){yeniOturum();S.gun=d;S.cfg=VERI.gun6(d,SAVE.up);
   S.kolay=SAVE.kolay.g===d?Math.min(3,SAVE.kolay.n):0;
-  S.kasa=S.kasa0=SAVE.coins;S.gelir=S.gider=S.bahsis=0;S.sayi={mutlu:0,somurtkan:0,kizgin:0};S.kacan=S.yanlis=0;S.can=3;canGor=3;
+  S.kasa=S.kasa0=SAVE.coins;S.gelir=S.gider=S.bahsis=0;S.sayi={mutlu:0,somurtkan:0,kizgin:0};S.kacan=S.yanlis=0;S.alis=0;
   S.kalan=S.cfg.musteri;S.bitti=0;S.seri=0;S.cust=[null,null,null];S.slotT=[0,0,0];S.now=0;S.nextAt=.8;S.bitis=false;S.on=false;S.paused=false;
   S.rehber=!SAVE.seen.includes('tut3');S.ipucu=d<=2||S.rehber?{izg:false,cig:false,frt:false}:null;S.ipucuAktif=null;
-  FX.innerHTML='';mutfakSifirla();buildMutfak();hepsiniCiz();
+  FX.innerHTML='';mutfakSifirla();buildMutfak();hepsiniCiz();muzikMod('oyun');
   kasaGor=S.kasa;hud({sessiz:true});sesBtn();$('home').hidden=true;$('shop').hidden=true;APP.classList.remove('dukkanda');
   $('durBtn').innerHTML=ic('duraklat');$('durBtn').setAttribute('aria-label',t('pause'));$('kasaI').innerHTML=PARA();fit();
-  const go=()=>{$('ov').hidden=true;S.on=true;S.paused=false;ses('gun_basla');donguBasla();rehber();yonKontrol()};
+  const go=()=>{$('ov').hidden=true;S.on=true;S.paused=false;ses('gun_basla');donguBasla();hud({sessiz:true});tabletCiz();rehber();yonKontrol()};
   if(hemen){go();return}
-  const w=pickWho(),mf=w&&window.Musteri?`<i class="mf">${Musteri.draw(w.m,'happy')}</i>`:ic('gulen');
+  const w=pickWho(),mf=w?`<i class="mf">${musteriGorsel(w,'bas')}</i>`:ic('gulen');
   const kr=VERI.kira(d),fy=VERI.fiyat(VERI.SIPARIS0);
   card(`<h2>${t('dayT',d)}</h2><div class="kol"><div class="info"><span>${mf}${t('cust',S.cfg.musteri)}</span><span class="${S.kasa<0?'neg':''}">${PARA()}${fmt(S.kasa)}</span></div>`+
     `<div class="kirasatir">${ic('kira')}<span>${t('kiraBugun')}</span><b>${fmt(kr)}${PARA()}</b></div>`+
     (S.kolay?`<div class="kolay">${ic('kumsaati')}<span>${t('easier')}</span></div>`:'')+`</div><div class="kol"><div class="menu"><span class="mbg" style="--mk:${(2.4*cq()*10/170).toFixed(3)}"><span class="mini">${burgerHTML(VERI.SIPARIS0.katmanlar)}</span></span><span class="mp">${PORSIYON}</span><b>${fy}${PARA()}</b></div><p>${t('dayP')}</p>`+
     `</div><div class="btns"><button class="btn" id="go">${ic('oynat')}${t('start')}</button></div>`,'iki basi');
   $('go').onclick=()=>{ses('tik');go()}}
+// can yok: gün, bütün müşteriler gelip gidince biter (kaybedilen gün yok; kira ve eksi kasa kuralı sürer)
 function kontrol(){if(!S.on||S.bitis)return;
-  if(S.can<=0){bitisBaslat(false,800);return}
   if(S.kalan<=0&&!S.cust.some(Boolean))bitisBaslat(true,1300)}
 function bitisBaslat(win,ms){S.bitis=true;rehberGizle();kaydet(win);S.bitisT=zaman(()=>{S.bitisT=0;sonKart(win)},ms)}
 function kaydet(win){const st=Math.max(win?1:0,Math.min(3,3-S.kacan-S.yanlis));S.yildiz=st;
   const gs=VERI.gunSonu(S.kasa,S.gun,SAVE.eksi);
   S.kira=gs.kira|0;S.kapandi=!!gs.kapandi;SAVE.coins=gs.kasa|0;SAVE.eksi=gs.eksiGun|0;
-  if(win)SAVE.kolay={g:0,n:0};else SAVE.kolay=SAVE.kolay.g===S.gun?{g:S.gun,n:Math.min(3,SAVE.kolay.n+1)}:{g:S.gun,n:1};
+  // kolaylaştırma (9. tur): müşterilerin üçte biri ya da fazlası kaçtıysa / yanlış aldıysa ertesi gün sabır +%15 (art arda en çok 3 kez)
+  const zor=S.kacan+S.yanlis>=Math.ceil(S.cfg.musteri/3);
+  SAVE.kolay=zor?{g:S.gun+1,n:Math.min(3,(SAVE.kolay.g===S.gun?SAVE.kolay.n:0)+1)}:{g:0,n:0};
   if(win){SAVE.stars[S.gun]=Math.max(SAVE.stars[S.gun]||0,st);SAVE.day=Math.max(SAVE.day,S.gun+1)}
   save()}
 function bitir(win){if(!S.on)return;if(!S.bitis){S.bitis=true;rehberGizle();kaydet(win)}clearTimeout(S.bitisT);S.bitisT=0;sonKart(win)}
-function sonKart(win){S.on=false;S.bitis=false;rehberGizle();secim(null);
-  ses(win?'gun_bitti':'gun_kayip');
+function sonKart(win){S.on=false;S.bitis=false;rehberGizle();secim(null);dongu('cizirti',0);dongu('fritoz',0);try{SES.yogun&&SES.yogun(false)}catch(e){}
+  ses('gun_sonu');
   const st=S.yildiz|0,net=S.gelir+S.bahsis-S.gider-S.kira,G2=120,adim=[S.gelir,S.bahsis,-S.gider,-S.kira];
   const n=(v,i)=>`<b class="${v<0?'neg':v>0?'pos':''}" data-v="${v}" data-i="${i}">${v>0?'+':v<0?'−':''}0${PARA()}</b>`;
   const t0=win?.25+3*.3:.3;
   const sat=(ad,v,i,cls='',ik='')=>`<div class="r${cls}" style="--g:${(t0+i*G2/1000).toFixed(2)}s"><span>${ik?ic(ik):''}${t(ad)}</span>${n(v,i)}</div>`;
   const ek=S.kapandi?'':SAVE.eksi>0?`<div class="eksi">${ic('kira')}<span>${t('eksiUyari',SAVE.eksi,VERI.KAPANIS_GUN||3)}</span></div>`:'';
   card(`<h2>${t(win?'winT':'failT')}</h2><div class="kol orta">`+(win?`<div class="stars">${[1,2,3].map(i=>`<span class="${i<=st?'dolu':'bos'}" style="--g:${(.25+(i-1)*.3).toFixed(2)}s">${ic(i<=st?'yildiz':'yildiz_bos')}</span>`).join('')}</div>`:`<p>${t('failP')}<br><small>${t('easierNext')}</small></p>`)+
-    `<div class="yuzler" style="--g:${(t0+5*G2/1000).toFixed(2)}s"><span>${ic('gulen')}${S.sayi.mutlu}</span><span>${ic('somurtkan')}${S.sayi.somurtkan}</span><span>${ic('kizgin')}${S.sayi.kizgin}</span></div>`+
-    `<div class="info"><span class="${!S.kapandi&&SAVE.coins<0?'neg':''}">${t('kasa')}: ${PARA()}${fmt(S.kapandi?S.kasa-S.kira:SAVE.coins)}</span></div>`+ek+`</div>`+
+    `<div class="yuzler" style="--g:${(t0+5*G2/1000).toFixed(2)}s"><span title="${t('servis')}">${ic('tik')}${S.sayi.mutlu+S.sayi.somurtkan}</span><span title="${t('bahsis')}">${ic('kese')}${S.sayi.mutlu}</span><span title="${t('kacan')}">${ic('kumsaati')}${S.kacan+S.sayi.kizgin}</span></div>`+
+    `<div class="info"><span class="${!S.kapandi&&SAVE.coins<0?'neg':''}">${t('kasa')}: ${PARA()}${fmt(S.kapandi?S.kasa-S.kira:SAVE.coins)}</span></div>`+ek+
+    `<div class="chip hedef kart" id="hedefK"><span class="i"></span><span class="ht"></span><div class="prog"><b></b></div></div></div>`+
     `<div class="kol"><div class="tablo">${sat('gelir',adim[0],0)}${sat('bahsis',adim[1],1)}${sat('gider',adim[2],2)}${sat('kira',adim[3],3,' kira','kira')}${sat('net',net,4,' net')}</div></div>`+
     `<div class="btns yan"><button class="btn" id="nx">${ic(win?'ileri':'tekrar')}${t(win?'next':'retry')}</button><button class="btn alt" id="hm">${ic('ev')}${t('home')}</button></div>`,'son iki');
   $('card').style.setProperty('--bg',(t0+6*G2/1000).toFixed(2)+'s');
-  if(win)for(let i=1;i<=st;i++)setTimeout(()=>{if(!$('ov').hidden&&$('card').classList.contains('son'))ses(sesVar('yildiz:'+i)?'yildiz:'+i:'pisti')},(.25+(i-1)*.3+.35)*1000);
+  // sıradaki hedef: kasa sayılırken çubuk da dolar
+  {const hk=$('hedefK'),son=S.kapandi?SAVE.coins:SAVE.coins,bas=S.kasa0;hedefCiz(hk,bas);const s0=performance.now()+(t0+.4)*1000;
+    const f=now=>{if(!hk.isConnected)return;const u=Math.max(0,Math.min(1,(now-s0)/900));hedefCiz(hk,Math.round(bas+(son-bas)*u));if(u<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+  if(win)for(let i=1;i<=st;i++)setTimeout(()=>{if(!$('ov').hidden&&$('card').classList.contains('son'))ses('para',{perde:4+i*3,sabit:true})},(.25+(i-1)*.3+.35)*1000);
   $('card').querySelectorAll('.tablo b').forEach(b=>{const v=+b.dataset.v,i=+b.dataset.i,ilk=(t0+i*G2/1000+.15)*1000;
     const yaz=x=>{b.innerHTML=`${x>0?'+':x<0?'−':''}${fmt(Math.abs(x))}${PARA()}`};
     setTimeout(()=>{const s0=performance.now(),sure=Math.min(700,250+Math.abs(v)*6);let son=0;
       const f=now=>{if(!b.isConnected)return;const u=Math.min(1,(now-s0)/sure),x=Math.round(v*(1-Math.pow(1-u,2)));yaz(x);
-        if(x!==son&&now-(f.t||0)>70){f.t=now;ses('tik')}son=x;if(u<1)requestAnimationFrame(f)};requestAnimationFrame(f)},ilk)});
+        if(x!==son&&now-(f.t||0)>85){f.t=now;ses('para',{perde:Math.min(7,u*7),ses:.45,ust:true})}son=x;if(u<1)requestAnimationFrame(f)};requestAnimationFrame(f)},ilk)});
   if(win)setTimeout(()=>{if(!$('ov').hidden)konfeti()},(t0+.2)*1000);
   const sonra=fn=>()=>{ses('tik');if(S.kapandi){S.kapandi=false;kapanisKart(fn)}else fn()};
   $('nx').onclick=sonra(()=>startDay(win?S.gun+1:S.gun));$('hm').onclick=sonra(openHome)}
@@ -604,7 +700,7 @@ const KEPENK='<svg viewBox="0 0 160 150" aria-hidden="true"><rect x="8" y="22" w
 function kapanisKart(sonra){
   card(`<div class="kol orta kepenk">${KEPENK}</div><div class="kol"><h2>${t('closedT')}</h2><p>${t('closedP',VERI.KAPANIS_GUN||3)}</p><div class="info"><span>${t('kasa')}: ${PARA()}${fmt(SAVE.coins)}</span></div>`+
     `<div class="btns"><button class="btn" id="kpD">${ic('ileri')}${t('devam')}</button></div></div>`,'kapanis iki');
-  ses('gun_kayip');tit('ag');$('kpD').onclick=()=>{ses('tik');sonra()}}
+  ses('uyari');tit('ag');$('kpD').onclick=()=>{ses('tik');sonra()}}
 function konfeti(){const k=document.createElement('div');k.className='konfeti';const R=['#ff5b4f','#ffc21a','#37c25a','#4fb3ff','#ff8ad8','#fff'];let h='';
   for(let i=0;i<46;i++){const sk=i%5===0,x=Math.random()*100,du=1.8+Math.random()*1.6,de=Math.random()*.7;
     h+=`<i class="${sk?'sk':''}" style="left:${x}%;${sk?'':`background:${R[i%R.length]};`}--dx:${((Math.random()-.5)*3).toFixed(2)}rem;--r:${Math.round(360+Math.random()*540)*(Math.random()<.5?-1:1)}deg;animation-duration:${du.toFixed(2)}s;animation-delay:${de.toFixed(2)}s">${sk?PARA():''}</i>`}
@@ -612,14 +708,16 @@ function konfeti(){const k=document.createElement('div');k.className='konfeti';c
 function card(html,cls=''){$('ov').querySelectorAll('.konfeti').forEach(e=>e.remove());const c=$('card');c.className='card'+(cls?' '+cls:'');c.style.removeProperty('--bg');c.style.zoom='';c.innerHTML=html;$('ov').hidden=false;kartSigdir()}
 function kartSigdir(){const c=$('card'),ov=$('ov');if(ov.hidden)return;c.style.zoom='';const cs=getComputedStyle(ov);
   const H=ov.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),h=c.offsetHeight;if(h>H)c.style.zoom=Math.max(.7,H/h).toFixed(3)}
-function duraklat(){if(!S.on||S.paused||S.bitis)return;S.paused=true;rehberGizle();
+function sesDur(){dongu('cizirti',0);dongu('fritoz',0)}
+function sesSur(){izgaraSes();if(S.fr.st===1)dongu('fritoz',1);else if(S.fr.st===2)dongu('fritoz',.25)}
+function duraklat(){if(!S.on||S.paused||S.bitis)return;S.paused=true;rehberGizle();sesDur();
   const tgl=(id,on,ikon,ad)=>`<button class="tg${on?'':' kapali'}" id="${id}" aria-pressed="${on}"><span class="ti">${ic(ikon)}</span><span class="d">${t(ad)}<small>${t(on?'on':'off')}</small></span></button>`;
   const kart=()=>{card(`<h2>${t('pauseT')}</h2><div class="ayarlar">${tgl('pE',SAVE.ayar.efekt,SAVE.ayar.efekt?'ses_acik':'ses_kapali','fx')}${tgl('pM',SAVE.ayar.muzik,'muzik','music')}</div>`+
     `<div class="btns yan"><button class="btn" id="rs">${ic('oynat')}${t('resume')}</button><button class="btn alt" id="hm">${ic('ev')}${t('home')}</button></div>`,'dur');
     $('pE').onclick=()=>{SAVE.ayar.efekt=!SAVE.ayar.efekt;sesAyar();sesBtn();kart();ses('tik')};$('pM').onclick=()=>{SAVE.ayar.muzik=!SAVE.ayar.muzik;sesAyar();sesBtn();kart();ses('tik')};
-    $('rs').onclick=()=>{ses('tik');S.paused=false;$('ov').hidden=true;donguBasla();rehber(true)};
+    $('rs').onclick=()=>{ses('tik');S.paused=false;$('ov').hidden=true;sesSur();donguBasla();rehber(true)};
     // gün yarıda bırakılırsa o güne kadar harcanan para gider, kazanç sayılmaz (gün tekrar oynanır)
-    $('hm').onclick=()=>{ses('tik');SAVE.coins=Math.min(S.kasa,S.kasa0-S.gider);save();S.on=false;openHome()}};
+    $('hm').onclick=()=>{ses('tik');SAVE.coins=Math.min(S.kasa,S.kasa0-S.gider);save();S.on=false;openHome()}};   // dükkân alışverişi kasa0'dan da düştü
   kart()}
 $('durBtn').onclick=()=>{ses('tik');duraklat()};
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(S.on&&!S.paused)duraklat();try{SES.muzik(false)}catch(e){}}else if(sesAcik&&SAVE.ayar.muzik){try{SES.muzik(true)}catch(e){}}});
@@ -637,8 +735,8 @@ function adim(dt){S.now+=dt;if(S.bitis){izgaraAdim(dt);fritozAdim(dt);return}con
 
 /* ================= ana ekran ================= */
 const UPI={cook:'ates',pat:'kumsaati',tip:'kese',slot:'izgara'};
-function heroFaces(){if(!WHO.length||!window.Musteri)return;const a=WHO[Math.floor(Math.random()*WHO.length)];let b;do{b=WHO[Math.floor(Math.random()*WHO.length)]}while(b===a&&WHO.length>1);
-  $('heroA1').innerHTML=golgeli(Musteri.draw(a.m,'happy'));$('heroA2').innerHTML=golgeli(Musteri.draw(b.m,'love'))}
+function heroFaces(){if(!WHO.length)return;const a=WHO[Math.floor(Math.random()*WHO.length)];let b;do{b=WHO[Math.floor(Math.random()*WHO.length)]}while(b===a&&WHO.length>1);
+  $('heroA1').innerHTML=musteriGorsel(a);$('heroA2').innerHTML=musteriGorsel(b)}
 // ana menü: resmin kendi ekmek, köfte, peynir, turşusuyla burger
 function heroCiz(){const c=cq()||3.9,h=$('heroB').closest('.hero').clientHeight||40*c,ks=VERI.SIPARIS0.katmanlar,by=burgerYuk(ks);
   const ym=Math.max(14*c,Math.min(28*c,h-14*c)),k=ym/by;
@@ -646,7 +744,7 @@ function heroCiz(){const c=cq()||3.9,h=$('heroB').closest('.hero').clientHeight|
   $('heroB').style.height=ym+'px';$('heroB').style.width=BW*k+'px';
   // burger kesme tahtasının ortasına oturur (tahta 260×100 birim, üst yüzün ortası y=46; alt ekmeğin altı kutunun 19 birim altı)
   const pl=$('heroB').nextElementSibling;pl.style.width=260*k+'px';pl.style.height=100*k+'px';$('heroB').style.marginBottom=(-65*k)+'px'}
-function openHome(){yeniOturum();S.on=false;S.paused=false;S.bitis=false;rehberGizle();FX.innerHTML='';heroFaces();$('ov').hidden=true;$('shop').hidden=true;APP.classList.remove('dukkanda');$('home').hidden=false;document.documentElement.lang=SAVE.lang;
+function openHome(){yeniOturum();S.on=false;S.paused=false;S.bitis=false;rehberGizle();FX.innerHTML='';SH.oyunda=false;dongu('cizirti',0);dongu('fritoz',0);muzikMod('menu');heroFaces();$('ov').hidden=true;$('shop').hidden=true;APP.classList.remove('dukkanda');$('home').hidden=false;document.documentElement.lang=SAVE.lang;
   $('playBtn').innerHTML=ic('oynat')+(SAVE.day>1?t('cont',SAVE.day):t('play'));$('logo2').textContent=t('logo2');
   $('langBtn').innerHTML=ic('dil')+`<span class="${SAVE.lang==='tr'?'on':''}">TR</span><span class="${SAVE.lang==='en'?'on':''}">EN</span>`;$('langBtn').setAttribute('aria-label',t('lang'));
   $('hKasa').textContent=fmt(SAVE.coins);$('hKasaI').innerHTML=PARA();$('hKasaC').classList.toggle('neg',SAVE.coins<0);
@@ -655,28 +753,38 @@ function openHome(){yeniOturum();S.on=false;S.paused=false;S.bitis=false;rehberG
   const n=alinabilir();
   $('shopBtn').innerHTML=`<span class="si">${ic('dukkan')}</span><span class="st"><b>${t('shop')}</b><small>${t('shopSub')}</small></span>`+(n?`<span class="rz" aria-hidden="true">${n}</span>`:'');
   $('shopBtn').classList.toggle('var',!!n);$('shopBtn').setAttribute('aria-label',t('shop')+(n?' ('+n+')':''));
+  hedefCiz($('hHedef'),SAVE.coins);
+  if(SAVE.iade){const n=SAVE.iade;delete SAVE.iade;setTimeout(()=>{if(!$('home').hidden)uyari($('shopBtn'),t('iade',n))},600)}
   cevirYaz();heroCiz()}
 
 /* ================= dükkân ================= */
 // Satılanlar (yeni mutfağa göre): resimdeki 2 kilitli ızgara (sırayla; GELISTIR.slot) ve geliştirmeler (cook, pat, tip).
 // Eksi kasayla hiçbir şey alınmaz (VERI.alabilir).
-const alabilir=f=>VERI.alabilir(SAVE.coins,f);
-const UPS=['cook','pat','tip'];
+// 9. tur: "Hızlı ızgara" (cook) satılmıyor (işi kısaltan yükseltme yok; Eymen). Dükkân oyunda da açılır (sol alttaki tablet):
+// oyun durur, günün kasasıyla (S.kasa) alınır, kapanınca sürer. Alınan şey hemen işler (ızgara açılır, sabır yeni müşterilerde).
+const SH={mesgul:false,oyunda:false};
+const shKasa=()=>SH.oyunda?S.kasa:SAVE.coins;
+const alabilir=(f,k)=>VERI.alabilir(k==null?shKasa():k,f);
+const UPS=['pat','tip'];
 function upDurum(k){const u=VERI.GELISTIR[k],l=SAVE.up[k]|0;return {u,l,mx:l>=u.max,c:u.cost(l)}}
-function alinabilir(){let n=0;['slot',...UPS].forEach(k=>{const d=upDurum(k);if(!d.mx&&alabilir(d.c))n++});return n}
-const SH={mesgul:false};
+function alinabilir(k){let n=0;VERI.SATILIK.forEach(x=>{const d=upDurum(x);if(!d.mx&&alabilir(d.c,k))n++});return n}
 // ızgara simgesi: resmin kendisinden (kilitli ya da açık göz)
 const IZG_IMG=(acik)=>acik?`<span class="izr" style="background-image:url(${G}izgara-3.webp)"></span>`:`<span class="izr kil">${ic('kilit')}</span>`;
-function openShop(){SH.mesgul=false;$('shop').hidden=false;APP.classList.add('dukkanda');FX.innerHTML='';
-  $('shT').textContent=t('shop');$('shBack').innerHTML=ic('ev');$('shBack').setAttribute('aria-label',t('home'));
-  $('shKasaI').innerHTML=PARA();shopKasa(SAVE.coins);
-  const u=$('shUyari');u.hidden=SAVE.coins>=0;u.innerHTML=ic('kira')+`<span>${t('negShop')}</span>`;
+function openShop(oyunda){SH.mesgul=false;SH.oyunda=!!oyunda;
+  if(SH.oyunda){if(!S.on||S.bitis)return;S.paused=true;rehberGizle();sesDur();secim(null)}
+  $('shop').hidden=false;APP.classList.add('dukkanda');if(!SH.oyunda)FX.innerHTML='';else FX.querySelectorAll('.uyari,.ipucu').forEach(e=>e.remove());
+  $('shT').textContent=t('shop');$('shBack').innerHTML=ic(SH.oyunda?'oynat':'ev');$('shBack').setAttribute('aria-label',SH.oyunda?t('mutfaga'):t('home'));
+  $('shKasaI').innerHTML=PARA();shopKasa(shKasa());
+  const u=$('shUyari');u.hidden=shKasa()>=0;u.innerHTML=ic('kira')+`<span>${t('negShop')}</span>`;
   shopListe();$('shList').scrollTop=0}
+function shopKapat(){ses('tik');if(!SH.oyunda){openHome();return}
+  SH.oyunda=false;$('shop').hidden=true;APP.classList.remove('dukkanda');
+  if(S.on&&!S.bitis){S.paused=false;hud({sessiz:true});tabletCiz();sesSur();donguBasla();rehber(true)}}
 let shKasaGor=0,shRAF=0;
 function shopKasa(v,sure){cancelAnimationFrame(shRAF);const yaz=x=>{$('shKasa').textContent=fmt(x);$('shKasaC').classList.toggle('neg',x<0)};
   if(!sure){shKasaGor=v;yaz(v);return}const a=shKasaGor,t0=performance.now();
   const f=now=>{const u=Math.min(1,(now-t0)/sure),e=1-Math.pow(1-u,3);shKasaGor=Math.round(a+(v-a)*e);yaz(shKasaGor);if(u<1)shRAF=requestAnimationFrame(f)};shRAF=requestAnimationFrame(f)}
-function shopListe(){const L=$('shList'),y=L.scrollTop,sl=SAVE.up.slot|0,mxS=VERI.GELISTIR.slot.max;
+function shopListe(){const L=$('shList'),y=L.scrollTop,sl=SAVE.up.slot|0,mxS=VERI.GELISTIR.slot.max;$('shUyari').hidden=shKasa()>=0;
   // ızgaralar: 3. ve 4. (sırayla)
   let h=`<div class="sh-bas">${t('grills')}</div><div class="ups izg">`;
   for(let j=0;j<mxS;j++){const no=j+3,var_=sl>j,sira=sl===j,c=VERI.GELISTIR.slot.cost(j),ok=sira&&alabilir(c);
@@ -693,10 +801,15 @@ function shopListe(){const L=$('shList'),y=L.scrollTop,sl=SAVE.up.slot|0,mxS=VER
 function reddet(el){ses('uyari');tit();el.classList.remove('red');void el.offsetWidth;el.classList.add('red')}
 function upAl(k,btn){if(SH.mesgul)return false;const {mx,c,l}=upDurum(k);
   if(mx||!alabilir(c)){if(btn)reddet(btn);if(SAVE.coins<0&&btn)uyari(btn,t('negKisa'));return false}
-  SAVE.coins-=c;SAVE.up[k]=l+1;save();ses('satin');tit('orta');shopKasa(SAVE.coins,500);shopListe();
+  SAVE.coins-=c;SAVE.up[k]=l+1;
+  // oyunda: günün kasasından da düşer (gün sonunda SAVE.coins zaten günün kasasından yazılır; yarıda bırakılırsa kasa0'dan)
+  if(SH.oyunda){S.kasa-=c;S.kasa0-=c;S.alis=(S.alis|0)+c;kasaGor=S.kasa;
+    if(k==='slot'){const n=VERI.izgaraGoz(SAVE.up);S.izg.forEach((g,i)=>{if(i<n&&!g.acik){g.acik=true;izgaraCiz(i)}})}
+    S.cfg=VERI.gun6(S.gun,SAVE.up)}
+  save();ses('satin');tit('orta');shopKasa(shKasa(),500);shopListe();
   const nb=$('shList').querySelector(k==='slot'?`[data-g="${l}"]`:`[data-u="${k}"]`);if(nb){nb.classList.add('aldi');const r=rel(nb);sac(r.cx,r.cy,[0],8,{yay:9,yuk:-2,cls:'yildizcik',sure:650})}return true}
-$('shBack').onclick=()=>{ses('tik');openHome()};
-$('shopBtn').onclick=()=>{ses('tik');openShop()};
+$('shBack').onclick=shopKapat;
+$('shopBtn').onclick=()=>{ses('tik');openShop(false)};
 $('playBtn').onclick=()=>{ses('tik');startDay(SAVE.day)};
 $('langBtn').onclick=()=>{SAVE.lang=SAVE.lang==='tr'?'en':'tr';save();ses('tik');openHome()};
 $('hEfekt').onclick=()=>{SAVE.ayar.efekt=!SAVE.ayar.efekt;sesAyar();ses('tik');openHome()};
@@ -726,9 +839,9 @@ addEventListener('resize',()=>{fit();kartSigdir();if(!$('home').hidden)heroCiz()
 if(DIK.addEventListener)DIK.addEventListener('change',yonKontrol);
 
 /* ================= test kancası ================= */
-if(DEBUG)window.__bu={S,SAVE,VERI,LAY,burgerHTML,burgerYuk,KAT,startDay,bitir,adim,openHome,openShop,upAl,alinabilir,save,fit,
+if(DEBUG)window.__bu={S,SAVE,VERI,LAY,burgerHTML,burgerYuk,KAT,startDay,bitir,adim,openHome,openShop,shopKapat,upAl,alinabilir,save,fit,SES,WHO,musteriGorsel,
   dokun:k=>dokun(k,MK.hit[k]),musteri:i=>S.cust[i]&&musteriDokun(S.cust[i]),hit:k=>MK.hit[k],
   basla:()=>{const g=$('go');if(g)g.click()},durum:()=>({hk:S.hk,hp:S.hp,dogra:S.dogra,fr:{...S.fr},burger:S.burger.slice(),tepsi:S.tepsi.map(x=>({...x})),sec:S.sec,izg:S.izg.map(x=>({...x})),
-    cust:S.cust.map(c=>c&&{i:c.i,f:+(c.p/c.max).toFixed(2),ruh:c.ruh,durum:{burger:c.durum.burger,yan:c.durum.yan}}),kasa:S.kasa,can:S.can,bitti:S.bitti,kalan:S.kalan})};
+    cust:S.cust.map(c=>c&&{i:c.i,f:+(c.p/c.max).toFixed(2),ruh:c.ruh,durum:{burger:c.durum.burger,yan:c.durum.yan}}),kasa:S.kasa,kasaGor,seri:S.seri,paused:S.paused,bitti:S.bitti,kalan:S.kalan,kacan:S.kacan})};
 openHome();fit();
 })();

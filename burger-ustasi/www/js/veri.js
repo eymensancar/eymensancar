@@ -24,7 +24,9 @@
  *   art arda 3. mutlu teslimden sonra seri payı (+1 … +5). En az 1.
  * Ruh hâli (f = kalan sabır oranı, 0…1):
  *   f > 2/3 mutlu ('happy'), 2/3 ≥ f > 1/3 somurtkan ('wait', f ≤ 0,5'te 'imp'),
- *   f ≤ 1/3 kızgın ('angry'), f = 0 kaçar (oyun tarafı; bir can).
+ *   f ≤ 1/3 kızgın ('angry'), f = 0 kaçar (oyun tarafı).
+ * 9. tur (Eymen, 21 Kasım): CAN YOK. Kaçan müşteri yalnız kendi parasını ve seriyi götürür; yanlış teslimde
+ *   ödeme yok, seri sıfırlanır. Fonksiyonlar 'can' alanını eskisi gibi döndürür ama oyun ve denge botu kullanmaz.
  * Zorluk güne göre artar, AYAR.zorTavan (18.) gününde durur (300. gün de 18. gün kadar zor).
  * Denge değerleri AYAR içinde; botu (scripts/denge.mjs) çalıştırıp ayarlandı,
  *   sonuçlar docs/DENGE.md.
@@ -119,11 +121,15 @@
   // geliştirme fiyatları düzey düzey (l = şu anki düzey, 0'dan başlar)
   function basamak(a) { return function (l) { l = l | 0; return a[Math.min(l, a.length - 1)]; }; }
   var GELISTIR = {
-    cook: { max: 4, cost: basamak([300, 600, 1200, 2400]) },   // köfte 0,5 sn daha çabuk pişer
+    cook: { max: 4, cost: basamak([300, 600, 1200, 2400]) },   // ESKİ "Hızlı ızgara": 9. turdan beri satılmaz, etkisi yok (SATILIK'ta değil)
     pat:  { max: 4, cost: basamak([350, 700, 1400, 2800]) },   // müşteri sabrı +%10
     tip:  { max: 4, cost: basamak([400, 800, 1600, 3200]) },   // bahşiş +%25
     slot: { max: 2, cost: basamak([250, 1500]) }               // 6. tur: resimdeki 2 kilitli ızgara (3. ve 4.)
   };
+  // dükkânda satılanlar (9. tur: cook çıktı)
+  var SATILIK = ['slot', 'pat', 'tip'];
+  // eski kayıtta alınmış "Hızlı ızgara" düzeylerinin toplam fiyatı (iade)
+  function cookIade(l) { var t = 0; for (var i = 0; i < Math.min(l | 0, GELISTIR.cook.max); i++) t += GELISTIR.cook.cost(i); return t; }
   // açık ızgara: 2 + slot düzeyi (resimde 4 ızgara; en çok 4). Eski kayıtta slot 1 → 3 ızgara; 3–4 → 4.
   function izgaraGoz(up) { return Math.min(IZGARA_MAX, 2 + U(up).slot); }
 
@@ -471,8 +477,8 @@
   // Başta açık: ekmek, köfte, peynir, turşu, patates kızartması. Herkes aynı siparişi verir: turşulu peynirli burger + patates.
   // Öbür malzemelerin mutfakta yeri yok: siparişe girmez, dükkânda satılmaz (eski kayıtta alınmışsa kayıtta durur).
   var MUTFAK = {
-    izgaraPisme: 8, izgaraPismeUp: 0.5, izgaraPismeMin: 6,  // köfte ızgarada (sn); "Hızlı ızgara" düzey başına −0,5
-    fritozPisme: 15, fritozPismeUp: 1, fritozPismeMin: 11,  // patates fritözde (sn); düzey başına −1
+    izgaraPisme: 8,     // köfte ızgarada (sn); 9. turdan beri hiçbir şey kısaltmaz
+    fritozPisme: 15,    // patates fritözde (sn)
     hazneKofte: 6,      // pişmiş köfte haznesi
     haznePatates: 4,    // patates haznesi (porsiyon); bir fritöz dolusu 4 porsiyon
     dograma: 10,        // çiğ patatese dokunuş: 10'da doğranır
@@ -493,8 +499,10 @@
   var SIPARIS0 = { katmanlar: ['bunBot', 'patty', 'cheese', 'pickle', 'bunTop'], yan: 'fries' };
   function mutfaktaMi(k) { return MUTFAKTA.indexOf(anahtar(k)) >= 0; }
   // izgara ve fritöz süresi (sn)
-  function izgaraPisme(up) { up = U(up); return Math.max(MUTFAK.izgaraPismeMin, MUTFAK.izgaraPisme - MUTFAK.izgaraPismeUp * up.cook); }
-  function fritozPisme(up) { up = U(up); return Math.max(MUTFAK.fritozPismeMin, MUTFAK.fritozPisme - MUTFAK.fritozPismeUp * up.cook); }
+  // 9. tur (Eymen, 21 Kasım): işi kısaltan yükseltme yok. "Hızlı ızgara" (cook) dükkândan kalktı, etkisi sıfır:
+  // süreler hep 8 sn ve 15 sn. Eski kayıtta alınmışsa parası iade edilir (oyun.js, cookIade). up.cook yok sayılır.
+  function izgaraPisme(up) { return MUTFAK.izgaraPisme; }
+  function fritozPisme(up) { return MUTFAK.fritozPisme; }
   // sipariş (6. tur): herkes aynı; sonradan mutfağa yer açılan malzemeler (gelecek) eklenirse siparisTam eski
   // kurala döner. ek: {katmanlar, yan} yeni nesne.
   function siparis6() { return { katmanlar: SIPARIS0.katmanlar.slice(), yan: SIPARIS0.yan }; }
@@ -541,7 +549,7 @@
     MALZEME: MALZEME, SATIN_SIRA: SATIN_SIRA, STOK_MAX: STOK_MAX, KAT_MAX: KAT_MAX, GELISTIR: GELISTIR, AYAR: AYAR,
     BASLANGIC: BASLANGIC, KAPANIS_GUN: KAPANIS_GUN, SIFIRLA: SIFIRLA,
     acik: acik, eskiSahip: eskiSahip, siradaki: siradaki, fiyatAc: fiyatAc, alabilir: alabilir,
-    kira: kira, gunSonu: gunSonu,
+    kira: kira, gunSonu: gunSonu, SATILIK: SATILIK, cookIade: cookIade,
     maliyet: maliyet, katmanMaliyet: katmanMaliyet, katmanSatis: katmanSatis, fiyat: fiyat, bahsis: bahsis,
     ruh: ruh, yuz: yuz, dogruMu: dogruMu, odeme: odeme, gun: gun, sabirSiparis: sabirSiparis,
     siparis: siparis, pisme: pisme,

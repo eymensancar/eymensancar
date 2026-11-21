@@ -4,7 +4,7 @@
 /* Burger Ustası: YATAY mutfak oyunu. 7. tur (21 Kasım): Eymen'in resmi (docs/referans/mutfak-v3-eymen.png) oyunun arka planı.
    Ekran: #sahne > #dunya (resmin pikselleriyle 1852×849; js fit() ölçekler): resim, müşteriler (#musK), resmin parçaları ve
    dokunma alanları (#parca), baloncuklar (#balonK), uçanlar (#wfx). Üst bilgi (#hud) iki köşede (#hudL kasa + gün, #hudR
-   düğmeler + canlar). Birim: 1rem = 10 birim; birim = min(güvenli yükseklik / 100, güvenli genişlik / 190) (üst bilgi, kartlar,
+   düğmeler, sıradaki hedef, seri). Birim: 1rem = 10 birim; birim = min(güvenli yükseklik / 100, güvenli genişlik / 190) (üst bilgi, kartlar,
    menüler). Güvenli alan --sl/--sr/--st/--sb (env(); #guv ile ölçülür). Dik tutulursa "yan çevir" (#cevir). */
 :root{--sl:env(safe-area-inset-left,0px);--sr:env(safe-area-inset-right,0px);--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px)}
 html{font-size:calc(10*min((100dvh - var(--st) - var(--sb))/100,(100vw - var(--sl) - var(--sr))/190));-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -14,7 +14,6 @@ html,body{margin:0;height:100%;overflow:hidden;background:#2b1a12;font-family:"B
 body{font-size:.44rem}
 :root{--ink:#2a1a10;--cream:#fff4dc;--red:#d2281e;--red-d:#8d140e;--gold:#ffc21a;--green:#2e9d3e;--good:#37c25a;--good2:#8bff6a;--bad:#ff5b4f;--sky1:#8fd3ff;--sky2:#d9f3ff}
 #app{position:relative;width:100vw;height:100dvh;overflow:hidden;background:#3a2416;color:var(--ink);touch-action:none}
-#app.sars{animation:sars .22s linear}
 img{display:block;-webkit-user-drag:none;pointer-events:none}
 button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ic{display:block;width:100%;height:100%;flex:none;overflow:visible}
@@ -34,10 +33,22 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .chip.kasa.tik .i{transform:scale(1.25) rotate(-12deg)}
 .chip.gun{flex-direction:column;align-items:stretch;justify-content:center;gap:max(2px,.05rem);padding:0 .22rem;min-width:max(76px,2rem)}
 .chip.gun span{text-align:center}
-.canlar{display:flex;gap:.02rem;flex:none}
-.canlar span{width:max(24px,.62rem);height:max(24px,.62rem);transition:transform .3s,opacity .3s}
-.canlar span.bos{opacity:.55;transform:scale(.85)}
-.canlar span.gitti{animation:cangit .7s ease-out}
+.chip.seri{height:max(28px,.72rem);font-size:max(13px,.38rem);color:#ffe27a;gap:.06rem;padding:0 .18rem 0 .1rem}
+.chip.seri .ic{width:max(20px,.5rem);height:max(20px,.5rem)}
+.chip.seri.pop{animation:kpop .35s ease-out}
+.chip.seri.sondu{opacity:0;transform:scale(.8);transition:opacity .35s,transform .35s}
+.chip.hedef{height:auto;min-height:max(28px,.72rem);flex-direction:row;flex-wrap:wrap;gap:.04rem .08rem;padding:.04rem .18rem .06rem .08rem;font-size:max(11px,.3rem);max-width:max(170px,5.2rem);white-space:normal}
+.chip.hedef .i .ic{width:max(18px,.46rem);height:max(18px,.46rem)}
+.chip.hedef .ht{flex:1 1 0;min-width:0;line-height:1.1;color:#ffe3b0}
+.chip.hedef .prog{flex:1 0 100%;height:max(4px,.1rem)}
+.chip.hedef.ok{box-shadow:0 0 0 .05rem #ffc21a,0 0 .3rem rgba(255,190,40,.8)}
+.chip.hedef.ok .ht{color:#ffe27a}
+.chip.hedef.kart{margin:.12rem auto 0;max-width:none}
+.ucan.sikke.bah .ic{filter:drop-shadow(0 0 .1rem #fff6a0) brightness(1.15)}
+.info .mf .kb{display:block;width:100%;height:100%;background-size:240% auto;background-position:50% 2%;background-repeat:no-repeat;border-radius:.2rem}
+.hero .f{overflow:hidden}
+.hero .f .kg{display:block;height:5.2rem;width:auto;max-width:none;margin-left:50%;transform:translateX(-50%);filter:drop-shadow(.06rem .04rem .05rem rgba(45,16,6,.35))}
+.home .hsag .chip.hedef{margin-top:.12rem;max-width:none}
 .hb{position:relative;width:max(34px,.9rem);height:max(34px,.9rem);border-radius:50%;background:rgba(255,255,255,.94);border:.05rem solid var(--ink);box-shadow:0 .07rem 0 rgba(0,0,0,.2);display:grid;place-items:center;flex:none}
 .hb .ic{width:62%;height:62%}
 .hb:active{transform:translateY(.06rem);box-shadow:0 .02rem 0 rgba(0,0,0,.2)}
@@ -62,18 +73,36 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 @keyframes parlaW{from{box-shadow:0 0 0 4px rgba(255,214,90,.75),0 0 14px rgba(255,200,40,.5)}to{box-shadow:0 0 0 9px rgba(255,214,90,.95),0 0 40px rgba(255,200,40,.85)}}
 .p.kon{animation:konP .32s ease-out}
 @keyframes konP{0%{filter:brightness(1)}35%{filter:brightness(1.35)}100%{filter:brightness(1)}}
-/* müşteriler: salondan gelir (yandan, küçükten), tezgâhın arkasında durur; gölgeli çizim (#musGolge) + duvara düşen gölge */
+/* müşteriler (9. tur): 20 karakter görseli (g/karakter, tek hâl). Salondan yürüyerek gelir (yaylanarak, küçükten büyüyerek),
+   arka tezgâhın arkasında durur (#musK y 311'de keser), hafifçe nefes alır; giderken yürüyerek çıkar. Sahnenin sıcak ışığına
+   uysun diye hafif sepya ve sağ alta yumuşak gölge (çizimler değişmez). */
 .musK{position:absolute;left:0;top:0;width:1852px;height:311px;overflow:hidden;pointer-events:none}
-.mus{position:absolute;top:116px;width:168px;height:202px;opacity:0;transform:translate(var(--gx,160px),36px) scale(.78);transition:transform .75s cubic-bezier(.2,.9,.3,1),opacity .35s}
+.mus{position:absolute;opacity:0;transform:translate(var(--gx,200px),30px) scale(.8);transform-origin:50% 100%;transition:transform .95s cubic-bezier(.25,.7,.35,1),opacity .35s}
 .mus.in{opacity:1;transform:none}
-.mus.in .yuz{animation:yuru .75s ease-out}
-.mus.out{opacity:0;transform:translate(calc(var(--gx,160px)*-1),40px) scale(.8);transition:transform .65s ease-in,opacity .45s .15s}
-.mus .yuz{width:100%;height:100%;filter:sepia(.14) saturate(1.08) drop-shadow(16px 10px 9px rgba(45,16,6,.5))}
-.mus .yuz svg{width:100%;height:100%;display:block}
-.mus.sevin .yuz,.mus.mutlu-git .yuz{animation:hop .45s ease-out 2}
-.mus.kizgin-git .yuz{animation:shake .3s linear 3}
-.mus.kizgin .yuz{filter:sepia(.14) saturate(1.08) drop-shadow(0 0 8px rgba(230,40,30,.6)) drop-shadow(16px 10px 9px rgba(45,16,6,.5))}
-@keyframes yuru{0%,40%,80%{translate:0 0}20%,60%{translate:0 -7px}100%{translate:0 0}}
+.mus .yuz{position:absolute;inset:0;transform-origin:50% 100%;animation:kNefes 2.6s ease-in-out .95s infinite}
+.mus.in:not(.cik) .yuz{animation:kYuru .32s ease-in-out 3,kNefes 2.6s ease-in-out .96s infinite}
+.mus .kg{display:block;width:100%;height:100%;filter:sepia(.1) saturate(1.04) brightness(.98) drop-shadow(14px 9px 8px rgba(45,16,6,.45));-webkit-user-drag:none;user-select:none}
+.mus.sevin .yuz{animation:kZipla .42s ease-out 2}
+.mus.sevin1 .yuz{animation:kZipla .4s ease-out 1}
+.mus.out{opacity:0;transform:translate(calc(var(--gx,200px)*-1),30px) scale(.82);transition:transform 1s ease-in,opacity .5s .45s}
+.mus.out .yuz{animation:kYuru .32s ease-in-out 4}
+@keyframes kYuru{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-9px) rotate(-1.6deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-9px) rotate(1.6deg)}}
+@keyframes kNefes{0%,100%{transform:scale(1,1)}50%{transform:scale(1.008,1.018)}}
+@keyframes kZipla{0%{transform:translateY(0) scale(1,1)}25%{transform:translateY(4px) scale(1.04,.95)}55%{transform:translateY(-22px) scale(.97,1.05)}100%{transform:translateY(0) scale(1,1)}}
+.balon.acil{animation:titre .5s ease-in-out infinite}
+@keyframes titre{0%,100%{translate:0 0}25%{translate:-1.5px 0}75%{translate:1.5px 0}}
+/* dokunuş tepkisi: resmin parçası kırpılıp ezilir (#ezK resmin hemen üstünde, parçaların altında) */
+#ezK{position:absolute;left:0;top:0;width:1852px;height:849px;pointer-events:none}
+.ez{position:absolute;background-image:url(g/v3/mutfak.webp);background-size:2332px 1459px;background-repeat:no-repeat;transform-origin:50% 100%}
+/* doğrama: yığından alınan patates küçülür, dilimler birikir */
+.dpat{position:absolute;width:124px;height:90px;transform:scale(var(--k,1));transform-origin:50% 80%;transition:transform .12s cubic-bezier(.3,1.6,.5,1);filter:drop-shadow(0 6px 3px rgba(40,15,5,.35))}
+.dpat svg{width:100%;height:100%;display:block}
+.dilimler{position:absolute;width:120px;height:30px;pointer-events:none}
+.dilimler .dl{position:absolute;width:40px;height:11px;border-radius:5px;background:linear-gradient(#fffbe4,#f6e2a2 55%,#e8c070);border:2.5px solid #7a4a14;transform:rotate(var(--r,0deg));animation:dlDus .22s ease-out both}
+@keyframes dlDus{from{translate:0 -26px;opacity:0}to{translate:0 0;opacity:1}}
+/* tablet → dükkân: alınabilir öğe sayısı */
+.tbrz{position:absolute;min-width:40px;height:40px;padding:0 8px;border-radius:20px;background:#d2281e;border:4px solid #2a140a;color:#fff;font:900 26px/32px "Baloo 2",sans-serif;text-align:center;box-shadow:0 0 14px rgba(255,90,40,.8);pointer-events:none;animation:pulse 1.4s ease-in-out infinite}
+.neon .nt.tk{font-size:15px;letter-spacing:.5px}
 .balon{position:absolute;top:116px;width:162px;padding:6px 7px 8px;background:linear-gradient(#fffaf0,#fbeed6);border:4px solid #3a1d0c;border-radius:20px;box-shadow:inset 0 3px 0 #fff,inset 0 -4px 0 rgba(200,150,90,.25),0 6px 0 rgba(40,15,5,.35),0 12px 18px rgba(40,15,5,.3);opacity:0;transform:scale(.4);transform-origin:0 70%;transition:opacity .2s .35s,transform .3s .35s cubic-bezier(.2,1.5,.4,1)}
 .balon::after{content:"";position:absolute;left:-15px;top:58%;width:20px;height:20px;background:#fdf3e0;border:4px solid #3a1d0c;border-top-color:transparent;border-right-color:transparent;border-radius:0 0 0 4px;transform:translateY(-50%) rotate(45deg)}
 .balon.in{opacity:1;transform:none}
@@ -442,7 +471,6 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 @keyframes bob{50%{transform:translateY(-.14rem) scale(1.02,.98)}}
 @keyframes hop{50%{transform:translateY(-.6rem) scale(.95,1.08)}}
 @keyframes shake{25%{transform:translateX(-.16rem) rotate(-5deg)}75%{transform:translateX(.16rem) rotate(5deg)}}
-@keyframes sars{20%{transform:translate(-.14rem,.06rem)}40%{transform:translate(.12rem,-.06rem)}60%{transform:translate(-.09rem,.03rem)}80%{transform:translate(.06rem,-.02rem)}}
 @keyframes sizzle{50%{transform:translate(.025rem,-.025rem)}}
 @keyframes kor{50%{box-shadow:inset 0 0 0 .06rem #0d0e10,inset 0 -.36rem .5rem rgba(255,130,30,.9),inset 0 0 .7rem rgba(255,90,0,.45)}}
 @keyframes pulse{50%{transform:scale(1.07)}}
@@ -518,34 +546,22 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .cevir small{font-size:4.8vmin;font-weight:800;color:#5a3010;max-width:84vmin;line-height:1.25}
 @keyframes cevir{0%,18%{transform:rotate(0)}48%,82%{transform:rotate(90deg)}100%{transform:rotate(0)}}
 @keyframes okBelir{0%,10%{opacity:0}25%,60%{opacity:1}75%,100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.shopb.var,.shopb .rz,.mk.sira.ok .mb,.cevir .tel,.cevir .ok,.kepenk .sal,.mus .yuz,.mus,.balon,.gk,.kabarcik i,.buhar i,.gk .duman,.hit.parla,.patsec,.hero .hb2,.hero .f,.parla,.mu,.mu *,svg .st,svg .sw,svg .tr,svg .hb,#ic .y.sec .al,#ic .y.parla .gor,#ic .goz .kor,#ic .goz.hazir .gor,#ic .fritoz .sepet,#ic .fritoz.hazir .gor,.home .isin,.stars span.dolu{animation:none!important}#app.sars{animation:none}}
+@media (prefers-reduced-motion:reduce){.shopb.var,.shopb .rz,.mk.sira.ok .mb,.cevir .tel,.cevir .ok,.kepenk .sal,.mus .yuz,.mus,.balon,.balon.acil,.tbrz,.gk,.kabarcik i,.buhar i,.gk .duman,.hit.parla,.patsec,.hero .hb2,.hero .f,.parla,.mu,.mu *,svg .st,svg .sw,svg .tr,svg .hb,#ic .y.sec .al,#ic .y.parla .gor,#ic .goz .kor,#ic .goz.hazir .gor,#ic .fritoz .sepet,#ic .fritoz.hazir .gor,.home .isin,.stars span.dolu{animation:none!important}}
 </style></head><body>
 <div id="app">
   <div class="sahne" id="sahne"><div class="dunya" id="dunya">
     <img class="arka" id="arka" src="g/v3/mutfak.webp" alt="" style="left:-240px;top:-380px;width:2332px;height:1459px">
-    <div class="musK" id="musK"></div><div id="parca"></div><div id="balonK"></div><div id="wfx"></div>
+    <div class="musK" id="musK"></div><div id="ezK"></div><div id="parca"></div><div id="balonK"></div><div id="wfx"></div>
   </div></div>
-  <!-- müşteriler sahneye uysun diye gölgeli: sol üstten sıcak ışık, kenarlarda yumuşak gölge, koyu kontur (yüz ve saç aynı) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="musGolge" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
-    <feGaussianBlur in="SourceAlpha" stdDeviation="4.5" result="b"/>
-    <feDiffuseLighting in="b" surfaceScale="4" diffuseConstant="1.18" lighting-color="#fff1dc" result="df"><feDistantLight azimuth="225" elevation="58"/></feDiffuseLighting>
-    <feComposite in="SourceGraphic" in2="df" operator="arithmetic" k1="1.08" k2="0" k3="0" k4="0" result="lit"/>
-    <feSpecularLighting in="b" surfaceScale="4" specularConstant=".45" specularExponent="16" lighting-color="#ffd59a" result="sp"><fePointLight x="10" y="-70" z="140"/></feSpecularLighting>
-    <feComposite in="sp" in2="SourceAlpha" operator="in" result="spi"/>
-    <feComposite in="lit" in2="spi" operator="arithmetic" k2="1" k3=".6" result="ls"/>
-    <feComposite in="ls" in2="SourceAlpha" operator="in" result="isik"/>
-    <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="kal"/>
-    <feFlood flood-color="#2a140c"/><feComposite in2="kal" operator="in" result="kont"/>
-    <feMerge><feMergeNode in="kont"/><feMergeNode in="isik"/></feMerge>
-  </filter></svg>
   <div class="hud" id="hud">
     <div class="hk sol" id="hudL">
       <div class="chip kasa" id="kasaC"><span class="i" id="kasaI"></span><span id="kasa">0</span></div>
       <div class="chip gun" id="gunC"><span id="gunT">Gün 1</span><div class="prog"><b id="prog"></b></div></div>
+      <div class="chip hedef" id="hedefC"><span class="i"></span><span class="ht"></span><div class="prog"><b></b></div></div>
     </div>
     <div class="hk sag" id="hudR">
       <div class="sira"><button class="hb" id="sesBtn"></button><button class="hb" id="durBtn"></button></div>
-      <div class="canlar" id="canlar" role="img"></div>
+      <div class="chip seri" id="seriC" hidden><span class="i"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M27 4L10 27h12l-4 17 20-25H26z" fill="#ffc21a" stroke="#2a1a10" stroke-width="3.5" stroke-linejoin="round"/></svg></span><span id="seriT"></span></div>
     </div>
   </div>
   <div id="guv" aria-hidden="true" style="position:absolute;visibility:hidden;pointer-events:none;left:0;top:0;padding:var(--st) var(--sr) var(--sb) var(--sl)"></div>
@@ -563,6 +579,7 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
     <div class="hsag">
       <button class="btn oyna" id="playBtn">OYNA</button>
       <div class="hsat"><button class="shopb" id="shopBtn"></button></div>
+      <div class="chip hedef" id="hHedef"><span class="i"></span><span class="ht"></span><div class="prog"><b></b></div></div>
     </div>
   </div>
 
@@ -595,8 +612,7 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
   <b id="cevirT">Telefonu yan çevir</b>
   <small id="cevirP">Burger Ustası yatay ekranda oynanır.</small>
 </div>
-<script src="musteri.js"></script>
-<script src="karakterler.js"></script>
+<script src="js/karakter.js"></script>
 <script src="js/veri.js"></script>
 <script src="js/simge.js"></script>
 <script src="js/ses.js"></script>

@@ -1,0 +1,4 @@
+# Büyük müzik kaynakları depoya girmez; tools/ses/hazirla.py yoksa OpenGameArt'tan indirir.
+oga-*.flac
+oga-*.ogg
+*.indir

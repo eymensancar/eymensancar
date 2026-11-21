@@ -4,6 +4,8 @@ Araştırma: 21 Kasım 2026. Kaynaklar en altta (35 kaynak, numaralı). Metinde 
 
 **Eymen'in 21 Kasım kararı (bu belge buna göre yazıldı):** müşterilerin tek bir hâli var; kızgın, sabırsız, üzgün yüz yok. Süre dolunca müşteri sadece gider. Karakterler ChatGPT'den yeşil ekranlı tek görsel olarak gelecek (20 karakter). Bu yüzden aşağıda müşteri tepkisi hep **hareket, ses ve parçacıkla** anlatılıyor, yüz ifadesiyle değil.
 
+**9. tur (21 Kasım) uygulandı:** A1 (gerçek sesler), A2 (para anı), A3 (görünür seri), A4 (müzik + yoğunluk katmanı + jingle; sözlü jingle yok), A5 (dokunuş tepkisi), A6 (doğrama gamı), A7 (tek görselli müşteri: yürüme, zıplama, titreyen baloncuk), A8 (burger kapanınca duraklama), A10 (sıradaki hedef), A12 (reklam yok). B5'in can kısmı uygulandı (can kalktı); öbür B maddeleri yapılmadı. Yapılmayanlar: A9 (yükseltmenin sahnede görünmesi), A11 (ilk 60 saniye), rekor rozeti. Ayrıntı `docs/TASARIM.md` → "9. tur".
+
 ---
 
 ## Kısaca (önce bunu oku)
