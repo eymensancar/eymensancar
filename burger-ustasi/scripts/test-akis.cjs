@@ -9,6 +9,9 @@
 // 9. tur: can yok (süresi dolan müşteri gider, gün sürer), sol alttaki tablet Dükkân'ı açar (oyun durur), ödemede bozukluklar
 // kasaya tek tek uçar ve kasa akarak artar; sesler gerçek dosyalar (Web Audio çözümü başarılı mı, yükleme süresi).
 // Güvenli alanlar (çentik, ana ekran çubuğu) CSS değişkenleriyle taklit edilir.
+// 10. tur: gün saatle biter (saat üst bilgide; rehberde durur), rehberden sonra tezgâhta 3 müşteri, ödeme tezgâha düşer ve
+// dokunarak toplanır (bozukluklar kasaya uçar), toplanmayan para gün sonunda kasaya girer, dokunuşta "−N" yazısı yok,
+// dükkân mutfağın içinde (etiketler), sahne boşta da yaşar (neon, silüetler).
 const http = require('http'), fs = require('fs'), path = require('path');
 let pw; try { pw = require('playwright'); } catch (e) { pw = require('/opt/node-tools/node_modules/playwright'); }
 const KOK = path.join(__dirname, '..'), WWW = path.join(KOK, 'www');
@@ -24,7 +27,7 @@ const CIHAZ = [
   { ad: 'iphone15', w: 852, h: 393, dpr: 3, g: { l: 59, r: 59, t: 0, b: 21 }, akis: true },
   { ad: 'iphonese', w: 568, h: 320, dpr: 2, g: { l: 0, r: 0, t: 0, b: 0 }, akis: true },
   { ad: 'ipad', w: 1180, h: 820, dpr: 2, g: { l: 0, r: 0, t: 24, b: 20 }, akis: true },
-  { ad: 'promax', w: 932, h: 430, dpr: 3, g: { l: 59, r: 59, t: 0, b: 21 }, akis: false },
+  { ad: 'promax', w: 932, h: 430, dpr: 3, g: { l: 59, r: 59, t: 0, b: 21 }, akis: true },
 ];
 const sorun = [];
 const bekle = ms => new Promise(r => setTimeout(r, ms));
@@ -37,6 +40,8 @@ async function cihaz(br, port, C) {
   const kayit = [];
   p.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') kayit.push(`${m.type()}: ${m.text()}`); });
   p.on('pageerror', e => kayit.push('sayfa: ' + e.message));
+  // kırmızı "−N" yazıları (10. tur: hiç olmamalı)
+  await p.addInitScript(() => { window.__eksi = 0; window.__buyuk = []; document.addEventListener('DOMContentLoaded', () => { new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.classList && (n.classList.contains('mini') || n.classList.contains('kotu'))) window.__eksi++; if (n.classList && n.classList.contains('buyuk')) window.__buyuk.push(n.textContent); }))).observe(document.getElementById('fx'), { childList: true }); }); });
   await p.addInitScript(g => {
     try { localStorage.clear(); } catch (e) {}
     document.addEventListener('DOMContentLoaded', () => {
@@ -62,6 +67,9 @@ async function cihaz(br, port, C) {
   await p.screenshot({ path: path.join(OUT, `${C.ad}-2-gun-basi.jpg`), quality: 85 });
   await p.evaluate(() => window.__bu.basla());
   await bekle(1600);
+  // saat: rehber sürerken durur, tam süreyi gösterir (1. gün 1:30)
+  { const sa = await p.evaluate(() => ({ saat: window.__bu.S.saat, sure: window.__bu.S.sure, rehber: window.__bu.S.rehber, n: document.querySelectorAll('#saatS rect.on').length }));
+    dene(sa.sure === 90 && sa.saat === 90 && sa.rehber && sa.n >= 10, `saat üst bilgide, rehber sürerken duruyor (${sa.saat}/${sa.sure} sn, ${sa.n} yanan parça)`); }
   const d = () => p.evaluate(() => window.__bu.durum());
   // dokunma alanının ortasına gerçek dokunuş
   const dokun = async (k, n = 1) => {
@@ -89,7 +97,7 @@ async function cihaz(br, port, C) {
     return a;
   }, C.g);
   dene(!tasan.length, 'dokunma alanlarının ortası güvenli alanda' + (tasan.length ? ': ' + tasan.join(', ') : ''));
-  dene((await d()).cust.some(Boolean), 'müşteri geldi');
+  dene((await d()).cust.filter(Boolean).length === 1, 'rehberde tek müşteri geldi');
   dene(await p.evaluate(() => !document.getElementById('canlar') && !document.querySelector('.hud .can')), 'can göstergesi yok');
   dene(await p.evaluate(() => { const i = document.querySelector('#musK .mus .kg'); return !!i && i.complete && i.naturalWidth > 100 && /g\/karakter\/\d\d\.webp/.test(i.src); }), 'müşteri karakter görselinden (g/karakter/NN.webp)');
   dene(await p.evaluate(() => /kaldı|alınabilir/.test(document.querySelector('#hedefC .ht').textContent)), 'sıradaki hedef görünüyor: ' + await p.evaluate(() => document.querySelector('#hedefC .ht').textContent));
@@ -141,6 +149,17 @@ async function cihaz(br, port, C) {
   await dokun('tepsi0'); dene((await d()).sec === 'tepsi0', 'tepsi seçildi');
   await dokun('musteri'); await bekle(250);
   await p.screenshot({ path: path.join(OUT, `${C.ad}-8-servis.jpg`), quality: 85 });
+  await bekle(1500);
+  s = await d();
+  dene(s.bitti === 1 && s.kasa > kasa0, `müşteri tepsiyi aldı, ödedi (kasa ${kasa0} → ${s.kasa})`);
+  dene(s.tezgah === s.kasa - kasa0 && s.yig.some(y => y && y.el) && s.gorunen === kasa0, `ödeme tezgâha düştü (yığında ${s.tezgah}, görünen kasa ${s.gorunen})`);
+  dene(await p.evaluate(() => /Paraya dokun|Tap the money/.test((document.querySelector('#fx .ipucu') || {}).textContent || '')), 'ilk parada "Paraya dokun" ipucu');
+  { const bk = await p.evaluate(() => window.__buyuk); dene(bk.some(x => /İlk satış|First sale/.test(x)), 'ilk satışta büyük kutlama: ' + bk.join(', ')); }
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-8a-tezgahta-para.jpg`), quality: 85 });
+  // yığının dokunma alanı ≥ 44 pt; gerçek dokunuşla toplanır
+  const yr = await p.evaluate(() => { const y = window.__bu.S.yig.find(Boolean); const b = y.el.getBoundingClientRect(); return { x: b.left + b.width / 2, y: b.top + b.height * .7, w: b.width, h: b.height }; });
+  dene(Math.min(yr.w, yr.h) >= 44, `para yığınının dokunma alanı ${Math.round(yr.w)}×${Math.round(yr.h)} pt (≥ 44)`);
+  await p.touchscreen.tap(yr.x, yr.y);
   // para anı: bozukluklar tek tek uçar, kasa sayısı ara değerlerden geçerek artar, sonunda tam doğru
   const ara = await p.evaluate(() => new Promise(res => { const g = new Set(), sk = new Set(), t0 = performance.now();
     const f = () => { g.add(document.getElementById('kasa').textContent); sk.add(document.querySelectorAll('#fx .ucan.sikke').length);
@@ -148,10 +167,16 @@ async function cihaz(br, port, C) {
   await p.screenshot({ path: path.join(OUT, `${C.ad}-8b-para.jpg`), quality: 85 });
   await bekle(400);
   s = await d();
-  dene(s.bitti === 1 && s.kasa > kasa0, `müşteri tepsiyi aldı, ödedi (kasa ${kasa0} → ${s.kasa})`);
+  dene(s.tezgah === 0 && !s.yig.some(Boolean), 'para yığına dokununca toplandı');
   dene(ara.sikke >= 3, `bozukluklar kasaya uçtu (aynı anda en çok ${ara.sikke} sikke)`);
   dene(ara.degerler.length >= 4, `kasa akarak arttı (${ara.degerler.length} farklı ara değer: ${ara.degerler.slice(0, 8).join(', ')}…)`);
   dene(await p.evaluate(() => document.getElementById('kasa').textContent) === String(s.kasa), `kasa sonunda tam doğru (${s.kasa})`);
+  dene(await p.evaluate(() => window.__eksi) === 0, 'dokunuşlarda kırmızı "−N" yazısı yok (malzeme bedava)');
+  // rehber bitti: saat işliyor, tezgâh 3 müşteriyle doluyor (0., 2., 5. sn)
+  await p.waitForFunction(() => window.__bu.S.cust.filter(Boolean).length >= 3, null, { timeout: 9000 }).catch(() => {});
+  s = await d();
+  dene(s.cust.filter(Boolean).length === 3 && s.saat < s.sure, `rehberden sonra tezgâhta 3 müşteri, saat işliyor (${Math.ceil(s.saat)} sn kaldı)`);
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-8c-uc-musteri.jpg`), quality: 85 });
   const calan = await p.evaluate(() => window.__bu.SES._son.map(x => x.ad));
   dene(['bicak', 'kasa', 'para', 'servis', 'kon_ekmek', 'tepsi'].every(a => calan.includes(a)) || true, 'sesler çalındı: ' + [...new Set(calan)].join(', '));
   dene(!s.tepsi[0].b && !s.tepsi[0].f, 'tepsi boşaldı');
@@ -167,22 +192,42 @@ async function cihaz(br, port, C) {
   const tb = await p.evaluate(() => window.__tb);
   await p.touchscreen.tap(tb.x, tb.y); await bekle(500);
   s = await d();
-  dene(s.paused && await p.evaluate(() => !document.getElementById('shop').hidden), 'tablete dokununca Dükkân açıldı, oyun durdu');
+  dene(s.paused && await p.evaluate(() => !document.getElementById('dk').hidden && document.getElementById('app').classList.contains('dkKip')), 'tablete dokununca dükkân mutfağın içinde açıldı, oyun durdu');
+  const etk = await p.evaluate(() => [...document.querySelectorAll('#dkK .dkh')].map(el => { const b = el.getBoundingClientRect(); return [el.dataset.dk, Math.round(b.width), Math.round(b.height)]; }));
+  dene(etk.length === 4 && etk.every(e => Math.min(e[1], e[2]) >= 44) && await p.evaluate(() => document.querySelectorAll('#dkK .etk').length === 4), 'dükkânda 4 eşya, ipli fiyat etiketli, dokunma alanları ≥ 44 pt: ' + etk.map(e => `${e[0]} ${e[1]}×${e[2]}`).join(', '));
+  await p.evaluate(() => { const e = document.querySelector('#dkK .dkh[data-dk="slot0"]').getBoundingClientRect(); window.__dk = { x: e.left + e.width / 2, y: e.top + e.height / 2 }; });
+  { const q = await p.evaluate(() => window.__dk); await p.touchscreen.tap(q.x, q.y); await bekle(400); }
+  dene(await p.evaluate(() => !document.getElementById('dkKart').hidden && /ızgara|Grill/.test(document.getElementById('dkKart').textContent)), 'etikete dokununca açıklama kartı açıldı');
   await p.screenshot({ path: path.join(OUT, `${C.ad}-11-tablet-dukkan.jpg`), quality: 85 });
   const t0 = (await d()).cust.filter(Boolean).map(c => c.f);
   await bekle(1200);
   const t1 = (await d()).cust.filter(Boolean).map(c => c.f);
   dene(JSON.stringify(t0) === JSON.stringify(t1), 'dükkân açıkken sabır azalmadı');
-  dene(await p.evaluate(() => !document.querySelector('#shList [data-u="cook"]')), '"Hızlı ızgara" dükkânda yok');
+  dene(await p.evaluate(() => !window.__bu.DK.some(x => x.k === 'cook')), '"Hızlı ızgara" dükkânda yok');
   await p.evaluate(() => document.getElementById('shBack').click()); await bekle(300);
   s = await d();
-  dene(!s.paused && await p.evaluate(() => document.getElementById('shop').hidden), 'dükkân kapanınca oyun sürdü');
+  dene(!s.paused && await p.evaluate(() => document.getElementById('dk').hidden), 'dükkân kapanınca oyun sürdü');
   // 9) can yok: süresi dolan müşteri gider, gün sürer
   const k0 = s.kacan;
   await p.evaluate(() => { const c = window.__bu.S.cust.find(Boolean); if (c) c.p = 0.01; });
   await bekle(400);
   s = await d();
   dene(s.kacan === k0 + 1 && (await p.evaluate(() => window.__bu.S.on && !window.__bu.S.bitis)), 'süresi dolan müşteri gitti, gün sürüyor (can yok)');
+  // geç teslim (sabır ≤ 1/3): burgerin parası ödenir, yalnız bahşiş yok
+  { const r = await p.evaluate(() => { const B = window.__bu, c = B.S.cust.find(Boolean); if (!c) return null; c.p = c.max * .2; B.S.tepsi[1] = { b: ['bunBot', 'patty', 'cheese', 'pickle', 'bunTop'], f: true }; const k = B.S.kasa; B.dokun('tepsi1'); B.musteri(c.i); return { k, k2: B.S.kasa }; });
+    dene(r && r.k2 - r.k === 30, `geç teslimde ücret ödendi, bahşiş yok (+${r ? r.k2 - r.k : '?'})`); }
+  // boşta canlılık: neon, lamba ışığı, salonda silüetler
+  dene(await p.evaluate(() => !!document.querySelector('#canli .neonP') && document.querySelectorAll('#canli .sil').length >= 3), 'sahne boşta da yaşıyor (neon, silüetler)');
+  // saat biter: yeni müşteri gelmez, içerdekiler gidince gün biter; tezgâhta kalan para kendiliğinden kasaya
+  await bekle(1200);
+  { const once = await p.evaluate(() => ({ coins: window.__bu.SAVE.coins, kasa: window.__bu.S.kasa, tez: window.__bu.S.tezgah, kira: window.__bu.VERI.kira(window.__bu.S.gun) }));
+    await p.evaluate(() => { const B = window.__bu; B.S.saat = 0.05; B.S.cust.forEach(c => { if (c) c.p = 0.01; }); });
+    await p.waitForFunction(() => !document.getElementById('ov').hidden && document.getElementById('card').classList.contains('son'), null, { timeout: 8000 }).catch(() => {});
+    await bekle(2600);
+    const sonra = await p.evaluate(() => ({ coins: window.__bu.SAVE.coins, tez: window.__bu.S.tezgah, gelen: window.__bu.S.gelen, rekor: !!document.querySelector('#card .rekor'), kasaT: document.getElementById('kasa').textContent }));
+    dene(sonra.tez === 0 && sonra.coins === once.kasa - once.kira, `saat bitti, gün sonu kartı; tezgâhta kalan ${once.tez} para kasaya girdi (kasa ${once.kasa} − kira ${once.kira} = ${sonra.coins})`);
+    dene(sonra.rekor, 'gün sonu kartında rekorlar');
+    await p.screenshot({ path: path.join(OUT, `${C.ad}-12-gun-sonu.jpg`), quality: 85 }); }
   await ctx.close();
   return kayit;
 }

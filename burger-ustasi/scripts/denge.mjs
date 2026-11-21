@@ -15,6 +15,9 @@
 // (çöp yok), yanlış teslim edilir (ödeme yok, seri sıfırlanır).
 // 9. tur (Eymen, 21 Kasım): can yok; her gün sonuna kadar oynanır (kaybedilen gün yok). "Kârlı gün" = net kâr ≥ kira.
 // Dükkânda yalnız VERI.SATILIK (ızgara kilidi, sabırlı müşteri, cömert bahşiş); "Hızlı ızgara" kalktı.
+// 10. tur (Eymen, 21 Kasım): malzemeler bedava (gider yok), gün SAATLE biter (VERI.gunSure), tezgâhta hep 3 müşteri:
+// boşalan yere 3–5 sn'de yenisi, günün ilk üçü 0., 2., 5. saniyede; saat bitince yeni müşteri gelmez, içerdekiler bitince
+// gün biter. Sabır ~50 sn (1. gün ×1,6). Geç teslimde (sabır ≤ 1/3) burgerin parası ödenir, yalnız bahşiş gitmez.
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const V = require('../www/js/veri.js');
@@ -62,8 +65,11 @@ function oynaGun(d, up, coins, B, R, gelecek = []) {
   const cfg = V.gun6(d, up);
   const dt = 0.05, pis = V.izgaraPisme(up), fpis = V.fritozPisme(up);
   const st = { gelir: 0, gider: 0, bahsis: 0, mutlu: 0, somurtkan: 0, kizgin: 0, kacan: 0, yanlis: 0 };
-  let kasa = coins, seri = 0, t = 0, kalan = cfg.musteri, sonraki = 1.0;
+  let kasa = coins, seri = 0, t = 0, gelen_ = 0;
   const yer = [null, null, null];
+  // her yerin bir sonraki müşterisinin geliş zamanı (günün ilk üçü cfg.ilk saniyelerinde, yerler karışık)
+  const yerT = cfg.ilk.slice(); for (let i = yerT.length - 1; i > 0; i--) { const j = Math.floor(R() * (i + 1)); [yerT[i], yerT[j]] = [yerT[j], yerT[i]]; }
+  const saatVar = () => t < cfg.sure;
   const izg = Array.from({ length: V.izgaraGoz(up) }, () => ({ k: -1 }));   // -1 boş, >0 pişiyor, 0 pişti bekliyor
   let hk = M.hazir.patty, hp = M.hazir.fries, fr = { st: 0, k: 0, kalan: 0 };   // fritöz: 0 boş, 1 kızarıyor, 2 bekliyor
   let tez = [], tezInan = [], tezHedef = null;   // tezgâhtaki burger; inan: oyuncunun yaptığını sandığı (erken kapatınca sipariş)
@@ -71,14 +77,14 @@ function oynaGun(d, up, coins, B, R, gelecek = []) {
   let mesgul = 0, is = null;
   const har = c => { kasa -= c; st.gider += c; };
   const sure = x => x * (0.8 + R() * 0.45);
-  const ekAralik = gelecek.length ? 1.6 * (d < 11 ? 0.5 : 1.5) : 0;
-
+  const bosalt = i => { yer[i] = null; yerT[i] = t + cfg.aralik[0] + R() * (cfg.aralik[1] - cfg.aralik[0]); };
   function gelen() {
-    const bos = [0, 1, 2].filter(i => !yer[i]);
-    if (!bos.length || yer.filter(Boolean).length >= cfg.sira || kalan <= 0) return false;
-    const sip = siparisPlan(d, R, gelecek), mx = cfg.sabirSiparis(sip);
-    yer[bos[Math.floor(R() * bos.length)]] = { sip, durum: V.yeniDurum(sip), mx, p: mx, okundu: false };
-    kalan--; return true;
+    for (let i = 0; i < 3; i++) {
+      if (yer[i] || t < yerT[i] || yer.filter(Boolean).length >= cfg.sira) continue;
+      const sip = siparisPlan(d, R, gelecek), mx = cfg.sabirSiparis(sip);
+      yer[i] = { sip, durum: V.yeniDurum(sip), mx, p: mx, okundu: false };
+      gelen_++;
+    }
   }
   const musteriler = () => yer.filter(Boolean);
   function ver(m, parca) {
@@ -90,7 +96,7 @@ function oynaGun(d, up, coins, B, R, gelecek = []) {
     else if (o.ruh === 'somurtkan') { st.somurtkan++; seri = 0; }
     else { st.kizgin++; seri = 0; }
     kasa += o.ucret + o.bahsis; st.gelir += o.ucret; st.bahsis += o.bahsis;
-    const i = yer.indexOf(m); if (i >= 0) yer[i] = null;
+    const i = yer.indexOf(m); if (i >= 0) bosalt(i);
   }
   // bekleyen burger sayısı: müşteriler (burgersiz) − tepsilerdeki burgerler − tezgâhtaki
   function karar() {
@@ -123,7 +129,7 @@ function oynaGun(d, up, coins, B, R, gelecek = []) {
       if (tp) return [sure(B.tap) * 2, () => { if (hp > 0) { hp--; tp.f = true; } }];
     }
     // 6) doğra: fritöz boşsa ve patates azaldıysa
-    const yanIhtiyac = ms.filter(m => !m.durum.yan).length + (kalan > 0 ? 2 : 0) - tep.filter(x => x.f).length;
+    const yanIhtiyac = ms.filter(m => !m.durum.yan).length + (saatVar() ? 2 : 0) - tep.filter(x => x.f).length;
     if (fr.st === 0 && hp <= 1 && yanIhtiyac > hp)
       return [sure(B.dogra) * M.dograma, () => { fr = { st: 1, k: fpis, kalan: M.haznePatates }; har(M.haznePatates * V.maliyet([], 'fries')); }];
     // 7) burger kur: gereken burger varsa sıradaki malzeme
@@ -133,7 +139,7 @@ function oynaGun(d, up, coins, B, R, gelecek = []) {
       const j = tepB.findIndex(b => V.dogruMu(m.sip.katmanlar, b)); if (j >= 0) tepB.splice(j, 1); else acik.push(m);
     }
     const ayni = !gelecek.length;   // herkes aynı siparişi veriyorsa sıradaki müşteri için önceden yapılır
-    const gerek = acik.length + (ayni && kalan > 0 ? B.ileri : 0);
+    const gerek = acik.length + (ayni && saatVar() ? B.ileri : 0);
     if (gerek > 0 && tez[tez.length - 1] !== 'bunTop') {
       if (!tez.length || !tezHedef) tezHedef = (acik[0] || { sip: V.siparis6() }).sip.katmanlar;
       const hedef = tezHedef;
@@ -159,11 +165,11 @@ function oynaGun(d, up, coins, B, R, gelecek = []) {
 
   while (t < 1200) {
     t += dt;
-    if (kalan > 0 && t >= sonraki) sonraki = gelen() ? t + cfg.aralik[0] + ekAralik + R() * (cfg.aralik[1] - cfg.aralik[0]) : t + 0.4;
+    if (saatVar()) gelen();
     for (let i = 0; i < 3; i++) {
       const m = yer[i]; if (!m) continue;
       m.p -= dt;
-      if (m.p <= 0) { yer[i] = null; st.kacan++; seri = 0; }
+      if (m.p <= 0) { bosalt(i); st.kacan++; seri = 0; }
     }
     for (const g of izg) {
       if (g.k > 0) { g.k -= dt; if (g.k <= 0) g.k = 0; }
@@ -174,12 +180,13 @@ function oynaGun(d, up, coins, B, R, gelecek = []) {
       if (is) { is(); is = null; }
       const [s, f] = karar(); mesgul = t + s; is = f;
     }
-    if (kalan <= 0 && !yer.some(Boolean)) break;
+    if (!saatVar() && !yer.some(Boolean)) break;
   }
   st.kazandi = true;   // can yok: gün hep biter
   st.net = st.gelir + st.bahsis - st.gider;
-  st.kasa = kasa; st.musteri = cfg.musteri; st.sure = t;
+  st.kasa = kasa; st.musteri = gelen_; st.sure = t;
   st.teslim = st.mutlu + st.somurtkan + st.kizgin + st.yanlis;
+  st.yildiz = V.yildiz(st.mutlu, gelen_);
   return st;
 }
 
@@ -295,12 +302,12 @@ if (MOD === 'tavan') {
     const oyun = Array.from({ length: N }, () => kampanya(B, R));
     if (MD) {
       console.log(`\n### ${B.ad} oyuncu (dokunuş ${B.tap} sn, doğrama ${B.dogra} sn, hata %${B.hata * 100})\n`);
-      console.log('| Gün | Müşteri | Kârlı gün | Süre (sn) | Gelir | Bahşiş | Gider | Net kâr | Kira | Mutlu | Somurtkan | Kızgın | Kaçan | Yanlış | Mutlu oranı | Izgara | Geliştirme | Kasa |');
+      console.log('| Gün | Müşteri | Kârlı gün | Süre (sn) | Gelir | Bahşiş | Yıldız | Net kâr | Kira | Mutlu | Somurtkan | Kızgın | Kaçan | Yanlış | Mutlu oranı | Izgara | Geliştirme | Kasa |');
       console.log('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
-    } else console.log(`\n== ${B.ad} (${N} oyun)\ngün müş kârlı süre gelir bahş gider   net kira mutlu somur kızgn kaçan yanlş   m%  ızg   up  kasa`);
+    } else console.log(`\n== ${B.ad} (${N} oyun)\ngün müş kârlı süre gelir bahş yıldz   net kira mutlu somur kızgn kaçan yanlş   m%  ızg   up  kasa`);
     for (let d = 0; d < GUNLER; d++) {
       const g = oyun.map(o => o[d]), tes = ort(g.map(x => x.teslim)) || 1, a = f => ort(g.map(f));
-      const v = [d + 1, g[0].musteri, p(a(x => x.karli)), y(a(x => x.sure)), y(a(x => x.gelir)), y(a(x => x.bahsis)), y(a(x => x.gider)), y(a(x => x.net)), y(a(x => x.kira)),
+      const v = [d + 1, y(a(x => x.musteri), 1), p(a(x => x.karli)), y(a(x => x.sure)), y(a(x => x.gelir)), y(a(x => x.bahsis)), y(a(x => x.yildiz), 1), y(a(x => x.net)), y(a(x => x.kira)),
         y(a(x => x.mutlu), 1), y(a(x => x.somurtkan), 1), y(a(x => x.kizgin), 1), y(a(x => x.kacan), 1), y(a(x => x.yanlis), 1), p(a(x => x.mutlu) / tes), y(a(x => x.goz), 1), y(a(x => x.upTop), 1), y(a(x => x.coins))];
       console.log(MD ? `| ${v.join(' | ')} |` : v.map((x, i) => String(x).padStart(i < 2 ? 3 : 5)).join(' '));
     }

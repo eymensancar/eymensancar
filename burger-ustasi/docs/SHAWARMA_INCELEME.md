@@ -308,7 +308,54 @@ Kurallar korunuyor: 8 sn ızgara, 10 doğrama, 15 sn fritöz, 6 köfte, 4 porsiy
 
 ---
 
-## 7. Kaynaklar
+## 7. 10. tur: plan uygulandı, önce / sonra (21 Kasım)
+
+Eymen'in kararları: Y1, Y2 ve P1–P11'in hepsi; **S4 evet** (para tezgâha düşer, dokunarak toplanır), **S5 evet** (malzeme bedava, ekonomi yeniden); **S1 hayır** (herkes aynı sipariş), **S7 hayır**; öbür S maddeleri yapılmadı. Ayrıntı `docs/TASARIM.md` → "10. tur", ekonomi `docs/DENGE.md` → "10. tur".
+
+### Ölçüm (aynı yöntem)
+`node scripts/oturum-olcum.cjs <www> <çıktı.json>`: yerel sunucu, `index.html?debug`, Playwright, yatay iPhone 15 (852×393), bot gerçek dokunuşlarla (dokunma alanının ortası) bölüm 2'deki öncelik sırasıyla oynar (10. turda ek olarak tezgâhtaki parayı toplar). "Alışmış" her dokunuştan sonra 0,38–0,6 sn, "yeni oyuncu" 0,9–1,1 sn (saniyede ~1 dokunuş, rehberli ilk açılış). **Önce** = 9. tur (commit 4359ff4, `git archive` ile çıkarılıp aynı betikle), **sonra** = 10. tur. Her 0,5 sn tezgâhtaki müşteri sayısı örneklenir. "İyi şey" = olumlu uçan yazı (ödeme, bahşiş, "alındı", büyük başlık) + burger kapanması / doğrama bitmesi ("tamam" sesi) + para toplama; "kötü şey" = kırmızı "−N" yazısı ve "Ödemedi!/Yanlış!" damgası. Boşta: 8. gün, müşteriler beklerken hiç dokunulmaz, 10 sn boyunca 0,5 sn arayla 21 kare; ardışık karelerde en az bir renk kanalı 16'dan çok değişen piksel oranı (ortalama). Bu eşik bölüm 2'dekinden farklı olabilir (o betik depoya girmemişti), bu yüzden "önce" de yeniden ölçüldü.
+
+| | Önce (9. tur) | Sonra (10. tur) |
+|---|---|---|
+| **Gün 1, yeni oyuncu (~1 dokunuş/sn, rehberli)** | | |
+| Günün süresi | 80 sn (6 müşteri bitti) | 143 sn (rehber ~50 sn + saat 1:30) |
+| Aynı anda müşteri (ort. / en çok / 3 müşteri oranı) | 1,36 / 2 / %0 | 2,33 / 3 / %54 |
+| Boş bekleme | %1,6 | %0,5 |
+| İyi şey / sn · kötü şey / sn | 0,15 · 0,36 | 0,27 · **0** |
+| Servis · kaçan | 6 · 0 | 10 · 0 |
+| Kasa (gün sonu, kira sonrası) | +102 | **+299** (para kaybı yok) |
+| Büyük kutlama | 0 | 4 ("İlk satış!" + bozukluk yağmuru, "Çok hızlı!", "Seri 3!", "Kapanış saati!") |
+| **Gün 1, alışmış (2 dokunuş/sn)** | | |
+| Günün süresi | 42 sn | 106 sn |
+| Aynı anda müşteri (ort. / en çok / 3 oranı) | 1,37 / 2 / %0 | 2,31 / 3 / %43 |
+| İyi şey / sn · kötü şey / sn | 0,36 · 0,63 | **0,67** · 0 |
+| Servis · kasa (kira sonrası) | 6 · +190 | 14 · +518 |
+| Büyük başlık | 0 | 14 ("Çok hızlı!" ×2, "Seri 3!" … "Seri 13!") |
+| **Gün 8, alışmış, ilk 90 sn** | | |
+| Aynı anda müşteri (ort. / en çok / 3 oranı) | 1,46 / 2 / %0 | 2,39 / 3 / %42 |
+| İyi şey / sn · kötü şey / sn | 0,36 · 0,70 | 0,50 · 0 |
+| Servis · gün içi kasa | 12 · +296 | 11 · +352 |
+| **Gün 15, alışmış, ilk 120 sn** | | |
+| Aynı anda müşteri (ort. / en çok / 3 oranı) | 1,59 / 3 / %1 | 2,46 / 3 / %51 |
+| İyi şey / sn · kötü şey / sn | 0,32 · 0,67 | 0,49 · 0 |
+| Servis | 16 | 15 |
+| **Ses olayı / sn (alışmış)** | 4,1–4,2 | 3,7–4,0 (genel tık azaldı) |
+| **Boşta, 8. gün, hiç dokunmadan** | %2,2 değişim (2 müşteri) | **%5,3** (3 müşteri; hedef %4–6) |
+
+- Plan ölçütleri: "aynı anda 3 müşteri" oranı %40'ın üstünde (%42–54) ✓; yavaş/yeni oyuncuda kaçan ≤ 1 (0) ✓; yeni oyuncu 1. günde para kaybetmiyor (+299) ve en az bir büyük kutlama görüyor (4) ✓; boşta %4–6 (%5,3) ✓. Orta oyuncunun mutlu oranı %50–70 hedefi yalnız geliştirmelerle tutuyor (aşağıda soru 1).
+- Dokunuş hızı ve dakikadaki servis neredeyse aynı (oyuncunun eli belirliyor); değişen, ekranın hep dolu olması, kırmızı eksilerin tamamen kalkması (kötü şey 0,6–0,7/sn → 0) ve olumlu anların ~%50–90 artması.
+- Görüntüler (önce solda, sonra sağda): `docs/inceleme/v6/` (`mutfak`, `odeme`, `tezgahta-para`, `dukkan`, `dukkan-kart`, `gun-sonu`, `ana-menu`; `node scripts/inceleme-v6.cjs`).
+
+### Kalan sorular (Eymen'e)
+1. **Orta oyuncunun bahşişi az.** Tezgâh hep 3 müşteriyle dolu olunca her müşteri ~3 servis süresi (orta oyuncuda ~25 sn) bekliyor; bahşiş eşiği sabrın 2/3'ü (~18 sn) olduğu için orta oyuncu geliştirmesiz %15–40 bahşiş alıyor (botta; hızlı %90+, yavaş %6–10). Sabrı "~50" yerine 60–65 sn yapmak ya da bahşiş eşiğini sabrın yarısına indirmek bunu %50–70'e çıkarır. Hangisi?
+2. **Rehberde saat duruyor:** ilk açılışta tek müşteriyle öğretici biter, saat sonra başlar (yeni oyuncu ilk gün ~2,5 dk oynuyor). Böyle kalsın mı?
+3. **Hızlı oyuncu yavaşın ~4 katı kazanıyor** (saatte ~25 bin / ~6,5 bin): 3 müşteri her zaman hazır olduğu için hız doğrudan paraya dönüşüyor. Yavaş oyuncu batmıyor (80 saatte 0 kapanış) ve dükkânı ~2,5 saatte bitiriyor; fark sorun mu?
+4. **Karakter sesi (P10'un ikinci yarısı)** yapılmadı: müşteri gelişinde/gidişinde sözsüz insan sesi için lisansı uygun kayıt bulmak gerek. İstenirse ayrı tur.
+5. **"Çok hızlı!" eşiği** kalan sabır ≥ %75 (geldikten ~14 sn içinde); daha seyrek mi olsun?
+
+---
+
+## 8. Kaynaklar
 
 1. App Store, Shawarma Legend (açıklama, sürüm notları, ekran görüntüleri, önizleme videosu; ABD, TR, SA, DE, JP sayfaları). https://apps.apple.com/us/app/shawarma-legend/id6479530421
 2. Google Play, Shawarma Legend (`com.company.shaw`; ekran görüntüleri, 10 milyon+ indirme, tanıtım videosu bağlantısı). https://play.google.com/store/apps/details?id=com.company.shaw
@@ -321,4 +368,4 @@ Kurallar korunuyor: 8 sn ızgara, 10 doğrama, 15 sn fritöz, 6 köfte, 4 porsiy
 9. 9to5gaming rehberi (%100 doğruluk, 36 yükseltme, 106. gün bitiş ekranı). https://9to5gaming.com/shawarma-legend-guide-how-to-play-earn-money-tips-and-tricks/
 10. Önceki araştırma ve kaynakları: `docs/OYUN_HISSI.md` (18183 rehberi, 17173, Jiemian, Grind n Strat yükseltme listesi vb.).
 
-Ölçüm betikleri (depoya girmedi, çalışma klasöründe): gerçek dokunuşlu oturum botu, boşta kare değişimi, video kare çıkarma (ffmpeg, opencv). İstenirse `scripts/` altına alınabilir.
+Ölçüm betikleri: gerçek dokunuşlu oturum botu ve boşta kare değişimi 10. turda `scripts/oturum-olcum.cjs` olarak depoya girdi; video kare çıkarma (ffmpeg, opencv) depoya girmedi.
