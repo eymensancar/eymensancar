@@ -5,7 +5,7 @@
 // www/ klasörünü kendi küçük sunucusuyla açar (index.html?debug), Playwright ile yatay iPhone 15, iPhone SE ve iPad'de:
 //   ızgara → köfte haznesi, 10 doğrama → fritöz → patates haznesi, burger kur → tepsi → patates → müşteri
 // akışını GERÇEK dokunuşlarla (dokunma alanının ortasına) oynar, durumları denetler, ekran görüntüsü alır.
-// Ayrıca resmi oyunun açılış görüntüsüyle yan yana koyar (karsilastir.png). Konsol hatası ve uyarısı sıfır olmalı.
+// Ayrıca oyunun açılış görüntüsünü resimle aynı boyda alır (oyun-1852.jpg; resimle yan yana: karsilastir.jpg). Konsol hatası ve uyarısı sıfır olmalı.
 // Güvenli alanlar (çentik, ana ekran çubuğu) CSS değişkenleriyle taklit edilir.
 const http = require('http'), fs = require('fs'), path = require('path');
 let pw; try { pw = require('playwright'); } catch (e) { pw = require('/opt/node-tools/node_modules/playwright'); }
@@ -30,7 +30,7 @@ function dene(kosul, mesaj) { if (!kosul) { sorun.push(mesaj); console.log('  HA
 
 async function cihaz(br, port, C) {
   console.log(`\n== ${C.ad} ${C.w}×${C.h}`);
-  const ctx = await br.newContext({ viewport: { width: C.w, height: C.h }, deviceScaleFactor: C.dpr, isMobile: true, hasTouch: true, locale: 'tr-TR' });
+  const ctx = await br.newContext({ viewport: { width: C.w, height: C.h }, deviceScaleFactor: Math.min(2, C.dpr), isMobile: true, hasTouch: true, locale: 'tr-TR' });
   const p = await ctx.newPage();
   const kayit = [];
   p.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') kayit.push(`${m.type()}: ${m.text()}`); });
@@ -47,10 +47,10 @@ async function cihaz(br, port, C) {
   await p.waitForFunction(() => window.__bu && document.fonts.status === 'loaded');
   await p.evaluate(() => window.__bu.fit());
   await bekle(400);
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-1-ana-menu.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-1-ana-menu.jpg`), quality: 85 });
   await p.evaluate(() => window.__bu.startDay(1));
   await bekle(500);
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-2-gun-basi.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-2-gun-basi.jpg`), quality: 85 });
   await p.evaluate(() => window.__bu.basla());
   await bekle(1600);
   const d = () => p.evaluate(() => window.__bu.durum());
@@ -79,7 +79,7 @@ async function cihaz(br, port, C) {
   }, C.g);
   dene(!tasan.length, 'dokunma alanlarının ortası güvenli alanda' + (tasan.length ? ': ' + tasan.join(', ') : ''));
   dene((await d()).cust.some(Boolean), 'müşteri geldi');
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-3-mutfak.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-3-mutfak.jpg`), quality: 85 });
   if (!C.akis) { await ctx.close(); return kayit; }
 
   // 1) kurallar: alt ekmeksiz malzeme konmaz
@@ -87,7 +87,7 @@ async function cihaz(br, port, C) {
   dene((await d()).burger.length === 0, 'alt ekmek yokken peynir reddedildi');
   // 2) burger: alt ekmek → köfte → peynir → turşu → üst ekmek
   await dokun('ekmekAlt'); await dokun('kofte'); await bekle(150);
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-4-burger-kuruluyor.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-4-burger-kuruluyor.jpg`), quality: 85 });
   await dokun('peynir'); await dokun('tursu'); await dokun('peynir');
   dene((await d()).burger.filter(k => k === 'cheese').length === 1, 'ikinci peynir reddedildi');
   await dokun('ekmekUst'); await bekle(400);
@@ -98,7 +98,7 @@ async function cihaz(br, port, C) {
   await dokun('izg0'); await bekle(3500);
   s = await d();
   dene(s.izg[0].st === 1, 'ızgarada köfte pişiyor');
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-5-izgara-pisiyor.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-5-izgara-pisiyor.jpg`), quality: 85 });
   await dokun('izg2');
   dene((await d()).izg[2].st === 0, 'kilitli ızgara açılmadı');
   // 4) burger → tepsi, patates → tepsi
@@ -112,32 +112,32 @@ async function cihaz(br, port, C) {
   await dokun('patates'); await dokun('tepsi1'); await bekle(400);   // haznede 2 kalsın
   await dokun('cig', 9);
   dene((await d()).dogra === 9 && (await d()).fr.st === 0, '9 dokunuşta doğrama sürüyor');
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-6-dograma.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-6-dograma.jpg`), quality: 85 });
   await dokun('cig'); await bekle(1100);
   s = await d();
   dene(s.fr.st === 1, '10. dokunuşta patates fritöze girdi');
   await dokun('cig');
   dene((await d()).dogra === 0, 'fritöz doluyken doğrama reddedildi');
   await bekle(900);
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-7-fritoz.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-7-fritoz.jpg`), quality: 85 });
   s = await d();
   dene(s.hk === 6, 'pişen köfte hazneye geçti (5 → 6)');
   // 6) tepsi → müşteri
   const kasa0 = s.kasa;
   await dokun('tepsi0'); dene((await d()).sec === 'tepsi0', 'tepsi seçildi');
   await dokun('musteri'); await bekle(250);
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-8-servis.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-8-servis.jpg`), quality: 85 });
   await bekle(1300);
   s = await d();
   dene(s.bitti === 1 && s.kasa > kasa0, `müşteri tepsiyi aldı, ödedi (kasa ${kasa0} → ${s.kasa})`);
   dene(!s.tepsi[0].b && !s.tepsi[0].f, 'tepsi boşaldı');
   // 7) fritöz bitince dokun → patates haznesine
   await p.waitForFunction(() => window.__bu.durum().fr.st === 2, null, { timeout: 20000 });
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-9-patates-hazir.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-9-patates-hazir.jpg`), quality: 85 });
   await dokun('fritoz'); await bekle(900);
   s = await d();
   dene(s.hp === 4 && s.fr.st === 2 && s.fr.kalan === 2, `fritözden hazneye: hazne ${s.hp}/4, sepette ${s.fr.kalan} porsiyon bekliyor`);
-  await p.screenshot({ path: path.join(OUT, `${C.ad}-10-sonra.png`) });
+  await p.screenshot({ path: path.join(OUT, `${C.ad}-10-sonra.jpg`), quality: 85 });
   await ctx.close();
   return kayit;
 }
@@ -157,7 +157,7 @@ async function cihaz(br, port, C) {
   await p.evaluate(() => { window.__bu.startDay(1); window.__bu.basla(); window.__bu.S.kalan = 0; });
   await p.addStyleTag({ content: '.hud,.ipucu,#fx,.tahta,.tepsi{visibility:hidden!important}' });
   await bekle(800);
-  await p.screenshot({ path: path.join(OUT, 'oyun-1852.png') });
+  await p.screenshot({ path: path.join(OUT, 'oyun-1852.jpg'), quality: 92 });
   await ctx.close();
   await br.close(); sunucu.close();
   console.log('\nKonsol hata/uyarı: ' + hatalar.length);
