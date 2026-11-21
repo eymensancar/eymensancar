@@ -8,7 +8,8 @@ Bu bölüm aşağıdaki her şeyle çelişirse bu bölüm geçerlidir. Aşağıd
 - `kuvet-kofte-0…5`: köfte haznesi 0–5 köfte (boş küvet resmin çeliğiyle yamandı, köfteler resmin köftesi); 6 = resmin kendisi (parça gizli). `kuvet-patates-0…3`: patates haznesi; 4 = resmin kendisi.
 - `izgara-3`, `izgara-4`: kilit açılınca alt ızgaralar (üstteki açık ızgaranın içi). `kofte`, `kofte-cig`: ızgaradaki köfte (pişerken çiğden pişmişe geçer).
 - `fritoz-pisiyor`, `fritoz-hazir`: sepette patates; `gosterge-bos`: "0" silinmiş gösterge (rakamlar kodla, kırmızı yedi parçalı); `tablet-bos`: sipariş ekranının satırları silinmiş (burger simgesi kalır; yanına neon patates ve bekleyen sipariş sayısı yazılır).
-- `ekmek-alt`, `ekmek-ust`, `peynir`, `tursu`, `kofte`: tezgâhtaki burgerin katmanları (resimdeki ekmek, peynir, turşu, köfte); `porsiyon`: tepsideki patates kutusu; `patates-tutam`: uçan patates.
+- `kofte`: ızgaradaki ve uçan pişmiş köfte (resimden); `patates-tutam`: uçan patates; `menu-arka`: ana menü/dükkân arka planı (resmin bulanık hâli).
+- 8. turdan beri resimden KIRPILMAYANLAR (resmin biçeminde vektör çizim, `tools/burger/`): burger katmanları `b-alt`, `b-kofte`, `b-peynir`, `b-tursu`, `b-ust`; `tahta`, `tepsi`, `porsiyon` (patates kutusu), `kofte-cig`. Aşağıdaki "8. tur".
 
 **Ekran:** `#dunya` resmin pikselleriyle (sahne birimi = resmin pikseli). `fit()`: tek ölçek s = min(güvenli genişlik / 1660, güvenli yükseklik / 634, ekran genişliği / 1852). Dokunulan her şey (`GEREK` = x 186–1846, y 150–784: ekmek dolabından çiğ patatese, baloncuklardan tepsilere) güvenli alanda; resim ortalanır, sığmayan kenar kırpılır, ölçek hiç bozulmaz. iPhone 15'te sol alttaki sipariş ekranının bir kısmı çentik payında kalır (dokunulmaz, yalnız gösterge). Dokunma alanları `HIT` (resmin nesnelerinin üstü, komşusuna binmez; iPhone SE'de en küçüğü 45 pt).
 
@@ -24,6 +25,14 @@ Bu bölüm aşağıdaki her şeyle çelişirse bu bölüm geçerlidir. Aşağıd
 - Rehber: yeni mutfakta ilk müşteride adım adım (`SAVE.seen` 'tut3'); ilk iki gün bir kez ızgara, doğrama ve fritöz ipucu.
 - Emoji yok; para tam sayı; whoosh/swoosh sesi yok (yeni sesler: `dogra` tok bıçak vuruşu, `fritoz` kısa sabit cızırtı).
 
+
+## 8. tur: görsel kalite (21 Kasım, Eymen: "malzemeler havada uçuyor")
+Oynanış, sayılar ve resim değişmedi; yalnız görseller.
+- **Hamburger:** eski katmanlar küvetlerin ÜSTTEN görünüşünden kırpılmıştı, yandan dizilince havada duruyordu. Yeni katmanlar yandan (~17° üstten, elips oranı 0,3) çizildi (`tools/burger/katman.mjs`, `node tools/burger/uret.mjs` → 3× webp, ölçüler `KAT`). Katman = görsel + oturma payı `a` (görselin altından, alttaki katmanın üst yüzü merkezine) + kalınlık `k`. `burgerHTML` her katmanı bir öncekinin üst yüzüne oturtur; aradaki gölge (`.gl`) üstteki katmanın biçimi (3 birim aşağı, bulanık), alttakinin biçimiyle kırpılır. Peynir kenardan sarkar (dil gibi köşeler, damla), turşu dilimlerinin kenardan taşan uçları aşağı kıvrılır ve üstüne köfte gelince yanlardan görünür. Altı sıranın hepsi: `node scripts/burger-kontrol.cjs`.
+- **Konma:** malzeme kaynağından yay çizerek yerinin 34 birim üstüne gelir, düşer (hızlanarak), oturunca ezilir ve toparlanır (`dusK`); alttaki burger hafifçe basılır (`basB`); üst ekmek kapanınca bütün burger "pof" (`tamamB`) ve parıltı. Uçarken burgerdeki yeri ve gölgesi gizli.
+- **Tezgâh:** ahşap kesme tahtası, vişne çürüğü tepsi + kâğıt örtü, kırmızı karton patates kutusu (hepsi `tools/burger/nesne.mjs`). Izgaraya düşen çiğ köfte ızgara izi olmadan çiğ et (pişerken resimdeki pişmiş köfteye geçer). Doğramada çelik ağızlı, ahşap saplı bıçak iner; kırıntılar patates parçası.
+- **Arayüz:** üst köşe rozetleri ve düğmeler koyu kahve + krem yazı + ince neon turuncu kenar; ipucu/uyarı balonları aynı; doğrama çubuğu ve ızgara halkası neon turuncu; sipariş baloncuğu krem kâğıt (taşma düzeltildi), sabır çubuğu koyu yuvada; kartlar krem kâğıt; ana menü ve dükkân arka planı resmin bulanık hâli (`menu-arka.webp`), ana menüde burger kesme tahtasında. Müşterilere lambaların sıcak tonu (hafif sepya).
+- **İnceleme:** `node scripts/inceleme.cjs <klasör>` her anı iPhone 15 boyunda 3× kırpar; önce/sonra `docs/inceleme/v4/`.
 
 Bu belge bütün ajanların ortak sözleşmesidir. Her ajan YALNIZ kendi dosyalarına yazar; başka modülün dosyasına dokunmaz. Arayüz (fonksiyon adları, alanlar) burada yazıldığı gibi olmalı; değiştirmek gerekirse son raporda söyle, kendi başına değiştirme.
 

@@ -6,8 +6,9 @@ Kaynak: docs/referans/mutfak-v3-eymen.png (1852x849). Resmin kendisi arka pland�
   - kenarları uzatılmış arka plan (www/g/v3/mutfak.webp; resim değişmeden ortada, dört yanda pay),
   - resimde olmayan hâller resmin kendi piksellerinden yamanarak (boş küvetler, açılmış ızgaralar,
     boş gösterge, fritözde patates) ve
-  - burger katmanları, köfte gibi parçalar resimden kırpılarak
-üretilir. Koordinatlar resmin pikselleri (oyunda da sahne birimi bu).
+  - köfte, patates tutamı gibi parçalar resimden kırpılarak
+üretilir. Hamburger katmanları, tahta, tepsi, patates kutusu ve çiğ köfte resimden değil, resmin biçeminde
+vektörle çizilir: tools/burger/ (node tools/burger/uret.mjs). Bu betikten SONRA çalıştırılmalı. Koordinatlar resmin pikselleri (oyunda da sahne birimi bu).
 """
 import json, os
 import numpy as np, cv2
@@ -110,7 +111,7 @@ def kofte():
     _, v = doygunluk(rgb)
     kont = (v < 0.22)[..., None]
     cig = np.where(kont, rgb * 0.9 + np.array([40, 0, 10]) * 0.1, cig)
-    kaydet('kofte-cig', np.dstack([np.clip(cig, 0, 255), a]).astype(np.uint8), x0, y0)
+    # çiğ köfte artık tools/burger/nesne.mjs'te çizilir (ızgara izi olmadan); bu ara sonuç kaydedilmez
     return pis
 
 
@@ -204,25 +205,6 @@ def tablet_bos():
     kaydet('tablet-bos', np.dstack([dol, a]).astype(np.uint8), x0, y0)
 
 
-def burger_katmanlari():
-    # tezgâhta kurulan burgerin katmanları resmin kendi yiyeceklerinden
-    # üst ekmek: üst raftaki ortanca ekmek; alt ekmek: alt raftaki ortanca
-    x0, y0, x1, y1 = 312, 340, 423, 416
-    kaydet('ekmek-ust', kes(x0, y0, x1, y1, elips_maske(x1 - x0, y1 - y0,
-           [(367.5 - x0, 377 - y0 + d * 0.5, 53, 34 - d * 0.4) for d in range(0, 8)])), x0, y0)
-    x0, y0, x1, y1 = 312, 452, 423, 518
-    kaydet('ekmek-alt', kes(x0, y0, x1, y1, elips_maske(x1 - x0, y1 - y0,
-           [(367.5 - x0, 480 - y0 + d, 54, 25) for d in range(0, 11)])), x0, y0)
-    # peynir: en üstteki dilim (yuvarlak köşeli kare)
-    x0, y0, x1, y1 = 1264, 354, 1366, 416
-    def ciz(d, k):
-        d.rounded_rectangle([(1268 - x0) * k, (357 - y0) * k, (1362 - x0) * k, (412 - y0) * k], radius=7 * k, fill=255)
-    kaydet('peynir', kes(x0, y0, x1, y1, maske_ss(ciz, x1 - x0, y1 - y0, yumusak=0.5)), x0, y0)
-    # turşu: ortadaki dilim
-    x0, y0, x1, y1 = 1103, 484, 1162, 536
-    kaydet('tursu', kes(x0, y0, x1, y1, elips_maske(x1 - x0, y1 - y0, [(1132.5 - x0, 510 - y0, 27, 23)])), x0, y0)
-
-
 def patates_tutam():
     # patates haznesindeki çubuklardan bir tutam (porsiyon kutusunun üstü, fritöz sepeti)
     x0, y0, x1, y1 = 1243, 476, 1434, 572
@@ -256,40 +238,6 @@ def fritoz_patates(rgb, a):
         kaydet(ad, np.dstack([out, m * 255]).astype(np.uint8), x0, y0)
 
 
-def porsiyon_kutusu():
-    # tepside patates porsiyonu: kırmızı karton kutu (resmin konturu ve gölgesiyle çizilir) + hazneden çubuklar
-    w, h, k = 120, 130, 4
-    tut = Image.open(os.path.join(OUT, 'patates-tutam.webp')).convert('RGBA')
-    tv = Image.new('RGBA', (w * k, h * k), (0, 0, 0, 0))
-    d = ImageDraw.Draw(tv)
-    # arka çubuklar
-    t2 = tut.resize((int(112 * k), int(64 * k)), Image.LANCZOS)
-    tv.alpha_composite(t2, (int(4 * k), int(0 * k)))
-    kontur = (58, 26, 18, 255)
-    govde = [(14, 50), (106, 50), (96, 124), (24, 124)]
-    d.polygon([(x * k, y * k) for x, y in govde], fill=(200, 36, 28, 255))
-    # ön yüz ışığı ve gölgesi
-    d.polygon([(x * k, y * k) for x, y in [(14, 50), (36, 50), (38, 124), (24, 124)]], fill=(230, 72, 52, 255))
-    d.polygon([(x * k, y * k) for x, y in [(86, 50), (106, 50), (96, 124), (84, 124)]], fill=(160, 22, 20, 255))
-    # ağız: dalgalı kenar
-    yay = []
-    for i in range(0, 93):
-        x = 14 + i; yy = 50 - 9 * np.sin(np.pi * i / 92)
-        yay.append((x * k, yy * k))
-    d.polygon(yay + [(106 * k, 50 * k), (14 * k, 50 * k)], fill=(214, 44, 32, 255))
-    d.line(yay, fill=kontur, width=3 * k)
-    d.line([(x * k, y * k) for x, y in govde + [govde[0]]], fill=kontur, width=3 * k, joint='curve')
-    # kutunun üstünde sarı bant (patates kutusu süsü, neon renkleri)
-    d.rounded_rectangle([42 * k, 78 * k, 78 * k, 98 * k], radius=6 * k, fill=(255, 196, 64, 255), outline=kontur, width=2 * k)
-    # öndeki çubuklar
-    t3 = tut.resize((int(70 * k), int(40 * k)), Image.LANCZOS)
-    tv.alpha_composite(t3, (int(25 * k), int(22 * k)))
-    tv = tv.resize((w, h), Image.LANCZOS)
-    arr = np.array(tv)
-    Image.fromarray(arr, 'RGBA').save(os.path.join(OUT, 'porsiyon.webp'), 'WEBP', quality=90, method=6)
-    MAN['porsiyon'] = [0, 0, w, h]
-
-
 def arka_plan(ML=240, MR=240, MT=380, MB=230):
     # resmin kendisi ortada, değişmeden. Kenarlar: resmin son satır/sütunları uzatılır, giderek bulanıklaşır ve
     # kararır (ekran resimden genişse ya da uzunsa görünür; telefonda çoğu çentik payında kalır).
@@ -321,6 +269,19 @@ def arka_plan(ML=240, MR=240, MT=380, MB=230):
     MAN['mutfak'] = [-ML, -MT, WW, HH]
 
 
+def menu_arka():
+    # ana menü ve dükkân arka planı: resmin kendisi, bulanık, sıcak karartılmış, kenarları daha koyu (yazı ve düğmeler okunsun)
+    img = cv2.resize(IM, (1200, int(1200 * H / W)), interpolation=cv2.INTER_AREA).astype(np.float32)
+    img = cv2.GaussianBlur(img, (0, 0), 5)
+    hh, ww = img.shape[:2]
+    yy, xx = np.mgrid[0:hh, 0:ww].astype(np.float32)
+    d = np.sqrt(((xx - ww * 0.4) / ww) ** 2 + ((yy - hh * 0.55) / hh) ** 2)
+    k = (0.62 - np.clip(d - 0.2, 0, 1) * 0.55)[..., None]
+    sicak = np.array([60, 26, 10], np.float32)
+    out = img * k + sicak * (1 - k) * 0.6
+    Image.fromarray(np.clip(out, 0, 255).astype(np.uint8)).save(os.path.join(OUT, 'menu-arka.webp'), 'WEBP', quality=80, method=6)
+
+
 if __name__ == '__main__':
     bos_kuvet(1024, 340, 1212, 452, (1031, 346, 1206, 446), 'kuvet-kofte-bos')
     bos_kuvet(1236, 464, 1442, 578, (1243, 470, 1434, 572), 'kuvet-patates-bos')
@@ -330,11 +291,12 @@ if __name__ == '__main__':
     izgara_ac()
     gosterge_bos()
     tablet_bos()
-    burger_katmanlari()
+    # eski burger katmanları (ekmek-ust/alt, peynir, tursu) artık kullanılmaz: tools/burger
     r, a = patates_tutam()
     fritoz_patates(r, a)
-    porsiyon_kutusu()
+    # porsiyon (patates kutusu) artık tools/burger/nesne.mjs'te çizilir
     arka_plan()
+    menu_arka()
     # ara dosyalar (boş küvet; patates tutamı porsiyon kutusunda kullanıldı ama oyunda da uçuyor) oyuna girmez
     for ad in ('kuvet-kofte-bos', 'kuvet-patates-bos'):
         os.remove(os.path.join(OUT, ad + '.webp')); MAN.pop(ad, None)

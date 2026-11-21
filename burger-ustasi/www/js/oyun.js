@@ -1,6 +1,6 @@
 /* Burger Ustası: oynanış, arayüz, ekranlar (çekirdek). 7. tur: Eymen'in resmi (docs/referans/mutfak-v3-eymen.png).
-   Resmin kendisi arka plan (g/v3/mutfak.webp, kenarları uzatılmış); değişen her şey resimden kırpılmış ya da resimden
-   yamanmış parçalarla (g/v3/*.webp, üreten tools/mutfak-v3/hazirla.py) üstüne konur. Sahne birimi = resmin pikseli (1852×849);
+   Resmin kendisi arka plan (g/v3/mutfak.webp, kenarları uzatılmış); değişen parçalar resimden kırpılmış ya da yamanmış
+   (tools/mutfak-v3/hazirla.py), burger katmanları, tahta, tepsi, patates kutusu resmin biçeminde çizilmiş (tools/burger/uret.mjs). Sahne birimi = resmin pikseli (1852×849);
    #dunya bu birimlerde, tek ölçekle (translate + scale) ekrana oturur (fit).
    Akış (Eymen, 21 Kasım): açık ızgaraya dokun → köfte 8 sn pişer, kendiliğinden köfte haznesine uçar (en çok 6).
    Çiğ patatese 10 dokunuş → kendiliğinden fritöze, 15 sn kızarır, dokununca patates haznesine (4 porsiyon); fritöz doluyken
@@ -195,18 +195,22 @@ const img=(ad,r,cls='')=>`<img class="${cls}" src="${G}${ad}.webp" alt="" style=
 // dünya (sahne birimi) → ekran (app) noktası
 const ekr=(x,y)=>({x:LAY.ox+x*LAY.s,y:LAY.oy+y*LAY.s});
 
-/* ---- burger (yandan, resmin kendi ekmek/köfte/peynir/turşusuyla) ---- */
-// her katman: görsel, genişlik/yükseklik (sahne birimi), görünen kalınlık (üstündeki katman bu kadar yukarıda başlar)
-const KAT={bunBot:{s:'ekmek-alt',w:112,h:66,k:24},patty:{s:'kofte',w:114,h:50,k:15},cheese:{s:'peynir',w:120,h:30,k:7,y:-2},
-  pickle:{s:'tursu',w:46,h:22,k:9,n:2},bunTop:{s:'ekmek-ust',w:112,h:76,k:0}};
-// burgerin yüksekliği (birim): alt ekmekten üst ekmeğin tepesine
-function burgerYuk(ks){let y=0;ks.forEach((k,i)=>{const L=KAT[k];if(!L)return;y+=(i===ks.length-1?L.h:L.k)});return y}
-// ks katmanları; sonuç: alttan dizilmiş <img>'ler, kutunun alt ortasına göre (genişlik 130 birim)
-function burgerHTML(ks,{yeni=-1}={}){let y=0,h='';
-  ks.forEach((k,i)=>{const L=KAT[k];if(!L)return;const cls=i===yeni?' class="yeni"':'';
-    if(L.n){for(let j=0;j<L.n;j++){const x=65+(j-(L.n-1)/2)*44-L.w/2;h+=`<img${cls} src="${G}${L.s}.webp" alt="" style="left:${x}px;bottom:${y+(L.y||0)}px;width:${L.w}px;height:${L.h}px;transform:rotate(${j?6:-5}deg)">`}}
-    else h+=`<img${cls} src="${G}${L.s}.webp" alt="" style="left:${65-L.w/2}px;bottom:${y+(L.y||0)}px;width:${L.w}px;height:${L.h}px">`;
-    y+=L.k});
+/* ---- burger (yandan, ~17° üstten): katmanlar tools/burger/katman.mjs'te çizilir, uret.mjs 3× webp'ye döker ---- */
+// her katman: s görsel, h yükseklik, a görselin altından oturma noktasına (alttaki katmanın üst yüzü), k kalınlık
+// (bir üstteki katman bu kadar yukarıya oturur). Genişlik hepsinde 140 birim, merkez x=70. (uret.mjs bu satırı yazar)
+/*KAT>*/const KAT={bunBot:{s:'b-alt',h:60.15,a:19.05,k:21},patty:{s:'b-kofte',h:58.7,a:21.85,k:15},cheese:{s:'b-peynir',h:54,a:31,k:3},pickle:{s:'b-tursu',h:50.75,a:26,k:3.5},bunTop:{s:'b-ust',h:72.25,a:21.25,k:47}};/*<KAT*/
+const BW=140;
+// katmanların oturma yükseklikleri (burger kutusunun altından, birim): [ilk katmanın a'sı, +k, +k, ...]
+function oturma(ks){const o=[];let y=ks.length&&KAT[ks[0]]?KAT[ks[0]].a:0;ks.forEach(k=>{const L=KAT[k];o.push(y);if(L)y+=L.k});return o}
+// burgerin yüksekliği (birim): en alttan en üst katmanın tepesine
+function burgerYuk(ks){if(!ks.length)return 0;const o=oturma(ks);let m=0;ks.forEach((k,i)=>{const L=KAT[k];if(L)m=Math.max(m,o[i]-L.a+L.h)});return m}
+// ks katmanları; sonuç: kutunun (140 birim genişlik) altına göre dizilmiş katmanlar. Her katmanın altındakine düşen gölgesi:
+// üstteki katmanın biçimi (3 birim aşağı kaydırılmış, bulanık), alttaki katmanın biçimiyle kırpılır (havaya taşmaz).
+function burgerHTML(ks,{yeni=-1}={}){if(!ks.length)return '';const o=oturma(ks);let h=`<i class="bz${yeni===0?' yeni':''}"></i>`;
+  ks.forEach((k,i)=>{const L=KAT[k];if(!L)return;const b=o[i]-L.a;
+    if(i>0){const A=KAT[ks[i-1]];if(A){const ab=o[i-1]-A.a;
+      h+=`<div class="gl${i===yeni?' yeni':''}" style="bottom:${ab.toFixed(2)}px;height:${A.h}px;-webkit-mask-image:url(${G}${A.s}.webp);mask-image:url(${G}${A.s}.webp)"><div><i style="bottom:${(b-ab-3).toFixed(2)}px;height:${L.h}px;-webkit-mask-image:url(${G}${L.s}.webp);mask-image:url(${G}${L.s}.webp)"></i></div></div>`}}
+    h+=`<img${i===yeni?' class="yeni"':''} src="${G}${L.s}.webp" alt="" style="bottom:${b.toFixed(2)}px;height:${L.h}px">`});
   return h}
 const PORSIYON=`<img class="pors" src="${G}porsiyon.webp" alt="">`;
 
@@ -236,9 +240,9 @@ function buildMutfak(){
   h.push(img('tablet-bos',P.tablet,'p" id="tbB'));
   h.push(`<svg class="neon" id="tbN" viewBox="0 0 80 80" style="left:120px;top:637px;width:86px;height:86px"></svg>`);
   // tezgâh: hazırlık yeri (tahta) ve iki tepsi
-  h.push(`<div class="tahta" style="left:${TEZGAH.x-118}px;top:${TEZGAH.y-34}px;width:236px;height:84px">${TAHTA}</div>`);
-  h.push(`<div class="burger" id="brg" style="left:${TEZGAH.x-65}px;top:${TEZGAH.y-200+14}px;width:130px;height:200px"></div>`);
-  TEPSI.forEach((p,i)=>h.push(`<div class="tepsi" id="tp${i}" style="left:${p.x-135}px;top:${p.y-56}px;width:270px;height:112px">${TEPSI_SVG}<div class="ic-b"></div><div class="ic-f"></div></div>`));
+  h.push(`<img class="tahta" src="${G}tahta.webp" alt="" style="left:${TEZGAH.x-130}px;top:${TEZGAH.y-51}px;width:260px;height:100px">`);
+  h.push(`<div class="burger" id="brg" style="left:${TEZGAH.x-BW/2}px;top:${TEZGAH.y-200+14}px;width:${BW}px;height:200px"></div>`);
+  TEPSI.forEach((p,i)=>h.push(`<div class="tepsi" id="tp${i}" style="left:${p.x-135}px;top:${p.y-56}px;width:270px;height:112px"><img class="tp" src="${G}tepsi.webp" alt=""><div class="ic-b"></div><div class="ic-f"></div></div>`));
   // dokunma alanları
   Object.entries(HIT).forEach(([k,r])=>h.push(`<div class="hit" data-h="${k}" style="left:${r[0]}px;top:${r[1]}px;width:${r[2]}px;height:${r[3]}px"></div>`));
   $('parca').innerHTML=h.join('');
@@ -247,16 +251,15 @@ function buildMutfak(){
     brg:$('brg'),tp:[$('tp0'),$('tp1')],hit:{}};
   document.querySelectorAll('#parca .hit').forEach(el=>{MK.hit[el.dataset.h]=el;el.addEventListener('pointerdown',e=>{if(e.button>0)return;e.preventDefault();dokun(el.dataset.h,el)})});
   MUSK.innerHTML='';BALON.innerHTML='';WFX.innerHTML=''}
-// tahta ve tepsi: resmin biçeminde (kalın koyu kontur, sıcak gölge), kodla
-const TAHTA='<svg viewBox="0 0 236 84" aria-hidden="true"><defs><linearGradient id="thG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9a066"/><stop offset="1" stop-color="#b47640"/></linearGradient></defs>'+
-  '<ellipse cx="120" cy="52" rx="114" ry="30" fill="rgba(60,25,10,.28)"/><ellipse cx="118" cy="44" rx="112" ry="34" fill="#8a5428" stroke="#3a1d0c" stroke-width="4"/>'+
-  '<ellipse cx="118" cy="38" rx="110" ry="31" fill="url(#thG)" stroke="#3a1d0c" stroke-width="4"/><path d="M30 34q40-14 90-12M70 46q50 4 96-6" stroke="#9a6233" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".6"/>'+
-  '<path d="M26 26q30-16 70-18" stroke="#f3cf9c" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></svg>';
-const TEPSI_SVG='<svg viewBox="0 0 270 112" aria-hidden="true"><defs><linearGradient id="tpG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8432e"/><stop offset="1" stop-color="#9a2c1e"/></linearGradient></defs>'+
-  '<path d="M18 26Q20 14 34 14H236Q250 14 252 26L264 88Q266 102 250 102H20Q4 102 6 88Z" fill="rgba(60,25,10,.3)" transform="translate(4 6)"/>'+
-  '<path d="M18 26Q20 14 34 14H236Q250 14 252 26L264 88Q266 102 250 102H20Q4 102 6 88Z" fill="url(#tpG)" stroke="#3a1d0c" stroke-width="4.5"/>'+
-  '<path d="M34 28H236L246 84Q247 90 240 90H30Q23 90 24 84Z" fill="#b8392a" stroke="#7a2015" stroke-width="2.5"/>'+
-  '<path d="M38 22H232" stroke="#ec7a5c" stroke-width="3.5" stroke-linecap="round" opacity=".8"/></svg>';
+// doğrama bıçağı: çelik ağız (ışıklı sırt), ahşap sap ve perçinler, kalın koyu kontur; sap sağ üstte, ağız aşağı iner
+const BICAK='<svg viewBox="0 0 140 120" aria-hidden="true"><defs><linearGradient id="bkA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f8"/><stop offset=".55" stop-color="#bcc4cc"/><stop offset="1" stop-color="#7e8894"/></linearGradient>'+
+  '<linearGradient id="bkS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8622c"/><stop offset="1" stop-color="#5e2e10"/></linearGradient></defs>'+
+  '<g transform="rotate(-28 70 60)"><path d="M8 66Q6 52 22 50L84 46L86 72L30 76Q12 78 8 66Z" fill="url(#bkA)" stroke="#2a1a10" stroke-width="3.5" stroke-linejoin="round"/>'+
+  '<path d="M20 54L82 50" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".9"/><path d="M14 70Q40 72 84 69" stroke="#5a6470" stroke-width="2" fill="none" opacity=".6"/>'+
+  '<rect x="84" y="49" width="10" height="21" rx="3" fill="#6e7884" stroke="#2a1a10" stroke-width="3"/>'+
+  '<path d="M94 51H128Q134 51 134 59.5Q134 68 128 68H94Z" fill="url(#bkS)" stroke="#2a1a10" stroke-width="3.5" stroke-linejoin="round"/>'+
+  '<path d="M98 55H126" stroke="#d89a5c" stroke-width="2" stroke-linecap="round" opacity=".8"/><circle cx="104" cy="60" r="2.4" fill="#e8d8b8" stroke="#2a1a10" stroke-width="1.2"/><circle cx="122" cy="60" r="2.4" fill="#e8d8b8" stroke="#2a1a10" stroke-width="1.2"/></g></svg>';
+// tahta (g/v3/tahta.webp) ve tepsi (tepsi.webp): tools/burger/nesne.mjs
 
 /* ---- çizim: durum değişince ---- */
 function kuvetCiz(){const k=Math.max(0,Math.min(M.hazneKofte,S.hk));
@@ -337,15 +340,16 @@ function malzeme(k,hk){if(S.sec)secim(null);
   if(r==='fazla')return reddetH(hk,t('dup'));
   if(k==='patty'&&S.hk<=0)return reddetH(hk,t('noPatty'));
   const kat=r==='alt'?'bunBot':r==='ust'?'bunTop':k;
-  // kaynaktan burgere uçar, sonra yerleşir (sıçrama); uçarken burgerdeki yeri boş görünür
-  const L=KAT[kat],kay=kaynak(kat),yk=burgerYuk(S.burger),o=S.oturum;
-  S.burger.push(kat);
+  // kaynaktan burgere uçar: yerinin biraz üstünde süzülmeden durur, düşer, oturunca ezilir (dusK); alttakiler hafifçe basılır
+  const L=KAT[kat],kay=kaynak(kat),o=S.oturum;
+  S.burger.push(kat);const hs=oturma(S.burger)[S.burger.length-1];
   if(kat==='patty'){S.hk--;kuvetCiz()}else harca(VERI.katmanMaliyet(kat),kay.x,kay.y-30);
-  burgerCiz();const imgs=MK.brg.querySelectorAll('img'),n=L.n||1;for(let j=imgs.length-n;j<imgs.length;j++)imgs[j].style.visibility='hidden';
-  const html=L.n?[0,1].map(j=>`<img src="${G}${L.s}.webp" alt="" style="position:absolute;left:${j*44}px;top:0;width:${L.w}px;height:${L.h}px">`).join(''):`<img src="${G}${L.s}.webp" alt="">`;
-  ucW(html,kay,{x:TEZGAH.x,y:TEZGAH.y+14-yk-(L.y||0)-L.h/2},{w:L.n?L.w+44:L.w,h:L.h,sure:240,yay:-70,s0:.92,s1:1,cls:'mal'}).then(()=>{
-    if(o!==S.oturum)return;burgerCiz(true);ses('birak:'+(kat==='bunBot'||kat==='bunTop'?kat:k));
-    if(kat==='bunTop'){MK.brg.classList.remove('tamam');void MK.brg.offsetWidth;MK.brg.classList.add('tamam');kirinti(TEZGAH.x,TEZGAH.y-60,['#ffd84a','#fff3a0'],7,50)}
+  burgerCiz();const son=MK.brg.lastElementChild,gl=son&&son.previousElementSibling;
+  if(son)son.style.visibility='hidden';if(gl&&(gl.classList.contains('gl')||gl.classList.contains('bz')))gl.style.visibility='hidden';
+  const hy=TEZGAH.y+14-(hs-L.a)-L.h/2-34;
+  ucW(`<img src="${G}${L.s}.webp" alt="">`,kay,{x:TEZGAH.x,y:hy},{w:BW,h:L.h,sure:250,yay:-80,s0:.9,s1:1,cls:'mal',easing:'cubic-bezier(.3,.2,.4,1)'}).then(()=>{
+    if(o!==S.oturum)return;burgerCiz(true);const b=MK.brg;b.classList.remove('bas','tamam');void b.offsetWidth;b.classList.add(kat==='bunTop'?'tamam':'bas');
+    zaman(()=>{ses('birak:'+(kat==='bunBot'||kat==='bunTop'?kat:k));if(kat==='bunTop'){const q=ekr(TEZGAH.x,TEZGAH.y-90);parilti(q.x,q.y,0)}},120);
     rehber()});
   ses('sec');tit();rehber();return true}
 // bir malzeme bu burgerde en çok kaç kez olabilir: bekleyen müşterilerin siparişlerinden (yoksa varsayılan sipariş)
@@ -373,10 +377,9 @@ function dogra(){if(S.fr.st!==0){const el=MK.hit.cig;sallaEl(el);uyari(el,S.fr.s
   if(S.dogra>=M.dograma)return false;
   S.dogra++;dograCiz();ses('dogra');tit();
   // bıçak darbesi ve patates kırıntıları
-  const b=document.createElement('div');b.className='bicak';b.style.left=(CIG.x-60+Math.random()*30)+'px';b.style.top=(CIG.y-70+Math.random()*30)+'px';b.style.setProperty('--r',(-30+Math.random()*24)+'deg');
-  b.innerHTML='<svg viewBox="0 0 120 120"><path d="M10 100Q60 50 112 14" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M18 96Q62 54 108 20" stroke="#ffe9a8" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
-  WFX.appendChild(b);setTimeout(()=>b.remove(),300);
-  kirinti(CIG.x,CIG.y-10,['#f3d27a','#e9b85a','#fff1c4'],4,46);
+  const b=document.createElement('div');b.className='bicak';b.style.left=(CIG.x-70+Math.random()*24)+'px';b.style.top=(CIG.y-120+Math.random()*20)+'px';b.style.setProperty('--r',(-8+Math.random()*16)+'deg');
+  b.innerHTML=BICAK;WFX.appendChild(b);setTimeout(()=>b.remove(),380);
+  kirinti(CIG.x,CIG.y-10,['#fbe6a6','#f3d27a','#fff4d0'],5,46);
   const ci=MK.hit.cig;ci.classList.remove('vur');void ci.offsetWidth;ci.classList.add('vur');
   if(S.dogra>=M.dograma){const o=S.oturum;S.fr.st=-1;   // doğrandı: çubuklar fritöze uçuyor
     setTimeout(()=>{if(o!==S.oturum)return;S.dogra=0;dograCiz()},350);
@@ -407,7 +410,7 @@ function burgerSec(){const b=S.burger;if(!b.length)return reddetH('tezgah',t('ne
 function tepsi(i){const tp=S.tepsi[i];
   if(S.sec==='burger'){if(tp.b)return reddetH('tepsi'+i,t('trayFull'));
     const ks=S.burger.slice();S.burger=[];secim(null);burgerCiz();const yk=burgerYuk(ks),o=S.oturum;
-    ucW(`<div class="mini">${burgerHTML(ks)}</div>`,{x:TEZGAH.x,y:TEZGAH.y+14-yk/2},{x:TEPSI[i].x-52,y:TEPSI[i].y+4-yk*.36},{w:130,h:yk,sure:300,yay:-60,s0:1,s1:.78,cls:'brgu'}).then(()=>{
+    ucW(`<div class="mini">${burgerHTML(ks)}</div>`,{x:TEZGAH.x,y:TEZGAH.y-2-yk*.64},{x:TEPSI[i].x-43,y:TEPSI[i].y+32-yk*.425},{w:BW,h:yk,sure:300,yay:-60,s0:1/.78,s1:.85,cls:'brgu'}).then(()=>{
       if(o!==S.oturum)return;tp.b=ks;tepsiCiz(i,true);ses('birak:bunTop');rehber()});
     ses('al');tit();return true}
   if(S.sec==='patates'){if(tp.f)return reddetH('tepsi'+i,t('trayFries'));if(S.hp<=0){secim(null);return false}
@@ -527,6 +530,8 @@ function rehber(zorla){if(!S.on||S.bitis||S.paused){if(rehberHedef)rehberGizle()
   el.classList.add('parla');
   const tp=document.createElement('div');tp.className='ipucu';tp.innerHTML=ic('el')+`<span>${msg}</span>`;FX.appendChild(tp);
   const r=rel(el),w=tp.offsetWidth,h=tp.offsetHeight,W=APP.clientWidth,H=APP.clientHeight,c1=cq();let x=Math.min(W-w-1.5*c1,Math.max(1.5*c1,r.cx-w/2)),y=r.y-h-1.2*c1;
+  // tezgâhtaki burger: ipucu burgerin üstüne binmesin, burgerin tepesinin üstünde dursun
+  if(el===MK.hit.tezgah&&S.burger.length)y=Math.min(y,ekr(0,TEZGAH.y-2-burgerYuk(S.burger)).y-h-1.2*c1);
   const eng=engeller(),carp=yy=>yy<.5*c1||eng.some(e=>x<e.x+e.w&&x+w>e.x&&yy<e.y+e.h&&yy+h>e.y);
   if(carp(y)){const y2=r.y+r.h+1.2*c1;if(y2+h<H-.5*c1&&!carp(y2)||y<.5*c1){y=y2;tp.classList.add('alt')}}
   tp.style.left=x+'px';tp.style.top=y+'px';tp.style.setProperty('--ok',Math.max(12,Math.min(w-12,r.cx-x))+'px')}
@@ -635,9 +640,12 @@ const UPI={cook:'ates',pat:'kumsaati',tip:'kese',slot:'izgara'};
 function heroFaces(){if(!WHO.length||!window.Musteri)return;const a=WHO[Math.floor(Math.random()*WHO.length)];let b;do{b=WHO[Math.floor(Math.random()*WHO.length)]}while(b===a&&WHO.length>1);
   $('heroA1').innerHTML=golgeli(Musteri.draw(a.m,'happy'));$('heroA2').innerHTML=golgeli(Musteri.draw(b.m,'love'))}
 // ana menü: resmin kendi ekmek, köfte, peynir, turşusuyla burger
-function heroCiz(){const c=cq()||3.9,h=$('heroB').closest('.hero').clientHeight||40*c;const ym=Math.max(14*c,Math.min(30*c,h-16*c)),k=ym/burgerYuk(VERI.SIPARIS0.katmanlar);
-  $('heroB').innerHTML=`<div class="burger hb3" style="width:130px;height:${burgerYuk(VERI.SIPARIS0.katmanlar)}px;transform:scale(${k.toFixed(3)});transform-origin:50% 100%">${burgerHTML(VERI.SIPARIS0.katmanlar)}</div>`;
-  $('heroB').style.height=ym+'px';$('heroB').style.width=130*k+'px'}
+function heroCiz(){const c=cq()||3.9,h=$('heroB').closest('.hero').clientHeight||40*c,ks=VERI.SIPARIS0.katmanlar,by=burgerYuk(ks);
+  const ym=Math.max(14*c,Math.min(28*c,h-14*c)),k=ym/by;
+  $('heroB').innerHTML=`<div class="burger hb3" style="width:${BW}px;height:${by}px;transform:scale(${k.toFixed(3)});transform-origin:50% 100%">${burgerHTML(ks)}</div>`;
+  $('heroB').style.height=ym+'px';$('heroB').style.width=BW*k+'px';
+  // burger kesme tahtasının ortasına oturur (tahta 260×100 birim, üst yüzün ortası y=46; alt ekmeğin altı kutunun 19 birim altı)
+  const pl=$('heroB').nextElementSibling;pl.style.width=260*k+'px';pl.style.height=100*k+'px';$('heroB').style.marginBottom=(-65*k)+'px'}
 function openHome(){yeniOturum();S.on=false;S.paused=false;S.bitis=false;rehberGizle();FX.innerHTML='';heroFaces();$('ov').hidden=true;$('shop').hidden=true;APP.classList.remove('dukkanda');$('home').hidden=false;document.documentElement.lang=SAVE.lang;
   $('playBtn').innerHTML=ic('oynat')+(SAVE.day>1?t('cont',SAVE.day):t('play'));$('logo2').textContent=t('logo2');
   $('langBtn').innerHTML=ic('dil')+`<span class="${SAVE.lang==='tr'?'on':''}">TR</span><span class="${SAVE.lang==='en'?'on':''}">EN</span>`;$('langBtn').setAttribute('aria-label',t('lang'));
@@ -718,7 +726,7 @@ addEventListener('resize',()=>{fit();kartSigdir();if(!$('home').hidden)heroCiz()
 if(DIK.addEventListener)DIK.addEventListener('change',yonKontrol);
 
 /* ================= test kancası ================= */
-if(DEBUG)window.__bu={S,SAVE,VERI,LAY,startDay,bitir,adim,openHome,openShop,upAl,alinabilir,save,fit,
+if(DEBUG)window.__bu={S,SAVE,VERI,LAY,burgerHTML,burgerYuk,KAT,startDay,bitir,adim,openHome,openShop,upAl,alinabilir,save,fit,
   dokun:k=>dokun(k,MK.hit[k]),musteri:i=>S.cust[i]&&musteriDokun(S.cust[i]),hit:k=>MK.hit[k],
   basla:()=>{const g=$('go');if(g)g.click()},durum:()=>({hk:S.hk,hp:S.hp,dogra:S.dogra,fr:{...S.fr},burger:S.burger.slice(),tepsi:S.tepsi.map(x=>({...x})),sec:S.sec,izg:S.izg.map(x=>({...x})),
     cust:S.cust.map(c=>c&&{i:c.i,f:+(c.p/c.max).toFixed(2),ruh:c.ruh,durum:{burger:c.durum.burger,yan:c.durum.yan}}),kasa:S.kasa,can:S.can,bitti:S.bitti,kalan:S.kalan})};
