@@ -249,6 +249,22 @@
         gur(c, o, t + dt, { f: 2500 + Math.random() * 4000, q: 3, dur: 0.004 + Math.random() * 0.004, v: (0.07 + Math.random() * 0.09) * (1 - dt / 0.65) });
       }
     },
+    // Bıçakla doğrama (6. tur): tahtaya tok vuruş + kısa çıtırtı (sabit, süpürmesiz)
+    dogra: function (c, o, t) {
+      var r = R(0.06);
+      tok(c, o, t, { f0: 150 * r, v: 0.34, kf: 1400 });
+      gur(c, o, t, { tip: 'bandpass', f: 2400 * r, q: 2.2, dur: 0.035, v: 0.12 });
+      gur(c, o, t + 0.012, { tip: 'highpass', f: 5200, q: 0.8, dur: 0.02, v: 0.05 });
+    },
+    // Patates fritöze (6. tur): tok düşüş + kısa sabit kızartma cızırtısı ve çıtırtılar
+    fritoz: function (c, o, t) {
+      tok(c, o, t, { f0: 120, v: 0.3, kf: 700 });
+      gur(c, o, t + 0.01, { tip: 'highpass', f: 2600, q: 0.6, a: 0.02, tut: 0.25, dur: 0.5, v: 0.08 });
+      for (var i = 0; i < 22; i++) {
+        var dt = 0.03 + Math.random() * 0.7;
+        gur(c, o, t + dt, { f: 2000 + Math.random() * 5000, q: 3, dur: 0.004 + Math.random() * 0.005, v: (0.06 + Math.random() * 0.08) * (1 - dt / 0.8) });
+      }
+    },
     // Köfte pişti: mutfak zili
     pisti: function (c, o, t) {
       zil(c, o, t, { f: 1320, v: 0.15, dur: 1.0, oran: [1, 2.41, 3.87, 5.37], gen: [1, 0.4, 0.25, 0.12] });
@@ -370,7 +386,8 @@
     'birak:tomato', 'birak:onion', 'birak:bacon', 'birak:egg', 'birak:pickle', 'izgara', 'pisti', 'al', 'geri',
     'teslim_mutlu', 'teslim_normal', 'teslim_kizgin', 'yanlis', 'kacti', 'cop', 'uyari', 'gun_basla', 'gun_bitti',
     'gun_kayip', 'tik', 'satin', 'can_gitti', 'yildiz:1', 'yildiz:2', 'yildiz:3',
-    'birak:sauce', 'birak:mushroom', 'birak:jalapeno', 'birak:onionring', 'birak:avocado', 'birak:premium'];
+    'birak:sauce', 'birak:mushroom', 'birak:jalapeno', 'birak:onionring', 'birak:avocado', 'birak:premium',
+    'dogra', 'fritoz'];
 
   // ---------- müzik ----------
   // 112 BPM, hafif shuffle, Do majör. 16 ölçü (A 8 + B 8), 4 geçişte bir tam tekrar (64 ölçü ≈ 2 dk 17 sn).

@@ -1,3 +1,5 @@
+> **Eskidi (7. tur, 21 Kasım):** `mutfak.js` ve `burger.js` silindi; mutfak artık Eymen'in resmi (`docs/TASARIM.md` → "7. tur"). Bu notlar tarih için duruyor.
+
 # Mutfak turu: bağlama notları (oyun.js'i bağlayacak ajan için)
 
 **Müşteriler tezgâhın arkasında (6. tur):** sol sütun kalktı; `ciz({katman:'on'})`, `YER.musteri/musteri4/yuz/balon/servis`, `SERVIS_Y` eklendi. Ayrıntı `TASARIM.md` → 6. bölüm. Aşağıdaki "müşteri sütunu" notları eskidi.

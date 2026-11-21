@@ -1,5 +1,30 @@
 # Burger Ustası 2.0: tasarım ve modül sözleşmesi
 
+## 7. tur: Eymen'in resmi (21 Kasım) — GEÇERLİ OLAN BU
+Bu bölüm aşağıdaki her şeyle çelişirse bu bölüm geçerlidir. Aşağıdaki eski bölümler (dikey düzen, tepsi kutuları, sürükle-bırak, 6 gözlü ızgara, `mutfak.js`, `burger.js`) tarih için duruyor; o kodlar silindi (git geçmişinde).
+
+**Resim:** `docs/referans/mutfak-v3-eymen.png` (1852×849). Eymen: "Tasarım bu olacak, birebir böyle." Resmin kendisi arka plan; yerleşim, oran, renkler aynı. Değişen her şey resmin kendi parçalarıyla üstüne konur (`tools/mutfak-v3/hazirla.py` → `www/g/v3/`):
+- `mutfak.webp`: resim değişmeden ortada, dört yanda uzatılmış pay (kenar pikselleri bulanıklaşıp kararır; tavan koyu, zemin tahtası aynalanır). Ekran resimden genişse ya da uzunsa görünür.
+- `kuvet-kofte-0…5`: köfte haznesi 0–5 köfte (boş küvet resmin çeliğiyle yamandı, köfteler resmin köftesi); 6 = resmin kendisi (parça gizli). `kuvet-patates-0…3`: patates haznesi; 4 = resmin kendisi.
+- `izgara-3`, `izgara-4`: kilit açılınca alt ızgaralar (üstteki açık ızgaranın içi). `kofte`, `kofte-cig`: ızgaradaki köfte (pişerken çiğden pişmişe geçer).
+- `fritoz-pisiyor`, `fritoz-hazir`: sepette patates; `gosterge-bos`: "0" silinmiş gösterge (rakamlar kodla, kırmızı yedi parçalı); `tablet-bos`: sipariş ekranının satırları silinmiş (burger simgesi kalır; yanına neon patates ve bekleyen sipariş sayısı yazılır).
+- `ekmek-alt`, `ekmek-ust`, `peynir`, `tursu`, `kofte`: tezgâhtaki burgerin katmanları (resimdeki ekmek, peynir, turşu, köfte); `porsiyon`: tepsideki patates kutusu; `patates-tutam`: uçan patates.
+
+**Ekran:** `#dunya` resmin pikselleriyle (sahne birimi = resmin pikseli). `fit()`: tek ölçek s = min(güvenli genişlik / 1660, güvenli yükseklik / 634, ekran genişliği / 1852). Dokunulan her şey (`GEREK` = x 186–1846, y 150–784: ekmek dolabından çiğ patatese, baloncuklardan tepsilere) güvenli alanda; resim ortalanır, sığmayan kenar kırpılır, ölçek hiç bozulmaz. iPhone 15'te sol alttaki sipariş ekranının bir kısmı çentik payında kalır (dokunulmaz, yalnız gösterge). Dokunma alanları `HIT` (resmin nesnelerinin üstü, komşusuna binmez; iPhone SE'de en küçüğü 45 pt).
+
+**Yerler (resimde):** sol ekmek dolabı (üst raf üst ekmek, alt raf alt ekmek), ortada 2×2 ızgara (üst ikisi açık, alt ikisi kilitli), 2×2 hazne (köfte, peynir / turşu, patates), fritöz (sepet, gösterge, düğme, ışıklar: kızarırken kırmızı yanıp söner, bekleyince yeşil), en sağda çiğ patatesler, sol altta askılı sipariş ekranı, önde boş tezgâh: hazırlık yeri (tahta, 508×712) ve iki tepsi (844×706, 1150×706). Arkada salon.
+
+**Oynanış (Eymen, 21 Kasım):**
+- Izgara: açık ızgaraya dokun → çiğ köfte düşer (maliyet 6), 8 sn pişer (yanma yok; renk çiğden pişmişe, cızırtı sesi, duman, sarı ilerleme halkası), pişince zil ve kendiliğinden köfte haznesine uçar (en çok 6; doluysa ızgarada parlayarak bekler, yer açılınca geçer). Kilitli ızgara: "Dükkân'dan açılır".
+- Patates: çiğ patatese her dokunuşta doğrama çubuğu (10 parça) dolar, bıçak izi ve kırıntı; 10'da çubuklar fritöze uçar (maliyet 8), 15 sn kızarır (kabarcık, buhar, gösterge geri sayar). Kızarınca bekler; fritöze dokununca porsiyonlar hazneye uçar (4; hazneye sığmayan sepette kalır). Fritöz doluyken doğrama reddedilir (titreşim, çubuk kızarır, uyarı).
+- Hamburger: tezgâhta tek burger. Malzemeye dokununca uçarak konur. Alt raf ilk, üst raf son; aradaki köfte/peynir/turşu istenen sırayla, siparişte olduğundan fazlası reddedilir. Alt ekmek yokken başka malzeme, en az bir ara katman yokken üst ekmek reddedilir. Üst ekmekle biter.
+- Tepsi: biten burgere dokun (kalkar, parlar) → tepsiye dokun (kayar). Patates haznesine dokun (porsiyon kalkar) → tepsiye dokun. Bir tepside en çok bir burger ve bir patates.
+- Servis: tepsiye dokun (parlar, müşteri baloncukları davet eder) → müşteriye dokun: tepsi içindekilerle müşteriye kayar, yerine boş tepsi gelir; müşteri öder, sevinir. Eksik tepsi (yalnız burger ya da patates) parça teslimdir (`VERI.teslimParca`).
+- Müşteriler: salondan, yandan gelir (küçükten büyüyerek, yürür gibi), arka tezgâhın arkasında durur (gövdeleri y 311 çizgisinde kesilir); baloncukta burger + patates ve sabır çubuğu; verilen parça soluklaşır. Gölgeli çizim `#musGolge` (`index.html`): sol üstten sıcak ışık, kenarlarda yumuşak gölge, koyu kontur; duvara yumuşak gölge düşer.
+- Rehber: yeni mutfakta ilk müşteride adım adım (`SAVE.seen` 'tut3'); ilk iki gün bir kez ızgara, doğrama ve fritöz ipucu.
+- Emoji yok; para tam sayı; whoosh/swoosh sesi yok (yeni sesler: `dogra` tok bıçak vuruşu, `fritoz` kısa sabit cızırtı).
+
+
 Bu belge bütün ajanların ortak sözleşmesidir. Her ajan YALNIZ kendi dosyalarına yazar; başka modülün dosyasına dokunmaz. Arayüz (fonksiyon adları, alanlar) burada yazıldığı gibi olmalı; değiştirmek gerekirse son raporda söyle, kendi başına değiştirme.
 
 Oyun: **yatay** iPhone oyunu (21 Kasım'dan beri; aşağıdaki "3. tur" bölümüne bak; önceden dikeydi), saf HTML/CSS/JS, `www/` klasörü, claude.ai artifact'inde ve sonra Capacitor ile iOS. Diller: Türkçe ve İngilizce. Kayıt anahtarı `burgerustasi.v1` (eski kayıt bozulmamalı: `day, coins, stars, up{cook,pat,tip,slot}, lang, seen`).

@@ -102,12 +102,15 @@
     sabirYan: 5,                                          // yan ürün isteyen müşteriye ek sabır (sn)
     aralikYan: 2.0,                                       // gelme aralığına yan ürün payı (sn × olasılık)
     parcaYenile: 0.15,                                    // ilk doğru parça verilince sabır bu oranda dolar (bir kez)
-    yanPisme: { fries: 5, onionring: 6 }, yanPismeMin: 2.5 // fritöz süresi (sn), "Hızlı ızgara" her düzeyde −pismeUp
+    yanPisme: { fries: 5, onionring: 6 }, yanPismeMin: 2.5, // fritöz süresi (sn), "Hızlı ızgara" her düzeyde −pismeUp
+    // 6. tur (resimdeki mutfak; gun6): gelme aralığının ortası = aralik6 − aralikAdim × (zg − 1) (en az aralikMin),
+    // sabır = (sabır tabanı + sabir6) × (1 + %10 × pat). Bot ile ayarlandı (docs/DENGE.md).
+    aralik6: 15, sabir6: 12
   };
 
   var STOK_MAX = 6;
   var YAN_STOK_MAX = 3;  // her yan ürünün hazır kutusunda en çok
-  var IZGARA_MAX = 6;    // ızgara gözü sayısı (başta 2, slot ile +1'er)
+  var IZGARA_MAX = 4;    // 6. tur: resimdeki ızgara sayısı (başta 2 açık, 2 kilitli; slot ile +1'er)
   var KAT_MAX = 10;   // bir tabakta en çok katman
   var BASLANGIC = 50; // yeni oyuncunun parası
   var KAPANIS_GUN = 3; // art arda bu kadar gün eksi kasa → dükkân kapanır
@@ -119,9 +122,9 @@
     cook: { max: 4, cost: basamak([300, 600, 1200, 2400]) },   // köfte 0,5 sn daha çabuk pişer
     pat:  { max: 4, cost: basamak([350, 700, 1400, 2800]) },   // müşteri sabrı +%10
     tip:  { max: 4, cost: basamak([400, 800, 1600, 3200]) },   // bahşiş +%25
-    slot: { max: 4, cost: basamak([800, 2500, 7000, 18000]) }  // 3., 4., 5., 6. ızgara gözü
+    slot: { max: 2, cost: basamak([250, 1500]) }               // 6. tur: resimdeki 2 kilitli ızgara (3. ve 4.)
   };
-  // açık ızgara gözü: 2 + slot düzeyi (en çok 6). Eski kayıtta slot 0/1 → 2/3 göz (aynı).
+  // açık ızgara: 2 + slot düzeyi (resimde 4 ızgara; en çok 4). Eski kayıtta slot 1 → 3 ızgara; 3–4 → 4.
   function izgaraGoz(up) { return Math.min(IZGARA_MAX, 2 + U(up).slot); }
 
   function U(up) {
@@ -463,6 +466,77 @@
     return teslimParca(yeniDurum(siparis), { katmanlar: ks || null, yan: yv }, f, up, seri);
   }
 
+  // ---------- 6. tur: Eymen'in resmi (mutfak-v3, 21 Kasım) ----------
+  // Mutfak resimdeki gibi: ekmek dolabı, 2×2 ızgara (2 kilitli), köfte/peynir/turşu/patates haznesi, fritöz, çiğ patates.
+  // Başta açık: ekmek, köfte, peynir, turşu, patates kızartması. Herkes aynı siparişi verir: turşulu peynirli burger + patates.
+  // Öbür malzemelerin mutfakta yeri yok: siparişe girmez, dükkânda satılmaz (eski kayıtta alınmışsa kayıtta durur).
+  var MUTFAK = {
+    izgaraPisme: 8, izgaraPismeUp: 0.5, izgaraPismeMin: 6,  // köfte ızgarada (sn); "Hızlı ızgara" düzey başına −0,5
+    fritozPisme: 15, fritozPismeUp: 1, fritozPismeMin: 11,  // patates fritözde (sn); düzey başına −1
+    hazneKofte: 6,      // pişmiş köfte haznesi
+    haznePatates: 4,    // patates haznesi (porsiyon); bir fritöz dolusu 4 porsiyon
+    dograma: 10,        // çiğ patatese dokunuş: 10'da doğranır
+    tepsi: 2,           // tezgâhtaki tepsi
+    hazir: { patty: 6, fries: 4 }   // gün başında hazneler dolu (resimdeki gibi; dünden kalan, para düşmez)
+  };
+  // ÖNERİ (satılmıyor): sonraki adımlarda mutfağa yer açılınca sırayla satılacak malzemeler ve fiyatları.
+  // Denge botu (node scripts/denge.mjs plan) bunlarla "24 saatte son ürüne ulaşılamaz" kuralını ölçer.
+  var GELECEK = [
+    { k: 'lettuce', ad: 'Marul', fiyat: 2000 }, { k: 'tomato', ad: 'Domates', fiyat: 4000 },
+    { k: 'onion', ad: 'Soğan', fiyat: 7000 }, { k: 'bacon', ad: 'Pastırma', fiyat: 12000 },
+    { k: 'egg', ad: 'Yumurta', fiyat: 20000 }, { k: 'sauce', ad: 'Ketçap', fiyat: 32000 },
+    { k: 'mayo', ad: 'Mayonez', fiyat: 50000 }, { k: 'mushroom', ad: 'Mantar', fiyat: 80000 },
+    { k: 'jalapeno', ad: 'Jalapeño', fiyat: 130000 }, { k: 'avocado', ad: 'Avokado', fiyat: 220000 },
+    { k: 'premium', ad: 'Altın Wagyu', fiyat: 400000 }
+  ];
+  var MUTFAKTA = ['bun', 'patty', 'cheese', 'pickle', 'fries'];   // mutfakta yeri olanlar (hepsi başta açık)
+  var SIPARIS0 = { katmanlar: ['bunBot', 'patty', 'cheese', 'pickle', 'bunTop'], yan: 'fries' };
+  function mutfaktaMi(k) { return MUTFAKTA.indexOf(anahtar(k)) >= 0; }
+  // izgara ve fritöz süresi (sn)
+  function izgaraPisme(up) { up = U(up); return Math.max(MUTFAK.izgaraPismeMin, MUTFAK.izgaraPisme - MUTFAK.izgaraPismeUp * up.cook); }
+  function fritozPisme(up) { up = U(up); return Math.max(MUTFAK.fritozPismeMin, MUTFAK.fritozPisme - MUTFAK.fritozPismeUp * up.cook); }
+  // sipariş (6. tur): herkes aynı; sonradan mutfağa yer açılan malzemeler (gelecek) eklenirse siparisTam eski
+  // kurala döner. ek: {katmanlar, yan} yeni nesne.
+  function siparis6() { return { katmanlar: SIPARIS0.katmanlar.slice(), yan: SIPARIS0.yan }; }
+  // burgere bu malzeme konabilir mi: alt ekmek ilk, üst ekmek son; ortadakiler siparişin izin verdiği kadar
+  //   katmanlar: tezgâhtaki yarım burger; k: 'bun' | 'patty' | 'cheese' | 'pickle'; en: o malzemeden en çok kaç tane
+  //   → 'alt' (alt ekmek konur) | 'ust' (üst ekmek, burger biter) | 'orta' | red nedeni: 'ekmekYok' | 'bitti' | 'fazla' | 'eksik'
+  function koyKarar(katmanlar, k, en) {
+    katmanlar = katmanlar || [];
+    var n = katmanlar.length, son = katmanlar[n - 1];
+    if (son === 'bunTop') return 'bitti';
+    if (k === 'bun') {
+      if (!n) return 'alt';
+      if (n < 2) return 'eksik';   // alt ekmeğin üstüne hemen üst ekmek yok
+      return 'ust';
+    }
+    if (!n) return 'ekmekYok';
+    var say = 0;
+    for (var i = 0; i < n; i++) if (katmanlar[i] === k) say++;
+    if (en != null && say >= en) return 'fazla';
+    if (n >= KAT_MAX - 1) return 'fazla';
+    return 'orta';
+  }
+  // gün ayarı (6. tur): eski gun() ile aynı kurallar, sipariş hep SIPARIS0 (3 ortadaki katman + patates)
+  function gun6(d, up) {
+    var g = gun(d, up, []);
+    up = U(up);
+    var z = zg(d);
+    var orta = Math.max(AYAR.aralikMin, AYAR.aralik6 - AYAR.aralikAdim * (z - 1));
+    g.aralik = [Math.round(orta * 0.75 * 10) / 10, Math.round(orta * 1.25 * 10) / 10];
+    g.yanOlas = 1;
+    g.izgara = izgaraGoz(up);
+    var taban = Math.max(AYAR.sabirMin, AYAR.sabir0 - AYAR.sabirAdim * (z - 1));
+    // sonradan açılan malzeme (öneri) siparişe girerse katman başına sabirKatman eklenir
+    g.sabirSiparis = function (s) {
+      var ek = Math.max(0, kats(s || SIPARIS0).length - SIPARIS0.katmanlar.length) * AYAR.sabirKatman;
+      return tam((taban + AYAR.sabir6 + ek) * (1 + AYAR.sabirUp * up.pat));
+    };
+    g.siparisSabir = g.sabirSiparis(SIPARIS0);
+    g.sabir = g.siparisSabir;
+    return g;
+  }
+
   BU.VERI = {
     MALZEME: MALZEME, SATIN_SIRA: SATIN_SIRA, STOK_MAX: STOK_MAX, KAT_MAX: KAT_MAX, GELISTIR: GELISTIR, AYAR: AYAR,
     BASLANGIC: BASLANGIC, KAPANIS_GUN: KAPANIS_GUN, SIFIRLA: SIFIRLA,
@@ -475,7 +549,10 @@
     YAN: YAN, YAN_STOK_MAX: YAN_STOK_MAX, IZGARA_MAX: IZGARA_MAX,
     yanMi: yanMi, acikKatman: acikKatman, acikYan: acikYan, yanOlas: yanOlas, izgaraGoz: izgaraGoz,
     siparisTam: siparisTam, yanPisme: yanPisme, yeniDurum: yeniDurum, eksikParca: eksikParca,
-    teslimParca: teslimParca, odemeTam: odemeTam
+    teslimParca: teslimParca, odemeTam: odemeTam,
+    // 6. tur
+    MUTFAK: MUTFAK, MUTFAKTA: MUTFAKTA, GELECEK: GELECEK, SIPARIS0: SIPARIS0, mutfaktaMi: mutfaktaMi, izgaraPisme: izgaraPisme,
+    fritozPisme: fritozPisme, siparis6: siparis6, koyKarar: koyKarar, gun6: gun6
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = BU.VERI;
 })(typeof window !== 'undefined' ? window : globalThis);

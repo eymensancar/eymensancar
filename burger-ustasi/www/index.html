@@ -1,13 +1,11 @@
 <!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>Burger Ustası</title><meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
-/* Burger Ustası: YATAY mutfak oyunu (Eymen, 21 Kasım; mutfak görünümü 5. tur, müşteriler tezgâhın arkasında 6. tur).
-   Ekran: mutfak sahnesi ekranın tamamı (#mutfak): arka katman (BU.MUTFAK duvar + her şey, gündüz/akşam <img>), müşteriler
-   (#queue: servis tezgâhının arkasında, damalı duvarın önünde), ön katman (aynı çizimin tezgâh çizgisinden aşağısı + lambalar,
-   davlumbaz: müşterilerin gövdesi bunun arkasında kalır), #ic (YER dikdörtgenlerine oturan canlı katmanlar). Kutular
-   js/oyun.js fit() → yerlesim() içinde px ile. Üst bilgi (#hud) iki köşede (#hudL kasa + gün, #hudR düğmeler + canlar).
-   Birim: 1rem = 10 birim; birim = min(güvenli yükseklik / 100, güvenli genişlik / 190) (üst bilgi, kartlar, menüler). Sahnedeki
-   ölçüler --s (px / sahne birimi). Güvenli alan --sl/--sr/--st/--sb (env(); #guv ile ölçülür). Dik tutulursa "yan çevir" (#cevir). */
+/* Burger Ustası: YATAY mutfak oyunu. 7. tur (21 Kasım): Eymen'in resmi (docs/referans/mutfak-v3-eymen.png) oyunun arka planı.
+   Ekran: #sahne > #dunya (resmin pikselleriyle 1852×849; js fit() ölçekler): resim, müşteriler (#musK), resmin parçaları ve
+   dokunma alanları (#parca), baloncuklar (#balonK), uçanlar (#wfx). Üst bilgi (#hud) iki köşede (#hudL kasa + gün, #hudR
+   düğmeler + canlar). Birim: 1rem = 10 birim; birim = min(güvenli yükseklik / 100, güvenli genişlik / 190) (üst bilgi, kartlar,
+   menüler). Güvenli alan --sl/--sr/--st/--sb (env(); #guv ile ölçülür). Dik tutulursa "yan çevir" (#cevir). */
 :root{--sl:env(safe-area-inset-left,0px);--sr:env(safe-area-inset-right,0px);--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px)}
 html{font-size:calc(10*min((100dvh - var(--st) - var(--sb))/100,(100vw - var(--sl) - var(--sr))/190));-webkit-text-size-adjust:100%;text-size-adjust:100%}
 *,*::before,*::after{box-sizing:border-box}
@@ -46,38 +44,130 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .hb::before,.home .lang::before{content:"";position:absolute;inset:min(0px,calc((max(34px,.9rem) - 44px)/2))}
 .prog{position:relative;flex:none;height:max(5px,.14rem);border-radius:.2rem;background:#eadfcc;box-shadow:inset 0 .03rem 0 rgba(0,0,0,.18);overflow:hidden}
 .prog b{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd84a,#ff9d1a);border-radius:.2rem;transition:width .4s}
-/* ---------- müşteriler: servis tezgâhının arkasında (sahnenin içinde) ---------- */
-/* #queue arka ve ön sahne katmanlarının arasında; .slot kutuları fit() içinde px (YER.musteri). Yüz alttan tezgâhın arkasına
-   girer (--yb eksi), baloncuk yüzün yanında (yan) ya da üstünde (alt). Giriş: yüz tezgâhın arkasından yükselir, baloncuk açılır. */
-@property --ak{syntax:'<number>';inherits:true;initial-value:0}
-.queue{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1;pointer-events:none;--ak:0;transition:--ak 4s linear}
-.slot{position:absolute;min-width:0;min-height:0}
-.cust{position:absolute;inset:0;pointer-events:auto}
-.cust .yuz{position:absolute;z-index:1;left:var(--yx,0px);bottom:var(--yb,0px);width:var(--yz,2rem);aspect-ratio:128/154;transform:translateY(105%);transform-origin:50% 100%;filter:drop-shadow(0 .08rem .05rem rgba(0,0,0,.25));transition:transform .55s cubic-bezier(.2,1.15,.4,1)}
-.cust .yuz svg{filter:brightness(calc(1 - .2*var(--ak,0))) sepia(calc(.2*var(--ak,0)))}
-.cust.in .yuz{transform:none}
-.cust.out .yuz{transform:translateY(105%);transition:transform .45s ease-in}
-.cust .bub{position:absolute!important;left:var(--bx,0px);top:var(--by,0px);opacity:0;transform:scale(.5);transform-origin:0 60%}
-.cust.alt .bub{transform-origin:50% 100%}
-.cust.in .bub{opacity:1;transform:none;transition:opacity .2s .3s,transform .3s .3s cubic-bezier(.2,1.5,.4,1),box-shadow .18s,border-color .18s,background .18s}
-.cust.out .bub{opacity:0;transform:scale(.5);transition:opacity .2s,transform .2s}
-.yuz svg,.hero .f svg,.mf svg{width:100%;height:100%;display:block}
-.bub{position:relative;z-index:3;width:var(--bw,3rem);max-width:100%;flex:none;background:#fff;border:.06rem solid var(--ink);border-radius:.3rem;padding:.08rem .08rem .1rem;display:flex;flex-direction:column;align-items:center;gap:.06rem;box-shadow:0 .08rem 0 rgba(0,0,0,.15);transition:transform .18s,box-shadow .18s,border-color .18s,background .18s}
-.bub::after{content:"";position:absolute;width:.24rem;height:.24rem;background:inherit;border:.06rem solid var(--ink);border-color:inherit;border-top-color:transparent;border-right-color:transparent}
-.cust.alt .bub::after{left:50%;bottom:-.17rem;transform:translateX(-50%) rotate(-45deg)}
-.cust.yanli .bub::after{left:-.17rem;top:58%;transform:translateY(-50%) rotate(45deg)}
-.bub .sip{width:100%;display:flex;justify-content:center}
-.sabir{width:100%;height:max(6px,.2rem);flex:none;border-radius:.2rem;background:#e9e1d4;box-shadow:inset 0 .03rem 0 rgba(0,0,0,.12);overflow:hidden}
-.sabir b{display:block;height:100%;width:100%;border-radius:.2rem;background:#3cc45a;box-shadow:inset 0 .05rem 0 rgba(255,255,255,.35)}
-.cust.in.hedef .bub{transform:scale(1.06);border-color:#e8a400;box-shadow:0 0 0 .12rem rgba(255,194,26,.75),0 .1rem 0 rgba(0,0,0,.15)}
-.cust.in.hedef .yuz{transform:scale(1.06) translateY(-.06rem);transition:transform .2s}
-.cust.kizgin .yuz{filter:drop-shadow(0 0 .12rem rgba(230,40,30,.55)) drop-shadow(0 .1rem .06rem rgba(0,0,0,.25))}
-.cust.mutlu-git .yuz{animation:hop .45s ease-out 2}
-.cust.kizgin-git .yuz{animation:shake .3s linear 3}
-.cust.ret .bub{background:#ffd9d4;border-color:#b3140c;animation:shake .26s linear 2}
-.cust.aldi1 .bub{animation:pulse .35s ease-out}
-.cust.cik .bub{opacity:0;transform:scale(.6);transition:opacity .2s .25s,transform .2s .25s}
-.cust.ret .bub,.cust.aldi1 .bub{opacity:1}
+/* ---------- sahne (7. tur): Eymen'in resmi arka plan, değişen her şey üstünde (sahne birimi = resmin pikseli) ---------- */
+/* #dunya 1852×849 birim; js fit() translate + scale ile ekrana oturtur. Sıra: resim (#arka), müşteriler (#musK: arka tezgâhın
+   üst çizgisinde kesilir, gövdeleri tezgâhın arkasında kalır), parçalar ve dokunma alanları (#parca), baloncuklar (#balonK),
+   uçanlar (#wfx). Ekranın fazlası resmin uzatılmış kenarı (g/v3/mutfak.webp). */
+.sahne{position:absolute;inset:0;z-index:1;overflow:hidden;background:#1e110c}
+.dunya{position:absolute;left:0;top:0;width:1852px;height:849px;transform-origin:0 0}
+.dunya img{position:absolute;display:block;max-width:none;-webkit-user-select:none;user-select:none}
+#parca,#balonK,#wfx{position:absolute;left:0;top:0;width:1852px;height:849px;pointer-events:none}
+#wfx{z-index:3}#balonK{z-index:2}
+.hit{position:absolute;pointer-events:auto;touch-action:none;border-radius:22px;cursor:pointer}
+.hit.red{animation:redW .35s ease-out}
+.hit.parla{animation:parlaW .8s ease-in-out infinite alternate}
+.hit.sec{box-shadow:0 0 0 6px rgba(255,214,90,.95),0 0 28px rgba(255,200,40,.85)}
+.hit.bekliyor{animation:parlaW 1.1s ease-in-out infinite alternate}
+@keyframes redW{0%{box-shadow:0 0 0 0 rgba(230,40,30,0)}30%{box-shadow:0 0 0 7px rgba(230,40,30,.85),0 0 26px rgba(230,40,30,.6)}100%{box-shadow:0 0 0 0 rgba(230,40,30,0)}}
+@keyframes parlaW{from{box-shadow:0 0 0 4px rgba(255,214,90,.75),0 0 14px rgba(255,200,40,.5)}to{box-shadow:0 0 0 9px rgba(255,214,90,.95),0 0 40px rgba(255,200,40,.85)}}
+.p.kon{animation:konP .32s ease-out}
+@keyframes konP{0%{filter:brightness(1)}35%{filter:brightness(1.35)}100%{filter:brightness(1)}}
+/* müşteriler: salondan gelir (yandan, küçükten), tezgâhın arkasında durur; gölgeli çizim (#musGolge) + duvara düşen gölge */
+.musK{position:absolute;left:0;top:0;width:1852px;height:311px;overflow:hidden;pointer-events:none}
+.mus{position:absolute;top:116px;width:168px;height:202px;opacity:0;transform:translate(var(--gx,160px),36px) scale(.78);transition:transform .75s cubic-bezier(.2,.9,.3,1),opacity .35s}
+.mus.in{opacity:1;transform:none}
+.mus.in .yuz{animation:yuru .75s ease-out}
+.mus.out{opacity:0;transform:translate(calc(var(--gx,160px)*-1),40px) scale(.8);transition:transform .65s ease-in,opacity .45s .15s}
+.mus .yuz{width:100%;height:100%;filter:drop-shadow(16px 10px 9px rgba(45,16,6,.5))}
+.mus .yuz svg{width:100%;height:100%;display:block}
+.mus.sevin .yuz,.mus.mutlu-git .yuz{animation:hop .45s ease-out 2}
+.mus.kizgin-git .yuz{animation:shake .3s linear 3}
+.mus.kizgin .yuz{filter:drop-shadow(0 0 8px rgba(230,40,30,.6)) drop-shadow(16px 10px 9px rgba(45,16,6,.5))}
+@keyframes yuru{0%,40%,80%{translate:0 0}20%,60%{translate:0 -7px}100%{translate:0 0}}
+.balon{position:absolute;top:118px;width:150px;padding:7px 8px 9px;background:#fff8ea;border:4px solid #3a1d0c;border-radius:20px;box-shadow:0 6px 0 rgba(40,15,5,.3),0 10px 18px rgba(40,15,5,.25);opacity:0;transform:scale(.4);transform-origin:0 70%;transition:opacity .2s .35s,transform .3s .35s cubic-bezier(.2,1.5,.4,1)}
+.balon::after{content:"";position:absolute;left:-15px;top:58%;width:20px;height:20px;background:inherit;border:4px solid #3a1d0c;border-top-color:transparent;border-right-color:transparent;transform:translateY(-50%) rotate(45deg)}
+.balon.in{opacity:1;transform:none}
+.balon.cik{opacity:0;transform:scale(.6);transition:opacity .2s .3s,transform .2s .3s}
+.balon.bekle{border-color:#e8a400;box-shadow:0 0 0 6px rgba(255,194,26,.8),0 6px 0 rgba(40,15,5,.3);animation:bekleB .7s ease-in-out infinite alternate}
+@keyframes bekleB{from{transform:scale(1)}to{transform:scale(1.05)}}
+.balon.ret{background:#ffd9d4;border-color:#b3140c;animation:shake .26s linear 2}
+.balon.aldi1{animation:pulse .35s ease-out}
+.balon .sip{display:flex;align-items:flex-end;justify-content:center;gap:6px;height:66px}
+.balon .b{position:relative;width:72px;height:66px}
+.balon .b .mini{--k:.53}
+.balon .f{width:52px;height:58px}
+.balon .f .pors{width:100%;height:100%;object-fit:contain}
+.balon .alindi{opacity:.28;filter:grayscale(.7)}
+.balon .sabir{height:13px;margin-top:6px;border-radius:7px;background:#e9e1d4;overflow:hidden;border:2.5px solid #3a1d0c}
+.balon .sabir b{display:block;height:100%;width:100%;background:#3cc45a;box-shadow:inset 0 3px 0 rgba(255,255,255,.35)}
+.hit.mh{top:112px;height:204px;border-radius:30px}
+/* burger: resmin ekmek, köfte, peynir, turşusu üst üste (yandan); .mini ölçekli kopya (baloncuk, tepsi, kart) */
+.burger,.mini{position:absolute}
+.burger img,.mini img{position:absolute;display:block}
+.mini{left:50%;bottom:0;width:130px;height:0;transform:translateX(-50%) scale(var(--k,1));transform-origin:50% 0}
+.burger{filter:drop-shadow(0 8px 5px rgba(50,20,6,.35));transition:transform .18s,filter .18s}
+.burger img.yeni{animation:yerles .3s cubic-bezier(.3,1.6,.5,1)}
+.burger.sec{transform:translateY(-16px) scale(1.04);filter:drop-shadow(0 0 7px #ffd84a) drop-shadow(0 0 3px #ffb000) drop-shadow(0 18px 10px rgba(50,20,6,.35))}
+.burger.tamam{animation:tamamB .45s ease-out}
+@keyframes yerles{0%{transform:translateY(-10px) scaleY(1.1)}55%{transform:translateY(2px) scale(1.06,.9)}100%{transform:none}}
+@keyframes tamamB{0%{transform:none}40%{transform:scale(1.08)}100%{transform:none}}
+.tahta{position:absolute;pointer-events:none}.tahta svg,.tepsi>svg{width:100%;height:100%;display:block}
+.tepsi{position:absolute;pointer-events:none;transition:filter .18s,transform .18s}
+.tepsi .ic-b .mini{left:84px;bottom:-62px;--k:.74;transform:translateX(-50%) scale(var(--k));bottom:auto;top:84px}
+.tepsi .ic-f .pors{position:absolute;left:150px;top:4px;width:86px;height:93px}
+.tepsi.sec{transform:translateY(-8px);filter:drop-shadow(0 0 8px #ffd84a) drop-shadow(0 0 3px #ffb000)}
+.tepsi.kon .ic-b,.tepsi.kon .ic-f{animation:kayT .3s ease-out}
+.tepsi.yeni{animation:tpGel .45s ease-out}
+.tepsi.giden{z-index:3}
+@keyframes kayT{0%{transform:translateY(-6px) scale(1.06)}60%{transform:translateY(2px) scale(.97)}100%{transform:none}}
+@keyframes tpGel{0%{transform:translateY(46px);opacity:0}100%{transform:none;opacity:1}}
+/* ızgara: çiğ köfte düşer, pişerken renk çiğden pişmişe (--p), duman; halka ilerleme */
+.gk{position:absolute;pointer-events:none}
+.gk img{position:absolute;inset:0;width:100%;height:100%}
+.gk .pis{opacity:var(--p,0)}
+.gk.hazir .pis{opacity:1}.gk.hazir{filter:drop-shadow(0 0 8px rgba(255,214,90,.95))}
+.gk.dus{animation:gkDus .32s cubic-bezier(.3,1.4,.5,1)}
+.gk.pisiyor{animation:cizir .14s linear infinite alternate}
+.gk .duman{position:absolute;width:44px;height:44px;border-radius:50%;background:radial-gradient(rgba(255,255,255,.6),rgba(255,255,255,0) 68%);opacity:0;left:40%;top:0}
+.gk.pisiyor .duman,.gk.hazir .duman{animation:dumanW 1.8s ease-out infinite}
+.gk .d2{left:15%;animation-delay:.6s!important}.gk .d3{left:65%;animation-delay:1.2s!important}
+@keyframes gkDus{0%{transform:translateY(-60px) scale(.9);opacity:.2}60%{transform:translateY(4px) scale(1.05,.92);opacity:1}100%{transform:none}}
+@keyframes cizir{from{translate:0 0}to{translate:.8px -.6px}}
+@keyframes dumanW{0%{transform:translateY(0) scale(.5);opacity:0}25%{opacity:.75}100%{transform:translateY(-90px) scale(1.6);opacity:0}}
+.halka{position:absolute;width:54px;height:54px;filter:drop-shadow(0 3px 2px rgba(0,0,0,.4));pointer-events:none}
+.halka svg{width:100%;height:100%;transform:rotate(-90deg)}
+.halka .z{fill:rgba(30,15,8,.7);stroke:#3a1d0c;stroke-width:5}
+.halka .d{fill:none;stroke:#ffcf3a;stroke-width:6;stroke-linecap:round}
+/* fritöz: kabarcık, buhar, gösterge (yedi parçalı kırmızı rakam), ışıklar */
+.kabarcik,.buhar{position:absolute;pointer-events:none;overflow:hidden}
+.kabarcik i{position:absolute;bottom:2px;width:9px;height:9px;border-radius:50%;border:2px solid rgba(255,246,200,.95);animation:kab .8s ease-in infinite}
+@keyframes kab{0%{transform:translateY(0) scale(.4);opacity:0}30%{opacity:1}100%{transform:translateY(-52px) scale(1.1);opacity:0}}
+.buhar{overflow:visible}.buhar i{position:absolute;bottom:0;left:30%;width:60px;height:60px;border-radius:50%;background:radial-gradient(rgba(255,255,255,.55),rgba(255,255,255,0) 68%);animation:dumanW 2s ease-out infinite}
+.buhar i:nth-child(2){left:5%;animation-delay:.7s}.buhar i:nth-child(3){left:58%;animation-delay:1.3s}
+.rakam{position:absolute;pointer-events:none}
+.rakam rect.on{fill:#ff3d24;filter:drop-shadow(0 0 1.5px #ff2a10)}
+.rakam rect.off{fill:rgba(140,25,12,.14)}
+.led{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;pointer-events:none;opacity:0}
+.led.on{opacity:1}
+.led.kir.on{background:radial-gradient(#ffb3a8,#ff2a12 55%,rgba(255,40,20,0) 72%);box-shadow:0 0 14px 5px rgba(255,40,20,.55);animation:ledY .5s ease-in-out infinite alternate}
+.led.yes.on{background:radial-gradient(#d9ffc8,#36d23a 55%,rgba(40,210,60,0) 72%);box-shadow:0 0 14px 5px rgba(40,210,60,.55)}
+@keyframes ledY{from{opacity:.55}to{opacity:1}}
+/* doğrama: çubuk (10 parça), bıçak izi, kırıntı, fritöze uçan çubuklar */
+.dogra{position:absolute;display:flex;gap:2px;padding:3px;background:rgba(30,15,8,.8);border:3px solid #3a1d0c;border-radius:10px;pointer-events:none}
+.dogra i{flex:1;border-radius:3px;background:#5a4030}
+.dogra i.on{background:linear-gradient(#fff0a0,#f0a020)}
+.dogra.red{border-color:#c4160c;animation:shake .26s linear 2}
+.bicak{position:absolute;width:120px;height:120px;pointer-events:none;transform:rotate(var(--r,0deg));animation:bicakW .26s ease-out forwards}
+.bicak svg{width:100%;height:100%}
+@keyframes bicakW{0%{clip-path:inset(0 100% 0 0);opacity:1}45%{clip-path:inset(0 0 0 0);opacity:1}100%{opacity:0}}
+.kir{position:absolute;width:11px;height:9px;border-radius:3px;border:1.5px solid rgba(90,50,10,.6);pointer-events:none}
+.wu{position:absolute;left:0;top:0;pointer-events:none;will-change:transform}
+.wu>img{width:100%;height:100%;display:block}
+.wu.mal,.wu.kof,.wu.prs,.wu.brgu{filter:drop-shadow(0 8px 5px rgba(50,20,6,.35))}
+.wu .cubuk{display:block;width:100%;height:100%;border-radius:6px;background:linear-gradient(#fff4c4,#f3cf6e);border:2.5px solid #9a6a24}
+.wu .mini{--k:.78}
+.patsec{position:absolute;width:100px;height:108px;pointer-events:none;animation:bobP .9s ease-in-out infinite alternate;filter:drop-shadow(0 0 6px #ffd84a) drop-shadow(0 12px 8px rgba(50,20,6,.4))}
+.patsec .pors{width:100%;height:100%}
+@keyframes bobP{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+/* sipariş ekranı: neon (resmin ekranındaki gibi) */
+.neon{position:absolute;pointer-events:none;transform:rotate(-6deg)}
+.neon .nn{fill:none;stroke:#ffb84a;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2.5px #ff9a1a)}
+.neon .nt{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:30px;fill:#ffd27a;filter:drop-shadow(0 0 3px #ff9a1a)}
+.menu{display:flex;align-items:flex-end;justify-content:center;gap:.3rem}
+.menu .mbg{position:relative;width:calc(130px*var(--mk,.2));height:calc(160px*var(--mk,.2))}
+.menu .mbg .mini{--k:var(--mk,.2)}
+.menu .mp .pors{width:1.9rem;height:2.05rem;object-fit:contain}
+.menu b{display:flex;align-items:center;gap:.06rem;font-size:.6rem}.menu b .ic{width:.6rem;height:.6rem}
 /* müşteri yüzleri (www/musteri.js): duygu animasyonları */
 @keyframes mu-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @keyframes mu-tap{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
@@ -93,83 +183,6 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .mu .blink{animation:mu-blink 4s infinite;transform-box:fill-box;transform-origin:center}
 svg .st{animation:mu-rise 1.1s ease-out infinite}svg .st.d2{animation-delay:.37s}svg .st.d3{animation-delay:.74s}
 svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pulse .8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-/* ---------- mutfak (BU.MUTFAK sahnesi + canlı katmanlar) ---------- */
-/* #mutfak: sahnenin görünen kutusu; içinde gündüz/akşam görüntüleri (<img>) ve #ic (1600×900 birim, --s px/birim). */
-.mutfak{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1;overflow:hidden;background:#3a2416}
-.mutfak .zemin{position:absolute;display:block;max-width:none;pointer-events:none;-webkit-user-select:none;user-select:none}
-.mutfak .zemin.aksam{opacity:0;transition:opacity 4s linear;will-change:opacity}
-.mutfak .zemin.on{z-index:2}
-#ic{position:absolute;z-index:3;pointer-events:none}
-#ic .y{position:absolute;pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;touch-action:none;-webkit-tap-highlight-color:transparent;cursor:pointer}
-#ic .gor{position:absolute;display:block;pointer-events:none;border-radius:calc(var(--s,.4)*12px);transition:box-shadow .15s}
-#ic .gor>img,#ic .ici>img,#ic .sepet>img{position:absolute;inset:0;width:100%;height:100%;display:block}
-#ic .ici{position:absolute;display:block}
-#ic .copk,#ic .kilit{cursor:default}
-/* seçili kaynak: altın halka; malzeme "avuçla" kalkar */
-#ic .y.sec .gor{box-shadow:0 0 0 calc(var(--s,.4)*7px) #ffc21a,0 0 calc(var(--s,.4)*30px) rgba(255,200,40,.9)}
-#ic .al{position:absolute;z-index:6;left:50%;top:40%;width:calc(var(--s,.4)*118px);height:calc(var(--s,.4)*118px);margin:calc(var(--s,.4)*-59px) 0 0 calc(var(--s,.4)*-59px);opacity:0;pointer-events:none;transform-origin:50% 60%}
-#ic .al .im2,#ic .al img{display:block;width:100%;height:100%;object-fit:contain}
-#ic .y.sec .al{opacity:1;animation:avucM .26s cubic-bezier(.2,1.5,.4,1) forwards,salinM 1.6s ease-in-out .26s infinite}
-#ic .y.sec .al .im2{filter:drop-shadow(0 calc(var(--s,.4)*16px) calc(var(--s,.4)*10px) rgba(0,0,0,.45))}
-#ic .gol{position:absolute;z-index:5;left:50%;top:44%;width:calc(var(--s,.4)*90px);height:calc(var(--s,.4)*24px);margin-left:calc(var(--s,.4)*-45px);border-radius:50%;background:rgba(40,20,5,.4);opacity:0;pointer-events:none;transition:opacity .2s}
-#ic .y.sec .gol{opacity:1}
-#ic .y.parla .gor{animation:parlaM .8s ease-in-out infinite}
-#ic .y:active:not(.kilit):not(.tahta) .gor{transform:translateY(calc(var(--s,.4)*4px))}
-/* rozetler (stok sayısı), YENİ etiketi, kilit + fiyat */
-#ic .rozet{position:absolute;z-index:7;right:-.06rem;top:-.1rem;min-width:max(20px,.56rem);height:max(20px,.56rem);padding:0 .1rem;border-radius:.4rem;background:var(--red);color:#fff;font-size:max(12px,.32rem);font-weight:900;display:grid;place-items:center;border:.05rem solid var(--ink);line-height:1;pointer-events:none}
-#ic .bos .rozet{background:#9c8f80}
-#ic .kilit .rozet{display:none}
-#ic .rozet.pop{animation:rozet .35s cubic-bezier(.2,1.6,.4,1)}
-#ic .dolu-gel .gor{animation:pulse .3s ease-out}
-#ic .yeni-m::before{content:attr(data-yeni);position:absolute;z-index:7;top:-.08rem;right:-.04rem;background:var(--red);color:#fff;font-size:max(10px,.24rem);font-weight:900;padding:.03rem .12rem;border-radius:.2rem;transform:rotate(8deg);border:.04rem solid var(--ink);pointer-events:none;line-height:1.2}
-#ic .kf{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.06rem;padding:.06rem .16rem .06rem .08rem;border-radius:.3rem;background:rgba(42,26,16,.86);color:#fff;font-weight:900;font-size:max(11px,.3rem);white-space:nowrap;line-height:1;border:.04rem solid #fff4dc}
-#ic .kf .ic{width:max(14px,.4rem);height:max(14px,.4rem)}
-#ic .kilit .gor{background:rgba(30,18,10,.38)}
-#ic .kuvet.kilit .gor{background:none}
-#ic .fiyat{position:absolute;z-index:4;left:50%;bottom:4%;transform:translateX(-50%);padding:.02rem .14rem;border-radius:.24rem;background:rgba(42,26,16,.85);color:#fff;font-weight:900;font-size:max(10px,.26rem);line-height:1.2;white-space:nowrap;font-variant-numeric:tabular-nums}
-/* ekmek dolabı: ekmekler camın arkasında */
-#ic .dolap .dic{position:absolute;left:5%;top:9%;width:90%;height:76%;display:block}
-#ic .dolap .dic img{width:100%;height:100%;display:block}
-#ic .dolap .mt-cam{position:absolute;inset:0;width:100%;height:100%}
-/* ızgara gözleri */
-#ic .goz .sil{position:absolute;inset:18% 26%;opacity:.16;filter:brightness(0) invert(1)}
-#ic .goz .sil img{width:100%;height:100%;object-fit:contain}
-#ic .goz .kor{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse at 50% 60%,rgba(255,120,30,.55),rgba(255,80,0,0) 70%);mix-blend-mode:screen;animation:korM 1.1s ease-in-out infinite alternate}
-#ic .dm{position:absolute;z-index:5;left:22%;bottom:55%;width:56%;height:110%;pointer-events:none}
-#ic .dm svg{width:100%;height:100%}
-#ic .pis{position:absolute;z-index:4;left:14%;right:14%;bottom:7%;height:max(5px,9%);border-radius:1rem;background:rgba(20,12,8,.7);border:1px solid rgba(255,255,255,.35);overflow:hidden}
-#ic .pis b{display:block;height:100%;width:calc(var(--pis,0)*100%);background:linear-gradient(90deg,#ffcf4a,#ff8a1c);border-radius:1rem}
-#ic .goz.hazir .gor{animation:pulse .6s ease-in-out infinite}
-#ic .goz .parilti{position:absolute;inset:0;z-index:3;pointer-events:none}
-#ic .goz .parilti i{position:absolute;width:20%;aspect-ratio:1;background:#fff6b0;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:parilti 1s ease-in-out infinite}
-#ic .goz .parilti i:nth-child(1){left:10%;top:12%}#ic .goz .parilti i:nth-child(2){right:10%;top:28%;animation-delay:.35s}#ic .goz .parilti i:nth-child(3){left:42%;bottom:8%;animation-delay:.7s}
-/* hazır köfte tepsisi: köfteler üst üste */
-#ic .kofteler{position:absolute;inset:4% 6%;display:block}
-#ic .kofteler img{position:absolute;left:8%;width:84%;height:auto;filter:drop-shadow(0 calc(var(--s,.4)*4px) 0 rgba(0,0,0,.3))}
-#ic .hazir.bos .kofteler{opacity:.4}
-/* tahta: iki çalışma yeri; boşken kesik halka; yığın tahtanın üstünde */
-#ic .tahta .yer-iz{position:absolute;left:18%;right:18%;top:30%;bottom:22%;border:calc(var(--s,.4)*5px) dashed rgba(122,70,24,.45);border-radius:50%;transition:opacity .2s}
-#ic .tahta.dolu .yer-iz{opacity:0}
-#ic .tahta.parla .gor{border-radius:calc(var(--s,.4)*20px)}
-#ic .yig{position:absolute;z-index:8;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
-#ic .yig .bu-yigin{pointer-events:auto;touch-action:none;cursor:grab;filter:drop-shadow(0 calc(var(--s,.4)*8px) calc(var(--s,.4)*6px) rgba(40,20,5,.35));transform-origin:50% 100%}
-#ic .yig.wob .bu-yigin{animation:squash .32s ease-out}
-#ic .yig.tasiniyor{opacity:.2;filter:grayscale(1)}
-/* fritöz ve yan ürün tepsileri */
-#ic .fritoz .sepet{position:absolute;inset:4.4% 6.2%;display:block}
-#ic .fritoz.pisiyor .sepet{animation:sizzle .22s linear infinite}
-#ic .fritoz.hazir .gor{animation:pulse .6s ease-in-out infinite}
-#ic .fritoz .dm{bottom:62%}
-#ic .yanhazir.tasiniyor .ici{opacity:.45}
-#ic .yanhazir.bos .ici{opacity:.6}
-/* çöp: bırakma hedefi */
-#ic .copk.hedef .gor{box-shadow:0 0 0 calc(var(--s,.4)*8px) #ffc21a,0 0 calc(var(--s,.4)*40px) rgba(255,200,40,.9);transform:scale(1.06)}
-#ic .copk.yut .gor{animation:yutM .4s ease-out}
-@keyframes avucM{0%{transform:translateY(0) scale(.8) rotate(0)}100%{transform:translateY(calc(var(--s,.4)*-62px)) scale(1.15) rotate(-9deg)}}
-@keyframes salinM{0%,100%{transform:translateY(calc(var(--s,.4)*-62px)) scale(1.15) rotate(-9deg)}50%{transform:translateY(calc(var(--s,.4)*-72px)) scale(1.18) rotate(-5deg)}}
-@keyframes parlaM{0%,100%{box-shadow:0 0 0 calc(var(--s,.4)*5px) rgba(255,214,90,.95)}50%{box-shadow:0 0 0 calc(var(--s,.4)*16px) rgba(255,194,26,.55),0 0 calc(var(--s,.4)*40px) rgba(255,214,90,.8)}}
-@keyframes korM{from{opacity:.45}to{opacity:1}}
-@keyframes yutM{0%{box-shadow:0 0 0 0 rgba(255,200,40,.9)}40%{box-shadow:0 0 0 calc(var(--s,.4)*14px) rgba(255,200,40,.6)}100%{box-shadow:0 0 0 0 rgba(255,200,40,0)}}
 /* ---------- efekt katmanı ---------- */
 #fx{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden}
 .ucan{position:absolute;left:0;top:0;pointer-events:none;will-change:transform}
@@ -404,6 +417,14 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .up.no .c{background:#d8cfc2;color:#8a7c6c}.up.max .c{background:var(--green);color:#fff;padding-left:.2rem}
 .up.kilit{background:#e2d6c4}.up.kilit .e{opacity:.4}.up.kilit .c{background:#6b5a4b;color:#fff}
 .up.aldi{animation:pulse .35s ease-out}
+/* 7. tur dükkânı: tek liste (ızgaralar + geliştirmeler); sekme ve "mutfağın" paneli yok */
+.shop .sh-tabs,.shop .sh-tepsi{display:none!important}
+.sh-list{grid-column:1/-1}
+.sh-bas{font-weight:900;font-size:.46rem;color:#fff;-webkit-text-stroke:.08rem var(--ink);paint-order:stroke fill;margin:.06rem 0 -.1rem .1rem;flex:none}
+.ups.izg{grid-template-columns:1fr 1fr}
+.up .izr{grid-row:1/4;width:1.4rem;height:.9rem;border-radius:.2rem;background-size:cover;background-position:center;border:.05rem solid var(--ink);display:grid;place-items:center;background-color:#4a3a34}
+.up .izr.kil .ic{width:.6rem;height:.6rem}
+.hero .hb2 .burger{position:relative;flex:none}
 .credit{grid-column:2;grid-row:3;align-self:end;font-size:max(10px,.26rem);font-weight:700;color:rgba(40,20,8,.75);text-align:center;line-height:1.3}
 @keyframes bob{50%{transform:translateY(-.14rem) scale(1.02,.98)}}
 @keyframes hop{50%{transform:translateY(-.6rem) scale(.95,1.08)}}
@@ -449,12 +470,26 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .cevir small{font-size:4.8vmin;font-weight:800;color:#5a3010;max-width:84vmin;line-height:1.25}
 @keyframes cevir{0%,18%{transform:rotate(0)}48%,82%{transform:rotate(90deg)}100%{transform:rotate(0)}}
 @keyframes okBelir{0%,10%{opacity:0}25%,60%{opacity:1}75%,100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.shopb.var,.shopb .rz,.mk.sira.ok .mb,.cevir .tel,.cevir .ok,.kepenk .sal,.cust .yuz,.hero .hb2,.hero .f,.parla,.mu,.mu *,svg .st,svg .sw,svg .tr,svg .hb,#ic .y.sec .al,#ic .y.parla .gor,#ic .goz .kor,#ic .goz.hazir .gor,#ic .fritoz .sepet,#ic .fritoz.hazir .gor,.home .isin,.stars span.dolu{animation:none!important}#app.sars{animation:none}}
+@media (prefers-reduced-motion:reduce){.shopb.var,.shopb .rz,.mk.sira.ok .mb,.cevir .tel,.cevir .ok,.kepenk .sal,.mus .yuz,.mus,.balon,.gk,.kabarcik i,.buhar i,.gk .duman,.hit.parla,.patsec,.hero .hb2,.hero .f,.parla,.mu,.mu *,svg .st,svg .sw,svg .tr,svg .hb,#ic .y.sec .al,#ic .y.parla .gor,#ic .goz .kor,#ic .goz.hazir .gor,#ic .fritoz .sepet,#ic .fritoz.hazir .gor,.home .isin,.stars span.dolu{animation:none!important}#app.sars{animation:none}}
 </style></head><body>
 <div id="app">
-  <div class="mutfak" id="mutfak"><img class="zemin" id="mtGun" alt=""><img class="zemin aksam" id="mtAk" alt="">
-    <div class="queue" id="queue"><div class="slot"></div><div class="slot"></div><div class="slot"></div></div>
-    <img class="zemin on" id="mtGunOn" alt=""><img class="zemin on aksam" id="mtAkOn" alt=""><div id="ic"></div></div>
+  <div class="sahne" id="sahne"><div class="dunya" id="dunya">
+    <img class="arka" id="arka" src="g/v3/mutfak.webp" alt="" style="left:-240px;top:-380px;width:2332px;height:1459px">
+    <div class="musK" id="musK"></div><div id="parca"></div><div id="balonK"></div><div id="wfx"></div>
+  </div></div>
+  <!-- müşteriler sahneye uysun diye gölgeli: sol üstten sıcak ışık, kenarlarda yumuşak gölge, koyu kontur (yüz ve saç aynı) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="musGolge" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="4.5" result="b"/>
+    <feDiffuseLighting in="b" surfaceScale="4" diffuseConstant="1.18" lighting-color="#fff1dc" result="df"><feDistantLight azimuth="225" elevation="58"/></feDiffuseLighting>
+    <feComposite in="SourceGraphic" in2="df" operator="arithmetic" k1="1.08" k2="0" k3="0" k4="0" result="lit"/>
+    <feSpecularLighting in="b" surfaceScale="4" specularConstant=".45" specularExponent="16" lighting-color="#ffd59a" result="sp"><fePointLight x="10" y="-70" z="140"/></feSpecularLighting>
+    <feComposite in="sp" in2="SourceAlpha" operator="in" result="spi"/>
+    <feComposite in="lit" in2="spi" operator="arithmetic" k2="1" k3=".6" result="ls"/>
+    <feComposite in="ls" in2="SourceAlpha" operator="in" result="isik"/>
+    <feMorphology in="SourceAlpha" operator="dilate" radius="1.4" result="kal"/>
+    <feFlood flood-color="#2a140c"/><feComposite in2="kal" operator="in" result="kont"/>
+    <feMerge><feMergeNode in="kont"/><feMergeNode in="isik"/></feMerge>
+  </filter></svg>
   <div class="hud" id="hud">
     <div class="hk sol" id="hudL">
       <div class="chip kasa" id="kasaC"><span class="i" id="kasaI"></span><span id="kasa">0</span></div>
@@ -481,7 +516,6 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
       <button class="btn oyna" id="playBtn">OYNA</button>
       <div class="hsat"><button class="shopb" id="shopBtn"></button></div>
     </div>
-    <div class="credit" id="credit"></div>
   </div>
 
   <div class="shop" id="shop" hidden>
@@ -518,7 +552,5 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 <script src="js/veri.js"></script>
 <script src="js/simge.js"></script>
 <script src="js/ses.js"></script>
-<script src="js/mutfak.js"></script>
-<script src="js/burger.js"></script>
 <script src="js/oyun.js"></script>
 </body></html>
