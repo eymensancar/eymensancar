@@ -5,6 +5,8 @@ import { World, geo, ungeo, convergence } from './world.js';
 import { buildC172, buildJet, buildF16, setCockpit } from './models.js';
 import { Input } from './input.js';
 import { Sound } from './audio.js';
+import { buildCockpit } from './cockpit.js';
+import { AirFX } from './effects.js';
 
 const $ = (s) => document.querySelector(s);
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
@@ -58,16 +60,38 @@ renderer.setPixelRatio(Math.min(devicePixelRatio, QS.pr));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, 1, 1, 400000);
+// kokpit kamerasında üç geçiş: dünya (uçak dışı ayrı sahnede), uçağın dışı (yakın düzlem 0.2 m), kokpit içi (0.01 m).
+// Böylece uzak arazinin derinlik çözünürlüğü bozulmaz, gözün 10 cm önündeki levye de kesilmez.
+const extScene = new THREE.Scene(), cockScene = new THREE.Scene(), cockRoot = new THREE.Group();
+cockScene.add(cockRoot);
+const camX = new THREE.PerspectiveCamera(60, 1, 0.2, 6000), camC = new THREE.PerspectiveCamera(60, 1, 0.01, 40);
+const SHADOWS = settings.quality !== 'dusuk';
+if (SHADOWS) { renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; }
 function resize() { renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); }
 addEventListener('resize', resize); resize();
 
 const world = new World(renderer, scene, { lod: QS.lod, treeDist: QS.tree, terrainK: QS.K, terrainBudget: QS.budget, lowTex: QS.lowTex });
 const input = new Input();
 const sound = new Sound();
+// dış ve iç sahnenin ışıkları dünyanınkini (güneş yönü, renk, gök ışığı) her karede kopyalar
+function lightRig(sc, shadow) {
+  const hemi = new THREE.HemisphereLight(), sun = new THREE.DirectionalLight(); sc.add(hemi, sun, sun.target);
+  if (shadow) { const ms = settings.quality === 'yuksek' ? 2048 : 1024; sun.castShadow = true; sun.shadow.mapSize.set(ms, ms);
+    const c = sun.shadow.camera; c.left = -1.6; c.right = 1.6; c.top = 1.6; c.bottom = -1.6; c.near = 0.5; c.far = 12; sun.shadow.bias = -0.0006; sun.shadow.normalBias = 0.006; }
+  const dir = new THREE.Vector3();
+  return { sun, hemi, sync(center) {
+    const wh = scene.children.find((o) => o.isHemisphereLight), ws = world.sunLight;
+    if (wh) { hemi.color.copy(wh.color); hemi.groundColor.copy(wh.groundColor); hemi.intensity = wh.intensity; }
+    if (ws) { sun.color.copy(ws.color); sun.intensity = ws.intensity; dir.copy(ws.position).sub(ws.target.position).normalize(); }
+    else dir.copy(world.sunDir || dir.set(0, 1, 0));
+    sun.position.copy(center).addScaledVector(dir, 6); sun.target.position.copy(center); sun.target.updateMatrixWorld();
+  } };
+}
+const extLights = lightRig(extScene, false), cockLights = lightRig(cockScene, SHADOWS);
 input.invert = settings.invert;
 if (isTouch) document.body.classList.add('touch');
 
-let ac = null, model = null, running = false, paused = false, loaded = false, preparing = false;
+let ac = null, model = null, cockpit = null, running = false, paused = false, loaded = false, preparing = false;
 let flapIdx = 0, camMode = 0, crashT = 0;
 const camState = { fs: new THREE.Vector3(0, 0, -1), qs: new THREE.Quaternion(), yaw: 0, pitch: 0, dist: 1, lastDrag: -1e9, fly: null };
 const fixed = { t: 0 };
@@ -125,12 +149,16 @@ async function startFlight() {
   if (!params.has('auto')) sound.start(settings.plane);
   input.invert = settings.invert;
   input.setTilt(settings.tilt && isTouch);
-  if (model) scene.remove(model.root);
+  if (model) model.root.removeFromParent();
+  if (cockpit) { cockpit.root.removeFromParent(); cockpit = null; }
   ac = new Aircraft(settings.easy ? easyPlane(PLANES[settings.plane]) : PLANES[settings.plane]);
   document.body.classList.toggle('easy', !!settings.easy);
   document.body.classList.toggle('dpad', settings.pad === 'tus');
   model = settings.plane === 'jet' ? buildJet() : settings.plane === 'f16' ? buildF16(world.envMap()) : buildC172();
-  scene.add(model.root);
+  cockpit = buildCockpit(settings.plane, { envMap: world.envMap(), drawMap: (g, W, H) => drawMap(g, W, H, quatToEuler(ac.q).psi, true) });
+  cockRoot.add(cockpit.root);
+  placeModel();
+  document.body.classList.toggle('f16', settings.plane === 'f16');
   $('#gearRow').style.display = $('#vGear').style.display = ac.P.retract ? '' : 'none';
   $('#bGear').style.display = ac.P.retract ? '' : 'none';
   resetFlight();
@@ -144,7 +172,7 @@ function resetFlight() {
   const S = STARTS[settings.start];
   ac.reset(); fixed.t = 0; crashT = 0; simTime = 0;
   $('#crash').classList.remove('show');
-  smoke.clear();
+  smoke.clear(); airfx.clear();
   let hdg = 0;
   if (S.rw) {
     const rw = world.rws.find((q) => q.code === S.rw) || world.rw;
@@ -184,6 +212,21 @@ function resetFlight() {
   updateCamera(0.016, true);
 }
 
+// uçağın dış modeli kokpit kamerasında ayrı sahnede (ikinci geçiş), diğer kameralarda dünya sahnesinde çizilir
+function placeModel() {
+  if (!model) return;
+  const inC = camMode === 1;
+  (inC ? extScene : scene).add(model.root);
+  cockRoot.visible = inC;
+  document.body.classList.toggle('cockpit', inC);
+  sound.setInside(inC);
+}
+function setCam(m) {
+  camMode = m; camState.fly = null; camState.yaw = 0; camState.pitch = 0;
+  $('#camName').textContent = ['Takip', 'Kokpit', 'Geçiş'][camMode];
+  const b = $('#bCam'); if (b) b.dataset.mode = String(camMode);
+  placeModel();
+}
 function setPause(v) { paused = v; $('#pause').classList.toggle('show', v); }
 
 // ---------- rüzgar ----------
@@ -213,10 +256,16 @@ canvas.addEventListener('wheel', (e) => { camState.dist = clamp(camState.dist * 
 
 const tmpV = new THREE.Vector3(), tmpQ = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
 // NED (mutlak) -> sahne (kayan orijine göre): X = doğu, Y = yukarı, Z = -kuzey
+// Çizim için konum ve yönelim, son iki fizik adımı arasında aradeğerlenir (ac.lerpK): 240 Hz adım ile ekran tazelemesi
+// uyuşmadığı için her karede 3-5 adım atılır; aradeğer olmazsa uçak (ya da takipte dünya) her karede bir adım ileri geri sıçrar.
+const _pt = { p: new THREE.Vector3(), q: new THREE.Quaternion() }, _q0 = new THREE.Quaternion();
 function planeThree() {
-  const p = new THREE.Vector3(ac.pos[1] - world.O.x, -ac.pos[2], -(ac.pos[0] - world.O.y));
-  const q = new THREE.Quaternion(ac.q[2], -ac.q[3], -ac.q[1], ac.q[0]);
-  return { p, q };
+  const P = ac.pos, Q = ac.q, k = ac.prevPos ? ac.lerpK : 1, a = ac.prevPos || P, b = ac.prevQ || Q;
+  const n = a[0] + (P[0] - a[0]) * k, e = a[1] + (P[1] - a[1]) * k, d = a[2] + (P[2] - a[2]) * k;
+  _pt.p.set(e - world.O.x, -d, -(n - world.O.y));
+  _pt.q.set(Q[2], -Q[3], -Q[1], Q[0]);
+  if (k < 1) { _q0.set(b[2], -b[3], -b[1], b[0]); _pt.q.copy(_q0.slerp(_pt.q, k)); }
+  return _pt;
 }
 // kayan orijin: kamera 3 km uzaklaşınca kök kaydırılır; sahnedeki serbest nesneler de kaydırılır
 function rebase() {
@@ -226,7 +275,7 @@ function rebase() {
   world.setOrigin(world.O.x + dx, world.O.y + dy);
   const d = new THREE.Vector3(-dx, 0, dy);
   camera.position.add(d);
-  smoke.shift(d);
+  smoke.shift(d); airfx.shift(d);
   for (const s of puffs) s.m.position.add(d);
   world.sky.position.copy(camera.position);
   updateModel(0);
@@ -242,12 +291,17 @@ function updateCamera(dt, snap = false) {
   const idle = performance.now() - camState.lastDrag > 3000;
   if (idle && !drag) { camState.yaw *= Math.exp(-dt * 1.5); camState.pitch *= Math.exp(-dt * 1.5); }
   if (camMode === 1) {
-    const e = ac.P.eye;
-    tmpV.set(e[1], -e[2], -e[0]).applyQuaternion(q).add(p);
-    camera.position.copy(tmpV);
-    tmpQ.setFromEuler(new THREE.Euler(-camState.pitch * 0.8, camState.yaw, 0, 'YXZ'));
+    // kokpit: göz boyun ekseni etrafında döner (bakınca baş biraz kayar), yük altında biraz çöker, sarsıntıda titrer
+    const e = cockpit ? cockpit.eye : tmpV.set(ac.P.eye[1], -ac.P.eye[2], -ac.P.eye[0]);
+    tmpQ.setFromEuler(new THREE.Euler(-camState.pitch * 0.8 + (cockpit ? cockpit.look : 0), camState.yaw, 0, 'YXZ'));
+    const head = new THREE.Vector3(0, 0.07, -0.09).applyQuaternion(tmpQ).add(new THREE.Vector3(0, -0.07, 0.09)).add(e);
+    head.y -= clamp((ac.nz - 1) * 0.005, -0.02, 0.04);
+    const buf = ac.onGround ? Math.min(1, Math.hypot(ac.vel[0], ac.vel[1]) / 60) * 0.0025 : clamp((ac.out.alpha - 0.3) * 0.08, 0, 0.004) * clamp(ac.out.qbar / 8000, 0, 1) + clamp((ac.out.qbar - 25000) / 4e6, 0, 0.002);
+    if (buf > 0 && !paused) { const t = performance.now() / 1000; head.x += Math.sin(t * 37) * Math.sin(t * 13) * buf; head.y += Math.sin(t * 41 + 1) * Math.sin(t * 7) * buf; }
+    camera.position.copy(head.applyQuaternion(q).add(p));
     camera.quaternion.copy(q).multiply(tmpQ);
-    camera.near = 0.15; camera.fov = 70;
+    camera.up.set(0, 1, 0).applyQuaternion(q);
+    camera.fov = 58;
   } else if (camMode === 0) {
     // takip kamerası: uçağın yönelimini yumuşakça izler. Dik uçarken ya da ters dönünce takla atmaz:
     // kameranın yukarısı, uçağın yukarısıyla dünyanın yukarısının karışımıdır (uçak ters ise uçağınki).
@@ -271,23 +325,32 @@ function updateCamera(dt, snap = false) {
     camera.position.copy(pos);
     camera.up.copy(upC);
     camera.lookAt(tmpV.copy(p).addScaledVector(upC, 1.2));
-    camera.near = 1; camera.fov = 60;
+    camera.fov = 60;
   } else {
-    // geçiş kamerası: uçağın önüne yerleşir (konum mutlak tutulur)
-    const v = new THREE.Vector3(ac.vel[1], -ac.vel[2], -ac.vel[0]);
-    const flyL = camState.fly ? new THREE.Vector3(camState.fly.x - world.O.x, camState.fly.y, -(camState.fly.z - world.O.y)) : null;
-    if (!flyL || flyL.distanceTo(p) > 900 || snap) {
-      const dir = v.length() > 5 ? v.clone().normalize() : new THREE.Vector3(0, 0, -1).applyQuaternion(q);
-      const side = new THREE.Vector3().crossVectors(dir, up).normalize();
-      const f = p.clone().addScaledVector(dir, Math.max(60, v.length() * 9)).addScaledVector(side, 30 + Math.random() * 30).addScaledVector(up, 6);
-      const gh = world.terrainH(f.x + world.O.x, -f.z + world.O.y); f.y = Math.max(f.y, gh + 3);
-      camState.fly = { x: f.x + world.O.x, y: f.y, z: -f.z + world.O.y };
+    // geçiş kamerası: uçağın gideceği yolun yanına yerleşir, uçak geçip uzaklaşınca yeniden yerleşir (konum mutlak tutulur).
+    // (Titremenin nedeni: yerleşme uzaklığı hız × 9 sn, yeniden yerleşme sınırı 900 m idi; jette uzaklık hep sınırın
+    // üstünde kaldığı için kamera her karede rastgele bir yan kaymayla yeniden yerleşiyordu.)
+    const v = new THREE.Vector3(ac.vel[1], -ac.vel[2], -ac.vel[0]), sp = v.length();
+    const fl = camState.fly;
+    let need = !fl || snap;
+    if (fl && !need) {
+      const fp = new THREE.Vector3(fl.x - world.O.x, fl.y, -(fl.z - world.O.y)), rel = p.clone().sub(fp), d = rel.length();
+      if ((d > fl.D * 1.25 && rel.dot(v) > 0) || d > fl.D * 3 + 500) need = true; // geçti ve uzaklaştı ya da yoldan çok saptı
+    }
+    if (need) {
+      const dir = sp > 5 ? v.clone().normalize() : new THREE.Vector3(0, 0, -1).applyQuaternion(q);
+      const side = new THREE.Vector3().crossVectors(dir, up); if (side.lengthSq() < 1e-4) side.set(1, 0, 0); side.normalize();
+      const D = clamp(sp * 5, 120, 1100), sgn = Math.random() < 0.5 ? -1 : 1;
+      const f = p.clone().addScaledVector(dir, D).addScaledVector(side, sgn * (18 + Math.random() * 30 + D * 0.03)).addScaledVector(up, 3 + Math.random() * 10);
+      const gh = world.ground(f.x + world.O.x, -f.z + world.O.y).h; f.y = Math.max(f.y, gh + 3);
+      camState.fly = { x: f.x + world.O.x, y: f.y, z: -f.z + world.O.y, D };
     }
     camera.position.set(camState.fly.x - world.O.x, camState.fly.y, -(camState.fly.z - world.O.y)); camera.up.copy(up); camera.lookAt(p);
-    camera.near = 1; camera.fov = clamp(40 * 200 / Math.max(50, camera.position.distanceTo(p)), 8, 60);
+    // yakınlaştırma: uçak ekranda kabaca aynı boyda kalır
+    camera.fov = clamp(2 * Math.atan(ac.P.b * 1.9 / Math.max(1, camera.position.distanceTo(p))) * R2D, 5, 55);
   }
   // yükseklere çıkınca yakın düzlem açılır (uzak dağlarda derinlik titremesi azalır)
-  if (camMode !== 1) camera.near = clamp((camera.position.y - Math.max(0, world.terrainH(camera.position.x + world.O.x, -camera.position.z + world.O.y))) * 0.004, 0.8, 6);
+  camera.near = clamp((camera.position.y - Math.max(0, world.terrainH(camera.position.x + world.O.x, -camera.position.z + world.O.y))) * 0.004, 0.8, 6);
   camera.updateProjectionMatrix();
   world.sky.position.copy(camera.position);
 }
@@ -345,6 +408,7 @@ const smoke = (() => {
   };
 })();
 smoke.on = !!settings.smoke;
+const airfx = new AirFX(scene); // kanat ucu girdapları, yoğuşma izi
 
 // ---------- gösterge ----------
 const hud = {
@@ -353,6 +417,7 @@ const hud = {
   ti: $('#touchInfo'), aoa: $('#aoaFill'), aoaV: $('#vAoa'), stall: $('#stall'), g: $('#vG'), near: $('#near'), msg: $('#msg'),
 };
 const mini = $('#mini'), mctx = mini.getContext('2d');
+const bGear = $('#bGear'), bBrake = $('#bBrake'), camLab = $('#camLab');
 const att = $('#att'), actx = att.getContext('2d');
 let hudT = 0;
 function setT(el, s) { if (el._t !== s) { el._t = s; el.textContent = s; } }
@@ -396,6 +461,7 @@ function drawHUD(dt) {
     let m = '';
     if (o.V > P.Vne * 0.95 && airborne) m = 'AZAMİ HIZ';
     else if (ac.nz > P.nMax) m = 'YÜK SINIRI AŞILDI';
+    else if (P.retract && ac.ctl.gearDown && airborne && (o.agl || 0) > 150 && o.V / KT > 230) m = 'Takım açık: TAKIM düğmesiyle toplayın';
     else if (ac.hardLanding && ac.hardLanding.t > 0) { ac.hardLanding.t -= dt; m = 'Sert iniş (' + Math.round(ac.hardLanding.vz * 196.85) + ' ft/dk), uçak sağlam'; }
     else if (settings.easy && airborne && (o.agl || 1e9) < 300 && -ac.vel[2] < -1) {
       // iniş rehberi: önerilen hız ve takım
@@ -406,6 +472,11 @@ function drawHUD(dt) {
     }
     else if (STARTS[settings.start].rw && !STARTS[settings.start].approach && ac.onGround && ac.ctl.throttle < 0.05 && simTime < 8) m = isTouch && settings.easy ? 'Gazı soldan sonuna kadar açın, hız artınca yukarı tuşuna basın' : P.id === 'f16' ? 'Tam gaz verin (ard yakıcı), 150 kt civarında levyeyi çekin' : 'Gazı açın (Shift / +), 55 kt civarında levyeyi çekin';
     setT(hud.msg, m);
+    // dokunmatik düğmelerin durumu: takım (açık / kapalı / hareket), fren, kamera adı
+    const gst = !P.retract ? 'down' : ac.gearPos > 0.98 ? 'down' : ac.gearPos < 0.02 ? 'up' : 'moving';
+    if (bGear.dataset.state !== gst) bGear.dataset.state = gst;
+    bBrake.classList.toggle('on', !!ac.ctl.brake);
+    setT(camLab, ['TAKİP', 'KOKPİT', 'GEÇİŞ'][camMode]);
     drawMini(e.psi);
     if (mapOpen) drawBigMap();
   }
@@ -413,8 +484,9 @@ function drawHUD(dt) {
   drawAtt(e);
   return warn;
 }
-function drawMini(psi) {
-  const W = mini.width, H = mini.height;
+function drawMini(psi) { drawMap(mctx, mini.width, mini.height, psi); }
+// küçük harita (ve F-16'nın MFD'si): İstanbul içinde ayrıntılı doku, dışında Türkiye haritası; uçak ortada
+function drawMap(mctx, W, H, psi, mfd = false) {
   const x = ac.pos[1], y = ac.pos[0];
   mctx.fillStyle = '#2f6a8e'; mctx.fillRect(0, 0, W, H);
   const inIst = x > world.X0 + 3000 && x < world.X1 - 3000 && y > world.Y0 + 3000 && y < world.Y1 - 3000;
@@ -572,8 +644,10 @@ function frame(now) {
       tailV.set(0, 0, tz).applyQuaternion(model.root.quaternion).add(model.root.position);
       smoke.emit(tailV, dt);
     }
+    airfx.update(ac, model.root, paused || ac.crashed ? 0 : dt, ac.P.id);
     const warn = drawHUD(dt);
-    sound.update(ac, warn, paused);
+    { const cp = camera.position, mp = model.root.position, dx = mp.x - cp.x, dy = mp.y - cp.y, dz = mp.z - cp.z, dd = Math.hypot(dx, dy, dz) || 1;
+      sound.update(ac, warn, paused, { dist: camMode === 1 ? 0 : dd, vr: -(ac.vel[1] * dx + -ac.vel[2] * dy + -ac.vel[0] * dz) / dd }); }
   }
   smoke.tick(paused ? 0 : dt);
   for (let i = puffs.length - 1; i >= 0; i--) {
@@ -583,7 +657,21 @@ function frame(now) {
   world.waterNormal.offset.x += 0; // dalgalar world.update içinde
   if (world.balloons) for (const b of world.balloons) { b.g.position.y = b.h + Math.sin(now / 1000 * 0.2 + b.ph) * 15; }
   world.update(camera.position, ac ? { x: ac.pos[1], y: ac.pos[0] } : null);
+  render(dt);
+}
+function render(dt) {
+  if (!(running && ac && model && camMode === 1 && cockpit)) { renderer.render(scene, camera); return; }
+  // 1) dünya, 2) uçağın dışı, 3) kokpit içi; her geçişten önce derinlik silinir
   renderer.render(scene, camera);
+  renderer.autoClear = false;
+  for (const [c, n, f] of [[camX, 0.2, 6000], [camC, 0.01, 40]]) { c.position.copy(camera.position); c.quaternion.copy(camera.quaternion); c.fov = camera.fov; c.aspect = camera.aspect; c.near = n; c.far = f; c.updateProjectionMatrix(); }
+  extScene.fog = scene.fog; extLights.sync(model.root.position);
+  renderer.clearDepth(); renderer.render(extScene, camX);
+  cockRoot.position.copy(model.root.position); cockRoot.quaternion.copy(model.root.quaternion);
+  cockLights.sync(model.root.position);
+  cockpit.update(ac, input, dt); // duraklatılınca da ekranlar (donmuş veriyle) tazelenir
+  renderer.clearDepth(); renderer.render(cockScene, camC);
+  renderer.autoClear = true;
 }
 requestAnimationFrame(frame);
 
@@ -595,7 +683,7 @@ function handle(ev) {
   if (ev === 'mute') { sound.muted = !sound.muted; return; }
   if (ev === 'map') { toggleMap(); return; }
   if (ev === 'smoke') { smoke.on = !smoke.on; settings.smoke = smoke.on; saveSettings(); $('#bSmoke').classList.toggle('on', smoke.on); return; }
-  if (ev === 'camera') { camMode = (camMode + 1) % 3; camState.fly = null; $('#camName').textContent = ['Takip', 'Kokpit', 'Geçiş'][camMode]; updateCamera(0.016, true); return; }
+  if (ev === 'camera') { setCam((camMode + 1) % 3); updateCamera(0.016, true); return; }
   if (ac.crashed) return;
   if (ev === 'flapDown') flapIdx = Math.min(P.flapDetents.length - 1, flapIdx + 1);
   if (ev === 'flapUp') flapIdx = Math.max(0, flapIdx - 1);
@@ -614,7 +702,7 @@ addEventListener('resize', orient); orient();
 // test kancası
 window.__ucak = {
   ac: null, world, input, settings, start: startFlight, reset: resetFlight, camera, scene, renderer, ready: false, fps: 0, THREE, startTrimmed, trimLevel, geo, ungeo, KT, STARTS,
-  setCam: (m) => { camMode = m; camState.fly = null; $('#camName').textContent = ['Takip', 'Kokpit', 'Geçiş'][m]; },
+  setCam: (m) => setCam(m),
   setFlap: (i) => (flapIdx = i),
   orbit: (y, p, d = 1) => { camState.yaw = y; camState.pitch = p; camState.dist = d; camState.lastDrag = performance.now() + 1e7; },
   // enlem, boylam, irtifa (m), gerçek baş (°), hız (kt)
@@ -626,4 +714,7 @@ window.__ucak = {
   map: (v) => toggleMap(v),
   stats: () => ({ calls: renderer.info.render.calls, tris: renderer.info.render.triangles, terrainNodes: world.terrain.drawn, bNodes: world.buildings.stats.nodes, bTris: world.buildings.stats.tris, pending: world.pendingNear() + (world.buildings.pending || 0), fps }),
   get camMode() { return camMode; },
+  get cockpit() { return cockpit; },
+  get model() { return model; },
+  get fly() { return camState.fly; },
 };

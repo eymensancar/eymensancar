@@ -110,42 +110,68 @@ body.touch #hud:not(.hide) ~ #touch { display: block; }
 #stick::before, #stick::after { content: ''; position: absolute; background: rgba(255,255,255,.18); }
 #stick::before { left: 50%; top: 12px; bottom: 12px; width: 1px; }
 #stick::after { top: 50%; left: 12px; right: 12px; height: 1px; }
-#dpad { right: calc(14px + var(--sar)); bottom: calc(14px + var(--sab)); width: 168px; height: 168px; touch-action: none; display: none; }
+/* yön tuşları: 4 ayrı tuş, gaz koluyla aynı görünüm */
+#dpad { right: calc(12px + var(--sar)); bottom: calc(12px + var(--sab)); width: 180px; height: 180px; touch-action: none; display: none; }
 body.dpad #dpad { display: block; }
 body.dpad #stick { display: none !important; }
-#dpad b { position: absolute; width: 52px; height: 52px; margin: -26px; border-radius: 14px; background: rgba(12,18,26,.5); border: 2px solid rgba(255,255,255,.28); display: flex; align-items: center; justify-content: center; pointer-events: none; }
-#dpad b.d { width: 44px; height: 44px; margin: -22px; border-radius: 50%; }
-#dpad b svg { width: 22px; height: 22px; fill: #fff; opacity: .9; }
-#dpad b.on { background: rgba(111,209,138,.6); border-color: #fff; }
-#dpad i { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.2); }
+#dpad [data-dir] { position: absolute; width: 62px; height: 62px; border-radius: 16px; background: rgba(12,18,26,.45); border: 2px solid rgba(255,255,255,.25);
+  display: flex; align-items: center; justify-content: center; pointer-events: none; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); transition: background .08s, border-color .08s, transform .08s; }
+#dpad [data-dir="u"] { left: 59px; top: 0; } #dpad [data-dir="d"] { left: 59px; bottom: 0; }
+#dpad [data-dir="l"] { left: 0; top: 59px; } #dpad [data-dir="r"] { right: 0; top: 59px; }
+#dpad [data-dir] svg { width: 30px; height: 30px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: .9; }
+#dpad [data-dir].on { background: rgba(111,209,138,.5); border-color: #fff; transform: scale(.95); }
+#dpad .hub { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; margin: -17px; border-radius: 50%; border: 2px solid rgba(255,255,255,.16); background: rgba(12,18,26,.25); pointer-events: none; }
 #knob { position: absolute; left: 50%; top: 50%; width: 62px; height: 62px; margin: -31px; border-radius: 50%; background: rgba(255,255,255,.75); box-shadow: 0 2px 8px rgba(0,0,0,.4); }
 #thr { left: calc(14px + var(--sal)); bottom: calc(18px + var(--sab)); width: 58px; height: 190px; border-radius: 14px; background: rgba(12,18,26,.45); border: 2px solid rgba(255,255,255,.25); touch-action: none; overflow: hidden; }
 #thrFill { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(111,209,138,.35); }
 #thrKnob { position: absolute; left: 4px; right: 4px; height: 28px; border-radius: 8px; background: rgba(255,255,255,.85); }
 #thr span { position: absolute; top: 6px; left: 0; right: 0; text-align: center; font-size: 10px; letter-spacing: 1px; color: var(--dim); }
-.tb { min-width: 52px; min-height: 44px; padding: 0 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(12,18,26,.55); font-size: 12px; font-weight: 700; letter-spacing: .5px; touch-action: none; }
-.tb.on { background: rgba(255,207,51,.4); }
+/* simgeli düğmeler: gaz koluyla aynı dil (yuvarlak köşe, saydam koyu, açıkken yanar) */
+.tb, .ib { min-width: 52px; min-height: 52px; padding: 0 10px; border-radius: 14px; border: 2px solid rgba(255,255,255,.25); background: rgba(12,18,26,.45);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); font-size: 12px; font-weight: 700; letter-spacing: .5px; touch-action: none; color: #fff;
+  transition: background .1s, border-color .1s, box-shadow .1s, transform .08s; }
+.ib { width: 52px; height: 52px; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+.ib svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ib small { font-size: 8.5px; font-weight: 800; letter-spacing: .6px; opacity: .85; line-height: 1; }
+.tb:active, .ib:active { transform: scale(.95); }
+.tb.on, .ib.on { background: rgba(255,207,51,.32); border-color: #ffcf33; box-shadow: 0 0 14px rgba(255,207,51,.45); }
+#bBrake.on { background: rgba(255,77,77,.42); border-color: #ff6b6b; box-shadow: 0 0 14px rgba(255,77,77,.55); }
+#bSmoke.on { background: rgba(255,255,255,.28); border-color: #fff; box-shadow: 0 0 14px rgba(255,255,255,.45); }
+/* takım: aşağıda yeşil, yukarıda sönük, hareket ederken sarı yanıp söner; altta üç takım lambası */
+#bGear .gu { display: none; }
+#bGear[data-state="up"] .gd { display: none; } #bGear[data-state="up"] .gu { display: inline; }
+#bGear[data-state="up"] { color: #c9d1d8; }
+#bGear .lamps { display: flex; gap: 3px; }
+#bGear .lamps i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.18); }
+#bGear[data-state="down"] { border-color: rgba(111,209,138,.8); }
+#bGear[data-state="down"] .lamps i { background: #6fd18a; box-shadow: 0 0 5px #6fd18a; }
+#bGear[data-state="moving"] { border-color: #ffb340; }
+#bGear[data-state="moving"] .lamps i { background: #ffb340; animation: blink .4s steps(2) infinite; }
+#bCam { width: 60px; }
 #bFlapD { left: calc(84px + var(--sal)); bottom: calc(18px + var(--sab)); }
 #bFlapU { left: calc(84px + var(--sal)); bottom: calc(68px + var(--sab)); }
-#bBrake { left: calc(84px + var(--sal)); bottom: calc(118px + var(--sab)); }
-#bGear { left: calc(84px + var(--sal)); bottom: calc(168px + var(--sab)); }
-#bSmoke { left: calc(232px + var(--sal)); top: calc(12px + var(--sat)); }
+#bBrake { left: calc(84px + var(--sal)); bottom: calc(124px + var(--sab)); }
+#bGear { left: calc(84px + var(--sal)); bottom: calc(184px + var(--sab)); }
+#bSmoke { left: calc(208px + var(--sal)); top: calc(10px + var(--sat)); }
 #bMap { display: none; }
 body.touch #mini { pointer-events: auto; cursor: pointer; }
 .tb.two { line-height: 1.1; padding: 4px 10px; font-size: 11px; }
 #bTrimU { right: calc(96px + var(--sar)); bottom: calc(178px + var(--sab)); }
 #bTrimD { right: calc(18px + var(--sar)); bottom: calc(178px + var(--sab)); }
-#bPause { left: calc(12px + var(--sal)); top: calc(12px + var(--sat)); }
-#bReset { left: calc(72px + var(--sal)); top: calc(12px + var(--sat)); }
-#bCam { left: calc(152px + var(--sal)); top: calc(12px + var(--sat)); }
+#bPause { left: calc(12px + var(--sal)); top: calc(10px + var(--sat)); }
+#bReset { left: calc(72px + var(--sal)); top: calc(10px + var(--sat)); }
+#bCam { left: calc(136px + var(--sal)); top: calc(10px + var(--sat)); }
 #touchInfo { white-space: pre; right: calc(18px + var(--sar)); bottom: calc(228px + var(--sab)); font: 11px ui-monospace, Menlo, monospace; color: #fff; text-shadow: 0 1px 2px #000; pointer-events: none; text-align: right; }
 body.touch #pInfo { display: none; }
 body.easy #bFlapD, body.easy #bFlapU, body.easy #bTrimU, body.easy #bTrimD { display: none; }
 body.easy #bBrake { bottom: calc(18px + var(--sab)); }
-body.easy #bGear { bottom: calc(68px + var(--sab)); }
-body.touch #pSpd { top: calc(64px + var(--sat)); left: calc(12px + var(--sal)); }
-body.touch #aoa { top: calc(64px + var(--sat)); height: 80px; }
-body.touch #vAoa { top: calc(148px + var(--sat)); }
+body.easy #bGear { bottom: calc(78px + var(--sab)); }
+/* kokpitte göstergeler kokpitin içinde: ekrandaki kutular gizlenir (F-16'da HUD hepsini gösterir) */
+body.cockpit #att, body.cockpit #aoa, body.cockpit #vAoa, body.cockpit #pHdg, body.cockpit #near { display: none; }
+body.cockpit.f16 #pSpd, body.cockpit.f16 #pAlt { display: none; }
+body.touch #pSpd { top: calc(72px + var(--sat)); left: calc(12px + var(--sal)); }
+body.touch #aoa { top: calc(72px + var(--sat)); height: 80px; }
+body.touch #vAoa { top: calc(156px + var(--sat)); }
 body.touch #pAlt { top: calc(12px + var(--sat)); right: calc(142px + var(--sar)); min-width: 96px; }
 body.touch #mini { width: 120px; height: 120px; }
 body.touch #camName { display: none; }
@@ -154,7 +180,19 @@ body.touch #att { width: 92px; height: 92px; bottom: calc(10px + var(--sab)); }
 body.touch #pHdg { padding: 4px 10px; }
 body.touch #near { top: calc(58px + var(--sat)); }
 body.touch #msg { top: calc(78px + var(--sat)); font-size: 12px; }
-@media (max-height: 400px) { #thr { height: 150px; } }
+@media (max-height: 400px) { #thr { height: 150px; } #dpad { transform: scale(.9); transform-origin: 100% 100%; } }
+/* dar telefonlar (iPhone SE yatay): üst bilgiler küçülür, baş kutusu düğme sırasının altına iner */
+@media (max-width: 700px) {
+  body.touch .num { font-size: 19px; }
+  body.touch #pSpd, body.touch #pAlt { padding: 4px 8px; min-width: 80px; }
+  body.touch #vAltFt, body.touch #vGs { display: none; }
+  body.touch #pHdg { top: calc(68px + var(--sat)); padding: 2px 8px; }
+  body.touch #pHdg .lab { display: none; }
+  body.touch #near { top: calc(104px + var(--sat)); font-size: 11px; }
+  body.touch #msg { top: calc(122px + var(--sat)); }
+  body.touch #mini { width: 100px; height: 100px; }
+  body.touch #pAlt { right: calc(120px + var(--sar)); }
+}
 
 /* küçük ekranlar (masaüstünde dar pencere) */
 @media (max-height: 560px) {
@@ -212,7 +250,7 @@ body.portrait #rot { display: flex; }
         <button class="opt" data-set="invert" data-val="false">Uçak kuralı<small>Yukarı tuşu burnu indirir</small></button>
         <button class="opt" data-set="invert" data-val="true">Ters<small>Yukarı tuşu burnu kaldırır</small></button>
       </div><div class="opts touchonly" style="margin-top:8px">
-        <button class="opt" data-set="pad" data-val="tus">Yön tuşları<small>4 ana, 4 ara yön; basılı tuttukça dönüş artar</small></button>
+        <button class="opt" data-set="pad" data-val="tus">Yön tuşları<small>4 tuş, aynı anda istediğin kadarına bas; basılı tuttukça dönüş artar</small></button>
         <button class="opt" data-set="pad" data-val="analog">Analog</button>
       </div><div class="opts touchonly" style="margin-top:8px">
         <button class="opt" data-set="tilt" data-val="false">Sanal levye</button>
@@ -267,7 +305,7 @@ body.portrait #rot { display: flex; }
     <tr><td>Kamera</td><td><kbd>C</kbd> takip / kokpit / geçiş · fareyle sürükle: etrafına bak · tekerlek: yakınlaş</td></tr>
     <tr><td>Diğer</td><td><kbd>P</kbd> duraklat · <kbd>R</kbd> baştan · <kbd>M</kbd> ses · <kbd>L</kbd> motoru kapat/aç · <kbd>H</kbd> bu pencere</td></tr>
     <tr><td>Oyun kumandası</td><td>Sol çubuk levye, sağ çubuk dümen, RT/LT gaz, A/X flap, B fren, Y kamera, RB takım</td></tr>
-    <tr><td>Dokunmatik</td><td>Sağdaki levye her şeyi yapar: yerde burun tekerini çevirir, havada yatırıp döndürür (dümen kendiliğinden). Solda gaz kolu; FLAP, FREN, TRİM düğmeleri ekranda. Ekranın boş yerinde sürükleyince kamera döner.</td></tr>
+    <tr><td>Dokunmatik</td><td>Sağda 4 yön tuşu (ya da Ayarlar'dan analog): yukarı burnu kaldırır, sağ sağa yatırır; birkaç tuşa aynı anda basılabilir, parmak kaydırılınca komşu tuşa geçer, basılı tuttukça etki artar. Yerde burun tekerini de çevirir. Solda gaz kolu, yanında takım (lambalar yeşilse açık) ve fren. Üstte duraklat, baştan, kamera, duman. Ekranın boş yerinde sürükleyince kamera döner; kokpitte etrafına bakarsın.</td></tr>
     <tr><td>F-16 sınıfı</td><td>Levye g ister: ortada bırakınca uçak gittiği yönü korur (ters uçuşta bile). Tam geri çekmek tutunma kaybı yapmaz; bilgisayar hücum açısını 25° ve yükü 9 g ile sınırlar. Gaz %90'ın üstünde ard yakıcı yanar. Takla: 400 kt'da levyeyi geri çek. Kalkış: tam gaz, 150 kt'da çek.</td></tr>
     <tr><td>İpucu</td><td>Cessna: tam gaz, 55 kt'da levyeyi hafifçe çekin; 75 kt ile tırmanın. İnişte 65 kt, flap 30°, piste değince gazı kesip fren yapın. Kalkış yönü kuzeydoğu, şehir önünüzde.</td></tr>
   </table>
@@ -301,19 +339,19 @@ body.portrait #rot { display: flex; }
 <div id="touch">
   <div id="thr"><span>GAZ</span><div id="thrFill"></div><div id="thrKnob"></div></div>
   <div id="stick"><div id="knob"></div></div>
-  <div id="dpad"><i></i></div>
+  <div id="dpad" aria-label="Yön tuşları"><i class="hub"></i><b data-dir="u"><svg viewBox="0 0 24 24" style="transform:rotate(0deg)"><path d="M5 15l7-7 7 7"/></svg></b><b data-dir="r"><svg viewBox="0 0 24 24" style="transform:rotate(90deg)"><path d="M5 15l7-7 7 7"/></svg></b><b data-dir="d"><svg viewBox="0 0 24 24" style="transform:rotate(180deg)"><path d="M5 15l7-7 7 7"/></svg></b><b data-dir="l"><svg viewBox="0 0 24 24" style="transform:rotate(270deg)"><path d="M5 15l7-7 7 7"/></svg></b></div>
   <button class="tb" id="bFlapD">FLAP+</button>
   <button class="tb" id="bFlapU">FLAP-</button>
-  <button class="tb" id="bBrake">FREN</button>
-  <button class="tb" id="bGear">TAKIM</button>
-  <button class="tb" id="bSmoke">DUMAN</button>
+  <button class="ib" id="bBrake" aria-label="Fren"><svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="6.5"/><circle cx="14" cy="14" r="2" fill="currentColor"/><path d="M6.2 7.5A10 10 0 0 0 6.2 20.5M21.8 7.5a10 10 0 0 1 0 13"/></svg><small>FREN</small></button>
+  <button class="ib" id="bGear" data-state="down" aria-label="İniş takımı"><svg viewBox="0 0 28 28"><path d="M4 5h20" stroke-width="2.6"/><g class="gd"><path d="M14 5v9M14 9l-5 5"/><circle cx="14" cy="19" r="4.5"/><circle cx="14" cy="19" r="1.2" fill="currentColor"/></g><g class="gu"><path d="M10 5l8 5"/><circle cx="20.5" cy="11.5" r="4" stroke-dasharray="2.2 1.8"/><path d="M14 17v6M11 20l3 3 3-3"/></g></svg><span class="lamps"><i></i><i></i><i></i></span></button>
+  <button class="ib" id="bSmoke" aria-label="Duman izi"><svg viewBox="0 0 28 28"><path d="M3 15l5-1.5 3 1.5-3 1.5z" fill="currentColor"/><circle cx="14.5" cy="15" r="2.6"/><circle cx="20" cy="13.5" r="3.3"/><circle cx="25" cy="16" r="2.4"/></svg><small>DUMAN</small></button>
   <button class="tb" id="bMap">HARİTA</button>
   <button class="tb two" id="bTrimU">TRİM<br>YUKARI</button>
   <button class="tb two" id="bTrimD">TRİM<br>AŞAĞI</button>
   <div id="touchInfo"></div>
-  <button class="tb" id="bCam">KAMERA</button>
-  <button class="tb" id="bPause">DUR</button>
-  <button class="tb" id="bReset">BAŞTAN</button>
+  <button class="ib" id="bCam" data-mode="0" aria-label="Kamera"><svg viewBox="0 0 28 28"><rect x="3.5" y="8" width="16" height="12" rx="2.5"/><path d="M19.5 12.5l5-3v9l-5-3"/><circle cx="11.5" cy="14" r="2.6"/></svg><small id="camLab">TAKİP</small></button>
+  <button class="ib" id="bPause" aria-label="Duraklat"><svg viewBox="0 0 28 28"><rect x="8" y="6.5" width="4" height="15" rx="1" fill="currentColor" stroke="none"/><rect x="16" y="6.5" width="4" height="15" rx="1" fill="currentColor" stroke="none"/></svg></button>
+  <button class="ib" id="bReset" aria-label="Baştan başla"><svg viewBox="0 0 28 28"><path d="M21.5 15.5A7.5 7.5 0 1 1 18.6 8.2"/><path d="M18 3.8l1.2 4.9-4.9 1.1"/></svg></button>
 </div>
 
 <div class="ov" id="pause"><div class="card"><h2>Duraklatıldı</h2>

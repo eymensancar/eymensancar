@@ -111,7 +111,7 @@ export const PLANES = {
       { name: 'sağ kanat ucu', p: [-0.2, 5.5, -0.95] },
       { name: 'gövde', p: [0.2, 0, 0.75] },
     ],
-    eye: [0.35, -0.3, -0.55], // kokpit kamerası
+    eye: [0.35, -0.3, -0.65], // kokpit kamerası
     camDist: 14, camUp: 3.2,
   },
   // Jet eğitim uçağı (L-39 sınıfı): 4400 kg, 16.9 kN itki, katlanır iniş takımı.
@@ -143,7 +143,7 @@ export const PLANES = {
       { name: 'sağ kanat ucu', p: [-0.9, 4.73, 0.75] },
       { name: 'gövde', p: [0, 0, 0.85] },
     ],
-    eye: [2.6, 0, -0.75],
+    eye: [3.0, 0, -0.98],
     camDist: 19, camUp: 4,
   },
   // F-16 sınıfı tek motorlu savaş uçağı: 11.5 t, 76 kN (ard yakıcıyla 125 kN, itki/ağırlık ~1.1).
@@ -179,7 +179,7 @@ export const PLANES = {
       { name: 'sağ kanat ucu', p: [-1.6, 4.98, 0.45] },
       { name: 'gövde', p: [0, 0, 1.05] },
     ],
-    eye: [3.55, 0, -1.05],
+    eye: [3.55, 0, -1.0],
     camDist: 21, camUp: 4.2,
   },
 };
@@ -236,7 +236,7 @@ export class Aircraft {
     this.gearPos = 1;               // 1 açık, 0 kapalı
     this.rpm = P.kind === 'prop' ? 0 : 0;
     this.spool = P.kind === 'jet' ? P.idleN : 0;
-    this.ab = 0; this.fbwS = null; this.fbwOut = null;
+    this.ab = 0; this.fbwS = null; this.fbwOut = null; this.prevPos = null; this.prevQ = null; this.lerpK = 1;
     this.engineOn = true;
     this.alpha = 0; this.beta = 0; this.alphaPrev = 0; this.alphaDot = 0;
     this.out = { V: 0, alpha: 0, beta: 0, qbar: 0, CL: 0, CD: 0, M: 0, rho: 1.225, L: 0, D: 0, T: 0, agl: 0, ground: { h: 0, kind: 'land' } };
@@ -620,6 +620,7 @@ export class Aircraft {
     this.vel = mulM(this.m, vb);
     this.w = [0, 0, 0];
     this.crashed = null;
+    this.prevPos = null; this.prevQ = null; this.lerpK = 1;
   }
 }
 
@@ -628,7 +629,14 @@ export const DT = 1 / 240;
 export function advance(ac, env, frameDt, acc = { t: 0 }) {
   acc.t += Math.min(frameDt, 0.1);
   let n = 0;
-  while (acc.t >= DT && n < 48) { ac.step(DT, env); acc.t -= DT; n++; }
+  while (acc.t >= DT && n < 48) {
+    // çizim için bir önceki adım saklanır: kare, iki adım arasında aradeğerlenir (240 Hz adım ile ekran tazelemesi uyuşmayınca titreme olmasın)
+    const pp = ac.prevPos || (ac.prevPos = [0, 0, 0]), pq = ac.prevQ || (ac.prevQ = [1, 0, 0, 0]);
+    pp[0] = ac.pos[0]; pp[1] = ac.pos[1]; pp[2] = ac.pos[2]; pq[0] = ac.q[0]; pq[1] = ac.q[1]; pq[2] = ac.q[2]; pq[3] = ac.q[3];
+    ac.step(DT, env); acc.t -= DT; n++;
+  }
+  if (acc.t >= DT) acc.t = 0; // çok yavaş karede birikme olmasın
+  ac.lerpK = n || ac.prevPos ? acc.t / DT : 1;
   return n;
 }
 

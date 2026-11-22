@@ -95,34 +95,38 @@ export class Input {
   // ---------- dokunmatik ----------
   bindTouch(el) {
     const stickEl = el.querySelector('#stick'), knob = el.querySelector('#knob');
-    // yön tuşları: 4 ana, 4 ara yön. Parmak kaydırılarak tuştan tuşa geçilir; basılı tuttukça komut %35'ten %100'e çıkar (1,2 sn)
+    // yön tuşları: 4 ayrı tuş (yukarı = burun yukarı, sağ = sağa yatış). Her parmak ayrı izlenir: istediğin kadar tuşa
+    // aynı anda basılır (yukarı + sağ birlikte; yukarı + aşağı birbirini götürür). Parmak kaydırılınca komşu tuşa geçer,
+    // iki tuşun arasına basınca ikisi birden basılır. Basılı tuttukça her eksenin komutu %35'ten %100'e çıkar (1,2 sn).
     const pad = el.querySelector('#dpad');
     if (pad) {
-      const ARW = '<svg viewBox="0 0 24 24"><path d="M12 4 21 16H3z"/></svg>';
-      const dirs = [];
-      for (let k = 0; k < 8; k++) {
-        const a = k * Math.PI / 4, b = document.createElement('b'), r = k % 2 ? 58 : 60;
-        b.className = k % 2 ? 'd' : '';
-        b.style.left = `calc(50% + ${Math.round(Math.sin(a) * r)}px)`; b.style.top = `calc(50% - ${Math.round(Math.cos(a) * r)}px)`;
-        b.innerHTML = ARW; b.firstChild.style.transform = `rotate(${k * 45}deg)`;
-        pad.appendChild(b); dirs.push(b);
-      }
-      let pid = null, cur = -1, t0 = 0;
-      const setDir = (e) => {
+      const keys = [...pad.querySelectorAll('[data-dir]')]; // sırası: yukarı, sağ, aşağı, sol
+      const ptr = new Map(); // parmak -> basılı tuşlar (bit)
+      const hit = (e) => {
         const r = pad.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
-        const k = Math.hypot(x, y) < 18 ? -1 : (Math.round(Math.atan2(x, -y) / (Math.PI / 4)) + 8) % 8;
-        if (k !== cur) { if (cur >= 0) dirs[cur].classList.remove('on'); if (k >= 0) dirs[k].classList.add('on'); if (cur < 0 || k < 0) t0 = performance.now(); cur = k; }
+        const d = Math.hypot(x, y); if (d < r.width * 0.11 || d > r.width * 0.85) return 0;
+        const a = (Math.atan2(x, -y) * 180 / Math.PI + 360) % 360; // 0 yukarı, 90 sağ
+        let m = 1 << (Math.round(a / 90) % 4);
+        const off = a % 90; if (off > 30 && off < 60) m = (1 << (Math.floor(a / 90) % 4)) | (1 << ((Math.floor(a / 90) + 1) % 4)); // köşegen: iki tuş
+        return m;
       };
-      pad.addEventListener('pointerdown', (e) => { pid = e.pointerId; try { pad.setPointerCapture(e.pointerId); } catch (_) { /* yapay olay */ } setDir(e); e.preventDefault(); });
-      pad.addEventListener('pointermove', (e) => { if (e.pointerId === pid) setDir(e); });
-      const end = (e) => { if (e.pointerId !== pid) return; pid = null; if (cur >= 0) dirs[cur].classList.remove('on'); cur = -1; this.stick = null; };
-      pad.addEventListener('pointerup', end); pad.addEventListener('pointercancel', end);
+      const t0 = { p: 0, r: 0 }, last = { p: 0, r: 0 };
+      const mask = () => { let m = 0; for (const v of ptr.values()) m |= v; return m; };
+      const refresh = () => { const m = mask(); keys.forEach((k, i) => k.classList.toggle('on', !!(m & (1 << i)))); };
+      pad.addEventListener('pointerdown', (e) => { try { pad.setPointerCapture(e.pointerId); } catch (_) { /* yapay olay */ } ptr.set(e.pointerId, hit(e)); refresh(); e.preventDefault(); });
+      pad.addEventListener('pointermove', (e) => { if (!ptr.has(e.pointerId)) return; const m = hit(e); if (m !== ptr.get(e.pointerId)) { ptr.set(e.pointerId, m); refresh(); } });
+      const end = (e) => { if (!ptr.delete(e.pointerId)) return; refresh(); if (!ptr.size) this.stick = null; };
+      pad.addEventListener('pointerup', end); pad.addEventListener('pointercancel', end); pad.addEventListener('lostpointercapture', end);
       this._padFrame = () => {
-        if (cur < 0) return;
-        const m = 0.35 + 0.65 * Math.min(1, (performance.now() - t0) / 1200), a = cur * Math.PI / 4;
-        const sx = Math.round(Math.sin(a) * 100) / 100, sy = -Math.round(Math.cos(a) * 100) / 100;
-        this.stick = { x: Math.sign(sx) * m, y: Math.sign(sy) * m };
+        const m = mask(), now = performance.now();
+        const py = ((m & 1) ? 1 : 0) - ((m & 4) ? 1 : 0), rx = ((m & 2) ? 1 : 0) - ((m & 8) ? 1 : 0);
+        if (py !== last.p) { t0.p = now; last.p = py; } if (rx !== last.r) { t0.r = now; last.r = rx; }
+        const ramp = (t) => 0.35 + 0.65 * Math.min(1, (now - t) / 1200);
+        if (!py && !rx) { if (this._padActive) this.stick = null; this._padActive = false; return; }
+        this._padActive = true;
+        this.stick = { x: rx * ramp(t0.r), y: -py * ramp(t0.p) };
       };
+      this.padMask = mask;
     }
     const thrEl = el.querySelector('#thr'), thrFill = el.querySelector('#thrFill'), thrKnob = el.querySelector('#thrKnob');
     let stickId = null, thrId = null;

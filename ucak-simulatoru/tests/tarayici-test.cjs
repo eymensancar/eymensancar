@@ -1,5 +1,7 @@
 // Tarayıcı denemesi (Playwright): sayfa açılır, konsol hatası aranır, Cessna klavyeyle kalkar, F-16 sınıfı jetle
 // takla ve tonoz yapılır (test kancası __ucak), Türkiye'nin çeşitli yerlerinden ekran görüntüleri docs/ekran/ içine alınır.
+// 23 Kasım bölümleri: kokpit (üç uçağın içi, F-16 HUD), dugmeler (iPhone 13 ve SE yatay: simgeli düğmeler, 4 yön tuşu, çoklu
+// dokunuş), takla (yön tuşuyla takla ve dik dalıştan çıkış, görüntü dizisi), gecis (geçiş kamerası titremesi ölçümü).
 // Önce: (cd www && python3 -m http.server 8765)   Çalıştır: node tests/tarayici-test.cjs [adres]
 const path = require('path');
 let pw; try { pw = require('playwright'); } catch (e) { pw = require(require('child_process').execSync('npm root -g').toString().trim() + '/playwright'); }
@@ -100,8 +102,142 @@ async function view(p, name, [lat, lon, alt, hdg, kt], orbit = [0, 0, 1], cam = 
   await shot(p, name);
 }
 
+// F-16 sahnede: verilen enlem, boylam, irtifa, baş ve hızla, kamerayla
+async function fly(p, plane, [lat, lon, alt, hdg, kt], cam) {
+  if (!(await p.evaluate((pl) => __ucak.ac && __ucak.settings.plane === pl, plane))) await begin(p, 'bogaz', plane);
+  await p.evaluate(([la, lo, al, h, k, c]) => { __ucak.freeze(true); __ucak.place(la, lo, al, h, k); __ucak.setCam(c); __ucak.orbit(0, 0, 1); }, [lat, lon, alt, hdg, kt, cam]);
+}
+
+// kokpitler: üç uçağın içi, F-16'da geriye bakış ve HUD yakın görüntüsü
+async function cockpits(b) {
+  const p = await page(b, { viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 }, { quality: 'orta' });
+  for (const [pl, kt] of [['f16', 340], ['c172', 100], ['jet', 260]]) {
+    await fly(p, pl, [41.03, 29.012, 700, 25, kt], 1);
+    await settle(p, 60000);
+    await p.evaluate(() => { __ucak.freeze(false); __ucak.input.stick = { x: 0.25, y: -0.15 }; }); await sleep(3500);
+    await p.evaluate(() => { __ucak.freeze(true); }); await sleep(800);
+    const st = await p.evaluate(() => { const c = __ucak.cockpit; let n = 0, cv = 0; c.root.traverse((o) => { if (o.isMesh) n++; if (o.material && o.material.map && o.material.map.image && o.material.map.image.getContext && o.material.map.version > 1) cv++; }); return { meshes: n, liveScreens: cv, inExt: __ucak.model.root.parent !== __ucak.scene, fov: __ucak.camera.fov }; });
+    console.log(`  kokpit ${pl}:`, JSON.stringify(st));
+    if (st.meshes < 30 || st.liveScreens < 1 || !st.inExt) errors.push('kokpit eksik: ' + pl);
+    await shot(p, `kokpit-${pl}.jpg`);
+    if (pl === 'f16') {
+      await p.screenshot({ path: path.join(OUT, 'kokpit-f16-hud.jpg'), type: 'jpeg', quality: 80, clip: { x: 430, y: 150, width: 420, height: 330 }, timeout: 180000 }); console.log('  görüntü: kokpit-f16-hud.jpg');
+      await p.evaluate(() => __ucak.orbit(2.3, 0.25, 1)); await sleep(1500); await shot(p, 'kokpit-f16-geri.jpg');
+      await p.evaluate(() => __ucak.orbit(0, 0, 1));
+    }
+    await p.evaluate(() => { __ucak.input.stick = null; __ucak.setCam(0); });
+  }
+  await p.close();
+}
+
+// dokunmatik düğmeler: iPhone 13 ve SE yatay; hepsi en az 44x44, ekranın içinde, üst üste değil; 4 yön tuşu çoklu dokunuş
+async function buttons(b) {
+  for (const [dev, name] of [['iPhone 13 landscape', 'dugmeler-iphone13.jpg'], ['iPhone SE (3rd gen) landscape', 'dugmeler-iphonese.jpg'], ['iPhone SE landscape', null]]) {
+    const ip = await page(b, { ...pw.devices[dev], deviceScaleFactor: 2 }, { quality: 'dusuk', smoke: true });
+    await begin(ip, 'bogaz', 'f16'); await ip.evaluate(() => __ucak.freeze(true)); await settle(ip, 60000);
+    const rs = await ip.evaluate(() => [...document.querySelectorAll('#touch > *')].filter((e) => getComputedStyle(e).display !== 'none' && e.id !== 'touchInfo').map((e) => { const r = e.getBoundingClientRect(); return { id: e.id, x: r.x, y: r.y, w: r.width, h: r.height }; }));
+    const W = await ip.evaluate(() => [innerWidth, innerHeight]);
+    const bad = rs.filter((r) => r.w < 44 || r.h < 44 || r.x < 0 || r.y < 0 || r.x + r.w > W[0] + 0.5 || r.y + r.h > W[1] + 0.5).map((r) => r.id);
+    const over = []; for (let i = 0; i < rs.length; i++) for (let j = i + 1; j < rs.length; j++) { const a = rs[i], c = rs[j]; if (a.x < c.x + c.w - 1 && c.x < a.x + a.w - 1 && a.y < c.y + c.h - 1 && c.y < a.y + a.h - 1) over.push(a.id + '/' + c.id); }
+    console.log(`  ${dev}: ${rs.length} düğme`, bad.length ? 'küçük/dışarıda: ' + bad : 'boyut tamam', over.length ? 'üst üste: ' + over : 'çakışma yok');
+    if (bad.length || over.length) errors.push(`${dev}: düğme yerleşimi (${bad} ${over})`);
+    // yön tuşları: yukarı + sağ (iki parmak), yukarı + aşağı (birbirini götürür), yukarıdan sağa kaydırma
+    const cdp = await ip.context().newCDPSession(ip);
+    const key = async (d) => { const r = await ip.locator(`#dpad [data-dir="${d}"]`).boundingBox(); return [r.x + r.width / 2, r.y + r.height / 2]; };
+    const [u, r, dn] = [await key('u'), await key('r'), await key('d')];
+    const touch = (type, pts) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: pts.map(([x, y], i) => ({ x, y, id: i + 1 })) });
+    const stick = async () => { await ip.evaluate(() => __ucak.input.touchFrame()); return ip.evaluate(() => [__ucak.input.stick ? __ucak.input.stick.x : 0, __ucak.input.stick ? __ucak.input.stick.y : 0, [...document.querySelectorAll('#dpad [data-dir].on')].map((e) => e.dataset.dir).join('')]); };
+    await touch('touchStart', [u]); await touch('touchStart', [u, r]); await sleep(300); const s1 = await stick();
+    await touch('touchEnd', []); await touch('touchStart', [u]); await touch('touchStart', [u, dn]); await sleep(200); const s2 = await stick();
+    await touch('touchEnd', []); await touch('touchStart', [u]); await touch('touchMove', [[(u[0] + r[0]) / 2 + 30, (u[1] + r[1]) / 2 + 25]]); await touch('touchMove', [r]); await sleep(200); const s3 = await stick();
+    await touch('touchEnd', []); await sleep(100); const s4 = await stick();
+    console.log('  yön tuşları: yukarı+sağ', JSON.stringify(s1), '· yukarı+aşağı', JSON.stringify(s2), '· kaydırınca', JSON.stringify(s3), '· bırakınca', JSON.stringify(s4));
+    if (!(s1[0] > 0.3 && s1[1] < -0.3 && s1[2] === 'ur')) errors.push('yön tuşları: yukarı+sağ birlikte çalışmadı');
+    if (!(s2[1] === 0 && s2[2] === 'ud')) errors.push('yön tuşları: yukarı+aşağı birbirini götürmedi');
+    if (!(s3[0] > 0.3 && Math.abs(s3[1]) < 0.01 && s3[2] === 'r')) errors.push('yön tuşları: kaydırarak komşu tuşa geçilmedi');
+    if (s4[2] !== '') errors.push('yön tuşları bırakılınca sönmedi');
+    // takım düğmesi: dokununca hareket durumuna geçer (lambalar sarı)
+    await ip.evaluate(() => __ucak.freeze(false)); await sleep(500);
+    const g0 = await ip.evaluate(() => [document.querySelector('#bGear').dataset.state, __ucak.ac.ctl.gearDown]);
+    { const gb = await ip.locator('#bGear').boundingBox(); const c = [gb.x + gb.width / 2, gb.y + gb.height / 2]; await touch('touchStart', [c]); await sleep(120); await touch('touchEnd', []); } await sleep(900);
+    const g1 = await ip.evaluate(() => [document.querySelector('#bGear').dataset.state, __ucak.ac.ctl.gearDown]);
+    console.log('  takım düğmesi:', JSON.stringify(g0), '->', JSON.stringify(g1)); if (g1[1] === g0[1] || g1[0] !== 'moving') errors.push('takım düğmesi durumu değişmedi');
+    await ip.evaluate(() => __ucak.freeze(true)); await sleep(500);
+    if (name) await shot(ip, name);
+    await ip.close();
+  }
+}
+
+// takla: yön tuşu yukarı basılı (rampa %35 -> %100), tam tur, dört görüntü; sonra dik dalıştan çıkış
+async function loopTest(b) {
+  const p = await page(b, { viewport: { width: 960, height: 540 }, deviceScaleFactor: 1, hasTouch: true }, { quality: 'dusuk', smoke: true });
+  await begin(p, 'bogaz', 'f16');
+  await fly(p, 'f16', [41.03, 29.012, 1300, 25, 380], 0);
+  await p.evaluate(() => { __ucak.smoke(true); __ucak.input.throttle = 1; }); await settle(p, 60000);
+  const fwd = () => p.evaluate(() => { const q = __ucak.ac.q; const m2 = 2 * (q[1] * q[3] - q[0] * q[2]), m0 = 1 - 2 * (q[2] * q[2] + q[3] * q[3]); return { a: Math.atan2(-m2, m0), t: __ucak.ac.time, alt: __ucak.ac.alt, c: __ucak.ac.crashed, al: __ucak.ac.out.alpha * 57.3, st: __ucak.ac.stallS, n: __ucak.ac.nz }; });
+  // yön tuşunun kendisi: basma zamanı tarayıcının saatine göre; yavaş benzetimde rampa daha çabuk biter, zararsız
+  await p.evaluate(() => { __ucak.freeze(false); __ucak.padPress = performance.now(); });
+  let s = await fwd(), prev = s.a, acc = 0, amax = 0, nmax = 0, shotK = 1; const t0 = s.t, h0 = s.alt;
+  await p.evaluate(() => { __ucak.loopTimer = setInterval(() => { const m = 0.35 + 0.65 * Math.min(1, (performance.now() - __ucak.padPress) / 1200); __ucak.input.stick = { x: 0, y: -m }; }, 30); });
+  while (acc < 2 * Math.PI && s.t - t0 < 60) {
+    await sleep(100); s = await fwd();
+    let d = s.a - prev; if (d > Math.PI) d -= 2 * Math.PI; if (d < -Math.PI) d += 2 * Math.PI; acc += d; prev = s.a; amax = Math.max(amax, s.al); nmax = Math.max(nmax, s.n);
+    if (s.c) break;
+    if (acc > shotK * Math.PI / 2 && shotK <= 3) { await p.evaluate(() => __ucak.freeze(true)); await shot(p, `takla-${shotK}.jpg`); await p.evaluate(() => __ucak.freeze(false)); shotK++; }
+  }
+  await p.evaluate(() => { clearInterval(__ucak.loopTimer); __ucak.input.stick = null; });
+  console.log(`  takla (yön tuşu): ${(acc * 57.3).toFixed(0)}°, ${(s.t - t0).toFixed(1)} sn uçuş, en büyük hücum ${amax.toFixed(1)}°, ${nmax.toFixed(1)} g, irtifa ${h0.toFixed(0)} -> ${s.alt.toFixed(0)} m, kaza: ${s.c}`);
+  if (s.c || acc < 2 * Math.PI) errors.push('yön tuşuyla takla başarısız');
+  await p.evaluate(() => __ucak.freeze(true)); await shot(p, 'takla-4.jpg');
+  // dik dalış: burun tam aşağı, 300 kt; yukarı tuşu basılı; uçuş yolu yataya gelene dek irtifa kaybı
+  const r = await p.evaluate(async () => {
+    const U = __ucak; U.place(41.03, 29.012, 2600, 25, 300); const a = U.ac, h = a.ac || a;
+    const hd = Math.atan2(2 * (a.q[0] * a.q[3] + a.q[1] * a.q[2]), 1 - 2 * (a.q[2] * a.q[2] + a.q[3] * a.q[3])), th = -89.5 * Math.PI / 180;
+    const cp = Math.cos(th / 2), sp = Math.sin(th / 2), cy = Math.cos(hd / 2), sy = Math.sin(hd / 2);
+    a.q = [cp * cy, -sp * sy, sp * cy, cp * sy]; const V = 300 * 0.514444; a.vel = [V * Math.cos(th) * Math.cos(hd), V * Math.cos(th) * Math.sin(hd), -V * Math.sin(th)]; a.w = [0, 0, 0]; a.prevPos = null; a.fbwS = null;
+    const h0 = a.alt; U.freeze(false); const t0 = performance.now(); let rec = null;
+    U.input.stick = { x: 0, y: -1 };
+    while (!rec && performance.now() - t0 < 90000 && !a.crashed) { await new Promise((r) => setTimeout(r, 30)); if (-a.vel[2] >= 0) rec = h0 - a.alt; }
+    U.input.stick = null; return { loss: rec, c: a.crashed };
+  });
+  console.log(`  dik dalıştan çıkış (300 kt, tam yukarı): irtifa kaybı ${r.loss && r.loss.toFixed(0)} m, kaza: ${r.c}`);
+  if (r.c || r.loss == null || r.loss > 1200) errors.push('dik dalıştan çıkış başarısız');
+  await p.close();
+}
+
+// geçiş kamerası: 10 sn boyunca kameranın yeniden yerleşme sayısı ve uçağın ekrandaki konumunun kare kare sıçraması
+async function flybyTest(b) {
+  const p = await page(b, { viewport: { width: 960, height: 540 }, deviceScaleFactor: 1 }, { quality: 'dusuk' });
+  await begin(p, 'bogaz', 'f16');
+  await fly(p, 'f16', [41.03, 29.012, 900, 25, 380], 2); await settle(p, 60000);
+  const r = await p.evaluate(async () => {
+    // kamera durur, uçağa bakar. Ölçülen: yeniden yerleşme sayısı, yerleşme dışında kameranın kayması ve uçağın kare başına
+    // yol farkının, benzetim zamanına göre beklenenden sapması (aradeğer yoksa adım sayısıyla sıçrar)
+    const U = __ucak, cp = new U.THREE.Vector3(), mp = new U.THREE.Vector3(); let last = U.fly, moves = 0, camJumps = 0, n = 0, dev = 0;
+    let prevC = null, prevM = null, prevT = null;
+    U.freeze(false); const t0 = performance.now();
+    await new Promise((res) => { const f = () => {
+      const O = U.world.O; cp.set(U.camera.position.x + O.x, U.camera.position.y, U.camera.position.z - O.y); mp.set(U.model.root.position.x + O.x, U.model.root.position.y, U.model.root.position.z - O.y);
+      const T = U.ac.time + U.ac.lerpK / 240;
+      if (U.fly !== last) { moves++; last = U.fly; } else if (prevC && cp.distanceTo(prevC) > 0.5) camJumps++;
+      if (prevM && T > prevT) { const v = mp.distanceTo(prevM) / (T - prevT), V = Math.hypot(...U.ac.vel); dev += Math.abs(v - V) / V; n++; }
+      prevC = cp.clone(); prevM = mp.clone(); prevT = T;
+      if (performance.now() - t0 < 10000) requestAnimationFrame(f); else res(); }; requestAnimationFrame(f); });
+    return { frames: n, moves, camJumps, jitter: dev / Math.max(1, n), simT: U.ac.time };
+  });
+  console.log(`  geçiş kamerası: ${r.frames} kare, ${r.moves} yeniden yerleşme, ${r.camJumps} kamera sıçraması, uçağın kare başına hız sapması %${(r.jitter * 100).toFixed(2)}`);
+  if (r.moves > Math.max(4, r.frames / 10) || r.camJumps > 0 || r.jitter > 0.03) errors.push('geçiş kamerası titriyor');
+  await shot(p, 'gecis-kamerasi.jpg');
+  await p.close();
+}
+
 (async () => {
   const b = await pw.chromium.launch({ args: ARGS });
+  if (want('kokpit')) await cockpits(b);
+  if (want('dugmeler')) await buttons(b);
+  if (want('takla')) await loopTest(b);
+  if (want('gecis')) await flybyTest(b);
+  if (ONLY && !['kalkis', 'inis', 'menu', 'akrobasi', 'ekran', 'iphone'].some(want)) { await b.close(); console.log(errors.length ? 'HATALAR:\n' + errors.join('\n') : 'Hata yok'); process.exit(errors.length ? 1 : 0); }
   if (want('kalkis')) { const k = await page(b, { viewport: { width: 640, height: 360 }, deviceScaleFactor: 1 }, { quality: 'dusuk', plane: 'c172' }); await takeoff(k); await k.close(); }
   if (want('inis')) {
     // kolay kumanda: F-16 son yaklaşmadan eller serbest iner, patlamamalı (iniş yardımı burnu kaldırır)

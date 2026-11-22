@@ -17,8 +17,8 @@ cd ucak-simulatoru/www && python3 -m http.server 8765
 
 | İş | Klavye | Dokunmatik | Oyun kumandası |
 |---|---|---|---|
-| Yunuslama | `S` / aşağı ok: levye geri, burun yukarı. `W` / yukarı ok: burun aşağı | sağdaki sanal levye | sol çubuk |
-| Yatış | `A` `D` / sol sağ ok | sanal levye | sol çubuk |
+| Yunuslama | `S` / aşağı ok: levye geri, burun yukarı. `W` / yukarı ok: burun aşağı | sağda 4 yön tuşu (yukarı = burun yukarı; Ayarlar'dan analog) | sol çubuk |
+| Yatış | `A` `D` / sol sağ ok | yön tuşları (aynı anda birden çok) | sol çubuk |
 | Dümen | `Q` `E` | SOL DÜMEN / SAĞ DÜMEN | sağ çubuk |
 | Gaz | `Shift` artır, `Ctrl` azalt; `+` `-`, `PageUp` `PageDown`; `1`…`9`, `0` = tam gaz | soldaki gaz kolu | RT / LT |
 | Flap | `F` indir, `V` topla | FLAP+ / FLAP- | A / X |
@@ -234,3 +234,57 @@ Eymen: "analog solda, gaz sağda; trim, flap olmasın; yukarıysa yukarı, ne ka
   - Takımsız gövde üstü iniş kayar; kuyruk sürtmesi 10 m/sn'ye kadar kaza değil.
   - İniş rehberi (300 m altı, alçalırken): takım kapalıysa uyarı, çok hızlıysa önerilen hız (Cessna 60, L-39 120, F-16 155 kt).
 - Benzetimde eller serbest: F-16 250/155/200 kt, L-39 140/180 kt, Cessna 90 kt inişleri patlamadan; tarayıcıda F-16 son yaklaşmadan eller serbest 150 kt ile indi (`tarayici-test.cjs inis`).
+
+## 23 Kasım: uçak ve kumanda
+
+Eymen iPhone'da denedi; uçakla ilgili istekleri ve yapılanlar:
+
+1. **Yön tuşları: 4 ana yön, aynı anda istediğin kadar** (`input.js` → `#dpad`). Sekiz yönlü tek tuş takımı yerine dört ayrı tuş (yukarı = burun yukarı, sağ = sağa yatış). Her parmak ayrı izlenir: yukarı + sağ birlikte basılır, yukarı + aşağı birbirini götürür; parmak kaydırılınca komşu tuşa geçer, iki tuşun arasına basınca ikisi birden basılır. Basılı tuttukça her eksenin komutu ayrı ayrı %35'ten %100'e çıkar (1,2 sn). "Analog" seçeneği aynen duruyor.
+2. **Takla ve dik dalıştan çıkış** (`fdm.js` → `_fbw`). Nedenler:
+   - *Asıl neden: iniş takımı.* Pistten kalkınca takım elle toplanıyor; açık kalırsa uçuş bilgisayarı yükü 4 g'ye, hücum açısını 15°'ye sınırlıyordu. Takla 42 sn sürüyor, 1,8 km tırmanıyor, 300 kt dik dalıştan çıkmak 1,5 km yiyordu. 400 kt'ta dalıştan çekerken yunuslama yasası elevatörün hız sınırına (60°/sn) takılıp büyüyen bir salınıma giriyor ve uçak −4,5 g'de "yapısal hasar"la dağılıyordu.
+   - *Yunuslama yasası yeniden yazıldı:* istenen g'den hücum açısı (kaldırma eğrisinin tersi), hücum açısından yunuslama hızı isteği (α̇ = q − g(nz − cosθcosφ)/V, büyük farkta kök eğrisiyle sınırlı), elevatör de modelin tersinden (istenen yunuslama ivmesi için gereken moment; eylemsizlik bağlaşımı dahil). Kazançlar düşük dinamik basınçta azalır, g sınırlayıcı hücum açısı-g eğimine göre ölçeklenir ve kısa öngörüyle erken davranır, tümlev yalnız sakin uçuşta birikir. Levye bırakılınca uçuş yolu açısı tutulur (ters uçuşta da).
+   - Kolay kumandada takım sınırı yalnız iniş düzeninde (400 m altı ve 240 kt altı); havada takım açıkken "Takım açık: TAKIM düğmesiyle toplayın" yazar.
+   - Kolay kumandada F-16 daha çevik (oyun için): CLα ×1,2 (girdap kaldırması), kopma 35°, hücum açısı sınırı 28°, en çok 9,5 g, g daha çabuk gelir (çekişte 0,07 sn süzgeç, bırakışta 0,25 sn). Aşırı g kolay kumandada kaza değil.
+   - Kanat dengeleyici ve dönüş telafisi dikey yakınında karışmıyor (zaten öyleydi, denendi).
+3. **Simgeli düğmeler** (`index.html`): TAKIM, FREN, DUMAN, KAMERA, DUR, BAŞTAN ve yön tuşları gaz koluyla aynı görünümde (yuvarlak köşe, saydam koyu, 52 pt). Kendi çizdiğimiz SVG simgeler. Takım: açıkken yeşil üç lamba, kapalıyken sönük ve katlanmış teker, hareket ederken sarı yanıp söner. Fren basılıyken kırmızı, duman açıkken beyaz yanar, kamera düğmesinin altında kameranın adı. Dar ekranda (iPhone SE) üst bilgiler küçülür.
+4. **Kokpit** (`cockpit.js`, yeni). Üç uçağa ayrıntılı iç mekân, her şey kodla ve kanvasla çizildi:
+   - F-16 sınıfı: kabarcık kanopi (altın tonlu cam, gökyüzünü belli belirsiz yansıtır), arka kemer ve üç ayna, çalışan yeşil HUD (hız ve irtifa şeritleri, eğim merdiveni dünyaya bağlı, uçuş yolu işareti, gövde ekseni, baş şeridi, g, Mach, hücum açısı, en çok g, radar irtifası, GEAR / AB), combiner camı, iki MFD (hareketli harita; ufuk, hız, irtifa, devir, takım), ICP tuş takımı ve yeşil DED, yedek ufuk, yan konsollar (anahtar ve düğme dokusu), sağda girdiyle oynayan yan levye, solda gazla ileri giden gaz kolu, ACES II benzeri koltuk ve sarı-siyah ejeksiyon kolu, pilotun bacakları, oksijen hortumu.
+   - Cessna sınıfı: altılı analog göstergeler (hız, ufuk, irtifa, dönüş koordinatörü, baş, dikey hız) ve devir, yakıt/yağ; radyo yığını, anahtarlar, pusula, ön cam ve ortadaki dikme, kapı pencereleri ve dikmeler, tavan, iki dümen simidi (yunuslamada ileri-geri, yatışta döner), gaz ve karışım düğmesi, koltuklar; ön camdan motor kaputu, pervane ve kanat dikmeleri görünür.
+   - L-39 sınıfı: analog pano (hız, büyük ufuk, irtifa, dikey hız, baş, devir, g ölçer, takım lambaları), nişangâh, ön cam çerçevesi ve kanopi kemerleri, ortada levye, solda gaz kolu, arkada eğitmen kokpiti.
+   - Çizim üç geçişte: dünya (yakın düzlem eskisi gibi uyarlanır), uçağın dışı (0,2 m), kokpit içi (0,01 m); her geçişten önce derinlik silinir. Uzak arazide derinlik titremesi olmaz, gözün 10 cm önü de kesilmez. Kokpitin ışığı dünyanın güneşini ve gök ışığını her karede kopyalar; orta ve yüksek kalitede kokpit gölgeleri var (kanopi kemeri ve çerçeveler panoya gölge düşürür).
+   - Bakınma: boş yerde sürükle (baş boyun ekseni etrafında döner, geriye bakınca koltuk ve kanat görünür), 3 sn sonra ortalanır. Yük altında baş biraz çöker, yüksek hücum açısında ve yerde koşarken hafif sarsıntı.
+   - Kokpitte ekrandaki gösterge kutuları gizlenir (F-16'da hepsi, diğerlerinde ufuk/baş).
+   - Ses (`audio.js`): kokpitte motor kabin süzgecinden geçer (jette boğuk ve kısık), rüzgar hışırtısı artar, hızla ve sarsıntıyla artan kanopi uğultusu; kamera değişince 0,25 sn'de yumuşakça geçer. Dışarıdaki kameralarda ses uzaklıkla azalır, geçişte Doppler (uçak yaklaşırken tiz, uzaklaşırken pes).
+5. **Geçiş kamerasında titreme.** İki neden:
+   - *Kamera her karede yeniden yerleşiyordu:* kamera uçağın hız × 9 sn önüne konuyor, uçak 900 m'den uzaklaşınca yeniden konuyordu. Jette (100 m/sn üstü) bu uzaklık hep 900 m'den büyük olduğundan kamera her karede rastgele bir yan kaymayla yeniden konuyordu. Şimdi uçak geçip yerleşme uzaklığının 1,25 katı uzaklaşınca yeniden konur; yakınlaştırma uçağı ekranda aynı boyda tutar.
+   - *Aradeğer yoktu:* fizik 240 Hz adımla ilerliyor, ekran her karede 3-5 adım görüyordu; uçak (takipte ise dünya) her karede bir adım (200 m/sn'de 0,8 m) ileri geri sıçrıyordu. Şimdi çizim son iki fizik adımı arasında aradeğerlenir (`ac.prevPos`, `ac.lerpK`, `planeThree()`); bütün kameralar bundan yararlanır.
+6. **Dış görünüş:** kanat ucu girdapları (sert çekişte ya da yüksek hücum açısında), 7300 m üstünde yoğuşma izi (jetler), F-16'da yüksek hücum açısında kanat kökü ve LEX üstünde buhar (`effects.js`, kendi gölgelendiricimiz). Dış F-16 kanopisi kokpite uyacak biçimde yükseltildi, pilot yeniden yerleştirildi.
+
+### Sınamalar (23 Kasım)
+
+`node tests/fizik-test.mjs` — yeni bölüm "Kolay kumanda": oyundaki kare döngüsü (60 kare/sn, kanat dengeleyici, hıza göre flap) ve yön tuşu rampasıyla. Son çalıştırma, hepsi geçti:
+
+| Sınama (F-16, kolay kumanda) | Sonuç | Eski yasayla (takım kapalı / açık) |
+|---|---|---|
+| Takla 300 kt, yön tuşu | 20,2 sn, 694 m tırmanış, en çok 28,4° | 24,1 sn, 956 m / 41,8 sn, 1826 m |
+| Takla 380 / 450 kt, yön tuşu | 18,4 sn / 17,3 sn | — |
+| Takla 300 kt, sabit %35 | 21,8 sn | 26,2 sn |
+| Dik dalıştan çıkış 250 / 300 / 400 kt (tam gaz) | 655 / 652 / 722 m, 6,5 / 5,8 / 4,9 sn | 814 / 816 / 810 m; takım açık 1459 m ve 400 kt'ta parçalanma |
+| Dik dalış 300 kt, gaz %30 | 688 m | 875 m |
+| Takım açık unutulmuş, dalıştan çıkış 300 / 400 kt | 651 / 655 m, salınım yok | 1459 m / −4,5 g'de kaza |
+| Ters, 90° yatık, dik tırmanış 150 kt, yatık dalışta tam çekiş | 6 sn'de 136° / 120° / 103° / 122°, salınım ve tutunma kaybı yok | — |
+| Çek-bırak (F-16 200/350/500 kt, L-39 250 kt, Cessna 100 kt) | uçuş yolu en çok bir kez yön değiştirir | — |
+| Eller serbest iniş (F-16 155/200/250, L-39 140/180, Cessna 65/90 kt) | kaza yok | — |
+
+Kolay kumandada Cessna'nın frenle burnu yere gömülüp pervanesinin vurması da giderildi (fren, burun öne yatınca gevşer).
+
+Değiştirilen eski aralık: "450 kt levye tam geri: en büyük yük faktörü" sınaması 520 kt'ta yapılıyor (9,72 g, sınır 9 g). Eski yasa 450 kt / 3000 m'de 9,7 g'ye hücum açısını aşarak çıkıyordu; yeni yasa aşmıyor ve o hızda 25°'de erişilebilen yük ~8,1 g.
+
+`node tests/tarayici-test.cjs http://localhost:8765/index.html kokpit,dugmeler,takla,gecis` — yeni bölümler: `kokpit` (üç uçağın içi, F-16 HUD yakın, geriye bakış; kokpit parçası ve canlı ekran sayısı denetlenir), `dugmeler` (iPhone 13, SE 3. kuşak ve SE 1. kuşak yatay: bütün düğmeler en az 44×44, ekran içinde, üst üste değil; yön tuşlarında iki parmak, yukarı+aşağı, kaydırma, bırakma; takım düğmesinin durumu), `takla` (yön tuşu rampasıyla takla, dört görüntü; dik dalıştan çıkış), `gecis` (geçiş kamerasının yeniden yerleşme sayısı ve uçağın ekranda kare kare sıçraması).
+
+Ekran görüntüleri (`docs/ekran/`): `kokpit-f16.jpg`, `kokpit-f16-hud.jpg`, `kokpit-f16-geri.jpg`, `kokpit-c172.jpg`, `kokpit-jet.jpg`, `dugmeler-iphone13.jpg`, `dugmeler-iphonese.jpg`, `takla-1.jpg` … `takla-4.jpg`, `gecis-kamerasi.jpg`.
+
+### Bilinen eksikler (uçak)
+- Kokpitler kodla yapıldı: düğme ve anahtarlar dokuda çizili, tek tek basılmaz. Pilotun elleri yok.
+- Sıcak hava dalgalanması (lüle arkası kırılma) yok; ekran dokusu kopyalamak telefonda pahalı.
+- Kokpit gölgesi yalnız kokpitin kendi parçalarından; uçağın dış gövdesi kokpite gölge düşürmez.

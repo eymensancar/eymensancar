@@ -1,6 +1,7 @@
 // Uçak modelleri (düşük poligon, three.js temel şekillerinden).
 // Model ekseni: +X sağ kanat, +Y yukarı, -Z burun. Orijin ağırlık merkezi (FDM ile aynı).
 import * as THREE from '../vendor/three.module.min.js';
+import { vaporSheet } from './effects.js';
 
 const D2R = Math.PI / 180;
 
@@ -145,9 +146,9 @@ export function buildJet() {
     { z: -2.0, w: 1.3, h: 1.45, y: 0.05 }, { z: 0.5, w: 1.5, h: 1.45, y: 0.05 }, { z: 3.0, w: 1.15, h: 1.15, y: 0.05 },
     { z: 5.2, w: 0.75, h: 0.8, y: 0.05 }, { z: 6.0, w: 0.6, h: 0.65, y: 0.05 },
   ], 14);
-  parts.hide = [addMesh(root, fus, m.body)];
+  addMesh(root, fus, m.body); parts.hide = [];
   // kanopi
-  const can = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 10), m.glass); can.scale.set(0.55, 0.55, 2.3); can.position.set(0, 0.62, -2.4); root.add(can); parts.hide.push(can);
+  const can = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 12), m.glass); can.scale.set(0.55, 0.65, 2.3); can.position.set(0, 0.62, -2.4); root.add(can); parts.hide.push(can);
   parts.cowl = addMesh(root, new THREE.BoxGeometry(0.7, 0.1, 2.0), m.body, 0, 0.3, -4.6); parts.cowl.visible = false;
   // hava alığı
   for (const s of [-1, 1]) addMesh(root, new THREE.CylinderGeometry(0.38, 0.42, 1.6, 10).rotateX(Math.PI / 2), m.dark, s * 0.85, 0.25, -0.6);
@@ -183,10 +184,11 @@ export function buildJet() {
   return parts;
 }
 
+// kokpit kamerasında dış modelin gözün çevresindeki parçaları (gövde içi, kanopi, pilot) gizlenir; iç mekânı cockpit.js çizer
 export function setCockpit(p, on) {
+  if (p.inCockpit === on) return;
   for (const o of p.hide) o.visible = !on;
-  if (p.mats && p.mats.glass) p.mats.glass.opacity = on ? 0.12 : 0.42;
-  if (p.cowl) p.cowl.visible = on;
+  if (p.cowl) p.cowl.visible = false;
   p.inCockpit = on;
 }
 
@@ -374,16 +376,17 @@ export function buildF16(envMap = null) {
 
   // --- kanopi ve kokpit ---
   { const g = new THREE.SphereGeometry(1, 28, 14, 0, Math.PI * 2, 0, Math.PI / 2);
-    const can = add(root, g, M.glass, 0, 0.5, -4.45); can.scale.set(0.47, 0.6, 1.75); parts.hide.push(can); can.renderOrder = 2;
-    const fr = new THREE.TorusGeometry(1, 0.035, 6, 24, Math.PI); const f = add(root, fr, M.dark, 0, 0.5, -3.55); f.scale.set(0.45, 0.52, 1); parts.hide.push(f);
-    add(root, new THREE.BoxGeometry(0.62, 0.14, 1.2), M.seat, 0, 0.34, -4.1); // kokpit tabanı
-    const seat = add(root, new THREE.BoxGeometry(0.46, 0.85, 0.22), M.seat, 0, 0.6, -3.72); seat.rotation.x = -0.52; parts.hide.push(seat);
-    const hel = add(root, new THREE.SphereGeometry(0.15, 14, 10), M.helmet, 0, 0.88, -4.0); parts.hide.push(hel);
-    const vis = add(root, new THREE.SphereGeometry(0.152, 14, 8, -0.9, 1.8, 1.0, 0.9), M.visor, 0, 0.88, -4.0); vis.rotation.y = Math.PI; parts.hide.push(vis);
-    const body = add(root, new THREE.CylinderGeometry(0.18, 0.22, 0.5, 10), M.seat, 0, 0.6, -3.92); body.rotation.x = -0.45; parts.hide.push(body);
-    // gösterge paneli ve HUD camı (kokpitten görünür)
-    add(root, new THREE.BoxGeometry(0.62, 0.28, 0.16), M.black, 0, 0.6, -4.95);
-    const hud = add(root, new THREE.PlaneGeometry(0.16, 0.14), new THREE.MeshBasicMaterial({ color: 0x66ff99, transparent: true, opacity: 0.18, depthWrite: false, side: THREE.DoubleSide }), 0, 0.84, -5.02); hud.rotation.x = -0.35;
+    // kabarcık kanopi: merkez (0, 0.5, -4.0), yarıçaplar (0.47, 0.72, 2.0); kokpit içi (cockpit.js) aynı elipsoidi kullanır
+    const can = add(root, g, M.glass, 0, 0.5, -4.0); can.scale.set(0.47, 0.72, 2.0); parts.hide.push(can); can.renderOrder = 2;
+    const fr = new THREE.TorusGeometry(1, 0.035, 6, 24, Math.PI); const f = add(root, fr, M.dark, 0, 0.5, -3.12); f.scale.set(0.42, 0.646, 1); parts.hide.push(f);
+    add(root, new THREE.BoxGeometry(0.62, 0.14, 1.2), M.seat, 0, 0.4, -3.9); // kokpit tabanı
+    const seat = add(root, new THREE.BoxGeometry(0.46, 0.85, 0.22), M.seat, 0, 0.7, -3.22); seat.rotation.x = 0.5; parts.hide.push(seat);
+    const hel = add(root, new THREE.SphereGeometry(0.15, 14, 10), M.helmet, 0, 1.03, -3.5); parts.hide.push(hel);
+    const vis = add(root, new THREE.SphereGeometry(0.152, 14, 8, -0.9, 1.8, 1.0, 0.9), M.visor, 0, 1.03, -3.5); vis.rotation.y = Math.PI; parts.hide.push(vis);
+    const body = add(root, new THREE.CylinderGeometry(0.18, 0.22, 0.5, 10), M.seat, 0, 0.72, -3.42); body.rotation.x = 0.45; parts.hide.push(body);
+    // gösterge paneli ve HUD (dışarıdan görünür; kokpit kamerasında iç mekân çizilir)
+    parts.hide.push(add(root, new THREE.BoxGeometry(0.62, 0.28, 0.16), M.black, 0, 0.69, -4.5));
+    const hud = add(root, new THREE.PlaneGeometry(0.16, 0.14), new THREE.MeshBasicMaterial({ color: 0x66ff99, transparent: true, opacity: 0.18, depthWrite: false, side: THREE.DoubleSide }), 0, 1.0, -4.27); hud.rotation.x = -0.35; parts.hide.push(hud);
   }
   parts.cowl = add(root, new THREE.BoxGeometry(0.6, 0.06, 1.8), M.mid, 0, 0.55, -5.9); parts.cowl.visible = false;
 
@@ -492,6 +495,9 @@ export function buildF16(envMap = null) {
     add(mh, new THREE.BoxGeometry(0.03, 0.7, 0.9), M.light, s * 0.08, -0.32, 0);
     mh.userData.ax = 'z'; mh.userData.up = s * 2.6; parts.gearLegs.push(mh);
   }
+  // yüksek hücum açısında LEX ve kanat kökü üstünde buhar
+  parts.vapor = [];
+  for (const s of [-1, 1]) { const v = vaporSheet(); v.position.set(s * 1.55, 0.2, -1.2); v.scale.set(2.1, 1, 3.6); v.rotation.y = s * 0.28; root.add(v); parts.vapor.push(v); }
   parts.update = (ac, dt) => animateF16(parts, ac, dt);
   parts.t = 0;
   // gölgede kalan iç yüzler için hepsi çift yüzlü değil; levhalar kapalı katı
@@ -538,6 +544,9 @@ function animateF16(p, ac, dt) {
     p.flame.scale.set(1, 1, 0.7 + 0.3 * ab + 0.08 * Math.sin(p.t * 31));
     p.abGlow.material.opacity = ab * (0.45 + 0.15 * fk); p.abGlow.scale.setScalar(2.2 + 1.2 * ab);
   }
+  // kanat üstü buhar: hücum açısı 12°'yi geçince, dinamik basınçla
+  const kv = THREE.MathUtils.clamp(((ac.out.alpha || 0) - 0.2) / 0.22, 0, 1) * THREE.MathUtils.clamp(((ac.out.qbar || 0) - 6000) / 12000, 0, 1) * (ac.onGround ? 0 : 1);
+  for (const v of p.vapor) { v.visible = kv > 0.01; v.material.uniforms.t.value = p.t; v.material.uniforms.k.value = kv; }
   // seyrüsefer lambaları ve çakar (saniyede bir)
   const st = (p.t % 1.4) < 0.06;
   p.strobe.visible = st;
