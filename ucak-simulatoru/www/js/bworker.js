@@ -424,7 +424,7 @@ function build(P, lod, ni, nj) {
         }
         walls(o, b, b.pts, b.n, y0, y1, cx, cy, C, yb);
         if (roofPts) hipRoof(o, roofPts, y1, cx, cy, TILE[(hs >>> 5) % TILE.length], wc, (hs >>> 9) % 100 < 30);
-        else if (b.h >= 6.5 && b.area >= 60 && b.typ !== 2 && b.typ !== 9) parapetRoof(o, b.pts, b.n, y1, cx, cy, wc, rc);
+        else if (b.h >= 9 && b.area >= 150 && b.n <= 12 && b.typ !== 2 && b.typ !== 9) parapetRoof(o, b.pts, b.n, y1, cx, cy, wc, rc);
         else flatRoof(o, b.pts, b.n, y1, cx, cy, rc);
         // çatı kulübesi (merdiven/asansör) ya da sanayi çatısında havalandırma
         if (!roofPts && b.h >= 12 && b.area >= 180 && (hs >>> 14) % 100 < 70) {
@@ -443,7 +443,7 @@ function build(P, lod, ni, nj) {
         else flatRoof(o, pts, n, y1, cx, cy, rc);
         if (b.typ === 1 && b.h >= 6 && b.area > 120) mosques.push({ x: b.cx, y: b.cy, top: b.top, r: Math.sqrt(b.area) / 2.6, mx: b.pts[0], my: b.pts[1], h: b.h });
       } else if (lod === 2) {
-        if (!(b.h >= 15 || b.area >= 600)) continue;
+        if (!(b.h >= 17 || b.area >= 800)) continue;
         const pts = obb(b.pts, b.n);
         walls(o, b, pts, 4, y0, y1, cx, cy, C, yb);
         flatRoof(o, pts, 4, y1, cx, cy, resid && b.h < 22 ? TILE[(hs >>> 5) % TILE.length] : rc);

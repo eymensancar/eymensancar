@@ -374,7 +374,8 @@ for a in APL:
         t = np.linspace(0, 1, 30)
         X = np.concatenate([r['a'][0] + (r['b'][0] - r['a'][0]) * t for r in rp]); Y = np.concatenate([r['a'][1] + (r['b'][1] - r['a'][1]) * t for r in rp])
         a['elev'] = round(float(np.median(dem_xy(X, Y))), 2)
-    a['elev'] = max(a['elev'], 2.0)
+    # ızgaralar 0.5 m adımla saklanır: yükseklik de 0.5 m'ye yuvarlanır ki düzleşen arazi pistle aynı düzlemde olsun
+    a['elev'] = round(max(a['elev'], 2.0) * 2) / 2
 
 def weight(a, X, Y, s):
     """Düzleştirme ağırlığı: kaplamalı alan + pay içinde 1, 450 m'de 0'a iner."""

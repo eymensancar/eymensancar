@@ -253,7 +253,7 @@ export class World {
     dg.putImageData(fd, 0, 0);
     const det = new THREE.CanvasTexture(dc); det.wrapS = det.wrapT = THREE.RepeatWrapping; det.colorSpace = THREE.NoColorSpace;
     this.tmat = terrainMaterial({ ortuTex: this.ortuTex, ortuRect: this.ortuRect, istTex: tex, istRect: this.istRect, detailTex: det });
-    this.terrain = new Terrain(this.heights, this.root, this.tmat, { K: this.opts.terrainK || 2.0, budget: this.opts.terrainBudget || 4 });
+    this.terrain = new Terrain(this.heights, this.root, this.tmat, { K: this.opts.terrainK || 2.0, budget: this.opts.terrainBudget || 4, shadows: this.shadows });
   }
 
   // Her kare: veri akışı, arazi ve bina ayrıntısı, kayan orijin. camLocal: kamera (sahne koordinatı)
@@ -274,7 +274,7 @@ export class World {
     U.uOrigin.value.set(this.O.x, this.O.y);
     U.uOriginMod.value.set(this.O.x % 3611, this.O.y % 3611);
     // sis: yüksekliğe göre azalan üstel sis (atmosfer.js); arazi, sisin %99 örttüğü uzaklıkta kesilir
-    const fd = this.scene.fog.density = 0.00006;
+    const fd = this.scene.fog.density = this.opts.lowTex ? 0.00009 : this.shadows ? 0.00005 : 0.00006;
     this.clouds.update(cx, cy);
     this.terrain.maxDist = Math.min(400000, 4.6 / (fd * Math.exp(-FOG_B * Math.max(0, ch))));
     if (this.shadows) { this._acLocal = ac ? (this._acL || (this._acL = new THREE.Vector3())).set(ac.x - this.O.x, this.acAlt || 0, -(ac.y - this.O.y)) : null; updateShadows(this, camLocal); }

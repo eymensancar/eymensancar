@@ -135,8 +135,10 @@ export class Buildings {
     this.world = world; this.root = root; this.base = base;
     this.packs = list.map((p) => ({ ...p, state: 0, nodes: new Map(), col: new Map() }));
     const L = opt.lod || [1500, 4500, 9000];
-    // ayrıntı uzaklıkları: 1 km tam, 2 km sade, 4 km kutu, 8 km yalnız büyükler
-    this.D = [L[0], L[1], L[2] * 1.45, Math.min(L[2] * 3.2, 34000)];
+    // ayrıntı uzaklıkları: 1 km tam, 2 km sade, 4 km kutu, 8 km yalnız büyükler (kaliteye göre)
+    const q = opt.quality || (L[0] >= 2000 ? 'yuksek' : L[0] <= 1000 ? 'dusuk' : 'orta');
+    this.D = q === 'yuksek' ? [L[0], L[1], L[2] * 1.45, Math.min(L[2] * 2.6, 34000)] : q === 'orta' ? [L[0], L[1], L[2] * 1.3, L[2] * 2.6] : [L[0] * 0.8, L[1] * 0.8, L[2] * 0.85, L[2] * 1.35];
+    this.quality = q;
     this.treeDist = opt.treeDist || 1800;
     this.mat = buildingMaterial();
     this.treeMats = new THREE.MeshLambertMaterial({ vertexColors: true });
@@ -180,6 +182,7 @@ export class Buildings {
         g.setIndex(new THREE.BufferAttribute(m.index, 1));
         g.computeBoundingSphere();
         const mesh = new THREE.Mesh(g, this.mat); mesh.matrixAutoUpdate = false;
+        if (this.world.shadows) { mesh.receiveShadow = true; mesh.castShadow = m.lod === 0; }
         mesh.position.set(m.cx, 0, -m.cy); mesh.updateMatrix(); mesh.visible = false;
         this.root.add(mesh);
         nd.mesh = mesh; nd.tris = m.index.length / 3; nd.mosques = m.mosques;

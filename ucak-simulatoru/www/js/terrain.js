@@ -113,6 +113,7 @@ export class Terrain {
     this.maxDepth = 10; this.maxDepthOut = 8;
     this.maxDist = 400000; // sisin tamamen örttüğü uzaklıktan ötesi çizilmez
     this.budget = opt.budget || 4;
+    this.shadows = !!opt.shadows;
     this.frame = 0; this.count = 0; this.drawn = 0;
     this.queue = [];
     this.all = new Set();
@@ -181,7 +182,7 @@ export class Terrain {
     g.boundingBox = new THREE.Box3(new THREE.Vector3(-n.size / 2, hmin - skirt, -n.size / 2), new THREE.Vector3(n.size / 2, hmax, n.size / 2));
     if (n.mesh) { n.mesh.geometry.dispose(); n.mesh.geometry = g; }
     else {
-      const m = new THREE.Mesh(g, this.mat); m.matrixAutoUpdate = false;
+      const m = new THREE.Mesh(g, this.mat); m.matrixAutoUpdate = false; m.receiveShadow = !!this.shadows;
       m.position.set(cx, 0, -cy); m.updateMatrix(); m.visible = false;
       this.root.add(m); n.mesh = m; this.all.add(n);
     }
@@ -300,6 +301,9 @@ export function terrainMaterial(opt) {
       farm *= 0.9 + 0.1 * edge;
       float plain = (1.0 - smoothstep(0.03, 0.10, slope)) * (1.0 - smoothstep(1700.0, 2100.0, h)) * smoothstep(0.35, 0.6, vnoise(L / 9000.0 + 3.0));
       vec3 col = mix(base, farm, clamp(max(oc.b * 0.9, plain * 0.75), 0.0, 1.0));
+      // orta ölçekli renk oynaması (çayır / toprak / kuru ot lekeleri)
+      float mv = vnoise(L / 420.0) * 0.65 + vnoise(L / 130.0) * 0.35;
+      col *= mix(vec3(0.90, 1.02, 0.86), vec3(1.07, 0.99, 0.90), mv);
       vec3 forest = mix(vec3(0.16, 0.26, 0.13), vec3(0.22, 0.30, 0.16), nz) * mix(1.0, 0.8, north);
       col = mix(col, forest, oc.r * 0.92);
       // şehir dokusu (binaların çizilmediği uzaklıkta şehir): eğri sokak ızgarası, parsellerde çatı renkleri, yeşil adacıklar

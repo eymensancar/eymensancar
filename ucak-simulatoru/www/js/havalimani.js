@@ -368,7 +368,18 @@ export class Airports {
         try { this._build(a, this.det.get(a.id)); } catch (e) { console.error('Havalimanı ' + a.id, e); this.built.set(a.id, { grp: null }); }
       }
     }
-    for (const [, b] of this.built) if (b.tick) b.tick(cam);
+    for (const [id, b] of this.built) {
+      if (b.tick) b.tick(cam);
+      // ayrıntılar (park etmiş uçaklar, araçlar, köprüler, çizgiler, ışıklar) yalnız yakında: uzaktan üçgen ve çizim tasarrufu
+      if (b.grp && this.frame % 10 === 0) {
+        const d = Math.hypot(b.ctx.d.x - cam.x, b.ctx.d.y - cam.y, Math.max(0, cam.h - b.ctx.d.elev) * 0.5);
+        const near = d < 7000, mid = d < 14000;
+        for (const c of b.grp.children) {
+          if (/^(ucaklar|ucak-kuyruk|apron-araclari|yolcu-kopruleri|cizgi|tulum|papi)$/.test(c.name)) c.visible = near;
+          else if (/^(isiklar|donanim|hangar|kule)/.test(c.name)) c.visible = mid;
+        }
+      }
+    }
     this.pending = this.list.some((a) => !this.built.has(a.id) && this.det.has(a.id) && Math.hypot(a.x - cam.x, a.y - cam.y) < 12000) ? 1 : 0;
   }
   _drop(id) {
@@ -504,7 +515,7 @@ export class Airports {
       for (let k = 0; k < 10; k++) for (let j = 0; j < prof.length - 1; j++) { const a2 = s0 + k * prof.length + j, b2 = a2 + prof.length; sock.quad(a2, a2 + 1, b2 + 1, b2); }
     }
     const meshes = [];
-    const add = (gb, mat, ro, name) => { if (!gb.count) return null; const m = new THREE.Mesh(gb.geometry(), mat); m.renderOrder = ro; m.name = name; m.matrixAutoUpdate = false; grp.add(m); meshes.push(m); return m; };
+    const add = (gb, mat, ro, name) => { if (!gb.count) return null; const m = new THREE.Mesh(gb.geometry(), mat); m.renderOrder = ro; m.name = name; m.matrixAutoUpdate = false; m.receiveShadow = !!W.shadows; grp.add(m); meshes.push(m); return m; };
     add(grass, M.grassStrip, 1, 'cim-pist');
     add(ap, M.apron, 2, 'apron');
     add(tx, M.taxi, 3, 'taksi');
@@ -525,9 +536,14 @@ export class Airports {
     this.root.add(grp);
     if (mod) {
       const load = this.modules[mod] || (this.modules[mod] = import('./havalimanlari/' + mod + '.js'));
-      load.then((m) => { if (this.built.get(a.id) === b) { m.build(ctx); b.tick = ctx.tick; } }).catch((e) => console.error('Havalimanı modülü ' + mod, e));
+      load.then((m) => { if (this.built.get(a.id) === b) { m.build(ctx); b.tick = ctx.tick; grp.updateMatrixWorld(true); if (W.shadows) this._shadowFlags(grp); } }).catch((e) => console.error('Havalimanı modülü ' + mod, e));
     } else standsAndAircraft(ctx, { occ: 0.35 });
     grp.updateMatrixWorld(true);
+    if (W.shadows) this._shadowFlags(grp);
+  }
+  // gölge: yapılar ve uçaklar gölge düşürür, yüzeyler alır (yalnız yüksek kalite)
+  _shadowFlags(grp) {
+    grp.traverse((o) => { if (!o.isMesh) return; const flat = o.renderOrder > 0; o.receiveShadow = true; o.castShadow = !flat; });
   }
   stats() { return { built: this.built.size }; }
   // çarpışma: terminaller ve hangarlar (mutlak x doğu, y kuzey, h yükseklik)
