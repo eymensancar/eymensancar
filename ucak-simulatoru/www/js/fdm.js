@@ -301,7 +301,12 @@ export class Aircraft {
     st.u = st.u == null ? uRaw : st.u + (uRaw - st.u) * Math.min(1, dt / 0.3);
     const u = st.u;
     const nHi = gearDn ? F.nMaxGear : F.nMax;
-    const nCmd = u >= 0 ? n0 + u * (nHi - n0) : n0 + u * (n0 - F.nMin);
+    let nCmd = u >= 0 ? n0 + u * (nHi - n0) : n0 + u * (n0 - F.nMin);
+    // iniş yardımı: takım açık, yere 15 m'den az ve hızlı alçalıyorsa alçalma ~1,5 m/sn'ye indirilir
+    if (F.flare && gearDn && o.agl > 0 && o.agl < 20 && this.vel[2] > 2 && -m[6] < 0.2) {
+      const vz = this.vel[2], a = (vz * vz - 2.25) / (2 * Math.max(o.agl - 1.5, 0.5));
+      nCmd = Math.max(nCmd, n0 + clamp(a / G0 * 1.3, 0, 2.5) * clamp((0.2 + m[6]) / 0.08, 0, 1)); // burun 11°'yi geçince yardım azalır (kuyruk sürtmesin)
+    }
     // istenen g için gereken hücum açısı (kaldırma eğrisinin tersi) + tümlev düzeltmesi
     const CLreq = nCmd * P.mass * G0 / (qbar * P.S);
     const dCLf = P.flapCL * this.surf.flap;
@@ -493,7 +498,8 @@ export class Aircraft {
       if (c.g.kind === 'building') { this.crash('Binaya çarptınız'); return; }
       const d = Math.min(c.depth, 0.6);
       const vz = c.vp[2]; // + aşağı
-      if (vz > 3.6 && !wst.contactPrev) { this.crash('Çok sert iniş (' + Math.round(vz * 196.85) + ' ft/dk)'); return; }
+      if (vz > (P.easy ? 9 : 3.6) && !wst.contactPrev) { this.crash('Çok sert iniş (' + Math.round(vz * 196.85) + ' ft/dk)'); return; }
+      if (P.easy && vz > 3 && !wst.contactPrev) this.hardLanding = { vz, t: 3 };
       let Fn = gr.k * d + gr.c * vz;
       if (d > 0.3) Fn += gr.k * 8 * (d - 0.3);
       Fn = Math.max(0, Fn);
@@ -532,7 +538,8 @@ export class Aircraft {
       if (c.g.kind === 'water' && (vn > 1 || vh > 3)) { this.crash('Denize düştünüz'); return; }
       if (c.g.kind === 'building') { this.crash('Binaya çarptınız'); return; }
       if (h.prop && this.rpm > 300) { this.crash('Pervane yere vurdu'); return; }
-      if (vn > (/kuyruk/.test(h.name) ? 7 : 2.5) || (vh > 12 && !/kuyruk/.test(h.name))) { this.crash((h.name === 'gövde' ? 'Gövde' : h.name[0].toUpperCase() + h.name.slice(1)) + ' yere çarptı'); return; }
+      const belly = P.easy && /^gövde/.test(h.name);
+      if (vn > (/kuyruk/.test(h.name) ? (P.easy ? 10 : 7) : P.easy ? 5 : 2.5) || (vh > 12 && !/kuyruk/.test(h.name) && !belly)) { this.crash((h.name === 'gövde' ? 'Gövde' : h.name[0].toUpperCase() + h.name.slice(1)) + ' yere çarptı'); return; }
       const Fn = Math.max(0, 60000 * Math.min(c.depth, 0.5) + 8000 * vn);
       const Fh = 0.5 * Fn;
       const hx = vh > 0.05 ? -c.vp[0] / vh : 0, hy = vh > 0.05 ? -c.vp[1] / vh : 0;
@@ -608,7 +615,9 @@ export const EASY_FBW = {
   c172: { nMax: 3.5, nMin: -1.5, nMaxGear: 3.5, aMax: 12 * D2R, aMaxGear: 12 * D2R, aMin: -8 * D2R, pMax: 70 * D2R, betaMax: 6 * D2R, yawAug: 0.15, couple: 1, turnComp: true },
   jet: { nMax: 5, nMin: -2.5, nMaxGear: 3, aMax: 12 * D2R, aMaxGear: 11 * D2R, aMin: -8 * D2R, pMax: 160 * D2R, betaMax: 8 * D2R, yawAug: 0.2, couple: 0.6, turnComp: true },
 };
-export function easyPlane(P) { return P.fbw || !EASY_FBW[P.id] ? P : Object.assign({}, P, { fbw: EASY_FBW[P.id], easy: true }); }
+// Kolay kumandada iniş de bağışlayıcı: yere değerken alçalma 9 m/sn'ye (≈1800 ft/dk) kadar kaza değil (sert iniş uyarısı),
+// takımsız gövde üstü inişte kayar, takım açıkken yere 15 m kala uçuş bilgisayarı burnu kendiliğinden kaldırır (flare).
+export function easyPlane(P) { return Object.assign({}, P, { fbw: Object.assign({ flare: true }, P.fbw || EASY_FBW[P.id]), easy: true }); }
 
 // Düz uçuş dengesi (trim): verilen hız, irtifa ve flapta yatay uçuş için α, elevatör trimi ve gaz.
 // opts.noThrust: gaz yerine uçuş yolu açısını çözer (gücü kapalı süzülme). Döndürür {alpha, trim, throttle, gamma, ok}

@@ -103,6 +103,20 @@ async function view(p, name, [lat, lon, alt, hdg, kt], orbit = [0, 0, 1], cam = 
 (async () => {
   const b = await pw.chromium.launch({ args: ARGS });
   if (want('kalkis')) { const k = await page(b, { viewport: { width: 640, height: 360 }, deviceScaleFactor: 1 }, { quality: 'dusuk', plane: 'c172' }); await takeoff(k); await k.close(); }
+  if (want('inis')) {
+    // kolay kumanda: F-16 son yaklaşmadan eller serbest iner, patlamamalı (iniş yardımı burnu kaldırır)
+    const k = await page(b, { viewport: { width: 640, height: 360 }, deviceScaleFactor: 1 }, { quality: 'dusuk' });
+    await begin(k, 'yaklasma', 'f16'); await settle(k, 40000);
+    // tarayıcıda benzetim yavaş koşar: süzülüş yolu üzerinde yere 60 m kalan noktaya atla
+    await k.evaluate(() => { const a = __ucak.ac, vh = Math.hypot(a.vel[0], a.vel[1]), dh = a.out.agl - 60, d = dh * vh / a.vel[2]; a.pos[0] += a.vel[0] / vh * d; a.pos[1] += a.vel[1] / vh * d; a.pos[2] += dh; });
+    await settle(k, 40000);
+    let r = null;
+    for (let i = 0; i < 90; i++) { await sleep(2000); r = await k.evaluate(() => ({ g: __ucak.ac.onGround, v: Math.round(__ucak.ac.out.V / 0.514444), agl: Math.round(__ucak.ac.out.agl), c: __ucak.ac.crashed, h: __ucak.ac.hardLanding ? Math.round(__ucak.ac.hardLanding.vz * 196.85) : 0 })); if (r.c || r.g) break; }
+    await sleep(4000); r = Object.assign(r, await k.evaluate(() => ({ c: __ucak.ac.crashed, end: Math.round(__ucak.ac.out.V / 0.514444) })));
+    console.log('  F-16 eller serbest iniş:', JSON.stringify(r));
+    if (r.c || !r.g) errors.push('kolay kumandada iniş başarısız: ' + (r.c || 'yere inmedi'));
+    await k.close();
+  }
   const p = await page(b, { viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 }, { quality: 'yuksek' });
   if (want('menu')) await shot(p, 'menu.jpg');
   if (want('akrobasi')) await aerobatics(p);
@@ -131,11 +145,10 @@ async function view(p, name, [lat, lon, alt, hdg, kt], orbit = [0, 0, 1], cam = 
     console.log('  iPhone (orta kalite) Boğaz:', JSON.stringify(await ip.evaluate(() => __ucak.stats())));
     await ip.evaluate(() => __ucak.freeze(false));
     // dokunmatik levye: sağ alt, yukarı-sağa sürükle
-    const box = await ip.locator('#stick').boundingBox();
+    const box = await ip.locator('#dpad').boundingBox();
     const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
-    await ip.touchscreen.tap(cx, cy);
     // kolay kumanda: analog sağda, gaz solda; flap/trim düğmeleri yok, takım ve fren var
-    const lay = await ip.evaluate(() => { const st = document.querySelector('#stick').getBoundingClientRect(), th = document.querySelector('#thr').getBoundingClientRect();
+    const lay = await ip.evaluate(() => { const st = document.querySelector('#dpad').getBoundingClientRect(), th = document.querySelector('#thr').getBoundingClientRect();
       return { stickRight: st.left > innerWidth / 2, thrLeft: th.right < innerWidth / 2, hidden: ['#bFlapD', '#bFlapU', '#bTrimU', '#bTrimD'].every((s) => getComputedStyle(document.querySelector(s)).display === 'none'), shown: ['#bGear', '#bBrake'].every((s) => getComputedStyle(document.querySelector(s)).display !== 'none') }; });
     console.log('  kolay kumanda yerleşimi:', JSON.stringify(lay));
     if (!lay.stickRight || !lay.thrLeft || !lay.hidden || !lay.shown) errors.push('kolay kumanda yerleşimi yanlış');
@@ -143,12 +156,12 @@ async function view(p, name, [lat, lon, alt, hdg, kt], orbit = [0, 0, 1], cam = 
     await ip.evaluate(() => { const ac = __ucak.ac; __ucak.q0 = ac.out.alpha; });
     const cdp = await ip.context().newCDPSession(ip);
     const tp = (type, x, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x, y, id: 1 }] });
-    await tp('touchStart', cx, cy); await tp('touchMove', cx, cy - box.height * 0.3);
+    await tp('touchStart', cx, cy - box.height * 0.36);
     let qmax = -9; for (let i = 0; i < 8; i++) { await sleep(250); qmax = Math.max(qmax, await ip.evaluate(() => __ucak.ac.w[1])); }
     await tp('touchEnd', 0, 0);
-    console.log('  analog yukarı: en büyük yunuslama hızı', (qmax * 57.3).toFixed(1), '°/sn');
-    if (!(qmax > 0.02)) errors.push('analog yukarı burnu kaldırmadı');
-    const ok = await ip.evaluate(() => ['#stick', '#thr', '#bSmoke', '#mini', '#bCam', '#bGear', '#bBrake'].map((s) => { const r = document.querySelector(s).getBoundingClientRect(); return [s, Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height), r.right <= innerWidth && r.bottom <= innerHeight && r.x >= 0 && r.y >= 0]; }));
+    console.log('  yukarı tuşu: en büyük yunuslama hızı', (qmax * 57.3).toFixed(1), '°/sn');
+    if (!(qmax > 0.02)) errors.push('yukarı tuşu burnu kaldırmadı');
+    const ok = await ip.evaluate(() => ['#dpad', '#thr', '#bSmoke', '#mini', '#bCam', '#bGear', '#bBrake'].map((s) => { const r = document.querySelector(s).getBoundingClientRect(); return [s, Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height), r.right <= innerWidth && r.bottom <= innerHeight && r.x >= 0 && r.y >= 0]; }));
     console.log('  dokunmatik düğmeler:', JSON.stringify(ok));
     if (ok.some((r) => !r[5])) errors.push('dokunmatik düğme ekran dışında');
     await ip.tap('#bSmoke'); await sleep(2500);

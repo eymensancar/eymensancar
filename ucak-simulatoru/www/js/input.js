@@ -95,6 +95,35 @@ export class Input {
   // ---------- dokunmatik ----------
   bindTouch(el) {
     const stickEl = el.querySelector('#stick'), knob = el.querySelector('#knob');
+    // yön tuşları: 4 ana, 4 ara yön. Parmak kaydırılarak tuştan tuşa geçilir; basılı tuttukça komut %35'ten %100'e çıkar (1,2 sn)
+    const pad = el.querySelector('#dpad');
+    if (pad) {
+      const ARW = '<svg viewBox="0 0 24 24"><path d="M12 4 21 16H3z"/></svg>';
+      const dirs = [];
+      for (let k = 0; k < 8; k++) {
+        const a = k * Math.PI / 4, b = document.createElement('b'), r = k % 2 ? 58 : 60;
+        b.className = k % 2 ? 'd' : '';
+        b.style.left = `calc(50% + ${Math.round(Math.sin(a) * r)}px)`; b.style.top = `calc(50% - ${Math.round(Math.cos(a) * r)}px)`;
+        b.innerHTML = ARW; b.firstChild.style.transform = `rotate(${k * 45}deg)`;
+        pad.appendChild(b); dirs.push(b);
+      }
+      let pid = null, cur = -1, t0 = 0;
+      const setDir = (e) => {
+        const r = pad.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+        const k = Math.hypot(x, y) < 18 ? -1 : (Math.round(Math.atan2(x, -y) / (Math.PI / 4)) + 8) % 8;
+        if (k !== cur) { if (cur >= 0) dirs[cur].classList.remove('on'); if (k >= 0) dirs[k].classList.add('on'); if (cur < 0 || k < 0) t0 = performance.now(); cur = k; }
+      };
+      pad.addEventListener('pointerdown', (e) => { pid = e.pointerId; try { pad.setPointerCapture(e.pointerId); } catch (_) { /* yapay olay */ } setDir(e); e.preventDefault(); });
+      pad.addEventListener('pointermove', (e) => { if (e.pointerId === pid) setDir(e); });
+      const end = (e) => { if (e.pointerId !== pid) return; pid = null; if (cur >= 0) dirs[cur].classList.remove('on'); cur = -1; this.stick = null; };
+      pad.addEventListener('pointerup', end); pad.addEventListener('pointercancel', end);
+      this._padFrame = () => {
+        if (cur < 0) return;
+        const m = 0.35 + 0.65 * Math.min(1, (performance.now() - t0) / 1200), a = cur * Math.PI / 4;
+        const sx = Math.round(Math.sin(a) * 100) / 100, sy = -Math.round(Math.cos(a) * 100) / 100;
+        this.stick = { x: Math.sign(sx) * m, y: Math.sign(sy) * m };
+      };
+    }
     const thrEl = el.querySelector('#thr'), thrFill = el.querySelector('#thrFill'), thrKnob = el.querySelector('#thrKnob');
     let stickId = null, thrId = null;
     const R = () => stickEl.getBoundingClientRect();
@@ -130,5 +159,5 @@ export class Input {
     const tap = (id, ev) => { const b = el.querySelector(id); if (b) b.addEventListener('pointerdown', (e) => { e.preventDefault(); this.emit(ev); }); };
     tap('#bFlapD', 'flapDown'); tap('#bFlapU', 'flapUp'); tap('#bCam', 'camera'); tap('#bPause', 'pause'); tap('#bGear', 'gear'); tap('#bReset', 'reset'); tap('#bSmoke', 'smoke'); tap('#bMap', 'map');
   }
-  touchFrame() { if (this._thrUI) this._thrUI(); if (this._trimHold) this.emit(this._trimHold); }
+  touchFrame() { if (this._padFrame) this._padFrame(); if (this._thrUI) this._thrUI(); if (this._trimHold) this.emit(this._trimHold); }
 }

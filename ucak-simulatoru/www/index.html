@@ -110,6 +110,14 @@ body.touch #hud:not(.hide) ~ #touch { display: block; }
 #stick::before, #stick::after { content: ''; position: absolute; background: rgba(255,255,255,.18); }
 #stick::before { left: 50%; top: 12px; bottom: 12px; width: 1px; }
 #stick::after { top: 50%; left: 12px; right: 12px; height: 1px; }
+#dpad { right: calc(14px + var(--sar)); bottom: calc(14px + var(--sab)); width: 168px; height: 168px; touch-action: none; display: none; }
+body.dpad #dpad { display: block; }
+body.dpad #stick { display: none !important; }
+#dpad b { position: absolute; width: 52px; height: 52px; margin: -26px; border-radius: 14px; background: rgba(12,18,26,.5); border: 2px solid rgba(255,255,255,.28); display: flex; align-items: center; justify-content: center; pointer-events: none; }
+#dpad b.d { width: 44px; height: 44px; margin: -22px; border-radius: 50%; }
+#dpad b svg { width: 22px; height: 22px; fill: #fff; opacity: .9; }
+#dpad b.on { background: rgba(111,209,138,.6); border-color: #fff; }
+#dpad i { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.2); }
 #knob { position: absolute; left: 50%; top: 50%; width: 62px; height: 62px; margin: -31px; border-radius: 50%; background: rgba(255,255,255,.75); box-shadow: 0 2px 8px rgba(0,0,0,.4); }
 #thr { left: calc(14px + var(--sal)); bottom: calc(18px + var(--sab)); width: 58px; height: 190px; border-radius: 14px; background: rgba(12,18,26,.45); border: 2px solid rgba(255,255,255,.25); touch-action: none; overflow: hidden; }
 #thrFill { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(111,209,138,.35); }
@@ -204,6 +212,9 @@ body.portrait #rot { display: flex; }
         <button class="opt" data-set="invert" data-val="false">Uçak kuralı<small>Yukarı tuşu burnu indirir</small></button>
         <button class="opt" data-set="invert" data-val="true">Ters<small>Yukarı tuşu burnu kaldırır</small></button>
       </div><div class="opts touchonly" style="margin-top:8px">
+        <button class="opt" data-set="pad" data-val="tus">Yön tuşları<small>4 ana, 4 ara yön; basılı tuttukça dönüş artar</small></button>
+        <button class="opt" data-set="pad" data-val="analog">Analog</button>
+      </div><div class="opts touchonly" style="margin-top:8px">
         <button class="opt" data-set="tilt" data-val="false">Sanal levye</button>
         <button class="opt" data-set="tilt" data-val="true">Telefonu eğerek<small>Deneysel</small></button>
       </div></div>
@@ -290,6 +301,7 @@ body.portrait #rot { display: flex; }
 <div id="touch">
   <div id="thr"><span>GAZ</span><div id="thrFill"></div><div id="thrKnob"></div></div>
   <div id="stick"><div id="knob"></div></div>
+  <div id="dpad"><i></i></div>
   <button class="tb" id="bFlapD">FLAP+</button>
   <button class="tb" id="bFlapU">FLAP-</button>
   <button class="tb" id="bBrake">FREN</button>

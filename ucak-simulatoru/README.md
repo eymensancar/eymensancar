@@ -224,3 +224,13 @@ Eymen: "analog solda, gaz sağda; trim, flap olmasın; yukarıysa yukarı, ne ka
 
 - Analog yine sağda, gaz solda. TAKIM ve FREN düğmeleri geri geldi (elle); kolay kumandada yalnız flap ve trim kendiliğinden.
 - **Sarsıntı (hata):** analog bırakılınca uçuş bilgisayarı istenen g'ye bir anda atlıyor, aşıp yukarı-aşağı sallanıyordu (F-16 350 kt: −2,2 g'den +2,1 g'ye taşma, 200 kt'ta iki salınım). Levye komutu artık 0,3 sn'lik süzgeçten geçiyor (`_fbw`, `st.u`); bırakınca g tek yönde, taşmadan 1'e iner. Fizik testlerinin hepsi geçti.
+
+### 23 Kasım: yön tuşları ve bağışlayıcı iniş
+
+- **Yön tuşları** (varsayılan; Ayarlar'da "Analog" seçilebilir): sağ altta 4 ana, 4 ara yön. Parmak kaydırılarak tuştan tuşa geçilir; basılı tuttukça komut %35'ten %100'e çıkar (1,2 sn). `input.js` → `#dpad`.
+- **İnişte her şeyin patlaması:** sınır 3,6 m/sn (700 ft/dk) alçalmaydı; 250 kt'ta 3°'lik süzülüş bile 6,7 m/sn olduğundan her iniş kazaydı. Kolay kumandada (`easyPlane`, F-16 dahil):
+  - 3–9 m/sn arası "Sert iniş, uçak sağlam" uyarısı, kaza yalnız 9 m/sn (≈1800 ft/dk) üstü.
+  - İniş yardımı (`fbw.flare`): takım açık, yere 20 m'den az kala alçalma ~1,5 m/sn'ye indirilir; burun 11°'yi geçince yardım azalır.
+  - Takımsız gövde üstü iniş kayar; kuyruk sürtmesi 10 m/sn'ye kadar kaza değil.
+  - İniş rehberi (300 m altı, alçalırken): takım kapalıysa uyarı, çok hızlıysa önerilen hız (Cessna 60, L-39 120, F-16 155 kt).
+- Benzetimde eller serbest: F-16 250/155/200 kt, L-39 140/180 kt, Cessna 90 kt inişleri patlamadan; tarayıcıda F-16 son yaklaşmadan eller serbest 150 kt ile indi (`tarayici-test.cjs inis`).

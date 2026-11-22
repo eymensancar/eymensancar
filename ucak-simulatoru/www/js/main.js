@@ -15,7 +15,7 @@ const params = new URLSearchParams(location.search);
 // ---------- ayarlar ----------
 const SKEY = 'istanbul-ucusu-v1';
 const saved = (() => { try { return JSON.parse(localStorage.getItem(SKEY)) || {}; } catch (e) { return {}; } })();
-const settings = Object.assign({ plane: 'f16', start: 'pist', wind: 'yok', quality: isTouch ? 'orta' : 'yuksek', autoRudder: true, level: true, tilt: false, invert: false, smoke: false, easy: true }, saved);
+const settings = Object.assign({ plane: 'f16', start: 'pist', wind: 'yok', quality: isTouch ? 'orta' : 'yuksek', autoRudder: true, level: true, tilt: false, invert: false, smoke: false, easy: true, pad: 'tus' }, saved);
 if (!saved.v2) { settings.plane = 'f16'; settings.v2 = true; } // yeni sürümde vurgulanan uçak bir kez seçili gelir
 const saveSettings = () => { try { localStorage.setItem(SKEY, JSON.stringify(settings)); } catch (e) { /* özel pencere */ } };
 saveSettings();
@@ -91,7 +91,7 @@ function bindMenu() {
         if (name === 'quality') location.reload(); };
     });
   };
-  ['plane', 'start', 'wind', 'quality', 'autoRudder', 'level', 'tilt', 'invert', 'easy'].forEach(sel);
+  ['plane', 'start', 'wind', 'quality', 'autoRudder', 'level', 'tilt', 'invert', 'easy', 'pad'].forEach(sel);
   $('#bStart').onclick = async () => {
     if (settings.tilt && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
       try { await DeviceOrientationEvent.requestPermission(); } catch (e) { /* izin yok */ }
@@ -128,6 +128,7 @@ async function startFlight() {
   if (model) scene.remove(model.root);
   ac = new Aircraft(settings.easy ? easyPlane(PLANES[settings.plane]) : PLANES[settings.plane]);
   document.body.classList.toggle('easy', !!settings.easy);
+  document.body.classList.toggle('dpad', settings.pad === 'tus');
   model = settings.plane === 'jet' ? buildJet() : settings.plane === 'f16' ? buildF16(world.envMap()) : buildC172();
   scene.add(model.root);
   $('#gearRow').style.display = $('#vGear').style.display = ac.P.retract ? '' : 'none';
@@ -395,7 +396,15 @@ function drawHUD(dt) {
     let m = '';
     if (o.V > P.Vne * 0.95 && airborne) m = 'AZAMİ HIZ';
     else if (ac.nz > P.nMax) m = 'YÜK SINIRI AŞILDI';
-    else if (STARTS[settings.start].rw && !STARTS[settings.start].approach && ac.onGround && ac.ctl.throttle < 0.05 && simTime < 8) m = isTouch && settings.easy ? 'Gazı soldan sonuna kadar açın, hız artınca analogu yukarı itin' : P.id === 'f16' ? 'Tam gaz verin (ard yakıcı), 150 kt civarında levyeyi çekin' : 'Gazı açın (Shift / +), 55 kt civarında levyeyi çekin';
+    else if (ac.hardLanding && ac.hardLanding.t > 0) { ac.hardLanding.t -= dt; m = 'Sert iniş (' + Math.round(ac.hardLanding.vz * 196.85) + ' ft/dk), uçak sağlam'; }
+    else if (settings.easy && airborne && (o.agl || 1e9) < 300 && -ac.vel[2] < -1) {
+      // iniş rehberi: önerilen hız ve takım
+      const land = LAND_KT[P.id] || 120, kt = o.V / KT;
+      if (P.retract && ac.ctl.gearDown === false) m = 'İnişe geçiyorsan TAKIM\'ı aç';
+      else if (kt > land * 1.35) m = 'İniş için yavaşla: ' + land + ' kt civarı, gazı azalt';
+      else if (o.agl < 60) m = 'Yere yaklaşırken burnu hafifçe kaldır, alçalma 500 ft/dk altında kalsın';
+    }
+    else if (STARTS[settings.start].rw && !STARTS[settings.start].approach && ac.onGround && ac.ctl.throttle < 0.05 && simTime < 8) m = isTouch && settings.easy ? 'Gazı soldan sonuna kadar açın, hız artınca yukarı tuşuna basın' : P.id === 'f16' ? 'Tam gaz verin (ard yakıcı), 150 kt civarında levyeyi çekin' : 'Gazı açın (Shift / +), 55 kt civarında levyeyi çekin';
     setT(hud.msg, m);
     drawMini(e.psi);
     if (mapOpen) drawBigMap();
@@ -496,6 +505,7 @@ function puff(p) {
 // ---------- kolay kumanda: flap ve trim kendiliğinden ----------
 // flap hıza göre (yavaşta açık), trim sıfır (uçuş bilgisayarı uçuş yolunu kendisi tutar). Takım ve fren elle.
 const EASY_REF = { c172: 55, jet: 110, f16: 140 }; // kt, yaklaşma hızının altı
+const LAND_KT = { c172: 60, jet: 120, f16: 155 }; // önerilen iniş hızı
 function autoSystems(ac) {
   const P = ac.P, n = P.flapDetents.length - 1, v = ac.out.V / KT / (EASY_REF[P.id] || 100);
   if (ac.onGround) flapIdx = Math.min(1, n);
