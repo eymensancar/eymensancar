@@ -54,6 +54,13 @@
  *     tezgâhta hep 3 müşteri, boşalan yere 3–5 sn'de yenisi, günün ilk üçü 0., 2., 5. saniyede; sabır ~50 sn.
  *   - P8: hazır tepsi müşteri gelir gelmez verilirse +1 bahşiş ("Hazırdı!").
  *   - P9: yıldız = mutlu teslim oranı (yildiz()).
+ *
+ * 11. tur (Eymen, 21 Kasım gece; docs/DENGE.md → "11. tur"):
+ *   - Müşteri eğrisi (musteriEgri, EGRI): ilk günler aynı anda çoğunlukla 1, en çok 2 müşteri; 3. müşteri 4. günden seyrek;
+ *     14. günden sonra tezgâh 10. turdaki gibi dolar.
+ *   - "İşi kısaltan yükseltme yok" kuralı Eymen'in isteğiyle kalktı: hızlı doğrama (dogra: 10 → 8 → 6 dokunuş, 3. düzey
+ *     otomatik doğrama), hızlı fritöz (kizart: 15 → 12 → 9 sn), malzeme otomatikleri (otoAlt, otoKofte, otoPeynir, otoTursu,
+ *     otoUst: o katman dokunmadan burgere konur; otoSiradaki sıra kuralını uygular). Pahalı; fiyatlar bot ile.
  */
 (function (root) {
   'use strict';
@@ -146,10 +153,20 @@
     // 10. tur (malzeme bedava, saatli gün): üst düzeyler pahalandı (docs/DENGE.md "10. tur")
     pat:  { max: 4, cost: basamak([350, 750, 1600, 3400]) },   // müşteri sabrı +%10
     tip:  { max: 4, cost: basamak([400, 900, 1900, 4000]) },   // bahşiş +%25
-    slot: { max: 2, cost: basamak([250, 1800]) }               // 6. tur: resimdeki 2 kilitli ızgara (3. ve 4.)
+    slot: { max: 2, cost: basamak([250, 1800]) },              // 6. tur: resimdeki 2 kilitli ızgara (3. ve 4.)
+    // 11. tur (Eymen, 21 Kasım gece): işi kısaltan geliştirmeler. "Pahalı yap, önemli bir geliştirme o."
+    dogra:  { max: 3, cost: basamak([600, 2500, 15000]) },     // doğrama: 10 → 8 → 6 dokunuş, 3. düzey otomatik doğrama
+    kizart: { max: 2, cost: basamak([1200, 6000]) },           // kızartma: 15 → 12 → 9 sn
+    otoTursu:  { max: 1, cost: basamak([8000]) },              // malzeme otomatikleri: o malzeme dokunmadan burgere konur
+    otoPeynir: { max: 1, cost: basamak([12000]) },
+    otoAlt:    { max: 1, cost: basamak([18000]) },
+    otoKofte:  { max: 1, cost: basamak([26000]) },
+    otoUst:    { max: 1, cost: basamak([40000]) }
   };
-  // dükkânda satılanlar (9. tur: cook çıktı)
-  var SATILIK = ['slot', 'pat', 'tip'];
+  // dükkânda satılanlar (9. tur: cook çıktı; 11. tur: patates ve malzeme otomatikleri)
+  var SATILIK = ['slot', 'pat', 'tip', 'dogra', 'kizart', 'otoTursu', 'otoPeynir', 'otoAlt', 'otoKofte', 'otoUst'];
+  // malzeme otomatiği → burger katmanı
+  var OTO = { otoAlt: 'bunBot', otoKofte: 'patty', otoPeynir: 'cheese', otoTursu: 'pickle', otoUst: 'bunTop' };
   // eski kayıtta alınmış "Hızlı ızgara" düzeylerinin toplam fiyatı (iade)
   function cookIade(l) { var t = 0; for (var i = 0; i < Math.min(l | 0, GELISTIR.cook.max); i++) t += GELISTIR.cook.cost(i); return t; }
   // açık ızgara: 2 + slot düzeyi (resimde 4 ızgara; en çok 4). Eski kayıtta slot 1 → 3 ızgara; 3–4 → 4.
@@ -157,7 +174,9 @@
 
   function U(up) {
     up = up || {};
-    return { cook: up.cook | 0, pat: up.pat | 0, tip: up.tip | 0, slot: up.slot | 0 };
+    var o = {};
+    Object.keys(GELISTIR).forEach(function (k) { o[k] = Math.max(0, Math.min(GELISTIR[k].max, up[k] | 0)); });
+    return o;
   }
   function tam(x) { return Math.round(x); }
   // katman adı → malzeme anahtarı
@@ -512,7 +531,11 @@
     fritozPisme: 15,    // patates fritözde (sn)
     hazneKofte: 6,      // pişmiş köfte haznesi
     haznePatates: 4,    // patates haznesi (porsiyon); bir fritöz dolusu 4 porsiyon
-    dograma: 10,        // çiğ patatese dokunuş: 10'da doğranır
+    dograma: 10,        // çiğ patatese dokunuş: 10'da doğranır (11. tur: geliştirmeyle 8, 6; dogramaSay)
+    dogramaD: [10, 8, 6],        // 11. tur: doğrama geliştirmesinin düzeyleri
+    kizartma: [15, 12, 9],       // 11. tur: kızartma geliştirmesinin düzeyleri (sn)
+    otoAralik: 0.5,              // 11. tur: malzeme otomatiği iki katman arasında en az (sn)
+    otoDograAralik: 0.32,        // 11. tur: otomatik doğramada iki bıçak darbesi arası (sn)
     tepsi: 2,           // tezgâhtaki tepsi
     hazir: { patty: 6, fries: 4 }   // gün başında hazneler dolu (resimdeki gibi; dünden kalan, para düşmez)
   };
@@ -532,8 +555,59 @@
   // izgara ve fritöz süresi (sn)
   // 9. tur (Eymen, 21 Kasım): işi kısaltan yükseltme yok. "Hızlı ızgara" (cook) dükkândan kalktı, etkisi sıfır:
   // süreler hep 8 sn ve 15 sn. Eski kayıtta alınmışsa parası iade edilir (oyun.js, cookIade). up.cook yok sayılır.
+  // 11. tur (Eymen): bu kural kalktı; patates geliştirmeleri doğramayı ve kızartmayı kısaltır (ızgara hep 8 sn).
   function izgaraPisme(up) { return MUTFAK.izgaraPisme; }
-  function fritozPisme(up) { return MUTFAK.fritozPisme; }
+  function fritozPisme(up) { return MUTFAK.kizartma[U(up).kizart]; }
+  // çiğ patatese kaç dokunuş (10 → 8 → 6); 3. düzeyde otomatik doğrama (dokunuş gerekmez, kendiliğinden doğranır)
+  function dogramaSay(up) { return MUTFAK.dogramaD[Math.min(2, U(up).dogra)]; }
+  function otoDogra(up) { return U(up).dogra >= 3; }
+  // kendiliğinden konan katmanlar (malzeme otomatikleri): {bunBot:true, …}
+  function otoKat(up) { var u = U(up), o = {}; Object.keys(OTO).forEach(function (k) { if (u[k] > 0) o[OTO[k]] = true; }); return o; }
+  // otomatik koyucunun sıradaki katmanı: alt ekmek önce, üst ekmek en son (ortadakiler tamamsa), köfte hazne boşsa bekler.
+  //   katmanlar: tezgâhtaki yarım burger, oto: otoKat(up), hk: köfte haznesi → katman adı ya da null
+  function otoSiradaki(katmanlar, oto, hk, siparis) {
+    katmanlar = katmanlar || []; oto = oto || {}; siparis = siparis || SIPARIS0.katmanlar;
+    var n = katmanlar.length;
+    if (n && katmanlar[n - 1] === 'bunTop') return null;
+    if (!n) return oto.bunBot ? 'bunBot' : null;
+    var kalan = siparis.slice(1, -1);
+    for (var i = 1; i < n; i++) { var j = kalan.indexOf(katmanlar[i]); if (j >= 0) kalan.splice(j, 1); }
+    for (var k = 0; k < kalan.length; k++) {
+      var m = kalan[k];
+      if (!oto[m]) continue;
+      if (m === 'patty' && !(hk > 0)) continue;
+      return m;
+    }
+    if (!kalan.length && oto.bunTop) return 'bunTop';
+    return null;
+  }
+  // 11. tur (Eymen: "başlarda tempo çok zor"): aynı anda müşteri eğrisi. en = aynı anda en çok; gec[n] = tezgâhta n müşteri
+  // varken bir sonrakinin gelmesi için geçen süre [en az, en çok] sn (n = 0: boş tezgâha yeni müşteri). Tezgâhtaki sayı
+  // değişince (gelen ya da giden) sayaç yeniden kurulur. İlk günler çoğunlukla 1 müşteri, en çok 2; 3. müşteri 4. günden
+  // seyrek; tam dolu tezgâh 15. günden sonra (14. günden sonra 10. turdaki gibi). Tablo docs/DENGE.md → "11. tur".
+  var EGRI = [
+    //        en  2. müşteri    3. müşteri
+    /* 1 */ [2, [18, 26], null],
+    /* 2 */ [2, [15, 21], null],
+    /* 3 */ [2, [12, 17], null],
+    /* 4 */ [3, [12, 17], [45, 60]],
+    /* 5 */ [3, [11, 15], [38, 50]],
+    /* 6 */ [3, [10, 14], [32, 44]],
+    /* 7 */ [3, [9, 13], [27, 37]],
+    /* 8 */ [3, [8, 11], [23, 31]],
+    /* 9 */ [3, [7, 10], [19, 26]],
+    /* 10 */ [3, [6, 9], [16, 22]],
+    /* 11 */ [3, [5, 8], [13, 18]],
+    /* 12 */ [3, [4, 7], [10, 14]],
+    /* 13 */ [3, [4, 6], [7, 11]],
+    /* 14 */ [3, [3, 5], [5, 8]]
+  ];
+  function musteriEgri(d) {
+    d = Math.max(1, d | 0);
+    var e = EGRI[Math.min(d, EGRI.length + 1) - 1] || [AYAR.sira10, AYAR.aralik10, AYAR.aralik10];
+    // boş tezgâha yeni müşteri: ilk üç gün 2–4 sn (tek müşteriyle beklemek sıkmasın), sonra 3–5 sn
+    return { en: e[0], gec: [d <= 3 ? [2, 4] : AYAR.aralik10.slice(), e[1].slice(), e[2] ? e[2].slice() : null] };
+  }
   // sipariş (6. tur): herkes aynı; sonradan mutfağa yer açılan malzemeler (gelecek) eklenirse siparisTam eski
   // kurala döner. ek: {katmanlar, yan} yeni nesne.
   function siparis6() { return { katmanlar: SIPARIS0.katmanlar.slice(), yan: SIPARIS0.yan }; }
@@ -576,9 +650,12 @@
     up = U(up);
     var z = zg(d);
     g.sure = gunSure(d);
-    g.sira = AYAR.sira10;
-    g.aralik = AYAR.aralik10.slice();
-    g.ilk = AYAR.ilkGelis.slice();
+    // 11. tur: aynı anda müşteri eğrisi (musteriEgri); aralik = boş tezgâha yeni müşteri
+    var eg = musteriEgri(d);
+    g.sira = eg.en;
+    g.gec = eg.gec;
+    g.aralik = eg.gec[0].slice();
+    g.ilk = [0];
     g.yanOlas = 1;
     g.izgara = izgaraGoz(up);
     var taban = Math.max(AYAR.sabir10Min, AYAR.sabir10 - AYAR.sabir10Adim * (z - 1));
@@ -611,7 +688,9 @@
     MUTFAK: MUTFAK, MUTFAKTA: MUTFAKTA, GELECEK: GELECEK, SIPARIS0: SIPARIS0, mutfaktaMi: mutfaktaMi, izgaraPisme: izgaraPisme,
     fritozPisme: fritozPisme, siparis6: siparis6, koyKarar: koyKarar, gun6: gun6,
     // 10. tur
-    zg: zg, gunSure: gunSure, yildiz: yildiz
+    zg: zg, gunSure: gunSure, yildiz: yildiz,
+    // 11. tur
+    OTO: OTO, EGRI: EGRI, musteriEgri: musteriEgri, dogramaSay: dogramaSay, otoDogra: otoDogra, otoKat: otoKat, otoSiradaki: otoSiradaki
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = BU.VERI;
 })(typeof window !== 'undefined' ? window : globalThis);

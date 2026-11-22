@@ -48,11 +48,10 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .info .mf .kb{display:block;width:100%;height:100%;background-size:240% auto;background-position:50% 2%;background-repeat:no-repeat;border-radius:.2rem}
 .hero .f{overflow:hidden}
 .hero .f .kg{display:block;height:5.2rem;width:auto;max-width:none;margin-left:50%;transform:translateX(-50%);filter:drop-shadow(.06rem .04rem .05rem rgba(45,16,6,.35))}
-.home .hsag .chip.hedef{margin-top:.12rem;max-width:none}
 .hb{position:relative;width:max(34px,.9rem);height:max(34px,.9rem);border-radius:50%;background:rgba(255,255,255,.94);border:.05rem solid var(--ink);box-shadow:0 .07rem 0 rgba(0,0,0,.2);display:grid;place-items:center;flex:none}
 .hb .ic{width:62%;height:62%}
 .hb:active{transform:translateY(.06rem);box-shadow:0 .02rem 0 rgba(0,0,0,.2)}
-.hb::before,.home .lang::before{content:"";position:absolute;inset:min(0px,calc((max(34px,.9rem) - 44px)/2))}
+.hb::before{content:"";position:absolute;inset:min(0px,calc((max(34px,.9rem) - 44px)/2))}
 .prog{position:relative;flex:none;height:max(5px,.14rem);border-radius:.2rem;background:#eadfcc;box-shadow:inset 0 .03rem 0 rgba(0,0,0,.18);overflow:hidden}
 .prog b{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd84a,#ff9d1a);border-radius:.2rem;transition:width .4s}
 /* ---------- sahne (7. tur): Eymen'in resmi arka plan, değişen her şey üstünde (sahne birimi = resmin pikseli) ---------- */
@@ -62,7 +61,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .sahne{position:absolute;inset:0;z-index:1;overflow:hidden;background:#1e110c}
 .dunya{position:absolute;left:0;top:0;width:1852px;height:849px;transform-origin:0 0}
 .dunya img{position:absolute;display:block;max-width:none;-webkit-user-select:none;user-select:none}
-#parca,#balonK,#wfx,#paraK,#dkK,#canli{position:absolute;left:0;top:0;width:1852px;height:849px;pointer-events:none}
+#parca,#otoK,#balonK,#wfx,#paraK,#dkK,#canli{position:absolute;left:0;top:0;width:1852px;height:849px;pointer-events:none}
 #wfx{z-index:5}#balonK{z-index:2}#paraK{z-index:3}#dkK{z-index:4}
 #canli{overflow:hidden}
 .hit{position:absolute;pointer-events:auto;touch-action:none;border-radius:22px;cursor:pointer}
@@ -100,9 +99,8 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .dilimler{position:absolute;width:120px;height:30px;pointer-events:none}
 .dilimler .dl{position:absolute;width:40px;height:11px;border-radius:5px;background:linear-gradient(#fffbe4,#f6e2a2 55%,#e8c070);border:2.5px solid #7a4a14;transform:rotate(var(--r,0deg));animation:dlDus .22s ease-out both}
 @keyframes dlDus{from{translate:0 -26px;opacity:0}to{translate:0 0;opacity:1}}
-/* tablet → dükkân: alınabilir öğe sayısı */
-.tbrz{position:absolute;min-width:40px;height:40px;padding:0 8px;border-radius:20px;background:#d2281e;border:4px solid #2a140a;color:#fff;font:900 26px/32px "Baloo 2",sans-serif;text-align:center;box-shadow:0 0 14px rgba(255,90,40,.8);pointer-events:none;animation:pulse 1.4s ease-in-out infinite}
-.neon .nt.tk{font-size:15px;letter-spacing:.5px}
+/* tablet (11. tur): resimdeki hâli; neon kendi pikselleriyle nabız gibi parlar */
+.neonP.tbP{animation:neonT 5.1s linear infinite;animation-delay:-2.2s}
 .balon{position:absolute;top:116px;width:162px;padding:6px 7px 8px;background:linear-gradient(#fffaf0,#fbeed6);border:4px solid #3a1d0c;border-radius:20px;box-shadow:inset 0 3px 0 #fff,inset 0 -4px 0 rgba(200,150,90,.25),0 6px 0 rgba(40,15,5,.35),0 12px 18px rgba(40,15,5,.3);opacity:0;transform:scale(.4);transform-origin:0 70%;transition:opacity .2s .35s,transform .3s .35s cubic-bezier(.2,1.5,.4,1)}
 .balon::after{content:"";position:absolute;left:-15px;top:58%;width:20px;height:20px;background:#fdf3e0;border:4px solid #3a1d0c;border-top-color:transparent;border-right-color:transparent;border-radius:0 0 0 4px;transform:translateY(-50%) rotate(45deg)}
 .balon.in{opacity:1;transform:none}
@@ -116,8 +114,8 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .balon .sip{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:70px}
 .balon .b{position:relative;width:82px;height:70px}
 .balon .b .mini{--k:.57}
-.balon .f{position:relative;width:52px;height:58px;flex:none}
-.balon .f .pors{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.balon .f{position:relative;width:60px;height:58px;flex:none}
+.balon .f .pors{position:absolute;left:0;bottom:2px;width:100%;height:auto;object-fit:contain}
 .balon .alindi{opacity:.28;filter:grayscale(.7)}
 .balon .sabir{height:14px;margin-top:6px;border-radius:8px;background:#3a2214;overflow:hidden;border:2.5px solid #2a140a;box-shadow:inset 0 2px 3px rgba(0,0,0,.5)}
 .balon .sabir b{display:block;height:100%;width:100%;border-radius:6px;background:#3cc45a;box-shadow:inset 0 3px 0 rgba(255,255,255,.4),inset 0 -2px 0 rgba(0,0,0,.18)}
@@ -143,16 +141,25 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 @keyframes basB{0%{transform:none}35%{transform:scale(1.015,.965)}100%{transform:none}}
 @keyframes tamamB{0%{transform:none}25%{transform:scale(1.07,.88)}55%{transform:scale(.97,1.05)}80%{transform:scale(1.01,.985)}100%{transform:none}}
 .tahta{position:absolute;pointer-events:none}
+/* tepsi (11. tur, Eymen: "tepsi yamuluyor"): tepsinin kendisi HİÇ dönüşmez (ezilme, kayma, büyüme yok); seçim ve hazır
+   parıltısı yalnız ışık (filter). Konan nesne kendi kutusunda (.ic-b burger, .ic-f patates yığını) küçük bir yerleşme yapar. */
 .tepsi>img.tp{position:absolute;left:-5px;top:-2px;width:280px;height:116px}
-.tepsi{position:absolute;pointer-events:none;transition:filter .18s,transform .18s}
-.tepsi .ic-b .mini{left:92px;--k:.66;transform:translateX(-50%) scale(var(--k));bottom:auto;top:88px}
-.tepsi .ic-f .pors{position:absolute;left:166px;top:8px;width:80px;height:87px}
-.tepsi.sec{transform:translateY(-8px);filter:drop-shadow(0 0 8px #ffd84a) drop-shadow(0 0 3px #ffb000)}
-.tepsi.kon .ic-b,.tepsi.kon .ic-f{animation:kayT .3s ease-out}
-.tepsi.yeni{animation:tpGel .45s ease-out}
+.tepsi{position:absolute;pointer-events:none;transition:filter .18s}
+.tepsi .ic-b{position:absolute;left:22px;top:0;width:140px;height:88px;transform-origin:50% 100%}
+.tepsi .ic-b .mini{--k:.66}
+.tepsi .ic-f{position:absolute;left:120px;top:14px;width:132px;height:75px;transform-origin:50% 100%}
+.tepsi .ic-f .pors{position:absolute;inset:0;width:100%;height:100%}
+.tepsi.sec{filter:drop-shadow(0 0 7px #ffd84a) drop-shadow(0 0 3px #ffb000) drop-shadow(0 0 14px rgba(255,200,40,.7))}
+.tepsi .ic-b.otur{animation:oturB .36s cubic-bezier(.3,.1,.4,1)}
+.tepsi .ic-f.dok{animation:dokF .42s cubic-bezier(.25,.1,.35,1)}
+.tepsi.yeni{animation:tpGel .4s ease-out}
 .tepsi.giden{z-index:3}
-@keyframes kayT{0%{transform:translateY(-6px) scale(1.06)}60%{transform:translateY(2px) scale(.97)}100%{transform:none}}
-@keyframes tpGel{0%{transform:translateY(46px);opacity:0}100%{transform:none;opacity:1}}
+@keyframes oturB{0%{transform:translateY(-12px)}45%{transform:translateY(0) scale(1.05,.93)}72%{transform:scale(.98,1.025)}100%{transform:none}}
+@keyframes dokF{0%{transform:translateY(-10px) scale(.72,1.18)}38%{transform:translateY(0) scale(1.12,.84)}62%{transform:scale(.97,1.05)}82%{transform:scale(1.015,.985)}100%{transform:none}}
+@keyframes tpGel{0%{opacity:0;filter:brightness(1.6)}100%{opacity:1;filter:none}}
+.wu.avuc>img{transform:scale(.74,1.12);transform-origin:50% 100%}
+.wu.sekme{z-index:2}
+.wu.sekme .cubuk{background:linear-gradient(#ffe07a,#f5a21e 60%,#e08f18);border:2.5px solid #7a3a06;border-radius:4px;box-shadow:inset 0 2px 0 rgba(255,250,200,.6)}
 /* ızgara: çiğ köfte düşer, pişerken renk çiğden pişmişe (--p), duman; halka ilerleme */
 .gk{position:absolute;pointer-events:none}
 .gk img{position:absolute;inset:0;width:100%;height:100%}
@@ -198,7 +205,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .wu.mal,.wu.kof,.wu.prs,.wu.brgu{filter:drop-shadow(0 8px 5px rgba(50,20,6,.35))}
 .wu .cubuk{display:block;width:100%;height:100%;border-radius:5px;background:linear-gradient(#fffbe4,#f6e2a2 55%,#e8c070);border:2.5px solid #7a4a14;box-shadow:inset 0 2px 0 rgba(255,255,255,.7)}
 .wu .mini{--k:.78}
-.patsec{position:absolute;width:100px;height:108px;pointer-events:none;animation:bobP .9s ease-in-out infinite alternate;filter:drop-shadow(0 0 6px #ffd84a) drop-shadow(0 12px 8px rgba(50,20,6,.4))}
+.patsec{position:absolute;width:104px;height:60px;pointer-events:none;animation:bobP .9s ease-in-out infinite alternate;filter:drop-shadow(0 0 6px #ffd84a) drop-shadow(0 12px 8px rgba(50,20,6,.4))}
 .patsec .pors{width:100%;height:100%}
 @keyframes bobP{from{transform:translateY(0)}to{transform:translateY(-10px)}}
 /* sipariş ekranı: neon (resmin ekranındaki gibi) */
@@ -208,7 +215,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 .menu{display:flex;align-items:flex-end;justify-content:center;gap:.3rem}
 .menu .mbg{position:relative;width:calc(140px*var(--mk,.2));height:calc(140px*var(--mk,.2))}
 .menu .mbg .mini{--k:var(--mk,.2)}
-.menu .mp .pors{width:1.9rem;height:2.05rem;object-fit:contain}
+.menu .mp .pors{width:2.3rem;height:1.32rem;object-fit:contain}
 .menu b{display:flex;align-items:center;gap:.06rem;font-size:.6rem}.menu b .ic{width:.6rem;height:.6rem}
 /* müşteri yüzleri (www/musteri.js): duygu animasyonları */
 @keyframes mu-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -344,22 +351,6 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .konfeti{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
 .konfeti i{position:absolute;top:-.6rem;width:.2rem;height:.32rem;border-radius:.04rem;animation:konfeti linear forwards}
 .konfeti .sk{width:.6rem;height:.6rem;border-radius:0}
-/* ---------- ana ekran ---------- */
-/* ana ekran (yatay): üstte çubuk; solda logo ve burger, sağda OYNA ve Dükkân, altta atıf */
-.home{position:absolute;inset:0;z-index:25;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;column-gap:.6rem;background:radial-gradient(circle at 30% 58%,#ffe27a,#ffb347 40%,#f07a32 78%,#d9502a);padding:calc(var(--st) + .14rem) calc(var(--sr) + .3rem) calc(var(--sb) + .14rem) calc(var(--sl) + .3rem);overflow:hidden}
-.home .isin{position:absolute;left:30%;top:58%;width:26rem;height:26rem;margin:-13rem 0 0 -13rem;background:repeating-conic-gradient(rgba(255,255,255,.17) 0 9deg,rgba(255,255,255,0) 9deg 22.5deg);-webkit-mask:radial-gradient(circle,#000 10%,transparent 62%);mask:radial-gradient(circle,#000 10%,transparent 62%);animation:don 40s linear infinite;pointer-events:none}
-.home>*:not(.isin){position:relative}
-.home .top{grid-column:1/-1;width:100%;display:flex;align-items:center;gap:max(10px,.2rem)}
-.hsol{grid-column:1;grid-row:2/4;display:flex;flex-direction:column;align-items:center;min-height:0}
-.hsag{grid-column:2;grid-row:2;display:flex;flex-direction:column;justify-content:center;gap:.4rem;min-height:0;width:100%;max-width:8.4rem;justify-self:center;padding-bottom:.2rem}
-.home .top .chip{margin-right:auto}
-.home .hb.kapali{opacity:.55}
-.home .lang{position:relative;display:flex;align-items:center;gap:.04rem;height:max(34px,.9rem);padding:0 .08rem;border-radius:.6rem;background:rgba(255,255,255,.94);border:.05rem solid var(--ink);box-shadow:0 .07rem 0 rgba(0,0,0,.2);font-weight:900;font-size:max(13px,.36rem)}
-.home .lang .ic{width:max(22px,.58rem);height:max(22px,.58rem);margin:0 .04rem}
-.home .lang span{display:grid;place-items:center;min-width:max(26px,.7rem);height:max(26px,.7rem);padding:0 .1rem;border-radius:.4rem;color:#8a7a6a;line-height:1}
-.home .lang span.on{background:var(--ink);color:#fff}
-.logo{margin-top:.1rem;text-align:center;line-height:.86;font-weight:900;color:#fff;-webkit-text-stroke:.16rem var(--ink);paint-order:stroke fill;font-size:1.7rem;transform:rotate(-4deg);text-shadow:0 .16rem 0 var(--ink);pointer-events:none;flex:none}
-.logo small{display:block;font-size:1.1rem;color:var(--gold)}
 .hero{position:relative;flex:1 1 auto;width:100%;min-height:3rem;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;margin-top:.1rem}
 .hero .tz{position:relative;z-index:2;width:108%;height:.9rem;margin:0 -4%;border-radius:.2rem .2rem 0 0;background:linear-gradient(#d8964a,#b26f2c 50%,#8a5220);border-top:.12rem solid #f0b46a;box-shadow:0 .16rem 0 rgba(0,0,0,.18);flex:none}
 .hero .tz::after{content:"";position:absolute;left:4%;right:4%;top:.24rem;height:.06rem;background:repeating-linear-gradient(90deg,rgba(80,40,10,.35) 0 1.8rem,transparent 1.8rem 2rem)}
@@ -368,22 +359,9 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .hero .pl{width:5rem;height:1rem;border-radius:50%;background:radial-gradient(ellipse at 50% 42%,#fff 0 46%,#e7e3da 47% 62%,#fff 63%);box-shadow:0 .12rem 0 rgba(0,0,0,.25),inset 0 0 0 .06rem #cfc8ba}
 .hero .f{position:absolute;z-index:1;bottom:.2rem;width:2.7rem;aspect-ratio:128/154;animation:bob 1.8s ease-in-out infinite}
 .hero .f1{left:-.1rem;animation-delay:.3s}.hero .f2{right:-.1rem;animation-delay:.7s}
-.home .btn.oyna{font-size:.8rem;min-height:max(56px,2rem);flex:none}
-.hsat{width:100%;display:flex;gap:.26rem;flex:none}
-.shopb{position:relative;flex:1 1 auto;display:flex;align-items:center;gap:.24rem;min-height:max(56px,1.9rem);padding:.16rem .3rem .16rem .2rem;border-radius:.5rem;background:linear-gradient(#ffe066,#ffc21a);border:.08rem solid var(--ink);box-shadow:0 .14rem 0 #b07a00;text-align:left;line-height:1}
-.shopb .si{width:1.3rem;height:1.3rem;flex:none;filter:drop-shadow(0 .06rem 0 rgba(0,0,0,.15))}
-.shopb .st{display:flex;flex-direction:column;gap:.06rem;min-width:0}
-.shopb b{font-size:.66rem;font-weight:900}
-.shopb small{font-size:max(10px,.3rem);font-weight:800;color:#7a5200}
-.shopb .rz{position:absolute;top:-.26rem;right:-.16rem;min-width:.8rem;height:.8rem;padding:0 .16rem;border-radius:.4rem;background:var(--red);color:#fff;font-weight:900;font-size:.46rem;display:grid;place-items:center;border:.07rem solid var(--ink);line-height:1;animation:rozetZip 1.4s ease-in-out infinite}
-.shopb.var{animation:davet 1.8s ease-in-out infinite}
-.shopb:active{transform:translateY(.1rem);box-shadow:0 .04rem 0 #b07a00}
-@keyframes davet{0%,100%{box-shadow:0 .14rem 0 #b07a00,0 0 0 0 rgba(255,255,255,0)}50%{box-shadow:0 .14rem 0 #b07a00,0 0 0 .16rem rgba(255,255,255,.55)}}
-@keyframes rozetZip{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 .red{animation:shake .26s linear 2}
 @keyframes aldi{0%{transform:none}25%{transform:scale(1.04);background:#fff6c8;box-shadow:0 0 0 .24rem rgba(255,214,90,.85),0 0 .8rem rgba(255,200,40,.9)}100%{transform:none}}
 .hero .hb2 .burger{position:relative;flex:none}
-.credit{grid-column:2;grid-row:3;align-self:end;font-size:max(10px,.26rem);font-weight:700;color:rgba(40,20,8,.75);text-align:center;line-height:1.3}
 @keyframes bob{50%{transform:translateY(-.14rem) scale(1.02,.98)}}
 @keyframes hop{50%{transform:translateY(-.6rem) scale(.95,1.08)}}
 @keyframes shake{25%{transform:translateX(-.16rem) rotate(-5deg)}75%{transform:translateX(.16rem) rotate(5deg)}}
@@ -419,14 +397,12 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 @keyframes don{to{transform:rotate(360deg)}}
 /* ---------- 8. tur biçemi: arayüz parçaları resmin paletinden (koyu sıcak kahve, krem, neon turuncu) ---------- */
 /* rozetler ve yuvarlak düğmeler: resmin tabelası/sipariş ekranı gibi koyu kahve, krem yazı, ince neon kenar */
-.chip,.hb,.home .lang{background:linear-gradient(#55321f,#301b10 72%);border:.05rem solid #160903;color:#fff1d6;box-shadow:inset 0 .035rem 0 rgba(255,214,150,.32),inset 0 0 0 .035rem rgba(255,150,60,.38),0 .07rem 0 rgba(0,0,0,.4),0 .12rem .22rem rgba(20,8,2,.35)}
+.chip,.hb{background:linear-gradient(#55321f,#301b10 72%);border:.05rem solid #160903;color:#fff1d6;box-shadow:inset 0 .035rem 0 rgba(255,214,150,.32),inset 0 0 0 .035rem rgba(255,150,60,.38),0 .07rem 0 rgba(0,0,0,.4),0 .12rem .22rem rgba(20,8,2,.35)}
 .chip.kasa.neg span{color:#ff8a72}
 .chip.gun span{color:#ffe3b0}
 .prog{background:#1a0d06;box-shadow:inset 0 .03rem .05rem rgba(0,0,0,.7)}
 .prog b{background:linear-gradient(90deg,#ffd45a,#ff8a1a);box-shadow:0 0 .14rem rgba(255,150,40,.85)}
 .hb:active{box-shadow:inset 0 .035rem 0 rgba(255,214,150,.32),inset 0 0 0 .035rem rgba(255,150,60,.38),0 .02rem 0 rgba(0,0,0,.4)}
-.home .lang span{color:#c9a37e}
-.home .lang span.on{background:linear-gradient(#ffb44a,#ff8a1a);color:#2e1a10;box-shadow:0 0 .12rem rgba(255,150,40,.7)}
 /* ipucu ve uyarı balonları: koyu kahve, krem yazı, neon turuncu kenar (uyarı kırmızımsı) */
 .ipucu{background:linear-gradient(#55321f,#301b10);color:#fff1d6;border:.045rem solid #ffae4a;box-shadow:0 0 .22rem rgba(255,150,40,.55),0 .1rem 0 rgba(0,0,0,.35)}
 .ipucu::after{background:#301b10;border-right:.045rem solid #ffae4a;border-bottom:.045rem solid #ffae4a}
@@ -443,14 +419,10 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 /* kartlar: krem kâğıt, koyu kahve kenar, içte ince sıcak çizgi */
 .card{background:linear-gradient(#fff7e6,#fbe9cc);border-color:#2e1a10;box-shadow:inset 0 0 0 .07rem #f3d29a,0 .2rem 0 rgba(0,0,0,.45),0 .4rem 1rem rgba(0,0,0,.35)}
 .card h2{color:#9a1e10;text-shadow:0 .04rem 0 #fff}
-/* ana menü ve dükkân: arka plan Eymen'in mutfağı (bulanık, karartılmış; g/v3/menu-arka.webp) */
-.home{background:#2b1810 url(g/v3/menu-arka.webp) center/cover no-repeat}
-.home .isin{opacity:.55;mix-blend-mode:screen}
 .hero .pl{width:auto;height:auto;border-radius:0;background:none;box-shadow:none}
 .hero .pl img{display:block;width:100%;height:100%}
 .hero .tz{background:linear-gradient(#f9e2d2,#efcab4 55%,#d9ad96);border-top:.08rem solid #fff3ea;box-shadow:0 .1rem 0 #a88472,0 .2rem .3rem rgba(0,0,0,.3)}
 .hero .tz::after{display:none}
-.logo{text-shadow:0 .16rem 0 var(--ink),0 0 .6rem rgba(255,150,40,.45)}
 /* ---------- telefon dik tutulursa: "Telefonu yan çevir" (oyun duraklar) ---------- */
 .cevir{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;gap:5vmin;padding:8vmin;text-align:center;background:radial-gradient(circle at 50% 40%,#ffe27a,#ffb347 45%,#f07a32 80%,#d9502a);color:var(--ink)}
 @media (orientation:portrait){.cevir{display:flex}}
@@ -505,7 +477,7 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .iler .ir{display:flex;justify-content:space-between;gap:.2rem}
 .iler .ir b{color:#ffe27a}
 .iler small{font-size:max(10px,.28rem);color:#e8c9a0}
-/* sahne boşta da yaşar (P7): ızgara sıcağı, neon titremesi, lamba ışığı, salonda silüetler, müşteriler kıpırdanır */
+/* sahne boşta da yaşar (P7): ızgara sıcağı, neon titremesi, lamba ışığı, müşteriler kıpırdanır (11. tur: salondaki silüetler kalktı) */
 .isi{position:absolute;width:160px;height:120px;pointer-events:none}
 .isi i{position:absolute;bottom:0;left:22%;width:78px;height:78px;border-radius:50%;background:radial-gradient(rgba(255,240,220,.5),rgba(255,240,220,0) 66%);animation:dumanW 2.6s ease-out infinite}
 .isi i:nth-child(2){left:50%;animation-delay:1.3s}
@@ -514,14 +486,6 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 @keyframes neonT{0%,100%{filter:brightness(1)}14%{filter:brightness(1.16) saturate(1.08)}28%{filter:brightness(1)}42%{filter:brightness(1.16) saturate(1.08)}56%{filter:brightness(1)}70%{filter:brightness(1.15) saturate(1.08)}84%{filter:brightness(1.04)}86%{filter:brightness(.42) saturate(.6)}87.5%{filter:brightness(1.15)}89%{filter:brightness(.5) saturate(.7)}90.5%{filter:brightness(1.2)}93%{filter:brightness(1)}}
 .lisik{position:absolute;border-radius:50%;background:radial-gradient(ellipse at 50% 30%,rgba(255,206,120,.55),rgba(255,170,80,.22) 45%,rgba(255,170,80,0) 70%);mix-blend-mode:screen;animation:lisik 3.1s ease-in-out infinite;pointer-events:none}
 @keyframes lisik{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.08,1.05)}}
-.sil{position:absolute;pointer-events:none;filter:blur(1px);opacity:.62}
-.sil svg{display:block;width:100%;height:100%;overflow:visible}
-.sil .gv{fill:#3d1a0e;transform-box:view-box;transform-origin:60px 104px;animation:silG 7.3s ease-in-out infinite;animation-delay:var(--d,0s)}
-.sil .bs{transform-box:view-box;transform-origin:60px 62px;animation:silB 5.1s ease-in-out infinite;animation-delay:var(--d,0s)}
-.sil .kl{transform-box:view-box;transform-origin:92px 100px;animation:silK 9.7s ease-in-out infinite;animation-delay:var(--d,0s)}
-@keyframes silG{0%,100%{transform:none}30%{transform:translateX(-5px) rotate(-2deg)}55%{transform:translateX(-5px) rotate(-2deg)}75%{transform:translateX(3px) rotate(1.5deg)}}
-@keyframes silB{0%,100%{transform:none}20%{transform:rotate(-9deg) translateX(-3px)}40%{transform:rotate(-9deg) translateX(-3px)}55%{transform:rotate(6deg)}70%{transform:none}}
-@keyframes silK{0%,60%,100%{transform:none}70%,84%{transform:translate(-12px,-34px) rotate(-30deg)}}
 .mus .yuz{animation:kKipir 3.4s ease-in-out infinite;animation-delay:var(--kd,0s)}
 .mus.in:not(.cik) .yuz{animation:kYuru .32s ease-in-out 3,kKipir 3.4s ease-in-out .96s infinite}
 @keyframes kKipir{0%,100%{transform:none}12%{transform:scale(1.008,1.02)}28%{transform:translateX(-7px) rotate(-2deg)}42%{transform:translateX(-6px) rotate(-1.6deg) scale(1.008,1.02)}58%{transform:translateY(-4px)}72%{transform:translateX(6px) rotate(1.6deg) translateY(-3px)}84%{transform:translateX(4px) rotate(1deg)}92%{transform:scale(1.008,1.02)}}
@@ -545,13 +509,23 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 #app.dkKip #ov{display:none}
 .dkgri{position:absolute;border-radius:14px;background:rgba(70,60,55,.55);mix-blend-mode:saturation;pointer-events:none}
 .dkgri::after{content:"";position:absolute;inset:0;border-radius:14px;background:rgba(20,12,8,.35)}
-.etk{position:absolute;width:0;height:0;pointer-events:none;animation:sallan 2.8s ease-in-out infinite;transform-origin:0 0}
-.etk .ip{position:absolute;left:-10px;top:-6px;width:20px;height:70px;overflow:visible}
+.etk{position:absolute;width:0;height:0;pointer-events:none;animation:sallan 2.8s ease-in-out infinite;animation-delay:var(--sd,0s);transform-origin:0 0}
+.etk .ip{position:absolute;left:-10px;top:-6px;width:20px;height:58px;overflow:visible}
 .etk .ip path{stroke:#2a1a10;stroke-width:4;fill:none}.etk .ip circle{fill:#9a9a9a;stroke:#2a1a10;stroke-width:3}
-.etk .kt{position:absolute;left:0;top:52px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 18px 8px 14px;white-space:nowrap;background:#fff4dc;border:6px solid #2a1a10;border-radius:16px;font:900 44px/1 "Baloo 2",sans-serif;color:#2a1a10;box-shadow:0 8px 0 rgba(0,0,0,.35)}
+/* 11. tur: her etiket basılabilir (kendi eşyasını seçer); görünmez ::after ile dokunma alanı ekranda en az 46 pt */
+.etk .kt{position:absolute;left:0;top:46px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 14px 7px;white-space:nowrap;background:#fff4dc;border:5px solid #2a1a10;border-radius:14px;font:900 36px/1 "Baloo 2",sans-serif;color:#2a1a10;box-shadow:0 7px 0 rgba(0,0,0,.35);pointer-events:auto;cursor:pointer;touch-action:none}
 .etk .kt::before{content:"";position:absolute;left:50%;top:-1px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#2a1a10}
-.etk .kt .ic{width:44px;height:44px}
-.etk .kt .pp{display:flex;gap:4px;margin-left:4px}.etk .kt .pp i{width:10px;height:22px;border-radius:4px;background:#d8c6a8}.etk .kt .pp i.on{background:var(--green)}
+.etk .kt::after{content:"";position:absolute;left:50%;top:50%;width:max(100%,calc(46px / var(--s,.4)));height:max(100%,calc(46px / var(--s,.4)));transform:translate(-50%,-50%)}
+.etk .kt .kp{display:flex;align-items:center;gap:6px}
+.etk .kt .ic{width:36px;height:36px}
+.etk .kt>.ic{position:absolute;left:-22px;top:-20px;width:40px;height:40px}
+.etk .kt .pp{display:flex;gap:4px}.etk .kt .pp i{width:22px;height:8px;border-radius:4px;background:#d8c6a8;box-shadow:inset 0 0 0 2px rgba(42,26,16,.35)}.etk .kt .pp i.on{background:var(--green)}
+.etk.secili{z-index:2}.etk.secili .kt{outline:6px solid #fff;outline-offset:2px;box-shadow:0 7px 0 rgba(0,0,0,.35),0 0 0 14px rgba(255,214,90,.55),0 0 50px rgba(255,190,40,.9)}
+/* malzeme otomatiği rozeti (kaynağın köşesinde dönen dişli) ve otomatik konuşta kaynak parıltısı */
+.otoR{position:absolute;width:48px;height:48px;border-radius:50%;background:radial-gradient(#55321f,#2a160c);border:4px solid #160903;box-shadow:0 0 0 3px rgba(255,170,60,.55),0 0 16px rgba(255,160,40,.6);display:grid;place-items:center;pointer-events:none}
+.otoR .ic{width:36px;height:36px;animation:don 4s linear infinite}
+.hit.otoK{animation:otoK .45s ease-out}
+@keyframes otoK{0%{box-shadow:0 0 0 0 rgba(255,214,90,0)}35%{box-shadow:0 0 0 6px rgba(255,214,90,.75),0 0 30px rgba(255,190,40,.7)}100%{box-shadow:0 0 0 0 rgba(255,214,90,0)}}
 .etk.ok .kt{background:linear-gradient(#ffd25a,#ff9d1a);animation:etkOk 1s ease-in-out infinite}
 .etk.yok .kt{background:#d8cfc2;color:#6a5646}
 .etk.kilit .kt{background:#8a7a6a;color:#f4e8d8}
@@ -573,7 +547,12 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .dk-kart .ust{display:flex;align-items:center;gap:.24rem;text-align:left}
 .dk-kart .ust b{display:block;font-size:.56rem;font-weight:900;color:#9a1e10;line-height:1.05}
 .dk-kart .ust small{font-size:.34rem;font-weight:800;color:#8a6d55}
-.dk-kart .e{display:block;width:1.2rem;height:1.2rem}
+.dk-kart .e{position:relative;display:block;width:1.2rem;height:1.2rem;flex:none}
+.dk-kart .e.oto{width:1.6rem;height:1.1rem}.dk-kart .e.oto img{width:100%;height:100%;object-fit:contain}
+.dk-kart .e.oto i{position:absolute;right:-.16rem;bottom:-.12rem;width:.62rem;height:.62rem;border-radius:50%;background:#2a160c;padding:.04rem;box-shadow:0 0 0 .04rem #ffae4a}
+.dk-kart .e.bk{width:1.5rem;height:1.3rem}.dk-kart .e.bk svg{width:100%;height:100%}
+.dk-kart .ust .gr{display:block;font-size:.28rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#c0661a}
+.dk-kart .dz{display:flex;align-items:center;gap:.06rem;margin-top:.04rem}.dk-kart .dz i{width:.4rem;height:.14rem;border-radius:.07rem;background:#e2d3b8;box-shadow:inset 0 0 0 .02rem rgba(0,0,0,.25)}.dk-kart .dz i.on{background:var(--green)}.dk-kart .dz small{margin-left:.08rem}
 .dk-kart .izr{display:grid;place-items:center;width:1.5rem;height:.95rem;border-radius:.2rem;background-size:cover;background-position:center;border:.05rem solid var(--ink);background-color:#4a3a34}
 .dk-kart .izr.kil .ic{width:.6rem;height:.6rem}
 .dk-kart p{margin:0;font-size:.4rem;font-weight:700;line-height:1.25;color:#5a4334}
@@ -584,13 +563,132 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
 .dk-kart .btn[disabled]{background:#cfc4b4;color:#7a6a5a;box-shadow:0 .14rem 0 #9c8f80}
 .dk-kart .dkx{position:absolute;right:-.2rem;top:-.2rem;width:max(44px,1.1rem);height:max(44px,1.1rem);border-radius:50%;display:grid;place-items:center}
 .dk-kart .dkx .ic{width:55%;height:55%}
-@media (prefers-reduced-motion:reduce){.yigin,.yigin .yg .pr,.isi i,.neonP,.lisik,.sil .gv,.sil .bs,.sil .kl,.etk,.etk.ok .kt,.radyo .ign,.radyo .nota i,.tepsi.hazir,.chip.gun.son{animation:none!important}.shopb.var,.shopb .rz,.mk.sira.ok .mb,.cevir .tel,.cevir .ok,.kepenk .sal,.mus .yuz,.mus,.balon,.balon.acil,.tbrz,.gk,.kabarcik i,.buhar i,.gk .duman,.hit.parla,.patsec,.hero .hb2,.hero .f,.parla,.mu,.mu *,svg .st,svg .sw,svg .tr,svg .hb,#ic .y.sec .al,#ic .y.parla .gor,#ic .goz .kor,#ic .goz.hazir .gor,#ic .fritoz .sepet,#ic .fritoz.hazir .gor,.home .isin,.stars span.dolu{animation:none!important}}
-</style></head><body>
+/* ---------- 11. tur (Eymen: "çok güzel bir ana menü tasarla"): ana menü, kartlar, ayarlar, duraklatma, onay ---------- */
+/* ana menü: arkada CANLI mutfak (resmin kendisi, neon ve lamba ışığı yaşar, yavaşça kayar), kenarları kararır; solda zincirle
+   asılı neon kenarlı tabela (BURGER + kurdele üstünde USTASI) ve kesme tahtasında burger, iki müşteri; sağda büyük OYNA,
+   Dükkân ve Ayarlar, altında sıradaki hedef ve ilerleme panosu. Hepsi rem (güvenli alanlı ekran birimi); düğmeler ≥ 44 pt. */
+.home{position:absolute;inset:0;z-index:25;overflow:hidden;background:#1e110c;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);column-gap:.5rem;padding:calc(var(--st) + .14rem) calc(var(--sr) + .36rem) calc(var(--sb) + .2rem) calc(var(--sl) + .36rem)}
+.home>*{position:relative}
+.home>.hbg,.home>.hkar,.home>.hpar{position:absolute;inset:0;pointer-events:none}
+.hbg{overflow:hidden;animation:hbKay 28s ease-in-out infinite alternate;transform-origin:50% 40%}
+.hbw{position:absolute;left:0;top:0;width:1852px;height:849px;transform-origin:0 0;filter:blur(1.4px) saturate(1.08)}
+.hbw>img{position:absolute;display:block;max-width:none}
+@keyframes hbKay{0%{transform:scale(1.02) translate(-.8%,.3%)}100%{transform:scale(1.09) translate(.9%,-.9%)}}
+.hkar{background:radial-gradient(ellipse 75% 85% at 28% 42%,rgba(28,10,2,0) 0%,rgba(28,10,2,.22) 55%,rgba(16,6,1,.78) 100%),linear-gradient(90deg,rgba(20,8,2,.15),rgba(20,8,2,0) 40%,rgba(20,8,2,.45) 100%)}
+.hpar i{position:absolute;bottom:-.4rem;width:.5rem;height:.5rem;border-radius:50%;background:radial-gradient(rgba(255,226,170,.9),rgba(255,170,80,.35) 45%,rgba(255,170,80,0) 70%);animation:kivilcim linear infinite;opacity:0}
+@keyframes kivilcim{0%{transform:translate(0,0) scale(.6);opacity:0}12%{opacity:.9}70%{opacity:.6}100%{transform:translate(var(--dx,1rem),-11rem) scale(1.2);opacity:0}}
+.home .top{grid-column:1/-1;display:flex;align-items:center;gap:.2rem;z-index:2}
+.chip.hgun{color:#ffe3b0;padding:0 .22rem 0 .1rem}
+.chip.hgun .ic{width:max(22px,.56rem);height:max(22px,.56rem)}
+.hsol{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:center;min-height:0;z-index:1}
+.hsag{grid-column:2;grid-row:2;display:flex;flex-direction:column;justify-content:center;gap:.3rem;min-height:0;width:100%;max-width:8.6rem;justify-self:center;padding-bottom:.1rem;z-index:1}
+/* tabela logo */
+.logo{flex:none;margin-top:.42rem;pointer-events:none;filter:drop-shadow(0 .22rem .3rem rgba(0,0,0,.55))}
+.logo .tabela{position:relative;padding:.16rem .62rem .5rem;border-radius:.55rem;background:linear-gradient(170deg,#5a3220,#2e170b 60%,#22110a);border:.09rem solid #120702;
+  box-shadow:inset 0 0 0 .07rem rgba(255,176,80,.95),inset 0 0 .5rem rgba(255,130,30,.6),0 0 .55rem rgba(255,140,40,.55),0 .14rem 0 #120702;transform-origin:50% -.6rem;animation:tabela 5.6s ease-in-out infinite}
+.logo .tabela::before{content:"";position:absolute;left:.3rem;right:.3rem;top:.16rem;height:.12rem;border-radius:.1rem;background:linear-gradient(90deg,rgba(255,240,210,0),rgba(255,240,210,.35),rgba(255,240,210,0))}
+@keyframes tabela{0%,100%{transform:rotate(-1.1deg)}50%{transform:rotate(1.1deg)}}
+.logo .zn{position:absolute;top:-.62rem;width:.13rem;height:.7rem;border-radius:.06rem;background:repeating-linear-gradient(#9aa0a6 0 .1rem,#4a4f55 .1rem .16rem);box-shadow:0 0 0 .025rem #120702}
+.logo .z1{left:1.1rem}.logo .z2{right:1.1rem}
+.logo .lb{position:relative;font-weight:800;font-size:1.9rem;line-height:1.04;letter-spacing:.02em;color:#2a1206;-webkit-text-stroke:.24rem #2a1206;text-shadow:0 .13rem 0 #2a1206,0 .22rem 0 #6e1208,0 0 .5rem rgba(255,140,40,.55);white-space:nowrap;text-align:center}
+.logo .lb::after{content:attr(data-t);position:absolute;inset:0;color:transparent;-webkit-text-stroke:0;text-shadow:none;background:linear-gradient(#fffbea 0%,#fff0b8 30%,#ffd04a 58%,#ff9a1a 100%);-webkit-background-clip:text;background-clip:text}
+.logo .kur{position:relative;isolation:isolate;width:fit-content;margin:-.2rem auto 0;transform:rotate(-2deg)}
+.logo .kur span{position:relative;display:block;padding:.02rem .62rem .1rem;border-radius:.16rem;background:linear-gradient(#f65a3a,#d2281e 55%,#a8160e);border:.07rem solid #2a1206;box-shadow:inset 0 .06rem 0 rgba(255,220,200,.45),inset 0 -.06rem 0 rgba(0,0,0,.25),0 .09rem 0 #4e0c05;
+  font-weight:800;font-size:.98rem;line-height:1.08;letter-spacing:.08em;color:#fff4dc;-webkit-text-stroke:.09rem #2a1206;paint-order:stroke fill;text-shadow:0 .06rem 0 #2a1206;white-space:nowrap}
+.logo .kur::before,.logo .kur::after{content:"";position:absolute;z-index:-1;top:.22rem;width:.8rem;height:calc(100% - .06rem);background:linear-gradient(#a8160e,#7a0e08);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,32% 50%)}
+.logo .kur::before{left:-.56rem}.logo .kur::after{right:-.56rem;transform:scaleX(-1)}
+/* tahtadaki burger ve müşteriler (eski düzen) */
+.hero{position:relative;flex:1 1 auto;width:100%;min-height:3rem;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;margin-top:.1rem}
+.hero .tz{height:.7rem;background:linear-gradient(#f6efe6,#e4d8ca 55%,#c8b9a6);border-top:.07rem solid #fffaf2;box-shadow:inset 0 .05rem 0 rgba(255,255,255,.7),0 .08rem 0 #8a7a68,0 .22rem .35rem rgba(0,0,0,.35)}
+/* OYNA: büyük, sıcak turuncu-kırmızı, parlak üst, kalın kontur, 3B alt kenar; boşta hafif nabız ve ışık geçişi; basınca ezilir */
+.oyna{position:relative;overflow:hidden;display:flex;align-items:center;gap:.3rem;min-height:max(64px,2.25rem);padding:.18rem .5rem .26rem .26rem;border-radius:.62rem;
+  background:linear-gradient(#ff8a3a 0%,#ff5a24 42%,#d8281a 100%);border:.09rem solid #2a1206;color:#fff;text-align:left;
+  box-shadow:inset 0 .07rem 0 rgba(255,236,200,.55),inset 0 -.12rem 0 rgba(120,10,0,.35),0 .17rem 0 #6e1208,0 .32rem .55rem rgba(0,0,0,.45),0 0 .7rem rgba(255,140,40,.45);
+  animation:oynaN 2.2s ease-in-out infinite;transition:transform .08s}
+.oyna::before{content:"";position:absolute;left:.3rem;right:.3rem;top:.1rem;height:38%;border-radius:.45rem .45rem 1rem 1rem;background:linear-gradient(rgba(255,255,255,.42),rgba(255,255,255,0));pointer-events:none}
+.oyna::after{content:"";position:absolute;top:-20%;bottom:-20%;left:-40%;width:24%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.42),rgba(255,255,255,0));transform:skewX(-18deg);animation:parilla 3.4s ease-in-out infinite;pointer-events:none}
+.oyna .oi{position:relative;display:grid;place-items:center;width:1.62rem;height:1.62rem;flex:none;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fffdf4,#ffe9b8 70%);border:.08rem solid #2a1206;box-shadow:0 .08rem 0 rgba(60,8,0,.6)}
+.oyna .oi .ic{width:62%;height:62%;margin-left:.08rem}
+.oyna .ot{display:flex;flex-direction:column;gap:.02rem;min-width:0}
+.oyna b{font-weight:800;font-size:1.12rem;line-height:.95;letter-spacing:.04em;-webkit-text-stroke:.1rem #2a1206;paint-order:stroke fill;text-shadow:0 .08rem 0 #2a1206}
+.oyna small{font-weight:800;font-size:.42rem;line-height:1;color:#ffe9c8;-webkit-text-stroke:.05rem #4e0c05;paint-order:stroke fill;white-space:nowrap}
+.oyna:active,.oyna.bas{transform:translateY(.08rem) scale(.95,.9);animation:none}
+@keyframes oynaN{0%,100%{transform:none}50%{transform:scale(1.025)}}
+@keyframes parilla{0%,55%{left:-40%}85%,100%{left:125%}}
+/* ikincil düğmeler */
+.hsat{display:flex;gap:.22rem;flex:none}
+.shopb,.ayarb{position:relative;display:flex;align-items:center;gap:.2rem;min-height:max(52px,1.55rem);border-radius:.5rem;border:.08rem solid #2a1206;text-align:left;line-height:1;transition:transform .08s}
+.shopb{flex:1 1 auto;padding:.12rem .3rem .14rem .16rem;background:linear-gradient(#ffe57a,#ffc21a 55%,#f2a400);box-shadow:inset 0 .06rem 0 rgba(255,255,255,.6),0 .13rem 0 #8a5a00,0 .24rem .4rem rgba(0,0,0,.35);color:#2a1206}
+.shopb .si{width:1.12rem;height:1.12rem;flex:none}
+.shopb .st{display:flex;flex-direction:column;gap:.04rem;min-width:0}
+.shopb b{font-size:.58rem;font-weight:800}
+.shopb small{font-size:max(10px,.28rem);font-weight:800;color:#7a4c00}
+.shopb .rz{position:absolute;top:-.26rem;right:-.16rem;min-width:.74rem;height:.74rem;padding:0 .14rem;border-radius:.4rem;background:var(--red);color:#fff;font-weight:800;font-size:.42rem;display:grid;place-items:center;border:.07rem solid #2a1206;line-height:1;animation:pulse 1.4s ease-in-out infinite}
+.ayarb{flex:none;justify-content:center;width:max(52px,1.55rem);padding:0;background:linear-gradient(#5a3422,#301b10 72%);box-shadow:inset 0 .05rem 0 rgba(255,214,150,.32),inset 0 0 0 .04rem rgba(255,150,60,.4),0 .13rem 0 #120702,0 .24rem .4rem rgba(0,0,0,.35)}
+.ayarb .ic{width:62%;height:62%}
+.shopb:active,.ayarb:active,.shopb.bas,.ayarb.bas{transform:translateY(.08rem) scale(.96,.92)}
+.hpano{display:grid;gap:.12rem;flex:none}
+.hpano .chip.hedef{max-width:none;margin:0}
+.iler{width:100%;display:grid;gap:.06rem;background:linear-gradient(#55321f,#301b10 72%);border:.05rem solid #160903;border-radius:.5rem;padding:.1rem .22rem .12rem;color:#fff1d6;font-size:max(11px,.32rem);font-weight:800;box-shadow:inset 0 0 0 .035rem rgba(255,150,60,.38),0 .07rem 0 rgba(0,0,0,.4)}
+/* kartlar: krem kâğıt, kalın kahve kenar, içte ince sıcak çizgi; başlık kartın üst kenarına oturan kırmızı kurdele */
+.ov{padding-top:calc(var(--st) + .62rem)}
+.card{background:linear-gradient(#fffaf0,#fbe9cc);border:.1rem solid #2e1a10;border-radius:.7rem;box-shadow:inset 0 0 0 .07rem #f3d29a,inset 0 0 0 .12rem #fffaf0,0 .2rem 0 rgba(0,0,0,.45),0 .45rem 1.1rem rgba(0,0,0,.45)}
+.card>h2:first-child{justify-self:center;margin:-.86rem 0 -.04rem;position:relative;z-index:1;padding:.06rem .62rem .12rem;border-radius:.18rem;background:linear-gradient(#f65a3a,#d2281e 55%,#a8160e);border:.08rem solid #2a1206;
+  box-shadow:inset 0 .06rem 0 rgba(255,220,200,.45),0 .1rem 0 #4e0c05,0 .18rem .3rem rgba(0,0,0,.3);color:#fff4dc;font-size:.68rem;letter-spacing:.03em;-webkit-text-stroke:.08rem #2a1206;paint-order:stroke fill;text-shadow:0 .06rem 0 #2a1206;white-space:nowrap}
+.card>h2:first-child::before,.card>h2:first-child::after{content:"";position:absolute;z-index:-1;top:.2rem;width:.62rem;height:calc(100% - .02rem);background:linear-gradient(#a8160e,#7a0e08);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,32% 50%)}
+.card>h2:first-child::before{left:-.44rem}.card>h2:first-child::after{right:-.44rem;transform:scaleX(-1)}
+.card>h2:first-child{isolation:isolate}
+.btn{border-width:.08rem;box-shadow:inset 0 .06rem 0 rgba(255,220,200,.4),0 .14rem 0 var(--red-d),0 .22rem .35rem rgba(0,0,0,.25);transition:transform .08s}
+.btn:active{transform:translateY(.08rem) scale(.97,.94)}
+.btn.yesil{background:linear-gradient(#5fd94a,#2e9d3e);box-shadow:inset 0 .06rem 0 rgba(230,255,220,.5),0 .14rem 0 #1d6a28,0 .22rem .35rem rgba(0,0,0,.25)}
+.btn.alt{background:linear-gradient(#fffdf8,#f1e6d2);box-shadow:inset 0 .05rem 0 #fff,0 .14rem 0 #b9ad9c,0 .22rem .35rem rgba(0,0,0,.18)}
+.btn.tehlike{background:linear-gradient(#fff,#ffeceb);color:#b3140c;box-shadow:0 .12rem 0 #d9a39d}
+.btn.tehlike2{background:linear-gradient(#f65a3a,#c41c12)}
+/* duraklatma */
+.card.dur{width:min(100%,10.4rem)}
+.dur .dsat{display:flex;gap:.2rem;justify-content:center;flex-wrap:wrap}
+.dur .dsat span{display:flex;align-items:center;gap:.1rem;font-weight:800;font-size:.4rem;background:#fff;border:.05rem solid #e2d3b8;border-radius:.4rem;padding:.08rem .24rem .08rem .1rem}
+.dur .dsat .ic{width:.56rem;height:.56rem}
+.dur .dsat em{font-style:normal;font-variant-numeric:tabular-nums;color:#ff3d24;background:#140805;border-radius:.14rem;padding:.02rem .12rem;text-shadow:0 0 .08rem #ff2a10}
+.dur .btns{grid-template-columns:1fr 1fr}.dur .btns .btn:first-child{grid-column:1/-1;min-height:max(52px,1.5rem);font-size:.68rem}
+/* ayarlar */
+.card.ayr{width:min(100%,11.6rem);gap:.16rem}
+.card.sabit{animation:none}
+.ayr .arl{display:grid;grid-template-columns:1fr 1fr;gap:.14rem .2rem;width:100%}
+.ayr .ar{display:flex;align-items:center;gap:.16rem;min-height:max(46px,1.2rem);padding:.06rem .14rem .06rem .14rem;background:#fff;border:.05rem solid #e2d3b8;border-radius:.4rem;font-weight:800;font-size:.42rem;text-align:left;line-height:1.05}
+.ayr .ar>.ic{width:.66rem;height:.66rem}
+.ayr .ar>span{flex:1;min-width:0}
+.ayr .ar>span.seg{flex:none}
+.ayr .ar.gen{grid-column:1/-1}
+.sw{position:relative;flex:none;width:max(60px,1.5rem);height:max(32px,.8rem);border-radius:1rem;background:#cfc4b4;border:.06rem solid #2a1206;box-shadow:inset 0 .05rem .08rem rgba(0,0,0,.3);transition:background .2s}
+.sw::before{content:"";position:absolute;inset:-.3rem -.1rem}
+.sw i{position:absolute;top:50%;left:.06rem;width:calc(max(32px,.8rem) - .24rem);aspect-ratio:1;margin-top:calc((max(32px,.8rem) - .24rem)/-2);border-radius:50%;background:linear-gradient(#fff,#eee3d0);border:.05rem solid #2a1206;box-shadow:0 .04rem 0 rgba(0,0,0,.3);transition:left .2s cubic-bezier(.3,1.5,.5,1)}
+.sw.on{background:linear-gradient(#5fd94a,#2e9d3e)}
+.sw.on i{left:calc(100% - max(32px,.8rem) + .18rem)}
+.seg{display:flex;flex:none;border:.06rem solid #2a1206;border-radius:.5rem;overflow:hidden;background:#efe4d0}
+.seg button{min-width:max(52px,1.3rem);min-height:max(40px,.9rem);font-weight:800;font-size:.4rem;color:#8a7a6a}
+.seg button.on{background:linear-gradient(#ffb44a,#ff8a1a);color:#2a1206;box-shadow:inset 0 .04rem 0 rgba(255,255,255,.5)}
+.ayr .btn.tehlike{font-size:.42rem;min-height:max(46px,1.1rem)}
+.ayr .surum{font-size:max(10px,.26rem);font-weight:700;color:#9a8670}
+.card .kx{position:absolute;right:-.3rem;top:-.3rem;width:max(44px,1.05rem);height:max(44px,1.05rem);z-index:2}
+/* onay */
+.card.onay{width:min(100%,11.6rem)}
+.card.onay>h2:first-child{font-size:.56rem}
+.onay p{max-width:9.5rem}
+.onay .oik{width:1.5rem;height:1.5rem}
+.onay .btns{grid-template-columns:1fr 1fr}
+/* gün başı / gün sonu: daha sıcak bilgi kutuları */
+.info span,.kirasatir,.tablo .r,.yuzler span{box-shadow:0 .05rem 0 rgba(160,120,70,.25)}
+.menu.buyuk .mp .pors{width:3.1rem;height:1.78rem}
+.basi .fiyat{display:flex;align-items:center;gap:.08rem;font-size:.78rem;font-weight:800;color:#2a1206;background:linear-gradient(#ffe57a,#ffc21a);border:.07rem solid #2a1206;border-radius:.5rem;padding:.04rem .3rem .04rem .2rem;box-shadow:0 .1rem 0 #8a5a00}
+.basi .fiyat .ic{width:.7rem;height:.7rem}
+.card .btns .btn#go{min-height:max(52px,1.5rem);font-size:.7rem}
+@media (prefers-reduced-motion:reduce){.yigin,.yigin .yg .pr,.isi i,.neonP,.lisik,.otoR .ic,.etk,.etk.ok .kt,.radyo .ign,.radyo .nota i,.tepsi.hazir,.chip.gun.son{animation:none!important}</style></head><body>
 <div id="app">
   <div class="sahne" id="sahne"><div class="dunya" id="dunya">
     <img class="arka" id="arka" src="g/v3/mutfak.webp" alt="" style="left:-240px;top:-380px;width:2332px;height:1459px">
     <div id="canli"></div>
-    <div class="musK" id="musK"></div><div id="ezK"></div><div id="parca"></div><div id="balonK"></div><div id="paraK"></div><div id="dkK"></div><div id="wfx"></div>
+    <div class="musK" id="musK"></div><div id="ezK"></div><div id="parca"></div><div id="otoK"></div><div id="balonK"></div><div id="paraK"></div><div id="dkK"></div><div id="wfx"></div>
   </div></div>
   <div class="hud" id="hud">
     <div class="hk sol" id="hudL">
@@ -606,20 +704,23 @@ svg .sw,svg .tr{animation:mu-drip 1.3s ease-in infinite}svg .hb{animation:mu-pul
   <div id="guv" aria-hidden="true" style="position:absolute;visibility:hidden;pointer-events:none;left:0;top:0;padding:var(--st) var(--sr) var(--sb) var(--sl)"></div>
   <div id="fx"></div>
 
+  <!-- ana menü (11. tur): canlı mutfak arka planı, tabela logo, büyük OYNA, Dükkân ve Ayarlar, ilerleme panosu -->
   <div class="home" id="home">
-    <div class="isin"></div>
+    <div class="hbg" aria-hidden="true"><div class="hbw" id="hbw"></div></div>
+    <div class="hkar" aria-hidden="true"></div>
+    <div class="hpar" id="hpar" aria-hidden="true"></div>
     <div class="top"><div class="chip kasa" id="hKasaC"><span class="i" id="hKasaI"></span><span id="hKasa">0</span></div>
-      <button class="hb" id="hEfekt"></button><button class="hb" id="hMuzik"></button><button class="lang" id="langBtn"></button></div>
+      <div class="chip hgun" id="hGun"></div></div>
     <div class="hsol">
-      <div class="logo">BURGER<small id="logo2">USTASI</small></div>
+      <div class="logo" id="logo"><div class="tabela"><i class="zn z1"></i><i class="zn z2"></i>
+        <div class="lb" id="logo1" data-t="BURGER">BURGER</div><div class="kur"><span id="logo2" data-t="USTASI">USTASI</span></div></div></div>
       <div class="hero"><div class="f f1" id="heroA1"></div><div class="f f2" id="heroA2"></div>
         <div class="tb"><div class="hb2" id="heroB"></div><div class="pl"><img src="g/v3/tahta.webp" alt=""></div></div><div class="tz"></div></div>
     </div>
     <div class="hsag">
-      <button class="btn oyna" id="playBtn">OYNA</button>
-      <div class="hsat"><button class="shopb" id="shopBtn"></button></div>
-      <div class="chip hedef" id="hHedef"><span class="i"></span><span class="ht"></span><div class="prog"><b></b></div></div>
-      <div class="iler" id="hIler"></div>
+      <button class="oyna" id="playBtn"></button>
+      <div class="hsat"><button class="shopb" id="shopBtn"></button><button class="ayarb" id="ayarBtn"></button></div>
+      <div class="hpano"><div class="chip hedef" id="hHedef"><span class="i"></span><span class="ht"></span><div class="prog"><b></b></div></div><div class="iler" id="hIler"></div></div>
     </div>
   </div>
 

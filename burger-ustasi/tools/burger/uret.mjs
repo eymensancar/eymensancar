@@ -12,10 +12,12 @@ const BURADA = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(BURADA, '..', '..', 'www', 'g', 'v3');
 const OLCEK = 3;
 
-const isler = [K.altEkmek(), K.kofte(), K.peynir(), K.tursu(), K.ustEkmek(), ...N.hepsi()];
+// URET_SADECE=ad1,ad2: yalnız bu görseller (öbürleri dokunulmadan kalır; katman.json'daki ölçüleri korunur)
+const SADECE = process.env.URET_SADECE ? process.env.URET_SADECE.split(',') : null;
+const isler = [K.altEkmek(), K.kofte(), K.peynir(), K.tursu(), K.ustEkmek(), ...N.hepsi()].filter(is => !SADECE || SADECE.includes(is.ad));
 const br = await pw.chromium.launch();
 const p = await br.newPage({ deviceScaleFactor: OLCEK, viewport: { width: 800, height: 600 } });
-const man = {};
+const man = SADECE ? JSON.parse(fs.readFileSync(path.join(BURADA, 'katman.json'), 'utf8')) : {};
 for (const is of isler) {
   const m = is.svg.match(/viewBox="([^"]+)"/)[1].split(' ').map(Number);
   const [w, h] = [m[2], m[3]];

@@ -158,4 +158,36 @@ export function kofteCig() {
   return { ad: 'kofte-cig', svg: svg(W, H, defs, g) };
 }
 
-export function hepsi() { return [tahta(), tepsi(), porsiyon(), kofteCig()]; }
+/* ---------- 11. tur: avuçla konmuş patates (kutusuz, kâğıdın üstünde doğal yığın; tepside ve baloncukta) ---------- */
+// 130×74; yığının tabanının ortası (65, 62). Çubuklar yatık ve çapraz, ortası tepe; kontur ve dokular kutudaki patatesle aynı.
+export function patatesYigin() {
+  const r = rnd(41), W = 130, H = 74;
+  const cubuk = (cx, cy, aci, uz, gen, ton, i) => {
+    const ca = Math.cos(aci), sa = Math.sin(aci), x = cx - sa * uz / 2, y = cy + ca * uz / 2, x2 = cx + sa * uz / 2, y2 = cy - ca * uz / 2;
+    const renk = ton > .66 ? ['#ffd65a', '#f5a21e'] : ton > .33 ? ['#ffc63e', '#ee8f14'] : ['#ffbb2e', '#e07e10'];
+    const id = 'yg' + i;
+    return { d: `<linearGradient id="${id}" x1="${f1(cx - ca * gen)}" y1="${f1(cy - sa * gen)}" x2="${f1(cx + ca * gen)}" y2="${f1(cy + sa * gen)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${renk[0]}"/><stop offset="1" stop-color="${renk[1]}"/></linearGradient>`,
+      g: `<path d="M${f1(x)},${f1(y)} L${f1(x2)},${f1(y2)}" stroke="#7a3a06" stroke-width="${f1(gen + 2.6)}" stroke-linecap="round"/>
+        <path d="M${f1(x)},${f1(y)} L${f1(x2)},${f1(y2)}" stroke="url(#${id})" stroke-width="${f1(gen)}" stroke-linecap="round"/>
+        <path d="M${f1(x + (x2 - x) * .12 - ca * gen * .25)},${f1(y + (y2 - y) * .12 - sa * gen * .25)} L${f1(x + (x2 - x) * .8 - ca * gen * .25)},${f1(y + (y2 - y) * .8 - sa * gen * .25)}" stroke="#fff4c0" stroke-width="${f1(gen * .25)}" stroke-linecap="round" opacity=".75"/>
+        <path d="M${f1(x2 - sa * 2.5)},${f1(y2 + ca * 2.5)} L${f1(x2)},${f1(y2)}" stroke="#c46a10" stroke-width="${f1(gen * .8)}" stroke-linecap="round" opacity=".55"/>` };
+  };
+  // yığın: tabanı geniş, ortası tepe; çubuklar ince (oran ~1:6), her yöne yatık. Önce alttakiler, sonra üsttekiler çizilir.
+  const ham = [];
+  for (let k = 0; k < 34; k++) {
+    const u = (k + r() * .8) / 34, x = 24 + u * 82, tepe = Math.sqrt(Math.max(0, 1 - Math.pow((x - 65) / 46, 2)));
+    const y = 61 - tepe * 36 * Math.pow(r(), .6) - 2;
+    const aci = (r() < .5 ? -1 : 1) * (0.55 + r() * 1.0);
+    ham.push([x, y, aci, 22 + r() * 12, 5.6 + r() * 1.2, r()]);
+  }
+  ham.sort((p, q) => q[1] - p[1]);
+  const ss = ham.map((h, i) => cubuk(h[0], h[1], h[2], h[3], h[4], h[5], i));
+  const defs = doku('pyk', { leke: 0.1, gren: 0.05, sik: 0.06, tohum: 9 }) + ss.map(x => x.d).join('');
+  const g = `<ellipse cx="65" cy="63" rx="56" ry="8.5" fill="#6a2a08" opacity=".38" filter="url(#pykb3)"/>
+  <ellipse cx="65" cy="61" rx="44" ry="5.5" fill="#c98a2a" opacity=".22"/>
+  <g filter="url(#pyk)"><rect x="0" y="0" width="${W}" height="${H}" fill="none"/>${ss.map(x => x.g).join('')}</g>
+`;
+  return { ad: 'patates-yigin', svg: svg(W, H, defs, g) };
+}
+
+export function hepsi() { return [tahta(), tepsi(), porsiyon(), kofteCig(), patatesYigin()]; }

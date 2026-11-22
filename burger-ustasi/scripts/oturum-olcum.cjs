@@ -2,7 +2,8 @@
 //
 //   node scripts/oturum-olcum.cjs [www klasörü] [çıktı.json] [senaryolar]
 //     www klasörü: varsayılan www/ (eski sürümü ölçmek için: git archive ile çıkarılmış bir www/)
-//     senaryolar: virgülle (varsayılan hepsi): yeni1, alisik1, gun8, gun15, bosta
+//     senaryolar: virgülle (varsayılan hepsi): yeni1, alisik1, gun8, gun15, bosta; 11. tur: egri (1., 3., 6., 10. gün, iki oyuncu
+//     hızıyla, bütün gün: aynı anda müşteri dağılımı; docs/DENGE.md → "11. tur")
 //
 // Yöntem (incelemedeki gibi): www/ yerel sunucuda index.html?debug, Playwright, yatay iPhone 15 (852×393). Bot GERÇEK
 // dokunuşlarla (dokunma alanının ortası) bir insan gibi oynar: her dokunuştan sonra "alışmış" 0,38–0,6 sn, "yeni oyuncu"
@@ -18,7 +19,7 @@ const http = require('http'), fs = require('fs'), path = require('path'), os = r
 let pw; try { pw = require('playwright'); } catch (e) { pw = require('/opt/node-tools/node_modules/playwright'); }
 const WWW = path.resolve(process.argv[2] || path.join(__dirname, '..', 'www'));
 const OUT = process.argv[3] ? path.resolve(process.argv[3]) : null;
-const SEN = (process.argv[4] || 'yeni1,alisik1,gun8,gun15,bosta').split(',');
+const SEN = (process.argv[4] || 'yeni1,alisik1,gun8,gun15,bosta,egri').split(',');
 const TUR = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.mp3': 'audio/mpeg', '.json': 'application/json' };
 const sunucu = http.createServer((q, r) => {
   const p = path.join(WWW, decodeURIComponent(q.url.split('?')[0]));
@@ -158,8 +159,9 @@ async function gunOyna(br, port, ad, kayit, gun, secenek) {
 }
 
 async function bosta(br, port) {
-  const { ctx, p, hata } = await sayfa(br, port, { day: 8, coins: 500, seen: ['tut3', 'para', 'ilk'], up: { cook: 0, pat: 0, tip: 0, slot: 1 } });
-  await p.evaluate(() => { window.__bu.startDay(8); window.__bu.basla(); });
+  // 11. tur: 8. günde tezgâh artık nadiren dolar (müşteri eğrisi); boşta ölçümü dolu tezgâhla 16. günde
+  const { ctx, p, hata } = await sayfa(br, port, { day: 16, coins: 500, seen: ['tut3', 'para', 'ilk'], up: { cook: 0, pat: 0, tip: 0, slot: 1 } });
+  await p.evaluate(() => { window.__bu.startDay(16); window.__bu.basla(); });
   // müşteriler gelsin (en çok kaç gelirse: 10. turda 3, eskisinde 2–3), sonra hiç dokunma
   await p.waitForFunction(() => window.__bu.S.cust.filter(Boolean).length >= 3, null, { timeout: 25000 }).catch(() => {});
   await bekle(2500);
@@ -194,6 +196,14 @@ print(sum(o) / len(o), max(o))
   if (SEN.includes('gun8')) sonuc.gun8 = await gunOyna(br, port, 'gun8', { day: 8, coins: 500, seen: ['tut3', 'para', 'ilk'], up: { cook: 0, pat: 0, tip: 0, slot: 1 } }, 8, { sure: 90, aralik: AL, ileri: true });
   if (SEN.includes('gun15')) sonuc.gun15 = await gunOyna(br, port, 'gun15', { day: 15, coins: 900, seen: ['tut3', 'para', 'ilk'], up: { cook: 0, pat: 1, tip: 1, slot: 2 } }, 15, { sure: 120, aralik: AL, ileri: true });
   if (SEN.includes('bosta')) sonuc.bosta = await bosta(br, port);
+  // 11. tur: müşteri eğrisi. Her gün iki oyuncuyla (yeni: saniyede ~1 dokunuş; alışmış: 0,38–0,6 sn) bütün gün oynanır;
+  // geliştirmeler o güne kadar orta bir oyuncunun aldıkları kadar (docs/DENGE.md). Her 0,5 sn tezgâhtaki müşteri sayısı.
+  if (SEN.includes('egri')) {
+    const UP = { 1: {}, 3: { slot: 1, pat: 1 }, 6: { slot: 1, pat: 2, tip: 1, dogra: 1 }, 10: { slot: 1, pat: 3, tip: 2, dogra: 1, kizart: 1 } };
+    sonuc.egri = {};
+    for (const g of (process.env.EGRI_GUN ? process.env.EGRI_GUN.split(',').map(Number) : [1, 3, 6, 10])) for (const [ad, ar, il] of [['yeni', YENI, false], ['alisik', AL, true]])
+      sonuc.egri[`gun${g}-${ad}`] = await gunOyna(br, port, `egri gün ${g} ${ad}`, { day: g, coins: 300, seen: ['tut3', 'para', 'ilk'], up: UP[g] }, g, { sure: 400, aralik: ar, ileri: il });
+  }
   await br.close(); sunucu.close();
   if (OUT) fs.writeFileSync(OUT, JSON.stringify(sonuc, null, 1));
 })();
