@@ -286,7 +286,21 @@ Eymen'in iPhone denemesinden sonra istekler: "yollar bazen bozuk / tam görünm�
 
 ### Başarım (yazılımsal WebGL, Playwright; çizim çağrısı ve üçgen cihazdan bağımsız)
 
-BASARIM_TABLOSU
+Veri oturduktan sonra (kamera hareketsiz):
+
+| Görünüm | Kalite | Çizim çağrısı | Çizilen üçgen | Önce (eski dünya) |
+|---|---|---|---|---|
+| Boğaz, 650 m, iPhone 13 yatay | orta | 187 | 1.06 milyon | 147 / 0.65 milyon |
+| İstanbul, 600 m | orta | 180 | 1.19 milyon | — |
+| İstanbul, 120 m (yoğun mahalle) | orta | 183 | 1.14 milyon | — |
+| Levent-Maslak, 380 m | orta | 118 | 0.40 milyon | — |
+| İstanbul Havalimanı, 300 m, terminal ve uçaklar | orta | 182 | 0.39 milyon | 142 / 0.89 milyon |
+| Atatürk pisti, 8 m (yakın) | orta | 195 | 1.45 milyon | — |
+| İstanbul, 600 m | yüksek | 254 | 2.49 milyon | 188 / 1.23 milyon |
+| Eskişehir, 450 m | yüksek | 243 | 1.12 milyon | 192 / 0.70 milyon |
+| İstanbul üstü, 3500 m | yüksek | 215 | 1.34 milyon | 132 / 0.27 milyon |
+
+"Orta" (dokunmatik varsayılanı) hedefin içinde (≤ 250 çağrı, ~1.5 milyon üçgen); "yüksek" masaüstü içindir (gölgeler, daha uzak binalar). Uzak bir yere ışınlanınca (deneme kancasıyla) veri yüklenirken birkaç saniye eski ve yeni düğümler birlikte durduğu için sayılar geçici olarak yükselir. Yazılımsal WebGL'de dünya ağırlaştığı için `tarayici-test.cjs kalkis` verinin oturmasını daha uzun bekler; kalkış 335 m'de teker kesti, iPhone denemesi geçti, `node tests/fizik-test.mjs` hepsi geçti. Açılışta yüklenen ek veri yalnız `hava.json` (48 KB) ve `bina.json` (~10 KB); geri kalanı akışla gelir. `www/` toplam ~91 MB (en büyük dosya 3.6 MB).
 
 ### Ekran görüntüleri (`docs/ekran/`)
 
@@ -298,4 +312,11 @@ Yeni dışarıdan varlık yok: bütün dokular (cephe atlası, pist yazıları, 
 
 ### Bilinen eksikler (dünya)
 
-BILINEN_EKSIKLER
+- Küçük harita İstanbul dikdörtgeninde başka, dışında başka resim kullanıyor (geçişte ölçek ve renk sıçraması); `main.js`'te, bu turda değiştirilmedi.
+- Mahalle içi sokaklar (OSM `residential`) yok; yalnız ana yollar ve kasaba içindeki üçüncül yollar. İstanbul'da zemin dokusundaki sokaklar 7 m/piksel.
+- Arazi bölgelerin ve havalimanı yamalarının dışında 500 m çözünürlükte; o şehirlerde binalar bu yüzeye oturur (tepeler yumuşak).
+- Havalimanı yüksekliği tek değer (eğimli pistler düz); uçuşta düzleşme yalnız kaplamalı alan + 450 m.
+- Terminaller OSM tabanından genel biçimde (cam cephe, saçak, ışıklık); gerçek çatı biçimleri ve iç mekân yok. Atatürk'ün yolcu terminali OSM'de `building=airport` olarak işaretli olduğundan genel biçimde çizilir.
+- Park etmiş uçaklar tek gövde tipi (iki boy), iniş takımı ve kapı ayrıntısı basit; yolcu köprüleri yalnız OSM'de olan ya da terminale yakın park yerlerinde.
+- Bulutlar düz kareler (hacimli değil), gölge düşürmez; gece yok, güneş sabit.
+- Yazılımsal WebGL'de kare hızı düşük olduğundan gerçek iPhone'da ölçülmedi.

@@ -35,13 +35,13 @@ const VIEWS = [
   ['yuksek-irtifa', [40.95, 29.10, 3500, 300, 300], [0.0, 0.35, 1.0]],
 ];
 
-async function settle(p, ms = 120000) {
+async function settle(p, ms = 180000) {
   const t0 = Date.now();
   await sleep(2500);
   while (Date.now() - t0 < ms) { const s = await p.evaluate(() => __ucak.stats()); if (s.pending === 0) return s; await sleep(700); }
   console.log('  (veri tam yüklenmedi)'); return p.evaluate(() => __ucak.stats());
 }
-async function shot(p, name) { await p.screenshot({ path: path.join(OUT, name), type: 'jpeg', quality: 70, timeout: 180000 }); console.log('  görüntü:', name); }
+async function shot(p, name) { await p.screenshot({ path: path.join(OUT, name), type: 'jpeg', quality: 70, timeout: 400000 }); console.log('  görüntü:', name); }
 async function page(b, opt, store) {
   const p = await b.newPage(opt);
   await p.addInitScript((s) => localStorage.setItem('istanbul-ucusu-v1', JSON.stringify(Object.assign({ v2: true }, s))), store);

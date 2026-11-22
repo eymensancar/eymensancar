@@ -378,7 +378,7 @@ for a in APL:
     a['elev'] = round(max(a['elev'], 2.0) * 2) / 2
 
 def weight(a, X, Y, s):
-    """Düzleştirme ağırlığı: kaplamalı alan + pay içinde 1, 450 m'de 0'a iner."""
+    """Düzleştirme ağırlığı: kaplamalı alan + pay + 110 m içinde 1, sonra 420 m.de 0.a iner."""
     x0, y0 = X[0, 0], Y[0, 0]; ny, nx = X.shape
     k = 4   # 4 kat ince rasterla çiz, sonra uzaklık dönüşümü
     W, H = nx * k, ny * k
@@ -392,7 +392,7 @@ def weight(a, X, Y, s):
     m = np.array(im) > 0
     dist = ndimage.distance_transform_edt(~m) * (s / k)
     dist = dist[k // 2::k, k // 2::k][:ny, :nx]
-    w = np.clip(1 - (dist - 40) / 420, 0, 1)
+    w = np.clip(1 - (dist - 110) / 420, 0, 1)   # kaplamalı alandan 110 m (> bir arazi üçgeni) tam düz
     return w * w * (3 - 2 * w)
 
 def flatten_grid(H, x0, y0, s, aps):
