@@ -1,0 +1,22 @@
+{"_": "Ayrıntılı bölgeler (62.5 m yükseklik ızgarası). yari: yarı kenar (km). binalar: OSM binaları alınır mı. Yeni bölge eklemek için buraya ekleyip tools/fetch_dem_tr.py ve tools/build_turkey.py çalıştırın.",
+ "bolgeler": [
+  {"id": "ankara", "ad": "Ankara", "lat": 40.0, "lon": 32.90, "yari": 20, "binalar": true},
+  {"id": "izmir", "ad": "İzmir", "lat": 38.37, "lon": 27.14, "yari": 16, "binalar": true},
+  {"id": "bursa", "ad": "Bursa ve Uludağ", "lat": 40.15, "lon": 29.08, "yari": 15, "binalar": true},
+  {"id": "antalya", "ad": "Antalya", "lat": 36.90, "lon": 30.74, "yari": 13, "binalar": true},
+  {"id": "konya", "ad": "Konya", "lat": 37.89, "lon": 32.50, "yari": 12, "binalar": true},
+  {"id": "adana", "ad": "Adana", "lat": 37.00, "lon": 35.32, "yari": 11, "binalar": true},
+  {"id": "mersin", "ad": "Mersin", "lat": 36.80, "lon": 34.60, "yari": 10, "binalar": true},
+  {"id": "gaziantep", "ad": "Gaziantep", "lat": 37.07, "lon": 37.37, "yari": 10, "binalar": true},
+  {"id": "kayseri", "ad": "Kayseri ve Erciyes", "lat": 38.63, "lon": 35.50, "yari": 17, "binalar": true},
+  {"id": "kapadokya", "ad": "Kapadokya", "lat": 38.70, "lon": 34.72, "yari": 16, "binalar": true},
+  {"id": "trabzon", "ad": "Trabzon", "lat": 40.99, "lon": 39.74, "yari": 10, "binalar": true},
+  {"id": "samsun", "ad": "Samsun", "lat": 41.28, "lon": 36.32, "yari": 10, "binalar": true},
+  {"id": "eskisehir", "ad": "Eskişehir", "lat": 39.78, "lon": 30.52, "yari": 10, "binalar": true},
+  {"id": "diyarbakir", "ad": "Diyarbakır", "lat": 37.92, "lon": 40.20, "yari": 10, "binalar": true},
+  {"id": "erzurum", "ad": "Erzurum ve Palandöken", "lat": 39.88, "lon": 41.24, "yari": 13, "binalar": true},
+  {"id": "van", "ad": "Van", "lat": 38.48, "lon": 43.36, "yari": 11, "binalar": true},
+  {"id": "agri", "ad": "Ağrı Dağı", "lat": 39.70, "lon": 44.25, "yari": 22, "binalar": false},
+  {"id": "kackar", "ad": "Kaçkar Dağları", "lat": 40.84, "lon": 41.15, "yari": 13, "binalar": false},
+  {"id": "ist_havalimani", "ad": "İstanbul Havalimanı", "lat": 41.265, "lon": 28.74, "yari": 8, "binalar": true}
+ ]}

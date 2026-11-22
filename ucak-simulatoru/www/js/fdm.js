@@ -146,6 +146,42 @@ export const PLANES = {
     eye: [2.6, 0, -0.75],
     camDist: 19, camUp: 4,
   },
+  // F-16 sınıfı tek motorlu savaş uçağı: 11.5 t, 76 kN (ard yakıcıyla 125 kN, itki/ağırlık ~1.1).
+  // Uçuş kumandası "fly-by-wire": levye yük faktörü (g) ve yuvarlanma hızı ister, bilgisayar yüzeyleri oynatır;
+  // hücum açısı 25° ve 9 g ile sınırlıdır, tutunma kaybına girmez (oyun için gerçeğinden bağışlayıcı).
+  f16: {
+    id: 'f16', name: 'F-16 sınıfı savaş uçağı', kind: 'jet',
+    mass: 11500, S: 27.87, b: 9.96, c: 3.45,
+    I: [13000, 80000, 92000],
+    CL0: 0.05, CLa: 3.6, CLq: 3.0, CLadot: 0.8, CLde: 0.45,
+    aStall: 32 * D2R, aStallNeg: -18 * D2R, round: 0.12, stallDrop: 0.25,
+    flapDetents: [0, 20], flapCL: 0.35, flapCD: 0.035, flapCm: -0.02, flapStall: 0, flapRate: 0.5,
+    CD0: 0.0205, e: 0.78, CLminD: 0.08, CDbeta: 0.5, gearCD: 0.025, Mcrit: 0.88, waveCD: 0.028,
+    CYb: -0.9, CYdr: 0.18, CYp: 0, CYr: 0.4,
+    Cm0: 0.0, Cma: -0.25, Cmq: -5.0, Cmadot: -2.0, Cmde: -0.62, CmStall: -0.08,
+    Clb: -0.05, Clp: -0.30, Clda: 0.13, Cldr: 0.01,
+    Cnb: 0.12, Cnr: -0.30, Cnda: -0.002, Cndr: -0.075,
+    deUp: -25 * D2R, deDown: 25 * D2R, daMax: 21.5 * D2R, drMax: 30 * D2R, surfRate: 60 * D2R * 1.0, surfRateA: 240 * D2R,
+    Tmax: 76000, Tab: 125000, spoolUp: 0.55, spoolDown: 0.8, idleN: 0.07, gearTime: 3,
+    Vne: 850 * KT, nMax: 9, nMin: -3,
+    // fly-by-wire sınırları
+    fbw: { nMax: 9, nMin: -3, nMaxGear: 4, aMax: 25 * D2R, aMaxGear: 15 * D2R, aMin: -10 * D2R, pMax: 240 * D2R, betaMax: 12 * D2R, yawAug: 0.25, couple: 0.4 },
+    gear: [
+      { name: 'burun', p: [3.9, 0, 1.78], k: 120000, c: 14000, steer: true, brake: false },
+      { name: 'sol', p: [-0.45, -1.18, 1.78], k: 300000, c: 32000, steer: false, brake: true },
+      { name: 'sağ', p: [-0.45, 1.18, 1.78], k: 300000, c: 32000, steer: false, brake: true },
+    ],
+    steerMax: 14 * D2R, retract: true,
+    hard: [
+      { name: 'kuyruk', p: [-6.9, 0, 0.55] },
+      { name: 'burun', p: [7.8, 0, 0.5] },
+      { name: 'sol kanat ucu', p: [-1.6, -4.98, 0.45] },
+      { name: 'sağ kanat ucu', p: [-1.6, 4.98, 0.45] },
+      { name: 'gövde', p: [0, 0, 1.05] },
+    ],
+    eye: [3.55, 0, -1.05],
+    camDist: 21, camUp: 4.2,
+  },
 };
 
 // ---------- kaldırma eğrisi ----------
@@ -200,6 +236,7 @@ export class Aircraft {
     this.gearPos = 1;               // 1 açık, 0 kapalı
     this.rpm = P.kind === 'prop' ? 0 : 0;
     this.spool = P.kind === 'jet' ? P.idleN : 0;
+    this.ab = 0; this.fbwS = null; this.fbwOut = null;
     this.engineOn = true;
     this.alpha = 0; this.beta = 0; this.alphaPrev = 0; this.alphaDot = 0;
     this.out = { V: 0, alpha: 0, beta: 0, qbar: 0, CL: 0, CD: 0, M: 0, rho: 1.225, L: 0, D: 0, T: 0, agl: 0, ground: { h: 0, kind: 'land' } };
@@ -217,18 +254,74 @@ export class Aircraft {
   // kumanda yüzeylerini sınırlı hızla komuta doğru götür
   _surfaces(dt) {
     const P = this.P, c = this.ctl, s = this.surf;
-    const pitch = clamp(c.pitch + c.trim, -1, 1);
-    // pitch +1 = levye geri (burun yukarı) -> elevatör yukarı (negatif)
-    const deCmd = pitch >= 0 ? pitch * P.deUp : -pitch * P.deDown;
-    const daCmd = clamp(c.roll, -1, 1) * P.daMax;
-    const drCmd = -clamp(c.yaw, -1, 1) * P.drMax; // sağ pedal -> burun sağa
-    const r = P.surfRate * dt;
+    let deCmd, daCmd, drCmd;
+    if (P.fbw) ({ deCmd, daCmd, drCmd } = this._fbw(dt));
+    else {
+      const pitch = clamp(c.pitch + c.trim, -1, 1);
+      // pitch +1 = levye geri (burun yukarı) -> elevatör yukarı (negatif)
+      deCmd = pitch >= 0 ? pitch * P.deUp : -pitch * P.deDown;
+      daCmd = clamp(c.roll, -1, 1) * P.daMax;
+      drCmd = -clamp(c.yaw, -1, 1) * P.drMax; // sağ pedal -> burun sağa
+    }
+    const r = P.surfRate * dt, ra = (P.surfRateA || P.surfRate) * dt;
     s.de += clamp(deCmd - s.de, -r, r);
-    s.da += clamp(daCmd - s.da, -r, r);
-    s.dr += clamp(drCmd - s.dr, -r, r);
+    s.da += clamp(daCmd - s.da, -ra, ra);
+    s.dr += clamp(drCmd - s.dr, -ra, ra);
     const fr = P.flapRate * dt;
     s.flap += clamp(c.flaps - s.flap, -fr, fr);
-    if (P.retract) { const g = c.gearDown ? 1 : 0; this.gearPos += clamp(g - this.gearPos, -dt / 6, dt / 6); }
+    if (P.retract) { const g = c.gearDown ? 1 : 0, gt = P.gearTime || 6; this.gearPos += clamp(g - this.gearPos, -dt / gt, dt / gt); }
+  }
+
+  // Fly-by-wire: levye yunuslamada yük faktörü (g), yatışta yuvarlanma hızı ister.
+  // Levye ortadayken uçuş yolu korunur (ters uçuşta da), hücum açısı ve g sınırlanır, dümen yan kaymayı siler.
+  _fbw(dt) {
+    const P = this.P, F = P.fbw, c = this.ctl, o = this.out, m = this.m;
+    const st = this.fbwS || (this.fbwS = { ia: 0 });
+    const V = Math.max(o.V, 25), qbar = Math.max(o.qbar, 300);
+    const [p, q, r] = this.w;
+    const alpha = o.alpha || 0, beta = o.beta || 0;
+    const gearDn = this.gearPos > 0.5;
+    const aMax = gearDn ? F.aMaxGear : F.aMax;
+    // yerde (tekerlek yükü varken) doğrudan kumanda: kalkışta burun yumuşak kalkar
+    if (this.onGround) {
+      st.ia = 0;
+      const pitch = clamp(c.pitch + c.trim, -1, 1);
+      return { deCmd: pitch >= 0 ? pitch * P.deUp * 0.8 : -pitch * P.deDown * 0.5, daCmd: clamp(c.roll, -1, 1) * P.daMax * 0.5, drCmd: -clamp(c.yaw, -1, 1) * P.drMax * 0.5 };
+    }
+    // yerçekimi telafisi: dünya aşağı yönünün gövde z bileşeni (= cosθ cosφ)
+    const n0 = clamp(m[8], -1, 1);
+    const u = clamp(c.pitch + c.trim, -1, 1);
+    const nHi = gearDn ? F.nMaxGear : F.nMax;
+    const nCmd = u >= 0 ? n0 + u * (nHi - n0) : n0 + u * (n0 - F.nMin);
+    // istenen g için gereken hücum açısı (kaldırma eğrisinin tersi) + tümlev düzeltmesi
+    const CLreq = nCmd * P.mass * G0 / (qbar * P.S);
+    const dCLf = P.flapCL * this.surf.flap;
+    let aCmd = (CLreq - P.CL0 - dCLf) / P.CLa + st.ia;
+    // g sınırlayıcı: gerçek yük sınıra yaklaşınca açı isteği geri çekilir
+    if (this.nz > nHi - 0.6) aCmd -= 0.05 * (this.nz - (nHi - 0.6));
+    if (this.nz < F.nMin + 0.4) aCmd += 0.05 * ((F.nMin + 0.4) - this.nz);
+    const lim = aCmd > aMax || aCmd < F.aMin;
+    aCmd = clamp(aCmd, F.aMin, aMax);
+    if (!lim) st.ia = clamp(st.ia + (nCmd - this.nz) * 0.06 * dt, -0.1, 0.1);
+    // dengedeki yunuslama hızı ve elevatör (ileri besleme) + hücum açısı ve yunuslama hızı geri beslemesi
+    const nAt = (P.CL0 + dCLf + P.CLa * aCmd) * qbar * P.S / (P.mass * G0); // bu açıda erişilebilen g
+    const nEff = nCmd >= n0 ? Math.min(nCmd, Math.max(nAt, n0)) : Math.max(nCmd, Math.min(nAt, n0));
+    const qSS = G0 * (nEff - n0) / V;
+    const qh = qSS * P.c / (2 * V);
+    const deFF = -(P.Cm0 + P.Cma * aCmd + P.Cmq * qh + P.flapCm * this.surf.flap + P.CLde * 0) / P.Cmde;
+    const kS = clamp(30000 / qbar, 0.25, 2.5); // dinamik basınca göre kazanç
+    let deCmd = deFF + kS * (1.4 * (alpha - aCmd) + 0.3 * this.alphaDot + 0.55 * (q - qSS) * P.c / (2 * V) * 40);
+    deCmd = clamp(deCmd, P.deUp, P.deDown);
+    // yuvarlanma: istenen hız, yüksek hücum açısında azalır
+    const pCmd = clamp(c.roll, -1, 1) * F.pMax * clamp(1 - (Math.abs(alpha) - 10 * D2R) / (22 * D2R), 0.3, 1);
+    const daFF = pCmd * (P.b / (2 * V)) * (-P.Clp) / P.Clda;
+    const daCmd = clamp(daFF + 0.25 * kS * (pCmd - p) * P.b / (2 * V) * 8, -P.daMax, P.daMax);
+    // dümen: yan kaymayı sil, dönüşü hız eksenine koordine et; pilot pedalı yan kayma ister
+    const bCmd = -clamp(c.yaw, -1, 1) * F.betaMax;
+    const rCmd = p * Math.tan(clamp(alpha, -0.5, 0.6)) + G0 * (m[7]) / V; // m[7]: yatışta dönüş
+    const drCmd = clamp(-1.6 * kS * (beta - bCmd) + 0.9 * kS * (r - rCmd) * P.b / (2 * V) * 6, -P.drMax, P.drMax);
+    this.fbwOut = { nCmd, aCmd, pCmd, bCmd };
+    return { deCmd, daCmd, drCmd };
   }
 
   // motor: pervaneli ise devir dinamiği, jet ise türbin devri gecikmesi. Döndürür itki (N)
@@ -255,12 +348,17 @@ export class Aircraft {
       const T = CT * atm.rho * n * n * Math.pow(P.propD, 4);
       return T;
     } else {
-      const target = this.engineOn ? P.idleN + (1 - P.idleN) * thr : 0;
+      // ard yakıcı (varsa): gaz %90'ın üstünde ek itki, kısa bir gecikmeyle yanar
+      const mil = P.Tab ? Math.min(1, thr / 0.9) : thr;
+      const target = this.engineOn ? P.idleN + (1 - P.idleN) * mil : 0;
       const k = target > this.spool ? P.spoolUp * (0.35 + this.spool) : P.spoolDown;
       this.spool += (target - this.spool) * Math.min(1, k * dt);
       this.rpm = this.spool * 100; // % N
+      const abT = P.Tab && this.engineOn && this.spool > 0.9 ? clamp((thr - 0.9) / 0.1, 0, 1) : 0;
+      this.ab = (this.ab || 0) + (abT - (this.ab || 0)) * Math.min(1, dt * 4);
       const M = V / atm.a;
-      const T = P.Tmax * this.spool * this.spool * Math.pow(atm.sigma, 0.8) * (1 - 0.45 * M + 0.3 * M * M);
+      const ram = P.Tab ? (1 + 0.08 * M + 0.2 * M * M) : (1 - 0.45 * M + 0.3 * M * M);
+      const T = (P.Tmax * this.spool * this.spool + (P.Tab ? (P.Tab - P.Tmax) * this.ab : 0)) * Math.pow(atm.sigma, 0.8) * ram;
       this.propTorque = 0; this.power = T * V;
       return T;
     }
@@ -301,7 +399,8 @@ export class Aircraft {
       + (P.gearCD || 0) * this.gearPos;
     // sıkıştırılabilirlik (jet için)
     const M = V / atm.a;
-    if (M > 0.72) CD += 0.6 * (M - 0.72) ** 2 * 10;
+    if (P.Mcrit) { if (M > P.Mcrit) CD += P.waveCD * smooth(P.Mcrit, 1.05, M) + 0.06 * Math.max(0, M - 1.1); }
+    else if (M > 0.72) CD += 0.6 * (M - 0.72) ** 2 * 10;
     const CY = P.CYb * beta + P.CYdr * s.dr + P.CYp * ph + P.CYr * rh;
     // momentler
     const CLw = lc.CL;
@@ -309,7 +408,13 @@ export class Aircraft {
     const Cl = P.Clb * beta + Clp * ph + (CLw / 4) * rh + P.Clda * s.da + P.Cldr * s.dr
       + 0.025 * sep * Math.sign(beta + 0.3 * rh || 1); // kanat düşmesi
     const Cm = P.Cm0 + P.Cma * alpha + P.Cmq * qh + P.Cmadot * adh + P.Cmde * s.de + P.flapCm * s.flap + P.CmStall * sep;
-    const Cn = P.Cnb * beta + (-CLw / 8) * ph + P.Cnr * rh + P.Cnda * s.da + P.Cndr * s.dr;
+    let Cn = P.Cnb * beta + (-CLw / 8) * ph + P.Cnr * rh + P.Cnda * s.da + P.Cndr * s.dr;
+    // fly-by-wire kanatçık-dümen bağlantısı: yatış hız ekseni etrafında olur (yüksek hücum açısında yan kayma birikmez)
+    if (P.fbw) {
+      Cn += P.Clda * s.da * 0.5 * Math.tan(clamp(alpha, -0.6, 0.6)) * (P.I[2] / P.I[0]);
+      // bütün yüzeylerle yön kararlılığı artırımı (oyun için: yan kayma hızla sönümlenir)
+      Cn += P.fbw.yawAug * (beta - (this.fbwOut ? this.fbwOut.bCmd : 0));
+    }
     // rüzgar ekseninden gövdeye: sürükleme -v yönünde, kaldırma v'ye dik (x-z düzleminde)
     const ca = Math.cos(alpha), sa = Math.sin(alpha);
     const L = qbar * P.S * CL, D = qbar * P.S * CD, Y = qbar * P.S * CY;
@@ -448,6 +553,8 @@ export class Aircraft {
     const I = P.I, w = this.w;
     const Iw = [I[0] * w[0], I[1] * w[1], I[2] * w[2]];
     const wxIw = cross(w, Iw);
+    // fly-by-wire: eylemsizlik bağlaşımının (hızlı yatışta burnun kendiliğinden kalkması) çoğu bilgisayarca karşılanır
+    if (P.fbw) { const k = P.fbw.couple; wxIw[0] *= k; wxIw[1] *= k; wxIw[2] *= k; }
     w[0] += (Mb[0] - wxIw[0]) / I[0] * dt;
     w[1] += (Mb[1] - wxIw[1]) / I[1] * dt;
     w[2] += (Mb[2] - wxIw[2]) / I[2] * dt;
@@ -507,7 +614,7 @@ export function trimLevel(P, V, alt, flaps = 0, opts = {}) {
     if (P.kind === 'prop') {
       ac.rpm = 2000;
       for (let i = 0; i < 4000; i++) { ac._engine(0.01, V * Math.cos(a), isa(alt)); }
-    } else ac.spool = P.idleN + (1 - P.idleN) * clamp(th, 0, 1);
+    } else { const tc = clamp(th, 0, 1); ac.spool = P.idleN + (1 - P.idleN) * (P.Tab ? Math.min(1, tc / 0.9) : tc); ac.ab = P.Tab ? clamp((tc - 0.9) / 0.1, 0, 1) : 0; }
     const { Fw, Mb } = ac.forces(1e-3, env);
     ac.alphaDot = 0;
     const Fb = mulMT(ac.m, Fw);
@@ -556,7 +663,8 @@ export function startTrimmed(ac, { n, e, alt, heading, speed, flaps = 0, gearUp 
   ac.ctl.trim = t.trim; ac.ctl.throttle = clamp(t.throttle, 0, 1); ac.ctl.flaps = flaps; ac.surf.flap = flaps;
   const pc = clamp(t.trim, -1, 1); ac.surf.de = pc >= 0 ? pc * ac.P.deUp : -pc * ac.P.deDown;
   ac.alphaPrev = t.alpha;
-  if (ac.P.kind === 'prop') ac.rpm = t.rpm; else ac.spool = ac.P.idleN + (1 - ac.P.idleN) * ac.ctl.throttle;
+  if (ac.P.kind === 'prop') ac.rpm = t.rpm; else { const tc = ac.ctl.throttle; ac.spool = ac.P.idleN + (1 - ac.P.idleN) * (ac.P.Tab ? Math.min(1, tc / 0.9) : tc); ac.ab = ac.P.Tab ? clamp((tc - 0.9) / 0.1, 0, 1) : 0; }
+  if (ac.P.fbw) ac.ctl.trim = 0; // fly-by-wire uçuş yolunu kendisi tutar
   ac.gearPos = gearUp ? 0 : 1; ac.ctl.gearDown = !gearUp;
   return t;
 }

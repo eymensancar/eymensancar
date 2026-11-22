@@ -19,7 +19,7 @@ export class Input {
   take() { const e = this.events; this.events = []; return e; }
 
   _kb() {
-    const map = { KeyF: 'flapDown', KeyV: 'flapUp', KeyC: 'camera', KeyR: 'reset', KeyP: 'pause', Escape: 'pause', KeyT: 'autotrim', KeyG: 'gear', KeyM: 'mute', KeyH: 'help', KeyL: 'engine' };
+    const map = { KeyF: 'flapDown', KeyV: 'flapUp', KeyC: 'camera', KeyR: 'reset', KeyP: 'pause', Escape: 'pause', KeyT: 'autotrim', KeyG: 'gear', KeyM: 'mute', KeyH: 'help', KeyL: 'engine', KeyK: 'smoke', KeyN: 'map' };
     addEventListener('keydown', (e) => {
       if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
       const k = e.code;
@@ -83,7 +83,7 @@ export class Input {
       const bv = (i) => (gp.buttons[i] ? gp.buttons[i].value : 0);
       this.throttle += (bv(7) - bv(6)) * dt * 0.6;
       const edge = (i, ev) => { const s = b(i); if (s && !this.lastGamepad[i]) this.emit(ev); this.lastGamepad[i] = s; };
-      edge(0, 'flapDown'); edge(2, 'flapUp'); edge(3, 'camera'); edge(9, 'pause'); edge(8, 'reset'); edge(5, 'gear');
+      edge(0, 'flapDown'); edge(2, 'flapUp'); edge(3, 'camera'); edge(9, 'pause'); edge(8, 'reset'); edge(5, 'gear'); edge(12, 'smoke');
       if (b(1)) this._padBrake = true; else this._padBrake = false;
       if (b(4)) this.emit('autotrim');
     }
@@ -126,7 +126,7 @@ export class Input {
     hold('#bTrimU', () => (this._trimHold = 'trimUp'), () => (this._trimHold = null));
     hold('#bTrimD', () => (this._trimHold = 'trimDown'), () => (this._trimHold = null));
     const tap = (id, ev) => { const b = el.querySelector(id); if (b) b.addEventListener('pointerdown', (e) => { e.preventDefault(); this.emit(ev); }); };
-    tap('#bFlapD', 'flapDown'); tap('#bFlapU', 'flapUp'); tap('#bCam', 'camera'); tap('#bPause', 'pause'); tap('#bGear', 'gear'); tap('#bReset', 'reset');
+    tap('#bFlapD', 'flapDown'); tap('#bFlapU', 'flapUp'); tap('#bCam', 'camera'); tap('#bPause', 'pause'); tap('#bGear', 'gear'); tap('#bReset', 'reset'); tap('#bSmoke', 'smoke'); tap('#bMap', 'map');
   }
   touchFrame() { if (this._thrUI) this._thrUI(); if (this._trimHold) this.emit(this._trimHold); }
 }

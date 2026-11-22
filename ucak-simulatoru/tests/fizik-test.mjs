@@ -220,6 +220,66 @@ testPlane('jet', {
   roc: [3000, 5500, 'L-39: ~4130 ft/dk'], rollRate: [80, 250],
 });
 
+// ---------- F-16 sınıfı: fly-by-wire akrobasi sınamaları ----------
+function testF16() {
+  const key = 'f16', P = PLANES.f16;
+  const fwdAng = (ac) => { const q = ac.q; const m = [1 - 2 * (q[2] * q[2] + q[3] * q[3]), 2 * (q[1] * q[2] + q[0] * q[3]), 2 * (q[1] * q[3] - q[0] * q[2])]; return Math.atan2(-m[2], m[0]); };
+  const mk = (kt, alt) => { const a = new Aircraft(P); startTrimmed(a, { n: 0, e: 0, alt, heading: 0, speed: kt * KT, gearUp: true }); return a; };
+  const watch = (a) => ({ amax: 0, smax: 0, bmax: 0, nmax: -9, nmin: 9, tick() { this.amax = Math.max(this.amax, a.out.alpha); this.smax = Math.max(this.smax, a.stallS); this.bmax = Math.max(this.bmax, Math.abs(a.out.beta)); this.nmax = Math.max(this.nmax, a.nz); this.nmin = Math.min(this.nmin, a.nz); } });
+  // 1. eller serbest denge
+  { const a = mk(350, 3000); run(a, AIR, 60); report(key, '350 kt dengede 60 sn eller serbest: irtifa farkı', a.alt - 3000, 'm', -60, 60); report(key, '350 kt dengede 60 sn: hız farkı', (a.out.V - 350 * KT) / KT, 'kt', -10, 10); }
+  // 2. yuvarlanma hızı
+  { const a = mk(350, 3000); let pm = 0; a.ctl.roll = 1; run(a, AIR, 3, () => { pm = Math.max(pm, a.w[0]); }); report(key, 'Tam levyeyle yuvarlanma hızı (350 kt)', pm * R2D, '°/sn', 220, 280, 'F-16: ~240-300°/sn'); if (a.crashed) report(key, 'Yuvarlanmada kaza', 1, '', 0, 0); }
+  // 3. takla (loop): 420 kt, ard yakıcı, levye %80 geri; tam tur, ufka dönüş
+  { const a = mk(420, 2000); a.ctl.throttle = 1; a.ctl.pitch = 0.8; const w = watch(a); let acc = 0, prev = fwdAng(a), done = null;
+    run(a, AIR, 40, (tt) => { w.tick(); const g = fwdAng(a); let d = g - prev; if (d > Math.PI) d -= 2 * Math.PI; if (d < -Math.PI) d += 2 * Math.PI; acc += d; prev = g; if (!done && acc >= 2 * Math.PI) { done = tt; a.ctl.pitch = 0; } });
+    report(key, 'Takla: tam tur süresi', done || 99, 'sn', 8, 30);
+    report(key, 'Takla: en büyük hücum açısı', w.amax * R2D, '°', 10, 28);
+    report(key, 'Takla: tutunma kaybı (0 = yok)', w.smax, '', 0, 0.02);
+    report(key, 'Takla: en büyük yük faktörü', w.nmax, 'g', 5, 9.8);
+    if (a.crashed) report(key, 'Taklada kaza: ' + a.crashed, 1, '', 0, 0); }
+  // 4. düşük hızda levye tam geri: hücum açısı sınırı, tutunma kaybı ve vril yok; bırakınca toparlanır
+  for (const kt of [160, 220]) { const a = mk(kt, 5000); a.ctl.throttle = 0.4; a.ctl.pitch = 1; const w = watch(a);
+    run(a, AIR, 25, () => w.tick());
+    report(key, `${kt} kt levye tam geri 25 sn: en büyük hücum açısı`, w.amax * R2D, '°', 15, 29, 'sınır 25°');
+    report(key, `${kt} kt levye tam geri: tutunma kaybı (0 = yok)`, w.smax, '', 0, 0.02);
+    report(key, `${kt} kt levye tam geri: en büyük yan kayma`, w.bmax * R2D, '°', 0, 5);
+    a.ctl.pitch = 0; a.ctl.throttle = 1; run(a, AIR, 20);
+    report(key, `${kt} kt: bıraktıktan 20 sn sonra hız`, eas(a), 'kt', 200, 700); if (a.crashed) report(key, 'Düşük hız denemesinde kaza: ' + a.crashed, 1, '', 0, 0); }
+  // 5. çekerken tam yatış (dönerek tırmanma): bağlaşım ve yan kayma sınırlı
+  { const a = mk(300, 4000); a.ctl.throttle = 1; a.ctl.pitch = 1; a.ctl.roll = 1; const w = watch(a); run(a, AIR, 15, () => w.tick());
+    report(key, 'Çekerek yatış 15 sn: en büyük hücum açısı', w.amax * R2D, '°', 10, 30); report(key, 'Çekerek yatış: en büyük yan kayma', w.bmax * R2D, '°', 0, 12);
+    report(key, 'Çekerek yatış: tutunma kaybı (0 = yok)', w.smax, '', 0, 0.05); if (a.crashed) report(key, 'Çekerek yatışta kaza: ' + a.crashed, 1, '', 0, 0); }
+  // 6. ters uçuş: yarım tur yatış, levye ortada 20 sn
+  { const a = mk(350, 3000); a.ctl.roll = 1; run(a, AIR, 0.75); a.ctl.roll = 0; run(a, AIR, 2); const h0 = a.alt; run(a, AIR, 20); const e = quatToEuler(a.q);
+    report(key, 'Ters uçuş 20 sn levye ortada: irtifa farkı', a.alt - h0, 'm', -150, 150); report(key, 'Ters uçuş: yatış açısı (mutlak)', Math.abs(e.phi) * R2D, '°', 150, 180); }
+  // 7. 9 g sınırı: 450 kt tam geri
+  { const a = mk(450, 3000); a.ctl.throttle = 1; a.ctl.pitch = 1; const w = watch(a); run(a, AIR, 6, () => w.tick());
+    report(key, '450 kt levye tam geri: en büyük yük faktörü', w.nmax, 'g', 8.3, 9.9, 'sınır 9 g'); if (a.crashed) report(key, '9 g denemesinde kaza: ' + a.crashed, 1, '', 0, 0); }
+  // 8. ters takla (split-S): ters dön, çek; baş 180° değişir
+  { const a = mk(300, 3000); a.ctl.throttle = 0.3; a.ctl.roll = 1; run(a, AIR, 0.75); a.ctl.roll = 0; run(a, AIR, 1); a.ctl.pitch = 0.9; let done = false; const h0 = a.alt;
+    run(a, AIR, 25, () => { const e = quatToEuler(a.q); if (!done && Math.abs(e.phi) < 0.5 && Math.abs(e.theta) < 0.1 && a.time > 3) { done = true; a.ctl.pitch = 0; } });
+    const e = quatToEuler(a.q);
+    report(key, 'Ters takla (split-S): yeni baş (180 beklenir)', ((e.psi * R2D) + 360) % 360, '°', 160, 200); report(key, 'Ters takla: irtifa kaybı', h0 - a.alt, 'm', 200, 2500); if (a.crashed) report(key, 'Ters taklada kaza: ' + a.crashed, 1, '', 0, 0); }
+  // 9. kalkış: ard yakıcı, 150 kt'da döndürme
+  { const a = new Aircraft(P); const h0 = P.gear[1].p[2] - 0.05; a.place({ alt: h0, heading: 0 }); a.ctl.brake = 1; run(a, RUNWAY, 3); a.ctl.brake = 0; a.ctl.throttle = 1;
+    const x0 = a.pos[0]; let lift = null;
+    run(a, RUNWAY, 40, () => { const e = quatToEuler(a.q); if (eas(a) > 150) a.ctl.pitch = clamp((10 / R2D - e.theta) * 3 - 0.5 * a.w[1], -1, 1); a.ctl.yaw = clamp(-3 * e.psi - a.w[2], -1, 1);
+      if (!lift && !a.wheel.some((w) => w.contact) && a.alt > h0 + 0.5) lift = a.pos[0] - x0; });
+    report(key, 'Kalkış koşusu (ard yakıcı, teker kesme)', lift || 0, 'm', 350, 1000, 'F-16: ~450-600 m'); if (a.crashed) report(key, 'Kalkışta kaza: ' + a.crashed, 1, '', 0, 0); }
+  // 10. azami hız
+  { let vmax = 0; for (let v = 300; v < 1100; v += 5) { const tr = trimLevel(P, v * KT, 0, 0, { gearUp: true }); if (tr.ok) vmax = v; }
+    report(key, 'Azami düz uçuş hızı deniz seviyesi (ard yakıcı)', vmax, 'kt', 700, 860, 'F-16: ~M1.2 (~790 kt)'); }
+  // 11. yaklaşma: takım ve flap açık, 150 kt dengede
+  { const a = new Aircraft(P); startTrimmed(a, { n: 0, e: 0, alt: 500, heading: 0, speed: 150 * KT, flaps: 1 }); run(a, AIR, 30);
+    report(key, '150 kt yaklaşma (takım, flap) 30 sn: irtifa farkı', a.alt - 500, 'm', -40, 40); report(key, '150 kt yaklaşma: hücum açısı', a.out.alpha * R2D, '°', 6, 15, 'F-16: 11-13°'); }
+  for (const [vz, should] of [[2, false], [5, true]]) {
+    const a = new Aircraft(P); a.place({ alt: P.gear[1].p[2] + 0.3, heading: 0, pitch: 8 / R2D }); a.vel = [75, 0, vz]; run(a, RUNWAY, 3);
+    report(key, `${vz} m/s dikey hızla dokunma ${should ? 'kaza' : 'kaza değil'}`, (!!a.crashed === should) ? 1 : 0, '', 1, 1);
+  }
+}
+testF16();
+
 const pad = (s, n) => String(s).padEnd(n);
 let cur = '';
 for (const r of results) {

@@ -25,17 +25,18 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, 'raw')
 OUT = os.path.join(HERE, '..', 'www', 'data')
 os.makedirs(OUT, exist_ok=True)
+os.makedirs(OUT, exist_ok=True)
 
 S, N, W, E = 40.955, 41.215, 28.80, 29.14
-LAT0, LON0 = (S + N) / 2, (W + E) / 2
-MLAT = 111319.49 * 1.0
-MLON = 111319.49 * math.cos(math.radians(LAT0))
-X0, X1 = (W - LON0) * MLON, (E - LON0) * MLON      # doğu
-Y0, Y1 = (S - LAT0) * MLAT, (N - LAT0) * MLAT      # kuzey
+# Türkiye geneliyle ortak Lambert konik izdüşümü (tools/lcc.py, www/js/geo.js); İstanbul merkezi (0, 0).
+sys.path.insert(0, HERE)
+import lcc
+LAT0, LON0 = lcc.LAT0, lcc.LON0
+X0, X1, Y0, Y1 = -14375.0, 14375.0, -14500.0, 14500.0   # 62.5 m ızgarasına hizalı dikdörtgen
 print('kapsam m:', round(X1 - X0), 'x', round(Y1 - Y0), 'merkez', LAT0, LON0)
 
 def proj(lat, lon):
-    return ((lon - LON0) * MLON, (lat - LAT0) * MLAT)
+    return lcc.proj(lat, lon)
 
 TEX = 4096
 def tpx(x, y, size=TEX):
@@ -159,10 +160,10 @@ HG = 385
 H = np.zeros((HG, HG))
 for j in range(HG):        # j: kuzeyden güneye
     y = Y1 - (Y1 - Y0) * j / (HG - 1)
-    lat = LAT0 + y / MLAT
     for i in range(HG):
         x = X0 + (X1 - X0) * i / (HG - 1)
-        H[j, i] = dem(lat, LON0 + x / MLON)
+        la, lo = lcc.inv(x, y)
+        H[j, i] = dem(la, lo)
 # su: maske üzerinden. Kara en az 1.5 m, kıyıya yakın yumuşak iniş
 msmall = np.array(Image.fromarray((mask * 255).astype(np.uint8)).resize((HG, HG), Image.BILINEAR)) / 255.0
 H = np.maximum(H, 0)
@@ -186,7 +187,7 @@ hdg = (math.degrees(math.atan2(B[0] - A[0], B[1] - A[1])) + 360) % 360
 samples = []
 for t in np.linspace(0, 1, 40):
     p = A + (B - A) * t
-    samples.append(dem(LAT0 + p[1] / MLAT, LON0 + p[0] / MLON))
+    samples.append(dem(*lcc.inv(p[0], p[1])))
 relev = float(np.median(samples))
 print('pist', round(rlen), 'm, yön', round(hdg, 1), 'yükseklik', round(relev, 1))
 # pistin çevresinde düzleştir (600 m bant, yumuşak geçiş)
@@ -204,10 +205,7 @@ for j in range(HG):
             w = 1 if dd < 450 else 1 - (dd - 450) / 450
             H[j, i] = H[j, i] * (1 - w) + relev * w
 json.dump({'a': [round(A[0], 1), round(A[1], 1)], 'b': [round(B[0], 1), round(B[1], 1)], 'len': round(rlen, 1), 'width': 60, 'heading': round(hdg, 2), 'elev': round(relev, 2), 'name': 'LTBA 05/23'}, open(os.path.join(OUT, 'pist.json'), 'w'))
-with open(os.path.join(OUT, 'yukseklik.bin'), 'wb') as f:
-    f.write(b'YKH1'); f.write(struct.pack('<HHffff', HG, HG, X0, X1, Y0, Y1))
-    f.write(np.clip(np.round(H * 10), -32000, 32000).astype('<i2').tobytes())
-print('yükseklik en çok', H.max())
+print('yükseklik en çok', H.max(), '(yükseklik ızgarası build_turkey.py içinde)')
 
 # ---------------- binalar ----------------
 print('binalar...')
@@ -310,32 +308,12 @@ for f in files:
 print('okunan bina:', len(blds), 'dosya:', len(files))
 json.dump(names, open(os.path.join(RAW, 'adlar.json'), 'w'), ensure_ascii=False)
 
-MAXB = int(os.environ.get('MAXB', '120000'))
+MAXB = int(os.environ.get('MAXB', '1000000'))
 blds.sort(key=lambda b: -b[0])
 keep, drop = blds[:MAXB], blds[MAXB:]
 print('tutulan:', len(keep))
 
-CH = 2000
-NCX = int(math.ceil((X1 - X0) / CH)); NCY = int(math.ceil((Y1 - Y0) / CH)); NC = max(NCX, NCY)
-chunks = [[] for _ in range(NC * NC)]
-for b in keep:
-    ci = int((b[4] - X0) // CH); cj = int((Y1 - b[5]) // CH)
-    chunks[cj * NC + ci].append(b)
-body = bytearray(); table = []
-for ch in chunks:
-    table.append((len(body), len(ch)))
-    for score, rs, h, typ, cx, cy in ch:
-        q = [(int(round(x * 2)), int(round(y * 2))) for x, y in rs]
-        body += struct.pack('<BBHhh', len(q), typ, int(round(h * 10)), q[0][0], q[0][1])
-        for (ax_, ay_), (bx_, by_) in zip(q, q[1:]):
-            dx, dy = bx_ - ax_, by_ - ay_
-            if -127 <= dx <= 127 and -127 <= dy <= 127: body += struct.pack('<bb', dx, dy)
-            else: body += struct.pack('<bhh', -128, dx, dy)
-with open(os.path.join(OUT, 'binalar.bin'), 'wb') as f:
-    f.write(b'YKB1'); f.write(struct.pack('<IHHffff', len(keep), NC, CH, X0, X1, Y0, Y1))
-    for o, n in table: f.write(struct.pack('<II', o, n))
-    f.write(body)
-print('binalar.bin', os.path.getsize(os.path.join(OUT, 'binalar.bin')))
+# bina paketi build_turkey.py içinde (OSM PBF'den, bütün binalar); burada yalnız zemin dokusundaki tabanlar için okunur
 
 # ---------------- köprüler ----------------
 BR = {403255158: ('15 Temmuz Şehitler Köprüsü', 'asma', 64, 1074, 165),
@@ -446,10 +424,4 @@ mm.save(os.path.join(OUT, 'harita.png'), optimize=True)
 print('bitti')
 
 
-# Artifact sunucusu .bin dosyası sunmuyor; ikili veriler base64 metin olarak yazılır.
-import base64 as _b64
-for _n in ('yukseklik', 'binalar'):
-    _p = os.path.join(OUT, _n + '.bin')
-    with open(_p, 'rb') as _f, open(os.path.join(OUT, _n + '.b64.txt'), 'w') as _o:
-        _o.write(_b64.b64encode(_f.read()).decode())
-    os.remove(_p)
+

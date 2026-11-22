@@ -37,6 +37,9 @@ export class Sound {
     this.jn = this._noise(); this.jf = c.createBiquadFilter(); this.jf.type = 'bandpass'; this.jf.frequency.value = 800; this.jf.Q.value = 0.7;
     this.jg = c.createGain(); this.jg.gain.value = 0; this.jn.connect(this.jf).connect(this.jg).connect(this.master);
     this.jw = c.createOscillator(); this.jw.type = 'sine'; this.jwg = c.createGain(); this.jwg.gain.value = 0; this.jw.connect(this.jwg).connect(this.master); this.jw.start();
+    // ard yakıcı gürlemesi
+    this.an = this._noise(); this.af = c.createBiquadFilter(); this.af.type = 'lowpass'; this.af.frequency.value = 220; this.af.Q.value = 0.8;
+    this.ag = c.createGain(); this.ag.gain.value = 0; this.an.connect(this.af).connect(this.ag).connect(this.master);
     // rüzgar
     this.wn = this._noise(); this.wf = c.createBiquadFilter(); this.wf.type = 'lowpass'; this.wf.frequency.value = 500;
     this.wg = c.createGain(); this.wg.gain.value = 0; this.wn.connect(this.wf).connect(this.wg).connect(this.master);
@@ -59,7 +62,7 @@ export class Sound {
       this.lfo.frequency.setTargetAtTime(f * 0.25, t, k);
       this.ef.frequency.setTargetAtTime(180 + ac.rpm * 0.35 + ac.ctl.throttle * 500, t, k);
       this.eg.gain.setTargetAtTime(ac.rpm > 50 ? 0.12 + 0.22 * ac.ctl.throttle + ac.rpm / 2700 * 0.1 : 0, t, k);
-      this.jg.gain.setTargetAtTime(0, t, k); this.jwg.gain.setTargetAtTime(0, t, k);
+      this.jg.gain.setTargetAtTime(0, t, k); this.jwg.gain.setTargetAtTime(0, t, k); this.ag.gain.setTargetAtTime(0, t, k);
     } else {
       const n = ac.spool;
       this.eg.gain.setTargetAtTime(0, t, k);
@@ -67,6 +70,7 @@ export class Sound {
       this.jg.gain.setTargetAtTime(0.08 + n * n * 0.4, t, k);
       this.jw.frequency.setTargetAtTime(1800 + n * 2600, t, k);
       this.jwg.gain.setTargetAtTime(0.012 + n * 0.02, t, k);
+      this.ag.gain.setTargetAtTime((ac.ab || 0) * 0.55, t, 0.15);
     }
     const V = ac.out.V || 0;
     this.wf.frequency.setTargetAtTime(300 + V * 12, t, k);

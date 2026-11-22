@@ -1,15 +1,15 @@
-// İstanbul Uçuşu - dünya: arazi, su, gökyüzü, binalar, köprüler, simge yapılar, pist.
-// Koordinatlar: veri dosyalarında x doğu, y kuzey (metre). three.js'te X = doğu, Y = yukarı, Z = güney (-kuzey).
+// İstanbul Uçuşu - dünya: Türkiye arazisi (dörtlü ağaç), su, gökyüzü, şehir binaları, köprüler, simge yapılar, pistler.
+// Koordinatlar: x doğu, y kuzey (m, Lambert konik izdüşümü, geo.js). three.js'te X = doğu, Y = yukarı, Z = güney (-kuzey).
+// Kayan orijin: bütün dünya nesneleri this.root altında mutlak konumdadır; kök (-Ox, 0, Oy) kaydırılır, böylece
+// kameranın çevresindeki sayılar hep küçük kalır (1000+ km uzakta da titreme olmaz).
 import * as THREE from '../vendor/three.module.min.js';
-
-export const LAT0 = 41.085, LON0 = 28.97;
-const MLAT = 111319.49, MLON = 111319.49 * Math.cos(LAT0 * Math.PI / 180);
-export const geo = (lat, lon) => ({ x: (lon - LON0) * MLON, y: (lat - LAT0) * MLAT });
+import { geo, ungeo, convergence } from './geo.js';
+import { pngBytes } from './veri.js';
+import { Heights, Terrain, terrainMaterial } from './terrain.js';
+import { Buildings, merge as mergeGeoms } from './buildings.js';
+export { geo, ungeo, convergence };
 
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
-
-// İkili veriler base64 metin olarak gelir (artifact sunucusu .bin sunmuyor).
-async function bin(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); const t = (await r.text()).trim(); const s = atob(t); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u.buffer; }
 async function json(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }
 function img(url) { return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error(url)); i.src = url; }); }
 
@@ -24,60 +24,88 @@ export const LANDMARKS = [
   { id: 'rumeli', name: 'Rumeli Hisarı', lat: 41.084722, lon: 29.056111 },
   { id: 'camlicakule', name: 'Çamlıca Kulesi', lat: 41.01638, lon: 29.06554 },
   { id: 'camlicacami', name: 'Büyük Çamlıca Camii', lat: 41.0277, lon: 29.0697 },
+  { id: 'anitkabir', name: 'Anıtkabir', lat: 39.925054, lon: 32.836952 },
+  { id: 'atakule', name: 'Atakule', lat: 39.885670, lon: 32.855830 },
+  { id: 'kocatepe', name: 'Kocatepe Camii', lat: 39.916820, lon: 32.860380 },
+  { id: 'saatkulesi', name: 'İzmir Saat Kulesi', lat: 38.418910, lon: 27.128700 },
+  { id: 'goreme', name: 'Göreme peri bacaları', lat: 38.6431, lon: 34.8289 },
+  { id: 'pasabagi', name: 'Paşabağı peri bacaları', lat: 38.6720, lon: 34.8520 },
+  { id: 'uchisar', name: 'Uçhisar Kalesi', lat: 38.6300, lon: 34.8050 },
+];
+// Dağlar (HUD'da ad için): zirve konumları
+export const PEAKS = [
+  { name: 'Ağrı Dağı (5137 m)', lat: 39.7019, lon: 44.2983 }, { name: 'Küçük Ağrı Dağı', lat: 39.6497, lon: 44.4114 },
+  { name: 'Erciyes Dağı (3917 m)', lat: 38.5311, lon: 35.4472 }, { name: 'Hasan Dağı (3268 m)', lat: 38.1272, lon: 34.1675 },
+  { name: 'Uludağ (2543 m)', lat: 40.0703, lon: 29.2214 }, { name: 'Kaçkar Dağı (3937 m)', lat: 40.8333, lon: 41.1622 },
+  { name: 'Palandöken (3176 m)', lat: 39.8231, lon: 41.2933 }, { name: 'Süphan Dağı (4058 m)', lat: 38.9264, lon: 42.8264 },
+  { name: 'Nemrut Dağı (2134 m)', lat: 37.9808, lon: 38.7408 }, { name: 'Cilo Dağı (4135 m)', lat: 37.4972, lon: 44.0453 },
+  { name: 'Aladağlar (3756 m)', lat: 37.8500, lon: 35.1500 }, { name: 'Bolkar Dağları (3524 m)', lat: 37.4500, lon: 34.6000 },
+  { name: 'Kaz Dağı (1774 m)', lat: 39.7000, lon: 26.8500 }, { name: 'Ilgaz Dağı (2587 m)', lat: 41.0700, lon: 33.7400 },
+  { name: 'Munzur Dağları (3463 m)', lat: 39.3200, lon: 39.3400 }, { name: 'Tahtalı Dağı (2366 m)', lat: 36.5400, lon: 30.4400 },
+  { name: 'Van Gölü', lat: 38.65, lon: 42.85 }, { name: 'Tuz Gölü', lat: 38.75, lon: 33.40 }, { name: 'Beyşehir Gölü', lat: 37.75, lon: 31.50 }, { name: 'Eğirdir Gölü', lat: 38.05, lon: 30.85 },
 ];
 
 export class World {
   constructor(renderer, scene, opts = {}) {
     this.renderer = renderer; this.scene = scene; this.opts = opts;
-    this.chunks = []; this.colliders = []; this.decks = [];
+    this.root = new THREE.Group(); scene.add(this.root);
+    this.O = { x: 0, y: 0 };
+    this.decks = []; this.colliders = []; this.lmCol = [];
     this.acAlt = 0;
-    this.buildDist = opts.buildDist || 8000;
+    this.base = 'data/tr/';
   }
+  setOrigin(x, y) { this.O.x = x; this.O.y = y; this.root.position.set(-x, 0, y); this.root.updateMatrixWorld(true); }
 
   async load(progress = () => {}) {
-    const base = 'data/';
-    progress(0.05, 'Yükseklik verisi');
-    const [hb, bb, br, rw, tex, mask, mini] = await Promise.all([
-      bin(base + 'yukseklik.b64.txt'), bin(base + 'binalar.b64.txt'), json(base + 'kopruler.json'), json(base + 'pist.json'),
-      img(base + 'zemin.webp'), img(base + 'maske.png'), img(base + 'harita.png'),
+    progress(0.05, 'Dizin');
+    const idx = this.idx = await json(this.base + 'dizin.json');
+    progress(0.1, 'Arazi');
+    this.heights = new Heights(idx, this.base);
+    const [, ortu, ist, mask, br, mini, trmap] = await Promise.all([
+      this.heights.init(), img(this.base + idx.ortu.dosya), img('data/zemin.webp'), img('data/maske.png'), json('data/kopruler.json'), img('data/harita.png'), img(this.base + idx.harita.dosya),
     ]);
-    this.minimap = mini;
-    progress(0.35, 'Arazi');
-    this._heights(hb);
+    this.minimap = mini; this.trmap = trmap;
+    this.istRect = [-14375, -14500, 14375, 14500]; this.X0 = -14375; this.X1 = 14375; this.Y0 = -14500; this.Y1 = 14500;
     this._mask(mask);
-    this.runway = rw;
-    this._rwSetup();
+    this._ortu(ortu);
+    progress(0.45, 'Gökyüzü ve su');
     this._sky();
     this._water();
-    this._terrain(tex);
-    this._runwayMesh();
-    progress(0.5, 'Binalar');
-    await this._buildingsParse(bb);
-    this._landmarks();
-    this._bridges(br);
-    progress(0.6, 'Binalar');
+    this._terrain(ist);
+    this._runways();
+    progress(0.6, 'Simge yapılar');
+    this.buildings = new Buildings(this, this.root, idx, this.base, { lod: this.opts.lod, treeDist: this.opts.treeDist });
+    this.cities = idx.sehirler;
+    this._br = br;
+    this.landmarkPos = LANDMARKS.map((l) => ({ ...geo(l.lat, l.lon), name: l.name, id: l.id }));
+    this.peaks = PEAKS.map((p) => ({ ...geo(p.lat, p.lon), name: p.name }));
+  }
+  // Başlangıç konumu çevresindeki veriyi hazırla (bölge yüksekliği, binalar, simge yapılar)
+  async prepare(x, y, progress = () => {}) {
+    this.heights.ensure(x, y, 60000);
+    let t = 0;
+    while (this.heights.loading.size && t < 400) { await new Promise((r) => setTimeout(r, 50)); t++; }
+    this._landmarksOnce();
+    progress(0.9, 'Hazır');
+  }
+  _landmarksOnce() {
+    if (this._lmDone) return;
+    // simge yapılar bölge yükseklikleri gelince kurulur (o bölgenin)
+    const need = ['istanbul', 'ankara', 'izmir', 'kapadokya'];
+    for (const id of need) {
+      const p = this.heights.patchList.find((q) => q.id === id);
+      if (!p || !p.grid || (this._lmBuilt || (this._lmBuilt = new Set())).has(id)) continue;
+      this._lmBuilt.add(id);
+      if (id === 'istanbul') { this._landmarksIstanbul(); this._bridges(this._br); }
+      if (id === 'ankara') this._landmarksAnkara();
+      if (id === 'izmir') this._landmarksIzmir();
+      if (id === 'kapadokya') this._kapadokya();
+    }
+    this._lmDone = this._lmBuilt && this._lmBuilt.size === need.length;
   }
 
-  // ---------- yükseklik ----------
-  _heights(buf) {
-    const dv = new DataView(buf);
-    const n = dv.getUint16(4, true), m = dv.getUint16(6, true);
-    this.HG = n;
-    this.X0 = dv.getFloat32(8, true); this.X1 = dv.getFloat32(12, true); this.Y0 = dv.getFloat32(16, true); this.Y1 = dv.getFloat32(20, true);
-    const raw = new Int16Array(buf.slice(24, 24 + n * m * 2));
-    this.H = new Float32Array(n * m);
-    for (let i = 0; i < raw.length; i++) this.H[i] = raw[i] / 10;
-  }
-  terrainH(x, y) {
-    const n = this.HG;
-    const fi = clamp((x - this.X0) / (this.X1 - this.X0) * (n - 1), 0, n - 1.0001);
-    const fj = clamp((this.Y1 - y) / (this.Y1 - this.Y0) * (n - 1), 0, n - 1.0001);
-    const i = fi | 0, j = fj | 0, u = fi - i, v = fj - j, H = this.H;
-    const a = H[j * n + i], b = H[j * n + i + 1], c = H[(j + 1) * n + i], d = H[(j + 1) * n + i + 1];
-    // mesh üçgenleriyle aynı bölme (PlaneGeometry: a-c-b ve c-d-b)
-    if (u + v <= 1) return a + (b - a) * u + (c - a) * v;
-    return d + (c - d) * (1 - u) + (b - d) * (1 - v);
-  }
+  // ---------- yer ----------
+  terrainH(x, y) { return this.heights.h(x, y); }
   _mask(im) {
     const c = document.createElement('canvas'); c.width = im.width; c.height = im.height;
     const g = c.getContext('2d'); g.drawImage(im, 0, 0);
@@ -85,45 +113,109 @@ export class World {
     this.MW = c.width; this.M = new Uint8Array(c.width * c.height);
     for (let i = 0; i < this.M.length; i++) this.M[i] = d[i * 4] > 127 ? 1 : 0;
   }
-  isLand(x, y) {
-    const W = this.MW;
-    const i = Math.floor((x - this.X0) / (this.X1 - this.X0) * W), j = Math.floor((this.Y1 - y) / (this.Y1 - this.Y0) * W);
-    if (i < 0 || j < 0 || i >= W || j >= W) return y > this.Y0 + 2000 || x < this.X0 || x > this.X1; // güney kenarı Marmara
-    return this.M[j * W + i] === 1;
+  _ortu(im) {
+    const o = this.idx.ortu;
+    const c = document.createElement('canvas'); c.width = im.width; c.height = im.height;
+    const g = c.getContext('2d', { willReadFrequently: true }); g.drawImage(im, 0, 0);
+    const d = g.getImageData(0, 0, c.width, c.height).data;
+    this.OW = c.width; this.OH = c.height; this.OA = new Uint8Array(c.width * c.height); this.OF = new Uint8Array(c.width * c.height);
+    for (let i = 0; i < this.OA.length; i++) { this.OA[i] = d[i * 4 + 3]; this.OF[i] = d[i * 4]; }
+    this.ortuRect = [o.x0, o.y0, o.nx * o.s, o.ny * o.s];
+    const t = new THREE.Texture(im); t.needsUpdate = true; t.colorSpace = THREE.NoColorSpace; t.flipY = false;
+    t.minFilter = THREE.LinearMipmapLinearFilter; t.anisotropy = 4;
+    // alfa önceden çarpılmasın (alfa su oranıdır)
+    t.premultiplyAlpha = false;
+    this.ortuTex = t;
   }
-
+  ortuAt(x, y) {
+    const [x0, y0, w, h] = this.ortuRect;
+    const i = Math.floor((x - x0) / w * this.OW), j = Math.floor((1 - (y - y0) / h) * this.OH);
+    if (i < 0 || j < 0 || i >= this.OW || j >= this.OH) return { water: 0, forest: 0 };
+    const k = j * this.OW + i; return { water: this.OA[k], forest: this.OF[k] };
+  }
+  isLand(x, y) {
+    if (x > this.X0 && x < this.X1 && y > this.Y0 && y < this.Y1) {
+      const W = this.MW;
+      const i = Math.floor((x - this.X0) / (this.X1 - this.X0) * W), j = Math.floor((this.Y1 - y) / (this.Y1 - this.Y0) * W);
+      return this.M[j * W + i] === 1;
+    }
+    const h = this.terrainH(x, y);
+    if (h < 0) return false;
+    return this.ortuAt(x, y).water < 128 || h < 1;
+  }
   // FDM için yer: {h, kind}. x doğu, y kuzey
   ground(x, y) {
-    // köprü tabliyesi (uçak üstündeyse)
     for (const d of this.decks) {
       const px = x - d.ax, py = y - d.ay;
       const al = px * d.ux + py * d.uy, cr = -px * d.uy + py * d.ux;
-      if (al >= 0 && al <= d.len && Math.abs(cr) <= d.w / 2) {
-        const top = d.h0 + (d.h1 - d.h0) * (al / d.len);
-        const hh = d.deckAt ? d.deckAt(al) : top;
-        if (this.acAlt > hh - 3) return { h: hh, kind: 'runway' };
-      }
+      if (al >= 0 && al <= d.len && Math.abs(cr) <= d.w / 2) { const hh = d.deckAt(al); if (this.acAlt > hh - 3) return { h: hh, kind: 'runway' }; }
     }
-    const r = this.rw;
-    const px = x - r.ax, py = y - r.ay;
-    const al = px * r.ux + py * r.uy, cr = -px * r.uy + py * r.ux;
-    if (al >= -60 && al <= r.len + 60 && Math.abs(cr) <= r.w / 2 + 4) return { h: r.elev + 0.12, kind: 'runway' };
-    if (!this.isLand(x, y)) return { h: 0, kind: 'water' };
+    for (const r of this.rws) {
+      const px = x - r.ax, py = y - r.ay;
+      const al = px * r.ux + py * r.uy, cr = -px * r.uy + py * r.ux;
+      if (al >= -60 && al <= r.len + 60 && Math.abs(cr) <= r.w / 2 + 4) return { h: r.elev + 0.12, kind: 'runway' };
+    }
+    if (!this.isLand(x, y)) { const h = this.terrainH(x, y); return { h: h > 0 ? h : 0, kind: 'water' }; }
     const h = this.terrainH(x, y);
-    const bt = this.buildingTop(x, y);
+    const bt = this.buildings ? this.buildings.top(x, y) : 0;
     if (bt > h + 1) return { h: bt, kind: 'building' };
     return { h, kind: 'land' };
   }
+  buildingTop(x, y) { return this.buildings ? this.buildings.top(x, y) : 0; }
 
-  _rwSetup() {
-    const r = this.runway;
-    const dx = r.b[0] - r.a[0], dy = r.b[1] - r.a[1], L = Math.hypot(dx, dy);
-    this.rw = { ax: r.a[0], ay: r.a[1], ux: dx / L, uy: dy / L, len: L, w: r.width, elev: r.elev, heading: Math.atan2(dx, dy) };
+  // ---------- pistler ----------
+  _runways() {
+    this.rws = [];
+    this.airports = [];
+    for (const a of this.idx.havalimanlari) {
+      const dx = a.b[0] - a.a[0], dy = a.b[1] - a.a[1], L = Math.hypot(dx, dy);
+      const r = { code: a.kod, name: a.ad, ref: a.ref || '', ax: a.a[0], ay: a.a[1], ux: dx / L, uy: dy / L, len: L, w: Math.max(45, a.en), elev: a.elev, heading: Math.atan2(dx, dy) };
+      this.rws.push(r); this.airports.push(r);
+      this._runwayMesh(r);
+    }
+    this.rw = this.rws.find((r) => r.code === 'LTBA') || this.rws[0];
+  }
+  _runwayMesh(r) {
+    const CW = 128, CHh = 4096;
+    const c = document.createElement('canvas'); c.width = CW; c.height = CHh;
+    const g = c.getContext('2d');
+    g.fillStyle = '#4a4b4d'; g.fillRect(0, 0, CW, CHh);
+    for (let i = 0; i < 9000; i++) { g.fillStyle = `rgba(${Math.random() < 0.5 ? '0,0,0' : '255,255,255'},0.05)`; g.fillRect(Math.random() * CW, Math.random() * CHh, 2, 3); }
+    g.fillStyle = 'rgba(20,20,20,0.35)';
+    for (const y0 of [CHh - 900 / (r.len / CHh), 300 / (r.len / CHh)]) for (let i = 0; i < 40; i++) g.fillRect(CW / 2 - 18 + Math.random() * 36, y0 - 200 + Math.random() * 400, 3, 60);
+    const mpp = r.len / CHh, ppw = CW / r.w;
+    const X = (m) => CW / 2 + m * ppw;
+    g.fillStyle = '#e8e8e4';
+    g.fillRect(X(-r.w / 2 + 1), 0, ppw * 0.9, CHh); g.fillRect(X(r.w / 2 - 1.9), 0, ppw * 0.9, CHh);
+    for (let s = 120; s < r.len - 120; s += 50) g.fillRect(X(-0.45), CHh - (s + 30) / mpp, ppw * 0.9, 30 / mpp);
+    const piano = (y, dir) => { for (let k = 0; k < 6; k++) for (const sd of [-1, 1]) { const xm = sd * (3 + k * 3.6); g.fillRect(X(xm) - (sd < 0 ? ppw * 1.8 : 0), y, ppw * 1.8, dir * 30 / mpp); } };
+    piano(CHh - 6 / mpp, -1); piano(6 / mpp, 1);
+    const num = (txt, yMeters, rot) => {
+      g.save(); g.translate(CW / 2, rot ? yMeters / mpp : CHh - yMeters / mpp); if (rot) g.rotate(Math.PI);
+      g.scale(1, (1 / mpp) / ppw); g.font = `bold ${Math.round((txt.length > 2 ? 10 : 14) * ppw)}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillText(txt, 0, 0); g.restore();
+    };
+    let [n1, n2] = (r.ref || '').split('/');
+    const hd = ((r.heading * 180 / Math.PI) + 360) % 360;
+    if (!n1 || !n2) { n1 = String(Math.round(hd / 10) || 36).padStart(2, '0'); n2 = String(Math.round(((hd + 180) % 360) / 10) || 36).padStart(2, '0'); }
+    num(n1, 60, false); num(n2, 60, true);
+    for (const s of [150, 300, 450]) for (const end of [0, 1]) for (const sd of [-1, 1]) { const yy = end ? s / mpp : CHh - (s + 22) / mpp; g.fillRect(X(sd * 9) - ppw, yy, ppw * 2, 22 / mpp); }
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+    const mat = new THREE.MeshLambertMaterial({ map: tex, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 });
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(r.w, r.len + 2), mat);
+    m.rotation.set(-Math.PI / 2, 0, 0);
+    // pistin çevresinde düz gri apron şeridi (aradaki çimen arazide)
+    const ap = new THREE.Mesh(new THREE.PlaneGeometry(r.w + 70, r.len + 160), new THREE.MeshLambertMaterial({ color: 0x777a72, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2 }));
+    ap.rotation.set(-Math.PI / 2, 0, 0); ap.position.y = -0.05;
+    const grp = new THREE.Group(); grp.add(ap); grp.add(m);
+    grp.rotation.y = -r.heading;
+    grp.position.set(r.ax + r.ux * r.len / 2, r.elev + 0.12, -(r.ay + r.uy * r.len / 2));
+    this.root.add(grp);
   }
 
   // ---------- gökyüzü ----------
   _sky() {
-    this.sunDir = new THREE.Vector3(-0.45, 0.55, 0.7).normalize(); // güneybatıdan öğleden sonra
+    this.sunDir = new THREE.Vector3(-0.45, 0.55, 0.7).normalize();
     const geom = new THREE.SphereGeometry(1, 32, 16);
     this.skyMat = new THREE.ShaderMaterial({
       side: THREE.BackSide, depthWrite: false, depthTest: false, fog: false,
@@ -141,18 +233,26 @@ export class World {
     this.scene.add(this.sky);
     this.fogColor = new THREE.Color(0xc4d4df);
     this.scene.fog = new THREE.FogExp2(this.fogColor, 0.000085);
-    const hemi = new THREE.HemisphereLight(0xcfe3ff, 0x8a7f6a, 0.9);
-    this.scene.add(hemi);
+    this.scene.add(new THREE.HemisphereLight(0xcfe3ff, 0x8a7f6a, 0.9));
     const sun = new THREE.DirectionalLight(0xfff1dc, 2.1);
     sun.position.copy(this.sunDir).multiplyScalar(1000);
     this.scene.add(sun); this.sunLight = sun;
+  }
+  // gökyüzünden ortam haritası (PBR malzemeler için)
+  envMap() {
+    if (this._env) return this._env;
+    const pm = new THREE.PMREMGenerator(this.renderer);
+    const sc = new THREE.Scene();
+    const sky = new THREE.Mesh(new THREE.SphereGeometry(10, 32, 16), this.skyMat.clone()); sky.material.depthTest = true; sc.add(sky);
+    const gnd = new THREE.Mesh(new THREE.CircleGeometry(9.5, 32), new THREE.MeshBasicMaterial({ color: 0x6b6f5c })); gnd.rotation.x = -Math.PI / 2; gnd.position.y = -1.5; sc.add(gnd);
+    this._env = pm.fromScene(sc, 0.02).texture; pm.dispose();
+    return this._env;
   }
 
   // ---------- su ----------
   _water() {
     const N = 256, c = document.createElement('canvas'); c.width = c.height = N;
     const g = c.getContext('2d'); const id = g.createImageData(N, N);
-    // dalga normal haritası: birkaç sinüsün toplamı (dikişsiz)
     for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
       let hx = 0, hy = 0;
       const W = [[3, 1, 0.5], [1, 4, 0.4], [5, -2, 0.25], [-3, 6, 0.2], [9, 4, 0.1], [-7, -9, 0.08]];
@@ -161,7 +261,9 @@ export class World {
       id.data[k] = 128 + clamp(hx * 12, -127, 127); id.data[k + 1] = 128 + clamp(hy * 12, -127, 127); id.data[k + 2] = 255; id.data[k + 3] = 255;
     }
     g.putImageData(id, 0, 0);
-    const nm = new THREE.CanvasTexture(c); nm.wrapS = nm.wrapT = THREE.RepeatWrapping; nm.repeat.set(2200, 2200);
+    const nm = new THREE.CanvasTexture(c); nm.wrapS = nm.wrapT = THREE.RepeatWrapping;
+    this.WSIZE = 600000; this.WTILE = 110;
+    nm.repeat.set(this.WSIZE / this.WTILE, this.WSIZE / this.WTILE);
     nm.colorSpace = THREE.NoColorSpace;
     this.waterNormal = nm;
     const mat = new THREE.MeshPhongMaterial({ color: 0x1f5878, specular: 0xffffff, shininess: 140, normalMap: nm, normalScale: new THREE.Vector2(0.16, 0.16) });
@@ -173,248 +275,92 @@ export class World {
          outgoingLight = mix(outgoingLight, skyHor, fr * 0.65);
          #include <opaque_fragment>`);
     };
-    const w = new THREE.Mesh(new THREE.PlaneGeometry(240000, 240000), mat);
-    w.rotation.x = -Math.PI / 2; w.renderOrder = -5;
+    const w = new THREE.Mesh(new THREE.PlaneGeometry(this.WSIZE, this.WSIZE), mat);
+    w.rotation.x = -Math.PI / 2; w.renderOrder = -5; w.frustumCulled = false;
     mat.depthWrite = false;
     this.water = w; this.scene.add(w);
   }
 
   // ---------- arazi ----------
-  _terrain(im) {
-    const tex = new THREE.Texture(im); tex.needsUpdate = true;
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
-    tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;
-    // telefonda doku 2048'e indirilir (bellek)
-    if (this.opts.lowTex) {
-      const c = document.createElement('canvas'); c.width = c.height = 2048;
-      c.getContext('2d').drawImage(im, 0, 0, 2048, 2048); tex.image = c;
-    }
-    const n = this.HG;
-    const ext = [150, 400, 900, 2000, 4500, 9000, 18000, 40000];
-    const xs = [], ys = [];
-    const dx = (this.X1 - this.X0) / (n - 1), dy = (this.Y1 - this.Y0) / (n - 1);
-    for (let k = ext.length - 1; k >= 0; k--) xs.push(this.X0 - ext[k]);
-    for (let i = 0; i < n; i++) xs.push(this.X0 + i * dx);
-    for (let k = 0; k < ext.length; k++) xs.push(this.X1 + ext[k]);
-    for (let k = ext.length - 1; k >= 0; k--) ys.push(this.Y1 + ext[k]);
-    for (let j = 0; j < n; j++) ys.push(this.Y1 - j * dy);
-    for (let k = 0; k < ext.length; k++) ys.push(this.Y0 - ext[k]);
-    const W = xs.length, Hh = ys.length;
-    const pos = new Float32Array(W * Hh * 3), uv = new Float32Array(W * Hh * 2);
-    const e = 0.5 / 4096;
-    for (let j = 0; j < Hh; j++) for (let i = 0; i < W; i++) {
-      const x = xs[i], y = ys[j];
-      const cx = clamp(x, this.X0, this.X1), cy = clamp(y, this.Y0, this.Y1);
-      const out = Math.max(Math.abs(x - cx), Math.abs(y - cy));
-      let h = this.terrainH(cx, cy) * Math.max(0, 1 - out / 8000);
-      const k = j * W + i;
-      pos[k * 3] = x; pos[k * 3 + 1] = h; pos[k * 3 + 2] = -y;
-      uv[k * 2] = clamp((x - this.X0) / (this.X1 - this.X0), e, 1 - e);
-      uv[k * 2 + 1] = clamp((y - this.Y0) / (this.Y1 - this.Y0), e, 1 - e);
-    }
-    const idx = new Uint32Array((W - 1) * (Hh - 1) * 6); let q = 0;
-    for (let j = 0; j < Hh - 1; j++) for (let i = 0; i < W - 1; i++) {
-      const a = j * W + i, b = a + 1, c = a + W, d = c + 1;
-      idx[q++] = a; idx[q++] = c; idx[q++] = b; idx[q++] = c; idx[q++] = d; idx[q++] = b;
-    }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
-    g.setIndex(new THREE.BufferAttribute(idx, 1));
-    g.computeVertexNormals();
-    tex.flipY = true;
-    const mat = new THREE.MeshLambertMaterial({ map: tex, alphaTest: 0.5 });
-    // yakın ayrıntı: dünya koordinatından tekrarlanan gürültü (bulanık dokuyu kırar)
+  _terrain(ist) {
+    const tex = new THREE.Texture(ist); tex.needsUpdate = true;
+    tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
+    tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping; tex.flipY = true;
+    if (this.opts.lowTex) { const c = document.createElement('canvas'); c.width = c.height = 2048; c.getContext('2d').drawImage(ist, 0, 0, 2048, 2048); tex.image = c; }
+    // yakın ayrıntı gürültüsü
     const dc = document.createElement('canvas'); dc.width = dc.height = 256;
     const dg = dc.getContext('2d');
     const sm = document.createElement('canvas'); sm.width = sm.height = 32;
     const sg = sm.getContext('2d'); const sd = sg.createImageData(32, 32);
     for (let i = 0; i < 32 * 32; i++) { const v = 90 + Math.random() * 120; sd.data[i * 4] = sd.data[i * 4 + 1] = sd.data[i * 4 + 2] = v; sd.data[i * 4 + 3] = 255; }
-    sg.putImageData(sd, 0, 0);
-    dg.imageSmoothingEnabled = true;
-    for (const [ox, oy] of [[0, 0], [-256, 0], [0, -256], [-256, -256]]) dg.drawImage(sm, ox + 0, oy + 0, 512, 512);
+    sg.putImageData(sd, 0, 0); dg.imageSmoothingEnabled = true;
+    for (const [ox, oy] of [[0, 0], [-256, 0], [0, -256], [-256, -256]]) dg.drawImage(sm, ox, oy, 512, 512);
     const fd = dg.getImageData(0, 0, 256, 256);
     for (let i = 0; i < 256 * 256; i++) { const n = (Math.random() - 0.5) * 50; fd.data[i * 4] += n; fd.data[i * 4 + 1] += n; fd.data[i * 4 + 2] += n; }
     dg.putImageData(fd, 0, 0);
     const det = new THREE.CanvasTexture(dc); det.wrapS = det.wrapT = THREE.RepeatWrapping; det.colorSpace = THREE.NoColorSpace;
-    mat.onBeforeCompile = (sh) => {
-      sh.uniforms.detailMap = { value: det };
-      sh.vertexShader = 'varying vec2 vWp;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n vWp = position.xz;');
-      sh.fragmentShader = 'uniform sampler2D detailMap; varying vec2 vWp;\n' + sh.fragmentShader.replace('#include <map_fragment>',
-        `#include <map_fragment>
-         float dn = texture2D(detailMap, vWp / 23.0).r * 0.55 + texture2D(detailMap, vWp / 157.0).r * 0.45;
-         diffuseColor.rgb *= 0.8 + 0.4 * dn;`);
-    };
-    const m = new THREE.Mesh(g, mat); m.frustumCulled = false;
-    this.terrain = m; this.scene.add(m);
+    this.tmat = terrainMaterial({ ortuTex: this.ortuTex, ortuRect: this.ortuRect, istTex: tex, istRect: this.istRect, detailTex: det });
+    this.terrain = new Terrain(this.heights, this.root, this.tmat, { K: this.opts.terrainK || 2.0, budget: this.opts.terrainBudget || 4 });
   }
 
-  _runwayMesh() {
-    const r = this.rw;
-    const CW = 128, CHh = 4096;
-    const c = document.createElement('canvas'); c.width = CW; c.height = CHh;
-    const g = c.getContext('2d');
-    g.fillStyle = '#4a4b4d'; g.fillRect(0, 0, CW, CHh);
-    for (let i = 0; i < 9000; i++) { g.fillStyle = `rgba(${Math.random() < 0.5 ? '0,0,0' : '255,255,255'},0.05)`; g.fillRect(Math.random() * CW, Math.random() * CHh, 2, 3); }
-    // lastik izleri (dokunma bölgeleri)
-    g.fillStyle = 'rgba(20,20,20,0.35)';
-    for (const y0 of [CHh - 900 / (r.len / CHh), 300 / (r.len / CHh)]) for (let i = 0; i < 40; i++) g.fillRect(CW / 2 - 18 + Math.random() * 36, y0 - 200 + Math.random() * 400, 3, 60);
-    const mpp = r.len / CHh; // metre / piksel (uzunlamasına)
-    const ppw = CW / r.w;    // piksel / metre (enine)
-    const X = (m) => CW / 2 + m * ppw;
-    g.fillStyle = '#e8e8e4';
-    // kenar çizgileri
-    g.fillRect(X(-r.w / 2 + 1), 0, ppw * 0.9, CHh); g.fillRect(X(r.w / 2 - 1.9), 0, ppw * 0.9, CHh);
-    // orta çizgi: 30 m çizgi, 20 m boşluk
-    for (let s = 120; s < r.len - 120; s += 50) g.fillRect(X(-0.45), CHh - (s + 30) / mpp, ppw * 0.9, 30 / mpp);
-    // eşik (piyano tuşları): 6+6 şerit, 30 m
-    const piano = (y, dir) => { for (let k = 0; k < 6; k++) for (const sd of [-1, 1]) { const xm = sd * (3 + k * 3.6); g.fillRect(X(xm) - (sd < 0 ? ppw * 1.8 : 0), y, ppw * 1.8, dir * 30 / mpp); } };
-    piano(CHh - 6 / mpp, -1); piano(6 / mpp, 1);
-    const num = (txt, yMeters, rot) => {
-      g.save(); g.translate(CW / 2, rot ? yMeters / mpp : CHh - yMeters / mpp); if (rot) g.rotate(Math.PI);
-      g.scale(1, (1 / mpp) / ppw * 1.0); g.font = `bold ${Math.round(14 * ppw)}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle';
-      g.fillText(txt, 0, 0); g.restore();
-    };
-    num('05', 60, false); num('23', 60, true);
-    // hedef noktası ve dokunma bölgesi işaretleri
-    for (const s of [150, 300, 450]) for (const end of [0, 1]) for (const sd of [-1, 1]) {
-      const yy = end ? s / mpp : CHh - (s + 22) / mpp; g.fillRect(X(sd * 9) - ppw, yy, ppw * 2, 22 / mpp);
+  // Her kare: veri akışı, arazi ve bina ayrıntısı, kayan orijin. camLocal: kamera (sahne koordinatı)
+  update(camLocal, ac) {
+    const cx = camLocal.x + this.O.x, cy = -camLocal.z + this.O.y, ch = camLocal.y;
+    // kayan orijin: kamera 4 km uzaklaşınca kök kaydırılır (çağıran tarafından sahne konumları yeniden hesaplanır)
+    this.heights.ensure(cx, cy, 140000);
+    const gh = this.terrainH(cx, cy);
+    this.terrain.update({ x: cx, y: cy, h: ch, gh });
+    this.buildings.update({ x: cx, y: cy, h: ch - Math.max(0, gh) }, ac);
+    this._landmarksOnce();
+    // su düzlemi kamerayla gezer, dalgalar dünyaya bağlı kalır
+    this.water.position.set(camLocal.x, 0, camLocal.z);
+    const k = 1 / this.WTILE;
+    this.waterNormal.offset.set(((cx * k) % 1 + 1) % 1, ((cy * k) % 1 + 1) % 1);
+    const U = this.tmat.userData.U;
+    U.uOrigin.value.set(this.O.x, this.O.y);
+    U.uOriginMod.value.set(this.O.x % 3611, this.O.y % 3611);
+    // sis: yükseldikçe görüş uzar
+    this.scene.fog.density = 0.000012 + 0.00007 * Math.exp(-Math.max(0, ch) / 2500);
+    this.terrain.maxDist = 2.3 / this.scene.fog.density;
+  }
+  pendingNear() { return (this.terrain.pending || 0) + (this.heights.loading.size || 0); }
+
+  // Uçağın çarpma denetimi: noktalar mutlak (x doğu, y kuzey, h yükseklik)
+  collide(points) {
+    for (const p of points) {
+      const bt = this.buildingTop(p.x, p.y);
+      if (bt > 0 && p.h < bt - 0.5 && p.h > this.terrainH(p.x, p.y) - 5) return 'Binaya çarptınız';
+      for (const c of this.lmCol) if ((p.x - c.x) ** 2 + (p.y - c.y) ** 2 < c.r * c.r && p.h < c.top) return 'Yapıya çarptınız';
+      for (const d of this.decks) {
+        const px = p.x - d.ax, py = p.y - d.ay;
+        const al = px * d.ux + py * d.uy, cr = -px * d.uy + py * d.ux;
+        if (al >= 0 && al <= d.len && Math.abs(cr) <= d.w / 2) { const top = d.deckAt(al); if (p.h < top - 0.3 && p.h > top - 5) return d.name + ' tabliyesine çarptınız'; }
+      }
+      for (const c of this.colliders) if ((p.x - c.x) ** 2 + (p.y - c.y) ** 2 < c.r * c.r && p.h < c.top && (c.bottom == null || p.h > c.bottom)) return c.balloon ? 'Sıcak hava balonuna çarptınız' : c.name + ' kulesine çarptınız';
     }
-    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
-    const geo = new THREE.PlaneGeometry(r.w, r.len + 2);
-    const mat = new THREE.MeshLambertMaterial({ map: tex, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 });
-    const m = new THREE.Mesh(geo, mat);
-    // PlaneGeometry: uzunluk +Y; X ekseninde -90° döndürünce -Z (kuzey), sonra grup baş yönüne çevrilir
-    m.rotation.set(-Math.PI / 2, 0, 0);
-    const grp = new THREE.Group(); grp.add(m);
-    grp.rotation.y = -r.heading; // kuzeyden saat yönü
-    grp.position.set(r.ax + r.ux * r.len / 2, r.elev + 0.12, -(r.ay + r.uy * r.len / 2));
-    this.scene.add(grp);
+    return null;
   }
 
-  // ---------- binalar ----------
-  // Çözme, çarpışma ızgarası ve geometri bir işçide (js/bworker.js) yapılır.
-  _buildingsParse(buf) {
-    const dv = new DataView(buf);
-    const NC = dv.getUint16(8, true), CH = dv.getUint16(10, true);
-    this.NC = NC; this.CH = CH;
-    const tbl = 28;
-    for (let c = 0; c < NC * NC; c++) {
-      const n = dv.getUint32(tbl + c * 8 + 4, true);
-      if (!n) continue;
-      const cx = c % NC, cy = (c / NC) | 0;
-      this.chunks.push({ idx: c, n, x: this.X0 + (cx + 0.5) * CH, y: this.Y1 - (cy + 0.5) * CH, mesh: null, built: false, pending: false });
+  // En yakın tanınan yer: simge yapılar (2.5 km), köprüler, havalimanları (6 km), dağlar (15 km), şehirler (25 km)
+  nearestLandmark(x, y) {
+    // öncelik: simge yapı/köprü (2.5 km), havalimanı (6 km), dağ/göl (15 km), şehir (nüfusa göre 18-30 km)
+    const groups = [
+      (this.landmarkPos || []).map((l) => [l, 2500, l.name]).concat((this.bridgeInfo || []).filter((b) => b.towers.length).map((b) => [{ x: (b.towers[0].x + b.towers[1].x) / 2, y: (b.towers[0].y + b.towers[1].y) / 2 }, 2500, b.name])),
+      this.airports.map((a) => [{ x: a.ax + a.ux * a.len / 2, y: a.ay + a.uy * a.len / 2 }, 6000, a.name]),
+      this.peaks.map((p) => [p, 15000, p.name]),
+      this.cities.map((c) => [c, c.nufus > 1e6 ? 30000 : 18000, c.ad]),
+    ];
+    for (const g of groups) {
+      let best = null, bd = 1e18;
+      for (const [l, lim, name] of g) { const d = Math.hypot(l.x - x, l.y - y); if (d < lim && d < bd) { bd = d; best = { name, dist: d }; } }
+      if (best) return best;
     }
-    this.byIdx = new Map(this.chunks.map((c) => [c.idx, c]));
-    this.CG = 16;
-    this.mosqueMap = new Map();
-    this.worker = new Worker(new URL('./bworker.js', import.meta.url), { type: 'module' });
-    this.inflight = 0;
-    return new Promise((res, rej) => {
-      this.worker.onerror = (e) => rej(new Error('Bina işçisi: ' + (e.message || 'hata')));
-      this.worker.onmessage = (e) => {
-        const m = e.data;
-        if (m.type === 'col') { this.col = m.col; this.CW = m.CW; this.CHh = m.CHh; res(); }
-        else if (m.type === 'chunk') this._chunkArrived(m);
-      };
-      this.worker.postMessage({ type: 'init', buf, H: this.H, HG: this.HG, X0: this.X0, X1: this.X1, Y0: this.Y0, Y1: this.Y1, G: this.CG }, [buf]);
-    });
-  }
-  _mark(x, y, top) {
-    const i = Math.floor((x - this.X0) / this.CG), j = Math.floor((this.Y1 - y) / this.CG);
-    if (i < 0 || j < 0 || i >= this.CW || j >= this.CHh) return;
-    const k = j * this.CW + i, t = Math.min(65000, Math.round(top * 2));
-    if (this.col[k] < t) this.col[k] = t;
-  }
-  _markDisc(x, y, r, top) { for (let a = -r; a <= r; a += this.CG / 2) for (let b = -r; b <= r; b += this.CG / 2) if (a * a + b * b <= r * r) this._mark(x + a, y + b, top); }
-  buildingTop(x, y) {
-    const i = Math.floor((x - this.X0) / this.CG), j = Math.floor((this.Y1 - y) / this.CG);
-    if (i < 0 || j < 0 || i >= this.CW || j >= this.CHh) return 0;
-    return this.col[j * this.CW + i] / 2;
+    return null;
   }
 
-  _windowTex() {
-    if (this.wtex) return this.wtex;
-    const c = document.createElement('canvas'); c.width = 64; c.height = 64;
-    const g = c.getContext('2d');
-    g.fillStyle = '#ffffff'; g.fillRect(0, 0, 64, 64);
-    g.fillStyle = '#a9b0b8'; g.fillRect(16, 18, 32, 28);
-    g.fillStyle = '#8d949c'; g.fillRect(16, 18, 32, 5);
-    g.fillStyle = '#eeeeee'; g.fillRect(31, 16, 2, 34);
-    g.fillStyle = '#d9d6d0'; g.fillRect(0, 58, 64, 6);
-    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace;
-    t.anisotropy = 4;
-    this.wtex = t; return t;
-  }
-
-  _chunkArrived(m) {
-    this.inflight--;
-    const ch = this.byIdx.get(m.idx); if (!ch) return;
-    ch.pending = false;
-    const g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.BufferAttribute(m.pos, 3));
-    g.setAttribute('normal', new THREE.BufferAttribute(m.nor, 3, true));
-    g.setAttribute('color', new THREE.BufferAttribute(m.col, 3, true));
-    g.setAttribute('uv', new THREE.BufferAttribute(m.uv, 2));
-    g.setIndex(new THREE.BufferAttribute(m.index, 1));
-    g.computeBoundingSphere();
-    if (!this.bmat) { const t = this._windowTex(); t.repeat.set(1 / 16, 1 / 16); this.bmat = new THREE.MeshLambertMaterial({ vertexColors: true, map: t }); }
-    const mesh = new THREE.Mesh(g, this.bmat);
-    mesh.matrixAutoUpdate = false;
-    ch.mesh = mesh; ch.built = true;
-    this.scene.add(mesh);
-    if (m.mosques.length) { this.mosqueMap.set(m.idx, m.mosques); this._mqDirty = true; }
-  }
-
-  // Kameraya yakın parçaları işçiden iste; uzaktakileri gizle, çok uzaktakileri bellekten at.
-  update(camPos) {
-    const cx = camPos.x, cy = -camPos.z;
-    const D2 = this.buildDist * this.buildDist;
-    const want = [];
-    for (const ch of this.chunks) {
-      const d2 = (ch.x - cx) ** 2 + (ch.y - cy) ** 2;
-      if (ch.built) {
-        ch.mesh.visible = d2 < D2;
-        if (d2 > D2 * 2.2) { this.scene.remove(ch.mesh); ch.mesh.geometry.dispose(); ch.mesh = null; ch.built = false; if (this.mosqueMap.delete(ch.idx)) this._mqDirty = true; }
-      } else if (!ch.pending && d2 < D2 * 1.2) want.push([d2, ch]);
-    }
-    want.sort((a, b) => a[0] - b[0]);
-    for (const [, ch] of want) {
-      if (this.inflight >= 2) break;
-      ch.pending = true; this.inflight++;
-      this.worker.postMessage({ type: 'build', idx: ch.idx });
-    }
-    if (this._mqDirty && this.inflight === 0) { this._mqDirty = false; this._mosqueInstances(); }
-    return want.length + this.inflight;
-  }
-  pendingNear(camPos, r) {
-    const cx = camPos.x, cy = -camPos.z;
-    return this.chunks.filter((ch) => !ch.built && (ch.x - cx) ** 2 + (ch.y - cy) ** 2 < r * r).length;
-  }
-
-  // camiler: kubbe ve minare (örneklenmiş, 2 çizim çağrısı)
-  _mosqueInstances() {
-    const M = [].concat(...this.mosqueMap.values());
-    if (this.domeMesh) { this.scene.remove(this.domeMesh); this.scene.remove(this.minMesh); this.domeMesh.dispose(); this.minMesh.dispose(); this.domeMesh = null; }
-    if (!M.length) return;
-    const dome = new THREE.SphereGeometry(1, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2);
-    const minG = minaretGeom();
-    const dm = new THREE.InstancedMesh(dome, new THREE.MeshLambertMaterial({ color: 0x8a949e }), M.length);
-    const mm = new THREE.InstancedMesh(minG, new THREE.MeshLambertMaterial({ color: 0xe8e6e0 }), M.length);
-    const o = new THREE.Object3D();
-    M.forEach((m, i) => {
-      o.position.set(m.x, m.top - 0.5, -m.y); o.scale.set(m.r, m.r * 0.9, m.r); o.rotation.set(0, 0, 0); o.updateMatrix(); dm.setMatrixAt(i, o.matrix);
-      const hh = Math.max(18, m.h * 1.9 + m.r);
-      o.position.set(m.mx, m.top - m.h, -m.my); o.scale.set(1, hh / 30, 1); o.updateMatrix(); mm.setMatrixAt(i, o.matrix);
-    });
-    dm.frustumCulled = mm.frustumCulled = false;
-    this.domeMesh = dm; this.minMesh = mm;
-    this.scene.add(dm); this.scene.add(mm);
-  }
 
   // ---------- simge yapılar ----------
-  _landmarks() {
+  _landmarksIstanbul() {
     const S = new THREE.Group();
     const stone = new THREE.MeshLambertMaterial({ color: 0xcfc2a8 });
     const stoneDark = new THREE.MeshLambertMaterial({ color: 0xa89a82 });
@@ -434,8 +380,7 @@ export class World {
       cyl(g, m, 2.6, 2.6, 0.7, x, base + h * 0.72, z, 10);
       const c = new THREE.Mesh(new THREE.ConeGeometry(2.1, h * 0.18, 10), lead); c.position.set(x, base + h * 0.82 + h * 0.09, z); g.add(c);
     };
-    const reg = (p, r, top) => this._markDisc(p.x, p.y, r, p.h + top);
-    this.landmarkPos = LANDMARKS.map((l) => ({ ...at(l.id), id: l.id }));
+    const reg = (p, r, top) => this.lmCol.push({ x: p.x, y: p.y, r, top: p.h + top });
 
     // Galata Kulesi: 66.9 m
     { const p = at('galata'); const g = grp(p); cyl(g, stone, 9, 8.2, 51, 0, 0, 0, 16); cyl(g, stoneDark, 8.6, 8.6, 4, 0, 47, 0, 16);
@@ -463,7 +408,7 @@ export class World {
       box(g, white, 64, 12, 64, 0, 0, -70); // avlu
       domeM(g, lead, 6, 0, 12, -70, 0.8);
       for (const [x, z] of [[-34, -38], [34, -38], [-34, 38], [34, 38], [-34, -104], [34, -104]]) minaret(g, x, z, 64);
-      reg(p, 50, 43); this._markDisc(p.x, p.y, 2, p.h + 64); }
+      reg(p, 50, 43); this.lmCol.push({ x: p.x, y: p.y, r: 2, top: p.h + 64 }); }
     // Süleymaniye: kubbe 53 m, 4 minare avlu köşelerinde
     { const p = at('suleymaniye'); const g = grp(p, 150);
       box(g, white, 58, 24, 62, 0, 0, 0); cyl(g, white, 14, 14, 10, 0, 24, 0, 24); domeM(g, lead, 13.5, 0, 34, 0, 1.0);
@@ -494,8 +439,10 @@ export class World {
       box(g, white, 70, 12, 60, 0, 0, -68);
       for (const [x, z, h] of [[-40, -40, 107], [40, -40, 107], [-40, 40, 107], [40, 40, 107], [-40, -100, 90], [40, -100, 90]]) minaret(g, x, z, h);
       reg(p, 50, 72); }
-    bakeStatic(S, this.scene);
+    bakeStatic(S, this.root);
   }
+
+  // ---------- köprüler ----------
 
   // ---------- köprüler ----------
   _bridges(list) {
@@ -596,84 +543,159 @@ export class World {
       S.add(new THREE.LineSegments(lg, lineMat));
       this.bridgeInfo.push(info);
     }
-    bakeStatic(S, this.scene);
+    bakeStatic(S, this.root);
   }
 
-  // Uçağın çarpma denetimi: noktalar dünya koordinatında (x doğu, y kuzey, h yükseklik)
-  collide(points) {
-    for (const p of points) {
-      const bt = this.buildingTop(p.x, p.y);
-      if (bt > 0 && p.h < bt - 0.5 && p.h > this.terrainH(p.x, p.y) - 5) return 'Binaya çarptınız';
-      for (const d of this.decks) {
-        const px = p.x - d.ax, py = p.y - d.ay;
-        const al = px * d.ux + py * d.uy, cr = -px * d.uy + py * d.ux;
-        if (al >= 0 && al <= d.len && Math.abs(cr) <= d.w / 2) {
-          const top = d.deckAt(al);
-          if (p.h < top - 0.3 && p.h > top - 5) return d.name + ' tabliyesine çarptınız';
-        }
-      }
-      for (const c of this.colliders) {
-        if ((p.x - c.x) ** 2 + (p.y - c.y) ** 2 < c.r * c.r && p.h < c.top) return c.name + ' kulesine çarptınız';
+  // ---------- Ankara: Anıtkabir, Atakule, Kocatepe Camii ----------
+  _lmKit() {
+    const M = this._lmMats || (this._lmMats = {
+      trav: new THREE.MeshLambertMaterial({ color: 0xd9ccb0 }), travD: new THREE.MeshLambertMaterial({ color: 0xbfae8e }),
+      white: new THREE.MeshLambertMaterial({ color: 0xf1eee6 }), lead: new THREE.MeshLambertMaterial({ color: 0x7d8a96 }),
+      glass: new THREE.MeshLambertMaterial({ color: 0x86a2b8 }), conc: new THREE.MeshLambertMaterial({ color: 0xcfd0cc }),
+      green: new THREE.MeshLambertMaterial({ color: 0x5d7a45 }), road: new THREE.MeshLambertMaterial({ color: 0xbdb4a2 }),
+      tuff: new THREE.MeshLambertMaterial({ color: 0xd8c3a0 }), tuffD: new THREE.MeshLambertMaterial({ color: 0xa88f6e }), red: new THREE.MeshLambertMaterial({ color: 0xb04a2e }),
+    });
+    const box = (g, m, w, h, d, x, y, z, ry = 0) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); o.position.set(x, y + h / 2, z); o.rotation.y = ry; g.add(o); return o; };
+    const cyl = (g, m, r0, r1, h, x, y, z, seg = 12) => { const o = new THREE.Mesh(new THREE.CylinderGeometry(r1, r0, h, seg), m); o.position.set(x, y + h / 2, z); g.add(o); return o; };
+    const dome = (g, m, r, x, y, z, sy = 1) => { const o = new THREE.Mesh(new THREE.SphereGeometry(r, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), m); o.position.set(x, y, z); o.scale.y = sy; g.add(o); return o; };
+    const half = (g, m, r, x, y, z, rot) => { const o = new THREE.Mesh(new THREE.SphereGeometry(r, 16, 8, 0, Math.PI, 0, Math.PI / 2), m); o.position.set(x, y, z); o.rotation.y = rot; g.add(o); return o; };
+    const minaret = (g, x, z, h, base = 0, m = M.white) => {
+      cyl(g, m, 2.2, 2.0, h * 0.82, x, base, z, 10); cyl(g, m, 2.8, 2.8, 0.8, x, base + h * 0.5, z, 10); cyl(g, m, 2.7, 2.7, 0.8, x, base + h * 0.64, z, 10); cyl(g, m, 2.6, 2.6, 0.7, x, base + h * 0.76, z, 10);
+      const c = new THREE.Mesh(new THREE.ConeGeometry(2.1, h * 0.18, 10), M.lead); c.position.set(x, base + h * 0.82 + h * 0.09, z); g.add(c);
+    };
+    const at = (id) => { const L = LANDMARKS.find((l) => l.id === id); const p = geo(L.lat, L.lon); return { x: p.x, y: p.y, h: this.terrainH(p.x, p.y) }; };
+    return { M, box, cyl, dome, half, minaret, at };
+  }
+  _landmarksAnkara() {
+    const { M, box, cyl, dome, half, minaret, at } = this._lmKit();
+    const S = new THREE.Group();
+    // Anıtkabir: Rasattepe üstünde; tören meydanı (129 x 84 m), Aslanlı Yol (262 m), Şeref Holü (sütunlu, 72 x 52 m)
+    { const p = at('anitkabir'); const O = new THREE.Group(); O.position.set(p.x, p.h, -p.y); O.rotation.y = -(-8) * Math.PI / 180; S.add(O);
+      box(O, M.road, 170, 2.5, 120, 0, -1.5, 0);                     // tören meydanı ve teras
+      box(O, M.travD, 84, 1.2, 129, 0, 1, 0);
+      box(O, M.road, 22, 1.5, 262, -150, -1, 40, Math.PI / 2);        // aslanlı yol (batıya)
+      for (let k = 0; k < 12; k++) for (const s of [-1, 1]) box(O, M.travD, 1.6, 2.2, 3.2, -40 - k * 21, 0.5, 40 + s * 11);
+      box(O, M.trav, 60, 3, 72, 0, 2, -42);                           // kaide ve merdiven
+      for (let k = 0; k < 6; k++) box(O, M.trav, 60, 1, 4, 0, 2 + k, -2 - k * 1.2);
+      box(O, M.trav, 54, 6, 64, 0, 5, -46);
+      // sütunlar: uzun kenarlarda 14, kısa kenarlarda 8
+      for (let k = 0; k < 14; k++) for (const s of [-1, 1]) cyl(O, M.white, 1.1, 1.0, 14, s * 24, 11, -74 + k * 4.4, 12);
+      for (let k = 0; k < 8; k++) for (const s of [-1, 1]) cyl(O, M.white, 1.1, 1.0, 14, -18 + k * 5.15, 11, -46 + s * 30, 12);
+      box(O, M.trav, 40, 14, 54, 0, 11, -46);                         // iç hol
+      box(O, M.trav, 54, 5, 66, 0, 25, -46);                          // saçak ve üst kat
+      box(O, M.travD, 50, 1.4, 62, 0, 30, -46);
+      // iki yanda kuleler (İstiklal, Hürriyet ...): küçük kare yapılar
+      for (const [x, z] of [[-78, -55], [78, -55], [-78, 55], [78, 55], [-78, 0], [78, 0]]) { box(O, M.trav, 12, 12, 12, x, 1, z); box(O, M.travD, 13, 2, 13, x, 13, z); }
+      this.lmCol.push({ x: p.x, y: p.y, r: 45, top: p.h + 32 });
+    }
+    // Atakule: 125 m, gövde ve küre biçimli dönen lokanta
+    { const p = at('atakule'); const g = new THREE.Group(); g.position.set(p.x, p.h, -p.y); S.add(g);
+      box(g, M.conc, 60, 10, 60, 0, 0, 0);                            // alışveriş merkezi
+      cyl(g, M.conc, 6.5, 5.5, 100, 0, 10, 0, 16);
+      cyl(g, M.glass, 6.2, 6.2, 70, 0, 25, 0, 6);
+      const sp = new THREE.Mesh(new THREE.SphereGeometry(13, 24, 14), M.glass); sp.scale.y = 0.75; sp.position.set(0, 112, 0); g.add(sp);
+      cyl(g, M.conc, 14, 14, 3, 0, 108, 0, 24);
+      cyl(g, M.conc, 1.2, 0.3, 14, 0, 121, 0, 8);
+      this.lmCol.push({ x: p.x, y: p.y, r: 14, top: p.h + 125 });
+    }
+    // Kocatepe Camii: kubbe 25.5 m çap, 4 minare 88 m
+    { const p = at('kocatepe'); const g = new THREE.Group(); g.position.set(p.x, p.h, -p.y); g.rotation.y = -(-30) * Math.PI / 180; S.add(g);
+      box(g, M.white, 64, 24, 64, 0, 0, 0);
+      cyl(g, M.white, 15, 15, 6, 0, 24, 0, 24); dome(g, M.lead, 15.5, 0, 30, 0, 0.95);
+      for (const r of [0, Math.PI / 2, Math.PI, -Math.PI / 2]) half(g, M.lead, 11, Math.sin(r) * 13, 25, Math.cos(r) * 13, r + Math.PI);
+      for (const [x, z] of [[-22, -22], [22, -22], [-22, 22], [22, 22]]) { cyl(g, M.white, 6, 6, 3, x, 24, z, 12); dome(g, M.lead, 6, x, 27, z, 0.8); }
+      box(g, M.conc, 70, 6, 60, 0, -6, -64);                          // avlu ve altındaki çarşı
+      for (const [x, z] of [[-36, -36], [36, -36], [-36, 36], [36, 36]]) minaret(g, x, z, 88);
+      this.lmCol.push({ x: p.x, y: p.y, r: 50, top: p.h + 48 });
+    }
+    this._bake(S);
+  }
+  _landmarksIzmir() {
+    const { M, box, cyl, dome, at } = this._lmKit();
+    const S = new THREE.Group();
+    // Saat Kulesi (1901): 25 m, sekizgen, dört katlı, Konak Meydanı
+    const p = at('saatkulesi'); const g = new THREE.Group(); g.position.set(p.x, Math.max(0.5, p.h), -p.y); S.add(g);
+    cyl(g, M.trav, 9, 9, 1, 0, 0, 0, 8);
+    cyl(g, M.trav, 4.2, 4.0, 7, 0, 1, 0, 8); cyl(g, M.travD, 4.6, 4.6, 0.8, 0, 8, 0, 8);
+    cyl(g, M.trav, 3.6, 3.4, 6, 0, 8.8, 0, 8); cyl(g, M.travD, 4.0, 4.0, 0.7, 0, 14.8, 0, 8);
+    cyl(g, M.trav, 3.0, 2.8, 5, 0, 15.5, 0, 8); cyl(g, M.white, 2.4, 2.2, 3, 0, 20.5, 0, 8);
+    dome(g, M.lead, 2.3, 0, 23.5, 0, 0.9); cyl(g, M.lead, 0.2, 0.05, 2, 0, 25.5, 0, 6);
+    for (const r of [0, 1, 2, 3]) { const f = new THREE.Mesh(new THREE.CircleGeometry(1.1, 16), M.white); f.position.set(Math.sin(r * Math.PI / 2) * 3.05, 18, Math.cos(r * Math.PI / 2) * 3.05); f.rotation.y = r * Math.PI / 2; g.add(f); }
+    this.lmCol.push({ x: p.x, y: p.y, r: 6, top: p.h + 26 });
+    this._bake(S);
+  }
+  // Kapadokya: peri bacaları (Göreme, Paşabağı, Uçhisar çevresi), Uçhisar Kalesi ve sıcak hava balonları
+  _kapadokya() {
+    const { M } = this._lmKit();
+    const S = new THREE.Group();
+    const cone = new THREE.ConeGeometry(1, 1, 9, 1, true); cone.translate(0, 0.5, 0);
+    const cap = new THREE.ConeGeometry(1, 1, 9); cap.translate(0, 0.5, 0);
+    const spots = [['goreme', 260, 900], ['pasabagi', 170, 600], ['uchisar', 140, 900], [null, 160, 1300, 38.660, 34.860], [null, 120, 900, 38.615, 34.850], [null, 120, 1000, 38.700, 34.900]];
+    const pts = [];
+    let seed = 1; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (const [id, n, rad, la, lo] of spots) {
+      const c = id ? geo(LANDMARKS.find((l) => l.id === id).lat, LANDMARKS.find((l) => l.id === id).lon) : geo(la, lo);
+      for (let k = 0; k < n; k++) {
+        const a = rnd() * Math.PI * 2, r = Math.sqrt(rnd()) * rad;
+        const x = c.x + Math.cos(a) * r, y = c.y + Math.sin(a) * r;
+        if (this.buildingTop(x, y) > 0) continue;
+        pts.push([x, y, this.terrainH(x, y), 8 + rnd() * 22, 2.2 + rnd() * 3, rnd() < 0.55]);
       }
     }
-    return null;
+    const o0 = pts.length ? pts[0] : [0, 0, 0];
+    const cm = new THREE.InstancedMesh(cone, M.tuff, pts.length), km = new THREE.InstancedMesh(cap, M.tuffD, pts.length);
+    const o = new THREE.Object3D(); let nc = 0;
+    for (const [x, y, h, H, R, hasCap] of pts) {
+      o.position.set(x - o0[0], h - 1, -(y - o0[1])); o.scale.set(R, H, R); o.rotation.set(0, 0, 0); o.updateMatrix(); cm.setMatrixAt(nc, o.matrix);
+      if (hasCap) { o.position.y = h - 1 + H * 0.92; o.scale.set(R * 0.85, R * 1.3, R * 0.85); o.updateMatrix(); } else { o.scale.set(0.001, 0.001, 0.001); o.updateMatrix(); }
+      km.setMatrixAt(nc, o.matrix); nc++;
+    }
+    for (const m of [cm, km]) { m.position.set(o0[0], 0, -o0[1]); m.updateMatrix(); m.matrixAutoUpdate = false; m.computeBoundingSphere(); this.root.add(m); }
+    // Uçhisar Kalesi: büyük kaya kütlesi
+    { const p = geo(38.6300, 34.8050), h = this.terrainH(p.x, p.y); const g = new THREE.Group(); g.position.set(p.x, h, -p.y); S.add(g);
+      const r1 = new THREE.Mesh(new THREE.ConeGeometry(70, 60, 10), M.tuff); r1.position.y = 25; g.add(r1);
+      const r2 = new THREE.Mesh(new THREE.CylinderGeometry(22, 34, 35, 10), M.tuff); r2.position.y = 55; g.add(r2);
+      this.lmCol.push({ x: p.x, y: p.y, r: 40, top: h + 72 }); }
+    this._bake(S);
+    // balonlar: Göreme üzerinde süzülür (çarpışma: balon gövdesi)
+    const env = this.envMap();
+    const bg = new THREE.SphereGeometry(1, 16, 12); bg.scale(1, 1.15, 1);
+    const cols = [0xd7263d, 0xf46036, 0xffc914, 0x2e86ab, 0x1b998b, 0x8e44ad, 0xe84a5f, 0xf4d35e];
+    this.balloons = [];
+    const c = geo(38.6431, 34.8289); seed = 7;
+    for (let k = 0; k < 24; k++) {
+      const x = c.x + (rnd() - 0.5) * 5000, y = c.y + (rnd() - 0.5) * 4000, h = this.terrainH(x, y) + 120 + rnd() * 500;
+      const g = new THREE.Group();
+      const env1 = new THREE.Mesh(bg, new THREE.MeshStandardMaterial({ color: cols[k % cols.length], roughness: 0.7, metalness: 0, envMap: env })); env1.scale.setScalar(9); env1.position.y = 14; g.add(env1);
+      const band = new THREE.Mesh(new THREE.CylinderGeometry(9.1, 6.5, 4, 16, 1, true), new THREE.MeshStandardMaterial({ color: cols[(k + 3) % cols.length], roughness: 0.7, envMap: env, side: THREE.DoubleSide })); band.position.y = 10; g.add(band);
+      const bk = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.2, 1.6), new THREE.MeshLambertMaterial({ color: 0x6b4a2a })); bk.position.y = 0.6; g.add(bk);
+      g.position.set(x, h, -y); this.root.add(g);
+      this.balloons.push({ g, x, y, h, ph: rnd() * 6 });
+      this.colliders.push({ type: 'balon', x, y, r: 9, top: h + 24, bottom: h, name: 'Sıcak hava balonu', balloon: true });
+    }
   }
-
-  nearestLandmark(x, y) {
-    let best = null, bd = 1e18;
-    const all = this.landmarkPos.concat((this.bridgeInfo || []).map((b) => { const t = b.towers; return t.length ? { name: b.name, x: (t[0].x + t[1].x) / 2, y: (t[0].y + t[1].y) / 2 } : null; }).filter(Boolean));
-    for (const l of all) { const d = (l.x - x) ** 2 + (l.y - y) ** 2; if (d < bd) { bd = d; best = l; } }
-    return best ? { name: best.name, dist: Math.sqrt(bd) } : null;
+  // bir grubu malzemeye göre birleştirip yerel orijinle köke ekler (uzakta da hassas)
+  _bake(S) {
+    S.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(S); const c = box.getCenter(new THREE.Vector3());
+    const byMat = new Map();
+    S.traverse((o) => { if (!o.isMesh) return; const g = o.geometry.clone().applyMatrix4(o.matrixWorld); g.translate(-c.x, 0, -c.z); if (!g.index) { const n = g.attributes.position.count; g.setIndex([...Array(n).keys()]); } for (const k of Object.keys(g.attributes)) if (k !== 'position' && k !== 'normal') g.deleteAttribute(k); if (!byMat.has(o.material)) byMat.set(o.material, []); byMat.get(o.material).push(g); });
+    for (const [mat, gs] of byMat) { const m = new THREE.Mesh(mergeGeoms(gs), mat); m.position.set(c.x, 0, c.z); m.updateMatrix(); m.matrixAutoUpdate = false; this.root.add(m); }
   }
 }
 
-function pip(pts, n, x, y) {
-  let c = false;
-  for (let i = 0, j = n - 1; i < n; j = i++) {
-    const xi = pts[i * 2], yi = pts[i * 2 + 1], xj = pts[j * 2], yj = pts[j * 2 + 1];
-    if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c;
-  }
-  return c;
-}
-
-// Bir gruptaki bütün sabit örgüleri malzemeye göre birleştirir (çizim çağrısı azalır). Çizgiler olduğu gibi kalır.
-function bakeStatic(root, scene) {
+function bakeStatic(root, target) {
   root.updateMatrixWorld(true);
-  const byMat = new Map();
-  const lines = [];
+  const byMat = new Map(); const lines = [];
   root.traverse((o) => {
     if (o.isLineSegments) { lines.push(o); return; }
     if (!o.isMesh) return;
     const g = o.geometry.clone().applyMatrix4(o.matrixWorld);
+    if (!g.index) { const n = g.attributes.position.count; g.setIndex([...Array(n).keys()]); }
+    for (const k of Object.keys(g.attributes)) if (k !== 'position' && k !== 'normal') g.deleteAttribute(k);
     if (!byMat.has(o.material)) byMat.set(o.material, []);
     byMat.get(o.material).push(g);
   });
-  for (const [mat, gs] of byMat) { const m = new THREE.Mesh(mergeGeoms(gs), mat); m.matrixAutoUpdate = false; scene.add(m); }
-  for (const l of lines) { l.removeFromParent(); scene.add(l); }
-}
-
-function minaretGeom() {
-  // 30 m yüksekliğinde birim minare (ölçeklenir): gövde, şerefe, külah
-  const parts = [];
-  const body = new THREE.CylinderGeometry(1.0, 1.2, 25, 8); body.translate(0, 12.5, 0); parts.push(body);
-  const ser = new THREE.CylinderGeometry(1.6, 1.6, 0.6, 8); ser.translate(0, 19, 0); parts.push(ser);
-  const cone = new THREE.ConeGeometry(1.1, 5, 8); cone.translate(0, 27.5, 0); parts.push(cone);
-  return mergeGeoms(parts);
-}
-export function mergeGeoms(list) {
-  let nv = 0, ni = 0;
-  const gs = list.map((g) => (g.index ? g : g));
-  for (const g of gs) { nv += g.attributes.position.count; ni += g.index ? g.index.count : g.attributes.position.count; }
-  const pos = new Float32Array(nv * 3), nor = new Float32Array(nv * 3), idx = new Uint32Array(ni);
-  let v = 0, q = 0;
-  for (const g of gs) {
-    pos.set(g.attributes.position.array, v * 3); nor.set(g.attributes.normal.array, v * 3);
-    if (g.index) for (let i = 0; i < g.index.count; i++) idx[q++] = g.index.array[i] + v;
-    else for (let i = 0; i < g.attributes.position.count; i++) idx[q++] = v + i;
-    v += g.attributes.position.count;
-  }
-  const out = new THREE.BufferGeometry();
-  out.setAttribute('position', new THREE.BufferAttribute(pos, 3)); out.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
-  out.setIndex(new THREE.BufferAttribute(idx, 1));
-  return out;
+  for (const [mat, gs] of byMat) { const m = new THREE.Mesh(mergeGeoms(gs), mat); m.matrixAutoUpdate = false; target.add(m); }
+  for (const l of lines) { l.removeFromParent(); target.add(l); }
 }
