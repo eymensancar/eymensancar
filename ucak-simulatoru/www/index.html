@@ -106,32 +106,33 @@ kbd { font: 600 12px ui-monospace, monospace; background: rgba(255,255,255,.1); 
 #touch { position: fixed; inset: 0; pointer-events: none; display: none; }
 body.touch #hud:not(.hide) ~ #touch { display: block; }
 #touch > * { pointer-events: auto; position: absolute; }
-#stick { right: calc(18px + var(--sar)); bottom: calc(18px + var(--sab)); width: 150px; height: 150px; border-radius: 50%; background: rgba(12,18,26,.38); border: 2px solid rgba(255,255,255,.25); touch-action: none; }
+#stick { left: calc(18px + var(--sal)); bottom: calc(18px + var(--sab)); width: 150px; height: 150px; border-radius: 50%; background: rgba(12,18,26,.38); border: 2px solid rgba(255,255,255,.25); touch-action: none; }
 #stick::before, #stick::after { content: ''; position: absolute; background: rgba(255,255,255,.18); }
 #stick::before { left: 50%; top: 12px; bottom: 12px; width: 1px; }
 #stick::after { top: 50%; left: 12px; right: 12px; height: 1px; }
 #knob { position: absolute; left: 50%; top: 50%; width: 62px; height: 62px; margin: -31px; border-radius: 50%; background: rgba(255,255,255,.75); box-shadow: 0 2px 8px rgba(0,0,0,.4); }
-#thr { left: calc(14px + var(--sal)); bottom: calc(18px + var(--sab)); width: 58px; height: 190px; border-radius: 14px; background: rgba(12,18,26,.45); border: 2px solid rgba(255,255,255,.25); touch-action: none; overflow: hidden; }
+#thr { right: calc(18px + var(--sar)); bottom: calc(18px + var(--sab)); width: 58px; height: 190px; border-radius: 14px; background: rgba(12,18,26,.45); border: 2px solid rgba(255,255,255,.25); touch-action: none; overflow: hidden; }
 #thrFill { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(111,209,138,.35); }
 #thrKnob { position: absolute; left: 4px; right: 4px; height: 28px; border-radius: 8px; background: rgba(255,255,255,.85); }
 #thr span { position: absolute; top: 6px; left: 0; right: 0; text-align: center; font-size: 10px; letter-spacing: 1px; color: var(--dim); }
 .tb { min-width: 52px; min-height: 44px; padding: 0 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(12,18,26,.55); font-size: 12px; font-weight: 700; letter-spacing: .5px; touch-action: none; }
 .tb.on { background: rgba(255,207,51,.4); }
-#bFlapD { left: calc(84px + var(--sal)); bottom: calc(18px + var(--sab)); }
-#bFlapU { left: calc(84px + var(--sal)); bottom: calc(68px + var(--sab)); }
-#bBrake { left: calc(84px + var(--sal)); bottom: calc(118px + var(--sab)); }
-#bGear { left: calc(84px + var(--sal)); bottom: calc(168px + var(--sab)); }
+#bFlapD { right: calc(88px + var(--sar)); bottom: calc(18px + var(--sab)); }
+#bFlapU { right: calc(88px + var(--sar)); bottom: calc(68px + var(--sab)); }
+#bBrake { right: calc(88px + var(--sar)); bottom: calc(118px + var(--sab)); }
+#bGear { right: calc(88px + var(--sar)); bottom: calc(168px + var(--sab)); }
 #bSmoke { left: calc(232px + var(--sal)); top: calc(12px + var(--sat)); }
 #bMap { display: none; }
 body.touch #mini { pointer-events: auto; cursor: pointer; }
 .tb.two { line-height: 1.1; padding: 4px 10px; font-size: 11px; }
-#bTrimU { right: calc(96px + var(--sar)); bottom: calc(178px + var(--sab)); }
-#bTrimD { right: calc(18px + var(--sar)); bottom: calc(178px + var(--sab)); }
+#bTrimU { left: calc(96px + var(--sal)); bottom: calc(178px + var(--sab)); }
+#bTrimD { left: calc(18px + var(--sal)); bottom: calc(178px + var(--sab)); }
 #bPause { left: calc(12px + var(--sal)); top: calc(12px + var(--sat)); }
 #bReset { left: calc(72px + var(--sal)); top: calc(12px + var(--sat)); }
 #bCam { left: calc(152px + var(--sal)); top: calc(12px + var(--sat)); }
 #touchInfo { white-space: pre; right: calc(18px + var(--sar)); bottom: calc(228px + var(--sab)); font: 11px ui-monospace, Menlo, monospace; color: #fff; text-shadow: 0 1px 2px #000; pointer-events: none; text-align: right; }
 body.touch #pInfo { display: none; }
+body.easy #bFlapD, body.easy #bFlapU, body.easy #bBrake, body.easy #bGear, body.easy #bTrimU, body.easy #bTrimD { display: none; }
 body.touch #pSpd { top: calc(64px + var(--sat)); left: calc(12px + var(--sal)); }
 body.touch #aoa { top: calc(64px + var(--sat)); height: 80px; }
 body.touch #vAoa { top: calc(148px + var(--sat)); }
@@ -188,6 +189,9 @@ body.portrait #rot { display: flex; }
         <button class="opt" data-set="quality" data-val="yuksek">Grafik yüksek</button>
         <button class="opt" data-set="quality" data-val="orta">Orta</button>
         <button class="opt" data-set="quality" data-val="dusuk">Düşük</button>
+      </div><div class="opts" style="margin-top:8px">
+        <button class="opt" data-set="easy" data-val="true">Kolay kumanda<small>Yalnız analog ve gaz. Flap, iniş takımı, fren ve trim kendiliğinden; uçak stall olmaz</small></button>
+        <button class="opt" data-set="easy" data-val="false">Gerçekçi<small>Flap, takım, fren ve trim elle</small></button>
       </div><div class="opts" style="margin-top:8px">
         <button class="opt" data-set="autoRudder" data-val="true">Otomatik dümen açık<small>Dönüşte yan kaymayı siler; yerde levye burun tekerini çevirir</small></button>
         <button class="opt" data-set="autoRudder" data-val="false">Kapalı</button>

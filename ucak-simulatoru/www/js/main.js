@@ -1,6 +1,6 @@
 // İstanbul Uçuşu - ana döngü, kamera, gösterge (HUD), menü, başlangıç noktaları, duman izi.
 import * as THREE from '../vendor/three.module.min.js';
-import { PLANES, Aircraft, advance, startTrimmed, quatToEuler, liftCurve, isa, KT, FT, trimLevel } from './fdm.js';
+import { PLANES, easyPlane, Aircraft, advance, startTrimmed, quatToEuler, liftCurve, isa, KT, FT, trimLevel } from './fdm.js';
 import { World, geo, ungeo, convergence } from './world.js';
 import { buildC172, buildJet, buildF16, setCockpit } from './models.js';
 import { Input } from './input.js';
@@ -15,7 +15,7 @@ const params = new URLSearchParams(location.search);
 // ---------- ayarlar ----------
 const SKEY = 'istanbul-ucusu-v1';
 const saved = (() => { try { return JSON.parse(localStorage.getItem(SKEY)) || {}; } catch (e) { return {}; } })();
-const settings = Object.assign({ plane: 'f16', start: 'pist', wind: 'yok', quality: isTouch ? 'orta' : 'yuksek', autoRudder: true, level: true, tilt: false, invert: false, smoke: false }, saved);
+const settings = Object.assign({ plane: 'f16', start: 'pist', wind: 'yok', quality: isTouch ? 'orta' : 'yuksek', autoRudder: true, level: true, tilt: false, invert: false, smoke: false, easy: true }, saved);
 if (!saved.v2) { settings.plane = 'f16'; settings.v2 = true; } // yeni sürümde vurgulanan uçak bir kez seçili gelir
 const saveSettings = () => { try { localStorage.setItem(SKEY, JSON.stringify(settings)); } catch (e) { /* özel pencere */ } };
 saveSettings();
@@ -91,7 +91,7 @@ function bindMenu() {
         if (name === 'quality') location.reload(); };
     });
   };
-  ['plane', 'start', 'wind', 'quality', 'autoRudder', 'level', 'tilt', 'invert'].forEach(sel);
+  ['plane', 'start', 'wind', 'quality', 'autoRudder', 'level', 'tilt', 'invert', 'easy'].forEach(sel);
   $('#bStart').onclick = async () => {
     if (settings.tilt && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
       try { await DeviceOrientationEvent.requestPermission(); } catch (e) { /* izin yok */ }
@@ -126,7 +126,8 @@ async function startFlight() {
   input.invert = settings.invert;
   input.setTilt(settings.tilt && isTouch);
   if (model) scene.remove(model.root);
-  ac = new Aircraft(PLANES[settings.plane]);
+  ac = new Aircraft(settings.easy ? easyPlane(PLANES[settings.plane]) : PLANES[settings.plane]);
+  document.body.classList.toggle('easy', !!settings.easy);
   model = settings.plane === 'jet' ? buildJet() : settings.plane === 'f16' ? buildF16(world.envMap()) : buildC172();
   scene.add(model.root);
   $('#gearRow').style.display = $('#vGear').style.display = ac.P.retract ? '' : 'none';
@@ -387,13 +388,14 @@ function drawHUD(dt) {
     hud.aoa.style.height = clamp((o.alpha * R2D + 5) / (as * R2D + 10) * 100, 0, 100) + '%';
     hud.aoa.classList.toggle('red', warn);
     setT(hud.g, ac.nz.toFixed(1) + ' g');
-    if (isTouch) setT(hud.ti, 'GAZ ' + Math.round(ac.ctl.throttle * 100) + '%' + (ac.ab > 0.1 ? ' ARD YAKICI' : '') + '  ' + (P.kind === 'prop' ? Math.round(ac.rpm / 10) * 10 + ' rpm' : 'N1 ' + Math.round(ac.spool * 100) + '%') + '\nFLAP ' + P.flapDetents[flapIdx] + '°' + (P.fbw ? '' : '  TRİM ' + Math.round(ac.ctl.trim * 100)) + (P.retract ? '  TAKIM ' + (ac.gearPos > 0.98 ? 'AÇIK' : ac.gearPos < 0.02 ? 'KAPALI' : '...') : '') + (ac.ctl.brake ? '  FREN' : ''));
+    if (isTouch && settings.easy) setT(hud.ti, '');
+    else if (isTouch) setT(hud.ti, 'GAZ ' + Math.round(ac.ctl.throttle * 100) + '%' + (ac.ab > 0.1 ? ' ARD YAKICI' : '') + '  ' + (P.kind === 'prop' ? Math.round(ac.rpm / 10) * 10 + ' rpm' : 'N1 ' + Math.round(ac.spool * 100) + '%') + '\nFLAP ' + P.flapDetents[flapIdx] + '°' + (P.fbw ? '' : '  TRİM ' + Math.round(ac.ctl.trim * 100)) + (P.retract ? '  TAKIM ' + (ac.gearPos > 0.98 ? 'AÇIK' : ac.gearPos < 0.02 ? 'KAPALI' : '...') : '') + (ac.ctl.brake ? '  FREN' : ''));
     const nl = world.nearestLandmark(ac.pos[1], ac.pos[0]);
     setT(hud.near, nl ? nl.name + ' · ' + (nl.dist < 1000 ? Math.round(nl.dist) + ' m' : (nl.dist / 1000).toFixed(1) + ' km') : '');
     let m = '';
     if (o.V > P.Vne * 0.95 && airborne) m = 'AZAMİ HIZ';
     else if (ac.nz > P.nMax) m = 'YÜK SINIRI AŞILDI';
-    else if (STARTS[settings.start].rw && !STARTS[settings.start].approach && ac.onGround && ac.ctl.throttle < 0.05 && simTime < 8) m = P.fbw ? 'Tam gaz verin (ard yakıcı), 150 kt civarında levyeyi çekin' : 'Gazı açın (Shift / +), 55 kt civarında levyeyi çekin';
+    else if (STARTS[settings.start].rw && !STARTS[settings.start].approach && ac.onGround && ac.ctl.throttle < 0.05 && simTime < 8) m = isTouch && settings.easy ? 'Gazı sağdan sonuna kadar açın, hız artınca analogu yukarı itin' : P.id === 'f16' ? 'Tam gaz verin (ard yakıcı), 150 kt civarında levyeyi çekin' : 'Gazı açın (Shift / +), 55 kt civarında levyeyi çekin';
     setT(hud.msg, m);
     drawMini(e.psi);
     if (mapOpen) drawBigMap();
@@ -491,6 +493,23 @@ function puff(p) {
   m.position.copy(p); scene.add(m); puffs.push({ m, t: 0 });
 }
 
+// ---------- kolay kumanda: flap, iniş takımı, fren ve trim kendiliğinden ----------
+// flap hıza göre (yavaşta açık), takım kalkıştan sonra toplanır, alçak ve yavaş inerken açılır; yerde gaz kapalıysa fren.
+const EASY_REF = { c172: 55, jet: 110, f16: 140 }; // kt, yaklaşma hızının altı
+function autoSystems(ac) {
+  const P = ac.P, n = P.flapDetents.length - 1, v = ac.out.V / KT / (EASY_REF[P.id] || 100);
+  if (ac.onGround) flapIdx = Math.min(1, n);
+  else flapIdx = v < 1.2 ? n : v < 1.45 ? Math.max(1, n - 1) : v < 1.75 ? Math.min(1, n) : 0;
+  ac.ctl.trim = 0;
+  ac.ctl.brake = ac.onGround && input.throttle < 0.04 ? 1 : 0;
+  if (P.retract) {
+    const agl = ac.out.agl || 0, vs = -ac.vel[2];
+    if (ac.onGround) ac.ctl.gearDown = true;
+    else if (ac.ctl.gearDown && agl > 25 && vs > 0.5) ac.ctl.gearDown = false;
+    else if (!ac.ctl.gearDown && agl < 120 && v < 1.9 && vs < 0) ac.ctl.gearDown = true;
+  }
+}
+
 // ---------- döngü ----------
 let last = performance.now();
 let fpsT = 0, fpsN = 0, fps = 60;
@@ -520,6 +539,7 @@ function frame(now) {
       ac.ctl.yaw = yaw;
       ac.ctl.throttle = input.throttle;
       ac.ctl.brake = input.brake;
+      if (settings.easy) autoSystems(ac);
       ac.ctl.flaps = P.flapDetents[flapIdx] / P.flapDetents[P.flapDetents.length - 1];
       world.acAlt = ac.alt;
       updateWind(simTime, ac.out.agl || 100);

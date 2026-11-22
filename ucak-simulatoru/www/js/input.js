@@ -102,7 +102,9 @@ export class Input {
       const r = R(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, rad = r.width / 2;
       let x = (t.clientX - cx) / rad, y = (t.clientY - cy) / rad;
       const l = Math.hypot(x, y); if (l > 1) { x /= l; y /= l; }
-      this.stick = { x: Math.sign(x) * Math.pow(Math.abs(x), 1.5), y: Math.sign(y) * Math.pow(Math.abs(y), 1.5) };
+      // doğrusal: ne kadar itilirse o kadar (ortada küçük ölü bölge)
+      const dz = (v) => Math.sign(v) * Math.max(0, Math.abs(v) - 0.05) / 0.95;
+      this.stick = { x: dz(x), y: dz(y) };
       knob.style.transform = `translate(${x * rad * 0.62}px, ${y * rad * 0.62}px)`;
     };
     stickEl.addEventListener('pointerdown', (e) => { stickId = e.pointerId; try { stickEl.setPointerCapture(e.pointerId); } catch (_) { /* yapay olay */ } setStick(e); e.preventDefault(); });

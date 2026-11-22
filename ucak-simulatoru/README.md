@@ -206,3 +206,16 @@ Arazi düğümü başına ~2 200 üçgen, bina düğümü başına bir çizim ç
 1. "Gerçek bir jet, çok kaliteli, akrobasi yapabilsin, gerçek kadar zor olmasın": F-16 sınıfı savaş uçağı eklendi (yukarıda 13-16. kararlar), menüde ilk sırada "YENİ" etiketiyle ve bir kez seçili gelir. Takla, tonoz, Immelmann, ters takla, ters uçuş, bıçak sırtı benzeri uçuş yapılabilir; tutunma kaybı ve vril olmaz.
 2. "Bütün harita 3 boyutlu olsun, optimizasyonu da yap": İstanbul'daki bütün binalar 3B (395 645), üç ayrıntı düzeyi, işçide birleşik örgü, çerçeve dışı ayıklama, ağaçlar örneklenmiş çizim, zemin ayrıntısı gölgelendiricide.
 3. "Bütün Türkiye'yi yap": bütün Türkiye arazisi (dörtlü ağaç, akışlı yükleme, kayan orijin), denizler ve göller, iklime göre zemin, 17 şehirde gerçek binalar, simge yapılar, on havalimanı, Türkiye haritası; menüde yeni başlangıç noktaları.
+
+## 22 Kasım (akşam): kolay kumanda
+
+Eymen: "analog solda, gaz sağda; trim, flap olmasın; yukarıysa yukarı, ne kadar çekersen o kadar."
+
+- **Yerleşim (dokunmatik):** analog sol altta, gaz kolu sağ altta. Ekranda yalnız DUR, BAŞTAN, KAMERA, DUMAN; harita küçük haritaya dokununca.
+- **Kolay kumanda** (Ayarlar, varsayılan açık):
+  - Analog doğrusal: ne kadar itilirse o kadar yönelir (ortada %5 ölü bölge). Yukarı = burun yukarı, sağ = sağa yatış.
+  - Cessna ve L-39'a da uçuş bilgisayarı takılır (`EASY_FBW`, `easyPlane()` in `fdm.js`): levye g ve yuvarlanma hızı ister, ortadayken uçuş yolu korunur, trim gerekmez, hücum açısı tutunma kaybının altında tutulur.
+  - Dönüş telafisi (`turnComp`, F-16 dahil): levye ortadayken yatışta da irtifa korunur (n = cosθ/cosφ, 60°'den sonra ters uçuşa doğru eski davranışa yumuşak geçiş).
+  - Flap hıza göre, iniş takımı kalkışta toplanır / alçak ve yavaş inerken açılır, yerde gaz kapalıyken fren (`autoSystems()` in `main.js`).
+- **Gerçekçi** seçilirse eski düğmeler (flap, takım, fren, trim) geri gelir.
+- Testler: `fizik-test` hepsi geçti; tarayıcıda kolay modda Cessna kalkışı 334 m, jet taklası 362°, tonoz 262°/sn; iPhone'da analog solda, gaz sağda, gizli düğmeler yok, analog yukarı → burun yukarı (37°/sn).

@@ -165,7 +165,7 @@ export const PLANES = {
     Tmax: 76000, Tab: 125000, spoolUp: 0.55, spoolDown: 0.8, idleN: 0.07, gearTime: 3,
     Vne: 850 * KT, nMax: 9, nMin: -3,
     // fly-by-wire sınırları
-    fbw: { nMax: 9, nMin: -3, nMaxGear: 4, aMax: 25 * D2R, aMaxGear: 15 * D2R, aMin: -10 * D2R, pMax: 240 * D2R, betaMax: 12 * D2R, yawAug: 0.25, couple: 0.4 },
+    fbw: { nMax: 9, nMin: -3, nMaxGear: 4, aMax: 25 * D2R, aMaxGear: 15 * D2R, aMin: -10 * D2R, pMax: 240 * D2R, betaMax: 12 * D2R, yawAug: 0.25, couple: 0.4, turnComp: true },
     gear: [
       { name: 'burun', p: [3.9, 0, 1.78], k: 120000, c: 14000, steer: true, brake: false },
       { name: 'sol', p: [-0.45, -1.18, 1.78], k: 300000, c: 32000, steer: false, brake: true },
@@ -289,7 +289,13 @@ export class Aircraft {
       return { deCmd: pitch >= 0 ? pitch * P.deUp * 0.8 : -pitch * P.deDown * 0.5, daCmd: clamp(c.roll, -1, 1) * P.daMax * 0.5, drCmd: -clamp(c.yaw, -1, 1) * P.drMax * 0.5 };
     }
     // yerçekimi telafisi: dünya aşağı yönünün gövde z bileşeni (= cosθ cosφ)
-    const n0 = clamp(m[8], -1, 1);
+    let n0 = clamp(m[8], -1, 1);
+    // dönüş telafisi: levye ortadayken yatışta da irtifa korunur (n = cosθ/cosφ); 60°'den sonra ters uçuşa doğru yumuşakça eski davranışa döner
+    if (F.turnComp) {
+      const cth = Math.sqrt(Math.max(0, 1 - m[6] * m[6])), cph = cth > 0.05 ? m[8] / cth : 1;
+      if (cph > 0.5) n0 = clamp(cth / cph, -1, 2);
+      else if (cph > 0) n0 = clamp(cth / 0.5, 0, 2) * (cph / 0.5) + m[8] * (1 - cph / 0.5);
+    }
     const u = clamp(c.pitch + c.trim, -1, 1);
     const nHi = gearDn ? F.nMaxGear : F.nMax;
     const nCmd = u >= 0 ? n0 + u * (nHi - n0) : n0 + u * (n0 - F.nMin);
@@ -591,6 +597,15 @@ export function advance(ac, env, frameDt, acc = { t: 0 }) {
   while (acc.t >= DT && n < 48) { ac.step(DT, env); acc.t -= DT; n++; }
   return n;
 }
+
+// Kolay kumanda: fly-by-wire'ı olmayan uçaklara da oyun için uçuş bilgisayarı takılır.
+// Levye ortadayken uçuş yolu korunur (trim gerekmez), levye ne kadar çekilirse o kadar g / yuvarlanma hızı;
+// hücum açısı tutunma kaybının altında tutulur.
+export const EASY_FBW = {
+  c172: { nMax: 3.5, nMin: -1.5, nMaxGear: 3.5, aMax: 12 * D2R, aMaxGear: 12 * D2R, aMin: -8 * D2R, pMax: 70 * D2R, betaMax: 6 * D2R, yawAug: 0.15, couple: 1, turnComp: true },
+  jet: { nMax: 5, nMin: -2.5, nMaxGear: 3, aMax: 12 * D2R, aMaxGear: 11 * D2R, aMin: -8 * D2R, pMax: 160 * D2R, betaMax: 8 * D2R, yawAug: 0.2, couple: 0.6, turnComp: true },
+};
+export function easyPlane(P) { return P.fbw || !EASY_FBW[P.id] ? P : Object.assign({}, P, { fbw: EASY_FBW[P.id], easy: true }); }
 
 // Düz uçuş dengesi (trim): verilen hız, irtifa ve flapta yatay uçuş için α, elevatör trimi ve gaz.
 // opts.noThrust: gaz yerine uçuş yolu açısını çözer (gücü kapalı süzülme). Döndürür {alpha, trim, throttle, gamma, ok}
