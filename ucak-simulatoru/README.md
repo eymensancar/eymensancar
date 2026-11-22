@@ -219,3 +219,8 @@ Eymen: "analog solda, gaz sağda; trim, flap olmasın; yukarıysa yukarı, ne ka
   - Flap hıza göre, iniş takımı kalkışta toplanır / alçak ve yavaş inerken açılır, yerde gaz kapalıyken fren (`autoSystems()` in `main.js`).
 - **Gerçekçi** seçilirse eski düğmeler (flap, takım, fren, trim) geri gelir.
 - Testler: `fizik-test` hepsi geçti; tarayıcıda kolay modda Cessna kalkışı 334 m, jet taklası 362°, tonoz 262°/sn; iPhone'da analog solda, gaz sağda, gizli düğmeler yok, analog yukarı → burun yukarı (37°/sn).
+
+### 22 Kasım (gece): düzeltme
+
+- Analog yine sağda, gaz solda. TAKIM ve FREN düğmeleri geri geldi (elle); kolay kumandada yalnız flap ve trim kendiliğinden.
+- **Sarsıntı (hata):** analog bırakılınca uçuş bilgisayarı istenen g'ye bir anda atlıyor, aşıp yukarı-aşağı sallanıyordu (F-16 350 kt: −2,2 g'den +2,1 g'ye taşma, 200 kt'ta iki salınım). Levye komutu artık 0,3 sn'lik süzgeçten geçiyor (`_fbw`, `st.u`); bırakınca g tek yönde, taşmadan 1'e iner. Fizik testlerinin hepsi geçti.

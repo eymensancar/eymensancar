@@ -284,7 +284,7 @@ export class Aircraft {
     const aMax = gearDn ? F.aMaxGear : F.aMax;
     // yerde (tekerlek yükü varken) doğrudan kumanda: kalkışta burun yumuşak kalkar
     if (this.onGround) {
-      st.ia = 0;
+      st.ia = 0; st.u = null;
       const pitch = clamp(c.pitch + c.trim, -1, 1);
       return { deCmd: pitch >= 0 ? pitch * P.deUp * 0.8 : -pitch * P.deDown * 0.5, daCmd: clamp(c.roll, -1, 1) * P.daMax * 0.5, drCmd: -clamp(c.yaw, -1, 1) * P.drMax * 0.5 };
     }
@@ -296,7 +296,10 @@ export class Aircraft {
       if (cph > 0.5) n0 = clamp(cth / cph, -1, 2);
       else if (cph > 0) n0 = clamp(cth / 0.5, 0, 2) * (cph / 0.5) + m[8] * (1 - cph / 0.5);
     }
-    const u = clamp(c.pitch + c.trim, -1, 1);
+    // levye komutu yumuşatılır: bırakınca ya da ani çekişte uçak sıçramaz, yukarı-aşağı sallanmaz
+    const uRaw = clamp(c.pitch + c.trim, -1, 1);
+    st.u = st.u == null ? uRaw : st.u + (uRaw - st.u) * Math.min(1, dt / 0.3);
+    const u = st.u;
     const nHi = gearDn ? F.nMaxGear : F.nMax;
     const nCmd = u >= 0 ? n0 + u * (nHi - n0) : n0 + u * (n0 - F.nMin);
     // istenen g için gereken hücum açısı (kaldırma eğrisinin tersi) + tümlev düzeltmesi

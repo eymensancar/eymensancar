@@ -395,7 +395,7 @@ function drawHUD(dt) {
     let m = '';
     if (o.V > P.Vne * 0.95 && airborne) m = 'AZAMİ HIZ';
     else if (ac.nz > P.nMax) m = 'YÜK SINIRI AŞILDI';
-    else if (STARTS[settings.start].rw && !STARTS[settings.start].approach && ac.onGround && ac.ctl.throttle < 0.05 && simTime < 8) m = isTouch && settings.easy ? 'Gazı sağdan sonuna kadar açın, hız artınca analogu yukarı itin' : P.id === 'f16' ? 'Tam gaz verin (ard yakıcı), 150 kt civarında levyeyi çekin' : 'Gazı açın (Shift / +), 55 kt civarında levyeyi çekin';
+    else if (STARTS[settings.start].rw && !STARTS[settings.start].approach && ac.onGround && ac.ctl.throttle < 0.05 && simTime < 8) m = isTouch && settings.easy ? 'Gazı soldan sonuna kadar açın, hız artınca analogu yukarı itin' : P.id === 'f16' ? 'Tam gaz verin (ard yakıcı), 150 kt civarında levyeyi çekin' : 'Gazı açın (Shift / +), 55 kt civarında levyeyi çekin';
     setT(hud.msg, m);
     drawMini(e.psi);
     if (mapOpen) drawBigMap();
@@ -493,21 +493,14 @@ function puff(p) {
   m.position.copy(p); scene.add(m); puffs.push({ m, t: 0 });
 }
 
-// ---------- kolay kumanda: flap, iniş takımı, fren ve trim kendiliğinden ----------
-// flap hıza göre (yavaşta açık), takım kalkıştan sonra toplanır, alçak ve yavaş inerken açılır; yerde gaz kapalıysa fren.
+// ---------- kolay kumanda: flap ve trim kendiliğinden ----------
+// flap hıza göre (yavaşta açık), trim sıfır (uçuş bilgisayarı uçuş yolunu kendisi tutar). Takım ve fren elle.
 const EASY_REF = { c172: 55, jet: 110, f16: 140 }; // kt, yaklaşma hızının altı
 function autoSystems(ac) {
   const P = ac.P, n = P.flapDetents.length - 1, v = ac.out.V / KT / (EASY_REF[P.id] || 100);
   if (ac.onGround) flapIdx = Math.min(1, n);
   else flapIdx = v < 1.2 ? n : v < 1.45 ? Math.max(1, n - 1) : v < 1.75 ? Math.min(1, n) : 0;
   ac.ctl.trim = 0;
-  ac.ctl.brake = ac.onGround && input.throttle < 0.04 ? 1 : 0;
-  if (P.retract) {
-    const agl = ac.out.agl || 0, vs = -ac.vel[2];
-    if (ac.onGround) ac.ctl.gearDown = true;
-    else if (ac.ctl.gearDown && agl > 25 && vs > 0.5) ac.ctl.gearDown = false;
-    else if (!ac.ctl.gearDown && agl < 120 && v < 1.9 && vs < 0) ac.ctl.gearDown = true;
-  }
 }
 
 // ---------- döngü ----------

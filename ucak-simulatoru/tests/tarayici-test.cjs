@@ -134,11 +134,11 @@ async function view(p, name, [lat, lon, alt, hdg, kt], orbit = [0, 0, 1], cam = 
     const box = await ip.locator('#stick').boundingBox();
     const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
     await ip.touchscreen.tap(cx, cy);
-    // kolay kumanda: analog solda, gaz sağda; flap/trim/takım/fren düğmeleri yok
+    // kolay kumanda: analog sağda, gaz solda; flap/trim düğmeleri yok, takım ve fren var
     const lay = await ip.evaluate(() => { const st = document.querySelector('#stick').getBoundingClientRect(), th = document.querySelector('#thr').getBoundingClientRect();
-      return { stickLeft: st.right < innerWidth / 2, thrRight: th.left > innerWidth / 2, hidden: ['#bFlapD', '#bFlapU', '#bTrimU', '#bTrimD', '#bGear', '#bBrake'].every((s) => getComputedStyle(document.querySelector(s)).display === 'none') }; });
+      return { stickRight: st.left > innerWidth / 2, thrLeft: th.right < innerWidth / 2, hidden: ['#bFlapD', '#bFlapU', '#bTrimU', '#bTrimD'].every((s) => getComputedStyle(document.querySelector(s)).display === 'none'), shown: ['#bGear', '#bBrake'].every((s) => getComputedStyle(document.querySelector(s)).display !== 'none') }; });
     console.log('  kolay kumanda yerleşimi:', JSON.stringify(lay));
-    if (!lay.stickLeft || !lay.thrRight || !lay.hidden) errors.push('kolay kumanda yerleşimi yanlış');
+    if (!lay.stickRight || !lay.thrLeft || !lay.hidden || !lay.shown) errors.push('kolay kumanda yerleşimi yanlış');
     // analog yukarı: burun yukarı (yunuslama hızı artı)
     await ip.evaluate(() => { const ac = __ucak.ac; __ucak.q0 = ac.out.alpha; });
     const cdp = await ip.context().newCDPSession(ip);
@@ -148,7 +148,7 @@ async function view(p, name, [lat, lon, alt, hdg, kt], orbit = [0, 0, 1], cam = 
     await tp('touchEnd', 0, 0);
     console.log('  analog yukarı: en büyük yunuslama hızı', (qmax * 57.3).toFixed(1), '°/sn');
     if (!(qmax > 0.02)) errors.push('analog yukarı burnu kaldırmadı');
-    const ok = await ip.evaluate(() => ['#stick', '#thr', '#bSmoke', '#mini', '#bCam'].map((s) => { const r = document.querySelector(s).getBoundingClientRect(); return [s, Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height), r.right <= innerWidth && r.bottom <= innerHeight && r.x >= 0 && r.y >= 0]; }));
+    const ok = await ip.evaluate(() => ['#stick', '#thr', '#bSmoke', '#mini', '#bCam', '#bGear', '#bBrake'].map((s) => { const r = document.querySelector(s).getBoundingClientRect(); return [s, Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height), r.right <= innerWidth && r.bottom <= innerHeight && r.x >= 0 && r.y >= 0]; }));
     console.log('  dokunmatik düğmeler:', JSON.stringify(ok));
     if (ok.some((r) => !r[5])) errors.push('dokunmatik düğme ekran dışında');
     await ip.tap('#bSmoke'); await sleep(2500);
