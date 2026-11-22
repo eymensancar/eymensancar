@@ -1,7 +1,7 @@
 // Fizik denetimi: node tests/fizik-test.mjs
 // Uçuş modelini oyundan bağımsız çalıştırır, gerçek uçak değerleriyle karşılaştırır.
 // Her sınama bir aralık bekler; dışında kalan varsa çıkış kodu 1 olur.
-import { PLANES, Aircraft, trimLevel, startTrimmed, liftCurve, quatToEuler, isa, KT, FT, DT } from '../www/js/fdm.js';
+import { PLANES, Aircraft, easyPlane, advance, trimLevel, startTrimmed, liftCurve, quatToEuler, isa, KT, FT, DT } from '../www/js/fdm.js';
 
 const R2D = 180 / Math.PI;
 const AIR = { ground: () => ({ h: -1e5, kind: 'land' }), wind: [0, 0, 0] };
@@ -253,9 +253,10 @@ function testF16() {
   // 6. ters uçuş: yarım tur yatış, levye ortada 20 sn
   { const a = mk(350, 3000); a.ctl.roll = 1; run(a, AIR, 0.75); a.ctl.roll = 0; run(a, AIR, 2); const h0 = a.alt; run(a, AIR, 20); const e = quatToEuler(a.q);
     report(key, 'Ters uçuş 20 sn levye ortada: irtifa farkı', a.alt - h0, 'm', -150, 150); report(key, 'Ters uçuş: yatış açısı (mutlak)', Math.abs(e.phi) * R2D, '°', 150, 180); }
-  // 7. 9 g sınırı: 450 kt tam geri
-  { const a = mk(450, 3000); a.ctl.throttle = 1; a.ctl.pitch = 1; const w = watch(a); run(a, AIR, 6, () => w.tick());
-    report(key, '450 kt levye tam geri: en büyük yük faktörü', w.nmax, 'g', 8.3, 9.9, 'sınır 9 g'); if (a.crashed) report(key, '9 g denemesinde kaza: ' + a.crashed, 1, '', 0, 0); }
+  // 7. 9 g sınırı: 520 kt tam geri. (23 Kasım: yeni yunuslama yasası hücum açısını aşmadan sürer; 450 kt / 3000 m'de 25°'de
+  //    erişilebilen yük ~8.1 g, eski yasa 9.7 g'ye aşarak çıkıyordu. Sınırın kendisi 520 kt'ta sınanır.)
+  { const a = mk(520, 3000); a.ctl.throttle = 1; a.ctl.pitch = 1; const w = watch(a); run(a, AIR, 6, () => w.tick());
+    report(key, '520 kt levye tam geri: en büyük yük faktörü', w.nmax, 'g', 8.3, 9.9, 'sınır 9 g'); if (a.crashed) report(key, '9 g denemesinde kaza: ' + a.crashed, 1, '', 0, 0); }
   // 8. ters takla (split-S): ters dön, çek; baş 180° değişir
   { const a = mk(300, 3000); a.ctl.throttle = 0.3; a.ctl.roll = 1; run(a, AIR, 0.75); a.ctl.roll = 0; run(a, AIR, 1); a.ctl.pitch = 0.9; let done = false; const h0 = a.alt;
     run(a, AIR, 25, () => { const e = quatToEuler(a.q); if (!done && Math.abs(e.phi) < 0.5 && Math.abs(e.theta) < 0.1 && a.time > 3) { done = true; a.ctl.pitch = 0; } });
@@ -280,10 +281,82 @@ function testF16() {
 }
 testF16();
 
+// ---------- kolay kumanda (oyundaki varsayılan): akrobasi, dalıştan çıkış, salınım, iniş ----------
+// Oyundaki kare döngüsü taklit edilir (main.js): 60 kare/sn, kanat dengeleyici, hıza göre flap. Yön tuşu rampası: %35'ten %100'e 1,2 sn.
+function testEasy() {
+  const key = 'easy', D2R = Math.PI / 180;
+  const REF = { c172: 55, jet: 110, f16: 140 };
+  const ramp = (t) => Math.min(1, 0.35 + 0.65 * t / 1.2);
+  const fwdAng = (ac) => { const q = ac.q; const m = [1 - 2 * (q[2] * q[2] + q[3] * q[3]), 2 * (q[1] * q[2] + q[0] * q[3]), 2 * (q[1] * q[3] - q[0] * q[2])]; return Math.atan2(-m[2], m[0]); };
+  function game(ac, env, secs, pitchFn, cb, thr = 1) {
+    const fixed = { t: 0 }; let t = 0;
+    while (t < secs && !ac.crashed) {
+      ac.ctl.pitch = pitchFn(t); ac.ctl.roll = 0;
+      if (!ac.onGround && !(ac.out.alpha > 0.22)) { const e = quatToEuler(ac.q); if (Math.abs(e.phi) < 1.2 && Math.abs(e.theta) < 1.0) ac.ctl.roll = clamp(-3 * e.phi - 0.4 * ac.w[0], -0.5, 0.5); }
+      const P = ac.P, n = P.flapDetents.length - 1, v = ac.out.V / KT / REF[P.id];
+      ac.ctl.flaps = P.flapDetents[ac.onGround ? Math.min(1, n) : v < 1.2 ? n : v < 1.45 ? Math.max(1, n - 1) : v < 1.75 ? Math.min(1, n) : 0] / P.flapDetents[n];
+      ac.ctl.throttle = thr; ac.ctl.trim = 0;
+      advance(ac, env, 1 / 60, fixed); t += 1 / 60; if (cb) cb(t);
+    }
+  }
+  const mk = (id, kt, alt, att = {}, gearUp = true) => { const a = new Aircraft(easyPlane(PLANES[id])); startTrimmed(a, { n: 0, e: 0, alt, heading: 0, speed: kt * KT, gearUp });
+    if (att.pitch != null || att.roll != null) { a.place({ n: 0, e: 0, alt, heading: 0, pitch: att.pitch || 0, roll: att.roll || 0, speed: kt * KT }); a.spool = 0.9; } return a; };
+  // 1. takla: yön tuşu rampasıyla (ve sabit %35 ile), tam tur
+  for (const [kt, inp, lab] of [[300, ramp, 'yön tuşu'], [380, ramp, 'yön tuşu'], [450, ramp, 'yön tuşu'], [300, () => 0.35, 'sabit %35']]) {
+    const a = mk('f16', kt, 3000); let acc = 0, prev = fwdAng(a), done = null, amax = 0, smax = 0, hmax = a.alt, h0 = a.alt;
+    game(a, AIR, 40, (t) => (done ? 0 : inp(t)), (t) => { const g = fwdAng(a); let d = g - prev; if (d > Math.PI) d -= 2 * Math.PI; if (d < -Math.PI) d += 2 * Math.PI; acc += d; prev = g;
+      if (!done && acc >= 2 * Math.PI) done = t; if (!done) { amax = Math.max(amax, a.out.alpha); smax = Math.max(smax, a.stallS); hmax = Math.max(hmax, a.alt); } });
+    report(key, `F-16 takla ${kt} kt (${lab}): tam tur süresi`, done || 99, 'sn', 8, lab === 'sabit %35' ? 26 : 22);
+    report(key, `F-16 takla ${kt} kt (${lab}): tırmanılan yükseklik`, hmax - h0, 'm', 300, 1100);
+    report(key, `F-16 takla ${kt} kt (${lab}): en büyük hücum açısı / tutunma kaybı`, amax * R2D + smax * 100, '°', 15, 30);
+    if (a.crashed) report(key, 'Taklada kaza: ' + a.crashed, 1, '', 0, 0);
+  }
+  // 2. dik dalıştan çıkış: burun tam aşağı, tam yukarı tuşu; uçuş yolu yataya gelince irtifa kaybı
+  for (const [kt, thr] of [[250, 1], [300, 1], [300, 0.3], [400, 1]]) {
+    const a = mk('f16', kt, 5000, { pitch: -89.5 * D2R }); const h0 = a.alt; let rec = null, smax = 0;
+    game(a, AIR, 30, (t) => (rec ? 0 : ramp(t)), (t) => { smax = Math.max(smax, a.stallS); const g = Math.asin(-a.vel[2] / Math.hypot(...a.vel)); if (!rec && g >= 0) rec = { t, loss: h0 - a.alt }; }, thr);
+    report(key, `F-16 dik dalıştan çıkış ${kt} kt, gaz %${thr * 100}: irtifa kaybı`, rec ? rec.loss : 9999, 'm', 300, kt <= 300 ? 900 : 1000);
+    report(key, `F-16 dik dalıştan çıkış ${kt} kt: süre / tutunma kaybı`, (rec ? rec.t : 99) + smax * 100, 'sn', 2, 10);
+    if (a.crashed) report(key, 'Dalışta kaza: ' + a.crashed, 1, '', 0, 0);
+  }
+  // 3. her duruşta çekiş: ters, 90° yatık, dik tırmanış (yavaş), dik dalış yatık
+  for (const [lab, att, kt] of [['ters', { roll: Math.PI }, 300], ['90° yatık', { roll: Math.PI / 2 }, 300], ['dik tırmanışta 150 kt', { pitch: 89 * D2R }, 150], ['yatık dik dalış', { roll: Math.PI / 2, pitch: -80 * D2R }, 300]]) {
+    const a = mk('f16', kt, 5000, att); let turned = 0, rev = 0, ls = 0, smax = 0;
+    game(a, AIR, 6, () => 1, (t) => { turned += a.w[1] / 60; smax = Math.max(smax, a.stallS); if (t > 1) { const s = Math.sign(a.w[1]); if (ls && s !== ls) rev++; ls = s; } });
+    report(key, `F-16 ${lab} çekiş 6 sn: burun dönüşü`, turned * R2D, '°', 90, 400);
+    report(key, `F-16 ${lab} çekiş: salınım (yön değişimi) + tutunma kaybı`, rev + smax * 10, '', 0, 0.2);
+  }
+  // 4. bırakınca salınım yok: 1 sn tam çek/it, bırak; uçuş yolu açısı en çok bir kez yön değiştirir
+  for (const [id, kt] of [['f16', 200], ['f16', 350], ['f16', 500], ['jet', 250], ['c172', 100]]) for (const u of [1, -1]) {
+    const a = mk(id, kt, 3000, {}, PLANES[id].retract); run(a, AIR, 1, () => { a.ctl.pitch = u; }); a.ctl.pitch = 0;
+    const gs = []; run(a, AIR, 6, (t) => { if (Math.round(t * 240) % 24 === 0) gs.push(Math.asin(-a.vel[2] / Math.hypot(...a.vel)) * R2D); });
+    let rev = 0, ls = 0; for (let i = 6; i < gs.length; i++) { const d = gs[i] - gs[i - 1]; if (Math.abs(d) > 0.15) { const s = Math.sign(d); if (ls && s !== ls) rev++; ls = s; } }
+    report(key, `${PLANES[id].name.split(' ')[0]} ${kt} kt levye ${u > 0 ? 'çek' : 'it'}-bırak: uçuş yolu salınımı`, rev, 'kez', 0, 1);
+  }
+  // 5. takım açık unutulmuş: akrobasi kısıtlanmaz, salınıp parçalanmaz (eski: 400 kt dalışta -4.5 g'ye salınım)
+  for (const kt of [300, 400]) {
+    const a = mk('f16', kt, 5000, { pitch: -89.5 * D2R }); a.gearPos = 1; a.ctl.gearDown = true; const h0 = a.alt; let rec = null, nmin = 9;
+    game(a, AIR, 20, (t) => (rec ? 0 : 1), (t) => { nmin = Math.min(nmin, t > 0.5 ? a.nz : 9); const g = Math.asin(-a.vel[2] / Math.hypot(...a.vel)); if (!rec && g >= 0) rec = h0 - a.alt; });
+    report(key, `F-16 takım açık, dik dalıştan çıkış ${kt} kt: irtifa kaybı`, rec ?? 9999, 'm', 300, 1000);
+    report(key, `F-16 takım açık ${kt} kt: en küçük g (salınım yok)`, nmin, 'g', -0.5, 9);
+    if (a.crashed) report(key, 'Takım açık dalışta kaza: ' + a.crashed, 1, '', 0, 0);
+  }
+  // 6. aşırı g kolay kumandada kaza değil (520 kt tam çek)
+  { const a = mk('f16', 520, 3000); game(a, AIR, 5, () => 1); report(key, 'F-16 520 kt tam çek: kaza yok (0 = yok)', a.crashed ? 1 : 0, '', 0, 0); }
+  // 7. eller serbest iniş: 3° süzülüş, takım açık, levye ortada; iniş yardımı yere değmeden burnu kaldırır
+  for (const [id, kt] of [['f16', 155], ['f16', 200], ['f16', 250], ['jet', 140], ['jet', 180], ['c172', 65], ['c172', 90]]) {
+    const a = new Aircraft(easyPlane(PLANES[id])); startTrimmed(a, { n: 0, e: 0, alt: 60, heading: 0, speed: kt * KT });
+    const g = 3 * D2R; a.vel = [kt * KT * Math.cos(g), 0, kt * KT * Math.sin(g)]; const thr = Math.max(0, a.ctl.throttle - 0.1);
+    let td = null; run(a, RUNWAY, 60, (t) => { a.ctl.pitch = 0; a.ctl.throttle = td ? 0 : thr; if (!td && a.onGround) td = t; if (td && t > td + 4) a.ctl.brake = 1; });
+    report(key, `${PLANES[id].name.split(' ')[0]} ${kt} kt eller serbest iniş: kaza yok (0 = yok)`, a.crashed ? 1 : 0, '', 0, 0);
+  }
+}
+testEasy();
+
 const pad = (s, n) => String(s).padEnd(n);
 let cur = '';
 for (const r of results) {
-  if (r.plane !== cur) { cur = r.plane; console.log('\n== ' + PLANES[cur].name); }
+  if (r.plane !== cur) { cur = r.plane; console.log('\n== ' + (PLANES[cur] ? PLANES[cur].name : 'Kolay kumanda (oyundaki varsayılan)')); }
   const v = typeof r.value === 'number' ? (Math.abs(r.value) >= 100 ? r.value.toFixed(0) : r.value.toFixed(2)) : r.value;
   console.log(`${r.ok ? 'GEÇTİ ' : 'KALDI '} ${pad(r.name, 58)} ${pad(v + ' ' + r.unit, 14)} [${r.lo}..${r.hi}]${r.real ? '  ' + r.real : ''}`);
 }

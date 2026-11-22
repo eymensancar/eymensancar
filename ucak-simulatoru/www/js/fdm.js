@@ -281,7 +281,6 @@ export class Aircraft {
     const [p, q, r] = this.w;
     const alpha = o.alpha || 0, beta = o.beta || 0;
     const gearDn = this.gearPos > 0.5;
-    const aMax = gearDn ? F.aMaxGear : F.aMax;
     // yerde (tekerlek yükü varken) doğrudan kumanda: kalkışta burun yumuşak kalkar
     if (this.onGround) {
       st.ia = 0; st.u = null;
@@ -296,36 +295,59 @@ export class Aircraft {
       if (cph > 0.5) n0 = clamp(cth / cph, -1, 2);
       else if (cph > 0) n0 = clamp(cth / 0.5, 0, 2) * (cph / 0.5) + m[8] * (1 - cph / 0.5);
     }
-    // levye komutu yumuşatılır: bırakınca ya da ani çekişte uçak sıçramaz, yukarı-aşağı sallanmaz
+    // levye komutu yumuşatılır: bırakınca ya da ani çekişte uçak sıçramaz. Çekişte kısa (0,1 sn), bırakışta uzun (0,25 sn) süzgeç
     const uRaw = clamp(c.pitch + c.trim, -1, 1);
-    st.u = st.u == null ? uRaw : st.u + (uRaw - st.u) * Math.min(1, dt / 0.3);
+    if (st.u == null) st.u = uRaw;
+    const tauU = Math.abs(uRaw) > Math.abs(st.u) && uRaw * st.u >= 0 ? (F.tauOn || 0.1) : 0.25;
+    st.u += (uRaw - st.u) * Math.min(1, dt / tauU);
     const u = st.u;
-    const nHi = gearDn ? F.nMaxGear : F.nMax;
+    // takım sınırı (4 g, 15°): kolay kumandada yalnız iniş düzeninde (alçak ve yavaş); takımı unutan oyuncu akrobasi yapabilir
+    const landCfg = gearDn && (!P.easy || ((o.agl || 0) < 400 && V < (F.gearV || 240) * 0.514444));
+    const nHi = landCfg ? F.nMaxGear : F.nMax;
+    const aHi = landCfg ? F.aMaxGear : F.aMax;
     let nCmd = u >= 0 ? n0 + u * (nHi - n0) : n0 + u * (n0 - F.nMin);
-    // iniş yardımı: takım açık, yere 15 m'den az ve hızlı alçalıyorsa alçalma ~1,5 m/sn'ye indirilir
+    // levye bırakılınca uçuş yolu açısı tutulur (yavaş sürüklenme düzeltilir; ters uçuşta işaret m[8] ile döner, dik uçuşta söner)
+    const vv = Math.hypot(this.vel[0], this.vel[1], this.vel[2]) || 1, gam = Math.asin(clamp(-this.vel[2] / vv, -1, 1));
+    if (Math.abs(uRaw) < 0.03 && Math.abs(u) < 0.03) { if (st.gRef == null) st.gRef = gam; nCmd += clamp((F.kGam ?? 0.35) * (st.gRef - gam) * V / G0, -0.8, 0.8) * m[8]; }
+    else st.gRef = null;
+    // iniş yardımı: takım açık, yere 20 m'den az ve hızlı alçalıyorsa alçalma ~1,5 m/sn'ye indirilir
     if (F.flare && gearDn && o.agl > 0 && o.agl < 20 && this.vel[2] > 2 && -m[6] < 0.2) {
       const vz = this.vel[2], a = (vz * vz - 2.25) / (2 * Math.max(o.agl - 1.5, 0.5));
       nCmd = Math.max(nCmd, n0 + clamp(a / G0 * 1.3, 0, 2.5) * clamp((0.2 + m[6]) / 0.08, 0, 1)); // burun 11°'yi geçince yardım azalır (kuyruk sürtmesin)
     }
+    nCmd = clamp(nCmd, F.nMin, nHi);
     // istenen g için gereken hücum açısı (kaldırma eğrisinin tersi) + tümlev düzeltmesi
+    const nA = Math.max(0.5, P.CLa * qbar * P.S / (P.mass * G0)); // 1 radyan hücum açısının getirdiği g
     const CLreq = nCmd * P.mass * G0 / (qbar * P.S);
     const dCLf = P.flapCL * this.surf.flap;
     let aCmd = (CLreq - P.CL0 - dCLf) / P.CLa + st.ia;
-    // g sınırlayıcı: gerçek yük sınıra yaklaşınca açı isteği geri çekilir
-    if (this.nz > nHi - 0.6) aCmd -= 0.05 * (this.nz - (nHi - 0.6));
-    if (this.nz < F.nMin + 0.4) aCmd += 0.05 * ((F.nMin + 0.4) - this.nz);
-    const lim = aCmd > aMax || aCmd < F.aMin;
-    aCmd = clamp(aCmd, F.aMin, aMax);
-    if (!lim) st.ia = clamp(st.ia + (nCmd - this.nz) * 0.06 * dt, -0.1, 0.1);
-    // dengedeki yunuslama hızı ve elevatör (ileri besleme) + hücum açısı ve yunuslama hızı geri beslemesi
-    const nAt = (P.CL0 + dCLf + P.CLa * aCmd) * qbar * P.S / (P.mass * G0); // bu açıda erişilebilen g
-    const nEff = nCmd >= n0 ? Math.min(nCmd, Math.max(nAt, n0)) : Math.max(nCmd, Math.min(nAt, n0));
-    const qSS = G0 * (nEff - n0) / V;
-    const qh = qSS * P.c / (2 * V);
-    const deFF = -(P.Cm0 + P.Cma * aCmd + P.Cmq * qh + P.flapCm * this.surf.flap + P.CLde * 0) / P.Cmde;
-    const kS = clamp(30000 / qbar, 0.25, 2.5); // dinamik basınca göre kazanç
-    let deCmd = deFF + kS * (1.4 * (alpha - aCmd) + 0.3 * this.alphaDot + 0.55 * (q - qSS) * P.c / (2 * V) * 40);
+    // g sınırlayıcı: gerçek yük sınırı aşınca açı isteği aşma kadar geri çekilir (kazanç hücum açısı-g eğimine göre)
+    const nzP = this.nz + nA * this.alphaDot * 0.12; // kısa öngörü: g hızla artarken sınırlayıcı erken davranır
+    if (nzP > nHi - 0.3) aCmd -= 0.8 * (nzP - (nHi - 0.3)) / nA;
+    if (nzP < F.nMin + 0.3) aCmd += 0.8 * ((F.nMin + 0.3) - nzP) / nA;
+    const lim = aCmd > aHi || aCmd < F.aMin;
+    aCmd = clamp(aCmd, F.aMin, aHi);
+    // tümlev yalnız sakin uçuşta işler (geçişte açı farkı büyükken birikip sonradan salındırmasın)
+    if (!lim && Math.abs(aCmd - alpha) < 0.05) st.ia = clamp(st.ia + (nCmd - this.nz) / nA * 0.5 * dt, -0.12, 0.12);
+    else st.ia *= 1 - Math.min(1, dt * 0.5);
+    // yunuslama hızı isteği: hücum açısını aCmd'ye götürür (α̇ = q − g (nz − cosθcosφ) / V), sınırlı
+    const qGam = G0 * (this.nz - m[8]) / V;
+    const qMax = F.qMax || 1.3;
+    // büyük açı farkında istek kök eğrisiyle sınırlanır (elevatör hız sınırıyla frenlenebilsin, hedefi aşmasın)
+    const eA = aCmd - alpha - (F.aLead ?? 0.12) * this.alphaDot;
+    // kazançlar düşük dinamik basınçta azalır: elevatör hız sınırı (60-90°/sn) yetişsin, sınır salınımı olmasın
+    const gq = clamp(qbar / (F.qRef || 14000), 0.35, 1);
+    const qA = Math.sign(eA) * Math.min((F.kA || 3.2) * Math.sqrt(gq) * Math.abs(eA), Math.sqrt(2 * (F.qAcc || 4) * gq * Math.abs(eA)));
+    const qCmd = clamp(qGam + qA, -qMax, qMax);
+    // elevatör: istenen yunuslama ivmesi için gereken moment, modelin tersinden (moment dengesi + eylemsizlik bağlaşımı)
+    const qdCmd = (F.kQ || 6) * gq * (qCmd - q);
+    const qh = q * P.c / (2 * V), adh = this.alphaDot * P.c / (2 * V);
+    const Mreq = P.I[1] * qdCmd + (F.couple ?? 1) * (P.I[0] - P.I[2]) * p * r;
+    const CmReq = Mreq / (qbar * P.S * P.c);
+    const CmRest = P.Cm0 + P.Cma * alpha + P.Cmq * qh + P.Cmadot * adh + P.flapCm * this.surf.flap + P.CmStall * (this.stallS || 0);
+    let deCmd = (CmReq - CmRest) / P.Cmde;
     deCmd = clamp(deCmd, P.deUp, P.deDown);
+    const kS = clamp(30000 / qbar, 0.25, 2.5); // dinamik basınca göre kazanç (yatış ve dümen)
     // yuvarlanma: istenen hız, yüksek hücum açısında azalır
     const pCmd = clamp(c.roll, -1, 1) * F.pMax * clamp(1 - (Math.abs(alpha) - 10 * D2R) / (22 * D2R), 0.3, 1);
     const daFF = pCmd * (P.b / (2 * V)) * (-P.Clp) / P.Clda;
@@ -519,7 +541,9 @@ export class Aircraft {
       const vl = c.vp[0] * lw[0] + c.vp[1] * lw[1];
       const grass = c.g.kind !== 'runway';
       const muR = grass ? 0.06 : 0.02;
-      const muB = gr.brake ? (grass ? 0.35 : 0.65) * clamp(this.ctl.brake, 0, 1) : 0;
+      let muB = gr.brake ? (grass ? 0.35 : 0.65) * clamp(this.ctl.brake, 0, 1) : 0;
+      // kolay kumanda: fren burnu yere gömecek kadar öne yatırırsa gevşer (pervane yere vurmasın, takla atmasın)
+      if (P.easy && muB) muB *= clamp(1 + (-m[6] + 0.01) / 0.04, 0.15, 1);
       const muL = grass ? 0.55 : 0.8;
       const Fl = -muL * Fn * clamp(vl / 0.4, -1, 1);
       const Ff = -(muR + muB) * Fn * clamp(vf / 0.25, -1, 1);
@@ -582,7 +606,7 @@ export class Aircraft {
     // yapısal sınırlar
     if (!this.onGround) {
       const nl = this.nz;
-      if (nl > P.nMax * 1.5 || nl < P.nMin * 1.5) this.crash('Yapısal hasar (' + nl.toFixed(1) + ' g)');
+      if (!P.easy && (nl > P.nMax * 1.5 || nl < P.nMin * 1.5)) this.crash('Yapısal hasar (' + nl.toFixed(1) + ' g)');
       if (this.out.V > P.Vne * 1.2) this.crash('Azami hız aşıldı, yapı dağıldı');
     }
   }
@@ -617,7 +641,14 @@ export const EASY_FBW = {
 };
 // Kolay kumandada iniş de bağışlayıcı: yere değerken alçalma 9 m/sn'ye (≈1800 ft/dk) kadar kaza değil (sert iniş uyarısı),
 // takımsız gövde üstü inişte kayar, takım açıkken yere 15 m kala uçuş bilgisayarı burnu kendiliğinden kaldırır (flare).
-export function easyPlane(P) { return Object.assign({}, P, { fbw: Object.assign({ flare: true }, P.fbw || EASY_FBW[P.id]), easy: true }); }
+// F-16 kolay kumandada daha çevik (oyun için): girdap kaldırması güçlendirilmiş kanat (CLα ×1,2, kopma 35°), hücum açısı sınırı 28°,
+// g daha çabuk gelir; takla daha dar, dik dalıştan daha kısa yoldan çıkılır. Yük aşımı kaza değildir (EASY_OVER).
+const EASY_PLANE = { f16: { CLa: 4.3, aStall: 35 * D2R, fbw: { aMax: 28 * D2R, nMax: 9.5, tauOn: 0.07, kA: 3.6, kQ: 7 } } };
+export function easyPlane(P) {
+  const X = EASY_PLANE[P.id] || {};
+  const fbw = Object.assign({ flare: true }, P.fbw || EASY_FBW[P.id], X.fbw || {});
+  return Object.assign({}, P, X, { fbw, easy: true });
+}
 
 // Düz uçuş dengesi (trim): verilen hız, irtifa ve flapta yatay uçuş için α, elevatör trimi ve gaz.
 // opts.noThrust: gaz yerine uçuş yolu açısını çözer (gücü kapalı süzülme). Döndürür {alpha, trim, throttle, gamma, ok}
