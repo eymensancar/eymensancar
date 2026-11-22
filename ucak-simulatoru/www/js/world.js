@@ -8,7 +8,8 @@ export const geo = (lat, lon) => ({ x: (lon - LON0) * MLON, y: (lat - LAT0) * ML
 
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
 
-async function bin(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); return r.arrayBuffer(); }
+// İkili veriler base64 metin olarak gelir (artifact sunucusu .bin sunmuyor).
+async function bin(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); const t = (await r.text()).trim(); const s = atob(t); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u.buffer; }
 async function json(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }
 function img(url) { return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error(url)); i.src = url; }); }
 
@@ -37,7 +38,7 @@ export class World {
     const base = 'data/';
     progress(0.05, 'Yükseklik verisi');
     const [hb, bb, br, rw, tex, mask, mini] = await Promise.all([
-      bin(base + 'yukseklik.bin'), bin(base + 'binalar.bin'), json(base + 'kopruler.json'), json(base + 'pist.json'),
+      bin(base + 'yukseklik.b64.txt'), bin(base + 'binalar.b64.txt'), json(base + 'kopruler.json'), json(base + 'pist.json'),
       img(base + 'zemin.webp'), img(base + 'maske.png'), img(base + 'harita.png'),
     ]);
     this.minimap = mini;

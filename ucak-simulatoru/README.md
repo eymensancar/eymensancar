@@ -89,7 +89,7 @@ python3 tools/fetch_dem.py     # yükseklik karoları -> tools/raw/dem/
 python3 tools/build_data.py    # -> www/data/ (numpy, scipy, Pillow gerekir)
 ```
 
-`www/data/` içeriği: `zemin.webp` (4096², kara dokusu; alfa = kara), `maske.png` (kara/su), `yukseklik.bin` (385² ızgara), `binalar.bin` (120 000 bina, 2 km'lik parçalar), `kopruler.json`, `pist.json`, `harita.png` (küçük harita).
+`www/data/` içeriği: `zemin.webp` (4096², kara dokusu; alfa = kara), `maske.png` (kara/su), `yukseklik.b64.txt` (385² ızgara), `binalar.b64.txt` (120 000 bina, 2 km'lik parçalar; ikisi de ikili verinin base64 hâli, çünkü artifact sunucusu .bin sunmuyor), `kopruler.json`, `pist.json`, `harita.png` (küçük harita).
 
 ## Dünya nasıl çiziliyor
 

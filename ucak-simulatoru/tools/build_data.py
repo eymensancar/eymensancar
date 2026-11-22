@@ -444,3 +444,12 @@ print('zemin.webp', os.path.getsize(os.path.join(OUT, 'zemin.webp')))
 mm = Image.fromarray(np.where(mask[..., None], np.array([196, 190, 170], np.uint8), np.array([54, 104, 140], np.uint8)).astype(np.uint8)).resize((512, 512), Image.LANCZOS)
 mm.save(os.path.join(OUT, 'harita.png'), optimize=True)
 print('bitti')
+
+
+# Artifact sunucusu .bin dosyası sunmuyor; ikili veriler base64 metin olarak yazılır.
+import base64 as _b64
+for _n in ('yukseklik', 'binalar'):
+    _p = os.path.join(OUT, _n + '.bin')
+    with open(_p, 'rb') as _f, open(os.path.join(OUT, _n + '.b64.txt'), 'w') as _o:
+        _o.write(_b64.b64encode(_f.read()).decode())
+    os.remove(_p)
