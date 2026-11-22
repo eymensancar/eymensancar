@@ -518,36 +518,39 @@ function landside(ctx, F) {
     for (let b = b0 + 4; b < b1 - 2; b += 12) boxAB(struct, colA, b, z, 0.5, 0.5, h);
   };
 
+  // Yerleşim OSM'deki kara yollarına göre (bina modülü onları zaten çiziyor): ana giriş yolu b ~ 385-415 boyunca,
+  // İç Hatlar önündeki geliş yolu b ~ 177, servis yolu b ~ 251, Dış Hatlar 2 önünde a 209-383 / b 192-368 halkası,
+  // taksi yolunun altından a 527-644 arasında geçen tünel. Büyük OSM binası (a 1381-1636, b 278-363) olduğu gibi kalır.
   // --- Dış Hatlar 1 + İç Hatlar (doğu cephesi) ---
-  pave(1150, 2160, 163, 178, 4);                  // kaldırım
-  roadA(1100, 2200, 178, 206);                    // geliş-gidiş yolu (iki yönlü kıvrım)
-  line(paintY, 1150, 192, 2150, 192, 0.3);        // ayrım çizgisi
-  canopyA(1260, 1720, 160, 186, 9, 185.5);
-  canopyA(1730, 2020, 170, 190, 10, 189.5);
-  roadB(1110, 1130, 206, 645); roadB(2180, 2200, 206, 645); roadB(1495, 1512, 206, 625);
-  roadA(900, 2200, 625, 645);
-  lot(1160, 1490, 240, 420, 0.3); lot(1520, 1800, 240, 420, 0.32); lot(1160, 1490, 440, 615, 0.1); lot(1520, 1820, 440, 615, 0.08);
+  pave(1150, 2160, 163, 176, 4);                  // kaldırım
+  roadA(1660, 2200, 177, 199);                    // Dış Hatlar 1 önündeki geliş-gidiş yolu (İç Hatlar önünde OSM yolu var)
+  line(paintY, 1680, 188, 2180, 188, 0.3);
+  canopyA(1260, 1720, 158, 175, 9, 174.5);
+  canopyA(1730, 2020, 168, 186, 10, 185.5);
+  roadB(2180, 2196, 199, 386);                    // ana yola bağlantı
   garage(1850, 1990, 228, 340, 4, 'Otopark (Dış Hatlar 1)');
-  roadA(1820, 2180, 206, 222);
-  lot(2030, 2170, 240, 410, 0.7, true);           // otobüs ve transfer otoparkı (charter turları)
-  lot(1850, 2170, 430, 615, 0.08);
+  roadA(1700, 2180, 205, 220);
+  lot(1300, 1372, 262, 375, 0.4); lot(1650, 1830, 262, 376, 0.4);
+  lot(2030, 2170, 228, 372, 0.7, true);           // otobüs ve transfer otoparkı (charter turları)
   // --- Dış Hatlar 2 (kuzey cephesi) ---
   pave(110, 132, -40, 368, 4);
-  roadB(132, 160, -40, 368);
-  line(paintY, 146, -35, 146, 362, 0.3);
+  roadB(132, 156, -40, 110); roadB(132, 156, 182, 368);
+  line(paintY, 144, -35, 144, 106, 0.3); line(paintY, 144, 186, 144, 364, 0.3);
   canopyB(110, 131, -35, 366, 9, 131);
-  roadA(160, 555, 345, 362);                      // doğu bağlantısı (tünele)
-  roadB(535, 552, -30, 345);
-  garage(178, 290, 150, 330, 4, 'Otopark (Dış Hatlar 2)');
-  lot(178, 330, -28, 132, 0.38); lot(310, 525, 150, 335, 0.28); lot(345, 525, -28, 132, 0.3);
-  // taksi yolu altından geçen yol tüneli: iki ağız (beton çerçeve + koyu açıklık)
-  for (const [a, dir] of [[560, 1], [640, -1]]) {
-    boxAB(struct, a, 342, -0.2, 5, 1.2, 7); boxAB(struct, a, 365, -0.2, 5, 1.2, 7);
-    boxAB(struct, a, 353.5, 5.2, 5, 24.4, 1.6);
-    boxAB(dark, a + dir * 0.2, 353.5, -0.2, 4.4, 21.6, 5.4);
-    for (const b of [342, 365]) boxAB(wall, a - dir * 14, b, -0.2, 24, 0.6, 1.1);
+  roadA(156, 209, 96, 110); roadA(156, 209, 182, 196);      // halka yola bağlantılar
+  lot(220, 360, 202, 356, 0.45);                  // halkanın içi
+  garage(400, 520, 175, 340, 4, 'Otopark (Dış Hatlar 2)');
+  lot(170, 330, -28, 92, 0.38); lot(345, 525, -28, 150, 0.3);
+  roadA(330, 400, 100, 112);
+  // taksi yolu altından geçen yol tüneli: iki ağız (beton çerçeve + koyu açıklık), OSM yolunun boşluğunda
+  for (const [a, dir] of [[532, 1], [640, -1]]) {
+    boxAB(struct, a, 368, -0.2, 5, 1.2, 7); boxAB(struct, a, 409, -0.2, 5, 1.2, 7);
+    boxAB(struct, a, 388.5, 5.2, 5, 42.2, 1.6);
+    boxAB(dark, a + dir * 0.2, 388.5, -0.2, 4.4, 39.6, 5.4);
+    boxAB(struct, a, 388.5, -0.2, 5, 1.0, 5.6);    // orta ayırıcı
+    for (const b of [368, 409]) boxAB(wall, a - dir * 14, b, -0.2, 24, 0.6, 1.1);
   }
-  roadA(640, 1110, 345, 362);
+  pave(527, 535, 368, 409); pave(637, 645, 368, 409);
 
   // arabalar: örneklenmiş (gövde + kabin), bir çizim çağrısı; otobüsler ayrı geometri
   const PAL = [0xf2f2f0, 0x1a1c20, 0x9aa0a6, 0xc4c7cb, 0x2f4f7a, 0x8a2020, 0xe9e2cf, 0x54585e, 0x3a6a4a, 0xd8b830];
