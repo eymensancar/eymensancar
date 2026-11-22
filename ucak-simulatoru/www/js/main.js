@@ -43,6 +43,13 @@ const STARTS = {
   trabzon: { rw: 'LTCG', name: 'Trabzon' },
   erzurum: { rw: 'LTCE', name: 'Erzurum' },
   van: { rw: 'LTCI', name: 'Van Ferit Melen' },
+  // dünya: bütün havalimanları gerçek pist ve taksi yollarıyla (havalimani.js); birkaçı daha başlangıç olarak
+  sabiha: { rw: 'LTFJ', name: 'Sabiha Gökçen' },
+  dalaman: { rw: 'LTBS', name: 'Dalaman' },
+  bodrum: { rw: 'LTFE', name: 'Milas-Bodrum' },
+  gaziantep: { rw: 'LTAJ', name: 'Gaziantep' },
+  diyarbakir: { rw: 'LTCC', name: 'Diyarbakır' },
+  samsun: { rw: 'LTFH', name: 'Samsun Çarşamba' },
   kapadokya: { lat: 38.612, lon: 34.775, alt: 1650, hdg: 40, kt: 100, ktJet: 300, name: 'Kapadokya üzerinde, balonlar' },
   agri: { lat: 39.56, lon: 44.03, alt: 4300, hdg: 50, kt: 110, ktJet: 330, name: 'Ağrı Dağı yakınında' },
   ankara: { lat: 39.905, lon: 32.775, alt: 1250, hdg: 70, kt: 100, ktJet: 300, name: 'Ankara üzerinde, Anıtkabir' },

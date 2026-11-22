@@ -7,6 +7,8 @@ import { geo, ungeo, convergence } from './geo.js';
 import { pngBytes } from './veri.js';
 import { Heights, Terrain, terrainMaterial } from './terrain.js';
 import { Buildings, merge as mergeGeoms } from './buildings.js';
+import { Airports } from './havalimani.js';
+import { setupAtmosphere, updateShadows, makeClouds, SUN, FOG_B } from './atmosfer.js';
 export { geo, ungeo, convergence };
 
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
@@ -61,9 +63,13 @@ export class World {
     const idx = this.idx = await json(this.base + 'dizin.json');
     progress(0.1, 'Arazi');
     this.heights = new Heights(idx, this.base);
-    const [, ortu, ist, mask, br, mini, trmap] = await Promise.all([
-      this.heights.init(), img(this.base + idx.ortu.dosya), img('data/zemin.webp'), img('data/maske.png'), json('data/kopruler.json'), img('data/harita.png'), img(this.base + idx.harita.dosya),
+    this.hava = new Airports(this);
+    const [, ortu, ist, mask, br, mini, trmap, , bina] = await Promise.all([
+      this.heights.init(), img(this.base + idx.ortu.dosya), img('data/zemin.webp'), img('data/maske.png'), json('data/kopruler.json'), img('data/harita.png'), img(this.base + idx.harita.dosya), this.hava.load(),
+      json(this.base + 'bina.json').catch(() => ({ paketler: [] })),
     ]);
+    this.binaIdx = bina;
+    this.heights.addPatches(this.hava.patches);
     this.minimap = mini; this.trmap = trmap;
     this.istRect = [-14375, -14500, 14375, 14500]; this.X0 = -14375; this.X1 = 14375; this.Y0 = -14500; this.Y1 = 14500;
     this._mask(mask);
@@ -74,7 +80,7 @@ export class World {
     this._terrain(ist);
     this._runways();
     progress(0.6, 'Simge yapılar');
-    this.buildings = new Buildings(this, this.root, idx, this.base, { lod: this.opts.lod, treeDist: this.opts.treeDist });
+    this.buildings = new Buildings(this, this.root, bina.paketler, idx.paketler.filter((p) => p.agac), this.base, { lod: this.opts.lod, treeDist: this.opts.treeDist });
     this.cities = idx.sehirler;
     this._br = br;
     this.landmarkPos = LANDMARKS.map((l) => ({ ...geo(l.lat, l.lon), name: l.name, id: l.id }));
@@ -83,8 +89,10 @@ export class World {
   // Başlangıç konumu çevresindeki veriyi hazırla (bölge yüksekliği, binalar, simge yapılar)
   async prepare(x, y, progress = () => {}) {
     this.heights.ensure(x, y, 60000);
+    this.hava.ensure(x, y, 20000);
     let t = 0;
-    while (this.heights.loading.size && t < 400) { await new Promise((r) => setTimeout(r, 50)); t++; }
+    while ((this.heights.loading.size || this.hava.ensure(x, y, 20000)) && t < 400) { await new Promise((r) => setTimeout(r, 50)); t++; }
+    this.hava.near = this.hava.list.filter((a) => Math.hypot(a.x - x, a.y - y) < 9000);
     this._landmarksOnce();
     progress(0.9, 'Hazır');
   }
@@ -150,11 +158,8 @@ export class World {
       const al = px * d.ux + py * d.uy, cr = -px * d.uy + py * d.ux;
       if (al >= 0 && al <= d.len && Math.abs(cr) <= d.w / 2) { const hh = d.deckAt(al); if (this.acAlt > hh - 3) return { h: hh, kind: 'runway' }; }
     }
-    for (const r of this.rws) {
-      const px = x - r.ax, py = y - r.ay;
-      const al = px * r.ux + py * r.uy, cr = -px * r.uy + py * r.ux;
-      if (al >= -60 && al <= r.len + 60 && Math.abs(cr) <= r.w / 2 + 4) return { h: r.elev + 0.12, kind: 'runway' };
-    }
+    const ag = this.hava.ground(x, y);
+    if (ag) return ag;
     if (!this.isLand(x, y)) { const h = this.terrainH(x, y); return { h: h > 0 ? h : 0, kind: 'water' }; }
     const h = this.terrainH(x, y);
     const bt = this.buildings ? this.buildings.top(x, y) : 0;
@@ -164,79 +169,21 @@ export class World {
   buildingTop(x, y) { return this.buildings ? this.buildings.top(x, y) : 0; }
 
   // ---------- pistler ----------
+  // Bütün havalimanları js/havalimani.js içinde. Burada eski arayüz: her havalimanının ana pisti (başlangıç noktaları, haritalar).
   _runways() {
-    this.rws = [];
-    this.airports = [];
-    for (const a of this.idx.havalimanlari) {
-      const dx = a.b[0] - a.a[0], dy = a.b[1] - a.a[1], L = Math.hypot(dx, dy);
-      const r = { code: a.kod, name: a.ad, ref: a.ref || '', ax: a.a[0], ay: a.a[1], ux: dx / L, uy: dy / L, len: L, w: Math.max(45, a.en), elev: a.elev, heading: Math.atan2(dx, dy) };
-      this.rws.push(r); this.airports.push(r);
-      this._runwayMesh(r);
-    }
+    this.rws = this.hava.mainRunways({ LTBA: '05/23' });
+    this.airports = this.rws;
     this.rw = this.rws.find((r) => r.code === 'LTBA') || this.rws[0];
-  }
-  _runwayMesh(r) {
-    const CW = 128, CHh = 4096;
-    const c = document.createElement('canvas'); c.width = CW; c.height = CHh;
-    const g = c.getContext('2d');
-    g.fillStyle = '#4a4b4d'; g.fillRect(0, 0, CW, CHh);
-    for (let i = 0; i < 9000; i++) { g.fillStyle = `rgba(${Math.random() < 0.5 ? '0,0,0' : '255,255,255'},0.05)`; g.fillRect(Math.random() * CW, Math.random() * CHh, 2, 3); }
-    g.fillStyle = 'rgba(20,20,20,0.35)';
-    for (const y0 of [CHh - 900 / (r.len / CHh), 300 / (r.len / CHh)]) for (let i = 0; i < 40; i++) g.fillRect(CW / 2 - 18 + Math.random() * 36, y0 - 200 + Math.random() * 400, 3, 60);
-    const mpp = r.len / CHh, ppw = CW / r.w;
-    const X = (m) => CW / 2 + m * ppw;
-    g.fillStyle = '#e8e8e4';
-    g.fillRect(X(-r.w / 2 + 1), 0, ppw * 0.9, CHh); g.fillRect(X(r.w / 2 - 1.9), 0, ppw * 0.9, CHh);
-    for (let s = 120; s < r.len - 120; s += 50) g.fillRect(X(-0.45), CHh - (s + 30) / mpp, ppw * 0.9, 30 / mpp);
-    const piano = (y, dir) => { for (let k = 0; k < 6; k++) for (const sd of [-1, 1]) { const xm = sd * (3 + k * 3.6); g.fillRect(X(xm) - (sd < 0 ? ppw * 1.8 : 0), y, ppw * 1.8, dir * 30 / mpp); } };
-    piano(CHh - 6 / mpp, -1); piano(6 / mpp, 1);
-    const num = (txt, yMeters, rot) => {
-      g.save(); g.translate(CW / 2, rot ? yMeters / mpp : CHh - yMeters / mpp); if (rot) g.rotate(Math.PI);
-      g.scale(1, (1 / mpp) / ppw); g.font = `bold ${Math.round((txt.length > 2 ? 10 : 14) * ppw)}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle';
-      g.fillText(txt, 0, 0); g.restore();
-    };
-    let [n1, n2] = (r.ref || '').split('/');
-    const hd = ((r.heading * 180 / Math.PI) + 360) % 360;
-    if (!n1 || !n2) { n1 = String(Math.round(hd / 10) || 36).padStart(2, '0'); n2 = String(Math.round(((hd + 180) % 360) / 10) || 36).padStart(2, '0'); }
-    num(n1, 60, false); num(n2, 60, true);
-    for (const s of [150, 300, 450]) for (const end of [0, 1]) for (const sd of [-1, 1]) { const yy = end ? s / mpp : CHh - (s + 22) / mpp; g.fillRect(X(sd * 9) - ppw, yy, ppw * 2, 22 / mpp); }
-    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
-    const mat = new THREE.MeshLambertMaterial({ map: tex, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 });
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(r.w, r.len + 2), mat);
-    m.rotation.set(-Math.PI / 2, 0, 0);
-    // pistin çevresinde düz gri apron şeridi (aradaki çimen arazide)
-    const ap = new THREE.Mesh(new THREE.PlaneGeometry(r.w + 70, r.len + 160), new THREE.MeshLambertMaterial({ color: 0x777a72, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2 }));
-    ap.rotation.set(-Math.PI / 2, 0, 0); ap.position.y = -0.05;
-    const grp = new THREE.Group(); grp.add(ap); grp.add(m);
-    grp.rotation.y = -r.heading;
-    grp.position.set(r.ax + r.ux * r.len / 2, r.elev + 0.12, -(r.ay + r.uy * r.len / 2));
-    this.root.add(grp);
   }
 
   // ---------- gökyüzü ----------
   _sky() {
-    this.sunDir = new THREE.Vector3(-0.45, 0.55, 0.7).normalize();
-    const geom = new THREE.SphereGeometry(1, 32, 16);
-    this.skyMat = new THREE.ShaderMaterial({
-      side: THREE.BackSide, depthWrite: false, depthTest: false, fog: false,
-      uniforms: { sun: { value: this.sunDir }, top: { value: new THREE.Color(0x3d78c2) }, hor: { value: new THREE.Color(0xc9dbe8) } },
-      vertexShader: 'varying vec3 vd; void main(){ vd = normalize(position); vec4 p = projectionMatrix * modelViewMatrix * vec4(position,1.0); gl_Position = p.xyww; }',
-      fragmentShader: `varying vec3 vd; uniform vec3 sun, top, hor;
-        void main(){ float y = max(vd.y, 0.0); vec3 c = mix(hor, top, pow(y, 0.55));
-          if (vd.y < 0.0) c = hor * 0.95;
-          float s = max(dot(normalize(vd), sun), 0.0);
-          c += vec3(1.0,0.92,0.75) * (pow(s, 900.0) * 3.0 + pow(s, 12.0) * 0.18);
-          gl_FragColor = vec4(c, 1.0); }`,
-    });
-    this.sky = new THREE.Mesh(geom, this.skyMat);
-    this.sky.scale.setScalar(1000); this.sky.renderOrder = -10; this.sky.frustumCulled = false;
-    this.scene.add(this.sky);
+    const q = this.opts;
+    this.shadows = q.shadows != null ? q.shadows : !!(q.lod && q.lod[0] >= 2000 && !q.lowTex);
+    const A = setupAtmosphere(this, { shadows: this.shadows });
+    this.sunDir = SUN; this.sky = A.sky; this.skyMat = A.skyMat; this.sunLight = A.sun;
+    this.clouds = makeClouds(this.scene);
     this.fogColor = new THREE.Color(0xc4d4df);
-    this.scene.fog = new THREE.FogExp2(this.fogColor, 0.000085);
-    this.scene.add(new THREE.HemisphereLight(0xcfe3ff, 0x8a7f6a, 0.9));
-    const sun = new THREE.DirectionalLight(0xfff1dc, 2.1);
-    sun.position.copy(this.sunDir).multiplyScalar(1000);
-    this.scene.add(sun); this.sunLight = sun;
   }
   // gökyüzünden ortam haritası (PBR malzemeler için)
   envMap() {
@@ -266,13 +213,19 @@ export class World {
     nm.repeat.set(this.WSIZE / this.WTILE, this.WSIZE / this.WTILE);
     nm.colorSpace = THREE.NoColorSpace;
     this.waterNormal = nm;
-    const mat = new THREE.MeshPhongMaterial({ color: 0x1f5878, specular: 0xffffff, shininess: 140, normalMap: nm, normalScale: new THREE.Vector2(0.16, 0.16) });
-    const skyHor = new THREE.Color(0xb8d0e2);
+    // su: derin deniz rengi + gökyüzü yansıması (Fresnel, aynı gökyüzü işlevi) + güneş parıltısı (Phong)
+    const mat = new THREE.MeshPhongMaterial({ color: 0x14465e, specular: 0xfff4e0, shininess: 220, normalMap: nm, normalScale: new THREE.Vector2(0.22, 0.22) });
     mat.onBeforeCompile = (sh) => {
-      sh.uniforms.skyHor = { value: skyHor };
-      sh.fragmentShader = 'uniform vec3 skyHor;\n' + sh.fragmentShader.replace('#include <opaque_fragment>',
-        `float fr = pow(1.0 - clamp(dot(normalize(vViewPosition), normal), 0.0, 1.0), 4.0);
-         outgoingLight = mix(outgoingLight, skyHor, fr * 0.65);
+      sh.fragmentShader = sh.fragmentShader.replace('#include <opaque_fragment>',
+        `#ifdef USE_FOG
+         { vec3 vdw = transpose(mat3(viewMatrix)) * normalize(vViewPosition);
+           vec3 nw = normalize(transpose(mat3(viewMatrix)) * normal);
+           vec3 rd = reflect(-vdw, nw); rd.y = abs(rd.y);
+           float cosv = clamp(dot(vdw, nw), 0.0, 1.0);
+           float F = 0.02 + 0.98 * pow(1.0 - cosv, 5.0);
+           vec3 refl = pow(skyAt(rd), vec3(2.2)) * 0.9;
+           outgoingLight = mix(outgoingLight, refl, clamp(F, 0.0, 0.85)); }
+         #endif
          #include <opaque_fragment>`);
     };
     const w = new THREE.Mesh(new THREE.PlaneGeometry(this.WSIZE, this.WSIZE), mat);
@@ -311,6 +264,7 @@ export class World {
     const gh = this.terrainH(cx, cy);
     this.terrain.update({ x: cx, y: cy, h: ch, gh });
     this.buildings.update({ x: cx, y: cy, h: ch - Math.max(0, gh) }, ac);
+    this.hava.update({ x: cx, y: cy, h: ch });
     this._landmarksOnce();
     // su düzlemi kamerayla gezer, dalgalar dünyaya bağlı kalır
     this.water.position.set(camLocal.x, 0, camLocal.z);
@@ -319,11 +273,13 @@ export class World {
     const U = this.tmat.userData.U;
     U.uOrigin.value.set(this.O.x, this.O.y);
     U.uOriginMod.value.set(this.O.x % 3611, this.O.y % 3611);
-    // sis: yükseldikçe görüş uzar
-    this.scene.fog.density = 0.000012 + 0.00007 * Math.exp(-Math.max(0, ch) / 2500);
-    this.terrain.maxDist = 2.3 / this.scene.fog.density;
+    // sis: yüksekliğe göre azalan üstel sis (atmosfer.js); arazi, sisin %99 örttüğü uzaklıkta kesilir
+    const fd = this.scene.fog.density = 0.00006;
+    this.clouds.update(cx, cy);
+    this.terrain.maxDist = Math.min(400000, 4.6 / (fd * Math.exp(-FOG_B * Math.max(0, ch))));
+    if (this.shadows) { this._acLocal = ac ? (this._acL || (this._acL = new THREE.Vector3())).set(ac.x - this.O.x, this.acAlt || 0, -(ac.y - this.O.y)) : null; updateShadows(this, camLocal); }
   }
-  pendingNear() { return (this.terrain.pending || 0) + (this.heights.loading.size || 0); }
+  pendingNear() { return (this.terrain.pending || 0) + (this.heights.loading.size || 0) + (this.hava.pending || 0); }
 
   // Uçağın çarpma denetimi: noktalar mutlak (x doğu, y kuzey, h yükseklik)
   collide(points) {
@@ -331,6 +287,7 @@ export class World {
       const bt = this.buildingTop(p.x, p.y);
       if (bt > 0 && p.h < bt - 0.5 && p.h > this.terrainH(p.x, p.y) - 5) return 'Binaya çarptınız';
       for (const c of this.lmCol) if ((p.x - c.x) ** 2 + (p.y - c.y) ** 2 < c.r * c.r && p.h < c.top) return 'Yapıya çarptınız';
+      const ac = this.hava.collide(p.x, p.y, p.h); if (ac) return ac;
       for (const d of this.decks) {
         const px = p.x - d.ax, py = p.y - d.ay;
         const al = px * d.ux + py * d.uy, cr = -px * d.uy + py * d.ux;

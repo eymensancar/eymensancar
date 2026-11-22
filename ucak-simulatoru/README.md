@@ -112,7 +112,10 @@ python3 tools/fetch_dem.py       # İstanbul yükseklik karoları
 python3 tools/fetch_dem_tr.py    # Türkiye yükseklik karoları (z7, z9, bölgeler için z11; bolgeler.json)
 # Türkiye OSM özütü: bash tools/osm_ayikla.sh; python3 tools/osm_binalar.py (osmium-tool gerekir)
 python3 tools/build_data.py      # İstanbul zemin dokusu, maske, köprüler, küçük harita -> www/data/
-python3 tools/build_turkey.py    # Türkiye: arazi, örtü, bölgeler, binalar, ağaçlar, havalimanları -> www/data/tr/
+python3 tools/build_turkey.py    # Türkiye: arazi, örtü, bölgeler, ağaçlar -> www/data/tr/ ('bina' adımı artık kullanılmıyor)
+python3 tools/havalimanlari.py   # bütün havalimanları -> hava.json, hava/; arazi havalimanlarının altında düzleşir (23 Kasım)
+python3 tools/binalar_tr.py      # Türkiye'nin bütün binaları ve ana yolları -> bina.json, bina/q_*.png (23 Kasım)
+python3 tools/sehir_dokusu.py    # bina sıklığı örtü dokusunun şehir kanalına (uzaktan şehir dokusu)
 ```
 (numpy, scipy, Pillow, orjson, pyshp gerekir. `build_turkey.py arazi|ortu|harita|bina` ile parça parça çalışır.)
 Yeni ayrıntılı bölge (şehir, dağ) eklemek için `tools/bolgeler.json`'a bir satır ekleyip yukarıdaki adımları çalıştırmak yeter.
@@ -125,8 +128,9 @@ Yeni ayrıntılı bölge (şehir, dağ) eklemek için `tools/bolgeler.json`'a bi
 - `data/tr/dizin.json`: kök alan, dosya listesi, bölgeler, paketler, havalimanları (OSM pist uçları, en, yükseklik), 83 şehir.
 - `data/tr/genel.png`: 2 km yükseklik ızgarası (2048 × 1088 km), açılışta yüklenir.
 - `data/tr/t_i_j.png` (35 karo): 500 m yükseklik, 256 km'lik karolar; uçağın 140 km çevresindekiler yüklenir.
-- `data/tr/b_*.png` (19 bölge): 62.5 m yükseklik (İstanbul, Ankara, İzmir, Bursa-Uludağ, Antalya, Konya, Adana, Mersin, Gaziantep, Kayseri-Erciyes, Kapadokya, Trabzon, Samsun, Eskişehir, Diyarbakır, Erzurum-Palandöken, Van, Ağrı Dağı, Kaçkarlar, İstanbul Havalimanı); havalimanı çevresi düzleştirilmiş.
-- `data/tr/bina_*.png` (18 paket, toplam ~1.52 milyon bina; İstanbul 395 645), `data/tr/agac_*.png` (16 m'lik ağaç alanı rasterı).
+- `data/tr/b_*.png` (19 bölge): 62.5 m yükseklik (İstanbul, Ankara, İzmir, Bursa-Uludağ, Antalya, Konya, Adana, Mersin, Gaziantep, Kayseri-Erciyes, Kapadokya, Trabzon, Samsun, Eskişehir, Diyarbakır, Erzurum-Palandöken, Van, Ağrı Dağı, Kaçkarlar, İstanbul Havalimanı); içlerindeki havalimanlarının altı düzleştirilmiş.
+- `data/tr/bina.json` + `data/tr/bina/q_<boy>_<i>_<j>.png` (95 paket, 5.71 milyon bina ve ana yollar, ~71 MB; 23 Kasım), `data/tr/agac_*.png` (16 m'lik ağaç alanı rasterı, bölgelerde).
+- `data/tr/hava.json` + `data/tr/hava/h_<i>_<j>.json` (112 havalimanı, 145 pist ve bütün taksi yolu / apron / park yeri / bina tabanları) ve `data/tr/hava/z_<i>_<j>.png` (bölge dışındaki havalimanlarının 62.5 m yükseklik yamaları, çoklu ızgara; 23 Kasım).
 - `data/tr/ortu.png`: 4096 × 2048, 500 m: R orman, G şehir, B tarla, A su oranı (OSM + Natural Earth).
 - `data/tr/harita.webp`: Türkiye haritası (1 km/piksel), menü arka planı, küçük ve büyük harita.
 
@@ -136,10 +140,10 @@ Yeni ayrıntılı bölge (şehir, dağ) eklemek için `tools/bolgeler.json`'a bi
 - **Kayan orijin:** fizik mutlak konumla, çift duyarlıkla çalışır. Bütün dünya nesneleri bir kök grubun altındadır ve kendi merkezlerine göre yerel köşelerle kurulur; kamera 3 km uzaklaşınca kök kaydırılır. Van'da (1300 km) da titreme olmaz.
 - **Arazi:** dörtlü ağaç (kök 2048 km, düğüm başına 32 × 32 aralık, eteklerle çatlaksız). Düğüm, kameraya uzaklığı ayrıntı katsayısı × boyundan azsa bölünür; en ince düğüm ayrıntılı bölgelerde 2 km (62.5 m köşe aralığı, veriyle birebir), dışarıda 8 km (250 m). Sisin tamamen örttüğü uzaklıktan ötesi çizilmez (yükseldikçe sis açılır, görüş 150 km'yi geçer). Kare başına sınırlı sayıda düğüm kurulur; veri gelince ilgili düğümler yenilenir. Fizikteki yer yüksekliği aynı veriden, aynı üçgen bölmesiyle hesaplanır.
 - **Zemin rengi** gölgelendiricide: konuma göre iklim (Karadeniz nemli yeşil, iç Anadolu bozkır, Ege ve Akdeniz zeytin yeşili, doğu yayla), OSM orman / şehir / tarla oranı, düz ovalarda tarla yama deseni, eğimde kaya, kar sınırı (~2950 m, kuzeyde ve doğuda daha aşağıda, gürültülü), göller (yükseklikteki su yüzeyi parlar), yakın ayrıntı gürültüsü. İstanbul dikdörtgeninde 7 m'lik OSM zemin dokusu (kenarda karışır). Deniz: arazi deniz seviyesinin altında kalan yerde atılır, altta dalgalı su düzlemi (kamerayla gezer, dalgalar dünyaya bağlı) görünür; kıyıda çakışma titremesi olmaz.
-- **Binalar:** 18 şehir paketinin hepsi 3B (İstanbul'daki bütün OSM binaları). Bir Web Worker paketleri 1 km'lik parçalar hâlinde çözer ve uzaklığa göre üç ayrıntı düzeyinde birleşik örgü üretir: 1 km düğümde tam taban + dört köşeli küçük binalarda kırma kiremit çatı; 2 km düğümde sadeleştirilmiş taban, küçük binalar yok; 4 km düğümde yalnız yüksek ya da büyük binalar kutu olarak. Düğüm başına bir çizim çağrısı, çerçeve dışı düğümler çizilmez, kullanılmayanlar bellekten atılır. Cephe pencereleri tek bir tekrarlanan dokuyla (UV kat ve bölmeye göre), renkler köşe rengiyle. Camilere kubbe ve minare (örneklenmiş). Çarpışma 12.5 m'lik ızgarayla, yalnız uçağın çevresindeki parçalar için.
+- **Binalar:** (23 Kasım'da yenilendi, aşağıya bakın) 18 şehir paketinin hepsi 3B (İstanbul'daki bütün OSM binaları). Bir Web Worker paketleri 1 km'lik parçalar hâlinde çözer ve uzaklığa göre üç ayrıntı düzeyinde birleşik örgü üretir: 1 km düğümde tam taban + dört köşeli küçük binalarda kırma kiremit çatı; 2 km düğümde sadeleştirilmiş taban, küçük binalar yok; 4 km düğümde yalnız yüksek ya da büyük binalar kutu olarak. Düğüm başına bir çizim çağrısı, çerçeve dışı düğümler çizilmez, kullanılmayanlar bellekten atılır. Cephe pencereleri tek bir tekrarlanan dokuyla (UV kat ve bölmeye göre), renkler köşe rengiyle. Camilere kubbe ve minare (örneklenmiş). Çarpışma 12.5 m'lik ızgarayla, yalnız uçağın çevresindeki parçalar için.
 - **Ağaçlar:** OSM orman, park, mezarlık ve çalılık alanlarında, 16 m'lik ızgarada (binalı hücreler atlanır) iğne yapraklı ve yayvan iki düşük poligonlu ağaç, 1 km parça başına örneklenmiş (instanced) çizim, kameraya 1.6 km (yüksek kalitede 2.4 km) içinde.
 - **Elle modellenenler:** İstanbul'dakiler (Galata Kulesi, Kız Kulesi, Ayasofya, Sultanahmet, Süleymaniye, Rumeli Hisarı, Çamlıca Kulesi, Büyük Çamlıca Camii, köprüler) ve yeni: Anıtkabir (tören meydanı, Aslanlı Yol, sütunlu Şeref Holü), Atakule (125 m), Kocatepe Camii (4 minare, 88 m), İzmir Saat Kulesi, Kapadokya'da ~950 peri bacası (şapkalı ve şapkasız, örneklenmiş), Uçhisar Kalesi ve 24 sıcak hava balonu (balona çarpmak kazadır).
-- **Havalimanları:** OSM pist uçlarından: Atatürk (05/23), İstanbul Havalimanı, Esenboğa, Adnan Menderes, Antalya, Kapadokya, Kayseri, Trabzon, Erzurum, Van. Pist işaretleri (numaralar OSM'deki adından), çevresinde apron şeridi.
+- **Havalimanları:** (23 Kasım'dan beri bütün Türkiye, aşağıya bakın) OSM pist uçlarından: Atatürk (05/23), İstanbul Havalimanı, Esenboğa, Adnan Menderes, Antalya, Kapadokya, Kayseri, Trabzon, Erzurum, Van. Pist işaretleri (numaralar OSM'deki adından), çevresinde apron şeridi.
 
 ## Alınan kararlar (kullanıcı uyurken, sorulmadan)
 
@@ -234,3 +238,64 @@ Eymen: "analog solda, gaz sağda; trim, flap olmasın; yukarıysa yukarı, ne ka
   - Takımsız gövde üstü iniş kayar; kuyruk sürtmesi 10 m/sn'ye kadar kaza değil.
   - İniş rehberi (300 m altı, alçalırken): takım kapalıysa uyarı, çok hızlıysa önerilen hız (Cessna 60, L-39 120, F-16 155 kt).
 - Benzetimde eller serbest: F-16 250/155/200 kt, L-39 140/180 kt, Cessna 90 kt inişleri patlamadan; tarayıcıda F-16 son yaklaşmadan eller serbest 150 kt ile indi (`tarayici-test.cjs inis`).
+
+## 23 Kasım: dünya
+
+Eymen'in iPhone denemesinden sonra istekler: "yollar bazen bozuk / tam görünmüyor, harita da; genel hata düzeltme", "pistler gerçek boyutta görünmüyor, Türkiye'deki bütün pistler gerçek ölçüleri ve taksi yollarıyla", "binalar çok küçük bir alanda var ve iki kâğıt gibi duruyor, gerçek 3B olsun", "İstanbul Havalimanı, Sabiha Gökçen, Atatürk, Esenboğa, Adnan Menderes (ve Antalya) gerçek gibi olsun; şimdilik dıştan, içini sonra ekleyeceğim", "dünya inanılmaz gerçekçi görünsün". Bu bölümdeki işler yalnız dünya tarafında (`world.js`, `terrain.js`, `buildings.js`, `bworker.js`, `veri.js`, yeni `havalimani.js`, `havalimanlari/`, `atmosfer.js`, `tools/`, `data/`); `main.js` ve `index.html`'e yalnız yeni başlangıç noktaları eklendi.
+
+### Bulunan hatalar ve kökleri
+
+- **"Kâğıt gibi" binalar:** çatı üçgenleri ters sırayla yazılıyordu (`bworker.js`: düz çatıda `tri(t0, t2, t1)`, kırma çatıda `tri(s, s+2, s+1)`); saat yönü tersine tabanda bu, yüzü aşağı çevirir. Malzeme tek yüzlü olduğundan çatılar yukarıdan hiç çizilmiyor, içi boş kutunun yalnız kameraya bakan iki duvarı görünüyordu. Üstelik binalar ışıkta düz, pencere dokusu tek tipti.
+- **Binaların az yerde olması:** binalar yalnız 17 şehrin ~30 km'lik karelerinde vardı ve "orta" kalitede 7.5 km'den sonra hiç çizilmiyordu; 2 km'lik düğümün çocukları hazır değilken hazır olanların yalnız bir kısmı gösterildiği için arada boş bloklar kalıyordu.
+- **Yolların bozuk / yarım görünmesi:** yollar yalnız İstanbul'un 7 m/piksellik zemin dokusunda vardı (28.75 × 29 km'lik dikdörtgen); dokunun kenarında birden bitiyor, alçak ve eğik bakışta 1-2 piksellik çizgiler doku küçültmesinde (mipmap) kayboluyordu. Dışarıda hiç yol yoktu.
+- **Pistlerin bozuk görünmesi:** pist, araziden 12 cm yüksekte bir düzlemdi; arazi yalnız 62.5 m'lik bölge ızgarasında ve tek pist boyunca düzleştirildiği için uzaktaki kaba arazi düğümleri (500 m'lik veri) pistin içinden çıkıyor, pistle 5 cm altındaki "apron şeridi" uzaktan titreşiyordu (derinlik çakışması). Pistlerin eni 45-60 m'ye sıkıştırılmıştı, taksi yolu yoktu.
+- **Harita:** küçük haritada İstanbul dikdörtgeninde başka, dışında başka harita (ölçek ve renk farkı) kullanılıyor; bu `main.js`'te olduğundan bu turda değiştirilmedi (bilinen eksik).
+
+### Havalimanları (`js/havalimani.js`, `tools/havalimanlari.py`)
+
+- **Veri:** OpenStreetMap'teki bütün `aeroway` nesneleri (osmium ile Türkiye özütünden): 112 havalimanı / pist alanı, 145 pist (141 kaplamalı), 4063 taksi yolu çizgisi, 418 apron, 2955 park yeri çizgisi, 250 yolcu köprüsü, 381 bekleme noktası, 352 PAPI, terminal ve hangar tabanları. Aynı pistin parçaları birleştirilir, uçlar gerçek konumlarında; en OSM `width` etiketinden (yoksa uzunluğa göre 45 / 30 / 23 m), taksi yolu 23 m (küçük meydanlarda 12-15 m). Pist numaraları OSM `ref`'ten, gerçek başla tutarsızsa manyetik baştan (sapma 5.5° D).
+- **Arazi:** her havalimanının kaplamalı alanı (+ pist çevresinde 75 m, taksi yolunda 30 m pay) tek yükseklikte düzleştirilir, 450 m'de doğal araziye geçer. Bölgelerin içindekiler bölge ızgarasında (62.5 m), dışındakiler için AWS Terrain Tiles z11'den 62.5 m'lik ayrı yamalar (`hava/z_*.png`) üretilir; 500 m'lik temel karolar da kabaca düzleştirilir (uzaktan tepe gibi görünmesin). Asıl ızgaralar `tools/raw/asil/`'de saklanır, araç her çalıştırmada onlardan başlar.
+- **Çizim:** havalimanı uçağa 30 km yaklaşınca kurulur, 45 km'de atılır. Katmanlar ayrı çizimler: apron (beton derzli), taksi yolları (asfalt, sarı orta çizgi, omuzlar, bağlantı diskleri), pist, çizgiler (park yeri, bekleme noktası). Pist çizgileri tek bir gölgelendiricide, gerçek ölçülerle hesaplanır (ICAO Ek 14): eşik çizgileri (pist enine göre 4-16 çizgi, 30 m), numara ve L/C/R harfi (9 m), 30 m çizgi / 20 m boşluklu orta çizgi, temas bölgesi çizgileri (150 m arayla), nişan noktası (400 m), kenar çizgileri, beton derzleri, lastik izleri. Arazi altında düzleştirildiği için yüzeyler araziyle aynı düzlemdedir; titreşmesin diye kırpma uzayında sabit bir derinlik payıyla öne alınırlar (katmanlar arasında da sıra var). Işıklar: pist kenarı (60 m), eşik (yeşil), uzun pistlerde 900 m yaklaşma ışık sistemi (direkler, 300 m çapraz çubuk), PAPI (OSM'den ya da nişan noktasında; ışık rengi bakış açısına göre gölgelendiricide beyaz/kırmızı), rüzgar tulumları.
+- **Fizik:** `world.ground()` pist, taksi yolu ve apronlarda `{h: yükseklik + 0.12, kind: 'runway'}` döndürür (50 m'lik hücre ızgarası, çokgen içinde nokta). Terminal, hangar ve kulelere çarpmak kazadır.
+- **Başlangıç noktaları:** eski arayüz korunur (`world.rws` her havalimanının ana pisti; `STARTS` aynı çalışır). Yeni: Sabiha Gökçen, Dalaman, Milas-Bodrum, Gaziantep, Diyarbakır, Samsun Çarşamba.
+- **Bütün havalimanlarında:** OSM'deki terminaller cam cepheli, hangarlar kemerli çatılı, kuleler (OSM'de varsa) genel bir kule biçiminde; park yerlerinde (%35) kendi yaptığımız yolcu uçakları (A320 ve geniş gövde boyutunda, beyaz gövde, renkli kuyruk; hiçbir havayolunun işareti yok).
+
+#### Ayrıntılı havalimanları ve iç mekân için yapı
+
+`js/havalimanlari/<icao>.js` (ltfm, ltfj, ltba, ltac, ltbj, ltai) havalimanı kurulurken tembel yüklenir ve `build(ctx)` çağrılır. Ortak parçalar `js/havalimanlari/ortak.js`'te: `terminal()` (OSM tabanından cam cephe, saçaklı çatı, çatı ışıklıkları / dalgalı ışıklık / kemer), `towerTulip()` (İstanbul Havalimanı'nın lale biçimli kulesinden esinlenen burgulu gövde ve geniş kabin, 90 m), `towerModern()`, `towerClassic()`, `jetBridges()` (OSM'deki köprüler ya da terminale yakın park yerleri için kendiliğinden, döner gövde ve tekerlekli ayakla), `vehicles()` (apron otobüsü, yakıt tankeri, çekici), `standard()`.
+
+- Her havalimanı `THREE.Group` adı `havalimani:<ICAO>`; içinde her terminal ayrı bir grup: ad `terminal:<OSM kimliği>`, `userData = { id, ad, taban (havalimanı merkezine göre yerel x doğu / y kuzey, m), yukseklik, katYuksekligi, kotu }`. Cephe (`cephe`), çatı (`cati`), ışıklık (`isiklik`), zemin şeridi (`zemin`) ayrı ağlardır. Kule `kule` (İstanbul'da apron kulesi `kule:apron`).
+- İç mekân eklemek için: `ctx.parts.get('terminal:…')` grubuna çocuk olarak eklenir; dış kabuk ayrı ağlarda olduğu için uçak terminale yaklaşınca `cephe`/`cati` gizlenebilir ya da yarı saydam yapılabilir. Taban çokgeni ve kat yüksekliği iç planı oturtmak için hazır; havalimanı yüksekliği `ctx.d.elev`.
+- Ayrıntılı modül bir terminali kendisi çizdiği için o terminalin OSM binası genel bina paketlerinden çıkarılır (`tools/raw/hava_haric.json`).
+
+### Binalar (`js/buildings.js`, `js/bworker.js`, `tools/binalar_tr.py`)
+
+- **Kapsam:** Türkiye'deki bütün OSM binaları: **5 711 490 bina**, 95 paket (`bina/q_*.png`, 128 km'lik karelerden başlayıp 260 000 binadan kalabalıkları 32 km'ye kadar bölen dörtlü ağaç), ~71 MB (yollarla). Paket, kamera 34 km'ye (orta kalitede ~24 km) yaklaşınca yüklenir. Etiketsiz binalara kat, bulunduğu 1 km'deki bina sıklığına göre verilir (köyde 1-2, kasabada 1-5, şehirde 2-8, İstanbul'da 2-7 kat), konuma bağlı kararlı rastgele.
+- **Gerçek 3B:** çatılar düzeltildi; duvarlarda cephe dokusu atlası (kodla çizilen 9 karo: sıvalı pencereli, balkonlu apartman, cam giydirme, bant pencere, taş/kemerli, sanayi paneli, zemin katta dükkân vitrini, çakıllı düz çatı, kiremit), pencere sayısı duvar boyuna tam sığar, pencerelerde kat ve bölmeye göre ton farkı ve gökyüzü yansıması (Fresnel). Duvar dibi koyulaşır (ortam kapatma), yüzlerde güneşe göre ışık. Çatılar: küçük konutlarda saçaklı kırma ya da beşik (kalkanlı) kiremit çatı (dikdörtgene yakın tabanlarda), apartmanlarda korkuluklu düz çatı ve merdiven/asansör kulübesi, sanayide düz çatı.
+- **Ayrıntı düzeyleri (LOD):** 1 km düğüm tam taban + çatı + korkuluk; 2 km sade taban (8'den çok köşe yönlü sınırlayıcı dikdörtgen), küçükler yok; 4 km orta/büyük binalar kutu; 8 km yalnız yüksek (≥ 28 m) ya da çok büyük binalar. Uzaklıklar (orta / yüksek): 1.2 / 2.2 km, 3.3 / 6 km, 10.9 / 18.9 km, 24 / 34 km. Daha uzakta şehirler zeminde: örtü dokusunun şehir kanalına bina sıklığı yazıldı (`tools/sehir_dokusu.py`), arazi gölgelendiricisi oralarda eğri sokak ızgarası, parsel parsel çatı renkleri ve yeşil adacıklar çizer (yakında düz kaldırım rengine döner). Geometri işçide, düğüm başına tek çizim çağrısı, çerçeve dışındakiler çizilmez; çocuk düğümler hazır değilse ebeveyn gösterilir (boşluk kalmaz).
+- **Yollar:** otoyol, devlet yolu, birincil, ikincil yollar ve bağlantıları her yerde, üçüncül yollar yerleşim içinde (OSM `highway`, 300 m'lik parçalar, bina paketlerinin içinde). İşçide araziye oturan şeritler olarak üretilir (köprüler uçları arasında doğrusal, tünel yok); gölgelendiricide asfalt, kenar çizgileri, kesikli orta / şerit çizgisi. Yakında hepsi, uzaklaştıkça yalnız büyük yollar çizilir. İstanbul'daki zemin dokusunun üstüne de keskin çizilir.
+- **Ağaçlar:** bölgelerde eski 16 m'lik OSM ağaç rasterı; bölgelerin dışında örtü dokusundaki orman oranına göre 1 km'lik hücrelere örneklenmiş ağaç (yüksekte iğne yapraklı).
+
+### Atmosfer ve ışık (`js/atmosfer.js`)
+
+- ACES ton eşleme; güneş 2.9, gök/yer yarımküre ışığı. Gökyüzü: Rayleigh benzeri mavi (ufka doğru optik derinlikle açılır), güneş çevresinde Mie (Henyey-Greenstein) parlaması, güneş diski.
+- Sis three.js'in `fog` parçaları değiştirilerek bütün malzemelerde: yüksekliğe göre üstel azalan yoğunluk (1/1900 m), rengi bakış yönündeki ufuk gökyüzü (hava perspektifi; güneş tarafı sıcak). Arazi sisin %99 örttüğü uzaklıkta kesilir.
+- Su: derin deniz rengi, aynı gökyüzü işleviyle Fresnel yansıması, güneş parıltısı.
+- Kümülüs bulutları: 1700-2600 m'de, kameranın çevresinde sarmal 48 km'lik alanda ~800 yumuşak kare (tek örneklenmiş çizim), içinden geçerken saydamlaşır.
+- Gölgeler yalnız "yüksek" kalitede: güneşten 2048² gölge haritası, uçağın çevresinde 640 m; uçak gölge düşürür.
+
+### Başarım (yazılımsal WebGL, Playwright; çizim çağrısı ve üçgen cihazdan bağımsız)
+
+BASARIM_TABLOSU
+
+### Ekran görüntüleri (`docs/ekran/`)
+
+`once-*.jpg` değişiklikten önce, `son-*.jpg` sonra (aynı yerler): `istanbul-600` (İstanbul, 600 m), `levent-maslak`, `istanbul-alcak` (120 m), `ltfm`, `terminal-ltfm`, `pist-ltfm` (pist yakın: 17R işaretleri), `ltfj`, `ltba`, `pist-yakin` (Atatürk 05), `ltac`, `ltbj`, `ltai`, `kucuk-sehir` (Sivas), `eskisehir`, `yuksek-irtifa`, `telefon-bogaz` ve `telefon-ltfm` (iPhone 13 yatay, orta). Ölçümler `once-olcum.json` / `son-olcum.json`. Deneme: `node tests/dunya-test.cjs [adres] [önek] [görünümler] [kalite]` (önce `www/` içinde sunucu).
+
+### Lisanslar (yeni)
+
+Yeni dışarıdan varlık yok: bütün dokular (cephe atlası, pist yazıları, bulut, su dalgası) ve modeller (terminal, kule, yolcu uçağı, köprü, araç) kodla üretildi. Veri: OpenStreetMap (ODbL; havalimanları, binalar, yollar), AWS Terrain Tiles (havalimanı yamaları için z11 karoları; kaynakları SRTM vb.). Atıf menüde ve uçuş ekranında zaten var.
+
+### Bilinen eksikler (dünya)
+
+BILINEN_EKSIKLER

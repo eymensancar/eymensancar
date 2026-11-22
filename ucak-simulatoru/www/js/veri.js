@@ -22,8 +22,13 @@ export async function pngBytes(url) {
   for (let k = 0; k < len; k++) { const q = 4 + k; out[k] = d[((q / 3) | 0) * 4 + (q % 3)]; }
   return out.buffer;
 }
-// Yükseklik ızgarası: 'YKH2', nx, ny (int32), x0, y0 (f64), s (f32), satır satır int16 farkları (0.5 m)
-export function decodeGrid(buf) {
+// Yükseklik ızgarası: 'YKH2', nx, ny (int32), x0, y0 (f64), s (f32), satır satır int16 farkları (0.5 m).
+// Çoklu ızgara ('YKHM', sayı, sonra her biri için (konum, uzunluk) uint32): k'inci ızgara.
+export function decodeGrid(buf, k) {
+  if (k != null) {
+    const m = new DataView(buf);
+    if (m.getUint8(0) === 89 && m.getUint8(3) === 77) { const o = m.getUint32(8 + k * 8, true), n = m.getUint32(12 + k * 8, true); buf = buf.slice(o, o + n); }
+  }
   const dv = new DataView(buf);
   const nx = dv.getInt32(4, true), ny = dv.getInt32(8, true);
   const x0 = dv.getFloat64(12, true), y0 = dv.getFloat64(20, true), s = dv.getFloat32(28, true);

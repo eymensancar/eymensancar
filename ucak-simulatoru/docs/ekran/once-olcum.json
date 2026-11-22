@@ -1,0 +1,107 @@
+[
+ {
+  "name": "istanbul-600",
+  "calls": 188,
+  "tris": 1230587,
+  "terrain": 148,
+  "bina": 94
+ },
+ {
+  "name": "levent-maslak",
+  "calls": 184,
+  "tris": 905643,
+  "terrain": 155,
+  "bina": 115
+ },
+ {
+  "name": "istanbul-alcak",
+  "calls": 192,
+  "tris": 1142755,
+  "terrain": 135,
+  "bina": 109
+ },
+ {
+  "name": "ltfm",
+  "calls": 163,
+  "tris": 689905,
+  "terrain": 129,
+  "bina": 83
+ },
+ {
+  "name": "ltfj",
+  "calls": 92,
+  "tris": 65212,
+  "terrain": 63,
+  "bina": 1
+ },
+ {
+  "name": "ltba",
+  "calls": 148,
+  "tris": 1118793,
+  "terrain": 89,
+  "bina": 30
+ },
+ {
+  "name": "ltac",
+  "calls": 167,
+  "tris": 198960,
+  "terrain": 174,
+  "bina": 113
+ },
+ {
+  "name": "ltbj",
+  "calls": 181,
+  "tris": 362491,
+  "terrain": 143,
+  "bina": 98
+ },
+ {
+  "name": "ltai",
+  "calls": 191,
+  "tris": 489570,
+  "terrain": 155,
+  "bina": 114
+ },
+ {
+  "name": "pist-yakin",
+  "calls": 186,
+  "tris": 1309021,
+  "terrain": 93,
+  "bina": 48
+ },
+ {
+  "name": "kucuk-sehir",
+  "calls": 103,
+  "tris": 85952,
+  "terrain": 88,
+  "bina": 0
+ },
+ {
+  "name": "eskisehir",
+  "calls": 192,
+  "tris": 695222,
+  "terrain": 159,
+  "bina": 98
+ },
+ {
+  "name": "yuksek-irtifa",
+  "calls": 132,
+  "tris": 268318,
+  "terrain": 151,
+  "bina": 28
+ },
+ {
+  "name": "telefon-bogaz",
+  "calls": 147,
+  "tris": 652279,
+  "terrain": 104,
+  "bina": 49
+ },
+ {
+  "name": "telefon-ltfm",
+  "calls": 142,
+  "tris": 887885,
+  "terrain": 103,
+  "bina": 44
+ }
+]
