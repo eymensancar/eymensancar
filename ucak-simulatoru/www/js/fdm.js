@@ -93,7 +93,8 @@ export const PLANES = {
     // motor ve pervane (sabit hatveli, 160 hp)
     Pmax: 119000, rpmRated: 2700, rpmMax: 2850, propD: 1.905, propI: 2.6,
     CT0: 0.0887, CTk: 0.0963, CP0: 0.0563, CPk: 0.0307, idle: 0.07, Pfric: 6000,
-    torqueRoll: 0.2, slipYaw: 0.05, torqueRig: 55, thrustRig: 900, // seyirde dengelenmiş (ayar tırnağı)
+    // pervane torku ve iz akımı kapalı: gerçekte uçak her gaz değişiminde sağa/sola çeker; oyuncu bunu istemedi (Eymen, 22.11)
+    torqueRoll: 0, slipYaw: 0, torqueRig: 0, thrustRig: 0,
     Vne: 163 * KT, nMax: 3.8, nMin: -1.52,
     // iniş takımı: gövde koordinatı (x ileri, y sağ, z aşağı), yay, sönüm
     gear: [

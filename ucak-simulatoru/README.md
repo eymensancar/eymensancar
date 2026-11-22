@@ -130,3 +130,8 @@ python3 tools/build_data.py    # -> www/data/ (numpy, scipy, Pillow gerekir)
 - Pervane etkileri (P etkisi, iz akımının kumanda yüzeylerine etkisi) basitleştirildi; jet modeli daha kabadır.
 - Yazılımsal WebGL ile yapılan testlerde kare hızı ölçülemez; gerçek iPhone'da denenmedi. Masaüstü yüksek kalitede bir karede ~55 çizim çağrısı ve ~0.75-0.85 milyon üçgen çiziliyor.
 - Yerde burun tekeri ve dümen hızlı, tam (açık-kapalı) girdiyle salınım yapabilir; kısa dokunuşlarla düzeltmek gerekir. Yanlamasına kayan uçak burnunun üstüne yatabilir (pervane yere vurur).
+
+## 22 Kasım: Eymen'in istekleri
+- Telefonda dümen düğmeleri kalktı; sağdaki levye her şeyi yapıyor (yerde burun tekeri, havada yatış; dümen dokunmatikte her zaman otomatik).
+- Uçağın kendiliğinden sağa/sola çekmesi: rüzgâr değil, pervane torku ve iz akımının gaz değişince bozulan dengesiydi. İkisi de kapatıldı (`torqueRoll`, `slipYaw` = 0).
+- Yeni ayar "Kanat dengeleyici" (varsayılan açık): levye ortadayken uçak yatışını sıfırlar, düz gider.

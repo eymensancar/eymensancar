@@ -113,8 +113,6 @@ body.touch #hud:not(.hide) ~ #touch { display: block; }
 #bFlapU { left: calc(84px + var(--sal)); bottom: calc(68px + var(--sab)); }
 #bBrake { left: calc(84px + var(--sal)); bottom: calc(118px + var(--sab)); }
 #bGear { left: calc(84px + var(--sal)); bottom: calc(168px + var(--sab)); }
-#bRudL { right: calc(50% + 54px); bottom: calc(18px + var(--sab)); }
-#bRudR { left: calc(50% + 54px); bottom: calc(18px + var(--sab)); }
 .tb.two { line-height: 1.1; padding: 4px 10px; font-size: 11px; }
 #bTrimU { right: calc(96px + var(--sar)); bottom: calc(178px + var(--sab)); }
 #bTrimD { right: calc(18px + var(--sar)); bottom: calc(178px + var(--sab)); }
@@ -186,6 +184,9 @@ body.portrait #rot { display: flex; }
         <button class="opt" data-set="autoRudder" data-val="true">Otomatik dümen açık<small>Dönüşte yan kaymayı siler; yerde levye burun tekerini çevirir</small></button>
         <button class="opt" data-set="autoRudder" data-val="false">Kapalı</button>
       </div><div class="opts" style="margin-top:8px">
+        <button class="opt" data-set="level" data-val="true">Kanat dengeleyici açık<small>Levyeyi bırakınca uçak düzelir, yana çekmez</small></button>
+        <button class="opt" data-set="level" data-val="false">Kapalı</button>
+      </div><div class="opts" style="margin-top:8px">
         <button class="opt" data-set="invert" data-val="false">Uçak kuralı<small>Yukarı tuşu burnu indirir</small></button>
         <button class="opt" data-set="invert" data-val="true">Ters<small>Yukarı tuşu burnu kaldırır</small></button>
       </div><div class="opts touchonly" style="margin-top:8px">
@@ -216,7 +217,7 @@ body.portrait #rot { display: flex; }
     <tr><td>Kamera</td><td><kbd>C</kbd> takip / kokpit / geçiş · fareyle sürükle: etrafına bak · tekerlek: yakınlaş</td></tr>
     <tr><td>Diğer</td><td><kbd>P</kbd> duraklat · <kbd>R</kbd> baştan · <kbd>M</kbd> ses · <kbd>L</kbd> motoru kapat/aç · <kbd>H</kbd> bu pencere</td></tr>
     <tr><td>Oyun kumandası</td><td>Sol çubuk levye, sağ çubuk dümen, RT/LT gaz, A/X flap, B fren, Y kamera, RB takım</td></tr>
-    <tr><td>Dokunmatik</td><td>Sağda levye, solda gaz kolu; FLAP, FREN, TRİM, dümen düğmeleri ekranda. Ekranın boş yerinde sürükleyince kamera döner.</td></tr>
+    <tr><td>Dokunmatik</td><td>Sağdaki levye her şeyi yapar: yerde burun tekerini çevirir, havada yatırıp döndürür (dümen kendiliğinden). Solda gaz kolu; FLAP, FREN, TRİM düğmeleri ekranda. Ekranın boş yerinde sürükleyince kamera döner.</td></tr>
     <tr><td>İpucu</td><td>Cessna: tam gaz, 55 kt'da levyeyi hafifçe çekin; 75 kt ile tırmanın. İnişte 65 kt, flap 30°, piste değince gazı kesip fren yapın. Kalkış yönü kuzeydoğu, şehir önünüzde.</td></tr>
   </table>
   <div class="row"><button id="helpClose" class="ghost">Kapat</button></div>
@@ -252,8 +253,6 @@ body.portrait #rot { display: flex; }
   <button class="tb" id="bFlapU">FLAP-</button>
   <button class="tb" id="bBrake">FREN</button>
   <button class="tb" id="bGear">TAKIM</button>
-  <button class="tb two" id="bRudL">DÜMEN<br>SOL</button>
-  <button class="tb two" id="bRudR">DÜMEN<br>SAĞ</button>
   <button class="tb two" id="bTrimU">TRİM<br>YUKARI</button>
   <button class="tb two" id="bTrimD">TRİM<br>AŞAĞI</button>
   <div id="touchInfo"></div>

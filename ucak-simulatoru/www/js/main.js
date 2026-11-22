@@ -14,7 +14,7 @@ const params = new URLSearchParams(location.search);
 
 // ---------- ayarlar ----------
 const SKEY = 'istanbul-ucusu-v1';
-const settings = Object.assign({ plane: 'c172', start: 'pist', wind: 'yok', quality: isTouch ? 'orta' : 'yuksek', autoRudder: true, tilt: false, invert: false }, (() => { try { return JSON.parse(localStorage.getItem(SKEY)) || {}; } catch (e) { return {}; } })());
+const settings = Object.assign({ plane: 'c172', start: 'pist', wind: 'yok', quality: isTouch ? 'orta' : 'yuksek', autoRudder: true, level: true, tilt: false, invert: false }, (() => { try { return JSON.parse(localStorage.getItem(SKEY)) || {}; } catch (e) { return {}; } })());
 const saveSettings = () => { try { localStorage.setItem(SKEY, JSON.stringify(settings)); } catch (e) { /* özel pencere */ } };
 const Q = { yuksek: { pr: 2, dist: 9000, lowTex: false }, orta: { pr: 1.5, dist: 6500, lowTex: false }, dusuk: { pr: 1, dist: 4000, lowTex: true } };
 
@@ -58,7 +58,7 @@ function bindMenu() {
         if (name === 'quality') location.reload(); };
     });
   };
-  ['plane', 'start', 'wind', 'quality', 'autoRudder', 'tilt', 'invert'].forEach(sel);
+  ['plane', 'start', 'wind', 'quality', 'autoRudder', 'level', 'tilt', 'invert'].forEach(sel);
   $('#bStart').onclick = async () => {
     if (settings.tilt && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
       try { await DeviceOrientationEvent.requestPermission(); } catch (e) { /* izin yok */ }
@@ -333,9 +333,14 @@ function frame(now) {
       ac.ctl.pitch = input.pitch; ac.ctl.roll = input.roll;
       let yaw = input.yaw;
       ac.ctl.autoSteer = 0;
-      if (settings.autoRudder) {
+      if (settings.autoRudder || isTouch) {
         if (!ac.onGround) yaw = clamp(yaw + clamp(5 * ac.out.beta, -0.7, 0.7), -1, 1);
         else ac.ctl.autoSteer = input.roll * 0.8;
+      }
+      // kanat dengeleyici: levye ortadayken uçak kendiliğinden yatışını sıfırlar, yana çekmez
+      if (settings.level && !ac.onGround && Math.abs(input.roll) < 0.08 && !(ac.out.alpha > 0.22)) {
+        const phi = quatToEuler(ac.q).phi;
+        if (Math.abs(phi) < 1.2) ac.ctl.roll = clamp(-3 * phi - 0.4 * ac.w[0], -0.5, 0.5);
       }
       ac.ctl.yaw = yaw;
       ac.ctl.throttle = input.throttle;
