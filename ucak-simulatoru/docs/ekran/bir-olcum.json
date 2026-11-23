@@ -1,16 +1,16 @@
 [
  {
-  "name": "ltfj",
-  "calls": 189,
-  "tris": 540351,
-  "terrain": 141,
-  "bina": 85
+  "name": "levent-maslak",
+  "calls": 177,
+  "tris": 1066842,
+  "terrain": 158,
+  "bina": 92
  },
  {
-  "name": "ltba",
-  "calls": 226,
-  "tris": 1296489,
+  "name": "istanbul-alcak",
+  "calls": 181,
+  "tris": 1280900,
   "terrain": 140,
-  "bina": 58
+  "bina": 90
  }
 ]
