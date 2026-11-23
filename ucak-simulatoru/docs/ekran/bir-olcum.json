@@ -1,0 +1,16 @@
+[
+ {
+  "name": "ltfj",
+  "calls": 189,
+  "tris": 540351,
+  "terrain": 141,
+  "bina": 85
+ },
+ {
+  "name": "ltba",
+  "calls": 226,
+  "tris": 1296489,
+  "terrain": 140,
+  "bina": 58
+ }
+]
