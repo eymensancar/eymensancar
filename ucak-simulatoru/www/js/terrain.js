@@ -19,12 +19,35 @@ export class Heights {
     this.patchList = idx.bolgeler.map((b) => ({ ...b, grid: null }));
     this.R0 = idx.kok;
     this.lc = null;
+    this.files = new Map();
+  }
+  // havalimanı yamaları (çoklu ızgara dosyalarında): {id, ad, rect, dosya, k}
+  addPatches(list) { for (const p of list) this.patchList.push({ ...p, grid: null }); }
+  _file(f) { let p = this.files.get(f); if (!p) { p = pngBytes(this.base + f); this.files.set(f, p); } return p; }
+  // bir dikdörtgenin bütün yükseklik verisini iste; hepsi geldiyse true
+  ensureRect(x0, y0, x1, y1) {
+    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, r = Math.max(x1 - x0, y1 - y0) / 2;
+    this.ensure(cx, cy, r - 20000 > 0 ? r - 20000 : 0);
+    let ok = true;
+    const sz = this.BS * this.BT;
+    for (let j = Math.floor((y0 - this.R0[1]) / sz); j <= Math.floor((y1 - this.R0[1]) / sz); j++) for (let i = Math.floor((x0 - this.R0[0]) / sz); i <= Math.floor((x1 - this.R0[0]) / sz); i++) {
+      const k = i + ',' + j; if (this.tileList.has(k) && !this.tiles.has(k) && this.tiles.get(k) !== null) ok = false;
+    }
+    for (const p of this.patchList) { const [a, b, c, d] = p.rect; if (c > x0 && a < x1 && d > y0 && b < y1 && !p.grid && !p.failed) ok = false; }
+    return ok;
+  }
+  // bir noktadaki bütün yükseklik verisi hazır mı (temel karo ve yamalar)
+  patchReady(x, y) {
+    const sz = this.BS * this.BT, k = Math.floor((x - this.R0[0]) / sz) + ',' + Math.floor((y - this.R0[1]) / sz);
+    if (this.tileList.has(k) && !this.tiles.has(k)) return false;
+    for (const p of this.patchList) { const [a, b, c, d] = p.rect; if (x > a && x < c && y > b && y < d && !p.grid && !p.failed) return false; }
+    return true;
   }
   async init() {
     this.ov = decodeGrid(await pngBytes(this.base + this.idx.genel.dosya));
   }
   onData(fn) { this.listeners.push(fn); }
-  _emit(rect, level) { for (const f of this.listeners) f(rect, level); }
+  _emit(rect, level, grid, kind, key) { for (const f of this.listeners) f(rect, level, grid, kind, key); }
   _tileKey(x, y) { const sz = this.BS * this.BT; return [Math.floor((x - this.R0[0]) / sz), Math.floor((y - this.R0[1]) / sz)]; }
   // Bir noktanın çevresindeki verileri iste (r metre). Döndürür: bekleyen yükleme sayısı.
   ensure(x, y, r) {
@@ -34,7 +57,7 @@ export class Heights {
       const k = i + ',' + j, f = this.tileList.get(k);
       if (!f || this.tiles.has(k) || this.loading.has(k)) continue;
       this.loading.add(k);
-      pngBytes(this.base + f).then((b) => { const g = decodeGrid(b); this.tiles.set(k, g); this.loading.delete(k); this._emit([g.x0, g.y0, g.x1, g.y1], 1); })
+      pngBytes(this.base + f).then((b) => { const g = decodeGrid(b); this.tiles.set(k, g); this.loading.delete(k); this._emit([g.x0, g.y0, g.x1, g.y1], 1, g, 'tile', k); })
         .catch((e) => { console.warn(e); this.loading.delete(k); this.tiles.set(k, null); });
     }
     for (const p of this.patchList) {
@@ -43,7 +66,7 @@ export class Heights {
       const dx = Math.max(a - x, 0, x - c), dy = Math.max(b - y, 0, y - d);
       if (dx * dx + dy * dy > (r + 20000) ** 2) continue;
       p.loading = true; this.loading.add(p.id);
-      pngBytes(this.base + p.dosya).then((buf) => { p.grid = decodeGrid(buf); p.loading = false; this.loading.delete(p.id); this.patches.push(p); this._emit(p.rect, 2); })
+      (p.k != null ? this._file(p.dosya) : pngBytes(this.base + p.dosya)).then((buf) => { p.grid = decodeGrid(buf, p.k); p.loading = false; this.loading.delete(p.id); this.patches.push(p); this._emit(p.rect, 2, p.grid, 'patch', p.id); })
         .catch((e) => { console.warn(e); p.failed = true; this.loading.delete(p.id); });
     }
     return this.loading.size;
@@ -90,6 +113,7 @@ export class Terrain {
     this.maxDepth = 10; this.maxDepthOut = 8;
     this.maxDist = 400000; // sisin tamamen örttüğü uzaklıktan ötesi çizilmez
     this.budget = opt.budget || 4;
+    this.shadows = !!opt.shadows;
     this.frame = 0; this.count = 0; this.drawn = 0;
     this.queue = [];
     this.all = new Set();
@@ -158,7 +182,7 @@ export class Terrain {
     g.boundingBox = new THREE.Box3(new THREE.Vector3(-n.size / 2, hmin - skirt, -n.size / 2), new THREE.Vector3(n.size / 2, hmax, n.size / 2));
     if (n.mesh) { n.mesh.geometry.dispose(); n.mesh.geometry = g; }
     else {
-      const m = new THREE.Mesh(g, this.mat); m.matrixAutoUpdate = false;
+      const m = new THREE.Mesh(g, this.mat); m.matrixAutoUpdate = false; m.receiveShadow = !!this.shadows;
       m.position.set(cx, 0, -cy); m.updateMatrix(); m.visible = false;
       this.root.add(m); n.mesh = m; this.all.add(n);
     }
@@ -277,11 +301,29 @@ export function terrainMaterial(opt) {
       farm *= 0.9 + 0.1 * edge;
       float plain = (1.0 - smoothstep(0.03, 0.10, slope)) * (1.0 - smoothstep(1700.0, 2100.0, h)) * smoothstep(0.35, 0.6, vnoise(L / 9000.0 + 3.0));
       vec3 col = mix(base, farm, clamp(max(oc.b * 0.9, plain * 0.75), 0.0, 1.0));
+      // orta ölçekli renk oynaması (çayır / toprak / kuru ot lekeleri)
+      float mv = vnoise(L / 420.0) * 0.65 + vnoise(L / 130.0) * 0.35;
+      col *= mix(vec3(0.90, 1.02, 0.86), vec3(1.07, 0.99, 0.90), mv);
       vec3 forest = mix(vec3(0.16, 0.26, 0.13), vec3(0.22, 0.30, 0.16), nz) * mix(1.0, 0.8, north);
       col = mix(col, forest, oc.r * 0.92);
-      float blk = vnoise(L / 60.0);
-      vec3 urban = mix(vec3(0.58, 0.55, 0.50), vec3(0.70, 0.64, 0.56), blk) * (0.85 + 0.15 * step(0.5, vnoise(L / 25.0)));
-      col = mix(col, urban, oc.g * 0.9);
+      // şehir dokusu (binaların çizilmediği uzaklıkta şehir): eğri sokak ızgarası, parsellerde çatı renkleri, yeşil adacıklar
+      float camD = length(cameraPosition - vW);
+      vec2 uq = L / 75.0 + vec2(vnoise(L / 900.0), vnoise(L / 1100.0 + 5.0)) * 1.6;
+      vec2 uf = fract(uq), ui = floor(uq);
+      float fwq = fwidth(uq.x) + fwidth(uq.y);
+      float patt = (1.0 - smoothstep(0.25, 0.7, fwq)) * smoothstep(700.0, 2200.0, camD);
+      float street = 1.0 - smoothstep(0.05, 0.10, min(min(uf.x, 1.0 - uf.x), min(uf.y, 1.0 - uf.y)));
+      float rb = hash(ui);
+      vec2 lq = fract(uq * 3.0); float lot = hash(floor(uq * 3.0) + 17.0);
+      vec3 roofc = lot < 0.38 ? vec3(0.66, 0.40, 0.31) : lot < 0.78 ? vec3(0.66, 0.64, 0.60) : vec3(0.80, 0.78, 0.74);
+      float gap = 1.0 - smoothstep(0.07, 0.14, min(min(lq.x, 1.0 - lq.x), min(lq.y, 1.0 - lq.y)));
+      vec3 upat = mix(roofc * (0.85 + 0.3 * rb), vec3(0.50, 0.49, 0.47), gap * 0.7);
+      upat = mix(upat, vec3(0.38, 0.38, 0.39), street);
+      upat = mix(upat, vec3(0.33, 0.41, 0.25), step(0.9, rb) * 0.85);
+      vec3 uavg = vec3(0.60, 0.53, 0.48);
+      vec3 upave = mix(vec3(0.55, 0.54, 0.51), vec3(0.62, 0.60, 0.56), vnoise(L / 40.0));
+      vec3 urban = mix(mix(upave, uavg, smoothstep(700.0, 2200.0, camD)), upat, patt);
+      col = mix(col, urban, smoothstep(0.08, 0.6, oc.g) * 0.95);
       // kaya ve kar
       float rock = smoothstep(0.28, 0.5, slope) * smoothstep(300.0, 900.0, h) + smoothstep(2400.0, 3000.0, h) * 0.5;
       col = mix(col, mix(vec3(0.45, 0.41, 0.37), vec3(0.55, 0.52, 0.48), nz), clamp(rock, 0.0, 1.0));

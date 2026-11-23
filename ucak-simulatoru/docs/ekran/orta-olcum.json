@@ -1,0 +1,23 @@
+[
+ {
+  "name": "istanbul-600",
+  "calls": 180,
+  "tris": 1194562,
+  "terrain": 147,
+  "bina": 73
+ },
+ {
+  "name": "levent-maslak",
+  "calls": 118,
+  "tris": 396556,
+  "terrain": 105,
+  "bina": 44
+ },
+ {
+  "name": "istanbul-alcak",
+  "calls": 183,
+  "tris": 1137418,
+  "terrain": 140,
+  "bina": 90
+ }
+]

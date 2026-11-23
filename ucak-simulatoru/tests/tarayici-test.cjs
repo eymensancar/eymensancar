@@ -36,11 +36,11 @@ async function begin(p, start, plane = 'f16') {
 
 async function takeoff(p) {
   await begin(p, 'pist', 'c172');
-  await settle(p, 40000);
+  await settle(p, 150000); // dünya büyüdü: yazılımsal WebGL'de veri daha geç oturur
   await p.keyboard.press('Digit0');
   let t = 0, rotated = false, lift = null;
   const x0 = await p.evaluate(() => [__ucak.ac.pos[0], __ucak.ac.pos[1]]);
-  while (t < 300) {
+  while (t < 900) {
     await sleep(250); t += 0.25;
     const s = await p.evaluate(() => { const a = __ucak.ac, q = a.q; return { v: a.out.V / 0.514444, alt: a.alt, g: a.onGround, c: a.crashed, n: a.pos[0], e: a.pos[1],
       psi: Math.atan2(2 * (q[0] * q[3] + q[1] * q[2]), 1 - 2 * (q[2] * q[2] + q[3] * q[3])) - __ucak.world.rw.heading, phi: Math.atan2(2 * (q[0] * q[1] + q[2] * q[3]), 1 - 2 * (q[1] * q[1] + q[2] * q[2])),
