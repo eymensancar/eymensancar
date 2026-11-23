@@ -144,11 +144,22 @@ function chunk(P, ci, cj) {
     const top = HM.h(cx, cy) + h;
     c.push({ pts, n, typ, h, cx, cy, area, base: hmin, top, bb: [x0, y0, x1, y1], ist: isIst(cx, cy, cnt) });
   }
+  greenhouses(c, oy);
   P.cache.set(k, c);
   if (P.cache.size > 400) { const f = P.cache.keys().next().value; P.cache.delete(f); }
   return c;
 }
 
+// sera: güney kıyısında (Antalya, Mersin, Muğla ovaları) çoğu sanayi/sera tipi olan 1 km parçalardaki alçak tabanlı yapılar.
+// OSM'de çoğunun yüksekliği yok (veride 7-13 m); gerçek sera 3.5-5 m. Çarpışma da aynı yükseklikle hesaplanır.
+function greenhouses(c, oy) {
+  if (oy > -400000 || c.length < 5) return;
+  let n2 = 0; for (const b of c) if (b.typ === 2) n2++;
+  if (n2 < c.length * 0.7) return;
+  for (const b of c) if (b.typ === 2 && b.area < 9000 && b.h <= 13.01) {
+    b.gh = true; b.h = 3.6 + (hash(Math.round(b.cx), Math.round(b.cy)) % 13) / 10; b.top = HM.h(b.cx, b.cy) + b.h;
+  }
+}
 // etiketsiz binaya kat: yerleşim sıklığına göre (1 km parçadaki bina sayısı), konuma bağlı kararlı rastgele
 const IST_D = [2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 7];
 function isIst(x, y, cnt) { return x > -60000 && x < 50000 && y > -40000 && y < 40000 && cnt > 250; }
@@ -223,37 +234,73 @@ class Out {
 }
 
 // Cephe stilleri (buildings.js'teki doku atlası ile aynı sıra): 0 sıva + pencere, 1 balkonlu apartman, 2 cam giydirme,
-// 3 bant pencere (okul, hastane, yeni yapı), 4 taş / tarihi, 5 sanayi paneli, 6 dükkân (yalnız zemin katta, gölgelendirici seçer),
-// 7 düz çatı (çakıl, membran), 8 kiremit. +16: zemin katı dükkân.
-const ST = { plaster: 0, balcony: 1, glass: 2, band: 3, stone: 4, panel: 5, roof: 7, tile: 8, SHOP: 16 };
+// 3 bant pencere (okul, hastane, yeni yapı), 4 taş / tarihi, 5 sanayi paneli (bütün duvar tek karo), 6 dükkân (yalnız zemin
+// katta, gölgelendirici seçer), 7 düz çatı (membran), 8 kiremit, 9 sera, 10 taş kaplama ofis, 11 eski ev (kepenkli), 12 tuğla,
+// 13 yeni konut, 14 metal çatı, 15 güneş paneli. +16: zemin katı dükkân. 40 düz duvar, 41 saçak silmesi.
+const ST = { plaster: 0, balcony: 1, glass: 2, band: 3, stone: 4, panel: 5, roof: 7, tile: 8, green: 9, granite: 10, old: 11, brick: 12, modern: 13, metal: 14, solar: 15, SHOP: 16, BLANK: 40, CORN: 41 };
+const GLASS_T = [[150, 176, 196], [128, 150, 170], [120, 150, 140], [176, 188, 198], [150, 132, 112], [96, 108, 122], [186, 196, 204]];
+const STONE_T = [[226, 220, 210], [204, 198, 190], [184, 176, 166], [236, 232, 224], [214, 204, 186]];
+const IND_W = [[214, 216, 218], [196, 204, 212], [222, 214, 196], [176, 190, 204], [206, 196, 182], [186, 198, 188], [230, 230, 226]];
+const IND_R = [[198, 200, 202], [170, 180, 190], [176, 112, 92], [150, 162, 152], [214, 216, 218], [120, 132, 150]];
+// tarihi yarımada ve Beyoğlu (eski evler, taş yapılar)
+function isOld(x, y) { return x > -4600 && x < 2000 && y > -9700 && y < -4400; }
 function colours(P, b) {
   const hs = hash(Math.round(b.cx), Math.round(b.cy));
-  let wc, rc, st, fh = 3.1, bw = 3.4;
-  const t = b.typ, ist = b.ist, r = (hs >>> 8) % 100;
-  if (t === 3) { wc = [[150, 176, 196], [128, 150, 170], [176, 190, 200], [110, 132, 150], [190, 198, 204], [120, 150, 140]][hs % 6]; rc = [150, 150, 152]; st = r < 70 ? ST.glass : ST.band; fh = 3.8; bw = 1.6; if (st === ST.band) { wc = [[226, 224, 218], [204, 206, 210], [232, 226, 214]][hs % 3]; bw = 3; } }
-  else if (t === 2 || t === 9) { wc = [[196, 198, 200], [176, 184, 190], [206, 200, 188], [190, 200, 210], [214, 208, 196]][hs % 5]; rc = [[186, 188, 190], [150, 160, 170], [170, 120, 100], [200, 202, 204]][(hs >>> 3) % 4]; st = ST.panel; fh = 6; bw = 6; }
+  let wc, rc, st, fh = 3.1, bw = 3.4, one = false;
+  const t = b.typ, ist = b.ist, r = (hs >>> 8) % 100, r2 = (hs >>> 16) % 100;
+  if (b.gh) { wc = [236, 242, 242]; rc = [232, 238, 238]; st = ST.green; one = true; bw = 4; }
+  else if (t === 3) {
+    if (r < 50) { wc = GLASS_T[hs % GLASS_T.length]; st = ST.glass; fh = 3.8; bw = 1.6; }
+    else if (r < 78) { wc = STONE_T[hs % STONE_T.length]; st = ST.granite; fh = 3.7; bw = 2.1; }
+    else { wc = [[226, 224, 218], [204, 206, 210], [232, 226, 214]][hs % 3]; st = ST.band; fh = 3.8; bw = 3; }
+    rc = [150, 150, 152];
+  } else if (t === 2 || t === 9) {
+    rc = IND_R[(hs >>> 3) % IND_R.length];
+    if (t === 2 && r < 18 && b.area < 2500) { wc = [[242, 236, 228], [232, 226, 220]][hs % 2]; st = ST.brick; fh = 4.5; bw = 4; }
+    else { wc = IND_W[hs % IND_W.length]; st = ST.panel; one = true; bw = 6; }
+  }
   else if (t === 1) { wc = [236, 232, 222]; rc = [150, 156, 162]; st = ST.stone; fh = 5; }
-  else if (t === 4) { wc = [[214, 196, 164], [200, 184, 160], [222, 210, 186]][hs % 3]; rc = [160, 90, 68]; st = ST.stone; fh = 4.2; }
+  else if (t === 4) { wc = [[214, 196, 164], [200, 184, 160], [222, 210, 186]][hs % 3]; rc = [160, 90, 68]; st = b.h < 12 && r < 35 ? ST.old : ST.stone; fh = 4.2; }
   else if (t === 5) { wc = [244, 242, 236]; rc = [140, 148, 156]; st = ST.stone; fh = 4.5; }
-  else if (t === 7) { wc = [[224, 222, 216], [200, 210, 220], [234, 226, 210], [180, 190, 200]][hs % 4]; rc = [170, 170, 168]; st = r < 55 ? ST.glass : ST.band; fh = 4.2; bw = r < 55 ? 2 : 3.5; st |= ST.SHOP; }
-  else if (t === 8) { wc = [[230, 214, 186], [236, 226, 208], [214, 200, 190], [220, 220, 214]][hs % 4]; rc = [166, 100, 76]; st = ST.band; fh = 3.6; }
-  else if (t === 6) { const W = ist ? WALLS : WALLS_B; wc = W[hs % W.length]; rc = FLAT[(hs >>> 4) % FLAT.length]; st = ST.plaster; fh = 2.9; bw = 3.2; }
+  else if (t === 7) {
+    rc = [170, 170, 168];
+    if (b.h > 20 && r < 55) { wc = GLASS_T[hs % GLASS_T.length]; st = ST.glass; fh = 4.2; bw = 1.8; }
+    else if (r < 70) { wc = [[224, 222, 216], [200, 210, 220], [234, 226, 210], [180, 190, 200]][hs % 4]; st = ST.band; fh = 4.2; bw = 3.5; }
+    else { wc = STONE_T[hs % STONE_T.length]; st = ST.modern; fh = 3.6; }
+    st |= ST.SHOP;
+  }
+  else if (t === 8) {
+    rc = [166, 100, 76];
+    if (r < 45) { wc = [[230, 214, 186], [236, 226, 208], [214, 200, 190], [220, 220, 214]][hs % 4]; st = ST.band; fh = 3.6; }
+    else if (r < 65) { wc = [244, 238, 230]; st = ST.brick; fh = 3.7; bw = 3.6; }
+    else { wc = [[238, 228, 204], [232, 222, 212], [224, 230, 236]][hs % 3]; st = ST.plaster; fh = 3.6; bw = 3.6; }
+  }
+  else if (t === 6) { const W = ist ? WALLS : WALLS_B; wc = W[hs % W.length]; rc = FLAT[(hs >>> 4) % FLAT.length]; st = isOld(b.cx, b.cy) && r < 60 ? ST.old : ST.plaster; fh = 2.9; bw = 3.2; }
   else {
     const W = ist ? WALLS : WALLS_B; wc = W[hs % W.length]; rc = FLAT[(hs >>> 4) % FLAT.length];
-    st = b.h > 9 && r < (ist ? 55 : 40) ? ST.balcony : r > 92 && b.h > 14 ? ST.band : ST.plaster;
+    if (ist && b.h < 15 && isOld(b.cx, b.cy) && r < 45) { st = ST.old; fh = 3.3; bw = 2.8; }
+    else if (b.h > 9 && r < (ist ? 50 : 40)) st = ST.balcony;
+    else if (b.h > 15 && r < (ist ? 64 : 56)) { st = ST.modern; bw = 3.8; }
+    else if (r > 93 && b.h > 14) st = ST.band;
+    else st = ST.plaster;
+    if (r2 < 25 && st === ST.plaster) bw = 2.8;
     if (b.h > 7 && b.area > 90 && (hs >>> 12) % 100 < (ist ? 45 : 25)) st |= ST.SHOP;
   }
   // parlaklık oynaması
   const k = 0.9 + ((hs >>> 20) % 21) / 100;
   wc = [Math.min(255, wc[0] * k), Math.min(255, wc[1] * k), Math.min(255, wc[2] * k)];
-  return { wc, rc, hs, st, fh, bw };
+  return { wc, rc, hs, st, fh, bw, one };
 }
 
-// duvarlar: u = çevre / pencere aralığı, v = yükseklik / kat yüksekliği (kat 0 zeminde). Altta koyulaşma (ortam kapatma).
+// duvarlar: u = çevre / pencere aralığı, v = yükseklik / kat yüksekliği (kat 0 zeminde). Kat yüksekliği binanın gerçek
+// boyuna tam sığacak biçimde yuvarlanır (çatıda yarım kat kalmaz); sanayi ve serada bütün duvar tek kat.
+// Zemin kararması gölgelendiricide (v'ye göre), burada yalnız yüze göre hafif ton farkı.
 function walls(o, b, pts, n, y0, y1, cx, cy, C, yb) {
   let per = 0;
-  const { wc, hs, st, fh, bw } = C;
+  const { wc, hs, st, bw } = C;
   const ground = yb != null ? yb : y0;
+  const H = Math.max(0.5, y1 - ground);
+  const fh = C.one ? H : H / Math.max(1, Math.round(H / C.fh));
   o.s = st;
   for (let i = 0; i < n; i++) {
     const ax = pts[i * 2], ay = pts[i * 2 + 1], j = (i + 1) % n, bx = pts[j * 2], by = pts[j * 2 + 1];
@@ -261,10 +308,9 @@ function walls(o, b, pts, n, y0, y1, cx, cy, C, yb) {
     const nx = (by - ay) / L, ny = -(bx - ax) / L;
     // pencere aralığı duvar boyuna tam sığsın
     const nb = Math.max(1, Math.round(L / bw)), u0 = per, u1 = per + nb; per = u1;
-    const sh = 0.9 + 0.1 * ((i * 37 + hs) % 3) / 2;
+    const sh = 0.92 + 0.08 * ((i * 37 + hs) % 3) / 2;
     const c1 = [wc[0] * sh, wc[1] * sh, wc[2] * sh];
-    const ao = Math.min(1, 0.62 + (y1 - y0) * 0.012);
-    const c0 = [c1[0] * ao, c1[1] * ao, c1[2] * ao];
+    const c0 = [c1[0] * 0.94, c1[1] * 0.94, c1[2] * 0.94];
     const NX = Math.round(nx * 127), NZ = Math.round(-ny * 127);
     o.grow(4, 6);
     const v0 = (y0 - ground) / fh, v1 = (y1 - ground) / fh;
@@ -283,16 +329,20 @@ function triangulate(pts, n) {
   for (let i = 0; i < n; i++) tmpV.push(new Vector2(pts[i * 2], pts[i * 2 + 1]));
   try { return ShapeUtils.triangulateShape(tmpV, []); } catch (e) { return []; }
 }
-// düz çatı (taban saat yönü tersine: üçgenler yukarı bakar). uv: dünya konumu / 4 m (çakıl, membran deseni)
-function flatRoof(o, pts, n, y1, cx, cy, rc, tris) {
+// düz çatı (taban saat yönü tersine: üçgenler yukarı bakar). uv: yerel konum / us m, ang ile döndürülmüş (metal kenetler
+// binanın uzun kenarına paralel); st: 7 membran, 14 metal, 9 sera
+function flatRoof(o, pts, n, y1, cx, cy, rc, tris, st = ST.roof, us = 4, ang = 0) {
   tris = tris || triangulate(pts, n);
   o.grow(n, tris.length * 3);
-  o.s = ST.roof;
-  const rs = o.v;
-  for (let i = 0; i < n; i++) o.vert(pts[i * 2] - cx, y1, -(pts[i * 2 + 1] - cy), 0, 127, 0, rc, pts[i * 2] / 4, pts[i * 2 + 1] / 4);
+  o.s = st;
+  const rs = o.v, ca = Math.cos(ang), sa = Math.sin(ang);
+  for (let i = 0; i < n; i++) {
+    const lx = pts[i * 2] - cx, ly = pts[i * 2 + 1] - cy;
+    o.vert(lx, y1, -ly, 0, 127, 0, rc, (lx * ca + ly * sa) / us, (-lx * sa + ly * ca) / us);
+  }
   for (const t of tris) o.tri(rs + t[0], rs + t[1], rs + t[2]);
 }
-// içe kaydırılmış çokgen (korkuluk için)
+// içe kaydırılmış çokgen (korkuluk için; eksi d dışa)
 function inset(pts, n, d) {
   const out = new Float64Array(n * 2);
   for (let i = 0; i < n; i++) {
@@ -306,12 +356,12 @@ function inset(pts, n, d) {
   }
   return out;
 }
-// korkuluklu düz çatı: dış duvar y1'e kadar, içte 0.9 m aşağıda çatı, üstte kapak şeridi
-function parapetRoof(o, pts, n, y1, cx, cy, wc, rc) {
-  const ins = inset(pts, n, 0.35), yr = y1 - 0.9;
-  const cap = [Math.min(255, wc[0] * 1.05), Math.min(255, wc[1] * 1.05), Math.min(255, wc[2] * 1.05)];
-  const inn = [wc[0] * 0.8, wc[1] * 0.8, wc[2] * 0.8];
-  o.s = ST.roof;
+// korkuluklu düz çatı: dış duvar y1'e kadar, içte dh m aşağıda çatı, üstte kapak şeridi; çatı düzeyini döndürür
+function parapetRoof(o, pts, n, y1, cx, cy, wc, rc, dh = 0.9, st = ST.roof, us = 4, ang = 0) {
+  const ins = inset(pts, n, 0.3), yr = y1 - dh;
+  const cap = [Math.min(255, wc[0] * 1.08), Math.min(255, wc[1] * 1.08), Math.min(255, wc[2] * 1.08)];
+  const inn = [wc[0] * 0.72, wc[1] * 0.72, wc[2] * 0.72];
+  o.s = ST.BLANK;
   for (let i = 0; i < n; i++) {
     const j = (i + 1) % n;
     const ax = pts[i * 2], ay = pts[i * 2 + 1], bx = pts[j * 2], by = pts[j * 2 + 1];
@@ -321,28 +371,83 @@ function parapetRoof(o, pts, n, y1, cx, cy, wc, rc) {
     let s = o.vert(ax - cx, y1, -(ay - cy), 0, 127, 0, cap, 0, 0); o.vert(bx - cx, y1, -(by - cy), 0, 127, 0, cap, 0, 0);
     o.vert(jx - cx, y1, -(jy - cy), 0, 127, 0, cap, 0, 0); o.vert(ix - cx, y1, -(iy - cy), 0, 127, 0, cap, 0, 0);
     o.tri(s, s + 1, s + 2); o.tri(s, s + 2, s + 3);
-    // iç yüz (içeri bakar)
+    // iç yüz (içeri bakar, dipte koyu: köşe kararması)
     const L = Math.hypot(jx - ix, jy - iy) || 1, nx = -(jy - iy) / L, ny = (jx - ix) / L;
     const NX = Math.round(nx * 127), NZ = Math.round(-ny * 127);
-    s = o.vert(ix - cx, yr, -(iy - cy), NX, 0, NZ, inn, 0, 0); o.vert(jx - cx, yr, -(jy - cy), NX, 0, NZ, inn, 0, 0);
+    const inn0 = [inn[0] * 0.7, inn[1] * 0.7, inn[2] * 0.7];
+    s = o.vert(ix - cx, yr, -(iy - cy), NX, 0, NZ, inn0, 0, 0); o.vert(jx - cx, yr, -(jy - cy), NX, 0, NZ, inn0, 0, 0);
     o.vert(jx - cx, y1, -(jy - cy), NX, 0, NZ, inn, 0, 0); o.vert(ix - cx, y1, -(iy - cy), NX, 0, NZ, inn, 0, 0);
     o.tri(s, s + 2, s + 1); o.tri(s, s + 3, s + 2);
   }
-  flatRoof(o, ins, n, yr, cx, cy, rc);
+  flatRoof(o, ins, n, yr, cx, cy, rc, null, st, us, ang);
+  return yr;
 }
-// çatı üstü: merdiven / asansör kulübesi ya da su deposu (kutu)
-function roofBox(o, x, y, w, d, ang, y0, h, cx, cy, c) {
+// saçak silmesi: duvardan d m dışa taşan, yA..yB arasında bant (ön yüz ve gölgedeki alt yüz; üstü duvara yaslı, görünmez)
+function cornice(o, pts, n, yA, yB, cx, cy, c, d) {
+  const out = inset(pts, n, -d);
+  const und = [c[0] * 0.5, c[1] * 0.5, c[2] * 0.5];
+  o.s = ST.CORN;
+  for (let i = 0; i < n; i++) {
+    const j = (i + 1) % n;
+    const ax = pts[i * 2] - cx, ay = pts[i * 2 + 1] - cy, bx = pts[j * 2] - cx, by = pts[j * 2 + 1] - cy;
+    const px = out[i * 2] - cx, py = out[i * 2 + 1] - cy, qx = out[j * 2] - cx, qy = out[j * 2 + 1] - cy;
+    const L = Math.hypot(qx - px, qy - py); if (L < 0.05) continue;
+    const NX = Math.round((qy - py) / L * 127), NZ = Math.round((qx - px) / L * 127);
+    o.grow(8, 12);
+    let s = o.vert(px, yA, -py, NX, 0, NZ, c, 0, 0); o.vert(qx, yA, -qy, NX, 0, NZ, c, 0, 0);
+    o.vert(qx, yB, -qy, NX, 0, NZ, c, 0, 0); o.vert(px, yB, -py, NX, 0, NZ, c, 0, 0);
+    o.tri(s, s + 1, s + 2); o.tri(s, s + 2, s + 3);
+    s = o.vert(ax, yA, -ay, 0, -127, 0, und, 0, 0); o.vert(bx, yA, -by, 0, -127, 0, und, 0, 0);
+    o.vert(qx, yA, -qy, 0, -127, 0, und, 0, 0); o.vert(px, yA, -py, 0, -127, 0, und, 0, 0);
+    o.tri(s, s + 1, s + 2); o.tri(s, s + 2, s + 3);
+  }
+}
+// çatı üstü: merdiven / asansör kulübesi, makine dairesi ya da su deposu (kutu)
+function roofBox(o, x, y, w, d, ang, y0, h, cx, cy, c, rc) {
   const ca = Math.cos(ang), sa = Math.sin(ang);
   const P = new Float64Array(8);
   [[-w / 2, -d / 2], [w / 2, -d / 2], [w / 2, d / 2], [-w / 2, d / 2]].forEach(([u, v], k) => { P[k * 2] = x + u * ca - v * sa; P[k * 2 + 1] = y + u * sa + v * ca; });
   const st = o.s;
-  walls(o, null, P, 4, y0, y0 + h, cx, cy, { wc: c, hs: 0, st: ST.plaster, fh: 40, bw: 40 });
-  flatRoof(o, P, 4, y0 + h, cx, cy, [c[0] * 0.8, c[1] * 0.8, c[2] * 0.8]);
+  walls(o, null, P, 4, y0, y0 + h, cx, cy, { wc: c, hs: 0, st: ST.BLANK, fh: 40, bw: 40, one: true });
+  flatRoof(o, P, 4, y0 + h, cx, cy, rc || [c[0] * 0.8, c[1] * 0.8, c[2] * 0.8]);
   o.s = st;
 }
-// kırma çatı (4 köşe ya da dikdörtgene yakın taban, OBB üzerinde), saçak 0.4 m. Kalkan (beşik) çatı seçeneği.
-function hipRoof(o, pts, y1, cx, cy, rc, wc, gable) {
-  const ov = 0.4;
+// güneşli su ısıtıcısı: güneye bakan eğik panel (arkası kapalı) ve üstünde yatık depo
+function solarHeater(o, x, y, y0, cx, cy, hs) {
+  const w = 1.9, dy = 0.85, h0 = y0 + 0.25, h1 = y0 + 1.05;
+  const lx = x - cx, ly = y - cy;
+  const st = o.s;
+  o.grow(8, 12);
+  // panel (normal güneye ve yukarı)
+  const nl = Math.hypot(h1 - h0, dy), NY = Math.round(dy / nl * 127), NZ = Math.round((h1 - h0) / nl * 127);
+  o.s = ST.solar;
+  let s = o.vert(lx - w / 2, h0, -(ly - dy / 2), 0, NY, NZ, [255, 255, 255], 0, 0);
+  o.vert(lx + w / 2, h0, -(ly - dy / 2), 0, NY, NZ, [255, 255, 255], 1, 0);
+  o.vert(lx + w / 2, h1, -(ly + dy / 2), 0, NY, NZ, [255, 255, 255], 1, 1);
+  o.vert(lx - w / 2, h1, -(ly + dy / 2), 0, NY, NZ, [255, 255, 255], 0, 1);
+  o.tri(s, s + 1, s + 2); o.tri(s, s + 2, s + 3);
+  // arka yüz (kuzeye bakar, koyu)
+  o.s = ST.BLANK;
+  const dk = [96, 98, 100];
+  s = o.vert(lx - w / 2, y0, -(ly + dy / 2), 0, 0, -127, dk, 0, 0); o.vert(lx + w / 2, y0, -(ly + dy / 2), 0, 0, -127, dk, 0, 0);
+  o.vert(lx + w / 2, h1, -(ly + dy / 2), 0, 0, -127, dk, 0, 0); o.vert(lx - w / 2, h1, -(ly + dy / 2), 0, 0, -127, dk, 0, 0);
+  o.tri(s, s + 2, s + 1); o.tri(s, s + 3, s + 2);
+  // depo: üst ve güney yüzü (kuzeyden panelin arkası örter)
+  const tc = hs % 3 ? [222, 224, 226] : [176, 180, 184], tf = [tc[0] * 0.86, tc[1] * 0.86, tc[2] * 0.86];
+  const ty0 = h1 - 0.12, ty1 = h1 + 0.36, tsx = ly + dy / 2 - 0.05, tnx = ly + dy / 2 + 0.45;
+  o.grow(8, 12);
+  s = o.vert(lx - w / 2, ty0, -tsx, 0, 0, 127, tf, 0, 0); o.vert(lx + w / 2, ty0, -tsx, 0, 0, 127, tf, 0, 0);
+  o.vert(lx + w / 2, ty1, -tsx, 0, 0, 127, tf, 0, 0); o.vert(lx - w / 2, ty1, -tsx, 0, 0, 127, tf, 0, 0);
+  o.tri(s, s + 1, s + 2); o.tri(s, s + 2, s + 3);
+  s = o.vert(lx - w / 2, ty1, -tsx, 0, 127, 0, tc, 0, 0); o.vert(lx + w / 2, ty1, -tsx, 0, 127, 0, tc, 0, 0);
+  o.vert(lx + w / 2, ty1, -tnx, 0, 127, 0, tc, 0, 0); o.vert(lx - w / 2, ty1, -tnx, 0, 127, 0, tc, 0, 0);
+  o.tri(s, s + 1, s + 2); o.tri(s, s + 2, s + 3);
+  o.s = st;
+}
+// kırma çatı (4 köşe ya da dikdörtgene yakın taban, OBB üzerinde). Seçenekler: gable (beşik: kalkan duvarlı), pitch (mahya
+// yüksekliği / kısa kenar), ov (saçak), st (çatı stili), us (doku ölçeği m), endSt (kalkan stili), endC (kalkan rengi)
+function hipRoof(o, pts, y1, cx, cy, rc, wc, gable, opt = {}) {
+  const ov = opt.ov != null ? opt.ov : 0.45, pitch = opt.pitch || 0.33, rst = opt.st != null ? opt.st : ST.tile, us = opt.us || 2.5, endSt = opt.endSt != null ? opt.endSt : ST.BLANK;
   const P = [[pts[0], pts[1]], [pts[2], pts[3]], [pts[4], pts[5]], [pts[6], pts[7]]];
   // saçak: köşeleri merkezden dışa it
   const mx = (P[0][0] + P[1][0] + P[2][0] + P[3][0]) / 4, my = (P[0][1] + P[1][1] + P[2][1] + P[3][1]) / 4;
@@ -354,9 +459,9 @@ function hipRoof(o, pts, y1, cx, cy, rc, wc, gable) {
   const m1 = [(P[d][0] + P[a][0]) / 2, (P[d][1] + P[a][1]) / 2], m2 = [(P[b][0] + P[c][0]) / 2, (P[b][1] + P[c][1]) / 2];
   const ux = (m2[0] - m1[0]) / L, uy = (m2[1] - m1[1]) / L, inset2 = gable ? 0 : Math.min(S * 0.5, L * 0.45);
   const r1 = [m1[0] + ux * inset2, m1[1] + uy * inset2], r2 = [m2[0] - ux * inset2, m2[1] - uy * inset2];
-  const ye = y1 - 0.25, rh = ye + S * 0.36;
+  const ye = y1 - 0.25, rh = ye + S * pitch;
   const faces = [[P[a], P[b], r2, r1], [P[c], P[d], r1, r2], [P[b], P[c], r2], [P[d], P[a], r1]];
-  o.s = ST.tile;
+  const slope = Math.hypot(S / 2, S * pitch);
   for (let fi = 0; fi < 4; fi++) {
     const f = faces[fi];
     const gableEnd = gable && fi >= 2;
@@ -367,24 +472,25 @@ function hipRoof(o, pts, y1, cx, cy, rc, wc, gable) {
     else if (ny < 0) { nx = -nx; ny = -ny; nz = -nz; }
     const l = Math.hypot(nx, ny, nz) || 1;
     const NX = Math.round(nx / l * 127), NY = Math.round(ny / l * 127), NZ = Math.round(-nz / l * 127);
-    const cc = gableEnd ? wc : rc;
-    if (gableEnd) o.s = ST.plaster;
+    // kalkan duvarı: duvar rengi, saçak altında hafif koyu
+    const cc = gableEnd ? (opt.endC || [wc[0] * 0.95, wc[1] * 0.95, wc[2] * 0.95]) : rc;
+    o.s = gableEnd ? endSt : rst;
     o.grow(f.length, (f.length - 2) * 3);
     const s = o.v;
-    // kiremit uv: u yatay (mahyaya paralel), v eğim boyunca
+    // doku uv: u yatay (mahyaya paralel), v eğim boyunca
     const ex = (f[1][0] - f[0][0]), ey = (f[1][1] - f[0][1]), el = Math.hypot(ex, ey) || 1;
     for (let k = 0; k < f.length; k++) {
       const px = f[k][0], py = f[k][1];
       const u = ((px - f[0][0]) * ex + (py - f[0][1]) * ey) / el;
-      const vv = k < 2 ? 0 : S * 0.6;
-      o.vert(px - cx, k < 2 ? ye : rh, -(py - cy), NX, NY, NZ, cc, gableEnd ? 0 : u / 2.5, gableEnd ? (k < 2 ? 0 : 1) : vv / 2.5);
+      const vv = k < 2 ? 0 : slope;
+      o.vert(px - cx, k < 2 ? ye : rh, -(py - cy), NX, NY, NZ, cc, u / us, gableEnd ? (k < 2 ? 0 : (rh - ye) / us) : vv / us);
     }
     o.tri(s, s + 1, s + 2); if (f.length === 4) o.tri(s, s + 2, s + 3);
-    if (gableEnd) o.s = ST.tile;
   }
   // saçak altı (alttan görünür, koyu)
+  o.s = ST.BLANK;
   o.grow(4, 6);
-  const dk = [rc[0] * 0.45, rc[1] * 0.45, rc[2] * 0.45];
+  const dk = [rc[0] * 0.4, rc[1] * 0.4, rc[2] * 0.4];
   const s = o.v;
   for (const k of [a, b, c, d]) o.vert(P[k][0] - cx, ye, -(P[k][1] - cy), 0, -127, 0, dk, 0, 0);
   o.tri(s, s + 2, s + 1); o.tri(s, s + 3, s + 2);
@@ -402,6 +508,65 @@ function obb(pts, n) {
   return P;
 }
 
+// çatı biçimi: kırma/beşik kiremit (konut, okul, tarihi), alçak eğimli metal beşik (sanayi, hangar), sera tüneli,
+// korkuluklu düz (apartman, ofis; cam kulede yüksek taç), düz. Kararlı rastgele (konuma bağlı).
+const TILE2 = [[176, 84, 56], [160, 72, 50], [188, 100, 66], [146, 66, 48], [180, 112, 78], [128, 64, 52], [150, 90, 70], [104, 100, 98]];
+function rectish(b) { if (b.n === 4) return true; if (b.n > 10) return false; const q = obb(b.pts, b.n); return b.area / q.area > 0.86; }
+function roofKind(b, C) {
+  const { hs, st } = C, t = b.typ, tl = st & 15, p = hs % 100;
+  if (b.gh) return { k: 'shed', pitch: 0.3, st: ST.green, us: 4, ov: 0.05, endSt: ST.green, endC: C.rc, c: C.rc };
+  if (t === 2 || t === 9) {
+    if (b.area < 9000 && rectish(b)) return { k: 'shed', pitch: 0.07 + ((hs >>> 6) % 6) / 100, st: ST.metal, us: 5, ov: 0.35, endSt: ST.BLANK, endC: C.wc, c: C.rc };
+    return { k: b.h >= 6 ? 'parapet' : 'flat', dh: 0.6, st: ST.metal, us: 5, c: C.rc };
+  }
+  const resid = t === 0 || t === 6 || t === 4 || t === 8;
+  const share = t === 6 ? 88 : t === 8 ? 50 : t === 4 ? 70 : b.ist ? 62 : 58;
+  if (resid && b.h < 22 && b.area < (t === 8 ? 3000 : 1200) && p < share && rectish(b))
+    return { k: 'hip', gable: (hs >>> 9) % 100 < (b.ist ? 28 : 42), pitch: 0.26 + ((hs >>> 11) % 12) / 100, c: TILE2[(hs >>> 5) % TILE2.length], st: ST.tile, us: 2.5 };
+  const corn = tl !== ST.glass && tl !== ST.panel && b.h >= 6;
+  if (tl === ST.glass && b.h >= 20) return { k: 'parapet', dh: 1.5, c: C.rc, corn: false };
+  if (b.h >= 9 && b.area >= 120 && b.n <= 16) return { k: 'parapet', dh: 0.9, c: C.rc, corn };
+  return { k: 'flat', c: C.rc, corn };
+}
+// 1 km düğüm: tam taban, çatı, saçak silmesi, çatı üstü (kulübe, makine dairesi, su deposu, güneşli su ısıtıcısı)
+function roofs0(o, b, C, y0, y1, yb, cx, cy, mosques) {
+  const { wc, hs } = C;
+  const R = roofKind(b, C);
+  walls(o, b, b.pts, b.n, y0, y1, cx, cy, C, yb);
+  if (b.typ === 1 && b.h >= 6 && b.area > 120) mosques.push({ x: b.cx, y: b.cy, top: y1, r: Math.sqrt(b.area) / 2.6, mx: b.pts[0], my: b.pts[1], h: b.h });
+  if (R.k === 'hip' || R.k === 'shed') {
+    const roofPts = b.n === 4 ? b.pts : obb(b.pts, b.n);
+    hipRoof(o, roofPts, y1, cx, cy, R.c, wc, R.k === 'shed' || R.gable, R);
+    return;
+  }
+  const q = obb(b.pts, b.n);
+  let yr = y1;
+  if (R.k === 'parapet') yr = parapetRoof(o, b.pts, b.n, y1, cx, cy, wc, R.c, R.dh, R.st, R.us, q.ang);
+  else flatRoof(o, b.pts, b.n, y1, cx, cy, R.c, null, R.st, R.us, q.ang);
+  if (R.corn && b.h >= 9 && b.n <= 10) { const ya = R.k === 'parapet' ? y1 - R.dh - 0.4 : y1 - 0.55; cornice(o, b.pts, b.n, ya, ya + 0.3, cx, cy, wc, 0.3); }
+  if (b.typ === 2 || b.typ === 9 || b.area < 70) return;
+  // çatı üstü
+  const ca = Math.cos(q.ang), sa = Math.sin(q.ang), qx = (q[0] + q[4]) / 2, qy = (q[1] + q[5]) / 2;
+  const at = (fu, fv) => [qx + fu * q.w / 2 * ca - fv * q.d / 2 * sa, qy + fu * q.w / 2 * sa + fv * q.d / 2 * ca];
+  let k = hs >>> 3;
+  const nxt = () => { k = Math.imul(k ^ (k >>> 7), 0x2c1b3c6d) >>> 0; return (k >>> 8) / 16777216; };
+  if (b.h >= 12 && b.area >= 180 && (hs >>> 14) % 100 < 75) {
+    const big = b.h >= 30 && b.area >= 450;
+    const w = big ? q.w * 0.4 : Math.min(4 + (hs % 3), q.w * 0.4), d = big ? q.d * 0.4 : Math.min(3.5, q.d * 0.4);
+    const [mx, my] = at((nxt() - 0.5) * 0.5, (nxt() - 0.5) * 0.5);
+    roofBox(o, mx, my, w, d, q.ang, yr, big ? 3.8 : 2.6, cx, cy, [wc[0] * 0.9, wc[1] * 0.9, wc[2] * 0.9]);
+  }
+  if (b.h >= 40) return;
+  const nSol = b.ist ? (nxt() < 0.12 ? 1 : 0) : b.area >= 80 ? Math.min(2, Math.floor(nxt() * 1.8 + b.area / 400)) : 0;
+  const nTank = nxt() < (b.ist ? 0.45 : 0.35) ? 1 + Math.floor(nxt() * 2) : 0;
+  for (let i = 0; i < nSol + nTank; i++) {
+    const [x, y] = at((nxt() - 0.5) * 1.3, (nxt() - 0.5) * 1.3);
+    if (!pip(b.pts, b.n, x, y) || !pip(b.pts, b.n, x + 1.2, y + 1) || !pip(b.pts, b.n, x - 1.2, y - 1)) continue;
+    if (i < nSol) solarHeater(o, x, y, yr, cx, cy, hs + i);
+    else { const c = [[228, 230, 232], [74, 96, 146], [60, 62, 66], [190, 194, 198]][(hs + i) % 4]; roofBox(o, x, y, 1.1, 1.1, q.ang, yr, 1.15, cx, cy, c, [c[0] * 0.9, c[1] * 0.9, c[2] * 0.9]); }
+  }
+}
+
 // lod 0 = 1 km düğüm: tam taban, çatılar, korkuluk, çatı kulübesi; 1 = 2 km: sadeleşmiş taban (8 köşeden fazlası OBB);
 // 2 = 4 km: yalnız orta/büyük binalar OBB kutu; 3 = 8 km: yalnız yüksek ya da çok büyük binalar
 function build(P, lod, ni, nj) {
@@ -415,38 +580,23 @@ function build(P, lod, ni, nj) {
       const C = colours(P, b);
       const { wc, rc, hs } = C;
       const y0 = b.base - 1.5, y1 = b.top, yb = b.base;
-      const resid = b.typ === 0 || b.typ === 6 || b.typ === 4 || b.typ === 8;
-      if (lod === 0) {
-        let roofPts = null;
-        if (resid && b.h < 22 && b.area < 1200 && (hs % 100) < (b.ist ? 62 : b.typ === 6 ? 85 : 55)) {
-          if (b.n === 4) roofPts = b.pts;
-          else if (b.n <= 10) { const q = obb(b.pts, b.n); if (b.area / q.area > 0.86) roofPts = q; }
-        }
-        walls(o, b, b.pts, b.n, y0, y1, cx, cy, C, yb);
-        if (roofPts) hipRoof(o, roofPts, y1, cx, cy, TILE[(hs >>> 5) % TILE.length], wc, (hs >>> 9) % 100 < 30);
-        else if (b.h >= 9 && b.area >= 150 && b.n <= 12 && b.typ !== 2 && b.typ !== 9) parapetRoof(o, b.pts, b.n, y1, cx, cy, wc, rc);
-        else flatRoof(o, b.pts, b.n, y1, cx, cy, rc);
-        // çatı kulübesi (merdiven/asansör) ya da sanayi çatısında havalandırma
-        if (!roofPts && b.h >= 12 && b.area >= 180 && (hs >>> 14) % 100 < 70) {
-          const q = obb(b.pts, b.n), w = Math.min(4 + (hs % 3), q.w * 0.4), d = Math.min(3.5, q.d * 0.4);
-          const mx = (q[0] + q[4]) / 2, my = (q[1] + q[5]) / 2;
-          roofBox(o, mx, my, w, d, q.ang, y1 - 0.9, 2.6, cx, cy, [wc[0] * 0.92, wc[1] * 0.92, wc[2] * 0.92]);
-        }
-        if (b.typ === 1 && b.h >= 6 && b.area > 120) mosques.push({ x: b.cx, y: b.cy, top: y1, r: Math.sqrt(b.area) / 2.6, mx: b.pts[0], my: b.pts[1], h: b.h });
-      } else if (lod === 1) {
+      if (lod === 0) roofs0(o, b, C, y0, y1, yb, cx, cy, mosques);
+      else if (lod === 1) {
         if (b.area < 130 && b.h < 12) continue;
         let pts = b.pts, n = b.n;
         if (n > 8) { pts = obb(b.pts, b.n); n = 4; }
         walls(o, b, pts, n, y0, y1, cx, cy, C, yb);
-        const pitched = resid && b.n === 4 && b.h < 22 && (hs % 100) < (b.ist ? 62 : 55);
-        if (pitched) hipRoof(o, pts, y1, cx, cy, TILE[(hs >>> 5) % TILE.length], wc, false);
-        else flatRoof(o, pts, n, y1, cx, cy, rc);
+        const R = roofKind(b, C);
+        if (R.k === 'hip' && b.n === 4) hipRoof(o, pts, y1, cx, cy, R.c, wc, R.gable, R);
+        else if (R.k === 'shed' && n === 4) hipRoof(o, pts, y1, cx, cy, R.c, wc, true, R);
+        else flatRoof(o, pts, n, y1, cx, cy, R.k === 'hip' ? R.c : rc, null, R.st || ST.roof, R.us || 4, R.ang || 0);
         if (b.typ === 1 && b.h >= 6 && b.area > 120) mosques.push({ x: b.cx, y: b.cy, top: b.top, r: Math.sqrt(b.area) / 2.6, mx: b.pts[0], my: b.pts[1], h: b.h });
       } else if (lod === 2) {
         if (!(b.h >= 17 || b.area >= 800)) continue;
         const pts = obb(b.pts, b.n);
         walls(o, b, pts, 4, y0, y1, cx, cy, C, yb);
-        flatRoof(o, pts, 4, y1, cx, cy, resid && b.h < 22 ? TILE[(hs >>> 5) % TILE.length] : rc);
+        const R = roofKind(b, C);
+        flatRoof(o, pts, 4, y1, cx, cy, R.k === 'hip' ? R.c : rc, null, R.st || ST.roof, R.us || 4, pts.ang);
       } else {
         if (!(b.h >= 28 || b.area >= 2500)) continue;
         const pts = obb(b.pts, b.n);
