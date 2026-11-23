@@ -8,10 +8,10 @@
  },
  {
   "name": "levent-maslak",
-  "calls": 254,
-  "tris": 1934889,
-  "terrain": 241,
-  "bina": 162
+  "calls": 243,
+  "tris": 1373059,
+  "terrain": 239,
+  "bina": 188
  },
  {
   "name": "istanbul-alcak",
@@ -22,10 +22,10 @@
  },
  {
   "name": "ltfm",
-  "calls": 254,
-  "tris": 1811209,
-  "terrain": 221,
-  "bina": 182
+  "calls": 266,
+  "tris": 779810,
+  "terrain": 218,
+  "bina": 122
  },
  {
   "name": "ltfj",
@@ -71,10 +71,10 @@
  },
  {
   "name": "terminal-ltfm",
-  "calls": 264,
-  "tris": 2332714,
-  "terrain": 212,
-  "bina": 126
+  "calls": 225,
+  "tris": 609200,
+  "terrain": 99,
+  "bina": 44
  },
  {
   "name": "pist-ltfm",
