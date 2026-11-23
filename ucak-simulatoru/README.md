@@ -376,3 +376,27 @@ Yeni dışarıdan varlık yok: bütün dokular (cephe atlası, pist yazıları, 
 - Park etmiş uçaklar tek gövde tipi (iki boy), iniş takımı ve kapı ayrıntısı basit; yolcu köprüleri yalnız OSM'de olan ya da terminale yakın park yerlerinde.
 - Bulutlar düz kareler (hacimli değil), gölge düşürmez; gece yok, güneş sabit.
 - Yazılımsal WebGL'de kare hızı düşük olduğundan gerçek iPhone'da ölçülmedi.
+
+## 23 Kasım: ayrıntılı havalimanları, simge yapılar, harita, binalar, gökyüzü
+
+Dünya işi 16 parçaya bölündü; her parça kendi dosyasında yapıldı.
+
+- **Havalimanı ortak parçaları** (`havalimanlari/ortak.js`): markasız ama gerçek oranlı dar ve geniş gövdeli uçaklar (520 m içinde ayrıntılı), teleskopik yolcu köprüleri (uçağın sol ön kapısına hizalı), apron araçları, 28 m ışık direkleri, boyalı park yeri numaraları, sürgülü kapılı hangarlar, eğik camlı kule kabinleri. OSM'de terminal önünde park çizgisi yoksa köprü çizgilerinden kapı park yerleri üretilir (`synthStands`). `setNight(0..1)` gece ışıkları (oyunda henüz gece yok).
+- **Ayrıntılı havalimanları** (`havalimani.js` → `DETAIL`, 21 havalimanı; her terminal ayrı `terminal:<kimlik>` grubu, iç mekân sonra eklenecek):
+  - İstanbul (`ltfm.js`): kare yastık tonozlu 34 m saçaklı ana salon, ışıklıklı iskeleler, lale biçimli 90 m kule, apron kulesi, +9 m viyadük, 5 katlı otopark, otel, kargo.
+  - Sabiha Gökçen (`ltfj.js`): 6×3 kubbeli dış hatlar, dalgalı iskele çatıları, 91 m yeni kule, otopark, kargo.
+  - Atatürk (`ltba.js`): salon/iskele/42 köprü ayrıştırması, 62 m ve 34 m kuleler, THY Teknik boyunda hangarlar, iş jetleri.
+  - Esenboğa (`ltac.js`): iki çembere oturan hilal terminal, yay viyadük ve otopark, 77 m kule. Apron kenarındaki pürüzlü gri lekeler sürüyor (bkz. bilinen eksikler).
+  - Adnan Menderes (`ltbj.js`): iki terminal (dalgalı beyaz / kemerli gümüş çatı), viyadük, otoparklar, kargo.
+  - Antalya (`ltai.js`): Dış Hatlar 1-2, İç Hatlar, VIP, Genel Havacılık; 77 m kule, charter apronu, ~2 900 araba.
+  - Dalaman, Milas-Bodrum, Gazipaşa (`ltbs.js`, `ltfe.js`, `ltfg.js`; ortak Ege yardımcıları `ltbs.js`'te).
+  - Trabzon, Samsun-Çarşamba, Erzurum (`ltcg.js`, `ltfh.js`, `ltce.js`; Erzurum'da kar örtüsü ve uçak sığınakları).
+  - Çukurova, Gaziantep, Diyarbakır (`ltdb.js`, `ltaj.js`, `ltcc.js`).
+  - Kayseri, Konya, Nevşehir (`ltau.js`, `ltan.js`, `ltaz.js`; askeri taraf: sığınaklar, işaretsiz savaş ve nakliye uçakları).
+  - Çatı biçimleri ve OSM'de olmayan yapıların (kargo, otopark, bazı kuleler) yeri kaynaklardan yorumdur.
+- **Simge yapılar:** İstanbul (`simgeler-ist.js`: Ayasofya, Sultanahmet, Süleymaniye, Galata ve Kız Kulesi, Rumeli Hisarı, Ortaköy, Dolmabahçe, Topkapı, Sapphire, Kanyon, köprüler ve yeni Haliç Metro Köprüsü; aynı yerdeki OSM binaları gölgelendiricide gizlenir) ve Anadolu (`simgeler-tr.js`: Anıtkabir, Atakule, Kocatepe, Ankara Kalesi, İzmir Saat Kulesi, Kadifekale, Bursa Ulu Cami, Mevlana, Devrent peri bacaları, Efes, Pamukkale, Nemrut, Sümela, Antalya Kaleiçi, 1915 Çanakkale ve Osmangazi köprüleri). Her biri world.js kurucusunda tek satırla bağlanır; Çamlıca olduğu gibi.
+- **Küçük harita** (`harita.js`): kuzey yukarıda, ölçek 4–160 km arasında kesintisiz; yollar, bütün pistler; tuval piksel oranında net. Safari'de haritanın boş kalmasının sebebi resim dışına taşan kaynak dikdörtgeniydi. F-16 MFD haritası küçük haritanın tuvalinden kopyalanır.
+- **Binalar** (`buildings.js` atlası, `bworker.js` çatılar): 16 cephe tipi, ayrı cam maskesi (eski atlasta her hücre cam sayıldığından cepheler gürültülüydü), pencere girintisi, gece ışıkları, kiremit/metal/sera çatılar, korkuluk, su deposu, güneşli su ısıtıcısı.
+- **Gökyüzü ve deniz** (`atmosfer.js`, `world.js` → `_water()`): Rayleigh/Mie gök, güneşe göre aydınlanan kümülüs bulutları, bulut içinde beyazlık, sirrüs; dört ölçekli dalga, Fresnel yansıma, güneş yolu, kıyıda turkuaz geçiş, Boğaz ve Çanakkale akıntısı. Günün saati: `?saat=17.2`.
+
+Bilinen eksikler: Esenboğa apron kenarı lekeleri; oyunda gece yok; bazı ayrıntılar (Antalya T2 son hâli, Efes tiyatrosu, Sümela) tarayıcıda yakından görülmedi; çarpışma ızgarası gizlenen OSM binalarının eski yüksekliklerini tutar.

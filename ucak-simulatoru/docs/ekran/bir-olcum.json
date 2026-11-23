@@ -1,16 +1,30 @@
 [
  {
-  "name": "istanbul-600",
-  "calls": 202,
-  "tris": 1392485,
-  "terrain": 147,
-  "bina": 73
+  "name": "ltfm",
+  "calls": 249,
+  "tris": 516509,
+  "terrain": 146,
+  "bina": 57
+ },
+ {
+  "name": "ltfj",
+  "calls": 200,
+  "tris": 631950,
+  "terrain": 141,
+  "bina": 85
  },
  {
   "name": "ltac",
-  "calls": 91,
-  "tris": 56414,
-  "terrain": 5,
-  "bina": 0
+  "calls": 220,
+  "tris": 368547,
+  "terrain": 160,
+  "bina": 72
+ },
+ {
+  "name": "ltbj",
+  "calls": 207,
+  "tris": 472300,
+  "terrain": 147,
+  "bina": 76
  }
 ]
