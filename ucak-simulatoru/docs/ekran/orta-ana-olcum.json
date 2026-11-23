@@ -1,0 +1,76 @@
+{
+ "once": [
+  {
+   "name": "ltau",
+   "calls": 185,
+   "tris": 267532,
+   "terrain": 161,
+   "bina": 81
+  },
+  {
+   "name": "ltan",
+   "calls": 242,
+   "tris": 249456,
+   "terrain": 161,
+   "bina": 72
+  },
+  {
+   "name": "ltaz",
+   "calls": 159,
+   "tris": 153753,
+   "terrain": 160,
+   "bina": 37
+  }
+ ],
+ "son": [
+  {
+   "name": "ltau",
+   "calls": 216,
+   "tris": 300439,
+   "terrain": 161,
+   "bina": 81
+  },
+  {
+   "name": "ltau-askeri",
+   "calls": 167,
+   "tris": 268263,
+   "terrain": 152,
+   "bina": 85
+  },
+  {
+   "name": "ltan",
+   "calls": 259,
+   "tris": 269607,
+   "terrain": 161,
+   "bina": 72
+  },
+  {
+   "name": "ltan-siginak",
+   "calls": 177,
+   "tris": 510291,
+   "terrain": 158,
+   "bina": 70
+  },
+  {
+   "name": "ltan-askeri",
+   "calls": 183,
+   "tris": 287319,
+   "terrain": 161,
+   "bina": 70
+  },
+  {
+   "name": "ltaz",
+   "calls": 174,
+   "tris": 157583,
+   "terrain": 160,
+   "bina": 37
+  },
+  {
+   "name": "telefon-ltau",
+   "calls": 215,
+   "tris": 294319,
+   "terrain": 158,
+   "bina": 75
+  }
+ ]
+}
