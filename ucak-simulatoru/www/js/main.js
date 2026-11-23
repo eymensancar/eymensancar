@@ -7,6 +7,7 @@ import { Input } from './input.js';
 import { Sound } from './audio.js';
 import { buildCockpit } from './cockpit.js';
 import { AirFX } from './effects.js';
+import { MiniMap, BigMap } from './harita.js';
 
 const $ = (s) => document.querySelector(s);
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
@@ -108,6 +109,7 @@ let wind = [0, 0, 0], simTime = 0;
 const prog = (p, t) => { $('#loadBar').style.width = Math.round(p * 100) + '%'; $('#loadTxt').textContent = t; };
 world.load(prog).then(() => {
   loaded = true; prog(1, 'Hazır');
+  miniMap = new MiniMap(world, mini); bigMap = new BigMap(world, big); window.__ucak.minimap = miniMap;
   $('#bStart').disabled = false; $('#loadBox').classList.add('done');
   window.__ucak.ready = true;
   if (params.has('auto')) startFlight();
@@ -162,7 +164,7 @@ async function startFlight() {
   document.body.classList.toggle('easy', !!settings.easy);
   document.body.classList.toggle('dpad', settings.pad === 'tus');
   model = settings.plane === 'jet' ? buildJet() : settings.plane === 'f16' ? buildF16(world.envMap()) : buildC172();
-  cockpit = buildCockpit(settings.plane, { envMap: world.envMap(), drawMap: (g, W, H) => drawMap(g, W, H, quatToEuler(ac.q).psi, true) });
+  cockpit = buildCockpit(settings.plane, { envMap: world.envMap(), drawMap: (g, W, H) => drawMap(g, W, H) });
   cockRoot.add(cockpit.root);
   placeModel();
   document.body.classList.toggle('f16', settings.plane === 'f16');
@@ -423,7 +425,7 @@ const hud = {
   thr: $('#vThr'), thrBar: $('#thrBar'), rpm: $('#vRpm'), rpmL: $('#lRpm'), flap: $('#vFlap'), trim: $('#vTrim'), gear: $('#vGear'), brake: $('#vBrake'),
   ti: $('#touchInfo'), aoa: $('#aoaFill'), aoaV: $('#vAoa'), stall: $('#stall'), g: $('#vG'), near: $('#near'), msg: $('#msg'),
 };
-const mini = $('#mini'), mctx = mini.getContext('2d');
+const mini = $('#mini');
 const bGear = $('#bGear'), bBrake = $('#bBrake'), camLab = $('#camLab');
 const att = $('#att'), actx = att.getContext('2d');
 let hudT = 0;
@@ -491,71 +493,14 @@ function drawHUD(dt) {
   drawAtt(e);
   return warn;
 }
-function drawMini(psi) { drawMap(mctx, mini.width, mini.height, psi); }
-// küçük harita (ve F-16'nın MFD'si): İstanbul içinde ayrıntılı doku, dışında Türkiye haritası; uçak ortada
-function drawMap(mctx, W, H, psi, mfd = false) {
-  const x = ac.pos[1], y = ac.pos[0];
-  mctx.fillStyle = '#2f6a8e'; mctx.fillRect(0, 0, W, H);
-  const inIst = x > world.X0 + 3000 && x < world.X1 - 3000 && y > world.Y0 + 3000 && y < world.Y1 - 3000;
-  const span = inIst ? 12000 : 60000;
-  if (inIst) {
-    const img = world.minimap;
-    const sx = img.width / (world.X1 - world.X0), sy = img.height / (world.Y1 - world.Y0);
-    const cx = (x - world.X0) * sx, cy = (world.Y1 - y) * sy, half = span / 2 * sx;
-    mctx.drawImage(img, cx - half, cy - half, half * 2, half * 2, 0, 0, W, H);
-  } else {
-    const hm = world.idx.harita, img = world.trmap;
-    const sx = img.width / hm.w, cx = (x - hm.x0) * sx, cy = (hm.y0 + hm.h - y) * sx, half = span / 2 * sx;
-    mctx.imageSmoothingEnabled = true;
-    mctx.drawImage(img, cx - half, cy - half, half * 2, half * 2, 0, 0, W, H);
-  }
-  const k = W / span;
-  const tp = (px, py) => [W / 2 + (px - x) * k, H / 2 - (py - y) * k];
-  mctx.strokeStyle = '#222'; mctx.lineWidth = 3;
-  for (const rw of world.rws) { const a = tp(rw.ax, rw.ay), b = tp(rw.ax + rw.ux * rw.len, rw.ay + rw.uy * rw.len); if (Math.abs(a[0] - W / 2) < W && Math.abs(a[1] - H / 2) < H) { mctx.beginPath(); mctx.moveTo(...a); mctx.lineTo(...b); mctx.stroke(); } }
-  mctx.fillStyle = '#b3262e';
-  for (const l of world.landmarkPos) { const [u, v] = tp(l.x, l.y); if (u > 0 && v > 0 && u < W && v < H) mctx.fillRect(u - 1.5, v - 1.5, 3, 3); }
-  if (!inIst) {
-    mctx.font = 'bold 10px system-ui,sans-serif'; mctx.fillStyle = '#fff'; mctx.strokeStyle = 'rgba(0,0,0,.6)'; mctx.lineWidth = 3;
-    for (const c of world.cities) { const [u, v] = tp(c.x, c.y); if (u > 4 && v > 10 && u < W - 4 && v < H - 4) { mctx.strokeText(c.ad, u + 4, v + 3); mctx.fillText(c.ad, u + 4, v + 3); mctx.fillRect(u - 2, v - 2, 4, 4); } }
-  }
-  mctx.save(); mctx.translate(W / 2, H / 2); mctx.rotate(psi);
-  mctx.fillStyle = '#fff'; mctx.strokeStyle = '#000'; mctx.lineWidth = 1;
-  mctx.beginPath(); mctx.moveTo(0, -8); mctx.lineTo(5, 6); mctx.lineTo(0, 3); mctx.lineTo(-5, 6); mctx.closePath(); mctx.fill(); mctx.stroke();
-  mctx.restore();
-  mctx.fillStyle = 'rgba(255,255,255,.85)'; mctx.font = 'bold 11px system-ui,sans-serif'; mctx.fillText('K', W / 2 - 3, 12);
-}
-// büyük Türkiye haritası (N / HARİTA)
-let mapOpen = false;
-const big = $('#bigmap'), bctx = big.getContext('2d');
+// küçük ve büyük harita: js/harita.js
+let miniMap = null, bigMap = null, mapOpen = false;
+const big = $('#bigmap');
+function drawMini(psi) { if (miniMap) miniMap.draw(ac, psi); }
+// F-16 MFD haritası: küçük haritanın tuvalinden kopyalanır
+function drawMap(g, W, H) { if (mini.width) g.drawImage(mini, 0, 0, mini.width, mini.height, 0, 0, W, H); }
 function toggleMap(v = !mapOpen) { mapOpen = v; big.classList.toggle('show', v); if (v) drawBigMap(); }
-function drawBigMap() {
-  const hm = world.idx.harita, img = world.trmap;
-  const r = big.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio);
-  const W = Math.round(r.width * dpr), H = Math.round(r.height * dpr);
-  if (big.width !== W || big.height !== H) { big.width = W; big.height = H; }
-  // Türkiye'yi sığdır: x -350..1350 km, y -620..+180 km
-  const X0 = -330000, X1 = 1330000, Y0 = -600000, Y1 = 190000;
-  const s = Math.min(W / (X1 - X0), H / (Y1 - Y0));
-  const ox = (W - (X1 - X0) * s) / 2, oy = (H - (Y1 - Y0) * s) / 2;
-  const tp = (x, y) => [ox + (x - X0) * s, oy + (Y1 - y) * s];
-  bctx.fillStyle = '#2f5f80'; bctx.fillRect(0, 0, W, H);
-  const [ix, iy] = tp(hm.x0, hm.y0 + hm.h);
-  bctx.drawImage(img, ix, iy, hm.w * s, hm.h * s);
-  bctx.font = `${Math.round(11 * dpr)}px system-ui,sans-serif`; bctx.lineWidth = 3 * dpr; bctx.strokeStyle = 'rgba(0,0,0,.55)';
-  for (const c of world.cities.slice(0, 40)) { const [u, v] = tp(c.x, c.y); bctx.fillStyle = '#fff'; bctx.fillRect(u - 2 * dpr, v - 2 * dpr, 4 * dpr, 4 * dpr); if (c.nufus > 250000) { bctx.strokeText(c.ad, u + 5 * dpr, v + 4 * dpr); bctx.fillText(c.ad, u + 5 * dpr, v + 4 * dpr); } }
-  bctx.strokeStyle = '#ffcf33'; bctx.lineWidth = 3 * dpr;
-  for (const a of world.rws) { const p1 = tp(a.ax, a.ay), p2 = tp(a.ax + a.ux * a.len, a.ay + a.uy * a.len); bctx.beginPath(); bctx.moveTo(...p1); bctx.lineTo(p2[0] + (p2[0] - p1[0]) * 3, p2[1] + (p2[1] - p1[1]) * 3); bctx.stroke(); }
-  for (const p of world.peaks.slice(0, 10)) { const [u, v] = tp(p.x, p.y); bctx.fillStyle = '#fff'; bctx.beginPath(); bctx.moveTo(u, v - 5 * dpr); bctx.lineTo(u + 4 * dpr, v + 3 * dpr); bctx.lineTo(u - 4 * dpr, v + 3 * dpr); bctx.fill(); }
-  if (ac) {
-    const [u, v] = tp(ac.pos[1], ac.pos[0]); const psi = quatToEuler(ac.q).psi;
-    bctx.save(); bctx.translate(u, v); bctx.rotate(psi); bctx.scale(dpr * 1.6, dpr * 1.6);
-    bctx.fillStyle = '#ff4d4d'; bctx.strokeStyle = '#fff'; bctx.lineWidth = 1.5;
-    bctx.beginPath(); bctx.moveTo(0, -9); bctx.lineTo(6, 7); bctx.lineTo(0, 3); bctx.lineTo(-6, 7); bctx.closePath(); bctx.fill(); bctx.stroke(); bctx.restore();
-  }
-  bctx.fillStyle = 'rgba(255,255,255,.9)'; bctx.font = `bold ${Math.round(13 * dpr)}px system-ui,sans-serif`;
-  bctx.fillText('Türkiye · kapatmak için N ya da dokunun', 12 * dpr, 20 * dpr);
-}
+function drawBigMap() { if (bigMap) bigMap.draw(ac, ac ? quatToEuler(ac.q).psi : 0); }
 function drawAtt(e) {
   const W = att.width, H = att.height, r = W / 2 - 2;
   actx.save(); actx.clearRect(0, 0, W, H);
