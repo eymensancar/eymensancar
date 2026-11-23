@@ -14,7 +14,7 @@ import { ShapeUtils } from '../vendor/three.module.min.js';
 
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
 async function json(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }
-const DETAIL = { LTFM: 'ltfm', LTFJ: 'ltfj', LTBA: 'ltba', LTAC: 'ltac', LTBJ: 'ltbj', LTAI: 'ltai', LTDB: 'ltdb', LTAJ: 'ltaj', LTCC: 'ltcc', LTAU: 'ltau', LTAN: 'ltan', LTAZ: 'ltaz', LTBS: 'ltbs', LTFE: 'ltfe', LTFG: 'ltfg' };
+const DETAIL = { LTFM: 'ltfm', LTFJ: 'ltfj', LTBA: 'ltba', LTAC: 'ltac', LTBJ: 'ltbj', LTAI: 'ltai', LTDB: 'ltdb', LTAJ: 'ltaj', LTCC: 'ltcc', LTAU: 'ltau', LTAN: 'ltan', LTAZ: 'ltaz', LTBS: 'ltbs', LTFE: 'ltfe', LTFG: 'ltfg', LTCG: 'ltcg', LTFH: 'ltfh', LTCE: 'ltce' };
 export const BUILD_R = 30000, DROP_R = 45000, LOAD_R = 60000;
 
 // ---------- derinlik payı (kırpma uzayında sabit): araziyle aynı düzlemdeki yüzeyler öne çıkar ----------
