@@ -281,20 +281,20 @@ export class World {
           vec3 toC = cameraPosition - vW; float dist = length(toC); vec3 V = toC / dist;
           float t = uTime;
           // akıntı: en yakın akış çizgisi
-          vec2 fdir = vec2(0.0); float fm = 0.0;
+          vec2 flowD = vec2(0.0); float fm = 0.0;
           for (int i = 0; i < NSEG; i++) {
             vec2 a = uSeg[i].xy, b = uSeg[i].zw, ab = b - a;
             float h = clamp(dot(L - a, ab) / dot(ab, ab), 0.0, 1.0);
             float d = length(L - a - ab * h);
             float m = 1.0 - smoothstep(250.0, 1100.0, d);
-            if (m > fm) { fm = m; fdir = normalize(ab); }
+            if (m > fm) { fm = m; flowD = normalize(ab); }
           }
           // dalga eğimleri: dört ölçek
           float fine = 1.0 - smoothstep(250.0, 2200.0, dist), mid = 1.0 - smoothstep(1500.0, 12000.0, dist);
           vec2 s = slope(A / 330.0 + vec2(0.0021, 0.0013) * t) * 0.55;
           vec2 w1 = vec2(0.0063, 0.0031) * t, w2 = vec2(-0.0102, 0.0205) * t;
           if (fm > 0.01) {
-            vec2 fl = fdir * fm * 1.8;          // ~1.8 m/sn yüzey akıntısı
+            vec2 fl = flowD * fm * 1.8;          // ~1.8 m/sn yüzey akıntısı
             s += flowSlope(A / 110.0 + w1, fl * 5.0 / 110.0, t * 0.2) * 0.75 * mid;
             s += flowSlope(A / 33.0 + w2, fl * 5.0 / 33.0, t * 0.2) * 0.55 * fine;
           } else {
@@ -305,7 +305,7 @@ export class World {
             s += slope(A / 11.0 + vec2(0.031, -0.024) * t) * 0.3 * (1.0 - smoothstep(60.0, 500.0, dist));
           #endif
           // Boğaz'da akıntı çizgileri: akışa dik sıkışan küçük dalgacık şeritleri
-          s *= 1.0 + fm * 0.35 * (0.5 + 0.5 * sin(dot(L, vec2(-fdir.y, fdir.x)) * 0.045 + texture2D(tN, A / 900.0).b * 6.0));
+          s *= 1.0 + fm * 0.35 * (0.5 + 0.5 * sin(dot(L, vec2(-flowD.y, flowD.x)) * 0.045 + texture2D(tN, A / 900.0).b * 6.0));
           float amp = 0.20 * (1.0 - 0.45 * smoothstep(3000.0, 30000.0, dist));
           vec3 n = normalize(vec3(-s.x * amp, 1.0, s.y * amp));
           // kıyı alanı

@@ -77,7 +77,7 @@ vec3 skyAt(vec3 d) {
 }`;
 
 // kalite: dusuk / orta / yuksek (main.js'teki ayar world.opts'tan çıkarılır)
-let QL = 'orta';
+let QL = 'orta', SKYMAT = null;
 export function setupAtmosphere(world, opts = {}) {
   const { scene, renderer } = world;
   const o = world.opts || {};
@@ -122,13 +122,15 @@ export function setupAtmosphere(world, opts = {}) {
   const skyMat = new THREE.ShaderMaterial({
     side: THREE.BackSide, depthWrite: false, depthTest: false, fog: false, toneMapped: false,
     vertexShader: 'varying vec3 vd; void main(){ vd = position; vec4 p = projectionMatrix * modelViewMatrix * vec4(position,1.0); gl_Position = p.xyww; }',
-    fragmentShader: `varying vec3 vd; ${SKY_GLSL}
+    uniforms: { uCloud: { value: 0 } },
+    fragmentShader: `varying vec3 vd; uniform float uCloud; ${SKY_GLSL}
       void main(){ vec3 d = normalize(vd); vec3 c = skyAt(d);
         float s = max(dot(d, SKY_SUN), 0.0);
         float disc = smoothstep(0.99955, 0.99972, s);
         float limb = sqrt(max(0.0, 1.0 - (1.0 - s) / 0.00045));
         c += SKY_SUNCOL * vec3(1.0, 0.95, 0.85) * disc * (0.6 + 0.4 * limb) * 2.0;
         c += SKY_SUNCOL * pow(s, 900.0) * 0.35;
+        c = mix(c, ${c3(HOR)} * 1.25 + 0.06, uCloud);   // bulutun içinde gök görünmez
         gl_FragColor = vec4(c, 1.0); }`,
   });
   const sky = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 24), skyMat);
@@ -155,6 +157,7 @@ export function setupAtmosphere(world, opts = {}) {
     sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.6;
     sun.shadow.camera.updateProjectionMatrix();
   }
+  SKYMAT = skyMat;
   return { sky, skyMat, sun, hemi };
 }
 
@@ -191,6 +194,15 @@ export function updateShadows(world, camLocal) {
 // Sirrüs: 7-9 km'de yatay ince tül (orta ve yüksek kalitede), 1 çizim.
 function rng(s) { let seed = s; return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
 
+// tekrar eden kafes üzerinde yumuşak değer gürültüsü (0-1)
+const VN = (() => { const r = rng(91), a = new Float32Array(64 * 64); for (let i = 0; i < a.length; i++) a[i] = r(); return a; })();
+function vnoise(x, y) {
+  const xi = Math.floor(x), yi = Math.floor(y), fx = x - xi, fy = y - yi;
+  const u = fx * fx * (3 - 2 * fx), w = fy * fy * (3 - 2 * fy);
+  const g = (i, j) => VN[((j & 63) << 6) | (i & 63)];
+  const a = g(xi, yi) + (g(xi + 1, yi) - g(xi, yi)) * u, b = g(xi, yi + 1) + (g(xi + 1, yi + 1) - g(xi, yi + 1)) * u;
+  return a + (b - a) * w;
+}
 function puffAtlas(T) {
   // 2 x 2 atlas, her biri T x T: kubbe yükseklik alanı (küreler birleşimi) -> normal, kalınlık, örtü
   const N = T * 2, data = new Uint8Array(N * N * 4), rnd = rng(11);
@@ -208,8 +220,8 @@ function puffAtlas(T) {
       const x = (i + 0.5) / T, y = (j + 0.5) / T;
       let h = 0;
       for (const [cx, cy, R] of blobs) { const d2 = (x - cx) ** 2 + (y - cy) ** 2; if (d2 < R * R) h = Math.max(h, Math.sqrt(R * R - d2) * (0.75 + 0.25 * (1 - cy))); }
-      // ince gürültü (kenar yırtıkları)
-      h *= 0.86 + 0.14 * Math.sin(x * 61 + v * 3) * Math.sin(y * 53 - v);
+      // yumuşak değer gürültüsü (kenar yırtıkları, yüzey kabarıklığı)
+      h *= 0.78 + 0.22 * vnoise(x * 7 + v * 13, y * 7) + 0.08 * (vnoise(x * 17 + v * 5, y * 17 + 3) - 0.5);
       hf[j * T + i] = h;
     }
     const ox = (v % 2) * T, oy = (v >> 1) * T;
@@ -217,9 +229,9 @@ function puffAtlas(T) {
       const h = hf[j * T + i];
       const hx = (hf[j * T + Math.min(T - 1, i + 1)] - hf[j * T + Math.max(0, i - 1)]) * T * 0.5;
       const hy = (hf[Math.min(T - 1, j + 1) * T + i] - hf[Math.max(0, j - 1) * T + i]) * T * 0.5;
-      let nx = -hx * 1.6, ny = -hy * 1.6; const nl = Math.hypot(nx, ny, 1); nx /= nl; ny /= nl;
+      let nx = -hx * 1.1, ny = -hy * 1.1; const nl = Math.hypot(nx, ny, 1); nx /= nl; ny /= nl;
       const k = ((oy + j) * N + ox + i) * 4;
-      const al = sm(0.0, 0.06, h);
+      const al = sm(0.0, 0.09, h);
       data[k] = 128 + nx * 127; data[k + 1] = 128 + ny * 127; data[k + 2] = Math.min(255, h * 900); data[k + 3] = al * 255;
     }
   }
@@ -243,7 +255,7 @@ const LIGHT_GLSL = `
     float silver = hg * edge;
     vec3 amb = mix(${c3(lerp3(HOR, [0.5, 0.5, 0.55], 0.3))}, ${c3(ZEN)} * 1.35 + 0.18, clamp(nw.y * 0.5 + 0.5, 0.0, 1.0));
     amb = mix(amb * 0.75, amb, hgt);
-    vec3 c = SKY_SUNCOL * vec3(1.0, 0.985, 0.96) * (dif * 0.78 + silver) * ${(0.55 + 0.45 * sm(0, 15, EL)).toFixed(3)} + amb * 0.42;
+    vec3 c = SKY_SUNCOL * vec3(1.0, 0.985, 0.96) * (dif * 0.78 + silver) * ${(0.55 + 0.45 * sm(0, 15, EL)).toFixed(3)} + amb * ${(0.42 + 0.3 * GOLD).toFixed(3)};
     return c;
   }`;
 
@@ -280,8 +292,8 @@ export function makeClouds(scene) {
   geo.instanceCount = N;
   const mat = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, fog: true,
-    uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, { map: { value: tex }, wrap: { value: new THREE.Vector3() } }]),
-    vertexShader: `attribute vec4 puff; attribute vec4 info; uniform vec3 wrap;
+    uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, { map: { value: tex }, wrap: { value: new THREE.Vector3() }, uIn: { value: 0 } }]),
+    vertexShader: `attribute vec4 puff; attribute vec4 info; uniform vec3 wrap; uniform float uIn;
       varying vec2 vu; varying float va; varying float vh; varying vec2 vrot; varying vec3 vW;
       #include <fog_pars_vertex>
       void main(){
@@ -291,6 +303,7 @@ export function makeClouds(scene) {
         vec4 mvPosition = viewMatrix * vec4(wp, 1.0);
         float d = length(mvPosition.xyz);
         va = smoothstep(puff.w * 0.5, puff.w * 1.6, d) * (1.0 - smoothstep(wrap.z * 0.36, wrap.z * 0.5, length(p)));
+        va *= 1.0 - uIn * (1.0 - smoothstep(300.0, 1500.0, d)); // bulutun içindeyken yakın kabarcıklar yerine sis
         float c = cos(info.w), s = sin(info.w);
         vec2 q = mat2(c, s, -s, c) * position.xy;
         mvPosition.xy += q * puff.w;
@@ -444,6 +457,8 @@ export function makeClouds(scene) {
         const w = Math.min(1, dens * 1.4);
         f.color.setRGB(1 + w * 0.32, 1 + w * 0.25, 1 + w * 0.17, THREE.LinearSRGBColorSpace);
       } else if (f.color.r !== 1) f.color.setRGB(1, 1, 1, THREE.LinearSRGBColorSpace);
+      if (SKYMAT) SKYMAT.uniforms.uCloud.value = Math.min(1, dens * 1.6);
+      mat.uniforms.uIn.value = Math.min(1, dens * 1.5);
     },
   };
 }
