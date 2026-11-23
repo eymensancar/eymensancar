@@ -352,13 +352,14 @@ pol('pyk', {'tr': 'Yıkım Ustası', 'en': 'Demolition Master'}, {
   rights=['Usage statistics and crash reports are not matched to your identity, and deleting the app resets the installation ID.']),
 })
 
-# --- Sayı Yolu (yayınlanacak hâli): AdMob (kişiselleştirme yok, takip izni yok, onay formu), kimliksiz ölçüm, Game Center, bildirim, fotoğraf/kamera/mikrofon
+# --- Sayı Yolu: AdMob (takip izni + onay formu; 23 Kasım, Apple 5.1.2(i)), kimliksiz ölçüm, Game Center, bildirim, fotoğraf/kamera/mikrofon
 pol('psy', {'tr': 'Sayı Yolu', 'en': 'Number Path'}, {
  'tr': dict(
   we=['Kişisel bilgi toplamayız. Oyunda hesap, giriş ya da sohbet yoktur; adın, e-postan, rehberin ya da konumun istenmez. Bize ulaşan tek veri, aşağıda anlatılan kimliksiz kullanım sayılarıdır.'],
   dev=['Oyundaki ilerlemen (bölümler, yıldızlar, en iyi süreler, günlük bulmaca serisi, ipuçları, altın, dükkandan aldıkların ve ayarlar) yalnızca cihazında saklanır ve bize gönderilmez. Tahtanın arkasına koyduğun fotoğraf, kendi müziğin ve kaydettiğin sesler de yalnızca cihazında durur; hiçbir yere gönderilmez.'],
   ads=['Oyun, Google AdMob üzerinden reklam gösterir: isteğe bağlı ödüllü reklamlar (örneğin ipucu, altın ya da günlük serini kurtarmak için) ve ileri bölümlerde arada bir bölüm arası reklam. Oyun ayrıca diğer oyunumuz Yıkım Ustası\'nın tanıtımını gösterebilir; bu tanıtımı oyun kendisi çizer, reklam ağından gelmez.',
-       NO_TRACK['tr'], G_TECH['tr'].format(idfa=''), UMP['tr']],
+       "Oyun, Apple'ın “Uygulama İzleme Şeffaflığı” penceresiyle takip izni sorar. İzin verirsen reklamlar ilgi alanlarına göre kişiselleştirilebilir; vermezsen reklamlar yine gösterilir ama kişiselleştirilmez. Bu izni istediğin zaman iPhone Ayarlar → Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin.",
+       G_TECH['tr'].format(idfa=' ve yalnızca takip iznini verirsen Apple reklam kimliği (IDFA)'), UMP['tr']],
   stat=['Hangi bölümlerin fazla zor olduğunu ve oyuncuların geri dönüp dönmediğini öğrenmek için oyun kimliksiz, toplu sayılar gönderir; örneğin “12. bölüm başladı”, “12. bölüm 48 saniyede bitti”, “günlük bulmaca çözüldü”, “ipucu kullanıldı”, “reklam izlendi”. Her pakette yalnızca uygulama sürümü, uygulama dili ve kurulum günü bulunur.',
         'Bu sayılarda hiçbir kimlik yoktur: reklam kimliği, cihaz kimliği, hesap ya da rastgele kullanıcı numarası gönderilmez. Bu yüzden sayılar sana ya da cihazına bağlanamaz; takip ya da reklam için kullanılmaz. Google E-Tablolar hizmetinde, yalnızca bizim okuyabildiğimiz bir tabloda durur ve yalnızca oyunu iyileştirmek için kullanılır. Oyunda hata raporu gönderen bir araç yoktur.'],
   perm=["Game Center: oyun başarımlar ve sıralamalar için Apple Game Center'da oturum açmanı isteyebilir. Oturum, skorlar ve başarımlar tamamen Apple tarafından yönetilir; Game Center hesap bilgilerin bize iletilmez.",
@@ -371,7 +372,8 @@ pol('psy', {'tr': 'Sayı Yolu', 'en': 'Number Path'}, {
   we=['We do not collect personal information. The game has no account, sign-in or chat; it never asks for your name, email, contacts or location. The only data that reaches us is the anonymous usage counts described below.'],
   dev=['Your game progress (levels, stars, best times, daily puzzle streak, hints, gold, shop items and settings) is stored only on your device and is not sent to us. The photo you put behind the board, your own music and the sounds you record also stay only on your device; they are not sent anywhere.'],
   ads=['The game shows ads through Google AdMob: optional rewarded ads (for a hint, gold or to save your daily streak, for example) and, in later levels, an occasional ad between levels. The game may also show a promotion for our other game, Demolition Master; the game draws this promotion itself and it does not come from an ad network.',
-       NO_TRACK['en'], G_TECH['en'].format(idfa=''), UMP['en']],
+       "The game asks for tracking permission through Apple's App Tracking Transparency prompt. If you allow it, ads may be personalised to your interests; if you decline, you still see ads, but they are not personalised. You can change this at any time in iPhone Settings → Privacy & Security → Tracking.",
+       G_TECH['en'].format(idfa=" and, only if you allow tracking, Apple's advertising identifier (IDFA)"), UMP['en']],
   stat=['To learn which levels are too hard and whether players come back, the game sends anonymous, aggregate counts; for example “level 12 started”, “level 12 finished in 48 seconds”, “daily puzzle solved”, “hint used”, “ad watched”. Each batch contains only the app version, the app language and the install day.',
         'These counts contain no identifier: no advertising identifier, device identifier, account or random user number is sent. They therefore cannot be linked to you or your device, and are not used for tracking or advertising. They are kept in Google Sheets, in a table only we can read and are used only to improve the game. The game has no tool that sends crash reports.'],
   perm=['Game Center: the game may ask you to sign in to Apple Game Center for achievements and leaderboards. Sign-in, scores and achievements are handled entirely by Apple; your Game Center account details are not shared with us.',
