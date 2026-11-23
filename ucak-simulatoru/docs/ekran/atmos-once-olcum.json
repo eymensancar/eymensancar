@@ -1,0 +1,16 @@
+[
+ {
+  "name": "bogaz",
+  "q": "yuksek",
+  "calls": 240,
+  "tris": 2149269,
+  "fps": 10.8
+ },
+ {
+  "name": "ege",
+  "q": "yuksek",
+  "calls": 135,
+  "tris": 132872,
+  "fps": 10.6
+ }
+]

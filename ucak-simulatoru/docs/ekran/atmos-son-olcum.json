@@ -1,0 +1,37 @@
+[
+ {
+  "name": "bogaz",
+  "q": "yuksek",
+  "calls": 238,
+  "tris": 2044677,
+  "fps": 10.6
+ },
+ {
+  "name": "ege",
+  "q": "yuksek",
+  "calls": 136,
+  "tris": 134138,
+  "fps": 10.2
+ },
+ {
+  "name": "bulut",
+  "q": "yuksek",
+  "calls": 223,
+  "tris": 1170461,
+  "fps": 10.2
+ },
+ {
+  "name": "icbulut",
+  "q": "yuksek",
+  "calls": 188,
+  "tris": 1347538,
+  "fps": 10.6
+ },
+ {
+  "name": "batim",
+  "q": "yuksek",
+  "calls": 218,
+  "tris": 1414456,
+  "fps": 10.2
+ }
+]

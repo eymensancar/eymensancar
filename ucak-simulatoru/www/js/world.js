@@ -199,41 +199,224 @@ export class World {
   }
 
   // ---------- su ----------
+  // Deniz: kamerayla gezen tek düzlem, dalgalar dünyaya bağlı. Gölgelendirici (ekran renginde, gökyüzüyle aynı uzay):
+  // - dalga normalleri: tekrar etmeyen dalga tayfından üretilmiş eğim dokusu, dört ölçekte (330 / 110 / 33 / 11 m), farklı
+  //   yönlerde ve hızlarda kayar; uzakta ince ölçekler söner, pürüzlülük artar (ufukta güneş yolu genişler)
+  // - Fresnel (Schlick) gökyüzü yansıması (aynı skyAt), GGX güneş parıltısı, dalga tepelerinde güneşe karşı yeşil-mavi geçirgenlik
+  // - kıyı: kameranın çevresinde karaya uzaklık alanı (kare kare hesaplanır), sığda turkuaz / yeşil, kıyı çizgisinde köpük
+  // - akıntı: Boğaz'da (Karadeniz'den Marmara'ya) ve Çanakkale'de normaller akış yönünde sürüklenir (iki evreli akış haritası)
+  // - bölge rengi: Karadeniz / Marmara daha yeşil-koyu, Ege ve Akdeniz berrak mavi
   _water() {
-    const N = 256, c = document.createElement('canvas'); c.width = c.height = N;
-    const g = c.getContext('2d'); const id = g.createImageData(N, N);
-    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
-      let hx = 0, hy = 0;
-      const W = [[3, 1, 0.5], [1, 4, 0.4], [5, -2, 0.25], [-3, 6, 0.2], [9, 4, 0.1], [-7, -9, 0.08]];
-      for (const [kx, ky, a] of W) { const ph = 2 * Math.PI * (kx * i + ky * j) / N + kx * 1.7; hx += a * kx * Math.cos(ph); hy += a * ky * Math.cos(ph); }
-      const k = (j * N + i) * 4;
-      id.data[k] = 128 + clamp(hx * 12, -127, 127); id.data[k + 1] = 128 + clamp(hy * 12, -127, 127); id.data[k + 2] = 255; id.data[k + 3] = 255;
+    const Qw = this.opts.lowTex ? 0 : this.opts.lod && this.opts.lod[0] >= 2000 ? 2 : 1;
+    // eğim dokusu: 256 x 256, tam sayılı dalga sayılarıyla dikişsiz; R G eğim, B yükseklik
+    const N = 256, data = new Uint8Array(N * N * 4);
+    {
+      let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+      const W = [];
+      for (let k = 0; k < 46; k++) {
+        const m = 2 + Math.pow(rnd(), 1.4) * 34, th = 0.5 + (rnd() - 0.5) * (k % 3 ? 1.6 : 3.4);
+        const kx = Math.round(Math.cos(th) * m), ky = Math.round(Math.sin(th) * m);
+        if (!kx && !ky) continue;
+        W.push([kx, ky, Math.pow(Math.hypot(kx, ky), -1.25), rnd() * 6.283]);
+      }
+      const sx = new Float32Array(N * N), sy = new Float32Array(N * N), hh = new Float32Array(N * N);
+      let mx = 0, mh = 0;
+      for (const [kx, ky, a, ph] of W) {
+        const fx = 2 * Math.PI * kx / N, fy = 2 * Math.PI * ky / N;
+        for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+          const p = fx * i + fy * j + ph, s = Math.sin(p), k = j * N + i;
+          sx[k] -= a * kx * s; sy[k] -= a * ky * s; hh[k] += a * Math.cos(p);
+        }
+      }
+      for (let k = 0; k < N * N; k++) { mx = Math.max(mx, Math.abs(sx[k]), Math.abs(sy[k])); mh = Math.max(mh, Math.abs(hh[k])); }
+      for (let k = 0; k < N * N; k++) {
+        data[k * 4] = 128 + sx[k] / mx * 127; data[k * 4 + 1] = 128 + sy[k] / mx * 127; data[k * 4 + 2] = 128 + hh[k] / mh * 127; data[k * 4 + 3] = 255;
+      }
     }
-    g.putImageData(id, 0, 0);
-    const nm = new THREE.CanvasTexture(c); nm.wrapS = nm.wrapT = THREE.RepeatWrapping;
+    const nm = new THREE.DataTexture(data, N, N, THREE.RGBAFormat);
+    nm.wrapS = nm.wrapT = THREE.RepeatWrapping; nm.colorSpace = THREE.NoColorSpace;
+    nm.minFilter = THREE.LinearMipmapLinearFilter; nm.magFilter = THREE.LinearFilter; nm.generateMipmaps = true;
+    nm.anisotropy = Math.min(Qw ? 8 : 2, this.renderer.capabilities.getMaxAnisotropy()); nm.needsUpdate = true;
     this.WSIZE = 600000; this.WTILE = 110;
-    nm.repeat.set(this.WSIZE / this.WTILE, this.WSIZE / this.WTILE);
-    nm.colorSpace = THREE.NoColorSpace;
     this.waterNormal = nm;
-    // su: derin deniz rengi + gökyüzü yansıması (Fresnel, aynı gökyüzü işlevi) + güneş parıltısı (Phong)
-    const mat = new THREE.MeshPhongMaterial({ color: 0x14465e, specular: 0xfff4e0, shininess: 220, normalMap: nm, normalScale: new THREE.Vector2(0.22, 0.22) });
-    mat.onBeforeCompile = (sh) => {
-      sh.fragmentShader = sh.fragmentShader.replace('#include <opaque_fragment>',
-        `#ifdef USE_FOG
-         { vec3 vdw = transpose(mat3(viewMatrix)) * normalize(vViewPosition);
-           vec3 nw = normalize(transpose(mat3(viewMatrix)) * normal);
-           vec3 rd = reflect(-vdw, nw); rd.y = abs(rd.y);
-           float cosv = clamp(dot(vdw, nw), 0.0, 1.0);
-           float F = 0.02 + 0.98 * pow(1.0 - cosv, 5.0);
-           vec3 refl = pow(skyAt(rd), vec3(2.2)) * 0.9;
-           outgoingLight = mix(outgoingLight, refl, clamp(F, 0.0, 0.85)); }
-         #endif
-         #include <opaque_fragment>`);
+    // kıyı alanı: SN x SN hücre, her biri SC m; R = karaya uzaklık (0-1, 600 m), G = derinlik (0-1, 40 m)
+    const SN = [48, 96, 128][Qw], SC = [140, 80, 64][Qw];
+    const shoreTex = new THREE.DataTexture(new Uint8Array(SN * SN * 4).fill(255), SN, SN, THREE.RGBAFormat);
+    shoreTex.minFilter = shoreTex.magFilter = THREE.LinearFilter; shoreTex.colorSpace = THREE.NoColorSpace; shoreTex.needsUpdate = true;
+    // akıntı yolları (enlem, boylam), yüzey akıntısının yönünde: Boğaz (Karadeniz -> Marmara), Çanakkale (Marmara -> Ege)
+    const lines = [
+      [[41.235, 29.13], [41.175, 29.08], [41.12, 29.07], [41.085, 29.056], [41.045, 29.03], [41.018, 29.003], [40.995, 28.99]],
+      [[40.47, 26.75], [40.40, 26.68], [40.30, 26.58], [40.19, 26.39], [40.10, 26.30], [40.02, 26.18]],
+    ];
+    const segA = [];
+    for (const l of lines) for (let i = 0; i + 1 < l.length; i++) { const a = geo(l[i][0], l[i][1]), b = geo(l[i + 1][0], l[i + 1][1]); segA.push([a.x, a.y, b.x, b.y]); }
+    const NSEG = segA.length;
+    const U = {
+      tN: { value: nm }, uTime: { value: 0 }, uO: { value: new THREE.Vector2() },
+      uShore: { value: shoreTex }, uShoreR: { value: new THREE.Vector4(0, 0, 1, 0) },
+      uSeg: { value: segA.map(() => new THREE.Vector4()) },
+      uDeep: { value: new THREE.Color() }, uShal: { value: new THREE.Color() },
     };
+    const mat = new THREE.ShaderMaterial({
+      fog: true, toneMapped: false, depthWrite: false,
+      uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, {}]),
+      defines: { NSEG, WQ: Qw },
+      vertexShader: `varying vec3 vW;
+        #include <fog_pars_vertex>
+        void main(){ vec4 w = modelMatrix * vec4(position, 1.0); vW = w.xyz;
+          vec4 mvPosition = viewMatrix * w; gl_Position = projectionMatrix * mvPosition;
+          #include <fog_vertex>
+        }`,
+      fragmentShader: `uniform sampler2D tN, uShore; uniform float uTime; uniform vec2 uO; uniform vec4 uShoreR; uniform vec4 uSeg[NSEG];
+        uniform vec3 uDeep, uShal; varying vec3 vW;
+        #include <fog_pars_fragment>
+        vec2 slope(vec2 uv) { return texture2D(tN, uv).rg * 2.0 - 1.0; }
+        // iki evreli akış haritası: akış yönünde sürüklenen doku, evre değişirken atlamasın diye karışık
+        vec2 flowSlope(vec2 uv, vec2 fl, float t) {
+          float p0 = fract(t), p1 = fract(t + 0.5);
+          float w0 = 1.0 - abs(1.0 - 2.0 * p0);
+          return slope(uv - fl * p0) * w0 + slope(uv - fl * p1 + 0.37) * (1.0 - w0);
+        }
+        void main(){
+          vec2 L = vec2(vW.x, -vW.z);          // yerel (kayan orijine göre) doğu, kuzey
+          vec2 A = L + uO;                     // tekrar eden dokular için küçük mutlak koordinat
+          vec3 toC = cameraPosition - vW; float dist = length(toC); vec3 V = toC / dist;
+          float t = uTime;
+          // akıntı: en yakın akış çizgisi
+          vec2 flowD = vec2(0.0); float fm = 0.0;
+          for (int i = 0; i < NSEG; i++) {
+            vec2 a = uSeg[i].xy, b = uSeg[i].zw, ab = b - a;
+            float h = clamp(dot(L - a, ab) / dot(ab, ab), 0.0, 1.0);
+            float d = length(L - a - ab * h);
+            float m = 1.0 - smoothstep(250.0, 1100.0, d);
+            if (m > fm) { fm = m; flowD = normalize(ab); }
+          }
+          // dalga eğimleri: dört ölçek
+          float fine = 1.0 - smoothstep(250.0, 2200.0, dist), mid = 1.0 - smoothstep(1500.0, 12000.0, dist);
+          vec2 s = slope(A / 330.0 + vec2(0.0021, 0.0013) * t) * 0.55;
+          vec2 w1 = vec2(0.0063, 0.0031) * t, w2 = vec2(-0.0102, 0.0205) * t;
+          if (fm > 0.01) {
+            vec2 fl = flowD * fm * 1.8;          // ~1.8 m/sn yüzey akıntısı
+            s += flowSlope(A / 110.0 + w1, fl * 5.0 / 110.0, t * 0.2) * 0.75 * mid;
+            s += flowSlope(A / 33.0 + w2, fl * 5.0 / 33.0, t * 0.2) * 0.55 * fine;
+          } else {
+            s += slope(A / 110.0 + w1) * 0.75 * mid;
+            s += slope(A / 33.0 + w2) * 0.55 * fine;
+          }
+          #if WQ > 1
+            s += slope(A / 11.0 + vec2(0.031, -0.024) * t) * 0.3 * (1.0 - smoothstep(60.0, 500.0, dist));
+          #endif
+          // Boğaz'da akıntı çizgileri: akışa dik sıkışan küçük dalgacık şeritleri
+          s *= 1.0 + fm * 0.35 * (0.5 + 0.5 * sin(dot(L, vec2(-flowD.y, flowD.x)) * 0.045 + texture2D(tN, A / 900.0).b * 6.0));
+          float amp = 0.20 * (1.0 - 0.45 * smoothstep(3000.0, 30000.0, dist));
+          vec3 n = normalize(vec3(-s.x * amp, 1.0, s.y * amp));
+          // kıyı alanı
+          vec2 su = (L - uShoreR.xy) / uShoreR.z;
+          vec4 sh = texture2D(uShore, su);
+          float inR = step(0.0, su.x) * step(su.x, 1.0) * step(0.0, su.y) * step(su.y, 1.0) * uShoreR.w;
+          float edge = smoothstep(0.0, 0.12, min(min(su.x, su.y), min(1.0 - su.x, 1.0 - su.y)));
+          float shore = mix(1.0, sh.r, inR * edge);                      // 0 = kıyı, 1 = açık deniz
+          float depth = mix(1.0, sh.g, inR * edge);
+          float shal = (1.0 - smoothstep(0.0, 0.55, shore)) * (1.0 - smoothstep(0.1, 0.9, depth) * 0.6);
+          // kıyıda dalga küçülür
+          n = normalize(mix(vec3(0.0, 1.0, 0.0), n, 0.55 + 0.45 * smoothstep(0.0, 0.25, shore)));
+          // yansıma
+          vec3 R = reflect(-V, n); R.y = abs(R.y) + 0.002;
+          float cosv = clamp(dot(V, n), 0.0, 1.0);
+          float F = 0.02 + 0.98 * pow(1.0 - cosv, 5.0);
+          vec3 sky = pow(skyAt(normalize(R)), vec3(2.2));
+          // su gövdesi (doğrusal renk): derin ve sığ renk, güneşin yüksekliğiyle aydınlanır
+          vec3 sunD = SKY_SUN, sunC = SKY_SUNCOL;
+          float lit = 0.35 + 0.65 * clamp(sunD.y * 1.6, 0.0, 1.0);
+          vec3 body = mix(uDeep, uShal, shal) * lit;
+          // dalga tepelerinde ışık geçirgenliği (güneşe karşı, yatay bakışta)
+          float crest = texture2D(tN, A / 110.0 + w1).b;
+          float sss = pow(clamp(dot(-V, normalize(vec3(sunD.x, 0.0, sunD.z))) * 0.5 + 0.5, 0.0, 1.0), 3.0) * smoothstep(0.45, 0.8, crest) * fine;
+          body += vec3(0.02, 0.10, 0.09) * sss * lit * 0.6;
+          vec3 col = mix(body, sky * 0.92, F);
+          // güneş parıltısı: GGX, uzakta pürüzlülük artar
+          vec3 H = normalize(V + sunD);
+          float rgh = mix(0.06, 0.22, smoothstep(200.0, 20000.0, dist));
+          float a2 = rgh * rgh, ndh = max(dot(n, H), 0.0), dd = ndh * ndh * (a2 - 1.0) + 1.0;
+          float D = a2 / (3.14159 * dd * dd);
+          float Fs = 0.02 + 0.98 * pow(1.0 - max(dot(V, H), 0.0), 5.0);
+          col += sunC * D * Fs * 0.12 * step(0.0, dot(n, sunD));
+          // kıyı köpüğü
+          float foam = (1.0 - smoothstep(0.0, 0.06, shore)) * inR * smoothstep(0.35, 0.75, texture2D(tN, A / 23.0 + vec2(0.0, 0.03) * t).b + 0.2 * sin(t * 0.9 + A.x * 0.05));
+          col = mix(col, vec3(0.75, 0.78, 0.80) * lit, foam * 0.55 * mid);
+          // ekran rengi: parlak parıltı yumuşakça doysun
+          col = col / (1.0 + max(col - 0.9, 0.0));
+          gl_FragColor = vec4(pow(max(col, 0.0), vec3(1.0 / 2.2)), 1.0);
+          #include <fog_fragment>
+        }`,
+    });
+    Object.assign(mat.uniforms, U);
     const w = new THREE.Mesh(new THREE.PlaneGeometry(this.WSIZE, this.WSIZE), mat);
     w.rotation.x = -Math.PI / 2; w.renderOrder = -5; w.frustumCulled = false;
-    mat.depthWrite = false;
     this.water = w; this.scene.add(w);
+    // her kare: zaman, orijin, akış çizgileri, bölge rengi, kıyı alanı (birkaç satır)
+    const T0 = performance.now();
+    const deepC = { kara: [0.010, 0.040, 0.050], ege: [0.004, 0.030, 0.080] }, shalC = { kara: [0.05, 0.17, 0.15], ege: [0.05, 0.25, 0.27] };
+    const fld = { cx: 1e12, cy: 1e12, row: SN, buf: new Uint8Array(SN * SN * 4), land: new Uint8Array(SN * SN), dep: new Float32Array(SN * SN), nx: 0, ny: 0 };
+    let fr = 0;
+    w.onBeforeRender = (r, s, cam) => {
+      const O = this.O;
+      U.uTime.value = (performance.now() - T0) / 1000;
+      U.uO.value.set(((O.x % 3300) + 3300) % 3300, ((O.y % 3300) + 3300) % 3300);
+      for (let i = 0; i < NSEG; i++) { const g = segA[i]; U.uSeg.value[i].set(g[0] - O.x, g[1] - O.y, g[2] - O.x, g[3] - O.y); }
+      const ax = cam.position.x + O.x, ay = -cam.position.z + O.y;
+      if (fr++ % 60 === 0) {
+        // bölge: Ege / Akdeniz (berrak mavi) ile Marmara / Karadeniz (yeşilimsi) arasında
+        const g = ungeo(ax, ay);
+        const ege = clamp(Math.max((40.35 - g.lat) / 0.5, (37.4 - g.lat) / 0.4, (g.lon < 26.9 ? 1 : 0) * (41 - g.lat)), 0, 1);
+        U.uDeep.value.setRGB(...deepC.kara.map((v, i) => v + (deepC.ege[i] - v) * ege), THREE.LinearSRGBColorSpace);
+        U.uShal.value.setRGB(...shalC.kara.map((v, i) => v + (shalC.ege[i] - v) * ege), THREE.LinearSRGBColorSpace);
+      }
+      // kıyı alanı: kamera merkezden alanın dörtte biri uzaklaşınca yeniden; kare başına birkaç satır
+      const half = SN * SC / 2;
+      const stale = fld.dirty && fr % 90 === 0 && !this.pendingNear();
+      if (fld.row >= SN && (stale || Math.abs(ax - fld.cx) > half * 0.45 || Math.abs(ay - fld.cy) > half * 0.45) && this.heights) {
+        fld.nx = Math.round(ax / SC) * SC; fld.ny = Math.round(ay / SC) * SC; fld.row = 0;
+      }
+      if (fld.row < SN) {
+        const x0 = fld.nx - half, y0 = fld.ny - half;
+        for (let e = 0; e < 8 && fld.row < SN; e++, fld.row++) {
+          const j = fld.row;
+          for (let i = 0; i < SN; i++) {
+            const x = x0 + (i + 0.5) * SC, y = y0 + (j + 0.5) * SC, k = j * SN + i;
+            fld.land[k] = this.isLand(x, y) ? 1 : 0; fld.dep[k] = Math.max(0, -this.terrainH(x, y));
+          }
+        }
+        if (fld.row >= SN) {
+          // karaya uzaklık: iki geçişli yaklaşık öklid (chamfer 3-4) dönüşümü
+          const D = new Float32Array(SN * SN);
+          for (let k = 0; k < SN * SN; k++) D[k] = fld.land[k] ? 0 : 1e9;
+          const c1 = SC, c2 = SC * 1.4142;
+          for (let j = 0; j < SN; j++) for (let i = 0; i < SN; i++) {
+            const k = j * SN + i; let v = D[k];
+            if (i > 0) v = Math.min(v, D[k - 1] + c1);
+            if (j > 0) { v = Math.min(v, D[k - SN] + c1); if (i > 0) v = Math.min(v, D[k - SN - 1] + c2); if (i < SN - 1) v = Math.min(v, D[k - SN + 1] + c2); }
+            D[k] = v;
+          }
+          for (let j = SN - 1; j >= 0; j--) for (let i = SN - 1; i >= 0; i--) {
+            const k = j * SN + i; let v = D[k];
+            if (i < SN - 1) v = Math.min(v, D[k + 1] + c1);
+            if (j < SN - 1) { v = Math.min(v, D[k + SN] + c1); if (i < SN - 1) v = Math.min(v, D[k + SN + 1] + c2); if (i > 0) v = Math.min(v, D[k + SN - 1] + c2); }
+            D[k] = v;
+          }
+          const b = shoreTex.image.data;
+          for (let k = 0; k < SN * SN; k++) {
+            // hücrenin ortası karaysa bile kıyı çizgisi hücrenin içinden geçer: yarım hücre kaydır
+            const dm = fld.land[k] ? 0 : Math.max(0, D[k] - SC * 0.5);
+            b[k * 4] = Math.min(255, dm / 600 * 255); b[k * 4 + 1] = Math.min(255, fld.dep[k] / 40 * 255); b[k * 4 + 2] = 0; b[k * 4 + 3] = 255;
+          }
+          shoreTex.needsUpdate = true;
+          fld.cx = fld.nx; fld.cy = fld.ny; fld.dirty = this.pendingNear() > 0; // veri gelmemişse sonra yeniden
+          fld.rx = fld.nx - half; fld.ry = fld.ny - half;
+        }
+      }
+      if (fld.rx != null) U.uShoreR.value.set(fld.rx - O.x, fld.ry - O.y, SN * SC, 1);
+    };
   }
 
   // ---------- arazi ----------

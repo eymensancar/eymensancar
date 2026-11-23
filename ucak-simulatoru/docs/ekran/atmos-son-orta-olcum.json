@@ -1,0 +1,16 @@
+[
+ {
+  "name": "bogaz",
+  "q": "orta",
+  "calls": 207,
+  "tris": 1708778,
+  "fps": 10
+ },
+ {
+  "name": "bulut",
+  "q": "orta",
+  "calls": 161,
+  "tris": 516273,
+  "fps": 10.3
+ }
+]
