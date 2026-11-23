@@ -1,0 +1,32 @@
+[
+ {
+  "name": "ltfm-genel",
+  "calls": 284,
+  "tris": 911104
+ },
+ {
+  "name": "ltfm-kapi",
+  "calls": 169,
+  "tris": 959503
+ },
+ {
+  "name": "ltfm-apron",
+  "calls": 172,
+  "tris": 966780
+ },
+ {
+  "name": "ltac-genel",
+  "calls": 255,
+  "tris": 528668
+ },
+ {
+  "name": "ltac-kapi",
+  "calls": 158,
+  "tris": 437600
+ },
+ {
+  "name": "ltac-apron",
+  "calls": 140,
+  "tris": 327727
+ }
+]

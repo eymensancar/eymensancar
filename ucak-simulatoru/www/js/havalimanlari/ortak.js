@@ -236,7 +236,7 @@ export function terminal(ctx, id, ad, P, opt = {}) {
   let f = () => top, sub = 0;
   if (opt.roof === 'kemer') { const bm = (b0 + b1) / 2, bw = (b1 - b0) / 2; f = (x, y) => { const b = ((x - cx) * vx + (y - cy) * vy - bm) / bw; return top + rise * Math.max(0, 1 - b * b); }; sub = Math.max(6, (b1 - b0) / 14); }
   else if (opt.roof === 'dalga') { f = (x, y) => { const a = (x - cx) * ux + (y - cy) * uy - a0; return top + rise * (0.5 - 0.5 * Math.cos(a / lam * Math.PI * 2)); }; sub = Math.min(lam / 3, 30); }
-  const roof = new GB(), soffit = new GB(), fascia = new GB();
+  const roof = new GB(), soffit = new GB(), fascia = roof;   // kenar bandı çatıyla aynı örgü ve malzeme
   const edge = roofMesh(roof, R, f, sub) || [];
   soffit.prism(R, h, h, false, true);
   for (const [A, B] of edge) {
@@ -292,7 +292,7 @@ export function terminal(ctx, id, ad, P, opt = {}) {
   }
   // saçak kolonları
   const cols = soffit;   // kolonlar saçak altıyla aynı örgüde (tek çizim çağrısı)
-  if ((opt.columns != null ? opt.columns : ov >= 4) && ov > 1.5) {
+  if ((opt.columns != null ? opt.columns : ov >= 5) && ov > 1.5) {
     const C = inflate(P, ov - 1.0);
     for (let i = 0; i < C.length; i++) {
       const [px, py] = C[i], [qx, qy] = C[(i + 1) % C.length], L = Math.hypot(qx - px, qy - py);
@@ -302,7 +302,7 @@ export function terminal(ctx, id, ad, P, opt = {}) {
   }
   const mk = (gb, mat, name) => { if (!gb.count) return; const m = mesh(gb, mat, name); grp.add(m); };
   mk(glass, O.glass, 'cephe'); mk(plinth, M.conc, 'zemin'); mk(roof, opt.roofMat || O.roof, 'cati');
-  mk(soffit, M.white, 'sacak'); mk(fascia, M.dark, 'cati-kenar'); mk(sky, O.sky, 'isiklik'); mk(equip, M.metal, 'cati-donanim');
+  mk(soffit, M.white, 'sacak'); mk(sky, O.sky, 'isiklik'); mk(equip, M.metal, 'cati-donanim');
   grp.userData = { id, ad, taban: P, yukseklik: h, katYuksekligi: fl, kotu: base };
   grp.matrixAutoUpdate = false;
   return ctx.part('terminal:' + id, grp);
@@ -801,8 +801,11 @@ export function synthStands(d, S, terms) {
   const T = AC_TYPES.n, add = [];
   const doorOf = (s) => { const nx = s.x - s.ux * 2, ny = s.y - s.uy * 2; return [nx - s.ux * T.doors[0] - s.uy * (T.R + 1.75), ny - s.uy * T.doors[0] + s.ux * (T.R + 1.75)]; };
   const taken = (x, y) => S.concat(add).some((s) => { if (s.pt || !(s.ux || s.uy)) return false; const [dx, dy] = doorOf(s); return Math.hypot(dx - x, dy - y) < 22; });
+  const onApron = (x, y) => (d.apron || []).some((pl) => pip(pl[0], x, y));
   const make = (cx, cy, F, osm) => {
     const hx = -F.nx, hy = -F.ny, lx = -hy, ly = hx;
+    // uçak apronun üstünde olmalı (iç avlular, kara tarafı değil)
+    if (!onApron(cx + hx * 10 - lx * 6, cy + hy * 10 - ly * 6) || !onApron(cx - hx * 20 - lx * 6, cy - hy * 20 - ly * 6)) return;
     const ax = cx - lx * (T.R + 0.25 + 1.5), ay = cy - ly * (T.R + 0.25 + 1.5);           // kapı (gövde ekseninde)
     const sx = ax + hx * (T.doors[0] + 2), sy = ay + hy * (T.doors[0] + 2);
     let ref = null, bd = 60;
@@ -814,7 +817,9 @@ export function synthStands(d, S, terms) {
     if (taken(b.outer[0], b.outer[1])) continue;
     make(b.outer[0], b.outer[1], facadeAt(terms, b.outer[0], b.outer[1]), b);
   }
-  for (const g of d.gate || []) {
+  // kapı noktalarından üretim yalnız OSM'de terminal önünde hiç park yeri yoksa (yoksa iç avlulara uçak düşer)
+  const osmNear = S.some((s) => !s.pt && !s.synth && facadeAt(terms, s.x, s.y).d < 120);
+  if (!osmNear) for (const g of d.gate || []) {
     const F = facadeAt(terms, g.p[0], g.p[1]); if (!F || F.d > 70) continue;
     const k = Math.max(0, 24 - F.d);
     const cx = g.p[0] + F.nx * k, cy = g.p[1] + F.ny * k;
@@ -829,6 +834,7 @@ export function synthStands(d, S, terms) {
 }
 // OSM'deki köprüler (en az 4 tane varsa yalnız onların yanındaki kapılara) ya da terminale yakın her kapı yeri
 export function jetBridges(ctx, terms, S, opt = {}) {
+  terms = terms || []; S = S || ctx.stands || [];
   const { d } = ctx, O = omats(ctx);
   const gb = CB();
   const kp = [];
@@ -940,6 +946,7 @@ function vehicle(gb, kind, x, y, ang, col) {
 }
 const VCOL = [[0.95, 0.95, 0.94], [0.98, 0.78, 0.08], [0.85, 0.32, 0.12], [0.22, 0.42, 0.7], [0.92, 0.92, 0.9], [0.3, 0.55, 0.35]];
 export function vehicles(ctx, S, opt = {}) {
+  S = S || ctx.stands || [];
   const O = omats(ctx);
   const cells = new Map(), CS = 600;
   const add = (kind, x, y, ang, col) => {
