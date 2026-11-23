@@ -46,7 +46,7 @@ export function build(ctx) {
     }
   }
   militaryJets(ctx, jets);
-  snowField(ctx, -3900, -2500, 3900, 2300);
+  snowField(ctx, -4200, -2800, 4200, 2600);
   snowBanks(ctx);
   return R;
 }
@@ -154,7 +154,7 @@ function snowMat() {
       float n = vn(vQ * 0.0035) * 0.5 + vn(vQ * 0.019) * 0.32 + vn(vQ * 0.13) * 0.18;
       if (n > vF) discard;
       float e = clamp((vF - n) * 7.0, 0.0, 1.0);
-      vec3 c = mix(vec3(0.55, 0.56, 0.52), vec3(0.86, 0.88, 0.92), e) * (0.95 + 0.05 * vn(vQ * 0.9));
+      vec3 c = mix(vec3(0.55, 0.56, 0.52), vec3(0.80, 0.82, 0.86), e) * (0.95 + 0.05 * vn(vQ * 0.9));
       diffuseColor.rgb = c;
       `);
   })(m.onBeforeCompile);
@@ -165,7 +165,7 @@ function snowField(ctx, x0, y0, x1, y1) {
   const { gh } = ctx;
   const S = 62.5, nx = Math.ceil((x1 - x0) / S), ny = Math.ceil((y1 - y0) / S);
   const g = new GB([['fade', 1]]);
-  const edge = 1100;
+  const edge = 1700;
   for (let j = 0; j <= ny; j++) for (let i = 0; i <= nx; i++) {
     const x = x0 + i * S, y = y0 + j * S, h = gh(x, y);
     const e = Math.min(x - x0, x1 - x, y - y0, y1 - y) / edge;
