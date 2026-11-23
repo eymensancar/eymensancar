@@ -55,6 +55,7 @@ export class World {
     this.decks = []; this.colliders = []; this.lmCol = [];
     this.acAlt = 0;
     this.base = 'data/tr/';
+    import('./simgeler-tr.js').then((m) => m.kur(this)); // İstanbul dışı simge yapılar (Ankara, İzmir, Bursa, Konya, Efes, Pamukkale, Nemrut, Sümela, Antalya, köprüler)
   }
   setOrigin(x, y) { this.O.x = x; this.O.y = y; this.root.position.set(-x, 0, y); this.root.updateMatrixWorld(true); }
 
