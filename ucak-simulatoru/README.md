@@ -400,3 +400,7 @@ Dünya işi 16 parçaya bölündü; her parça kendi dosyasında yapıldı.
 - **Gökyüzü ve deniz** (`atmosfer.js`, `world.js` → `_water()`): Rayleigh/Mie gök, güneşe göre aydınlanan kümülüs bulutları, bulut içinde beyazlık, sirrüs; dört ölçekli dalga, Fresnel yansıma, güneş yolu, kıyıda turkuaz geçiş, Boğaz ve Çanakkale akıntısı. Günün saati: `?saat=17.2`.
 
 Bilinen eksikler: Esenboğa apron kenarı lekeleri; oyunda gece yok; bazı ayrıntılar (Antalya T2 son hâli, Efes tiyatrosu, Sümela) tarayıcıda yakından görülmedi; çarpışma ızgarası gizlenen OSM binalarının eski yüksekliklerini tutar.
+
+## Sonra yapılacaklar (Eymen, 23 Kasım; şimdilik bekliyor)
+
+Optimizasyon (gerçek iPhone'da ölçüp), oyuna hikâye, yolcu uçağı, kontrollerin biraz daha ayarlanması.
