@@ -1,16 +1,16 @@
 [
  {
   "name": "istanbul-600",
-  "calls": 201,
-  "tris": 1392431,
+  "calls": 202,
+  "tris": 1392485,
   "terrain": 147,
   "bina": 73
  },
  {
-  "name": "levent-maslak",
-  "calls": 123,
-  "tris": 402964,
-  "terrain": 105,
-  "bina": 44
+  "name": "ltac",
+  "calls": 91,
+  "tris": 56414,
+  "terrain": 5,
+  "bina": 0
  }
 ]
