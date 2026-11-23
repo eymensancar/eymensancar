@@ -1,0 +1,104 @@
+[
+ {
+  "name": "anitkabir",
+  "calls": 276,
+  "tris": 1643241,
+  "fps": 10.000000000000002
+ },
+ {
+  "name": "atakule",
+  "calls": 253,
+  "tris": 1486212,
+  "fps": 10.153221340225272
+ },
+ {
+  "name": "kocatepe",
+  "calls": 239,
+  "tris": 1186863,
+  "fps": 10.819317399429714
+ },
+ {
+  "name": "ankarakalesi",
+  "calls": 249,
+  "tris": 994177,
+  "fps": 10.819317399429405
+ },
+ {
+  "name": "izmir-konak",
+  "calls": 261,
+  "tris": 1515023,
+  "fps": 10.313144571535384
+ },
+ {
+  "name": "kadifekale",
+  "calls": 246,
+  "tris": 1429890,
+  "fps": 10.000000000000002
+ },
+ {
+  "name": "bursa-ulu",
+  "calls": 200,
+  "tris": 1011747,
+  "fps": 10.645504693700516
+ },
+ {
+  "name": "mevlana",
+  "calls": 225,
+  "tris": 727567,
+  "fps": 10.000000000000002
+ },
+ {
+  "name": "devrent",
+  "calls": 193,
+  "tris": 296598,
+  "fps": 10.000000000000002
+ },
+ {
+  "name": "celsus",
+  "calls": 182,
+  "tris": 199072,
+  "fps": 10.312177744445936
+ },
+ {
+  "name": "efes-tiyatro",
+  "calls": 182,
+  "tris": 198729,
+  "fps": 10.313144571535947
+ },
+ {
+  "name": "pamukkale",
+  "calls": 152,
+  "tris": 191447,
+  "fps": 10.819317399428783
+ },
+ {
+  "name": "nemrut",
+  "calls": 234,
+  "tris": 238194,
+  "fps": 10.000000000000002
+ },
+ {
+  "name": "sumela",
+  "calls": 237,
+  "tris": 225438,
+  "fps": 10.312177744445936
+ },
+ {
+  "name": "kaleici",
+  "calls": 249,
+  "tris": 866252,
+  "fps": 10.000000000000002
+ },
+ {
+  "name": "k1915",
+  "calls": 176,
+  "tris": 193687,
+  "fps": 10.31314457153482
+ },
+ {
+  "name": "osmangazi",
+  "calls": 236,
+  "tris": 295675,
+  "fps": 10.476190476190476
+ }
+]
