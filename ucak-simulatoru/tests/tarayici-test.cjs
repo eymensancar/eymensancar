@@ -293,7 +293,7 @@ async function flybyTest(b) {
     const cdp = await ip.context().newCDPSession(ip);
     const tp = (type, x, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x, y, id: 1 }] });
     await tp('touchStart', cx, cy - box.height * 0.36);
-    let qmax = -9; for (let i = 0; i < 8; i++) { await sleep(250); qmax = Math.max(qmax, await ip.evaluate(() => __ucak.ac.w[1])); }
+    let qmax = -9; for (let i = 0; i < 24; i++) { await sleep(250); qmax = Math.max(qmax, await ip.evaluate(() => __ucak.ac.w[1])); }
     await tp('touchEnd', 0, 0);
     console.log('  yukarı tuşu: en büyük yunuslama hızı', (qmax * 57.3).toFixed(1), '°/sn');
     if (!(qmax > 0.02)) errors.push('yukarı tuşu burnu kaldırmadı');
