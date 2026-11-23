@@ -963,3 +963,13 @@ export function simgelerIst(W, n0) {
   W.simIst = { lods: all, tris, ms: Math.round(performance.now() - t0), mats, setNight: (v) => { W.gece = v; } };
   return W.simIst;
 }
+
+// world.js kurucusundaki kanca: import('./simgeler-ist.js').then((m) => m.kur(this));
+// İstanbul simge yapıları ve köprüleri kurulunca (_landmarksIstanbul + _bridges) eskilerin yerini alır.
+export function kur(W) {
+  if (W._lmBuilt && W._lmBuilt.has('istanbul')) { console.warn('Simge yapılar: İstanbul önceden kurulmuş'); return; }
+  const lm = W._landmarksIstanbul, br = W._bridges;
+  let n0 = null;
+  W._landmarksIstanbul = function (...a) { n0 = this.root.children.length; return lm.apply(this, a); };
+  W._bridges = function (...a) { const r = br.apply(this, a); if (n0 != null && !this.simIst) simgelerIst(this, n0); return r; };
+}

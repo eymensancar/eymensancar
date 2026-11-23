@@ -8,7 +8,6 @@ import { pngBytes } from './veri.js';
 import { Heights, Terrain, terrainMaterial } from './terrain.js';
 import { Buildings, merge as mergeGeoms } from './buildings.js';
 import { Airports } from './havalimani.js';
-import { simgelerIst } from './simgeler-ist.js';
 import { setupAtmosphere, updateShadows, makeClouds, SUN, FOG_B } from './atmosfer.js';
 export { geo, ungeo, convergence };
 
@@ -56,6 +55,7 @@ export class World {
     this.decks = []; this.colliders = []; this.lmCol = [];
     this.acAlt = 0;
     this.base = 'data/tr/';
+    import('./simgeler-ist.js').then((m) => m.kur(this));
   }
   setOrigin(x, y) { this.O.x = x; this.O.y = y; this.root.position.set(-x, 0, y); this.root.updateMatrixWorld(true); }
 
@@ -105,7 +105,7 @@ export class World {
       const p = this.heights.patchList.find((q) => q.id === id);
       if (!p || !p.grid || (this._lmBuilt || (this._lmBuilt = new Set())).has(id)) continue;
       this._lmBuilt.add(id);
-      if (id === 'istanbul') { const n0 = this.root.children.length; this._landmarksIstanbul(); this._bridges(this._br); simgelerIst(this, n0); }
+      if (id === 'istanbul') { this._landmarksIstanbul(); this._bridges(this._br); }
       if (id === 'ankara') this._landmarksAnkara();
       if (id === 'izmir') this._landmarksIzmir();
       if (id === 'kapadokya') this._kapadokya();
