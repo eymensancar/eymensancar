@@ -15,8 +15,8 @@
 // - Tuval boyu CSS boyu × cihaz piksel oranı (en çok 3): telefonda da net.
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
 const SPAN_MIN = 4000, SPAN_MAX = 160000;
-const ROAD_W = [0, 2.6, 2.2, 1.8, 1.4, 1.1, 1.0];                       // CSS px
-const ROAD_C = ['', '#f08a3c', '#f6b24a', '#fde08c', '#fbf6e6', '#f4f0e4', '#f6c27a'];
+const ROAD_W = [0, 1.7, 1.45, 1.15, 0.85, 0.7, 0.7];                       // CSS px
+const ROAD_C = ['', '#f08a3c', '#f6b24a', '#fde08c', 'rgba(252,248,236,.8)', 'rgba(248,244,232,.6)', 'rgba(246,194,122,.8)'];
 
 // İstenen dünya dikdörtgenini (x0,y0,x1,y1; y kuzey) bir resimden, kaynağı resmin içinde kalacak biçimde çizer.
 // img dünyada [ix0, iy0, ix1, iy1] alanını kaplar. map: dünya -> tuval (u = ox + x*k, v = oy - y*k).
@@ -113,7 +113,7 @@ class Roads {
     // önce koyu kenar (büyük yollar), sonra dolgu
     for (const pass of [0, 1]) {
       for (const cls of order) {
-        if (pass === 0 && cls > 3) continue;
+        if (pass === 0 && cls > 2) continue;
         g.beginPath();
         let any = false;
         for (const c of vis) for (const r of c) {
@@ -124,7 +124,7 @@ class Roads {
         }
         if (!any) continue;
         const w = ROAD_W[cls] * d * wm;
-        if (pass === 0) { g.strokeStyle = 'rgba(70,45,20,.55)'; g.lineWidth = w + 1.4 * d; } else { g.strokeStyle = ROAD_C[cls]; g.lineWidth = w; }
+        if (pass === 0) { g.strokeStyle = 'rgba(70,45,20,.55)'; g.lineWidth = w + 0.9 * d; } else { g.strokeStyle = ROAD_C[cls]; g.lineWidth = w; }
         g.stroke();
       }
     }
@@ -210,9 +210,9 @@ export class MiniMap {
     if (I) drawClipped(g, I.img, I.x0, I.y0, I.x1, I.y1, vx0, vy0, vx1, vy1, ox, oy, k);
     // yollar: ölçeğe göre
     const span = S / k;
-    const maxCls = span < 14000 ? 6 : span < 32000 ? 5 : span < 70000 ? 3 : span < 170000 ? 2 : 0;
+    const maxCls = span < 9000 ? 6 : span < 20000 ? 4 : span < 45000 ? 3 : span < 110000 ? 2 : span < 260000 ? 1 : 0;
     this.roads.at = { x: cx, y: cy };
-    this.roads.draw(g, vx0, vy0, vx1, vy1, ox, oy, k, maxCls, d, span < 12000 ? 1.3 : span < 45000 ? 1 : 0.8);
+    this.roads.draw(g, vx0, vy0, vx1, vy1, ox, oy, k, maxCls, d, span < 9000 ? 1.25 : span < 45000 ? 1 : 0.85);
     this._airports(g, vx0, vy0, vx1, vy1, ox, oy, k, d);
   }
   _airports(g, vx0, vy0, vx1, vy1, ox, oy, k, d) {
@@ -308,7 +308,7 @@ export class MiniMap {
       const tw = g.measureText(s).width, pad = 4 * d;
       let lx = u + pad; if (lx + tw > W - 3 * d) lx = u - pad - tw;         // kenarda kesilmesin: öbür yana
       const ly = clamp(v + size * 0.35 * d, size * d + 2 * d, H - 3 * d);
-      g.lineWidth = 3 * d; g.strokeStyle = 'rgba(0,0,0,.55)'; g.strokeText(s, lx, ly);
+      g.lineWidth = 2.5 * d; g.strokeStyle = 'rgba(0,0,0,.55)'; g.strokeText(s, lx, ly);
       g.fillStyle = '#fff'; g.fillText(s, lx, ly);
     };
     // simge yapılar (yakında)
@@ -328,7 +328,7 @@ export class MiniMap {
       if (!inV(u, v, 2 * d)) continue;
       if (Math.hypot(u - W / 2, v - H / 2) < 14 * d) continue;
       g.fillStyle = '#fff'; g.fillRect(u - 2 * d, v - 2 * d, 4 * d, 4 * d);
-      label(c.ad, u, v, 10, true);
+      label(c.ad, u, v, 9, true);
       if (++n >= 8) break;
     }
     // havalimanı kodları
@@ -337,7 +337,7 @@ export class MiniMap {
         if (a.kucuk || a.mil) continue;
         const [u, v] = tp(a.x, a.y);
         if (!inV(u, v, 4 * d) || Math.hypot(u - W / 2, v - H / 2) < 16 * d) continue;
-        label(a.iata || a.id, u + 2 * d, v - 6 * d, 9, false);
+        label(a.iata || a.id, u + 2 * d, v - 6 * d, 8, false);
       }
     }
     // yer izi: 60 sn sonra nerede
