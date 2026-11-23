@@ -9,80 +9,272 @@ const CS = 12.5, CN = 80;
 function hash2(x, y) { let h = Math.imul(Math.round(x) ^ 0x27d4eb2d, 0x165667b1) ^ Math.imul(Math.round(y) + 0x9e3779b9, 0x85ebca77); h ^= h >>> 15; h = Math.imul(h, 0xc2b2ae3d); h ^= h >>> 13; return h >>> 0; }
 const SIZES = [1000, 2000, 4000, 8000];
 
-// ---------- cephe dokusu atlası (4 x 3 karo, 256 piksel): alfa = cam maskesi ----------
-// 0 sıva + pencere, 1 balkonlu, 2 cam giydirme, 3 bant pencere, 4 taş, 5 sanayi paneli, 6 dükkân, 7 düz çatı, 8 kiremit
+// ---------- cephe dokusu atlası (4 x 4 karo, 256 piksel) ----------
+// Karo = bir kat x bir pencere aralığı. RGB: duvar beyazı (köşe rengiyle çarpılır) ve gömülü derinlik gölgeleri (pencere
+// girintisi, söve, denizlik, döşeme bandı), A: cam maskesi (yansıma ve gece ışığı). Maske ayrı tuvalde çizilip birleştirilir
+// (tuval alfası önçarpımlı olduğu için RGB bozulmasın diye DataTexture).
+// 0 sıva + pencere, 1 balkonlu, 2 cam giydirme, 3 bant pencere, 4 taş / tarihi, 5 sanayi paneli (bütün yükseklik tek karo),
+// 6 dükkân (zemin kat), 7 düz çatı (membran), 8 kiremit, 9 sera camı, 10 taş kaplama ofis, 11 eski ev (kepenkli), 12 tuğla,
+// 13 yeni konut, 14 metal çatı (kenet), 15 güneş paneli.
+export const ATLAS_N = 4;
 function facadeAtlas() {
-  const T = 256, c = document.createElement('canvas'); c.width = T * 4; c.height = T * 3;
-  const g = c.getContext('2d');
-  let seed = 3; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const tile = (k, fn) => { g.save(); g.translate((k % 4) * T, Math.floor(k / 4) * T); g.beginPath(); g.rect(0, 0, T, T); g.clip(); fn(); g.restore(); };
-  const glass = (x, y, w, h, a = 1) => {
-    const gr = g.createLinearGradient(0, y, 0, y + h); gr.addColorStop(0, `rgba(120,146,168,${a})`); gr.addColorStop(0.55, `rgba(70,88,104,${a})`); gr.addColorStop(1, `rgba(52,62,72,${a})`);
-    g.fillStyle = gr; g.fillRect(x, y, w, h);
+  const T = 256, N = ATLAS_N, S = T * N;
+  const mk = () => { const c = document.createElement('canvas'); c.width = S; c.height = S; return c; };
+  const ca = mk(), cm = mk(), g = ca.getContext('2d'), m = cm.getContext('2d');
+  m.fillStyle = '#000'; m.fillRect(0, 0, S, S);
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const tile = (k, fn) => { for (const q of [g, m]) { q.save(); q.translate((k % N) * T, Math.floor(k / N) * T); q.beginPath(); q.rect(0, 0, T, T); q.clip(); } fn(); g.restore(); m.restore(); };
+  const R = (x, y, w, h, c) => { g.fillStyle = c; g.fillRect(x, y, w, h); };
+  const M = (x, y, w, h, v = 1) => { const k = Math.round(v * 255); m.fillStyle = `rgb(${k},${k},${k})`; m.fillRect(x, y, w, h); };
+  const vgrad = (x, y, w, h, stops) => { const gr = g.createLinearGradient(0, y, 0, y + h); stops.forEach(([t, c]) => gr.addColorStop(t, c)); g.fillStyle = gr; g.fillRect(x, y, w, h); };
+  // sıva: düşük frekanslı, düşük genlikli lekeler (yüksek frekanslı gürültü uzakta karıncalanır)
+  const stucco = (amt, n = 26) => { for (let i = 0; i < n; i++) { const x = rnd() * T, y = rnd() * T, r = 24 + rnd() * 60, gr = g.createRadialGradient(x, y, 0, x, y, r); const c = rnd() < 0.5 ? '0,0,0' : '255,255,255'; gr.addColorStop(0, `rgba(${c},${amt * rnd()})`); gr.addColorStop(1, `rgba(${c},0)`); g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2); } };
+  const wall = (c = '#f6f5f2', amt = 0.05) => { R(0, 0, T, T, c); stucco(amt); };
+  // döşeme bandı (karonun altı = kat seviyesi): üstte ışık, altta gölge çizgisi
+  const slab = (y = 236, c = '#e4e1dc') => { R(0, y, T, T - y, c); R(0, y, T, 2, 'rgba(255,255,255,0.7)'); R(0, T - 3, T, 3, 'rgba(0,0,0,0.10)'); };
+  const glass = (x, y, w, h, a = ['#9cb0c0', '#5a6c7a', '#36424c']) => { vgrad(x, y, w, h, [[0, a[0]], [0.55, a[1]], [1, a[2]]]); M(x, y, w, h, 1); };
+  // girinti: üstte ve solda gölge, sağda ve altta ışık (güneş sol üstten)
+  const opening = (x, y, w, h, d = 10) => {
+    R(x, y, w, h, '#a8a59e');
+    vgrad(x, y, w, d * 1.4, [[0, 'rgba(40,38,36,0.85)'], [1, 'rgba(70,68,64,0.35)']]);
+    R(x, y, Math.round(d * 0.7), h, 'rgba(60,58,55,0.45)');
+    R(x + w - Math.round(d * 0.7), y, Math.round(d * 0.7), h, 'rgba(255,255,255,0.35)');
   };
-  const noise = (a) => { for (let i = 0; i < 1400; i++) { g.fillStyle = `rgba(${rnd() < 0.5 ? '0,0,0' : '255,255,255'},${a * rnd()})`; g.fillRect(rnd() * T, rnd() * T, 2, 2); } };
-  // duvar = beyaz (köşe rengiyle çarpılır), cam = alfa 1 bölge
-  tile(0, () => { g.fillStyle = '#fff'; g.fillRect(0, 0, T, T); noise(0.05); g.fillStyle = '#e2e0dc'; g.fillRect(52, 50, 152, 142); glass(62, 58, 132, 124); g.fillStyle = '#f4f2ee'; g.fillRect(124, 58, 8, 124); g.fillRect(62, 112, 132, 6); g.fillStyle = '#c4c0b8'; g.fillRect(46, 190, 164, 12); g.fillStyle = '#d0ccc6'; g.fillRect(0, 238, T, 18); });
-  tile(1, () => { g.fillStyle = '#fff'; g.fillRect(0, 0, T, T); noise(0.05); glass(36, 30, 184, 172); g.fillStyle = '#efede8'; g.fillRect(124, 30, 8, 172); g.fillStyle = '#b8b4ae'; g.fillRect(14, 196, 228, 16); g.fillStyle = 'rgba(70,74,78,1)'; for (let x = 18; x < 240; x += 10) g.fillRect(x, 160, 3, 36); g.fillRect(14, 156, 228, 5); g.fillStyle = '#d6d2cc'; g.fillRect(0, 212, T, 44); });
-  tile(2, () => { glass(0, 0, T, T); g.fillStyle = 'rgba(150,170,186,0.9)'; g.fillRect(0, 0, T, T * 0.15); g.fillStyle = '#c8ccd0'; g.fillRect(0, 0, 5, T); g.fillRect(126, 0, 4, T); g.fillRect(0, 232, T, 24); });
-  tile(3, () => { g.fillStyle = '#fff'; g.fillRect(0, 0, T, T); noise(0.04); glass(0, 70, T, 110); g.fillStyle = '#e8e6e2'; for (let x = 0; x < T; x += 64) g.fillRect(x, 70, 6, 110); g.fillStyle = '#cfccc6'; g.fillRect(0, 180, T, 10); });
-  tile(4, () => { g.fillStyle = '#fff'; g.fillRect(0, 0, T, T); noise(0.12); g.strokeStyle = 'rgba(0,0,0,0.12)'; for (let y = 0; y < T; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(T, y); g.stroke(); }
-    g.fillStyle = '#ddd6c8'; g.beginPath(); g.moveTo(80, 210); g.lineTo(80, 100); g.arc(128, 100, 48, Math.PI, 0); g.lineTo(176, 210); g.fill();
-    g.save(); g.beginPath(); g.moveTo(90, 200); g.lineTo(90, 100); g.arc(128, 100, 38, Math.PI, 0); g.lineTo(166, 200); g.clip(); glass(88, 58, 80, 144); g.restore(); });
-  tile(5, () => { g.fillStyle = '#f4f4f4'; g.fillRect(0, 0, T, T); for (let x = 0; x < T; x += 16) { g.fillStyle = 'rgba(0,0,0,0.05)'; g.fillRect(x, 0, 3, T); } glass(20, 26, 216, 34); g.fillStyle = '#b0b2b4'; g.fillRect(0, 230, T, 26); });
-  tile(6, () => { g.fillStyle = '#fff'; g.fillRect(0, 0, T, T); glass(14, 70, 228, 160); g.fillStyle = '#eceae6'; g.fillRect(124, 70, 8, 160); const cs = ['#b8452e', '#2f6f8f', '#3d7a3d', '#8a6a2a', '#555c66']; g.fillStyle = cs[2]; g.fillRect(0, 28, T, 34); g.fillStyle = 'rgba(255,255,255,0.8)'; g.fillRect(30, 38, 120, 12); g.fillStyle = '#8c8a86'; g.fillRect(0, 230, T, 26); });
-  tile(7, () => { g.fillStyle = '#d0d0d0'; g.fillRect(0, 0, T, T); for (let i = 0; i < 9000; i++) { const v = 150 + rnd() * 105; g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(rnd() * T, rnd() * T, 2, 2); } g.fillStyle = 'rgba(0,0,0,0.1)'; g.fillRect(0, 0, T, 3); g.fillRect(0, 0, 3, T); });
-  tile(8, () => { for (let y = 0; y < T; y += 32) { const gr = g.createLinearGradient(0, y, 0, y + 32); gr.addColorStop(0, '#fff'); gr.addColorStop(0.75, '#d8d8d8'); gr.addColorStop(1, '#8a8a8a'); g.fillStyle = gr; g.fillRect(0, y, T, 32); for (let x = (y / 32) % 2 * 16; x < T; x += 32) { g.fillStyle = 'rgba(0,0,0,0.12)'; g.fillRect(x, y, 3, 32); } } noise(0.06); });
-  for (const k of [9, 10, 11]) tile(k, () => { g.fillStyle = '#fff'; g.fillRect(0, 0, T, T); });
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
-  t.minFilter = THREE.LinearMipmapLinearFilter; t.generateMipmaps = true;
+  // pencere: girinti + çerçeve + cam + kayıt
+  const window_ = (x, y, w, h, o = {}) => {
+    const d = o.d || 10, fr = o.fr || 6, fc = o.fc || '#f4f4f2';
+    opening(x, y, w, h, d);
+    const ix = x + Math.round(d * 0.7), iy = y + Math.round(d * 0.9), iw = w - Math.round(d * 1.4), ih = h - Math.round(d * 0.9);
+    R(ix, iy, iw, ih, fc);
+    glass(ix + fr, iy + fr, iw - fr * 2, ih - fr * 2, o.ga);
+    const mul = o.mul == null ? 1 : o.mul;
+    for (let k = 1; k <= mul; k++) { const xx = ix + Math.round(iw * k / (mul + 1)) - fr / 2; R(xx, iy, fr, ih, fc); M(xx, iy, fr, ih, 0); }
+    if (o.tr) { const yy = iy + Math.round(ih * o.tr); R(ix, yy, iw, fr, fc); M(ix, yy, iw, fr, 0); }
+    if (o.sill !== false) { R(x - 6, y + h, w + 12, 7, '#f7f6f3'); R(x - 6, y + h + 7, w + 12, 5, 'rgba(0,0,0,0.16)'); }
+  };
+  // 0 sıva + iki kanatlı pencere (panjur kutusu)
+  tile(0, () => { wall(); slab(); window_(70, 44, 116, 152, { mul: 1 }); R(77, 53, 102, 12, '#d9d6d0'); M(77, 53, 102, 12, 0); });
+  // 1 balkon: üstteki balkonun gölgesi, geniş kapı + pencere, korkuluk, öne çıkan döşeme
+  tile(1, () => {
+    wall(); vgrad(0, 0, T, 22, [[0, 'rgba(0,0,0,0.38)'], [1, 'rgba(0,0,0,0)']]);
+    window_(20, 28, 216, 196, { mul: 2, d: 12, sill: false });
+    R(0, 222, T, 34, '#fbfaf8'); R(0, 222, T, 3, '#ffffff'); R(0, 252, T, 4, 'rgba(0,0,0,0.25)');
+    R(0, 152, T, 5, '#5c6064'); M(0, 152, T, 5, 0);
+    for (let x = 4; x < T; x += 11) { R(x, 157, 3, 65, 'rgba(70,74,78,0.95)'); M(x, 157, 3, 65, 0); }
+  });
+  // 2 cam giydirme: görüş camı, döşeme önünde opak bant (spandrel), alüminyum dikmeler
+  tile(2, () => {
+    vgrad(0, 0, T, 190, [[0, '#b4c4d0'], [0.4, '#7a8e9c'], [1, '#56646e']]); M(0, 0, T, 190, 1);
+    R(0, 190, T, 52, '#4e5a62'); R(0, 190, T, 3, 'rgba(255,255,255,0.25)');
+    R(0, 242, T, 14, '#b9c0c6'); R(0, 0, 4, T, '#aeb6bc'); R(T - 4, 0, 4, T, '#aeb6bc'); R(126, 0, 4, T, '#aeb6bc');
+    M(0, 0, 4, T, 0); M(T - 4, 0, 4, T, 0); M(126, 0, 4, T, 0);
+  });
+  // 3 bant pencere (okul, hastane, yeni yapı)
+  tile(3, () => {
+    wall('#f3f2ef', 0.04); slab(226);
+    opening(0, 62, T, 124, 9); glass(0, 72, T, 114);
+    for (let x = 0; x < T; x += 64) { R(x, 70, 6, 116, '#e2e2e0'); M(x, 70, 6, 116, 0); }
+    R(0, 186, T, 8, '#f8f8f6'); R(0, 194, T, 5, 'rgba(0,0,0,0.14)');
+  });
+  // 4 taş: sıra derzleri, kemerli pencere, kilit taşı, kat silmesi
+  tile(4, () => {
+    wall('#f2ede4', 0.07);
+    g.fillStyle = 'rgba(0,0,0,0.07)'; for (let y = 0; y < T; y += 32) { g.fillRect(0, y, T, 2); for (let x = (y / 32) % 2 * 40; x < T; x += 80) g.fillRect(x, y, 2, 32); }
+    const x = 86, w = 84, top = 56, bot = 204;
+    g.fillStyle = 'rgba(40,36,30,0.55)'; g.beginPath(); g.moveTo(x - 10, bot); g.lineTo(x - 10, top + w / 2); g.arc(x + w / 2, top + w / 2, w / 2 + 10, Math.PI, 0); g.lineTo(x + w + 10, bot); g.fill();
+    g.fillStyle = '#e8e1d4'; g.beginPath(); g.moveTo(x - 4, bot); g.lineTo(x - 4, top + w / 2); g.arc(x + w / 2, top + w / 2, w / 2 + 4, Math.PI, 0); g.lineTo(x + w + 4, bot); g.fill();
+    g.save(); g.beginPath(); g.moveTo(x + 6, bot); g.lineTo(x + 6, top + w / 2); g.arc(x + w / 2, top + w / 2, w / 2 - 6, Math.PI, 0); g.lineTo(x + w - 6, bot); g.clip();
+    glass(x, top, w, bot - top); R(x + w / 2 - 3, top, 6, bot - top, '#e8e1d4'); g.restore();
+    // maske de kemer biçiminde
+    M(x, top, w, bot - top, 0); m.fillStyle = '#fff'; m.beginPath(); m.moveTo(x + 6, bot); m.lineTo(x + 6, top + w / 2); m.arc(x + w / 2, top + w / 2, w / 2 - 6, Math.PI, 0); m.lineTo(x + w - 6, bot); m.fill(); M(x + w / 2 - 3, top, 6, bot - top, 0);
+    R(x + w / 2 - 8, top - 12, 16, 16, '#fbf8f1');
+    R(x - 14, bot, w + 28, 8, '#fbf8f1'); R(x - 14, bot + 8, w + 28, 5, 'rgba(0,0,0,0.2)');
+    R(0, 236, T, 20, '#f7f3ea'); R(0, 236, T, 3, '#ffffff'); R(0, 252, T, 4, 'rgba(0,0,0,0.18)');
+  });
+  // 5 sanayi paneli (bütün duvar boyu tek karo): yumuşak trapez nervürler, üstte ışık bandı, altta beton süpürgelik
+  tile(5, () => {
+    R(0, 0, T, T, '#f2f2f1');
+    for (let x = 0; x < T; x += 32) { const gr = g.createLinearGradient(x, 0, x + 32, 0); gr.addColorStop(0, 'rgba(255,255,255,0.10)'); gr.addColorStop(0.3, 'rgba(0,0,0,0)'); gr.addColorStop(0.75, 'rgba(0,0,0,0.05)'); gr.addColorStop(1, 'rgba(0,0,0,0.10)'); g.fillStyle = gr; g.fillRect(x, 0, 32, T); }
+    R(0, 0, T, 10, 'rgba(0,0,0,0.12)');
+    opening(8, 30, 240, 30, 5); glass(12, 34, 232, 26, ['#a6b6c2', '#7d8e9a', '#62707a']);
+    for (let x = 12; x < T; x += 58) { R(x, 34, 4, 26, '#d8dadc'); M(x, 34, 4, 26, 0); }
+    R(0, 222, T, 34, '#c9c7c2'); R(0, 222, T, 3, 'rgba(255,255,255,0.4)');
+  });
+  // 6 dükkân: tabela bandı, vitrin, kapı
+  tile(6, () => {
+    wall('#f2f1ee', 0.04); R(0, 18, T, 46, '#40444a'); R(0, 18, T, 3, 'rgba(255,255,255,0.3)'); R(0, 61, T, 4, 'rgba(0,0,0,0.3)');
+    R(26, 32, 110, 16, 'rgba(238,236,230,0.85)');
+    opening(8, 72, 240, 160, 8); glass(14, 80, 228, 152, ['#8ea2b0', '#566673', '#3a4550']);
+    R(14, 80, 4, 152, '#303438'); R(238, 80, 4, 152, '#303438'); R(150, 80, 5, 152, '#303438'); M(150, 80, 5, 152, 0);
+    R(0, 232, T, 24, '#9c9a96'); R(0, 232, T, 3, 'rgba(255,255,255,0.35)');
+  });
+  // 7 düz çatı: açık gri membran, belli belirsiz ek yerleri
+  tile(7, () => {
+    R(0, 0, T, T, '#dededb'); stucco(0.07, 40);
+    g.fillStyle = 'rgba(0,0,0,0.05)'; for (let k = 0; k < T; k += 64) { g.fillRect(k, 0, 2, T); g.fillRect(0, k, T, 2); }
+  });
+  // 8 kiremit: sıralar (üst ışık, alt gölge), dalgalı oluklar
+  tile(8, () => {
+    for (let y = 0; y < T; y += 32) {
+      vgrad(0, y, T, 32, [[0, '#fbfbfb'], [0.7, '#dcdcdc'], [1, '#8c8c8c']]);
+      for (let x = ((y / 32) % 2) * 11; x < T; x += 22) { const gr = g.createLinearGradient(x, 0, x + 22, 0); gr.addColorStop(0, 'rgba(0,0,0,0.12)'); gr.addColorStop(0.45, 'rgba(255,255,255,0.08)'); gr.addColorStop(1, 'rgba(0,0,0,0.12)'); g.fillStyle = gr; g.fillRect(x, y, 22, 32); }
+    }
+    stucco(0.06, 20);
+  });
+  // 9 sera: süt beyazı paneller, ince alüminyum kayıtlar (düzenli, gürültüsüz)
+  tile(9, () => {
+    vgrad(0, 0, T, T, [[0, '#f4f7f8'], [1, '#dfe6e8']]);
+    g.fillStyle = 'rgba(255,255,255,0.35)'; for (let x = 0; x < T; x += 64) g.fillRect(x + 6, 0, 18, T);
+    g.fillStyle = '#b9c2c6'; for (let x = 0; x < T; x += 64) g.fillRect(x, 0, 3, T); for (let y = 0; y < T; y += 128) g.fillRect(0, y, T, 3);
+  });
+  // 10 taş kaplama ofis: derin girintili dikey pencereler
+  tile(10, () => {
+    wall('#e6e3de', 0.06); g.fillStyle = 'rgba(0,0,0,0.08)'; g.fillRect(0, 0, 2, T); g.fillRect(0, 126, T, 2);
+    window_(40, 22, 176, 188, { mul: 1, d: 16, fr: 5, fc: '#9aa0a6', sill: false, ga: ['#8ea0ae', '#4e5e6a', '#2e3840'] });
+    R(30, 210, 196, 6, 'rgba(0,0,0,0.12)'); slab(238, '#dcd9d3');
+  });
+  // 11 eski ev: uzun dar pencere, ahşap kepenkler, saçak gölgesi
+  tile(11, () => {
+    wall('#f7f5f0', 0.08); vgrad(0, 0, T, 16, [[0, 'rgba(0,0,0,0.3)'], [1, 'rgba(0,0,0,0)']]);
+    window_(94, 40, 68, 168, { mul: 0, tr: 0.32, d: 8, fr: 5, fc: '#efe9de' });
+    for (const sx of [62, 164]) { R(sx, 40, 30, 168, '#6f7d6c'); for (let y = 46; y < 204; y += 9) R(sx + 3, y, 24, 3, 'rgba(0,0,0,0.25)'); R(sx + 30, 40, 3, 168, 'rgba(0,0,0,0.25)'); }
+    slab(240, '#ebe7df');
+  });
+  // 12 tuğla: harç derzleri, beton lento, beyaz çerçeveli pencere
+  tile(12, () => {
+    R(0, 0, T, T, '#b86a4e');
+    for (let y = 0; y < T; y += 16) { for (let x = ((y / 16) % 2) * 24; x < T + 48; x += 48) { const v = rnd() * 0.16 - 0.08; g.fillStyle = v > 0 ? `rgba(255,255,255,${v})` : `rgba(0,0,0,${-v})`; g.fillRect(x - 48 + 2, y + 2, 44, 12); } }
+    g.fillStyle = 'rgba(225,215,200,0.55)'; for (let y = 0; y < T; y += 16) { g.fillRect(0, y, T, 2); for (let x = ((y / 16) % 2) * 24; x < T; x += 48) g.fillRect(x, y, 2, 16); }
+    R(62, 34, 132, 14, '#d6d1c8'); R(62, 48, 132, 4, 'rgba(0,0,0,0.25)');
+    window_(70, 52, 116, 144, { mul: 1, fc: '#f2f2f0' });
+  });
+  // 13 yeni konut: iki geniş pencere, renkli dolgu paneli, belirgin döşeme bandı
+  tile(13, () => {
+    wall('#f8f8f6', 0.04);
+    R(122, 30, 12, 180, '#d4d2cc');
+    window_(14, 32, 104, 176, { mul: 1, d: 8, fr: 5, sill: false, fc: '#e6e8ea' });
+    window_(138, 32, 104, 176, { mul: 0, tr: 0.7, d: 8, fr: 5, sill: false, fc: '#e6e8ea' });
+    R(0, 214, T, 42, '#d8dbdd'); R(0, 214, T, 3, 'rgba(255,255,255,0.8)'); R(0, 252, T, 4, 'rgba(0,0,0,0.15)');
+  });
+  // 14 metal çatı: kenetli dikiş çizgileri (eğim boyunca), çok hafif
+  tile(14, () => {
+    R(0, 0, T, T, '#e6e8ea');
+    for (let x = 0; x < T; x += 32) { R(x, 0, 3, T, 'rgba(255,255,255,0.55)'); R(x + 3, 0, 2, T, 'rgba(0,0,0,0.12)'); }
+    stucco(0.04, 14);
+  });
+  // 15 güneş paneli (su ısıtıcısı): alüminyum çerçeve, koyu mavi hücreler
+  tile(15, () => {
+    R(0, 0, T, T, '#c8ccd0'); vgrad(10, 10, T - 20, T - 20, [[0, '#3a5278'], [1, '#18243a']]); M(10, 10, T - 20, T - 20, 1);
+    g.fillStyle = 'rgba(150,170,200,0.35)'; for (let k = 10; k < T - 10; k += 30) { g.fillRect(k, 10, 2, T - 20); g.fillRect(10, k, T - 20, 2); }
+  });
+  // birleştir: RGB albedo + A maske, dikeyde çevir (v = 0 altta)
+  const A = g.getImageData(0, 0, S, S).data, B = m.getImageData(0, 0, S, S).data;
+  const out = new Uint8Array(S * S * 4);
+  for (let y = 0; y < S; y++) {
+    const so = y * S * 4, d = (S - 1 - y) * S * 4;
+    for (let x = 0; x < S * 4; x += 4) { out[d + x] = A[so + x]; out[d + x + 1] = A[so + x + 1]; out[d + x + 2] = A[so + x + 2]; out[d + x + 3] = B[so + x]; }
+  }
+  const t = new THREE.DataTexture(out, S, S, THREE.RGBAFormat);
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.magFilter = THREE.LinearFilter;
+  t.minFilter = THREE.LinearMipmapLinearFilter; t.generateMipmaps = true; t.needsUpdate = true;
   return t;
 }
+// Bina malzemesi: tek atlas, tek program. Köşe özniteliği `st` stili seçer (0-15 karo, +16 zemin katı dükkân, 32-38 yol,
+// 40 düz duvar, 41 saçak silmesi). Cephe ayrıntısı gölgelendiricide: kat/pencere ızgarası, cam yansıması (gökyüzü/yer),
+// gece pencere ışıkları (uNight ya da güneş kararınca kendiliğinden), parlaklıktan kabartma (yakında), zemin ortam kapatması.
 export function buildingMaterial(skyCol) {
   const atlas = facadeAtlas();
   const mat = new THREE.MeshLambertMaterial({ vertexColors: true });
+  const night = { value: 0 };
+  mat.userData.night = night;
   mat.onBeforeCompile = (sh) => {
-    sh.uniforms.atlas = { value: atlas }; sh.uniforms.skyRef = { value: skyCol || new THREE.Color(0.55, 0.68, 0.82) };
+    sh.uniforms.atlas = { value: atlas }; sh.uniforms.skyRef = { value: skyCol || new THREE.Color(0.55, 0.68, 0.82) }; sh.uniforms.uNight = night;
     sh.vertexShader = 'attribute float st; varying vec2 vB; varying float vSt;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n vB = uv / 16.0; vSt = st;')
-      .replace('#include <project_vertex>', '#include <project_vertex>\n if (st > 31.5) gl_Position.z -= 2.6e-6 * gl_Position.w;');
-    sh.fragmentShader = `uniform sampler2D atlas; uniform vec3 skyRef; varying vec2 vB; varying float vSt; float gWin = 0.0;
+      .replace('#include <project_vertex>', '#include <project_vertex>\n if (st > 31.5 && st < 39.5) gl_Position.z -= 2.6e-6 * gl_Position.w;');
+    sh.fragmentShader = `uniform sampler2D atlas; uniform vec3 skyRef; uniform float uNight; varying vec2 vB; varying float vSt;
+      float gGlass = 0.0, gLit = 0.0, gHgt = 0.0, gBump = 0.0; vec3 gLitC = vec3(0.0);
       float hb(vec2 p){ return fract(sin(dot(p, vec2(41.3, 289.1))) * 43758.5); }
-      ` + sh.fragmentShader.replace('#include <map_fragment>', `
+      vec4 atl(float tl, vec2 f, vec2 gx, vec2 gy) {
+        vec2 off = vec2(mod(tl, ${ATLAS_N}.0), ${ATLAS_N - 1}.0 - floor(tl / ${ATLAS_N}.0)) / ${ATLAS_N}.0;
+        return textureGrad(atlas, off + (f * 0.96 + 0.02) / ${ATLAS_N}.0, gx * ${(0.96 / ATLAS_N).toFixed(4)}, gy * ${(0.96 / ATLAS_N).toFixed(4)});
+      }
+      vec3 bumpN(vec3 p, vec3 n, vec2 dh, float fd) {
+        vec3 sx = normalize(dFdx(p)), sy = normalize(dFdy(p));
+        vec3 r1 = cross(sy, n), r2 = cross(n, sx);
+        float det = dot(sx, r1) * fd;
+        return normalize(abs(det) * n - sign(det) * (dh.x * r1 + dh.y * r2));
+      }
+      ` + sh.fragmentShader.replace('#include <color_fragment>', `
+      vec2 dBx = dFdx(vB), dBy = dFdy(vB);
+      float fw = max(length(dBx), length(dBy));            // piksel başına hücre
+      vec3 upV = normalize((viewMatrix * vec4(0.0, 1.0, 0.0, 0.0)).xyz);
+      bool isWall = abs(dot(normalize(vNormal), upV)) < 0.5;
       float stf = floor(vSt + 0.5);
-      if (stf > 31.5) {
+      vec3 bc = vColor;
+      vec3 col;
+      if (stf > 31.5 && stf < 39.5) {
         // yol: asfalt, kenar çizgileri, kesikli orta / şerit çizgisi
         float cls = stf - 32.0;
         float hw = cls < 1.5 ? 5.5 : cls < 3.5 ? 4.5 : cls < 4.5 ? 3.75 : 3.25;
         float xm = vB.x * hw, ax = abs(xm), along = vB.y;
-        float aw = max(fwidth(xm), 0.02), vis = clamp(0.35 / aw, 0.0, 1.0);
+        float aw = max((abs(dBx.x) + abs(dBy.x)) * hw, 0.02), vis = clamp(0.35 / aw, 0.0, 1.0);
         float n1 = hb(floor(vec2(xm * 2.0, along * 0.5))), n2 = hb(floor(vec2(along * 0.05, 3.0)));
         vec3 asph = vec3(0.075, 0.076, 0.08) * (0.85 + 0.15 * n1) * (0.9 + 0.2 * n2);
-        asph *= 1.0 - 0.12 * smoothstep(0.4, 0.0, abs(ax - hw * 0.5));     // tekerlek izleri
+        asph *= 1.0 - 0.12 * smoothstep(0.4, 0.0, abs(ax - hw * 0.5));
         float ln = 0.0;
         if (cls < 4.5) ln += clamp(1.0 - abs(ax - (hw - 0.45)) / (0.12 + aw), 0.0, 1.0);
         float dash = cls < 1.5 ? step(mod(along, 12.0), 4.0) : step(mod(along, 9.0), 3.0);
         ln += clamp(1.0 - ax / (0.08 + aw), 0.0, 1.0) * dash;
-        diffuseColor.rgb = mix(asph, vec3(0.80, 0.80, 0.78), clamp(ln, 0.0, 1.0) * vis);
+        col = mix(asph, vec3(0.80, 0.80, 0.78), clamp(ln, 0.0, 1.0) * vis);
+      } else if (stf > 39.5) {
+        // düz duvar (çatı kulübesi, kalkan) ve saçak silmesi
+        col = bc * (stf > 40.5 ? 1.04 : 0.97);
       } else {
-      float shop = step(15.5, stf); float tl = stf - shop * 16.0;
-      vec2 cell = floor(vB), f = fract(vB);
-      // zemin katı dükkân, bodrum (kat < 0) düz duvar
-      if (shop > 0.5 && cell.y < 0.5 && cell.y > -0.5 && tl < 6.5) tl = 6.0;
-      vec2 off = vec2(mod(tl, 4.0), 2.0 - floor(tl / 4.0)) / vec2(4.0, 3.0);
-      vec2 gx = dFdx(vB) / vec2(4.0, 3.0), gy = dFdy(vB) / vec2(4.0, 3.0);
-      vec4 tx = textureGrad(atlas, off + (f * 0.96 + 0.02) / vec2(4.0, 3.0), gx, gy);
-      if (tl < 6.5 && cell.y < -0.5) tx = vec4(0.86, 0.85, 0.83, 0.0);
-      float r = hb(cell + vec2(tl * 7.0, 0.0));
-      vec3 win = tx.rgb * (0.75 + 0.5 * r);
-      win = mix(win, vec3(0.82, 0.78, 0.68), step(0.9, r) * 0.6);
-      gWin = tx.a * step(tl, 6.5);
-      diffuseColor.rgb = mix(diffuseColor.rgb * tx.rgb, win, gWin);
+        float shop = step(15.5, stf); float tl = stf - shop * 16.0;
+        vec2 cell = floor(vB), f = fract(vB);
+        bool fac = tl < 6.5 || (tl > 9.5 && tl < 13.5);
+        if (shop > 0.5 && cell.y > -0.5 && cell.y < 0.5) tl = 6.0;
+        vec4 tx = atl(tl, f, dBx, dBy);
+        if (fac && isWall && cell.y < -0.5 && tl != 5.0) tx = vec4(0.80, 0.79, 0.77, 0.0);   // bodrum / temel
+        float r = hb(cell + vec2(tl * 7.0, 0.0)), r2 = hb(cell * 1.37 + vec2(3.1, tl));
+        float gm = tx.a;
+        // kepenk / perde: bazı pencerelerin üstü kapalı
+        if ((tl < 1.5 || tl == 11.0 || tl == 13.0) && r2 > 0.9 && f.y > 0.5) { gm *= 0.0; tx.rgb = mix(tx.rgb, vec3(0.86, 0.84, 0.8), tx.a); }
+        float tint = tl == 2.0 ? 0.9 : 0.2;
+        vec3 gl = tx.rgb * mix(vec3(1.0), bc * 1.2, tint) * (0.82 + 0.36 * r);
+        gl = mix(gl, vec3(0.74, 0.71, 0.64), step(0.84, r) * (tl == 2.0 ? 0.15 : 0.5));
+        col = mix(bc * tx.rgb, gl, gm);
+        gGlass = gm * (tl == 9.0 ? 0.0 : 1.0);
+        if (fac) {
+          float litF = (tl == 2.0 || tl == 3.0 || tl == 10.0) ? 0.32 : tl == 6.0 ? 0.85 : 0.42;
+          float on = step(r2, litF) * (0.6 + 0.8 * hb(cell + 5.7));
+          gLit = gm * mix(on, litF, smoothstep(0.25, 1.0, fw));
+          gLitC = (tl == 2.0 || tl == 3.0 || tl == 10.0) ? vec3(0.80, 0.88, 1.0) : tl == 6.0 ? vec3(1.0, 0.86, 0.62) : mix(vec3(1.0, 0.70, 0.40), vec3(1.0, 0.88, 0.66), hb(cell + 9.1));
+        }
+        // zemin ortam kapatması: kat koordinatıyla (sanayi ve serada bütün duvar tek karo)
+        if (isWall) { float ao = (tl == 5.0 || tl == 9.0) ? smoothstep(-0.08, 0.28, vB.y) : smoothstep(-0.55, 0.85, vB.y); col *= 0.6 + 0.4 * ao; }
+        gHgt = dot(tx.rgb, vec3(0.333)) - gm * 0.25;
+        gBump = isWall && fac ? 1.0 - smoothstep(0.035, 0.12, fw) : 0.0;
       }
+      vec2 gdH = vec2(dFdx(gHgt), dFdy(gHgt)) * gBump * 1.6;
+      diffuseColor.rgb *= col;
+      `).replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+      if (gBump > 0.001) normal = bumpN(-vViewPosition, normal, gdH, faceDirection);
       `).replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
-      { vec3 vd = normalize(vViewPosition); float fr = pow(1.0 - clamp(abs(dot(vd, normal)), 0.0, 1.0), 3.0);
-        totalEmissiveRadiance += gWin * skyRef * (0.06 + 0.5 * fr); }`);
+      {
+        float nightF = uNight;
+        #if NUM_DIR_LIGHTS > 0
+          nightF = max(nightF, 1.0 - smoothstep(0.35, 1.3, dot(directionalLights[0].color, vec3(0.2126, 0.7152, 0.0722))));
+        #endif
+        vec3 vd = normalize(vViewPosition);
+        float fr = pow(1.0 - clamp(abs(dot(vd, normal)), 0.0, 1.0), 3.0);
+        float ry = dot(reflect(-vd, normal), upV);
+        vec3 env = mix(vec3(0.16, 0.16, 0.15), skyRef, smoothstep(-0.06, 0.2, ry));
+        totalEmissiveRadiance += gGlass * env * (0.05 + 0.6 * fr) * (1.0 - 0.85 * nightF);
+        totalEmissiveRadiance += gLit * gLitC * nightF * 1.1;
+      }`);
   };
-  mat.customProgramCacheKey = () => 'bina-atlas';
+  mat.customProgramCacheKey = () => 'bina-atlas-2';
   return mat;
 }
 
