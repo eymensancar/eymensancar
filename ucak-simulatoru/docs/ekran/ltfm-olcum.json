@@ -1,0 +1,37 @@
+[
+ {
+  "name": "genel",
+  "calls": 234,
+  "tris": 508062
+ },
+ {
+  "name": "onyuz",
+  "calls": 224,
+  "tris": 504704
+ },
+ {
+  "name": "yaklasma",
+  "calls": 219,
+  "tris": 629400
+ },
+ {
+  "name": "apron",
+  "calls": 272,
+  "tris": 715313
+ },
+ {
+  "name": "kule",
+  "calls": 197,
+  "tris": 432991
+ },
+ {
+  "name": "kargo",
+  "calls": 177,
+  "tris": 410890
+ },
+ {
+  "name": "ust",
+  "calls": 118,
+  "tris": 325876
+ }
+]
