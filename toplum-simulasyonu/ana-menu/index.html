@@ -264,7 +264,7 @@ body.panelAcik .izgara{visibility:hidden;transition:visibility 0s .2s}
 .uc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr);gap:8px;align-items:start}
 .iki{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px;align-items:start}
 .sutun{display:flex;flex-direction:column;gap:8px;min-width:0}
-.giris{height:32px;border:1px solid var(--cizgi);border-radius:9px;background:var(--zemin);padding:0 10px;font:inherit;font-size:var(--t3);color:var(--metin);width:100%;min-width:0;user-select:text;-webkit-user-select:text}
+.giris{height:32px;border:1px solid var(--cizgi);border-radius:9px;background:var(--zemin);padding:0 10px;font:inherit;font-size:var(--gy,16px);color:var(--metin);width:100%;min-width:0;user-select:text;-webkit-user-select:text}
 .giris:focus{outline:2px solid var(--ana);outline-offset:0}
 .yanyana{display:flex;gap:6px;align-items:center}
 .secim{display:flex;align-items:center;gap:6px;font-size:var(--t2);color:var(--ikincil)}
@@ -380,6 +380,7 @@ body.panelAcik .izgara{visibility:hidden;transition:visibility 0s .2s}
   <span>Toplum Simülasyonu yatay oynanır.</span>
   <button id="yineGoster">Yine de göster</button>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <!-- Amca'nın ekonomi çekirdeği (toplumsimulasyonu: packages/core + sunucu eylemleri + Türkçe metinler), esbuild ile tek dosya -->
 <script src="toplum-cekirdek.js"></script>
@@ -389,10 +390,14 @@ const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim
 const kac=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 // ---- ölçek: 780x360 sahne güvenli alanın içine sığar ----
 const SW=780,SH=360;
-function olcekle(){const a=$('alan'),cs=getComputedStyle(a);
+// iPhone, yazısı 16 pikselden küçük kutuya yazarken sayfayı yakınlaştırır; klavye açılınca da ekran küçülür.
+// Bu yüzden: yazı kutusu ekranda en az 16 px, klavye açıkken sahne yeniden ölçeklenmez, kapanınca sayfa yerine döner.
+const yaziyor=()=>{const e=document.activeElement;return !!e&&(e.tagName==='INPUT'||e.tagName==='TEXTAREA')};
+addEventListener('focusout',e=>{if(e.target.tagName==='INPUT')setTimeout(()=>{if(!yaziyor()){scrollTo(0,0);olcekle()}},250)});
+function olcekle(){if(yaziyor()&&$('olcekKutu').style.width)return;const a=$('alan'),cs=getComputedStyle(a);
   const w=a.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),h=a.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom);
   document.body.classList.toggle('dikey',innerHeight>innerWidth*1.05);
-  const k=Math.min(w/SW,h/SH);$('olcekKutu').style.width=SW*k+'px';$('olcekKutu').style.height=SH*k+'px';$('sahne').style.transform=`scale(${k})`}
+  const k=Math.min(w/SW,h/SH);$('olcekKutu').style.width=SW*k+'px';$('olcekKutu').style.height=SH*k+'px';$('sahne').style.transform=`scale(${k})`;document.documentElement.style.setProperty('--gy',Math.max(12.5,16/k).toFixed(2)+'px')}
 addEventListener('resize',olcekle);
 $('yineGoster').onclick=()=>document.body.classList.add('zorla');
 
@@ -701,7 +706,7 @@ function kureBasla(topo){const W=kure.width;proj=d3.geoOrthographic().scale(W/2-
   (function dongu(){if(!surukle&&Math.abs(hiz)>.02){don=[don[0]+hiz,don[1],0];hiz*=.94;cizKure()}requestAnimationFrame(dongu)})();
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change',cizKure);
   new MutationObserver(cizKure).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']})}
-fetch('dunya.json').then(r=>r.json()).then(kureBasla).catch(()=>{});
+fetch('dunya.json').then(r=>r.json()).then(kureBasla).catch(e=>console.error('küre çizilemedi',e));
 
 olcekle();hepsiniCiz();if(!K.oyuncuId)kayitEkrani();else if(yetistir())hepsiniCiz();
 </script>

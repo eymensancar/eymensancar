@@ -28,6 +28,10 @@ for(const tema of ['light','dark'])for(const [ad,w,h,ins] of VP)for(const d of D
   const satir=e=>{const tops=new Set();const w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(!n.textContent.trim())continue;const r=document.createRange();r.selectNodeContents(n);[...r.getClientRects()].filter(x=>x.width>1).forEach(x=>tops.add((x.top+x.height/2)/k))}const t=[...tops].sort((a,b)=>a-b);let c=t.length?1:0;for(let i=1;i<t.length;i++)if(t[i]-t[i-1]>7)c++;return c};
   document.querySelectorAll('.satir span,.satir b,.ustBtn,.menuBtn,.kucukBtn>span,.isimKart .meslek,.baslik:not(.blok .baslik),.dunyaEtiket,.lejant span,.paraBtn,.halkaOrta b,.olcu b,.ben .istat div,.siraBtn b,.katki b,.cubukYazi,.btn,.cip,.rozetK,.gorev,.pBas .baslik,.sekmeler button').forEach(e=>{if(!vis(e))return;if(e.querySelector('small'))return;if(satir(e)>1)out.push('iki satır: '+ad(e))});
   document.querySelectorAll('.blok .baslik,.katki .etiket').forEach(e=>{if(vis(e)&&satir(e)>2)out.push('üç satır: '+ad(e))});
+  // küre çizildi mi (ortası boş kalmamalı)
+  const kc=document.getElementById('kure'),kx=kc.getContext('2d').getImageData(kc.width/2-20,kc.height/2-20,40,40).data;let dolu=0;for(let i=3;i<kx.length;i+=4)if(kx[i]>0)dolu++;if(dolu<1000)out.push('küre çizilmemiş');
+  // yazı kutuları ekranda en az 16 px (iPhone yakınlaştırmasın)
+  document.querySelectorAll('input.giris').forEach(e=>{if(!vis(e)&&!e.closest('.perde.acik'))return;const px=parseFloat(getComputedStyle(e).fontSize)*k;if(px<15.9)out.push('yazı kutusu '+px.toFixed(1)+' px (16 olmalı): '+e.id)});
   return out});
  const ust=await p.evaluate(()=>{const u=document.querySelector('.ustSag');return [u.getBoundingClientRect().width,[...u.children].map(c=>Math.round(c.getBoundingClientRect().width))].join(' ')});if(ad==='ip15'&&d==='calisan'&&tema==='light')console.log('ustSag',ust);const u=[...new Set(sorun)];if(u.length||errs.length){toplam+=u.length+errs.length;console.log(`[${tema} ${ad} ${d}]`,u.join(' | '),errs.join(';'))}
  if(['se','ip15'].includes(ad))await p.screenshot({path:`/tmp/claude-0/geo/v-${tema}-${ad}-${d}.png`});
