@@ -1,0 +1,469 @@
+<title>Toplum Simülasyonu Ana Menü</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Yatay iPhone ekranı (844x390 nokta). İki yanda Dynamic Island için güvenli alan; içerik 5 sütunlu bir ızgara.
+   Renkler toplumsimulasyonu deposundaki tema.ts ile aynı. */
+:root{
+  --zemin:#F5F1E8;--kart:#FFFFFF;--metin:#1C1917;--ikincil:#6B645C;--cizgi:#E7E1D6;
+  --ana:#0F5E57;--anaUstu:#FFFFFF;--anaYumusak:#DCEFEA;--vurgu:#B45309;--vurguYumusak:#FCEFD9;
+  --tehlike:#B42318;--tehlikeYumusak:#FDE7E4;--basari:#15803D;--basariYumusak:#DCF5E3;--pasif:#D6D0C4;
+  --sahne:#E9E4DA;--cerceve:#1b1a18;--golge:0 1px 2px rgba(28,25,23,.08);
+  --deniz1:#cfe3e8;--deniz2:#a9c9d1;--kara:#e9e2d2;--karaCizgi:#c9bfa9;
+  --p1:#0F5E57;--p2:#B45309;--p3:#3B6EA8;--p4:#7A5AA6;--p5:#C9A227;--p6:#9A938A;
+  --yazi:"Inter",system-ui,-apple-system,sans-serif;--baslik:"Space Grotesk","Inter",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --zemin:#12110F;--kart:#1E1C19;--metin:#F5F1E8;--ikincil:#A8A29E;--cizgi:#2E2B27;
+  --ana:#5EC2B4;--anaUstu:#0B1F1D;--anaYumusak:#173C38;--vurgu:#F5B84B;--vurguYumusak:#3A2C12;
+  --tehlike:#F97066;--tehlikeYumusak:#3D1714;--basari:#4ADE80;--basariYumusak:#14301E;--pasif:#3A3631;
+  --sahne:#0b0a09;--cerceve:#000;--golge:none;
+  --deniz1:#12303a;--deniz2:#0c2129;--kara:#2c2924;--karaCizgi:#4a443b;
+  --p1:#5EC2B4;--p2:#F5B84B;--p3:#7FA8E0;--p4:#B79BE0;--p5:#E8CF6A;--p6:#8A847C;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --zemin:#12110F;--kart:#1E1C19;--metin:#F5F1E8;--ikincil:#A8A29E;--cizgi:#2E2B27;
+  --ana:#5EC2B4;--anaUstu:#0B1F1D;--anaYumusak:#173C38;--vurgu:#F5B84B;--vurguYumusak:#3A2C12;
+  --tehlike:#F97066;--tehlikeYumusak:#3D1714;--basari:#4ADE80;--basariYumusak:#14301E;--pasif:#3A3631;
+  --sahne:#0b0a09;--cerceve:#000;--golge:none;
+  --deniz1:#12303a;--deniz2:#0c2129;--kara:#2c2924;--karaCizgi:#4a443b;
+  --p1:#5EC2B4;--p2:#F5B84B;--p3:#7FA8E0;--p4:#B79BE0;--p5:#E8CF6A;--p6:#8A847C;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--sahne);color:var(--metin);font-family:var(--yazi);font-size:14px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;min-height:100%;box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ana);outline-offset:2px}
+.ust{width:100%;max-width:1100px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.ust h1{font-family:var(--baslik);font-size:18px;margin:0;font-weight:600}
+.ust .not{color:var(--ikincil);font-size:12.5px}
+.kontrol{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.kontrol .grup{display:flex;border:1px solid var(--cizgi);border-radius:10px;overflow:hidden;background:var(--kart)}
+.kontrol .grup button{border:0;background:none;padding:6px 10px;font-size:12.5px;color:var(--ikincil)}
+.kontrol .grup button[aria-pressed="true"]{background:var(--anaYumusak);color:var(--ana);font-weight:600}
+.kontrol .tek{border:1px solid var(--cizgi);border-radius:10px;background:var(--kart);padding:6px 10px;font-size:12.5px}
+.sarici{width:100%;display:flex;justify-content:center;overflow:hidden}
+.olcek{transform-origin:top center;width:900px;flex:none}
+.cihaz{width:900px;height:446px;border-radius:62px;background:var(--cerceve);padding:28px;box-sizing:border-box;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.ekran{width:844px;height:390px;border-radius:40px;background:var(--zemin);position:relative;overflow:hidden}
+.ada{position:absolute;left:11px;top:50%;width:34px;height:124px;margin-top:-62px;border-radius:20px;background:#000;z-index:30}
+.gostergeCubuk{position:absolute;bottom:7px;left:50%;width:150px;height:5px;margin-left:-75px;border-radius:3px;background:var(--metin);opacity:.35;z-index:30}
+.guvenli{position:absolute;top:0;bottom:0;width:59px;background:repeating-linear-gradient(45deg,rgba(180,35,24,.12) 0 6px,transparent 6px 12px);z-index:25;pointer-events:none}
+.guvenli.sol{left:0}.guvenli.sag{right:0}
+/* içerik ızgarası: 726 x 353 */
+.icerik{position:absolute;left:59px;right:59px;top:8px;bottom:22px;display:grid;
+  grid-template-columns:108px 130px 182px 182px 92px;grid-template-rows:116px 138px 83px;gap:8px}
+.kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;box-shadow:var(--golge);min-width:0}
+.tik{text-align:left;border:1px solid var(--cizgi);background:var(--kart);border-radius:14px;box-shadow:var(--golge)}
+.tik:hover{border-color:var(--ana)}
+.etiket{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ikincil);font-weight:600}
+.sayi{font-variant-numeric:tabular-nums}
+/* servet */
+.servet{grid-column:1/4;grid-row:1;display:flex;gap:8px;min-width:0}
+.pasta{width:132px;flex:none;padding:6px 6px 4px;display:flex;flex-direction:column;align-items:center}
+.halka{position:relative;width:84px;height:84px;border:0;background:none;padding:0;border-radius:50%}
+#halkaSvg{width:84px;height:84px;display:block}
+.halkaOrta{position:absolute;inset:14px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05}
+.halkaOrta b{font-size:12.5px;font-weight:700}
+.halkaOrta span{font-size:9.5px;color:var(--ikincil);display:flex;align-items:center;gap:2px;margin-top:2px}
+.lejant{display:grid;grid-template-columns:repeat(3,auto);gap:1px 6px;margin-top:4px;font-size:8.5px;color:var(--ikincil);line-height:1.2}
+.lejant i{display:inline-block;width:6px;height:6px;border-radius:2px;margin-right:3px;vertical-align:0}
+.aylik{flex:1;padding:9px 10px 8px 12px;display:flex;flex-direction:column;min-width:0}
+.aylik .bas{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.satir{display:flex;justify-content:space-between;gap:8px;align-items:baseline;padding:3px 0;border-bottom:1px dashed var(--cizgi);font-size:12.5px}
+.satir:last-of-type{border-bottom:0}
+.satir span{color:var(--ikincil)}
+.satir b{font-weight:600}
+.arti{color:var(--basari)}.eksi{color:var(--tehlike)}
+.paraBtn{border:1px solid var(--cizgi);background:var(--zemin);border-radius:8px;padding:3px 7px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px}
+.soru{width:22px;height:22px;border-radius:50%;border:1px solid var(--cizgi);background:var(--zemin);font-weight:700;font-size:12px;padding:0}
+.aylik .alt{margin-top:auto;display:flex;justify-content:flex-end}
+/* işim */
+.isim{grid-column:1;grid-row:2/4;display:flex;flex-direction:column;gap:5px;min-width:0}
+.isimKart{padding:9px 9px 8px;flex:1;display:flex;flex-direction:column}
+.isimKart .bas{display:flex;justify-content:space-between;align-items:center}
+.isimKart .bas b{font-family:var(--baslik);font-size:14px}
+.ikonDaire{width:24px;height:24px;border-radius:50%;background:var(--anaYumusak);color:var(--ana);display:grid;place-items:center}
+.isimKart .meslek{font-size:15px;font-weight:700;margin-top:8px;line-height:1.15}
+.isimKart .yer{font-size:10.5px;color:var(--ikincil);margin-top:2px}
+.kucukBtn{border:1px solid var(--cizgi);background:var(--kart);border-radius:9px;padding:5px 7px;font-size:10.5px;text-align:left;font-weight:500;line-height:1.2}
+.kucukBtn.tehlike{background:var(--tehlikeYumusak);color:var(--tehlike);border-color:transparent;font-weight:600}
+.kucukBtn.oneri{background:var(--anaYumusak);border-color:transparent}
+.kucukBtn.oneri small{display:block;color:var(--ikincil);font-size:9.5px;margin-top:1px}
+/* projem */
+.projem{grid-column:2;grid-row:2/4;padding:9px 10px;display:flex;flex-direction:column;min-width:0}
+.projem .bas{display:flex;justify-content:space-between;align-items:center}
+.projem .bas b{font-family:var(--baslik);font-size:14px}
+.projem .ad{font-size:12.5px;font-weight:600;margin:6px 0 6px;line-height:1.2}
+.olcu{display:flex;flex-direction:column;gap:5px}
+.olcu div{display:flex;flex-direction:column;font-size:11.5px}
+.olcu span{font-size:9.5px;color:var(--ikincil);text-transform:uppercase;letter-spacing:.05em}
+.cubuk{height:5px;border-radius:3px;background:var(--cizgi);overflow:hidden;margin-top:auto}
+.cubuk i{display:block;height:100%;background:var(--ana)}
+.projem .cubukYazi{font-size:9.5px;color:var(--ikincil);margin-top:3px}
+/* ilan + ben */
+.ikili{grid-column:3;grid-row:2;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ikili.tekli{grid-template-columns:1fr}
+.blok{padding:10px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.blok b{font-family:var(--baslik);font-size:14px;line-height:1.15}
+.blok small{color:var(--ikincil);font-size:10.5px;line-height:1.3}
+.blok .ikonDaire{width:30px;height:30px}
+.blok.vurgulu{background:var(--anaYumusak);border-color:transparent}
+.blok.vurgulu .ikonDaire{background:var(--kart)}
+/* bildirim / menü şeridi */
+.serit{grid-column:3/5;grid-row:3;padding:7px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;position:relative;overflow:hidden}
+.menuBtn{border:1px solid var(--cizgi);background:var(--zemin);border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10.5px;font-weight:600;color:var(--metin)}
+.menuBtn svg{color:var(--ana)}
+.bildirim{position:absolute;inset:7px;border-radius:11px;background:var(--vurguYumusak);display:flex;align-items:center;gap:10px;padding:0 10px;transform:translateY(120%);transition:transform .35s ease}
+.bildirim.acik{transform:none}
+.bildirim .ikonDaire{background:var(--kart);color:var(--vurgu);flex:none}
+.bildirim .metin{flex:1;min-width:0;font-size:11.5px;line-height:1.3}
+.bildirim .metin b{display:block;font-size:12px}
+.bildirim button{border:0;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600}
+.bildirim .gor{background:var(--vurgu);color:var(--kart)}
+.bildirim .kapat{background:transparent;color:var(--ikincil)}
+/* sağ üst */
+.ustSag{grid-column:4/6;grid-row:1;display:flex;gap:5px;align-self:start;justify-content:flex-end}
+.ustBtn{border:1px solid var(--cizgi);background:var(--kart);border-radius:10px;height:30px;padding:0 7px;display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;white-space:nowrap;box-shadow:var(--golge)}
+.ustBtn.saat{font-variant-numeric:tabular-nums;font-weight:500;color:var(--ikincil);cursor:default}
+.ustBtn.saat b{color:var(--metin);font-weight:600}
+.ustBtn.yalniz{width:30px;padding:0;justify-content:center}
+/* dünya */
+.dunya{grid-column:4;grid-row:1/3;margin-top:36px;position:relative;display:flex;flex-direction:column;align-items:center}
+.dunyaEtiket{font-family:var(--baslik);font-size:13px;font-weight:600;white-space:nowrap;margin-bottom:2px}
+.dunyaEtiket span{color:var(--ikincil);font-weight:500}
+canvas#kure{width:200px;height:200px;cursor:grab;touch-action:none;margin-top:-2px}
+canvas#kure:active{cursor:grabbing}
+.dunyaIpucu{position:absolute;bottom:-2px;font-size:9px;color:var(--ikincil)}
+/* katkı + sıralama */
+.sagSutun{grid-column:5;grid-row:2;display:flex;flex-direction:column;gap:8px;margin-top:-80px}
+.katki{padding:8px 9px}
+.katki b{font-family:var(--baslik);font-size:17px;display:block;margin-top:3px}
+.katki small{font-size:9.5px;color:var(--ikincil)}
+.siraBtn{padding:9px;display:flex;flex-direction:column;gap:3px}
+.siraBtn b{font-family:var(--baslik);font-size:14px}
+.siraBtn small{font-size:9.5px;color:var(--ikincil)}
+/* telefon */
+.telefonKutu{grid-column:5;grid-row:3;position:relative}
+.telefon{position:absolute;right:4px;bottom:-22px;width:84px;height:96px;background:var(--cerceve);border-radius:16px 16px 0 0;padding:5px 5px 0;box-sizing:border-box;border:0;z-index:20;
+  transition:width .35s ease,height .35s ease,border-radius .35s ease;text-align:left;display:block}
+.telefon .tEkran{width:100%;height:100%;border-radius:12px 12px 0 0;background:var(--kart);overflow:hidden;position:relative}
+.telefon .tCentik{width:30px;height:6px;border-radius:4px;background:#000;margin:5px auto 0}
+.telefon .tAd{font-size:11px;font-weight:700;text-align:center;margin-top:12px;font-family:var(--baslik)}
+.telefon .tSaat{font-size:9px;color:var(--ikincil);text-align:center}
+.rozet{position:absolute;top:-7px;right:-7px;min-width:20px;height:20px;border-radius:10px;background:var(--tehlike);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px;box-sizing:border-box;border:2px solid var(--zemin);z-index:21}
+.telefonAcik{position:absolute;right:59px;bottom:0;width:338px;height:376px;background:var(--cerceve);border-radius:30px 30px 0 0;padding:8px 8px 0;box-sizing:border-box;z-index:40;
+  transform-origin:bottom right;transform:scale(.25);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .2s}
+.telefonAcik.acik{transform:none;opacity:1;pointer-events:auto}
+.tIc{background:var(--zemin);height:100%;border-radius:23px 23px 0 0;overflow:hidden;display:flex;flex-direction:column}
+.tUst{display:flex;justify-content:space-between;align-items:center;padding:8px 16px 4px;font-size:11px;font-weight:600}
+.tUst .ortaCentik{width:70px;height:18px;border-radius:10px;background:#000}
+.uygulamalar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 6px;padding:14px 14px}
+.uyg{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10.5px;position:relative;padding:0}
+.uyg .uIkon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;color:#fff}
+.uyg .rozet{top:-5px;right:8px;border-color:var(--zemin)}
+.uygEkran{flex:1;display:flex;flex-direction:column;min-height:0}
+.uygBas{display:flex;align-items:center;gap:8px;padding:6px 12px 8px;border-bottom:1px solid var(--cizgi);font-weight:700;font-size:13px}
+.uygBas button{border:0;background:none;color:var(--ana);font-weight:600;font-size:12px;padding:2px 0}
+.uygGovde{flex:1;overflow:auto;padding:10px 12px;font-size:12px;display:flex;flex-direction:column;gap:8px}
+.mesaj{display:flex;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--cizgi)}
+.mesaj .av{width:30px;height:30px;border-radius:50%;background:var(--anaYumusak);color:var(--ana);display:grid;place-items:center;font-weight:700;font-size:11px;flex:none}
+.mesaj div{min-width:0;flex:1}
+.mesaj b{display:block;font-size:12px}
+.mesaj span{display:block;color:var(--ikincil);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mesaj em{font-style:normal;font-size:10px;color:var(--ikincil)}
+.tKapat{border:0;background:none;padding:6px 0 8px;display:flex;justify-content:center;width:100%}
+.tKapat i{width:110px;height:5px;border-radius:3px;background:var(--metin);opacity:.35;display:block}
+.telefonPerde{position:absolute;inset:0;z-index:35;background:rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .25s}
+.telefonPerde.acik{opacity:1;pointer-events:auto}
+/* modal */
+.perde{position:absolute;inset:0;background:rgba(15,13,11,.45);z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.perde.acik{opacity:1;pointer-events:auto}
+.modal{width:440px;max-height:320px;background:var(--kart);border-radius:16px;border:1px solid var(--cizgi);display:flex;flex-direction:column;transform:translateY(8px);transition:transform .2s}
+.perde.acik .modal{transform:none}
+.modalBas{display:flex;justify-content:space-between;align-items:center;padding:12px 14px 8px}
+.modalBas b{font-family:var(--baslik);font-size:16px}
+.x{width:28px;height:28px;border-radius:50%;border:0;background:var(--zemin);display:grid;place-items:center;padding:0}
+.modalGovde{overflow:auto;padding:0 14px 14px;font-size:12.5px}
+.liste{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.liste td{padding:6px 0;border-bottom:1px solid var(--cizgi)}
+.liste td:last-child{text-align:right;font-weight:600}
+.liste tr.top td{border-bottom:0;font-weight:700;padding-top:8px}
+.altBaslik{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ikincil);font-weight:600;margin:10px 0 2px}
+.sekmeler{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.sekmeler button{border:1px solid var(--cizgi);background:var(--zemin);border-radius:8px;padding:4px 8px;font-size:11px}
+.sekmeler button[aria-pressed="true"]{background:var(--ana);color:var(--anaUstu);border-color:transparent;font-weight:600}
+.liste tr.ben td{color:var(--ana)}
+.paraListe{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.paraListe button{border:1px solid var(--cizgi);background:var(--zemin);border-radius:10px;padding:7px 8px;text-align:left;font-size:11.5px}
+.paraListe button b{display:block;font-size:12.5px}
+.paraListe button[aria-pressed="true"]{border-color:var(--ana);background:var(--anaYumusak)}
+.onay{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.onay button{border:0;border-radius:10px;padding:8px 14px;font-weight:600;font-size:12.5px}
+.onay .iptal{background:var(--zemin)}
+.onay .tehlikeBtn{background:var(--tehlike);color:#fff}
+.sohbet{display:flex;flex-direction:column;gap:6px}
+.sohbet p{margin:0;padding:6px 9px;background:var(--zemin);border-radius:10px;font-size:12px}
+.sohbet p b{color:var(--ana);margin-right:4px}
+.ornek{font-size:10.5px;color:var(--ikincil);margin-top:8px}
+.altNot{max-width:900px;color:var(--ikincil);font-size:12.5px;line-height:1.5;text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="ust">
+  <div>
+    <h1>Ana menü taslağı</h1>
+    <div class="not">Eymen'in çizimi · yatay iPhone, 844 × 390 nokta · rakamlar örnek</div>
+  </div>
+  <div class="kontrol">
+    <div class="grup" role="group" aria-label="Oyuncu durumu">
+      <button id="dCalisan" aria-pressed="true">Çalışan</button>
+      <button id="dIssiz" aria-pressed="false">İşsiz</button>
+      <button id="dPatron" aria-pressed="false">Şirket sahibi</button>
+    </div>
+    <button class="tek" id="ornekBildirim">Örnek bildirim</button>
+    <button class="tek" id="guvenliGoster" aria-pressed="false">Güvenli alanları göster</button>
+  </div>
+</div>
+
+<div class="sarici" id="sarici"><div class="olcek" id="olcek"><div class="cihaz"><div class="ekran" id="ekran">
+  <div class="ada"></div>
+  <div class="guvenli sol" hidden></div><div class="guvenli sag" hidden></div>
+
+  <div class="icerik">
+    <!-- servet -->
+    <div class="servet">
+      <div class="kart pasta">
+        <button class="halka" id="halka" aria-label="Servet; para birimini değiştir">
+          <svg viewBox="0 0 84 84" id="halkaSvg"></svg>
+          <div class="halkaOrta"><b class="sayi" id="servetYazi"></b>
+            <span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-4-4M20 16H6l4 4"/></svg><span id="servetBirim"></span></span></div>
+        </button>
+        <div class="lejant" id="lejant"></div>
+      </div>
+      <div class="kart aylik">
+        <div class="bas"><span class="etiket">Bu ay</span>
+          <button class="paraBtn" id="aylikPara"><span id="aylikKod">TRY</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-4-4M20 16H6l4 4"/></svg></button></div>
+        <div class="satir"><span>Aylık sabit gelir</span><b class="sayi arti" id="aGelir"></b></div>
+        <div class="satir"><span>Aylık sabit gider</span><b class="sayi eksi" id="aGider"></b></div>
+        <div class="satir"><span id="ayAdi">Temmuz güncel durum</span><b class="sayi" id="aDurum"></b></div>
+        <div class="alt"><button class="soru" id="soru" aria-label="Gelir ve gider ayrıntıları">?</button></div>
+      </div>
+    </div>
+
+    <!-- sağ üst -->
+    <div class="ustSag">
+      <button class="ustBtn" data-sohbet="global"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Global</button>
+      <button class="ustBtn" data-sohbet="ulke"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>Türkiye</button>
+      <div class="ustBtn saat" id="saat"></div>
+      <button class="ustBtn yalniz" id="ayarlar" aria-label="Ayarlar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+    </div>
+
+    <!-- işim -->
+    <div class="isim" id="isimAlan"></div>
+    <!-- projem -->
+    <button class="tik projem" id="projem"></button>
+    <!-- ilan + ben -->
+    <div class="ikili" id="ikili"></div>
+
+    <!-- dünya -->
+    <div class="dunya">
+      <div class="dunyaEtiket" id="dunyaEtiket"></div>
+      <canvas id="kure" width="400" height="400" aria-label="Dünya; parmakla çevrilebilir"></canvas>
+      <div class="dunyaIpucu">Çevirmek için sürükle</div>
+    </div>
+    <div class="sagSutun">
+      <div class="kart katki"><span class="etiket">Ülke ekonomisine katkın</span><b class="sayi">%0,0021</b><small>Türkiye · bu dönem</small></div>
+      <button class="tik siraBtn" id="siralama"><span class="etiket">Sıralama</span><b>Gör</b><small>Şehir, ülke, dünya</small></button>
+    </div>
+
+    <!-- bildirim / menü şeridi -->
+    <div class="kart serit" id="serit">
+      <button class="menuBtn" data-menu="Borsa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>Borsa</button>
+      <button class="menuBtn" data-menu="Banka"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6M5 10v8M19 10v8M9 10v8M15 10v8M3 20h18"/></svg>Banka</button>
+      <button class="menuBtn" data-menu="Mülklerim"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/></svg>Mülklerim</button>
+      <button class="menuBtn" data-menu="Hukuk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12M5 7h14M5 7l-3 7a4 4 0 0 0 6 0zM19 7l-3 7a4 4 0 0 0 6 0z"/></svg>Hukuk</button>
+      <button class="menuBtn" data-menu="Pazar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 12h-13zM9 7a3 3 0 0 1 6 0"/></svg>Pazar</button>
+      <div class="bildirim" id="bildirim" role="status">
+        <div class="ikonDaire"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg></div>
+        <div class="metin"><b id="bBaslik"></b><span id="bMetin"></span></div>
+        <button class="gor" id="bGor">Gör</button><button class="kapat" id="bKapat">Kapat</button>
+      </div>
+    </div>
+
+    <!-- telefon (kapalı) -->
+    <div class="telefonKutu">
+      <button class="telefon" id="telefon" aria-label="Telefonu aç; 2 bildirim">
+        <div class="tEkran"><div class="tCentik"></div><div class="tAd">Telefon</div><div class="tSaat" id="tSaatKucuk"></div></div>
+        <span class="rozet">2</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="telefonPerde" id="telefonPerde"></div>
+  <div class="telefonAcik" id="telefonAcik" aria-hidden="true">
+    <div class="tIc">
+      <div class="tUst"><span class="sayi" id="tSaat"></span><span class="ortaCentik"></span><span>%82</span></div>
+      <div id="tGovde" class="uygEkran"></div>
+      <button class="tKapat" id="tKapat" aria-label="Telefonu kapat"><i></i></button>
+    </div>
+  </div>
+
+  <div class="perde" id="perde"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mBaslik">
+    <div class="modalBas"><b id="mBaslik"></b><button class="x" id="mKapat" aria-label="Kapat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modalGovde" id="mGovde"></div>
+  </div></div>
+
+  <div class="gostergeCubuk"></div>
+</div></div></div></div>
+
+<p class="altNot">Halkanın ortasına dokununca servet TL → dolar → euro arasında döner. "Bu ay" kutusundaki para düğmesi her para birimini açar, "?" gelir ve giderleri listeler. Küre sürüklenerek çevrilir. Telefona dokununca sağ alttan açılır. Yukarıdaki düğmelerle işsiz ve şirket sahibi görünümlerine geçilir.</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+// ---- örnek veriler (TL) ----
+const KUR={TRY:1,USD:42.1,EUR:48.7,GBP:55.3,AED:11.46,SAR:11.22,AZN:24.76,QAR:11.56,CHF:52.4,JPY:0.272,CNY:5.83,RUB:0.52,BRL:7.8,INR:0.48,KRW:0.029,IDR:0.0026};
+const SEMBOL={TRY:'₺',USD:'$',EUR:'€',GBP:'£',AED:'AED',SAR:'SAR',AZN:'₼',QAR:'QAR',CHF:'CHF',JPY:'¥',CNY:'CN¥',RUB:'₽',BRL:'R$',INR:'₹',KRW:'₩',IDR:'Rp'};
+const PARA_AD={TRY:'Türk lirası',USD:'ABD doları',EUR:'Euro',GBP:'İngiliz sterlini',AED:'BAE dirhemi',SAR:'Suudi riyali',AZN:'Azerbaycan manatı',QAR:'Katar riyali',CHF:'İsviçre frangı',JPY:'Japon yeni',CNY:'Çin yuanı',RUB:'Rus rublesi',BRL:'Brezilya reali',INR:'Hint rupisi',KRW:'Güney Kore wonu',IDR:'Endonezya rupisi'};
+const VARLIK=[['Gayrimenkul',2100000,'--p1'],['Nakit',850000,'--p2'],['Fon',520000,'--p3'],['Döviz',410000,'--p4'],['Altın',260000,'--p5'],['Hisse',70000,'--p6'],['Kripto',40000,'--p6']];
+const GELIR=[['Maaş (Kaya Hukuk Bürosu)',98000],['Moda daire kirası',42000],['Fon getirisi (ortalama)',5000]];
+const GIDER=[['Kadıköy ev kirası',38000],['Geçim (yemek, ulaşım, fatura)',31000],['Konut kredisi taksiti',18500],['Sigorta ve aidat',4500]];
+const DURUM_TL=31400;
+const fmt=(tl,kod)=>{const v=tl/KUR[kod];const s=Math.abs(v)>=100?Math.round(v).toLocaleString('tr-TR'):v.toLocaleString('tr-TR',{maximumFractionDigits:2});return s};
+const para=(tl,kod)=>{const s=fmt(tl,kod),y=SEMBOL[kod];return (y.length>2?s+' '+y:(kod==='TRY'?s+' '+y:y+s))};
+const isaret=(tl,kod)=>(tl>0?'+':tl<0?'−':'')+para(Math.abs(tl),kod);
+
+// ---- servet halkası (en fazla 5 dilim + Diğer) ----
+function dilimler(){const s=[...VARLIK].sort((a,b)=>b[1]-a[1]);if(s.length<=6)return s;const ilk=s.slice(0,5),kalan=s.slice(5).reduce((t,x)=>t+x[1],0);return [...ilk,['Diğer',kalan,'--p6']]}
+let servetKod='TRY';const servetSira=['TRY','USD','EUR'];
+function cizHalka(){const d=dilimler(),top=d.reduce((t,x)=>t+x[1],0),r=35,c=2*Math.PI*r;let o=0,h='';
+  h+=`<circle cx="42" cy="42" r="${r}" fill="none" stroke="var(--cizgi)" stroke-width="12"/>`;
+  d.forEach(([ad,v,renk])=>{const u=v/top*c;h+=`<circle cx="42" cy="42" r="${r}" fill="none" stroke="var(${renk})" stroke-width="12" stroke-dasharray="${Math.max(0,u-1.2)} ${c}" stroke-dashoffset="${-o}" transform="rotate(-90 42 42)"><title>${ad}: ${Math.round(v/top*100)}%</title></circle>`;o+=u});
+  $('halkaSvg').innerHTML=h;
+  $('lejant').innerHTML=d.map(([ad,v,renk])=>`<span><i style="background:var(${renk})"></i>${ad}</span>`).join('');
+  $('servetYazi').textContent=fmt(top,servetKod);$('servetBirim').textContent=servetKod==='TRY'?'TL':servetKod}
+$('halka').onclick=()=>{servetKod=servetSira[(servetSira.indexOf(servetKod)+1)%3];cizHalka()};
+
+// ---- bu ay ----
+let aylikKod='TRY';
+function cizAylik(){const g=GELIR.reduce((t,x)=>t+x[1],0),z=GIDER.reduce((t,x)=>t+x[1],0);
+  $('aGelir').textContent=isaret(g,aylikKod);$('aGider').textContent=isaret(-z,aylikKod);
+  const d=$('aDurum');d.textContent=isaret(DURUM_TL,aylikKod);d.className='sayi '+(DURUM_TL>=0?'arti':'eksi');$('aylikKod').textContent=aylikKod}
+$('aylikPara').onclick=()=>modal('Para birimi',`<div class="paraListe">${Object.keys(KUR).map(k=>`<button data-k="${k}" aria-pressed="${k===aylikKod}"><b>${k} · ${SEMBOL[k]}</b>${PARA_AD[k]}</button>`).join('')}</div><div class="ornek">Kurlar örnek.</div>`,g=>g.querySelectorAll('button[data-k]').forEach(b=>b.onclick=()=>{aylikKod=b.dataset.k;cizAylik();kapat()}));
+$('soru').onclick=()=>{const tr=(a,k)=>`<tr><td>${a[0]}</td><td class="${k}">${isaret(k==='eksi'?-a[1]:a[1],aylikKod)}</td></tr>`;
+  const g=GELIR.reduce((t,x)=>t+x[1],0),z=GIDER.reduce((t,x)=>t+x[1],0);
+  modal('Aylık sabit gelir ve giderler',`<div class="altBaslik">Gelirler</div><table class="liste">${GELIR.map(a=>tr(a,'arti')).join('')}<tr class="top"><td>Toplam</td><td class="arti">${isaret(g,aylikKod)}</td></tr></table>
+  <div class="altBaslik">Giderler</div><table class="liste">${GIDER.map(a=>tr(a,'eksi')).join('')}<tr class="top"><td>Toplam</td><td class="eksi">${isaret(-z,aylikKod)}</td></tr></table>`)};
+
+// ---- oyuncu durumları ----
+const IKON={is:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>',
+  ilan:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/></svg>',
+  ben:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+  sirket:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5l7-2v18M12 9h7v12M8 9h1M8 13h1M8 17h1M15 13h1M15 17h1"/></svg>',
+  proje:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>'};
+const DURUM={
+  calisan:{meslek:'Avukat',yer:'Kaya Hukuk Bürosu',kure:'Avukat',
+    btn:[['İlanlara bak',''],['Maaşım hakkında konuş',''],['İstifa et','tehlike']],ilan:false,ben:['Ben','Profilin, deneyimin, itibarın']},
+  issiz:{meslek:'İşsiz',yer:'İş arıyor',kure:'İşsiz',
+    btn:[['İlanlara bak',''],['Sana en uygun: Garson','oneri','Moda Kafe · 32.000 ₺/ay'],['Kendi işini kur','']],ilan:['İş ilanı oluştur','İş aradığını duyur'],ben:['Ben','Profilin, deneyimin, itibarın']},
+  patron:{meslek:'İş insanı',yer:'Kaya Hukuk Bürosu · 6 çalışan',kure:'İş insanı',
+    btn:[['Başvurular',''],['Çalışanlar ve maaşlar',''],['Şirketi devret','tehlike']],ilan:['İş ilanı oluştur','Çalışan ara'],ben:['Şirketim','Kaya Hukuk Bürosu']}};
+let durum='calisan';
+function cizDurum(){const d=DURUM[durum];
+  $('isimAlan').innerHTML=`<button class="tik isimKart" data-ac="İşim"><div class="bas"><b>İşim</b><span class="ikonDaire">${IKON.is}</span></div><div class="meslek">${d.meslek}</div><div class="yer">${d.yer}</div></button>`+
+    d.btn.map(([t,k,alt])=>`<button class="kucukBtn ${k}" data-btn="${t}">${t}${alt?`<small>${alt}</small>`:''}</button>`).join('');
+  const ik=$('ikili');ik.className='ikili'+(d.ilan?'':' tekli');
+  ik.innerHTML=(d.ilan?`<button class="tik blok" data-ac="${d.ilan[0]}"><span class="ikonDaire">${IKON.ilan}</span><div><b>${d.ilan[0]}</b><br><small>${d.ilan[1]}</small></div></button>`:'')+
+    `<button class="tik blok vurgulu" data-ac="${d.ben[0]}"><span class="ikonDaire">${durum==='patron'?IKON.sirket:IKON.ben}</span><div><b>${d.ben[0]}</b><br><small>${d.ben[1]}</small></div></button>`;
+  $('dunyaEtiket').innerHTML=`${d.kure} <span>– Türkiye</span>`;
+  $('projem').innerHTML=`<div class="bas"><b>Projem</b><span class="ikonDaire">${IKON.proje}</span></div><div class="ad">Moda'da daire yatırımı</div>
+    <div class="olcu"><div><span>Harcanan</span><b class="sayi">${para(1250000,'TRY')}</b></div><div><span>Ayrılan bütçe</span><b class="sayi">${para(1600000,'TRY')}</b></div><div><span>Şu ana kadar gelir</span><b class="sayi arti">${para(126000,'TRY')}</b></div></div>
+    <div class="cubuk" style="margin-top:auto"><i style="width:78%"></i></div><div class="cubukYazi">Bütçenin %78'i kullanıldı</div>`;
+  document.querySelectorAll('[data-ac]').forEach(b=>b.onclick=()=>modal(b.dataset.ac,'<p>Bu ekranı bir sonraki adımda birlikte tasarlayacağız.</p>'));
+  document.querySelectorAll('[data-btn]').forEach(b=>b.onclick=()=>{const t=b.dataset.btn;
+    if(/İstifa|devret/.test(t))modal(t+'?',`<p>${t==='İstifa et'?'Kaya Hukuk Bürosu\'ndaki işinden istifa etmek istediğine emin misin? Maaşın bu ay sonunda kesilir.':'Şirketini devretmek istediğine emin misin?'}</p><div class="onay"><button class="iptal" id="vazgec">Vazgeç</button><button class="tehlikeBtn" id="evet">${t}</button></div>`,g=>{g.querySelector('#vazgec').onclick=kapat;g.querySelector('#evet').onclick=kapat});
+    else modal(t,'<p>Bu ekranı bir sonraki adımda birlikte tasarlayacağız.</p>')});
+  ['calisan','issiz','patron'].forEach((k,i)=>$(['dCalisan','dIssiz','dPatron'][i]).setAttribute('aria-pressed',k===durum))}
+$('dCalisan').onclick=()=>{durum='calisan';cizDurum()};$('dIssiz').onclick=()=>{durum='issiz';cizDurum()};$('dPatron').onclick=()=>{durum='patron';cizDurum()};
+$('projem').onclick=()=>modal('Projem','<p>Bu ekranı bir sonraki adımda birlikte tasarlayacağız.</p>');
+
+// ---- saat: 1 oyun günü = 30 dakika, yani 1 oyun dakikası = 1,25 saniye ----
+const AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+let oyunDk=((((2027*12+6)*30+13)*24+9)*60+30);
+function cizSaat(){const dk=oyunDk%60,sa=Math.floor(oyunDk/60)%24,gun=Math.floor(oyunDk/1440)%30+1,ay=Math.floor(oyunDk/43200)%12,yil=Math.floor(oyunDk/518400);
+  const s=String(sa).padStart(2,'0')+':'+String(dk).padStart(2,'0');
+  $('saat').innerHTML=`${gun} ${AY[ay].slice(0,3)} ${yil} <b>${s}</b>`;$('ayAdi').textContent=AY[ay]+' güncel durum';$('tSaat').textContent=s;$('tSaatKucuk').textContent=s}
+setInterval(()=>{oyunDk++;cizSaat()},1250);
+
+// ---- sohbetler, ayarlar, sıralama ----
+document.querySelectorAll('[data-sohbet]').forEach(b=>b.onclick=()=>{const g=b.dataset.sohbet==='global';
+  modal(g?'Global sohbet':'Türkiye sohbeti',`<div class="sohbet">${(g?[['Ahmed_DXB','Anyone hiring couriers in Dubai?'],['Selin K.','Borsada bugün enerji hisseleri uçtu'],['Lukas','Guten Morgen! Neue Bäckerei eröffnet.']]:[['Mehmet Y.','Kadıköy\'de kiralık dükkan arayan var mı?'],['Zeynep','Faiz kararı yarın açıklanıyor, dikkat'],['Burak','Garson arıyorum, Beşiktaş, 34.000 ₺']]).map(([a,m])=>`<p><b>${a}</b>${m}</p>`).join('')}</div><div class="ornek">Örnek mesajlar.</div>`)});
+$('ayarlar').onclick=()=>modal('Ayarlar','<p>Ses, bildirimler, dil, hesap. Bu ekranı sonra tasarlayacağız.</p>');
+const SIRA={
+  'Şehrimde ben':[['1','Kemal Aydın','184.200.000 ₺'],['2','Derya Şahin','97.450.000 ₺'],['…','',''],['812','Sen','4.250.000 ₺',1]],
+  'Ülkemde ben':[['1','Kemal Aydın','184.200.000 ₺'],['2','Hakan Er (Ankara)','121.900.000 ₺'],['…','',''],['3.904','Sen','4.250.000 ₺',1]],
+  'Dünyada ben':[['1','Omar Al-Fayed (BAE)','$6.840.000'],['2','Kemal Aydın (TR)','$4.375.000'],['…','',''],['21.377','Sen','$100.950',1]],
+  'Ülkemde şehrim':[['1','İstanbul','6.920.000 ₺ / kişi',1],['2','Ankara','5.110.000 ₺ / kişi'],['3','İzmir','4.870.000 ₺ / kişi']],
+  'Dünyada ülkem':[['1','BAE','$212.400 / kişi'],['2','Almanya','$188.900 / kişi'],['3','Türkiye','$164.300 / kişi',1],['4','Azerbaycan','$151.700 / kişi']]};
+$('siralama').onclick=()=>{let aktif='Şehrimde ben';const ciz=g=>{g.innerHTML=`<div class="sekmeler">${Object.keys(SIRA).map(k=>`<button data-s="${k}" aria-pressed="${k===aktif}">${k}</button>`).join('')}</div>
+  <table class="liste">${SIRA[aktif].map(r=>`<tr class="${r[3]?'ben':''}"><td style="width:54px">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table><div class="ornek">Servete göre; ülke ve şehirlerde kişi başı ortalama servet. Rakamlar örnek.</div>`;
+  g.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{aktif=b.dataset.s;ciz(g)})};modal('Sıralama','',ciz)};
+
+// ---- modal ----
+function modal(baslik,html,sonra){$('mBaslik').textContent=baslik;const g=$('mGovde');g.innerHTML=html;$('perde').classList.add('acik');if(sonra)sonra(g);$('mKapat').focus()}
+function kapat(){$('perde').classList.remove('acik')}
+$('mKapat').onclick=kapat;$('perde').onclick=e=>{if(e.target===$('perde'))kapat()};
+addEventListener('keydown',e=>{if(e.key==='Escape'){kapat();telefonKapat()}});
+
+// ---- bildirim şeridi ----
+let bZaman;
+$('ornekBildirim').onclick=()=>{$('bBaslik').textContent='Yeni başvuru';$('bMetin').textContent='Mehmet Yıldız stajyer avukat ilanına başvurdu.';$('bildirim').classList.add('acik');clearTimeout(bZaman);bZaman=setTimeout(()=>$('bildirim').classList.remove('acik'),7000)};
+$('bKapat').onclick=()=>$('bildirim').classList.remove('acik');
+$('bGor').onclick=()=>{$('bildirim').classList.remove('acik');modal('Yeni başvuru','<p>Mehmet Yıldız · 2 yıl deneyim · itibar 74. Başvuru ekranını sonra tasarlayacağız.</p>')};
+document.querySelectorAll('[data-menu]').forEach(b=>b.onclick=()=>modal(b.dataset.menu,'<p>Bu menü amcanın taslağındaki ekranlardan gelecek; ana menüden açılış yeri burası.</p>'));
+
+// ---- telefon ----
+const UYG=[['Mesajlar','#2F9E6B','<path d="M4 5h16v11H9l-5 4z"/>',2],['Akış','#C2410C','<circle cx="12" cy="12" r="4"/><rect x="3" y="3" width="18" height="18" rx="5"/>'],['Bankam','#1D4E89','<path d="M3 10l9-6 9 6M5 10v8M19 10v8M12 10v8M3 20h18"/>'],['Haberler','#6B4FA3','<path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/>'],['Rehber','#0E7490','<circle cx="12" cy="9" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>'],['Takvim','#B91C1C','<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'],['Borsa','#0F766E','<path d="M3 17l6-6 4 4 8-8"/>'],['Notlar','#A16207','<path d="M6 3h9l4 4v14H6zM9 12h7M9 16h7"/>']];
+function anaEkran(){$('tGovde').innerHTML=`<div class="uygulamalar">${UYG.map(([ad,renk,yol,r])=>`<button class="uyg" data-u="${ad}"><span class="uIkon" style="background:${renk}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${yol}</svg></span>${ad}${r?`<span class="rozet">${r}</span>`:''}</button>`).join('')}</div>`;
+  document.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>uygulama(b.dataset.u))}
+function uygulama(ad){const govde=ad==='Mesajlar'?[['MY','Mehmet Yıldız','Merhaba Ahmet Bey, projeyi inceleyebildiniz mi?','09:12'],['KH','Kaya Hukuk (grup)','Duruşma yarın 10:00\'da','08:40'],['ZE','Zeynep Ekinci','Proje dosyasını gönderdim','Dün']].map(([a,n,m,s])=>`<div class="mesaj"><span class="av">${a}</span><div><b>${n}</b><span>${m}</span></div><em>${s}</em></div>`).join('')+'<div class="ornek">Örnek konuşmalar.</div>':`<p>${ad} uygulamasını sonra tasarlayacağız.</p>`;
+  $('tGovde').innerHTML=`<div class="uygBas"><button id="uGeri">‹ Geri</button>${ad}</div><div class="uygGovde">${govde}</div>`;$('uGeri').onclick=anaEkran}
+function telefonAc(){anaEkran();$('telefonAcik').classList.add('acik');$('telefonAcik').setAttribute('aria-hidden','false');$('telefonPerde').classList.add('acik')}
+function telefonKapat(){$('telefonAcik').classList.remove('acik');$('telefonAcik').setAttribute('aria-hidden','true');$('telefonPerde').classList.remove('acik')}
+$('telefon').onclick=telefonAc;$('tKapat').onclick=telefonKapat;$('telefonPerde').onclick=telefonKapat;
+
+// ---- güvenli alanlar ----
+$('guvenliGoster').onclick=e=>{const ac=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',ac);document.querySelectorAll('.guvenli').forEach(g=>g.hidden=!ac)};
+
+// ---- ölçek: cihaz ekrana sığsın ----
+function olcekle(){const w=$('sarici').clientWidth,h=innerHeight-150,k=Math.min(1.25,w/900,Math.max(.35,h/446));$('olcek').style.transform=`scale(${k})`;$('sarici').style.height=(446*k)+'px'}
+addEventListener('resize',olcekle);
+
+// ---- küre ----
+const kure=$('kure'),ctx=kure.getContext('2d');let proj,yol,ulkeler,turkiye,cizgi,don=[-35,-36,0],surukle=null,son=0,hiz=0;
+function cizKure(){if(!proj)return;const W=kure.width,R=W/2-8;ctx.clearRect(0,0,W,W);proj.rotate(don);
+  const g=ctx.createRadialGradient(W*.38,W*.35,R*.1,W/2,W/2,R);g.addColorStop(0,css('--deniz1'));g.addColorStop(1,css('--deniz2'));
+  ctx.beginPath();yol({type:'Sphere'});ctx.fillStyle=g;ctx.fill();
+  ctx.beginPath();yol(cizgi);ctx.strokeStyle=css('--karaCizgi');ctx.globalAlpha=.25;ctx.lineWidth=1;ctx.stroke();ctx.globalAlpha=1;
+  ctx.beginPath();yol(ulkeler);ctx.fillStyle=css('--kara');ctx.fill();ctx.strokeStyle=css('--karaCizgi');ctx.lineWidth=.8;ctx.stroke();
+  ctx.beginPath();yol(turkiye);ctx.fillStyle=css('--vurgu');ctx.fill();ctx.strokeStyle=css('--metin');ctx.lineWidth=1.4;ctx.stroke();
+  ctx.beginPath();yol({type:'Sphere'});ctx.strokeStyle=css('--cizgi');ctx.lineWidth=2;ctx.stroke()}
+function kureBasla(topo){const W=kure.width;proj=d3.geoOrthographic().scale(W/2-8).translate([W/2,W/2]).clipAngle(90);yol=d3.geoPath(proj,ctx);
+  const t=topojson.feature(topo,topo.objects.countries);ulkeler=t;turkiye={type:'FeatureCollection',features:t.features.filter(f=>f.id==='792')};cizgi=d3.geoGraticule10();cizKure();
+  const nokta=e=>{const r=kure.getBoundingClientRect();return [(e.clientX-r.left),(e.clientY-r.top)]};
+  kure.addEventListener('pointerdown',e=>{kure.setPointerCapture(e.pointerId);surukle={p:nokta(e),d:[...don]};hiz=0;son=performance.now()});
+  kure.addEventListener('pointermove',e=>{if(!surukle)return;const p=nokta(e),k=180/(kure.getBoundingClientRect().width);const dx=(p[0]-surukle.p[0])*k*.9,dy=(p[1]-surukle.p[1])*k*.9;
+    const yeni=[surukle.d[0]+dx,Math.max(-80,Math.min(80,surukle.d[1]-dy)),0];const t=performance.now();hiz=(yeni[0]-don[0])/Math.max(1,t-son)*16;son=t;don=yeni;cizKure()});
+  const birak=()=>{surukle=null};kure.addEventListener('pointerup',birak);kure.addEventListener('pointercancel',birak);
+  const az=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function dongu(){if(!surukle&&Math.abs(hiz)>.02){don=[don[0]+hiz,don[1],0];hiz*=.94;cizKure()}requestAnimationFrame(dongu)})();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',cizKure);
+  new MutationObserver(cizKure).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']})}
+fetch('dunya.json').then(r=>r.json()).then(kureBasla).catch(()=>{});
+
+cizHalka();cizAylik();cizDurum();cizSaat();olcekle();
+</script>
