@@ -76,4 +76,8 @@ await p.evaluate(()=>ileriSar(30));await p.waitForTimeout(200);
 ok('geçmiş aya yazıldı',await p.evaluate(()=>S().gecmis.length>0));
 await p.evaluate(()=>{panelKapat();ekran('ana')});await p.waitForTimeout(200);
 ok('ana menü Projem ana projeyi gösteriyor',(await p.textContent('#projem')).includes(await p.evaluate(()=>anaProjem().ad)));
+ok('varsayılan tema açık',await p.evaluate(()=>document.documentElement.dataset.theme==='light'));
+await p.evaluate(()=>{kapat();document.getElementById('ayarlar').click()});await p.waitForTimeout(200);await p.click('[data-tema="dark"]');await p.waitForTimeout(150);
+ok('koyu seçildi ve zemin koyu',await p.evaluate(()=>getComputedStyle(document.body).backgroundColor!=='rgb(230, 224, 212)'&&document.documentElement.dataset.theme==='dark'));
+await p.reload();await p.waitForTimeout(700);ok('koyu tema yeniden yüklemede hatırlandı',await p.evaluate(()=>document.documentElement.dataset.theme==='dark'));
 console.log('hatalar:',errs.length?errs:'yok');await b.close()})();

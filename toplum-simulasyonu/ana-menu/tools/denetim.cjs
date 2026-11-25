@@ -9,7 +9,7 @@ for(const tema of ['light','dark'])for(const [ad,w,h,ins] of VP)for(const d of D
  const errs=[];p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
  await p.route('**/index.html',async r=>{const res=await r.fetch();let t=(await res.body()).toString('utf8');if(ins)t=t.replace('max(8px,env(safe-area-inset-left,0px))','max(8px,'+ins+'px)').replace('max(8px,env(safe-area-inset-right,0px))','max(8px,'+ins+'px)').replace('max(8px,env(safe-area-inset-bottom,0px))','max(8px,21px)');r.fulfill({body:'<meta charset="utf-8">'+t,headers:{'content-type':'text/html; charset=utf-8'}})});
  await p.goto('http://localhost:8850/index.html');await p.waitForTimeout(1200);
- await p.evaluate(HAZIRLA,d);await p.waitForTimeout(450);
+ await p.evaluate(t=>document.documentElement.dataset.theme=t,tema);await p.evaluate(HAZIRLA,d);await p.waitForTimeout(450);
  const sorun=await p.evaluate(()=>{const out=[],sahne=document.getElementById('sahne'),S=sahne.getBoundingClientRect(),k=S.width/780;
   const ad=e=>(e.id?'#'+e.id:'')+(e.className&&typeof e.className==='string'?'.'+e.className.split(' ').join('.'):'')+(e.textContent||'').trim().slice(0,18).replace(/\s+/g,' ');
   const vis=e=>{const cs=getComputedStyle(e);return cs.display!=='none'&&cs.visibility!=='hidden'&&!e.closest('[hidden]')&&!e.closest('.telefonAcik,.perde:not(.acik),.telefonPerde,.bildirim,.tost,.panel:not(.acik)')};
