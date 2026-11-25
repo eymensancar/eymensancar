@@ -114,7 +114,19 @@
     oyle: 'öyle', ole: 'öyle', boyle: 'böyle', bole: 'böyle', simdi: 'şimdi', sindi: 'şimdi',
     olurmu: 'olur mu', varmi: 'var mı', yokmu: 'yok mu', degilmi: 'değil mi', iyimi: 'iyi mi',
     aliyom: 'alıyorum', ariyom: 'arıyorum', ariyoz: 'arıyoruz', bakiyom: 'bakıyorum', istiyom: 'istiyorum', calisiyom: 'çalışıyorum',
-    biliyon: 'biliyorsun', bilmiyom: 'bilmiyorum', satiyom: 'satıyorum', yapiyom: 'yapıyorum'
+    biliyon: 'biliyorsun', bilmiyom: 'bilmiyorum', satiyom: 'satıyorum', yapiyom: 'yapıyorum',
+    evt: 'evet', evet: 'evet', evettt: 'evet', yes: 'evet', yep: 'evet', yeah: 'evet',
+    nope: 'hayır', nop: 'hayır', yook: 'yok', yokk: 'yok', hyr: 'hayır', hayir: 'hayır', no: 'hayır',
+    sry: 'kusura bakma', sorry: 'kusura bakma', kb: 'kusura bakma', kusra: 'kusura', pardn: 'pardon',
+    help: 'yardım', yardm: 'yardım', yrdm: 'yardım',
+    arkdslr: 'arkadaşlar', arkadaslr: 'arkadaşlar', arkdaslar: 'arkadaşlar', arkdas: 'arkadaş', ahaliye: 'ahaliye',
+    hoscakal: 'hoşça kal', hoscakalin: 'hoşça kalın', hosckal: 'hoşça kal', gorusmek: 'görüşmek',
+    gidiyim: 'gideyim', kaciyim: 'kaçayım', cikiyim: 'çıkayım', yatiyim: 'yatayım',
+    burda: 'burada', orda: 'orada', surda: 'şurada', nerdeyse: 'neredeyse', nerden: 'nereden', nerelerdesin: 'nerelerdesin',
+    tamamdr: 'tamamdır', bisi: 'bir şey', bisiy: 'bir şey', napiyonuz: 'ne yapıyorsunuz',
+    mashallah: 'maşallah', masallah: 'maşallah', maasallah: 'maşallah', mşallah: 'maşallah',
+    chatbot: 'chat bot', npcmi: 'npc mi', botmu: 'bot mu', botmusun: 'bot musun',
+    partime: 'part time', parttime: 'part time', isim: 'isim'
   };
 
   function temizle(k) {
@@ -124,6 +136,44 @@
     t = t.replace(/\u0001/g, '.').replace(/\u0002/g, ',').replace(/\u0003/g, '+');
     t = t.replace(/(\p{L})\1{2,}/gu, '$1');
     return t.replace(/\s+/g, ' ').trim();
+  }
+
+  // ---- Agiz ve bitisik yazim duzeltmeleri (genel kurallar) ----
+  // bitisik soru eki yalniz su govdelerde tek basina ayrilir: varmi, olurmu, iyimi ...
+  var SORU_GOVDE = /^(var|yok|olur|olmaz|iyi|dogru|tamam|mumkun|uygun|lazim|gercek|kabul|guzel|pahali|ucuz|bot|insan|yeni|burda|burada|orda|orada|kolay|zor|deger|karli|ciddi|emin|musait)$/;
+  var GELECEK_ISTISNA = { amcam: 1, hocam: 1, bacam: 1, yengecem: 1 };
+  var UNLU_RE = /[aeıioöuü]/;
+  function kalinMi(govde) {
+    var u = (govde.match(/[aeıioöuü]/g) || []);
+    return 'aıou'.indexOf(u[u.length - 1] || 'e') >= 0;
+  }
+  function agizDuzelt(tok) {
+    var parca = [tok];
+    // 1) bitisik soru eki + kisi eki: kuryemisin, aliyomusunuz, patronmusun -> "kurye misin"
+    var m = /^(\p{L}{2,}?)(m[ıiuü](?:s[ıiuü]n(?:[ıiuü]z)?|y[ıiuü][mz]|d[ıiuü]r))$/u.exec(tok);
+    if (m && !/^(kimi|ismi|resmi)/.test(tok)) parca = [m[1], m[2]];
+    else {
+      m = /^(\p{L}{2,})(m[ıiuü])$/u.exec(tok);
+      if (m && SORU_GOVDE.test(katla(m[1]))) parca = [m[1], m[2]];
+      // "aliyomu" / "veriyonmu"
+      else if ((m = /^(\p{L}{2,}[ıiuü]yo[nmz]?)(m[ıiuü])$/u.exec(tok))) parca = [m[1], m[2]];
+    }
+    // 2) -yo/-yon/-yom/-yoz/-yosun agzi: yetmiyo, veriyon, aliyom, yaziyosun
+    var g = parca[0];
+    var r = /^(\p{L}{2,}[ıiuü])yo(n|sun|m|z|nuz|sunuz|lar|du|muş)?$/u.exec(g);
+    if (r) {
+      var son = { '': 'yor', n: 'yorsun', sun: 'yorsun', m: 'yorum', z: 'yoruz', nuz: 'yorsunuz', sunuz: 'yorsunuz', lar: 'yorlar', du: 'yordu', 'muş': 'yormuş' };
+      parca[0] = r[1] + son[r[2] || ''];
+    }
+    // 3) gelecek zaman agzi: alıcam, açcam, gelicem, yapıcaz -> alacağım, açacağım, geleceğim, yapacağız
+    if (!GELECEK_ISTISNA[katla(parca[0])]) {
+      var gz = /^(\p{L}{2,}?)([ıiuü])?(cam|cem|caz|cez)$/u.exec(parca[0]);
+      if (gz && (gz[2] || !UNLU_RE.test(gz[1].slice(-1)))) {
+        var kalin = kalinMi(gz[1]);
+        parca[0] = gz[1] + (kalin ? 'acağ' : 'eceğ') + (/z$/.test(gz[3]) ? (kalin ? 'ız' : 'iz') : (kalin ? 'ım' : 'im'));
+      }
+    }
+    return parca;
   }
 
   function normal(metin) {
@@ -136,7 +186,15 @@
       if (Object.prototype.hasOwnProperty.call(KISALTMA, f)) {
         var ac = KISALTMA[f].split(' ');
         for (var j = 0; j < ac.length; j++) out.push(ac[j]);
-      } else out.push(toks[i]);
+      } else if (/\d/.test(toks[i])) out.push(toks[i]);
+      else {
+        var ap = agizDuzelt(toks[i]);
+        for (var a = 0; a < ap.length; a++) {
+          var fa = katla(ap[a]);
+          if (Object.prototype.hasOwnProperty.call(KISALTMA, fa)) out.push.apply(out, KISALTMA[fa].split(' '));
+          else out.push(ap[a]);
+        }
+      }
     }
     var kucuk = out.join(' ');
     return { ham: ham, kucuk: kucuk, katli: katla(kucuk), kelimeler: out };
@@ -485,7 +543,7 @@
     ['selam', 1.3, '\\b(selam\\w*|merhaba\\w*|selamun aleykum|aleykum selam|hey|heyo|gunaydin\\w*|hayirli sabahlar|iyi aksamlar|iyi gunler|hos geldin\\w*|hos bulduk|alo|hello|hi)\\b'],
     ['hal_hatir', 2.4, '\\b(nasilsin\\w*|nasilsiniz|nasil gidiyor|ne haber|ne var ne yok|iyi misin\\w*|keyifler nasil|keyfin nasil|ne yapiyorsun\\w*|ne yaptin|nasil gecti\\w*|halin nasil|hallerin nasil|ne alemde\\w*|nasil keyifler|neler yapiyorsun|ne var ne yok|nasil gidiyo|naber\\w*)\\b'],
     ['hal_hatir', 1.4, '\\b(isler nasil|gunun nasil|nasil gecti gunun)\\b'],
-    ['tesekkur', 2.4, '\\b(tesekkur\\w*|sag ol\\w*|sagol\\w*|eyvallah|mersi|eline saglik|ellerine saglik|minnettar\\w*|allah razi olsun|cok makbule gecti)\\b'],
+    ['tesekkur', 2.4, '\\b(tesekkur\\w*|sag ol\\w*|sagol\\w*|eyvallah|mersi|minnettar\\w*|allah razi olsun|cok makbule gecti)\\b'],
     ['veda', 2.4, '\\b(gorusuruz\\w*|gorusmek uzere|bay bay|hosca kal\\w*|kendine iyi bak|kendinize iyi bakin|iyi geceler|iyi uykular|ben kacar\\w*|kactim|ben ciktim|cikiyorum ben|ben cikiyorum|allaha emanet|sonra yazarim|sonra konusuruz|kacmam lazim|gitmem lazim|yatiyorum ben|ben yatiyorum)\\b'],
     ['veda', 1.5, '\\bbana eyvallah\\b'],
     ['tebrik', 3.2, '\\b(tebrik\\w*|kutlar(im|iz)\\b|kutluyorum|hayirli olsun|hayirli ugurlu olsun|helal olsun|bravo|aferin\\w*|basardin|gozun aydin|bol kazanclar|hayirli isler|maasallah|harika haber|super haber|cok sevindim)\\b'],
@@ -497,6 +555,9 @@
     ['is_ariyorum', 3, '\\b(issiz\\w*|calisacak (bir )?(yer|is)|calismak istiyorum|beni (de )?ise al\\w*|ise alir mi\\w*|ise alin\\w*|is veren var mi|cv\\w*|ozgecmis\\w*|basvuru yap\\w*|basvurmak|basvurdum|is bakiyorum)'],
     ['is_ariyorum', 4, '\\b(eleman|isci|garson|kurye|personel|calisan|usta|sofor|kasiyer|muhasebeci|memur|emlakci) (arayan|alan|lazim olan) (var mi|varmi|kimse|biri|yer)'],
     ['is_ariyorum', 2, '\\bolarak (is|calis\\w*|basla\\w*)'],
+    ['is_ariyorum', 4, '\\b(isveren|is veren|patron|isyeri|is yeri|ise alan|eleman alan|isci alan|calistiran|calistiracak)\\w* ?(var|ari|lazim|bul|yok|kimse|olan)'],
+    ['is_ariyorum', 2.5, '\\b(isveren|is veren|patron)\\w*\\b'],
+    ['is_ariyorum', 3, '\\b(beni|bizi) (kim|kimse|biri) (alir|ise alir|calistirir)'],
     ['is_ariyorum', 2, '\\b(yaninda|sende|sizde|yaninizda) (calis\\w*|is var\\w*)'],
     ['eleman_ariyorum', 3, '\\b(eleman|personel|calisan|isci|kadro\\w*|ekip arkadasi)\\w* (' + AR + '|lazim|alinacak|alacag\\w*|alimi|ihtiyac\\w*|almak|aliyor\\w*|bakiyor\\w*)'],
     ['eleman_ariyorum', 2.5, '\\b(ise alim|alim yapiyor\\w*|eleman alinacak|eleman alimi|ekibimize|kadromuza|isletmeme|dukkanima eleman|bana calisacak|benim icin calis\\w*|yanimda calis\\w*|kim calismak ister|calismak isteyen)'],
@@ -525,13 +586,46 @@
     ['hakaret', 3, '\\b(salak\\w*|aptal\\w*|gerizekali\\w*|geri zekali\\w*|mal misin|malsin|ezik\\w*|beyinsiz\\w*|kes sesini|defol\\w*|cahil\\w*|embesil\\w*|dangalak\\w*|hiyar\\w*|okuz\\w*|angut\\w*|ahmak\\w*|sersem\\w*|terbiyesiz\\w*|kafasiz\\w*|zavalli\\w*|beceriksiz\\w*|yalanci\\w*|dolandirici\\w*|igrenc\\w*|rezil\\w*|sacmalama\\w*|sinir bozucu\\w*|hadi ordan|hadi oradan|nefret ediyorum|belani)'],
     ['hakaret', 1.5, '\\b(lan|ulan|sus|cok sacma|sacma sapan)\\b'],
     ['saka', 3, '\\b(ha(ha)+h?|ah(ah)+a?|aha(ha)+|he(he)+|hi(hi)+|lol|lmao|xd+|komik\\w*|espri\\w*|saka\\w*|gulmekten|gul(dum|dun|uyorum)|kahkaha\\w*|koptum|olurum gulmekten|gulme krizi)\\b'],
-    ['yardim', 3, '\\b(nasil oynan\\w*|oyun nasil|oyunu nasil|ne yapmaliyim|ne yapmam (lazim|gerek)\\w*|ne yapmaliyiz|nasil para kazan\\w*|para nasil kazan\\w*|nasil zengin ol\\w*|yardim (et|eder|edin|edebilir|lazim|istiyorum|ister)\\w*|yardima ihtiyac\\w*|yeniyim|yeni basladim|yeni geldim|acemi\\w*|nereden basla\\w*|nasil basla\\w*|ipucu\\w*|taktik\\w*|akil ver\\w*|nasil yapilir|nasil yapiliyor|ilk ne yap\\w*|rehber\\w*|ne yapacagim|ne yapacagiz|kafam karisti|anlamadim oyun\\w*)'],
+    ['yardim', 3, '\\b(nasil oynan\\w*|oyun nasil|oyunu nasil|ne yapmaliyim|ne yapmam (lazim|gerek)\\w*|ne yapmaliyiz|nasil para kazan\\w*|para nasil kazan\\w*|nasil zengin ol\\w*|yardim (et\\b|etsene|eder\\w*|edin\\w*|edebilir\\w*|lazim|istiyorum|ister\\w*)|yardima ihtiyac\\w*|yeniyim|yeni basladim|yeni geldim|acemi\\w*|nereden basla\\w*|nasil basla\\w*|ipucu\\w*|taktik\\w*|akil ver\\w*|nasil yapilir|nasil yapiliyor|ilk ne yap\\w*|rehber\\w*|ne yapacagim|ne yapacagiz|kafam karisti|anlamadim oyun\\w*)'],
     ['yardim', 1.5, '\\b(tavsiye\\w*|oneri\\w*|anlamadim|bilmiyorum ne|yardim)\\b'],
     ['zam_istegi', 4, '\\b(zam (istiyorum|isterim|istiyoruz|istesem|yapar mi\\w*|yapsan\\w*|yapabilir mi\\w*|yap\\b|lazim|hak\\w*|bekliyorum|alabilir mi\\w*|olur mu|verir mi\\w*|ver\\b|dusunur mu\\w*|rica\\w*|mumkun mu)|maas(imi|imiz|i)? (artir\\w*|arttir\\w*|yukselt\\w*)|maasim (az|dusuk|yetmiyor|cok az)|daha fazla maas|maas\\w* (biraz )?zam|zam olsa\\w*|zam yapsan\\w*|zam(mi|mim)? (ne zaman|var mi|gelecek mi))'],
     ['yetki_istegi', 4, '\\b(yetki\\w*|sorumluluk (ver|al|ist)\\w*|beni (mudur|yonetici|sef|sorumlu)\\w*|mudur (olmak|yap)\\w*|yonetici (olmak|yap)\\w*|terfi\\w*|kasaya (ben )?bak\\w*|karar ver(mek|eyim|ebilir)\\w*|daha fazla sorumluluk|bana guven\\w* (biraz|artik)|isleri ben yoneteyim|ben yoneteyim)'],
-    ['teklif', 2, '\\b(teklif\\w*|olur mu|son fiyat\\w*|pazarlik\\w*|iner misin\\w*|indirim\\w*|duser misin\\w*|anlasalim|anlasabilir\\w*|kabul eder misin\\w*|vereyim|alirim|aliriz|alayim|veririm|veririz|satarim|satar misin|verir misin|teklifim|calisirim|calisabilirim)'],
+    ['teklif', 2, '\\b(teklif\\w*|olur mu|son fiyat\\w*|pazarlik\\w*|iner misin\\w*|indirim\\w*|duser misin\\w*|anlasalim|anlasabilir\\w*|kabul eder misin\\w*|vereyim|alirim|aliriz|alayim|veririm|veririz|satarim|satar misin|verir misin|teklifim)'],
     ['oneri_kabul', 3.2, '\\b(kabul (ediyorum|ettim|ederim|ediyoruz)|teklifini? kabul|anlastik|razi(yim|yiz)|ben varim|tamam anlastik|hadi yapalim|tamamdir yapalim|tamam olur|olur tamam|teklifin uygun|uygundur|kabul\\b|el sikisalim|olur yapalim|tamam o zaman)'],
-    ['oneri_kabul', 1.5, '^\\s*varim\\b']
+    ['oneri_kabul', 1.5, '^\\s*varim\\b'],
+    // ---- genel kaliplar (kor set gelistirmesi) ----
+    ['selam', 1.3, '\\bhayirli (sabah|aksam|gun)\\w*'],
+    ['selam', 2.5, '\\b(yeni (girdim|katildim)|(oyuna|kanala|aramiza) (girdim|katildim|yeni geldim))'],
+    ['hal_hatir', 2.4, '\\bkeyf\\w* (yerinde|nasil)\\w*'],
+    ['tebrik', 3.2, '\\b(helal\\w*|masallah|eline saglik|ellerine saglik|super olmus|guzel olmus|cok yakisti)\\b'],
+    ['veda', 2.4, '\\b(hosca kal\\w*|ben (gideyim|kacayim|cikayim|yatayim|kaciyorum|gidiyorum)|(gideyim|kacayim|cikayim|yatayim) (ben|artik|hadi)|hadi (bana )?(eyvallah|gorusuruz|kactim)|gitmem (lazim|gerek)|ise gec kal\\w*)'],
+    ['bayram', 3, '\\b(hayirli cumalar|cumaniz (mubarek|hayirli)\\w*|kandiliniz\\w*)'],
+    ['is_ariyorum', 3.5, '\\b(?!kiralik|satilik|yatirimlik|aylik|gunluk|haftalik|yillik|ogrencilik)\\w+l[iu](k|g[iu]) (' + AR + '|bak[ai]\\w*|lazim|yapmak ist\\w*|yapabilirim)'],
+    ['is_ariyorum', 4, '\\b((eleman|isci|personel|calisan|garson|kurye|usta|sofor|kasiyer|danisman|biri|kimse|adam)\\w{0,3} ali(yor|r) (mu|mi|musunuz|misiniz|musun|misin)\\b|kim (\\w+ )?(eleman|isci|personel|calisan|garson|kurye|\\w+ci) ali(yor|r)\\b|ise alim var mi)'],
+    ['is_ariyorum', 3, '\\bis (ayarla\\w*|bul(un|sana|ur)\\w*|olan (var|kim)\\w*|varsa|olursa|olan)\\b'],
+    ['is_ariyorum', 3, '\\b(calisirim|calisabilirim|calismaya hazirim|her ise hazirim|is olsa yaparim)\\b'],
+    ['eleman_ariyorum', 3.5, '\\b(eleman|isci|personel|calisan|danisman|garson|kurye|usta|sofor|kasiyer|muhasebeci|asci|komi|stajyer|biri|birini|kisi)\\w{0,3} (ali(yorum|yoruz|nir|nacak|riz|rim)\\b|alacag\\w*|lazim\\b|arayisi\\w*)'],
+    ['maas_sorusu', 3.5, '\\b(kac|kaca|ne kadar)( para| bin| lira| tl)? (veri|ode|ali(yor|r)|kazan|calis)\\w*'],
+    ['maas_sorusu', 3, '\\b(prim (var|veriliyor|ne kadar)\\w*|brut|net maas\\w*|net mi|sigorta\\w* (var|yapiliyor)\\w*|gunluk (kac|ne kadar)|haftalik (kac|ne kadar)|yevmiye\\w*|bahsis\\w*)'],
+    ['meslek_tavsiyesi', 3.2, '\\b(en (karli|iyi|mantikli|kazancli|garanti) (is|mesle[kg])\\w*|(is|mesle[kg])\\w* hangisi|\\w+ olmaya deger\\w*|\\w+(dan|den|tan|ten) sonra ne (yap|ol)\\w*|baslangic icin (ne|hangi)\\w*|neye gecsem|ne olsam)'],
+    ['kurs_sorusu', 3.8, '\\b(sinav\\w*|kpss|ales|belge\\w*|ehliyet\\w*|lisans\\w* (al|nasil)\\w*)'],
+    ['yardim', 3.5, '\\bnasil (\\w+ )?\\w{2,}(ilir|ulur|inir|unur|nir|nur|lir|lur|irim|urum|arim|erim|iriz|uruz|ariz|eriz|abilirim|ebilirim)\\b'],
+    ['yardim', 3.5, '\\b(ne ise yar\\w*|nereden (alinir|acilir|bakilir|yapilir)|nerede(n)? (bulurum|bulunur)|(menu|ayar|buton|sekme|ekran|profil|envanter|harita|magaza)\\w* (nerede|yok|acilmiyor|nasil)|nerede (menu|ayar|buton|sekme)\\w*)'],
+    ['zam_istegi', 4, '\\b(zam (yok|gelmezse|gelmedi|almadim|alamadim|yapmadin\\w*|yapilmadi|gormedim)|(biraz |daha )+(fazla )?vers(en|eniz|ene)\\b|maas\\w* (\\S+ )?(cikar|artir|arttir|yukselt)\\w*)'],
+    ['yetki_istegi', 4, '\\b(admin\\w*|moderator\\w*|mod (yap|ol)\\w*|mod\\b|yonetici (yap|ol)\\w*|hile\\w*|bedava\\w*|para (gonder|yolla|at)\\w*|bana \\S+( \\S+)? (gonder|yolla)\\w*|para verir mi\\w*)'],
+    ['teklif', 3.6, '\\b(ortak\\w*|beraber (\\w+ )?(ac|al|kur|yap|isle)\\w*|birlikte (\\w+ )?(ac|al|kur|yap)\\w*|\\w+ (acalim|alalim|kuralim|yapalim)( mi)? (beraber|birlikte)|yari yariya|seninle (\\w+ )?(is|ortak)\\w* (yap|kur)\\w*|is birligi\\w*|isbirligi\\w*|is yapalim)'],
+    ['dert', 3.6, '\\b(bat(ti|tim|tik|tilar|iyorum|acagim)\\b|dolandiril\\w*|odeyemiyor\\w*|odeyemedim|odeyemeyecegim|alamadim|alamiyorum|maas\\w* (yatmadi|odenmedi|gecikti)|atilacag\\w*|kovul\\w*|(elemanlar|calisanlar|isciler)\\w* (kacti|gitti|birakti|istifa)\\w*|beni (oldur|bitir|mahved)\\w*|borcum (cok|var|bitmiyor|buyuk)|borca (battim|girdim)|icraya (dus|gitt|verdi)\\w*|yardim etmiyor\\w*|kimse (yardim|umursa|bakm)\\w*|parasiz kaldim|meteliksiz\\w*)'],
+    ['kisisel_meslek', 3.6, '\\bhangi mesle[kg]\\w*(sin|siniz|sun)\\b|\\bhangi (iste|sektorde)\\w*'],
+    ['kisisel_ad', 3.6, '\\b(isim\\w* (ne|neydi|ney|nedir)\\b|ismini\\w*|nick\\w*|kullanici adi\\w*|adini (bilmiyorum|bilmem|ogrenebilir)\\w*)'],
+    ['bot_musun', 4, '\\b(bot (mu|mi|musun|misin|musunuz)\\b|gercek (oyuncu|kisi|insan)\\w* (var|mi|mu)\\w*|bunlar (bot|gercek|npc)\\w*|hepsi (bot|npc)\\w*)'],
+    ['iltifat', 3, '\\b(mantikli|yardimsever|akilli|bilgili|tatli|sempatik|kibar|nazik|zeki|harika|super|efsane|sevimli|eglenceli)\\w*(sin|sun|siniz|sunuz)\\b|\\b(mantikli|guzel|akillica|tatli) (konusuyorsun|yaziyorsun|anlatiyorsun|dusunuyorsun)'],
+    ['saka', 3, '\\b(guldur\\w*|gulmek\\w*|\\w+ (olsam|olunca|olursam) (herkese|hepinize|hepimize))'],
+    ['fiyat_sorusu', 3, '\\b(iner mi|inmez mi|duser mi|kac olur|en son kac|son kac|kac milyon|ucuzla\\w*|pahalan\\w* mi|pazarlik (olur|var|payi)\\w*|fiyat\\w* (ne|kac|nedir))'],
+    ['ekonomi', 3.6, '\\b((fiyat|kira|piyasa|dolar|emlak|altin)\\w* (\\w+ )?(dus|art|yuksel|ucu|uctu|inecek|cikacak|neden)\\w*|neden (art|pahalan|yuksel)\\w*|zamla\\w*|zam (geldi|gelmis|yagmuru))'],
+    ['mulk_ariyorum', 3, '\\b(daire|ev|evi|konut|dukkan|arsa|arazi|tarla|isyeri|magaza|villa|rezidans|mulk|\\d\\+\\d)\\w{0,4}( \\w+)? (var mi|bulunur mu|olan var mi)'],
+    ['mulk_ariyorum', 2.8, '\\b(kiralik|yatirimlik|ucuz|uygun) (\\w+ )?(daire|ev|dukkan|arsa|mulk|konut|isyeri|\\d\\+\\d)\\w*'],
+    ['mulk_ariyorum', 3, '\\b(mulk|yatirimlik)\\w* (' + AR + '|bak[ai]\\w*|lazim|almak\\w*|alacag\\w*)'],
+    ['mulk_satiyorum', 3.2, '\\b(devred\\w*|devrediyor\\w*|devir\\w*|sat(ip|arak) \\w+|alan olur\\w*|alacak (var|olan)\\w*)']
   ];
   var KURAL_RE = KURAL.map(function (r) { return { n: r[0], p: r[1], re: new RegExp(r[2]) }; });
 
@@ -552,8 +646,11 @@
       var f = katla(w);
       if (f.length < 4 || /\d/.test(f) || KUFUR_TAM[f]) return;
       var unlu = (f.match(/[aeiou]/g) || []).length;
-      if (unlu === 0 && /^[a-z]+$/.test(f)) p = 3;                 // sjsj, ksksk, skdjf
-      else if (f.length >= 6 && unlu / f.length < 0.2) p = Math.max(p, 2.5);
+      // kahkaha: yalniz h ve a/e/i harfleri (haha, hahahahha, ahahah, hehe, hihi)
+      if (/^(?=[aehi]*h)(?=[aehi]*[aei])[aeh]{4,}$|^(hi){2,}h?$/.test(f) && (f.match(/h/g) || []).length >= 2) { p = Math.max(p, 3.2); return; }
+      // klavye karmasasi: unlusuz ve (uzun ya da tekrarli): sjsj, ksksk, skdjfk; "kpss", "smmm" gibi kisaltmalar degil
+      if (unlu === 0 && /^[a-z]+$/.test(f) && (f.length >= 5 || /(..)\1/.test(f))) p = 3;
+      else if (f.length >= 6 && unlu / f.length < 0.2 && /(..)\1/.test(f)) p = Math.max(p, 2.5);
       else if (/^(asd|qwe|jsj|sjs|ksk|skd)/.test(f)) p = Math.max(p, 2.5);
     });
     return p;
@@ -594,6 +691,8 @@
       if (nk <= 2) puan[a] *= 1.5; else if (nk > 4) puan[a] *= 0.5;
     });
     if (kufur) ekle('hakaret', 4);
+    // "aptal bot": hakaret, bot sorusu degil
+    if (puan.hakaret >= 3 && puan.bot_musun && !soru) puan.bot_musun -= 2.5;
     var s = sakaMi(n);
     if (s) ekle('saka', s);
     // teklif: tutar + teklif sozcukleri ya da "30 bine olur mu"
@@ -601,17 +700,42 @@
       if (puan.teklif) ekle('teklif', 2.5);
       if (/(\d|bin|milyon|milyar|tl|lira)(e|a|ye|ya) (olur|alirim|veririm|satarim|verir misin|satar misin|anlasalim|anlasiriz|tamam|calis\w*|razi|kabul|verirsen|satarsan|yaparsan)/.test(k)) ekle('teklif', 3);
       if (/(maasi|maasimi|maasini) \S+ (yap|yaparsan|yapalim|olsun)/.test(k)) ekle('teklif', 1.5);
-      if (/(maasa|fiyata|paraya|ucrete|rakama|kiraya) (calis|olur|veririm|alirim|satarim|razi|kabul|tamam)\w*/.test(k)) ekle('teklif', 3);
+      if (/(maasa|fiyata|paraya|ucrete|rakama|kiraya) (calis|olur|veririm|alirim|satarim|razi|kabul|tamam)\w*/.test(k)) ekle('teklif', 4);
     }
     // meslek + aramak -> eleman; "olarak/is" varsa is arayan
     if (v.meslek) {
       var aramaVar = new RegExp('\\b(' + AR + '|lazim|aran\\w*|alinacak|alimi)').test(k);
-      var isVar = /\b(is|ise|isi|olarak|calismak|calisacak)\b/.test(k);
+      var isVar = /\b(is|ise|isi|olarak|calismak|calisacak)\b/.test(k) || /\b\w+l[iu](k|g[iu])\b/.test(k.replace(/\b(kiralik|satilik|aylik|gunluk|haftalik)\b/g, ''));
       if (aramaVar && !isVar && !/arayan (var|kimse|biri|olan)/.test(k)) ekle('eleman_ariyorum', 2.5);
       if (/(tavsiye|oner\w*|mantikli|iyi mi|kazandirir mi|karli mi|nasil bir is|nasil is|degerm\w*|iyi para|olsam|olayim|secsem|gecsem)/.test(k)) ekle('meslek_tavsiyesi', 2.5);
       if (v._meslekler.length >= 2 && soru) ekle('meslek_tavsiyesi', 3);
       if (/(ne kadar|kac para|kac bin|ne verir|kac lira)/.test(k) && !v.mulk) ekle('maas_sorusu', 1.5);
     }
+    // "sen memur musun", "kuryemisin", "patron musun": kisinin meslegini soruyor
+    if ((v.meslek || /\bpatron\w*\b/.test(k)) && /\b(misin|musun|misiniz|musunuz)\b/.test(k) &&
+      !new RegExp('\\b(' + AR + '|lazim|alir|aliyor|ister)').test(k)) ekle('kisisel_meslek', 4);
+    if (v.meslek && /\bkimler?\b/.test(k) && /\b(burada|kanalda|var|aramizda)\b/.test(k) && !/\bal(ir|iyor|an)\b/.test(k)) ekle('kisisel_meslek', 3.6);
+    // "Istanbulda misin", "Ankarali var mi": kisinin yerini soruyor
+    if (v.yer && /\b(misin|musun|misiniz|musunuz)\b/.test(k)) ekle('kisisel_yer', 4);
+    if (v.yer && /\b\w+l[iu](lar)? (var|kim|olan)\b/.test(k)) ekle('kisisel_yer', 3.6);
+    // is ilaninda maas yazmak teklif degildir ("eleman ariyorum 30 bin veririm")
+    if (puan.teklif && (puan.eleman_ariyorum >= 3 || puan.is_ariyorum >= 3) && !/\bortak/.test(k)) puan.teklif -= 3;
+    // dert anlatimi kredi/maas sorusu degil ("borcum cok", "maasimi alamadim")
+    if (puan.dert >= 3.6 && !soru) {
+      ['kredi_sorusu', 'maas_sorusu', 'eleman_ariyorum', 'mulk_satiyorum'].forEach(function (a) { if (puan[a]) puan[a] -= 2; });
+    }
+    // "naber millet": topluluga selam
+    if (/\b(naber|ne haber|selam\w*|merhaba\w*) (millet|herkes\w*|arkadaslar|ahali|gencler|ekip|cocuklar|beyler|kanal\w*)\b/.test(k) &&
+      !/\b(nasilsiniz|nasilsin|iyi misiniz)\b/.test(k) && puan.hal_hatir) { puan.hal_hatir -= 2; ekle('selam', 2.5); }
+    if (/\byeni (girdim|katildim)\b/.test(k) && puan.veda) puan.veda -= 2;
+    // mulk varsa "kac veriyor/alir" fiyat sorusudur
+    if (v.mulk && puan.maas_sorusu && !/\bmaas/.test(k)) puan.maas_sorusu -= 2;
+    // acik "kredi" kelimesi + soru -> kredi
+    if (/\bkredi/.test(k) && soru && puan.kredi_sorusu) ekle('kredi_sorusu', 1);
+    // bankadaki faiz orani (kredi kelimesi yok) -> ekonomi
+    if (puan.kredi_sorusu && puan.ekonomi && /\bfaiz/.test(k) && !/\b(kredi|borc|taksit|icra)/.test(k)) puan.kredi_sorusu -= 2;
+    // pazarlik/indirim sorusu, tutar yoksa fiyat sorusu
+    if (v.tutar == null && soru && puan.teklif && /\b(pazarlik|indirim|iner|duser|son fiyat)/.test(k)) ekle('fiyat_sorusu', 1.5);
     // "satilik daire var mi / ariyorum" -> arayan
     if (/\b(satilik|kiralik)\b/.test(k) && new RegExp('\\b(' + AR + '|var mi|lazim|bakiyorum|nerede|bil\\w*)').test(k) &&
       !/\b(satiyorum|satacag|benim|elimde|dairem|evim|dukkanim|arsam|ilgilenen|isteyen|alan var|alici)/.test(k)) {
@@ -1396,19 +1520,128 @@
     '{tutar|e} [razı olabilirim|olur gibi], ama [peşin olsun|bugün halledelim]'
   ]);
 
+  // Anlaşılmayan bir cümleye cevap: içi boş onay YOK; merak eder ya da sohbeti açar.
   tanim('cevap.genel', 'notr', [
-    'Haklısın[ aslında|]',
-    'Hmm, [olabilir|mantıklı]',
-    'Aynen öyle',
-    'Bilmiyorum valla, [sen ne düşünüyorsun?|bir düşüneyim]',
-    'Doğru diyorsun',
     'İlginç, [anlat bakalım|devamı?]',
-    'Anladım',
     'Öyle mi? [Bilmiyordum|Hiç duymamıştım]',
-    'Valla [bilemedim|emin değilim]',
-    'Olabilir tabii',
+    'Hmm, nasıl yani?',
+    'Valla [bilemedim|emin değilim], biraz açar mısın?',
+    '[Ne demek istedin|Tam anlayamadım], biraz daha anlatsana',
+    'Bu konuda pek bilgim yok açıkçası',
+    'Hangi konudan bahsediyorsun?'
+  ]);
+  // Anlaşılmayan bir SORU
+  tanim('cevap.genel_soru', 'notr', [
+    'Bilmiyorum valla, [başka biri bilir belki|sorayım bir]',
+    'Hangi konuda soruyorsun?',
+    '[Tam anlamadım|Anlayamadım], ne demek istedin?',
+    'Bunu ben de merak ediyorum açıkçası',
+    'Emin değilim, [kariyer ya da banka ekranına bak istersen|biri bilen çıkar elbet]',
+    'Onu bilmiyorum ama [başka bir şey sorarsan yardım ederim|biri cevaplar elbet]',
+    'İyi soru, [hiç düşünmemiştim|ben de bilmiyorum]'
+  ]);
+  // Başka birinin GÖRÜŞÜNE katılma (yalnız NPC'ler arası sohbette)
+  tanim('cevap.katilim', 'notr', [
+    'Haklısın[ aslında|]',
+    'Aynen öyle',
+    'Doğru diyorsun',
     'Ben de aynı şeyi düşünüyordum',
-    'Evet ya, [bu aralar herkes bundan bahsediyor|bence de]'
+    'Evet ya, [bu aralar herkes bundan bahsediyor|bence de]',
+    'Olabilir tabii',
+    'Kesinlikle',
+    'Bence de öyle',
+    'Valla doğru'
+  ]);
+  // ---- Sohbet yöneticisi: bağlamlı takip cevapları ----
+  // Bir NPC işletmesinde gerçekten açık var: patron değil, başka biri yönlendiriyor
+  tanim('cevap.is_firsati_yonlendir', 'is', [
+    '{kisi} {meslek} arıyordu, [ona yaz|özelden yaz bence], {tutar} veriyormuş',
+    '{yer|de} {kisi|in} {isletme} var, {meslek} lazımmış. [Bir sor|Yaz istersen]',
+    '{kisi|e} yaz, {isletme} için {meslek} arıyor, maaş {tutar} civarı',
+    'Bildiğim kadarıyla {kisi|in} yerinde açık var, {meslek}. {tutar} diyorlardı',
+    '{isletme} sahibi {kisi} eleman bakıyordu, {meslek} için. Bir yaz bence',
+    '{kisi} geçen gün {meslek} arıyorum demişti, {tutar} veriyormuş',
+    '{yer} tarafında {kisi|in} {isletme} var, {meslek} lazım dedi'
+  ]);
+  // Şu an açık iş yok (gerçekten yok)
+  tanim('cevap.takip_yok', 'notr', [
+    'Şu an [açık|eleman arayan] [göremedim|bilmiyorum] açıkçası, [duyarsam yazarım|biri çıkarsa haber veririm]',
+    'Valla şu sıralar herkesin kadrosu dolu gibi. [Kariyer ekranından kurye ya da garson olarak hemen başlayabilirsin|Başlangıç işleriyle başla, sonra bakarsın]',
+    'Benim bildiğim bir açık yok şu an, [kusura bakma|ama gözümü açık tutarım]',
+    'Yok gibi görünüyor ama [ilan veren olursa kanala yazar|yarın tekrar sor], [bu aralar hareketli|her gün yeni yer açılıyor]',
+    'Şu an kimse eleman aramıyor gibi, [ama kanala sık bak|birkaç gün sonra tekrar sor]',
+    'Açık iş yok valla şu an, [ben de bakıyordum|herkes dolu]',
+    'Bugünlük göremedim, [yarın bir daha bakarız|kanala biri yazarsa haber veririm]'
+  ]);
+  // Takip: maaş ne kadar (cevap veren patron)
+  tanim('cevap.takip_maas', 'is', [
+    '{tutar} veriyorum, [ay sonu yatar|her ay düzenli]',
+    'Maaş {tutar}, [görevlerini yaparsan tam alırsın|pazarlığa da açığım biraz]',
+    'Aylık {tutar}. [Uygun mu sana?|Ne dersin?]',
+    'Şimdilik {tutar}, [iyi çalışırsan artar|ilerde zam da olur]',
+    '{tutar} veriyoruz, [üstüne prim yok ama düzenli|her ay aksatmadan]',
+    'Aylığı {tutar}. [Az mı geldi?|Bence fena değil]',
+    '{tutar}, [pazarlık edebiliriz biraz|net rakam bu]'
+  ]);
+  // Takip: nerede
+  tanim('cevap.takip_yer', 'is', [
+    '{yer|de}, {isletme}',
+    '{yer|de} bizim {isletme}. [Uzak mı sana?|Bilir misin oraları?]',
+    'Yerimiz {yer|de}, [merkezi bir yer|ulaşımı kolay]',
+    '{yer}. [Gelir misin?|Yakın mı sana?]',
+    '{yer|de} oturuyorum, işyeri de orada',
+    '{isletme} {yer|de}, [kolay bulursun|herkes bilir]',
+    '{yer}, [metroya yakın|ana caddede]'
+  ]);
+  // Takip: oyuncu "tamam / olur" dedi → patron özelden teklif yolladı
+  tanim('cevap.takip_onay', 'sevinc', [
+    'Süper, özelden [yazdım|teklifi yolladım], [bak oradan|kabul edersen başlarsın]',
+    'Tamamdır, [DM attım|mesaj attım], oradan anlaşalım',
+    'Anlaştık o zaman, teklifi özelden gönderdim 👍',
+    'Harika, özel mesajına bak, [teklif orada|detaylar orada]',
+    'Tamam o zaman, özelden teklif geldi sana, [bak|onayla yeter]',
+    'Oldu bu iş, özel mesajlarına bak 👍',
+    'Anlaştık, teklif özelde. [Kabul edince başlarsın|Hayırlı olsun şimdiden]'
+  ]);
+  // Takip: oyuncu vazgeçti
+  tanim('cevap.takip_ret', 'notr', [
+    'Tamam, sorun değil. [Kolay gelsin|Fikrin değişirse yaz]',
+    'Peki, [başka zaman|aklında olsun]',
+    'Olsun, [bol şans|bir şey olursa yaz]',
+    'Anladım, [sorun değil|kolay gelsin]',
+    'Tamamdır, [başka bir şey lazım olursa yaz|şans]',
+    'Peki, [aklına yatarsa yazarsın|kapımız açık]',
+    'Olur, [iyi günler|bol şans o zaman]'
+  ]);
+  // Takip: oyuncu "kimse yok mu" diye tekrar sordu ve yeni biri cevap veriyor
+  tanim('cevap.takip_tekrar', 'is', [
+    'Buradayım buradayım, {kisi} bak: {meslek} lazımmış, {tutar}',
+    'Kusura bakma geç gördüm. {isletme} için {meslek} arıyorum, {tutar} veriyorum, ister misin?',
+    'Var var, bende {meslek} açığı var, {tutar}. [Yazayım mı?|Ne dersin?]',
+    'Ben buradayım! {isletme} için {meslek} arıyorum, {tutar}',
+    'Bende var iş, {meslek}. Maaş {tutar}, [ister misin?|yazayım mı?]',
+    'Kimse cevap vermemiş, ben vereyim: {meslek} lazım, {tutar}',
+    'Geç kaldım pardon, {kisi} değil ama ben {meslek} arıyorum, {tutar}'
+  ]);
+  // Oyuncu kendi mesleğini söyledi ("ben de garsonum")
+  tanim('cevap.ben_de_meslek', 'notr', [
+    '[Güzel|Ooo], {meslek} olarak [tecrübeli misin?|ne zamandır çalışıyorsun?]',
+    '{meslek} iyi iş, [kolay gelsin|ben de bir ara düşünmüştüm]',
+    'Hmm {meslek}, [benim tanıdık arıyordu sanki|bir bakayım biri arıyor muydu]',
+    'Ooo {meslek}, [hayırlı işler|kolay gelsin]',
+    '{meslek} demek, [nasıl gidiyor bu aralar?|kazancı nasıl?]',
+    'Ben de bir ara {meslek} olarak çalışmıştım, [zor iş|fena değildi]',
+    '{meslek} olarak arıyorsan [biraz bekle, soracağım|bir bakarım çevreye]'
+  ]);
+  // Eleman arayan oyuncuya iş arayan NPC: "ben varım"
+  tanim('cevap.aday_benim', 'is', [
+    'Ben varım! {meslek} olarak {sayi} gündür çalışıyorum',
+    'Ben bakıyorum iş, {meslek} olurum. [Maaş ne kadar?|Detay verir misin?]',
+    'Benimle ilgilenir misin? {sayi} gün deneyimim var, [başvurdum ilanına|özelden yazdım]',
+    'Hala arıyorsan ben varım, [hemen başlayabilirim|yarın başlarım]',
+    'Ben varım, ne zaman başlıyoruz?',
+    'İlanına bakıyorum, {meslek} olarak [uygunum|hazırım]',
+    'Ben ilgileniyorum, [maaş ne kadar?|nerede çalışacağım?]'
   ]);
 
   tanim('cevap.anlamadim', 'merak', [

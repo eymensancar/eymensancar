@@ -1135,6 +1135,12 @@ $('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if
     const r=NPCYZ.oyuncuMesaji(w,K.npc,kanal,m,p,new Date().getHours(),sirketNpcIdleri());
     if(r.uyari)K.npc.kanal[kanal].push({id:'u'+Date.now(),sistem:true,metin:r.uyari,zaman:Date.now()});
     r.cevaplar.forEach(c=>cevapZamanla(c,()=>K.npc.kanal[kanal].push({id:'c'+Date.now()+Math.random(),npcId:c.npcId,ad:c.ad,metin:c.metin,zaman:Date.now()})));
+    // Sohbetten doğan gerçek işler: "ben varım" diyenler başvuru olur, "tamam" denince gelen teklif özel mesajda
+    if(r.adaylar&&r.adaylar.length&&patronMu(p)){const s2=S(),b2=isletmem(w,p),ml=C.BUSINESS_STAFF_PROFESSIONS[b2.type]||[];
+      r.adaylar.forEach(a=>{const mes=ml.includes(a.meslek)?a.meslek:ml[0];let il=s2.ilanlar.find(i=>i.meslek===mes);if(!il){il={id:yeniId('i'),poz:mAd(mes),meslek:mes,maas:Math.round(T.indexed(w,C.MIN_WAGE)*1.15/500)*500,acik:'Sohbet kanalından',gun:w.day};s2.ilanlar.unshift(il)}
+        if(!s2.basvurular.some(x=>x.npcId===a.npcId)){const k=NPCYZ.basvuruKaydi(w,K.npc,a.npcId,il);if(k)s2.basvurular.push(k)}});
+      setTimeout(()=>tost(r.adaylar.length+' kişi başvurdu: Şirketim → Başvurular'),5000)}
+    if(r.dm&&r.dm.length)setTimeout(()=>{olayEkle(r.dm[0].baslik,r.dm[0].metin);cizRozet();tost(r.dm[0].baslik+' (Mesajlar)')},3500);
     kaydet();shCiz();shAlta()}
   $('shGiris').focus()};
 // Kanal açıkken yeni mesajlar akar
@@ -1145,8 +1151,8 @@ $('shKapat').onclick=sohbetKapat;
 function kayitEkrani(){kilit=true;modal('Toplum Simülasyonu',`<p>Herkes eşit başlar: <b>${para(C.STARTING_CASH)}</b> nakit, ${C.STARTING_CREDIT_SCORE} kredi notu. Çalış, biriktir, yatırım yap, kendi işini kur.</p>
   <div class="altBaslik" style="margin-top:12px">Adın</div><div class="yanyana" style="margin-top:6px"><input class="giris" id="kAd" maxlength="24" placeholder="2-24 harf" autocomplete="off"><button class="btn ana" id="kBasla" style="height:32px">Başla</button></div>`,
   g=>{const i=g.querySelector('#kAd'),b=()=>{const ad=i.value.trim().replace(/\s+/g,' ');if(ad.length<2||ad.length>24)return tost('Ad 2-24 harf olmalı.',1);
-      if(!K.npc)K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:150,yabanciSayi:40});if(Object.values(K.world.players).some(q=>q.name.toLocaleLowerCase('tr')===ad.toLocaleLowerCase('tr')))return tost('Bu ad alınmış, başka bir ad dene.',1);
-      if(!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:150,yabanciSayi:40})}
+      if(!K.npc)K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:360,yabanciSayi:40});if(Object.values(K.world.players).some(q=>q.name.toLocaleLowerCase('tr')===ad.toLocaleLowerCase('tr')))return tost('Bu ad alınmış, başka bir ad dene.',1);
+      if(!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:360,yabanciSayi:40})}
       K.oyuncuId=T.addPlayer(K.world,ad).id;K.baslangic=Date.now()-GUN_MS*(K.world.day+.4);kaydet();kilit=false;kapat();hepsiniCiz();
       bildirim('Hoş geldin, '+ad,'İlk işin için İşim → İlanlara bak. Kurye günde 5 görevle en çok kazandıran başlangıç işi.')};
     g.querySelector('#kBasla').onclick=b;i.onkeydown=e=>{if(e.key==='Enter')b()};setTimeout(()=>i.focus(),50)})}
