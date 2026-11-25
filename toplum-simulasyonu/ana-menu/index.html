@@ -403,6 +403,25 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .shGiris:focus{outline:2px solid var(--ana);outline-offset:0}
 .shGonder{height:42px;border:0;border-radius:21px;background:var(--ana);color:var(--anaUstu);font-weight:700;font-size:15px;padding:0 18px;flex:none}
 .shGonder:disabled{opacity:.45}
+.adBtn{border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.adBtn:hover{color:var(--ana)}
+.yt.kotu{background:var(--tehlikeYumusak);color:var(--tehlike)}
+.shYaziyor{align-self:flex-start;font-size:13px;color:var(--ikincil);padding:2px 4px 0 44px;display:flex;gap:6px;align-items:center}
+.shYaziyor i{display:inline-flex;gap:3px}.shYaziyor i b{width:5px;height:5px;border-radius:50%;background:var(--ikincil);animation:nokta 1.2s infinite}
+.shYaziyor i b:nth-child(2){animation-delay:.2s}.shYaziyor i b:nth-child(3){animation-delay:.4s}
+@keyframes nokta{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.shDmBas{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.shDmBas b{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shDmBas span{font-size:13px;color:var(--ikincil);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shDmBas .av{width:36px;height:36px}
+.teklifKart{align-self:flex-start;margin-left:40px;background:var(--vurguYumusak);border-radius:14px;padding:9px 12px;display:flex;flex-direction:column;gap:7px;max-width:78%}
+.teklifKart b{font-size:14px}
+.teklifKart div{display:flex;gap:6px;flex-wrap:wrap}
+.teklifKart button{height:34px;border-radius:10px;border:0;padding:0 14px;font-weight:700;font-size:14px;background:var(--kart)}
+.teklifKart button.ana{background:var(--ana);color:var(--anaUstu)}
+.dmSatir{display:flex;gap:9px;align-items:center;padding:8px 0;border-bottom:1px solid var(--cizgi);width:100%;border-left:0;border-right:0;border-top:0;background:none;text-align:left}
+.dmSatir div{min-width:0;flex:1}.dmSatir b{display:block;font-size:var(--t3)}.dmSatir span{display:block;color:var(--ikincil);font-size:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dmSatir em{font-style:normal;font-size:var(--t1);background:var(--tehlike);color:#fff;border-radius:9px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 5px}
 [hidden]{display:none!important}
 </style>
 
@@ -545,6 +564,9 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <!-- Amca'nın ekonomi çekirdeği (toplumsimulasyonu: packages/core + sunucu eylemleri + Türkçe metinler), esbuild ile tek dosya -->
 <script src="toplum-cekirdek.js"></script>
+<!-- NPC yapay zekâsı: npc-dil.js (Türkçe anlama ve cümle kurma), npc-yz.js (karar, ilişki, ekonomi) -->
+<script src="npc-dil.js"></script>
+<script src="npc-yz.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -594,9 +616,13 @@ function olayEkle(baslik,metin){K.olaylar.unshift({gun:K.world.day,baslik,metin}
 function yetistir(sessiz){const w=K.world;let hedef=Math.floor((Date.now()-K.baslangic)/GUN_MS);if(w.day>=hedef)return false;
   if(hedef-w.day>EN_COK_GUN){K.baslangic+=(hedef-w.day-EN_COK_GUN)*GUN_MS;hedef=w.day+EN_COK_GUN}
   const p=K.oyuncuId?w.players[K.oyuncuId]:null,once={nakit:p?p.cash:0,ay:Math.floor(w.day/30),gun:w.day,n:K.olaylar.length};
-  w.events=w.events.slice(-200);const n0=w.events.length;
-  while(w.day<hedef){if(p&&(w.day+1)%30===0)ayKapat(w,p);T.advanceDay(w,T.createRng(T.daySeed(w.seed,w.day)));if(p)sirketGunu(w,p)}
-  if(p){w.events.slice(n0).filter(e=>e.playerId===p.id).forEach(e=>olayEkle(OLAY_AD[e.kind]||'Haber',T.sunucuMetni(e.message).replace(p.name+': ','')));
+  const benimOlaylar=[],npcCikti=[];
+  while(w.day<hedef){if(p&&(w.day+1)%30===0)ayKapat(w,p);const uzun=hedef-w.day>45;
+    if(K.npc)npcCikti.push(...NPCYZ.gun(w,K.npc,p?p.id:null,{hafif:uzun}));
+    w.events=w.events.slice(-200);const n0=w.events.length;T.advanceDay(w,T.createRng(T.daySeed(w.seed,w.day)));const yeniE=w.events.slice(n0);
+    if(K.npc)NPCYZ.gunSonu(w,K.npc,yeniE);if(p){benimOlaylar.push(...yeniE.filter(e=>e.playerId===p.id));if(p.mustWork&&K.npc&&NPCYZ.sansGucu(w,K.npc)===0)NPCYZ.sansAc(w,K.npc,30,.6);sirketGunu(w,p)}}
+  if(p&&K.npc){npcCikti.filter(c=>c.tur==='dm'||c.tur==='haber').slice(-6).forEach(c=>olayEkle(c.baslik,c.metin));NPCYZ.haberleriAl(w,K.npc).slice(-3).forEach(h=>olayEkle(h.baslik,h.metin))}
+  if(p){benimOlaylar.forEach(e=>olayEkle(OLAY_AD[e.kind]||'Haber',T.sunucuMetni(e.message).replace(p.name+': ','')));
     const ay=Math.floor(w.day/30);
     if(ay>once.ay){const d=p.cash-once.nakit;olayEkle(ay-once.ay>1?`${ay-once.ay} ay kapandı`:`${AY[tarih(w.day-1).ay]} kapandı`,`Kazançların yattı, giderler ödendi. Nakit ${para(once.nakit)} → ${para(p.cash)} (${isaret(d)}).`)}}
   w.events=w.events.slice(-200);kaydet();
@@ -682,7 +708,7 @@ function cizIsim(){const {w,p}=G(),st=durumu(p),m=mDef(p.profession),gb=gorevBil
   else if(st==='patron'){const b=isletmem(w,p),d=T.getBusinessDef(b.type);const ki=KISA_IS[b.type]||iAd(b.type);yer=(ki+' · '+d.staffNeeded+' kişi').length>17?ki:ki+' · '+d.staffNeeded+' kişi';
     btn=[['Başvurular','','',()=>panelAc('basvurular')],['Çalışanlar','','',()=>panelAc('calisanlar')],['İlanlara bak','','',()=>panelAc('kariyer',String(m.tier))]]}
   else{yer=p.employerBusinessId?'Bir oyuncunun işletmesinde':kisaKazanc(w,m);
-    btn=[['İlanlara bak','','',()=>panelAc('kariyer',String(m.tier))],['Maaş görüşmesi','','',()=>yakinda('Maaş görüşmesi','Maaş görüşmesi oyuncu işverenlerle olacak. Şimdilik zam, memur ve muhasebecide kıdemle kendiliğinden geliyor.')],['İstifa et','tehlike','',istifa]]}
+    btn=[['İlanlara bak','','',()=>panelAc('kariyer',String(m.tier))],['Maaş görüşmesi','','',()=>{const b=p.employerBusinessId&&w.businesses[p.employerBusinessId];if(b&&K.npc&&K.npc.npc[b.ownerId]){sohbetAc({dm:b.ownerId});$('shGiris').value='Merhaba, maaşım hakkında konuşabilir miyiz? Zam rica ediyorum.';$('shGonder').disabled=false}else yakinda('Maaş görüşmesi','Bir oyuncunun işletmesinde çalışınca işverenle buradan maaş konuşursun. Memur ve muhasebecide zam kıdemle kendiliğinden gelir.')}],['İstifa et','tehlike','',istifa]]}
   const gorev=gb?(gb.pasif?`<span class="gorev pasif">${gb.pasif}</span>`:`<button class="gorev${gb.n>=gb.max?' pasif':''}" id="gorevBtn"><span>${gb.n>=gb.max?'Bitti':gb.yap}</span><em>${gb.n}/${gb.max}</em></button>`):`<button class="gorev" id="gorevBtn"><span>İş bul</span><em>›</em></button>`;
   $('isimAlan').innerHTML=`<div class="kart isimKart"><span class="bas"><span class="baslik">İşim</span><span class="ikonDaire">${ik('is')}</span></span><span class="meslek${mKisa(p).length>11?' uzun':''}">${mKisa(p)}</span><span class="yer">${yer}</span>${gorev}</div>`+
     btn.map(([t,k,alt],i)=>`<button class="kucukBtn ${k}" data-i="${i}"><span>${t}${alt?`<small>${alt}</small>`:''}</span></button>`).join('');
@@ -710,7 +736,7 @@ function cizProjem(){const {w,p}=G();let ad,olc,cub=null,cubYazi='',tik;
   else{ad='Henüz projen yok';olc=`<p class="bos">Bir kursa yazıl, mülk al ya da sermaye biriktirip kendi işini kur.</p>`;tik=()=>panelAc('kariyer','kurs')}
   $('projem').innerHTML=`<span class="bas"><span class="baslik">Projem</span><span class="ikonDaire">${ik(p.courseInProgress?'kurs':'proje')}</span></span><span class="ad">${ad}</span><span class="olcu">${olc}</span>`+
     (cub!==null?`<span class="cubuk"><i style="width:${cub}%"></i></span><span class="cubukYazi">${cubYazi}</span>`:'');$('projem').onclick=tik}
-function hepsiniCiz(){cizSirket();cizHalka();cizAylik();cizIsim();cizIkili();cizProjem();cizSaat();cizRozet();if($('panel').classList.contains('acik'))panelCiz()}
+function hepsiniCiz(){cizSirket();cizSiraKatki();cizHalka();cizAylik();cizIsim();cizIkili();cizProjem();cizSaat();cizRozet();if($('panel').classList.contains('acik'))panelCiz()}
 
 // ---- eylemler ----
 function gorevYap(){const {p}=G(),once=p.pendingEarnings,kum=p.hourglasses;const r=eylem({tur:'gorev_yap'},1);if(!r)return;const q=G().p,d=q.pendingEarnings-once;
@@ -807,13 +833,13 @@ function temaSec(t){document.documentElement.dataset.theme=t;try{localStorage.se
 $('ayarlar').onclick=$('ayarlar2').onclick=()=>modal('Ayarlar',`<div class="altBaslik" style="margin-top:0">Görünüm</div><div class="deneme">${[['light','Açık'],['dark','Koyu']].map(([k,t])=>`<button data-tema="${k}" aria-pressed="${document.documentElement.dataset.theme===k}">${t}</button>`).join('')}</div><p class="ornek" style="margin-top:6px">Ses, bildirimler, dil ve hesap da burada olacak.</p><div class="altBaslik">Denemek için: zamanı ilerlet</div>
   <div class="deneme"><button data-g="1">+1 gün</button><button data-g="7">+1 hafta</button><button data-g="30">+1 ay</button><button id="dSifirla" style="color:var(--tehlike)">Baştan başla</button></div><p class="ornek">Oyunda 1 gün = 30 dakika ve oyun kapalıyken de akar.</p><div class="altBaslik">Denemek için: şirket</div><div class="deneme"><button id="dSirket">Örnek şirket kur</button>${[['tek','Tek kişilik'],['ortakli','Ortaklı (çoğul)'],['kisitli','Sen müdürsün (yetkisiz)']].map(([k,t])=>`<button data-mod="${k}" aria-pressed="${K.sirket&&S().mod===k}">${t}</button>`).join('')}</div>`,
   g=>{g.querySelectorAll('[data-tema]').forEach(b=>b.onclick=()=>{temaSec(b.dataset.tema);g.querySelectorAll('[data-tema]').forEach(x=>x.setAttribute('aria-pressed',x===b))});g.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{kapat();ileriSar(+b.dataset.g)});g.querySelector('#dSirket').onclick=()=>{kapat();if(!K.oyuncuId)return;ornekSirket()};g.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{if(!K.oyuncuId)return;if(!patronMu(G().p))return tost('Önce örnek şirket kur.',1);sirketModu(b.dataset.mod);g.querySelectorAll('[data-mod]').forEach(x=>x.setAttribute('aria-pressed',x===b));tost('Şirket denemesi: '+b.textContent)});g.querySelector('#dSifirla').onclick=()=>onay('Baştan başla?','Bütün ilerlemen silinir.','Sil ve baştan başla',()=>{try{localStorage.removeItem(ANAHTAR)}catch(e){}K=yeniKayit();sohbetKapat();ekranAd='ana';document.body.dataset.ekran='ana';panelKapat();hepsiniCiz();kayitEkrani()})});
-const SIRA_ORNEK={'Şehrimde ben':[['1','Kemal Aydın',184200000],['2','Derya Şahin',97450000]],'Ülkemde ben':[['1','Kemal Aydın',184200000],['2','Hakan Er',121900000]],'Dünyada ben':[['1','Omar Al-Fayed (BAE)',287964000],['2','Kemal Aydın (TR)',184200000]]};
-$('siralama').onclick=()=>{let aktif='Ülkemde ben';const {w,p}=G(),net=T.netWorth(w,p);
-  const SIRA={...Object.fromEntries(Object.entries(SIRA_ORNEK).map(([k,v])=>[k,[...v.map(r=>[r[0],r[1],k==='Dünyada ben'?para(r[2],'USD'):para(r[2])]),['…','',''],[k==='Şehrimde ben'?'812':k==='Ülkemde ben'?'3.904':'21.377','Sen',k==='Dünyada ben'?para(net,'USD'):para(net),1]]])),
-    'Ülkemde şehrim':[['1','İstanbul','6.920.000 ₺ / kişi',1],['2','Ankara','5.110.000 ₺ / kişi'],['3','İzmir','4.870.000 ₺ / kişi']],
-    'Dünyada ülkem':[['1','BAE','$212.400 / kişi'],['2','Almanya','$188.900 / kişi'],['3','Türkiye','$164.300 / kişi',1],['4','Azerbaycan','$151.700 / kişi']]};
-  const ciz=g=>{g.innerHTML=`<div class="sekmeler">${Object.keys(SIRA).map(k=>`<button data-s="${k}" aria-pressed="${k===aktif}">${k}</button>`).join('')}</div><table class="liste">${SIRA[aktif].map(r=>`<tr class="${r[3]?'ben':''}"><td style="width:58px">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table><div class="ornek">Senin servetin gerçek; diğer oyuncular ve sıran örnek (çok oyunculu sürümle gelecek).</div>`;g.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{aktif=b.dataset.s;ciz(g)})};modal('Sıralama','',ciz)};
-
+function siraVerisi(){const {w,p}=G();if(!K.npc||!K.oyuncuId)return null;return NPCYZ.siralama(w,K.npc,p.id,'İstanbul',KUR.USD)}
+$('siralama').onclick=()=>{const v=siraVerisi();if(!v)return;let aktif='Ülkemde ben';
+  const kisi=(l,usd)=>{const i=l.findIndex(x=>x.oyuncu),ust=l.slice(0,5),ben=l[i];const satir=x=>[x.sira.toLocaleString('tr-TR'),kac(x.ad)+(x.ulke&&x.ulke!=='TR'?` (${x.ulke})`:''),usd?'$'+Math.round(x.usd).toLocaleString('tr-TR'):para(x.net),x.oyuncu?1:0];return ust.map(satir).concat(i>=5?[['…','',''],satir(ben)]:[])};
+  const SIRA={'Şehrimde ben':kisi(v.sehir),'Ülkemde ben':kisi(v.ulke),'Dünyada ben':kisi(v.dunya,1),'Ülkemde şehrim':v.sehirler.slice(0,6).map(x=>[String(x.sira),x.ad,para(x.kisiBasi)+' / kişi',x.biz?1:0]),'Dünyada ülkem':v.ulkeler.map(x=>[String(x.sira),x.ad,'$'+Math.round(x.kisiBasi).toLocaleString('tr-TR')+' / kişi',x.biz?1:0])};
+  const ciz=g=>{g.innerHTML=`<div class="sekmeler">${Object.keys(SIRA).map(k=>`<button data-s="${k}" aria-pressed="${k===aktif}">${k}</button>`).join('')}</div><table class="liste">${SIRA[aktif].map(r=>`<tr class="${r[3]?'ben':''}"><td style="width:58px">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table><div class="ornek">Net servete göre (nakit + mülk + işletme − borç). Ülkeler kişi başı ortalamaya göre.</div>`;g.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{aktif=b.dataset.s;ciz(g)})};modal('Sıralama','',ciz)};
+function cizSiraKatki(){const v=siraVerisi();if(!v)return;const ben=v.ulke.find(x=>x.oyuncu);$('katki').textContent='%'+v.katki.toLocaleString('tr-TR',{maximumFractionDigits:v.katki<1?3:2});
+  const b=$('siralama').querySelector('b');if(b&&ben)b.textContent=ben.sira.toLocaleString('tr-TR')+'.'}
 // ---- pencere ----
 let kilit=false;
 function modal(baslik,html,sonra,genis){document.querySelector('#perde .modal').classList.toggle('genis',!!genis);$('mBaslik').textContent=baslik;const g=$('mGovde');g.innerHTML=html;$('perde').classList.add('acik');$('mKapat').hidden=kilit;if(sonra)sonra(g)}
@@ -834,16 +860,18 @@ document.querySelectorAll('[data-menu]').forEach(b=>b.onclick=MENU[b.dataset.men
 
 // ---- telefon ----
 const UYG=[['Mesajlar','#2F9E6B','<path d="M4 5h16v11H9l-5 4z"/>'],['Akış','#C2410C','<circle cx="12" cy="12" r="4"/><rect x="3" y="3" width="18" height="18" rx="5"/>'],['Bankam','#1D4E89','<path d="M3 10l9-6 9 6M5 10v8M19 10v8M12 10v8M3 20h18"/>'],['Haberler','#6B4FA3','<path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/>'],['Rehber','#0E7490','<circle cx="12" cy="9" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>'],['Takvim','#B91C1C','<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'],['Borsa','#0F766E','<path d="M3 17l6-6 4 4 8-8"/>'],['Notlar','#A16207','<path d="M6 3h9l4 4v14H6zM9 12h7M9 16h7"/>']];
-function cizRozet(){const n=K.okunmamis;$('tRozet').hidden=$('tRozet2').hidden=!n;$('tRozet').textContent=$('tRozet2').textContent=n>9?'9+':n;$('telefon').setAttribute('aria-label',n?`Telefonu aç; ${n} yeni haber`:'Telefonu aç')}
-function anaEkran(){$('tGovde').innerHTML=`<div class="uygulamalar">${UYG.map(([ad,renk,yol])=>{const r=ad==='Haberler'?K.okunmamis:0;return `<button class="uyg" data-u="${ad}"><span class="uIkon" style="background:${renk}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${yol}</svg></span>${ad}${r?`<span class="rozet">${r>9?'9+':r}</span>`:''}</button>`}).join('')}</div>`;
+function dmOkunmamis(){return K.npc?NPCYZ.dmListesi(K.npc).reduce((t,x)=>t+x.okunmamis,0):0}
+function cizRozet(){const n=K.okunmamis+dmOkunmamis();$('tRozet').hidden=$('tRozet2').hidden=!n;$('tRozet').textContent=$('tRozet2').textContent=n>9?'9+':n;$('telefon').setAttribute('aria-label',n?`Telefonu aç; ${n} yeni haber`:'Telefonu aç')}
+function anaEkran(){$('tGovde').innerHTML=`<div class="uygulamalar">${UYG.map(([ad,renk,yol])=>{const r=ad==='Haberler'?K.okunmamis:ad==='Mesajlar'?dmOkunmamis():0;return `<button class="uyg" data-u="${ad}"><span class="uIkon" style="background:${renk}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${yol}</svg></span>${ad}${r?`<span class="rozet">${r>9?'9+':r}</span>`:''}</button>`}).join('')}</div>`;
   document.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>uygulama(b.dataset.u))}
 function uygulama(ad){const {w,p}=G();let govde;
   if(ad==='Haberler'){K.okunmamis=0;kaydet();cizRozet();govde=K.olaylar.length?K.olaylar.map(o=>`<div class="haber"><b>${kac(o.baslik)}</b><span>${kac(o.metin)}</span><em>${gunYazi(o.gun)}</em></div>`).join(''):'<p style="margin:8px 0;color:var(--ikincil)">Henüz haber yok. Ay sonları, kurslar ve satışlar burada görünür.</p>'}
   else if(ad==='Bankam')govde=`<div class="ozetKart"><span>Vadesiz hesap</span><b class="sayi">${para(p.cash)}</b></div><div class="ozetKart"><span>Ay sonunda yatacak</span><b class="sayi">${para(p.pendingEarnings)}</b></div><div class="ozetKart"><span>Kredi borcu</span><b class="sayi">${para(p.loans.reduce((t,l)=>t+l.remaining,0))}</b></div><button class="tamBtn" id="bankaAc">Bankaya git</button>`;
-  else if(ad==='Mesajlar')govde=S().mesajlar.map(m=>`<div class="mesaj"><span class="av">${bas(m.kime||m.kimden)}</span><div><b>${kac(m.kime||m.kimden)}</b><span>${m.kime?'Sen: ':''}${kac(m.metin)}</span></div><em>${m.durum==='bekliyor'?'yanıt bekliyor':gunYazi(m.gun).split(' ').slice(0,2).join(' ')}</em></div>`).join('')+[['MY','Mehmet Yıldız','Merhaba, kuryeye ihtiyacım var, müsait misin?','09:12'],['KH','Kadıköy Esnafı (grup)','Yarın toplantı 10:00\'da','08:40'],['ZE','Zeynep Ekinci','Proje dosyasını gönderdim','Dün']].map(([a,n,m,s])=>`<div class="mesaj"><span class="av">${a}</span><div><b>${n}</b><span>${m}</span></div><em>${s}</em></div>`).join('')+'<div class="ornek">Örnek konuşmalar; mesajlaşma çok oyunculu sürümle gelecek.</div>';
+  else if(ad==='Mesajlar'){const l=K.npc?NPCYZ.dmListesi(K.npc):[];govde=l.map(x=>{const k=K.npc.npc[x.npcId];return `<button class="dmSatir" data-dmac="${x.npcId}"><span class="av">${bas(k.gorunen)}</span><div><b>${kac(k.gorunen)}</b><span>${x.son.kimden==='oyuncu'?'Sen: ':''}${kac(x.son.metin)}</span></div>${x.okunmamis?`<em>${x.okunmamis}</em>`:''}</button>`}).join('')+S().mesajlar.map(m=>`<div class="mesaj"><span class="av">${bas(m.kime||m.kimden)}</span><div><b>${kac(m.kime||m.kimden)}</b><span>${m.kime?'Sen: ':''}${kac(m.metin)}</span></div><em>${m.durum==='bekliyor'?'yanıt bekliyor':gunYazi(m.gun).split(' ').slice(0,2).join(' ')}</em></div>`).join('')||'<p style="margin:8px 0;color:var(--ikincil)">Henüz mesajın yok. Sohbette birinin adına dokunup özel mesaj atabilirsin.</p>'}
   else govde=`<p style="margin:8px 0">${ad} uygulamasını sonra tasarlayacağız.</p>`;
   $('tGovde').innerHTML=`<div class="uygBas"><button id="uGeri">‹ Geri</button>${ad}</div><div class="uygGovde">${govde}</div>`;$('uGeri').onclick=anaEkran;
-  if($('bankaAc'))$('bankaAc').onclick=()=>panelAc('banka')}
+  if($('bankaAc'))$('bankaAc').onclick=()=>panelAc('banka');
+  $('tGovde').querySelectorAll('[data-dmac]').forEach(b=>b.onclick=()=>sohbetAc({dm:b.dataset.dmac}))}
 function telefonAc(){anaEkran();document.body.classList.add('telAcik');$('telefonAcik').classList.add('acik');$('telefonAcik').setAttribute('aria-hidden','false');$('telefonPerde').classList.add('acik')}
 function telefonKapat(){document.body.classList.remove('telAcik');$('telefonAcik').classList.remove('acik');$('telefonAcik').setAttribute('aria-hidden','true');$('telefonPerde').classList.remove('acik')}
 $('telefon').onclick=$('telefon2').onclick=telefonAc;$('sGeri').onclick=()=>ekran('ana');$('sAd').onclick=benEkrani;$('sAnlik').onclick=()=>panelAc('gecmis');
@@ -864,10 +892,15 @@ const bas=ad=>ad.split(' ').map(x=>x[0]).slice(0,2).join('').toLocaleUpperCase('
 const patronMu=p=>p.businessIds.length>0;
 function benUye(){const {p}=G(),s=S(),kisitli=patronMu(p)&&s.mod==='kisitli';
   return {id:'ben',ad:p.name,pozisyon:kisitli?'Satış Müdürü':patronMu(p)?'CEO · Kurucu':mKisa(p),yetkiler:kisitli?s.benYetki:TUM_YETKI,yonetici:true,gercek:true,ben:true,kurucu:!kisitli,maas:0}}
-function npcler(){const {w,p}=G();if(!patronMu(p))return [];const b=isletmem(w,p),d=T.getBusinessDef(b.type),kalan=Math.max(0,d.staffNeeded-S().uyeler.filter(u=>!u.yonetici).length);
-  return Array.from({length:kalan},(_,i)=>({id:'npc'+i,ad:NPC_AD[(i+b.openedOnDay)%NPC_AD.length],pozisyon:'Geçici çalışan (NPC)',maas:T.indexed(w,Math.round(d.minWage*C.NPC_STAFF_COST_MULTIPLIER)),npc:true,yetkiler:[]}))}
-const uyeler=()=>{const {p}=G();return patronMu(p)?[benUye(),...S().uyeler,...npcler()]:[benUye()]};
-const cogul=()=>{const {p}=G();return patronMu(p)&&S().uyeler.some(u=>u.yonetici&&u.gercek)};
+/** Oyuncunun işletmesindeki gerçek çalışanlar (çekirdekte işe alınmış NPC'ler). */
+function calisanNpcler(){const {w,p}=G();if(!patronMu(p)||!K.npc)return [];const b=isletmem(w,p),s=S();if(!s.yetkiNpc)s.yetkiNpc={};if(!s.yoneticiNpc)s.yoneticiNpc=[];
+  return Object.entries(b.employees).filter(([id])=>w.players[id]).map(([id,maas])=>{const pr=NPCYZ.profil(w,K.npc,id)||{},q=w.players[id],c=pr.calisan;
+    return {id,ad:q.name,pozisyon:mAd(q.profession),maas,yetkiler:s.yetkiNpc[id]||[],yonetici:s.yoneticiNpc.includes(id),gercek:true,cekirdek:true,moral:c?c.moral:.6,zamIstegi:c&&c.zamIstegi,istifa:c&&c.istifa}})}
+/** Boş kadroyu dolduran geçici personel (çekirdek bunları otomatik ve biraz pahalı çalıştırır). */
+function geciciler(){const {w,p}=G();if(!patronMu(p))return [];const b=isletmem(w,p),d=T.getBusinessDef(b.type),kalan=Math.max(0,d.staffNeeded-Object.keys(b.employees).length);
+  return kalan?[{id:'gecici',ad:'Geçici personel',pozisyon:`Ajanstan ${kalan} kişi · çalışan alınca yerlerine geçer`,maas:Math.round(T.indexed(w,d.minWage)*C.NPC_STAFF_COST_MULTIPLIER)*kalan,npc:true,yetkiler:[],adet:kalan}]:[]}
+const uyeler=()=>{const {p}=G();return patronMu(p)?[benUye(),...S().uyeler,...calisanNpcler(),...geciciler()]:[benUye()]};
+const cogul=()=>{const {p}=G();return patronMu(p)&&(S().uyeler.some(u=>u.yonetici&&u.gercek)||(S().yoneticiNpc||[]).some(id=>isletmem(K.world,p).employees[id]!=null))};
 const yetkiVar=y=>benUye().yetkiler.includes(y);
 /** Yetki gerektiren her işlem bundan geçer: yetki yoksa uyarı ve "Yetki talep et". */
 function gerek(y,islem,fn){if(yetkiVar(y))return fn();
@@ -948,59 +981,81 @@ function projelerBagla(g){const s=S();g.querySelector('#prYeni').onclick=()=>pro
   g.querySelector('#prAna').onclick=()=>gerek('proje','Ana projeyi değiştirmek',()=>{s.projeler.forEach(x=>x.ana=secili.has(x.id));secili.clear();kaydet();hepsiniCiz();tost('Ana proje değişti.')});
   g.querySelector('#prAnaCik').onclick=()=>gerek('proje','Ana projeyi kaldırmak',()=>{s.projeler.forEach(x=>x.ana=false);kaydet();hepsiniCiz();tost('Ana proje kaldırıldı.')});
   g.querySelector('#prIptal').onclick=()=>gerek('proje','Projeleri iptal etmek',()=>onay('Seçilenleri iptal et?',`${secili.size} proje iptal edilir ve listeden kalkar.`,'İptal et',()=>{s.projeler=s.projeler.filter(x=>!secili.has(x.id));secili.clear();kaydet();hepsiniCiz()}))}
+const MORAL=m=>m>=.65?['Mutlu','yt']:m>=.4?['İdare ediyor','yt yok']:['Mutsuz','yt kotu'];
 function calisanlarGovde(){const u=uyeler(),bv=S().basvurular.length;
   return `<div class="arac"><button class="btn ana" id="uYeni">+ Yeni çalışan</button><button class="btn" id="uBasv">Başvurular${bv?' ('+bv+')':''}</button><button class="btn" id="uIlan">İlanlarım</button><span class="bosluk"></span><span style="font-size:var(--t2);color:var(--ikincil)">Şirketin bütün üyeleri: yöneticiler ve çalışanlar</span></div>
-    ${u.map(x=>`<div class="kart uySatir"><span class="av${x.npc?' npc':''}">${bas(x.ad)}</span><div class="ad"><b>${kac(x.ad)}${x.ben?' (sen)':''}</b><span>${kac(x.pozisyon)}${x.ornek?' · örnek':''}</span></div>
-      <div class="ad"><b class="sayi">${x.kurucu||x.ben?'—':para(x.maas)}</b><span>${x.kurucu||x.ben?'kâr payı':'aylık maaş'}</span></div>
-      <div class="yetkiler">${x.npc?'<span class="yt yok">Oyuncu alınınca yerine geçer</span>':x.yetkiler.length?x.yetkiler.map(y=>`<span class="yt">${YETKI[y]}</span>`).join(''):'<span class="yt yok">Yetkisi yok</span>'}</div>
-      <div class="dugmeler" style="margin:0;flex-wrap:nowrap">${x.npc||x.ben||x.kurucu?'':`<button class="btn" data-maas="${x.id}">Maaş</button><button class="btn" data-yt="${x.id}">Yetki</button><button class="btn tehlike" data-kov="${x.id}">Çıkar</button>`}</div></div>`).join('')}`}
-function calisanlarBagla(g){const s=S(),bul=id=>s.uyeler.find(u=>u.id===id);
+    ${u.map(x=>{const mo=x.cekirdek?MORAL(x.moral):null;return `<div class="kart uySatir"><span class="av${x.npc?' npc':''}">${bas(x.ad)}</span><div class="ad"><b>${x.cekirdek?`<button class="adBtn" data-profil="${x.id}">${kac(x.ad)}</button>`:kac(x.ad)}${x.ben?' (sen)':''}</b><span>${kac(x.pozisyon)}${x.yonetici&&x.cekirdek?' · yönetici':''}${x.ornek?' · örnek':''}</span></div>
+      <div class="ad"><b class="sayi">${x.kurucu||x.ben?'—':para(x.maas)}</b><span>${x.kurucu||x.ben?'kâr payı':x.adet?'aylık toplam':'aylık maaş'}</span></div>
+      <div class="yetkiler">${mo?`<span class="${mo[1]}">${mo[0]}</span>`:''}${x.zamIstegi?`<span class="yt kotu">Zam istiyor: ${para(x.zamIstegi.tutar)}</span>`:''}${x.istifa?'<span class="yt kotu">İstifa edecek</span>':''}${x.npc?'':x.yetkiler.length?x.yetkiler.map(y=>`<span class="yt">${YETKI[y]}</span>`).join(''):(mo?'':'<span class="yt yok">Yetkisi yok</span>')}</div>
+      <div class="dugmeler" style="margin:0;flex-wrap:nowrap">${x.npc||x.ben||x.kurucu?'':`${x.cekirdek?`<button class="btn" data-dm="${x.id}" aria-label="Mesaj">✉</button>`:''}<button class="btn" data-maas="${x.id}">Maaş</button><button class="btn" data-yt="${x.id}">Yetki</button><button class="btn tehlike" data-kov="${x.id}">Çıkar</button>`}</div></div>`}).join('')}`}
+function maasPenceresi(id){const u=uyeler().find(x=>x.id===id);if(!u)return;
+  gerek('maas','Maaş değiştirmek',()=>modal('Maaş: '+u.ad,`<div class="form"><p>Şu anki maaş: <b>${para(u.maas)}</b> / ay${u.zamIstegi?` · istediği: <b>${para(u.zamIstegi.tutar)}</b>`:''}</p><div class="deneme" style="margin:0">${[-10,-5,5,10,20].map(o=>`<button data-o="${o}">${o>0?'+':''}%${Math.abs(o)}</button>`).join('')}${u.zamIstegi?`<button data-t="${u.zamIstegi.tutar}">İstediği kadar</button>`:''}</div><label>Yeni maaş (TL)<input class="giris" id="mYeni" type="number" inputmode="numeric" value="${u.maas}"></label>
+    <div class="onay" style="margin-top:2px"><button class="iptal" id="vazgec">Vazgeç</button><button class="tehlikeBtn" style="background:var(--ana);color:var(--anaUstu)" id="evet">Kaydet</button></div></div>`,
+    m=>{m.querySelectorAll('[data-o]').forEach(o=>o.onclick=()=>m.querySelector('#mYeni').value=Math.round(u.maas*(1+o.dataset.o/100)));m.querySelectorAll('[data-t]').forEach(o=>o.onclick=()=>m.querySelector('#mYeni').value=o.dataset.t);m.querySelector('#vazgec').onclick=kapat;
+      m.querySelector('#evet').onclick=()=>{const v=Math.round(+m.querySelector('#mYeni').value||0),asg=T.indexed(K.world,C.MIN_WAGE);if(v<asg)return tost('Maaş asgari ücretin ('+para(asg)+') altında olamaz.',1);const eski=u.maas;
+        if(u.cekirdek){const {w,p}=G();isletmem(w,p).employees[u.id]=v;const cev=NPCYZ.maasDegisti(w,K.npc,u.id,eski,v);kaydet();kapat();hepsiniCiz();tost(`${u.ad}: “${cev}”`)}
+        else{const yu=S().uyeler.find(x=>x.id===u.id);yu.maas=v;kaydet();kapat();hepsiniCiz();tost(`${u.ad}: ${para(eski)} → ${para(v)}`)}}}))}
+function calisanlarBagla(g){const s=S(),bul=id=>uyeler().find(u=>u.id===id);
   g.querySelector('#uYeni').onclick=calisanEkle;g.querySelector('#uBasv').onclick=()=>panelAc('basvurular');g.querySelector('#uIlan').onclick=()=>panelAc('ilan');
-  g.querySelectorAll('[data-maas]').forEach(b=>b.onclick=()=>gerek('maas','Maaş değiştirmek',()=>{const u=bul(b.dataset.maas);
-    modal('Maaş: '+u.ad,`<div class="form"><p>Şu anki maaş: <b>${para(u.maas)}</b> / ay</p><div class="deneme" style="margin:0">${[-10,-5,5,10,20].map(o=>`<button data-o="${o}">${o>0?'+':''}%${Math.abs(o)}</button>`).join('')}</div><label>Yeni maaş (TL)<input class="giris" id="mYeni" type="number" inputmode="numeric" value="${u.maas}"></label>
-      <div class="onay" style="margin-top:2px"><button class="iptal" id="vazgec">Vazgeç</button><button class="tehlikeBtn" style="background:var(--ana);color:var(--anaUstu)" id="evet">Kaydet</button></div></div>`,
-      m=>{m.querySelectorAll('[data-o]').forEach(o=>o.onclick=()=>m.querySelector('#mYeni').value=Math.round(u.maas*(1+o.dataset.o/100)));m.querySelector('#vazgec').onclick=kapat;
-        m.querySelector('#evet').onclick=()=>{const v=Math.round(+m.querySelector('#mYeni').value||0),asg=T.indexed(K.world,C.MIN_WAGE);if(v<asg)return tost('Maaş asgari ücretin ('+para(asg)+') altında olamaz.',1);const eski=u.maas;u.maas=v;kaydet();kapat();hepsiniCiz();tost(`${u.ad}: ${para(eski)} → ${para(v)}`)}})}));
+  g.querySelectorAll('[data-profil]').forEach(b=>b.onclick=()=>kisiMenu(b.dataset.profil));
+  g.querySelectorAll('[data-dm]').forEach(b=>b.onclick=()=>sohbetAc({dm:b.dataset.dm}));
+  g.querySelectorAll('[data-maas]').forEach(b=>b.onclick=()=>maasPenceresi(b.dataset.maas));
   g.querySelectorAll('[data-yt]').forEach(b=>b.onclick=()=>gerek('yetki','Yetki vermek',()=>{const u=bul(b.dataset.yt);
     modal('Yetkiler: '+u.ad,`<div class="form">${TUM_YETKI.map(y=>`<label class="secim" style="text-transform:none;letter-spacing:0;font-size:var(--t3);color:var(--metin);flex-direction:row"><input type="checkbox" data-y="${y}" ${u.yetkiler.includes(y)?'checked':''}>${YETKI[y]}</label>`).join('')}
       <label class="secim" style="text-transform:none;letter-spacing:0;font-size:var(--t3);color:var(--metin);flex-direction:row"><input type="checkbox" id="yYon" ${u.yonetici?'checked':''}>Yönetici kadrosunda</label>
       <div class="onay" style="margin-top:2px"><button class="iptal" id="vazgec">Vazgeç</button><button class="tehlikeBtn" style="background:var(--ana);color:var(--anaUstu)" id="evet">Kaydet</button></div></div>`,
-      m=>{m.querySelector('#vazgec').onclick=kapat;m.querySelector('#evet').onclick=()=>{u.yetkiler=[...m.querySelectorAll('[data-y]')].filter(c=>c.checked).map(c=>c.dataset.y);u.yonetici=m.querySelector('#yYon').checked;kaydet();kapat();hepsiniCiz();tost(u.ad+' kişisinin yetkileri güncellendi.')}})}));
-  g.querySelectorAll('[data-kov]').forEach(b=>b.onclick=()=>gerek('calisan','Çalışan çıkarmak',()=>{const u=bul(b.dataset.kov);onay(u.ad+' çıkarılsın mı?',`${kac(u.ad)} şirketten çıkarılır. Yerine geçici NPC çalışan geçer.`,'Çıkar',()=>{s.uyeler=s.uyeler.filter(x=>x!==u);kaydet();hepsiniCiz();tost(u.ad+' çıkarıldı.')})}))}
+      m=>{m.querySelector('#vazgec').onclick=kapat;m.querySelector('#evet').onclick=()=>{const yt=[...m.querySelectorAll('[data-y]')].filter(c=>c.checked).map(c=>c.dataset.y),yon=m.querySelector('#yYon').checked;
+        if(u.cekirdek){s.yetkiNpc[u.id]=yt;s.yoneticiNpc=s.yoneticiNpc.filter(x=>x!==u.id);if(yon)s.yoneticiNpc.push(u.id)}else{const yu=s.uyeler.find(x=>x.id===u.id);yu.yetkiler=yt;yu.yonetici=yon}
+        kaydet();kapat();hepsiniCiz();tost(u.ad+' kişisinin yetkileri güncellendi.')}})}));
+  g.querySelectorAll('[data-kov]').forEach(b=>b.onclick=()=>gerek('calisan','Çalışan çıkarmak',()=>{const u=bul(b.dataset.kov);onay(u.ad+' çıkarılsın mı?',`${kac(u.ad)} şirketten çıkarılır. Yerine geçici personel geçer.`,'Çıkar',()=>{
+    if(u.cekirdek){const cev=NPCYZ.cikarildi(K.world,K.npc,u.id);delete s.yetkiNpc[u.id];s.yoneticiNpc=s.yoneticiNpc.filter(x=>x!==u.id);kaydet();hepsiniCiz();tost(`${u.ad}: “${cev}”`)}
+    else{s.uyeler=s.uyeler.filter(x=>x.id!==u.id);kaydet();hepsiniCiz();tost(u.ad+' çıkarıldı.')}})}))}
 function gecmisGovde(){const {w,p}=G(),s=S(),simdi=Math.floor(w.day/30),bas0=Math.floor(p.joinedOnDay/30),harita={};s.gecmis.forEach(g=>harita[g.ay]=g.kar);harita[simdi]=anlik(w,p);
   let h='';for(let yil=Math.floor(simdi/12);yil>=Math.floor(bas0/12);yil--){const aylar=[...Array(12).keys()].map(a=>yil*12+a);const top=aylar.filter(a=>a in harita).reduce((t,a)=>t+harita[a],0);
     h+=`<div class="yilBas"><b>${YIL0+yil}</b><span>Yıl toplamı <b class="sayi ${top>=0?'arti':'eksi'}">${isaret(top)}</b></span></div><div class="takvim">${aylar.map(a=>{const v=harita[a];return `<div class="kart ayK${a===simdi?' su':''}${v===undefined?' bos':''}"><span>${AY[a%12]}${a===simdi?' · sürüyor':''}</span><b class="${v===undefined?'':v>=0?'arti':'eksi'}">${v===undefined?(a<bas0?'—':'·'):isaret(v)}</b></div>`}).join('')}</div>`}
   return `<p class="alt" style="font-size:var(--t2);color:var(--ikincil);margin:0 0 8px">${patronMu(p)?'Şirketinin':'Senin'} her ayki kâr ya da zararı. Ay kapanınca buraya yazılır; içinde bulunduğun ay anlık.</p>${h}`}
-function ilanGovde(){const {w,p}=G(),s=S(),b=patronMu(p)?isletmem(w,p):null,oneri=b?(C.BUSINESS_STAFF_PROFESSIONS[b.type]||[]).map(mAd):[];
-  return `<div class="iki"><div class="kart mk"><span class="etiket">Yeni ilan</span><div class="form"><label>Pozisyon<input class="giris" id="iPoz" list="iOneri" maxlength="30" placeholder="Örn. Kasiyer"><datalist id="iOneri">${oneri.map(o=>`<option value="${o}">`).join('')}</datalist></label>
-      <label>Aylık maaş (TL)<input class="giris" id="iMaas" type="number" inputmode="numeric" value="${T.indexed(w,C.MIN_WAGE)}"></label><label>Açıklama<textarea class="giris" id="iAcik" rows="2" maxlength="200" placeholder="Çalışma saatleri, beklentiler…"></textarea></label><button class="btn ana" id="iYayinla" style="height:34px">İlanı yayınla</button></div></div>
-    <div class="sutun"><span class="etiket">Açık ilanlar</span>${s.ilanlar.length?s.ilanlar.map(i=>`<div class="kart mk"><div class="ust"><span class="ad">${kac(i.poz)}</span><span class="rozetK">${s.basvurular.filter(x=>x.ilanId===i.id).length} başvuru</span></div><span class="alt">${para(i.maas)} / ay · ${gunYazi(i.gun)} yayınlandı${i.acik?' · '+kac(i.acik):''}</span><div class="dugmeler"><button class="btn" data-bv="${i.id}">Başvurular</button><button class="btn tehlike" data-ikapat="${i.id}">İlanı kapat</button></div></div>`).join('')
-      :'<div class="kart mk"><span class="alt">Açık ilanın yok. İlan yayınlayınca adaylar her oyun gününde başvurur.</span></div>'}</div></div>`}
-function ilanBagla(g){const s=S();g.querySelector('#iYayinla').onclick=()=>gerek('calisan','İlan yayınlamak',()=>{const poz=g.querySelector('#iPoz').value.trim(),maas=Math.round(+g.querySelector('#iMaas').value||0),asg=T.indexed(K.world,C.MIN_WAGE);
-    if(poz.length<2)return tost('Pozisyonu yaz.',1);if(maas<asg)return tost('Maaş asgari ücretin ('+para(asg)+') altında olamaz.',1);
-    s.ilanlar.unshift({id:yeniId('i'),poz,maas,acik:g.querySelector('#iAcik').value.trim(),gun:K.world.day});kaydet();panelCiz();tost('İlan yayınlandı. Adaylar başvurdukça haber vereceğiz.')});
+function ilanGovde(){const {w,p}=G(),s=S(),b=patronMu(p)?isletmem(w,p):null,ml=b?(C.BUSINESS_STAFF_PROFESSIONS[b.type]||[]):[],d=b?T.getBusinessDef(b.type):null;
+  return `<div class="iki"><div class="kart mk"><span class="etiket">Yeni ilan</span><div class="form"><div class="iki2"><label>Meslek<select class="giris" id="iMeslek">${ml.map(m=>`<option value="${m}">${mAd(m)}</option>`).join('')}</select></label><label>Pozisyon adı<input class="giris" id="iPoz" maxlength="30" placeholder="Örn. Kasiyer"></label></div>
+      <label>Aylık maaş (TL)<input class="giris" id="iMaas" type="number" inputmode="numeric" value="${b?Math.round(T.indexed(w,d.minWage)*1.1/500)*500:T.indexed(w,C.MIN_WAGE)}"></label><label>Açıklama<textarea class="giris" id="iAcik" rows="2" maxlength="200" placeholder="Çalışma saatleri, beklentiler…"></textarea></label><button class="btn ana" id="iYayinla" style="height:34px">İlanı yayınla</button>
+      <p class="ornek" style="margin:0">Adaylar maaşı kendi kazançlarıyla karşılaştırır: iyi maaş, iyi itibar, daha çok ve daha deneyimli aday.</p></div></div>
+    <div class="sutun"><span class="etiket">Açık ilanlar · kadro ${b?Object.keys(b.employees).length+'/'+d.staffNeeded:'—'}</span>${s.ilanlar.length?s.ilanlar.map(i=>`<div class="kart mk"><div class="ust"><span class="ad">${kac(i.poz)}</span><span class="rozetK">${s.basvurular.filter(x=>x.ilanId===i.id).length} başvuru</span></div><span class="alt">${i.meslek?mAd(i.meslek)+' · ':''}${para(i.maas)} / ay · ${gunYazi(i.gun)} yayınlandı${i.acik?' · '+kac(i.acik):''}</span><div class="dugmeler"><button class="btn" data-bv="${i.id}">Başvurular</button><button class="btn tehlike" data-ikapat="${i.id}">İlanı kapat</button></div></div>`).join('')
+      :'<div class="kart mk"><span class="alt">Açık ilanın yok. İlan yayınlayınca uygun kişiler oyun günleri içinde başvurur.</span></div>'}</div></div>`}
+function ilanBagla(g){const s=S();g.querySelector('#iYayinla').onclick=()=>gerek('calisan','İlan yayınlamak',()=>{const meslek=g.querySelector('#iMeslek').value,poz=g.querySelector('#iPoz').value.trim()||mAd(meslek),maas=Math.round(+g.querySelector('#iMaas').value||0),asg=T.indexed(K.world,C.MIN_WAGE);
+    if(!meslek)return tost('Önce bir işletme kur.',1);if(maas<asg)return tost('Maaş asgari ücretin ('+para(asg)+') altında olamaz.',1);
+    s.ilanlar.unshift({id:yeniId('i'),poz,meslek,maas,acik:g.querySelector('#iAcik').value.trim(),gun:K.world.day});kaydet();panelCiz();tost('İlan yayınlandı. Başvurular geldikçe haber vereceğiz.')});
   g.querySelectorAll('[data-bv]').forEach(b=>b.onclick=()=>panelAc('basvurular'));
   g.querySelectorAll('[data-ikapat]').forEach(b=>b.onclick=()=>gerek('calisan','İlanı kapatmak',()=>{s.ilanlar=s.ilanlar.filter(i=>i.id!==b.dataset.ikapat);s.basvurular=s.basvurular.filter(x=>x.ilanId!==b.dataset.ikapat);kaydet();panelCiz()}))}
-function basvurularGovde(){const s=S();
-  return `<div class="arac"><button class="btn" id="bIlan">İlanlarım ve yeni ilan</button></div>${s.basvurular.length?`<div class="ucSutun">${s.basvurular.map(x=>{const il=s.ilanlar.find(i=>i.id===x.ilanId);return `<div class="kart mk"><div class="ust"><span class="ad">${kac(x.ad)}</span><span class="rozetK gri">${il?kac(il.poz):'ilan kapandı'}</span></div><span class="alt">${x.deneyim} gün deneyim · itibar ${x.itibar}</span><span class="alt">İstediği maaş ${para(x.maas)}</span><div class="dugmeler"><button class="btn ana" data-al="${x.id}">İşe al</button><button class="btn" data-red="${x.id}">Reddet</button></div></div>`}).join('')}</div>`
-    :'<div class="kart mk"><span class="alt">Bekleyen başvuru yok. İlan yayınlarsan adaylar her oyun gününde başvurur.</span></div>'}`}
-function basvurularBagla(g){const s=S();g.querySelector('#bIlan').onclick=()=>panelAc('ilan');
-  g.querySelectorAll('[data-al]').forEach(b=>b.onclick=()=>gerek('calisan','İşe almak',()=>{const x=s.basvurular.find(q=>q.id===b.dataset.al),il=s.ilanlar.find(i=>i.id===x.ilanId);
-    s.uyeler.push({id:yeniId('u'),ad:x.ad,pozisyon:il?il.poz:'Çalışan',maas:x.maas,yetkiler:[],yonetici:false,gercek:false});s.basvurular=s.basvurular.filter(q=>q!==x);kaydet();hepsiniCiz();tost(x.ad+' işe alındı.')}));
-  g.querySelectorAll('[data-red]').forEach(b=>b.onclick=()=>{s.basvurular=s.basvurular.filter(q=>q.id!==b.dataset.red);kaydet();panelCiz()})}
+function basvurularGovde(){const s=S(),{w}=G();
+  return `<div class="arac"><button class="btn" id="bIlan">İlanlarım ve yeni ilan</button><span class="bosluk"></span><span style="font-size:var(--t2);color:var(--ikincil)">İstediği maaşın altında teklif verirsen pazarlık eder.</span></div>${s.basvurular.length?`<div class="ucSutun">${s.basvurular.map(x=>{const il=s.ilanlar.find(i=>i.id===x.ilanId),q=x.npcId&&w.players[x.npcId];return `<div class="kart mk"><div class="ust"><button class="adBtn ad" data-profil="${x.npcId||''}">${kac(x.ad)}</button><span class="rozetK gri">${il?kac(il.poz):'ilan kapandı'}</span></div><span class="alt">${q&&q.profession?mAd(q.profession)+' · ':''}bu işte ${x.deneyim} gün${x.toplamDeneyim!=null?' · toplam '+x.toplamDeneyim+' gün':''} · itibar ${x.itibar}</span><span class="alt">İstediği maaş <b class="sayi">${para(x.maas)}</b>${il?` · ilanın ${para(il.maas)}`:''}</span><div class="dugmeler"><button class="btn ana" data-al="${x.id}">${para(x.maas)} ile al</button><button class="btn" data-tk="${x.id}">Teklif ver</button><button class="btn" data-red="${x.id}">Reddet</button></div></div>`}).join('')}</div>`
+    :'<div class="kart mk"><span class="alt">Bekleyen başvuru yok. İlan yayınlarsan uygun kişiler oyun günleri içinde başvurur.</span></div>'}`}
+function iseAlDene(x,maas){gerek('calisan','İşe almak',()=>{const s=S(),{p}=G();
+  if(!x.npcId){s.uyeler.push({id:yeniId('u'),ad:x.ad,pozisyon:'Çalışan',maas,yetkiler:[],yonetici:false,gercek:false});s.basvurular=s.basvurular.filter(q=>q!==x);kaydet();hepsiniCiz();return tost(x.ad+' işe alındı.')}
+  const r=NPCYZ.iseAl(K.world,K.npc,p.id,x,maas);
+  if(r.ok){s.basvurular=s.basvurular.filter(q=>q!==x);kaydet();hepsiniCiz();tost(`${x.ad} işe başladı: “${r.mesaj}”`)}
+  else if(r.pazarlik){kaydet();panelCiz();modal(x.ad+' pazarlık ediyor',`<p>“${kac(r.mesaj)}”</p><div class="onay"><button class="iptal" id="vazgec">Vazgeç</button><button class="tehlikeBtn" style="background:var(--ana);color:var(--anaUstu)" id="evet">${para(r.pazarlik)} ile anlaş</button></div>`,g=>{g.querySelector('#vazgec').onclick=kapat;g.querySelector('#evet').onclick=()=>{kapat();iseAlDene(x,r.pazarlik)}})}
+  else tost(r.mesaj||'İşe alınamadı.',1)})}
+function basvurularBagla(g){const s=S(),bul=id=>s.basvurular.find(q=>q.id===id);g.querySelector('#bIlan').onclick=()=>panelAc('ilan');
+  g.querySelectorAll('[data-profil]').forEach(b=>{if(b.dataset.profil)b.onclick=()=>kisiMenu(b.dataset.profil)});
+  g.querySelectorAll('[data-al]').forEach(b=>b.onclick=()=>{const x=bul(b.dataset.al);iseAlDene(x,x.maas)});
+  g.querySelectorAll('[data-tk]').forEach(b=>b.onclick=()=>{const x=bul(b.dataset.tk);modal('Teklif: '+x.ad,`<div class="form"><p>İstediği maaş <b>${para(x.maas)}</b>. Daha azını teklif edebilirsin; kabul etmezse karşı teklif verir.</p><label>Teklifin (TL)<input class="giris" id="tTutar" type="number" inputmode="numeric" value="${Math.round(x.maas*.9/500)*500}"></label><div class="onay" style="margin-top:2px"><button class="iptal" id="vazgec">Vazgeç</button><button class="tehlikeBtn" style="background:var(--ana);color:var(--anaUstu)" id="evet">Teklif et</button></div></div>`,m=>{m.querySelector('#vazgec').onclick=kapat;m.querySelector('#evet').onclick=()=>{const v=Math.round(+m.querySelector('#tTutar').value||0),asg=T.indexed(K.world,C.MIN_WAGE);if(v<asg)return tost('Asgari ücretin ('+para(asg)+') altında olamaz.',1);kapat();iseAlDene(x,v)}})});
+  g.querySelectorAll('[data-red]').forEach(b=>b.onclick=()=>{const x=bul(b.dataset.red);if(x.npcId)NPCYZ.basvuruReddet(K.world,K.npc,x);s.basvurular=s.basvurular.filter(q=>q!==x);kaydet();panelCiz()})}
 
-/** Her yeni oyun gününde: açık ilanlara başvuru gelir, bekleyen yetki talepleri yanıtlanır (deneme). */
-function sirketGunu(w,p){const s=S();if(!patronMu(p))return;
-  s.ilanlar.forEach(i=>{if(s.basvurular.filter(x=>x.ilanId===i.id).length>=4)return;const ad=ADAY_AD[(s.sayac*7+w.day)%ADAY_AD.length];
-    s.basvurular.push({id:yeniId('b'),ilanId:i.id,ad,deneyim:10+(w.day*13+s.sayac*5)%150,itibar:(w.day*7+s.sayac)%60,maas:Math.round(i.maas*(0.95+((w.day+s.sayac)%4)*.05))});olayEkle('Yeni başvuru',`${ad}, “${i.poz}” ilanına başvurdu.`)});
-  s.mesajlar.filter(m=>m.durum==='bekliyor'&&m.gun<w.day).forEach(m=>{m.durum='verildi';if(!s.benYetki.includes(m.yetki))s.benYetki.push(m.yetki);
-    s.mesajlar.unshift({id:yeniId('m'),kimden:m.kime,metin:`Tamam, “${YETKI[m.yetki]}” yetkini verdim.`,gun:w.day});olayEkle('Yetki verildi',`${m.kime} sana “${YETKI[m.yetki]}” yetkisini verdi.`)})}
+/** Her yeni oyun gününde: açık ilanlara gerçek NPC'ler başvurur, yetki talepleri kurucunun kararıyla yanıtlanır. */
+function sirketGunu(w,p){const s=S();
+  if(patronMu(p)&&K.npc&&s.ilanlar.length){NPCYZ.basvurular(w,K.npc,p,s.ilanlar.filter(i=>i.meslek),s.basvurular).forEach(b=>{s.basvurular.push(b);const il=s.ilanlar.find(i=>i.id===b.ilanId);olayEkle('Yeni başvuru',`${b.ad}, “${il?il.poz:''}” ilanına başvurdu.`)})}
+  if(K.npc)s.basvurular=s.basvurular.filter(b=>!b.npcId||(w.players[b.npcId]&&!w.players[b.npcId].businessIds.length&&w.players[b.npcId].employerBusinessId!==(patronMu(p)?isletmem(w,p).id:null)));
+  s.mesajlar.filter(m=>m.durum==='bekliyor'&&m.gun<w.day).forEach(m=>{const kur=uyeler().find(u=>u.id===m.kimeId)||{ad:m.kime};const k=K.npc?NPCYZ.yetkiKarari(w,K.npc,{id:K.npc.npc[kur.id]?kur.id:null,ad:kur.ad,k:{durust:.75}},m.yetki,m.metin):{ver:true,metin:'Tamam, verdim.'};
+    m.durum=k.ver?'verildi':'red';if(k.ver&&!s.benYetki.includes(m.yetki))s.benYetki.push(m.yetki);
+    s.mesajlar.unshift({id:yeniId('m'),kimden:m.kime,metin:k.metin,gun:w.day});olayEkle(k.ver?'Yetki verildi':'Yetki talebin reddedildi',`${m.kime}: ${k.metin}`)})}
 
 // ---- deneme: örnek şirket ve yetki durumları ----
-function ornekSirket(){const {p}=G();if(!patronMu(p)){p.cash=Math.max(p.cash,700000);p.totalExperienceDays=Math.max(p.totalExperienceDays,60);if(p.courseInProgress)p.courseInProgress=null;if(!eylem({tur:'meslek_sec',meslek:'dukkan_sahibi'},1))return}
-  const s=S();if(!s.projeler.length)[['Kadıköy şubesi','Yatırım',1800000,650000,0,'Kira sözleşmesi imzalandı, tadilat sürüyor.',1],['Online satış sitesi','Ürün',250000,180000,42000,'Ödeme altyapısı bağlanacak.'],['Bayram kampanyası','Kampanya',60000,60000,95000,'',0,'bitti'],['Depo kiralama','Yatırım',400000,0,0,'Teklifler toplanıyor.']].forEach(([ad,tur,butce,harcanan,gelir,not,ana,durum])=>s.projeler.push({id:yeniId('p'),ad,tur,butce,harcanan,gelir,not,ana:!!ana,durum:durum||'suruyor',gun:K.world.day}));
-  if(!s.uyeler.length)s.uyeler.push({id:yeniId('u'),ad:'Ayşe Koç',pozisyon:'Mağaza sorumlusu',maas:42000,yetkiler:['proje'],yonetici:false,gercek:false});
-  if(!s.ilanlar.length){s.ilanlar.push({id:yeniId('i'),poz:'Kasiyer',maas:T.indexed(K.world,C.MIN_WAGE),acik:'Hafta içi tam gün.',gun:K.world.day});s.basvurular.push({id:yeniId('b'),ilanId:s.ilanlar[0].id,ad:'Mehmet Yıldız',deneyim:84,itibar:31,maas:30000})}
+function ornekSirket(){const {w,p}=G();if(!patronMu(p)){p.cash=Math.max(p.cash,700000);p.totalExperienceDays=Math.max(p.totalExperienceDays,60);if(p.courseInProgress)p.courseInProgress=null;if(!eylem({tur:'meslek_sec',meslek:'dukkan_sahibi'},1))return}
+  const s=S(),b=isletmem(K.world,G().p),ml=C.BUSINESS_STAFF_PROFESSIONS[b.type]||[];
+  if(!s.projeler.length)[['Kadıköy şubesi','Yatırım',1800000,650000,0,'Kira sözleşmesi imzalandı, tadilat sürüyor.',1],['Online satış sitesi','Ürün',250000,180000,42000,'Ödeme altyapısı bağlanacak.'],['Bayram kampanyası','Kampanya',60000,60000,95000,'',0,'bitti'],['Depo kiralama','Yatırım',400000,0,0,'Teklifler toplanıyor.']].forEach(([ad,tur,butce,harcanan,gelir,not,ana,durum])=>s.projeler.push({id:yeniId('p'),ad,tur,butce,harcanan,gelir,not,ana:!!ana,durum:durum||'suruyor',gun:K.world.day}));
+  if(K.npc&&!Object.keys(b.employees).length){const aday=Object.keys(K.npc.npc).find(id=>{const q=K.world.players[id];return q&&ml.includes(q.profession)&&!q.employerBusinessId&&!q.businessIds.length});
+    if(aday){const q=K.world.players[aday],m=Math.round(T.indexed(K.world,C.MIN_WAGE)*1.25/500)*500;NPCYZ.iseAl(K.world,K.npc,G().p.id,{id:'ornek',npcId:aday,ad:q.name,maas:m,alt:0,meslekIlan:q.profession},m)}}
+  if(!s.ilanlar.length){s.ilanlar.push({id:yeniId('i'),poz:'Kasiyer',meslek:ml[0],maas:Math.round(T.indexed(K.world,C.MIN_WAGE)*1.2/500)*500,acik:'Hafta içi tam gün.',gun:K.world.day});
+    if(K.npc){for(let i=0;i<20&&!s.basvurular.length;i++){NPCYZ.sansAc(K.world,K.npc,1,1);NPCYZ.basvurular(K.world,K.npc,G().p,s.ilanlar,s.basvurular).forEach(x=>s.basvurular.push(x));K.npc.sayac++}}}
   kaydet();ekran('sirket');tost('Örnek şirket kuruldu.')}
 function sirketModu(mod){const s=S();s.uyeler=s.uyeler.filter(u=>!u.ornekMod);s.mod=mod;s.benYetki=[];
   if(mod==='ortakli')s.uyeler.unshift({id:'u-cfo',ad:'Selin Kaya',pozisyon:'CFO · Ortak',maas:90000,yetkiler:['proje','maas'],yonetici:true,gercek:true,ornek:true,ornekMod:true});
@@ -1012,47 +1067,85 @@ function sirketModu(mod){const s=S();s.uyeler=s.uyeler.filter(u=>!u.ornekMod);s.
 // Telefonun kendi klavyesi kullanılır. Sohbet ekranı sahnenin dışında, gerçek ekran boyundadır;
 // klavye açılınca görünen alana (visualViewport) küçülür, yazı kutusu klavyenin hemen üstünde kalır.
 const KANAL={global:'Global',ulke:'Türkiye',sirket:'Şirket'};
-const KANAL_ORNEK={
-  global:[['Ahmed_DXB','Anyone hiring couriers in Dubai?'],['Selin K.','Borsada bugün enerji hisseleri uçtu 🚀'],['Lukas','Guten Morgen! Neue Bäckerei eröffnet.'],['Maria','¿Alguien vende un local en Madrid?']],
-  ulke:[['Mehmet Y.','Kadıköy\'de kiralık dükkan arayan var mı?'],['Zeynep','Faiz kararı yarın açıklanıyor, dikkat'],['Burak','Garson arıyorum, Beşiktaş, 34.000 ₺'],['Hakan Er','Muhasebe kursu bitti, iş arıyorum. Önerisi olan?']],
-  sirket:[['Ayşe Koç','Kasada bozuk para azaldı, yarın bankaya uğrarım.'],['Selin Kaya','Bu ayın giderlerini tabloya işledim.']]};
-let shKanal='ulke';
-function SOH(){if(!K.sohbet)K.sohbet={global:[],ulke:[],sirket:[],engel:[]};return K.sohbet}
+let shKanal='ulke',shDm=null,shYazanlar=[];
+function SOH(){if(!K.sohbet)K.sohbet={engel:[]};return K.sohbet}
 function shKanallar(){const {p}=G();return Object.keys(KANAL).filter(k=>k!=='sirket'||patronMu(p))}
-function shCiz(){const {p}=G(),sh=SOH(),ks=shKanallar();if(!ks.includes(shKanal))shKanal=ks[0];
-  $('shSekme').innerHTML=ks.map(k=>`<button data-kn="${k}" aria-pressed="${k===shKanal}">${KANAL[k]}${k==='sirket'&&isletmem(K.world,p)?' · '+(KISA_IS[isletmem(K.world,p).type]||''):''}</button>`).join('');
-  $('shSekme').querySelectorAll('[data-kn]').forEach(b=>b.onclick=()=>{shKanal=b.dataset.kn;shCiz();shAlta()});
-  $('shBilgi').innerHTML=`<i></i>${{global:'1.284',ulke:'312',sirket:String(uyeler().filter(u=>!u.npc).length)}[shKanal]} çevrimiçi`;
-  const ornek=(KANAL_ORNEK[shKanal]||[]).map(([ad,metin],i)=>({ad,metin,dk:-1}));
-  const msjlar=[...ornek,...sh[shKanal]].filter(m=>!sh.engel.includes(m.ad));
-  $('shListe').innerHTML=`<div class="shSistem">${shKanal==='sirket'?'Şirket içi sohbet: yalnız şirketin üyeleri görür.':'Saygılı ol: hakaret, dolandırıcılık ve reklam yasak. Bir ada dokunarak engelleyebilir ya da şikâyet edebilirsin.'}</div>`+
-    msjlar.map(m=>{const ben=m.ad===p.name&&m.dk>=0;return `<div class="msj${ben?' ben':''}">${ben?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon">${ben?'':`<button data-kisi="${kac(m.ad)}">${kac(m.ad)}</button>`}${kac(m.metin)}<em>${m.dk>=0?m.saat:'örnek'}</em></div></div>`}).join('');
-  $('shListe').querySelectorAll('[data-kisi]').forEach(b=>b.onclick=()=>kisiMenu(b.dataset.kisi))}
-function kisiMenu(ad){$('sohbet').classList.remove('acik');
-  modal(ad,`<div class="kisiler"><button id="kDm"><span class="av">${bas(ad)}</span><span><b>Özel mesaj gönder</b><span>Telefonundaki Mesajlar'a düşer</span></span></button><button id="kEngel"><span class="av" style="background:var(--zemin);color:var(--ikincil)">⨯</span><span><b>Engelle</b><span>Mesajlarını artık görmezsin</span></span></button><button id="kSikayet"><span class="av" style="background:var(--tehlikeYumusak);color:var(--tehlike)">!</span><span><b>Şikâyet et</b><span>Moderasyona gider (çok oyunculu sürümde)</span></span></button></div>`,
-    g=>{const don=()=>{kapat();$('sohbet').classList.add('acik')};
-      g.querySelector('#kDm').onclick=()=>{kapat();tost('Özel mesajlar çok oyunculu sürümle gelecek.');don()};
-      g.querySelector('#kEngel').onclick=()=>{SOH().engel.push(ad);kaydet();shCiz();don();tost(ad+' engellendi.')};
+/** Şirket kanalında konuşanlar: oyuncunun işletmesindeki gerçek çalışanlar ve vekil müdür. */
+function sirketNpcIdleri(){const {w,p}=G();if(!patronMu(p)||!K.npc)return [];const b=isletmem(w,p),ids=Object.keys(b.employees);const m=NPCYZ.mudurAta(w,K.npc,b);if(m&&!ids.includes(m))ids.push(m);return ids}
+const saatYaz=z=>{const d=new Date(z);return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
+/** Kanal: son bakıştan beri NPC'lerin yazdıkları (gerçek zamana göre) eklenir. */
+function shAkis(){if(!K.npc||shDm)return 0;const {w,p}=G();const yeni=NPCYZ.kanalAkisi(w,K.npc,shKanal,Date.now(),new Date().getHours(),p,sirketNpcIdleri());if(yeni.length)kaydet();return yeni.length}
+function teklifKarti(t){const {w}=G(),k=K.npc.npc[t.npcId];const ne=t.tur==='is'?`İş teklifi: ${mAd(t.meslek)} · ${para(t.maas)} / ay`:t.tur==='mulk_al'?`${T.t('mulk_turu.'+t.mulk)} için alım teklifi: ${para(t.fiyat)}`:`${T.t('mulk_turu.'+t.mulk)} satış teklifi: ${para(t.fiyat)}`;
+  return `<div class="teklifKart"><b>${ne}</b><span style="font-size:12.5px;color:var(--ikincil)">${t.bitis-w.day} gün geçerli</span><div><button class="ana" data-tkabul="${t.id}">Kabul et</button><button data-tpaz="${t.id}">Pazarlık</button><button data-tred="${t.id}">Reddet</button></div></div>`}
+function shCiz(){const {w,p}=G(),sh=SOH(),ks=shKanallar();if(!shDm&&!ks.includes(shKanal))shKanal=ks[0];
+  const alttaydi=(()=>{const l=$('shListe');return l.scrollHeight-l.scrollTop-l.clientHeight<60})();
+  if(shDm){const kim=K.npc&&K.npc.npc[shDm],pr=K.npc?NPCYZ.profil(w,K.npc,shDm):null;
+    $('shSekme').innerHTML=`<div class="shDmBas"><span class="av">${bas(kim?kim.gorunen:'?')}</span><div style="min-width:0"><b>${kac(kim?kim.gorunen:'')}</b><span>${pr?kac(pr.meslek+' · '+(pr.yer?pr.yer.ilce||pr.yer.sehir:'')+' · '+pr.iliski):''}</span></div></div>`;
+    $('shBilgi').innerHTML=`<button class="btn" id="shProfil">Profil</button>`;$('shProfil').onclick=()=>kisiMenu(shDm);
+    const ms=(K.npc.dm[shDm]||[]);NPCYZ.dmOkundu(K.npc,shDm);cizRozet();
+    const tk=NPCYZ.bekleyenTeklifler(w,K.npc).filter(t=>t.npcId===shDm);
+    $('shListe').innerHTML=`<div class="shSistem">Özel mesajlar yalnız ikiniz arasında.</div>`+ms.map(m=>{const ben=m.kimden==='oyuncu';return `<div class="msj${ben?' ben':''}">${ben?'':`<span class="av">${bas(kim.gorunen)}</span>`}<div class="balon">${kac(m.metin)}<em>${m.zaman?saatYaz(m.zaman):''}</em></div></div>`+(m.zam&&!ben?`<div class="teklifKart"><b>Zam isteği: ${para(m.zam)}</b><div><button class="ana" data-zam="${shDm}">Maaşını düzenle</button></div></div>`:'')}).join('')+tk.map(teklifKarti).join('')+(shYazanlar.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(shYazanlar.join(', '))} yazıyor…</div>`:'');
+    $('shListe').querySelectorAll('[data-tkabul]').forEach(b=>b.onclick=()=>teklifCevapla(b.dataset.tkabul,'kabul'));
+    $('shListe').querySelectorAll('[data-tred]').forEach(b=>b.onclick=()=>teklifCevapla(b.dataset.tred,'red'));
+    $('shListe').querySelectorAll('[data-tpaz]').forEach(b=>b.onclick=()=>{$('shGiris').value='';$('shGiris').placeholder='Tutarını yaz: örn. 1.650.000';$('shGiris').focus()});
+    $('shListe').querySelectorAll('[data-zam]').forEach(b=>b.onclick=()=>{sohbetKapat();ekran('sirket');panelAc('calisanlar');maasPenceresi(b.dataset.zam)});
+  }else{
+    $('shSekme').innerHTML=ks.map(k=>`<button data-kn="${k}" aria-pressed="${k===shKanal}">${KANAL[k]}${k==='sirket'&&isletmem(w,p)?' · '+(KISA_IS[isletmem(w,p).type]||''):''}</button>`).join('');
+    $('shSekme').querySelectorAll('[data-kn]').forEach(b=>b.onclick=()=>{shKanal=b.dataset.kn;shAkis();shCiz();shAlta()});
+    const cev=K.npc?NPCYZ.cevrimici(K.npc,shKanal,new Date().getHours()):null;
+    $('shBilgi').innerHTML=`<i></i>${cev!=null?cev.toLocaleString('tr-TR'):sirketNpcIdleri().length+1} çevrimiçi`;
+    const ms=(K.npc?K.npc.kanal[shKanal]:[]).filter(m=>!sh.engel.includes(m.ad));
+    $('shListe').innerHTML=`<div class="shSistem">${shKanal==='sirket'?'Şirket içi sohbet: yalnız şirketin üyeleri görür.':'Saygılı ol: hakaret, dolandırıcılık ve reklam yasak. Bir ada dokunarak profiline bakabilir, özel mesaj atabilir, engelleyebilir ya da şikâyet edebilirsin.'}</div>`+
+      ms.map(m=>m.sistem?`<div class="shSistem">${kac(m.metin)}</div>`:`<div class="msj${m.oyuncu?' ben':''}">${m.oyuncu?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon">${m.oyuncu?'':`<button data-kisi="${m.npcId||''}" data-kad="${kac(m.ad)}">${kac(m.ad)}</button>`}${kac(m.metin)}<em>${saatYaz(m.zaman)}</em></div></div>`).join('')+
+      (shYazanlar.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(shYazanlar.slice(0,2).join(', '))} yazıyor…</div>`:'');
+    $('shListe').querySelectorAll('[data-kisi]').forEach(b=>b.onclick=()=>kisiMenu(b.dataset.kisi,b.dataset.kad));
+  }
+  if(alttaydi)shAlta()}
+function teklifCevapla(id,cevap){const {w,p}=G();const r=NPCYZ.teklifCevap(w,K.npc,id,p.id,cevap);kaydet();hepsiniCiz();shCiz();shAlta();if(!r.ok)tost(r.mesaj||'Olmadı.',1);else if(r.islem)tost(r.islem==='is'?'Yeni işine başladın.':'Satış tamamlandı.')}
+/** Profil: NPC'nin herkese açık bilgileri ve ilişkin; buradan özel mesaj, engelle, şikâyet. */
+function kisiMenu(id,ad){const yab=!id||!K.npc||!K.npc.npc[id];const {w}=G(),pr=yab?null:NPCYZ.profil(w,K.npc,id);ad=pr?pr.ad:ad||'';
+  const shAcik=$('sohbet').classList.contains('acik');if(shAcik)$('sohbet').classList.remove('acik');const don=()=>{kapat();if(shAcik)$('sohbet').classList.add('acik')};
+  modal(ad,`${pr?`<table class="liste"><tr><td>Meslek</td><td>${kac(pr.meslek)}${pr.isletme?' · '+kac(pr.isletme):''}</td></tr><tr><td>Yer</td><td>${kac(pr.yer.ilce?pr.yer.ilce+', '+pr.yer.sehir:pr.yer.sehir)}</td></tr><tr><td>Deneyim</td><td>${pr.deneyim} gün</td></tr><tr><td>İtibar</td><td>${pr.itibar}</td></tr><tr><td>Aranız</td><td>${pr.iliski}</td></tr></table>`:'<p>Yurt dışından bir oyuncu.</p>'}
+    <div class="kisiler" style="margin-top:10px">${pr?`<button id="kDm"><span class="av">${bas(ad)}</span><span><b>Özel mesaj gönder</b><span>Telefonundaki Mesajlar'a da düşer</span></span></button>`:''}<button id="kEngel"><span class="av" style="background:var(--zemin);color:var(--ikincil)">⨯</span><span><b>Engelle</b><span>Kanallarda mesajlarını görmezsin</span></span></button><button id="kSikayet"><span class="av" style="background:var(--tehlikeYumusak);color:var(--tehlike)">!</span><span><b>Şikâyet et</b><span>Moderasyona gider</span></span></button></div>`,
+    g=>{if(g.querySelector('#kDm'))g.querySelector('#kDm').onclick=()=>{kapat();sohbetAc({dm:id})};
+      g.querySelector('#kEngel').onclick=()=>{SOH().engel.push(ad);kaydet();don();shCiz();tost(ad+' engellendi.')};
       g.querySelector('#kSikayet').onclick=()=>{don();tost('Şikâyetin alındı. Teşekkürler.')}})}
 const shAlta=()=>{const l=$('shListe');l.scrollTop=l.scrollHeight};
-function sohbetAc(k){if(!K.oyuncuId)return;if(k)shKanal=k;telefonKapat();kapat();shCiz();$('sohbet').classList.add('acik');$('sohbet').setAttribute('aria-hidden','false');shYerlestir();requestAnimationFrame(shAlta)}
-function sohbetKapat(){$('shGiris').blur();$('sohbet').classList.remove('acik');$('sohbet').setAttribute('aria-hidden','true');setTimeout(()=>{scrollTo(0,0);olcekle()},250)}
+/** sohbetAc('ulke') kanal açar; sohbetAc({dm:npcId}) özel mesaj açar. */
+function sohbetAc(k){if(!K.oyuncuId)return;if(k&&typeof k==='object'){shDm=k.dm}else{shDm=null;if(k)shKanal=k}
+  telefonKapat();kapat();$('shGiris').placeholder=shDm?'Mesaj yaz…':'Kanala yaz…';shYazanlar=[];shAkis();shCiz();$('sohbet').classList.add('acik');$('sohbet').setAttribute('aria-hidden','false');shYerlestir();requestAnimationFrame(shAlta)}
+function sohbetKapat(){$('shGiris').blur();$('sohbet').classList.remove('acik');$('sohbet').setAttribute('aria-hidden','true');shDm=null;setTimeout(()=>{scrollTo(0,0);olcekle()},250)}
 /** Klavye açılınca görünen alan küçülür: sohbet ekranı tam o alana oturur. */
 function shYerlestir(){const v=window.visualViewport,e=$('sohbet');if(!v){e.style.top='0';e.style.height='100%';return}e.style.top=v.offsetTop+'px';e.style.height=v.height+'px';
   if(document.activeElement===$('shGiris'))shAlta()}
 if(window.visualViewport){visualViewport.addEventListener('resize',shYerlestir);visualViewport.addEventListener('scroll',shYerlestir)}
 $('shGiris').oninput=()=>{$('shGonder').disabled=!$('shGiris').value.trim()};
 $('shGiris').onfocus=()=>setTimeout(()=>{shYerlestir();shAlta()},300);
-$('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if(!m)return;const {p}=G(),f=(Date.now()-K.baslangic)/GUN_MS,dk=Math.floor((f-Math.floor(f))*1440);
-  SOH()[shKanal].push({ad:p.name,metin:m,dk:K.world.day*1440+dk,saat:String(Math.floor(dk/60)).padStart(2,'0')+':'+String(dk%60).padStart(2,'0')});SOH()[shKanal]=SOH()[shKanal].slice(-200);kaydet();
-  $('shGiris').value='';$('shGonder').disabled=true;shCiz();shAlta();$('shGiris').focus()};
+/** Cevaplar "yazıyor…" göstergesiyle, NPC'nin yazma hızına göre sırayla gelir. */
+function cevapZamanla(c,ekle){const yazma=Math.min(4500,800+c.metin.length*70),bas0=Math.max(300,c.gecikmeMs-yazma);
+  setTimeout(()=>{if(!shYazanlar.includes(c.ad))shYazanlar.push(c.ad);if($('sohbet').classList.contains('acik'))shCiz()},bas0);
+  setTimeout(()=>{shYazanlar=shYazanlar.filter(a=>a!==c.ad);ekle();kaydet();if($('sohbet').classList.contains('acik'))shCiz()},c.gecikmeMs)}
+$('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if(!m||!K.npc)return;const {w,p}=G();
+  $('shGiris').value='';$('shGonder').disabled=true;$('shGiris').placeholder=shDm?'Mesaj yaz…':'Kanala yaz…';
+  if(shDm){const npcId=shDm,r=NPCYZ.dmGonder(w,K.npc,npcId,m,p);kaydet();shCiz();shAlta();
+    if(r){if(r.zatenEklendi){if(r.islem){hepsiniCiz();tost(r.islem==='is'?'Yeni işine başladın.':'Satış tamamlandı.')}setTimeout(()=>{if(shDm===npcId)shCiz()},400)}
+      else cevapZamanla({ad:K.npc.npc[npcId].gorunen,metin:r.metin,gecikmeMs:r.gecikmeMs},()=>NPCYZ.dmCevapEkle(K.world,K.npc,npcId,r.metin))}}
+  else{const kanal=shKanal;K.npc.kanal[kanal].push({id:'s'+Date.now(),oyuncu:true,ad:p.name,metin:m,zaman:Date.now()});
+    const r=NPCYZ.oyuncuMesaji(w,K.npc,kanal,m,p,new Date().getHours(),sirketNpcIdleri());
+    if(r.uyari)K.npc.kanal[kanal].push({id:'u'+Date.now(),sistem:true,metin:r.uyari,zaman:Date.now()});
+    r.cevaplar.forEach(c=>cevapZamanla(c,()=>K.npc.kanal[kanal].push({id:'c'+Date.now()+Math.random(),npcId:c.npcId,ad:c.ad,metin:c.metin,zaman:Date.now()})));
+    kaydet();shCiz();shAlta()}
+  $('shGiris').focus()};
+// Kanal açıkken yeni mesajlar akar
+setInterval(()=>{if($('sohbet').classList.contains('acik')&&!shDm&&shAkis())shCiz()},7000);
 $('shKapat').onclick=sohbetKapat;
 
 // ---- ilk açılış: oyuncu oluştur ----
 function kayitEkrani(){kilit=true;modal('Toplum Simülasyonu',`<p>Herkes eşit başlar: <b>${para(C.STARTING_CASH)}</b> nakit, ${C.STARTING_CREDIT_SCORE} kredi notu. Çalış, biriktir, yatırım yap, kendi işini kur.</p>
   <div class="altBaslik" style="margin-top:12px">Adın</div><div class="yanyana" style="margin-top:6px"><input class="giris" id="kAd" maxlength="24" placeholder="2-24 harf" autocomplete="off"><button class="btn ana" id="kBasla" style="height:32px">Başla</button></div>`,
   g=>{const i=g.querySelector('#kAd'),b=()=>{const ad=i.value.trim().replace(/\s+/g,' ');if(ad.length<2||ad.length>24)return tost('Ad 2-24 harf olmalı.',1);
-      K.oyuncuId=T.addPlayer(K.world,ad).id;K.baslangic=Date.now()-GUN_MS*.4;K.world.day=0;kaydet();kilit=false;kapat();hepsiniCiz();
+      if(!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:150,yabanciSayi:40})}
+      K.oyuncuId=T.addPlayer(K.world,ad).id;K.baslangic=Date.now()-GUN_MS*(K.world.day+.4);kaydet();kilit=false;kapat();hepsiniCiz();
       bildirim('Hoş geldin, '+ad,'İlk işin için İşim → İlanlara bak. Kurye günde 5 görevle en çok kazandıran başlangıç işi.')};
     g.querySelector('#kBasla').onclick=b;i.onkeydown=e=>{if(e.key==='Enter')b()};setTimeout(()=>i.focus(),50)})}
 
@@ -1077,5 +1170,14 @@ function kureBasla(topo){const W=kure.width;proj=d3.geoOrthographic().scale(W/2-
   new MutationObserver(cizKure).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']})}
 fetch('dunya.json').then(r=>r.json()).then(kureBasla).catch(e=>console.error('küre çizilemedi',e));
 
-olcekle();hepsiniCiz();if(!K.oyuncuId)kayitEkrani();else if(yetistir())hepsiniCiz();
+olcekle();
+if(K.oyuncuId&&!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:0,yabanciSayi:40});kaydet()}
+hepsiniCiz();if(!K.oyuncuId)kayitEkrani();else{if(yetistir())hepsiniCiz();donusKontrol()}
+/** Sen yokken: vekil müdür (ya da banka temsilcisi) olanları anlatır; zarar ettiysen bir süre işler biraz şanslı gider. */
+function donusKontrol(){if(!K.npc||!K.oyuncuId)return;const r=NPCYZ.donusRaporu(K.world,K.npc,K.oyuncuId,12);if(!r)return;kaydet();
+  modal(r.fark>=0?'Sen yokken işler yolunda gitti':'Sen yokken biraz zorlandık',`<div class="sohbet"><p><b>${kac(r.yazan||'Müdür')}</b>${kac(r.metin)}</p></div><table class="liste" style="margin-top:8px"><tr><td>Geçen süre</td><td>${r.gun} oyun günü</td></tr><tr><td>Servetindeki değişim</td><td class="${r.fark>=0?'arti':'eksi'}">${isaret(r.fark)}</td></tr></table>`)}
+/** Oyuncu buradayken son durum saklanır (dönüş raporu için). */
+setInterval(()=>{if(!document.hidden&&K.oyuncuId&&K.npc){NPCYZ.oyuncuGoruntusu(K.world,K.npc,K.oyuncuId)}},15000);
+addEventListener('visibilitychange',()=>{if(K.oyuncuId&&K.npc){if(document.hidden){NPCYZ.oyuncuGoruntusu(K.world,K.npc,K.oyuncuId);kaydet()}else setTimeout(donusKontrol,300)}});
+if(K.oyuncuId&&K.npc&&!K.npc.oyuncuOnce)NPCYZ.oyuncuGoruntusu(K.world,K.npc,K.oyuncuId);
 </script>

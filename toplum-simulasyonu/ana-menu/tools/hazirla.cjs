@@ -2,7 +2,8 @@ module.exports=function(d){
  try{localStorage.clear()}catch(e){}
  K=yeniKayit();kilit=false;kapat();panelKapat();ekranAd='ana';document.body.dataset.ekran='ana';
  if(d==='kayit'){hepsiniCiz();kayitEkrani();return}
- K.oyuncuId=T.addPlayer(K.world,'Eymen Sancar').id;K.baslangic=Date.now()-GUN_MS*.4;
+ if(typeof NPCYZ!=='undefined')K.npc=NPCYZ.kur(K.world,{sayi:50,onYasamGun:90,yabanciSayi:30,tohum:42});
+ K.oyuncuId=T.addPlayer(K.world,'Eymen Sancar').id;K.baslangic=Date.now()-GUN_MS*(K.world.day+.4);
  const p=()=>K.world.players[K.oyuncuId];
  if(d!=='issiz'&&d!=='p-kariyer1'){eylem({tur:'meslek_sec',meslek:'kurye'},1);eylem({tur:'gorev_yap'},1);eylem({tur:'gorev_yap'},1);eylem({tur:'kursa_yazil',kurs:'kamu_sinavi'},1)}
  if(d==='patron'||d==='p-kariyer3'){p().cash=1500000;p().totalExperienceDays=65;p().experience.kurye=65}

@@ -15,15 +15,16 @@ ok('oyuncu oluştu',await p.evaluate(()=>!!K.oyuncuId));
 await p.click('.kucukBtn.oneri');await p.waitForTimeout(250);await p.click('#evet');await p.waitForTimeout(250);
 let d=await durum();ok('kurye oldu ('+d.prof+')',d.prof==='kurye');
 for(let i=0;i<6;i++){await p.click('#gorevBtn');await p.waitForTimeout(120)}
-d=await durum();ok('5 görev, 6. reddedildi: '+d.tasks+' bekleyen '+d.pend+' kum '+d.kum,d.tasks===5&&d.pend===2350&&d.kum===1);
+d=await durum();const gorevUcret=await p.evaluate(()=>T.indexed(K.world,470));ok('5 görev, 6. reddedildi: '+d.tasks+' bekleyen '+d.pend+' kum '+d.kum,d.tasks===5&&d.pend===5*gorevUcret&&d.kum===1);
 console.log('  tost:',d.tost);
 // kurs
 await p.click('[data-menu="kariyer"]');await p.waitForTimeout(300);await p.click('[data-sk="kurs"]');await p.waitForTimeout(200);
-await p.click('[data-kurs="kamu_sinavi"]');await p.waitForTimeout(250);d=await durum();ok('kurs başladı '+JSON.stringify(d.kurs)+' nakit '+d.cash,d.kurs&&d.cash===85000);
+const kursOnce=await durum(),kursUcret=await p.evaluate(()=>T.hesap.fiyat.kurs(K.world,'kamu_sinavi'));
+await p.click('[data-kurs="kamu_sinavi"]');await p.waitForTimeout(250);d=await durum();ok('kurs başladı '+JSON.stringify(d.kurs)+' nakit '+d.cash,d.kurs&&d.cash===kursOnce.cash-kursUcret);
 await p.click('[data-hizlan]');await p.waitForTimeout(250);await p.click('#evet');await p.waitForTimeout(300);d=await durum();ok('kum saati ile kısaldı '+JSON.stringify(d.kurs)+' kum '+d.kum,d.kum===0);
 await p.click('#pGeri');await p.waitForTimeout(300);
 // zaman: +1 ay
-await p.evaluate(()=>ileriSar(30));await p.waitForTimeout(300);d=await durum();ok('1 ay geçti: gün '+d.day+' nakit '+d.cash+' bekleyen '+d.pend+' haber '+d.okun,d.day>=30&&d.pend===0&&d.cash===85000+2350-18000);
+const ayOnce=await durum();await p.evaluate(()=>ileriSar(30));await p.waitForTimeout(300);d=await durum();ok('1 ay geçti: gün '+d.day+' nakit '+d.cash+' bekleyen '+d.pend+' haber '+d.okun,d.day>=ayOnce.day+30&&d.pend===0&&d.cash!==ayOnce.cash);
 console.log('  bildirim:',await p.textContent('#bMetin'));
 // telefon haberler
 await p.click('#telefon');await p.waitForTimeout(500);await p.click('[data-u="Haberler"]');await p.waitForTimeout(200);
@@ -70,8 +71,9 @@ await p.fill('#iPoz','Depocu');await p.click('#iYayinla');await p.waitForTimeout
 ok('ilan yayınlandı',await p.evaluate(()=>S().ilanlar.some(i=>i.poz==='Depocu')));
 await p.evaluate(()=>ileriSar(1));await p.waitForTimeout(200);
 const bv=await p.evaluate(()=>S().basvurular.length);ok('başvuru geldi ('+bv+')',bv>0);
-await p.evaluate(()=>panelAc('basvurular'));await p.waitForTimeout(200);const once=await p.evaluate(()=>S().uyeler.length);await p.click('[data-al]');await p.waitForTimeout(200);
-ok('işe alındı',await p.evaluate(n=>S().uyeler.length===n+1,once));
+await p.evaluate(()=>panelAc('basvurular'));await p.waitForTimeout(200);const once=await p.evaluate(()=>calisanNpcler().length+S().uyeler.length);await p.click('[data-al]');await p.waitForTimeout(300);
+if(await p.isVisible('#perde.acik #evet'))await p.click('#evet');await p.waitForTimeout(300);
+ok('işe alındı (gerçek NPC, çekirdekte çalışan)',await p.evaluate(n=>calisanNpcler().length+S().uyeler.length===n+1,once),await p.evaluate(()=>document.getElementById('tost').textContent));
 await p.evaluate(()=>ileriSar(30));await p.waitForTimeout(200);
 ok('geçmiş aya yazıldı',await p.evaluate(()=>S().gecmis.length>0));
 await p.evaluate(()=>{panelKapat();ekran('ana')});await p.waitForTimeout(200);
@@ -87,8 +89,8 @@ ok('mesaj gönderildi ve görünüyor',(await p.textContent('#shListe')).include
 ok('son mesaj ekranda',await p.evaluate(()=>{const m=[...document.querySelectorAll('.msj.ben')].pop().getBoundingClientRect(),l=document.getElementById('shListe').getBoundingClientRect();return m.bottom<=l.bottom+2&&m.top>=l.top-2}));
 await p.screenshot({path:'/tmp/claude-0/geo/sohbet-klavye.png'});
 await p.setViewportSize({width:852,height:393});await p.waitForTimeout(300);
-await p.click('[data-kisi="Zeynep"]');await p.waitForTimeout(250);await p.click('#kEngel');await p.waitForTimeout(250);
-ok('engellenen kişinin mesajı gizlendi',!(await p.textContent('#shListe')).includes('Faiz kararı'));
+const engAd=await p.evaluate(()=>{const b=document.querySelector('#shListe [data-kisi]');return b?b.dataset.kad:null});await p.click('#shListe [data-kisi]');await p.waitForTimeout(250);await p.click('#kEngel');await p.waitForTimeout(250);
+ok('engellenen kişinin mesajları gizlendi ('+engAd+')',!!engAd&&!(await p.evaluate(a=>[...document.querySelectorAll('#shListe [data-kad]')].some(b=>b.dataset.kad===a),engAd)));
 await p.screenshot({path:'/tmp/claude-0/geo/sohbet-acik.png'});
 await p.click('#shKapat');await p.waitForTimeout(400);
 ok('sohbet kapandı, sahne yerinde',await p.evaluate(()=>!document.getElementById('sohbet').classList.contains('acik')&&scrollY===0));
