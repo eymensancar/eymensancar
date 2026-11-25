@@ -177,10 +177,45 @@
     return parca;
   }
 
+  // ---- Ingilizce karisik sohbet (sozluk; tek kelimeler KISALTMA'da) ----
+  var ING_IFADE = [
+    [/\bhow (r|are) (u|you|ya)\b/g, 'nasılsın'], [/\bhow is it going\b|\bhows it going\b/g, 'nasıl gidiyor'],
+    [/\bwhat'?s up\b|\bwhats up\b|\bwassup\b|\bwazzup\b/g, 'ne haber'], [/\bthank (you|u)\b/g, 'teşekkürler'],
+    [/\bgood morning\b/g, 'günaydın'], [/\bgood night\b/g, 'iyi geceler'], [/\bsee (you|u|ya)\b/g, 'görüşürüz'],
+    [/\bi need (a )?job\b/g, 'iş lazım'], [/\bno problem\b/g, 'önemli değil'], [/\bfor real\b/g, 'gerçekten'],
+    [/\bare (you|u) (a )?bot\b/g, 'bot musun'], [/\bhow much\b/g, 'ne kadar'], [/\bwell done\b|\bgood job\b/g, 'helal olsun']
+  ];
+  var ING_KELIME = {
+    bro: 'kanka', brom: 'kanka', bruh: 'kanka', dude: 'kanka', fr: 'gerçekten', frfr: 'gerçekten', nice: 'güzel', cool: 'güzel',
+    thx: 'teşekkürler', ty: 'teşekkürler', tysm: 'çok teşekkürler', thanks: 'teşekkürler', tnx: 'teşekkürler',
+    job: 'iş', jobs: 'iş', work: 'iş', money: 'para', cash: 'para', salary: 'maaş', price: 'fiyat', rent: 'kira', loan: 'kredi',
+    boss: 'patron', house: 'ev', flat: 'daire', apartment: 'daire', shop: 'dükkan', store: 'dükkan', hello: 'merhaba',
+    gg: 'tebrikler', gj: 'helal', congrats: 'tebrikler', np: 'önemli değil', same: 'aynen', deal: 'anlaştık', sad: 'üzgünüm',
+    hiring: 'eleman arıyorum', bye: 'bay bay', byee: 'bay bay', idk: 'bilmiyorum', btw: 'bu arada', omg: 'vay', pls: 'lütfen'
+  };
+  // Ana dili Turkce olmayanlarda sik: kisi eki dusmesi ("ben is ariyor", "sen bilir mi").
+  // Yalniz ozne zamiri acikca yazilmissa ve fiil ekli degilse tamamlanir.
+  function ikinciDilDuzelt(t) {
+    var kz = t.map(katla);
+    var ben = kz.indexOf('ben') >= 0, sen = kz.indexOf('sen') >= 0, biz = kz.indexOf('biz') >= 0;
+    if (!ben && !sen && !biz) return t;
+    for (var i = 0; i < t.length; i++) {
+      var w = t[i];
+      if (/[ıiuü]yor$/.test(w) && w.length >= 5) t[i] = w + (sen ? 'sun' : (biz ? 'uz' : 'um'));
+      else if (sen && /(ir|ır|ur|ür|er|ar)$/.test(w) && w.length >= 4 && (t[i + 1] && /^m[ıiuü]$/.test(t[i + 1]))) {
+        t[i + 1] = t[i + 1] + 's' + t[i + 1].slice(1) + 'n';
+      }
+    }
+    return t;
+  }
+
   function normal(metin) {
     var ham = String(metin == null ? '' : metin);
-    var k = temizle(kucult(ham));
+    var k0 = kucult(ham);
+    ING_IFADE.forEach(function (r) { k0 = k0.replace(r[0], r[1]); });
+    var k = temizle(k0);
     var toks = k ? k.split(' ') : [];
+    toks = toks.map(function (w) { return Object.prototype.hasOwnProperty.call(ING_KELIME, w) ? ING_KELIME[w] : w; }).join(' ').split(' ');
     var out = [];
     for (var i = 0; i < toks.length; i++) {
       var f = katla(toks[i]);
@@ -197,6 +232,7 @@
         }
       }
     }
+    out = ikinciDilDuzelt(out);
     var kucuk = out.join(' ');
     return { ham: ham, kucuk: kucuk, katli: katla(kucuk), kelimeler: out };
   }
@@ -679,7 +715,120 @@
     };
   }
 
-  function niyetBul(metin, baglam) {
+  // =====================================================================
+  // 5b. ISTATISTIKSEL MODEL (Naive Bayes, karma ozellikler) + KARMA BIRLESTIRME
+  // =====================================================================
+  // Ozellikler normal().katli uzerinden: kelime 1-2-gram, kelime koku (ilk 5 harf), kelime ici karakter 3-4-gram.
+  // Her ozellik FNV-1a ile 2^bit kovaya karilir. Agirliklar tools/niyet-egit.cjs ile uretilip asagiya gomulur.
+  function fnv(s) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+    return h >>> 0;
+  }
+  function ozellikler(katli, bit) {
+    var maske = (1 << (bit || 15)) - 1;
+    var w = String(katli || '').split(' ').filter(Boolean);
+    var set = {}, liste = [];
+    function ekle(s) { var h = fnv(s) & maske; if (!set[h]) { set[h] = 1; liste.push(h); } }
+    if (!w.length) ekle('_bos');
+    if (w.length <= 2) ekle('_kisa');
+    for (var i = 0; i < w.length; i++) {
+      var x = w[i];
+      ekle('w' + x);
+      if (x.length > 5) ekle('p' + x.slice(0, 5));
+      if (i + 1 < w.length) ekle('b' + x + ' ' + w[i + 1]);
+      var y = '<' + x + '>';
+      for (var n = 3; n <= 4; n++) for (var j = 0; j + n <= y.length; j++) ekle('c' + y.substr(j, n));
+    }
+    if (w.length) ekle('s' + w[w.length - 1]);   // son kelime (soru eki, fiil)
+    return liste;
+  }
+
+  // Gomulu model: tools/niyet-egit.cjs bu iki isaret arasini yeniden yazar.
+  var NIYET_MODEL = /*MODEL-BASLA*/null/*MODEL-BITIS*/;
+  var _model = null;
+  function modelHazirla() {
+    if (_model || !NIYET_MODEL) return _model;
+    var M = NIYET_MODEL, C = M.c.length;
+    var kova = {};   // kova -> [sinif, sayi, sinif, sayi, ...]
+    var parca = M.d.split(';');
+    var onceki = 0;
+    for (var i = 0; i < parca.length; i++) {
+      if (!parca[i]) continue;
+      var a = parca[i].split(':');
+      onceki += parseInt(a[0], 36);
+      var dizi = [];
+      var s = a[1];
+      for (var j = 0; j < s.length; j += 2) {
+        dizi.push(parseInt(s.charAt(j), 36), parseInt(s.charAt(j + 1), 36) || 1);
+      }
+      kova[onceki] = dizi;
+    }
+    var lA = Math.log(M.a), payda = [], onsel = [];
+    for (var c = 0; c < C; c++) {
+      payda.push(Math.log(M.t[c] + M.a * M.v));
+      onsel.push(Math.log((M.n[c] + 1) / (M.N + C)));
+    }
+    _model = { M: M, C: C, kova: kova, lA: lA, payda: payda, onsel: onsel };
+    return _model;
+  }
+  // model log-olasiliklari (normalize) -> { sinif: logp }
+  function modelPuanla(katli) {
+    var md = modelHazirla();
+    if (!md) return null;
+    var f = ozellikler(katli, md.M.b);
+    var sk = new Array(md.C);
+    for (var c = 0; c < md.C; c++) sk[c] = md.onsel[c] + f.length * (md.lA - md.payda[c]);
+    for (var i = 0; i < f.length; i++) {
+      var d = md.kova[f[i]];
+      if (!d) continue;
+      for (var j = 0; j < d.length; j += 2) sk[d[j]] += Math.log(d[j + 1] + md.M.a) - md.lA;
+    }
+    return logNormal(sk, md.M.c);
+  }
+  function logNormal(sk, adlar) {
+    var mx = -Infinity, i;
+    for (i = 0; i < sk.length; i++) if (sk[i] > mx) mx = sk[i];
+    var top = 0;
+    for (i = 0; i < sk.length; i++) top += Math.exp(sk[i] - mx);
+    var lz = mx + Math.log(top), o = {};
+    for (i = 0; i < sk.length; i++) o[adlar[i]] = sk[i] - lz;
+    return o;
+  }
+  // kural puanlarini log-olasiliga cevir: softmax(beta * puan), "genel" taban puani g
+  function kuralLog(puan, beta, g) {
+    var sk = NIYETLER.map(function (a) { return beta * Math.max(0, puan[a] || 0) + (a === 'genel' ? beta * g : 0); });
+    return logNormal(sk, NIYETLER);
+  }
+  // karma: lambda * kural + (1 - lambda) * model; kufur ve cok guclu kural her zaman kazanir
+  function karma(kural, puan, modelLog, kp) {
+    var rl = kuralLog(puan, kp.beta, kp.g);
+    var en = null, enP = -Infinity, ik = null, ikP = -Infinity, toplam = {};
+    NIYETLER.forEach(function (a) {
+      var p = kp.lambda * rl[a] + (1 - kp.lambda) * (modelLog[a] == null ? -30 : modelLog[a]);
+      toplam[a] = p;
+      if (p > enP) { ik = en; ikP = enP; en = a; enP = p; } else if (p > ikP) { ik = a; ikP = p; }
+    });
+    if (kural.kufur) en = 'hakaret';
+    var guven = 1 / (1 + Math.exp(ikP - enP));
+    return { niyet: en, ikinci: ik, guven: Math.round(guven * 100) / 100, toplam: toplam };
+  }
+
+  function niyetBul(metin, baglam, secenek) {
+    var r = kuralNiyetBul(metin, baglam);
+    var md = (!secenek || secenek.model !== false) ? modelHazirla() : null;
+    if (!md) return r;
+    var ml = modelPuanla(r._katli);
+    var k = karma(r, r.puanlar, ml, md.M.k);
+    var mEn = null, mP = -Infinity;
+    Object.keys(ml).forEach(function (a) { if (ml[a] > mP) { mP = ml[a]; mEn = a; } });
+    r.kural = { niyet: r.niyet, guven: r.guven };
+    r.model = { niyet: mEn, guven: Math.round(Math.exp(mP) * 100) / 100 };
+    r.niyet = k.niyet; r.ikinci = k.ikinci; r.guven = k.guven;
+    return r;
+  }
+
+  function kuralNiyetBul(metin, baglam) {
     baglam = baglam || {};
     var n = normal(metin);
     var k = ' ' + n.katli + ' ';
@@ -809,7 +958,7 @@
     return {
       niyet: niyet, guven: guven, ikinci: ikinci, soru: soru, kufur: kufur,
       varlik: { tutar: v.tutar, meslek: v.meslek, mulk: v.mulk, yer: v.yer, kisi: v.kisi, kanal: v.kanal },
-      puanlar: puan
+      puanlar: puan, _katli: n.katli
     };
   }
 
@@ -1162,16 +1311,16 @@
   tanim('cevap.selam', 'mutlu', [
     '[Selam|Selamlar|Merhaba]!',
     '[Selam|Merhaba] {oyuncuAd}, [hoş geldin|nasılsın?|ne var ne yok?]',
-    'Aleyküm selam, [hoş geldin|buyur|nasılsın?]',
+    'Aleyküm selam, [hoş geldin|nasılsın?]',
     '[Selam|Merhaba], [kolay gelsin|iyi oyunlar|hayırlı işler]',
     'Oo selam, [nasıl gidiyor|işler nasıl]?',
-    'Merhabalar, [buyur|hoş geldin]',
+    'Merhabalar, hoş geldin',
     'Selam {oyuncuAd}! [Bugün nasılsın|Ne yapıyorsun bugün|Nasıl gidiyor oyun]?',
-    'Selam, [ben de yeni geldim|ben de şimdi girdim|tam çıkıyordum ama buyur]',
+    'Selam, [ben de yeni geldim|ben de şimdi girdim|tam çıkıyordum ama söyle]',
     '[Selam|Merhaba], hoş geldin {oyuncuAd}',
     'Selamlar, [keyifler nasıl|ne var ne yok]?',
     'Hey selam! [Nasılsın?|Naber?]',
-    'Selam selam, [buyur|ne lazım?|hoş geldin]',
+    'Selam selam, [ne var ne yok?|hoş geldin]',
     'Merhaba {oyuncuAd}, [seni görmek güzel|nasılsın?]'
   ], ['Bugün [kanal|ortalık] [çok hareketli|biraz sakin].', 'Ben de işten yeni çıktım.', 'Yeni misin buralarda?']);
 
@@ -2631,6 +2780,8 @@
     normal: normal,
     dilBul: dilBul,
     niyetBul: niyetBul,
+    // egitim betigi icin (tools/niyet-egit.cjs): ayni ozellik ve birlestirme kodu
+    _egitim: { ozellikler: ozellikler, karma: karma, kuralLog: kuralLog, logNormal: logNormal, modelVar: function () { return !!NIYET_MODEL; } },
     uret: uret,
     stillendir: stillendir,
     ek: ek,
