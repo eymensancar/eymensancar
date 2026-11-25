@@ -374,6 +374,35 @@ select.giris{appearance:auto}
 .kisiler button span{display:block;font-size:var(--t2);color:var(--ikincil)}
 .uyari{display:flex;gap:10px;align-items:flex-start;background:var(--tehlikeYumusak);color:var(--tehlike);border-radius:11px;padding:10px 12px;font-weight:600}
 .uyari svg{width:18px;height:18px;flex:none;margin-top:1px}
+
+/* iPhone yatayda yazıları kendiliğinden büyütmesin (taşmaların sebebi) */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* ---- sohbet: sahne dışında, gerçek ekran boyunda; klavye açılınca görünen alana sığar ---- */
+.sohbetEkran{position:fixed;left:0;right:0;top:0;height:100%;z-index:90;background:var(--zemin);display:flex;flex-direction:column;
+  padding:0 max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px));opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .2s,transform .2s;font-size:15px}
+.sohbetEkran.acik{opacity:1;pointer-events:auto;transform:none}
+.shBas{display:flex;align-items:center;gap:10px;padding:max(8px,env(safe-area-inset-top,0px)) 0 8px;border-bottom:1px solid var(--cizgi);flex:none}
+.shBas .geri{height:36px;font-size:15px}
+.shSekme{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.shSekme button{height:36px;border:1px solid var(--cizgi);background:var(--kart);border-radius:11px;padding:0 14px;font-size:15px;font-weight:600;white-space:nowrap;flex:none}
+.shSekme button[aria-pressed="true"]{background:var(--ana);color:var(--anaUstu);border-color:transparent}
+.shBilgi{font-size:13px;color:var(--ikincil);white-space:nowrap;flex:none}
+.shBilgi i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--basari);margin-right:5px}
+.shListe{flex:1;min-height:0;overflow-y:auto;padding:10px 0;display:flex;flex-direction:column;gap:8px;max-width:860px;width:100%;margin:0 auto;-webkit-overflow-scrolling:touch;user-select:text;-webkit-user-select:text}
+.msj{display:flex;gap:8px;align-items:flex-end;max-width:78%}
+.msj .av{width:32px;height:32px;font-size:12px}
+.msj .balon{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px 16px 16px 5px;padding:7px 11px;line-height:1.35;min-width:0;overflow-wrap:anywhere}
+.msj .balon button{border:0;background:none;padding:0;font-size:13px;font-weight:700;color:var(--ana);display:block;margin-bottom:1px}
+.msj .balon em{font-style:normal;font-size:11.5px;color:var(--ikincil);margin-left:8px;white-space:nowrap}
+.msj.ben{align-self:flex-end;flex-direction:row-reverse}
+.msj.ben .balon{background:var(--ana);color:var(--anaUstu);border-color:transparent;border-radius:16px 16px 5px 16px}
+.msj.ben .balon em{color:var(--anaUstu);opacity:.75}
+.shSistem{align-self:center;font-size:12.5px;color:var(--ikincil);background:var(--kart);border:1px solid var(--cizgi);border-radius:10px;padding:5px 10px;text-align:center;max-width:90%}
+.shYaz{display:flex;gap:8px;align-items:center;padding:8px 0 max(8px,env(safe-area-inset-bottom,0px));border-top:1px solid var(--cizgi);flex:none;max-width:860px;width:100%;margin:0 auto}
+.shGiris{flex:1;min-width:0;height:42px;border:1px solid var(--cizgi);border-radius:21px;background:var(--kart);padding:0 16px;font:inherit;font-size:16px;color:var(--metin);user-select:text;-webkit-user-select:text}
+.shGiris:focus{outline:2px solid var(--ana);outline-offset:0}
+.shGonder{height:42px;border:0;border-radius:21px;background:var(--ana);color:var(--anaUstu);font-weight:700;font-size:15px;padding:0 18px;flex:none}
+.shGonder:disabled{opacity:.45}
 [hidden]{display:none!important}
 </style>
 
@@ -498,6 +527,13 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
     <div class="modalGovde" id="mGovde"></div>
   </div></div>
 </div></div></div>
+
+<div class="sohbetEkran" id="sohbet" aria-hidden="true" role="dialog" aria-label="Sohbet">
+  <div class="shBas"><button class="geri" id="shKapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>Kapat</button>
+    <div class="shSekme" id="shSekme"></div><span class="shBilgi" id="shBilgi"></span></div>
+  <div class="shListe" id="shListe"></div>
+  <form class="shYaz" id="shForm" autocomplete="off"><input class="shGiris" id="shGiris" maxlength="300" placeholder="Mesaj yaz…" enterkeyhint="send" autocomplete="off" autocorrect="on"><button class="shGonder" id="shGonder" type="submit" disabled>Gönder</button></form>
+</div>
 
 <div id="cevir">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
@@ -765,13 +801,12 @@ setInterval(()=>{if(K.oyuncuId&&yetistir())hepsiniCiz();else cizSaat()},1000);
 addEventListener('visibilitychange',()=>{if(!document.hidden&&K.oyuncuId&&yetistir())hepsiniCiz()});
 
 // ---- sohbet, ayarlar, sıralama ----
-document.querySelectorAll('[data-sohbet]').forEach(b=>b.onclick=()=>{const g=b.dataset.sohbet==='global';
-  modal(g?'Global sohbet':'Türkiye sohbeti',`<div class="sohbet">${(g?[['Ahmed_DXB','Anyone hiring couriers in Dubai?'],['Selin K.','Borsada bugün enerji hisseleri uçtu'],['Lukas','Guten Morgen! Neue Bäckerei eröffnet.']]:[['Mehmet Y.','Kadıköy\'de kiralık dükkan arayan var mı?'],['Zeynep','Faiz kararı yarın açıklanıyor, dikkat'],['Burak','Garson arıyorum, Beşiktaş, 34.000 ₺']]).map(([a,m])=>`<p><b>${a}</b>${m}</p>`).join('')}</div><div class="ornek">Örnek mesajlar; sohbet çok oyunculu sürümle gelecek.</div>`)});
+document.querySelectorAll('[data-sohbet]').forEach(b=>b.onclick=()=>sohbetAc(b.dataset.sohbet));
 function ileriSar(gun){K.baslangic-=gun*GUN_MS;yetistir();hepsiniCiz()}
 function temaSec(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('toplum-tema',t)}catch(e){}}
 $('ayarlar').onclick=$('ayarlar2').onclick=()=>modal('Ayarlar',`<div class="altBaslik" style="margin-top:0">Görünüm</div><div class="deneme">${[['light','Açık'],['dark','Koyu']].map(([k,t])=>`<button data-tema="${k}" aria-pressed="${document.documentElement.dataset.theme===k}">${t}</button>`).join('')}</div><p class="ornek" style="margin-top:6px">Ses, bildirimler, dil ve hesap da burada olacak.</p><div class="altBaslik">Denemek için: zamanı ilerlet</div>
   <div class="deneme"><button data-g="1">+1 gün</button><button data-g="7">+1 hafta</button><button data-g="30">+1 ay</button><button id="dSifirla" style="color:var(--tehlike)">Baştan başla</button></div><p class="ornek">Oyunda 1 gün = 30 dakika ve oyun kapalıyken de akar.</p><div class="altBaslik">Denemek için: şirket</div><div class="deneme"><button id="dSirket">Örnek şirket kur</button>${[['tek','Tek kişilik'],['ortakli','Ortaklı (çoğul)'],['kisitli','Sen müdürsün (yetkisiz)']].map(([k,t])=>`<button data-mod="${k}" aria-pressed="${K.sirket&&S().mod===k}">${t}</button>`).join('')}</div>`,
-  g=>{g.querySelectorAll('[data-tema]').forEach(b=>b.onclick=()=>{temaSec(b.dataset.tema);g.querySelectorAll('[data-tema]').forEach(x=>x.setAttribute('aria-pressed',x===b))});g.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{kapat();ileriSar(+b.dataset.g)});g.querySelector('#dSirket').onclick=()=>{kapat();if(!K.oyuncuId)return;ornekSirket()};g.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{if(!K.oyuncuId)return;if(!patronMu(G().p))return tost('Önce örnek şirket kur.',1);sirketModu(b.dataset.mod);g.querySelectorAll('[data-mod]').forEach(x=>x.setAttribute('aria-pressed',x===b));tost('Şirket denemesi: '+b.textContent)});g.querySelector('#dSifirla').onclick=()=>onay('Baştan başla?','Bütün ilerlemen silinir.','Sil ve baştan başla',()=>{try{localStorage.removeItem(ANAHTAR)}catch(e){}K=yeniKayit();ekranAd='ana';document.body.dataset.ekran='ana';panelKapat();hepsiniCiz();kayitEkrani()})});
+  g=>{g.querySelectorAll('[data-tema]').forEach(b=>b.onclick=()=>{temaSec(b.dataset.tema);g.querySelectorAll('[data-tema]').forEach(x=>x.setAttribute('aria-pressed',x===b))});g.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{kapat();ileriSar(+b.dataset.g)});g.querySelector('#dSirket').onclick=()=>{kapat();if(!K.oyuncuId)return;ornekSirket()};g.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{if(!K.oyuncuId)return;if(!patronMu(G().p))return tost('Önce örnek şirket kur.',1);sirketModu(b.dataset.mod);g.querySelectorAll('[data-mod]').forEach(x=>x.setAttribute('aria-pressed',x===b));tost('Şirket denemesi: '+b.textContent)});g.querySelector('#dSifirla').onclick=()=>onay('Baştan başla?','Bütün ilerlemen silinir.','Sil ve baştan başla',()=>{try{localStorage.removeItem(ANAHTAR)}catch(e){}K=yeniKayit();sohbetKapat();ekranAd='ana';document.body.dataset.ekran='ana';panelKapat();hepsiniCiz();kayitEkrani()})});
 const SIRA_ORNEK={'Şehrimde ben':[['1','Kemal Aydın',184200000],['2','Derya Şahin',97450000]],'Ülkemde ben':[['1','Kemal Aydın',184200000],['2','Hakan Er',121900000]],'Dünyada ben':[['1','Omar Al-Fayed (BAE)',287964000],['2','Kemal Aydın (TR)',184200000]]};
 $('siralama').onclick=()=>{let aktif='Ülkemde ben';const {w,p}=G(),net=T.netWorth(w,p);
   const SIRA={...Object.fromEntries(Object.entries(SIRA_ORNEK).map(([k,v])=>[k,[...v.map(r=>[r[0],r[1],k==='Dünyada ben'?para(r[2],'USD'):para(r[2])]),['…','',''],[k==='Şehrimde ben'?'812':k==='Ülkemde ben'?'3.904':'21.377','Sen',k==='Dünyada ben'?para(net,'USD'):para(net),1]]])),
@@ -784,7 +819,7 @@ let kilit=false;
 function modal(baslik,html,sonra,genis){document.querySelector('#perde .modal').classList.toggle('genis',!!genis);$('mBaslik').textContent=baslik;const g=$('mGovde');g.innerHTML=html;$('perde').classList.add('acik');$('mKapat').hidden=kilit;if(sonra)sonra(g)}
 function kapat(){if(kilit)return;$('perde').classList.remove('acik')}
 $('mKapat').onclick=kapat;$('perde').onclick=e=>{if(e.target===$('perde'))kapat()};
-addEventListener('keydown',e=>{if(e.key==='Escape'){if($('perde').classList.contains('acik'))kapat();else if($('panel').classList.contains('acik'))panelKapat();else if(ekranAd==='sirket')ekran('ana');telefonKapat()}});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('sohbet').classList.contains('acik')){sohbetKapat();return}if(e.key==='Escape'){if($('perde').classList.contains('acik'))kapat();else if($('panel').classList.contains('acik'))panelKapat();else if(ekranAd==='sirket')ekran('ana');telefonKapat()}});
 
 // ---- kısa haber ve bildirim şeridi ----
 let tZaman;function tost(m,hata){const t=$('tost');t.textContent=m;t.classList.toggle('hata',!!hata);t.classList.add('acik');clearTimeout(tZaman);tZaman=setTimeout(()=>t.classList.remove('acik'),hata?3200:2400)}
@@ -812,7 +847,7 @@ function uygulama(ad){const {w,p}=G();let govde;
 function telefonAc(){anaEkran();document.body.classList.add('telAcik');$('telefonAcik').classList.add('acik');$('telefonAcik').setAttribute('aria-hidden','false');$('telefonPerde').classList.add('acik')}
 function telefonKapat(){document.body.classList.remove('telAcik');$('telefonAcik').classList.remove('acik');$('telefonAcik').setAttribute('aria-hidden','true');$('telefonPerde').classList.remove('acik')}
 $('telefon').onclick=$('telefon2').onclick=telefonAc;$('sGeri').onclick=()=>ekran('ana');$('sAd').onclick=benEkrani;$('sAnlik').onclick=()=>panelAc('gecmis');
-$('sChat').onclick=()=>modal('Şirket sohbeti',`<div class="sohbet">${[['Ayşe Koç','Kasada bozuk para azaldı, yarın bankaya uğrarım.'],['Selin Kaya','Bu ayın giderlerini tabloya işledim.'],['Mehmet Y.','Yarın 09:00\'da mağazadayım.']].map(([a,m])=>`<p><b>${a}</b>${m}</p>`).join('')}</div><div class="ornek">Şirket içi sohbet; örnek mesajlar, çok oyunculu sürümle gerçek olacak.</div>`);$('tKapat').onclick=telefonKapat;$('telefonPerde').onclick=telefonKapat;
+$('sChat').onclick=()=>sohbetAc('sirket');$('tKapat').onclick=telefonKapat;$('telefonPerde').onclick=telefonKapat;
 
 
 // ================= ŞİRKETİM / BEN ekranı =================
@@ -971,6 +1006,47 @@ function sirketModu(mod){const s=S();s.uyeler=s.uyeler.filter(u=>!u.ornekMod);s.
   if(mod==='ortakli')s.uyeler.unshift({id:'u-cfo',ad:'Selin Kaya',pozisyon:'CFO · Ortak',maas:90000,yetkiler:['proje','maas'],yonetici:true,gercek:true,ornek:true,ornekMod:true});
   if(mod==='kisitli')s.uyeler.unshift({id:'u-kurucu',ad:'Kemal Aydın',pozisyon:'CEO · Kurucu',maas:0,yetkiler:TUM_YETKI,yonetici:true,gercek:true,kurucu:true,ornek:true,ornekMod:true});
   kaydet();hepsiniCiz()}
+
+
+// ================= SOHBET =================
+// Telefonun kendi klavyesi kullanılır. Sohbet ekranı sahnenin dışında, gerçek ekran boyundadır;
+// klavye açılınca görünen alana (visualViewport) küçülür, yazı kutusu klavyenin hemen üstünde kalır.
+const KANAL={global:'Global',ulke:'Türkiye',sirket:'Şirket'};
+const KANAL_ORNEK={
+  global:[['Ahmed_DXB','Anyone hiring couriers in Dubai?'],['Selin K.','Borsada bugün enerji hisseleri uçtu 🚀'],['Lukas','Guten Morgen! Neue Bäckerei eröffnet.'],['Maria','¿Alguien vende un local en Madrid?']],
+  ulke:[['Mehmet Y.','Kadıköy\'de kiralık dükkan arayan var mı?'],['Zeynep','Faiz kararı yarın açıklanıyor, dikkat'],['Burak','Garson arıyorum, Beşiktaş, 34.000 ₺'],['Hakan Er','Muhasebe kursu bitti, iş arıyorum. Önerisi olan?']],
+  sirket:[['Ayşe Koç','Kasada bozuk para azaldı, yarın bankaya uğrarım.'],['Selin Kaya','Bu ayın giderlerini tabloya işledim.']]};
+let shKanal='ulke';
+function SOH(){if(!K.sohbet)K.sohbet={global:[],ulke:[],sirket:[],engel:[]};return K.sohbet}
+function shKanallar(){const {p}=G();return Object.keys(KANAL).filter(k=>k!=='sirket'||patronMu(p))}
+function shCiz(){const {p}=G(),sh=SOH(),ks=shKanallar();if(!ks.includes(shKanal))shKanal=ks[0];
+  $('shSekme').innerHTML=ks.map(k=>`<button data-kn="${k}" aria-pressed="${k===shKanal}">${KANAL[k]}${k==='sirket'&&isletmem(K.world,p)?' · '+(KISA_IS[isletmem(K.world,p).type]||''):''}</button>`).join('');
+  $('shSekme').querySelectorAll('[data-kn]').forEach(b=>b.onclick=()=>{shKanal=b.dataset.kn;shCiz();shAlta()});
+  $('shBilgi').innerHTML=`<i></i>${{global:'1.284',ulke:'312',sirket:String(uyeler().filter(u=>!u.npc).length)}[shKanal]} çevrimiçi`;
+  const ornek=(KANAL_ORNEK[shKanal]||[]).map(([ad,metin],i)=>({ad,metin,dk:-1}));
+  const msjlar=[...ornek,...sh[shKanal]].filter(m=>!sh.engel.includes(m.ad));
+  $('shListe').innerHTML=`<div class="shSistem">${shKanal==='sirket'?'Şirket içi sohbet: yalnız şirketin üyeleri görür.':'Saygılı ol: hakaret, dolandırıcılık ve reklam yasak. Bir ada dokunarak engelleyebilir ya da şikâyet edebilirsin.'}</div>`+
+    msjlar.map(m=>{const ben=m.ad===p.name&&m.dk>=0;return `<div class="msj${ben?' ben':''}">${ben?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon">${ben?'':`<button data-kisi="${kac(m.ad)}">${kac(m.ad)}</button>`}${kac(m.metin)}<em>${m.dk>=0?m.saat:'örnek'}</em></div></div>`}).join('');
+  $('shListe').querySelectorAll('[data-kisi]').forEach(b=>b.onclick=()=>kisiMenu(b.dataset.kisi))}
+function kisiMenu(ad){$('sohbet').classList.remove('acik');
+  modal(ad,`<div class="kisiler"><button id="kDm"><span class="av">${bas(ad)}</span><span><b>Özel mesaj gönder</b><span>Telefonundaki Mesajlar'a düşer</span></span></button><button id="kEngel"><span class="av" style="background:var(--zemin);color:var(--ikincil)">⨯</span><span><b>Engelle</b><span>Mesajlarını artık görmezsin</span></span></button><button id="kSikayet"><span class="av" style="background:var(--tehlikeYumusak);color:var(--tehlike)">!</span><span><b>Şikâyet et</b><span>Moderasyona gider (çok oyunculu sürümde)</span></span></button></div>`,
+    g=>{const don=()=>{kapat();$('sohbet').classList.add('acik')};
+      g.querySelector('#kDm').onclick=()=>{kapat();tost('Özel mesajlar çok oyunculu sürümle gelecek.');don()};
+      g.querySelector('#kEngel').onclick=()=>{SOH().engel.push(ad);kaydet();shCiz();don();tost(ad+' engellendi.')};
+      g.querySelector('#kSikayet').onclick=()=>{don();tost('Şikâyetin alındı. Teşekkürler.')}})}
+const shAlta=()=>{const l=$('shListe');l.scrollTop=l.scrollHeight};
+function sohbetAc(k){if(!K.oyuncuId)return;if(k)shKanal=k;telefonKapat();kapat();shCiz();$('sohbet').classList.add('acik');$('sohbet').setAttribute('aria-hidden','false');shYerlestir();requestAnimationFrame(shAlta)}
+function sohbetKapat(){$('shGiris').blur();$('sohbet').classList.remove('acik');$('sohbet').setAttribute('aria-hidden','true');setTimeout(()=>{scrollTo(0,0);olcekle()},250)}
+/** Klavye açılınca görünen alan küçülür: sohbet ekranı tam o alana oturur. */
+function shYerlestir(){const v=window.visualViewport,e=$('sohbet');if(!v){e.style.top='0';e.style.height='100%';return}e.style.top=v.offsetTop+'px';e.style.height=v.height+'px';
+  if(document.activeElement===$('shGiris'))shAlta()}
+if(window.visualViewport){visualViewport.addEventListener('resize',shYerlestir);visualViewport.addEventListener('scroll',shYerlestir)}
+$('shGiris').oninput=()=>{$('shGonder').disabled=!$('shGiris').value.trim()};
+$('shGiris').onfocus=()=>setTimeout(()=>{shYerlestir();shAlta()},300);
+$('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if(!m)return;const {p}=G(),f=(Date.now()-K.baslangic)/GUN_MS,dk=Math.floor((f-Math.floor(f))*1440);
+  SOH()[shKanal].push({ad:p.name,metin:m,dk:K.world.day*1440+dk,saat:String(Math.floor(dk/60)).padStart(2,'0')+':'+String(dk%60).padStart(2,'0')});SOH()[shKanal]=SOH()[shKanal].slice(-200);kaydet();
+  $('shGiris').value='';$('shGonder').disabled=true;shCiz();shAlta();$('shGiris').focus()};
+$('shKapat').onclick=sohbetKapat;
 
 // ---- ilk açılış: oyuncu oluştur ----
 function kayitEkrani(){kilit=true;modal('Toplum Simülasyonu',`<p>Herkes eşit başlar: <b>${para(C.STARTING_CASH)}</b> nakit, ${C.STARTING_CREDIT_SCORE} kredi notu. Çalış, biriktir, yatırım yap, kendi işini kur.</p>
