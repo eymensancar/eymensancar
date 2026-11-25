@@ -1,0 +1,1098 @@
+[
+ {
+  "m": "slm millet",
+  "niyet": "selam"
+ },
+ {
+  "m": "Selamün aleyküm herkese",
+  "niyet": "selam"
+ },
+ {
+  "m": "MERHABAAAA",
+  "niyet": "selam"
+ },
+ {
+  "m": "yo bro",
+  "niyet": "selam"
+ },
+ {
+  "m": "İyi akşamlar efendim",
+  "niyet": "selam"
+ },
+ {
+  "m": "hello guys",
+  "niyet": "selam"
+ },
+ {
+  "m": "Herkese merhaba, hayırlı günler",
+  "niyet": "selam"
+ },
+ {
+  "m": "sa as",
+  "niyet": "selam"
+ },
+ {
+  "m": "selam cnm",
+  "niyet": "selam"
+ },
+ {
+  "m": "selam arkadaşlar ben yeni geldi",
+  "niyet": "selam"
+ },
+ {
+  "m": "nasılsın",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "iyi misin abi",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "nasıl gidiyor işler",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "Nasılsınız, sağlığınız yerinde mi?",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "ne var ne yok",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "sen nasılsın kanka",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "günün nasıl geçti",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "sen iyi misin abi işler yolunda mı",
+  "niyet": "hal_hatir"
+ },
+ {
+  "m": "teşekkürler abi",
+  "niyet": "tesekkur"
+ },
+ {
+  "m": "eyvallah",
+  "niyet": "tesekkur"
+ },
+ {
+  "m": "saol kanks",
+  "niyet": "tesekkur"
+ },
+ {
+  "m": "allah razı olsun",
+  "niyet": "tesekkur"
+ },
+ {
+  "m": "sağ ol var ol",
+  "niyet": "tesekkur"
+ },
+ {
+  "m": "çok makbule geçti",
+  "niyet": "tesekkur"
+ },
+ {
+  "m": "minnettarım size",
+  "niyet": "tesekkur"
+ },
+ {
+  "m": "bb",
+  "niyet": "veda"
+ },
+ {
+  "m": "iyi geceler herkese",
+  "niyet": "veda"
+ },
+ {
+  "m": "yatıyorum sabah okul var",
+  "niyet": "veda"
+ },
+ {
+  "m": "kendinize iyi bakın",
+  "niyet": "veda"
+ },
+ {
+  "m": "allaha emanet olun",
+  "niyet": "veda"
+ },
+ {
+  "m": "Müsaadenizle ben ayrılıyorum",
+  "niyet": "veda"
+ },
+ {
+  "m": "helal olsun",
+  "niyet": "tebrik"
+ },
+ {
+  "m": "Başarılarınızın devamını dilerim",
+  "niyet": "tebrik"
+ },
+ {
+  "m": "gg wp",
+  "niyet": "tebrik"
+ },
+ {
+  "m": "bravo kanka",
+  "niyet": "tebrik"
+ },
+ {
+  "m": "nice bro congrats",
+  "niyet": "tebrik"
+ },
+ {
+  "m": "tebrik ederim terfi almışsın",
+  "niyet": "tebrik"
+ },
+ {
+  "m": "kusura bakma",
+  "niyet": "ozur"
+ },
+ {
+  "m": "sorry bro yanlış kişiye yazdım",
+  "niyet": "ozur"
+ },
+ {
+  "m": "Kusura bakmayın, sizi rahatsız ettim",
+  "niyet": "ozur"
+ },
+ {
+  "m": "bağırdığım için özür dilerim",
+  "niyet": "ozur"
+ },
+ {
+  "m": "sry dalmışım",
+  "niyet": "ozur"
+ },
+ {
+  "m": "aynen",
+  "niyet": "evet"
+ },
+ {
+  "m": "olur",
+  "niyet": "evet"
+ },
+ {
+  "m": "tabi ki",
+  "niyet": "evet"
+ },
+ {
+  "m": "aynen öyle kanka",
+  "niyet": "evet"
+ },
+ {
+  "m": "Evet efendim, uygundur",
+  "niyet": "evet"
+ },
+ {
+  "m": "peki tamam",
+  "niyet": "evet"
+ },
+ {
+  "m": "yok",
+  "niyet": "hayir"
+ },
+ {
+  "m": "olmaz",
+  "niyet": "hayir"
+ },
+ {
+  "m": "yoo",
+  "niyet": "hayir"
+ },
+ {
+  "m": "Hayır, şu an düşünmüyorum",
+  "niyet": "hayir"
+ },
+ {
+  "m": "asla",
+  "niyet": "hayir"
+ },
+ {
+  "m": "yok be",
+  "niyet": "hayir"
+ },
+ {
+  "m": "iş var mı",
+  "niyet": "is_ariyorum"
+ },
+ {
+  "m": "Garsonluk yapabilirim, iş verecek var mı?",
+  "niyet": "is_ariyorum",
+  "varlik": {
+   "meslek": "garson"
+  }
+ },
+ {
+  "m": "İŞ LAZIMMM",
+  "niyet": "is_ariyorum"
+ },
+ {
+  "m": "ben çalışmak istiyorum biri alsın beni",
+  "niyet": "is_ariyorum"
+ },
+ {
+  "m": "Muhasebe belgem var, iş arıyorum",
+  "niyet": "is_ariyorum",
+  "varlik": {
+   "meslek": "muhasebeci"
+  }
+ },
+ {
+  "m": "taksi şoförlüğü yaparım iş varsa",
+  "niyet": "is_ariyorum",
+  "varlik": {
+   "meslek": "nakliyeci"
+  }
+ },
+ {
+  "m": "Kadıköy'de iş var mı",
+  "niyet": "is_ariyorum",
+  "varlik": {
+   "yer": "Kadıköy"
+  }
+ },
+ {
+  "m": "ben iş arıyor sen bilir mi nerde var",
+  "niyet": "is_ariyorum"
+ },
+ {
+  "m": "eleman arıyorum",
+  "niyet": "eleman_ariyorum"
+ },
+ {
+  "m": "Dükkanıma kasiyer arıyorum, ilgilenen yazsın",
+  "niyet": "eleman_ariyorum",
+  "varlik": {
+   "meslek": "market_calisani"
+  }
+ },
+ {
+  "m": "inşaata işçi lazım günlük yevmiye",
+  "niyet": "eleman_ariyorum",
+  "varlik": {
+   "meslek": "insaat_iscisi"
+  }
+ },
+ {
+  "m": "usta lazım tesisat için",
+  "niyet": "eleman_ariyorum",
+  "varlik": {
+   "meslek": "usta"
+  }
+ },
+ {
+  "m": "ELEMAN ALINIR",
+  "niyet": "eleman_ariyorum"
+ },
+ {
+  "m": "nakliye için şoför arıyorum",
+  "niyet": "eleman_ariyorum",
+  "varlik": {
+   "meslek": "nakliyeci"
+  }
+ },
+ {
+  "m": "Bağcılar'daki marketime 35 bine kasiyer alınacak",
+  "niyet": "eleman_ariyorum",
+  "varlik": {
+   "tutar": 35000,
+   "meslek": "market_calisani",
+   "yer": "Bağcılar"
+  }
+ },
+ {
+  "m": "garson maaşı kaç",
+  "niyet": "maas_sorusu",
+  "varlik": {
+   "meslek": "garson"
+  }
+ },
+ {
+  "m": "muhasebeci kaç alıyor ayda",
+  "niyet": "maas_sorusu",
+  "varlik": {
+   "meslek": "muhasebeci"
+  }
+ },
+ {
+  "m": "kasiyer maaşı iyi mi",
+  "niyet": "maas_sorusu",
+  "varlik": {
+   "meslek": "market_calisani"
+  }
+ },
+ {
+  "m": "emlak danışmanı prim alıyor mu",
+  "niyet": "maas_sorusu",
+  "varlik": {
+   "meslek": "emlak_danismani"
+  }
+ },
+ {
+  "m": "Asgari ücret oyunda kaç acaba?",
+  "niyet": "maas_sorusu"
+ },
+ {
+  "m": "en çok kazandıran meslek hangisi",
+  "niyet": "maas_sorusu"
+ },
+ {
+  "m": "ayda kaç bin alıyosun kanka",
+  "niyet": "maas_sorusu"
+ },
+ {
+  "m": "taksici ne kadar yapar günde",
+  "niyet": "maas_sorusu",
+  "varlik": {
+   "meslek": "nakliyeci"
+  }
+ },
+ {
+  "m": "maaşlar ne zaman yatıyor",
+  "niyet": "maas_sorusu"
+ },
+ {
+  "m": "ben kurye yapıyor maaş az geliyor normal mi",
+  "niyet": "maas_sorusu",
+  "varlik": {
+   "meslek": "kurye"
+  }
+ },
+ {
+  "m": "hangi mesleği seçeyim",
+  "niyet": "meslek_tavsiyesi"
+ },
+ {
+  "m": "kurye mi olayım garson mu",
+  "niyet": "meslek_tavsiyesi"
+ },
+ {
+  "m": "memur olmaya değer mi",
+  "niyet": "meslek_tavsiyesi",
+  "varlik": {
+   "meslek": "memur"
+  }
+ },
+ {
+  "m": "usta olmak zor mu",
+  "niyet": "meslek_tavsiyesi",
+  "varlik": {
+   "meslek": "usta"
+  }
+ },
+ {
+  "m": "emlakçılık iyi mi",
+  "niyet": "meslek_tavsiyesi",
+  "varlik": {
+   "meslek": "emlak_danismani"
+  }
+ },
+ {
+  "m": "en kolay meslek hangisi",
+  "niyet": "meslek_tavsiyesi"
+ },
+ {
+  "m": "inşaat işçiliğini bıraksam ne yapayım",
+  "niyet": "meslek_tavsiyesi",
+  "varlik": {
+   "meslek": "insaat_iscisi"
+  }
+ },
+ {
+  "m": "Uzun vadede hangi kariyer yolunu izlemeliyim?",
+  "niyet": "meslek_tavsiyesi"
+ },
+ {
+  "m": "kurs nasıl alınır",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "muhasebe kursu kaç gün sürüyor",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "ustalık kursu kaç para",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "döviz lisansı nerden alınıyor",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "memurluk sınavı varmış o nasıl bi şey",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "kurs bitince ne oluyo",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "kurs ücreti iade oluyo mu",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "muhasebe kursunu bitirdim şimdi ne yapıcam",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "ben kurs almak ister hangi kurs iyi",
+  "niyet": "kurs_sorusu"
+ },
+ {
+  "m": "daire satıyorum",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "arsam var satılık",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "arsa"
+  }
+ },
+ {
+  "m": "satılık dükkan Beşiktaş'ta 3 milyon",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "dukkan",
+   "yer": "Beşiktaş",
+   "tutar": 3000000
+  }
+ },
+ {
+  "m": "arsa satıyorum ucuz",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "arsa"
+  }
+ },
+ {
+  "m": "acil satılık daire fiyat düşük",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "kiralık dairem var kiraya veriyorum",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "Esenyurt'ta arsa elden satılık",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "arsa",
+   "yer": "Esenyurt"
+  }
+ },
+ {
+  "m": "benim dükkan var satmak istiyorum",
+  "niyet": "mulk_satiyorum",
+  "varlik": {
+   "mulk": "dukkan"
+  }
+ },
+ {
+  "m": "kiralık daire var mı",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "Bakırköy'de dükkan arıyorum",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "dukkan",
+   "yer": "Bakırköy"
+  }
+ },
+ {
+  "m": "ucuz ev lazım",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "Bir daire satın almayı düşünüyorum, öneriniz var mı?",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "arsa alıcam nerden alayım",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "arsa"
+  }
+ },
+ {
+  "m": "Ataköy'de satılık daire var mı",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "daire",
+   "yer": "Bakırköy"
+  }
+ },
+ {
+  "m": "looking for a flat bro kiralık",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "Maltepe tarafında kiralık daire",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "daire",
+   "yer": "Maltepe"
+  }
+ },
+ {
+  "m": "ben ev almak isterim nerde var",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "daire kaç para",
+  "niyet": "fiyat_sorusu",
+  "varlik": {
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "arsa kaç",
+  "niyet": "fiyat_sorusu",
+  "varlik": {
+   "mulk": "arsa"
+  }
+ },
+ {
+  "m": "kira ne kadar",
+  "niyet": "fiyat_sorusu"
+ },
+ {
+  "m": "kum saati kaç",
+  "niyet": "fiyat_sorusu"
+ },
+ {
+  "m": "fabrika kurmak ne kadar tutar",
+  "niyet": "fiyat_sorusu"
+ },
+ {
+  "m": "Beşiktaş'ta dükkan kirası kaç acaba",
+  "niyet": "fiyat_sorusu",
+  "varlik": {
+   "mulk": "dukkan",
+   "yer": "Beşiktaş"
+  }
+ },
+ {
+  "m": "döviz bürosu açmak kaç",
+  "niyet": "fiyat_sorusu"
+ },
+ {
+  "m": "Esenyurt'ta arsa fiyatı",
+  "niyet": "fiyat_sorusu",
+  "varlik": {
+   "mulk": "arsa",
+   "yer": "Esenyurt"
+  }
+ },
+ {
+  "m": "taksi almak kaç para",
+  "niyet": "fiyat_sorusu"
+ },
+ {
+  "m": "ben kafe açmak istiyorum para kaç lazım",
+  "niyet": "fiyat_sorusu"
+ },
+ {
+  "m": "enflasyon ne durumda",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "Faiz oranları yükselecek mi sizce?",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "ev fiyatları artıyor mu",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "altın almalı mıyım",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "enflasyon yüzünden her şey pahalandı",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "şu an yatırım için iyi zaman mı",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "fiyatlar neden sürekli artıyor",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "faiz ne kadar oldu bilen varmı",
+  "niyet": "ekonomi"
+ },
+ {
+  "m": "kredi nasıl çekilir",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "kredi faizi kaç",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "borcumu nasıl kapatırım",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "İcraya düşer miyim, 2 taksit ödemedim",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "konut kredisi var mı",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "Krediyi erken kapatırsam faiz düşer mi?",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "ihtiyaç kredisi mi konut kredisi mi",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "3 taksit ödemeyince icra mı geliyo",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "kredi kartı var mı oyunda",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "borçluyken yatırım yapamıyor muyuz",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "iyi bayramlar herkese",
+  "niyet": "bayram"
+ },
+ {
+  "m": "kurban bayramı ne zaman",
+  "niyet": "bayram"
+ },
+ {
+  "m": "bayram şekeri dağıtan yok mu sjsj",
+  "niyet": "bayram"
+ },
+ {
+  "m": "yılbaşı etkinliği olacak mı",
+  "niyet": "bayram"
+ },
+ {
+  "m": "bayramlık indirim var mı",
+  "niyet": "bayram"
+ },
+ {
+  "m": "cumhuriyet bayramı kutlu olsun",
+  "niyet": "bayram"
+ },
+ {
+  "m": "yine zarar ettim",
+  "niyet": "dert"
+ },
+ {
+  "m": "çok borcum var ne yapacağım bilmiyorum",
+  "niyet": "dert"
+ },
+ {
+  "m": "harika ya, yine zarar ettim",
+  "niyet": "dert"
+ },
+ {
+  "m": "Her şeyimi kaybettim, baştan başlamam gerekiyor",
+  "niyet": "dert"
+ },
+ {
+  "m": "dükkan kirası beni bitirdi",
+  "niyet": "dert"
+ },
+ {
+  "m": "bıktım hiçbir şey kazanamıyorum",
+  "niyet": "dert"
+ },
+ {
+  "m": "işten atıldım",
+  "niyet": "dert"
+ },
+ {
+  "m": "borç batağındayım",
+  "niyet": "dert"
+ },
+ {
+  "m": "sen ne iş yapıyorsun",
+  "niyet": "kisisel_meslek"
+ },
+ {
+  "m": "nerde çalışıyosun",
+  "niyet": "kisisel_meslek"
+ },
+ {
+  "m": "abi sen kurye misin",
+  "niyet": "kisisel_meslek",
+  "varlik": {
+   "meslek": "kurye"
+  }
+ },
+ {
+  "m": "sen de mi garsonsun",
+  "niyet": "kisisel_meslek",
+  "varlik": {
+   "meslek": "garson"
+  }
+ },
+ {
+  "m": "patron musun",
+  "niyet": "kisisel_meslek"
+ },
+ {
+  "m": "what do u do bro",
+  "niyet": "kisisel_meslek"
+ },
+ {
+  "m": "nerelisin",
+  "niyet": "kisisel_yer"
+ },
+ {
+  "m": "hangi ilçedesin",
+  "niyet": "kisisel_yer"
+ },
+ {
+  "m": "sen istanbulda mısın",
+  "niyet": "kisisel_yer"
+ },
+ {
+  "m": "kadıköylü müsün",
+  "niyet": "kisisel_yer",
+  "varlik": {
+   "yer": "Kadıköy"
+  }
+ },
+ {
+  "m": "where are u from",
+  "niyet": "kisisel_yer"
+ },
+ {
+  "m": "nerden yazıyosun",
+  "niyet": "kisisel_yer"
+ },
+ {
+  "m": "adın ne",
+  "niyet": "kisisel_ad"
+ },
+ {
+  "m": "Adınızı öğrenebilir miyim?",
+  "niyet": "kisisel_ad"
+ },
+ {
+  "m": "kimsin ya",
+  "niyet": "kisisel_ad"
+ },
+ {
+  "m": "what's ur name",
+  "niyet": "kisisel_ad"
+ },
+ {
+  "m": "sana ne diye hitap edeyim",
+  "niyet": "kisisel_ad"
+ },
+ {
+  "m": "bot musun",
+  "niyet": "bot_musun"
+ },
+ {
+  "m": "gerçek misin",
+  "niyet": "bot_musun"
+ },
+ {
+  "m": "yapay zeka mısın",
+  "niyet": "bot_musun"
+ },
+ {
+  "m": "burdakiler hep bot mu",
+  "niyet": "bot_musun"
+ },
+ {
+  "m": "insan mısın",
+  "niyet": "bot_musun"
+ },
+ {
+  "m": "robot gibi konuşuyosun",
+  "niyet": "bot_musun"
+ },
+ {
+  "m": "çok iyisin",
+  "niyet": "iltifat"
+ },
+ {
+  "m": "sen çok tatlısın",
+  "niyet": "iltifat"
+ },
+ {
+  "m": "en iyi sensin kanka",
+  "niyet": "iltifat"
+ },
+ {
+  "m": "zekisin valla",
+  "niyet": "iltifat"
+ },
+ {
+  "m": "sen olmasan ne yapardım",
+  "niyet": "iltifat"
+ },
+ {
+  "m": "güzel konuşuyorsun",
+  "niyet": "iltifat"
+ },
+ {
+  "m": "salaksın",
+  "niyet": "hakaret"
+ },
+ {
+  "m": "çok gerizekalısın",
+  "niyet": "hakaret"
+ },
+ {
+  "m": "saçmalama mal",
+  "niyet": "hakaret"
+ },
+ {
+  "m": "geri zekalı bot",
+  "niyet": "hakaret"
+ },
+ {
+  "m": "defol",
+  "niyet": "hakaret"
+ },
+ {
+  "m": "xd",
+  "niyet": "saka"
+ },
+ {
+  "m": "ahahaha",
+  "niyet": "saka"
+ },
+ {
+  "m": "şaka yapıyorum",
+  "niyet": "saka"
+ },
+ {
+  "m": "kanka ben milyarder olunca seni şoför yaparım xd",
+  "niyet": "saka"
+ },
+ {
+  "m": "espri yap bi tane",
+  "niyet": "saka"
+ },
+ {
+  "m": "benim param yok ama hayallerim var xd",
+  "niyet": "saka"
+ },
+ {
+  "m": "nasıl para kazanılır",
+  "niyet": "yardim"
+ },
+ {
+  "m": "yeniyim ne yapmalıyım",
+  "niyet": "yardim"
+ },
+ {
+  "m": "kum saati nasıl kazanılır",
+  "niyet": "yardim"
+ },
+ {
+  "m": "işe nasıl girerim",
+  "niyet": "yardim"
+ },
+ {
+  "m": "dükkan nasıl açılır",
+  "niyet": "yardim"
+ },
+ {
+  "m": "itibar nasıl artar",
+  "niyet": "yardim"
+ },
+ {
+  "m": "maaşım neden yatmadı",
+  "niyet": "yardim"
+ },
+ {
+  "m": "para nasıl artar hızlı",
+  "niyet": "yardim"
+ },
+ {
+  "m": "evimi nasıl kiraya veririm",
+  "niyet": "yardim"
+ },
+ {
+  "m": "bu oyun para nasıl kazanır",
+  "niyet": "yardim"
+ },
+ {
+  "m": "maaşıma zam yapar mısın",
+  "niyet": "zam_istegi"
+ },
+ {
+  "m": "Maaşımın artırılmasını rica ediyorum",
+  "niyet": "zam_istegi"
+ },
+ {
+  "m": "ZAM İSTİYORUZ",
+  "niyet": "zam_istegi"
+ },
+ {
+  "m": "bu maaşla geçinemem zam lazım",
+  "niyet": "zam_istegi"
+ },
+ {
+  "m": "abi yüzde 20 zam olur mu",
+  "niyet": "zam_istegi"
+ },
+ {
+  "m": "yetki verir misin",
+  "niyet": "yetki_istegi"
+ },
+ {
+  "m": "Kanalda yetki almak mümkün mü?",
+  "niyet": "yetki_istegi"
+ },
+ {
+  "m": "admin olmak istiyorum",
+  "niyet": "yetki_istegi"
+ },
+ {
+  "m": "yöneticiyle konuşmak istiyorum",
+  "niyet": "yetki_istegi"
+ },
+ {
+  "m": "abi sen bana yetki verir mi",
+  "niyet": "yetki_istegi"
+ },
+ {
+  "m": "dairene 2 milyon veriyorum",
+  "niyet": "teklif",
+  "varlik": {
+   "tutar": 2000000,
+   "mulk": "daire"
+  }
+ },
+ {
+  "m": "40 bin maaşa gelir misin",
+  "niyet": "teklif",
+  "varlik": {
+   "tutar": 40000
+  }
+ },
+ {
+  "m": "Size ortaklık teklif etmek istiyorum",
+  "niyet": "teklif"
+ },
+ {
+  "m": "yarı yarıya ortak kafe açalım",
+  "niyet": "teklif"
+ },
+ {
+  "m": "arsana 800 bin veririm",
+  "niyet": "teklif",
+  "varlik": {
+   "tutar": 800000,
+   "mulk": "arsa"
+  }
+ },
+ {
+  "m": "gel benim yanımda çalış 35 bin",
+  "niyet": "teklif",
+  "varlik": {
+   "tutar": 35000
+  }
+ },
+ {
+  "m": "kirayı 20 bine indirirsen tutarım",
+  "niyet": "teklif",
+  "varlik": {
+   "tutar": 20000
+  }
+ },
+ {
+  "m": "Pendik'te ucuz arsa bilen var mı",
+  "niyet": "mulk_ariyorum",
+  "varlik": {
+   "mulk": "arsa",
+   "yer": "Pendik"
+  }
+ },
+ {
+  "m": "günlük görev için kum saati paketi kaç lira",
+  "niyet": "fiyat_sorusu"
+ },
+ {
+  "m": "kredi notum kaç, nerden bakılıyor",
+  "niyet": "kredi_sorusu"
+ },
+ {
+  "m": "Kiracı nasıl bulunur, ilan mı vermek gerekiyor?",
+  "niyet": "yardim"
+ },
+ {
+  "m": "maç izleyen var mı",
+  "niyet": "genel"
+ },
+ {
+  "m": "okul çok sıkıcı",
+  "niyet": "genel"
+ },
+ {
+  "m": "alo",
+  "niyet": "genel"
+ },
+ {
+  "m": "ne diyosunuz siz",
+  "niyet": "genel"
+ },
+ {
+  "m": "canım sıkıldı",
+  "niyet": "genel"
+ },
+ {
+  "m": "ok",
+  "niyet": "genel"
+ },
+ {
+  "m": "akşam ne yesem",
+  "niyet": "genel"
+ },
+ {
+  "m": "asdfgh",
+  "niyet": "genel"
+ }
+]

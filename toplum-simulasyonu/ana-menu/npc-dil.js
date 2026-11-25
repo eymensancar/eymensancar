@@ -1172,7 +1172,7 @@
     'Selamlar, [keyifler nasıl|ne var ne yok]?',
     'Hey selam! [Nasılsın?|Naber?]',
     'Selam selam, [buyur|ne lazım?|hoş geldin]',
-    'Merhaba {oyuncuAd}, [nasıl yardımcı olabilirim?|seni görmek güzel]'
+    'Merhaba {oyuncuAd}, [seni görmek güzel|nasılsın?]'
   ], ['Bugün [kanal|ortalık] [çok hareketli|biraz sakin].', 'Ben de işten yeni çıktım.', 'Yeni misin buralarda?']);
 
   tanim('cevap.hal_hatir', 'mutlu', [
@@ -1458,7 +1458,7 @@
     '{ad} [derler|diyorlar], sen?',
     '{ad}, profilde yazıyor ya',
     'Ben {ad}, {meslek} olarak çalışıyorum',
-    'İsmim profilimde yazıyor, [sen?|sen kimsin?]',
+    'Ben {ad}, [sen?|seninki ne?]',
     'Herkes bana {ad} der, sen de öyle de',
     'Memnun oldum, ben {ad}'
   ]);
@@ -2568,41 +2568,35 @@
     return parca.join('');
   }
 
+  // Gerçek telefon hataları: mesaj başına en çok bir tane, nadiren (insanlar çoğu mesajı düzgün yazar).
+  // Türler: komşu tuşa basma (Türkçe Q klavye), harf düşürme, çift harf, harf takası. Kısa/sık kelimelere dokunulmaz.
+  var KOMSU = { a: 'sq', s: 'adw', d: 'sfe', f: 'dgr', g: 'fht', h: 'gjy', j: 'hku', k: 'jlı', l: 'kş', e: 'wrd', r: 'etf', t: 'ryg', y: 'tuh', u: 'yıj', 'ı': 'uok', o: 'ıpl', p: 'oğ', i: 'üçl', n: 'bm', m: 'nö', b: 'vn', v: 'cb', c: 'xv', z: 'xs' };
   function hataEkle(t, h, rng, korunan) {
-    var sayac = 0;
-    var parcalar = t.split(' ');
-    for (var i = 0; i < parcalar.length && sayac < 2; i++) {
-      var w = parcalar[i];
-      var m = w.match(/^(\p{Ll}+)([^\p{L}]*)$/u);
-      if (!m || m[1].length < 4 || korunuyor(m[1], korunan)) continue;
-      if (!sans(rng, h * 0.18)) continue;
-      var g = m[1], tur = rs(rng), poz;
-      if (tur < 0.45) {
-        poz = 1 + Math.floor(rs(rng) * (g.length - 2));
-        g = g.slice(0, poz) + g.charAt(poz + 1) + g.charAt(poz) + g.slice(poz + 2);
-      } else if (tur < 0.8) {
-        poz = 1 + Math.floor(rs(rng) * (g.length - 1));
-        g = g.slice(0, poz) + g.slice(poz + 1);
-      } else {
-        poz = 1 + Math.floor(rs(rng) * (g.length - 1));
-        g = g.slice(0, poz) + g.charAt(poz) + g.slice(poz);
-      }
-      parcalar[i] = g + m[2];
-      sayac++;
-    }
+    if (!sans(rng, Math.min(0.12, h * 0.35))) return t;
+    var parcalar = t.split(' '), adaylar = [];
+    for (var i = 0; i < parcalar.length; i++) { var m = parcalar[i].match(/^(\p{Ll}+)([^\p{L}]*)$/u); if (m && m[1].length >= 5 && !korunuyor(m[1], korunan)) adaylar.push(i); }
+    if (!adaylar.length) return t;
+    var k = adaylar[Math.floor(rs(rng) * adaylar.length)], m2 = parcalar[k].match(/^(\p{Ll}+)([^\p{L}]*)$/u), g = m2[1], tur = rs(rng), poz = 1 + Math.floor(rs(rng) * (g.length - 2));
+    if (tur < 0.4) { var komsu = KOMSU[g.charAt(poz)]; if (komsu) g = g.slice(0, poz) + komsu.charAt(Math.floor(rs(rng) * komsu.length)) + g.slice(poz + 1); }
+    else if (tur < 0.75) g = g.slice(0, poz) + g.slice(poz + 1);
+    else if (tur < 0.85) g = g.slice(0, poz) + g.charAt(poz) + g.slice(poz);
+    else g = g.slice(0, poz) + g.charAt(poz + 1) + g.charAt(poz) + g.slice(poz + 2);
+    parcalar[k] = g + m2[2];
     return parcalar.join(' ');
   }
 
   function emojiEkle(t, st, rng, duygu) {
-    var p = st.emoji * 0.75;
-    if (st.resmi > 0.8) p *= 0.5;
+    // Emoji ölçülü: mesajların aşağı yukarı beşte biri; iş konuşmasında ve resmi kişide daha da az
+    var p = st.emoji * 0.32;
+    if (st.resmi > 0.6) p *= 0.4;
+    if (duygu === 'is' || duygu === 'notr') p *= 0.5;
     if (!sans(rng, p)) return t;
     var d = duygu || 'notr';
     if (st.nese < -0.3 && (d === 'mutlu' || d === 'sevinc' || d === 'gulme')) d = 'notr';
     if (st.nese > 0.5 && d === 'notr') d = 'mutlu';
     var havuz = EMOJI[d] || EMOJI.notr;
     var e = sec(rng, havuz);
-    if (st.emoji > 0.85 && sans(rng, 0.3)) e += sans(rng, 0.5) ? e : sec(rng, havuz);
+    if (st.emoji > 0.9 && sans(rng, 0.12)) e += e;
     return t + ' ' + e;
   }
 

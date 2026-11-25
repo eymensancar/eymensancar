@@ -1,0 +1,2247 @@
+[
+ {
+  "ad": "zamir: kiralık daire, sonra \"o kaç\", \"orası\"",
+  "turlar": [
+   {
+    "m": "Kadıköy'de kiralık daire var mı",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "o kaç",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "orası metroya yakın mı",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "düzeltme: satılık değil kiralık",
+  "turlar": [
+   {
+    "m": "daire bakıyorum Beşiktaş'ta",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "yok ben kiralık dedim satılık değil",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "aylık kaç olur",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: faiz + kredi nasıl çekilir",
+  "turlar": [
+   {
+    "m": "faiz kaç bide kredi nasıl çekilir",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ya kredi notum düşükse",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "olumsuzlama: kurye olmak istemiyor",
+  "turlar": [
+   {
+    "m": "ne iş yapayım bilmiyorum",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "istemem kurye olmak çok yoruluyor",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "masa başı bi şey olsa",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "ironi: yine zarar, kafe batıyor",
+  "turlar": [
+   {
+    "m": "harika ya, yine zarar ettim",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kafem var müşteri gelmiyor",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "kapatsam mı sence",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "uzun aradan sonra: o iş ne oldu",
+  "turlar": [
+   {
+    "m": "abi kafene garson lazım demiştin",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "o iş ne oldu hala var mı",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "maaşı kaçtı",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "konu değişimi: selamdan dolara",
+  "turlar": [
+   {
+    "m": "selam",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "nasılsın",
+    "konu": "hal_hatir",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bu arada dolar kaç oldu",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "genç: bağırma, kuryelik maaşı",
+  "turlar": [
+   {
+    "m": "SLMMM",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kanka kurye ne kadar kazanıyo",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "ben de kuryeyim az geliyo ama xd",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "zamir: \"sen alır mısın\"",
+  "turlar": [
+   {
+    "m": "dairemi satıyorum Üsküdar'da",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "sen alır mısın",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "2 milyon diyorum son",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "eksiltili: \"ya muhasebe?\"",
+  "turlar": [
+   {
+    "m": "kamu personel sınavı kaç para",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "ya muhasebe?",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "hangisi daha çabuk biter",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "\"bende de var\": arsa",
+  "turlar": [
+   {
+    "m": "Esenyurt'ta arsa kaç para eder",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "bende de var bi tane satsam mı",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "dolar yükselince arsa da artar mı",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "yaşlı ve resmi: birikim değerlendirme",
+  "turlar": [
+   {
+    "m": "Kolay gelsin arkadaşlar, bir sorum olacak",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "Birikimimi değerlendirmek istiyorum, daire mi almalıyım yoksa dükkan mı?",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "Kira getirisi hangisinde daha yüksek olur?",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "Çok teşekkür ederim, faydalı oldu",
+    "konu": "tesekkur",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "ana dili Türkçe olmayan: kuryelik işi",
+  "turlar": [
+   {
+    "m": "abi ben iş arıyor kurye olur mu",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "maaş kaç veriyor",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "ben motor yok o lazım mı",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "İngilizce karışık: kafe açmak",
+  "turlar": [
+   {
+    "m": "bro kafe açmak worth mu fr",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kaç para lazım",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "nice, kurs falan lazım mı",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "maaş pazarlığı: oyuncu işveren",
+  "turlar": [
+   {
+    "m": "garson arıyorum 30 bin maaş",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "35 olmaz ama 32 veririm",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "tamam yarın başla",
+    "konu": "evet",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "maaş pazarlığı: oyuncu işçi",
+  "turlar": [
+   {
+    "m": "abi senin dükkanda çalışırım",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "kaç veriyorsun",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "40 bine olur mu",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "yok 35 az",
+    "konu": "hayir",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "bayram ve hayır eseri",
+  "turlar": [
+   {
+    "m": "bayramınız mübarek",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bayramda bağış yapınca ne oluyor",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "cami mi yaptırsam okul mu",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "bot sorusu, sonra ad",
+  "turlar": [
+   {
+    "m": "sen bot musun",
+    "konu": "bot_musun",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "ama çok hızlı yazıyorsun",
+    "konu": "bot_musun",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "neyse adın ne",
+    "konu": "kisisel_ad",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "kişisel: memleket, sonra iş",
+  "turlar": [
+   {
+    "m": "nerelisin",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "ben de oralıyım xd",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "orda ne iş yapıyorsun",
+    "konu": "kisisel_meslek",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "kaba ama küfürsüz: cevap verin",
+  "turlar": [
+   {
+    "m": "ya cevap versenize",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir"
+    ]
+   },
+   {
+    "m": "faiz kaç diyorum duymuyor musunuz",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "of tamam",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: dükkan kirası + nerde ucuz, sonra eksiltili ilçe",
+  "turlar": [
+   {
+    "m": "dükkan kirası kaç bide nerde ucuz var",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "Bağcılar nasıl",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: memur maaşı + sınav",
+  "turlar": [
+   {
+    "m": "memur maaşı ne kadar, sınav zor mu",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "sınav kaç gün sürüyor",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: kum saati",
+  "turlar": [
+   {
+    "m": "kum saati ne işe yarıyor nerden alınıyor",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kursta kullanılır mı",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "uzun aradan sonra: o daire ne oldu",
+  "turlar": [
+   {
+    "m": "geçen gün bana ev bakacaktın",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "o daire ne oldu satıldı mı",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "benzeri var mı başka",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "ironi: kredi notu düştü",
+  "turlar": [
+   {
+    "m": "süper, kredi notum yine düştü",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "nasıl yükseltirim",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "konu değişimi: dükkan aldım, bayram",
+  "turlar": [
+   {
+    "m": "Fatih'te dükkan aldım sonunda",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bu arada iyi bayramlar",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bayram etkinliği başladı mı",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "genç bağırma: iş yok",
+  "turlar": [
+   {
+    "m": "KİMSE İŞ VERMİYOR YAAA",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "garsonluk bile olur",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "kurye işi de mi yok",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "çok kibar: muhasebe sonrası kariyer",
+  "turlar": [
+   {
+    "m": "Rica etsem, muhasebe kursunu bitirdikten sonra nereye başvurabilirim?",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "Peki maaşlar ortalama ne kadar oluyor?",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "Çok teşekkür ederim, iyi günler",
+    "konu": "tesekkur",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "şakacı: milyoner olmanın kısa yolu",
+  "turlar": [
+   {
+    "m": "milyoner olmanın kısa yolu var mı xd",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "ciddi soruyorum en hızlı nasıl para kazanılır",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kuryelik mi",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "şikayetçi: kira yüksek",
+  "turlar": [
+   {
+    "m": "bu oyunda kira çok yüksek",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "ayda 30 bin veriyorum Şişli'de",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "taşınsam nereye taşınayım",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "zamir: \"onun kursu\"",
+  "turlar": [
+   {
+    "m": "muhasebeci olmak istiyorum",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "onun kursu kaç para",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "ne kadar sürer",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "ortaklık teklifi",
+  "turlar": [
+   {
+    "m": "ortak olalım mı kafe açalım",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "sen ne kadar koyarsın",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "ben 500 bin koyarım",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "yer olarak Kadıköy iyi mi",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "konu değişimi: kredi, sonra kişisel",
+  "turlar": [
+   {
+    "m": "kredi faizi kaç",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "neyse boşver, sen nerelisin",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "yetki ısrarı",
+  "turlar": [
+   {
+    "m": "admin yap beni",
+    "konu": "yetki_istegi",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "lütfen ya çok aktifim",
+    "konu": "yetki_istegi",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "o zaman mod kim",
+    "konu": "yetki_istegi",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: nakliyeci kazanç + kamyon fiyatı",
+  "turlar": [
+   {
+    "m": "nakliyeci ne kadar kazanır kamyon kaç para",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "taksi daha mı ucuz",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "hakaret, özür, soru",
+  "turlar": [
+   {
+    "m": "salak mısın soruma cevap ver",
+    "konu": "hakaret",
+    "beklenen": [
+     "cevap_yok_olabilir"
+    ]
+   },
+   {
+    "m": "pardon sinirlendim",
+    "konu": "ozur",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "dolar kaç sadece onu soruyorum",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "dert akışı: işten atıldı",
+  "turlar": [
+   {
+    "m": "işten atıldım",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "şimdi kirayı ödeyemem",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "acil iş lazım",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "eksiltili ilçe: \"Şişli?\"",
+  "turlar": [
+   {
+    "m": "Beşiktaş'ta dükkan kaç",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "Şişli?",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "peki kirası",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "olumsuzlama: kredi istemiyor",
+  "turlar": [
+   {
+    "m": "kredi çekmek istemiyorum ama param az",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kredisiz dükkan alabilir miyim",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "kiralasam olur mu",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "düzeltme: garson değil kasiyer",
+  "turlar": [
+   {
+    "m": "garson arıyorum",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "pardon garson değil kasiyer lazım",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "markette, Ümraniye'de",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "konu değişimi: usta oldum, kendi işim, kredi",
+  "turlar": [
+   {
+    "m": "selam abi",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kurs bitti usta oldum",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "şimdi kendi işimi açsam mı",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kredi çekersem faizi ne olur",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "yaşlı: oyunu yeni indirmiş",
+  "turlar": [
+   {
+    "m": "Merhabalar, oyunu yeni indirdim",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "Torunum önerdi, nasıl oynanıyor tam anlamadım",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "İlk ne yapmam gerekiyor?",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "ana dili Arapça: iki soru kredi",
+  "turlar": [
+   {
+    "m": "kredi kaç faiz var ve ben nasıl öder",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ödemezsem ne olur",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "zamir: \"o iş\", \"beni de alır mısın\"",
+  "turlar": [
+   {
+    "m": "sen ne iş yapıyorsun",
+    "konu": "kisisel_meslek",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "o iş iyi para veriyor mu",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "beni de alır mısın",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "ironi: kiracı ödemedi",
+  "turlar": [
+   {
+    "m": "çok güzel, kiracım yine ödemedi",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ne yapabilirim",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "evden çıkarabilir miyim",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "bayram ve pazarlık",
+  "turlar": [
+   {
+    "m": "bayram indirimi yapan var mı",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "dairende indirim yapar mısın bayram hatrına",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "1.8 olsun",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "sosyal: sıkıldım, fıkra",
+  "turlar": [
+   {
+    "m": "naber millet",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bugün çok sıkıldım",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bi fıkra anlatsanıza",
+    "konu": "saka",
+    "beklenen": [
+     "cevap_var"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "İngilizce karışık: hızlı para",
+  "turlar": [
+   {
+    "m": "yo bro sup",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "how do I make money fast here",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "nice, kurye then?",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "ok thx",
+    "konu": "tesekkur",
+    "beklenen": [
+     "cevap_yok_olabilir"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: metrekare + fiyat",
+  "turlar": [
+   {
+    "m": "Maltepe'de daire satan var mı",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kaç metre, fiyatı ne",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "pazarlık olur mu",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "zam isteği ısrarı",
+  "turlar": [
+   {
+    "m": "patron maaşlar düşük",
+    "konu": "zam_istegi",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "en az yüzde 20 zam lazım",
+    "konu": "zam_istegi",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "yoksa istifa ederim",
+    "konu": "zam_istegi",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "kurs: sınavı geçemezse",
+  "turlar": [
+   {
+    "m": "memurluk için sınav varmış",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "geçemezsem ne oluyo",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "parası geri mi geliyor",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "eksiltili: \"sen?\"",
+  "turlar": [
+   {
+    "m": "ben muhasebeciyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "sen?",
+    "konu": "kisisel_meslek",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ne kadar oldu başlayalı",
+    "konu": "kisisel_meslek",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "konu değişimi: dolardan eleman arayışına",
+  "turlar": [
+   {
+    "m": "dolar yükselir mi",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "ha bu arada kafeme eleman lazım",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "barista olsa iyi olur",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "uzun aradan sonra: faiz düşecek demiştin",
+  "turlar": [
+   {
+    "m": "dün sordum faiz düşecek demiştin",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "düştü mü",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "o zaman kredi çekeyim mi",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: nakliye işi + ehliyet",
+  "turlar": [
+   {
+    "m": "nakliye işi var mı, ehliyet lazım mı",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "kamyon bende yok",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "olumsuzlama: satmam ama kiraya veririm",
+  "turlar": [
+   {
+    "m": "biri dairemi almak istiyor 2 milyon diyor",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "satmam ama kiraya veririm",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kira olarak kaç istesem",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "şikayetçi: bekleme süresi",
+  "turlar": [
+   {
+    "m": "her şey 1 saat sürüyor çok yavaş",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kum saati almadan olmuyor mu",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "bedavaya nasıl alırım",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "genç: ev alma, 100 bin yeter mi",
+  "turlar": [
+   {
+    "m": "kanka yardım xd",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "ev nasıl alınıyo bilmiyom",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "param 100 bin yeter mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iltifat sonra soru, \"neden\"",
+  "turlar": [
+   {
+    "m": "sen çok bilgilisin",
+    "konu": "iltifat",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bi sorum var muhasebe mi usta mı",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "neden",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "konu değişimi: bot şüphesi, sonra borç",
+  "turlar": [
+   {
+    "m": "burda herkes bot galiba",
+    "konu": "bot_musun",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kimse cevap vermiyor ciddi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir"
+    ]
+   },
+   {
+    "m": "borcum var ne yapıcam",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: emlak belgesi",
+  "turlar": [
+   {
+    "m": "emlak belgesi nasıl alınır, kaç gün sürer",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "emlak ofisi açmaya yeter mi",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "zamir: dış ticaret kursu \"o kaç\"",
+  "turlar": [
+   {
+    "m": "ithalat ihracat işine nasıl başlanır",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "dış ticaret kursu şart mı",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "o kaç para",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "döviz bürosu planı",
+  "turlar": [
+   {
+    "m": "döviz bürosu açmak istiyorum",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "lisans lazımmış o nerden alınıyor",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "kur farkından mı kazanılıyor",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "müteahhitlik yolu",
+  "turlar": [
+   {
+    "m": "müteahhit olmak için ne gerek",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "arsa da mı lazım",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "arsa nerde ucuz",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: fabrika maliyeti + işçi",
+  "turlar": [
+   {
+    "m": "fabrika kurmak kaç para, kaç işçi lazım",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "işçileri nerden bulurum",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "eksiltili semt, sonra konu değişimi",
+  "turlar": [
+   {
+    "m": "Kadıköy'de dükkan arıyorum",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "ya Moda?",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "neyse sen nasılsın",
+    "konu": "hal_hatir",
+    "beklenen": [
+     "cevap_var"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "kapanış: teşekkür ve veda",
+  "turlar": [
+   {
+    "m": "Fatih'te dükkan kirası kaç",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "tamam sağol bakarım",
+    "konu": "tesekkur",
+    "beklenen": [
+     "cevap_yok_olabilir"
+    ]
+   },
+   {
+    "m": "iyi geceler",
+    "konu": "veda",
+    "beklenen": [
+     "cevap_yok_olabilir"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "iki soru: kira günü + ev sahibi kira öder mi",
+  "turlar": [
+   {
+    "m": "kira ne zaman ödeniyor bide ev sahibi kira öder mi",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "o zaman ev almak daha mı mantıklı",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "olumsuzlama: faizden korkuyor",
+  "turlar": [
+   {
+    "m": "kredi istemem faizi yüksek",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "başka yolu yok mu para bulmanın",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "maaş pazarlığı: usta yevmiyesi",
+  "turlar": [
+   {
+    "m": "usta arıyorum tesisat için",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "günlük kaç alırsın",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "o çok, 2 bin olsun",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "tamam anlaştık",
+    "konu": "evet",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "kişisel sohbet",
+  "turlar": [
+   {
+    "m": "adın ne",
+    "konu": "kisisel_ad",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "güzel isim",
+    "konu": "iltifat",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "peki ne zamandır oynuyorsun",
+    "konu": "kisisel_meslek",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "işveren: muhasebeci, belge",
+  "turlar": [
+   {
+    "m": "muhasebeci arıyorum şirketime",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "belgen var mı",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "tamam olur, yarın başla",
+    "konu": "evet",
+    "beklenen": [
+     "cevap_var",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "hayır: pazarlık yok",
+  "turlar": [
+   {
+    "m": "dükkanımı kiraya vericem 30 bin",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "somut"
+    ]
+   },
+   {
+    "m": "hayır pazarlık yok",
+    "konu": "hayir",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ama depozito istemem",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "genç iki soru + tek kelime cevap",
+  "turlar": [
+   {
+    "m": "kanka kurs kaç gün sürüyo bide parası",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ustalık",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "\"bende de öyle\": kredi notu",
+  "turlar": [
+   {
+    "m": "kredi notum çok düşük",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "bende de öyle",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam"
+    ]
+   },
+   {
+    "m": "nasıl düzeltiyoruz",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "ana dili Kürtçe: dükkan satışı, \"ya o?\"",
+  "turlar": [
+   {
+    "m": "benim iki dükkan var biri Bağcılar biri Esenler",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "Bağcılar olan kaç eder",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam"
+    ]
+   },
+   {
+    "m": "ya o?",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "konu değişimi: tebrik sonra soru",
+  "turlar": [
+   {
+    "m": "tebrikler ev almışsın",
+    "konu": "tebrik",
+    "beklenen": [
+     "cevap_var"
+    ]
+   },
+   {
+    "m": "kaça aldın",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "somut",
+     "baglam",
+     "ayni_kisi"
+    ]
+   },
+   {
+    "m": "kredi mi çektin",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "baglam",
+     "ayni_kisi"
+    ]
+   }
+  ]
+ }
+]

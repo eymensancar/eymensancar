@@ -10,7 +10,8 @@ vm.runInContext(fs.readFileSync(path.join(kok, 'npc-yz.js'), 'utf8'), ctx);
 const T = ctx.Toplum, N = ctx.NPCYZ, D = ctx.NPCDil;
 const YAZ = process.argv.includes('--yaz'), KORPUS = !process.argv.includes('--elle');
 const SET = process.argv.includes('--sakli') ? 'sakli' : process.argv.includes('--hepsi') ? null : 'gelistirme';
-const dosya = ad => path.join(__dirname, 'korpus', SET ? `${ad}-${SET}.json` : `${ad}.json`);
+const K2 = process.argv.includes('--korpus2');
+const dosya = ad => K2 ? path.join(__dirname, 'korpus2', SET && process.argv.includes('--sakli') ? `${ad}-sakli.json` : SET && process.argv.includes('--gelistirme2') ? `${ad}-gelistirme.json` : `${ad}.json`) : path.join(__dirname, 'korpus', SET ? `${ad}-${SET}.json` : `${ad}.json`);
 console.log('Kör set:', SET || 'hepsi');
 
 // Dünya: 150 gün ön yaşam, oyuncu işsiz yeni gelmiş biri (en zor durum)
