@@ -47,4 +47,33 @@ await p.click('#pGeri');await p.waitForTimeout(300);
 await p.screenshot({path:'/tmp/claude-0/geo/akis-son.png'});
 // yeniden yükle: kayıt korunuyor
 await p.reload();await p.waitForTimeout(800);d=await durum();ok('yeniden yüklemede kayıt duruyor: '+d.prof+' mülk '+d.props,d.prof==='memur'&&d.props===1&&!(await p.isVisible('#kAd')));
+// ---- Şirketim ----
+await p.evaluate(()=>{ornekSirket()});await p.waitForTimeout(300);
+ok('şirket ekranı açık',await p.isVisible('#izgaraSirket')&&!(await p.isVisible('#izgaraAna')));
+ok('ana proje kartı dolu',(await p.textContent('#sAnaProje')).includes('Kadıköy şubesi'));
+await p.click('#sProjeler');await p.waitForTimeout(300);
+const kutu=await p.$$('[data-sec]');await kutu[1].click();await p.waitForTimeout(150);await p.click('#prAna');await p.waitForTimeout(200);
+ok('ana proje değişti: '+await p.evaluate(()=>anaProjem().ad),await p.evaluate(()=>anaProjem().ad)!=='Kadıköy şubesi');
+await p.click('#prYeni');await p.waitForTimeout(200);await p.fill('#fAd','Test projesi');await p.fill('#fButce','5000');await p.click('#evet');await p.waitForTimeout(200);
+ok('yeni proje eklendi',await p.evaluate(()=>S().projeler.some(x=>x.ad==='Test projesi')));
+await p.click('#pGeri');await p.waitForTimeout(300);
+await p.evaluate(()=>sirketModu('kisitli'));await p.waitForTimeout(200);
+ok('kısıtlıda unvan Satış Müdürü, çoğul başlık',(await p.textContent('#sAd')).includes('Satış Müdürü')&&(await p.textContent('#sProjeler')).includes('Projeleriniz'));
+await p.click('#uEkle');await p.waitForTimeout(250);ok('yetkiniz bulunmamaktadır uyarısı',(await p.textContent('#mBaslik'))==='Yetkiniz bulunmamaktadır');
+await p.click('#evet');await p.waitForTimeout(200);await p.click('[data-k]');await p.waitForTimeout(200);await p.click('#evet');await p.waitForTimeout(200);
+ok('talep mesajı gitti',await p.evaluate(()=>S().mesajlar[0].durum==='bekliyor'));
+await p.evaluate(()=>ileriSar(1));await p.waitForTimeout(200);
+ok('ertesi gün yetki verildi',await p.evaluate(()=>yetkiVar('calisan')));
+await p.click('#uEkle');await p.waitForTimeout(300);
+if((await p.textContent('#pBaslik'))==='Başvurular'){await p.click('#bIlan');await p.waitForTimeout(200)}
+await p.fill('#iPoz','Depocu');await p.click('#iYayinla');await p.waitForTimeout(200);
+ok('ilan yayınlandı',await p.evaluate(()=>S().ilanlar.some(i=>i.poz==='Depocu')));
+await p.evaluate(()=>ileriSar(1));await p.waitForTimeout(200);
+const bv=await p.evaluate(()=>S().basvurular.length);ok('başvuru geldi ('+bv+')',bv>0);
+await p.evaluate(()=>panelAc('basvurular'));await p.waitForTimeout(200);const once=await p.evaluate(()=>S().uyeler.length);await p.click('[data-al]');await p.waitForTimeout(200);
+ok('işe alındı',await p.evaluate(n=>S().uyeler.length===n+1,once));
+await p.evaluate(()=>ileriSar(30));await p.waitForTimeout(200);
+ok('geçmiş aya yazıldı',await p.evaluate(()=>S().gecmis.length>0));
+await p.evaluate(()=>{panelKapat();ekran('ana')});await p.waitForTimeout(200);
+ok('ana menü Projem ana projeyi gösteriyor',(await p.textContent('#projem')).includes(await p.evaluate(()=>anaProjem().ad)));
 console.log('hatalar:',errs.length?errs:'yok');await b.close()})();
