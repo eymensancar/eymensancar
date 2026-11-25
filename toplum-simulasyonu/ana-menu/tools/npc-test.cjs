@@ -117,7 +117,16 @@ let teklif = null;
 for (let g = 0; g < 60 && !teklif; g++) { const c = N.gun(w, meta, o.id); teklif = c.find(x => x.teklif && x.teklif.tur === 'mulk_al'); const n0 = w.events.length; T.advanceDay(w, T.createRng(T.daySeed(w.seed, w.day))); N.gunSonu(w, meta, w.events.slice(n0)); }
 ok('oyuncunun arsasına alım teklifi geldi (şans açıkken)', !!teklif, teklif ? teklif.metin : (kira.ok ? 'teklif yok' : kira.error));
 if (teklif) { const nakit = o.cash; const r = N.dmGonder(w, meta, teklif.npcId, 'tamam anlaştık', o); ok('DM ile kabul: çekirdekte satış', r && r.ok !== false && o.cash > nakit, r && r.metin); }
-ok('defter tutarlı (teklif ve işe alımlardan sonra)', T.ledgerDiscrepancy(w) - 0 === T.ledgerDiscrepancy(w) && Math.abs(T.ledgerDiscrepancy(w)) === Math.abs(T.ledgerDiscrepancy(w)));
+ok('defter tutarlı (teklif ve işe alımlardan sonra)', T.ledgerDiscrepancy(w) === 0, 'fark ' + T.ledgerDiscrepancy(w));
+// ---- pazarlık sınırı: aynı teklife defalarca düşük fiyat yazmak fiyatı sonsuza kaydırmaz ----
+{ const sat = Object.keys(meta.npc).find(id => w.players[id].propertyIds.some(x => w.properties[x] && !w.properties[x].ownerLivesIn));
+  if (sat) { const m = w.players[sat].propertyIds.map(x => w.properties[x]).find(x => x && !x.ownerLivesIn); const piyasa = T.propertyMarketPrice(w, m.kind);
+    T.credit(w, o, piyasa * 2, 'test'); const cikti = []; meta.teklifler.push({ id: 'tp', tur: 'mulk_sat', npcId: sat, mulkId: m.id, mulk: m.kind, fiyat: piyasa, ilk: piyasa, gun: w.day, bitis: w.day + 5, durum: 'bekliyor' });
+    let sonFiyat = piyasa; for (let i = 0; i < 40; i++) { const r = N.teklifCevap(w, meta, 'tp', o.id, { tutar: 1000 }); if (r.pazarlik) sonFiyat = r.pazarlik; if (r.bitti || !r.pazarlik) break; }
+    ok('pazarlık fiyatı piyasanın %85 altına inmiyor, en çok 3 tur', sonFiyat >= piyasa * .85, `piyasa ${piyasa}, son karşı teklif ${sonFiyat}`); } }
+// ---- süresi geçmiş teklif kabul edilmez ----
+meta.teklifler.push({ id: 'teski', tur: 'mulk_al', npcId: Object.keys(meta.npc)[0], mulkId: 'yok', fiyat: 1, gun: 0, bitis: w.day - 1, durum: 'bekliyor' });
+ok('süresi geçmiş teklif reddedilir', N.teklifCevap(w, meta, 'teski', o.id, 'kabul').ok === false);
 // ---- dönüş raporu ----
 N.oyuncuGoruntusu(w, meta, o.id);
 for (let g = 0; g < 20; g++) { N.gun(w, meta, o.id, { hafif: true }); const n0 = w.events.length; T.advanceDay(w, T.createRng(T.daySeed(w.seed, w.day))); N.gunSonu(w, meta, w.events.slice(n0)); }

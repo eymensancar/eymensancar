@@ -105,14 +105,20 @@
     duzenli: [0, 0, 0, 0, 0, 0, .1, .3, .6, .6, .5, .5, .8, .6, .5, .5, .5, .6, .8, .9, .8, .5, .2, .1],
   };
 
+  /** Dil verisindeki il kaydını {sehir, ilce} biçimine çevirir (eski kayıtlar için de). */
+  function yerDuzelt(y, rng) { if (!y) return { sehir: 'İstanbul', ilce: 'Kadıköy' }; if (y.sehir) return y; const ilceler = y.ilceler || []; return { sehir: y.ad || 'İstanbul', ilce: ilceler.length ? ilceler[Math.floor((rng ? rng.next() : .5) * ilceler.length)] : '' }; }
   function kimlikUret(rng, yabanci) {
     const v = dil().veri;
     const kadin = rng.chance(.5);
-    const ad = rng.pick(kadin ? v.kadinAdlari : v.erkekAdlari), soyad = rng.pick(v.soyadlari);
+    let ad = rng.pick(kadin ? v.kadinAdlari : v.erkekAdlari), soyad = rng.pick(v.soyadlari);
+    // Tanınmış biriyle aynı ad-soyad çıkmasın
+    for (let i = 0; i < 10 && dil().kimlikUygun && !dil().kimlikUygun(ad, soyad); i++) soyad = rng.pick(v.soyadlari);
     const arketip = agirlikliSec(rng, Object.keys(ARKETIP), a => ARKETIP_AGIRLIK[a]);
     const k = {};
     for (const o of OZELLIKLER) k[o] = sinir(ARKETIP[arketip].k[o] + (rng.next() - .5) * .3, 0, 1);
-    const yer = rng.pick(v.yerler);
+    // Yer: oyuncular çoğunlukla İstanbul'da (oyunun başladığı şehir), kalanı diğer illerde.
+    const iller = v.yerler, il = rng.chance(.6) ? (iller.find(x => (x.ad || x.sehir) === 'İstanbul') || rng.pick(iller)) : rng.pick(iller);
+    const yer = yerDuzelt(il, rng);
     // Görünen ad: çoğu "Ad Soyad", bir kısmı "Ad S." ya da takma ad (gerçek sunucudaki gibi karışık).
     const r = rng.next();
     const gorunen = r < .55 ? ad + ' ' + soyad : r < .75 ? ad + ' ' + soyad[0] + '.' : (dil().takmaAd || YEDEK_DIL.takmaAd)(ad, soyad, rng);
@@ -234,6 +240,7 @@
     for (const id in meta.npc) {
       const kim = meta.npc[id], p = world.players[id];
       if (!p) continue;
+      if (!kim.yer || !kim.yer.sehir) kim.yer = yerDuzelt(kim.yer, rng);
       // Bugün oyuna girdi mi? (çalışkanlık + rastgele; hafta içi/sonu farkı yok, oyun günü kısa)
       const aktif = rng.chance(lerp(.45, .97, kim.k.caliskan));
       if (aktif) gorevYap(world, kim, p, rng);
@@ -290,7 +297,7 @@
       for (const m of C().PROFESSIONS) {
         if (m.id === p.profession) continue;
         if (p.businessIds.length && (m.earning !== 'business' || m.tier <= T.getProfession(p.profession).tier)) continue;
-        if (p.employerBusinessId && m.earning !== 'business') continue; // oyuncunun yanında çalışan kolay kolay ayrılmaz (moral sistemi karar verir)
+        if (p.employerBusinessId) continue; // birinin yanında çalışan kendi kendine iş değiştirmez (ayrılmayı moral sistemi yönetir)
         for (const kredili of m.earning === 'business' ? [false, true] : [false]) {
           if (T.missingRequirements(world, p.id, m.id, { useLoan: kredili }).length) continue;
           if (kredili && kim.k.risk < .5) continue;
@@ -470,7 +477,7 @@
   }
 
   function teklifYap(world, meta, cikti, t) {
-    t.id = 't' + (++meta.sayac); t.gun = world.day; t.bitis = world.day + (t.sure || 5); t.durum = 'bekliyor';
+    t.id = 't' + (++meta.sayac); t.gun = world.day; t.ilk = t.fiyat || t.maas; t.tur_sayisi = 0; t.bitis = world.day + (t.sure || 5); t.durum = 'bekliyor';
     meta.teklifler.push(t);
     const kim = meta.npc[t.npcId];
     const anahtar = t.tur === 'is' ? 'dm.is_teklifi' : t.tur === 'mulk_al' ? 'dm.mulk_teklifi' : 'dm.mulk_teklifi';
@@ -483,7 +490,9 @@
   /** Teklife oyuncunun cevabı: 'kabul' | 'red' | {tutar} (pazarlık). Çekirdekte gerçek işlemi yapar. */
   NPCYZ.teklifCevap = function (world, meta, teklifId, oyuncuId, cevap) {
     const t = meta.teklifler.find(x => x.id === teklifId);
-    if (!t || t.durum !== 'bekliyor') return { ok: false, mesaj: 'Bu teklifin süresi geçmiş.' };
+    if (!t || t.durum !== 'bekliyor' || t.bitis < world.day) { if (t && t.durum === 'bekliyor') t.durum = 'gecti'; return { ok: false, mesaj: 'Bu teklifin süresi geçmiş.' }; }
+    if ((t.tur === 'mulk_al' || t.tur === 'mulk_sat') && cevap !== 'red') { const m = world.properties[t.mulkId]; if (!m || m.ownerId !== (t.tur === 'mulk_al' ? oyuncuId : t.npcId) || m.ownerLivesIn) { t.durum = 'gecti'; return { ok: false, mesaj: 'Bu mülk artık satışa uygun değil (sahibi değişmiş ya da içinde oturuluyor).' }; } }
+    if (t.tur === 'is' && cevap !== 'red') { const b = world.businesses[t.isletmeId]; if (!b || Object.keys(b.employees).length >= T.getBusinessDef(b.type).staffNeeded) { t.durum = 'gecti'; return { ok: false, mesaj: 'Bu iş artık boşta değil.' }; } }
     const kim = meta.npc[t.npcId], rng = rngYap(hash(t.id + JSON.stringify(cevap)));
     const il = iliski(meta, t.npcId);
     if (cevap === 'red') { t.durum = 'red'; il.sevgi = sinir(il.sevgi - .02, -1, 1); const m = konus(world, meta, kim, 'dm.mulk_teklif_red', {}, rng); dmEkle(meta, t.npcId, { kimden: 'npc', metin: m, gun: world.day }); return { ok: true, mesaj: m }; }
@@ -492,17 +501,20 @@
       // Pazarlık: NPC'nin sabrı ve oyuncuyla ilişkisi kadar esner.
       const esneme = lerp(.02, .09, kim.k.sabir) + il.sevgi * .03 + sansGucu(world, meta) * .04;
       const yon = t.tur === 'mulk_al' ? 1 : t.tur === 'is' ? 1 : -1; // mulk_al: oyuncu daha yüksek ister; is: oyuncu daha yüksek maaş ister; mulk_sat: oyuncu daha düşük ister
-      const sinirFiyat = Math.round(fiyat * (1 + yon * esneme));
+      const sinirFiyat = Math.round((t.ilk || fiyat) * (1 + yon * esneme));
+      t.tur_sayisi = (t.tur_sayisi || 0) + 1;
+      if (t.tur_sayisi > 3) { t.durum = 'red'; const m0 = konus(world, meta, kim, 'dm.mulk_teklif_red', {}, rng); dmEkle(meta, t.npcId, { kimden: 'npc', metin: m0, gun: world.day }); return { ok: true, mesaj: m0, bitti: true }; }
       const istenen = cevap.tutar;
       const kabul = yon > 0 ? istenen <= sinirFiyat : istenen >= sinirFiyat;
-      if (!kabul) { const karsi = Math.round(lerp(fiyat, sinirFiyat, .7) / 500) * 500; t.fiyat ? (t.fiyat = karsi) : (t.maas = karsi); const m = konus(world, meta, kim, 'dm.basvuru_pazarlik', { tutar: paraYaz(karsi) }, rng); dmEkle(meta, t.npcId, { kimden: 'npc', metin: m, gun: world.day, teklif: t.id }); return { ok: true, pazarlik: karsi, mesaj: m }; }
+      if (!kabul) { const karsi = Math.round(lerp(t.ilk || fiyat, sinirFiyat, .7) / 500) * 500; t.fiyat ? (t.fiyat = karsi) : (t.maas = karsi); const m = konus(world, meta, kim, 'dm.basvuru_pazarlik', { tutar: paraYaz(karsi) }, rng); dmEkle(meta, t.npcId, { kimden: 'npc', metin: m, gun: world.day, teklif: t.id }); return { ok: true, pazarlik: karsi, mesaj: m }; }
       fiyat = istenen; if (t.fiyat) t.fiyat = fiyat; else t.maas = fiyat;
     }
     let r;
     if (t.tur === 'mulk_al') r = T.sellPropertyToPlayer(world, oyuncuId, t.npcId, t.mulkId, fiyat);
     else if (t.tur === 'mulk_sat') r = T.sellPropertyToPlayer(world, t.npcId, oyuncuId, t.mulkId, fiyat);
-    else if (t.tur === 'is') { const o = world.players[oyuncuId]; if (o.employerBusinessId) T.leaveEmployer(world, oyuncuId); r = T.hireEmployee(world, t.npcId, t.isletmeId, oyuncuId, fiyat); }
+    else if (t.tur === 'is') { const o = world.players[oyuncuId], eski = o.employerBusinessId, eskiMaas = eski && world.businesses[eski] ? world.businesses[eski].employees[oyuncuId] : null; if (eski) T.leaveEmployer(world, oyuncuId); r = T.hireEmployee(world, t.npcId, t.isletmeId, oyuncuId, fiyat); if (!r.ok && eski && world.businesses[eski]) { world.businesses[eski].employees[oyuncuId] = eskiMaas; o.employerBusinessId = eski; } }
     if (!r || !r.ok) return { ok: false, mesaj: T.sunucuMetni ? T.sunucuMetni(r ? r.error : 'İşlem yapılamadı.') : (r && r.error) };
+    if (t.tur === 'mulk_al' || t.tur === 'mulk_sat') { const m = world.properties[t.mulkId]; if (m) m.ownerLivesIn = false; }
     t.durum = 'kabul'; il.sevgi = sinir(il.sevgi + .1, -1, 1); il.guven = sinir(il.guven + .1, 0, 1);
     const m = konus(world, meta, kim, 'dm.mulk_teklif_kabul', {}, rng);
     dmEkle(meta, t.npcId, { kimden: 'npc', metin: m, gun: world.day });
@@ -517,10 +529,11 @@
    * ilan = {id, meslek (çekirdek meslek id), maas, poz}
    * @returns yeni başvurular [{id, ilanId, npcId, ad, deneyim, itibar, maas (istediği), alt (gizli kabul sınırı)}]
    */
-  NPCYZ.basvurular = function (world, meta, oyuncu, ilanlar, mevcut) {
-    const rng = rngYap(T.daySeed(world.seed, world.day) ^ 0xb45);
+  NPCYZ.basvurular = function (world, meta, oyuncu, ilanlar, mevcut, tohumEk = 0) {
+    const rng = rngYap((T.daySeed(world.seed, world.day) ^ 0xb45) + tohumEk);
     const b = oyuncu.businessIds.length ? world.businesses[oyuncu.businessIds[oyuncu.businessIds.length - 1]] : null;
     if (!b) return [];
+    if (Object.keys(b.employees).length >= T.getBusinessDef(b.type).staffNeeded) return [];
     const sans = sansGucu(world, meta), yeni = [];
     for (const ilan of ilanlar) {
       if (mevcut.filter(x => x.ilanId === ilan.id).length >= 5) continue;
@@ -550,7 +563,14 @@
   NPCYZ.iseAl = function (world, meta, oyuncuId, basvuru, teklifMaas) {
     const kim = meta.npc[basvuru.npcId], p = world.players[basvuru.npcId], o = world.players[oyuncuId];
     if (!kim || !p) return { ok: false, mesaj: 'Aday artık yok.' };
-    const b = world.businesses[o.businessIds[o.businessIds.length - 1]];
+    const b = o && o.businessIds.length ? world.businesses[o.businessIds[o.businessIds.length - 1]] : null;
+    if (!b) return { ok: false, mesaj: 'İşe almak için bir işletmen olmalı.' };
+    const def = T.getBusinessDef(b.type);
+    if (Object.keys(b.employees).length >= def.staffNeeded) return { ok: false, mesaj: 'Kadro dolu. Önce birini çıkar ya da ilanı kapat.' };
+    const mes = basvuru.meslekIlan || p.profession;
+    if (!(C().BUSINESS_STAFF_PROFESSIONS[b.type] || []).includes(mes)) return { ok: false, mesaj: 'Bu meslek bu işletmeye uygun değil.' };
+    if (teklifMaas < T.indexed(world, def.minWage)) return { ok: false, mesaj: 'Maaş asgari ücretin altında olamaz.' };
+    if (p.businessIds.length) return { ok: false, mesaj: kim.gorunen + ' artık kendi işini yürütüyor.' };
     const rng = rngYap(hash(basvuru.id + teklifMaas));
     if (teklifMaas < basvuru.alt) {
       const karsi = Math.round(lerp(basvuru.alt, basvuru.maas, .5) / 500) * 500;
@@ -563,7 +583,7 @@
     if (!r.ok) return { ok: false, mesaj: T.sunucuMetni(r.error) };
     kim.calisan = { moral: sinir(.6 + (teklifMaas / Math.max(1, basvuru.maas) - 1) + kim.k.sadakat * .2, 0, 1), basladi: world.day, sonZamIstegi: world.day, istifa: null, dusukGun: 0 };
     const il = iliski(meta, p.id); il.sevgi = sinir(il.sevgi + .15, -1, 1); il.tanir = true;
-    const m = konus(world, meta, kim, 'dm.basvuru_kabul', {}, rng);
+    const m = konus(world, meta, kim, 'dm.ise_basladim', { isletme: isletmeAdi(b.type), oyuncuAd: o.name.split(' ')[0] }, rng);
     dmEkle(meta, p.id, { kimden: 'npc', metin: m, gun: world.day });
     olay(meta, p.id, 'is_degisti', { meslek: p.profession, oyuncuyla: true });
     return { ok: true, mesaj: m };
@@ -638,7 +658,7 @@
     const il = iliski(meta, npcId); il.sevgi = sinir(il.sevgi - .35, -1, 1); il.guven = sinir(il.guven - .2, 0, 1);
     kim.ruh = sinir(kim.ruh - .4, -1, 1);
     // Diğer çalışanların morali de biraz düşer
-    for (const id in meta.npc) if (meta.npc[id].calisan) meta.npc[id].calisan.moral = sinir(meta.npc[id].calisan.moral - .05, 0, 1);
+    for (const id in meta.npc) if (meta.npc[id].calisan && world.players[id] && world.players[id].employerBusinessId) meta.npc[id].calisan.moral = sinir(meta.npc[id].calisan.moral - .05, 0, 1);
     const m = konus(world, meta, kim, 'dm.isten_cikarildi', {}, rngYap(hash(npcId + 'kov' + world.day)));
     dmEkle(meta, npcId, { kimden: 'npc', metin: m, gun: world.day });
     return m;
@@ -656,7 +676,8 @@
     const ver = rng.next() < sinir(puan, .05, .95);
     il.mesaj++; il.tanir = true;
     if (ver) il.guven = sinir(il.guven + .05, 0, 1);
-    const metin = (dil().uret)(ver ? 'dm.yetki_verildi' : 'dm.yetki_red', { konu: yetki, ad: kurucu.ad || (kim.gorunen || '') }, stilOf(kim), rng);
+    const YETKI_SOZ = { proje: 'proje yönetimi', calisan: 'çalışan alma', maas: 'maaş düzenleme', yetki: 'yetki verme' };
+    const metin = (dil().uret)(ver ? 'dm.yetki_verildi' : 'dm.yetki_red', { konu: YETKI_SOZ[yetki] || yetki, ad: kurucu.ad || (kim.gorunen || '') }, stilOf(kim), rng);
     return { ver, metin };
   };
 
@@ -707,10 +728,13 @@
     return { resmi: k.resmi ?? .5, emoji: (k.emoji ?? .3) * (kim.ruh > -.3 ? 1 : .4), kisaltma: k.kisaltma ?? .2, hata: (k.hata ?? .2) * .6, nese: kim.ruh ?? 0, uzunluk: k.sosyal ?? .5, ascii: !!kim.ascii, buyukHarf: (k.resmi ?? .5) > .45 };
   }
   NPCYZ.stil = stilOf;
-  const meslekAdi = id => (id ? (T.t ? T.t('meslek.' + id) : id) : '');
-  const isletmeAdi = id => (id ? (T.t ? T.t('isletme.' + id) : id) : '');
+  // Sohbette insanlar resmî adları değil gündelik adları kullanır.
+  const MESLEK_SOZ = { garson: 'garson', insaat_iscisi: 'inşaat işçisi', kurye: 'kurye', market_calisani: 'kasiyer', memur: 'memur', emlak_danismani: 'emlak danışmanı', muhasebeci: 'muhasebeci', usta: 'usta', kafe_sahibi: 'kafe sahibi', dukkan_sahibi: 'dükkan sahibi', tasaron: 'taşeron', nakliyeci: 'nakliyeci', emlak_ofisi_sahibi: 'emlakçı', doviz_burosu_sahibi: 'dövizci', ithalat_ihracat: 'ithalatçı', muteahhit: 'müteahhit', fabrikator: 'fabrikatör' };
+  const ISLETME_SOZ = { dukkan: 'dükkan', kafe: 'kafe', tasaron: 'taşeron firması', emlak_ofisi: 'emlak ofisi', doviz_burosu: 'döviz bürosu', ithalat_ihracat: 'dış ticaret firması', muteahhit: 'inşaat firması', fabrika: 'fabrika' };
+  const meslekAdi = id => (id ? MESLEK_SOZ[id] || (T.t ? T.t('meslek.' + id) : id).toLocaleLowerCase('tr') : '');
+  const isletmeAdi = id => (id ? ISLETME_SOZ[id] || (T.t ? T.t('isletme.' + id) : id).toLocaleLowerCase('tr') : '');
   const mulkAdi = id => (id ? (T.t ? T.t('mulk_turu.' + id) : id).toLocaleLowerCase('tr') : '');
-  const kursAdi = id => (id ? (T.t ? T.t('kurs.' + id) : id) : '');
+  const kursAdi = id => (id ? (T.t ? T.t('kurs.' + id) : id).split(' ').map(w => w.charAt(0).toLocaleUpperCase('tr') + w.slice(1)).join(' ') : '');
   const yerAdi = kim => (kim.yer ? (kim.yer.ilce || kim.yer.sehir) : '');
 
   function konus(world, meta, kim, anahtar, slot, rng) {
@@ -742,6 +766,7 @@
    * @returns yeni mesajlar [{id, kanal, npcId, ad, metin, zaman, oyunDk}]
    */
   NPCYZ.kanalAkisi = function (world, meta, kanal, simdiMs, saat, oyuncu, sirketNpcIdleri) {
+    if (!meta.kanal[kanal]) meta.kanal[kanal] = [];
     const son = meta.kanalZaman[kanal] || (simdiMs - 6 * 60e3);
     let gecen = Math.min(simdiMs - son, 3 * 3600e3);
     meta.kanalZaman[kanal] = simdiMs;
@@ -902,10 +927,10 @@
           const uy = (ny.varlik && ny.varlik.meslek && ml.includes(ny.varlik.meslek)) ? ny.varlik.meslek : ml.find(m => m === oyuncu.profession) || ml[0];
           const bos = Object.keys(b.employees).length < T.getBusinessDef(b.type).staffNeeded;
           if (bos && uy) { anahtar = 'cevap.is_teklif_ediyorum'; Object.assign(s, { isletme: isletmeAdi(b.type), meslek: meslekAdi(uy), tutar: paraYaz(Math.round(T.indexed(world, T.getBusinessDef(b.type).minWage) * 1.15 / 500) * 500) }); if (oyuncu.profession === uy && !oyuncu.businessIds.length) meta.isTeklifSansi = { npcId: id, bitis: world.day + 2 }; }
-        } else { const t = tavsiye(world, oyuncu); anahtar = 'cevap.tavsiye_meslek'; Object.assign(s, t); }
+        } else { const t = tavsiye(world, oyuncu); delete t.kursUcret; anahtar = 'cevap.tavsiye_meslek'; Object.assign(s, t); }
         break;
       }
-      case 'meslek_tavsiyesi': case 'yardim': case 'kurs_sorusu': { const t = tavsiye(world, oyuncu); anahtar = t.kurs && ny.niyet === 'kurs_sorusu' ? 'cevap.kurs_sorusu' : 'cevap.tavsiye_meslek'; Object.assign(s, t); break; }
+      case 'meslek_tavsiyesi': case 'yardim': case 'kurs_sorusu': { const t = tavsiye(world, oyuncu); anahtar = t.kurs && ny.niyet === 'kurs_sorusu' ? 'cevap.kurs_sorusu' : 'cevap.tavsiye_meslek'; Object.assign(s, t); if (anahtar === 'cevap.kurs_sorusu' && t.kursUcret) s.tutar = t.kursUcret; delete s.kursUcret; break; }
       case 'maas_sorusu': Object.assign(s, { meslek: meslekAdi((ny.varlik && ny.varlik.meslek) || p.profession), tutar: paraYaz(beklenenGelir(world, kim, (ny.varlik && ny.varlik.meslek) || p.profession)) }); break;
       case 'ekonomi': { const y = meta.yonetici.gecmis; const enf = y.length > 1 ? (y[y.length - 1].endeks / y[Math.max(0, y.length - 13)].endeks - 1) * 100 : (world.priceIndex - 1) * 100; Object.assign(s, { sayi: '%' + enf.toLocaleString('tr-TR', { maximumFractionDigits: 1 }), konu: 'faiz %' + (world.policy.loanMonthlyRate * 100).toLocaleString('tr-TR') }); break; }
       case 'kredi_sorusu': Object.assign(s, { sayi: '%' + (world.policy.loanMonthlyRate * 100).toLocaleString('tr-TR'), tutar: paraYaz(Math.round(oyuncu.lastMonthIncome * oyuncu.creditScore / 100)) }); break;
@@ -913,7 +938,7 @@
       case 'kisisel_meslek': Object.assign(s, { meslek: meslekAdi(p.profession), sayi: String(world.day - p.professionSince) }); break;
       case 'kisisel_yer': Object.assign(s, { yer: yerAdi(kim) }); break;
       case 'kisisel_ad': Object.assign(s, { ad: kim.ad }); break;
-      case 'dert': il.sevgi = sinir(il.sevgi + .03, -1, 1); { const t = tavsiye(world, oyuncu); Object.assign(s, t); } break;
+      case 'dert': il.sevgi = sinir(il.sevgi + .03, -1, 1); { const t = tavsiye(world, oyuncu); delete t.kursUcret; Object.assign(s, t); } break;
       case 'iltifat': il.sevgi = sinir(il.sevgi + .08, -1, 1); kim.ruh = sinir(kim.ruh + .1, -1, 1); break;
       case 'teklif': if (ny.varlik && ny.varlik.tutar) s.tutar = paraYaz(ny.varlik.tutar); break;
       case 'bayram': { const o = ozelGun(world.day); s.konu = o ? o.ad : 'bayramın'; break; }
@@ -932,7 +957,7 @@
     if (en) return { meslek: meslekAdi(en.m.id), tutar: paraYaz(en.g) };
     // Uygun daha iyi iş yok: hedef için kurs öner
     const kurs = ['kamu_sinavi', 'muhasebe', 'emlak_belgesi', 'ustalik'].find(c => !o.completedCourses.includes(c));
-    if (kurs) { const acar = C().PROFESSIONS.find(m => m.requirements.course === kurs); return { kurs: kursAdi(kurs), meslek: meslekAdi(acar ? acar.id : ''), tutar: paraYaz(T.indexed(world, T.getCourse(kurs).cost)) }; }
+    if (kurs) { const acar = C().PROFESSIONS.find(m => m.requirements.course === kurs); return { kurs: kursAdi(kurs), meslek: meslekAdi(acar ? acar.id : ''), tutar: paraYaz(acar ? beklenenGelir(world, sahte, acar.id) : 0), kursUcret: paraYaz(T.indexed(world, T.getCourse(kurs).cost)) }; }
     return { meslek: meslekAdi(o.profession), tutar: paraYaz(simdi) };
   }
   NPCYZ.tavsiye = tavsiye;
@@ -953,7 +978,7 @@
       if (ny.niyet === 'evet' || ny.niyet === 'oneri_kabul') sonuc = NPCYZ.teklifCevap(world, meta, t.id, oyuncu.id, 'kabul');
       else if (ny.niyet === 'hayir') sonuc = NPCYZ.teklifCevap(world, meta, t.id, oyuncu.id, 'red');
       else if (ny.varlik && ny.varlik.tutar) sonuc = NPCYZ.teklifCevap(world, meta, t.id, oyuncu.id, { tutar: ny.varlik.tutar });
-      if (sonuc) return { metin: sonuc.mesaj, gecikmeMs: 0, islem: sonuc.islem || null, ok: sonuc.ok, zatenEklendi: sonuc.ok && !sonuc.pazarlik ? true : !!sonuc.pazarlik };
+      if (sonuc) return sonuc.ok ? { metin: sonuc.mesaj, gecikmeMs: 0, islem: sonuc.islem || null, ok: true, zatenEklendi: true } : { hata: sonuc.mesaj, ok: false, zatenEklendi: true };
     }
     // İş arayan oyuncu, "iş arıyorum" dediği işletme sahibine yazdı: gerçek teklif açılır
     if (meta.isTeklifSansi && meta.isTeklifSansi.npcId === npcId && (ny.niyet === 'evet' || ny.niyet === 'is_ariyorum' || ny.niyet === 'oneri_kabul')) {
