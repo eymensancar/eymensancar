@@ -36,6 +36,14 @@ test('API: globalThis.NPCDil', globalThis.NPCDil === D);
   esit('normal: meraba, nslsn', D.normal('meraba nslsn').kucuk, 'merhaba nasılsın');
   esit('normal: sayılar korunur', D.normal('1.500.000 tl, 1,5 milyon!').kucuk, '1.500.000 tl 1,5 milyon');
   esit('normal: uzatılmış harfler', D.normal('selaaaam').kucuk, 'selam');
+  esit('normal: -yo ağzı', D.normal('param yetmiyo').kucuk, 'param yetmiyor');
+  esit('normal: -yosun/-yon', D.normal('kaç veriyosun nerden yazıyon').kucuk, 'kaç veriyorsun nereden yazıyorsun');
+  esit('normal: bitişik soru eki', D.normal('kuryemisin varmı olurmu').kucuk, 'kurye misin var mı olur mu');
+  esit('normal: alıyomusunuz', D.normal('eleman alıyomusunuz').kucuk, 'eleman alıyor musunuz');
+  esit('normal: gelecek zaman ağzı', D.normal('alıcam gelicem yapıcaz açcam').kucuk, 'alacağım geleceğim yapacağız açacağım');
+  esit('normal: hocam/amcam/kocam bozulmaz', D.normal('hocam amcam kocam').kucuk, 'hocam amcam kocam');
+  esit('normal: satıyomuşsun', D.normal('satıyomuşsun').kucuk, 'satıyormuşsun');
+  esit('normal: sry/nope/evt', D.normal('sry nope evt').kucuk, 'kusura bakma hayır evet');
 }
 
 // ---------------------------------------------------------------
@@ -156,7 +164,57 @@ const ORNEK = [
   ['akşam ne yesek', 'genel'], ['naptın bugün', 'hal_hatir'], ['eyw kanka', 'tesekkur'], ['iş bulamıyorum yardım', 'is_ariyorum'],
   ['maaş ne kadar veriyorsunuz', 'maas_sorusu'], ['ev fiyatları çok arttı', 'ekonomi'], ['faiz oranı ne kadar', 'ekonomi'],
   ["istanbul'da ev almak istiyorum", 'mulk_ariyorum'], ['yorgunluktan öldüm', 'dert'], ['hahah çok iyi', 'saka'],
-  ['bana bir iş ver', 'is_ariyorum'], ['kurye lazım mı', 'eleman_ariyorum']
+  ['bana bir iş ver', 'is_ariyorum'], ['kurye lazım mı', 'eleman_ariyorum'],
+  // genel kalip varyantlari (kor set gelistirmesinden sonra; her kural icin farkli yazilmis cumleler)
+  // agiz -yo/-yon, bitisik soru eki
+  ['maaş yetmiyo ya', 'dert'], ['kira ödeyemiyom bu ay', 'dert'], ['param hiç yetmiyo', 'dert'],
+  ['kaç para veriyonuz', 'maas_sorusu'], ['ayda kaç veriyosunuz', 'maas_sorusu'], ['ne kadar ödüyonuz', 'maas_sorusu'],
+  ['garsonmusun', 'kisisel_meslek'], ['muhasebecimisin sen', 'kisisel_meslek'], ['sen usta mısın', 'kisisel_meslek'],
+  ['izmirde misin', 'kisisel_yer'], ['ankaradamısın', 'kisisel_yer'], ['bursalı var mı burda', 'kisisel_yer'],
+  ['nerden yazıyon', 'kisisel_yer'], ['hangi şehirden yazıyosun', 'kisisel_yer'], ['nereli olduğunu sorsam', 'kisisel_yer'],
+  // -lik ariyorum / X alinir
+  ['kuryelik arıyorum', 'is_ariyorum'], ['şoförlük bakıyorum', 'is_ariyorum'], ['muhasebecilik arıyorum bilen var mı', 'is_ariyorum'],
+  ['kurye alınır', 'eleman_ariyorum'], ['kafeye garson alıcam', 'eleman_ariyorum'], ['dükkana bir kasiyer alıyoruz', 'eleman_ariyorum'],
+  ['garson alıyo musunuz', 'is_ariyorum'], ['kim kurye alıyor', 'is_ariyorum'], ['eleman alan yer var mı', 'is_ariyorum'],
+  ['bi iş bulun bana', 'is_ariyorum'], ['iş olan varsa yazsın', 'is_ariyorum'], ['her türlü işte çalışırım', 'is_ariyorum'],
+  // nasil -ilir / ne ise yarar
+  ['dükkan nasıl kiralanır', 'yardim'], ['maaş nasıl yükseltilir', 'yardim'], ['nasıl para biriktiririm', 'yardim'],
+  ['kum saati ne işe yarıyor', 'yardim'], ['itibar ne işe yarar', 'yardim'], ['ayarlar nerede', 'yardim'],
+  // ortaklik
+  ['ortak olalım mı', 'teklif'], ['birlikte bir kafe kuralım', 'teklif'], ['beraber arsa alalım mı', 'teklif'],
+  // tebrik
+  ['helal olsun be', 'tebrik'], ['maşallah çok iyi gidiyorsun', 'tebrik'], ['ellerine sağlık dükkan çok güzel olmuş', 'tebrik'],
+  // ozur / hayir / evet / veda
+  ['sry geç kaldım', 'ozur'], ['kb yanlış yazdım', 'ozur'], ['sorry', 'ozur'],
+  ['nope', 'hayir'], ['yook', 'hayir'], ['evt', 'evet'],
+  ['ben kaçayım artık', 'veda'], ['hoşçakal kanka', 'veda'], ['hadi ben gidiyorum', 'veda'],
+  // saka
+  ['hahahaha', 'saka'], ['ahahahah çok iyi', 'saka'], ['asdfghj', 'saka'], ['zengin olunca hepinize kahve ısmarlarım', 'saka'],
+  // kisisel_ad / bot
+  ['isminiz ne', 'kisisel_ad'], ['nickin ne demek', 'kisisel_ad'], ['kullanıcı adın neden böyle', 'kisisel_ad'],
+  ['bunlar bot mu', 'bot_musun'], ['burada gerçek kişi var mı', 'bot_musun'], ['hepsi npc mi', 'bot_musun'],
+  // iltifat / hakaret
+  ['çok akıllısın ya', 'iltifat'], ['ne güzel anlatıyorsun', 'iltifat'], ['çok bilgilisiniz', 'iltifat'], ['salak bot', 'hakaret'],
+  // maas
+  ['prim veriliyor mu', 'maas_sorusu'], ['yevmiye ne kadar', 'maas_sorusu'], ['net maaş ne kadar', 'maas_sorusu'],
+  // meslek tavsiyesi / kurs
+  ['en garanti meslek hangisi', 'meslek_tavsiyesi'], ['kuryelikten sonra ne yapayım', 'meslek_tavsiyesi'], ['usta olmaya değer mi', 'meslek_tavsiyesi'],
+  ['sınav ne zaman', 'kurs_sorusu'], ['ehliyet nasıl alınır', 'kurs_sorusu'], ['muhasebeci olmak için ne gerekiyor', 'kurs_sorusu'],
+  // fiyat / ekonomi
+  ['biraz iner mi', 'fiyat_sorusu'], ['en son kaça olur', 'fiyat_sorusu'], ['daireler ucuzlar mı', 'fiyat_sorusu'],
+  ['kiralar neden bu kadar arttı', 'ekonomi'], ['dolar düşer mi', 'ekonomi'], ['market zamlanmış yine', 'ekonomi'],
+  // mulk
+  ['kadıköyde ev var mı', 'mulk_ariyorum'], ['ucuz dükkan lazım', 'mulk_ariyorum'], ['kiralık 2+1 Üsküdar', 'mulk_ariyorum'],
+  ['dükkanımı devrediyorum', 'mulk_satiyorum'], ['kafeyi devredicem alan olur mu', 'mulk_satiyorum'], ['evi satıp araba alcam alacak var mı', 'mulk_satiyorum'],
+  // dert
+  ['iflas ettim', 'dert'], ['kredim onaylanmadı', 'dert'], ['çalışanlarım istifa etti', 'dert'], ['dolandırıcıya param gitti dolandırıldım', 'dert'],
+  // zam / yetki
+  ['bu ay da zam yok', 'zam_istegi'], ['biraz daha fazla verseniz', 'zam_istegi'], ['maaşımı 35 bine çıkarır mısın', 'zam_istegi'],
+  ['admin olabilir miyim', 'yetki_istegi'], ['moderatör alımı var mı', 'yetki_istegi'], ['bedava para verir misin', 'yetki_istegi'],
+  // atif
+  ['kurye arıyormuşsun', 'is_ariyorum'], ['arsa satıyormuşsun daha duruyor mu', 'mulk_ariyorum'], ['dükkan hâlâ kiralık mı', 'mulk_ariyorum'],
+  // selam
+  ['naber gençler', 'selam'], ['selam ahali', 'selam'], ['oyuna yeni katıldım herkese selam', 'selam'], ['hayırlı günler', 'selam']
 ];
 let dogru = 0;
 const yanlislar = [];
@@ -198,7 +256,8 @@ const meslekler = [
   ['muhasebe biliyorum', 'muhasebeci'], ['emlakçıyım', 'emlak_danismani'], ['emlak ofisi açtım', 'emlak_ofisi_sahibi'],
   ['döviz bürosu işletiyorum', 'doviz_burosu_sahibi'], ['ithalat yapıyorum', 'ithalat_ihracat'], ['müteahhitim', 'muteahhit'],
   ['fabrikatör oldum', 'fabrikator'], ['taşeron firmam var', 'tasaron'], ['kafe sahibiyim', 'kafe_sahibi'], ['bakkalım', 'dukkan_sahibi'],
-  ['kamyon şoförüyüm', 'nakliyeci'], ['bugün hava güzel', null]
+  ['kamyon şoförüyüm', 'nakliyeci'], ['bugün hava güzel', null],
+  ['fabrikama muhasebeci alıyorum', 'muhasebeci'], ['kafeye kurye lazım', 'kurye'], ['inşaat şirketime usta arıyorum', 'usta']
 ];
 meslekler.forEach(([m, b]) => esit('meslek: "' + m + '"', D.niyetBul(m, baglam).varlik.meslek, b));
 const mulkler = [

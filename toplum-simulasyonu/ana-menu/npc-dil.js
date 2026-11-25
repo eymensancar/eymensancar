@@ -160,9 +160,10 @@
     }
     // 2) -yo/-yon/-yom/-yoz/-yosun agzi: yetmiyo, veriyon, aliyom, yaziyosun
     var g = parca[0];
-    var r = /^(\p{L}{2,}[ıiuü])yo(n|sun|m|z|nuz|sunuz|lar|du|muş)?$/u.exec(g);
+    var r = /^(\p{L}{2,}[ıiuü])yo(n|sun|m|z|nuz|sunuz|lar|du|muş|muşsun|muşsunuz|mişsin|dun)?$/u.exec(g);
     if (r) {
-      var son = { '': 'yor', n: 'yorsun', sun: 'yorsun', m: 'yorum', z: 'yoruz', nuz: 'yorsunuz', sunuz: 'yorsunuz', lar: 'yorlar', du: 'yordu', 'muş': 'yormuş' };
+      var son = { '': 'yor', n: 'yorsun', sun: 'yorsun', m: 'yorum', z: 'yoruz', nuz: 'yorsunuz', sunuz: 'yorsunuz', lar: 'yorlar', du: 'yordu',
+        dun: 'yordun', 'muş': 'yormuş', 'muşsun': 'yormuşsun', 'muşsunuz': 'yormuşsunuz', 'mişsin': 'yormuşsun' };
       parca[0] = r[1] + son[r[2] || ''];
     }
     // 3) gelecek zaman agzi: alıcam, açcam, gelicem, yapıcaz -> alacağım, açacağım, geleceğim, yapacağız
@@ -356,6 +357,7 @@
     ['tasaron', 4, '\\btaseron\\w*'],
     ['emlak_danismani', 3.5, '\\b(emlak danisman\\w*|gayrimenkul danisman\\w*|emlakci\\w*|emlakta calis\\w*|emlak isi\\w*|emlak sektor\\w*)'],
     ['emlak_danismani', 1.5, '\\bemlak\\b'],
+    ['emlak_danismani', 3, '\\bdanisman\\w*'],
     ['muhasebeci', 3.5, '\\b(muhasebe\\w*|mali musavir\\w*|smmm)'],
     ['market_calisani', 3.5, '\\b(kasiyer\\w*|reyon\\w*|market (calis|eleman|gorevli|isci)\\w*|markette (calis|kasiyer)\\w*)'],
     ['market_calisani', 1.2, '\\bmarket\\w*'],
@@ -380,7 +382,11 @@
     MESLEK_RE.forEach(function (r) {
       r.re.lastIndex = 0;
       var m = r.re.exec(katli);
-      if (m) ekle(r.id, r.p, m.index);
+      if (!m) return;
+      // ardindan alim/arama fiili gelen meslek, cumlenin konusu olan roldur ("emlak ofisime danisman aliyorum")
+      var sonra = katli.slice(m.index + m[0].length);
+      var bonus = /^\w* (al[iaı]\w*|ar[ai][yn]\w*|aram\w*|lazim|aran\w*)/.test(sonra) ? 1.5 : 0;
+      ekle(r.id, r.p + bonus, m.index);
     });
     var ml = baglam && baglam.meslekler;
     if (ml) Object.keys(ml).forEach(function (id) {
@@ -605,16 +611,18 @@
     ['is_ariyorum', 3, '\\bis (ayarla\\w*|bul(un|sana|ur)\\w*|olan (var|kim)\\w*|varsa|olursa|olan)\\b'],
     ['is_ariyorum', 3, '\\b(calisirim|calisabilirim|calismaya hazirim|her ise hazirim|is olsa yaparim)\\b'],
     ['eleman_ariyorum', 3.5, '\\b(eleman|isci|personel|calisan|danisman|garson|kurye|usta|sofor|kasiyer|muhasebeci|asci|komi|stajyer|biri|birini|kisi)\\w{0,3} (ali(yorum|yoruz|nir|nacak|riz|rim)\\b|alacag\\w*|lazim\\b|arayisi\\w*)'],
-    ['maas_sorusu', 3.5, '\\b(kac|kaca|ne kadar)( para| bin| lira| tl)? (veri|ode|ali(yor|r)|kazan|calis)\\w*'],
+    ['maas_sorusu', 3.5, '\\b(kac|ne kadar)( para| bin| lira| tl)? (veri|od[eu]|ali(yor|r)|kazan|calis)\\w*|\\bkaca calis\\w*'],
     ['maas_sorusu', 3, '\\b(prim (var|veriliyor|ne kadar)\\w*|brut|net maas\\w*|net mi|sigorta\\w* (var|yapiliyor)\\w*|gunluk (kac|ne kadar)|haftalik (kac|ne kadar)|yevmiye\\w*|bahsis\\w*)'],
     ['meslek_tavsiyesi', 3.2, '\\b(en (karli|iyi|mantikli|kazancli|garanti) (is|mesle[kg])\\w*|(is|mesle[kg])\\w* hangisi|\\w+ olmaya deger\\w*|\\w+(dan|den|tan|ten) sonra ne (yap|ol)\\w*|baslangic icin (ne|hangi)\\w*|neye gecsem|ne olsam)'],
     ['kurs_sorusu', 3.8, '\\b(sinav\\w*|kpss|ales|belge\\w*|ehliyet\\w*|lisans\\w* (al|nasil)\\w*)'],
     ['yardim', 3.5, '\\bnasil (\\w+ )?\\w{2,}(ilir|ulur|inir|unur|nir|nur|lir|lur|irim|urum|arim|erim|iriz|uruz|ariz|eriz|abilirim|ebilirim)\\b'],
     ['yardim', 3.5, '\\b(ne ise yar\\w*|nereden (alinir|acilir|bakilir|yapilir)|nerede(n)? (bulurum|bulunur)|(menu|ayar|buton|sekme|ekran|profil|envanter|harita|magaza)\\w* (nerede|yok|acilmiyor|nasil)|nerede (menu|ayar|buton|sekme)\\w*)'],
-    ['zam_istegi', 4, '\\b(zam (yok|gelmezse|gelmedi|almadim|alamadim|yapmadin\\w*|yapilmadi|gormedim)|(biraz |daha )+(fazla )?vers(en|eniz|ene)\\b|maas\\w* (\\S+ )?(cikar|artir|arttir|yukselt)\\w*)'],
+    ['zam_istegi', 4, '\\b(zam (yok|gelmezse|gelmedi|almadim|alamadim|yapmadin\\w*|yapilmadi|gormedim)|(biraz |daha )+(fazla )?vers(en|eniz|ene)\\b|maas\\w* (\\S+ ){0,2}(cikar|artir|arttir|yukselt)\\w*)'],
     ['yetki_istegi', 4, '\\b(admin\\w*|moderator\\w*|mod (yap|ol)\\w*|mod\\b|yonetici (yap|ol)\\w*|hile\\w*|bedava\\w*|para (gonder|yolla|at)\\w*|bana \\S+( \\S+)? (gonder|yolla)\\w*|para verir mi\\w*)'],
-    ['teklif', 3.6, '\\b(ortak\\w*|beraber (\\w+ )?(ac|al|kur|yap|isle)\\w*|birlikte (\\w+ )?(ac|al|kur|yap)\\w*|\\w+ (acalim|alalim|kuralim|yapalim)( mi)? (beraber|birlikte)|yari yariya|seninle (\\w+ )?(is|ortak)\\w* (yap|kur)\\w*|is birligi\\w*|isbirligi\\w*|is yapalim)'],
+    ['teklif', 3.6, '\\b(ortak\\w*|beraber (\\w+ ){0,2}(ac|al|kur|yap|isle)\\w*|birlikte (\\w+ ){0,2}(ac|al|kur|yap)\\w*|\\w+ (acalim|alalim|kuralim|yapalim)( mi)? (beraber|birlikte)|yari yariya|seninle (\\w+ )?(is|ortak)\\w* (yap|kur)\\w*|is birligi\\w*|isbirligi\\w*|is yapalim)'],
     ['dert', 3.6, '\\b(bat(ti|tim|tik|tilar|iyorum|acagim)\\b|dolandiril\\w*|odeyemiyor\\w*|odeyemedim|odeyemeyecegim|alamadim|alamiyorum|maas\\w* (yatmadi|odenmedi|gecikti)|atilacag\\w*|kovul\\w*|(elemanlar|calisanlar|isciler)\\w* (kacti|gitti|birakti|istifa)\\w*|beni (oldur|bitir|mahved)\\w*|borcum (cok|var|bitmiyor|buyuk)|borca (battim|girdim)|icraya (dus|gitt|verdi)\\w*|yardim etmiyor\\w*|kimse (yardim|umursa|bakm)\\w*|parasiz kaldim|meteliksiz\\w*)'],
+    ['dert', 3.6, '\\b(redded\\w*|reddetti\\w*|onaylanmadi|kabul edilmedi|kredi\\w* (cikmadi|verilmedi))'],
+    ['kurs_sorusu', 4, '\\b\\w+ (olmak|olabilmek|gecmek) icin (ne|neler|hangi \\w+) (lazim|gerek|yapmali\\w*|almali\\w*)\\w*'],
     ['kisisel_meslek', 3.6, '\\bhangi mesle[kg]\\w*(sin|siniz|sun)\\b|\\bhangi (iste|sektorde)\\w*'],
     ['kisisel_ad', 3.6, '\\b(isim\\w* (ne|neydi|ney|nedir)\\b|ismini\\w*|nick\\w*|kullanici adi\\w*|adini (bilmiyorum|bilmem|ogrenebilir)\\w*)'],
     ['bot_musun', 4, '\\b(bot (mu|mi|musun|misin|musunuz)\\b|gercek (oyuncu|kisi|insan)\\w* (var|mi|mu)\\w*|bunlar (bot|gercek|npc)\\w*|hepsi (bot|npc)\\w*)'],
@@ -652,6 +660,8 @@
       if (unlu === 0 && /^[a-z]+$/.test(f) && (f.length >= 5 || /(..)\1/.test(f))) p = 3;
       else if (f.length >= 6 && unlu / f.length < 0.2 && /(..)\1/.test(f)) p = Math.max(p, 2.5);
       else if (/^(asd|qwe|jsj|sjs|ksk|skd)/.test(f)) p = Math.max(p, 2.5);
+      // ana sira harfleriyle dort+ unsuz yan yana: ahdkfj, asdkjh (Turkcede olmaz)
+      else if (/[^aeiou]{4,}/.test(f) && (f.match(/[asdfghjkl]/g) || []).length / f.length >= 0.8) p = Math.max(p, 3);
     });
     return p;
   }
@@ -691,6 +701,8 @@
       if (nk <= 2) puan[a] *= 1.5; else if (nk > 4) puan[a] *= 0.5;
     });
     if (kufur) ekle('hakaret', 4);
+    // "maas nasil yukseltilir": genel bilgi sorusu, kisisel zam istegi degil
+    if (puan.zam_istegi && puan.yardim >= 3.5 && /\bnasil\b/.test(k) && !/\bmaas(im|imi|ima)\b/.test(k)) puan.zam_istegi -= 2.5;
     // "aptal bot": hakaret, bot sorusu degil
     if (puan.hakaret >= 3 && puan.bot_musun && !soru) puan.bot_musun -= 2.5;
     var s = sakaMi(n);
@@ -713,13 +725,16 @@
     }
     // "sen memur musun", "kuryemisin", "patron musun": kisinin meslegini soruyor
     if ((v.meslek || /\bpatron\w*\b/.test(k)) && /\b(misin|musun|misiniz|musunuz)\b/.test(k) &&
+      !(puan.zam_istegi || puan.yetki_istegi || puan.teklif || puan.yardim || puan.kurs_sorusu) &&
       !new RegExp('\\b(' + AR + '|lazim|alir|aliyor|ister)').test(k)) ekle('kisisel_meslek', 4);
     if (v.meslek && /\bkimler?\b/.test(k) && /\b(burada|kanalda|var|aramizda)\b/.test(k) && !/\bal(ir|iyor|an)\b/.test(k)) ekle('kisisel_meslek', 3.6);
     // "Istanbulda misin", "Ankarali var mi": kisinin yerini soruyor
     if (v.yer && /\b(misin|musun|misiniz|musunuz)\b/.test(k)) ekle('kisisel_yer', 4);
     if (v.yer && /\b\w+l[iu](lar)? (var|kim|olan)\b/.test(k)) ekle('kisisel_yer', 3.6);
     // is ilaninda maas yazmak teklif degildir ("eleman ariyorum 30 bin veririm")
-    if (puan.teklif && (puan.eleman_ariyorum >= 3 || puan.is_ariyorum >= 3) && !/\bortak/.test(k)) puan.teklif -= 3;
+    if (puan.teklif && (puan.eleman_ariyorum >= 3 || (puan.is_ariyorum >= 3 && v.tutar == null)) && !/\bortak/.test(k)) puan.teklif -= 3;
+    // fiyat egilimi ("fiyatlar duser mi", "neden artiyor") ekonomidir
+    if (puan.fiyat_sorusu && /\b((fiyat|kira|piyasa|dolar|emlak|altin)\w* (\w+ )?(dus|art|yuksel|ucu|uctu|inecek|cikacak|neden)\w*|neden (art|pahalan|yuksel)\w*)/.test(k)) puan.fiyat_sorusu -= 3;
     // dert anlatimi kredi/maas sorusu degil ("borcum cok", "maasimi alamadim")
     if (puan.dert >= 3.6 && !soru) {
       ['kredi_sorusu', 'maas_sorusu', 'eleman_ariyorum', 'mulk_satiyorum'].forEach(function (a) { if (puan[a]) puan[a] -= 2; });
@@ -736,6 +751,17 @@
     if (puan.kredi_sorusu && puan.ekonomi && /\bfaiz/.test(k) && !/\b(kredi|borc|taksit|icra)/.test(k)) puan.kredi_sorusu -= 2;
     // pazarlik/indirim sorusu, tutar yoksa fiyat sorusu
     if (v.tutar == null && soru && puan.teklif && /\b(pazarlik|indirim|iner|duser|son fiyat)/.test(k)) ekle('fiyat_sorusu', 1.5);
+    // Karsi tarafin ilanina atif: "eleman ariyormussun", "daire satiyomussun", "garson ariyorum diyordun", "hala satilik mi".
+    // Konusan karsi roldedir: eleman <-> is arama, satma -> arama.
+    var atif = /\b\w+(yormussun\w*|mussun|mussunuz|missin|missiniz)\b|\b(diyordun|demistin|demissin|yazmissin|yazmistin|paylasmissin)\b/.test(k) ||
+      /\bhala (satilik|kiralik|var|duruyor|musait|satiyor|ariyor)\w*/.test(k) || /\b(satilik|kiralik)\b.*\bvarmis\b/.test(k);
+    if (atif) {
+      var el = puan.eleman_ariyorum || 0, is_ = puan.is_ariyorum || 0;
+      if (el > is_) { puan.is_ariyorum = el + 0.5; puan.eleman_ariyorum = is_; }
+      if (puan.mulk_satiyorum || (v.mulk && /\b(sat|kirali)/.test(k))) {
+        puan.mulk_ariyorum = Math.max(puan.mulk_ariyorum || 0, (puan.mulk_satiyorum || 3)) + 0.5; puan.mulk_satiyorum = 0;
+      }
+    }
     // "satilik daire var mi / ariyorum" -> arayan
     if (/\b(satilik|kiralik)\b/.test(k) && new RegExp('\\b(' + AR + '|var mi|lazim|bakiyorum|nerede|bil\\w*)').test(k) &&
       !/\b(satiyorum|satacag|benim|elimde|dairem|evim|dukkanim|arsam|ilgilenen|isteyen|alan var|alici)/.test(k)) {
@@ -1556,12 +1582,12 @@
   // Bir NPC işletmesinde gerçekten açık var: patron değil, başka biri yönlendiriyor
   tanim('cevap.is_firsati_yonlendir', 'is', [
     '{kisi} {meslek} arıyordu, [ona yaz|özelden yaz bence], {tutar} veriyormuş',
-    '{yer|de} {kisi|in} {isletme} var, {meslek} lazımmış. [Bir sor|Yaz istersen]',
+    '{yer|de} {kisi|in} {isletmesi} var, {meslek} lazımmış. [Bir sor|Yaz istersen]',
     '{kisi|e} yaz, {isletme} için {meslek} arıyor, maaş {tutar} civarı',
     'Bildiğim kadarıyla {kisi|in} yerinde açık var, {meslek}. {tutar} diyorlardı',
-    '{isletme} sahibi {kisi} eleman bakıyordu, {meslek} için. Bir yaz bence',
+    '{kisi|in} {isletmesi} eleman bakıyordu, {meslek} için. Bir yaz bence',
     '{kisi} geçen gün {meslek} arıyorum demişti, {tutar} veriyormuş',
-    '{yer} tarafında {kisi|in} {isletme} var, {meslek} lazım dedi'
+    '{yer} tarafında {kisi|in} {isletmesi} var, {meslek} lazım dedi'
   ]);
   // Şu an açık iş yok (gerçekten yok)
   tanim('cevap.takip_yok', 'notr', [

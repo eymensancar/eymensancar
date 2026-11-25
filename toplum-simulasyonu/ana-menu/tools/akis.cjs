@@ -64,7 +64,9 @@ await p.click('#uEkle');await p.waitForTimeout(250);ok('yetkiniz bulunmamaktadı
 await p.click('#evet');await p.waitForTimeout(200);await p.click('[data-k]');await p.waitForTimeout(200);await p.click('#evet');await p.waitForTimeout(200);
 ok('talep mesajı gitti',await p.evaluate(()=>S().mesajlar[0].durum==='bekliyor'));
 await p.evaluate(()=>ileriSar(1));await p.waitForTimeout(200);
-ok('ertesi gün yetki verildi',await p.evaluate(()=>yetkiVar('calisan')));
+const ytk=await p.evaluate(()=>({var:yetkiVar('calisan'),cevap:S().mesajlar[0]&&S().mesajlar[0].metin,durum:S().mesajlar.find(m=>m.durum&&m.durum!=='bekliyor')}));
+ok('ertesi gün kurucu karar verdi (verdi ya da gerekçeyle reddetti)',ytk.var||!!(ytk.durum&&ytk.durum.durum==='red'),ytk.cevap);
+if(!ytk.var)await p.evaluate(()=>{S().benYetki.push('calisan');hepsiniCiz()});
 await p.click('#uEkle');await p.waitForTimeout(300);
 if((await p.textContent('#pBaslik'))==='Başvurular'){await p.click('#bIlan');await p.waitForTimeout(200)}
 await p.fill('#iPoz','Depocu');await p.click('#iYayinla');await p.waitForTimeout(200);
