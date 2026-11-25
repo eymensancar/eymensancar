@@ -214,7 +214,41 @@ const ORNEK = [
   // atif
   ['kurye arıyormuşsun', 'is_ariyorum'], ['arsa satıyormuşsun daha duruyor mu', 'mulk_ariyorum'], ['dükkan hâlâ kiralık mı', 'mulk_ariyorum'],
   // selam
-  ['naber gençler', 'selam'], ['selam ahali', 'selam'], ['oyuna yeni katıldım herkese selam', 'selam'], ['hayırlı günler', 'selam']
+  ['naber gençler', 'selam'], ['selam ahali', 'selam'], ['oyuna yeni katıldım herkese selam', 'selam'], ['hayırlı günler', 'selam'],
+  // tarz cesitliligi (karma model icin; genç ağzı, ikinci dil, İngilizce karışık, ironi, resmi)
+  ['SLMMM ARKADAŞLARR', 'selam'], ['yo millet', 'selam'], ['iyi akşamlar efendim, hepinize saygılar', 'selam'], ['hi guys', 'selam'], ['selamın aleyküm cümleten', 'selam'],
+  ['naptın kanka nbr', 'hal_hatir'], ['ne alemdesin ya', 'hal_hatir'], ['how are you doing', 'hal_hatir'], ['sen iyi mi', 'hal_hatir'], ['Nasılsınız efendim, keyfiniz yerinde mi?', 'hal_hatir'],
+  ['tşkkk', 'tesekkur'], ['çok sağolun ilginiz için', 'tesekkur'], ['thanks a lot bro', 'tesekkur'], ['allah razı olsun abi', 'tesekkur'], ['minnettarım gerçekten', 'tesekkur'],
+  ['ben çıkıyom görüşürüz', 'veda'], ['bye bye herkese', 'veda'], ['iyi geceler millet ben yattım', 'veda'], ['müsaadenizle ayrılıyorum', 'veda'], ['hadi eyw bb', 'veda'],
+  ['ooo tebrikler ya', 'tebrik'], ['gg wp', 'tebrik'], ['hayırlı olsun yeni evin', 'tebrik'], ['başarılarınızın devamını dilerim', 'tebrik'], ['helal olsun sana be adam', 'tebrik'],
+  ['kusura bakmayın lütfen', 'ozur'], ['my bad', 'ozur'], ['affedersiniz yanlış kişiye yazdım', 'ozur'], ['özür ya dikkat etmedim', 'ozur'],
+  ['evet evet', 'evet'], ['yes', 'evet'], ['olur tabi', 'evet'], ['aynen kanka', 'evet'],
+  ['yok sağol', 'hayir'], ['no thanks', 'hayir'], ['olmaz kardeşim', 'hayir'], ['hayır istemiyorum dedim', 'hayir'],
+  ['ben iş arıyor', 'is_ariyorum'], ['iş bulmak istiyom yardım', 'is_ariyorum'], ['looking for a job', 'is_ariyorum'], ['ACİL İŞ LAZIM', 'is_ariyorum'], ['herhangi bir işletmede çalışmak isterim', 'is_ariyorum'], ['bana iş verecek kimse yok mu', 'is_ariyorum'],
+  ['eleman lazım acil', 'eleman_ariyorum'], ['we are hiring', 'eleman_ariyorum'], ['dükkana bir çırak alacağım', 'eleman_ariyorum'], ['şirketimize personel alınacaktır', 'eleman_ariyorum'], ['çalışacak adam arıyorum', 'eleman_ariyorum'],
+  ['maaş ne kadar abi', 'maas_sorusu'], ['ayda kaç kazanılıyor bu işte', 'maas_sorusu'], ['how much is the salary', 'maas_sorusu'], ['ücretlendirme nasıl oluyor', 'maas_sorusu'], ['kurye ne kazanır', 'maas_sorusu'],
+  ['hangi işe girsem', 'meslek_tavsiyesi'], ['sence ne iş yapmalıyım', 'meslek_tavsiyesi'], ['which job should i pick', 'meslek_tavsiyesi'], ['garson mu olsam kurye mi bilemedim', 'meslek_tavsiyesi'],
+  ['kurs ne kadar sürer', 'kurs_sorusu'], ['kursa nasıl kayıt olunur', 'kurs_sorusu'], ['sertifikam ne zaman çıkar', 'kurs_sorusu'], ['eğitim almak lazım mı', 'kurs_sorusu'],
+  ['evimi satıyom', 'mulk_satiyorum'], ['satılık arsa sahibinden', 'mulk_satiyorum'], ['house for sale', 'mulk_satiyorum'], ['dükkanımı elden çıkaracağım', 'mulk_satiyorum'], ['daireme alıcı arıyorum', 'mulk_satiyorum'],
+  ['ev arıyor ben', 'mulk_ariyorum'], ['kiralık ev lazım bana', 'mulk_ariyorum'], ['need a flat', 'mulk_ariyorum'], ['uygun fiyatlı dükkan bilen', 'mulk_ariyorum'], ['arsa almak istiyorum nereden alayım', 'mulk_ariyorum'],
+  ['fiyat nedir', 'fiyat_sorusu'], ['bu ev kaça', 'fiyat_sorusu'], ['price?', 'fiyat_sorusu'], ['dükkanın fiyatı ne olur', 'fiyat_sorusu'], ['ne kadar istiyorsun bunun için', 'fiyat_sorusu'],
+  ['dolar kaç oldu', 'ekonomi'], ['enflasyon yine patladı', 'ekonomi'], ['faizler düşecek mi sizce', 'ekonomi'], ['borsa çöktü mü', 'ekonomi'], ['ekonomi berbat ya', 'ekonomi'],
+  ['kredi lazım', 'kredi_sorusu'], ['bankadan borç alabilir miyim', 'kredi_sorusu'], ['loan nasıl alınıyor', 'kredi_sorusu'], ['taksitle ödeyebilir miyim', 'kredi_sorusu'],
+  ['bayramın kutlu olsun kanka', 'bayram'], ['mutlu bayramlar herkese', 'bayram'], ['happy new year', 'bayram'], ['iyi bayramlar diliyorum hepinize', 'bayram'],
+  ['harika ya yine zarar ettim', 'dert'], ['çok kötüyüm', 'dert'], ['hayatım mahvoldu', 'dert'], ['param yok ne yapacağım bilmiyorum', 'dert'], ['of be bu ay da batık', 'dert'], ['süper, bir ay daha eksi', 'dert'],
+  ['sen ne iş yapıyor', 'kisisel_meslek'], ['what do you do', 'kisisel_meslek'], ['mesleğiniz nedir', 'kisisel_meslek'], ['hangi sektördesin', 'kisisel_meslek'],
+  ['nerelisin kanka', 'kisisel_yer'], ['where are you from', 'kisisel_yer'], ['memleketin neresi', 'kisisel_yer'], ['hangi ilçedesin', 'kisisel_yer'],
+  ['adın neydi', 'kisisel_ad'], ["what's your name", 'kisisel_ad'], ['isminizi öğrenebilir miyim', 'kisisel_ad'], ['sana nasıl hitap edeyim', 'kisisel_ad'],
+  ['BOT MUSUN', 'bot_musun'], ['are you a bot', 'bot_musun'], ['sen yapay zeka mı', 'bot_musun'], ['insan mısın yoksa program mı', 'bot_musun'],
+  ['süpersin ya', 'iltifat'], ['you are the best', 'iltifat'], ['çok iyi bir insansın', 'iltifat'], ['harika birisiniz', 'iltifat'],
+  ['GERİZEKALI', 'hakaret'], ['ne kadar salaksın', 'hakaret'], ['you are stupid', 'hakaret'], ['beyinsiz misin', 'hakaret'],
+  ['sjsjsjsj', 'saka'], ['xdxdxd', 'saka'], ['LDKSJFLKSD', 'saka'], ['ahahahah', 'saka'], ['lmao', 'saka'], ['bir espri yap', 'saka'],
+  ['help me pls', 'yardim'], ['nasıl oynanıyor bu', 'yardim'], ['bana yol gösterir misiniz', 'yardim'], ['ne yapacağımı bilmiyorum oyunda', 'yardim'], ['bu oyunda nasıl para kazanılır', 'yardim'],
+  ['zam istiyom patron', 'zam_istegi'], ['maaşım az biraz artırsana', 'zam_istegi'], ['raise pls', 'zam_istegi'], ['maaşa zam gelir mi bu ay', 'zam_istegi'],
+  ['bana yetki ver', 'yetki_istegi'], ['beni yönetici yapar mısın', 'yetki_istegi'], ['admin yap beni', 'yetki_istegi'], ['kasayı ben yönetebilir miyim', 'yetki_istegi'],
+  ['40 bin olur mu', 'teklif'], ['2 milyon veririm hemen', 'teklif'], ['150k deal?', 'teklif'], ['1 milyona anlaşalım', 'teklif'], ['ortak olalım mı kanka', 'teklif'],
+  ['tamamdır anlaştık', 'oneri_kabul'], ['deal', 'oneri_kabul'], ['kabul ettim', 'oneri_kabul'], ['olur, anlaştık o zaman', 'oneri_kabul'],
+  ['bugün yağmur var', 'genel'], ['canım çay istedi', 'genel'], ['maç kaç kaç bitti', 'genel'], ['film önerin var mı', 'genel'], ['kedim uyuyor', 'genel']
 ];
 let dogru = 0;
 const yanlislar = [];

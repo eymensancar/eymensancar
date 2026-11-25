@@ -502,6 +502,8 @@
         teklifYap(world, meta, cikti, { tur: 'is', npcId: b.ownerId, isletmeId: b.id, isletme: b.type, meslek: oyuncu.profession, maas, sure: 6 });
       }
     }
+    // 2b) Dostça özel mesaj
+    dostMesaji(world, meta, oyuncu, rng, cikti);
     // 3) Oyuncu "mülk arıyorum" dediyse ya da şansla: NPC kiradaki dairesini/arsasını satmayı teklif eder
     if (meta.mulkArayan && meta.mulkArayan.bitis >= world.day && rng.chance(.3)) {
       const tur = meta.mulkArayan.mulk;
@@ -513,6 +515,25 @@
         meta.mulkArayan = null;
       }
     }
+  }
+  /** Dostça özel mesaj: iyi anlaştığı biri ara sıra yazar (gerçek duruma dayalı). */
+  function dostMesaji(world, meta, oyuncu, rng, cikti) {
+    if (meta.sonDostDm != null && world.day - meta.sonDostDm < 6) return;
+    const yakin = Object.keys(meta.iliski).filter(id => meta.npc[id] && world.players[id] && meta.iliski[id].sevgi > .15 && meta.iliski[id].tanir);
+    if (!yakin.length || !rng.chance(.12)) return;
+    const id = yakin[Math.floor(rng.next() * yakin.length)], kim = meta.npc[id], p = world.players[id], oAd = oyuncu.name.split(' ')[0];
+    const secenek = [];
+    if (oyuncu.profession) secenek.push(`selam ${oAd}, ${meslekAdi(oyuncu.profession)} işi nasıl gidiyor?`);
+    if (!oyuncu.profession || oyuncu.mustWork) { const f = isFirsatlari(world, meta, oyuncu)[0]; if (f) secenek.push(`${oAd} hâlâ iş arıyorsan ${meta.npc[f.npcId] ? meta.npc[f.npcId].ad : 'bir tanıdık'} ${meslekAdi(f.meslek)} arıyor, ${paraYaz(f.maas)} veriyormuş`); }
+    if (p.cash > T.propertyMarketPrice(world, 'daire') * .25 && !evdeMi(world, p)) secenek.push(`${oAd} ev almayı düşünüyorum, krediyle mi alsam peşin mi biriktirsem? sen ne dersin`);
+    if (p.courseInProgress) secenek.push(`${kursSoz(p.courseInProgress.course)} kursuna başladım, ${Math.max(1, p.courseInProgress.finishesOnDay - world.day)} gün kaldı. sen kurs aldın mı hiç?`);
+    if (p.businessIds.length) secenek.push(`${oAd} bizim ${isletmeAdi(world.businesses[p.businessIds[0]] && world.businesses[p.businessIds[0]].type)} bu ay fena değil, bir gün uğra`);
+    secenek.push(`naber ${oAd}, uzun zamandır yazmıyorsun`, `${oAd} kanalda görmedim seni bugün, her şey yolunda mı?`);
+    let m = rng.pick(secenek); try { m = (dil().stillendir)(m, stilOf(kim), rng); } catch (e) { }
+    m = yuvarla(m, rng);
+    dmEkle(meta, id, { kimden: 'npc', metin: m, gun: world.day });
+    meta.sonDostDm = world.day;
+    cikti.push({ tur: 'dm', npcId: id, baslik: kim.gorunen + ' yazdı', metin: m });
   }
   function oyuncuGelir(world, p) {
     if (!p.profession) return 0;
