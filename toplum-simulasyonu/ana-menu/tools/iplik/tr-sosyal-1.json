@@ -691,7 +691,7 @@
    ],
    [
     "A",
-    "patronuma yazmıştım bir de"
+    "iş grubuna yazmıştım bir de"
    ],
    [
     "C",
@@ -985,7 +985,8 @@
   "id": "s-muzik-calisirken",
   "konu": "muzik",
   "kosul": [
-   "A.calisan"
+   "A.calisan",
+   "C.garson"
   ],
   "saat": null,
   "turlar": [
@@ -2033,7 +2034,7 @@
    ],
    [
     "A",
-    "akşam yedi'den sonra yemiyorum, bir de yürüyorum"
+    "akşam yediden sonra yemiyorum, bir de yürüyorum"
    ],
    [
     "C",
@@ -2202,7 +2203,9 @@
  {
   "id": "s-saglik-grip",
   "konu": "saglik",
-  "kosul": [],
+  "kosul": [
+   "A.calisan"
+  ],
   "saat": null,
   "turlar": [
    [
@@ -4372,7 +4375,9 @@
  {
   "id": "s-saglik-uyku-ilac",
   "konu": "saglik",
-  "kosul": [],
+  "kosul": [
+   "A.calisan"
+  ],
   "saat": null,
   "turlar": [
    [

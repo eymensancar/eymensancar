@@ -221,7 +221,9 @@
     const ad = rng.pick(vv.adlar), soyad = rng.pick(vv.soyadlar || ['']);
     const sehir = rng.pick(vv.sehirler || ['']);
     const kim = kimlikUret(rng); // kişilik için
-    return { id: 'y' + i, dil: d, gorunen: rng.chance(.5) ? ad + ' ' + soyad : (ad + '_' + sehir.slice(0, 3)).replace(/\s/g, '').toLowerCase(), sehir, k: kim.k, kronotip: kim.kronotip, servetUsd: Math.round(Math.exp(rng.between(Math.log(3000), Math.log(4e6)))) };
+    const kk = x => x.toLowerCase().replace(/\s/g, ''), r = rng.next();
+    const gorunen = r < .42 ? ad + ' ' + soyad : r < .55 ? ad + ' ' + soyad[0] + '.' : r < .66 ? kk(ad) + '_' + kk(sehir).slice(0, 3) : r < .76 ? kk(ad) + Math.floor(rng.between(1, 99)) : r < .84 ? kk(ad) + '.' + kk(soyad) : r < .91 ? kk(ad[0] + soyad) + Math.floor(rng.between(1, 9)) : kk(soyad) + '_' + kk(ad).slice(0, 3);
+    return { id: 'y' + i, dil: d, gorunen, sehir, k: kim.k, kronotip: kim.kronotip, servetUsd: Math.round(Math.exp(rng.between(Math.log(3000), Math.log(4e6)))) };
   }
 
   // ------------------------------------------------------------------
@@ -933,7 +935,8 @@
     return meta.figuran;
   }
   function yabanciKalabalik(meta) {
-    if (meta.yabanciK && meta.yabanciK.length) return meta.yabanciK;
+    if (meta.yabanciK && meta.yabanciK.length && meta.yabanciKS === 2) return meta.yabanciK;
+    meta.yabanciKS = 2;
     const rng = rngYap(hash('yabanciK:' + (meta.yabanci[0] || {}).gorunen));
     meta.yabanciK = [];
     for (let i = 0; i < 260; i++) { const y = yabanciUret(rng, i + 1000); y.id = 'g' + i; delete y.servetUsd; meta.yabanciK.push(y); }
@@ -955,7 +958,7 @@
       case 'issiz': return kb.issiz; case 'calisan': return !kb.issiz; case 'patron': return kb.patron; case 'sartsiz': return kb.sartsiz;
       case 'kurye': case 'garson': case 'memur': case 'usta': return kb.meslek === k;
       case 'evsahibi': return kb.ev; case 'kiraci': return !kb.ev; case 'yeni': return kb.gun < 30; case 'eski': return kb.gun > 200;
-      case 'zengin': return kb.zengin; case 'borclu': return kb.borc; case 'kursta': return kb.kurs; case 'istanbul': return kb.sehir === 'İstanbul';
+      case 'zengin': return kb.zengin; case 'borclu': return kb.borc; case 'borcsuz': return !kb.borc; case 'kursta': return kb.kurs; case 'istanbul': return kb.sehir === 'İstanbul';
       default: return true;
     }
   }
@@ -982,6 +985,29 @@
     m = m.replace(/\{([\w.]+)\}/g, (a, k) => veri[k] != null ? veri[k] : '');
     return m.replace(/\s{2,}/g, ' ').replace(/\s+([,.!?])/g, '$1').trim();
   }
+  const SICAK_RE = /sıcak|sicak|derece|terl|klima|plaj|deniz|mangal|balkon|güneş|gunes|heat|melting|grados|calor|\bgrad\b|beach|summer|isti\b|hava çok güzel|yaz geldi|dondurma|ice cream|helado|eis\b/i;
+  const SOGUK_RE = /\bkar\b|karlı|kar yağ|soğuk|soguk|üşü|usu|snow|schnee|frío|frio|nieve|soyuq|\bqar\b|winter|kış|kis gel|heater|kalorifer|soba/i;
+  // Rolün kendi cümlelerinden çıkan koşullar (şablonda yazmasa da): çelişki olmasın
+  const ROL_CIKARIM = [
+    [/\b(kiram|kirayı|kiraya veriyorum|kiradayım|kirada oturuyorum|ev sahibim|ev sahibi kirayı|kira ödü)/i, 'kiraci'],
+    [/\b(evimi aldım|kendi evimdeyim|ev sahibi oldum|kira ödemiyorum|kendi evim)/i, 'evsahibi'],
+    [/\b(kredim|taksitim|taksitimi|borcumu|kredi taksit|kredimi)/i, 'borclu'],
+    [/\b(hiç kredi (çekmedim|almadım)|kredim yok|borcum yok)/i, 'borcsuz'],
+    [/\b(kafem|dükkanım|dukkanim|işletmem|kafemi|dükkanımı|çalışanım|elemanım|müşterim)/i, 'patron'],
+    [/\b(işsizim|iş arıyorum|is ariyorum|işim yok|iş bulamadım)/i, 'issiz'],
+  ];
+  const sablonBilgi = new WeakMap();
+  function sablonCoz(sb) {
+    let b = sablonBilgi.get(sb); if (b) return b;
+    const metin = sb.turlar.map(x => x[1]).join(' '), ilk = {}, ileri = new Set(), cik = {};
+    sb.turlar.forEach(([r0], i) => { if (ilk[r0] == null) ilk[r0] = i; });
+    sb.turlar.forEach(([r0, m], i) => { for (const x of m.matchAll(/\{([ABCD])\}/g)) if (ilk[x[1]] > i) ileri.add(x[1]);
+      for (const [re, k] of ROL_CIKARIM) if (re.test(m)) (cik[r0] = cik[r0] || new Set()).add(k); });
+    b = { sicak: SICAK_RE.test(metin), soguk: SOGUK_RE.test(metin), ileri, cik };
+    sablonBilgi.set(sb, b); return b;
+  }
+  /** Oyun takvimine göre mevsim (oyun 1 Ocak'ta başlar). */
+  const mevsim = world => { const ay = gunAy(world.day) % 12; return ay === 11 || ay <= 1 ? 'kis' : ay >= 5 && ay <= 7 ? 'yaz' : 'ara'; };
   const dilimOf = saat => saat < 6 || saat >= 23 ? 'gece' : saat < 11 ? 'sabah' : saat < 17 ? 'ogle' : 'aksam';
   /** Yeni iplik başlatır: uygun şablon + rollere uygun, şu an çevrimiçi kişiler. */
   function iplikBaslat(world, meta, kanal, rng, saat, t, mesgul, aktifIdler) {
@@ -993,8 +1019,12 @@
     meta.iplSon = meta.iplSon || {};
     const dlm = dilimOf(saat);
     const aktif = aktifIdler || new Set();
-    const aday = havuz.filter(x => !aktif.has(x.id) && (!x.saat || x.saat === dlm) && !(meta.iplSon[x.id] && t - meta.iplSon[x.id] < 8 * 3600e3));
-    const liste = aday.length ? aday : havuz.filter(x => !aktif.has(x.id)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 20);
+    const mv = mevsim(world);
+    const aktifKonu = new Set(); if (kanal === 'global') for (const ip of ((meta.ipl || {})[kanal] || [])) if (ip.konu) aktifKonu.add(ip.konu);
+    const uygunMevsim = x => { const b = sablonCoz(x); return mv === 'kis' ? !b.sicak : mv === 'yaz' ? !b.soguk : !(b.sicak && b.soguk); };
+    let aday = havuz.filter(x => !aktif.has(x.id) && (!x.saat || x.saat === dlm) && uygunMevsim(x) && !(meta.iplSon[x.id] && t - meta.iplSon[x.id] < 8 * 3600e3));
+    if (kanal === 'global') { const a2 = aday.filter(x => !x.konu || !aktifKonu.has(x.konu)); if (a2.length) aday = a2; }
+    const liste = aday.length ? aday : havuz.filter(x => !aktif.has(x.id) && uygunMevsim(x)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 20);
     const kisiHavuz = kanal === 'global' ? yabanciKalabalik(meta).filter(y => y.dil === dilSec).map(y => y.id).concat(meta.yabanci.filter(y => y.dil === dilSec).map(y => y.id)) : Object.keys(meta.npc).concat(figuranlar(meta).map(f => f.id));
     if (!liste.length) return null;
     for (let deneme = 0; deneme < 6; deneme++) {
@@ -1002,9 +1032,11 @@
       const ilkAd = id => { const n = meta.npc[id] || NPCYZ.figuranBul(meta, id) || meta.yabanci.find(x => x.id === id); return n ? String(n.ad || n.gorunen || '').split(/[ _.]/)[0].toLocaleLowerCase('tr').replace(/\d+/g, '') : ''; };
       const rolList = [...new Set(sb.turlar.map(x => x[0]))];
       let ok = true;
+      const sbb = sablonCoz(sb), sonYazan = new Set((meta.kanal[kanal] || []).slice(-60).map(m => m.npcId).filter(Boolean));
       for (const r0 of rolList) {
-        const kos = (sb.kosul || []).filter(k => k[0] === r0).map(k => k.slice(2));
-        const uygun = kisiHavuz.filter(id => !kul.has(id) && !mesgul.has(id) && !adlar.has(ilkAd(id)));
+        const kos = (sb.kosul || []).filter(k => k[0] === r0).map(k => k.slice(2)).concat([...(sbb.cik[r0] || [])]);
+        const ileriRol = sbb.ileri.has(r0) && sonYazan.size > 5;
+        const uygun = kisiHavuz.filter(id => !kul.has(id) && !mesgul.has(id) && !adlar.has(ilkAd(id)) && (!ileriRol || sonYazan.has(id)));
         const sec = agirlikliSec(rng, uygun, id => {
           const kb = kanal === 'global' ? null : kisiBak(world, meta, id);
           if (kanal !== 'global' && (!kb || !kos.every(k => kosulUyar(kb, k)))) return 0;
@@ -1019,7 +1051,7 @@
       }
       if (!ok) continue;
       meta.iplSon[sb.id] = t;
-      return { id: sb.id, dil: dilSec, roller, i: 0, t };
+      return { id: sb.id, dil: dilSec, konu: sb.konu, roller, i: 0, t };
     }
     return null;
   }
@@ -1036,6 +1068,7 @@
     if (kanal !== 'global') { try { metin = (dil().stillendir)(metin, stilOf(kim), rng); } catch (e) { } }
     metin = emojisiz(metin);
     if (!metin) return null;
+    if (!sb.turlar.slice(ip.i + 1).some(x => x[0] === r0)) { try { if ((dil().niyetBul)(metin, { adlar: [] }).niyet === 'veda' && kim) kim.vedaZaman = ip.t; } catch (e) { } }
     const ad = kanal === 'global' ? (kim.gorunen) : ks.gorunen;
     return { npcId: id, ad, metin, iplik: ip.id, yabanci: kanal === 'global' || undefined, dil: ip.dil || undefined, figuran: (!meta.npc[id]) || undefined };
   }

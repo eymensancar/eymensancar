@@ -1265,40 +1265,40 @@
 
   VERI.yabanci = {
     en: {
-      adlar: ['James', 'Oliver', 'Jack', 'Harry', 'George', 'Noah', 'Liam', 'Ethan', 'Daniel', 'Ryan', 'Emma', 'Olivia', 'Amelia',
+      adlar: ['Thomas', 'William', 'Henry', 'Oscar', 'Lewis', 'Callum', 'Kyle', 'Nathan', 'Owen', 'Tyler', 'Marcus', 'Ben', 'Sam', 'Alfie', 'Connor', 'Aaron', 'Megan', 'Holly', 'Abbie', 'Zoe', 'Ruby', 'Freya', 'Katie', 'Beth', 'Niamh', 'Erin', 'Ava', 'Isla', 'Rachel', 'Jade', 'Kirsty', 'Phoebe', 'Leah', 'Morgan', 'Tara', 'Aisha', 'James', 'Oliver', 'Jack', 'Harry', 'George', 'Noah', 'Liam', 'Ethan', 'Daniel', 'Ryan', 'Emma', 'Olivia', 'Amelia',
         'Sophie', 'Grace', 'Chloe', 'Emily', 'Hannah', 'Lucy', 'Ella', 'Mia', 'Jessica'],
-      soyadlar: ['Smith', 'Jones', 'Taylor', 'Brown', 'Wilson', 'Evans', 'Walker', 'Wright', 'Robinson', 'Thompson', 'White',
+      soyadlar: ['Martin', 'Baker', 'Kelly', 'Murphy', 'Ward', 'Morris', 'King', 'Lee', 'Scott', 'Price', 'Bennett', 'Reid', 'Murray', 'Shaw', 'Carter', 'Mills', 'Hunt', 'Fox', 'Patel', 'Khan', 'Byrne', 'Lynch', 'Ross', 'Graham', 'Bell', 'Fraser', 'Gray', 'Pearce', 'Dixon', 'Riley', 'Smith', 'Jones', 'Taylor', 'Brown', 'Wilson', 'Evans', 'Walker', 'Wright', 'Robinson', 'Thompson', 'White',
         'Hughes', 'Edwards', 'Green', 'Hall', 'Wood', 'Harris', 'Clarke', 'Cooper', 'Turner'],
       sehirler: ['London', 'Manchester', 'Liverpool', 'Bristol', 'Leeds', 'Glasgow', 'Dublin', 'New York', 'Chicago', 'Boston',
         'Toronto', 'Sydney', 'Melbourne', 'Auckland']
     },
     de: {
-      adlar: ['Lukas', 'Leon', 'Jonas', 'Felix', 'Paul', 'Max', 'Finn', 'Elias', 'Tim', 'Jan', 'Anna', 'Lena', 'Laura', 'Lea',
+      adlar: ['Niklas', 'Moritz', 'Jakob', 'Simon', 'David', 'Tobias', 'Luca', 'Noah', 'Philipp', 'Erik', 'Fabian', 'Kai', 'Ben', 'Nico', 'Mia', 'Emily', 'Johanna', 'Lina', 'Emma', 'Nele', 'Paula', 'Greta', 'Ida', 'Frieda', 'Sarah', 'Katharina', 'Svenja', 'Miriam', 'Lukas', 'Leon', 'Jonas', 'Felix', 'Paul', 'Max', 'Finn', 'Elias', 'Tim', 'Jan', 'Anna', 'Lena', 'Laura', 'Lea',
         'Sophie', 'Marie', 'Julia', 'Hannah', 'Clara', 'Lisa'],
-      soyadlar: ['Müller', 'Schmidt', 'Schneider', 'Fischer', 'Weber', 'Meyer', 'Wagner', 'Becker', 'Schulz', 'Hoffmann', 'Koch',
+      soyadlar: ['Braun', 'Hofmann', 'Schäfer', 'Bauer', 'Schröder', 'Lehmann', 'Werner', 'Krause', 'Meier', 'Schmitt', 'Vogel', 'Jung', 'Hahn', 'Keller', 'Graf', 'Berger', 'Frank', 'Roth', 'Beck', 'Lorenz', 'Sommer', 'Kraus', 'Busch', 'Engel', 'Müller', 'Schmidt', 'Schneider', 'Fischer', 'Weber', 'Meyer', 'Wagner', 'Becker', 'Schulz', 'Hoffmann', 'Koch',
         'Richter', 'Klein', 'Wolf', 'Neumann', 'Schwarz', 'Zimmermann', 'Krüger', 'Hartmann', 'Lange'],
       sehirler: ['Berlin', 'Hamburg', 'München', 'Köln', 'Frankfurt', 'Stuttgart', 'Düsseldorf', 'Dortmund', 'Leipzig', 'Bremen',
         'Wien', 'Graz', 'Zürich', 'Basel']
     },
     es: {
-      adlar: ['Carlos', 'Javier', 'Pablo', 'Diego', 'Alejandro', 'Sergio', 'Miguel', 'Daniel', 'Hugo', 'Mateo', 'Lucía', 'María',
+      adlar: ['Adrián', 'Álvaro', 'Iván', 'Rubén', 'Raúl', 'Óscar', 'Andrés', 'Jorge', 'Marcos', 'Gonzalo', 'Nicolás', 'Tomás', 'Santiago', 'Emilio', 'Rocío', 'Nerea', 'Irene', 'Andrea', 'Claudia', 'Alba', 'Sara', 'Cristina', 'Natalia', 'Ana', 'Pilar', 'Noelia', 'Ximena', 'Camila', 'Carlos', 'Javier', 'Pablo', 'Diego', 'Alejandro', 'Sergio', 'Miguel', 'Daniel', 'Hugo', 'Mateo', 'Lucía', 'María',
         'Paula', 'Sofía', 'Carmen', 'Laura', 'Elena', 'Marta', 'Valeria', 'Isabel'],
-      soyadlar: ['García', 'Fernández', 'González', 'Rodríguez', 'López', 'Martínez', 'Sánchez', 'Pérez', 'Gómez', 'Martín',
+      soyadlar: ['Muñoz', 'Gil', 'Serrano', 'Blanco', 'Molina', 'Morales', 'Suárez', 'Ortega', 'Delgado', 'Castro', 'Ortiz', 'Rubio', 'Marín', 'Sanz', 'Iglesias', 'Medina', 'Garrido', 'Cortés', 'Castillo', 'Santos', 'Vargas', 'Rojas', 'Herrera', 'Mendoza', 'García', 'Fernández', 'González', 'Rodríguez', 'López', 'Martínez', 'Sánchez', 'Pérez', 'Gómez', 'Martín',
         'Jiménez', 'Ruiz', 'Hernández', 'Díaz', 'Moreno', 'Álvarez', 'Romero', 'Navarro', 'Torres', 'Ramos'],
       sehirler: ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Málaga', 'Bilbao', 'Zaragoza', 'Granada', 'Ciudad de México',
         'Guadalajara', 'Buenos Aires', 'Bogotá', 'Lima', 'Santiago']
     },
     az: {
-      adlar: ['Elvin', 'Orxan', 'Rəşad', 'Tural', 'Ramil', 'Kamran', 'Elnur', 'Vüsal', 'Fərid', 'Nihad', 'Aysel', 'Leyla', 'Nərmin',
+      adlar: ['Murad', 'Səməd', 'Emin', 'Anar', 'Ceyhun', 'Toğrul', 'Rauf', 'Şahin', 'Elşən', 'Fuad', 'Azər', 'Cavid', 'Nicat', 'Ülvi', 'Könül', 'Sevinc', 'Aytən', 'Şəbnəm', 'Gülnar', 'Xədicə', 'Nərgiz', 'Zəhra', 'Ayan', 'Arzu', 'Elvin', 'Orxan', 'Rəşad', 'Tural', 'Ramil', 'Kamran', 'Elnur', 'Vüsal', 'Fərid', 'Nihad', 'Aysel', 'Leyla', 'Nərmin',
         'Günay', 'Səbinə', 'Aynur', 'Lalə', 'Nigar', 'Fidan', 'Ülviyyə'],
-      soyadlar: ['Məmmədov', 'Hüseynov', 'Həsənov', 'Quliyev', 'İsmayılov', 'Abbasov', 'Bağırov', 'Rzayev', 'Kərimov', 'Cəfərov',
+      soyadlar: ['Əliyev', 'Hacıyev', 'Qasımov', 'Salmanov', 'Tağıyev', 'İbrahimov', 'Allahverdiyev', 'Şirinov', 'Musayev', 'Əsgərov', 'Yusifov', 'Mirzəyev', 'Paşayev', 'Rüstəmov', 'Səfərov', 'Əzizov', 'Məmmədov', 'Hüseynov', 'Həsənov', 'Quliyev', 'İsmayılov', 'Abbasov', 'Bağırov', 'Rzayev', 'Kərimov', 'Cəfərov',
         'Rəhimov', 'Nəsirov', 'Sadıqov', 'Mustafayev', 'Əhmədov', 'Babayev', 'Orucov', 'Novruzov', 'Zeynalov', 'Vəliyev'],
       sehirler: ['Bakı', 'Gəncə', 'Sumqayıt', 'Şəki', 'Lənkəran', 'Mingəçevir', 'Şamaxı', 'Quba', 'Qəbələ', 'Naxçıvan']
     },
     ar: {
-      adlar: ['Ahmad', 'Omar', 'Khalid', 'Youssef', 'Karim', 'Tariq', 'Sami', 'Faisal', 'Hassan', 'Ziad', 'Fatima', 'Layla', 'Noor',
+      adlar: ['Mahmoud', 'Mustafa', 'Ali', 'Hamza', 'Bilal', 'Rami', 'Fadi', 'Nabil', 'Adel', 'Majed', 'Salem', 'Jamal', 'Walid', 'Anas', 'Yara', 'Reem', 'Salma', 'Nadia', 'Hala', 'Jana', 'Malak', 'Aya', 'Ruba', 'Nour', 'Heba', 'Dalia', 'Ahmad', 'Omar', 'Khalid', 'Youssef', 'Karim', 'Tariq', 'Sami', 'Faisal', 'Hassan', 'Ziad', 'Fatima', 'Layla', 'Noor',
         'Mariam', 'Sara', 'Huda', 'Rania', 'Amira', 'Dana', 'Lina'],
-      soyadlar: ['Haddad', 'Nasser', 'Khoury', 'Saleh', 'Mansour', 'Hamdan', 'Darwish', 'Aziz', 'Qasim', 'Farouk', 'Habib', 'Najjar',
+      soyadlar: ['Haddad', 'Khoury', 'Saleh', 'Nasser', 'Hamdan', 'Mansour', 'Aziz', 'Farouk', 'Darwish', 'Najjar', 'Qasim', 'Rashed', 'Sabbagh', 'Shami', 'Zaki', 'Masri', 'Awad', 'Bakri', 'Halabi', 'Omari', 'Haddad', 'Nasser', 'Khoury', 'Saleh', 'Mansour', 'Hamdan', 'Darwish', 'Aziz', 'Qasim', 'Farouk', 'Habib', 'Najjar',
         'Shami', 'Masri', 'Rashed', 'Hijazi', 'Odeh', 'Barakat', 'Sabbagh', 'Zayed'],
       sehirler: ['Doha', 'Dubai', 'Amman', 'Kuwait', 'Riyadh', 'Jeddah', 'Cairo', 'Alexandria', 'Beirut', 'Muscat', 'Manama',
         'Casablanca', 'Tunis', 'Algiers']
@@ -2115,7 +2115,7 @@
     'Damlaya damlaya göl olur arkadaşlar',
     'Zor günler geçer, [emek kalır|çalışan kazanır]',
     'Hedefim bu ay kendi işimi açmak, [inşallah olur|bakalım]',
-    'Birlikte büyüyeceğiz, [işçi olmadan patron olmaz|herkesin emeği değerli]'
+    '[Ekip iyi olunca|Çalışanın iyi olunca] her şey kolaylaşıyor [valla|]'
   ]);
 
   tanim('paylasim.soru', 'merak', [
@@ -2697,10 +2697,13 @@
     ['teşekkür ederim', 'tşk ederim'], ['teşekkürler', 'tşk'], ['selam', 'slm'], ['merhaba', 'mrb'], ['tamamdır', 'tmmdır'],
     ['tamam', 'tmm'], ['kanka', 'knk'], ['hocam', 'hcm'], ['ne haber', 'nbr'], ['nasılsın', 'nslsn'], ['bir şey', 'bişey'],
     ['bir', 'bi'], ['ne yapıyorsun', 'napıyorsun'], ['eyvallah', 'eyw'], ['inşallah', 'inş'], ['kendine iyi bak', 'kib'],
-    ['değil mi', 'di mi'], ['öyle', 'öle'], ['böyle', 'böle'], ['görüşürüz', 'görüşürüz'], ['lütfen', 'lütfen'], ['şey', 'şey']
+    ['değil mi', 'di mi'], ['öyle', 'öle'], ['böyle', 'böle'], ['bilmiyorum', 'bilmiyom'], ['falan', 'flan'], ['şimdi', 'şimdi'], ['yapıyorsun', 'yapıyon'], ['gidiyorum', 'gidiyom'], ['geliyorum', 'geliyom'], ['herkese', 'herkese'], ['teşekkür', 'tşk'], ['kardeşim', 'kardo'], ['tamamdır', 'tmmdır'], ['abi', 'abi'], ['gerçekten', 'gerçkten'], ['hiçbir şey', 'hiçbişey'], ['ne kadar', 'nekadar'], ['nasıl', 'nasıl'], ['görüşürüz', 'görüşürüz'], ['lütfen', 'lütfen'], ['şey', 'şey']
   ];
   function kisalt(t, k, rng) {
-    var p = k * 0.75;
+    var p = Math.min(0.9, 0.15 + k * 0.95);
+    // gelecek zaman konuşma dilinde: yapacağım -> yapcam, geleceğim -> gelcem
+    t = t.replace(/(\p{L}{2,})[ae]cağım(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.7) ? g + 'cam' : x; });
+    t = t.replace(/(\p{L}{2,})[ae]ceğim(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.7) ? g + 'cem' : x; });
     KISA.forEach(function (d) { if (d[0] !== d[1]) t = degistir(t, kacis(d[0]), d[1], rng, p); });
     t = t.replace(/(\p{L}{2,}[ıiuü])yorum(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.7) ? g + 'yom' : x; });
     t = t.replace(/(\p{L}{2,}[ıiuü])yorsun(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.5) ? g + 'yon' : x; });
@@ -2710,10 +2713,16 @@
   function noktalama(t, st, rng) {
     // Soru eki ya da soru sözcüğüyle biten cümle: nokta değil soru işareti (resmî kişi her zaman, diğerleri çoğu zaman)
     if (!/[.!?…)]$/.test(t) && /(\s(m[ıiuü]|m[ıiuü]s[ıiuü]n|m[ıiuü]y[ıiuü]m|m[ıiuü]y[ıiuü]z|m[ıiuü]s[ıiuü]n[ıiuü]z|m[ıiuü]d[ıiuü]r)|\b(ne|neden|niye|nasıl|nerede|nerde|kim|kaç|hangi|hangisi|var mı|yok mu))$/i.test(t) || (!/[.!?…)]$/.test(t) && /(^|\s)(m[ıiuü]|m[ıiuü]s[ıiuü]n|m[ıiuü]y[ıiuü]z)(\s|$)/i.test(t) && !/(bilmiyorum|bilmem|emin değilim)\.?$/i.test(t) && !/(ne güzel|ne iyi|ne kadar güzel)/i.test(t) && (st.resmi >= 0.4 || sans(rng, 0.6))) && (st.resmi >= 0.4 || sans(rng, 0.6))) t += '?';
+    // Soru sözcüğü olan cümle ("Kitaplar neden elli koli") noktayla bitmez
+    if (!/[.!?…)]$/.test(t) && /(^|\s)(neden|niye|nasıl|nasil|kaç|kac|hangi\S*|kim|nerede|nerde|ne zaman|n[eı]reye)(\s|$)/i.test(t) && !/(bilmiyorum|bilmiyom|bilmem|hatırlamıyorum|merak ediyorum|emin değilim)/i.test(t) && /^(\S+\s+){0,4}(neden|niye|nasıl|nasil|kaç|kac|hangi\S*|kim|nerede|nerde|ne zaman)(\s|$)|(neden|niye|nasıl|kaç|hangi\S*|nerede|nerde)$/i.test(t)) t += '?';
+    if (!/[.!?…)]$/.test(t) && /(^ne\s|\sne kadar$|^ne kadar|\sne oldu$|^ne oldu$|\sne zaman$|\sne yapay[ıi]m$|\sne diyorsun$|\sne dersin$|\sne düşünüyorsunuz$)/i.test(t) && !/(ne güzel|ne iyi|ne hoş|bilmiyorum)/i.test(t)) t += '?';
     if (st.resmi >= 0.6) {
       if (!/[.!?…)]$/.test(t)) t += '.';
-    } else if (st.resmi < 0.4) {
-      if (sans(rng, 0.7 - st.resmi)) t = t.replace(/\.$/, '');
+    } else if (st.resmi < 0.6) {
+      // Çoğu kişi gündelik yazarken sona nokta koymaz, bazen soru işaretini de atlar, virgülleri unutur
+      if (sans(rng, 0.95 - st.resmi * 0.5)) t = t.replace(/\.$/, '');
+      if (sans(rng, 0.35 - st.resmi * 0.3)) t = t.replace(/\?$/, '');
+      if (sans(rng, 0.3)) t = t.replace(/,(?=\s)/g, function () { return sans(rng, 0.6) ? '' : ','; });
       if (sans(rng, 0.25)) t = t.replace(/\. (\p{L})/gu, function (x, c) { return (sans(rng, 0.5) ? ', ' : ' ') + c.toLocaleLowerCase('tr'); });
     }
     if (st.nese > 0.6 && sans(rng, 0.3)) t = t.replace(/!$/, '!!');
@@ -2757,7 +2766,10 @@
   // Türler: komşu tuşa basma (Türkçe Q klavye), harf düşürme, çift harf, harf takası. Kısa/sık kelimelere dokunulmaz.
   var KOMSU = { a: 'sq', s: 'adw', d: 'sfe', f: 'dgr', g: 'fht', h: 'gjy', j: 'hku', k: 'jlı', l: 'kş', e: 'wrd', r: 'etf', t: 'ryg', y: 'tuh', u: 'yıj', 'ı': 'uok', o: 'ıpl', p: 'oğ', i: 'üçl', n: 'bm', m: 'nö', b: 'vn', v: 'cb', c: 'xv', z: 'xs' };
   function hataEkle(t, h, rng, korunan) {
-    if (!sans(rng, Math.min(0.045, h * 0.15))) return t;
+    // Bitişik yazım (gerçek sohbetteki en yaygın hata): "var mı" -> "varmı", "ben de" -> "bende"
+    if (sans(rng, Math.min(0.35, h * 1.2))) t = t.replace(/(\p{L}{2,}) (m[ıiuü])(?=[^\p{L}]|$)/gu, function (x, a, b) { return sans(rng, 0.6) ? a + b : x; });
+    if (sans(rng, Math.min(0.2, h * 0.8))) t = t.replace(/(^|\s)(ben|sen|o|biz|siz|bu|şu) (de|da)(?=[^\p{L}]|$)/giu, function (x, o, a, b) { return o + a + b; });
+    if (!sans(rng, Math.min(0.14, h * 0.45))) return t;
     var parcalar = t.split(' '), adaylar = [];
     for (var i = 0; i < parcalar.length; i++) { var m = parcalar[i].match(/^(\p{Ll}+)([^\p{L}]*)$/u); if (m && m[1].length >= 5 && !korunuyor(m[1], korunan)) adaylar.push(i); }
     if (!adaylar.length) return t;

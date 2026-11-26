@@ -1,0 +1,1542 @@
+[
+ {
+  "id": "ar2-leg-day-1",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[تاني مرة|للأسبوع التالت] بطنش تمرين الرجلين"
+   ],
+   [
+    "B",
+    "باين عليك"
+   ],
+   [
+    "A",
+    "نعم؟؟"
+   ],
+   [
+    "C",
+    "كلنا بنطنشه، عادي"
+   ],
+   [
+    "A",
+    "ri2laya zay el kabreet"
+   ],
+   [
+    "B",
+    "esta3mel el sellem badal el asanseer, gym ma2ag"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-gym-awel-mara-1",
+  "konu": "spor",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "أول مرة بروح الجيم، ولا فاهم شي من الأجهزة"
+   ],
+   [
+    "B",
+    "شوف حدا تاني واعمل متله"
+   ],
+   [
+    "C",
+    "وامسح المقعد بعدين، الناس بتزعل"
+   ],
+   [
+    "A",
+    "لازم أمسحه؟"
+   ],
+   [
+    "C",
+    "ah ya {A}. ah."
+   ],
+   [
+    "B",
+    "hahaha"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-al3ab-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "بتلعبوا ألعاب تانية غير هاي؟"
+   ],
+   [
+    "B",
+    "كورة عالموبايل، دايماً بخسر أونلاين"
+   ],
+   [
+    "C",
+    "ألغاز قبل النوم"
+   ],
+   [
+    "D",
+    "ana ba2a3od abos 3ala el egar beta3i hena, di hewayti"
+   ],
+   [
+    "A",
+    "{D} di 7aga za3la"
+   ],
+   [
+    "D",
+    "di 7aga mrayy7a"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-rasm-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "رجعت أرسم بعد سنين، إيدي نسيت كل شي"
+   ],
+   [
+    "B",
+    "شو عم ترسم"
+   ],
+   [
+    "A",
+    "شجر. طالع متل البروكلي"
+   ],
+   [
+    "C",
+    "البروكلي شجر للنمل"
+   ],
+   [
+    "A",
+    "...ريحتني بصراحة"
+   ],
+   [
+    "B",
+    "{C} el faylasoof"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-oud-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "عم بتعلم عود، أصابيعي عم توجعني"
+   ],
+   [
+    "B",
+    "بتروح بعد شهر"
+   ],
+   [
+    "C",
+    "شو بتعرف تعزف"
+   ],
+   [
+    "A",
+    "wa7da bas. w we7sha. el geran 7afzinha"
+   ],
+   [
+    "B",
+    "by3allmo ma3ak"
+   ],
+   [
+    "A",
+    "mesh mabsoteen khales"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-imti7an-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "عندي امتحان [بكرا|بعد 8 ساعات] وأنا هون بالشات"
+   ],
+   [
+    "B",
+    "أي مادة"
+   ],
+   [
+    "A",
+    "إحصاء. مش فاهم ولا شي"
+   ],
+   [
+    "C",
+    "سكّر التطبيق وادرس"
+   ],
+   [
+    "A",
+    "khamas da2aye2 kaman"
+   ],
+   [
+    "C",
+    "2olt keda men khamas da2aye2"
+   ],
+   [
+    "A",
+    "tayeb tayeb mashi"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-nja7-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "نجحت!! الامتحان اللي كنت عم ببكي عليه"
+   ],
+   [
+    "B",
+    "مبروك!!"
+   ],
+   [
+    "C",
+    "شو كان"
+   ],
+   [
+    "A",
+    "رخصة السواقة، المحاولة التالتة"
+   ],
+   [
+    "B",
+    "التالتة تابتة"
+   ],
+   [
+    "C",
+    "هلأ ما تخبط بشي please"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-metro-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "نمت بالمترو وفوّت محطتي بـ4 محطات"
+   ],
+   [
+    "B",
+    "بتصير"
+   ],
+   [
+    "C",
+    "ع الأقل نمت منيح؟"
+   ],
+   [
+    "A",
+    "a7la noma fel esboo3"
+   ],
+   [
+    "B",
+    "w et2a5art 3al shoghl?"
+   ],
+   [
+    "A",
+    "gedan. 2olt lel moder en el metro kan me7ayyar"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-bus-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "sawa2 el bas estanani el naharda, kont ha3ayat"
+   ],
+   [
+    "B",
+    "batal"
+   ],
+   [
+    "C",
+    "el bta3na yemshi awel ma yeshofni bajri"
+   ],
+   [
+    "A",
+    "ahla bedayet yom"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-roommate-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "زميلي بالسكن صرله 4 أيام تارك الصحون بالمجلى"
+   ],
+   [
+    "B",
+    "احكي معه"
+   ],
+   [
+    "C",
+    "أو حط الصحون عتخته"
+   ],
+   [
+    "B",
+    "{C} la2"
+   ],
+   [
+    "C",
+    "{B} aywa"
+   ],
+   [
+    "A",
+    "fekra moghreya"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-laban-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "حدا أكل اللبن تبعي. أنا ساكن مع شخص واحد بس"
+   ],
+   [
+    "B",
+    "المحقق بقضية اللبن"
+   ],
+   [
+    "C",
+    "اكتب اسمك عليه"
+   ],
+   [
+    "A",
+    "katabt. akid akal el war2a kaman"
+   ],
+   [
+    "B",
+    "hhhh"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-takhfeed-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "في تخفيضات، اشتريت 3 أشياء ما بحتاجها"
+   ],
+   [
+    "B",
+    "التخفيضات ربحت"
+   ],
+   [
+    "A",
+    "خصم 50%، يعني وفّرت صح؟"
+   ],
+   [
+    "C",
+    "صرفت مصاري لتوفر مصاري"
+   ],
+   [
+    "A",
+    "ma tkharreb 3alaya ya {C}"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-mahal-khobz-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "رحت جيب خبز ورجعت بـ12 غرض وبلا خبز"
+   ],
+   [
+    "B",
+    "دايماً"
+   ],
+   [
+    "C",
+    "السوبرماركت معمول هيك"
+   ],
+   [
+    "A",
+    "هلأ لازم أرجع"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-tabkh-tajriba-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "عملت معكرونة بصلصة لبن، لا تضحكوا"
+   ],
+   [
+    "B",
+    "الأتراك بيحبوها"
+   ],
+   [
+    "C",
+    "غريبة"
+   ],
+   [
+    "A",
+    "tel3et 7elwa gedan"
+   ],
+   [
+    "B",
+    "3andohom akla shabah keda bel tom"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-ka3ka-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "أول كيكة عملتها طلعت مسطحة متل الكريب"
+   ],
+   [
+    "B",
+    "نسيت البيكنج باودر؟"
+   ],
+   [
+    "A",
+    "shu ya3ni baking powder"
+   ],
+   [
+    "C",
+    "hon el moshkle"
+   ],
+   [
+    "B",
+    "semmiha keka krep w khalas"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-wasfet-mama-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "وصفة أمي مكتوب فيها \"ملح حسب الرغبة\""
+   ],
+   [
+    "B",
+    "قديش يعني حسب الرغبة"
+   ],
+   [
+    "A",
+    "بالزبط، ما بتقلي"
+   ],
+   [
+    "C",
+    "كل الأمهات بيكتبوا هيك"
+   ],
+   [
+    "D",
+    "\"اطبخ لحتى يصير شكله حلو\""
+   ],
+   [
+    "A",
+    "w hayda bel zabt bel satr el tani"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-safar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "عم خطط لسفرة، بحر ولا جبل"
+   ],
+   [
+    "B",
+    "جبل، ناس أقل"
+   ],
+   [
+    "C",
+    "بحر أكيد"
+   ],
+   [
+    "A",
+    "ساعدتوني كتير"
+   ],
+   [
+    "D",
+    "el etnen, ba7r w ba3dein gabal"
+   ],
+   [
+    "A",
+    "b anhi felous ya {D}"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-shanta-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "شركة الطيران ضيعت شنطتي"
+   ],
+   [
+    "B",
+    "لا!!"
+   ],
+   [
+    "A",
+    "اليوم التاني بنفس التيشيرت"
+   ],
+   [
+    "C",
+    "اشتري واحد جديد، تذكار"
+   ],
+   [
+    "A",
+    "a7san nasee7a fel esboo3"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-turkiya-zyara-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "نفسي أزور تركيا يوم، بأي مدينة أبدأ"
+   ],
+   [
+    "B",
+    "إسطنبول، الكل بيبدأ منها"
+   ],
+   [
+    "C",
+    "اسأل الأتراك، بيعملولك خطة كاملة"
+   ],
+   [
+    "A",
+    "وأكيد بيعزموني على شاي"
+   ],
+   [
+    "B",
+    "مضمون"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-lugha-ghalat-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "حبيت قول صباح الخير بالتركي، قلت تصبح على خير"
+   ],
+   [
+    "B",
+    "ع الأقل كانت لطيفة"
+   ],
+   [
+    "A",
+    "radd 3alaya \"w enta men ahlo\" el sa3a 10 el sob7"
+   ],
+   [
+    "C",
+    "الأتراك مؤدبين"
+   ],
+   [
+    "A",
+    "gedan"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-arabizi-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "el atrak byes2alo leh bnekteb 3 w 7 w 2"
+   ],
+   [
+    "B",
+    "3ashan el 7orof mesh mawgooda bel english"
+   ],
+   [
+    "C",
+    "ana shara7telhom, et5ada3o"
+   ],
+   [
+    "A",
+    "delwa2ti wa7ed menhom byekteb \"7abibi\" kda"
+   ],
+   [
+    "B",
+    "ahahah"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-weekend-sarir-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "خطة السبت: بالتخت لحتى الضهر"
+   ],
+   [
+    "B",
+    "خطة ممتازة"
+   ],
+   [
+    "C",
+    "أنا عندي شغل"
+   ],
+   [
+    "A",
+    "شو شغلك {C}"
+   ],
+   [
+    "C",
+    "{C.meslek}، ما في ويكند عندي"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-eid-milad-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "اليوم عيد ميلادي"
+   ],
+   [
+    "B",
+    "كل سنة وانت طيب {A}!"
+   ],
+   [
+    "C",
+    "مبروك! شو الخطة"
+   ],
+   [
+    "A",
+    "كيكة ونوم بكير"
+   ],
+   [
+    "D",
+    "ع الأقل باللعبة ما في عمر"
+   ],
+   [
+    "A",
+    "مزبوط، هون أنا شب للأبد"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-milad-nseet-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "نسيت عيد ميلاد أعز صاحب، كان مبارح"
+   ],
+   [
+    "B",
+    "أوف"
+   ],
+   [
+    "C",
+    "اتصل وقله حبيت كون آخر واحد"
+   ],
+   [
+    "A",
+    "fekra 3abqareya"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-3ers-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "رايح عرس الويكند، وما بعرف أرقص"
+   ],
+   [
+    "B",
+    "ولا حدا بيعرف، هيدا الحلو"
+   ],
+   [
+    "C",
+    "امسك إيدين اللي حدك ودور معهم"
+   ],
+   [
+    "A",
+    "ha etmarran el leila"
+   ],
+   [
+    "B",
+    "ab3atli video"
+   ],
+   [
+    "A",
+    "abadan"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-zaal-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{B} سامحني على مبارح، كان مزاجي سيء"
+   ],
+   [
+    "B",
+    "ولا يهمك، وأنا كمان كنت قاسي"
+   ],
+   [
+    "A",
+    "رجعنا صحاب؟"
+   ],
+   [
+    "B",
+    "أكيد"
+   ],
+   [
+    "C",
+    "الشات حلو اليوم"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-musa3ada-bank-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "وين بشوف حركات مصرياتي، مش لاقيها"
+   ],
+   [
+    "B",
+    "بقسم البنك على ما أظن"
+   ],
+   [
+    "C",
+    "إي، انزل شوي لتحت"
+   ],
+   [
+    "A",
+    "la2etha, shokran"
+   ],
+   [
+    "B",
+    "el 3afw"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-musa3ada-shoghl-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "fein bnet2addem 3ala shoghl?"
+   ],
+   [
+    "B",
+    "fe shashet el career"
+   ],
+   [
+    "A",
+    "bshoof bas courier w mowazzaf 7okoomi"
+   ],
+   [
+    "C",
+    "dool tebda2hom 3ala tool, el ba2y lazem tet2addem"
+   ],
+   [
+    "A",
+    "tamam, courier el awel"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-raje3-1",
+  "konu": "selam",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "رجعت! أخدت إجازة شهر"
+   ],
+   [
+    "B",
+    "{A}! وينك"
+   ],
+   [
+    "A",
+    "الحياة الحقيقية كانت زحمة"
+   ],
+   [
+    "C",
+    "الإيجار كان عم ينزل لحاله؟"
+   ],
+   [
+    "A",
+    "إي، رجعت على مفاجأة حلوة"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-ta3aruf-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "مرحبا، أنا {A} من {A.sehir}، باللعبة {A.meslek}"
+   ],
+   [
+    "B",
+    "أهلاً {A}"
+   ],
+   [
+    "A",
+    "بحب الطبخ والأفلام السيئة، وسيء كتير بالتوفير"
+   ],
+   [
+    "C",
+    "إنت باللعبة الصح"
+   ],
+   [
+    "A",
+    "هيك فكرت"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-khajol-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "مرحبا... أنا جديد وخجول شوي"
+   ],
+   [
+    "B",
+    "أهلين! لا تخجل"
+   ],
+   [
+    "C",
+    "اسأل اللي بدك ياه"
+   ],
+   [
+    "A",
+    "shokran. entom men fein?"
+   ],
+   [
+    "B",
+    "{B.sehir}"
+   ],
+   [
+    "C",
+    "{C.sehir}، تشرفنا"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-tawqeet-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "tesba7o 3ala kheir ya gama3a"
+   ],
+   [
+    "B",
+    "hena el sa3a 10 el sob7"
+   ],
+   [
+    "A",
+    "w tesba7 3ala kheir bardo"
+   ],
+   [
+    "C",
+    "masa2 el kheir men {C.sehir}"
+   ],
+   [
+    "B",
+    "e7na fe talat aw2at fe nafs el wa2t"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-jo3an-leil-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "مين جوعان هالساعة"
+   ],
+   [
+    "B",
+    "دايماً"
+   ],
+   [
+    "C",
+    "التوست عم يناديني"
+   ],
+   [
+    "A",
+    "أنا عم آكل خبز وجبنة"
+   ],
+   [
+    "B",
+    "نادي أكل نص الليل"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-mowazzaf-raye7-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "واحد من الموظفين تركني، هلأ في عامل مؤقت"
+   ],
+   [
+    "B",
+    "المؤقتين غاليين وبطيئين"
+   ],
+   [
+    "A",
+    "لاحظت، الربح نزل"
+   ],
+   [
+    "C",
+    "افتح إعلان، الناس بتقدم بسرعة"
+   ],
+   [
+    "A",
+    "fata7to, mestanni"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-kafe-gar-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "فتح كافيه تاني جنب كافيهي"
+   ],
+   [
+    "B",
+    "الزباين رح ينقسموا"
+   ],
+   [
+    "A",
+    "دخلي نزل من هلأ"
+   ],
+   [
+    "C",
+    "موظفين أحسن وجودة أحسن"
+   ],
+   [
+    "A",
+    "atmanna tenfa3"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-tawfeer-sha2a-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "عم وفر لشقة، كتير بطيء"
+   ],
+   [
+    "B",
+    "وكل شهر السعر بيطلع"
+   ],
+   [
+    "A",
+    "لا تذكرني"
+   ],
+   [
+    "C",
+    "بالقرض بدك شي 20% دفعة أولى"
+   ],
+   [
+    "A",
+    "إي هيدي الخطة، قربت"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-kors-khalas-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "خلصت كورس المحاسبة!!"
+   ],
+   [
+    "B",
+    "مبروك!"
+   ],
+   [
+    "A",
+    "هلأ بدي 30 يوم خبرة"
+   ],
+   [
+    "C",
+    "بيمرقوا بسرعة"
+   ],
+   [
+    "A",
+    "2orayyeban mo7aseb be7a2"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-ratib-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "معاشي طلع هالشهر"
+   ],
+   [
+    "B",
+    "حلو، ليش"
+   ],
+   [
+    "A",
+    "المؤشر، الأسعار طلعت والمعاشات كمان"
+   ],
+   [
+    "C",
+    "المعاشات دايماً متأخرة شوي"
+   ],
+   [
+    "A",
+    "إي الإيجار طلع أول، طبعاً"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-duwal-asaar-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "el egar 3andoko zay 3andena fel balad?"
+   ],
+   [
+    "B",
+    "a3taked aywa, kolo zay ba3d delwa2ti"
+   ],
+   [
+    "C",
+    "bey2olo ba3dein kol balad leha e2tesad"
+   ],
+   [
+    "A",
+    "ya3ni hayeb2a fe dowal ghaneya w fa2eera?"
+   ],
+   [
+    "B",
+    "nestanna w nshoof"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-nukta-mo7aseb-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ليش المحاسب ترك الآلة الحاسبة"
+   ],
+   [
+    "B",
+    "ليش"
+   ],
+   [
+    "A",
+    "ما عاد فيه يعتمد عليها"
+   ],
+   [
+    "C",
+    "بووو"
+   ],
+   [
+    "B",
+    "ضحكت وأنا مستحي"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-nukta-7esab-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "7esabi fel bank zay el basal"
+   ],
+   [
+    "B",
+    "taba2at?"
+   ],
+   [
+    "A",
+    "bey3ayyatni lamma afta7o"
+   ],
+   [
+    "C",
+    "ouf"
+   ],
+   [
+    "B",
+    "wa2e3y awi ya {A}"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-atrak-latif-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "اللاعبين الأتراك لطاف كتير، دايماً بيقولوا أهلاً وسهلاً"
+   ],
+   [
+    "B",
+    "صح، ساعدوني بالقرض"
+   ],
+   [
+    "C",
+    "متل أساتذة هاللعبة"
+   ],
+   [
+    "A",
+    "وصاحيين بأي ساعة"
+   ],
+   [
+    "B",
+    "قوة الشاي"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-turki-maksoor-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "merhaba arkadaslar, nasilsiniz?"
+   ],
+   [
+    "B",
+    "wow {A} btetkalem torki?"
+   ],
+   [
+    "A",
+    "bat3allem men el chat el torki"
+   ],
+   [
+    "C",
+    "bravo 3aleik"
+   ],
+   [
+    "A",
+    "tesekkur ederim, cok guzel"
+   ],
+   [
+    "B",
+    "3azama"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-turki-maksoor-2",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "iyi aksamlar herkese. 2oltaha sa7?"
+   ],
+   [
+    "B",
+    "aywa! masa2 el kheir"
+   ],
+   [
+    "A",
+    "bat3allem kol yom ma3 el atrak"
+   ],
+   [
+    "C",
+    "modarreseen kowayseen"
+   ],
+   [
+    "A",
+    "by2da7ko 3alaya bas be 7ob"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-kelma-wa7da-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "يوم الاتنين لازم ينمنع"
+   ],
+   [
+    "B",
+    "صح"
+   ],
+   [
+    "C",
+    "نفس الشي"
+   ],
+   [
+    "D",
+    "بالزبط"
+   ],
+   [
+    "A",
+    "واو، أول مرة الكل متفق"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-fahman-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "el ard ma btgeebsh egar, ya3ni malhash lazma"
+   ],
+   [
+    "B",
+    "ghalat, se3raha bey3la, kolo 3aref"
+   ],
+   [
+    "A",
+    "tayeb ya ostaz"
+   ],
+   [
+    "C",
+    "{B} 3ando 7a2 bardo"
+   ],
+   [
+    "B",
+    "ana dayman 3andi 7a2"
+   ],
+   [
+    "C",
+    "mesh dayman"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-mitnarfiz-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "حدا يحكي معي قبل القهوة، لأ"
+   ],
+   [
+    "B",
+    "صباح الخير {A}!"
+   ],
+   [
+    "A",
+    "قلت لأ"
+   ],
+   [
+    "C",
+    "ههههه"
+   ],
+   [
+    "B",
+    "طيب طيب، تهنى بقهوتك"
+   ],
+   [
+    "A",
+    "...شكراً"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-kolo-yetkallam-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ya gama3a 3andi akhbar"
+   ],
+   [
+    "B",
+    "w ana kaman"
+   ],
+   [
+    "C",
+    "estanno ana el awel"
+   ],
+   [
+    "A",
+    "shoghl gedeed"
+   ],
+   [
+    "B",
+    "otta gedeeda"
+   ],
+   [
+    "C",
+    "7ara2t eidi w ana batbokh"
+   ],
+   [
+    "A",
+    "{C} kesbet, enta kowayes?"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-courier-matar-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "طول النهار عم وصّل تحت المطر، تبللت"
+   ],
+   [
+    "B",
+    "حياة الكورير"
+   ],
+   [
+    "C",
+    "ع الأقل المصاري منيحة إذا اشتغلت كتير"
+   ],
+   [
+    "A",
+    "بس عشان هيك"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-qard-khalas-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "سكرت القرض، أنا حر"
+   ],
+   [
+    "B",
+    "مبروك!"
+   ],
+   [
+    "C",
+    "الكريدت سكور طلع؟"
+   ],
+   [
+    "A",
+    "إي، شوي شوي"
+   ],
+   [
+    "B",
+    "هلأ فيك تستلف أكتر"
+   ],
+   [
+    "A",
+    "لا شكراً، خليني إتهنى بالحرية"
+   ]
+  ]
+ },
+ {
+  "id": "ar2-nakla-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "بنقل بيتي الويكند، كراتين بكل مكان"
+   ],
+   [
+    "B",
+    "أسوأ شغلة بالدنيا"
+   ],
+   [
+    "C",
+    "اكتب على الكراتين"
+   ],
+   [
+    "A",
+    "ta2a5ar, kollohom maktoob 3aleiha \"7agat\""
+   ]
+  ]
+ },
+ {
+  "id": "ar2-nayem-be7a2-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "خلص، هالمرة عن جد رايح نام"
+   ],
+   [
+    "B",
+    "قلتها من ساعة"
+   ],
+   [
+    "A",
+    "هالمرة غير"
+   ],
+   [
+    "C",
+    "أكيد"
+   ],
+   [
+    "A",
+    "تصبحوا على خير"
+   ],
+   [
+    "B",
+    "وانت من أهله {A}"
+   ]
+  ]
+ }
+]

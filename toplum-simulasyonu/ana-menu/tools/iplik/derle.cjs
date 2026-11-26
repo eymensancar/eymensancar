@@ -8,7 +8,7 @@ for (const f of fs.readdirSync(kok).filter(f => f.endsWith('.json')).sort()) {
   const m = /^global-([a-z]+)(?:-\d+)?\.json$/.exec(f);
   if (m) (veri.global[m[1]] = veri.global[m[1]] || []).push(...l); else if (/^tr-/.test(f)) veri.tr.push(...l);
 }
-const temiz = l => l.map(x => ({ id: x.id, kosul: x.kosul && x.kosul.length ? x.kosul : undefined, saat: x.saat || undefined, turlar: x.turlar }));
+const temiz = l => l.map(x => ({ id: x.id, konu: x.konu, kosul: x.kosul && x.kosul.length ? x.kosul : undefined, saat: x.saat || undefined, turlar: x.turlar }));
 const son = { tr: temiz(veri.tr), global: Object.fromEntries(Object.entries(veri.global).map(([k, v]) => [k, temiz(v)])) };
 const js = '// Üretilir: node tools/iplik/derle.cjs (kaynak tools/iplik/*.json). Elle değiştirme.\n(function (g) { g.NPCIplik = ' + JSON.stringify(son) + '; })(typeof window !== "undefined" ? window : globalThis);\n';
 fs.writeFileSync(cikti, js);
