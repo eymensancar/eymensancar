@@ -1066,6 +1066,7 @@
     for (let d = 0; d < 4; d++) { metin = iplikMetni(sab, ip.roller, kisiler, kanal === 'global' ? {} : iplikVeri(world, meta), rng); if (!(meta.kanalSon || []).includes(normSoz(metin))) break; }
     const kim = meta.npc[id] || NPCYZ.figuranBul(meta, id) || meta.yabanci.find(x => x.id === id);
     if (kanal !== 'global') { try { metin = (dil().stillendir)(metin, stilOf(kim), rng); } catch (e) { } }
+    else metin = yabanciStil(metin, kim, rng);
     metin = emojisiz(metin);
     if (!metin) return null;
     if (!sb.turlar.slice(ip.i + 1).some(x => x[0] === r0)) { try { if ((dil().niyetBul)(metin, { adlar: [] }).niyet === 'veda' && kim) kim.vedaZaman = ip.t; } catch (e) { } }
@@ -1083,6 +1084,18 @@
       try { m = (dil().stillendir)(m, stilOf(f), rng); } catch (e) { }
     }
     return { npcId: f.id, ad: f.gorunen, metin: emojisiz(m), gecikmeMs: 3000 + rng.next() * 4000 };
+  }
+  /** Yabancı yazım tarzı (kişiye göre sabit eğilim): küçük harf, noktasız, ara sıra uzatma. Arapça yazıya dokunulmaz. */
+  function yabanciStil(m, kim, rng) {
+    if (!kim || !kim.k || /[\u0600-\u06FF]/.test(m)) return m;
+    const resmi = kim.k.resmi ?? .5, kisa = kim.k.kisaltma ?? .3;
+    if (resmi < .55 && rng.chance(.75 - resmi * .6)) m = m.charAt(0).toLowerCase() + m.slice(1);
+    else if (resmi >= .55) m = m.charAt(0).toUpperCase() + m.slice(1);
+    if (resmi < .6 && rng.chance(.8)) m = m.replace(/[.!]$/, '');
+    if (resmi < .45 && rng.chance(.3)) m = m.replace(/\?$/, '');
+    if (kisa > .5 && rng.chance(.25)) m = m.replace(/\byou\b/gi, 'u').replace(/\bare\b/gi, 'r').replace(/\bpeople\b/gi, 'ppl').replace(/\bbecause\b/gi, 'cuz').replace(/\bplease\b/gi, 'pls').replace(/\bthanks\b/gi, 'thx');
+    if ((kim.k.mizah ?? .5) > .6 && rng.chance(.08)) m += rng.pick({ en: [' lol', ' haha', ' lmao'], es: [' jaja', ' jajaja', ' xd'], de: [' haha', ' xd', ' lol'], az: [' haha', ' hahaha'] }[kim.dil] || [' haha']);
+    return m;
   }
   /** Kanalın saatlik hızı (dakikada mesaj): Türkiye 25, global 40; gece biraz düşer. */
   function kanalHizi(kanal, saat) { if (kanal === 'global') return 80; const f = saat < 2 ? .8 : saat < 7 ? .55 : saat < 9 ? .8 : 1; return 50 * f; }
