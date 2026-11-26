@@ -654,6 +654,8 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
 <script src="npc-yz.js"></script>
 <script src="npc-iplik.js"></script>
 <script src="npc-sss.js"></script>
+<script src="anlam-sozcuk.js"></script>
+<script src="anlam-tarayici.js"></script>
 <script src="sancar-intro.js"></script>
 <script>
 const $=id=>document.getElementById(id);
@@ -1285,14 +1287,19 @@ const shBaglam=()=>shDm?'dm:'+shDm:'k:'+shKanal;
 function cevapZamanla(c,ekle){const yazma=Math.min(4500,800+c.metin.length*70),bas0=Math.max(300,c.gecikmeMs-yazma),npc=K.npc,bag=shBaglam(),kayit={ad:c.ad,bag};
   setTimeout(()=>{if(K.npc!==npc)return;shYazanlar.push(kayit);if($('sohbet').classList.contains('acik'))shCiz()},bas0);
   setTimeout(()=>{shYazanlar=shYazanlar.filter(x=>x!==kayit);if(K.npc!==npc)return;ekle();kaydet();if($('sohbet').classList.contains('acik'))shCiz()},c.gecikmeMs)}
-$('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if(!m||!K.npc)return;const {w,p}=G();
+$('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if(!m||!K.npc)return;
   $('shGiris').value='';$('shGonder').disabled=true;$('shGiris').placeholder=shDm?'Mesaj yaz…':'Kanala yaz…';
-  if(shDm){const npcId=shDm,r=NPCYZ.dmGonder(w,K.npc,npcId,m,p);kaydet();shCiz();shAlta();
+  const dm=shDm,kanal=shKanal,yt=dm?null:shYanit,m2=!dm&&yt&&!yt.oyuncu&&yt.npcId&&!/^@/.test(m)?'@'+yt.ad.split(/[ _]/)[0]+' '+m:m;if(!dm)yanitKapat();
+  // Anlam modeli hazırsa bu mesajın vektörleri önce hesaplanır (en çok 0,4 sn); hazır değilse beklemeden eski yol
+  const an=window.AnlamTarayici&&AnlamTarayici.hazir()?AnlamTarayici.hazirla(NPCYZ.gommeMetinleri(K.npc,dm?'dm:'+dm:kanal,m2)):null;
+  if(an)an.then(()=>shIsle(m,dm,kanal,yt,m2),()=>shIsle(m,dm,kanal,yt,m2));else shIsle(m,dm,kanal,yt,m2);
+  $('shGiris').focus()};
+function shIsle(m,dm,kanal,yt,m2){if(!K.npc)return;const {w,p}=G();
+  if(dm){const npcId=dm,r=NPCYZ.dmGonder(w,K.npc,npcId,m,p);kaydet();shCiz();shAlta();
     if(r){if(r.hata){tost(r.hata,1);shCiz()}else if(r.zatenEklendi){if(r.islem){hepsiniCiz();tost(r.islem==='is'?'Yeni işine başladın.':'Satış tamamlandı.')}setTimeout(()=>{if(shDm===npcId)shCiz()},400)}
       else cevapZamanla({ad:K.npc.npc[npcId].gorunen,metin:r.metin,gecikmeMs:r.gecikmeMs},()=>NPCYZ.dmCevapEkle(K.world,K.npc,npcId,r.metin))}}
-  else{const kanal=shKanal,yt=shYanit;yanitKapat();K.npc.kanal[kanal].push({id:'s'+Date.now(),oyuncu:true,ad:p.name,metin:m,zaman:Date.now(),yanit:yt?{ad:yt.ad,metin:yt.metin}:undefined});
-    // Yanıtlanan kişiye hitap: o kişi cevap verir
-    const m2=yt&&!yt.oyuncu&&yt.npcId&&!/^@/.test(m)?'@'+yt.ad.split(/[ _]/)[0]+' '+m:m;
+  else{K.npc.kanal[kanal].push({id:'s'+Date.now(),oyuncu:true,ad:p.name,metin:m,zaman:Date.now(),yanit:yt?{ad:yt.ad,metin:yt.metin}:undefined});
+    // Yanıtlanan kişiye hitap (m2): o kişi cevap verir
     const r=NPCYZ.oyuncuMesaji(w,K.npc,kanal,m2,p,new Date().getHours(),sirketNpcIdleri(),yt&&!yt.oyuncu?{npcId:yt.npcId,metin:yt.metin}:null);
     if(r.uyari)K.npc.kanal[kanal].push({id:'u'+Date.now(),sistem:true,metin:r.uyari,zaman:Date.now()});
     yzKaydet(kanal,m,yt,r.cevaplar);
@@ -1303,8 +1310,7 @@ $('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if
         if(!s2.basvurular.some(x=>x.npcId===a.npcId)){const k=NPCYZ.basvuruKaydi(w,K.npc,a.npcId,il);if(k)s2.basvurular.push(k)}});
       setTimeout(()=>tost(r.adaylar.length+' kişi başvurdu: Şirketim → Başvurular'),5000)}
     if(r.dm&&r.dm.length)setTimeout(()=>{olayEkle(r.dm[0].baslik,r.dm[0].metin);cizRozet();tost(r.dm[0].baslik+' (Mesajlar)')},3500);
-    kaydet();shCiz();shAlta()}
-  $('shGiris').focus()};
+    kaydet();shCiz();shAlta()}}
 // Kanal açıkken yeni mesajlar akar
 setInterval(()=>{if($('sohbet').classList.contains('acik')&&!shDm&&!document.hidden&&shAkis())shCiz()},2500);
 $('shKapat').onclick=sohbetKapat;
@@ -1345,6 +1351,8 @@ if(K.oyuncuId&&!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:0,yabanciSayi
 // Sancar Games açılışı (bütün oyunlarda aynı; ?debug ve ?nosplash atlar)
 if(window.SancarIntro&&!/[?&](debug|nosplash)\b/.test(location.search)){try{SancarIntro.play({audio:'sancar-intro.mp3'})}catch(e){}}
 hepsiniCiz();if(!K.oyuncuId)kayitEkrani();else{if(yetistir())hepsiniCiz();donusKontrol()}
+// Anlam modeli (bilgi bankası araması için): açılıştan sonra boşta, arka planda yüklenir; olmazsa sessizce eski yol. ?anlamyok kapatır
+if(window.AnlamTarayici&&!/[?&]anlamyok\b/.test(location.search))setTimeout(()=>{const f=()=>AnlamTarayici.yukle();window.requestIdleCallback?requestIdleCallback(f,{timeout:5000}):f()},4000);
 /** Sen yokken: vekil müdür (ya da banka temsilcisi) olanları anlatır; zarar ettiysen bir süre işler biraz şanslı gider. */
 function donusKontrol(){if(!K.npc||!K.oyuncuId)return;const r=NPCYZ.donusRaporu(K.world,K.npc,K.oyuncuId,12);if(!r)return;kaydet();
   modal(r.fark>=0?'Sen yokken işler yolunda gitti':'Sen yokken biraz zorlandık',`<div class="sohbet"><p><b>${kac(r.yazan||'Müdür')}</b>${kac(r.metin)}</p></div><table class="liste" style="margin-top:8px"><tr><td>Geçen süre</td><td>${r.gun} oyun günü</td></tr><tr><td>Servetindeki değişim</td><td class="${r.fark>=0?'arti':'eksi'}">${isaret(r.fark)}</td></tr></table>`)}

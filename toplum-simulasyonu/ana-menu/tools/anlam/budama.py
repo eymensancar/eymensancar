@@ -1,5 +1,5 @@
 # Budama 2. adım: ONNX modelindeki kelime gömme matrisini yalnız tutulan parçaların satırlarına indirir.
-# python3 -I budama.py <model_quantized.onnx> <sozluk.json> <cikti.onnx>
+# python3 -I budama.py <model_quantized.onnx> <sozluk-kimlik.json> <cikti.onnx>
 # Satırlar olduğu gibi kopyalanır (aynı ölçek ve sıfır noktası), yani tutulan parçaların gömmesi birebir aynıdır.
 import sys, json
 import numpy as np, onnx

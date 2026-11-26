@@ -1538,35 +1538,48 @@
   }
   // ---- Anlam modeli (isteğe bağlı): kelimeleri tutmayan ama aynı anlamdaki soruları da bulmak için ----
   // Kanca: NPCYZ.gommeAyar(fn, ayar), fn(metin) -> birim uzunlukta Float32Array ya da null (senkron; hazır değilse null).
-  // Bankanın vektörleri npc-sss-gomme.js'te (NPCSSSGOMME, tools/anlam/gomme-derle.cjs üretir). Kanca ya da dosya yoksa,
-  // ya da banka değişip vektörler eskidiyse (imza tutmazsa) eski davranış: yalnız kelime benzerliği.
+  // Bankanın vektörleri npc-sss-gomme.bin'de (tools/anlam/gomme-derle.cjs üretir), NPCYZ.gommeBanka(ArrayBuffer) ile verilir.
+  // Kanca ya da vektörler yoksa, ya da banka değişip vektörler eskidiyse (imza tutmazsa) eski davranış: yalnız kelime benzerliği.
   // Skor: (1 - a) × kelime + a × anlam; anlam = kosinüsün [c0, c1] aralığına göre 0-1'e çekilmiş hâli. Varsayılan yalnız
   // kuralların bir şey bulamadığı son yolda (yol 'z'); güçlü eşleşme (g) ve erken cevapta (e) kelime benzerliği kalır (geliştirme setlerinde en iyisi).
-  let GOMME = null; const GOMME_AYAR = { a: .4, c0: .84, c1: .95, yol: 'z' }; const GOMME_KUCUK = new Map(); let GOMME_B = null;
+  let GOMME = null; const GOMME_AYAR = { a: .4, c0: .84, c1: .95, yol: 'z' }; const GOMME_KUCUK = new Map(); let GOMME_HAM = null, GOMME_B = null;
   NPCYZ.gommeAyar = (fn, ayar) => { GOMME = typeof fn === 'function' ? fn : null; if (ayar) Object.assign(GOMME_AYAR, ayar); };
   NPCYZ.gommeHazir = () => !!(GOMME && gommeBanka());
+  NPCYZ.gommeKullanim = { arama: 0, gomme: 0 }; // ölçüm: kaç aramada anlam modeli devredeydi
+  /** npc-sss-gomme.bin: 'SSG1', boy, n, imza, soruluş başına vektör (uint32); ölçekler float32[n]; vektörler int8[n × boy]. */
+  NPCYZ.gommeBanka = (ab) => {
+    const u = new Uint32Array(ab, 0, 5); if (u[0] !== 0x31475353) return false;
+    GOMME_HAM = { boy: u[1], n: u[2], imza: u[3], her: u[4], olcek: new Float32Array(ab, 20, u[2]), v: new Int8Array(ab, 20 + 4 * u[2], u[2] * u[1]) }; GOMME_B = null;
+    return !!gommeBanka();
+  };
+  /** Bu mesaj için kancanın isteyebileceği metinler (tarayıcıda önceden ve async hesaplanması için). kanal: 'ulke' gibi ya da 'dm:<npcId>'. */
+  NPCYZ.gommeMetinleri = (meta, kanal, metin) => {
+    const n = (dil().normal)(metin), out = [n.kucuk || n.katli]; if (n.katli && n.katli !== out[0]) out.push(n.katli);
+    const st = meta && meta.diyalog && meta.diyalog[kanal], b = st && (st.simdiki || st.ilk);
+    if (b && n.katli.split(' ').length <= 5 && b !== n.katli) out.push(b + ' ' + n.katli);
+    return out.filter(Boolean);
+  };
   // Oyuncunun Türkçe harfli yazdığı hâli (varsa) gömmeye o hâliyle gider
   function gommeKaydet(n) { if (!GOMME || !n || n.katli === n.kucuk) return; GOMME_KUCUK.set(n.katli, n.kucuk); if (GOMME_KUCUK.size > 64) GOMME_KUCUK.delete(GOMME_KUCUK.keys().next().value); }
-  function b64(s) { const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/', T = new Int16Array(128).fill(-1); for (let i = 0; i < 64; i++) T[A.charCodeAt(i)] = i; const t = s.replace(/=+$/, ''), out = new Uint8Array(Math.floor(t.length * 3 / 4)); let o = 0, bit = 0, acc = 0; for (let i = 0; i < t.length; i++) { acc = (acc << 6) | T[t.charCodeAt(i)]; bit += 6; if (bit >= 8) { bit -= 8; out[o++] = (acc >> bit) & 255; } } return out; }
   function gommeBanka() {
-    const G0 = typeof NPCSSSGOMME !== 'undefined' ? NPCSSSGOMME : (typeof globalThis !== 'undefined' && globalThis.NPCSSSGOMME), I = sssIndeks(); if (!G0 || !I) return null;
+    const G0 = GOMME_HAM, I = sssIndeks(); if (!G0 || !I) return null;
     if (GOMME_B && GOMME_B.G0 === G0 && GOMME_B.I === I) return GOMME_B.ok ? GOMME_B : null;
     let h = 2166136261; for (const c of I.L.map(e => e.sorular.map(q => (dil().normal)(q).katli).join('\n')).join('\n')) { h ^= c.codePointAt(0); h = Math.imul(h, 16777619) >>> 0; }
-    const ok = G0.imza === h && G0.n === I.dokuman.length * 2;
-    GOMME_B = { G0, I, ok, boy: G0.boy, olcek: G0.olcek, v: ok ? new Int8Array(b64(G0.veri).buffer) : null }; return ok ? GOMME_B : null;
+    const ok = G0.imza === h && G0.n === I.dokuman.length * G0.her;
+    GOMME_B = Object.assign({ G0, I, ok }, G0); return ok ? GOMME_B : null;
   }
   /** En yakın kayıt: {e, skor, ikinci}. */
   function sssAra(katli, kelimeYalniz) {
     const I = sssIndeks(); if (!I) return null;
     const qt = [...new Set(sssTokenler(katli))]; if (!qt.length) return null;
     const qv = new Map(qt.map(x => [x, I.idf(x) * (x.includes('_') ? 1.3 : 1)])), qn = Math.sqrt([...qv.values()].reduce((a, b) => a + b * b, 0)) || 1;
-    const B = GOMME && !kelimeYalniz && gommeBanka(), q = B ? GOMME(GOMME_KUCUK.get(katli) || katli) : null;
+    NPCYZ.gommeKullanim.arama++; const B = GOMME && !kelimeYalniz && gommeBanka(), q = B ? GOMME(GOMME_KUCUK.get(katli) || katli) : null;
     const enIyi = new Map();
     if (q) {
-      const { a, c0, c1 } = GOMME_AYAR, M = B.boy, V = B.v;
+      const { a, c0, c1 } = GOMME_AYAR, M = B.boy, V = B.v, H = B.her; NPCYZ.gommeKullanim.gomme++;
       I.dokuman.forEach((d, i) => {
         let c = 0; for (const [x, w] of qv) { const v = d.v.get(x); if (v) c += w * v; } const tf = c / (qn * d.n);
-        let en = -1; for (const j of [2 * i, 2 * i + 1]) { let s = 0; const o = j * M; for (let k = 0; k < M; k++) s += q[k] * V[o + k]; s *= B.olcek[j]; if (s > en) en = s; }
+        let en = -1; for (let j = H * i; j < H * i + H; j++) { let s = 0; const o = j * M; for (let k = 0; k < M; k++) s += q[k] * V[o + k]; s *= B.olcek[j]; if (s > en) en = s; }
         const sk = (1 - a) * tf + a * Math.min(1, Math.max(0, (en - c0) / (c1 - c0)));
         if (sk > (enIyi.get(d.ei) || 0)) enIyi.set(d.ei, sk);
       });

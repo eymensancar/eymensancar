@@ -31,7 +31,7 @@ if (isMainThread) {
   const { model, sozluk, modulKoku, onEk = '', sab } = workerData;
   const bayrak = new Int32Array(sab, 0, 1), cikti = new Float32Array(sab, 4, BOY);
   const ort = require(require.resolve('onnxruntime-node', { paths: [modulKoku || __dirname] }));
-  const parcala = require(path.join(__dirname, 'anlam-sozcuk.js')).kur(JSON.parse(fs.readFileSync(sozluk, 'utf8')));
+  const parcala = require(path.join(__dirname, '..', '..', 'anlam-sozcuk.js')).kur(JSON.parse(fs.readFileSync(sozluk, 'utf8')));
   let ses = null;
   const bitir = k => { Atomics.store(bayrak, 0, k); Atomics.notify(bayrak, 0); };
   parentPort.on('message', async m => {

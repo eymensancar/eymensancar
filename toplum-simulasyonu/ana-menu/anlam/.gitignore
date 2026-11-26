@@ -1,0 +1,4 @@
+# tools/anlam/tarayici-dosyalari.sh üretir (model ve onnxruntime-web, büyük dosyalar)
+*
+!.gitignore
+!sozluk.json

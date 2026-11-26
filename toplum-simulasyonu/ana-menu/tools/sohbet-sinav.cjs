@@ -10,9 +10,9 @@ vm.runInContext(fs.readFileSync(path.join(kok, 'npc-yz.js'), 'utf8'), ctx);
 if (fs.existsSync(path.join(kok, 'npc-sss.js')) && !process.argv.includes('--sssyok')) vm.runInContext(fs.readFileSync(path.join(kok, 'npc-sss.js'), 'utf8'), ctx);
 const T = ctx.Toplum, N = ctx.NPCYZ, D = ctx.NPCDil;
 // --anlam: bilgi bankası aramasına anlam modeli (tools/anlam/; model dosyası ANLAM_MODEL ya da tools/anlam/model/model.onnx)
-if ((process.argv.includes('--anlam') || process.env.ANLAM) && N.gommeAyar && fs.existsSync(path.join(kok, 'npc-sss-gomme.js'))) {
-  vm.runInContext(fs.readFileSync(path.join(kok, 'npc-sss-gomme.js'), 'utf8'), ctx);
-  const A = path.join(__dirname, 'anlam'), g = require(path.join(A, 'anlam-node.cjs'))({ model: process.env.ANLAM_MODEL || path.join(A, 'model', 'model.onnx'), sozluk: path.join(A, 'sozluk.json'), modulKoku: process.env.ANLAM_MODUL, onEk: 'query: ', onbellek: process.env.ANLAM_ONBELLEK });
+if ((process.argv.includes('--anlam') || process.env.ANLAM) && N.gommeAyar && fs.existsSync(path.join(kok, 'npc-sss-gomme.bin'))) {
+  const bb = fs.readFileSync(path.join(kok, 'npc-sss-gomme.bin')); if (!N.gommeBanka(bb.buffer.slice(bb.byteOffset, bb.byteOffset + bb.length))) console.log('UYARI: npc-sss-gomme.bin eski (banka değişmiş), node tools/anlam/gomme-derle.cjs');
+  const A = path.join(__dirname, 'anlam'), g = require(path.join(A, 'anlam-node.cjs'))({ model: process.env.ANLAM_MODEL || path.join(A, 'model', 'model.onnx'), sozluk: path.join(kok, 'anlam', 'sozluk.json'), modulKoku: process.env.ANLAM_MODUL, onEk: 'query: ', onbellek: process.env.ANLAM_ONBELLEK });
   const [a, c0, c1, yol] = (process.env.ANLAM_AYAR || '').split(','); N.gommeAyar(g, a ? { a: +a, c0: +c0, c1: +c1, yol: yol || '' } : null);
   process.on('exit', () => console.log('Anlam modeli:', JSON.stringify(g.istatistik())));
 }
