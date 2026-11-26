@@ -1083,9 +1083,20 @@
   function globalMesaj(world, meta, rng, saat) {
     // Yabancılar kendi dillerinde; Türk NPC'ler de ara sıra global'e yazar.
     if (rng.chance(.25)) return ulkeMesaj(world, meta, rng, saat, []);
-    const y = agirlikliSec(rng, meta.yabanci, x => .2 + x.k.sosyal); if (!y) return null;
+    const simdi = Date.now();
+    const y = agirlikliSec(rng, meta.yabanci.filter(x => !x.sonYazma || simdi - x.sonYazma > 25 * 60e3), x => .2 + x.k.sosyal); if (!y) return null;
     const anahtar = 'global.' + y.dil + '.' + (rng.chance(.25) ? 'selam' : 'paylasim');
-    let metin; try { metin = (dil().uret)(anahtar, { ad: y.gorunen.split(/[ _]/)[0], yer: y.sehir }, stilOf({ k: y.k, ruh: 0 }), rng); } catch (e) { metin = 'Hello everyone!'; }
+    // Bir kerelik olaylar (ilk ev, kafe açtı, yeni geldim) aynı kişide bir kez; kurs ayda bir
+    const tur = m => /apartment|Wohnung|piso|mənzil|shaqqa/i.test(m) ? 'ev' : /caf[eé]|maqhaya|kafemi/i.test(m) ? 'kafe' : /new here|neu hier|nuevo por|yeniyəm/i.test(m) ? 'yeni' : /course|Kurs geschafft|curso|Kursu bitirdim|الدورة/i.test(m) ? 'kurs' : null;
+    y.yapti = y.yapti || {};
+    let metin = '';
+    for (let i = 0; i < 6; i++) { try { metin = (dil().uret)(anahtar, { ad: y.gorunen.split(/[ _]/)[0], yer: y.sehir, tutar: Math.round(rng.between(200, 900)) + ({ en: ' bucks', az: ' manat', ar: ' dirham' }[y.dil] || ' €') }, stilOf({ k: y.k, ruh: 0 }), rng); } catch (e) { metin = 'Hello everyone!'; }
+      if (/good morning|guten morgen|buenos d[ií]as|sabahınız|sabah el kheir|صباح/i.test(metin) && (saat < 5 || saat >= 12)) { metin = ''; continue; }
+      if (/evening|guten abend|buenas tardes|axşamınız|masa el kheir/i.test(metin) && saat < 16) { metin = ''; continue; }
+      const t0 = tur(metin); if (!t0) break; const once = y.yapti[t0]; if (t0 === 'yeni' ? (y.mesaj || 0) > 2 || once : t0 === 'kurs' ? once && world.day - once < 30 : once) { metin = ''; continue; } y.yapti[t0] = world.day; break; }
+    if (!metin) return null;
+    if (y.dil !== 'tr' && y.dil !== 'az') metin = metin.replace(/ı/g, 'i').replace(/İ/g, 'I');
+    y.mesaj = (y.mesaj || 0) + 1; y.sonYazma = simdi;
     return { npcId: y.id, ad: y.gorunen, metin, yabanci: true, dil: y.dil };
   }
 
@@ -1422,7 +1433,20 @@
     // Global kanalda yabancı dilde yazdıysa yabancılar cevap verir
     if (kanal === 'global' && dilTr !== 'tr') {
       const y = meta.yabanci.filter(x => x.dil === dilTr || x.dil === 'en');
-      if (y.length) { const s = rng.pick(y); let m; try { m = (dil().uret)('global.' + s.dil + '.cevap', { ad: s.gorunen.split(/[ _]/)[0], oyuncuAd: oyuncu.name.split(' ')[0] }, stilOf({ k: s.k, ruh: .2 }), rng); } catch (e) { m = 'Hi!'; } cevaplar.push({ npcId: s.id, ad: s.gorunen, metin: m, gecikmeMs: 3000 + rng.next() * 5000 }); }
+      if (y.length) { const s = rng.pick(y), oA = oyuncu.name.split(' ')[0], k0 = katli;
+        const NERE = { en: `From ${s.sehir}, you?`, de: `Aus ${s.sehir}, und du?`, es: `De ${s.sehir}, ¿y tú?`, az: `${s.sehir}dan, bəs sən?`, ar: `Ana min ${s.sehir}, w enta?` };
+        const VEDA = { en: ['Bye, take care!', 'See you!'], de: ['Tschüss!', 'Bis dann!'], es: ['¡Adiós!', '¡Hasta luego!'], az: ['Sağ ol, görüşərik!'], ar: ['Ma3 el salama!'] };
+        const TESEK = { en: ['You\'re welcome!', 'No problem!'], de: ['Gern geschehen!', 'Kein Problem!'], es: ['¡De nada!'], az: ['Dəyməz!'], ar: ['3afwan!'] };
+        const soruMu = /\?\s*$|\b(what|how|why|which|wie|was|warum|qué|cómo|por qué|nə|niyə|necə|shu|kif|leh)\b/i.test(metin);
+        let m;
+        if (/(where.*from|woher|de d[oó]nde|haradan|min wein|where do you live)/i.test(metin)) m = NERE[s.dil] || NERE.en;
+        else if (/\b(bye|see you|good ?night|tsch[uü]ss|adi[oó]s|hasta luego|sağ ol|ma3 el salama|gute nacht)\b/i.test(metin)) m = rng.pick(VEDA[s.dil] || VEDA.en);
+        else if (/\b(thanks?|thank you|danke|gracias|shukran|təşəkkür)\b/i.test(metin)) m = rng.pick(TESEK[s.dil] || TESEK.en);
+        else { const an = /^\W*(hi|hello|hey|hola|hallo|moin|salam|marhaba|ahlan|good (morning|evening))\b/i.test(metin) ? 'selam' : 'cevap';
+          for (let i = 0; i < 5; i++) { try { m = (dil().uret)('global.' + s.dil + '.' + an, { ad: s.gorunen.split(/[ _]/)[0], oyuncuAd: oA, yer: s.sehir }, stilOf({ k: s.k, ruh: .2 }), rng); } catch (e) { m = 'Hi!'; }
+            if (an === 'selam' ? !/new here|neu hier|nuevo|yeniyəm|anyone online/i.test(m) : !/(take care|mach's gut|cuídate|özünə yaxşı bax|ma3 el salama)/i.test(m) && (soruMu || !/no idea|keine ahnung|ni idea|bilmirəm|ma ba3rif/i.test(m)) && !(soruMu && /^(hello|hallo|hola|salam|marhaba)\b/i.test(m))) break; } }
+        if (s.dil !== 'tr' && s.dil !== 'az') m = m.replace(/ı/g, 'i').replace(/İ/g, 'I');
+        cevaplar.push({ npcId: s.id, ad: s.gorunen, metin: m, gecikmeMs: 3000 + rng.next() * 5000 }); }
       return { cevaplar, niyet: ny };
     }
 
