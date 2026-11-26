@@ -1459,7 +1459,7 @@
   // Kalıp cümle yerine: fiyatlar, faiz, enflasyon, kredi limiti, kurs ücreti, meslek kazancı,
   // işletme maliyeti, satılık mülkler, "nasıl yapılır" yol tarifleri. NPC bunu kendi üslubuyla söyler.
   /** 348 gün → 'bir yıla yakın'; 40 → '1-2 aydır' */
-  const sureYaz = g => g < 7 ? 'birkaç gündür' : g < 25 ? `${Math.round(g / 7)} haftadır` : g < 300 ? `${Math.max(1, Math.round(g / 30))}-${Math.round(g / 30) + 1} aydır` : g < 400 ? 'bir yıla yakın' : `${Math.round(g / 365)} yıldır`;
+  const sureYaz = g => g < 7 ? 'birkaç gündür' : g < 25 ? `${Math.round(g / 7)} haftadır` : g < 300 ? `${Math.max(1, Math.round(g / 30))}-${Math.round(g / 30) + 1} aydır` : g < 400 ? `${Math.round(g / 30)} aydır` : `${Math.round(g / 365)} yıldır`;
   const yuzde = x => '%' + (Math.round(x * 10) / 10).toLocaleString('tr-TR');
   function enflasyonYillik(world, meta) {
     const g = meta.yonetici.gecmis;
@@ -2198,6 +2198,21 @@
       // Zamir ('onun', 'o', 'orası') ya da varlıksız takip: en son konuşulan kurs/meslek/işletme sorunun içine katılır
       let katli2 = katli;
       if (st.odak && (takip || /\b(o|onun|ona|orasi|orda|bunun|o is|bu is)\b/.test(katli) || /(kur farki|lisans|belge)/.test(katli))) { if (st.odak.kurs && /(kurs|kac para|ne kadar|sure|kac gun|gun surer|lisans|belge|nerden|nereden|nasil)/.test(katli)) katli2 = katli + ' ' + ({ kamu_sinavi: 'kamu sinavi kursu', muhasebe: 'muhasebe kursu', emlak_belgesi: 'emlak belgesi', ustalik: 'ustalik kursu', muteahhitlik: 'muteahhitlik kursu', doviz_lisansi: 'doviz lisansi kursu', dis_ticaret: 'dis ticaret kursu' }[st.odak.kurs] || ''); else if (st.odak.isletme && /(kazan|kar\b|gelir|para|kur farki)/.test(katli)) katli2 = katli + ' ' + ({ dukkan: 'dukkan', kafe: 'kafe', tasaron: 'taseron', emlak_ofisi: 'emlak ofis', doviz_burosu: 'doviz burosu', ithalat_ihracat: 'ithalat', muteahhit: 'muteahhit', fabrika: 'fabrika' }[st.odak.isletme] || ''); else if (st.odak.meslek && /(kurs|belge|ne lazim|sart)/.test(katli)) { const pr = T.getProfession(st.odak.meslek); if (pr.requirements.course) katli2 = katli + ' kurs ' + ({ kamu_sinavi: 'kamu sinavi', muhasebe: 'muhasebe', emlak_belgesi: 'emlak', ustalik: 'ustalik', muteahhitlik: 'muteahhit', doviz_lisansi: 'doviz', dis_ticaret: 'dis ticaret' }[pr.requirements.course] || ''); } }
+      // "ne zaman gelir": son cevap olmayan bir özellikten söz ettiyse tarihin belli olmadığı söylenir
+      { const kimZ = kimId || (st.sonNpc && meta.npc[st.sonNpc] ? st.sonNpc : null);
+        if (kimZ && /^(peki |ya |bes |hani |e )?(ne zaman|nezaman|ne vakit|ne zman)( (gel\w*|acil\w*|olur\w*|cikar\w*|eklen\w*|bunlar|o))*( peki| ya| ki)?$/.test(katli)) {
+          const son = (meta.kanal[kanal] || []).slice().reverse().find(m => m.npcId === kimZ), sk = son ? (dil().normal)(son.metin).katli : '';
+          if (/\b(yok|henuz|gelecek\w*|ileride|sonra gel\w*|gelcek\w*|gelicek\w*)\b/.test(sk)) {
+            const S0 = ['Tarihi açıklanmadı, sonraki güncellemelerde gelecekmiş', 'Belli değil, güncellemeyle gelecek diyorlar', 'Tarih vermediler, ileriki güncellemelerde gelecekmiş', 'Kesin tarih yok, sonraki güncellemeyi bekliyoruz hepimiz'];
+            cevaplar.push(bilgiPaketi(world, meta, kimZ, { metin: rng.pick(S0) }, rng, 1500)); st.sonNpc = kimZ; return sonuc; } } }
+      // "ikincisini sordum", "öbürünü": iki soruluk önceki mesajın cevaplanmayan yarısı
+      { const ps = oncekiSt && oncekiSt.simdiki;
+        if (ps && /\b(ikincisi\w*|ikinci soru\w*|ikinci kism\w*|digerini|digeri|obur\w*|oteki\w*|ilkini|birincisi\w*|ilk soru\w*)\b/.test(katli) && katli.split(' ').length <= 6) {
+          const parca = ps.split(/\s*(?:\bbide\b|\bbi de\b|\bbir de\b|\bhem de\b|\bayrica\b|,|\bve\b)\s*/).filter(x => x && x.split(' ').length >= 2);
+          if (parca.length >= 2) { katli2 = /\b(ilkini|birincisi\w*|ilk soru\w*)\b/.test(katli) ? parca[0] : parca[parca.length - 1]; const kimP = kimId || (st.sonNpc && meta.npc[st.sonNpc] ? st.sonNpc : null);
+            const ny2 = (dil().niyetBul || (x => null))(katli2), konuP = ny2 && ny2.niyet && ny2.niyet !== 'genel' ? ny2.niyet : konu;
+            const bP = kimP && bilgi(world, meta, meta.npc[kimP], konuP, Object.assign({}, varlik, temiz(ny2 && ny2.varlik)), oyuncu, katli2, null);
+            if (bP && !bP.satis) { cevaplar.push(bilgiPaketi(world, meta, kimP, bP, rng, 1800)); st.sonNpc = kimP; return sonuc; } } } }
       // Eksiltili takip ("memur da öyle mi", "ya arsa", "peki garson için"): önceki soru, eski şeyin yerine yenisi konarak yeniden sorulur
       { const yeni = elipsSoru(katli, st.onceki || (oncekiSt && oncekiSt.simdiki)); if (yeni) katli2 = yeni; }
       const onceMetin = st.onceki || st.ilk;

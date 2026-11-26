@@ -55,13 +55,17 @@ const somutMu = m => D.normal(m).katli.split(/[^a-z0-9]+/).some(w => YERLER.has(
 
 let cevapIyi = 0, toplamTur = 0, gecenTur = 0, toplamKontrol = 0, gecenKontrol = 0, konuDogru = 0, konuToplam = 0;
 const hatalar = [];
+const GERCEK_NOW = Date.now, GERCEK_RANDOM = Math.random;
 function oyna(diyalog, tohum) {
   const kanal0 = diyalog.kanal === 'dm' ? null : 'ulke';
+  // Her çalıştırmada aynı sonuç: saat ve rastgelelik konuşmanın tohumuna bağlı
+  let zaman0 = Date.parse('2026-11-26T09:00:00Z') + tohum * 1000; Date.now = () => zaman0;
+  let rs = (tohum * 2654435761) >>> 0; Math.random = () => { rs = (rs + 0x6D2B79F5) >>> 0; let x = rs; x = Math.imul(x ^ (x >>> 15), x | 1); x ^= x + Math.imul(x ^ (x >>> 7), x | 61); return ((x ^ (x >>> 14)) >>> 0) / 4294967296; };
   const { w, meta, o } = dunyaKur(tohum, diyalog.durum || (/patron|eleman/.test(diyalog.ad) ? 'patron' : 'issiz'));
   let son = null, oncekiKonu = null;
   const dokum = [];
-  let zaman = Date.now();
-  const gercekNow = Date.now;
+  let zaman = zaman0;
+  const gercekNow = () => zaman;
   for (const tur of diyalog.turlar) {
     zaman += 40e3; Date.now = () => zaman; // her mesaj arasında 40 sn
     let r;
@@ -104,7 +108,9 @@ function oyna(diyalog, tohum) {
 let diyaloglar = ELLE.slice();
 const korpusDosya = dosya('diyalog');
 if (KORPUS && fs.existsSync(korpusDosya)) diyaloglar = diyaloglar.concat(JSON.parse(fs.readFileSync(korpusDosya, 'utf8')));
-diyaloglar.forEach((d, i) => { const dokum = oyna(d, 1000 + i * 17); if (YAZ || i < ELLE.length) { console.log('\n# ' + d.ad); console.log(dokum.join('\n')); } });
+// --tohum N: her konuşma N farklı tohumla oynanır (karşılaştırmada şans payını azaltır); sayılar toplamdır
+const TOHUM = +((process.argv.find(x => /^--tohum=\d+$/.test(x)) || '--tohum=1').split('=')[1]);
+for (let k = 0; k < TOHUM; k++) diyaloglar.forEach((d, i) => { delete d._npc; const dokum = oyna(d, 1000 + i * 17 + k * 7919); if (k === 0 && (YAZ || i < ELLE.length)) { console.log('\n# ' + d.ad); console.log(dokum.join('\n')); } });
 
 // Tekil mesajlar (kör set): niyet doğruluğu
 const tekilDosya = dosya('tekil');
