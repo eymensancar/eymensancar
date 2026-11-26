@@ -911,7 +911,8 @@
   NPCYZ.kanalAkisi = function (world, meta, kanal, simdiMs, saat, oyuncu, sirketNpcIdleri) {
     adCakismasi(world, meta, oyuncu);
     if (!meta.kanal[kanal]) meta.kanal[kanal] = [];
-    const son = meta.kanalZaman[kanal] || (simdiMs - 6 * 60e3);
+    const ilkAcilis = !meta.kanalZaman[kanal];
+    const son = meta.kanalZaman[kanal] || (simdiMs - (kanal === 'sirket' ? 6 : 40) * 60e3);
     let gecen = Math.min(simdiMs - son, 3 * 3600e3);
     meta.kanalZaman[kanal] = simdiMs;
     if (gecen < 4000) { const d0 = kanal === 'ulke' && oyuncu ? donusMesaji(world, meta, oyuncu, simdiMs, rngYap(hash('d' + simdiMs))) : null; if (d0) { d0.zaman = simdiMs; d0.kanal = kanal; d0.id = 'k' + (++meta.sayac); meta.kanal[kanal].push(d0); return [d0]; } return []; }
@@ -921,6 +922,7 @@
     let n = Math.round(gecen / 60e3 * dakikada);
     n = Math.min(n, kanal === 'sirket' ? 4 : 14);
     if (n <= 0 && rngYap(hash(kanal + simdiMs)).chance(gecen / 60e3 * dakikada)) n = 1;
+    if (ilkAcilis && kanal !== 'sirket') n = Math.max(n, 6); // ilk girişte kanal boş görünmesin
     const rng = rngYap(hash(kanal + ':' + simdiMs + ':' + world.day));
     const yeni = [];
     // Önce: oyuncuya dönüşler (ihtiyacını hatırlayan biri sorar ya da tebrik eder)
