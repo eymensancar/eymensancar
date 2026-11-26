@@ -1506,6 +1506,20 @@
   // Mesaj son konuşana mı dönük? ("sen", "-dın", "-sın" ...)
   const IKINCI_TEKIL = /\b(sen|senin|sana|seni|sende)\b|\w(iyorsun|uyorsun|ıyorsun|üyorsun|yorsun|dın|din|dun|dün|tın|tin|tun|tün|sın|sin|sun|sün)( mi| mı| mu| mü)?\b/;
   const MESLEK_ANAHTAR = [['emlakci|emlak danisman', 'emlak_danismani'], ['muhasebeci|muhasebe', 'muhasebeci'], ['memur', 'memur'], ['kurye', 'kurye'], ['garson', 'garson'], ['kasiyer', 'market_calisani'], ['usta|elektrikci|tesisatci', 'usta'], ['insaat iscisi|insaatta', 'insaat_iscisi'], ['taksici|taksi|nakliyeci|sofor', 'nakliyeci']];
+  const MULK_ANAHTAR = [['daire|ev\b|evler', 'daire'], ['arsa', 'arsa'], ['dukkan', 'dukkan']];
+  const ELIPS_DOLGU = /\b(peki|ya|yani|bes|hani|de|da|te|ta|mi|mu|mı|oyle|boyle|ayni|aynisi|olsa|olursa|icin|nasil|durum|ne|olacak|bi|bir|o zaman|onun|sey|seyi)\b/g;
+  /** "memur da öyle mi" + önceki "kurye olmak için kurs lazım mı" → "memur olmak için kurs lazım mı" */
+  function elipsSoru(katli, onceki) {
+    if (!onceki || onceki === katli || katli.split(' ').length > 5) return null;
+    for (const L of [MESLEK_ANAHTAR, KURS_ANAHTAR, MULK_ANAHTAR]) {
+      const e = bul(katli, L), e0 = bul(onceki, L); if (!e || !e0 || e === e0) continue;
+      const re = new RegExp('\\b(' + L.find(x => x[1] === e)[0] + ')\\w*'), re0 = new RegExp('\\b(' + L.find(x => x[1] === e0)[0] + ')\\w*');
+      const m = re.exec(katli); if (!m) continue;
+      if (katli.replace(m[0], ' ').replace(ELIPS_DOLGU, ' ').trim()) return null; // kendi sorusu var: eksiltili değil
+      return onceki.replace(re0, m[0]);
+    }
+    return null;
+  }
   // ---- Soru-cevap bankası araması (npc-sss.js): örnek soruluşlarla ağırlıklı kelime benzerliği ----
   const SSS_DUR = new Set('bir bu su o ve ile de da ki mi mu mı mü ya abi kanka knk hocam valla ama ben sen biz siz bana sana bunu sunu icin gibi cok daha en her hic bi sey seyi oyunda oyun bu oyunda acaba peki merak ediyorum biliyor bilen var kimse arkadaslar millet'.split(' '));
   const kok5 = w => w.length > 5 ? w.slice(0, 5) : w;
@@ -2184,6 +2198,8 @@
       // Zamir ('onun', 'o', 'orası') ya da varlıksız takip: en son konuşulan kurs/meslek/işletme sorunun içine katılır
       let katli2 = katli;
       if (st.odak && (takip || /\b(o|onun|ona|orasi|orda|bunun|o is|bu is)\b/.test(katli) || /(kur farki|lisans|belge)/.test(katli))) { if (st.odak.kurs && /(kurs|kac para|ne kadar|sure|kac gun|gun surer|lisans|belge|nerden|nereden|nasil)/.test(katli)) katli2 = katli + ' ' + ({ kamu_sinavi: 'kamu sinavi kursu', muhasebe: 'muhasebe kursu', emlak_belgesi: 'emlak belgesi', ustalik: 'ustalik kursu', muteahhitlik: 'muteahhitlik kursu', doviz_lisansi: 'doviz lisansi kursu', dis_ticaret: 'dis ticaret kursu' }[st.odak.kurs] || ''); else if (st.odak.isletme && /(kazan|kar\b|gelir|para|kur farki)/.test(katli)) katli2 = katli + ' ' + ({ dukkan: 'dukkan', kafe: 'kafe', tasaron: 'taseron', emlak_ofisi: 'emlak ofis', doviz_burosu: 'doviz burosu', ithalat_ihracat: 'ithalat', muteahhit: 'muteahhit', fabrika: 'fabrika' }[st.odak.isletme] || ''); else if (st.odak.meslek && /(kurs|belge|ne lazim|sart)/.test(katli)) { const pr = T.getProfession(st.odak.meslek); if (pr.requirements.course) katli2 = katli + ' kurs ' + ({ kamu_sinavi: 'kamu sinavi', muhasebe: 'muhasebe', emlak_belgesi: 'emlak', ustalik: 'ustalik', muteahhitlik: 'muteahhit', doviz_lisansi: 'doviz', dis_ticaret: 'dis ticaret' }[pr.requirements.course] || ''); } }
+      // Eksiltili takip ("memur da öyle mi", "ya arsa", "peki garson için"): önceki soru, eski şeyin yerine yenisi konarak yeniden sorulur
+      { const yeni = elipsSoru(katli, st.onceki || (oncekiSt && oncekiSt.simdiki)); if (yeni) katli2 = yeni; }
       const onceMetin = st.onceki || st.ilk;
       if (takip && onceMetin && onceMetin !== katli && katli2 === katli && katli.split(' ').length <= 4 && (konu === 'dert' ? /(neden|niye|nasil|ne yap|napca|ne yapcam|cozum|ne olacak)/ : /\b(nasil|neden|niye|nerden|nereden|kullanil\w*|yukselt\w*|duzelt\w*|artir\w*|getirir\w*|kazandirir\w*|ne zaman|zorunlu|para da|para lazim)\b/).test(katli)) katli2 = onceMetin + ' ' + katli2;
       if (st.odak && st.odak.secim && kimId && /\b(hangisi\w*|sen olsan|sence hangi|hangisine|hangisini)\b/.test(katli)) { const a1 = st.odak.secim, rq = T.getProfession(a1).requirements; cevaplar.push(bilgiPaketi(world, meta, kimId, { metin: `Ben olsam ${meslekAdi(a1).toLocaleLowerCase('tr')} derim, para daha iyi. ${rq.course ? kursSoz(rq.course) + ' alman lazım' : ''}${rq.professionExperience ? `, bir de ${rq.professionExperience.days} gün ${meslekAdi(rq.professionExperience.profession).toLocaleLowerCase('tr')} deneyimi` : ''}`.replace(/\. $/, ''), kisisel: true }, rng, 1800)); return sonuc; }

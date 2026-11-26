@@ -12,7 +12,7 @@ const T = ctx.Toplum, N = ctx.NPCYZ, D = ctx.NPCDil;
 if (process.env.SSS && N.sssAyar) { const [g, e] = process.env.SSS.split(',').map(Number); N.sssAyar(g, e); }
 const YAZ = process.argv.includes('--yaz'), KORPUS = !process.argv.includes('--elle');
 const SET = process.argv.includes('--sakli') ? 'sakli' : process.argv.includes('--hepsi') ? null : 'gelistirme';
-const K2 = process.argv.includes('--korpus2'), K5 = process.argv.includes('--korpus5') ? 'korpus5' : process.argv.includes('--korpus6') ? 'korpus6' : null;
+const K2 = process.argv.includes('--korpus2'), K5 = (process.argv.find(x => /^--korpus[5-9]$/.test(x)) || '').slice(2) || null;
 const dosya = ad => K5 ? path.join(__dirname, K5, process.argv.includes('--sakli') ? `${ad}-sakli.json` : `${ad}-gelistirme.json`) : K2 ? path.join(__dirname, 'korpus2', SET && process.argv.includes('--sakli') ? `${ad}-sakli.json` : SET && process.argv.includes('--gelistirme2') ? `${ad}-gelistirme.json` : `${ad}.json`) : path.join(__dirname, 'korpus', SET ? `${ad}-${SET}.json` : `${ad}.json`);
 console.log('Kör set:', SET || 'hepsi');
 
