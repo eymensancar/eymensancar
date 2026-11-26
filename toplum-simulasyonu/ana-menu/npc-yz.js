@@ -1119,7 +1119,7 @@
     const kisiler = {}; for (const [rr, kid] of Object.entries(ip.roller)) { if (kanal === 'global') { const y = NPCYZ.figuranBul(meta, kid) || meta.yabanci.find(x => x.id === kid); kisiler[rr] = y ? { ad: kisaAd(y.gorunen), sehir: y.sehir, yer: y.sehir } : null; } else kisiler[rr] = kisiBak(world, meta, kid); }
     const ks = kisiler[r0]; if (!ks) return null;
     let metin = '';
-    for (let d = 0; d < 10; d++) { const soz0 = ip.soz ? Object.assign({}, ip.soz) : null; metin = iplikMetni(sab, ip.roller, kisiler, kanal === 'global' ? {} : iplikVeri(world, meta), rng, ip, kanal === 'global' ? ip.dil : null); if (!(meta.kanalSon || []).includes(normSoz(metin)) && !gorulduMu(meta, metin)) break; if (d < 9 && d >= 4 && soz0) ip.soz = soz0; }
+    for (let d = 0; d < 10; d++) { const soz0 = ip.soz ? Object.assign({}, ip.soz) : null; metin = iplikMetni(sab, ip.roller, kisiler, kanal === 'global' ? {} : iplikVeri(world, meta), rng, ip, kanal === 'global' ? ip.dil : null); if (!(meta.kanalSon || []).includes(normSoz(metin)) && !gorulduMu(meta, metin)) break; if (d < 9 && d >= 4 && soz0) ip.soz = soz0; if (d === 9 && metin.length >= 20) { ip.i = sb.turlar.length; return null; } } // söylenmemiş hâli kalmadıysa iplik burada biter
     const kim = meta.npc[id] || NPCYZ.figuranBul(meta, id) || meta.yabanci.find(x => x.id === id);
     // Kalabalık kanalda kime cevap verildiği belli olsun: bir önceki konuşana ara sıra adıyla seslen
     { const onceki = ip.i > 0 ? sb.turlar[ip.i - 1][0] : null; if (onceki && onceki !== r0 && kisiler[onceki] && !/\{[ABCD]\}/.test(sab) && rng.chance(.22)) { const ad0 = kisiler[onceki].ad; if (ad0 && !metin.toLocaleLowerCase('tr').includes(ad0.toLocaleLowerCase('tr'))) metin = (rng.chance(.5) ? '@' + ad0 + ' ' : (kanal === 'global' ? ad0.toLowerCase() : ad0.toLocaleLowerCase('tr')) + ' ') + metin; } }
@@ -1156,7 +1156,7 @@
     return m;
   }
   // Görülen cümle hafızası: yakın zamanda kanalda geçen cümle tekrar yazılmaz (kayıtta küçük halka, bellekte küme)
-  const GOR_BELLEK = new WeakMap(), GOR_MAX = 16000;
+  const GOR_BELLEK = new WeakMap(), GOR_MAX = 60000;
   const cumleAnahtar = m => hash(String(m).toLocaleLowerCase('tr').replace(/^@?\S+\s+/, '').replace(/[^\p{L}\p{N} ]/gu, '').replace(/\s+/g, ' ').trim()).toString(36);
   function gorKume(meta) { let g = GOR_BELLEK.get(meta); if (!g) { const l = meta.gorH ? meta.gorH.split(',') : []; g = { set: new Set(l), list: l }; GOR_BELLEK.set(meta, g); } return g; }
   function gorulduMu(meta, metin) { if (String(metin).length < 14) return false; return gorKume(meta).set.has(cumleAnahtar(metin)); }
