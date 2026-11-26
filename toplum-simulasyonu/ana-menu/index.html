@@ -397,6 +397,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .msj.ben{align-self:flex-end;flex-direction:row-reverse}
 .msj.ben .balon{background:var(--ana);color:var(--anaUstu);border-color:transparent;border-radius:16px 16px 5px 16px}
 .msj.ben .balon em{color:var(--anaUstu);opacity:.75}
+.msj .alinti{display:block;border-left:3px solid var(--ana);background:var(--zemin);border-radius:6px;padding:3px 7px;margin:2px 0 4px;font-size:12.5px;color:var(--ikincil);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:70vw}
+.msj.ben .alinti{background:rgba(255,255,255,.18);border-left-color:var(--anaUstu);color:var(--anaUstu)}
+.msj .alinti b{color:var(--ana);font-weight:700}.msj.ben .alinti b{color:var(--anaUstu)}
+.shYanitBar{display:flex;align-items:center;gap:8px;padding:6px 10px;border-top:1px solid var(--cizgi);background:var(--kart);font-size:13px}
+.shYanitBar[hidden]{display:none}
+.shYanitBar div{flex:1;min-width:0;border-left:3px solid var(--ana);padding-left:8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--ikincil)}
+.shYanitBar b{color:var(--ana)}
+.shYanitBar button{border:0;background:none;font-size:20px;color:var(--ikincil);min-width:44px;min-height:44px}
+.msjMenu{display:grid;gap:8px}
+.msjMenu button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:12px;border:1px solid var(--cizgi);border-radius:12px;background:var(--kart);font:inherit;color:inherit;min-height:48px}
+.msjMenu button.tehlike{color:var(--tehlike)}
 .shSistem{align-self:center;font-size:12.5px;color:var(--ikincil);background:var(--kart);border:1px solid var(--cizgi);border-radius:10px;padding:5px 10px;text-align:center;max-width:90%}
 .shYaz{display:flex;gap:8px;align-items:center;padding:8px 0 max(8px,env(safe-area-inset-bottom,0px));border-top:1px solid var(--cizgi);flex:none;max-width:860px;width:100%;margin:0 auto}
 .shGiris{flex:1;min-width:0;height:42px;border:1px solid var(--cizgi);border-radius:21px;background:var(--kart);padding:0 16px;font:inherit;font-size:16px;color:var(--metin);user-select:text;-webkit-user-select:text}
@@ -551,6 +562,7 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
   <div class="shBas"><button class="geri" id="shKapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>Kapat</button>
     <div class="shSekme" id="shSekme"></div><span class="shBilgi" id="shBilgi"></span></div>
   <div class="shListe" id="shListe"></div>
+  <div class="shYanitBar" id="shYanitBar" hidden><div id="shYanitMetin"></div><button type="button" id="shYanitKapat" aria-label="Yanıtı iptal et">×</button></div>
   <form class="shYaz" id="shForm" autocomplete="off"><input class="shGiris" id="shGiris" maxlength="300" placeholder="Mesaj yaz…" enterkeyhint="send" autocomplete="off" autocorrect="on"><button class="shGonder" id="shGonder" type="submit" disabled>Gönder</button></form>
 </div>
 
@@ -567,6 +579,8 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
 <!-- NPC yapay zekâsı: npc-dil.js (Türkçe anlama ve cümle kurma), npc-yz.js (karar, ilişki, ekonomi) -->
 <script src="npc-dil.js"></script>
 <script src="npc-yz.js"></script>
+<script src="npc-iplik.js"></script>
+<script src="sancar-intro.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -1096,21 +1110,42 @@ function shCiz(){const {w,p}=G(),sh=SOH(),ks=shKanallar();if(!shDm&&!ks.includes
     $('shBilgi').innerHTML=`<i></i>${cev!=null?cev.toLocaleString('tr-TR'):sirketNpcIdleri().length+1} çevrimiçi`;
     const ms=(K.npc?K.npc.kanal[shKanal]:[]).filter(m=>!sh.engel.includes(m.ad));
     $('shListe').innerHTML=`<div class="shSistem">${shKanal==='sirket'?'Şirket içi sohbet: yalnız şirketin üyeleri görür.':'Saygılı ol: hakaret, dolandırıcılık ve reklam yasak. Bir ada dokunarak profiline bakabilir, özel mesaj atabilir, engelleyebilir ya da şikâyet edebilirsin.'}</div>`+
-      ms.map(m=>m.sistem?`<div class="shSistem">${kac(m.metin)}</div>`:`<div class="msj${m.oyuncu?' ben':''}">${m.oyuncu?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon">${m.oyuncu?'':`<button data-kisi="${m.npcId||''}" data-kad="${kac(m.ad)}">${kac(m.ad)}</button>`}${kac(m.metin)}<em>${saatYaz(m.zaman)}</em></div></div>`).join('')+
+      (()=>{const son=ms.slice(-140),idx={};son.forEach(m=>{idx[m.id]=m});return son.map(m=>{if(m.sistem)return `<div class="shSistem">${kac(m.metin)}</div>`;
+        const al=m.yanit?m.yanit:(m.alinti&&m.cevap&&idx[m.cevap]&&idx[m.cevap].ad!==m.ad?{ad:idx[m.cevap].ad,metin:idx[m.cevap].metin}:null);
+        return `<div class="msj${m.oyuncu?' ben':''}">${m.oyuncu?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon" data-msj="${kac(m.id||'')}">${m.oyuncu?'':`<button data-kisi="${m.npcId||''}" data-kad="${kac(m.ad)}">${kac(m.ad)}</button>`}${al?`<span class="alinti"><b>${kac(al.ad)}</b> ${kac(al.metin)}</span>`:''}${kac(m.metin)}<em>${saatYaz(m.zaman)}</em></div></div>`}).join('')})()+
       (()=>{const y=[...new Set(shYazanlar.filter(x=>x.bag===shBaglam()).map(x=>x.ad))];return y.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(y.slice(0,2).join(', '))} yazıyor…</div>`:''})();
-    $('shListe').querySelectorAll('[data-kisi]').forEach(b=>b.onclick=()=>kisiMenu(b.dataset.kisi,b.dataset.kad));
+    $('shListe').querySelectorAll('[data-kisi]').forEach(b=>b.onclick=e=>{e.stopPropagation();kisiMenu(b.dataset.kisi,b.dataset.kad)});
+    $('shListe').querySelectorAll('[data-msj]').forEach(b=>b.onclick=()=>msjMenu(b.dataset.msj));
   }
   if(alttaydi)shAlta()}
 function teklifCevapla(id,cevap){const {w,p}=G();const r=NPCYZ.teklifCevap(w,K.npc,id,p.id,cevap);kaydet();hepsiniCiz();shCiz();shAlta();if(!r.ok)tost(r.mesaj||'Olmadı.',1);else if(r.islem)tost(r.islem==='is'?'Yeni işine başladın.':r.islem==='zam'?'Maaşın arttı.':'Satış tamamlandı.')}
 /** Profil: NPC'nin herkese açık bilgileri ve ilişkin; buradan özel mesaj, engelle, şikâyet. */
 function kisiMenu(id,ad){const yab=!id||!K.npc||!K.npc.npc[id];const {w}=G(),pr=yab?null:NPCYZ.profil(w,K.npc,id);ad=pr?pr.ad:ad||'';
   const shAcik=$('sohbet').classList.contains('acik');if(shAcik)$('sohbet').classList.remove('acik');const don=()=>{kapat();if(shAcik)$('sohbet').classList.add('acik')};
-  modal(ad,`${pr?`<table class="liste"><tr><td>Meslek</td><td>${kac(pr.meslek)}${pr.isletme?' · '+kac(pr.isletme):''}</td></tr><tr><td>Yer</td><td>${kac(pr.yer.ilce?pr.yer.ilce+', '+pr.yer.sehir:pr.yer.sehir)}</td></tr><tr><td>Deneyim</td><td>${pr.deneyim} gün</td></tr><tr><td>İtibar</td><td>${pr.itibar}</td></tr><tr><td>Aranız</td><td>${pr.iliski}</td></tr>${(()=>{const d=NPCYZ.dostlar(K.npc,id).filter(x=>K.world.players[x]).slice(0,4);return d.length?`<tr><td>Arkadaşları</td><td>${d.map(x=>`<button class="adBtn" data-dost="${x}" style="color:var(--ana);font-weight:700">${kac(K.world.players[x].name)}</button>`).join(', ')}</td></tr>`:''})()}</table>`:'<p>Yurt dışından bir oyuncu.</p>'}
+  modal(ad,`${pr?`<table class="liste"><tr><td>Meslek</td><td>${kac(pr.meslek)}${pr.isletme?' · '+kac(pr.isletme):''}</td></tr><tr><td>Yer</td><td>${kac(pr.yer.ilce?pr.yer.ilce+', '+pr.yer.sehir:pr.yer.sehir)}</td></tr><tr><td>Deneyim</td><td>${pr.deneyim} gün</td></tr><tr><td>İtibar</td><td>${pr.itibar}</td></tr><tr><td>Aranız</td><td>${pr.iliski}</td></tr>${(()=>{const d=NPCYZ.dostlar(K.npc,id).filter(x=>K.world.players[x]).slice(0,4);return d.length?`<tr><td>Arkadaşları</td><td>${d.map(x=>`<button class="adBtn" data-dost="${x}" style="color:var(--ana);font-weight:700">${kac(K.world.players[x].name)}</button>`).join(', ')}</td></tr>`:''})()}</table>`:(()=>{const f=K.npc&&id?NPCYZ.figuranBul(K.npc,id):null;if(f&&!f.dil)return `<table class="liste"><tr><td>Meslek</td><td>${kac(f.meslek?mAd(f.meslek):'İş arıyor')}</td></tr><tr><td>Yer</td><td>${kac(f.yer?(f.yer.ilce?f.yer.ilce+', '+f.yer.sehir:f.yer.sehir):'')}</td></tr><tr><td>Oyunda</td><td>${f.gun} gün</td></tr></table>`;return f&&f.sehir?`<p>Yurt dışından bir oyuncu · ${kac(f.sehir)}</p>`:'<p>Yurt dışından bir oyuncu.</p>'})()}
     <div class="kisiler" style="margin-top:10px">${pr?`<button id="kDm"><span class="av">${bas(ad)}</span><span><b>Özel mesaj gönder</b><span>Telefonundaki Mesajlar'a da düşer</span></span></button>`:''}<button id="kEngel"><span class="av" style="background:var(--zemin);color:var(--ikincil)">⨯</span><span><b>Engelle</b><span>Kanallarda mesajlarını görmezsin</span></span></button><button id="kSikayet"><span class="av" style="background:var(--tehlikeYumusak);color:var(--tehlike)">!</span><span><b>Şikâyet et</b><span>Moderasyona gider</span></span></button></div>`,
     g=>{g.querySelectorAll('[data-dost]').forEach(x=>x.onclick=()=>kisiMenu(x.dataset.dost));if(g.querySelector('#kDm'))g.querySelector('#kDm').onclick=()=>{kapat();sohbetAc({dm:id})};
       g.querySelector('#kEngel').onclick=()=>{SOH().engel.push(ad);kaydet();don();shCiz();tost(ad+' engellendi.')};
-      g.querySelector('#kSikayet').onclick=()=>{don();tost('Şikâyetin alındı. Teşekkürler.')}})}
+      g.querySelector('#kSikayet').onclick=()=>{don();sikayetEt(id,ad,null)}})}
 const shAlta=()=>{const l=$('shListe');l.scrollTop=l.scrollHeight};
+/** Mesaja dokununca: yanıtla, profil, engelle, şikâyet et. */
+let shYanit=null;
+function msjMenu(id){const m=(K.npc&&K.npc.kanal[shKanal]||[]).find(x=>x.id===id);if(!m||m.sistem)return;
+  const shAcik=$('sohbet').classList.contains('acik');if(shAcik)$('sohbet').classList.remove('acik');const don=()=>{kapat();if(shAcik)$('sohbet').classList.add('acik')};
+  modal(m.oyuncu?'Mesajın':m.ad,`<p style="margin:0 0 10px;color:var(--ikincil)">${kac(m.metin.length>140?m.metin.slice(0,140)+'…':m.metin)}</p><div class="msjMenu"><button id="mmYanit">Yanıtla</button>${m.oyuncu?'':`<button id="mmProfil">Profili gör</button><button id="mmEngel">Engelle</button><button id="mmSikayet" class="tehlike">Şikâyet et</button>`}</div>`,
+    g=>{g.querySelector('#mmYanit').onclick=()=>{don();yanitla(m)};
+      if(m.oyuncu)return;
+      g.querySelector('#mmProfil').onclick=()=>{don();kisiMenu(m.npcId,m.ad)};
+      g.querySelector('#mmEngel').onclick=()=>{SOH().engel.push(m.ad);kaydet();don();shCiz();tost(m.ad+' engellendi.')};
+      g.querySelector('#mmSikayet').onclick=()=>{don();sikayetEt(m.npcId,m.ad,m)}})}
+function yanitla(m){shYanit={id:m.id,ad:m.ad,metin:m.metin,npcId:m.npcId,oyuncu:!!m.oyuncu};$('shYanitMetin').innerHTML=`<b>${kac(m.ad)}</b> ${kac(m.metin)}`;$('shYanitBar').hidden=false;$('shGiris').focus()}
+function yanitKapat(){shYanit=null;$('shYanitBar').hidden=true}
+$('shYanitKapat').onclick=yanitKapat;
+/** Şikâyet: gerekçe seçilir, kayda geçer (moderasyon sistemi kurulunca sunucuya gidecek). */
+function sikayetEt(npcId,ad,m){const shAcik=$('sohbet').classList.contains('acik');if(shAcik)$('sohbet').classList.remove('acik');const don=()=>{kapat();if(shAcik)$('sohbet').classList.add('acik')};
+  const N=['Hakaret ya da küfür','Spam ya da reklam','Dolandırıcılık','Uygunsuz ad ya da içerik','Diğer'];
+  modal(ad+' kişisini şikâyet et',`<p style="margin:0 0 10px;color:var(--ikincil)">Neden şikâyet ediyorsun?</p><div class="msjMenu">${N.map((n,i)=>`<button data-neden="${i}">${n}</button>`).join('')}</div>`,
+    g=>g.querySelectorAll('[data-neden]').forEach(b=>b.onclick=()=>{const s=SOH();(s.sikayet=s.sikayet||[]).push({npcId:npcId||null,ad,neden:N[+b.dataset.neden],mesaj:m?m.metin:null,kanal:m?shKanal:null,zaman:Date.now()});if(s.sikayet.length>100)s.sikayet.splice(0,s.sikayet.length-100);kaydet();don();tost('Şikâyetin alındı, moderasyon inceleyecek. Teşekkürler.')}))}
 /** sohbetAc('ulke') kanal açar; sohbetAc({dm:npcId}) özel mesaj açar. */
 function sohbetAc(k){if(!K.oyuncuId)return;if(k&&typeof k==='object'){shDm=k.dm}else{shDm=null;if(k)shKanal=k}
   telefonKapat();kapat();$('shGiris').placeholder=shDm?'Mesaj yaz…':'Kanala yaz…';shAkis();shCiz();$('sohbet').classList.add('acik');$('sohbet').setAttribute('aria-hidden','false');shYerlestir();requestAnimationFrame(shAlta)}
@@ -1131,8 +1166,10 @@ $('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if
   if(shDm){const npcId=shDm,r=NPCYZ.dmGonder(w,K.npc,npcId,m,p);kaydet();shCiz();shAlta();
     if(r){if(r.hata){tost(r.hata,1);shCiz()}else if(r.zatenEklendi){if(r.islem){hepsiniCiz();tost(r.islem==='is'?'Yeni işine başladın.':'Satış tamamlandı.')}setTimeout(()=>{if(shDm===npcId)shCiz()},400)}
       else cevapZamanla({ad:K.npc.npc[npcId].gorunen,metin:r.metin,gecikmeMs:r.gecikmeMs},()=>NPCYZ.dmCevapEkle(K.world,K.npc,npcId,r.metin))}}
-  else{const kanal=shKanal;K.npc.kanal[kanal].push({id:'s'+Date.now(),oyuncu:true,ad:p.name,metin:m,zaman:Date.now()});
-    const r=NPCYZ.oyuncuMesaji(w,K.npc,kanal,m,p,new Date().getHours(),sirketNpcIdleri());
+  else{const kanal=shKanal,yt=shYanit;yanitKapat();K.npc.kanal[kanal].push({id:'s'+Date.now(),oyuncu:true,ad:p.name,metin:m,zaman:Date.now(),yanit:yt?{ad:yt.ad,metin:yt.metin}:undefined});
+    // Yanıtlanan kişiye hitap: o kişi cevap verir
+    const m2=yt&&!yt.oyuncu&&yt.npcId&&!/^@/.test(m)?'@'+yt.ad.split(/[ _]/)[0]+' '+m:m;
+    const r=NPCYZ.oyuncuMesaji(w,K.npc,kanal,m2,p,new Date().getHours(),sirketNpcIdleri(),yt&&!yt.oyuncu?{npcId:yt.npcId,metin:yt.metin}:null);
     if(r.uyari)K.npc.kanal[kanal].push({id:'u'+Date.now(),sistem:true,metin:r.uyari,zaman:Date.now()});
     r.cevaplar.forEach(c=>cevapZamanla(c,()=>K.npc.kanal[kanal].push({id:'c'+Date.now()+Math.random(),npcId:c.npcId,ad:c.ad,metin:c.metin,zaman:Date.now()})));
     // Sohbetten doğan gerçek işler: "ben varım" diyenler başvuru olur, "tamam" denince gelen teklif özel mesajda
@@ -1144,7 +1181,7 @@ $('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if
     kaydet();shCiz();shAlta()}
   $('shGiris').focus()};
 // Kanal açıkken yeni mesajlar akar
-setInterval(()=>{if($('sohbet').classList.contains('acik')&&!shDm&&shAkis())shCiz()},7000);
+setInterval(()=>{if($('sohbet').classList.contains('acik')&&!shDm&&!document.hidden&&shAkis())shCiz()},2500);
 $('shKapat').onclick=sohbetKapat;
 
 // ---- ilk açılış: oyuncu oluştur ----
@@ -1180,6 +1217,8 @@ fetch('dunya.json').then(r=>r.json()).then(kureBasla).catch(e=>console.error('k�
 
 olcekle();
 if(K.oyuncuId&&!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:0,yabanciSayi:40});kaydet()}
+// Sancar Games açılışı (bütün oyunlarda aynı; ?debug ve ?nosplash atlar)
+if(window.SancarIntro&&!/[?&](debug|nosplash)\b/.test(location.search)){try{SancarIntro.play({audio:'sancar-intro.mp3'})}catch(e){}}
 hepsiniCiz();if(!K.oyuncuId)kayitEkrani();else{if(yetistir())hepsiniCiz();donusKontrol()}
 /** Sen yokken: vekil müdür (ya da banka temsilcisi) olanları anlatır; zarar ettiysen bir süre işler biraz şanslı gider. */
 function donusKontrol(){if(!K.npc||!K.oyuncuId)return;const r=NPCYZ.donusRaporu(K.world,K.npc,K.oyuncuId,12);if(!r)return;kaydet();

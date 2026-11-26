@@ -2708,6 +2708,8 @@
   }
 
   function noktalama(t, st, rng) {
+    // Soru eki ya da soru sözcüğüyle biten cümle: nokta değil soru işareti (resmî kişi her zaman, diğerleri çoğu zaman)
+    if (!/[.!?…)]$/.test(t) && /(\s(m[ıiuü]|m[ıiuü]s[ıiuü]n|m[ıiuü]y[ıiuü]m|m[ıiuü]y[ıiuü]z|m[ıiuü]s[ıiuü]n[ıiuü]z|m[ıiuü]d[ıiuü]r)|\b(ne|neden|niye|nasıl|nerede|nerde|kim|kaç|hangi|hangisi|var mı|yok mu))$/i.test(t) || (!/[.!?…)]$/.test(t) && /(^|\s)(m[ıiuü]|m[ıiuü]s[ıiuü]n|kaç|neden|niye|nasıl|nerede|nerde|hangi\S*)(\s|$)/i.test(t) && !/(ne güzel|ne iyi|ne kadar güzel)/i.test(t) && (st.resmi >= 0.4 || sans(rng, 0.6))) && (st.resmi >= 0.4 || sans(rng, 0.6))) t += '?';
     if (st.resmi >= 0.6) {
       if (!/[.!?…)]$/.test(t)) t += '.';
     } else if (st.resmi < 0.4) {

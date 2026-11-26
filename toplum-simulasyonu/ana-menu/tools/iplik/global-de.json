@@ -1,0 +1,1382 @@
+[
+ {
+  "id": "de-morgen-gruss-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[guten morgen|moin] zusammen"
+   ],
+   [
+    "B",
+    "moin {A}"
+   ],
+   [
+    "C",
+    "morgen, kaffee läuft schon"
+   ],
+   [
+    "A",
+    "bei mir noch nicht, ich bin ein zombie"
+   ],
+   [
+    "B",
+    "erst kaffee, dann reden"
+   ]
+  ]
+ },
+ {
+  "id": "de-woher-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wer ist hier noch aus {A.sehir}?"
+   ],
+   [
+    "B",
+    "ich nicht, {B.sehir}"
+   ],
+   [
+    "C",
+    "{C.sehir} hier, aber war mal in {A.sehir}"
+   ],
+   [
+    "A",
+    "und, wie wars"
+   ],
+   [
+    "C",
+    "schön, nur zu teuer"
+   ],
+   [
+    "B",
+    "wie überall"
+   ]
+  ]
+ },
+ {
+  "id": "de-neu-tipps-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bin neu hier, was sollte ich zuerst machen?"
+   ],
+   [
+    "B",
+    "nicht alles auf einmal ausgeben"
+   ],
+   [
+    "C",
+    "such dir nen job, kurier geht sofort ohne voraussetzungen"
+   ],
+   [
+    "A",
+    "echt? einfach so?"
+   ],
+   [
+    "C",
+    "ja, direkt im karriere bildschirm"
+   ],
+   [
+    "B",
+    "und mach die täglichen aufgaben, gibt eine sanduhr gratis"
+   ]
+  ]
+ },
+ {
+  "id": "de-regen-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "schon wieder regen in {A.sehir}"
+   ],
+   [
+    "B",
+    "hier auch, seit tagen"
+   ],
+   [
+    "C",
+    "bei uns sonne, sorry"
+   ],
+   [
+    "A",
+    "schick mal was rüber"
+   ],
+   [
+    "C",
+    "kostet extra"
+   ]
+  ]
+ },
+ {
+  "id": "de-tuerkisch-lernen-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "was heißt eigentlich \"abi\"? die türken schreiben das ständig"
+   ],
+   [
+    "B",
+    "großer bruder, aber man sagt es zu jedem älteren"
+   ],
+   [
+    "C",
+    "so wie \"alter\" ungefähr, nur netter"
+   ],
+   [
+    "A",
+    "ok abi"
+   ],
+   [
+    "B",
+    "[läuft bei dir|perfekt]"
+   ]
+  ]
+ },
+ {
+  "id": "de-fussball-1",
+  "konu": "spor",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "habt ihr das spiel gesehen?"
+   ],
+   [
+    "B",
+    "ja, unfassbar, nachspielzeit"
+   ],
+   [
+    "C",
+    "ich hab nur das ergebnis gelesen"
+   ],
+   [
+    "A",
+    "verpasst, sowas sieht man selten"
+   ],
+   [
+    "B",
+    "der schiri war aber schwach"
+   ],
+   [
+    "C",
+    "ist er immer"
+   ]
+  ]
+ },
+ {
+  "id": "de-kurier-muede-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "heute [20|so viele] lieferungen, ich kann nicht mehr"
+   ],
+   [
+    "B",
+    "kurierleben halt"
+   ],
+   [
+    "A",
+    "geld ist ok, aber die beine"
+   ],
+   [
+    "C",
+    "werd kellner, da hast du wenigstens ein dach"
+   ],
+   [
+    "A",
+    "und nervige gäste"
+   ],
+   [
+    "C",
+    "irgendwas ist immer"
+   ]
+  ]
+ },
+ {
+  "id": "de-wohnung-kaufen-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "lohnt sich ne wohnung zu kaufen oder lieber warten"
+   ],
+   [
+    "B",
+    "wohnst du zur miete?"
+   ],
+   [
+    "A",
+    "ja, die miete frisst mich auf"
+   ],
+   [
+    "B",
+    "dann kaufen, eigentümer zahlen keine miete"
+   ],
+   [
+    "C",
+    "und die preise steigen jeden monat, warten kostet auch"
+   ],
+   [
+    "A",
+    "ok ich schau mir mal den kredit an"
+   ]
+  ]
+ },
+ {
+  "id": "de-boerse-frage-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "gibts hier eigentlich ne börse?"
+   ],
+   [
+    "B",
+    "noch nicht, soll mit nem update kommen"
+   ],
+   [
+    "A",
+    "schade, wollte zocken"
+   ],
+   [
+    "C",
+    "devisen und gold auch noch nicht"
+   ],
+   [
+    "B",
+    "also immobilien und arbeiten, wie früher"
+   ]
+  ]
+ },
+ {
+  "id": "de-cafe-eroeffnet-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hab mein café aufgemacht, die ersten kunden sind da"
+   ],
+   [
+    "B",
+    "glückwunsch! wie läufts"
+   ],
+   [
+    "A",
+    "geht so, gegenüber ist noch ein café"
+   ],
+   [
+    "C",
+    "dann teilen sich die kunden auf"
+   ],
+   [
+    "A",
+    "hab ich gemerkt, muss besser werden"
+   ],
+   [
+    "B",
+    "gute leute einstellen, aushilfen sind teuer"
+   ]
+  ]
+ },
+ {
+  "id": "de-fruehstueck-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "was gibts bei euch zum frühstück"
+   ],
+   [
+    "B",
+    "brötchen, wie immer"
+   ],
+   [
+    "C",
+    "türkisches frühstück, hat mir ein kumpel gezeigt"
+   ],
+   [
+    "A",
+    "das mit den hundert tellern?"
+   ],
+   [
+    "C",
+    "genau, nie wieder müsli"
+   ],
+   [
+    "B",
+    "das ist kein frühstück das ist ein buffet"
+   ]
+  ]
+ },
+ {
+  "id": "de-nachteulen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "wer ist noch wach"
+   ],
+   [
+    "B",
+    "ich, kann nicht schlafen"
+   ],
+   [
+    "C",
+    "nachtschicht"
+   ],
+   [
+    "A",
+    "was machst du?"
+   ],
+   [
+    "C",
+    "{C.meslek}, nachts ist es ruhig"
+   ],
+   [
+    "B",
+    "ich guck nur auf meine miete und weine leise"
+   ]
+  ]
+ },
+ {
+  "id": "de-sanduhr-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wofür sind diese sanduhren?"
+   ],
+   [
+    "B",
+    "wartezeit verkürzen, eine sanduhr ist ein tag"
+   ],
+   [
+    "A",
+    "auch für kurse?"
+   ],
+   [
+    "B",
+    "ja, kurse und bewerbungen"
+   ],
+   [
+    "C",
+    "geld bringen sie aber keins"
+   ],
+   [
+    "A",
+    "alles klar"
+   ]
+  ]
+ },
+ {
+  "id": "de-miete-witz-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mein vermieter hat schon wieder die miete erhöht"
+   ],
+   [
+    "B",
+    "im spiel oder echt?"
+   ],
+   [
+    "A",
+    "[beides|ja]"
+   ],
+   [
+    "C",
+    "autsch"
+   ],
+   [
+    "B",
+    "kauf das haus, werd selbst vermieter"
+   ],
+   [
+    "A",
+    "mit welchem geld, bitte"
+   ]
+  ]
+ },
+ {
+  "id": "de-kreditlimit-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "warum ist mein kreditlimit so niedrig?"
+   ],
+   [
+    "B",
+    "hängt vom einkommen letzten monat und der bonität ab"
+   ],
+   [
+    "A",
+    "letzten monat war ich halb arbeitslos"
+   ],
+   [
+    "C",
+    "da hast du es"
+   ],
+   [
+    "B",
+    "raten pünktlich zahlen, dann steigt der score"
+   ],
+   [
+    "A",
+    "ok verstanden"
+   ]
+  ]
+ },
+ {
+  "id": "de-merhaba-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "merhaba an alle türken hier"
+   ],
+   [
+    "B",
+    "merhaba! nasılsın?"
+   ],
+   [
+    "A",
+    "mehr kann ich leider nicht"
+   ],
+   [
+    "B",
+    "reicht doch, dazu noch \"çay\" und du bist dabei"
+   ],
+   [
+    "C",
+    "und \"tamam\", das brauchst du immer"
+   ],
+   [
+    "A",
+    "tamam"
+   ]
+  ]
+ },
+ {
+  "id": "de-wochenende-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "was habt ihr am wochenende vor?"
+   ],
+   [
+    "B",
+    "schlafen"
+   ],
+   [
+    "C",
+    "schlafen und pizza"
+   ],
+   [
+    "A",
+    "ihr seid so produktiv"
+   ],
+   [
+    "B",
+    "und du?"
+   ],
+   [
+    "A",
+    "[wäsche|aufräumen]. aufregend, ich weiß"
+   ]
+  ]
+ },
+ {
+  "id": "de-buchhalter-kurs-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "überlege den buchhaltungskurs zu machen"
+   ],
+   [
+    "B",
+    "hab ich gemacht, lohnt sich"
+   ],
+   [
+    "A",
+    "wie lange dauert der?"
+   ],
+   [
+    "B",
+    "ein paar tage, dazu brauchst du 30 tage erfahrung"
+   ],
+   [
+    "A",
+    "und danach festes gehalt?"
+   ],
+   [
+    "B",
+    "ja, auch wenn du nicht online bist"
+   ]
+  ]
+ },
+ {
+  "id": "de-zeit-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "läuft die zeit weiter wenn die app zu ist?"
+   ],
+   [
+    "B",
+    "ja, ein spieltag ist eine echte stunde"
+   ],
+   [
+    "A",
+    "also ein monat 30 stunden?"
+   ],
+   [
+    "B",
+    "genau"
+   ],
+   [
+    "C",
+    "deshalb kommt die miete so schnell"
+   ]
+  ]
+ },
+ {
+  "id": "de-inflation-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wird hier alles jeden monat teurer oder bilde ich mir das ein"
+   ],
+   [
+    "B",
+    "inflation, ist so gewollt"
+   ],
+   [
+    "A",
+    "realistisch bis zum schmerz"
+   ],
+   [
+    "C",
+    "löhne steigen auch, nur langsamer"
+   ],
+   [
+    "A",
+    "natürlich"
+   ]
+  ]
+ },
+ {
+  "id": "de-abend-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "n abend [allerseits|leute]"
+   ],
+   [
+    "B",
+    "abend {A}"
+   ],
+   [
+    "C",
+    "hey, wie war dein tag"
+   ],
+   [
+    "A",
+    "lang. und deiner?"
+   ],
+   [
+    "C",
+    "auch lang, lass uns über essen reden"
+   ],
+   [
+    "B",
+    "bester vorschlag heute"
+   ]
+  ]
+ },
+ {
+  "id": "de-makler-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "immobilienmakler, lohnt sich das?"
+   ],
+   [
+    "B",
+    "gehalt plus provision, wenn du aktiv bist sehr gut"
+   ],
+   [
+    "A",
+    "braucht man nen kurs?"
+   ],
+   [
+    "B",
+    "ja, den maklerschein"
+   ],
+   [
+    "C",
+    "und vorher 30 tage erfahrung"
+   ],
+   [
+    "A",
+    "also nichts für tag eins"
+   ]
+  ]
+ },
+ {
+  "id": "de-haustier-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "meine katze ist gerade über mein handy gelaufen"
+   ],
+   [
+    "B",
+    "hat sie was gekauft?"
+   ],
+   [
+    "A",
+    "zum glück nicht"
+   ],
+   [
+    "C",
+    "katzen sind die wahren spieler"
+   ],
+   [
+    "B",
+    "mein hund hat letzte woche das ladekabel gefressen"
+   ],
+   [
+    "A",
+    "respekt"
+   ]
+  ]
+ },
+ {
+  "id": "de-schnell-geld-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wie verdient man am schnellsten geld?"
+   ],
+   [
+    "B",
+    "gibt keinen trick"
+   ],
+   [
+    "C",
+    "wenn du viel online bist, kurier. sonst was mit festem gehalt"
+   ],
+   [
+    "A",
+    "bin dauernd am handy"
+   ],
+   [
+    "C",
+    "dann kurier, du kriegst pro auftrag"
+   ],
+   [
+    "B",
+    "und keine kredite nehmen die du nicht zahlen kannst"
+   ]
+  ]
+ },
+ {
+  "id": "de-raten-verpasst-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hab zwei raten verpasst, schlimm?"
+   ],
+   [
+    "B",
+    "ja, bei drei kommt die zwangsvollstreckung"
+   ],
+   [
+    "A",
+    "oh nein"
+   ],
+   [
+    "C",
+    "zahl jetzt sofort eine, auch wenns weh tut"
+   ],
+   [
+    "A",
+    "mach ich direkt"
+   ]
+  ]
+ },
+ {
+  "id": "de-mittagstief-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "mittagstief, ich schlaf gleich am schreibtisch ein"
+   ],
+   [
+    "B",
+    "geh mal ne runde laufen"
+   ],
+   [
+    "A",
+    "laufen ist anstrengung"
+   ],
+   [
+    "C",
+    "dann kaffee"
+   ],
+   [
+    "A",
+    "der dritte heute schon"
+   ],
+   [
+    "B",
+    "dann ist es hoffnungslos"
+   ]
+  ]
+ },
+ {
+  "id": "de-danke-tuerkisch-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wie sagt man danke auf türkisch?"
+   ],
+   [
+    "B",
+    "teşekkürler"
+   ],
+   [
+    "A",
+    "so viele buchstaben"
+   ],
+   [
+    "C",
+    "\"sağ ol\" geht auch, kürzer"
+   ],
+   [
+    "A",
+    "sağ ol dann"
+   ],
+   [
+    "B",
+    "[gern geschehen|bitte] heißt \"rica ederim\", hausaufgabe für morgen"
+   ]
+  ]
+ },
+ {
+  "id": "de-cafe-oder-laden-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "café oder laden, was würdet ihr aufmachen?"
+   ],
+   [
+    "B",
+    "café, kaffee geht immer"
+   ],
+   [
+    "C",
+    "laden, weniger stress mit personal"
+   ],
+   [
+    "A",
+    "brauchen beide 60 tage erfahrung oder?"
+   ],
+   [
+    "B",
+    "ja und startkapital"
+   ],
+   [
+    "C",
+    "also jetzt sparen"
+   ]
+  ]
+ },
+ {
+  "id": "de-spenden-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bringt spenden eigentlich was?"
+   ],
+   [
+    "B",
+    "ansehen, pro 10 tausend ein punkt"
+   ],
+   [
+    "A",
+    "und wofür ist ansehen gut?"
+   ],
+   [
+    "C",
+    "bonität, bewerbungen und so"
+   ],
+   [
+    "A",
+    "dann spende ich mal ein bisschen"
+   ]
+  ]
+ },
+ {
+  "id": "de-stau-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "stehe seit 40 minuten im stau"
+   ],
+   [
+    "B",
+    "schreibst du beim fahren??"
+   ],
+   [
+    "A",
+    "nein, im bus, entspann dich"
+   ],
+   [
+    "C",
+    "busstau ist der schlimmste stau"
+   ],
+   [
+    "B",
+    "ok dann passt es"
+   ]
+  ]
+ },
+ {
+  "id": "de-beamter-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ist beamter langweilig?"
+   ],
+   [
+    "B",
+    "bin einer, ist ruhig. festes gehalt"
+   ],
+   [
+    "A",
+    "braucht man da nen kurs?"
+   ],
+   [
+    "B",
+    "den kurs für die staatsprüfung, und ein paar tage warten"
+   ],
+   [
+    "C",
+    "und das gehalt kommt auch offline, oder?"
+   ],
+   [
+    "B",
+    "genau, das ist das beste daran"
+   ]
+  ]
+ },
+ {
+  "id": "de-pizza-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "bestelle pizza, welcher belag"
+   ],
+   [
+    "B",
+    "ananas"
+   ],
+   [
+    "A",
+    "ich verlasse den chat"
+   ],
+   [
+    "C",
+    "lass dich nicht mobben {B}"
+   ],
+   [
+    "B",
+    "ananas für immer"
+   ],
+   [
+    "A",
+    "unglaublich"
+   ]
+  ]
+ },
+ {
+  "id": "de-arbeitslos-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "job verloren, geld fast weg"
+   ],
+   [
+    "B",
+    "du kannst nicht investieren bis du wieder arbeitest"
+   ],
+   [
+    "A",
+    "ja hab ich gemerkt"
+   ],
+   [
+    "C",
+    "kurier, kein chef nötig, sofort anfangen"
+   ],
+   [
+    "A",
+    "ok mach ich jetzt"
+   ]
+  ]
+ },
+ {
+  "id": "de-erste-wohnung-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hab meine erste wohnung gekauft!"
+   ],
+   [
+    "B",
+    "glückwunsch!"
+   ],
+   [
+    "C",
+    "kredit oder bar?"
+   ],
+   [
+    "A",
+    "kredit, anzahlung ungefähr 20 prozent"
+   ],
+   [
+    "C",
+    "klug, keine miete mehr"
+   ],
+   [
+    "A",
+    "nur raten haha"
+   ]
+  ]
+ },
+ {
+  "id": "de-schnee-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hier [schneit es|ist es eiskalt] in {A.sehir}"
+   ],
+   [
+    "B",
+    "hier 30 grad"
+   ],
+   [
+    "A",
+    "ich hasse dich ein bisschen"
+   ],
+   [
+    "B",
+    "würde sofort tauschen"
+   ],
+   [
+    "C",
+    "mit dem wetter ist nie jemand zufrieden"
+   ]
+  ]
+ },
+ {
+  "id": "de-grundstueck-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "was bringt ein grundstück, gibt ja keine miete"
+   ],
+   [
+    "B",
+    "es steigt im wert"
+   ],
+   [
+    "A",
+    "aber kein einkommen"
+   ],
+   [
+    "C",
+    "langfristig halt"
+   ],
+   [
+    "B",
+    "wenn du einkommen willst, wohnung oder laden"
+   ],
+   [
+    "A",
+    "ok dann erst wohnung"
+   ]
+  ]
+ },
+ {
+  "id": "de-kein-alter-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "werden wir im spiel eigentlich älter?"
+   ],
+   [
+    "B",
+    "nein, gibt kein alter"
+   ],
+   [
+    "A",
+    "gott sei dank"
+   ],
+   [
+    "C",
+    "keine schule, alle starten mit 100 tausend"
+   ],
+   [
+    "A",
+    "also für immer jung und pleite"
+   ],
+   [
+    "B",
+    "der traum"
+   ]
+  ]
+ },
+ {
+  "id": "de-kochen-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "hab reis gekocht, ist gleichzeitig angebrannt und roh"
+   ],
+   [
+    "B",
+    "das ist talent"
+   ],
+   [
+    "C",
+    "wasser verhältnis, mein freund"
+   ],
+   [
+    "A",
+    "es gibt ein verhältnis??"
+   ],
+   [
+    "B",
+    "bestell heute lieber was"
+   ]
+  ]
+ },
+ {
+  "id": "de-gym-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "komme gerade vom training, spüre meine arme nicht"
+   ],
+   [
+    "B",
+    "wie viele tage am stück?"
+   ],
+   [
+    "A",
+    "zwei"
+   ],
+   [
+    "C",
+    "legende"
+   ],
+   [
+    "B",
+    "tag drei ist der härteste"
+   ]
+  ]
+ },
+ {
+  "id": "de-tschuess-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "so, ich bin raus, [gute nacht|bis morgen]"
+   ],
+   [
+    "B",
+    "nacht {A}"
+   ],
+   [
+    "C",
+    "vergiss die täglichen aufgaben nicht"
+   ],
+   [
+    "A",
+    "niemals"
+   ],
+   [
+    "B",
+    "er vergisst sie"
+   ]
+  ]
+ },
+ {
+  "id": "de-langweilig-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "mir ist langweilig auf der arbeit, unterhaltet mich"
+   ],
+   [
+    "B",
+    "klopf klopf"
+   ],
+   [
+    "A",
+    "wer ist da"
+   ],
+   [
+    "B",
+    "die miete"
+   ],
+   [
+    "A",
+    "die miete wer"
+   ],
+   [
+    "B",
+    "die miete ist fällig"
+   ],
+   [
+    "C",
+    "das ist kein witz, das ist ne drohung"
+   ]
+  ]
+ },
+ {
+  "id": "de-update-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "weiß jemand was im nächsten update kommt?"
+   ],
+   [
+    "B",
+    "angeblich börse und devisen, aber keine ahnung"
+   ],
+   [
+    "C",
+    "nur gerüchte"
+   ],
+   [
+    "A",
+    "hoffentlich was lustiges"
+   ],
+   [
+    "B",
+    "ich hoffe auf billigere miete"
+   ]
+  ]
+ },
+ {
+  "id": "de-familie-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "familienessen heute, wünscht mir glück"
+   ],
+   [
+    "B",
+    "warum glück"
+   ],
+   [
+    "A",
+    "tanten. fragen. \"wann heiratest du\""
+   ],
+   [
+    "C",
+    "sag du konzentrierst dich auf dein immobilienimperium"
+   ],
+   [
+    "A",
+    "könnte tatsächlich klappen"
+   ]
+  ]
+ },
+ {
+  "id": "de-sparziel-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "endlich 500 tausend auf dem konto"
+   ],
+   [
+    "B",
+    "nice, und jetzt?"
+   ],
+   [
+    "A",
+    "keine ahnung, hab angst es auszugeben"
+   ],
+   [
+    "C",
+    "liegendes geld verliert wert durch die inflation"
+   ],
+   [
+    "B",
+    "und zinsen aufs konto gibts auch keine"
+   ],
+   [
+    "A",
+    "ok, schau mir wohnungen an"
+   ]
+  ]
+ },
+ {
+  "id": "de-bauarbeiter-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "arbeitet hier jemand auf dem bau?"
+   ],
+   [
+    "B",
+    "ja, seit zwei wochen bauarbeiter"
+   ],
+   [
+    "A",
+    "lohnt sich das?"
+   ],
+   [
+    "B",
+    "bezahlung pro auftrag, also je mehr du machst"
+   ],
+   [
+    "C",
+    "und später kannst du meister werden, mit dem schein"
+   ],
+   [
+    "B",
+    "genau, 20 tage bau plus kurs"
+   ]
+  ]
+ }
+]

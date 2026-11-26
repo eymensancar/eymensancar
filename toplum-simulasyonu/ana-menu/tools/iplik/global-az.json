@@ -1,0 +1,1074 @@
+[
+ {
+  "id": "az-sabahin-xeyir-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[sabahınız xeyir|sabah xeyir] hamıya"
+   ],
+   [
+    "B",
+    "sabahın xeyir {A}"
+   ],
+   [
+    "C",
+    "xeyirə qarşı, çay dəmlənir"
+   ],
+   [
+    "A",
+    "mən hələ oyanmamışam"
+   ],
+   [
+    "B",
+    "əvvəl çay, sonra söhbət"
+   ]
+  ]
+ },
+ {
+  "id": "az-haradan-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "burda {A.sehir} şəhərindən kim var?"
+   ],
+   [
+    "B",
+    "mən yox, {B.sehir} şəhərindənəm"
+   ],
+   [
+    "C",
+    "mən {C.sehir}, amma orda qohumlarım var"
+   ],
+   [
+    "A",
+    "dünya kiçikdir"
+   ],
+   [
+    "C",
+    "elədir"
+   ]
+  ]
+ },
+ {
+  "id": "az-yeni-oyuncu-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "təzə başlamışam, nə məsləhət görürsüz?"
+   ],
+   [
+    "B",
+    "100 mini birinci gün xərcləmə"
+   ],
+   [
+    "C",
+    "əvvəl iş tap, kuryer heç nə tələb etmir"
+   ],
+   [
+    "A",
+    "doğrudan? şərtsiz?"
+   ],
+   [
+    "C",
+    "hə, karyera ekranından birbaşa başlayırsan"
+   ],
+   [
+    "B",
+    "gündəlik tapşırıqları da et, pulsuz qum saatı verir"
+   ],
+   [
+    "A",
+    "oldu, sağ olun"
+   ]
+  ]
+ },
+ {
+  "id": "az-yagis-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bizdə yenə [yağış yağır|yağış dayanmır]"
+   ],
+   [
+    "B",
+    "bizdə günəşdir, bağışla"
+   ],
+   [
+    "A",
+    "paxıllığım tutdu"
+   ],
+   [
+    "C",
+    "bizdə də külək, adam uçur"
+   ],
+   [
+    "A",
+    "harda belə külək olur?"
+   ],
+   [
+    "C",
+    "bizim şəhərdə, məşhurdur"
+   ]
+  ]
+ },
+ {
+  "id": "az-turk-sozu-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "türklər \"kanka\" yazır, nə deməkdir?"
+   ],
+   [
+    "B",
+    "yaxın dost, bizim \"qardaş\" kimi"
+   ],
+   [
+    "C",
+    "bizdə \"brat\" deyirlər bəzən haha"
+   ],
+   [
+    "A",
+    "türk dilini başa düşürəm amma bəzi sözlər qəribədir"
+   ],
+   [
+    "B",
+    "onlar da bizim \"maşın\"ı başa düşmür"
+   ]
+  ]
+ },
+ {
+  "id": "az-oyun-dunen-1",
+  "konu": "spor",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "oyuna baxdız?"
+   ],
+   [
+    "B",
+    "hə, son dəqiqədə qol, inanılmaz"
+   ],
+   [
+    "A",
+    "elə qışqırdım ki qonşu qapını döydü"
+   ],
+   [
+    "C",
+    "mən birinci hissədə yatdım, demeyin"
+   ],
+   [
+    "B",
+    "gec oldu {C}"
+   ],
+   [
+    "C",
+    "ay səni"
+   ]
+  ]
+ },
+ {
+  "id": "az-kuryer-yorgun-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "bu gün [15|çox] çatdırılma etdim, ayaqlarım getdi"
+   ],
+   [
+    "B",
+    "kuryer həyatı"
+   ],
+   [
+    "A",
+    "pul pis deyil amma ay"
+   ],
+   [
+    "C",
+    "ofisiant ol, heç olmasa damın altındasan"
+   ],
+   [
+    "A",
+    "əsəbi müştərilərlə"
+   ],
+   [
+    "C",
+    "hər işin bir dərdi var"
+   ]
+  ]
+ },
+ {
+  "id": "az-menzil-almaq-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "indi mənzil alım, yoxsa gözləyim?"
+   ],
+   [
+    "B",
+    "kirayədə qalırsan?"
+   ],
+   [
+    "A",
+    "hə, kirayə maaşımı yeyir"
+   ],
+   [
+    "B",
+    "onda al, öz evində olan kirayə ödəmir"
+   ],
+   [
+    "C",
+    "qiymətlər də hər ay qalxır, gözləmək də pulsuz deyil"
+   ],
+   [
+    "A",
+    "yaxşı, kreditə baxaram"
+   ]
+  ]
+ },
+ {
+  "id": "az-birja-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bu oyunda birja var?"
+   ],
+   [
+    "B",
+    "hələ yox, deyirlər yeniləmədə gələcək"
+   ],
+   [
+    "A",
+    "heyf, istəyirdim"
+   ],
+   [
+    "C",
+    "valyuta da yoxdur, qızıl da"
+   ],
+   [
+    "B",
+    "hələlik mənzil və iş, köhnə üsul"
+   ]
+  ]
+ },
+ {
+  "id": "az-kafe-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kafemi açdım, ilk müştərilər gəldi"
+   ],
+   [
+    "B",
+    "təbrik edirəm! yeri necədir"
+   ],
+   [
+    "A",
+    "pis deyil, amma yaxınlıqda başqa kafe var"
+   ],
+   [
+    "C",
+    "onda müştərilər bölünür, diqqətli ol"
+   ],
+   [
+    "A",
+    "hə, gördüm"
+   ],
+   [
+    "B",
+    "yaxşı işçi götür, müvəqqəti işçi baha başa gəlir"
+   ]
+  ]
+ },
+ {
+  "id": "az-seher-yemeyi-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "səhər yeməyinə nə yeyirsiz"
+   ],
+   [
+    "B",
+    "pendir, çörək, çay"
+   ],
+   [
+    "C",
+    "qayğanaq"
+   ],
+   [
+    "A",
+    "bizimki ilə türk səhəri eynidir demək olar"
+   ],
+   [
+    "B",
+    "təkcə bizdə çay daha çox içilir"
+   ],
+   [
+    "C",
+    "mübahisəli məsələdir haha"
+   ]
+  ]
+ },
+ {
+  "id": "az-gece-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "kim hələ oyaqdır"
+   ],
+   [
+    "B",
+    "mən, yuxum gəlmir"
+   ],
+   [
+    "C",
+    "gecə növbəsindəyəm"
+   ],
+   [
+    "A",
+    "nə işləyirsən?"
+   ],
+   [
+    "C",
+    "{C.meslek}, gecə sakit olur"
+   ],
+   [
+    "B",
+    "mən də kirayəmə baxıb ah çəkirəm"
+   ]
+  ]
+ },
+ {
+  "id": "az-qum-saati-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bu qum saatları nəyə lazımdır?"
+   ],
+   [
+    "B",
+    "gözləməni qısaldır, biri bir gündür"
+   ],
+   [
+    "A",
+    "kurslara da olur?"
+   ],
+   [
+    "B",
+    "hə, kurs və müraciət üçün"
+   ],
+   [
+    "C",
+    "pul vermir amma, yalnız vaxt"
+   ],
+   [
+    "A",
+    "aydındır"
+   ]
+  ]
+ },
+ {
+  "id": "az-kiraye-zarafat-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev sahibi yenə kirayəni artırdı"
+   ],
+   [
+    "B",
+    "oyunda, yoxsa real?"
+   ],
+   [
+    "A",
+    "[ikisində də|hə]"
+   ],
+   [
+    "C",
+    "vay"
+   ],
+   [
+    "B",
+    "binanı al, özün ev sahibi ol"
+   ],
+   [
+    "A",
+    "hansı pulla qardaş"
+   ]
+  ]
+ },
+ {
+  "id": "az-kredit-limiti-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kredit limitim niyə bu qədər azdır?"
+   ],
+   [
+    "B",
+    "keçən ayın gəliri və kredit balına baxır"
+   ],
+   [
+    "A",
+    "keçən ay yarısı işsiz idim"
+   ],
+   [
+    "C",
+    "səbəb budur"
+   ],
+   [
+    "B",
+    "taksitləri vaxtında ödə, bal qalxır"
+   ],
+   [
+    "A",
+    "başa düşdüm"
+   ]
+  ]
+ },
+ {
+  "id": "az-merhaba-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "türk qardaşlara salam, merhaba"
+   ],
+   [
+    "B",
+    "merhaba! nasılsın?"
+   ],
+   [
+    "A",
+    "əla, siz necəsiz?"
+   ],
+   [
+    "B",
+    "iyiyiz, Azərbaycandan gələnləri görmək xoşdur"
+   ],
+   [
+    "C",
+    "biz də sizi çox sevirik"
+   ],
+   [
+    "A",
+    "qarşılıqlıdır"
+   ]
+  ]
+ },
+ {
+  "id": "az-heftesonu-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "həftə sonu planınız nədir?"
+   ],
+   [
+    "B",
+    "yatmaq"
+   ],
+   [
+    "C",
+    "yatmaq və plov"
+   ],
+   [
+    "A",
+    "çox məhsuldarsız"
+   ],
+   [
+    "B",
+    "bəs sən?"
+   ],
+   [
+    "A",
+    "[paltar yumaq|ev təmizliyi]. maraqlı, bilirəm"
+   ]
+  ]
+ },
+ {
+  "id": "az-muhasib-kursu-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mühasibat kursunu fikirləşirəm"
+   ],
+   [
+    "B",
+    "mən keçmişəm, dəyər"
+   ],
+   [
+    "A",
+    "neçə gün çəkir?"
+   ],
+   [
+    "B",
+    "bir neçə gün, üstəlik 30 gün təcrübə lazımdır"
+   ],
+   [
+    "A",
+    "sonra sabit maaş?"
+   ],
+   [
+    "B",
+    "hə, oyuna girməsən belə"
+   ]
+  ]
+ },
+ {
+  "id": "az-vaxt-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "tətbiq bağlı olanda vaxt keçir?"
+   ],
+   [
+    "B",
+    "hə, oyunun bir günü real bir saatdır"
+   ],
+   [
+    "A",
+    "yəni bir ay 30 saatdır?"
+   ],
+   [
+    "B",
+    "düzdür"
+   ],
+   [
+    "C",
+    "kirayə də ona görə tez gəlir"
+   ]
+  ]
+ },
+ {
+  "id": "az-cay-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "çay, yoxsa qəhvə?"
+   ],
+   [
+    "B",
+    "əlbəttə çay"
+   ],
+   [
+    "C",
+    "armudu stəkanda"
+   ],
+   [
+    "A",
+    "sual axmaq idi, bilirəm"
+   ],
+   [
+    "B",
+    "bəli, burda cavab bəllidir"
+   ],
+   [
+    "C",
+    "mürəbbə ilə"
+   ]
+  ]
+ },
+ {
+  "id": "az-inflyasiya-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mənə elə gəlir hər ay hər şey bahalaşır"
+   ],
+   [
+    "B",
+    "inflyasiyadır, oyunda var"
+   ],
+   [
+    "A",
+    "çox real oyundur"
+   ],
+   [
+    "C",
+    "maaş da qalxır, amma yavaş"
+   ],
+   [
+    "A",
+    "həmişəki kimi"
+   ]
+  ]
+ },
+ {
+  "id": "az-axsam-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "axşamınız xeyir"
+   ],
+   [
+    "B",
+    "axşamın xeyir {A}"
+   ],
+   [
+    "C",
+    "günün necə keçdi"
+   ],
+   [
+    "A",
+    "uzun. səninki?"
+   ],
+   [
+    "C",
+    "o da uzun, yeməkdən danışaq"
+   ],
+   [
+    "B",
+    "ən yaxşı təklif"
+   ]
+  ]
+ },
+ {
+  "id": "az-emlak-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "əmlak məsləhətçisi olmağa dəyər?"
+   ],
+   [
+    "B",
+    "maaş üstəgəl faiz, aktivsənsə yaxşı qazanırsan"
+   ],
+   [
+    "A",
+    "kurs lazımdır?"
+   ],
+   [
+    "B",
+    "hə, əmlak sertifikatı"
+   ],
+   [
+    "C",
+    "və əvvəlcə 30 gün təcrübə"
+   ],
+   [
+    "A",
+    "deməli birinci gün olmur"
+   ]
+  ]
+ },
+ {
+  "id": "az-pisik-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "pişiyim telefonun üstündən keçdi"
+   ],
+   [
+    "B",
+    "bir şey aldı?"
+   ],
+   [
+    "A",
+    "şükür, yox"
+   ],
+   [
+    "C",
+    "əsl oyunçu pişiklərdir"
+   ],
+   [
+    "A",
+    "ən azı mənzil almadı"
+   ]
+  ]
+ },
+ {
+  "id": "az-tez-pul-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ən tez necə pul qazanmaq olar?"
+   ],
+   [
+    "B",
+    "qısa yol yoxdur"
+   ],
+   [
+    "C",
+    "çox online olursansa kuryer, yoxsa sabit maaşlı bir iş"
+   ],
+   [
+    "A",
+    "bütün günü telefondayam"
+   ],
+   [
+    "C",
+    "onda kuryer, hər tapşırığa pul alırsan"
+   ],
+   [
+    "B",
+    "ödəyə bilməyəcəyin kredit götürmə"
+   ]
+  ]
+ },
+ {
+  "id": "az-taksit-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "iki taksit buraxdım, pisdir?"
+   ],
+   [
+    "B",
+    "hə, üçüncüdə icra gəlir"
+   ],
+   [
+    "A",
+    "yox ey"
+   ],
+   [
+    "C",
+    "indi birini ödə, ağrısa da"
+   ],
+   [
+    "A",
+    "elə indi edirəm"
+   ]
+  ]
+ },
+ {
+  "id": "az-yorgunluq-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "nahardan sonra yuxu tutur"
+   ],
+   [
+    "B",
+    "bir az gəz"
+   ],
+   [
+    "A",
+    "gəzmək əziyyətdir"
+   ],
+   [
+    "C",
+    "onda çay"
+   ],
+   [
+    "A",
+    "üçüncü stəkandır"
+   ],
+   [
+    "B",
+    "deməli çarə yoxdur"
+   ]
+  ]
+ },
+ {
+  "id": "az-dukan-kafe-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kafe, yoxsa dükan, hansını açardız?"
+   ],
+   [
+    "B",
+    "kafe, çay hər zaman satılır"
+   ],
+   [
+    "C",
+    "dükan, işçi ilə az baş ağrısı"
+   ],
+   [
+    "A",
+    "ikisi də 60 gün təcrübə istəyir, hə?"
+   ],
+   [
+    "B",
+    "hə, bir də kapital"
+   ],
+   [
+    "C",
+    "deməli indidən yığmaq lazımdır"
+   ]
+  ]
+ },
+ {
+  "id": "az-iane-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ianə vermək nəyəsə yarayır?"
+   ],
+   [
+    "B",
+    "nüfuz, hər 10 minə 1"
+   ],
+   [
+    "A",
+    "nüfuz nə üçündür"
+   ],
+   [
+    "C",
+    "kredit balı, işə müraciət, belə şeylər"
+   ],
+   [
+    "A",
+    "onda bir az verərəm"
+   ]
+  ]
+ },
+ {
+  "id": "az-tixac-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "40 dəqiqədir tıxacdayam"
+   ],
+   [
+    "B",
+    "maşın sürə-sürə yazırsan?"
+   ],
+   [
+    "A",
+    "yox, avtobusdayam, narahat olma"
+   ],
+   [
+    "C",
+    "avtobus tıxacı ən pisidir"
+   ],
+   [
+    "B",
+    "hə, onda yaxşı"
+   ]
+  ]
+ },
+ {
+  "id": "az-isini-itirdi-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "işimi itirdim, pul da az qalıb"
+   ],
+   [
+    "B",
+    "yenidən işləyənə qədər investisiya edə bilməzsən"
+   ],
+   [
+    "A",
+    "hə, gördüm"
+   ],
+   [
+    "C",
+    "kuryer ol, müdirə ehtiyac yoxdur, bu gün başla"
+   ],
+   [
+    "A",
+    "oldu, gedirəm"
+   ]
+  ]
+ },
+ {
+  "id": "az-ilk-menzil-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ilk mənzilimi aldım!"
+   ],
+   [
+    "B",
+    "təbriklər!"
+   ],
+   [
+    "C",
+    "kreditlə, yoxsa nağd?"
+   ],
+   [
+    "A",
+    "kreditlə, ilkin ödəniş təxminən 20 faiz"
+   ],
+   [
+    "C",
+    "ağıllı, artıq kirayə yoxdur"
+   ],
+   [
+    "A",
+    "yalnız taksit haha"
+   ]
+  ]
+ },
+ {
+  "id": "az-plov-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "bu axşam plov bişirirəm"
+   ],
+   [
+    "B",
+    "dəvət gözləyirəm"
+   ],
+   [
+    "C",
+    "qazmaq olsun"
+   ],
+   [
+    "A",
+    "qazmaq hamıya çatmır, növbəyə durun"
+   ],
+   [
+    "B",
+    "mən birinciyəm"
+   ]
+  ]
+ },
+ {
+  "id": "az-sagolun-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yaxşı, mən getdim, [gecəniz xeyrə|sabaha qədər]"
+   ],
+   [
+    "B",
+    "xeyirə qarşı {A}"
+   ],
+   [
+    "C",
+    "gündəlik tapşırıqları unutma"
+   ],
+   [
+    "A",
+    "heç vaxt"
+   ],
+   [
+    "B",
+    "unudacaq, bilirəm"
+   ]
+  ]
+ },
+ {
+  "id": "az-memur-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "məmur olmaq darıxdırıcıdır?"
+   ],
+   [
+    "B",
+    "mən məmuram, sakitdir. sabit maaş"
+   ],
+   [
+    "A",
+    "kurs lazımdır?"
+   ],
+   [
+    "B",
+    "dövlət imtahanı kursu, bir də bir neçə gün gözləmək"
+   ],
+   [
+    "C",
+    "oyuna girməsən də maaş gəlir, hə?"
+   ],
+   [
+    "B",
+    "hə, ən gözəli elə odur"
+   ]
+  ]
+ }
+]
