@@ -5,7 +5,7 @@
 // sonra tum veriyle egitip modeli npc-dil.js icindeki /*MODEL-BASLA*/ ... /*MODEL-BITIS*/ arasina gomer.
 // --kuru: yalniz olcer, dosyaya yazmaz.
 //
-// Egitim verisi YALNIZ: korpus3/egitim.json (sentetik), korpus*/tekil-gelistirme.json, korpus*/diyalog-gelistirme.json ilk turlari,
+// Egitim verisi YALNIZ: korpus3/egitim.json ve korpus4/egitim.json (sentetik), korpus*/tekil-gelistirme.json, korpus*/diyalog-gelistirme.json ilk turlari,
 // tools/npc-dil-test.cjs icindeki ORNEK dizisi. Sakli dosyalar (*-sakli.json, tekil.json, diyalog.json) OKUNMAZ.
 // Kurallar CV sirasinda sabittir (zaten bu veriye bakilarak yazildi); modelin katkisini karmanin CV'si gosterir.
 'use strict';
@@ -39,6 +39,7 @@ for (const k of ['korpus', 'korpus2']) {
   if (fs.existsSync(dia)) JSON.parse(fs.readFileSync(dia, 'utf8')).forEach(x => { const t = x.turlar && x.turlar[0]; if (t) ekle(t.m, t.konu, k); });
 }
 if (!process.argv.includes('--k3yok')) { const k3 = path.join(__dirname, 'korpus3', 'egitim.json'); if (fs.existsSync(k3)) JSON.parse(fs.readFileSync(k3, 'utf8')).forEach(x => ekle(x.m, x.niyet, 'korpus3')); }
+if (!process.argv.includes('--k4yok')) { const k4 = path.join(__dirname, 'korpus4', 'egitim.json'); if (fs.existsSync(k4)) JSON.parse(fs.readFileSync(k4, 'utf8')).forEach(x => ekle(x.m, x.niyet, 'korpus4')); }
 {
   const src = fs.readFileSync(path.join(__dirname, 'npc-dil-test.cjs'), 'utf8');
   const a = src.indexOf('const ORNEK = [');

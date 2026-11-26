@@ -1,0 +1,7458 @@
+[
+ {
+  "id": "c2-atisma-ketcap",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:yemek} üstüne ketçap koyan insanlara saygım yok|{s:yemek} ketçapla yenmez, bunu herkes bilsin|ketçaplı {s:yemek} suçtur]"
+   ],
+   [
+    "B",
+    "[ben koyuyorum|ben her şeye koyarım|şu an koyuyorum]"
+   ],
+   [
+    "A",
+    "[{B} hayal kırıklığı|{B} senden beklemezdim|{B} bunu duymamış olayım]"
+   ],
+   [
+    "B",
+    "[ye de konuş|bir dene önce|denemeden yargılama]"
+   ],
+   [
+    "C",
+    "[şimdi ikiniz kavga etmeyin, {s:yemek} soğuyor|yemek soğumadan barışın|kavga sonra, yemek şimdi]"
+   ],
+   [
+    "A",
+    "[peki|tamam|olur], [bu seferlik|sadece bugün|geçici ateşkes]"
+   ],
+   [
+    "B",
+    "[kalıcı barış istiyorum|ateşkes yetmez|ketçaplı barış]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-klima",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[iş yerinde klimayı kim kapattı|klima kapalı, eriyorum|klima savaşları başladı]"
+   ],
+   [
+    "B",
+    "[ben, üşüyorum|ben kapattım|üşüdüm, kapattım]"
+   ],
+   [
+    "A",
+    "[{B} dışarıda {s:kis_hava} değil ki|{B} üşüyecek hava mı|{B} hırka giy]"
+   ],
+   [
+    "B",
+    "[sen tişört giy|sen de soyun|sen pencere aç]"
+   ],
+   [
+    "C",
+    "[ben ortada oturuyorum, ikinizin de rüzgarı bana geliyor|ben ikinizin arasındayım, perişan oldum|bana kimse sormuyor]"
+   ],
+   [
+    "D",
+    "[{C} sen terfi iste, yer değiştir|{C} yer değiştir|{C} kaç oradan]"
+   ],
+   [
+    "C",
+    "[en mantıklısı bu|bunu düşünürüm|yarın yer değiştiriyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-ekmek-dolap",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ekmek buzdolabına konmaz|ekmeği dolaba koyan bir şey anlamaz|ekmek tezgahta durur]"
+   ],
+   [
+    "B",
+    "[konur|dolaba koyarım ben|küflenmesin diye]"
+   ],
+   [
+    "A",
+    "[ama sertleşiyor|bayatlıyor|tadı kaçıyor]"
+   ],
+   [
+    "B",
+    "[sonra kızartırım|tost yaparım|ısıtırım]"
+   ],
+   [
+    "C",
+    "[bizde {s:akraba} ekmeği dondurucuya koyuyor|{s:akraba} ekmeği dondurur bizde|{s:akraba} buzluk ekipmanı]"
+   ],
+   [
+    "A",
+    "[işte bu olmaz|o başka seviye|o çok ileri]"
+   ],
+   [
+    "D",
+    "[herkes kendi evinde kral|her evin ekmek kuralı|ekmek özgürlüğü]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-dizi-spoiler",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[{B} son bölümü anlatma sakın|{B} söyleme, izlemedim daha|{B} ağzını açma]"
+   ],
+   [
+    "B",
+    "[ben bir şey demedim|bir şey demeyeceğim|söylemiyorum]"
+   ],
+   [
+    "A",
+    "[yüzünden belli|yazış tarzından anlıyorum|bir şey olduğu belli]"
+   ],
+   [
+    "B",
+    "[sadece şunu söyleyeyim|tek kelime|ipucu vereyim mi]"
+   ],
+   [
+    "A",
+    "[hayır|söyleme|dur]"
+   ],
+   [
+    "C",
+    "[{B} söylersen kanaldan atılırsın|{B} sus, kural var|spoiler cezası {s:tatli} ısmarlamak]"
+   ],
+   [
+    "B",
+    "[tamam susuyorum|ağzım kilitli|bir şey demiyorum], [ama çok şaşıracaksın|ama izleyince beni ara|ama {s:dizi_tur} sevenler bayılacak]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-park-yer",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:mekan} oturduğum yeri biri aldı|{s:mekan} her gün oturduğum yere biri oturmuş|benim yerime biri oturmuş]"
+   ],
+   [
+    "B",
+    "[senin yerin mi var|tapusu var mı|adına mı kayıtlı]"
+   ],
+   [
+    "A",
+    "[her gün orada oturuyorum|yıllardır orası benim|herkes bilir orası benim]"
+   ],
+   [
+    "B",
+    "[ona da söyle o zaman|ona anlat|kimse bilmiyor demek]"
+   ],
+   [
+    "C",
+    "[bu bende de var, otobüste hep aynı koltuk|ben de {s:ulasim} içinde aynı yere otururum|ben de yerimi kaptırınca bozulurum]"
+   ],
+   [
+    "A",
+    "[{C} anlıyorsun beni|{C} bak, normal bir şey|{C} işte biri anladı]"
+   ],
+   [
+    "B",
+    "[ikiniz koltuk kulübü kurun|koltuk derneği|yer sahipleri birliği]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-hangi-kanal",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalın en komik kişisi benim|bu kanalda benden komik yok|en çok ben güldürüyorum]"
+   ],
+   [
+    "B",
+    "[hayır, ben|bence ben|kimse benden komik değil]"
+   ],
+   [
+    "C",
+    "[ikiniz de değil|bence ikiniz de değil|en komik {s:akraba} bence]"
+   ],
+   [
+    "A",
+    "[{s:akraba} kanalda yok ki|{s:akraba} kim|tanımıyoruz]"
+   ],
+   [
+    "C",
+    "[olsaydı kazanırdı|gelse herkesi geçerdi|yine de o]"
+   ],
+   [
+    "D",
+    "[en komik bu tartışma zaten|bu kavga en komik şey|komik olan bu]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-kahve-saati",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[öğleden sonra {s:icecek} içilmez, uyuyamazsın|akşam {s:icecek} içen uyuyamaz|{s:saat} sonra {s:icecek} yasak]"
+   ],
+   [
+    "B",
+    "[ben gece içiyorum, mışıl mışıl uyuyorum|ben gece yarısı içerim, uyurum|benim bir şey olmuyor]"
+   ],
+   [
+    "A",
+    "[yalan|olmaz|imkansız]"
+   ],
+   [
+    "B",
+    "[vücudum alışmış|bende işlemiyor|bağışıklık kazandım]"
+   ],
+   [
+    "C",
+    "[ben {s:icecek#2} içerim gece|ben {s:icecek#2} tercih ederim|ikisi de değil, {s:icecek#2}]"
+   ],
+   [
+    "A",
+    "[{C} en makulü|{C} akıllıca|{C} sağlıklı yaşam]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-sabah-ilk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[sabah gözünüzü açınca ilk ne yapıyorsunuz|uyanınca ilk hareketiniz|sabah ilk iş ne]"
+   ],
+   [
+    "B",
+    "[telefona bakarım|telefon|kanala bakarım]"
+   ],
+   [
+    "C",
+    "[alarmı ertelerim|{s:sayi} kere ertelerim|ertele düğmesi]"
+   ],
+   [
+    "D",
+    "[{s:icecek} hazırlarım|mutfağa gider {s:icecek} koyarım|{s:icecek} olmadan gözüm açılmaz]"
+   ],
+   [
+    "B",
+    "[{C} kaç kere|{C} saydın mı|{C} bir rekorun var mı]"
+   ],
+   [
+    "C",
+    "[rekorum {s:sayi#2}|bir kere {s:sayi#2} oldu|en fazla {s:sayi#2}]"
+   ],
+   [
+    "A",
+    "[ilginç bir kanal|hepimiz farklıyız|bu kanal tam bir karışım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-yemek-tek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ömür boyu tek bir yemek yiyecek olsanız|sadece bir yemek seçmek zorunda olsanız|tek yemek, ömür boyu]"
+   ],
+   [
+    "B",
+    "[{s:yemek}|{s:yemek}, kesin|hiç düşünmeden {s:yemek}]"
+   ],
+   [
+    "C",
+    "[{s:yemek#2}|bence {s:yemek#2}|{s:yemek#2} olurdu]"
+   ],
+   [
+    "D",
+    "[zor soru|bu soru çok zor|seçemem]"
+   ],
+   [
+    "A",
+    "[{D} seçmek zorundasın|{D} kaçamazsın|{D} cevap ver]"
+   ],
+   [
+    "D",
+    "[o zaman {s:tatli}|{s:tatli} seçiyorum|{s:tatli}, yemek değil ama]"
+   ],
+   [
+    "B",
+    "[{D} kuralları çiğnedi|{D} hile|{D} tatlı yemek değil]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-tatil-yeri",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bir hafta bedava tatil kazansanız nereye|bedava tatil olsa nereye gidersiniz|nereye tatile gitmek istersiniz]"
+   ],
+   [
+    "B",
+    "[{s:sehir}|{s:sehir}, deniz kenarı|{s:sehir} tarafları]"
+   ],
+   [
+    "C",
+    "[{s:sehir#2}|ben {s:sehir#2}|{s:sehir#2} hep istedim]"
+   ],
+   [
+    "D",
+    "[evden çıkmam, uyurum|evde kalırım|bir hafta yatakta]"
+   ],
+   [
+    "B",
+    "[{D} bu tatil değil|{D} israf|{D} bedava tatili harcadın]"
+   ],
+   [
+    "D",
+    "[en güzel tatil|en dinlendirici tatil|bence kazandım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-renk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[en sevdiğiniz renk ne|renk anketi|herkes favori rengini yazsın]"
+   ],
+   [
+    "B",
+    "[{s:renk}|{s:renk}, her zaman|{s:renk}, değişmez]"
+   ],
+   [
+    "C",
+    "[{s:renk#2}|bence {s:renk#2}|ben {s:renk#2} severim]"
+   ],
+   [
+    "D",
+    "[benim dolabım tamamen {s:renk}|bende her şey {s:renk}|giydiğim her şey {s:renk}]"
+   ],
+   [
+    "A",
+    "[{D} tutarlı|{D} çok tutarlı|{D} bir tarzın var]"
+   ],
+   [
+    "B",
+    "[bir de {s:renk#2} dene|biraz renk kat|başka renk de dene]"
+   ],
+   [
+    "D",
+    "[asla|olmaz|cesaretim yok]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-ses",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[en sevdiğiniz ses ne|hangi sesi duymak sizi mutlu eder|en rahatlatıcı ses]"
+   ],
+   [
+    "B",
+    "[yağmur|yağmur sesi|cama vuran yağmur]"
+   ],
+   [
+    "C",
+    "[çaydanlığın fokurdaması|demliğin sesi|çay suyunun kaynaması]"
+   ],
+   [
+    "D",
+    "[maaşın yattığı bildirim sesi|maaş bildirimi|hesaba para yatınca çıkan ses]"
+   ],
+   [
+    "B",
+    "[{D} haklı|{D} en güzeli|{D} kazandı]"
+   ],
+   [
+    "A",
+    "[{s:hayvan} mırıltısı da güzel|bir de {s:hayvan} sesi|{s:hayvan} sesini unuttunuz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-ilk-ne-alirdin",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[şimdi bir milyon kazansan ilk ne alırsın|bir milyonun olsa ilk ne yaparsın|piyangodan bir milyon çıksa]"
+   ],
+   [
+    "B",
+    "[daire|ev, {daire} civarı|ev alırım]"
+   ],
+   [
+    "C",
+    "[{s:esya}|yeni bir {s:esya}|önce bir {s:esya}]"
+   ],
+   [
+    "D",
+    "[hiçbir şey, saklarım|hepsini saklarım|harcamam]"
+   ],
+   [
+    "C",
+    "[{B} bir milyonla ev olmaz, peşinat olur|{B} peşinat {pesinat}, gerisi kredi|{B} kredi lazım]"
+   ],
+   [
+    "B",
+    "[doğru|o zaman peşinat|tamam, peşinat]"
+   ],
+   [
+    "A",
+    "[{C} {s:esya} için bir milyon fazla değil mi|{C} çok mütevazı|{C} ekonomik]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-semt-yemek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[semtinizin en iyi yemeği ne|oturduğunuz yerde en meşhur ne|semtinizde mutlaka yenmesi gereken]"
+   ],
+   [
+    "B",
+    "[{B.yer} tarafında {s:yemek}|bizim orada {s:yemek}|{B.yer} {s:yemek} yeri meşhur]"
+   ],
+   [
+    "C",
+    "[{s:semt} tarafında {s:tatli}|{s:semt} {s:tatli} ile ünlü|{s:semt} gelince {s:tatli} ye]"
+   ],
+   [
+    "D",
+    "[bizim semtte {s:mekan} simit|bizim tarafta en iyisi simit|bizde simit]"
+   ],
+   [
+    "A",
+    "[bir gün turu yapalım|kanal yemek turu|hepsine gidelim]"
+   ],
+   [
+    "B",
+    "[ilk durak benim semt|benimkinden başlarız|bizden başlayalım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-sabah-saat",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[bu sabah kaçta kalktınız|kalkış saatleri|bugün kim kaçta uyandı]"
+   ],
+   [
+    "B",
+    "[{s:saat}|{s:saat}, zorla|tam {s:saat}]"
+   ],
+   [
+    "C",
+    "[hâlâ yataktayım|daha kalkmadım|yataktan yazıyorum]"
+   ],
+   [
+    "D",
+    "[{s:saat} kalktım, {s:saat#2} işteydim|ben {s:saat} uyandım, koşa koşa geldim|ben {s:saat}, zaten geç kaldım]"
+   ],
+   [
+    "C",
+    "[{D} kolay gelsin|{D} geçmiş olsun|{D} ben şimdi daha da derin uyuyacağım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-cumle",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[herkes bir kelime eklesin, cümle kuralım|kelime kelime hikaye yazalım|bir kelime ben, bir kelime siz]"
+   ],
+   [
+    "B",
+    "[bir|bir gün|bir zamanlar]"
+   ],
+   [
+    "C",
+    "[{s:mekan}|{s:mekan} bir|{s:mekan} tek başına]"
+   ],
+   [
+    "D",
+    "[{s:hayvan}|bir {s:hayvan}|küçük bir {s:hayvan}]"
+   ],
+   [
+    "A",
+    "[{s:tatli} yedi|{s:tatli} çaldı|{s:tatli} buldu]"
+   ],
+   [
+    "B",
+    "[ve kanala yazdı|sonra kanala katıldı|sonra herkese anlattı]"
+   ],
+   [
+    "C",
+    "[en güzel hikaye|bitti|son] haha"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-zit",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[zıt anlamlı kelime oyunu: sıcak|bir kelime diyorum, siz zıddını: sıcak|zıt kelime: sıcak]"
+   ],
+   [
+    "B",
+    "[soğuk|buz|soğuk, bugün {s:kis_hava}]"
+   ],
+   [
+    "A",
+    "[kanal|şimdi kanal|zıt: kanal]"
+   ],
+   [
+    "C",
+    "[sessizlik|sessiz bir oda|yalnızlık]"
+   ],
+   [
+    "A",
+    "[güzel|çok güzel|şairsin]"
+   ],
+   [
+    "D",
+    "[{s:tatli}|benden: {s:tatli}|zıt: {s:tatli}]"
+   ],
+   [
+    "B",
+    "[{s:tatli} zıddı ne|{s:tatli} zıddı diyet|zıddı turşu] haha"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-tekerleme",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[tekerleme yarışması|hızlı söyleyin: şu köşe yaz köşesi|tekerleme sırası]"
+   ],
+   [
+    "B",
+    "[şu köşe yaz köşesi, şu köşe kış köşesi|şu köşe yaz köşesi|yaz köşesi kış köşesi]"
+   ],
+   [
+    "C",
+    "[ortada su şişesi|su şişesi|ortada su şişesi, bitti]"
+   ],
+   [
+    "D",
+    "[ben yazarken bile dilim dolandı|ben yazarken karıştırdım|parmaklarım dolandı]"
+   ],
+   [
+    "A",
+    "[yazarken nasıl dolanır|yazıda dolanma olmaz|hayret]"
+   ],
+   [
+    "D",
+    "[ben özel biriyim|bende yetenek var|yetenek] haha"
+   ],
+   [
+    "B",
+    "[bir tane daha: {s:sayi} tane çay bardağı|{s:sayi} kara kedi|sıra sende {D}]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-emoji-yok",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bir {s:dizi_tur} filmini üç kelimeyle anlatın|üç kelimelik film özeti oyunu|üç kelimeyle {s:dizi_tur} filmi]"
+   ],
+   [
+    "B",
+    "[biri kayboldu, bulundu|kaybolur, bulunur, biter|karanlık, çığlık, son]"
+   ],
+   [
+    "C",
+    "[tanıştılar, kavga, evlendiler|aşk, kavga, düğün|tanışma, ayrılık, kavuşma]"
+   ],
+   [
+    "D",
+    "[uyudum, uyandım, bitmiş|açtım, uyudum, bitti|film, uyku, jenerik]"
+   ],
+   [
+    "A",
+    "[{D} en dürüst eleştiri|{D} çok gerçek|{D} kazandı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-harf-isim",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[isim şehir hayvan oynayalım|isim şehir oyunu, harf S|harf seçtim: S]"
+   ],
+   [
+    "B",
+    "[isim Selin, şehir Samsun|Samsun|Selin, Samsun, sincap]"
+   ],
+   [
+    "C",
+    "[hayvan sincap|sincap|salyangoz]"
+   ],
+   [
+    "D",
+    "[ben {s:sehir} yazdım|ben yine {s:sehir} dedim|şehir {s:sehir}]"
+   ],
+   [
+    "A",
+    "[{D} o S ile başlamıyor|{D} harfe bak|{D} hangi harf]"
+   ],
+   [
+    "D",
+    "[kalbim {s:sehir} diyor|memleket her harfe uyar|benim için her harf {s:sehir}]"
+   ],
+   [
+    "B",
+    "[duygusal oyuncu|gönül oyuncusu|kural tanımaz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-bilmece-anahtar",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bilmece: kapısı var ama ev değil, anahtarı var ama kilit değil|anahtarı var ama kapı açmaz|bilin: tuşları var, kilidi yok]"
+   ],
+   [
+    "B",
+    "[piyano|klavye|piyano, değil mi]"
+   ],
+   [
+    "A",
+    "[ikisi de olur|klavye daha doğru|bildin]"
+   ],
+   [
+    "C",
+    "[benimki: dişleri var ama yemek yemez|dişi var, ısırmaz|bilmece: dişli ama ağzı yok]"
+   ],
+   [
+    "D",
+    "[tarak|fermuar|testere]"
+   ],
+   [
+    "C",
+    "[tarak|ikisi de|hepsi doğru aslında]"
+   ],
+   [
+    "B",
+    "[bugün kanal çok zeki|bilmece günü|kanal bilgi yarışması oldu], [ödül {s:tatli}|herkese {s:tatli}|kazanana {s:tatli}]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-bilmece-gunes",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[bilmece: sabah gelir, akşam gider, hiç konuşmaz|sabah doğar, akşam batar|her sabah gelir, kimse çağırmaz]"
+   ],
+   [
+    "B",
+    "[güneş|güneş tabii|güneş, kolay]"
+   ],
+   [
+    "C",
+    "[bugün gelmedi ama|bugün {s:kis_hava}|bizde bugün hiç gelmedi]"
+   ],
+   [
+    "A",
+    "[doğru, bugün izinli|güneş izin almış|güneş de tatile çıkmış]"
+   ],
+   [
+    "D",
+    "[güneş de bizim gibi yorgun|güneş de yoruldu|güneşin de izin hakkı var]"
+   ],
+   [
+    "B",
+    "[yarın gelir|bekleriz|yarın döner]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-bilmece-sayi-yas",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mantık sorusu: bir {s:hayvan} her gün iki katına çıkıyor, on günde odayı dolduruyor|matematik bilmecesi: her gün iki katı, on günde dolu|zor soru: iki katına çıkan su, on günde havuz dolar]"
+   ],
+   [
+    "B",
+    "[yarısı ne zaman dolu|yarı dolu ne zaman|bu soruyu biliyorum]"
+   ],
+   [
+    "A",
+    "[evet, yarısı ne zaman|soru bu|cevap ver]"
+   ],
+   [
+    "C",
+    "[beşinci gün|beş|bence beş]"
+   ],
+   [
+    "D",
+    "[dokuzuncu gün|dokuz|dokuz, son günden bir önce]"
+   ],
+   [
+    "A",
+    "[{D} doğru|{D} bildi|{D} kazandı], [{C} acele ettin|{C} tuzağa düştün|{C} klasik hata]"
+   ],
+   [
+    "C",
+    "[ben kalpten cevap veriyorum|ben duygusal matematikçiyim|matematik bana ters]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-hep-ac",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen hep açsın|{B} her girdiğinde açım diyorsun|{B} senin karnın hiç doymaz mı]"
+   ],
+   [
+    "B",
+    "[açım|açım şu an da|şu an da açım]"
+   ],
+   [
+    "C",
+    "[haha|tabii|yine]"
+   ],
+   [
+    "B",
+    "[yemek düşünmekten acıktım|siz bahsettiniz, acıktım|kanal acıktırıyor]"
+   ],
+   [
+    "D",
+    "[{B} sana {s:yemek} yapayım|{B} gel bize, {s:yemek} var|{B} bizde {s:yemek} var]"
+   ],
+   [
+    "B",
+    "[adres|geliyorum|yoldayım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-surekli-ozur",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen her mesaja \"pardon\" ile başlıyorsun|{B} neden hep özür diliyorsun|{B} özür dileme artık]"
+   ],
+   [
+    "B",
+    "[pardon|pardon, alışkanlık|kusura bakma]"
+   ],
+   [
+    "A",
+    "[bak yine|işte yine|gördün mü]"
+   ],
+   [
+    "B",
+    "[pardon|ah|of]"
+   ],
+   [
+    "C",
+    "[{B} bir gün pardonsuz yaz|{B} bugün özür yasağı|{B} bugün pardon yok]"
+   ],
+   [
+    "B",
+    "[tamam|söz|deneyeceğim], [bugün hava güzel|bugün {s:kis_hava}|bugün güzel bir gün]"
+   ],
+   [
+    "A",
+    "[aferin|bak oldu|pardonsuz ilk mesaj]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-hep-plan",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} her hafta \"bu hafta spora başlıyorum\" diyorsun|{B} her pazartesi spor sözü|{B} spora başladın mı]"
+   ],
+   [
+    "B",
+    "[başladım|bu hafta kesin|yarın]"
+   ],
+   [
+    "A",
+    "[her hafta yarın|yarın hiç gelmiyor|yarın bir efsane]"
+   ],
+   [
+    "C",
+    "[{B} {s:sayi} haftadır yarın|{B} {s:sayi} hafta oldu|{s:sayi} kere duydum bunu]"
+   ],
+   [
+    "B",
+    "[bu sefer farklı|bu sefer ayakkabı aldım|bu sefer hazırlandım]"
+   ],
+   [
+    "D",
+    "[ayakkabı almak spor sayılır|en zor kısım bitti|ilk adım ayakkabıdır]"
+   ],
+   [
+    "B",
+    "[{D} beni anlayan tek kişi|{D} sağ ol|{D} işte destek]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-cok-soru",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} bugün kaç soru sordun farkında mısın|{B} soru makinesi|{B} bugün kaç soru oldu]"
+   ],
+   [
+    "B",
+    "[kaç|çok mu|neden]"
+   ],
+   [
+    "A",
+    "[işte yine|bu da soru|bak yine sordun]"
+   ],
+   [
+    "B",
+    "[soru sormak yasak mı|merak ediyorum, suç mu|sormadan nasıl öğrenirim]"
+   ],
+   [
+    "C",
+    "[{B} haklı, soran öğrenir|{B} meraklı olmak güzel|bırak sorsun]"
+   ],
+   [
+    "D",
+    "[{B} ben de sana bir soru sorayım|{B} benim sorum var|{B} soru sırası bende], [en sevdiğin {s:tatli} ne|{s:tatli} sever misin|{s:tatli} mi {s:tatli#2} mi]"
+   ],
+   [
+    "B",
+    "[ikisi|hepsi|soru soruyla cevaplanır mı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-asiri-nazik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen neden bu kadar kibarsın|{B} kanalın en kibarı|{B} çok nazik yazıyorsun]"
+   ],
+   [
+    "B",
+    "[teşekkür ederim efendim|çok naziksiniz|sağ olun efendim]"
+   ],
+   [
+    "A",
+    "[işte bu|bak yine efendim|efendim dedi yine]"
+   ],
+   [
+    "C",
+    "[{B} resmi yazıyor ama içi sıcak|{B} resmi ama tatlı|{B} kibar ama samimi]"
+   ],
+   [
+    "B",
+    "[{C} çok teşekkür ederim|{C} sağ olasınız|{C} minnettarım]"
+   ],
+   [
+    "D",
+    "[bir {s:icecek} ısmarlayayım size efendim|efendim, bir {s:icecek} alır mıydınız|{s:icecek} ikram edeyim efendim]"
+   ],
+   [
+    "B",
+    "[memnuniyetle|çok sevinirim|seve seve]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-isim-sor",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} hoş geldin, yeni misin|{B} seni daha önce görmedim|{B} kanalda yeni bir isim]"
+   ],
+   [
+    "B",
+    "[merhaba|selam|evet yeniyim]"
+   ],
+   [
+    "A",
+    "[ne iş yapıyorsun|mesleğin ne|ne ile uğraşıyorsun]"
+   ],
+   [
+    "B",
+    "[{B.meslek}|{B.meslek} olarak çalışıyorum|şimdilik {B.meslek}]"
+   ],
+   [
+    "C",
+    "[hoş geldin|aramıza hoş geldin|kanal seni sevecek]"
+   ],
+   [
+    "D",
+    "[kanalın kuralı: ilk gün bir {s:tatli} anlatırsın|ilk gün en sevdiğin {s:tatli} sorulur|en sevdiğin {s:tatli} ne]"
+   ],
+   [
+    "B",
+    "[{s:tatli#2}|tabii ki {s:tatli#2}|{s:tatli#2} severim]"
+   ],
+   [
+    "D",
+    "[geçtin|kabul edildin|aramızdasın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-nerede-tanistik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} biz nereden tanışıyoruz|{B} seni bir yerden tanıyorum|{B} senin ismin tanıdık]"
+   ],
+   [
+    "B",
+    "[bilmiyorum|hatırlamıyorum|kanaldan tabii]"
+   ],
+   [
+    "A",
+    "[başka bir yerden|kanal dışından|daha önce]"
+   ],
+   [
+    "B",
+    "[{s:mekan} olabilir mi|belki {s:mekan}|{s:mekan} görmüş olabilirsin]"
+   ],
+   [
+    "A",
+    "[olabilir|evet galiba|hatırladım galiba]"
+   ],
+   [
+    "C",
+    "[kanal dünyası küçük|dünya küçük|bu şehirde herkes birini tanır]"
+   ],
+   [
+    "B",
+    "[bir gün {s:mekan} karşılaşırsak selam ver|karşılaşırsak selam|görürsen seslen]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-hal-hatir-is",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} işler nasıl gidiyor|{B} iş nasıl|{B} yeni işin nasıl]"
+   ],
+   [
+    "B",
+    "[iyi|fena değil|alışıyorum]"
+   ],
+   [
+    "A",
+    "[patron iyi mi|iş arkadaşları nasıl|ekip nasıl]"
+   ],
+   [
+    "B",
+    "[ekip çok iyi, patron biraz sert|patron sert ama adil|arkadaşlar iyi, patron sessiz]"
+   ],
+   [
+    "C",
+    "[patronların hepsi öyle|her patron sert görünür|patron sert, kalbi yumuşak]"
+   ],
+   [
+    "B",
+    "[her gün {s:tatli} getiriyorum, yumuşar belki|{s:tatli} ile kazanırım belki|{s:tatli} stratejisi uyguluyorum]"
+   ],
+   [
+    "A",
+    "[akıllıca|tatlı diplomasi|strateji iyi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-sicak-selam",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[herkese günaydın|günaydın kanal|kanala günaydınlar]"
+   ],
+   [
+    "B",
+    "[günaydın|günaydın {A}|sana da]"
+   ],
+   [
+    "C",
+    "[günaydın, {s:icecek} hazır mı|günaydın, {s:icecek} içtin mi|günaydın, ilk {s:icecek} geldi mi]"
+   ],
+   [
+    "A",
+    "[elimde|demlendi|bekliyorum demlenmesini]"
+   ],
+   [
+    "D",
+    "[ben {s:saat} günaydın derim, şimdi ikindi oldu|benim için daha gece|ben henüz uyanmadım]"
+   ],
+   [
+    "B",
+    "[{D} zaman dilimin başka|{D} sen başka ülkede gibisin|{D} kendi saatinde]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-yine-ben",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yine ben|tekrar merhaba|yine buradayım]"
+   ],
+   [
+    "B",
+    "[hiç gitmedin ki|daha beş dakika önce buradaydın|{s:sayi} dakika önce yazdın]"
+   ],
+   [
+    "A",
+    "[{s:sayi} dakika ayrılık uzun|beş dakika çok uzun|sizi özledim]"
+   ],
+   [
+    "B",
+    "[çok duygusalsın|ne kadar duygusal|aa]"
+   ],
+   [
+    "C",
+    "[{A} sen kanalın sadık müşterisi|{A} kanalın aboneliği sende|{A} sana kart basalım]"
+   ],
+   [
+    "A",
+    "[puan biriktirsin|puan kartı|her girişte bir {s:tatli}]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-telefon-bozuldu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[telefonum bozuldu, yeni aldım|bir haftadır telefonsuzdum|telefon gitti, yenisiyle geldim]"
+   ],
+   [
+    "B",
+    "[hoş geldin|nihayet|neredeydin]"
+   ],
+   [
+    "A",
+    "[telefonsuz hayat nasılmış gördüm|telefonsuz bir hafta yaşadım|bir hafta telefonsuz]"
+   ],
+   [
+    "C",
+    "[nasıldı|zor muydu|hayatta kaldın mı]"
+   ],
+   [
+    "A",
+    "[ilk iki gün zor, sonra {s:hobi} başladım|ilk günler zordu, sonra {s:hobi}|sonra {s:hobi} ile oyalandım]"
+   ],
+   [
+    "D",
+    "[belki telefonu bırakmalıyız|belki hepimiz denemeliyiz|telefon tatili]"
+   ],
+   [
+    "B",
+    "[kanal olmazdı ama|ama kanal kalır|ama kanalı bırakamam]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-uzun-sessizlik",
+  "konu": "sohbet",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[aylar sonra kanaldayım|aylar oldu|çok uzun zaman oldu]"
+   ],
+   [
+    "B",
+    "[{A}|vay {A}|o eski {A}]"
+   ],
+   [
+    "C",
+    "[biz seni unuttuk sanıyordun|unutulmadın|kanal hatırlıyor]"
+   ],
+   [
+    "A",
+    "[sağ olun|teşekkürler|iyi geldi bu]"
+   ],
+   [
+    "D",
+    "[{A} sen hâlâ {s:tatli} seviyor musun|{A} hâlâ {s:tatli} hayranı mısın|{A} {s:tatli} sevgin sürüyor mu]"
+   ],
+   [
+    "A",
+    "[hatırladın|bunu hatırlamışsın|hâlâ seviyorum]"
+   ],
+   [
+    "D",
+    "[kanalın hafızası güçlü|biz unutmayız|kanal her şeyi bilir]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-kendini-kucuk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[herkes bir şeyler başarıyor, ben yerimde sayıyorum|herkes ilerliyor, ben duruyorum|kendimi geride kalmış hissediyorum]"
+   ],
+   [
+    "B",
+    "[herkesin hızı farklı|kimseyle yarışmıyorsun|kendi yolun var]"
+   ],
+   [
+    "C",
+    "[ben de bazen öyle hissediyorum|ben de öyle düşünüyorum bazen|herkes hisseder]"
+   ],
+   [
+    "A",
+    "[{s:sayi} aydır aynı işteyim|{s:sayi} aydır bir adım atamadım|{s:sayi} aydır bir şey değişmedi]"
+   ],
+   [
+    "D",
+    "[aynı yerde durmak da bir başarı|ayakta kalmak da önemli|bazen durmak da güzel]"
+   ],
+   [
+    "B",
+    "[küçük bir hedef koy|bir küçük adım|ufak bir şey dene]"
+   ],
+   [
+    "A",
+    "[mesela {s:hobi}|belki {s:hobi}|{s:hobi} olabilir]"
+   ],
+   [
+    "C",
+    "[güzel başlangıç|bence harika|dene]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-uzgun-gun",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün biraz üzgünüm|bugün keyifsizim|bugün canım sıkkın]"
+   ],
+   [
+    "B",
+    "[neden|bir şey mi oldu|ne oldu]"
+   ],
+   [
+    "A",
+    "[sebebi yok aslında|bilmiyorum|öyle bir gün]"
+   ],
+   [
+    "C",
+    "[sebepsiz günler de olur|bazen sebepsiz olur|olur öyle]"
+   ],
+   [
+    "D",
+    "[bugün kendine iyi bak, {s:tatli} ye|{s:tatli} ye, dizi aç|bir {s:tatli} al, yat]"
+   ],
+   [
+    "B",
+    "[yarın geçer|yarın yeni gün|bugün geçecek]"
+   ],
+   [
+    "A",
+    "[sizinle konuşunca biraz geçti|biraz daha iyiyim|sağ olun]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-kira-zor",
+  "konu": "sohbet",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kira günü geldi, para yetmiyor|bu ay kira zor|kirayı ödedim, cebimde bir şey kalmadı]"
+   ],
+   [
+    "B",
+    "[geçen ay da öyleydi|bende de aynı|herkes öyle], [{s:icecek} bile lüks oldu|{s:icecek} parası bile zor|{s:icecek} bile kısıyorum]"
+   ],
+   [
+    "C",
+    "[ek iş düşündün mü|kurye ek iş olur|akşam kuryelik]"
+   ],
+   [
+    "A",
+    "[düşündüm ama yorgunum|vakit yok|düşünüyorum]"
+   ],
+   [
+    "D",
+    "[ben de bir dönem öyleydim, geçti|o günler geçiyor|zor dönemler geçiyor]"
+   ],
+   [
+    "A",
+    "[umarım|inşallah|öyle olsun]"
+   ],
+   [
+    "B",
+    "[kanal moral desteği bedava|para veremeyiz ama moral veririz|bizden destek]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-ilk-gun-is",
+  "konu": "sohbet",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[bugün yeni işte ilk gün|ilk iş günü, heyecanlıyım|yeni işe gidiyorum şimdi]"
+   ],
+   [
+    "B",
+    "[bol şans|kolay gelsin|başarılar]"
+   ],
+   [
+    "C",
+    "[ne giydin|ne giyindin|kıyafet ne]"
+   ],
+   [
+    "A",
+    "[{s:renk} bir şey|{s:renk} gömlek|{s:renk} tişört]"
+   ],
+   [
+    "D",
+    "[herkese gülümse|önce gülümse|güler yüz her kapıyı açar]"
+   ],
+   [
+    "B",
+    "[öğle arası yaz bize|molada yaz|akşam anlat]"
+   ],
+   [
+    "A",
+    "[yazarım|anlatırım|söz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-bos-hissetmek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[bazen her şey anlamsız geliyor|bu gece biraz boşluktayım|kafam karışık bu gece]"
+   ],
+   [
+    "B",
+    "[buradayız|biz buradayız|anlat istersen]"
+   ],
+   [
+    "A",
+    "[her gün aynı|aynı rutin|her gün aynı şeyler]"
+   ],
+   [
+    "C",
+    "[rutini biraz değiştir|yeni bir şey dene|küçük bir şey değiştir]"
+   ],
+   [
+    "D",
+    "[yarın {s:mekan} yürü, başka bir yoldan git|yarın işe başka yoldan git|yarın {s:ulasim} yerine yürü]"
+   ],
+   [
+    "A",
+    "[deneyeceğim|olabilir|iyi fikir]"
+   ],
+   [
+    "B",
+    "[sonra anlat|nasıl olduğunu yaz|yarın haber ver]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-taksit",
+  "konu": "sohbet",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bu ay taksiti zamanında ödedim|taksit ödendi|bir taksiti daha kapattım]"
+   ],
+   [
+    "B",
+    "[aferin|güzel|bravo]"
+   ],
+   [
+    "A",
+    "[kredi notum biraz yükseldi|kredi notu arttı|not yükseldi]"
+   ],
+   [
+    "C",
+    "[her taksit bir adım|devam|bu yolda devam]"
+   ],
+   [
+    "D",
+    "[kutlama {s:tatli} ile|bir {s:tatli} hak ettin|{s:tatli} zamanı]"
+   ],
+   [
+    "A",
+    "[ucuz {s:tatli}|indirimli {s:tatli}|küçük porsiyon {s:tatli}]"
+   ],
+   [
+    "B",
+    "[bütçe dostu kutlama|tasarruflu kutlama|akıllıca]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-mezuniyet",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kuzenim mezun oldu|bugün kardeşimin mezuniyet töreni|yeğenim okulu bitirdi]"
+   ],
+   [
+    "B",
+    "[tebrikler|hayırlı olsun|çok güzel]"
+   ],
+   [
+    "C",
+    "[ne okudu|hangi bölüm|ne olacak]"
+   ],
+   [
+    "A",
+    "[öğretmen olacak|mühendis|hemşire]"
+   ],
+   [
+    "D",
+    "[gurur duymuşsundur|gururlu musun|ne güzel]"
+   ],
+   [
+    "A",
+    "[çok|ağladım|çok gururluyum]"
+   ],
+   [
+    "B",
+    "[kanal adına tebrikler, {s:tatli} sizden|bizden de tebrik, {s:tatli} yiyin|kanaldan tebrik, bol {s:tatli}]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-yildonumu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün kanala ilk geldiğim gün|bugün kanaldaki birinci yılım|bir yıl önce bugün kanala katıldım]"
+   ],
+   [
+    "B",
+    "[vay|bir yıl|kutlu olsun]"
+   ],
+   [
+    "C",
+    "[ilk mesajın neydi|ilk ne yazmıştın|ilk mesajın]"
+   ],
+   [
+    "A",
+    "[{s:oyun_meslek} nasıl olunur diye sormuştum|\"{s:oyun_meslek} olmak mantıklı mı\" diye|{s:oyun_meslek} sorusu]"
+   ],
+   [
+    "D",
+    "[şimdi sen cevap veriyorsun|şimdi sen anlatıyorsun|şimdi soruları sen cevaplıyorsun]"
+   ],
+   [
+    "A",
+    "[döngü tamamlandı|hayat bu|evet]"
+   ],
+   [
+    "B",
+    "[nice yıllara|nice yıllara kanalda|bir yıl daha]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-kucuk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ufak bir zafer kazandım bugün|küçük bir başarım var|küçük bir kutlama]"
+   ],
+   [
+    "B",
+    "[nedir|söyle|ne]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gündür {s:ev_isi} hemen yapılıyor, birikmedi|{s:sayi} gündür {s:ev_isi} birikmedi|{s:ev_isi} {s:sayi} gündür zamanında]"
+   ],
+   [
+    "C",
+    "[bu büyük başarı|bu küçük değil|bu dev bir adım]"
+   ],
+   [
+    "D",
+    "[ben de {s:ev_isi} biriktirdim, ilham aldım|ben de yapayım|bende yığın var]"
+   ],
+   [
+    "B",
+    "[kanal temizlik kulübü|kanal ev işleri birliği|ev işleri ligi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-yanlis-kisa-cevap",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} \"hı\" ne demek|{B} sadece \"hı\" yazdın|{B} hı ne, evet mi hayır mı]"
+   ],
+   [
+    "B",
+    "[evet demek|hı evet demek|onay]"
+   ],
+   [
+    "A",
+    "[ben hayır sandım|ben sinirlendin sandım|bana kızgın gibi geldi]"
+   ],
+   [
+    "C",
+    "[hı'nın {s:sayi} anlamı var|bende hı her şey demek|hı evrensel bir kelime]"
+   ],
+   [
+    "B",
+    "[tamam bundan sonra uzun yazacağım|bundan sonra \"evet\" yazarım|bundan sonra açık yazarım]"
+   ],
+   [
+    "A",
+    "[teşekkürler|tamam|anlaştık], [yine de bir {s:tatli} borçlusun|yine de bir {s:icecek} ısmarla|ama korktum]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-yanlis-yanlis-gun",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} bugün buluşacaktık ya|{B} hani bugün görüşecektik|{B} {s:mekan} bekliyorum]"
+   ],
+   [
+    "B",
+    "[bugün mü|yarın değil miydi|ben yarın biliyordum]"
+   ],
+   [
+    "A",
+    "[{s:gun} dedin|{s:gun} demiştin|{s:gun} diye anlaşmıştık]"
+   ],
+   [
+    "B",
+    "[ben bugünü {s:gun#2} sanıyordum|bugün ne|bugün hangi gün]"
+   ],
+   [
+    "C",
+    "[{B} takvimine bak|{B} günleri karıştırmışsın|{B} haftayı kaybetmişsin]"
+   ],
+   [
+    "B",
+    "[yoldayım|geliyorum|on dakikaya oradayım]"
+   ],
+   [
+    "A",
+    "[hesap sende|bekleme ücreti|{s:icecek} sende]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-yanlis-alinma",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} tarifimi beğenmedin galiba|{B} tarifimi denemedin mi|{B} {s:yemek} tarifime cevap vermedin]"
+   ],
+   [
+    "B",
+    "[denedim|yaptım|çok beğendim]"
+   ],
+   [
+    "A",
+    "[neden yazmadın|bir şey demedin|söylemedin ama]"
+   ],
+   [
+    "B",
+    "[yiyince her şeyi unuttum|o kadar güzeldi ki yazmayı unuttum|tabağı bitirdim, kanalı unuttum]"
+   ],
+   [
+    "C",
+    "[bu en büyük iltifat|en güzel cevap bu|yazmayı unutturan yemek]"
+   ],
+   [
+    "A",
+    "[tamam affedildin|o zaman sorun yok|kabul ediyorum]"
+   ],
+   [
+    "D",
+    "[tarifi bana da at|bana da gönder|ben de yapayım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-yanlis-hayir-demek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} beni davet etmedin, kırıldım|{B} çağırmadın beni|{B} hani ben de gelecektim]"
+   ],
+   [
+    "B",
+    "[ettim|davet ettim|mesaj attım]"
+   ],
+   [
+    "A",
+    "[gelmedi|görmedim|bende yok]"
+   ],
+   [
+    "B",
+    "[{C} kişisine attım, sana söyleyecekti|{C} haber verecekti|{C} iletecekti]"
+   ],
+   [
+    "C",
+    "[ben mi|unuttum|eyvah], [özür dilerim {A}|kusura bakma {A}|tamamen unuttum {A}]"
+   ],
+   [
+    "A",
+    "[{C} seni affederim, bir şartla|{C} affetmem için bir {s:tatli}|{C} bedeli bir {s:tatli}]"
+   ],
+   [
+    "C",
+    "[hemen|tamam|kabul]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-yanlis-isaret",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} \"...\" ne demek|{B} üç nokta koydun, korktum|{B} üç nokta ne anlama geliyor]"
+   ],
+   [
+    "B",
+    "[düşünüyordum|bir şey diyecektim|kararsızdım]"
+   ],
+   [
+    "A",
+    "[üç nokta tehlikeli|üç nokta kötü haber gibi|üç nokta gerilim]"
+   ],
+   [
+    "C",
+    "[bizim {s:akraba} da her mesajı üç noktayla bitirir|{s:akraba} her cümlede üç nokta|{s:akraba} üç noktayla yazar]"
+   ],
+   [
+    "D",
+    "[o nesil öyle|o kuşak öyle|üç nokta kuşağı]"
+   ],
+   [
+    "B",
+    "[ben o nesilden değilim|ben gencim|ben sadece kararsızdım]"
+   ],
+   [
+    "A",
+    "[tamam rahatladım|peki|oh]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-barisma-kavga-sonu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} az önce tartıştık ama haklıydın|{B} haklıymışsın, baktım|{B} sen doğru söylemişsin]"
+   ],
+   [
+    "B",
+    "[ben de biraz abartmıştım|ben de sert yazdım|ben de ileri gittim]"
+   ],
+   [
+    "C",
+    "[işte olgun insanlar|işte bu güzel|kanal olgunlaştı]"
+   ],
+   [
+    "D",
+    "[ne konuşuyordunuz ki|neyi tartıştınız|konu neydi]"
+   ],
+   [
+    "A",
+    "[{s:yemek} nasıl yapılır|{s:yemek} tarifi|{s:yemek} ile ilgili]"
+   ],
+   [
+    "D",
+    "[ben de bir tarif vereyim mi|benim de bir tarifim var|bende üçüncü bir tarif var]"
+   ],
+   [
+    "B",
+    "[hayır|lütfen hayır|tekrar başlamayalım] haha"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-tren",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:ulasim} içinde biri bana hayat hikayesini anlattı|{s:ulasim} içinde yanımdaki teyze bütün hayatını anlattı|{s:ulasim} yolculuğu bugün çok uzun sürdü]"
+   ],
+   [
+    "B",
+    "[nasıl|ne anlattı|neler]"
+   ],
+   [
+    "A",
+    "[gençliğinde {s:sehir} yaşamış|{s:sehir} doğumluymuş|{s:sehir} gelmiş yıllar önce]"
+   ],
+   [
+    "A",
+    "[{s:sayi} çocuğu varmış, hepsini tanıdım sanki|{s:sayi} torunu var, hepsinin adını öğrendim|bütün aileyi tanıdım]"
+   ],
+   [
+    "C",
+    "[indiğinde ne oldu|sonra|indin mi]"
+   ],
+   [
+    "A",
+    "[inerken bana {s:meyve} verdi|ayrılırken {s:meyve} uzattı|giderken {s:meyve} bıraktı]"
+   ],
+   [
+    "D",
+    "[bu şehrin teyzeleri|teyzeler en iyisi|bu şehri teyzeler ayakta tutuyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-pazar-satici",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} çok komik bir şey oldu|{s:mekan} bugün olanları anlatayım|bugün {s:mekan} bir satıcı vardı]"
+   ],
+   [
+    "B",
+    "[anlat|ne oldu|dinliyorum]"
+   ],
+   [
+    "A",
+    "[satıcı her müşteriye şarkı söyleyerek fiyat veriyordu|adam fiyatları şarkıyla söylüyordu|her fiyatı tekerlemeyle söylüyordu]"
+   ],
+   [
+    "A",
+    "[{s:meyve} için bir şarkı, {s:meyve#2} için başka|her meyveye ayrı şarkı|{s:meyve} şarkısı aklımda kaldı]"
+   ],
+   [
+    "C",
+    "[aldın mı|alışveriş yaptın mı|bir şey aldın mı]"
+   ],
+   [
+    "A",
+    "[o kadar güldüm ki her şeyden aldım|gülmekten her şeyi aldım|çantam doldu]"
+   ],
+   [
+    "D",
+    "[işte satış tekniği|pazarlama dehası|satış ustası]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-dogum-gunu-surpriz",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:akraba} için sürpriz doğum günü yaptık|sürpriz parti hazırladık|dün sürpriz yaptık]"
+   ],
+   [
+    "B",
+    "[nasıl geçti|başarılı mı|anladı mı]"
+   ],
+   [
+    "A",
+    "[ışıkları kapattık, bekledik|hepimiz karanlıkta saklandık|karanlıkta {s:sayi} kişi bekledik]"
+   ],
+   [
+    "A",
+    "[ama {s:akraba} o gün eve hiç gelmedi|o gece başka yerde kaldı|eve gelmedi o gün]"
+   ],
+   [
+    "C",
+    "[olamaz|haha|yok artık]"
+   ],
+   [
+    "A",
+    "[{s:tatli} bitti, misafirler gitti|pastayı biz yedik|herkes gitti, biz kaldık]"
+   ],
+   [
+    "D",
+    "[ertesi gün ne dedi|sonra ne oldu|öğrendi mi]"
+   ],
+   [
+    "A",
+    "[ertesi gün tekrar yaptık, yine sürpriz oldu|ertesi gün yaptık, çok şaşırdı|ikinci denemede oldu]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-kurs-ilk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kursta bugün çok komik bir şey oldu|bugün kursta olanları anlatayım|kurs gününden bir hikaye]"
+   ],
+   [
+    "B",
+    "[ne oldu|anlat|eee]"
+   ],
+   [
+    "A",
+    "[hoca soru sordu, {s:sayi} kişi aynı anda yanlış cevap verdi|herkes aynı yanlışı yaptı|bütün sınıf aynı cevabı verdi]"
+   ],
+   [
+    "C",
+    "[kopya mı|birbirinizden mi baktınız|ortak zeka]"
+   ],
+   [
+    "A",
+    "[hayır, hoca soruyu yanlış yazmış|soru yanlışmış|hata hocadaymış]"
+   ],
+   [
+    "D",
+    "[hoca ne dedi|hoca kabul etti mi|hoca güldü mü]"
+   ],
+   [
+    "A",
+    "[güldü, herkese {s:tatli} getireceğim dedi|güldü, ders bitti|bir {s:tatli} sözü verdi]"
+   ],
+   [
+    "B",
+    "[en iyi hoca|böyle hoca bulunmaz|şanslısınız]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-kayip-cocuk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} kaybolan bir çocuk bulduk|{s:mekan} bir çocuk ağlıyordu, annesini kaybetmiş|{s:mekan} kaybolmuş bir çocuğa yardım ettim]"
+   ],
+   [
+    "B",
+    "[eyvah|ne yaptın|sonra]"
+   ],
+   [
+    "A",
+    "[yanına oturdum, {s:meyve} verdim|sakinleştirmek için konuştum|elinden tuttum]"
+   ],
+   [
+    "C",
+    "[annesi bulundu mu|ailesi geldi mi|bulundu mu]"
+   ],
+   [
+    "A",
+    "[beş dakika sonra koşa koşa geldi|annesi çok geçmeden geldi|anons yaptılar, geldiler]"
+   ],
+   [
+    "D",
+    "[çok iyi yapmışsın|iyi ki oradaymışsın|bravo]"
+   ],
+   [
+    "A",
+    "[çocuk bana el salladı giderken|giderken bana sarıldı|el sallayarak gitti]"
+   ],
+   [
+    "B",
+    "[içim ısındı|ne güzel|insan mutlu oluyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-sinema",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dün sinemada {s:sayi} kişiydik|dün sinema boştu|dün salonda neredeyse kimse yoktu]"
+   ],
+   [
+    "B",
+    "[hangi filme gittin|ne izledin|film ne]"
+   ],
+   [
+    "A",
+    "[bir {s:dizi_tur} filmi|{s:dizi_tur}|{s:dizi_tur} bir film]"
+   ],
+   [
+    "A",
+    "[ortasında herkes uyuyakaldı, bir ben kaldım|herkes uyudu|ışıklar yanınca herkes uyanıktı ama filmi kimse izlememişti]"
+   ],
+   [
+    "C",
+    "[film kötü müydü|sıkıcı mıydı|o kadar mı]"
+   ],
+   [
+    "A",
+    "[bilmiyorum, ben de son on dakikayı uyudum|ben de sonunu kaçırdım|sonunu bilen yok]"
+   ],
+   [
+    "D",
+    "[kanalda sonunu bilen var mı|filmi izleyen var mı|sonu ne]"
+   ],
+   [
+    "B",
+    "[ben de uyumuştum|bende de aynı|kimse bilmiyor] haha"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-eski-dost",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} ilkokul arkadaşımı gördüm|{s:mekan} yıllardır görmediğim biriyle karşılaştım|bugün {s:mekan} tesadüf]"
+   ],
+   [
+    "B",
+    "[tanıdın mı|seni tanıdı mı|hemen tanıştınız mı]"
+   ],
+   [
+    "A",
+    "[o tanıdı, ben tanımadım|ben tanıdım ama o tanımadı|ikimiz de baktık, sonra tanıdık]"
+   ],
+   [
+    "C",
+    "[kaç yıl olmuş|ne kadar zaman geçmiş|yıllar mı]"
+   ],
+   [
+    "A",
+    "[{s:sayi} yıl|{s:sayi} yıldır görmedim|neredeyse {s:sayi} yıl]"
+   ],
+   [
+    "D",
+    "[buluşacak mısınız|tekrar görüşecek misiniz|numara aldın mı]"
+   ],
+   [
+    "A",
+    "[numara aldık, hafta sonu {s:icecek} içeceğiz|hafta sonu buluşuyoruz|{s:gun} görüşüyoruz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-itiraf-sarki",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[itiraf: duşta her gün aynı şarkıyı söylüyorum|duşta konser veriyorum|her sabah duşta şarkı]"
+   ],
+   [
+    "B",
+    "[hangi şarkı|ne şarkısı|ne söylüyorsun]"
+   ],
+   [
+    "A",
+    "[{s:akraba} çocukken söylerdi, o|{s:akraba} ninnisi|eski bir türkü]"
+   ],
+   [
+    "C",
+    "[komşular dinliyordur|komşular ne diyor|komşulardan şikayet var mı]"
+   ],
+   [
+    "A",
+    "[alkış bekliyorum|bir kere biri alkışladı|komşu katılıyor bazen]"
+   ],
+   [
+    "D",
+    "[ben de duşta {s:sayi} şarkı söylerim|benim duş listesi {s:sayi} şarkı|ben de duş sanatçısıyım]"
+   ],
+   [
+    "B",
+    "[kanal duş korosu|duş korosu kuralım|kanal konseri]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-itiraf-sakli-hobi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[hiç kimse bilmiyor ama gizlice {s:hobi} yapıyorum|gizli bir hobim var: {s:hobi}|kimseye söylemedim, {s:hobi} ile uğraşıyorum]"
+   ],
+   [
+    "B",
+    "[neden gizli|neden saklıyorsun|bunda ne var]"
+   ],
+   [
+    "A",
+    "[utanıyorum|beceriksizim|iyi değilim]"
+   ],
+   [
+    "C",
+    "[iyi olmak zorunda değilsin|keyif alıyorsan yeter|hobi iyi olmak için değil]"
+   ],
+   [
+    "D",
+    "[ben de {s:hobi#2} yapıyorum, berbatım|ben de {s:hobi#2} ile uğraşıyorum, çok kötüyüm|ben de {s:hobi#2}, hiç iyi değilim]"
+   ],
+   [
+    "A",
+    "[o zaman beraber berbatız|kötüler kulübü|beceriksizler birliği]"
+   ],
+   [
+    "B",
+    "[en güzel kulüp|ben de üye olayım|bence en eğlencelisi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-itiraf-ilk-oyun-gunu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[itiraf: bu kanala ilk girdiğimde herkesi tanıdık sandım|ilk geldiğimde herkes birbirini tanıyor sandım|ilk gün kanalı aile grubu sandım]"
+   ],
+   [
+    "B",
+    "[neden|nasıl|ne oldu]"
+   ],
+   [
+    "A",
+    "[herkes birbirine adıyla sesleniyordu|herkes çok samimiydi|herkes sanki yıllardır arkadaş]"
+   ],
+   [
+    "C",
+    "[öyleyiz zaten|yıllardır tanışıyoruz gibi|aile olduk sonra]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gün sonra ben de öyle oldum|{s:sayi} gün sonra ben de seslenmeye başladım|ben de alıştım]"
+   ],
+   [
+    "D",
+    "[kanalın büyüsü|herkes öyle oluyor|bu kanal böyle]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-itiraf-yalan-sever",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[itiraf: {s:akraba} yemeğini sevmiyorum ama hep çok güzel diyorum|{s:akraba} yaptığı {s:yemek} kötü ama hep övüyorum|her seferinde {s:yemek} çok güzel diyorum]"
+   ],
+   [
+    "B",
+    "[ah|olamaz|klasik]"
+   ],
+   [
+    "C",
+    "[bunu herkes yapıyor|hepimiz yapıyoruz|iyi niyetli yalan]"
+   ],
+   [
+    "A",
+    "[ama her hafta yapıyor|ama sürekli yapıyor artık|ama övünce tekrar yapıyor]"
+   ],
+   [
+    "D",
+    "[döngü|kısır döngü|sen yarattın bu durumu] haha"
+   ],
+   [
+    "A",
+    "[şimdi ne yapayım|nasıl kurtulacağım|kurtuluş var mı]"
+   ],
+   [
+    "B",
+    "[bir kere sen yap|sen bir kere yap ona|sen pişir, o övsün]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-cay-isik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece {s:saat} {s:icecek} içen var mı|bu saatte {s:icecek} içen benim gibi var mı|gece yarısı {s:icecek} keyfi]"
+   ],
+   [
+    "B",
+    "[ben|buradayım|elimde]"
+   ],
+   [
+    "C",
+    "[ben {s:icecek#2}|benimki {s:icecek#2}|ben {s:icecek#2} içiyorum]"
+   ],
+   [
+    "A",
+    "[gece içilen her şey güzel|gece ayrı tat veriyor|gecenin tadı başka]"
+   ],
+   [
+    "D",
+    "[ben yarın {s:saat#2} kalkacağım ama hâlâ buradayım|yarın erken kalkacağım ama yatmıyorum|sabah iş var, buradayım]"
+   ],
+   [
+    "B",
+    "[klasik|biz de|hepimiz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-pencere-ses",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[dışarıda birisi şarkı söylüyor|sokaktan bir ses geliyor|gece birisi bağırıyor sokakta]"
+   ],
+   [
+    "B",
+    "[ne şarkısı|ne diyor|ne söylüyor]"
+   ],
+   [
+    "A",
+    "[anlayamadım ama sesi güzel|anlamadım ama hoş|anlamıyorum ama içten]"
+   ],
+   [
+    "C",
+    "[bizim sokakta da bir {s:hayvan} şarkı söylüyor|bizde bir {s:hayvan} ağlıyor|bizde {s:hayvan} sesi]"
+   ],
+   [
+    "D",
+    "[bu gece şehir konserde|şehir konser veriyor|gece orkestrası]"
+   ],
+   [
+    "A",
+    "[bitti şimdi|sustu|gitti]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-son-kalan",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[kanalda son kalanlar kim|kim uyanık kaldı|son kalanlar]"
+   ],
+   [
+    "B",
+    "[ben|ben buradayım|son nefer]"
+   ],
+   [
+    "C",
+    "[ben de|benim|ben de kaldım]"
+   ],
+   [
+    "A",
+    "[{B} ne yapıyorsun bu saatte|{B} neden uyumuyorsun|{B} uykun yok mu]"
+   ],
+   [
+    "B",
+    "[{s:dizi_tur} izliyordum, bitti|{s:dizi_tur} bitti, uyku gelmedi|{s:dizi_tur} bölümü bitti]"
+   ],
+   [
+    "C",
+    "[ben {s:ev_isi} yaptım gece gece|ben {s:ev_isi} yaptım, bitirdim|gece {s:ev_isi} yaptım]"
+   ],
+   [
+    "A",
+    "[hepimize iyi geceler|herkes yatsın artık|yatalım]"
+   ],
+   [
+    "B",
+    "[son mesaj kimden|son kim yazacak|son yazan söndürsün ışığı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-kirtasiye",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[okul başlarken kırtasiye kokusu|okul alışverişi kokusu|yeni defter kokusunu özledim]"
+   ],
+   [
+    "B",
+    "[aynen|ah o koku|yeni kalem kokusu]"
+   ],
+   [
+    "C",
+    "[ben {s:renk} defter seçerdim hep|hep {s:renk} kaplı defter|{s:renk} kalemler]"
+   ],
+   [
+    "D",
+    "[kitap kaplama işkencesi|kitap kaplamak|jelatin kaplama]"
+   ],
+   [
+    "A",
+    "[{s:akraba} kaplardı bizim kitapları|bizde {s:akraba} kaplardı|kaplamayı {s:akraba} yapardı]"
+   ],
+   [
+    "B",
+    "[şimdi kimse kaplamıyor|o devir bitti|artık yok]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-oyuncak-araba",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çocukken bir oyuncağınız vardı, hiç bırakmadığınız|en sevdiğiniz oyuncak|hiç unutmadığınız oyuncak]"
+   ],
+   [
+    "B",
+    "[kırmızı araba|küçük bir araba|uzaktan kumandalı araba]"
+   ],
+   [
+    "C",
+    "[bez bebek|bir ayıcık|bir {s:hayvan} oyuncağı]"
+   ],
+   [
+    "D",
+    "[benim oyuncağım kutusuydu, kutuyla oynardım|benim en sevdiğim kutu|ben kutudan ev yapardım]"
+   ],
+   [
+    "A",
+    "[{D} kediler gibi|{D} herkes kutuyu sever|{D} en yaratıcı]"
+   ],
+   [
+    "C",
+    "[hâlâ duruyor mu|hâlâ var mı|sakladın mı]"
+   ],
+   [
+    "B",
+    "[{s:akraba} saklıyor|{s:akraba} evde saklamış|hâlâ {s:akraba} evinde]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-yaz-aksami",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[eskiden yaz akşamları sokakta oturulurdu|eskiden komşular kapıda otururdu|yaz akşamı balkon sohbetleri]"
+   ],
+   [
+    "B",
+    "[çekirdekle|çekirdek, çay|çay ve çekirdek]"
+   ],
+   [
+    "C",
+    "[herkes kendi sandalyesini getirirdi|herkes taburesiyle gelirdi|sandalyeler kapıya çıkardı]"
+   ],
+   [
+    "D",
+    "[şimdi kimse kimseyi tanımıyor|şimdi komşuları tanımıyoruz|şimdi herkes içeride]"
+   ],
+   [
+    "A",
+    "[kanal bizim sokak oldu|kanal yeni sokağımız|burası yeni balkonumuz]"
+   ],
+   [
+    "B",
+    "[o zaman {s:icecek} getirin|herkes {s:icecek} ile gelsin|{s:icecek} benden]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-kar-tatili",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[çocukken kar yağınca okullar tatil mi diye radyo dinlerdik|kar tatili haberi beklerdik|kar yağdığında haberleri dinlerdik]"
+   ],
+   [
+    "B",
+    "[o an en mutlu an|en güzel haber|sevinç çığlıkları]"
+   ],
+   [
+    "C",
+    "[bugün {s:kis_hava}, ama iş tatil değil|şimdi {s:kis_hava}, iş devam|bugün de {s:kis_hava} ama işe gidiyoruz]"
+   ],
+   [
+    "D",
+    "[büyümenin acı tarafı|büyüyünce tatil yok|yetişkin olmanın bedeli]"
+   ],
+   [
+    "A",
+    "[patron radyo dinlesin|patrona bir mesaj atalım|patron tatil ilan etsin]"
+   ],
+   [
+    "B",
+    "[hayal|rüya|hiç olmaz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-dondurma-araba",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mahalleye gelen dondurma arabası|dondurmacının müziği|dondurma arabasının sesi]"
+   ],
+   [
+    "B",
+    "[o müziği duyunca koşardık|müzik gelince koşardık|herkes sokağa çıkardı]"
+   ],
+   [
+    "C",
+    "[{s:akraba} para vermezdi, ağlardım|{s:akraba} bazen alırdı|harçlığım hep dondurmaya giderdi]"
+   ],
+   [
+    "D",
+    "[ben hep {s:renk} olanı seçerdim|ben {s:renk} renkli olanı alırdım|hep aynı rengi seçerdim]"
+   ],
+   [
+    "A",
+    "[o dondurmalar daha güzeldi|şimdi tadı yok|o tat başkaydı]"
+   ],
+   [
+    "B",
+    "[belki biz değiştik|belki tat değil biz değiştik|anılar tatlandırıyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-yemek-sure",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bahse girerim {s:yemek} on dakikada yaparım|{s:yemek} benim için on dakikalık iş|on dakikada {s:yemek}]"
+   ],
+   [
+    "B",
+    "[imkansız|olmaz|asla]"
+   ],
+   [
+    "A",
+    "[deneyelim|hazırım|başlayalım]"
+   ],
+   [
+    "C",
+    "[ben süre tutarım|kronometre bende|süre bende]"
+   ],
+   [
+    "A",
+    "[başladım|tamam başlıyorum|hadi]"
+   ],
+   [
+    "D",
+    "[{A} hazırlıkları önceden yaptın mı|{A} hile var mı|{A} malzemeler hazır mıydı]"
+   ],
+   [
+    "A",
+    "[biraz|birazcık|o sayılmaz]"
+   ],
+   [
+    "B",
+    "[hile|diskalifiye|kazanamazsın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-tahmin-meslek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} senin mesleğini tahmin edeyim|{B} bahse girerim sen {s:oyun_meslek} işindesin|{B} kesin {s:oyun_meslek}]"
+   ],
+   [
+    "B",
+    "[değil|hayır|yaklaştın ama değil]"
+   ],
+   [
+    "A",
+    "[o zaman {s:oyun_meslek#2}|{s:oyun_meslek#2} olmalı|kesin {s:oyun_meslek#2}]"
+   ],
+   [
+    "B",
+    "[ben {B.meslek}|{B.meslek} olarak çalışıyorum|{B.meslek}]"
+   ],
+   [
+    "C",
+    "[{A} iki kere kaybettin|{A} dedektif olamazsın|{A} tahmin yeteneğin sıfır]"
+   ],
+   [
+    "A",
+    "[üçüncü hakkım vardı|üçüncüde bilecektim|bir hakkım daha var]"
+   ],
+   [
+    "B",
+    "[üçüncü hak yok|kural iki hak|bitti]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-sessizlik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iddiaya girerim kanal bir dakika sessiz kalamaz|bir dakika sessizlik deneyelim|kanal bir dakika susabilir mi]"
+   ],
+   [
+    "B",
+    "[kalırız|deneyelim|başla]"
+   ],
+   [
+    "C",
+    "[...|sessizim|susuyorum]"
+   ],
+   [
+    "D",
+    "[{C} sessizlik dedi, yazdın|{C} yazmak sessizlik değil|{C} kaybettin]"
+   ],
+   [
+    "C",
+    "[sen de yazdın|sen de yazdın ya|ikimiz de yazdık]"
+   ],
+   [
+    "A",
+    "[kanal bir saniye bile susamadı|on saniye bile dayanamadık|tahmin ettiğim gibi]"
+   ],
+   [
+    "B",
+    "[bu kanal susmaz|kanalın doğası bu|susmak bize göre değil], [bir {s:tatli} ile ödüllendirelim|ödül {s:tatli}|kazanan {s:tatli} alır]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-uyanma",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[yarın {s:saat} uyanırım, iddialıyım|yarın sabah {s:saat} kanala yazacağım|yarın {s:saat} günaydın diyeceğim]"
+   ],
+   [
+    "B",
+    "[yazamazsın|uyanamazsın|olmaz]"
+   ],
+   [
+    "A",
+    "[ne koyuyorsun|bahis ne|ne bahsine]"
+   ],
+   [
+    "B",
+    "[{s:icecek} ısmarlarım|bir hafta {s:icecek} benden|{s:icecek} parası]"
+   ],
+   [
+    "C",
+    "[ben şahidim|kayıt altında|anlaşma tamam]"
+   ],
+   [
+    "D",
+    "[{A} alarmı {s:sayi} tane kur|{A} {s:sayi} alarm kur|{A} yatmadan önce alarm]"
+   ],
+   [
+    "A",
+    "[kurdum bile|kurdum|hazır]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-ilk-bulusma",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk buluşma için nereye gidilir|ilk buluşma yeri lazım|ilk kez buluşacağız, nereye gidelim]"
+   ],
+   [
+    "B",
+    "[{s:mekan} olur|bence {s:mekan}|sakin bir yer, {s:mekan} mesela]"
+   ],
+   [
+    "C",
+    "[{s:icecek} içilecek bir yer|bir {s:icecek} için|bir kafe]"
+   ],
+   [
+    "D",
+    "[{s:semt} sahilinde yürüyüş|{s:semt} tarafında bir yürüyüş|yürüyüş en iyisi]"
+   ],
+   [
+    "A",
+    "[yürüyüş iyi fikir|yürürken konuşmak kolay|yürüyüş güzel]"
+   ],
+   [
+    "B",
+    "[bol şans|başarılar|haber ver]"
+   ],
+   [
+    "A",
+    "[veririm|yazarım|anlatırım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-hediye-is",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iş arkadaşı ayrılıyor, ne alalım|ayrılan iş arkadaşına hediye|veda hediyesi önerisi]"
+   ],
+   [
+    "B",
+    "[{s:esya}|bir {s:esya}|şık bir {s:esya}]"
+   ],
+   [
+    "C",
+    "[hatıra defteri|herkes bir şey yazsın|anı defteri]"
+   ],
+   [
+    "D",
+    "[{C} çok güzel fikir|{C} duygusal|{C} en iyisi]"
+   ],
+   [
+    "A",
+    "[ikisini birden|hem {s:esya} hem defter|ikisini yaparız]"
+   ],
+   [
+    "B",
+    "[bir de {s:tatli}|yanında {s:tatli}|veda {s:tatli}]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-yeni-ev",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeni eve taşındım, ilk ne alınır|yeni evde ilk ihtiyaç ne|eve ilk ne almalıyım]"
+   ],
+   [
+    "B",
+    "[perde|perde, kesin|önce perde]"
+   ],
+   [
+    "C",
+    "[çaydanlık|çaydanlık, çay yoksa ev yok|önce çaydanlık]"
+   ],
+   [
+    "D",
+    "[{s:esya}|{s:esya} olmazsa olmaz|en önemlisi {s:esya}]"
+   ],
+   [
+    "A",
+    "[{D} {s:esya} neden|{D} gerçekten mi|{D} ilginç seçim]"
+   ],
+   [
+    "D",
+    "[ilk gece onsuz kaldım|ben unutmuştum, çok aradım|taşınırken onu kaybetmiştim]"
+   ],
+   [
+    "B",
+    "[herkesin acı tecrübesi farklı|her taşınmanın bir hikayesi var|tecrübe konuşuyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-sakin-yer",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[şehirde sakin bir yer arıyorum, kafa dinlemek için|kafa dinleyecek yer önerin|biraz sessizlik lazım]"
+   ],
+   [
+    "B",
+    "[{s:semt} sahili sabah erken|sabah erken {s:semt}|{s:semt}, hafta içi]"
+   ],
+   [
+    "C",
+    "[kütüphane|bir kütüphane|kütüphane sessizdir]"
+   ],
+   [
+    "D",
+    "[{s:ulasim} ile adalara|{s:ulasim} gezisi|{s:ulasim} içinde oturmak bile iyi]"
+   ],
+   [
+    "A",
+    "[hepsini deneyeceğim|bir liste yaptım|hepsini not aldım]"
+   ],
+   [
+    "B",
+    "[sonra hangisi iyiydi söyle|en iyisini anlat|rapor ver]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-motivasyon",
+  "konu": "sohbet",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kursa devam etmekte zorlanıyorum|kursa motivasyonum kalmadı|kursa gitmek istemiyorum]"
+   ],
+   [
+    "B",
+    "[kaç gün kaldı|ne kadar kaldı|bitmesine ne kadar var]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gün|{s:sayi} gün daha|biraz daha]"
+   ],
+   [
+    "C",
+    "[bitince ne olacak düşün|sonunu düşün|bitince elinde ne olacak]"
+   ],
+   [
+    "D",
+    "[her gün bitirdiğinde kendine {s:tatli} ver|her gün sonunda {s:tatli}|ödül sistemi kur, {s:tatli}]"
+   ],
+   [
+    "A",
+    "[{D} bu işe yarar|{D} bu iyi|{D} denerim]"
+   ],
+   [
+    "B",
+    "[kilo alırsın ama|kursu bitirirsin ama kilo alırsın|sonra diyet]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-kalabalik-selam",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} biri \"selam\" dedi, ben \"iyiyim sen\" dedim|bugün {s:mekan} \"nasılsın\" diye sormadan \"iyiyim\" dedim|{s:mekan} kasiyere \"sen de\" dedim]"
+   ],
+   [
+    "B",
+    "[haha|olamaz|herkes yapıyor bunu]"
+   ],
+   [
+    "C",
+    "[ben garsona \"afiyet olsun\" demiştim|ben garsona \"size de\" dedim|ben bir keresinde kasiyere \"görüşürüz canım\" dedim]"
+   ],
+   [
+    "D",
+    "[ben teşekkür ederken sarılmaya kalktım|ben elini sıkarken el salladım|ben selam verirken yumruk tokuşturdum]"
+   ],
+   [
+    "A",
+    "[kanal garip hareketler kulübü|garip refleksler|beynimiz bizi utandırıyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-ayakkabi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün işe iki farklı ayakkabıyla gittim|bugün iki farklı çorap giymişim|bugün ayakkabılarım farklı renkteymiş]"
+   ],
+   [
+    "B",
+    "[kimse fark etti mi|ne zaman fark ettin|kimse söyledi mi]"
+   ],
+   [
+    "A",
+    "[öğlen fark ettim|{s:sayi} saat sonra|öğle yemeğinde biri söyledi]"
+   ],
+   [
+    "C",
+    "[bir {s:renk} bir {s:renk#2} mi|biri {s:renk} biri {s:renk#2}|{s:renk} ve {s:renk#2}]"
+   ],
+   [
+    "A",
+    "[aynen|tam öyle|evet]"
+   ],
+   [
+    "D",
+    "[yeni moda|tarz yarattın|bilerek yaptım de]"
+   ],
+   [
+    "A",
+    "[bilerek yaptım dedim|moda dedim|cesur görünüm dedim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-yanlis-dil",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} turiste yol tarif ettim, o Türk çıktı|bir turiste İngilizce anlattım, Türkmüş|{s:mekan} biri yol sordu, yabancı sandım]"
+   ],
+   [
+    "B",
+    "[haha|ne dedi|nasıl anladın]"
+   ],
+   [
+    "A",
+    "[sonunda \"abi Türkçe söylesene\" dedi|\"sağ ol abi\" dedi|\"Türküm ben\" dedi]"
+   ],
+   [
+    "C",
+    "[ama İngilizcen iyi mi|en azından pratik yaptın|ücretsiz ders oldu]"
+   ],
+   [
+    "D",
+    "[ben de bir kere {s:sehir} aksanıyla konuşan birini yabancı sandım|ben de {s:sehir} aksanını yabancı sandım|ben de bir kere yanılmıştım]"
+   ],
+   [
+    "A",
+    "[şehir ne kadar karışık|bu şehirde her şey olur|İstanbul işte]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-reklam",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} hoparlörden kendi adımı duydum|{s:mekan} anons yapıldı, benim adım|bugün {s:mekan} adım anons edildi]"
+   ],
+   [
+    "B",
+    "[ne oldu|neden|eyvah]"
+   ],
+   [
+    "A",
+    "[{s:esya} bulmuşlar, düşürmüşüm|{s:esya} kaybetmişim, bulmuşlar|{s:esya} düşmüş, haber verdiler]"
+   ],
+   [
+    "C",
+    "[herkes sana mı baktı|herkes döndü mü|ünlü oldun]"
+   ],
+   [
+    "A",
+    "[herkes baktı, kızardım|herkes döndü baktı|bir an ünlü oldum]"
+   ],
+   [
+    "D",
+    "[{A} {s:mekan} ünlüsü|{A} artık tanınıyorsun|imza verdin mi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-kuyruk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} yarım saat yanlış kuyrukta bekledim|{s:mekan} kuyrukta bekledim, sıra bana gelince başka kuyrukmuş|bugün {s:mekan} yanlış sırada bekledim]"
+   ],
+   [
+    "B",
+    "[haha|olamaz|eyvah]"
+   ],
+   [
+    "C",
+    "[kuyruk ne kuyruğuydu|neyin kuyruğu|neydi peki]"
+   ],
+   [
+    "A",
+    "[kimse bilmiyordu, herkes birbirini takip etmiş|kimse bilmiyordu, sadece kuyruk|sonra anlaşıldı ki kuyruk boşuna]"
+   ],
+   [
+    "D",
+    "[bu şehirde kuyruk görünce girilir|kuyruk görünce dur|kuyruk varsa iyi bir şey vardır]"
+   ],
+   [
+    "B",
+    "[en İstanbul hikaye|bu tam bizim şehir|kuyruk refleksi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-otomatik-duzelt",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[patrona \"toplantıya geliyorum\" yazacaktım, \"{s:tatli} geliyorum\" gitti|telefon \"geliyorum\"u \"{s:tatli}\" yaptı|otomatik düzeltme beni rezil etti]"
+   ],
+   [
+    "B",
+    "[haha|olamaz|patron ne dedi]"
+   ],
+   [
+    "A",
+    "[patron \"bekliyorum\" dedi|patron \"getir o zaman\" dedi|patron \"ne güzel\" dedi]"
+   ],
+   [
+    "C",
+    "[şimdi götürmek zorundasın|şimdi {s:tatli} alacaksın|artık {s:tatli} borcun var]"
+   ],
+   [
+    "D",
+    "[otomatik düzeltme bazen haklı|telefon seni biliyor|telefon gizli arzularını söyledi]"
+   ],
+   [
+    "A",
+    "[şu an {s:mekan} {s:tatli} alıyorum|yoldayım, {s:tatli} aldım|aldım götürüyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-dergi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalın bir dergisi olsa ne yazardı|kanal gazetesi çıksa manşet ne|kanalın haftalık bülteni olsa]"
+   ],
+   [
+    "B",
+    "[manşet: kanal yine {s:yemek} tartıştı|manşet: {s:yemek} kavgası sürüyor|haftanın konusu {s:yemek}]"
+   ],
+   [
+    "C",
+    "[hava durumu: {s:kis_hava}|hava köşesi: {s:kis_hava}|hava: {s:kis_hava}]"
+   ],
+   [
+    "D",
+    "[haftanın kişisi: {B}|haftanın yıldızı {B}|haftanın en komiği {B}]"
+   ],
+   [
+    "B",
+    "[teşekkürler|onur duydum|bunu hak ettim]"
+   ],
+   [
+    "A",
+    "[bir de bilmece köşesi|ilan bölümü|kayıp eşya bölümü] [olmalı|lazım|şart]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-otomat",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bu kanalda bir {s:icecek} otomatı olsa|kanala bir {s:icecek} makinesi koysak|kanalın bir {s:icecek} köşesi olmalı]"
+   ],
+   [
+    "B",
+    "[bedava mı|parası kimden|kim ödüyor]"
+   ],
+   [
+    "A",
+    "[herkes bir mesaj yazınca bir {s:icecek}|her mesaja bir bardak|mesaj başı {s:icecek}]"
+   ],
+   [
+    "C",
+    "[o zaman ben çok içerim|ben batırırım|o zaman makine biter]"
+   ],
+   [
+    "D",
+    "[{C} sen çok yazıyorsun, iflas ederiz|{C} sen günde {s:sayi} bin mesaj yazıyorsun|{C} seni kısıtlarız]"
+   ],
+   [
+    "C",
+    "[o zaman susarım|bir saat yazmam|bir dakika yazmam]"
+   ],
+   [
+    "B",
+    "[inanmıyoruz|kimse inanmaz|asla susmazsın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-oscar",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanal ödülleri olsa kim neyi kazanır|kanal ödül töreni yapalım|kanalın yıllık ödülleri]"
+   ],
+   [
+    "B",
+    "[en çok yazan|en geveze|en çok mesaj] [ödülü {C}|ödülü kesin {C}|{C} kazanır]"
+   ],
+   [
+    "C",
+    "[itiraz ediyorum|itirazım var|ben mi]"
+   ],
+   [
+    "D",
+    "[en kibar ödülü|en tatlı kişi ödülü|en yardımsever ödülü] [{B}|{B} alır|{B} kesin]"
+   ],
+   [
+    "A",
+    "[ödül olarak {s:tatli}|her ödüle bir {s:tatli}|ödüller {s:tatli} ile verilir]"
+   ],
+   [
+    "C",
+    "[o zaman kabul ediyorum|öyleyse alırım|o zaman razıyım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-dolma-sarma",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dolma mı sarma mı, söyleyin|sarma mı dolma mı, net cevap|hangisi daha güzel, dolma mı sarma mı]"
+   ],
+   [
+    "B",
+    "[sarma|sarma, tartışmasız|tabii ki sarma]"
+   ],
+   [
+    "C",
+    "[dolma|dolma, hiç düşünmem|dolma, sarma ikinci]"
+   ],
+   [
+    "B",
+    "[{C} sen sarma yemedin herhalde|{C} senin damak zevkine şaşırdım|{C} sen hiç {s:akraba} sarması yemedin mi]"
+   ],
+   [
+    "C",
+    "[yedim, dolma yine de güzel|yedim ama dolma|yine de dolma]"
+   ],
+   [
+    "D",
+    "[ben ikisinin ortasına {s:yemek} diyorum|ben {s:yemek} seçiyorum|ikisi de değil, {s:yemek}]"
+   ],
+   [
+    "A",
+    "[{D} oylamayı bozdu|{D} soruyu anlamadı|{D} başka kategori]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-tatil-plan",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} tatile beraber gidelim mi|{B} bu yaz beraber tatil|{B} kanal tatili yapalım mı]"
+   ],
+   [
+    "B",
+    "[olur ama deniz|tamam ama denize gideriz|gideriz ama deniz şart]"
+   ],
+   [
+    "A",
+    "[ben dağ diyorum|dağ daha güzel|bence dağ]"
+   ],
+   [
+    "B",
+    "[deniz|dağ olmaz|olmaz, deniz]"
+   ],
+   [
+    "C",
+    "[ben {s:sehir} diyorum, hem deniz hem dağ|{s:sehir} ikisi de var|{s:sehir} gidin, ikisi bir arada]"
+   ],
+   [
+    "A",
+    "[{C} bilmiş|{C} çözdü|{C} sorunu bitirdi]"
+   ],
+   [
+    "B",
+    "[{C} sen de gel|{C} rehber ol|{C} planlayıcı sen]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-telefon-ses",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[telefonu sessize almayan insanlar|toplu taşımada yüksek sesle video izleyenler|{s:ulasim} içinde hoparlörden müzik açanlar]"
+   ],
+   [
+    "B",
+    "[bugün {s:ulasim} içinde biri vardı|ben de bugün yaşadım|benim yanımdaki de öyleydi]"
+   ],
+   [
+    "A",
+    "[ne yaptın|bir şey dedin mi|uyardın mı]"
+   ],
+   [
+    "B",
+    "[baktım sadece|uzun uzun baktım|kaşlarımı kaldırdım]"
+   ],
+   [
+    "C",
+    "[bakış uyarısı işe yaramaz|bakmak yetmez|bakış kimseyi durdurmaz]"
+   ],
+   [
+    "D",
+    "[bence işe yarar, ben bir kere bakışla kapattırdım|benim bakışım çalışıyor|bakış güçlüdür]"
+   ],
+   [
+    "A",
+    "[{D} senin bakışından korkarım|{D} öğret bize|{D} bakış dersi ver]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-uyku-isik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[uyurken ışık açık mı kapalı mı|ışık açık uyuyan var mı|tamamen karanlıkta mı uyursunuz]"
+   ],
+   [
+    "B",
+    "[kapalı, zifiri|zifiri karanlık|ışık olmaz]"
+   ],
+   [
+    "C",
+    "[gece lambası şart|biraz ışık lazım|küçük bir ışık açık]"
+   ],
+   [
+    "B",
+    "[{C} korkuyor musun|{C} karanlıktan korkar mısın|{C} neden]"
+   ],
+   [
+    "C",
+    "[korkmuyorum, {s:hayvan} gece geziyor, basmayayım|{s:hayvan} gece dolaşıyor|yolumu görmek için]"
+   ],
+   [
+    "D",
+    "[mantıklı gerekçe|kabul edilebilir|geçerli sebep]"
+   ],
+   [
+    "B",
+    "[o zaman tamam|bu durumda haklısın|{s:hayvan} için geçerli]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-yemek-sicak",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:yemek} ertesi gün daha güzel olur|{s:yemek} bekleyince lezzetlenir|dünkü {s:yemek} daha güzel]"
+   ],
+   [
+    "B",
+    "[taze daha güzel|taze olmaz mı|asla, taze]"
+   ],
+   [
+    "A",
+    "[dinlenince oturuyor|tadı oturuyor|lezzet yerleşiyor]"
+   ],
+   [
+    "B",
+    "[bunu tembeller söyler|yemek yapmak istemeyen der bunu|bahane]"
+   ],
+   [
+    "C",
+    "[ikisi de doğru, {s:yemek} öyle, {s:yemek#2} değil|yemeğe göre değişir|bazısı dinlenir bazısı tazesi]"
+   ],
+   [
+    "A",
+    "[{C} bilim insanı|{C} uzman görüşü|{C} çok mantıklı]"
+   ],
+   [
+    "B",
+    "[{C} her zaman ortadan|{C} kimseyi kızdırmıyor|{C} diplomat]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-hangi-ulasim",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:ulasim} en güzel ulaşım|bence {s:ulasim} gibisi yok|{s:ulasim} ile gitmek keyif]"
+   ],
+   [
+    "B",
+    "[{s:ulasim#2} varken mi|{s:ulasim#2} daha iyi|{s:ulasim#2} daha hızlı]"
+   ],
+   [
+    "A",
+    "[hız değil keyif|hız önemli değil|ben keyif ararım]"
+   ],
+   [
+    "B",
+    "[işe yetişmek de önemli|keyifle işe geç kalırsın|patron keyfi sormaz]"
+   ],
+   [
+    "C",
+    "[ben yürüyorum, ikinizi de geçiyorum|ben yürüyerek ikinizi geçerim|yürümek hepsinden hızlı]"
+   ],
+   [
+    "D",
+    "[{C} nerede oturuyorsun|{C} işe ne kadar uzaksın|{C} yürüme mesafesi mi]"
+   ],
+   [
+    "C",
+    "[beş dakika|on dakika|köşede]"
+   ],
+   [
+    "B",
+    "[hile|bu hile|sayılmaz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-kanal-kac-gun",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kim kaç gündür oyunda|oyunda kaçıncı gününüz|herkes gün sayısını yazsın]"
+   ],
+   [
+    "B",
+    "[{s:sayi} gün|{s:sayi}. gün|daha {s:sayi} gün]"
+   ],
+   [
+    "C",
+    "[yüzü geçti|iki yüzü geçti|saymayı bıraktım]"
+   ],
+   [
+    "D",
+    "[bugün ilk günüm|ben bugün geldim|ilk gün]"
+   ],
+   [
+    "B",
+    "[{D} hoş geldin|{D} aramıza hoş geldin|{D} kanal seni bekliyordu]"
+   ],
+   [
+    "C",
+    "[{D} soru olursa sor|{D} merak ettiğini sor|{D} biz buradayız]"
+   ],
+   [
+    "D",
+    "[teşekkürler, {s:oyun_meslek} olmayı düşünüyorum|sağ olun, ilk iş {s:oyun_meslek}|{s:oyun_meslek} ile başlasam mı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-cocukluk-yemek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çocukken sevmeyip şimdi sevdiğiniz yemek|eskiden nefret edip şimdi sevdiğiniz|çocukken yemediğiniz ama şimdi bayıldığınız]"
+   ],
+   [
+    "B",
+    "[{s:yemek}|{s:yemek}, çocukken ağlardım|kesin {s:yemek}]"
+   ],
+   [
+    "C",
+    "[{s:yemek#2}|bence {s:yemek#2}|benim için {s:yemek#2}]"
+   ],
+   [
+    "D",
+    "[ben hâlâ hiçbirini sevmiyorum|ben değişmedim|ben hâlâ çocuğum]"
+   ],
+   [
+    "A",
+    "[{D} hâlâ ne sevmiyorsun|{D} neyi sevmiyorsun|{D} listen ne]"
+   ],
+   [
+    "D",
+    "[{s:yemek}|{s:yemek} ve sebzeler|her şey yeşil olan]"
+   ],
+   [
+    "B",
+    "[{D} bunu ben de çocukken diyordum|{D} büyüyünce seversin|{D} bir gün seversin]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-pazartesi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[pazartesi sabahı birden ona kaç|pazartesi sendromu ölçeği|pazartesi modunuz ondan kaç]"
+   ],
+   [
+    "B",
+    "[{s:sayi}|benimki {s:sayi}|bugün {s:sayi}]"
+   ],
+   [
+    "C",
+    "[eksi|eksiler|ölçeğin altında]"
+   ],
+   [
+    "D",
+    "[ben pazartesiyi severim|pazartesi güzel|yeni hafta yeni başlangıç]"
+   ],
+   [
+    "B",
+    "[{D} sen kimsin|{D} sen başka gezegenden|{D} bunu kimse sevmez]"
+   ],
+   [
+    "D",
+    "[pazar çok sıkılıyorum|pazar sıkıcı geliyor|hafta sonu bana uzun]"
+   ],
+   [
+    "C",
+    "[{D} gel benim hafta sonumu sen yaşa|{D} değiş tokuş yapalım|{D} benim pazartesimi al]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-hangi-ses-uyanma",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[alarm sesiniz ne|alarm olarak ne kullanıyorsunuz|hangi sesle uyanıyorsunuz]"
+   ],
+   [
+    "B",
+    "[klasik zil|zil sesi|en sinir bozucu ses]"
+   ],
+   [
+    "C",
+    "[kuş sesi|doğa sesi|yağmur sesi]"
+   ],
+   [
+    "D",
+    "[{s:akraba} sesi|{s:akraba} bağırması|alarmım {s:akraba}]"
+   ],
+   [
+    "A",
+    "[{D} bu en etkilisi|{D} en garanti alarm|{D} bu kaçış yok]"
+   ],
+   [
+    "D",
+    "[ertele düğmesi yok|erteleme imkansız|kapatılamıyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-kis-icecek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[kışın en sevdiğiniz sıcak içecek|soğuk havada ne içersiniz|dışarıda {s:kis_hava}, ne içiyorsunuz]"
+   ],
+   [
+    "B",
+    "[{s:icecek}|{s:icecek}, tarçınlı|bol {s:icecek}]"
+   ],
+   [
+    "C",
+    "[{s:icecek#2}|{s:icecek#2}, bir de battaniye|{s:icecek#2} ve dizi]"
+   ],
+   [
+    "D",
+    "[çorba|sıcak çorba|{s:yemek} bile içilir bence]"
+   ],
+   [
+    "A",
+    "[{D} çorba içecek mi|{D} çorba sayılır mı|{D} kural dışı]"
+   ],
+   [
+    "D",
+    "[kaşıksız içerim, sayılır|kupaya koyarım|bardakta içerim]"
+   ],
+   [
+    "B",
+    "[mantıklı|kabul|sayılır]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-en-uzun",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[en uzun ne kadar uyudunuz|uyku rekorunuz ne|kim en çok uyudu]"
+   ],
+   [
+    "B",
+    "[on dört saat|{s:sayi} saat|hiç uyanmadan on saat]"
+   ],
+   [
+    "C",
+    "[bir gün tamamen uyudum|bir kere bütün gün|yirmi saat galiba]"
+   ],
+   [
+    "D",
+    "[ben hiç altı saati geçmedim|en fazla altı|bende uzun uyku yok]"
+   ],
+   [
+    "C",
+    "[{D} geçmiş olsun|{D} çok yorgun olmalısın|{D} bir gün uyu]"
+   ],
+   [
+    "D",
+    "[{s:hayvan} uyandırıyor|{s:hayvan} izin vermiyor|evdeki {s:hayvan} sabah beni kaldırır]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-kitap-film",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kitap mı film mi|kitabı mı okursunuz filmi mi izlersiniz|kitapçı mısınız filmci mi]"
+   ],
+   [
+    "B",
+    "[kitap|kitap, her zaman|önce kitap]"
+   ],
+   [
+    "C",
+    "[film|film, hızlı|film izlerim]"
+   ],
+   [
+    "D",
+    "[sesli kitap|sesli kitap dinlerim|{s:ulasim} içinde sesli kitap]"
+   ],
+   [
+    "B",
+    "[{D} ikisinin ortası|{D} melez|{D} akıllıca]"
+   ],
+   [
+    "A",
+    "[ben {s:hobi} yapıyorum, ikisine de vakit yok|ikisine de vaktim yok|ben hiçbiri]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-tek-cumle-hikaye",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bir cümlelik korku hikayesi yazın|tek cümle korku hikayesi|bir cümlede korkutun beni]"
+   ],
+   [
+    "B",
+    "[maaş yattı, sonra kira çekildi|kira günü geldi|kira zammı geldi]"
+   ],
+   [
+    "C",
+    "[{s:esya} kayboldu, kapıyı kapattım, içeride kaldı|anahtar içeride, kapı kapalı|telefon yüzde bir]"
+   ],
+   [
+    "D",
+    "[kanala yazdım, kimse cevap vermedi|mesaj attım, görüldü, cevap yok|herkes çevrimiçi, kimse yazmıyor]"
+   ],
+   [
+    "A",
+    "[{D} en korkuncu|{D} tüylerim diken diken|{D} kazandı]"
+   ],
+   [
+    "B",
+    "[hepsi çok gerçek|gerçek hayat korkusu|korku filmi bu]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-esanlam",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[eş anlamlı kelime oyunu: mutlu|mutlu kelimesinin eş anlamlısı|bir kelime, eş anlamlısını bulun: mutlu]"
+   ],
+   [
+    "B",
+    "[sevinçli|neşeli|keyifli]"
+   ],
+   [
+    "C",
+    "[{s:tatli} yemiş|{s:tatli} yemiş insan|maaş günü]"
+   ],
+   [
+    "A",
+    "[{C} bu eş anlam değil|{C} bu bir durum|{C} kural dışı]"
+   ],
+   [
+    "C",
+    "[eş anlamlı bence|benim için aynı şey|bence aynı]"
+   ],
+   [
+    "D",
+    "[ikinci kelime: yorgun|sıradaki: yorgun|yorgun]"
+   ],
+   [
+    "B",
+    "[{s:gun} akşamı|pazartesi|kurye]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-sesli",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[en uzun kelimeyi kim yazacak|en uzun Türkçe kelime yarışması|uzun kelime yarışı]"
+   ],
+   [
+    "B",
+    "[çekoslovakyalılaştıramadıklarımızdan|çekoslovakya olan|klasik olan]"
+   ],
+   [
+    "C",
+    "[hile, ezber|ezberden|herkes biliyor onu]"
+   ],
+   [
+    "D",
+    "[{s:yemek}|benimki {s:yemek}|{s:yemek}, uzun değil ama güzel]"
+   ],
+   [
+    "A",
+    "[{D} kuralı anlamadı|{D} acıkmış|{D} kelime değil yemek seçti]"
+   ],
+   [
+    "D",
+    "[aç kalınca beyin çalışmıyor|açım|aklıma yemek geldi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-bilmece-kanal-ikinci",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bilmece: ne kadar paylaşırsan o kadar çoğalır|paylaştıkça artan şey ne|ne paylaştıkça büyür]"
+   ],
+   [
+    "B",
+    "[sevgi|mutluluk|bilgi]"
+   ],
+   [
+    "C",
+    "[{s:tatli}|{s:tatli} değil, o azalır|{s:tatli} azalır]"
+   ],
+   [
+    "A",
+    "[hepsi doğru, {s:tatli} hariç|{s:tatli} paylaşınca biter|üçü doğru, tatlı değil]"
+   ],
+   [
+    "D",
+    "[ama {s:tatli} paylaşınca mutluluk çoğalır|{s:tatli} paylaşınca dostluk artar|yine de tatlı paylaşılır]"
+   ],
+   [
+    "A",
+    "[{D} çok tatlı cevap|{D} kazandı|{D} kanal filozofu]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-bilmece-ayna",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bilmece: ben gülünce o da güler, ağlayınca ağlar|benim gibi yapan, hiç konuşmayan|hep beni taklit eden]"
+   ],
+   [
+    "B",
+    "[ayna|ayna, kolay|ayna tabii]"
+   ],
+   [
+    "C",
+    "[kardeşim|{s:akraba}|bizim {s:akraba} da öyle]"
+   ],
+   [
+    "A",
+    "[{C} bu ayrı konu|{C} aile meseleleri|{C} haha]"
+   ],
+   [
+    "D",
+    "[benim bilmecem: her gün yıkanır ama hiç temizlenmez|yıkandıkça kirlenen|her gün yıkanır, yine kirli]"
+   ],
+   [
+    "B",
+    "[su|bulaşık suyu|havlu]"
+   ],
+   [
+    "D",
+    "[su|evet|doğru]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-bilmece-yildiz",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece bilmecesi: ne kadar karanlıksa o kadar parlar|karanlıkta parlayan|karanlık olunca görünen]"
+   ],
+   [
+    "B",
+    "[yıldız|yıldızlar|ay]"
+   ],
+   [
+    "A",
+    "[doğru|evet|yıldız]"
+   ],
+   [
+    "C",
+    "[bizde {s:kis_hava}, yıldız yok|bugün {s:kis_hava}, hiç görünmüyor|burada {s:kis_hava}, gökyüzü yok]"
+   ],
+   [
+    "D",
+    "[telefon ekranı da karanlıkta parlar|telefon ekranı|gece telefon ekranı]"
+   ],
+   [
+    "B",
+    "[{D} modern cevap|{D} haklı|{D} gözlerimiz yandı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-soguk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen hep üşüyorsun|{B} yazın bile hırka|{B} sen her zaman üşürsün]"
+   ],
+   [
+    "B",
+    "[üşüyorum|soğuk|üşüyorum ama]"
+   ],
+   [
+    "A",
+    "[şu an hava güzel|hava ılık|güneş var]"
+   ],
+   [
+    "B",
+    "[bana göre değil|bence soğuk|içim üşüyor]"
+   ],
+   [
+    "C",
+    "[{B} sana bir {s:icecek} ısmarlayalım|{B} sıcak {s:icecek} iç|{B} bir {s:icecek} iç, ısın]"
+   ],
+   [
+    "B",
+    "[lütfen|çok iyi olur|evet]"
+   ],
+   [
+    "D",
+    "[{B} sen kışın nasıl yaşıyorsun|{B} kış nasıl geçiyor sende|{B} kışın kış uykusuna mı yatıyorsun]"
+   ],
+   [
+    "B",
+    "[battaniye içinde|evden çıkmıyorum|yorganın altında]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-hep-gec",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[{B} sen hep akşam geliyorsun|{B} sen hep bu saatte ortaya çıkarsın|{B} akşam kuşu]"
+   ],
+   [
+    "B",
+    "[gündüz çalışıyorum|gündüz iş var|gündüzleri yoğunum]"
+   ],
+   [
+    "A",
+    "[biliyorum ama hep tam {s:saat}|her gün aynı saat|saatini ayarlıyorum seninle]"
+   ],
+   [
+    "C",
+    "[{B} kanalın akşam sunucusu|{B} akşam haberleri sende|{B} akşam programı]"
+   ],
+   [
+    "B",
+    "[hoş geldiniz, ben {B}, akşam haberleri|bugünün başlıkları|bu akşam programımızda]"
+   ],
+   [
+    "B",
+    "[bugün hava: {s:kis_hava}|başlık: kanal yine {s:yemek} konuşuyor|bugünün konusu {s:yemek}]"
+   ],
+   [
+    "D",
+    "[en iyi haber programı|kanalın en iyi sunucusu|izlerim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-cicek-adi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} evde isimsiz eşya bırakmamışsın|{B} sen bitkine bile isim koymuşsun|{B} evdeki eşyalara isim koyma]"
+   ],
+   [
+    "B",
+    "[bitkime isim koydum, evet|bitkimin adı {s:tatli}|evet, {s:tatli}]"
+   ],
+   [
+    "C",
+    "[neden {s:tatli}|bu ne isim|niye öyle]"
+   ],
+   [
+    "B",
+    "[ilk gün {s:tatli} yerken aldım|aldığım gün {s:tatli} yemiştim|anı]"
+   ],
+   [
+    "D",
+    "[bende de {s:esya} adı var|ben {s:esya} için isim koydum|bende de isimli bir {s:esya} var]"
+   ],
+   [
+    "A",
+    "[kanal isim koyma derneği|herkes isim koyuyor|ben anormal miyim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-kahkaha",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} senin \"sdfsdf\" yazman beni güldürüyor|{B} gülerken klavyeye mi vuruyorsun|{B} klavyeye kafa mı atıyorsun]"
+   ],
+   [
+    "B",
+    "[sdfsdf|sdfgsdfg|ahahsdf]"
+   ],
+   [
+    "A",
+    "[bak yine|işte yine|gördün mü]"
+   ],
+   [
+    "B",
+    "[gülünce elim kontrolden çıkıyor|gülünce parmaklarım dans ediyor|elim titriyor gülünce]"
+   ],
+   [
+    "C",
+    "[bence en samimi gülüş|en dürüst gülme|gerçek gülme bu]"
+   ],
+   [
+    "D",
+    "[ben de denedim: {s:sayi} harf yazdım, kimse anlamadı|ben \"asdasd\" yazıyorum|bende \"hjkl\" çıkıyor]"
+   ],
+   [
+    "B",
+    "[herkesin kendi kahkahası var|kahkaha imzası|kişisel kahkaha]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-yeni-sehirli",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalda {s:sehir} olan var mı|{s:sehir} kökenli var mı|{s:sehir} hemşerim var mı]"
+   ],
+   [
+    "B",
+    "[ben|benim|ben {s:sehir}]"
+   ],
+   [
+    "A",
+    "[vay|hemşerim|oha], [hangi taraftan|nerelisin oralı olarak|ilçe neresi]"
+   ],
+   [
+    "B",
+    "[merkez|köyden|ilçeden]"
+   ],
+   [
+    "C",
+    "[ben de {s:sehir} doğumluyum ama hiç gitmedim|ben de {s:sehir} doğdum, oranın havası başka|ben de oralıyım sayılır]"
+   ],
+   [
+    "A",
+    "[kanal hemşeri buluşması|üç hemşeri bulduk|hemşeri derneği kuralım]"
+   ],
+   [
+    "D",
+    "[ben de geleyim|ben de katılayım|bana da yer var mı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-ilk-cay",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeni gelenlere kanaldan çay ikramı|yeni gelenler için {s:icecek} hazır|kanala yeni geleni {s:icecek} ile karşılarız]"
+   ],
+   [
+    "B",
+    "[ben yeniyim|ben yeni geldim|ilk günüm]"
+   ],
+   [
+    "A",
+    "[hoş geldin {B}|{B} hoş geldin|{B}, {s:icecek} sende]"
+   ],
+   [
+    "C",
+    "[hoş geldin, nerelisin|hoş geldin, ne iş yapıyorsun|hoş geldin, neler seversin]"
+   ],
+   [
+    "B",
+    "[{B.yer}, {s:hobi} severim|{B.yer} tarafındayım, {s:hobi} yapıyorum|{B.yer}, en sevdiğim şey {s:hobi}]"
+   ],
+   [
+    "D",
+    "[kanalda {s:hobi} sever çok|{s:hobi} yapan var burada|{s:hobi} kulübüne hoş geldin]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-hal-sorma",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} bugün nasılsın, dün biraz yorgundun|{B} dün yorgun görünüyordun, iyi misin|{B} toparlandın mı]"
+   ],
+   [
+    "B",
+    "[daha iyiyim|iyiyim, uyudum|dinlendim]"
+   ],
+   [
+    "A",
+    "[güzel|sevindim|oh]"
+   ],
+   [
+    "B",
+    "[hatırlaman çok güzel|sorman çok tatlı|aklında kalmış]"
+   ],
+   [
+    "C",
+    "[{A} kanalın hemşiresi|{A} herkesi takip ediyor|{A} kanalın annesi]"
+   ],
+   [
+    "A",
+    "[biri yapmalı|takip ederim|görevim]"
+   ],
+   [
+    "D",
+    "[{A} bana da bir {s:icecek} öner, başım ağrıyor|{A} ben de yorgunum, ne yapayım|{A} bana da bak]"
+   ],
+   [
+    "A",
+    "[{s:icecek} iç, erken yat|bol su, {s:icecek}|biraz dinlen]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-kurs-bitti",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurs yüzünden kanalı ihmal ettim|kursa yoğunlaştım, kanala gelemedim|kurs bitti, geri döndüm]"
+   ],
+   [
+    "B",
+    "[kurs nasıl geçti|bitti mi|geçtin mi]"
+   ],
+   [
+    "A",
+    "[bitti, belge aldım|bitirdim|geçtim]"
+   ],
+   [
+    "C",
+    "[hoş geldin|tebrikler|ikisi birden: hoş geldin ve tebrikler]"
+   ],
+   [
+    "D",
+    "[kanalı özledin mi|bizi özledin mi|kanalsız nasıldı]"
+   ],
+   [
+    "A",
+    "[{s:sayi} kere girip okudum, yazmadım|gizlice okuyordum|her gün baktım ama yazmadım]"
+   ],
+   [
+    "B",
+    "[gizli okuyucu|sessiz takipçi|gizli ajan]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-sabah-yeniden",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[yeniden günaydın, dün gece erken kaçtım|dün akşam erken yattım, günaydın|günaydın, dün kaçtım]"
+   ],
+   [
+    "B",
+    "[ne oldu|neden kaçtın|iyi misin]"
+   ],
+   [
+    "A",
+    "[{s:saat} yattım, sabaha kadar uyudum|uykum gelmişti|çok yorgundum]"
+   ],
+   [
+    "C",
+    "[ne güzel|kıskandım|keşke ben de]"
+   ],
+   [
+    "D",
+    "[biz sabaha kadar {s:yemek} konuştuk|sen kaçınca {s:yemek} tartışması oldu|sen gidince {s:yemek} kavgası]"
+   ],
+   [
+    "A",
+    "[kaçırdım mı|eyvah|kim kazandı]"
+   ],
+   [
+    "D",
+    "[kimse|berabere|hâlâ sürüyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-gorusme-sorulari",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yarın görüşme var, ne sorarlar|yarın iş görüşmesi, ne sorulur|görüşmede neler soruluyor]"
+   ],
+   [
+    "B",
+    "[kendini anlat derler|neden bu iş derler|güçlü yanların]"
+   ],
+   [
+    "C",
+    "[zayıf yanını sorarlar|zayıf yönün ne derler|kötü özelliğin]"
+   ],
+   [
+    "A",
+    "[ne diyeyim|ne cevap vereyim|bu zor]"
+   ],
+   [
+    "D",
+    "[çok çalışıyorum de|\"fazla {s:icecek} içiyorum\" de|\"fazla mükemmeliyetçiyim\" de]"
+   ],
+   [
+    "B",
+    "[{D} klasik|{D} herkes bunu der|{D} haha]"
+   ],
+   [
+    "A",
+    "[ben dürüstçe \"{s:tatli} seviyorum\" diyeceğim|ben \"{s:tatli} hastasıyım\" derim|ben \"{s:tatli} yerim çok\" derim]"
+   ],
+   [
+    "C",
+    "[samimi aday|dürüstlük kazanır|ilk günden kabul]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-yorgun-anne",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[{s:akraba} bugün çok yorulmuş, nasıl mutlu edebilirim|{s:akraba} için güzel bir şey yapmak istiyorum|{s:akraba} çok çalışıyor, ne yapsam]"
+   ],
+   [
+    "B",
+    "[{s:yemek} yap|akşam yemeğini sen yap|ona {s:yemek} hazırla]"
+   ],
+   [
+    "C",
+    "[{s:tatli} al|bir {s:tatli} götür|{s:tatli} sürprizi]"
+   ],
+   [
+    "D",
+    "[sadece sarıl|sarılmak yeter|bir sarılma her şeyden iyi]"
+   ],
+   [
+    "A",
+    "[üçünü birden|hepsini yapacağım|hepsini yaparım]"
+   ],
+   [
+    "B",
+    "[harika bir jest|çok tatlısın|{s:akraba} çok şanslı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-yeni-baslangic",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[işimi değiştirmeye karar verdim|yeni bir mesleğe geçiyorum|{s:oyun_meslek} olmayı bırakıyorum]"
+   ],
+   [
+    "B",
+    "[cesur karar|bravo|iyi düşündün mü]"
+   ],
+   [
+    "A",
+    "[düşündüm, kursa yazıldım|kurs başladı bile|belge almaya başladım]"
+   ],
+   [
+    "C",
+    "[değişim korkutucu ama güzel|değişiklik iyidir|yeni başlangıçlar güzel]"
+   ],
+   [
+    "D",
+    "[ben de {s:sayi} ay önce değiştirdim, iyi ki|ben de değiştirmiştim, pişman değilim|ben de geçtim, mutluyum]"
+   ],
+   [
+    "A",
+    "[moral verdiniz|iyi geldi|teşekkürler]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-bebek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[teyze oldum|amca oldum|kuzenimin bebeği oldu]"
+   ],
+   [
+    "B",
+    "[vay|tebrikler|çok güzel]"
+   ],
+   [
+    "C",
+    "[adı ne|ismini koydunuz mu|ad ne]"
+   ],
+   [
+    "A",
+    "[daha karar verilmedi|tartışma sürüyor|ailede tartışma var]"
+   ],
+   [
+    "D",
+    "[kanal öneri verebilir|isim önerelim|ben öneririm]"
+   ],
+   [
+    "D",
+    "[{s:tatli}|bence {s:tatli}|{s:tatli} koyun] haha"
+   ],
+   [
+    "A",
+    "[onu söylemem|bunu iletmem|duymamış olayım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-ilk-musteri",
+  "konu": "sohbet",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[işletmeme ilk düzenli müşterim geldi|ilk kez aynı müşteri üçüncü kez geldi|bugün düzenli müşterim oldu]"
+   ],
+   [
+    "B",
+    "[bravo|çok güzel|bu önemli]"
+   ],
+   [
+    "A",
+    "[her gün {s:saat} geliyor, {s:icecek} içiyor|her sabah {s:icecek} için geliyor|{s:icecek} için her gün uğruyor]"
+   ],
+   [
+    "C",
+    "[ona isim koy|ona özel bardak|onun bardağını ayır]"
+   ],
+   [
+    "D",
+    "[ben de gelirim, ikinci düzenli müşterin olurum|ben de düzenli müşterin olayım|benim de bardağım olsun]"
+   ],
+   [
+    "A",
+    "[hoş gelirsin|beklerim|bardağın hazır]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-hayalin",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çocukluk hayalimi bugün gerçekleştirdim|bugün küçükken istediğim bir şeyi yaptım|hayalimi gerçekleştirdim]"
+   ],
+   [
+    "B",
+    "[ne|neydi|söyle]"
+   ],
+   [
+    "A",
+    "[{s:hobi} kursuna yazıldım|{s:hobi} dersine başladım|ilk {s:hobi} dersim]"
+   ],
+   [
+    "C",
+    "[harika|ne güzel|geç kalınmış değil]"
+   ],
+   [
+    "D",
+    "[hayallerin yaşı yok|hiçbir şey için geç değil|en güzel haber]"
+   ],
+   [
+    "A",
+    "[{s:sayi} yıldır bekliyordum|yıllardır istiyordum|nihayet]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-barisma-iki-taraf",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} ile {C} küsmüş, barıştırın|{B} ve {C} konuşmuyor|{B} ile {C} arası bozuk]"
+   ],
+   [
+    "B",
+    "[küs değiliz|değiliz|kim dedi]"
+   ],
+   [
+    "C",
+    "[küs değiliz ama o başladı|küsüz ama o başladı|o başlattı]"
+   ],
+   [
+    "B",
+    "[ben mi|ne başlattım|ne zaman]"
+   ],
+   [
+    "C",
+    "[{s:yemek} ile ilgili|{s:yemek} meselesi|{s:yemek} tartışması]"
+   ],
+   [
+    "A",
+    "[{s:yemek} yüzünden küslük olmaz|bir {s:yemek} için mi|yemek için küsülmez]"
+   ],
+   [
+    "B",
+    "[haklısın|peki|tamam], [{C} barış mı|{C} barışalım|{C} küslük bitti mi]"
+   ],
+   [
+    "C",
+    "[barış|tamam|olur]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-barisma-erken-kalk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[{B} sabah sana ters cevap verdim, uykuluydum|{B} sabahki halim için özür|{B} sabah huysuzdum]"
+   ],
+   [
+    "B",
+    "[fark etmedim bile|önemli değil|hiç dert değil]"
+   ],
+   [
+    "A",
+    "[{s:icecek} içmeden insan değilim|{s:icecek} içmeden konuşmamalıyım|sabah {s:icecek} olmadan konuşmuyorum artık]"
+   ],
+   [
+    "C",
+    "[bu kural olsun|kanal kuralı: {s:icecek} öncesi konuşma yok|haklı]"
+   ],
+   [
+    "D",
+    "[ben de öyleyim|ben de|sabah ben de canavarım]"
+   ],
+   [
+    "B",
+    "[kanal sabah canavarları|sabah kulübü|sabah huysuzları]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-yanlis-otobus",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün yanlış {s:ulasim} bindim, nereye gittiğimi anlatayım|yanlış {s:ulasim} beni bambaşka yere götürdü|bugün kayboldum, hikayesi uzun]"
+   ],
+   [
+    "B",
+    "[neredeydin|nereye gittin|anlat]"
+   ],
+   [
+    "A",
+    "[{s:semt} diye bindim, {s:semt#2} indim|{s:semt} yerine {s:semt#2}|kendimi {s:semt#2} buldum]"
+   ],
+   [
+    "C",
+    "[o kadar uzak mı|haha|olamaz]"
+   ],
+   [
+    "A",
+    "[madem geldim dedim, gezdim|bir saat dolaştım|orada {s:yemek} yedim]"
+   ],
+   [
+    "D",
+    "[güzel kayboluş|en güzel hata|kaybolmak da güzel]"
+   ],
+   [
+    "A",
+    "[şimdi her hafta oraya gidiyorum|bir dahakine bilerek giderim|yeni yer keşfettim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-telefon-dustu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün telefonumu {s:mekan} düşürdüm|telefon elimden kaydı {s:mekan}|{s:mekan} telefonum düştü]"
+   ],
+   [
+    "B",
+    "[kırıldı mı|ne oldu|eyvah]"
+   ],
+   [
+    "A",
+    "[bir {s:hayvan} kaptı|bir {s:hayvan} yanına gitti|yanına bir {s:hayvan} oturdu]"
+   ],
+   [
+    "C",
+    "[ne|ciddi mi|olamaz]"
+   ],
+   [
+    "A",
+    "[sonra bir çocuk geldi, {s:hayvan} ile oynadı, telefonu bana verdi|bir çocuk aldı getirdi|çocuk {s:hayvan} ile oynayıp aldı]"
+   ],
+   [
+    "D",
+    "[kahraman çocuk|o çocuğa bir {s:tatli}|çocuk ödül hak etti]"
+   ],
+   [
+    "A",
+    "[ona {s:tatli} aldım|{s:tatli} ısmarladım|teşekkür ettim, {s:tatli} verdim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-kendine-gulme",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} kendi yansımama selam verdim|{s:mekan} camdaki yansımamı tanıdık sandım|{s:mekan} aynadaki kendime el salladım]"
+   ],
+   [
+    "B",
+    "[haha|oha|yok artık]"
+   ],
+   [
+    "C",
+    "[karşılık verdi mi|o da salladı mı|o da selam verdi mi]"
+   ],
+   [
+    "A",
+    "[aynı anda salladı, çok kibar|o da salladı|hemen karşılık verdi]"
+   ],
+   [
+    "D",
+    "[en sadık arkadaşın|seni hiç yalnız bırakmaz|en iyi dost]"
+   ],
+   [
+    "B",
+    "[kanalın en tatlı hikayesi|bugünün en iyisi|bunu bir yere yazın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-kasiyer-sohbet",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} kasiyerle on dakika {s:hayvan} konuştuk|kasiyerle {s:hayvan} sohbetine daldık|{s:mekan} arkadaki sıra bizi bekledi]"
+   ],
+   [
+    "B",
+    "[arkadakiler ne dedi|sıra kızmadı mı|kuyruk ne yaptı]"
+   ],
+   [
+    "A",
+    "[onlar da katıldı|herkes {s:hayvan} fotoğrafı gösterdi|sıra komple {s:hayvan} kulübü oldu]"
+   ],
+   [
+    "C",
+    "[en güzel alışveriş|kuyruk sohbeti efsane|güzel bir an]"
+   ],
+   [
+    "D",
+    "[ben de oraya gidiyorum|adres lazım|o kasaya gideyim ben de]"
+   ],
+   [
+    "A",
+    "[hep orada değil ama|her gün aynı kişi yok|şans işi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-sakar-bardak",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:sayi} bardak kırdım|bugün mutfakta {s:sayi} bardak gitti|bardak kırma rekoru kırdım]"
+   ],
+   [
+    "B",
+    "[{s:sayi} mu|bir günde mi|nasıl]"
+   ],
+   [
+    "A",
+    "[biri kayınca diğerini tutayım derken|zincirleme kaza|domino gibi]"
+   ],
+   [
+    "C",
+    "[bende de bir kere tabak yağmuru oldu|ben de bir kere bütün rafı düşürdüm|ben de yaşadım]"
+   ],
+   [
+    "D",
+    "[kırılan bardak bereket getirir derler|cam kırılması uğurdur derler|nazar gitti diyelim]"
+   ],
+   [
+    "A",
+    "[o zaman bu ay çok bereketli|bereket yağıyor|şanslı aydayım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-yanlis-kulaklik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:ulasim} içinde kulaklık takılı sanıp müzik açtım, takılı değilmiş|bugün kulaklık bağlı değilmiş, herkes dinledi|telefon hoparlörden çaldı {s:ulasim} içinde]"
+   ],
+   [
+    "B",
+    "[ne çalıyordu|hangi şarkı|ne dinliyordun]"
+   ],
+   [
+    "A",
+    "[{s:akraba} sevdiği eski bir şarkı|en utanç verici listem|çocuk şarkısı]"
+   ],
+   [
+    "C",
+    "[herkes baktı mı|ne yaptılar|tepki]"
+   ],
+   [
+    "A",
+    "[bir teyze eşlik etti|biri tempo tuttu|bir amca alkışladı]"
+   ],
+   [
+    "D",
+    "[{s:ulasim} konseri|ücretsiz konser|kanalın sanatçısı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-patlamis-misir",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[mısır patlatayım dedim, tencere kapağını unuttum|patlamış mısır yaptım, kapak yoktu|mutfakta mısır savaşı oldu]"
+   ],
+   [
+    "B",
+    "[haha|eyvah|mısır yağmuru]"
+   ],
+   [
+    "A",
+    "[mutfağın her yerinde mısır|tavanda bile mısır var|{s:hayvan} kovaladı mısırları]"
+   ],
+   [
+    "C",
+    "[hiç olmazsa film var mı|filmi izledin mi|film ne oldu]"
+   ],
+   [
+    "A",
+    "[film başlamadan mısır bitti|temizlemekle geçti|film yerine {s:ev_isi}]"
+   ],
+   [
+    "D",
+    "[bir dahakine kapak|kapak hayat kurtarır|kapak önemli]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-buzdolabi-isik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece kalkıp buzdolabını açtım, ışık yüzüme vurdu|gece mutfağa gittim, buzdolabı ışığı kör etti|gece dolap açtım, ışığa yakalandım]"
+   ],
+   [
+    "B",
+    "[ne aldın|ne yedin|ne vardı]"
+   ],
+   [
+    "A",
+    "[{s:tatli} vardı, yarısını yedim|{s:yemek} vardı, soğuk soğuk yedim|bir kaşık {s:tatli}]"
+   ],
+   [
+    "C",
+    "[gece soğuk yemek en güzeli|soğuk yemek gecenin tadı|gece buzdolabından yemek ayrı lezzet]"
+   ],
+   [
+    "D",
+    "[ben {s:meyve} yedim, sağlıklı|ben sadece {s:meyve}|ben bir {s:meyve} aldım]"
+   ],
+   [
+    "B",
+    "[{D} kendini kandırma|{D} biz biliyoruz|{D} {s:tatli} yemediğine inanmıyoruz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-dusunce-yuksek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece gece düşündüm, {s:hayvan} rüya görür mü|{s:hayvan} da rüya görüyor mudur|bizim {s:hayvan} rüyasında ne görür]"
+   ],
+   [
+    "B",
+    "[görür|kesin görür|bence görür]"
+   ],
+   [
+    "C",
+    "[rüyasında {s:yemek} görüyordur|{s:yemek} rüyası|mama rüyası]"
+   ],
+   [
+    "D",
+    "[rüyasında bizi görüyordur|bizi görüyordur|bizim rüyamızı görüyordur]"
+   ],
+   [
+    "A",
+    "[çok tatlı|duygulandım|bu düşünceyle uyuyorum]"
+   ],
+   [
+    "B",
+    "[iyi geceler|tatlı rüyalar|herkese iyi uykular]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-hayat-sorusu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece soruları: sizce mutluluk nedir|mutluluk ne demek sizce|bir kelimeyle mutluluk]"
+   ],
+   [
+    "B",
+    "[huzur|sağlık|aile]"
+   ],
+   [
+    "C",
+    "[sıcak bir {s:icecek}|pazar sabahı {s:icecek}|{s:icecek} ve sessizlik]"
+   ],
+   [
+    "D",
+    "[maaş günü|kira olmayan bir ay|borçsuz bir hayat]"
+   ],
+   [
+    "A",
+    "[{D} çok gerçekçi|{D} en dürüstü|{D} ekonomik mutluluk]"
+   ],
+   [
+    "B",
+    "[hepsi biraz|hepsinin karışımı|hepsi doğru]"
+   ],
+   [
+    "C",
+    "[bu kanal da biraz mutluluk|kanal da sayılır|burası da mutluluk]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-geceyarisi-yemek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece yarısı {s:yemek} canı çekti, ne yapayım|şu an {s:yemek} istiyorum, saat geç|gece yarısı {s:yemek} krizi]"
+   ],
+   [
+    "B",
+    "[yap|ye|yapsana]"
+   ],
+   [
+    "C",
+    "[yapma, yarın ye|sabaha kadar bekle|yatarsan geçer]"
+   ],
+   [
+    "D",
+    "[kanal ikiye bölündü|oylama yapalım|kanal karar versin]"
+   ],
+   [
+    "A",
+    "[yapıyorum|tamam, mutfağa gidiyorum|karar verdim]"
+   ],
+   [
+    "C",
+    "[ben sana dedim|uyarmıştım|sabah pişmanlık]"
+   ],
+   [
+    "A",
+    "[pişmanlık sabahın sorunu|sabahki ben düşünsün|sabaha ben karışmam]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-mahalle-maci",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çocukken sokakta maç yapardık, kale taş|sokak maçlarını özledim|eskiden kaleler taştan olurdu]"
+   ],
+   [
+    "B",
+    "[arabalar geçince ara verirdik|araba geliyor diye bağırırdık|araba gelince herkes kenara]"
+   ],
+   [
+    "C",
+    "[top komşunun bahçesine düşünce biterdi|top bahçeye kaçtı mı oyun biterdi|komşunun bahçesi top mezarlığı]"
+   ],
+   [
+    "D",
+    "[bizim mahallede {s:akraba} topu geri vermezdi|{s:akraba} topu saklardı|bizde topu {s:akraba} alırdı]"
+   ],
+   [
+    "A",
+    "[efsane günler|o günler başka|şimdi kimse sokakta oynamıyor]"
+   ],
+   [
+    "B",
+    "[kanal maçı yapalım|bir halı saha yapalım|kanal turnuvası]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-eski-oyun",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[saklambaçta en iyi saklanma yeriniz neydi|saklambaç oynarken nereye saklanırdınız|en iyi saklambaç noktası]"
+   ],
+   [
+    "B",
+    "[dolap|elbise dolabı|dolabın içi]"
+   ],
+   [
+    "C",
+    "[perde arkası|perdenin arkası, ayaklar görünürdü|perde, ama hep bulunurdum]"
+   ],
+   [
+    "D",
+    "[ben o kadar iyi saklandım ki herkes eve gitti|beni kimse bulamazdı, oyun bitmişti|bir kere saatlerce bulunamadım]"
+   ],
+   [
+    "A",
+    "[{D} kazandın ama kaybettin|{D} en hüzünlü zafer|{D} yalnız kazanan]"
+   ],
+   [
+    "D",
+    "[{s:akraba} sonunda buldu|beni {s:akraba} buldu|{s:akraba} {s:yemek} ile çağırdı, çıktım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-ilk-bisiklet",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk bisikletinizi hatırlıyor musunuz|bisiklete binmeyi kim öğretti|ilk bisiklet anısı]"
+   ],
+   [
+    "B",
+    "[{s:akraba} arkadan tutuyordu, bir baktım bırakmış|{s:akraba} bıraktığını söylemedi|{s:akraba} tuttuğunu sandım]"
+   ],
+   [
+    "C",
+    "[ben düşe kalka öğrendim|dizlerim hep yaralıydı|yara bandı efsanesi]"
+   ],
+   [
+    "D",
+    "[ben hâlâ binemiyorum|ben öğrenemedim|bisiklet bilmem]"
+   ],
+   [
+    "A",
+    "[{D} hiç geç değil|{D} öğretelim|{D} kanal bisiklet kursu]"
+   ],
+   [
+    "D",
+    "[{s:sayi} yaşındayım ama denerim|olur, denerim|deneyebilirim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-kokular",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[size çocukluğu hatırlatan koku ne|bir koku duyunca çocukluğa dönüyorum|en nostaljik koku]"
+   ],
+   [
+    "B",
+    "[{s:akraba} evindeki {s:yemek} kokusu|{s:yemek} kokusu|fırından gelen ekmek]"
+   ],
+   [
+    "C",
+    "[yağmurdan sonra toprak|ıslak toprak|yağmur kokusu]"
+   ],
+   [
+    "D",
+    "[kolonya|limon kolonyası|bayram kolonyası]"
+   ],
+   [
+    "A",
+    "[hepsi burnumda|hepsini kokladım şu an|kanal kokular müzesi]"
+   ],
+   [
+    "B",
+    "[en güzeli {D}|kolonya kazandı|kolonya bir numara]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-bilgi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iddiaya girerim kimse dünyanın en uzun nehrini bilmez|bilgi yarışması: en uzun nehir|en uzun nehir hangisi]"
+   ],
+   [
+    "B",
+    "[Nil|Nil nehri|Nil, kolay]"
+   ],
+   [
+    "C",
+    "[Amazon|bence Amazon|Amazon diyenler de var]"
+   ],
+   [
+    "A",
+    "[ikisi de tartışmalı aslında|ikisi de olabilir|bilim insanları da tartışıyor]"
+   ],
+   [
+    "D",
+    "[ben en uzun kuyruğu biliyorum: {s:mekan}|en uzun kuyruk {s:mekan}|bence en uzun şey {s:mekan} kuyruğu]"
+   ],
+   [
+    "B",
+    "[{D} haklı|{D} gerçek bilgi|{D} hayatın bilgisi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-gulmeme",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iddia: size bir fıkra anlatacağım, gülmeyeceksiniz|gülmeme yarışması|gülmezseniz kazanırsınız]"
+   ],
+   [
+    "B",
+    "[hazırım|başla|anlat]"
+   ],
+   [
+    "A",
+    "[bir {s:hayvan} markete gitmiş, poşet istememiş, \"cebim var\" demiş|{s:hayvan} kasaya gitmiş, \"poşet lazım değil, cebim var\" demiş|bir {s:hayvan} alışverişe çıkmış, poşet yerine cebini göstermiş]"
+   ],
+   [
+    "C",
+    "[gülmedim|hiç gülmedim|yüzüm bile kıpırdamadı]"
+   ],
+   [
+    "B",
+    "[ben de|ben güldüm ama acıdığım için|ben gülümsedim]"
+   ],
+   [
+    "A",
+    "[kaybettim|kaybettim galiba|bir dahakine]"
+   ],
+   [
+    "D",
+    "[ben güldüm|ben güldüm, sdfsdf|ben gülmekten öldüm]"
+   ],
+   [
+    "A",
+    "[{D} tek hayranım|{D} sağ ol|{D} her zaman yanımda]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-tahmin-yemek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[{B} akşam ne yediğini tahmin edeyim|{B} bahse girerim akşama {s:yemek} yedin|{B} kesin {s:yemek}]"
+   ],
+   [
+    "B",
+    "[yanlış|değil|hayır]"
+   ],
+   [
+    "A",
+    "[o zaman {s:yemek#2}|{s:yemek#2}|kesin {s:yemek#2}]"
+   ],
+   [
+    "B",
+    "[yaklaştın|o da değil|hiç alakası yok]"
+   ],
+   [
+    "C",
+    "[{A} söyle de bilsin|{B} söyle artık|meraktan öleceğiz]"
+   ],
+   [
+    "B",
+    "[hiçbir şey yemedim daha|henüz yemedim|aç bekliyorum]"
+   ],
+   [
+    "A",
+    "[o zaman {s:yemek} ye, ben bileyim|benim tahminimi ye|tahminimi gerçek yap]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-ilk-maas",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk maaşımı aldım, ne yapayım|maaş yattı, ilk kez, öneri|ilk maaş, akıllıca ne yapılır]"
+   ],
+   [
+    "B",
+    "[kenara ayır|biraz biriktir|bir kısmını sakla]"
+   ],
+   [
+    "C",
+    "[{s:akraba} için bir hediye al|ailene bir şey al|{s:akraba} çok sevinir]"
+   ],
+   [
+    "D",
+    "[kendine de bir {s:tatli}|bir {s:tatli} hak ettin|kendini ödüllendir]"
+   ],
+   [
+    "A",
+    "[üçünü birden yapabilirim|hepsine yeter mi|hesaplıyorum]"
+   ],
+   [
+    "B",
+    "[kira {evkira}, yaşam {yasam}, kalanı paylaştır|önce kira ve geçim|önce zorunlular]"
+   ],
+   [
+    "A",
+    "[kalan çok az|zor hesap|matematik acımasız]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-sohbet-baslatma",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeni insanlarla nasıl sohbet açılır|sohbet başlatmakta zorlanıyorum|tanımadığım biriyle ne konuşulur]"
+   ],
+   [
+    "B",
+    "[hava|hava durumu her zaman işe yarar|bugün {s:kis_hava} de]"
+   ],
+   [
+    "C",
+    "[{s:yemek} sor|ne yediğini sor|yemek her zaman konu]"
+   ],
+   [
+    "D",
+    "[kanala yazdığın gibi yaz|burada nasıl konuşuyorsan öyle|bize yazar gibi]"
+   ],
+   [
+    "A",
+    "[size yazmak kolay|burası kolay|kanal farklı]"
+   ],
+   [
+    "B",
+    "[herkes kanal kadar tatlı|insanlar da öyle|dışarısı da aynı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-sabah-rutini",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[sabahları çok zor kalkıyorum, öneri|sabah kalkma taktikleri|sabah erken kalkmak için ne yapıyorsunuz]"
+   ],
+   [
+    "B",
+    "[telefonu uzağa koy|alarmı odanın öbür ucuna|telefon yataktan uzak]"
+   ],
+   [
+    "C",
+    "[akşam erken yat|{s:saat} yat|gece kanalı bırak] haha"
+   ],
+   [
+    "D",
+    "[sabahları güzel bir {s:icecek} planla|sabah {s:icecek} sözü ver kendine|seni sabah {s:icecek} bekliyor diye düşün]"
+   ],
+   [
+    "A",
+    "[{C} kanalı bırakamam|{C} kanal olmaz|{C} imkansız iste]"
+   ],
+   [
+    "D",
+    "[o zaman {s:icecek} taktiği|o zaman benimki|bence benimki işe yarar]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-yalniz-aksam",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bu akşam yalnızım, ne yapayım|akşam boşum, fikir|yalnız bir akşam, öneri]"
+   ],
+   [
+    "B",
+    "[{s:dizi_tur} izle|bir {s:dizi_tur} aç|{s:dizi_tur} iyi gider]"
+   ],
+   [
+    "C",
+    "[{s:yemek} yap kendine|kendine güzel bir yemek yap|özenli bir yemek]"
+   ],
+   [
+    "D",
+    "[{s:hobi}|{s:hobi} dene|yeni bir şey: {s:hobi}]"
+   ],
+   [
+    "A",
+    "[hepsini yapsam|üçünü sırayla|bir akşama sığar mı]"
+   ],
+   [
+    "B",
+    "[sığar|tabii sığar|uyku kısa olur sadece]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-trafik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalda trafik var, mesajlar sıkıştı|mesajlar kuyrukta|kanal trafiği yoğun]"
+   ],
+   [
+    "B",
+    "[alternatif yol yok mu|ara sokaktan yaz|başka konu aç]"
+   ],
+   [
+    "C",
+    "[ben {s:ulasim} gibi yavaşım|ben {s:ulasim} hızındayım|ben aktarmalı yazıyorum]"
+   ],
+   [
+    "D",
+    "[mesaj radarı: {s:sayi} dakika gecikme|tahmini varış {s:sayi} dakika|gecikme var]"
+   ],
+   [
+    "A",
+    "[kanal trafik haberleri|trafik raporu|canlı yayın]"
+   ],
+   [
+    "B",
+    "[herkes dikkatli yazsın|emniyet kemeri takın|kaza olmasın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-bilet",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bu kanala giriş ücretli olsa öder miydiniz|kanala bilet olsa alır mıydınız|kanal üyelik ücreti olsa]"
+   ],
+   [
+    "B",
+    "[öderdim|tabii|kesin]"
+   ],
+   [
+    "C",
+    "[ne kadar|fiyat ne|ucuzsa]"
+   ],
+   [
+    "D",
+    "[bir {s:tatli} fiyatına|bir {s:icecek} parasına|bir simit parasına]"
+   ],
+   [
+    "C",
+    "[o zaman alırım|o fiyata tamam|kabul]"
+   ],
+   [
+    "A",
+    "[neyse ki bedava|şükür bedava|bedava olması iyi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-hava",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalın havası bugün nasıl|kanal hava durumu|kanalda bugün hava]"
+   ],
+   [
+    "B",
+    "[güneşli, herkes neşeli|bugün açık|parçalı neşeli]"
+   ],
+   [
+    "C",
+    "[biraz {s:kis_hava}|benim köşede {s:kis_hava}|bende hava {s:kis_hava}]"
+   ],
+   [
+    "D",
+    "[akşama doğru {s:yemek} tartışması bekleniyor|akşam {s:yemek} fırtınası|öğleden sonra {s:yemek} sağanağı]"
+   ],
+   [
+    "A",
+    "[şemsiye hazır|tedbirli olalım|hazırlıklıyız]"
+   ],
+   [
+    "B",
+    "[her zamanki gibi|klasik kanal havası|bildiğimiz kanal]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-dedikodu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalın en büyük sırrını biliyorum|kanalla ilgili bir sır var|kanalın gizli bilgisi]"
+   ],
+   [
+    "B",
+    "[söyle|ne|anlat]"
+   ],
+   [
+    "A",
+    "[herkes kanalda aslında işte olması gerekirken yazıyor|herkes mesai saatinde burada|kimse çalışmıyor]"
+   ],
+   [
+    "C",
+    "[ben molada|ben öğle arasındayım|ben şu an moladayım]"
+   ],
+   [
+    "D",
+    "[ben {s:oyun_meslek} işindeyim, sipariş bekliyorum|ben görevi bekliyorum|benim işim bekleme]"
+   ],
+   [
+    "A",
+    "[herkesin bir bahanesi var|bahaneler hazır|tahmin ettiğim gibi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-laf-saat-gec",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} saat kaç biliyor musun|{B} hâlâ burada mısın|{B} sen ne zaman uyuyorsun]"
+   ],
+   [
+    "B",
+    "[{s:saat}|tam {s:saat} gibi|bilmiyorum]"
+   ],
+   [
+    "A",
+    "[işin yok mu|yarın iş yok mu|nasıl kalkacaksın]"
+   ],
+   [
+    "B",
+    "[yarın izinliyim|yarın {s:gun}, izin günüm|yarın boşum]"
+   ],
+   [
+    "C",
+    "[{B} kıskandım|{B} şanslı|{B} anlatma bize]"
+   ],
+   [
+    "B",
+    "[siz de alın|izin almak serbest|herkesin hakkı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-laf-profil",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} profil resmini değiştirmişsin|{B} yeni fotoğraf mı|{B} resim yeni]"
+   ],
+   [
+    "B",
+    "[evet|fark ettin|değiştirdim]"
+   ],
+   [
+    "A",
+    "[{s:hayvan} mı o|o bir {s:hayvan} mı|{s:hayvan} gibi duruyor]"
+   ],
+   [
+    "B",
+    "[hayır o benim|o benim fotoğrafım|benim]"
+   ],
+   [
+    "C",
+    "[{A} çok yanlış oldu|{A} bitti, {B} küser|{A} kurtar kendini]"
+   ],
+   [
+    "A",
+    "[çok sevimli bir {s:hayvan}|sevimli olduğu için karıştırdım|tatlı demek istedim]"
+   ],
+   [
+    "B",
+    "[kurtardın|ucuz kurtuldun|tamam affettim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-laf-yazim-hatasi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} \"geliyorum\" yerine \"geliyrum\" yazdın|{B} yazım hatası avcısıyım|{B} bir harf kaçırdın]"
+   ],
+   [
+    "B",
+    "[heyecanlıydım|acele ettim|parmak kaydı]"
+   ],
+   [
+    "A",
+    "[ben hep takip ediyorum|kontrol bende|ben yazım polisiyim]"
+   ],
+   [
+    "C",
+    "[{A} sen de az önce \"{s:yemek}\" yanlış yazdın|{A} sen de \"{s:tatli}\" kelimesini yanlış yazmıştın|{A} kendi mesajına bak]"
+   ],
+   [
+    "A",
+    "[hiç sanmıyorum|yok|olmaz]"
+   ],
+   [
+    "C",
+    "[yukarı kaydır|bak bakalım|kontrol et]"
+   ],
+   [
+    "A",
+    "[tamam, polis de hata yapar|tamam, emekli oluyorum|tamam, sustum]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-laf-cok-uzgun",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} neden üzgün yazıyorsun|{B} bir şey mi oldu, mesajların üzgün|{B} sesin hüzünlü geliyor]"
+   ],
+   [
+    "B",
+    "[{s:tatli} bitti|evdeki {s:tatli} bitti|son {s:tatli} dilimi bitti]"
+   ],
+   [
+    "A",
+    "[bu mu|bunun için mi|o kadar mı]"
+   ],
+   [
+    "B",
+    "[bu yeterince büyük bir dert|bu büyük bir trajedi|küçümseme]"
+   ],
+   [
+    "C",
+    "[{B} haklı, bu büyük dert|{B} anlıyorum seni|başın sağ olsun]"
+   ],
+   [
+    "D",
+    "[{B} bende var, gel|{B} bizde {s:tatli} var|{B} adresi atayım]"
+   ],
+   [
+    "B",
+    "[hayat güzelleşti|geliyorum|{D} kahraman]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hal-hatir-semt",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} {B.yer} tarafında hava nasıl|{B} sizin tarafta durum ne|{B} {B.yer} nasıl bugün]"
+   ],
+   [
+    "B",
+    "[{s:kis_hava}|bugün {s:kis_hava}|sabahtan beri {s:kis_hava}]"
+   ],
+   [
+    "A",
+    "[bizde de|burada da aynı|aynı hava]"
+   ],
+   [
+    "C",
+    "[bizde güneş var|bizde güzel|bizim taraf açık]"
+   ],
+   [
+    "B",
+    "[{C} nerede oturuyorsun|{C} neresi|{C} adresini ver taşınıyorum]"
+   ],
+   [
+    "C",
+    "[{C.yer}|{C.yer} tarafı|{C.yer}, gel]"
+   ],
+   [
+    "B",
+    "[geliyorum|kiralık var mı|komşu olalım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hal-hatir-hafta",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[haftanız nasıl geçti|bu hafta nasıldı|hafta özeti yapın]"
+   ],
+   [
+    "B",
+    "[yoğun|çok yoğun|nefes alamadım]"
+   ],
+   [
+    "C",
+    "[sakin|sakindi|güzeldi]"
+   ],
+   [
+    "D",
+    "[{s:sayi} kere {s:ev_isi} yaptım, başka bir şey yok|bütün hafta {s:ev_isi}|haftam {s:ev_isi} ile geçti]"
+   ],
+   [
+    "A",
+    "[{D} ev hayatı|{D} kolay gelsin|{D} geçmiş olsun]"
+   ],
+   [
+    "B",
+    "[hafta sonu dinlenelim|hafta sonu gelsin|hafta sonu yakın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hal-hatir-hasta",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} grip geçti mi|{B} iyileştin mi|{B} hastaydın, nasılsın]"
+   ],
+   [
+    "B",
+    "[daha iyiyim|geçiyor|son günler]"
+   ],
+   [
+    "A",
+    "[{s:icecek} iç bol bol|bol {s:icecek}|{s:icecek} ve dinlenme]"
+   ],
+   [
+    "B",
+    "[içiyorum|her gün içiyorum|{s:akraba} zorla içiriyor]"
+   ],
+   [
+    "C",
+    "[{s:akraba} haklı|{s:akraba} bilir|evdeki doktor]"
+   ],
+   [
+    "D",
+    "[geçmiş olsun|çabuk iyileş|acil şifalar]"
+   ],
+   [
+    "B",
+    "[sağ olun|teşekkürler|iyi geldi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-soru-zincir",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[soru zinciri: herkes bir soru sorsun, sonraki cevaplasın|sorulu cevaplı oyun|soru zinciri başlıyor]"
+   ],
+   [
+    "A",
+    "[en sevdiğiniz {s:meyve} mi {s:meyve#2} mi|{s:meyve} mi {s:meyve#2} mi|ilk soru: {s:meyve} ya da {s:meyve#2}]"
+   ],
+   [
+    "B",
+    "[{s:meyve}|{s:meyve#2}|ikisi de], [benim sorum: kış mı yaz mı|sıradaki: deniz mi havuz mu|soru: çay mı kahve mi]"
+   ],
+   [
+    "C",
+    "[kış|deniz|çay], [benim sorum: en sevdiğin {s:hobi} mi|soru: hiç {s:hobi} denedin mi|soru: {s:hobi} sever misin]"
+   ],
+   [
+    "D",
+    "[hiç denemedim|severim|evet], [benim sorum: bu oyun ne zaman bitecek|soru: kim yoruldu|soru: biz neden bunu yapıyoruz]"
+   ],
+   [
+    "A",
+    "[bitmez|asla bitmez|sonsuza kadar]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-araya-gir-yemek-sira",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} bu akşam bulaşık sende|{B} sıra sende, bulaşık|{B} bugün {s:ev_isi} senin]"
+   ],
+   [
+    "B",
+    "[dün ben yaptım|sıra sende|ben yaptım dün]"
+   ],
+   [
+    "A",
+    "[dün ben yaptım, hatırla|dün akşam bendim|dün tabakları ben yıkadım]"
+   ],
+   [
+    "C",
+    "[siz ev arkadaşı mısınız, kanalda mı kavga ediyorsunuz|ev kavgası kanala taştı|kanal ev toplantısı yeri oldu]"
+   ],
+   [
+    "B",
+    "[kanal hakem olsun|kanal karar versin|oylama]"
+   ],
+   [
+    "D",
+    "[yazı tura|taş kağıt makas|kim {s:tatli} yerse o yıkar]"
+   ],
+   [
+    "A",
+    "[{D} {s:tatli} yöntemi iyi|{D} adil yöntem|{D} çözdü]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-araya-gir-futbol",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[akşam maç var, kim izliyor|bu akşamki maçı izleyen var mı|maç saati yaklaşıyor]"
+   ],
+   [
+    "B",
+    "[ben|ben izlerim|kaçırmam]"
+   ],
+   [
+    "C",
+    "[ben maç sevmem, {s:dizi_tur} izleyeceğim|ben {s:dizi_tur} izliyorum|maç yerine {s:dizi_tur}]"
+   ],
+   [
+    "B",
+    "[{C} tek kumanda varsa ne olacak|{C} evde kavga çıkar|{C} kumanda kimde]"
+   ],
+   [
+    "C",
+    "[bende iki televizyon var|telefondan izlerim|ben odama giderim]"
+   ],
+   [
+    "D",
+    "[ben ikisini de izlemem, uyurum|ben uyuyacağım|en akıllıca plan bende]"
+   ],
+   [
+    "A",
+    "[kanal üçe bölündü|herkes başka yerde|kanal dağıldı] haha"
+   ]
+  ]
+ },
+ {
+  "id": "c2-araya-gir-yazim",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} \"herkez\" değil \"herkes\"|{B} herkes s ile yazılır|{B} herkez yazmışsın]"
+   ],
+   [
+    "B",
+    "[ben öyle yazıyorum|bana öyle geliyor|fark etmez]"
+   ],
+   [
+    "A",
+    "[fark eder|eder|bal gibi eder]"
+   ],
+   [
+    "C",
+    "[ikiniz de bir {s:icecek} için, sakin|bir {s:icecek} molası|kavgaya {s:icecek} arası]"
+   ],
+   [
+    "B",
+    "[herkes için {s:icecek}|herkeze {s:icecek}|herkese bir {s:icecek}]"
+   ],
+   [
+    "A",
+    "[işte yine|bak \"herkeze\" dedi|bilerek yapıyor]"
+   ],
+   [
+    "B",
+    "[tabii bilerek|seni kızdırmak güzel|eğleniyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-ilk-kelime",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[aklınıza gelen ilk kelimeyi yazın: kış|çağrışım oyunu: kış|kış deyince ne geliyor aklınıza]"
+   ],
+   [
+    "B",
+    "[{s:icecek}|sıcak {s:icecek}|{s:icecek} ve battaniye]"
+   ],
+   [
+    "C",
+    "[{s:kis_hava}|bugün {s:kis_hava}|camdan bakınca {s:kis_hava}]"
+   ],
+   [
+    "D",
+    "[doğalgaz faturası|fatura|kombi]"
+   ],
+   [
+    "A",
+    "[{D} acı gerçek|{D} hayatın kendisi|{D} gerçekçi kanal üyesi]"
+   ],
+   [
+    "B",
+    "[sıradaki kelime: yaz|şimdi yaz|ikinci kelime: yaz]"
+   ],
+   [
+    "C",
+    "[deniz|tatil|karpuz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-sesli-gul",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[en son ne zaman kahkaha attınız|en son sesli ne zaman güldünüz|son kahkahanız ne zamandı]"
+   ],
+   [
+    "B",
+    "[bugün, {s:mekan}|bu sabah {s:mekan}|az önce {s:mekan}]"
+   ],
+   [
+    "C",
+    "[dün {s:akraba} ile|{s:akraba} anlattı bir şey, dün|dün akşam {s:akraba} yüzünden]"
+   ],
+   [
+    "D",
+    "[şu an, bu kanalı okurken|şimdi|bu kanalda her gün]"
+   ],
+   [
+    "A",
+    "[{D} en güzel cevap|{D} bu kanal güldürür|{D} işte bu]"
+   ],
+   [
+    "B",
+    "[{B} hep güldüren biri|kanal kahkaha kaynağı|kanal güldürme makinesi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-hediye-unutulmaz",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[aldığınız en güzel hediye neydi|unutamadığınız hediye|en anlamlı hediye]"
+   ],
+   [
+    "B",
+    "[{s:akraba} el yapımı bir {s:esya} vermişti|{s:akraba} kendi yaptığı bir şey|el yapımı bir şey]"
+   ],
+   [
+    "C",
+    "[bir mektup|uzun bir mektup|bir kart]"
+   ],
+   [
+    "D",
+    "[bir {s:hayvan}|bana bir {s:hayvan} hediye ettiler|{s:hayvan}, hâlâ benimle]"
+   ],
+   [
+    "A",
+    "[{D} canlı hediye|{D} en güzeli|{D} kıskandım]"
+   ],
+   [
+    "B",
+    "[hediyenin değeri anlamında|değer değil, anlam önemli|anlam her şey]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-semt-ulasim",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[semtinizin en büyük derdi ne|oturduğunuz yerin en kötü yanı|semtinizde ne eksik]"
+   ],
+   [
+    "B",
+    "[trafik|park yeri|trafik, değişmez]"
+   ],
+   [
+    "C",
+    "[{s:ulasim} az|{s:ulasim} yok|{s:ulasim} durağı uzak]"
+   ],
+   [
+    "D",
+    "[gürültü|gece gürültüsü|komşunun matkabı]"
+   ],
+   [
+    "A",
+    "[{D} matkap her yerde|{D} matkap evrensel|{D} matkap bir şehir efsanesi]"
+   ],
+   [
+    "B",
+    "[komşular matkabı saat {s:saat} çalıştırıyor|bizde de {s:saat} matkap|bizimki {s:saat} başlıyor]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-mekan-anlat",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bir yer anlatacağım, tahmin edin: herkes sırada, herkes bekliyor, numara alınıyor|tahmin et: sıra, numara, bekleme|sıra numarası, bekleme salonu, neresi]"
+   ],
+   [
+    "B",
+    "[banka|bankada|banka tabii]"
+   ],
+   [
+    "C",
+    "[postane|postanede|hastanede]"
+   ],
+   [
+    "A",
+    "[ikisi de doğru|ikiniz de bildiniz|hepsi olur]"
+   ],
+   [
+    "D",
+    "[benimki: herkes konuşuyor ama ses yok|ses yok ama herkes konuşuyor|sessiz kalabalık]"
+   ],
+   [
+    "B",
+    "[kanal|bu kanal|burası]"
+   ],
+   [
+    "D",
+    "[bildin|aferin|kolay oldu], [ödül {s:tatli}|sana bir {s:tatli}|{s:tatli} kazandın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-bilmece-hafta",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bilmece: herkes ondan nefret eder ama haftada bir gelir|haftada bir gelir, kimse istemez|her hafta gelen istenmeyen misafir]"
+   ],
+   [
+    "B",
+    "[pazartesi|pazartesi tabii|pazartesi, belli]"
+   ],
+   [
+    "C",
+    "[fatura|kira günü|{s:ev_isi} günü]"
+   ],
+   [
+    "A",
+    "[pazartesi|pazartesi doğru|aferin], [ama {C} de haklı|ama kira da olur|kira da kabul]"
+   ],
+   [
+    "D",
+    "[benim bilmece: herkes bekler ama hemen gider|herkes bekler, çabuk biter|beklenir ama kısa sürer]"
+   ],
+   [
+    "B",
+    "[hafta sonu|maaş|cuma akşamı]"
+   ],
+   [
+    "D",
+    "[hepsi|maaş|hafta sonu, ikisi de]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-hep-mutlu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen hiç kötü gün geçirmiyor musun|{B} hep neşelisin|{B} senin moralin hiç bozulmaz mı]"
+   ],
+   [
+    "B",
+    "[geçiriyorum|bozuluyor tabii|herkes gibi]"
+   ],
+   [
+    "A",
+    "[hiç belli etmiyorsun|hiç görmedik|hep gülüyorsun]"
+   ],
+   [
+    "B",
+    "[kanala gelince düzeliyor|burada iyi oluyorum|kanal moral veriyor]"
+   ],
+   [
+    "C",
+    "[{B} işte kanalın sırrı|{B} haklı|bu kanal ilaç gibi]"
+   ],
+   [
+    "D",
+    "[ben de kötü günlerde {s:tatli} ile gelirim buraya|kötü günde {s:tatli} ve kanal|{s:tatli} ve kanal, iki ilaç]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-tek-dusman",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} senin bir düşmanın var: {s:ev_isi}|{B} hep {s:ev_isi} şikayeti|{B} {s:ev_isi} ile aranız nasıl]"
+   ],
+   [
+    "B",
+    "[ezeli düşman|en büyük düşmanım|nefret ediyorum]"
+   ],
+   [
+    "A",
+    "[bugün yaptın mı|bugünkü durum|kazanan kim]"
+   ],
+   [
+    "B",
+    "[{s:ev_isi} kazandı, yapmadım|yarına erteledim|ertelemeye devam]"
+   ],
+   [
+    "C",
+    "[{B} kanalda erteleme rekoru sende|{B} sen erteleme sanatçısısın|{B} yarın da ertelersin]"
+   ],
+   [
+    "B",
+    "[erteleme bir yaşam biçimi|yarın kesin|yarın yarın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-cok-bilmis",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen bir şey sorunca hep \"aslında\" diye başlıyorsun|{B} her cevabın \"aslında\" ile başlıyor|{B} \"aslında\" senin imzan]"
+   ],
+   [
+    "B",
+    "[aslında öyle değil|aslında haklısın|aslında hiç fark etmemiştim]"
+   ],
+   [
+    "C",
+    "[haha|bak yine|yaptı yine]"
+   ],
+   [
+    "B",
+    "[aslında|of|tamam]"
+   ],
+   [
+    "D",
+    "[{B} kelimen \"aslında\", benimki \"ya\"|benim kelimem \"valla\"|benim imzam \"{s:tatli} gibi\"]"
+   ],
+   [
+    "A",
+    "[herkesin bir kelimesi var|kanalın sözlüğü|kanal kelime müzesi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-ilk-soru",
+  "konu": "sohbet",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk kez yazıyorum, burası hep böyle kalabalık mı|merhaba, burası hep bu kadar hızlı mı|ilk mesajım, kanal hep böyle mi]"
+   ],
+   [
+    "B",
+    "[hep|evet|genelde]"
+   ],
+   [
+    "C",
+    "[hoş geldin|hoş geldin {A}|merhaba {A}]"
+   ],
+   [
+    "A",
+    "[hepinizi okuyamıyorum|yetişemiyorum|okumaya fırsat yok]"
+   ],
+   [
+    "D",
+    "[herkes okuyamıyor, sorun yok|biz de yetişemiyoruz|kimse her şeyi okumuyor]"
+   ],
+   [
+    "B",
+    "[sadece {s:yemek} konusunu takip et, yeter|sadece istediğine cevap ver|sevdiğin konuya katıl]"
+   ],
+   [
+    "A",
+    "[{s:yemek} mi|{s:yemek} konusu mu var|o zaman ben de varım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-meslek-merak",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[herkes ne iş yapıyor, merak ettim|meslek turu yapalım|kim ne iş yapıyor]"
+   ],
+   [
+    "B",
+    "[{B.meslek}|{B.meslek}, {B.yer}|ben {B.meslek}]"
+   ],
+   [
+    "C",
+    "[{C.meslek}|{C.meslek} olarak çalışıyorum|şu an {C.meslek}]"
+   ],
+   [
+    "D",
+    "[işsizim, arıyorum|şu an iş arıyorum|bir süredir boştayım]"
+   ],
+   [
+    "B",
+    "[{D} kariyer ekranına bak, şartsız işler var|{D} kurye ya da garsonla başla|{D} şartsız bir işle başlayabilirsin]"
+   ],
+   [
+    "D",
+    "[bakarım|bakacağım|denerim], [belki {s:oyun_meslek}|{s:oyun_meslek} düşünüyorum|ilk tercih {s:oyun_meslek}]"
+   ],
+   [
+    "C",
+    "[kolay gelsin|bol şans|başarılar]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-telefon-tatil",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bir hafta telefona bakmadım, tatil yaptım|telefon tatili bitti|telefonsuz bir haftadan döndüm]"
+   ],
+   [
+    "B",
+    "[nasıl dayandın|helal|ciddi mi]"
+   ],
+   [
+    "A",
+    "[{s:sehir} köyündeydim, çekmiyordu|{s:sehir} taraflarında kapsama yoktu|zorunlu tatil, çekmiyordu]"
+   ],
+   [
+    "C",
+    "[ne yaptın orada|neler yaptın|bütün gün ne yaptın]"
+   ],
+   [
+    "A",
+    "[{s:hobi}, uyku, {s:yemek}|uyudum, {s:yemek} yedim|{s:hobi} yaptım bol bol]"
+   ],
+   [
+    "D",
+    "[yine gidelim|benim de gitmem lazım|adres ver]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-kanal-hatir",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalda {s:sayi} gündür yoktum, ne kaçırdım|{s:sayi} gün yoktum, özet lütfen|ne oldu ben yokken]"
+   ],
+   [
+    "B",
+    "[{s:yemek} tartışması|bir sürü {s:yemek} kavgası|{s:yemek} savaşları]"
+   ],
+   [
+    "C",
+    "[birisi yanlış düğüne gitmiş|biri kapıda kalmış|biri asansörde kalmış]"
+   ],
+   [
+    "D",
+    "[ben {s:oyun_meslek} oldum|ben iş değiştirdim|ben kursu bitirdim]"
+   ],
+   [
+    "A",
+    "[{D} tebrikler|{D} ne güzel|{D} sonunda]"
+   ],
+   [
+    "B",
+    "[seni de özledik|sensiz eksikti|iyi ki döndün]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-kim-dinler",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bugün bir şey anlatmak istiyorum ama kimse dinlemiyor gibi|anlatacak çok şeyim var|bugün içimi dökecek biri lazım]"
+   ],
+   [
+    "B",
+    "[biz dinleriz|dinliyorum|anlat]"
+   ],
+   [
+    "A",
+    "[iş yerinde biri benim fikrimi kendi fikri gibi sundu|fikrimi biri sahiplendi|benim fikrimi biri çaldı]"
+   ],
+   [
+    "C",
+    "[çok kötü|bu hiç hoş değil|sinir bozucu], [önce bir {s:icecek} iç|bir {s:icecek} iç, sakinleş|{s:icecek} molası ver]"
+   ],
+   [
+    "D",
+    "[bir dahakine yazılı paylaş|bir dahaki fikri e-postayla at|fikirleri kayıt altına al]"
+   ],
+   [
+    "A",
+    "[haklısın|iyi fikir|bunu yapacağım]"
+   ],
+   [
+    "B",
+    "[ama fikir iyiymiş demek|ama demek ki iyi fikir|fikrin iyi olduğu kanıtlandı]"
+   ],
+   [
+    "A",
+    "[bak bunu düşünmemiştim|biraz teselli oldu|iyi geldi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-yeni-baslayan",
+  "konu": "sohbet",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[her şey çok karışık, hiçbir şey anlamadım|oyunda kayboldum|nereden başlayacağımı bilmiyorum]"
+   ],
+   [
+    "B",
+    "[herkes ilk gün öyle|alışırsın|normal]"
+   ],
+   [
+    "C",
+    "[önce şartsız bir iş|önce bir işe gir|kariyerden {s:oyun_meslek} seç]"
+   ],
+   [
+    "D",
+    "[sonra biriktir, kurs düşün|para biriktir, sonra kurs|biraz biriktirince kurs]"
+   ],
+   [
+    "A",
+    "[tamam, bir liste yaptım|not aldım|anladım]"
+   ],
+   [
+    "B",
+    "[takıldığın yerde kanala sor|takılırsan yaz|biz buradayız]"
+   ],
+   [
+    "A",
+    "[{s:sayi} soru sorarım herhalde|çok soru sorarım ama|her gün soru gelir]"
+   ],
+   [
+    "C",
+    "[sorun yok|sor sor|soru güzeldir]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-ozgun",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün bir şiir yazdım, paylaşsam mı|kendi yazdığım bir şey var, utanıyorum|bir şiir denedim]"
+   ],
+   [
+    "B",
+    "[paylaş|yaz|oku bize]"
+   ],
+   [
+    "A",
+    "[{s:kis_hava}, ben {s:icecek} içiyorum, sen neredesin|\"{s:kis_hava}, elimde {s:icecek}, aklımda sen\"|kısa: {s:kis_hava}, {s:icecek}, özlem]"
+   ],
+   [
+    "C",
+    "[çok güzel|duygulandım|bu güzel]"
+   ],
+   [
+    "D",
+    "[kanal şairi|şairimiz var|kitap yaz]"
+   ],
+   [
+    "A",
+    "[teşekkürler|utandım|sağ olun]"
+   ],
+   [
+    "B",
+    "[her gün bir tane yaz|devam et|yeni şiir bekliyoruz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-hafta-sonu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[cuma oldu, kutlayalım|hafta bitti, kutlama|cuma akşamı kutlaması]"
+   ],
+   [
+    "B",
+    "[{s:tatli} ile|{s:tatli} şart|{s:tatli} söylüyoruz]"
+   ],
+   [
+    "C",
+    "[ben {s:yemek} ile kutlarım|{s:yemek} söyledim bile|akşama {s:yemek}]"
+   ],
+   [
+    "D",
+    "[ben uyuyarak kutlarım|ben uyku ile|en iyi kutlama uyku]"
+   ],
+   [
+    "A",
+    "[{D} çok tatlı kutlama|{D} doğru tercih|{D} en güzeli]"
+   ],
+   [
+    "B",
+    "[hafta sonu güzel geçsin|iyi hafta sonları|herkese iyi tatiller]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-yeni-hobi-ilk",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk kez {s:hobi} denedim ve başardım|bugün {s:hobi} ile ilgili ilk başarım|{s:hobi} yaptım ve güzel oldu]"
+   ],
+   [
+    "B",
+    "[bravo|helal|harika]"
+   ],
+   [
+    "C",
+    "[fotoğraf at|göster|görmek istiyoruz]"
+   ],
+   [
+    "A",
+    "[utanıyorum|daha değil|biraz daha olsun]"
+   ],
+   [
+    "D",
+    "[ilk deneme her zaman en değerli|ilk denemeni sakla|ilkini çerçevelet]"
+   ],
+   [
+    "A",
+    "[çerçeve abartı ama saklarım|saklayacağım|güzel fikir]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-tasindi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[taşınma faslı bitti, yeni evdeyim|ilk gece yeni evde|taşınma bitti]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun|güle güle otur|ev sıcak olsun]"
+   ],
+   [
+    "C",
+    "[kolilerden kaç tane kaldı|kaç koli açılmadı|koliler bitti mi]"
+   ],
+   [
+    "A",
+    "[{s:sayi} koli|{s:sayi} koli daha var|daha {s:sayi} koli]"
+   ],
+   [
+    "D",
+    "[o koliler bir yıl öyle kalır|son kolileri kimse açmaz|son koli efsanesi]"
+   ],
+   [
+    "A",
+    "[haklı olabilirsin|korkutma|evet galiba]"
+   ],
+   [
+    "B",
+    "[ilk akşam ne yiyorsun|yemek ne|ilk yemek]"
+   ],
+   [
+    "A",
+    "[kolilerin üstünde {s:yemek}|yerde oturup {s:yemek}|sipariş {s:yemek}]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-yanlis-yanlis-mesaj-anne",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:akraba} için yazdığım mesajı kanala attım|\"yemeği ısıt\" mesajı size geldi|yanlış pencere]"
+   ],
+   [
+    "B",
+    "[ısıttım|tamam ısıttım|ısıtıyorum]"
+   ],
+   [
+    "C",
+    "[ne ısıtıyoruz|ne var ısıtılacak|menü ne]"
+   ],
+   [
+    "A",
+    "[{s:yemek}|dünkü {s:yemek}|buzdolabındaki {s:yemek}]"
+   ],
+   [
+    "D",
+    "[ben de istiyorum|bana da|ben de geliyorum]"
+   ],
+   [
+    "A",
+    "[kanal yemeğe davetli değil|davet yok|sadece {s:akraba}]"
+   ],
+   [
+    "B",
+    "[biz ısıttık ama|ama ısıttık|emek bizim]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-yanlis-alay-sandi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} \"çok zekisin\" dedin, alay mıydı|{B} zekisin derken ciddi miydin|{B} o zeki lafı alay mı]"
+   ],
+   [
+    "B",
+    "[ciddiydim|gerçekten zekisin|övgüydü]"
+   ],
+   [
+    "A",
+    "[emin misin|alışkın değilim|ilk kez biri öyle dedi]"
+   ],
+   [
+    "C",
+    "[{A} kendine biraz güven|{A} iltifatı kabul et|{A} sadece teşekkür et]"
+   ],
+   [
+    "A",
+    "[teşekkür ederim|sağ ol|teşekkürler] {B}"
+   ],
+   [
+    "B",
+    "[rica ederim|ne demek|her zaman]"
+   ],
+   [
+    "D",
+    "[işte bu kadar kolay|güzel oldu|kanal iltifat dersi verdi], [herkese bir {s:tatli}|kutlama {s:tatli} ile|{s:tatli} ile kapatalım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-yanlis-sinav",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bir keresinde yanlış sınıfta sınava girdim|bir kere başka bölümün sınavına girdim|size bir sınav hikayesi]"
+   ],
+   [
+    "B",
+    "[nasıl|yok artık|ne yaptın]"
+   ],
+   [
+    "A",
+    "[kağıdı açtım, hiçbir soruyu tanımıyorum|sorulara baktım, ilk kez görüyorum|kağıtta hiçbir şey anlamadım]"
+   ],
+   [
+    "C",
+    "[çıktın mı|hocaya söyledin mi|ne yaptın]"
+   ],
+   [
+    "A",
+    "[hoca \"{s:sayi} dakikadır neden bakıyorsun\" dedi|hoca yanıma geldi|hoca sordu]"
+   ],
+   [
+    "A",
+    "[sonra doğru sınıfa koştum, yetiştim|koştum, son dakikada yetiştim|doğru sınıfa geç kaldım ama girdim]"
+   ],
+   [
+    "D",
+    "[kalp krizi hikayesi|kabus gibi|terledim okurken]"
+   ],
+   [
+    "B",
+    "[rüya gibi değil, gerçek|hiç unutmazsın|gece rüyana girer]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-komsu-kek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[komşuya {s:tatli} götürdüm, kapıyı başka biri açtı|bugün komşu kapısında bir şey oldu|komşuya ikram götürdüm, anlatayım]"
+   ],
+   [
+    "B",
+    "[kim açtı|kimdi|ne oldu]"
+   ],
+   [
+    "A",
+    "[komşu taşınmış, yeni gelen açtı|yeni komşu varmış|eski komşu gitmiş]"
+   ],
+   [
+    "C",
+    "[{s:tatli} ne oldu|tatlıyı verdin mi|geri mi aldın]"
+   ],
+   [
+    "A",
+    "[verdim, hoş geldin hediyesi oldu|verdim, tanıştık|hoş geldin dedim, verdim]"
+   ],
+   [
+    "D",
+    "[en güzel tanışma|tatlıyla tanışmak|kapı komşuluğu böyle başlar]"
+   ],
+   [
+    "A",
+    "[ertesi gün tabağı {s:tatli#2} ile geri getirdi|tabak dolu geldi|tabak boş gelmez]"
+   ],
+   [
+    "B",
+    "[tabak gelenekleri|komşuluk kuralı|tabak boş dönmez]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-hayvan-misafir",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün balkona bir {s:hayvan} geldi|balkonda misafirim var|bir {s:hayvan} pencereme kondu]"
+   ],
+   [
+    "B",
+    "[ne yaptın|besledin mi|kaldı mı]"
+   ],
+   [
+    "A",
+    "[biraz ekmek verdim|su koydum|{s:meyve} verdim]"
+   ],
+   [
+    "C",
+    "[her gün gelir artık|artık düzenli gelir|yeni arkadaşın oldu]"
+   ],
+   [
+    "A",
+    "[{s:sayi} saattir orada|hâlâ orada|gitmiyor]"
+   ],
+   [
+    "D",
+    "[isim koy|ona ad ver|bir isim lazım]"
+   ],
+   [
+    "A",
+    "[{s:tatli}|adı {s:tatli} olsun|{s:tatli} dedim]"
+   ],
+   [
+    "B",
+    "[kanal klasiği, tatlı ismi|yine tatlı ismi|kanalda herkese tatlı ismi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-itiraf-korku-film",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[itiraf: korku filmi izledim, şimdi ışıkları kapatamıyorum|gece korku filmi hatasını yaptım|korku filmi bitti, ben bittim]"
+   ],
+   [
+    "B",
+    "[neden izledin|kim izletti|hata]"
+   ],
+   [
+    "A",
+    "[{s:akraba} ısrar etti|arkadaşlar zorladı|kendim seçtim, akıllılık]"
+   ],
+   [
+    "C",
+    "[şimdi {s:dizi_tur} aç, tadını değiştir|bir {s:dizi_tur} aç, unutursun|hemen {s:dizi_tur} izle]"
+   ],
+   [
+    "D",
+    "[ben de korku izledikten sonra bir hafta ışıkla uyumuştum|ben bir ay karanlıkta yatamadım|bende de aynısı]"
+   ],
+   [
+    "A",
+    "[deniyorum|açtım|tavsiyeyi uyguluyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-ruya-sorusu",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[uyumadan önce: en son ne rüya gördünüz|son rüyanız|en son rüyada ne vardı]"
+   ],
+   [
+    "B",
+    "[{s:mekan} kayboldum|{s:mekan} çıkış bulamadım|kendimi {s:mekan} buldum]"
+   ],
+   [
+    "C",
+    "[uçuyordum|uçtum|denizin üstünde uçtum]"
+   ],
+   [
+    "D",
+    "[rüyamda bu kanaldaydım|rüyamda kanala yazıyordum|rüyamda bile sizinle konuştum]"
+   ],
+   [
+    "A",
+    "[{D} bağımlılık seviyesi|{D} kanal rüyalara girdi|{D} çok ciddi bir durum]"
+   ],
+   [
+    "B",
+    "[hepimiz öyleyiz|biz de|bende de olur]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-ilk-kanal",
+  "konu": "sohbet",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalın ilk günlerinde {s:sayi} kişiydik|eskiden kanalda bir avuç kişiydik|bir zamanlar burası boştu]"
+   ],
+   [
+    "B",
+    "[o zaman nasıldı|neler konuşulurdu|kimler vardı]"
+   ],
+   [
+    "A",
+    "[hep {s:yemek} konuşurduk|aynı konular: {s:yemek} ve kira|herkes {s:yemek} tarifi verirdi]"
+   ],
+   [
+    "C",
+    "[hiç değişmemiş yani|aynı kanal|kanal hiç değişmemiş]"
+   ],
+   [
+    "A",
+    "[kalabalıklaştı sadece|sadece kalabalık|biraz daha neşeli]"
+   ],
+   [
+    "D",
+    "[eski kanal mı yeni kanal mı|hangisi daha güzel|o zaman mı şimdi mi]"
+   ],
+   [
+    "A",
+    "[şimdi|şimdiki|ikisi de güzel ama şimdi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-ilk-ev",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk kiraladığınız evi hatırlıyor musunuz|ilk ev anısı|ilk evinizde ne vardı]"
+   ],
+   [
+    "B",
+    "[bir yatak, bir masa|yer yatağı|sadece yatak]"
+   ],
+   [
+    "C",
+    "[ilk gece {s:yemek} yemiştim yerde|ilk akşam yerde oturup {s:yemek}|ilk gece yerde yemek]"
+   ],
+   [
+    "D",
+    "[benimkinde su gelmiyordu|benimkinde kombi bozuktu|benimki buz gibiydi]"
+   ],
+   [
+    "A",
+    "[ama hepsi güzel anı|ama anıları güzel|ilk ev hep özel]"
+   ],
+   [
+    "B",
+    "[ilk ev ilk aşk gibi|ilk ev unutulmaz|o heyecan başka]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-kalabalik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iddia: bu akşam kanala {s:sayi} yeni kişi gelir|bahse girerim bu akşam yeni yüzler gelir|bu akşam kanal kalabalık olur, iddialıyım]"
+   ],
+   [
+    "B",
+    "[kim sayacak|sayan var mı|nasıl sayacağız]"
+   ],
+   [
+    "A",
+    "[ben sayarım|ben takip ederim|bende]"
+   ],
+   [
+    "C",
+    "[ben yeniyim, beni say|beni de say|bir tane buldun]"
+   ],
+   [
+    "A",
+    "[{C} bir|{C} ilk sayıldı|{C} hoş geldin]"
+   ],
+   [
+    "D",
+    "[ben de say|ben de yeniyim|ben de ilk günümdeyim], [ama {s:sayi} sayısına yetişemeyiz|daha çok lazım|az kaldı]"
+   ],
+   [
+    "A",
+    "[akşama kadar zaman var|akşamı bekleyelim|bekleriz]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-tatli-yeme",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bahse girerim bir oturuşta {s:sayi} dilim {s:tatli} yerim|ben bir oturuşta {s:sayi} dilim {s:tatli} yerim|{s:tatli} yeme yarışmasında yenilmem]"
+   ],
+   [
+    "B",
+    "[yiyemezsin|olmaz|imkansız]"
+   ],
+   [
+    "A",
+    "[deneyelim|kim ısmarlıyor|bahsi ısmarlayan kazanır]"
+   ],
+   [
+    "C",
+    "[kaybeden {s:tatli} parasını öder|kaybeden ödesin|bahis budur]"
+   ],
+   [
+    "B",
+    "[o zaman ben kazanırım|o zaman tamam|anlaştık]"
+   ],
+   [
+    "D",
+    "[{A} midene yazık|{A} sağlığını düşün|{A} yapma]"
+   ],
+   [
+    "A",
+    "[bilim için|kanal için|şeref meselesi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-hediye-arkadas",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[en yakın arkadaşımın doğum günü, bütçe az|ucuz ama anlamlı hediye fikri|bütçe dostu hediye]"
+   ],
+   [
+    "B",
+    "[{s:tatli} yap kendin|kendi elinle {s:tatli}|evde {s:tatli} yap]"
+   ],
+   [
+    "C",
+    "[bir mektup yaz|anılarınızı yaz|bir fotoğraf albümü]"
+   ],
+   [
+    "D",
+    "[birlikte {s:hobi} yapın bir gün|beraber bir gün geçirin, {s:hobi}|bir günlük {s:hobi} planı]"
+   ],
+   [
+    "A",
+    "[{s:tatli} ve mektup|ikisini birden|mektup ve {s:tatli}]"
+   ],
+   [
+    "B",
+    "[en güzel hediye emek|emek en değerli|bu harika olur]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-ders-calisma",
+  "konu": "sohbet",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurs için çalışırken hep dağılıyorum|odaklanamıyorum|çalışırken aklım başka yerde]"
+   ],
+   [
+    "B",
+    "[telefonu başka odaya koy|telefonu uzaklaştır|telefonu kapat]"
+   ],
+   [
+    "C",
+    "[yirmi beş dakika çalış, beş dakika dinlen|kısa kısa çalış|parça parça]"
+   ],
+   [
+    "D",
+    "[her mola bir {s:meyve}|molada {s:meyve} ye|molada {s:icecek} iç]"
+   ],
+   [
+    "A",
+    "[kanalı da kapatayım mı|kanal da mı|kanal yasak mı]"
+   ],
+   [
+    "B",
+    "[kanal molada serbest|molada kanal olur|mola kanal zamanı]"
+   ],
+   [
+    "A",
+    "[o zaman molaları uzatırım|mola çok olacak|anlaştık]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-kedi-klavye",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:hayvan} klavyeye bastı, patronuma mesaj gitti|evdeki {s:hayvan} bilgisayarda yürüdü|{s:hayvan} yüzünden garip bir mesaj gönderdim]"
+   ],
+   [
+    "B",
+    "[ne yazdı|ne gitti|mesaj neydi]"
+   ],
+   [
+    "A",
+    "[\"ççççççfffff\"|\"asdfghjk\"|bir sürü harf]"
+   ],
+   [
+    "C",
+    "[patron ne dedi|cevap geldi mi|patron anladı mı]"
+   ],
+   [
+    "A",
+    "[\"anladım, hallederim\" dedi|\"tamam\" dedi|\"teşekkürler\" yazdı]"
+   ],
+   [
+    "D",
+    "[patron {s:hayvan} dilini biliyor|patron her şeyi anlıyor|demek ki toplantı bitti] haha"
+   ],
+   [
+    "B",
+    "[{s:hayvan} terfi alsın|{s:hayvan} işi yapsın|{s:hayvan} senin yerine çalışsın]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-hapsirik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:mekan} hapşırdım, {s:sayi} kişi \"çok yaşa\" dedi|{s:mekan} hapşırdım, herkes çok yaşa dedi|bugün {s:mekan} bir hapşırık, bir koro]"
+   ],
+   [
+    "B",
+    "[sen ne dedin|cevap verdin mi|sen de hep beraber mi dedin]"
+   ],
+   [
+    "A",
+    "[hepsine tek tek \"sen de gör\" dedim|herkese teşekkür ettim|\"siz de görün\" dedim]"
+   ],
+   [
+    "C",
+    "[kibar insan|tek tek mi|bir saat sürmüştür]"
+   ],
+   [
+    "D",
+    "[ben bir kere {s:sayi} kere üst üste hapşırdım, kimse demedi|bana kimse demez|bende kimse çok yaşa demez]"
+   ],
+   [
+    "A",
+    "[{D} sana çok yaşa|{D} kanaldan çok yaşa|{D} çok yaşa, geç olsa da]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-tatil",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanal tatile çıksa nereye gider|kanal bir gün tatil yapsa|kanala tatil lazım]"
+   ],
+   [
+    "B",
+    "[{s:sehir}|kanal {s:sehir} gider|bence {s:sehir}]"
+   ],
+   [
+    "C",
+    "[kanal tatile çıksa da mesaj atar|kanal tatilde de yazar|tatil yapmaz, yazar]"
+   ],
+   [
+    "D",
+    "[kanal tatil yapmaz, kanal bizim tatilimiz|kanal zaten tatil|burası tatil]"
+   ],
+   [
+    "A",
+    "[{D} bunu kanalın kapısına yazalım|{D} slogan oldu|{D} çok güzel]"
+   ],
+   [
+    "B",
+    "[herkes kanala {s:icecek} getirsin|tatil havasında {s:icecek}|kanal tatili {s:icecek} ile]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-kural",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanalın yazılı olmayan kuralları|kanalın gizli kuralları|bu kanalın kanunları]"
+   ],
+   [
+    "B",
+    "[bir: {s:yemek} konuşulmadan gün geçmez|kural bir: her gün {s:yemek} tartışılır|ilk kural: {s:yemek}]"
+   ],
+   [
+    "C",
+    "[iki: yeni gelene hoş geldin denir|kural iki: herkese hoş geldin|ikinci kural: selam verilir]"
+   ],
+   [
+    "D",
+    "[üç: gece yatmadan önce son mesaj on kere atılır|üç: \"son mesaj\" asla son değildir|üç: iyi geceler on kere söylenir]"
+   ],
+   [
+    "A",
+    "[hepsi doğru|tam liste|çok gerçekçi]"
+   ],
+   [
+    "B",
+    "[dört: {s:tatli} her zaman doğru cevap|dördüncü kural: {s:tatli} her şeyi çözer|son kural: {s:tatli}]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-yastik",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[tek yastık mı iki yastık mı|kaç yastıkla uyursunuz|yastık sayısı önemli]"
+   ],
+   [
+    "B",
+    "[tek|bir tane|tek yastık yeter]"
+   ],
+   [
+    "C",
+    "[üç|en az üç|iki baş altı, bir kucak]"
+   ],
+   [
+    "D",
+    "[hiç|yastıksız|yastık kullanmam]"
+   ],
+   [
+    "B",
+    "[{D} boynun nasıl dayanıyor|{D} sabah ağrımıyor mu|{D} nasıl uyuyorsun]"
+   ],
+   [
+    "D",
+    "[{s:hayvan} başımın altında yatıyor|yastık yerine {s:hayvan}|{s:hayvan} yastığım oluyor]"
+   ],
+   [
+    "C",
+    "[en yumuşak yastık|en tatlı yastık|kanalın en güzel itirafı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-atisma-dusuk-ses",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sesli mesaj atma, yazı yaz|{B} sesli mesaj yerine yaz|{B} sesli mesajlarını dinleyemiyorum]"
+   ],
+   [
+    "B",
+    "[yazmaya üşeniyorum|yazmak uzun sürüyor|konuşmak daha hızlı]"
+   ],
+   [
+    "A",
+    "[{s:sayi} dakikalık sesli mesaj|{s:sayi} dakika dinledim|{s:sayi} dakika ses kaydı]"
+   ],
+   [
+    "B",
+    "[kısaydı|o kısa sayılır|bence kısa]"
+   ],
+   [
+    "C",
+    "[ben iki kat hızda dinliyorum|ben hızlandırıyorum|hızlı dinle]"
+   ],
+   [
+    "A",
+    "[{C} o zaman çizgi film karakteri gibi oluyor|{C} hızlanınca komik oluyor|{C} hiçbir şey anlamıyorum o zaman]"
+   ],
+   [
+    "B",
+    "[neyse, {s:yemek} tarifi diyordum|zaten {s:yemek} tarifiydi|sadece {s:yemek} anlattım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-sevdigi-kelime",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[Türkçede en sevdiğiniz kelime|en güzel Türkçe kelime ne|sevdiğiniz bir kelime yazın]"
+   ],
+   [
+    "B",
+    "[gönül|huzur|sevda]"
+   ],
+   [
+    "C",
+    "[{s:tatli}|benim için {s:tatli}|en güzel kelime {s:tatli}]"
+   ],
+   [
+    "D",
+    "[maaş|tatil|hafta sonu]"
+   ],
+   [
+    "A",
+    "[{D} her şeyi anlatıyor|{D} çok gerçekçi|{D} en sevilen kelimeler]"
+   ],
+   [
+    "B",
+    "[{C} kelime değil yemek|{C} acıkmış|{C} kanalın tatlı kişisi]"
+   ],
+   [
+    "C",
+    "[hem kelime hem yemek|ikisi bir arada|en güzel kelime yenen kelime]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-anket-cocuklukta-korku",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çocukken neden korkardınız|küçükken korkunuz neydi|çocukluk korkusu]"
+   ],
+   [
+    "B",
+    "[yatağın altı|yatağın altındaki canavar|karanlık oda]"
+   ],
+   [
+    "C",
+    "[{s:akraba} kızınca|{s:akraba} bakışı|{s:akraba} adımı tam söyleyince]"
+   ],
+   [
+    "D",
+    "[aşı|iğne|doktor]"
+   ],
+   [
+    "A",
+    "[{C} en korkuncu|{C} herkes bilir|{C} tam adla çağrılmak]"
+   ],
+   [
+    "B",
+    "[hâlâ korkuyorum|şimdi bile korkarım|hâlâ geçerli]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kelime-uydur",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeni bir kelime uyduralım|bir kelime icat edelim|kanalın kendi kelimesi olsun]"
+   ],
+   [
+    "B",
+    "[kanalcık|kanalcı|kanalist]"
+   ],
+   [
+    "C",
+    "[tatlılamak: küsleri {s:tatli} ile barıştırmak|tatlılamak, yani {s:tatli} ile gönül almak|tatlılamak: kavgayı {s:tatli} ile bitirmek]"
+   ],
+   [
+    "D",
+    "[mesajlaşınca gülmek: sdfsdflemek|sdfsdflemek|klavyeyle gülmek]"
+   ],
+   [
+    "A",
+    "[hepsi kabul|sözlüğe giriyor|kanal sözlüğü başladı]"
+   ],
+   [
+    "B",
+    "[{D} kazandı|{D} en iyisi|bence sdfsdflemek]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-kaybeden",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} her oyunda kaybediyorsun|{B} hiç kazanamadın|{B} kanal oyunlarının şampiyonu değilsin]"
+   ],
+   [
+    "B",
+    "[kaybetmek öğretir|ben katılmak için oynuyorum|önemli olan katılmak]"
+   ],
+   [
+    "C",
+    "[{B} bir gün kazanacaksın|{B} sıra sende|{B} umut var]"
+   ],
+   [
+    "D",
+    "[{B} yarın bilmece soracağım, sana ipucu veririm|{B} gizli ipucu bende|{B} sana yardım ederim]"
+   ],
+   [
+    "A",
+    "[hile|kayırma|torpil var]"
+   ],
+   [
+    "B",
+    "[{D} sen kanalın en iyisisin|{D} gerçek dost|{D} sana {s:tatli} borçluyum]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tanis-geri-soru",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen nereden buldun bu oyunu|{B} oyunu nereden duydun|{B} nasıl başladın]"
+   ],
+   [
+    "B",
+    "[{s:akraba} önerdi|{s:akraba} oynuyordu|{s:akraba} sayesinde]"
+   ],
+   [
+    "A",
+    "[{s:akraba} hâlâ oynuyor mu|o da kanalda mı|o da burada mı]"
+   ],
+   [
+    "B",
+    "[oynuyor ama kanala yazmıyor|okuyor sadece|sessiz okuyucu]"
+   ],
+   [
+    "C",
+    "[selam {s:akraba}|merhaba gizli okuyucu|okuyorsan selam]"
+   ],
+   [
+    "D",
+    "[bir gün yazacak|bir gün katılır|kanal herkesi kazanır]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-donus-hastaliktan",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iyileştim, geri döndüm|hastalık bitti, buradayım|bir hafta yataktaydım, döndüm]"
+   ],
+   [
+    "B",
+    "[geçmiş olsun|çok geçmiş olsun|nasılsın şimdi]"
+   ],
+   [
+    "A",
+    "[daha iyiyim|turp gibiyim|tamam artık]"
+   ],
+   [
+    "C",
+    "[çok {s:icecek} içtin mi|{s:icecek} içtin mi bol|ıhlamur ve {s:icecek} mi]"
+   ],
+   [
+    "A",
+    "[litrelerce|her saat|{s:akraba} zorla içirdi]"
+   ],
+   [
+    "D",
+    "[{s:akraba} kurtardı|evdeki doktor|aile en iyi ilaç]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-destek-cesaret",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[birine bir şey söylemek istiyorum ama cesaretim yok|içimde kalan bir söz var|söylemem gereken bir şey var]"
+   ],
+   [
+    "B",
+    "[ne söyleyeceksin|kime|ne konuda]"
+   ],
+   [
+    "A",
+    "[{s:akraba} ile kırgınım, özür dilemek istiyorum|{s:akraba} ile aram kötü, özür dilemem lazım|{s:akraba} kırıldı, özür borçluyum]"
+   ],
+   [
+    "C",
+    "[hemen söyle|beklersen zorlaşır|bugün ara]"
+   ],
+   [
+    "D",
+    "[mesaj at, sonra ara|önce yaz, sonra konuş|kısa bir mesajla başla]"
+   ],
+   [
+    "A",
+    "[şimdi yazıyorum|yazdım|gönderdim]"
+   ],
+   [
+    "B",
+    "[cevap gelince haber ver|ne dediğini yaz|bekliyoruz]"
+   ],
+   [
+    "A",
+    "[cevap geldi, kalp göndermiş|\"ben de özledim\" dedi|barıştık]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kutlama-hayvan",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün {s:hayvan} sahiplendim|yeni bir aile üyesi: {s:hayvan}|eve bir {s:hayvan} geldi]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun|ne güzel|ismi ne]"
+   ],
+   [
+    "A",
+    "[daha bulamadım|isim lazım|öneri]"
+   ],
+   [
+    "C",
+    "[{s:tatli}|{s:tatli} koy|bence {s:tatli}]"
+   ],
+   [
+    "D",
+    "[{s:meyve}|{s:meyve} olsun|{s:meyve} tatlı isim]"
+   ],
+   [
+    "A",
+    "[ikisini birleştireyim|ikisini sorayım ona|bakalım hangisine bakacak]"
+   ],
+   [
+    "B",
+    "[hangisine dönerse o|tepki verdiği isim|o seçsin]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-barisma-gec-cevap",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} geç cevap verdiğim için kusura bakma|{B} mesajını şimdi gördüm|{B} geç kaldım, pardon]"
+   ],
+   [
+    "B",
+    "[{s:sayi} gün sonra|{s:sayi} gün olmuş|üç gün geç]"
+   ],
+   [
+    "A",
+    "[biliyorum|çok ayıp|haklısın], [telefonda kaybolmuş|bildirim gelmemiş|okudum sandım]"
+   ],
+   [
+    "C",
+    "[klasik \"okudum sandım\"|herkesin başına gelir|en büyük yalan değil ama yakın]"
+   ],
+   [
+    "B",
+    "[tamam affedildin|önemli değil|sorun yok], [ama bir {s:icecek} borcun var|ama {s:icecek} sende|karşılığında {s:icecek}]"
+   ],
+   [
+    "A",
+    "[kabul|anlaştık|tamam]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-hikaye-ilk-maas",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk maaşımı aldığım günü anlatayım|ilk maaş günüm komikti|ilk maaş hikayem]"
+   ],
+   [
+    "B",
+    "[anlat|dinliyoruz|eee]"
+   ],
+   [
+    "A",
+    "[maaş yattı, sevinçten {s:mekan} dans ettim|bildirim gelince {s:mekan} zıpladım|{s:mekan} sevinç çığlığı attım]"
+   ],
+   [
+    "C",
+    "[herkes baktı mı|insanlar ne dedi|kimse gördü mü]"
+   ],
+   [
+    "A",
+    "[bir teyze \"hayırlı olsun\" dedi|biri alkışladı|bir amca güldü]"
+   ],
+   [
+    "A",
+    "[sonra kira çekildi, dans bitti|sonra kira günüydü|ertesi gün kira]"
+   ],
+   [
+    "D",
+    "[maaşın ömrü bir gün|maaş gelir gider|klasik maaş hikayesi]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-gece-pijama",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[pijamalar giyildi mi|herkes pijamada mı|gece kıyafeti kontrolü]"
+   ],
+   [
+    "B",
+    "[{s:renk} pijama|benimki {s:renk}|{s:renk} pijama, desenli]"
+   ],
+   [
+    "C",
+    "[benimki eski bir tişört|eski tişört|on yıllık tişört]"
+   ],
+   [
+    "D",
+    "[ben hâlâ iş kıyafetiyle|daha üstümü değiştirmedim|iş kıyafetiyle uzandım]"
+   ],
+   [
+    "A",
+    "[{D} hemen değiştir|{D} rahatla|{D} pijama şart]"
+   ],
+   [
+    "D",
+    "[kalkacak gücüm yok|kalkamıyorum|olduğum yerde uyuyacağım]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-nostalji-televizyon-ayar",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[eskiden anten ayarlamak için biri çatıya çıkardı|anten ayarı efsanesi|\"oldu mu oldu mu\" diye bağırırdık]"
+   ],
+   [
+    "B",
+    "[bizde {s:akraba} çıkardı|{s:akraba} anten ustasıydı|bizde {s:akraba} işiydi]"
+   ],
+   [
+    "C",
+    "[tam maçın en heyecanlı yerinde karıncalanırdı|en güzel yerinde gitti|tam o an kesilirdi]"
+   ],
+   [
+    "D",
+    "[elimi antene değdirince düzeliyordu|ben insan anten olurdum|antenin yanında durmam lazımdı]"
+   ],
+   [
+    "A",
+    "[{D} insan anten|{D} kahraman|{D} bu hikaye efsane]"
+   ],
+   [
+    "B",
+    "[şimdi internet gidiyor, aynı şey|şimdi modemle aynı dert|teknoloji değişti dert aynı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-iddia-cay-sayi",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün kanalda en çok {s:icecek} içen kim, iddialıyım ben|bugün en çok {s:icecek} içen benim|{s:icecek} sayımı yapalım, ben kazanırım]"
+   ],
+   [
+    "B",
+    "[{s:sayi}|ben {s:sayi}|bugün {s:sayi} bardak]"
+   ],
+   [
+    "C",
+    "[ben sayamadım|saymadım|sayı tutmadım]"
+   ],
+   [
+    "D",
+    "[ben {s:sayi#2}|{s:sayi#2} bardak|{s:sayi#2}, hâlâ devam]"
+   ],
+   [
+    "A",
+    "[ben kaybettim galiba|kazanan belli|ben geride kaldım]"
+   ],
+   [
+    "B",
+    "[kazananın ödülü bir {s:icecek} daha|ödül yine {s:icecek}|ödül: bir bardak daha]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-tavsiye-sakar",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çok sakarım, sürekli {s:esya} düşürüyorum|her gün bir şey düşürüyorum|elimden her şey kayıyor]"
+   ],
+   [
+    "B",
+    "[yavaş hareket et|acele etme|yavaş ol]"
+   ],
+   [
+    "C",
+    "[{s:esya} için ip tak|boynuna as|bağla]"
+   ],
+   [
+    "D",
+    "[ben de öyleydim, şimdi her şeyi çantada tutuyorum|çanta kullan|tek çanta, her şey içinde]"
+   ],
+   [
+    "A",
+    "[çantayı da düşürürüm|çanta da gider|çantayı kaybederim]"
+   ],
+   [
+    "B",
+    "[o zaman umut yok|o zaman kader|kanal sana dua etsin] haha"
+   ]
+  ]
+ },
+ {
+  "id": "c2-komik-yanlis-asansor",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün asansöre bindim, düğmeye basmayı unuttum|asansörde iki dakika bekledim, düğmeye basmamışım|asansör hareket etmiyor sandım]"
+   ],
+   [
+    "B",
+    "[haha|olamaz|klasik]"
+   ],
+   [
+    "C",
+    "[biri girdi mi|kimse gördü mü|yalnız mıydın]"
+   ],
+   [
+    "A",
+    "[kapı açıldı, komşu girdi, \"kaçıncı kat\" dedi|komşu geldi, bastı|biri girip bastı]"
+   ],
+   [
+    "D",
+    "[komşu ne düşündü|komşu güldü mü|ne dedin]"
+   ],
+   [
+    "A",
+    "[\"asansörü dinliyordum\" dedim|\"bekliyordum\" dedim|\"düşünüyordum\" dedim]"
+   ],
+   [
+    "B",
+    "[en iyi bahane|kurtarma ustası|harika cevap], [ödül {s:tatli}|sana bir {s:tatli}|{s:tatli} hak ettin]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-kanal-saka-misafir",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanala misafir gelse ne ikram ederdik|kanala misafir gelse|misafir gelirse kanal ne yapar]"
+   ],
+   [
+    "B",
+    "[{s:icecek}|tabii ki {s:icecek}|önce {s:icecek}]"
+   ],
+   [
+    "C",
+    "[yanında {s:tatli}|{s:tatli}, ev yapımı|bir tabak {s:tatli}]"
+   ],
+   [
+    "D",
+    "[sonra {s:yemek} tartışması|sonra hemen tartışma|ve ilk {s:yemek} kavgası]"
+   ],
+   [
+    "A",
+    "[misafir kaçar|misafir bir daha gelmez|misafir kalır, sever]"
+   ],
+   [
+    "B",
+    "[kalır|bence kalır|herkes kaldı]"
+   ]
+  ]
+ },
+ {
+  "id": "c2-takilma-hep-ayni-yemek",
+  "konu": "sohbet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} her gün aynı yemeği yiyorsun|{B} bugün de mi {s:yemek}|{B} menün hiç değişmiyor]"
+   ],
+   [
+    "B",
+    "[seviyorum|güzel|neden değiştireyim]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gündür|{s:sayi} gün üst üste|{s:sayi} gün oldu]"
+   ],
+   [
+    "C",
+    "[{B} bir gün {s:yemek#2} dene|{B} değişiklik yap|{B} cesur ol]"
+   ],
+   [
+    "B",
+    "[denedim, beğenmedim|bir kere denedim|denemem]"
+   ],
+   [
+    "D",
+    "[{B} sadakat ödülü|{B} en sadık müşteri|{B} {s:yemek} elçisi]"
+   ]
+  ]
+ }
+]

@@ -1,0 +1,5262 @@
+[
+ {
+  "id": "de3-zug-ausfall-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[mein zug fällt heute komplett aus|zug gestrichen, einfach so|heute morgen: zugausfall. natürlich]"
+   ],
+   [
+    "B",
+    "[welche ausrede diesmal?|und der grund?|was war es diesmal, laub auf den gleisen?]"
+   ],
+   [
+    "A",
+    "[störung im betriebsablauf, wie immer|\"technische störung\", sagen sie|angeblich ein defektes stellwerk]"
+   ],
+   [
+    "C",
+    "[ich hab mir angewöhnt, einen plan b zu haben|deswegen fahr ich nur noch rad|ich steh auch schon seit 20 min am gleis]"
+   ],
+   [
+    "A",
+    "[zum glück hab ich {s:drink} in der thermoskanne dabei|wenigstens hab ich {s:drink} mitgenommen|{s:drink} in der hand, ich überlebe das]"
+   ],
+   [
+    "B",
+    "[profi|so macht man das|gut vorbereitet, respekt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-ersatzverkehr-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[schienenersatzverkehr. das wort allein macht mich müde|heute wieder schienenersatzverkehr|wer hat den schienenersatzverkehr erfunden]"
+   ],
+   [
+    "B",
+    "[bus statt zug, eine stunde länger|kenn ich, der bus braucht ewig|der ersatzbus hält an jeder milchkanne]"
+   ],
+   [
+    "C",
+    "[wenigstens sitzt man im bus|im bus gibts wenigstens sitzplätze|positiv denken: man sieht mehr von der gegend]"
+   ],
+   [
+    "A",
+    "[{C}, du bist zu optimistisch für 7 uhr morgens|wie kann man um diese uhrzeit so positiv sein|{C}, wer hat dir kaffee gegeben]"
+   ],
+   [
+    "C",
+    "[zwei tassen {s:drink}, das ist das geheimnis|{s:drink} hilft bei allem|erst {s:drink}, dann gute laune]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-baecker-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[der bäcker bei mir hat neue brötchen|mein bäcker hat jetzt dinkelkürbiskern-brötchen|neue brötchensorte beim bäcker, ich musste probieren]"
+   ],
+   [
+    "B",
+    "[und? lohnt es sich?|gut oder nicht?|was ist das urteil]"
+   ],
+   [
+    "A",
+    "[zu trocken. ich bleib bei normalen|geht so, die alten sind besser|ganz okay, aber nichts besonderes]"
+   ],
+   [
+    "C",
+    "[beim bäcker ist das wichtigste die verkäuferin, die schon weiß was du willst|ich mag es, wenn die verkäuferin meine bestellung kennt|meine bäckerin sagt \"wie immer?\" und ich sag ja]"
+   ],
+   [
+    "B",
+    "[das ist echte liebe|das ist der traum|so eine beziehung wünsch ich mir auch]"
+   ],
+   [
+    "C",
+    "[ja, nur dass ich jetzt nie was neues probieren kann|problem: ich trau mich nicht mehr, was anderes zu bestellen|sie packt es schon ein bevor ich was sag]"
+   ],
+   [
+    "A",
+    "[haha, gefangen im \"wie immer\"|du bist jetzt für immer der mit den zwei laugenstangen|gefangen. für immer]"
+   ],
+   [
+    "B",
+    "[am {s:day} probierst du einfach was neues|plan: am {s:day} heimlich was anderes bestellen|{s:day} ist der tag der freiheit]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-feierabend-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[feierabend! endlich|so, feierabend für heute|schicht vorbei, feierabend]"
+   ],
+   [
+    "B",
+    "[glückwunsch, was steht an|schön, was machst du jetzt|und, wie verbringst du den abend]"
+   ],
+   [
+    "A",
+    "[sofa, decke, {s:food}|erst mal {s:food}, dann nichts|{s:food} essen und nicht mehr bewegen]"
+   ],
+   [
+    "C",
+    "[perfekter plan|klingt nach einem guten abend|besser geht feierabend nicht]"
+   ],
+   [
+    "B",
+    "[ich muss noch eine stunde|bei mir noch eine stunde|ich hab noch 60 minuten vor mir]"
+   ],
+   [
+    "A",
+    "[halt durch {B}|du schaffst das|die letzte stunde ist die längste, ich weiß]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-feierabendbier-ersatz-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[was trinkt ihr so zum feierabend|euer feierabendgetränk?|was gibts bei euch nach der arbeit zu trinken]"
+   ],
+   [
+    "B",
+    "[{s:drink}, ganz klar|{s:drink}, immer|bei mir {s:drink}]"
+   ],
+   [
+    "C",
+    "[nur wasser, ich bin langweilig|leitungswasser. ich weiß.|wasser, sonst schlaf ich nicht]"
+   ],
+   [
+    "A",
+    "[ich hab mir neulich {s:drink#2} angewöhnt|bei mir ist es seit kurzem {s:drink#2}|ich bin auf {s:drink#2} umgestiegen]"
+   ],
+   [
+    "B",
+    "[ein mann mit geschmack|gute wahl eigentlich|kann man machen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sanduhr-sparen-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[spart ihr eure sanduhren oder benutzt ihr sie sofort|sanduhren horten oder direkt verbrauchen?|wie macht ihr das mit den sanduhren]"
+   ],
+   [
+    "B",
+    "[ich sammel sie für den nächsten kurs|ich heb sie für kurse auf|kurse, nur für kurse]"
+   ],
+   [
+    "C",
+    "[ich verbrauch sie sofort, ich hab keine geduld|weg damit, sobald ich eine hab|ich halte das warten nicht aus]"
+   ],
+   [
+    "B",
+    "[pro tipp: drei tagesaufgaben, dann gibts eine gratis|die tagesaufgaben geben jeden tag eine|jeden tag drei aufgaben machen, dann kommt eine dazu]"
+   ],
+   [
+    "A",
+    "[echt? wusste ich nicht|ach, deshalb hab ich manchmal eine mehr|das erklärt einiges]"
+   ],
+   [
+    "C",
+    "[ich mach die aufgaben morgens, mit {s:drink}|bei mir: erst {s:drink}, dann aufgaben|aufgaben beim frühstück, mit {s:drink}, ritual]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-wohnung-anzahlung-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich spare auf die anzahlung für eine wohnung|ziel: anzahlung für meine erste wohnung|ich will endlich raus aus der miete]"
+   ],
+   [
+    "B",
+    "[wie viel brauchst du ungefähr|wie weit bist du|wie viel fehlt noch]"
+   ],
+   [
+    "A",
+    "[die hälfte hab ich|etwa 60 prozent|noch einiges, aber es geht voran]"
+   ],
+   [
+    "C",
+    "[denk dran, die anzahlung ist so ungefähr ein fünftel|mit kredit brauchst du rund 20 prozent|du brauchst nur etwa 20 prozent als anzahlung]"
+   ],
+   [
+    "A",
+    "[ja, aber die preise steigen jeden monat|das problem ist die inflation|ich spar und die preise laufen weg]"
+   ],
+   [
+    "B",
+    "[das kenn ich. einfach weiter, irgendwann klappt es|dranbleiben, das wird schon|nicht aufgeben {A}]"
+   ],
+   [
+    "A",
+    "[heute abend gibts nur {s:food}, das ist mein sparplan|sparmodus: jeden tag {s:food}|{s:food} statt restaurant. sparen ist hart]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-boerse-wann-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[weiß jemand wann die börse kommt|wann kommt endlich die börse|gibts schon was neues zur börse]"
+   ],
+   [
+    "B",
+    "[im nächsten update, heißt es|angeblich mit dem nächsten update|noch nicht, soll aber kommen]"
+   ],
+   [
+    "A",
+    "[ich hab schon eine strategie im kopf|ich hab mir schon aktien ausgesucht, die es noch nicht gibt|ich bin bereit, die welt nicht]"
+   ],
+   [
+    "C",
+    "[du kaufst sachen, die nicht existieren?|strategie für ein feature, das es nicht gibt?|du bist deiner zeit voraus]"
+   ],
+   [
+    "A",
+    "[vorbereitung ist alles|wer zuerst kommt|ich will der erste sein]"
+   ],
+   [
+    "B",
+    "[ich warte lieber und mach in der zeit {s:hobby}|ich warte entspannt bei {s:hobby}|bis dahin: {s:hobby}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-cafe-leer-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein café ist heute fast leer|heute kaum gäste im café|null kundschaft heute, was ist los]"
+   ],
+   [
+    "B",
+    "[vielleicht hat in der nähe noch eins aufgemacht|gibts neue konkurrenz?|wenn es mehr cafés gibt, teilen sich die kunden auf]"
+   ],
+   [
+    "A",
+    "[kann sein, zwei neue in der gegend|ja, die konkurrenz wächst|ich glaub ja, es sind einige dazugekommen]"
+   ],
+   [
+    "C",
+    "[mehr personal hilft auch beim umsatz|stell jemanden ein, das hebt den umsatz|mit festen leuten läuft es besser als mit aushilfen]"
+   ],
+   [
+    "A",
+    "[aushilfen sind echt teuer, stimmt|die aushilfe kostet ein vermögen|ja, das aushilfspersonal frisst den gewinn]"
+   ],
+   [
+    "B",
+    "[dann ausschreibung aufmachen und warten|stellenanzeige, dann kommen bewerbungen|anzeige schalten und geduld haben]"
+   ],
+   [
+    "A",
+    "[ok, und bis dahin trink ich selbst {s:drink}|ich setz mich jetzt hin, mit {s:drink}|dann bin ich eben mein eigener gast, mit {s:drink}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kurs-wartezeit-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[noch fünf tage kurs. fünf.|mein kurs dauert noch ewig|die kurszeit zieht sich]"
+   ],
+   [
+    "B",
+    "[fünf spieltage sind fünf stunden, oder?|ein tag ist eine stunde, so schlimm ist das nicht|rechne in echten stunden, dann gehts]"
+   ],
+   [
+    "A",
+    "[stimmt, aber trotzdem|ja, aber gefühlt ist das ewig|logisch weiß ich das, emotional nicht]"
+   ],
+   [
+    "C",
+    "[sanduhren helfen|eine sanduhr pro tag kürzt ab|hast du noch sanduhren?]"
+   ],
+   [
+    "A",
+    "[zwei hab ich|ein paar hab ich noch|eine. eine einzige]"
+   ],
+   [
+    "C",
+    "[dann rein damit und in der zeit {s:hobby}|benutz sie und mach solange {s:hobby}|rein damit und dann {s:hobby}, die zeit fliegt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kredit-angst-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich trau mich nicht, einen kredit zu nehmen|kredit aufnehmen macht mir angst|soll ich einen kredit nehmen, ich zögere]"
+   ],
+   [
+    "B",
+    "[wofür brauchst du ihn|wofür denn|was willst du damit machen]"
+   ],
+   [
+    "A",
+    "[für eine wohnung|für den laden|für die anzahlung]"
+   ],
+   [
+    "C",
+    "[wichtig ist nur: raten nicht verpassen|drei raten verpassen und es gibt zwangsvollstreckung|solange du zahlst, ist alles gut]"
+   ],
+   [
+    "B",
+    "[und die rate muss zu deinem einkommen passen|rechne vorher, was du monatlich zahlen kannst|24 monate laufzeit, das sollte man durchrechnen]"
+   ],
+   [
+    "A",
+    "[ok, ich setz mich am {s:day} hin und rechne|am {s:day} mach ich einen plan|ich rechne das am {s:day} in ruhe durch]"
+   ],
+   [
+    "C",
+    "[gute idee|vernünftig|so ist es richtig]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kreditwuerdigkeit-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[meine kreditwürdigkeit steigt langsam|mein kreditscore ist gestiegen|endlich höhere bonität]"
+   ],
+   [
+    "B",
+    "[weil du pünktlich zahlst?|pünktliche raten, nehm ich an|glückwunsch, wie hast du das gemacht]"
+   ],
+   [
+    "A",
+    "[genau, jede rate pünktlich|jeden monat brav gezahlt|immer pünktlich, nichts verpasst]"
+   ],
+   [
+    "C",
+    "[und dann geht das limit hoch|dein kreditlimit wächst dann mit|das limit hängt ja auch davon ab]"
+   ],
+   [
+    "A",
+    "[ich feier das heute mit {s:food}|heute gönn ich mir {s:food}|zur feier des tages {s:food}]"
+   ],
+   [
+    "B",
+    "[wohlverdient|mach das|gönn dir]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-inflation-januar-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[die preise sind diesen monat schon wieder hoch|alles teurer im januar|wieder alles teurer geworden]"
+   ],
+   [
+    "B",
+    "[inflation halt|jeden monat ein bisschen mehr|das ist die inflation, kommt jeden monat]"
+   ],
+   [
+    "C",
+    "[und das gehalt kommt hinterher|die gehälter steigen auch, aber langsamer|der lohn steigt, nur zu spät]"
+   ],
+   [
+    "A",
+    "[in echt ist {s:food} auch teurer geworden|sogar im echten leben kostet {s:food} mehr|bei uns im supermarkt ist {s:food} auch teurer]"
+   ],
+   [
+    "B",
+    "[das spiel ist zu realistisch|sehr realistisches spiel|zu viel realität für ein spiel]"
+   ],
+   [
+    "C",
+    "[das ist der januar|januar ist immer so|im januar ist das portemonnaie immer leer]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-tuerkisch-kolay-gelsin-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab \"kolay gelsin\" gelernt|ein türkischer spieler hat mir \"kolay gelsin\" beigebracht|neues türkisch: kolay gelsin]"
+   ],
+   [
+    "B",
+    "[was heißt das?|und was bedeutet es?|übersetzung bitte]"
+   ],
+   [
+    "A",
+    "[so was wie \"möge es dir leicht fallen\", sagt man bei der arbeit|man sagt es zu jemandem, der arbeitet|\"dass es leicht geht\", ungefähr]"
+   ],
+   [
+    "C",
+    "[wunderschön, das brauchen wir auf deutsch|warum gibt es das nicht auf deutsch|das ist viel netter als \"schönen tag noch\"]"
+   ],
+   [
+    "A",
+    "[{s:family} hat es heute von mir gehört, beim putzen|{s:family} hat gestaunt, als ich das gesagt hab|{s:family} war mein erstes testpublikum]"
+   ],
+   [
+    "B",
+    "[und?|wie fand er/sie es?|reaktion?]"
+   ],
+   [
+    "A",
+    "[verwirrt, aber gerührt|erst verwirrt, dann ein lächeln|dann kam die frage, woher ich das hab]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-tuerkisch-afiyet-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[afiyet olsun alle|afiyet olsun zusammen, essenszeit|afiyet olsun! ich geh essen]"
+   ],
+   [
+    "B",
+    "[das hab ich schon oft gesehen, heißt guten appetit, oder|guten appetit, richtig?|das ist \"guten appetit\", stimmt's]"
+   ],
+   [
+    "A",
+    "[genau|ja, richtig|jawohl]"
+   ],
+   [
+    "C",
+    "[und was gibts?|was isst du|was steht auf dem tisch]"
+   ],
+   [
+    "A",
+    "[{s:food}|{s:food}, selbst gemacht|heute {s:food}]"
+   ],
+   [
+    "C",
+    "[afiyet olsun dann|dann auch von mir afiyet olsun|klingt gut, afiyet olsun]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-tuerkisch-gecmis-olsun-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich bin erkältet, alles tut weh|hab mir eine erkältung eingefangen|ich lieg mit schnupfen im bett]"
+   ],
+   [
+    "B",
+    "[geçmiş olsun!|geçmiş olsun {A}|oh nein, geçmiş olsun]"
+   ],
+   [
+    "A",
+    "[danke, was heißt das genau|das hab ich schon mal gehört, was bedeutet das|was heißt geçmiş olsun eigentlich]"
+   ],
+   [
+    "B",
+    "[\"möge es vorübergehen\", sagt man bei krankheit|heißt etwa \"dass es vorbei geht\"|gute besserung auf türkisch, nur schöner]"
+   ],
+   [
+    "C",
+    "[trink viel {s:drink}|{s:drink} und schlafen|{s:drink}, schön warm, hilft]"
+   ],
+   [
+    "A",
+    "[mach ich, danke euch|ok, ich hör auf euch|ihr seid süß]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-tuerkisch-abi-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[warum nennen mich alle türken hier \"abi\"|jemand hat mich \"abi\" genannt, ist das gut oder schlecht|was heißt \"abi\"?]"
+   ],
+   [
+    "B",
+    "[großer bruder, ist respektvoll|heißt älterer bruder, ist nett gemeint|das ist freundlich, so wie \"bruder\"]"
+   ],
+   [
+    "A",
+    "[ah ok, ich dachte schon|gut, ich war verunsichert|puh, dann ist ja gut]"
+   ],
+   [
+    "C",
+    "[wenn du eine frau bist heißt es \"abla\"|für frauen sagt man \"abla\"|weibliche version: abla]"
+   ],
+   [
+    "A",
+    "[ich bin jetzt also abi. neues level|abi {A}, gefällt mir|ich bin offiziell abi]"
+   ],
+   [
+    "B",
+    "[warte, bis {s:family} dich so nennt|{s:family} sagt es bestimmt bald auch|bald nennt dich sogar {s:family} so]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-neu-hallo-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[servus, bin seit gestern dabei|hallo, ganz frisch hier|moin, ich bin neu]"
+   ],
+   [
+    "B",
+    "[willkommen!|herzlich willkommen|schön, dass du da bist]"
+   ],
+   [
+    "C",
+    "[woher kommst du?|aus welcher stadt?|wo kommst du her]"
+   ],
+   [
+    "A",
+    "[aus {A.sehir}|{A.sehir}|ich wohne in {A.sehir}]"
+   ],
+   [
+    "B",
+    "[tipp: erstmal einen job, kurier oder kellner, dann sparen|fang mit einem einfachen job an und spar|arbeit suchen, sparen, dann kurse]"
+   ],
+   [
+    "C",
+    "[und nicht alles in der ersten woche für {s:food} ausgeben|und nicht das ganze geld für {s:food} verbraten|gib nicht alles für {s:food} aus haha]"
+   ],
+   [
+    "A",
+    "[zu spät|oh. ups.|hab ich schon gemacht]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-neu-frage-sterne-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[noch ein neuer hier, wie läuft das mit den jobs|neu hier, welchen job empfehlt ihr|erster tag, welcher job lohnt sich am anfang]"
+   ],
+   [
+    "B",
+    "[kurier ist gut, wenn du aktiv spielst|kurier, wenn du oft online bist|kurier verdient pro auftrag, also je mehr desto besser]"
+   ],
+   [
+    "C",
+    "[beamter ist besser, wenn du wenig zeit hast, aber dafür brauchst du einen kurs|für wenig spielzeit beamter, aber erst nach dem kurs|beamte kriegen festes gehalt, auch offline]"
+   ],
+   [
+    "A",
+    "[dann fang ich mit kurier an|ok, kurier zuerst|klingt gut, kurier also]"
+   ],
+   [
+    "B",
+    "[und die tagesaufgaben nicht vergessen|mach jeden tag die drei aufgaben|jeden tag drei aufgaben = gratis sanduhr]"
+   ],
+   [
+    "A",
+    "[danke, ich hol mir erst {s:drink} und dann los|erst {s:drink}, dann ausliefern|{s:drink} holen und starten]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-winter-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[umfrage: winter oder sommer?|kurze umfrage, winter oder sommer|winter oder sommer, was mögt ihr mehr]"
+   ],
+   [
+    "B",
+    "[sommer, ich friere seit oktober|sommer, ohne frage|sommer. mir ist kalt]"
+   ],
+   [
+    "C",
+    "[winter, wegen {s:drink} und decke|winter, man kann {s:drink} trinken und drinnen bleiben|winter, ich liebe {s:drink} am fenster]"
+   ],
+   [
+    "D",
+    "[herbst. ich bin rebell|frühling, ihr habt beide unrecht|ich nehm den frühling]"
+   ],
+   [
+    "A",
+    "[das war nicht zur wahl, {D}|{D}, das ist keine option|{D} sprengt die umfrage]"
+   ],
+   [
+    "D",
+    "[trotzdem|ist mir egal|ich bleibe dabei]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-fruehstueck-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[süßes oder herzhaftes frühstück?|frühstück: süß oder salzig?|was esst ihr morgens, süß oder herzhaft]"
+   ],
+   [
+    "B",
+    "[herzhaft, brötchen mit käse|salzig, immer|herzhaft, rührei]"
+   ],
+   [
+    "C",
+    "[süß, marmelade|süß, ich bin ein kind|nutella-toast, sorry]"
+   ],
+   [
+    "D",
+    "[ich esse morgens {s:food}, ich hab keine regeln|bei mir gibts morgens {s:food}|frühstück? {s:food} von gestern]"
+   ],
+   [
+    "B",
+    "[{D} das ist kein frühstück|{D}, das zählt nicht|{D}, was ist los mit dir]"
+   ],
+   [
+    "D",
+    "[das ist effizienz|reste sind das beste frühstück|kalt schmeckt es am besten]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-schnee-chaos-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[bei uns liegt 20 cm schnee|schnee bis zu den knien hier|über nacht alles weiß]"
+   ],
+   [
+    "B",
+    "[und die bahn?|fährt überhaupt noch was|wie kommst du zur arbeit]"
+   ],
+   [
+    "A",
+    "[was für eine bahn|gar nichts fährt|hahaha bahn]"
+   ],
+   [
+    "C",
+    "[wir haben nur matsch|hier nur grauer matsch|bei mir regnet es nur, langweilig]"
+   ],
+   [
+    "A",
+    "[ich bleib zu hause mit {s:drink}|homeoffice mit {s:drink}|heute arbeite ich vom sofa mit {s:drink}]"
+   ],
+   [
+    "B",
+    "[neid|beneidenswert|das will ich auch]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-schneemann-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:family} und ich haben heute einen schneemann gebaut|{s:family} hat mir beim schneemann geholfen|schneemann-bau heute, {s:family} war dabei]"
+   ],
+   [
+    "B",
+    "[wie groß?|foto oder es ist nicht passiert|wie ist er geworden]"
+   ],
+   [
+    "A",
+    "[eher klein und schief|er sieht traurig aus|er hat nur einen arm]"
+   ],
+   [
+    "C",
+    "[schiefe schneemänner haben charakter|er ist perfekt so|klingt wie ein künstler]"
+   ],
+   [
+    "A",
+    "[wir haben ihn \"der banker\" genannt|sein name ist gerd|er heißt jetzt herr müller]"
+   ],
+   [
+    "B",
+    "[haha warum|passt irgendwie|perfekter name]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sonntag-ruhe-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wieso ist sonntag immer so schnell vorbei|sonntage sind zu kurz|sonntag ist wieder fast rum]"
+   ],
+   [
+    "B",
+    "[weil man nichts macht|weil faulheit schnell vergeht|zeit fliegt, wenn man auf dem sofa liegt]"
+   ],
+   [
+    "C",
+    "[ich hab heute nur {s:hobby} gemacht|bei mir war heute {s:hobby} angesagt|ich hab den ganzen tag {s:hobby} gemacht]"
+   ],
+   [
+    "A",
+    "[das ist doch was|klingt produktiv|immerhin]"
+   ],
+   [
+    "C",
+    "[und dann sechs folgen einer serie|und dazu eine ganze staffel|und danach serien bis zur nacht]"
+   ],
+   [
+    "B",
+    "[perfekter sonntag|genau so muss das|sonntag gewonnen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-montag-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[montag. schon wieder|warum gibts montage|montagmorgen, wer hat sich das ausgedacht]"
+   ],
+   [
+    "B",
+    "[kopf hoch|wird schon|die woche wird gut]"
+   ],
+   [
+    "A",
+    "[{B}, du bist mir zu fröhlich|wie kannst du so gelaunt sein|{B}, was nimmst du]"
+   ],
+   [
+    "B",
+    "[ich hab {s:drink} getrunken|zwei becher {s:drink}|{s:drink}, viel {s:drink}]"
+   ],
+   [
+    "C",
+    "[ich bin noch im bett|ich lieg noch|ich bin offiziell noch nicht wach]"
+   ],
+   [
+    "A",
+    "[{C} ist mein vorbild|{C} macht es richtig|ich will {C} sein]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-handy-akku-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[akku bei 3 prozent, und {s:thing}? natürlich zu hause|2 prozent akku. {s:thing}: daheim|akku fast leer, und {s:thing}, wo auch sonst, zu hause]"
+   ],
+   [
+    "B",
+    "[klassiker|passiert mir dauernd|immer dann, wenn man es braucht]"
+   ],
+   [
+    "C",
+    "[dann schnell noch tagesaufgaben machen, bevor er stirbt|schnell noch die aufgaben, dann tschüss|schnell noch eine lieferung]"
+   ],
+   [
+    "A",
+    "[gute id|zu spät, ich bin w|ok mach ich, bis gle]"
+   ],
+   [
+    "B",
+    "[und weg ist er|tschüss {A}|rip]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-schluessel-weg-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[{s:thing}: weg. ich komm zu spät|suchaktion, diesmal {s:thing}|seit 10 minuten auf der suche, {s:thing} natürlich]"
+   ],
+   [
+    "B",
+    "[schon in der jackentasche geschaut?|in der jacke?|hast du in der küche geguckt]"
+   ],
+   [
+    "A",
+    "[ja, überall|ja, nichts|dreimal]"
+   ],
+   [
+    "C",
+    "[kühlschrank|im kühlschrank, ganz sicher|ich hab meins mal im kühlschrank gefunden]"
+   ],
+   [
+    "A",
+    "[... da war es|ok, ihr glaubt es nicht|{C}, woher wusstest du das]"
+   ],
+   [
+    "C",
+    "[erfahrung|ich kenn mich aus|das passiert den besten]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kurier-winter-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurier im winter ist hart|heute bei minus 5 ausgeliefert|meine finger sind eiszapfen]"
+   ],
+   [
+    "B",
+    "[wie viele aufträge?|wie viele lieferungen hast du geschafft|lohnt es sich wenigstens]"
+   ],
+   [
+    "A",
+    "[zwölf, nicht schlecht|ziemlich viele, kein schlechter tag|genug für heute]"
+   ],
+   [
+    "C",
+    "[als kurier verdienst du pro auftrag, also kälte = geld|jeder auftrag zählt, gut gemacht|mehr aufträge, mehr geld, so einfach]"
+   ],
+   [
+    "A",
+    "[jetzt brauch ich {s:drink}, heiß|erstmal {s:drink} zum auftauen|{s:drink} und heizung, sofort]"
+   ],
+   [
+    "B",
+    "[verdient|hast du dir verdient|gönn dir]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kellner-trinkgeld-1",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[als kellner ist der januar ruhig|im café ist gerade wenig los|wenig gäste diesen monat]"
+   ],
+   [
+    "B",
+    "[nach den feiertagen spart jeder|im januar haben alle kein geld|normal nach weihnachten]"
+   ],
+   [
+    "A",
+    "[ich mach trotzdem meine aufgaben|ich will die 20 aufgaben schaffen, dann gibts das volle gehalt|20 aufgaben im monat, sonst gibts kein volles gehalt]"
+   ],
+   [
+    "C",
+    "[das schaffst du|du bist fleißig, das klappt|locker]"
+   ],
+   [
+    "A",
+    "[ich hoffe, sonst gibts im februar nur {s:food}|sonst ist es {s:food} für einen monat|sonst esse ich nur noch {s:food}]"
+   ],
+   [
+    "B",
+    "[{s:food} ist doch gut|es gibt schlimmeres als {s:food}|{s:food} jeden tag ist kein drama]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-beamter-schlafen-1",
+  "konu": "is",
+  "kosul": [
+   "A.memur"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[das schönste am beamtenleben: gehalt auch offline|ich krieg mein gehalt auch, wenn ich nicht spiele|beamter ist toll, gehalt kommt einfach]"
+   ],
+   [
+    "B",
+    "[neid|das ist unfair|ich will das auch]"
+   ],
+   [
+    "A",
+    "[kurs machen, dann bist du dabei|mach den kurs für die beamtenprüfung|kurs plus 30 tage erfahrung, dann gehts]"
+   ],
+   [
+    "C",
+    "[ich bleib lieber kurier, ich mag das aktive|ich bin lieber unterwegs|sitzen ist nichts für mich]"
+   ],
+   [
+    "A",
+    "[jeder wie er mag|ich sitz gern|ich mag es ruhig, mit {s:drink}]"
+   ],
+   [
+    "B",
+    "[am {s:day} meld ich mich an|ich glaube, ich mach es am {s:day}|ok, ich überleg es mir bis {s:day}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-buchhalter-neu-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[buchhaltungskurs bestanden!|ich bin jetzt offiziell buchhalter|kurs geschafft, buchhalter]"
+   ],
+   [
+    "B",
+    "[glückwunsch!|stark|sehr gut gemacht]"
+   ],
+   [
+    "A",
+    "[jetzt fehlt noch die erfahrung|jetzt noch 30 tage erfahrung sammeln|30 tage dann bin ich drin]"
+   ],
+   [
+    "C",
+    "[und dann festes gehalt|festes gehalt, auch wenn du schläfst|das lohnt sich]"
+   ],
+   [
+    "A",
+    "[heute abend gibts {s:food} zur feier|ich feier mit {s:food}|zur belohnung: {s:food}]"
+   ],
+   [
+    "B",
+    "[verdient|genieß es|gut so]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-makler-erster-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein erster verkauf als makler|erste provision als makler bekommen|heute meine erste provision]"
+   ],
+   [
+    "B",
+    "[wie fühlt sich das an|und, gutes gefühl?|wie viel war es]"
+   ],
+   [
+    "A",
+    "[wie ein kleiner lottogewinn|nicht viel, aber stolz bin ich trotzdem|super, gehalt plus provision ist nicht schlecht]"
+   ],
+   [
+    "C",
+    "[maklerschein hat sich also gelohnt|dann war der kurs eine gute investition|hat der kurs lange gedauert?]"
+   ],
+   [
+    "A",
+    "[ein paar tage, mit sanduhren schneller|mit sanduhren ging es|ging schneller als gedacht]"
+   ],
+   [
+    "B",
+    "[{s:family} wird stolz sein|gleich erfährt es {s:family}|{s:family} muss das sofort hören]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-grundstueck-warten-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein grundstück bringt keine miete, oder?|kriegt man für ein grundstück miete?|grundstück, lohnt sich das]"
+   ],
+   [
+    "B",
+    "[nein, keine miete, aber es steigt im wert|keine miete, nur wertsteigerung|nein, nur der wert steigt]"
+   ],
+   [
+    "A",
+    "[also abwarten|also einfach liegen lassen|geduld also]"
+   ],
+   [
+    "C",
+    "[wie bei {s:hobby}, man muss geduldig sein|geduld ist alles, das lehrt {s:hobby}|lehre aus {s:hobby}: warten können]"
+   ],
+   [
+    "A",
+    "[das war ein seltsamer vergleich|ich weiß nicht, ob das passt|ok {C}, wenn du meinst]"
+   ],
+   [
+    "C",
+    "[ich steh dazu|er passt perfekt|mein vergleich ist perfekt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-miete-hoch-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[meine miete frisst alles|jeden monat geht die halbe kasse für miete drauf|miete zahlen tut weh]"
+   ],
+   [
+    "B",
+    "[deswegen will jeder eine eigene wohnung|eigene wohnung, dann zahlst du keine miete|kaufen und nie wieder miete]"
+   ],
+   [
+    "A",
+    "[ich weiß, ich spare ja|ich bin dabei, langsam|ich spar wie verrückt]"
+   ],
+   [
+    "C",
+    "[und vermieten bringt sogar geld|wenn du zwei wohnungen hast, bringt die zweite miete|später vermietest du und kriegst miete]"
+   ],
+   [
+    "A",
+    "[davon träume ich jeden abend, sogar bei {s:hobby}|ich träum davon, auch bei {s:hobby}|das ist mein traum, seit {s:hobby} mein hobby ist]"
+   ],
+   [
+    "B",
+    "[der traum lebt|eines tages, {A}|bald, ganz sicher]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-nachts-wach-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[jemand noch wach?|wer ist noch online|ist hier noch jemand]"
+   ],
+   [
+    "B",
+    "[ich|hier|anwesend]"
+   ],
+   [
+    "A",
+    "[ich kann nicht schlafen|ich lieg seit einer stunde wach|schlaf will nicht kommen]"
+   ],
+   [
+    "B",
+    "[ich auch nicht, hab zu viel {s:drink} getrunken|ich auch, {s:drink} um 22 uhr war ein fehler|gleiches problem, zu spät {s:drink}]"
+   ],
+   [
+    "C",
+    "[ich mache gerade nachtschicht|ich arbeite noch|ich bin von der nachtschicht]"
+   ],
+   [
+    "A",
+    "[dann sind wir die nachtcrew|willkommen in der nachtcrew|team schlaflos]"
+   ],
+   [
+    "B",
+    "[team schlaflos klingt gut|gefällt mir|wir brauchen ein logo]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-nachts-snack-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[es ist 2 uhr und ich will {s:food}|um diese zeit hab ich lust auf {s:food}|nachts um 2 an {s:food} denken]"
+   ],
+   [
+    "B",
+    "[dann mach|wo ist das problem|geh in die küche]"
+   ],
+   [
+    "A",
+    "[es ist 2 uhr|ich bin zu faul|das ist kein gesundes verhalten]"
+   ],
+   [
+    "C",
+    "[nachts zählen kalorien nicht|nach mitternacht ist alles erlaubt|um 2 uhr gibt es keine regeln]"
+   ],
+   [
+    "A",
+    "[ok überzeugt|ich geh|ihr seid ein schlechter einfluss]"
+   ],
+   [
+    "B",
+    "[guten appetit|afiyet olsun, wie die türken sagen|genieß es]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-witz-sanduhr-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[meine sanduhr ist kaputt|ich glaub, meine sanduhr ist kaputt|mit meiner sanduhr stimmt was nicht]"
+   ],
+   [
+    "B",
+    "[wieso|was ist passiert|was meinst du]"
+   ],
+   [
+    "A",
+    "[ich hab sie umgedreht und mein kurs ist immer noch nicht fertig|ich hab sie geschüttelt, nichts|sie läuft nicht schneller, wenn ich sie anschreie]"
+   ],
+   [
+    "C",
+    "[anschreien hilft nie|man muss sie benutzen, nicht schütteln|haha]"
+   ],
+   [
+    "A",
+    "[genau wie {s:family} morgens|so wie {s:family} vor dem frühstück|{s:family} wird auch nicht schneller, wenn man schreit]"
+   ],
+   [
+    "B",
+    "[das muss ich mir merken|stimmt leider|weise worte]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-witz-kontostand-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein kontostand ist wie das wetter im januar|mein konto ist wie januar draußen|mein konto: winterlich]"
+   ],
+   [
+    "B",
+    "[kalt?|grau und trist?|eisig?]"
+   ],
+   [
+    "A",
+    "[unter null|minusgrade|frostig, sehr frostig]"
+   ],
+   [
+    "C",
+    "[mach ihm {s:drink} warm|gib ihm {s:drink} und eine decke|dein konto braucht {s:drink} und einen schal]"
+   ],
+   [
+    "B",
+    "[das hilft sicher|das ist die lösung|das ist echte finanzberatung]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-wortspiel-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[warum sind buchhalter immer ruhig|witz: warum reden buchhalter so wenig|wisst ihr, warum buchhalter so leise sind]"
+   ],
+   [
+    "B",
+    "[warum|sag|keine ahnung]"
+   ],
+   [
+    "A",
+    "[sie zählen schon|weil sie im kopf zählen|weil jedes wort was kostet]"
+   ],
+   [
+    "C",
+    "[schlecht|sehr schlecht|ich lach trotzdem]"
+   ],
+   [
+    "A",
+    "[ich hab noch mehr|das war der beste|warte, {s:family} hat mir noch einen erzählt]"
+   ],
+   [
+    "B",
+    "[bitte nicht|gnade|erst {s:drink}, dann witze]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-mitbewohner-musik-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[{s:family} spielt nachts {s:hobby}|jemand bei mir macht um mitternacht {s:hobby}|um diese zeit {s:hobby}, ernsthaft?]"
+   ],
+   [
+    "B",
+    "[wie laut|nervig?|stört es dich sehr]"
+   ],
+   [
+    "A",
+    "[genug um nicht zu schlafen|ziemlich laut|laut genug]"
+   ],
+   [
+    "C",
+    "[ohrenstöpsel|kopfhörer auf und durch|sag es freundlich]"
+   ],
+   [
+    "A",
+    "[hab ich, aber es hilft nichts|ich hab es gesagt, er hat genickt und weitergemacht|morgen red ich nochmal]"
+   ],
+   [
+    "B",
+    "[viel glück|morgen dann|du schaffst das]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-geburtstag-oma-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[am {s:day} hat meine oma geburtstag, was schenkt man|geschenkideen für oma?|was schenkt ihr großeltern]"
+   ],
+   [
+    "B",
+    "[zeit, ehrlich|ein besuch ist das beste|einfach hinfahren]"
+   ],
+   [
+    "C",
+    "[oder selbst gebacken|einen kuchen|was selbstgemachtes]"
+   ],
+   [
+    "A",
+    "[ich kann nicht backen|backen ist nicht meins|ich backe wie ein stein]"
+   ],
+   [
+    "C",
+    "[dann {s:food} kochen, das kann jeder|koch einfach {s:food}|{s:food} geht immer]"
+   ],
+   [
+    "A",
+    "[gute idee|ok, das mach ich|danke, so wird es gemacht]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-neujahr-vorsatz-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wer hält seine neujahrsvorsätze noch|vorsätze schon gebrochen?|wie läufts mit den vorsätzen]"
+   ],
+   [
+    "B",
+    "[ich hab bis zum 3. januar durchgehalten|gebrochen am zweiten tag|ich hab keine, deswegen kann ich nicht scheitern]"
+   ],
+   [
+    "C",
+    "[ich wollte mehr {s:hobby} machen, läuft gut|mein vorsatz war {s:hobby}, ich bin noch dabei|ich mach tatsächlich mehr {s:hobby}]"
+   ],
+   [
+    "A",
+    "[respekt|du bist ein held|wow]"
+   ],
+   [
+    "C",
+    "[noch zwei wochen, dann frag mich nochmal|frag mich im februar|warte ab]"
+   ],
+   [
+    "B",
+    "[im spiel war mein vorsatz eine wohnung|im spiel: wohnung kaufen|ingame vorsatz: sparen]"
+   ],
+   [
+    "A",
+    "[der ist realistischer|der ist besser|den schaffst du]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-weihnachtsmarkt-reste-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich vermisse den weihnachtsmarkt schon|weihnachtsmarkt ist vorbei, ich bin traurig|januar ohne weihnachtsmarkt ist grau]"
+   ],
+   [
+    "B",
+    "[glühwein-entzug?|was hast du am liebsten gemocht|die mandeln, oder?]"
+   ],
+   [
+    "A",
+    "[die gebrannten mandeln und die lichter|das licht und der geruch|einfach die stimmung]"
+   ],
+   [
+    "C",
+    "[zu hause {s:drink} warm machen und lichterkette an, fertig|mach dir {s:drink} heiß und zünde kerzen an|mini-weihnachtsmarkt im wohnzimmer]"
+   ],
+   [
+    "A",
+    "[das ist eine traurige ersatzlösung|das ist nicht dasselbe|{C}, das reicht mir nicht]"
+   ],
+   [
+    "C",
+    "[dann bis dezember durchhalten|noch elf monate|dann musst du warten, sorry]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-heizung-1",
+  "konu": "hava",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[meine heizung macht komische geräusche|heizung klopft die ganze nacht|die heizung gluckert wie ein bach]"
+   ],
+   [
+    "B",
+    "[entlüften|heizkörper entlüften, dauert 2 minuten|luft drin, einfach entlüften]"
+   ],
+   [
+    "A",
+    "[wie macht man das|mit was?|ich hab keine ahnung wie das geht]"
+   ],
+   [
+    "B",
+    "[kleiner schlüssel, kleines ventil oben|so ein kleines ventil an der seite aufdrehen|entlüftungsschlüssel aus dem baumarkt]"
+   ],
+   [
+    "C",
+    "[oder {s:family} weiß das|{s:family} kennt sich da aus|{s:family} weiß bestimmt wie]"
+   ],
+   [
+    "A",
+    "[dann muss {s:family} ran|ok, {s:family} kommt am {s:day}|gute idee, {s:family} kann das besser]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-pfand-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab heute 30 pfandflaschen weggebracht|pfandflaschen abgegeben, endlich|mein balkon ist frei, pfand ist weg]"
+   ],
+   [
+    "B",
+    "[und wie viel?|was hat es gebracht|reich geworden?]"
+   ],
+   [
+    "A",
+    "[genug für {s:food}|genau genug für {s:food}|ein abendessen: {s:food}]"
+   ],
+   [
+    "C",
+    "[das ist das deutscheste, was ich heute gelesen hab|sehr deutsch, {A}|typisch]"
+   ],
+   [
+    "A",
+    "[danke|ich nehme das als kompliment|wir sind so]"
+   ],
+   [
+    "B",
+    "[im spiel wäre das ein guter nebenjob|bräuchte das spiel auch: pfandsammler|als neuer beruf im nächsten update]"
+   ],
+   [
+    "C",
+    "[kademe null|einstiegsjob|stufe eins, ohne kurs]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sparschwein-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wie schnell spart ihr im spiel|wie viel spart ihr pro monat ungefähr|eure spartaktik im spiel?]"
+   ],
+   [
+    "B",
+    "[alles was nach lebenshaltung übrig bleibt|einfach nicht ausgeben|ich gebe nur für miete und essen aus]"
+   ],
+   [
+    "C",
+    "[ich hab gemerkt, bank gibt keine zinsen|auf dem konto gibt es keine zinsen|sparkonto bringt nichts, null zinsen]"
+   ],
+   [
+    "A",
+    "[also lieber in was investieren|also kaufen, bevor die inflation alles frisst|besser in eine wohnung stecken]"
+   ],
+   [
+    "B",
+    "[genau, wohnung oder laden|grundstück steigt auch im wert|wohnung bringt sogar miete]"
+   ],
+   [
+    "C",
+    "[ich hab den sparplan an den kühlschrank gehängt, gleich neben {s:food}|sparplan am kühlschrank, damit ich bei {s:food} dran denke|plan klebt am kühlschrank, wo {s:food} wartet]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-erste-million-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.zengin"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[erste million im spiel!|eine million auf dem konto|ich bin millionär. im spiel. aber trotzdem]"
+   ],
+   [
+    "B",
+    "[wie?|wow, wie lange hat das gedauert|was ist dein geheimnis]"
+   ],
+   [
+    "A",
+    "[laden plus zwei wohnungen vermietet|geschäft und miete|geduld und ein gut laufender laden]"
+   ],
+   [
+    "C",
+    "[und was machst du jetzt damit|was kommt als nächstes|nächstes ziel?]"
+   ],
+   [
+    "A",
+    "[noch mehr wohnungen|spenden, für das ansehen|vielleicht einen zweiten laden]"
+   ],
+   [
+    "B",
+    "[ich feier das mit {s:food}, obwohl es nicht meine million ist|ich feier für dich mit {s:food}|ich ess heute {s:food} auf dich]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-spenden-ansehen-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[lohnt sich spenden im spiel?|was bringt spenden eigentlich|spenden, macht das sinn?]"
+   ],
+   [
+    "B",
+    "[ansehen|du kriegst ansehen, pro 10 tausend eins|pro zehntausend gibt es einen punkt ansehen]"
+   ],
+   [
+    "A",
+    "[und an feiertagen?|gibts bonus?|gibt es was extra?]"
+   ],
+   [
+    "C",
+    "[an feiertagen doppelt|zu feiertagen das doppelte|an festen zählt es doppelt]"
+   ],
+   [
+    "A",
+    "[dann warte ich auf den nächsten feiertag|ich spar das für einen feiertag|gut zu wissen]"
+   ],
+   [
+    "B",
+    "[und gutes ansehen hilft auch bei der bonität|ansehen hilft auch bei bewerbungen|ansehen ist gut für vieles]"
+   ],
+   [
+    "C",
+    "[und für das gewissen|und man fühlt sich gut|und es macht einfach freude, wie wenn {s:family} {s:food} mit allen teilt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-laden-mitarbeiter-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[suche verkäufer für meinen laden|jemand bock, in meinem laden zu arbeiten?|mein laden braucht noch leute]"
+   ],
+   [
+    "B",
+    "[was zahlst du|wie viel gehalt|was gibts?]"
+   ],
+   [
+    "A",
+    "[mindestlohn plus, und pünktlich|fair und immer pünktlich|über mindestlohn, versprochen]"
+   ],
+   [
+    "C",
+    "[pünktlich ist wichtiger als hoch, ehrlich|ein chef der pünktlich zahlt ist gold wert|gut, pünktlichkeit zählt]"
+   ],
+   [
+    "B",
+    "[ich bewerbe mich nach {s:food}|gib mir 10 minuten, ich ess noch {s:food}|erst {s:food}, dann bewerbung]"
+   ],
+   [
+    "A",
+    "[ich schau nach der anzeige|anzeige ist offen|die stellenanzeige ist drin]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-aushilfe-teuer-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[warum ist die aushilfe so teuer|die vorläufige aushilfe kostet zu viel|aushilfen sind ein loch im budget]"
+   ],
+   [
+    "B",
+    "[und arbeiten auch schlechter|und machen weniger|ist absicht, damit man echte leute einstellt]"
+   ],
+   [
+    "A",
+    "[ich finde aber niemanden|keiner bewirbt sich|ich hab seit tagen keine bewerbung]"
+   ],
+   [
+    "C",
+    "[stell deine anzeige mal neu ein|vielleicht gehalt etwas höher|anzeige öfter aufmachen]"
+   ],
+   [
+    "A",
+    "[ich probier es am {s:day}|ok, {s:day} probier ich es neu|bis {s:day} noch warten]"
+   ],
+   [
+    "B",
+    "[viel glück, chef|du schaffst das, chef|wird schon]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-ziel-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[was ist euer ziel im spiel|euer langfristiges ziel?|was wollt ihr erreichen]"
+   ],
+   [
+    "B",
+    "[bauunternehmer werden|fabrikant|stufe 4, egal welcher]"
+   ],
+   [
+    "C",
+    "[eine wohnung kaufen und in ruhe leben|wohnung und gut|einfach ein ruhiges leben mit eigener wohnung]"
+   ],
+   [
+    "D",
+    "[ich will der reichste in {D.sehir} sein|nummer eins in {D.sehir}|der reichste spieler in meiner stadt]"
+   ],
+   [
+    "A",
+    "[ich mag alle drei|ehrgeizig|{D} hat große pläne]"
+   ],
+   [
+    "D",
+    "[und dann {s:food} jeden tag|dann gibts für mich jeden tag {s:food}|mein luxus: {s:food}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-tee-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wer trinkt hier türkischen tee|habt ihr schon mal türkischen tee probiert|türkischer tee, ja oder nein]"
+   ],
+   [
+    "B",
+    "[ja, aus dem kleinen glas|ja, seit ich hier spiele|ja, ein türke hat mich angesteckt]"
+   ],
+   [
+    "C",
+    "[nein, ich bleib bei {s:drink}|ich trinke nur {s:drink}|{s:drink} for life]"
+   ],
+   [
+    "B",
+    "[probier es, {C}|eine chance gibst du ihm|du verpasst was]"
+   ],
+   [
+    "C",
+    "[ok, am {s:day} probier ich|ich versprech es für {s:day}|ok, {s:day}]"
+   ],
+   [
+    "A",
+    "[wir notieren das|das ist jetzt protokolliert|du hast es versprochen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-cay-glas-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab mir ein türkisches teeglas gekauft|jetzt hab ich auch ein ince belli glas|neues teeglas, dieses tulpenförmige]"
+   ],
+   [
+    "B",
+    "[ince belli! sehr gut|das heißt \"schmale taille\", oder?|ah, das schöne glas]"
+   ],
+   [
+    "A",
+    "[genau|stimmt|ja, so heißt es]"
+   ],
+   [
+    "C",
+    "[und jetzt? jeden tag zehn gläser?|jetzt trinkst du nur noch tee|ein neuer teesüchtiger]"
+   ],
+   [
+    "A",
+    "[drei pro tag, sonst {s:drink}|ich wechsel mit {s:drink}|tee morgens, {s:drink} abends]"
+   ],
+   [
+    "B",
+    "[die perfekte balance|sehr gesund|klingt vernünftig]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-yavas-yavas-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[neues türkisches wort: yavaş yavaş|\"yavaş yavaş\" hab ich gelernt|heute gelernt: yavaş yavaş]"
+   ],
+   [
+    "B",
+    "[was heißt es?|übersetzung?|bedeutung?]"
+   ],
+   [
+    "A",
+    "[langsam langsam, also schritt für schritt|so wie \"immer mit der ruhe\"|nach und nach]"
+   ],
+   [
+    "C",
+    "[das ist auch mein motto im spiel|perfekt für das sparen|so spar ich auch für die wohnung]"
+   ],
+   [
+    "A",
+    "[und für {s:hobby}|bei {s:hobby} auch|bei mir gilt es für {s:hobby}]"
+   ],
+   [
+    "B",
+    "[yavaş yavaş, alles gut|yavaş yavaş, nur keine eile|genau, yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-tamam-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich sag jetzt im echten leben \"tamam\" statt ok|ich hab angefangen, \"tamam\" zu sagen|\"tamam\" ist in meinem wortschatz]"
+   ],
+   [
+    "B",
+    "[was sagen die leute|und wie reagieren die anderen|niemand versteht dich, oder]"
+   ],
+   [
+    "A",
+    "[{s:family} findet es lustig|{s:family} sagt es jetzt auch|{s:family} hat es übernommen]"
+   ],
+   [
+    "C",
+    "[das spiel verändert familien|so verbreitet sich türkisch|bald sagt ganz deutschland tamam]"
+   ],
+   [
+    "A",
+    "[tamam|tamam tamam|tamam, abi]"
+   ],
+   [
+    "B",
+    "[haha|lol|tamam]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-pause-spiel-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[macht ihr auch mal pause vom spiel|wie oft spielt ihr am tag|spielt ihr den ganzen tag?]"
+   ],
+   [
+    "B",
+    "[morgens und abends kurz|zweimal am tag|morgens die aufgaben, abends kurz]"
+   ],
+   [
+    "C",
+    "[ich vergesse es oft, dann läuft die zeit trotzdem|ich bin manchmal einen tag weg, die zeit läuft weiter|das spiel läuft auch offline, das mag ich]"
+   ],
+   [
+    "A",
+    "[genau, ein tag ist eine stunde|stimmt, das spiel wartet nicht|die zeit geht einfach weiter]"
+   ],
+   [
+    "B",
+    "[ich spiel am meisten morgens mit {s:drink}|mit {s:drink} schau ich immer rein|{s:drink} und spiel, morgenritual]"
+   ],
+   [
+    "C",
+    "[das mach ich auch|gleich wie ich|das ist üblich]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-baustelle-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[als bauarbeiter heute zehn aufgaben gemacht|baustelle war heute anstrengend|bauarbeiter-tag: 10 aufgaben erledigt]"
+   ],
+   [
+    "B",
+    "[pro aufgabe gibts geld, oder?|du wirst pro aufgabe bezahlt, oder|mehr aufgaben, mehr geld]"
+   ],
+   [
+    "A",
+    "[ja, genau|ja, wie beim kurier|richtig]"
+   ],
+   [
+    "C",
+    "[und später meister werden|nach 20 tagen kannst du meister werden, mit dem kurs|meisterbrief und 20 tage erfahrung]"
+   ],
+   [
+    "A",
+    "[das ist mein plan|genau das will ich|darum mach ich das]"
+   ],
+   [
+    "B",
+    "[und jetzt {s:food}|jetzt pause, mit {s:food}|{s:food} hast du dir verdient]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-meister-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.usta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[endlich meister!|ich bin jetzt meister im spiel|meisterbrief geschafft]"
+   ],
+   [
+    "B",
+    "[glückwunsch, wie lange hat das gedauert|wie lange warst du bauarbeiter|wann hast du angefangen]"
+   ],
+   [
+    "A",
+    "[20 tage baustelle plus kurs|20 tage und dann der kurs|länger als gedacht, wegen pausen]"
+   ],
+   [
+    "C",
+    "[jetzt kannst du später subunternehmer werden|als nächstes subunternehmer?|danach kommt subunternehmer, mit 20 tagen meister]"
+   ],
+   [
+    "A",
+    "[erst mal genießen, mit {s:food}|heute nur {s:food} und feiern|erst {s:food}, dann pläne]"
+   ],
+   [
+    "B",
+    "[gut so|du hast es verdient|prost mit {s:drink}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-zwangsvollstreckung-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[was passiert, wenn man raten nicht zahlt|wenn ich eine rate verpasse, was dann|rate verpasst, wie schlimm ist das]"
+   ],
+   [
+    "B",
+    "[nach drei verpassten raten kommt zwangsvollstreckung|drei raten verpasst = vollstreckung|eine ist nicht das ende, aber nach drei wird's ernst]"
+   ],
+   [
+    "A",
+    "[oha|uff|das klingt hart]"
+   ],
+   [
+    "C",
+    "[und deine bonität sinkt|und dein ansehen auch|ansehen und bonität gehen runter]"
+   ],
+   [
+    "A",
+    "[dann zahl ich lieber statt {s:food} essen zu gehen|dann wird gespart, schluss mit {s:food} im restaurant|ok, {s:food} nur noch selbst gemacht, bis alles bezahlt ist]"
+   ],
+   [
+    "B",
+    "[vernünftig|klug|gute entscheidung]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kreditlimit-formel-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wie wird das kreditlimit berechnet|warum ist mein kreditlimit so niedrig|was bestimmt das kreditlimit]"
+   ],
+   [
+    "B",
+    "[letztes monatseinkommen mal kreditwürdigkeit durch 100|einkommen vom letzten monat und bonität|einkommen und kreditscore]"
+   ],
+   [
+    "A",
+    "[also mehr verdienen|dann muss ich mehr verdienen|aha, das ist logisch]"
+   ],
+   [
+    "C",
+    "[und die bonität fängt bei 620 an|kreditscore startet bei 620|jeder fängt mit 620 an]"
+   ],
+   [
+    "A",
+    "[und dann?|wie steigt die?|wie hoch kann die gehen]"
+   ],
+   [
+    "C",
+    "[pünktlich zahlen und ansehen|mit pünktlichen raten|weiß ich nicht genau, muss man schauen]"
+   ],
+   [
+    "B",
+    "[{s:family} hat mir die formel erklärt|die formel hat mir {s:family} aufgeschrieben|ich kann sie auswendig, {s:family} hat abgefragt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-update-warten-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[was kommt im nächsten update|weiß jemand, was das update bringt|update-gerüchte?]"
+   ],
+   [
+    "B",
+    "[angeblich börse und devisen|börse, gold, devisen|ich hab von börse gehört]"
+   ],
+   [
+    "C",
+    "[bauen kommt auch irgendwann|häuser bauen soll später kommen|bauunternehmen sollen kommen]"
+   ],
+   [
+    "A",
+    "[ich will einfach nur mehr gerichte im café|ich will mehr auswahl im laden|ich will partner werden können]"
+   ],
+   [
+    "B",
+    "[partnerschaft soll auch kommen|das ist auch geplant, glaube ich|weiß nicht, aber wäre cool]"
+   ],
+   [
+    "A",
+    "[bis dahin {s:hobby}|bis dahin mach ich {s:hobby}|warte ich mit {s:hobby}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-alte-hasen-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich spiele seit über 200 tagen|200 tage im spiel heute|ich bin jetzt ein alter hase]"
+   ],
+   [
+    "B",
+    "[und was hast du gelernt|weisheiten bitte|was ist dein bester tipp]"
+   ],
+   [
+    "A",
+    "[nie alles in eine sache stecken|geduld, immer geduld|raten nie verpassen]"
+   ],
+   [
+    "C",
+    "[das ist auch ein lebenstipp|gilt auch für das echte leben|nicht nur im spiel]"
+   ],
+   [
+    "A",
+    "[und morgens immer {s:drink}|und nie ohne {s:drink} anfangen|und {s:drink}, ganz wichtig]"
+   ],
+   [
+    "B",
+    "[notiert|gespeichert|das merke ich mir]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-bahn-wlan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[das wlan im zug ist ein witz|im zug kein internet, die ganze fahrt|wlan im zug: theoretisch vorhanden]"
+   ],
+   [
+    "B",
+    "[deswegen lade ich alles vorher|ich mach den flugmodus und lese|bei mir: {s:thing} und musik offline]"
+   ],
+   [
+    "A",
+    "[ich kann im zug nicht mal liefern im spiel|meine tagesaufgaben warten|im tunnel ist alles weg]"
+   ],
+   [
+    "C",
+    "[im tunnel ist das ganze land offline|kenne ich, jeder tunnel|das deutsche internet ist ein abenteuer]"
+   ],
+   [
+    "A",
+    "[zum glück hab ich {s:hobby} offline|dann eben {s:hobby}|ich mach im zug immer {s:hobby}]"
+   ],
+   [
+    "B",
+    "[sehr gesund|gesünder als handy|gute lösung]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-bahn-verpasst-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ich hab den zug um eine minute verpasst|zug verpasst, die türen gingen vor meiner nase zu|ich sah ihn wegfahren]"
+   ],
+   [
+    "B",
+    "[der einzige pünktliche zug heute|ausgerechnet der ist pünktlich|typisch, einmal pünktlich und dann so]"
+   ],
+   [
+    "A",
+    "[genau!|danke, das ist es|unfassbar]"
+   ],
+   [
+    "C",
+    "[und der nächste?|wann kommt der nächste|wie lange wartest du jetzt]"
+   ],
+   [
+    "A",
+    "[40 minuten, mit {s:drink} vom kiosk|40 minuten. ich hol mir {s:drink}|lange. {s:drink} und geduld]"
+   ],
+   [
+    "B",
+    "[mein beileid|halt durch|geçmiş olsun, wie die türken sagen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-bahn-durchsage-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich liebe die durchsagen am bahnhof|die durchsagen heute waren poesie|eine durchsage hat mich gerettet]"
+   ],
+   [
+    "B",
+    "[\"aus gründen der zugfolge\"|\"verzögerungen im betriebsablauf\"|\"wir bitten um ihr verständnis\"]"
+   ],
+   [
+    "A",
+    "[heute war es \"der zug fällt heute aus, er fährt dafür morgen\"|heute hieß es, der zug kommt \"in kürze\", seit einer stunde|\"in umgekehrter wagenreihung\", immer]"
+   ],
+   [
+    "C",
+    "[in umgekehrter wagenreihung ist mein lebensmotto|ich bin in umgekehrter wagenreihung aufgewacht|mein leben in umgekehrter wagenreihung]"
+   ],
+   [
+    "A",
+    "[haha|wirklich gut|stark]"
+   ],
+   [
+    "B",
+    "[das spiel braucht einen bahnhof als arbeitsplatz|das spiel braucht schaffner als beruf|ich würde schaffner werden, bei {s:drink}]"
+   ],
+   [
+    "C",
+    "[mit verspätung|natürlich verspätet|aber nur, wenn es pünktlich bezahlt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-brotzeit-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[was esst ihr mittags|mittagspause, was gibts|was ist euer mittagessen heute]"
+   ],
+   [
+    "B",
+    "[{s:food} von gestern|reste, {s:food}|{s:food} in der dose]"
+   ],
+   [
+    "C",
+    "[kantine. heute {s:food#2}|kantinenessen, {s:food#2}|die kantine hat {s:food#2}]"
+   ],
+   [
+    "A",
+    "[ich hab nur ein brot|belegtes brot|stulle mit käse]"
+   ],
+   [
+    "B",
+    "[stulle ist ein schönes wort|ich liebe das wort stulle|ein klassiker]"
+   ],
+   [
+    "C",
+    "[ein türkischer spieler hat mir simit empfohlen|probier mal simit|simit ist besser als stulle, sorry]"
+   ],
+   [
+    "A",
+    "[wo bekomme ich simit|gibt es das bei mir?|ich such morgen danach]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kantine-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[unsere kantine hat heute {s:food}|in der kantine gibts {s:food}|heute kantine: {s:food}]"
+   ],
+   [
+    "B",
+    "[und? lecker?|{s:food} aus der kantine ist ein risiko|gut?]"
+   ],
+   [
+    "A",
+    "[sagen wir: essbar|überraschend gut|eher nicht]"
+   ],
+   [
+    "C",
+    "[kantine ist immer ein abenteuer|jeder tag ist ein glücksspiel|kantine ist wie lotto]"
+   ],
+   [
+    "B",
+    "[ich bring immer selbst mit|ich koch für die ganze woche|ich mach meal prep]"
+   ],
+   [
+    "A",
+    "[du bist zu organisiert|ich bewundere das|ich bin zu faul dafür]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sauna-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[war gerade in der sauna|sauna nach der arbeit, bestes gefühl|saunagang erledigt]"
+   ],
+   [
+    "B",
+    "[im winter die beste idee|perfekt bei der kälte|neid]"
+   ],
+   [
+    "A",
+    "[danach {s:drink} und schlafen|jetzt nur noch {s:drink}|{s:drink} und bett]"
+   ],
+   [
+    "C",
+    "[ich war noch nie|ich kann die hitze nicht ab|ich halte keine 5 minuten aus]"
+   ],
+   [
+    "A",
+    "[anfangen mit 8 minuten|du musst es probieren|gewöhnung]"
+   ],
+   [
+    "C",
+    "[vielleicht am {s:day}|ok, {s:day}|ich überleg es mir für {s:day}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-wandern-winter-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wer geht im winter wandern|winterwanderung, jemand dabei?|wer mag es, im schnee zu laufen]"
+   ],
+   [
+    "B",
+    "[ich, mit thermoskanne voll {s:drink}|ja, immer mit {s:drink}|ich, es gibt nichts schöneres, mit {s:drink}]"
+   ],
+   [
+    "C",
+    "[nein, ich bleib drinnen mit {s:hobby}|lieber {s:hobby} zu hause|drinnen bleiben, {s:hobby}]"
+   ],
+   [
+    "A",
+    "[{C}, du verpasst die frische luft|{C}, raus mit dir|frische luft tut gut]"
+   ],
+   [
+    "C",
+    "[frische luft ist mir zu kalt|sie ist zu frisch|ich hab fenster]"
+   ],
+   [
+    "B",
+    "[guter punkt|dagegen kann man nichts sagen|fair]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-rad-glatteis-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[mit dem rad bei glatteis, schlechte idee|glatteis, ich bin fast hingefallen|heute fast mit dem rad ausgerutscht]"
+   ],
+   [
+    "B",
+    "[alles ok?|passiert?|hast du dir weh getan]"
+   ],
+   [
+    "A",
+    "[nur mein stolz|alles gut, nur {s:thing}: im schnee gelandet|nein, aber {s:thing}: total nass]"
+   ],
+   [
+    "C",
+    "[im winter lieber laufen|spikes für den reifen|heute lieber zu fuß]"
+   ],
+   [
+    "A",
+    "[oder zug. ach nein.|zug fällt ja aus|bus ist auch zu spät]"
+   ],
+   [
+    "B",
+    "[haha|alles ist gegen dich|ein ganz normaler januar]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-spaetschicht-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[spätschicht bis 23 uhr|bis 11 arbeiten heute|lange schicht vor mir]"
+   ],
+   [
+    "B",
+    "[was arbeitest du|als was?|welcher job]"
+   ],
+   [
+    "A",
+    "[{A.meslek}|ich bin {A.meslek}|{A.meslek}, wie immer]"
+   ],
+   [
+    "C",
+    "[bring dir was zu essen mit|hast du essen dabei?|denk an pausen]"
+   ],
+   [
+    "A",
+    "[{s:food} in der box|{s:food}, gut verpackt|ich hab {s:food} dabei]"
+   ],
+   [
+    "B",
+    "[dann viel kraft|gute schicht|kolay gelsin]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-chat-frage-alter-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wie alt ist mein charakter eigentlich|gibts im spiel ein alter?|wird mein charakter älter?]"
+   ],
+   [
+    "B",
+    "[es gibt kein alter im spiel|kein alter, keine schule|nein, alter gibts nicht]"
+   ],
+   [
+    "A",
+    "[also bin ich ewig jung|ich werde nie alt?|perfekt]"
+   ],
+   [
+    "C",
+    "[im spiel ja, im echten leben leider nicht|nur dein echter rücken wird älter|das spiel ist ehrlicher als die realität]"
+   ],
+   [
+    "A",
+    "[mein rücken ist schon 80|ich merk es am rücken|mein knie widerspricht]"
+   ],
+   [
+    "B",
+    "[zu viel {s:hobby}?|zu wenig {s:hobby}?|probier mal {s:hobby}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-feierabend-plan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[was macht ihr nach feierabend|feierabend-pläne?|wie verbringt ihr den abend]"
+   ],
+   [
+    "B",
+    "[{s:hobby}|heute abend {s:hobby}|ich hab {s:hobby} vor]"
+   ],
+   [
+    "C",
+    "[ich koche {s:food}|{s:food} kochen und dann serie|erst {s:food}, dann couch]"
+   ],
+   [
+    "D",
+    "[ich spiele dieses spiel|ich schaue in mein café im spiel|ich liefere im spiel]"
+   ],
+   [
+    "A",
+    "[{D} lebt doppelt|{D} macht nach der arbeit noch mehr arbeit|{D}, das ist hingabe]"
+   ],
+   [
+    "D",
+    "[es ist entspannend|es macht spaß|lieber virtuelle arbeit]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-katerstimmung-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[ich hab heute keine motivation|null energie heute|heute bin ich ein sofa]"
+   ],
+   [
+    "B",
+    "[wieso|was ist los|schlecht geschlafen?]"
+   ],
+   [
+    "A",
+    "[es ist grau, es ist kalt, es ist januar|januarblues|das wetter macht mich fertig]"
+   ],
+   [
+    "C",
+    "[tageslichtlampe|spaziergang in der mittagspause|etwas licht hilft]"
+   ],
+   [
+    "A",
+    "[oder {s:food} und bett|{s:food} hilft auch|ich setz auf {s:food}]"
+   ],
+   [
+    "B",
+    "[auch eine methode|geht auch|hauptsache es hilft]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-waschmaschine-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:thing}, in der waschmaschine. oh nein|heute in der wäsche: {s:thing}|waschmaschine lief, mittendrin {s:thing}]"
+   ],
+   [
+    "B",
+    "[oh nein|aua|wie schlimm]"
+   ],
+   [
+    "A",
+    "[alles nass, alles kaputt|es funktioniert noch, wunder|es ist jetzt sehr sauber]"
+   ],
+   [
+    "C",
+    "[reis!|in reis legen|trocknen lassen]"
+   ],
+   [
+    "A",
+    "[das ist kein handy, {C}|{C}, das geht nur bei handys|reis bei allem?]"
+   ],
+   [
+    "C",
+    "[reis hilft bei allem|reis ist magie|vertrau dem reis]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-stromrechnung-1",
+  "konu": "gundelik",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[meine nebenkosten-abrechnung ist da|nebenkosten-nachzahlung, toll|jahresabrechnung, nachzahlung]"
+   ],
+   [
+    "B",
+    "[viel?|wie schlimm?|autsch]"
+   ],
+   [
+    "A",
+    "[genug für einen monat {s:food}|so viel wie zwei wochen {s:food}|ich esse jetzt nur noch {s:food}]"
+   ],
+   [
+    "C",
+    "[im spiel wäre es wenigstens ein ereignis|im spiel nennt man das lebenshaltungskosten|im spiel zahlt man das monatlich, ehrlicher]"
+   ],
+   [
+    "A",
+    "[im spiel wäre ich wenigstens hausbesitzer|im spiel spar ich wenigstens|im spiel hab ich wenigstens eine wohnung]"
+   ],
+   [
+    "B",
+    "[bald auch in echt|eines tages|yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-freundschaft-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich wollte nur sagen, der chat hier ist nett|dieser chat ist besser als meine gruppen|ich mag diesen chat]"
+   ],
+   [
+    "B",
+    "[oh, danke|schön zu hören|das ist süß]"
+   ],
+   [
+    "C",
+    "[wir sind halt eine familie|wir sind team schlaflos|wir sind die besten]"
+   ],
+   [
+    "A",
+    "[ihr seid wie {s:food} am sonntag|ihr seid wie {s:drink} im winter|ihr seid gemütlich]"
+   ],
+   [
+    "B",
+    "[das ist das schönste kompliment|gemütlich ist das beste wort|danke {A}]"
+   ],
+   [
+    "C",
+    "[ok, jetzt wird es kitschig|genug liebe für heute|haha]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-deutsche-woerter-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ein türkischer spieler fragte, was \"fernweh\" heißt|was ist \"fernweh\" auf türkisch?|wie übersetzt man \"fernweh\"]"
+   ],
+   [
+    "B",
+    "[sehnsucht nach der ferne|heimweh, aber umgekehrt|das gegenteil von heimweh]"
+   ],
+   [
+    "C",
+    "[im türkischen gibt es \"gurbet\", glaube ich|das türkische \"gurbet\" ist ähnlich, aber nicht genau|weiß nicht genau, muss man fragen]"
+   ],
+   [
+    "A",
+    "[und \"gemütlichkeit\" war auch schwer|\"feierabend\" gibts auch nicht wirklich|\"schadenfreude\" hat jeder sofort verstanden]"
+   ],
+   [
+    "B",
+    "[wir exportieren gefühle|deutsch ist gefühlsmathematik|lange wörter für kurze gefühle]"
+   ],
+   [
+    "C",
+    "[heute hab ich fernweh nach {s:food} in der sonne|ich hab fernweh und {s:food}|fernweh ist, wenn {s:food} woanders besser schmeckt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-gute-nacht-2",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[so, ich geh schlafen|gute nacht zusammen|ich bin dann mal weg, nacht]"
+   ],
+   [
+    "B",
+    "[gute nacht|schlaf gut|iyi geceler, wie die türken sagen]"
+   ],
+   [
+    "C",
+    "[morgen wieder bahn-chaos?|bis morgen beim zugausfall|bis morgen im ersatzbus]"
+   ],
+   [
+    "A",
+    "[wahrscheinlich|sicher|ich rechne damit]"
+   ],
+   [
+    "B",
+    "[denk dran: {s:thing}|checkliste: {s:thing}|{s:thing}? dabei?]"
+   ],
+   [
+    "A",
+    "[danke, gute nacht|mach ich|ok, tschüss]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-brezel-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[laugenbrezel zum frühstück, bestes leben|brezel und {s:drink}, so fängt ein guter tag an|frische brezel vom bäcker, warm]"
+   ],
+   [
+    "B",
+    "[mit butter?|butter drauf oder pur?|gesalzen oder ohne salz]"
+   ],
+   [
+    "A",
+    "[mit butter, natürlich|butterbrezel, was sonst|butter, dick]"
+   ],
+   [
+    "C",
+    "[in norddeutschland heißt es brezel, im süden breze|im süden sagen sie breze|sag \"breze\" in bayern, sonst gibts ärger]"
+   ],
+   [
+    "A",
+    "[ich sag einfach \"das da\" und zeige|ich zeige einfach drauf|ich bestell mit dem finger]"
+   ],
+   [
+    "B",
+    "[diplomatisch|sehr schlau|so geht es auch]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sonntagsbroetchen-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[sonntags brötchen holen ist eine religion bei uns|jeden sonntag hol ich brötchen für alle|sonntagsbrötchen sind familientradition]"
+   ],
+   [
+    "B",
+    "[wer geht bei euch|wer muss raus in die kälte|wer ist der auserwählte]"
+   ],
+   [
+    "A",
+    "[immer ich, weil ich als erstes wach bin|ich, {s:family} schläft noch|ich, {s:family} ist zu faul]"
+   ],
+   [
+    "C",
+    "[dafür darfst du die besten aussuchen|dafür kriegst du das größte|du hast die macht]"
+   ],
+   [
+    "A",
+    "[genau, ich nehm immer zwei extra|ich esse eins auf dem weg|eins verschwindet immer unterwegs]"
+   ],
+   [
+    "B",
+    "[brötchenschwund|klassischer brötchenschwund|der bäckerweg-tribut]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-mittagsschlaf-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[ein mittagsschlaf sollte pflicht sein|nach dem essen bräuchte ich 20 minuten schlaf|wieso gibt es bei uns keine siesta]"
+   ],
+   [
+    "B",
+    "[die spanier haben es verstanden|siesta sollte man importieren|ich bin dafür]"
+   ],
+   [
+    "C",
+    "[mein chef würde das nicht verstehen|im büro unmöglich|mein chef schläft nie]"
+   ],
+   [
+    "A",
+    "[nach {s:food} ist das ein menschenrecht|nach {s:food} kann man nicht arbeiten|{s:food} macht müde]"
+   ],
+   [
+    "B",
+    "[unterschreib ich|petition gestartet|wer ist dabei]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kaffeemaschine-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[die kaffeemaschine im büro ist kaputt|keine kaffeemaschine heute|kaffeemaschine defekt, das büro ist im chaos]"
+   ],
+   [
+    "B",
+    "[panik|notstand|wie überlebt ihr]"
+   ],
+   [
+    "A",
+    "[alle trinken {s:drink} aus dem automaten|wir trinken notgedrungen {s:drink}|ersatz: {s:drink}]"
+   ],
+   [
+    "C",
+    "[das ist schlimmer als ein zugausfall|das ist ein krisenfall|dafür sollte es eine durchsage geben]"
+   ],
+   [
+    "A",
+    "[\"verzögerung im kaffeeablauf\"|\"wir bitten um ihr verständnis, ohne koffein\"|haha genau]"
+   ],
+   [
+    "B",
+    "[mein beileid|halt durch|wie lange dauert die reparatur]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-cafe-name-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wenn ich ein café eröffne, wie soll es heißen|namensideen für mein café?|ich brauche einen namen für mein café]"
+   ],
+   [
+    "B",
+    "[\"café zugausfall\", für wartende|\"zur verspätung\"|\"betriebsablauf\"]"
+   ],
+   [
+    "C",
+    "[\"kolay gelsin\"|etwas türkisches, \"çay ocağı\"|\"keyif\", heißt gemütlich auf türkisch]"
+   ],
+   [
+    "A",
+    "[keyif gefällt mir|ich nehm keyif|das wird es]"
+   ],
+   [
+    "B",
+    "[und als spezialität {s:food}|und auf der karte steht {s:food}|dann gibts dort {s:food}]"
+   ],
+   [
+    "A",
+    "[deal|abgemacht|eine gute kombination]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-cafe-oder-wohnung-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[café eröffnen oder erst wohnung kaufen?|wohnung zuerst oder café?|was ist klüger: café oder wohnung]"
+   ],
+   [
+    "B",
+    "[wohnung, keine miete mehr|erst wohnung, dann zahlst du keine miete|wohnung, das ist sicher]"
+   ],
+   [
+    "C",
+    "[café bringt mehr, aber du brauchst 60 tage erfahrung|für das café brauchst du erfahrung und kapital|café ist stufe 3, das dauert]"
+   ],
+   [
+    "A",
+    "[ok dann wohnung|dann wohnung zuerst|klingt logisch]"
+   ],
+   [
+    "B",
+    "[und am {s:day} feierst du mit {s:food}|einweihung mit {s:food}|einzugsessen: {s:food}]"
+   ],
+   [
+    "A",
+    "[ihr seid alle eingeladen|ihr kommt alle|alle sind eingeladen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-laden-konkurrenz-2",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[neben meinem laden hat ein zweiter aufgemacht|konkurrenz direkt nebenan|ein neuer laden in meiner straße]"
+   ],
+   [
+    "B",
+    "[dann teilen sich die kunden|ja, das merkst du am umsatz|das spiel teilt die kunden auf]"
+   ],
+   [
+    "A",
+    "[was kann ich machen|wie halte ich die kunden|tipps?]"
+   ],
+   [
+    "C",
+    "[mehr personal, bessere qualität|gute leute einstellen|qualität hilft beim umsatz]"
+   ],
+   [
+    "A",
+    "[ok, ich stell noch jemanden ein|dann suche ich mitarbeiter|ich mach eine anzeige auf]"
+   ],
+   [
+    "B",
+    "[und trink erst mal {s:drink}|erst {s:drink}, dann kämpfen|ruhig bleiben, {s:drink} trinken]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-gehalt-zu-spaet-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein chef im spiel hat kein geld für mein gehalt|gehalt kam nicht, chef pleite?|mein gehalt ist nicht gekommen]"
+   ],
+   [
+    "B",
+    "[dann wird es als schuld eingetragen|dann schuldet er dir das|das wird als schulden notiert]"
+   ],
+   [
+    "C",
+    "[und sein ansehen sinkt|sein ruf geht runter|der chef verliert ansehen]"
+   ],
+   [
+    "A",
+    "[das ist wenigstens gerecht|gut, das ist fair|immerhin]"
+   ],
+   [
+    "B",
+    "[und du kannst dir was anderes suchen|wechsel den job|such dir einen besseren chef]"
+   ],
+   [
+    "A",
+    "[ich warte bis {s:day}|ich gebe ihm bis {s:day}|noch bis {s:day}, dann kündige ich]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-chef-gut-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein chef im spiel zahlt immer pünktlich|ich hab den besten chef|ein lob an meinen chef]"
+   ],
+   [
+    "B",
+    "[wer ist es|erzähl|so was gibts?]"
+   ],
+   [
+    "C",
+    "[das bin ich, {A}|oh, das bin ja ich|danke {A}, ich bin gerührt]"
+   ],
+   [
+    "A",
+    "[{C}! wusste nicht dass du hier bist|oh, {C} liest mit|hallo chef]"
+   ],
+   [
+    "C",
+    "[dafür kriegst du morgen {s:food} im laden|als dank: {s:food} gratis|{s:food} geht aufs haus]"
+   ],
+   [
+    "B",
+    "[ich will auch bei {C} arbeiten|{C}, stellst du noch ein?|wo bewirbt man sich]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-job-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[umfrage: welcher job ist am besten am anfang|kurier, kellner, kassierer oder bauarbeiter?|euer lieblingsjob in stufe 1]"
+   ],
+   [
+    "B",
+    "[kurier, man ist frei|kurier, kein chef|kurier, immer]"
+   ],
+   [
+    "C",
+    "[kassierer, gehalt plus aufgaben|kassierer, sicheres gehalt|markt, weil es gehalt gibt]"
+   ],
+   [
+    "D",
+    "[bauarbeiter, weil man später meister wird|bau, für die karriere|bauarbeiter, dann meister]"
+   ],
+   [
+    "A",
+    "[alle haben gute argumente|schwere entscheidung|jeder hat recht]"
+   ],
+   [
+    "D",
+    "[und kellner kriegt {s:food} gratis, sagt man|kellner darf {s:food} essen, oder|nur kellner kommt an {s:food}]"
+   ],
+   [
+    "B",
+    "[das ist ein gerücht|ich glaub das nicht|quelle?]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-abend-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[abendessen heute: kochen oder bestellen?|kochen oder lieferdienst?|wer kocht heute selbst]"
+   ],
+   [
+    "B",
+    "[kochen, {s:food}|selbst, {s:food}|ich koche {s:food}]"
+   ],
+   [
+    "C",
+    "[bestellen, ich bin müde|lieferung, ganz klar|ich bestell, keine kraft]"
+   ],
+   [
+    "D",
+    "[{s:family} lädt mich ein|{s:family} kocht für mich|{s:family} hat gekocht, gratis essen]"
+   ],
+   [
+    "A",
+    "[{D} hat gewonnen|{D} ist der schlauste|{D}, profi]"
+   ],
+   [
+    "D",
+    "[ich weiß|jahre der übung|die beste strategie]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-reiseziel-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wenn ihr jetzt fliegen könntet, wohin|traumziel für den winter?|wo würdet ihr jetzt gern sein]"
+   ],
+   [
+    "B",
+    "[irgendwo warm|strand|sonne, egal wo]"
+   ],
+   [
+    "C",
+    "[istanbul, wegen der türken hier|türkei, ich will simit am bosporus|istanbul, ich hab so viel gehört]"
+   ],
+   [
+    "A",
+    "[gute wahl|auch mein traum|da will ich auch hin]"
+   ],
+   [
+    "C",
+    "[und {s:food} am meer essen|und am wasser sitzen mit {s:drink}|mit {s:drink} am bosporus]"
+   ],
+   [
+    "B",
+    "[ok jetzt hab ich fernweh|danke, jetzt bin ich traurig|warum tut ihr mir das an]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-heimweh-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich wohne gerade weg von zu hause und vermisse {s:food}|ich vermisse {s:food} von zu hause|heimweh nach {s:food}, so wie {s:family} es macht]"
+   ],
+   [
+    "B",
+    "[was genau|wie bei mama?|welches?]"
+   ],
+   [
+    "A",
+    "[so wie zu hause, {s:family} macht es am besten|so wie {s:family} es macht|nur {s:family} kann das]"
+   ],
+   [
+    "C",
+    "[ruf an und frag nach dem rezept|lass dir das rezept geben|rezept besorgen, selbst kochen]"
+   ],
+   [
+    "A",
+    "[schmeckt nie gleich|ich hab es versucht, es ist nicht dasselbe|das fehlt die liebe]"
+   ],
+   [
+    "B",
+    "[das liegt an der pfanne|das geheimnis ist die pfanne|es ist immer die pfanne]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-mitbewohner-putzplan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wir haben einen putzplan in der wg|neuer putzplan in der wg|putzplan, die wg ist jetzt bürokratisch]"
+   ],
+   [
+    "B",
+    "[sehr deutsch|wie ein beamter|typisch wg]"
+   ],
+   [
+    "A",
+    "[diese woche bin ich mit küche dran|ich hab bad diese woche|ich bin mit müll dran]"
+   ],
+   [
+    "C",
+    "[und hält sich jemand dran?|wird es befolgt?|wie lange hält das]"
+   ],
+   [
+    "A",
+    "[bis {s:day}, dann nicht mehr|maximal bis {s:day}|wir geben ihm bis {s:day}]"
+   ],
+   [
+    "B",
+    "[realistisch|ehrlich|klassisch]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-bus-heizung-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[im bus ist die heizung auf 30 grad|der bus ist eine sauna heute|bus geheizt wie ein backofen]"
+   ],
+   [
+    "B",
+    "[und draußen minus 5|und dann raus in die kälte|erkältung garantiert]"
+   ],
+   [
+    "A",
+    "[genau, und {s:thing}: noch im bus|und {s:thing}? im bus geblieben|und dann der schock: {s:thing}, im bus]"
+   ],
+   [
+    "C",
+    "[fundbüro|beim fahrer fragen|fundbüro der verkehrsbetriebe]"
+   ],
+   [
+    "A",
+    "[das ist ein abenteuer für {s:day}|mach ich am {s:day}|ok, {s:day} frag ich]"
+   ],
+   [
+    "B",
+    "[viel glück|hoffentlich|drück die daumen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-glatteis-geh-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[ich laufe wie ein pinguin heute|glatteis, ich gehe wie ein pinguin|pinguinmodus auf dem bürgersteig]"
+   ],
+   [
+    "B",
+    "[ganz wichtig: kleine schritte|füße flach|knie leicht gebeugt]"
+   ],
+   [
+    "A",
+    "[{s:family} ist heute ausgerutscht|{s:family} lag fast auf dem boden|{s:family} hat sich fast hingelegt]"
+   ],
+   [
+    "C",
+    "[alles ok?|alles gut bei euch?|geçmiş olsun]"
+   ],
+   [
+    "A",
+    "[ja, nur ein blauer fleck|alles gut, wir lachen schon|nichts passiert, nur der stolz]"
+   ],
+   [
+    "B",
+    "[zum glück|gut, puh|gut zu hören]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-aufzug-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein nachbar hat im aufzug gefragt \"rauf oder runter\"|heute im aufzug, peinliche stille für 7 stockwerke|aufzug-smalltalk ist eine kunst]"
+   ],
+   [
+    "B",
+    "[was hast du gesagt|und?|wie hast du reagiert]"
+   ],
+   [
+    "A",
+    "[ich hab über das wetter gesprochen|\"ganz schön kalt heute\"|ich hab \"jaja\" gesagt]"
+   ],
+   [
+    "C",
+    "[klassische deutsche aufzugskonversation|perfekt, wie im lehrbuch|sehr korrekt]"
+   ],
+   [
+    "A",
+    "[morgen nehm ich die treppe|ab {s:day} nur noch treppe|nie wieder aufzug]"
+   ],
+   [
+    "B",
+    "[gut für die beine|gratis sport|spart den beintag]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-zahnarzt-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[zahnarzt am {s:day}, ich hab angst|ich hab am {s:day} zahnarzt|{s:day}: zahnarzt. ich zittere jetzt schon]"
+   ],
+   [
+    "B",
+    "[wird schon|ist nur kontrolle?|du schaffst das]"
+   ],
+   [
+    "A",
+    "[kontrolle, aber ich hab zu viel {s:food} gegessen|ich ahne schlimmes|ich hab ein schlechtes gewissen]"
+   ],
+   [
+    "C",
+    "[die zahnärzte sehen alles|sie wissen immer, was du gegessen hast|sie haben röntgenaugen]"
+   ],
+   [
+    "A",
+    "[danke, sehr beruhigend|ihr helft nicht|jetzt hab ich noch mehr angst]"
+   ],
+   [
+    "B",
+    "[geçmiş olsun im voraus|viel glück|wir denken an dich]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sport-januar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[das fitnessstudio ist im januar so voll|im januar ist das gym überfüllt|im gym gibts keine geräte, alle haben vorsätze]"
+   ],
+   [
+    "B",
+    "[im februar ist es wieder leer|nur bis februar|warte drei wochen]"
+   ],
+   [
+    "C",
+    "[ich bin auch einer von denen|ich bin der januar-typ|ich bin seit 1. januar dabei, sorry]"
+   ],
+   [
+    "A",
+    "[willkommen|bleib dabei|{C}, halte durch]"
+   ],
+   [
+    "C",
+    "[ich versuch es, sonst mach ich wieder {s:hobby}|sonst bleibt es bei {s:hobby}|sonst halt {s:hobby}]"
+   ],
+   [
+    "B",
+    "[{s:hobby} ist auch sport|zählt auch|ist auch bewegung]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-pause-kollegen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[kollegen reden in der pause nur über arbeit|wieso redet man in der pause über die arbeit|pause ist keine pause]"
+   ],
+   [
+    "B",
+    "[sag \"wie war dein wochenende\"|wechsle das thema|frag nach {s:hobby}]"
+   ],
+   [
+    "A",
+    "[hab ich, dann reden sie über das wochenende im büro|sie reden immer über den chef|sie reden über das excel]"
+   ],
+   [
+    "C",
+    "[dann such dir andere kollegen|dann iss draußen|geh spazieren]"
+   ],
+   [
+    "A",
+    "[ich ess lieber {s:food} allein|ich bleib allein mit {s:food}|{s:food} und handy, perfekt]"
+   ],
+   [
+    "B",
+    "[mit dem spiel|mit uns hier|wir sind deine kollegen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-langer-name-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ein türke fragte mich, wie man \"rindfleischetikettierung\" ausspricht|wieso sind deutsche wörter so lang, fragt ein türkischer freund|türkischer spieler fragt: warum habt ihr so lange wörter]"
+   ],
+   [
+    "B",
+    "[türkisch hat auch lange wörter|türkisch klebt doch auch alles zusammen|türkisch ist da nicht anders]"
+   ],
+   [
+    "C",
+    "[\"çekoslovakyalılaştıramadıklarımızdan\", hab ich gelesen|das längste türkische wort ist auch ein satz|türkisch ist wie lego]"
+   ],
+   [
+    "A",
+    "[dann sind wir quitt|gleichstand|1 zu 1]"
+   ],
+   [
+    "B",
+    "[und am ende reden alle über {s:food}|und dann sprechen alle über {s:food}|egal welche sprache, {s:food} versteht jeder]"
+   ],
+   [
+    "C",
+    "[universalsprache|essen ist international|wahr]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-guenaydin-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[günaydın!|günaydın zusammen|günaydın, wie die türken sagen]"
+   ],
+   [
+    "B",
+    "[günaydın auch dir|auch günaydın|günaydın {A}]"
+   ],
+   [
+    "C",
+    "[was heißt das?|ich verstehe nur bahnhof|übersetzt bitte]"
+   ],
+   [
+    "B",
+    "[guten morgen|heißt guten morgen|wörtlich \"heller tag\", glaube ich]"
+   ],
+   [
+    "C",
+    "[schön, dann günaydın und {s:drink} für alle|günaydın und eine runde {s:drink}|günaydın, {s:drink} ist fertig]"
+   ],
+   [
+    "A",
+    "[perfekt|ich nehm einen|danke {C}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sagol-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wenn jemand \"sağ ol\" sagt, was antworte ich|was ist die antwort auf \"sağ ol\"?|wie reagiere ich auf \"sağ ol\"]"
+   ],
+   [
+    "B",
+    "[\"sen de sağ ol\" oder einfach \"rica ederim\"|man sagt \"rica ederim\"|\"bir şey değil\", glaube ich]"
+   ],
+   [
+    "A",
+    "[so viele möglichkeiten|wow, ok|ich übe das]"
+   ],
+   [
+    "C",
+    "[ich sag einfach \"danke\" zurück, das klappt auch|ich sag einfach \"tamam\"|ich lächle nur, haha]"
+   ],
+   [
+    "A",
+    "[{s:family} lernt das jetzt auch|ich übe es, {s:family} hört zu|{s:family} hat mitgeschrieben]"
+   ],
+   [
+    "B",
+    "[bald sprichst du fließend|gut so|yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-zocken-nacht-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[wer zockt noch|noch jemand am zocken?|um diese zeit noch gaming?]"
+   ],
+   [
+    "B",
+    "[ich, eine runde noch|ich, nur noch eine|\"nur noch eine\" seit 2 stunden]"
+   ],
+   [
+    "C",
+    "[ich spiele dieses spiel, zählt das|ich bin nur hier im chat|ich lese nur]"
+   ],
+   [
+    "A",
+    "[alles zählt|ja, zählt|du bist dabei]"
+   ],
+   [
+    "B",
+    "[morgen bin ich tot|morgen ist {s:day}, oh nein|ich muss am {s:day} früh raus]"
+   ],
+   [
+    "C",
+    "[dann schlaf|geh ins bett|wir sehen uns morgen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-nacht-geraeusch-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[ich hör geräusche in der wohnung|irgendwas klopft in der küche|unheimliches geräusch, 3 uhr nachts]"
+   ],
+   [
+    "B",
+    "[heizung|kühlschrank|das ist das haus]"
+   ],
+   [
+    "A",
+    "[oder {s:family} isst heimlich|{s:family} ist in der küche|ich glaub, {s:family} sucht was zu essen]"
+   ],
+   [
+    "C",
+    "[dann geh hin und iss mit|ab in die küche|nachtsnack zu zweit]"
+   ],
+   [
+    "A",
+    "[es ist {s:food}!|jemand hat {s:food} warm gemacht|{s:food} um 3 uhr, ich gehe]"
+   ],
+   [
+    "B",
+    "[haha|prima|der beste nachtfund]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-mondschein-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[der mond ist heute riesig|habt ihr den mond gesehen|vollmond, so hell]"
+   ],
+   [
+    "B",
+    "[deshalb kann ich nicht schlafen|ah, darum bin ich wach|vollmond, ich wusste es]"
+   ],
+   [
+    "C",
+    "[ich sehe nur wolken|bei mir alles grau|in {C.sehir} ist es bewölkt]"
+   ],
+   [
+    "A",
+    "[schade, {C}|schick dir ein bild|dann stell es dir vor]"
+   ],
+   [
+    "C",
+    "[ich stell es mir vor, mit {s:drink}|ich mach {s:drink} und denk dran|ok, ich hab {s:drink} und phantasie]"
+   ],
+   [
+    "B",
+    "[so schön|das reicht|genau so]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-nacht-gedanken-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[nachts denke ich immer über mein leben nach|um diese zeit kommen die großen fragen|2 uhr, philosophische stunde]"
+   ],
+   [
+    "B",
+    "[zum beispiel?|welche fragen?|worüber?]"
+   ],
+   [
+    "A",
+    "[warum ich im spiel noch kein café habe|wieso ich {s:hobby} nie weitergemacht hab|ob ich wirklich mehr sparen sollte]"
+   ],
+   [
+    "C",
+    "[die wichtigen fragen|echte philosophie|sehr tief]"
+   ],
+   [
+    "A",
+    "[und ob {s:food} zum frühstück okay ist|und ob ich noch {s:food} essen sollte|und, ob es noch {s:food} gibt]"
+   ],
+   [
+    "B",
+    "[ja, {s:food} ist immer okay|die antwort ist ja|geh schlafen {A}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-witz-makler-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[warum hat der makler das haus nicht verkauft|witz: makler im spiel geht zum chef|ein makler, ein beamter und ein kurier sitzen im zug]"
+   ],
+   [
+    "B",
+    "[weiter|und?|sag schon]"
+   ],
+   [
+    "A",
+    "[der zug kommt nicht|weil der zug ausgefallen ist|sie sitzen da immer noch]"
+   ],
+   [
+    "C",
+    "[das ist kein witz, das ist ein bericht|das ist die realität|das ist ein dokumentarfilm]"
+   ],
+   [
+    "A",
+    "[ich hab nichts anderes|das war mein bester|humor nach {s:drink}]"
+   ],
+   [
+    "B",
+    "[noch {s:drink} und es wird besser|mehr {s:drink} bitte|ich hab gelacht. ein bisschen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-witz-inflation-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[inflation ist, wenn {s:food} gestern billiger war|inflation erklärt: {s:food} morgen teurer|ich erkläre inflation mit {s:food}]"
+   ],
+   [
+    "B",
+    "[und das gehalt?|und mein lohn?|und das gehalt kommt nach]"
+   ],
+   [
+    "A",
+    "[das gehalt ist wie die bahn|das gehalt hat verspätung|gehalt: verzögerung im betriebsablauf]"
+   ],
+   [
+    "C",
+    "[das bahn-thema verfolgt uns|wir kommen immer zur bahn zurück|alles führt zur bahn]"
+   ],
+   [
+    "A",
+    "[alles ist die bahn|die bahn ist das leben|jeder weg führt zur bahn]"
+   ],
+   [
+    "B",
+    "[stimmt|philosophisch|tief]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-geschwister-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:family} hat mein spiel gesehen und will auch spielen|{s:family} hat das spiel installiert|jetzt spielt auch {s:family}]"
+   ],
+   [
+    "B",
+    "[willkommen in der familie|schön, dann seid ihr ein team|und jetzt konkurrenz?]"
+   ],
+   [
+    "A",
+    "[nach 5 minuten schon die frage nach einem café|sofort kam: warum bin ich nicht reich?|ungeduld pur, nach einer stunde]"
+   ],
+   [
+    "C",
+    "[geduld lernen, wie wir alle|yavaş yavaş, das muss man lernen|erst kurier, dann café]"
+   ],
+   [
+    "A",
+    "[ich erklär es später, mit {s:drink}|erklär ich heute abend, bei {s:drink}|ich bring es bei, mit {s:drink} und geduld]"
+   ],
+   [
+    "B",
+    "[guter lehrer|du bist der profi jetzt|familien-mentor]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-handy-runtergefallen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[handy ist runtergefallen, display hat einen riss|display kaputt, mitten im spiel|ich hab mein handy fallen lassen]"
+   ],
+   [
+    "B",
+    "[oh nein|aua|wie schlimm]"
+   ],
+   [
+    "A",
+    "[ein riss quer durchs café|man kann noch spielen|es geht noch, aber hässlich]"
+   ],
+   [
+    "C",
+    "[schutzfolie drauf und weiter|folie und weiter|weitermachen]"
+   ],
+   [
+    "A",
+    "[das kostet so viel wie {s:food} für einen monat|reparatur kostet ein vermögen|ich spare dafür jetzt]"
+   ],
+   [
+    "B",
+    "[im spiel und in echt sparen|doppelt sparen|doppelleben]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-paket-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[das paket ist beim nachbarn gelandet|paketbote hat es wieder zum nachbarn gebracht|mein paket ist irgendwo im haus]"
+   ],
+   [
+    "B",
+    "[welcher nachbar|weißt du wo?|zettel im briefkasten?]"
+   ],
+   [
+    "A",
+    "[im fünften stock, den kenne ich nicht|zettel sagt \"nachbar\", sonst nichts|bei einer frau, die ich nie gesehen hab]"
+   ],
+   [
+    "C",
+    "[dann lernst du jemanden kennen|soziales experiment|so lernt man nachbarn kennen]"
+   ],
+   [
+    "A",
+    "[mit {s:food} als dankeschön?|ich bring {s:food} mit|als dank: {s:food}]"
+   ],
+   [
+    "B",
+    "[sehr höflich|perfekt|das gibt pluspunkte]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-geld-zaehlen-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wie viel geld hattet ihr am ersten tag|wir haben alle mit 100 tausend angefangen, oder?|alle starten mit 100.000, richtig?]"
+   ],
+   [
+    "B",
+    "[ja, alle gleich|genau, gleich für alle|jeder fängt mit 100 tausend an]"
+   ],
+   [
+    "C",
+    "[und ich hab es in der ersten woche halb ausgegeben|ich hab die hälfte sofort verbraten|mein geld war schnell weg]"
+   ],
+   [
+    "A",
+    "[wofür|wieso|was hast du gekauft]"
+   ],
+   [
+    "C",
+    "[lebenshaltung und eine sinnlose idee|miete, und ich war zu schnell|weiß nicht mehr, wie {s:food} im kühlschrank verschwindet]"
+   ],
+   [
+    "B",
+    "[so geht es jedem|klassischer anfängerfehler|lernt man draus]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-fehler-anfang-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein größter fehler am anfang|was ich beim start falsch gemacht hab|lernt aus meinem fehler]"
+   ],
+   [
+    "B",
+    "[erzähl|welcher?|lass hören]"
+   ],
+   [
+    "A",
+    "[ich hab einen kredit genommen ohne zu rechnen|ich hab ein grundstück gekauft und gedacht, es bringt miete|ich hab nie die tagesaufgaben gemacht]"
+   ],
+   [
+    "C",
+    "[das passiert|jeder lernt|wichtig ist, dass man es jetzt weiß]"
+   ],
+   [
+    "A",
+    "[heute würd ich mit kurier und sparen anfangen|jetzt bin ich schlauer|dafür hab ich jetzt erfahrung]"
+   ],
+   [
+    "B",
+    "[und am {s:day} schreibst du einen guide|mach einen leitfaden|du solltest tipps geben]"
+   ],
+   [
+    "A",
+    "[vielleicht, mit {s:drink}|gerne, bei {s:drink}|wenn ich zeit hab]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-sparen-tipp-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[spartipp: feste summe jeden monat weglegen|ich lege immer gleich viel zur seite|mein trick: fester sparbetrag]"
+   ],
+   [
+    "B",
+    "[bei mir geht alles für miete weg|ich hab nichts übrig|geht nicht, alles ist weg]"
+   ],
+   [
+    "C",
+    "[dann job wechseln, mehr verdienen|kurs machen und aufsteigen|zweite stufe bringt mehr]"
+   ],
+   [
+    "B",
+    "[welcher kurs?|welcher ist schnell?|was lohnt sich?]"
+   ],
+   [
+    "C",
+    "[buchhalter oder beamter, festes gehalt|makler, gehalt plus provision|kommt drauf an, wie oft du spielst]"
+   ],
+   [
+    "A",
+    "[und nicht so viel {s:food} bestellen|und weniger {s:food}|und {s:food} zu hause machen]"
+   ],
+   [
+    "B",
+    "[das trifft|autsch|ich fühle mich angegriffen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-langeweile-sonntag-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[mir ist langweilig|langeweile pur|nichts zu tun heute]"
+   ],
+   [
+    "B",
+    "[mach {s:hobby}|probier {s:hobby}|{s:hobby}?]"
+   ],
+   [
+    "A",
+    "[hab ich schon|hab ich gestern|keine lust]"
+   ],
+   [
+    "C",
+    "[dann koch {s:food}|{s:food} backen|koch was schönes]"
+   ],
+   [
+    "A",
+    "[zu viel arbeit|zu kompliziert|zu faul]"
+   ],
+   [
+    "B",
+    "[dann hilf deinem café im spiel|dann spiel|dann tagesaufgaben]"
+   ],
+   [
+    "A",
+    "[ok das mach ich|ja, das geht|gut, ich bin weg]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-mitternacht-hunger-2",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[ich hab gerade {s:food} kalt aus dem kühlschrank gegessen|reste von {s:food}, kalt, um mitternacht|{s:food} um mitternacht, direkt aus der dose]"
+   ],
+   [
+    "B",
+    "[ehrlich, beste zeit dafür|kalt schmeckt besser|klassiker]"
+   ],
+   [
+    "C",
+    "[ich kann nachts nur {s:drink} trinken|nachts geht bei mir nur {s:drink}|bei mir nur {s:drink}]"
+   ],
+   [
+    "A",
+    "[du verpasst was|{C}, probier es|so ist das leben]"
+   ],
+   [
+    "C",
+    "[morgen|vielleicht nächste woche|nächstes mal]"
+   ],
+   [
+    "B",
+    "[schlaft gut|gute nacht|nacht]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-stau-tunnel-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[stau vor dem tunnel, nichts bewegt sich|seit 30 minuten stau|ich stehe im stau, gleich feierabend vorbei]"
+   ],
+   [
+    "B",
+    "[und die bahn?|warum nicht zug?|zug wäre auch nicht besser]"
+   ],
+   [
+    "A",
+    "[die bahn fiel aus, deswegen auto|wollte zug, ging nicht|bahn war keine option]"
+   ],
+   [
+    "C",
+    "[du kannst nicht gewinnen|du hast verloren, so oder so|egal was, du kommst zu spät]"
+   ],
+   [
+    "A",
+    "[dann eben radio und {s:drink}|ok, musik und {s:drink}|ich hab wenigstens {s:drink}]"
+   ],
+   [
+    "B",
+    "[positiv bleiben|halt durch|alles gute]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-pendler-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[wer pendelt hier jeden tag|pendler unter euch?|wer fährt jeden morgen eine stunde zur arbeit]"
+   ],
+   [
+    "B",
+    "[ich, 50 minuten, wenn alles klappt|ich, und es klappt nie|ich, mit zweimal umsteigen]"
+   ],
+   [
+    "C",
+    "[ich arbeite von zu hause, sorry|homeoffice, ich gewinne|ich lauf fünf minuten]"
+   ],
+   [
+    "A",
+    "[{C}, wir hassen dich ein bisschen|{C}, das ist gemein|neid, {C}]"
+   ],
+   [
+    "C",
+    "[dafür gibt es bei mir nur {s:food} vom vortag|ich hab dafür keine kantine, nur {s:food}|ich esse jeden tag {s:food}, ihr habt kantine]"
+   ],
+   [
+    "B",
+    "[fairer tausch|ok, das ist der preis|ich nehm trotzdem homeoffice]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-bahn-anschluss-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[anschluss verpasst, wegen drei minuten verspätung|der erste zug war zu spät, der zweite pünktlich weg|mein anschlusszug war weg]"
+   ],
+   [
+    "B",
+    "[das ist die regel: der eine zu spät, der andere pünktlich|murphys gesetz der bahn|immer so]"
+   ],
+   [
+    "A",
+    "[jetzt sitz ich am bahnhof mit {s:drink}|45 minuten bahnhof, {s:drink} vom automaten|wartezeit, {s:drink}, frust]"
+   ],
+   [
+    "C",
+    "[mach doch deine tagesaufgaben im spiel|perfekte zeit für tagesaufgaben|spiel, dann vergeht die zeit]"
+   ],
+   [
+    "A",
+    "[schon gemacht, sanduhr kassiert|erledigt, eine sanduhr bekommen|drei aufgaben, eine sanduhr, fertig]"
+   ],
+   [
+    "B",
+    "[produktiver wartender|das ist effizienz|so überlebt man den bahnhof]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-feierabend-sofa-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[feierabend, und ich hab keine energie mehr für irgendwas|nach der arbeit liege ich wie ein stein|ich bin zu müde für feierabend]"
+   ],
+   [
+    "B",
+    "[dann ist das sofa dein freund|sofa und nichts|einfach liegen]"
+   ],
+   [
+    "A",
+    "[ich wollte noch {s:hobby} machen|eigentlich war {s:hobby} geplant|{s:hobby} wäre der plan gewesen]"
+   ],
+   [
+    "C",
+    "[morgen|{s:hobby} läuft nicht weg|verschieb es]"
+   ],
+   [
+    "A",
+    "[das sag ich seit einer woche|morgen, wie jeden tag|morgen, versprochen, wie immer]"
+   ],
+   [
+    "B",
+    "[haha ehrlich|wir kennen das|du bist nicht allein]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-baecker-schlange-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[vor dem bäcker steht eine schlange bis zur straße|samstagmorgen, schlange beim bäcker|15 leute vor mir beim bäcker]"
+   ],
+   [
+    "B",
+    "[lohnt sich|wer warten kann, kriegt frisches|gute brötchen brauchen zeit]"
+   ],
+   [
+    "A",
+    "[es ist minus 4 grad|ich friere|meine füße sind weg]"
+   ],
+   [
+    "C",
+    "[dafür ist {s:drink} zu hause schon fertig|zu hause wartet {s:drink}|gleich gibt es {s:drink} und brötchen]"
+   ],
+   [
+    "A",
+    "[das hält mich am leben|der gedanke daran hilft|dafür lohnt es sich]"
+   ],
+   [
+    "B",
+    "[tapfer|halte durch|wir glauben an dich]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-backen-sonntag-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[heute zum ersten mal brot gebacken|ich hab selbst brot gemacht|eigenes brot, erster versuch]"
+   ],
+   [
+    "B",
+    "[und?|wie ist es geworden|essbar?]"
+   ],
+   [
+    "A",
+    "[hart wie ein ziegelstein|innen noch roh|eigentlich gut, nur flach]"
+   ],
+   [
+    "C",
+    "[das erste ist immer so|übung|beim zweiten mal wird es besser]"
+   ],
+   [
+    "A",
+    "[ich hab jetzt lieber {s:food} gemacht|als backup gibt es {s:food}|plan b: {s:food}]"
+   ],
+   [
+    "B",
+    "[plan b ist immer gut|klug|gute idee]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-mieter-oder-vermieter-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab jetzt eine zweite wohnung und vermiete sie|meine zweite wohnung bringt miete|ich bin vermieter im spiel]"
+   ],
+   [
+    "B",
+    "[wie fühlt sich das an|glückwunsch, vermieter|und, lohnt es sich?]"
+   ],
+   [
+    "A",
+    "[gut, monatlich kommt was rein|regelmäßige miete, schön|langsam, aber sicher]"
+   ],
+   [
+    "C",
+    "[und die eigene wohnung spart die miete|du zahlst selbst keine miete mehr, oder|doppelter vorteil]"
+   ],
+   [
+    "A",
+    "[genau|richtig|ja, das ist das beste]"
+   ],
+   [
+    "B",
+    "[ich bin noch mieter und esse {s:food}|ich bin noch mieter, {s:food} jeden tag|ich bleibe noch eine weile mieter]"
+   ],
+   [
+    "A",
+    "[das kommt auch für dich|du schaffst das|bald, {B}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-zinsen-null-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[warum gibt es keine zinsen auf dem konto|sparbuch ohne zinsen, ernsthaft|geld liegt einfach rum, keine zinsen]"
+   ],
+   [
+    "B",
+    "[weil das spiel will, dass du investierst|so will das spiel, dass man was macht|damit man kauft]"
+   ],
+   [
+    "C",
+    "[und die inflation frisst es langsam auf|geld verliert jeden monat wert|wer spart, verliert durch die inflation]"
+   ],
+   [
+    "A",
+    "[ok, dann kaufe ich was|also besser in wohnung oder grundstück|dann investiere ich]"
+   ],
+   [
+    "B",
+    "[oder du gönnst dir {s:food}|oder in {s:food} investieren|{s:food} ist auch eine investition]"
+   ],
+   [
+    "C",
+    "[in deinen bauch|kurzfristig, ja|das ist keine strategie, {B}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-wechsel-job-1",
+  "konu": "is",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich überlege, den job zu wechseln|lieber kassierer oder kurier?|jobwechsel im spiel, gute idee?]"
+   ],
+   [
+    "B",
+    "[hängt davon ab, wie viel zeit du hast|wie aktiv bist du|wenn du oft spielst, kurier]"
+   ],
+   [
+    "A",
+    "[abends und am wochenende|nicht so oft|jeden tag ein bisschen]"
+   ],
+   [
+    "C",
+    "[dann kassierer, da gibt es gehalt plus aufgaben|kassierer, weil es ein grundgehalt gibt|markt, sicherer]"
+   ],
+   [
+    "A",
+    "[ok, das klingt gut|danke|dann mach ich das]"
+   ],
+   [
+    "B",
+    "[und am {s:day} entscheidest du in ruhe|schlaf eine nacht drüber|entscheide nicht nach {s:drink}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kurs-teuer-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[die kurse sind ganz schön teuer|kursgebühr ist hoch|warum kostet der kurs so viel]"
+   ],
+   [
+    "B",
+    "[weil es sich später lohnt|investition in die zukunft|später verdienst du mehr]"
+   ],
+   [
+    "C",
+    "[und die preise steigen jeden monat, also lieber früh|inflation, die kurse werden teurer|jetzt machen, später teurer]"
+   ],
+   [
+    "A",
+    "[dann jetzt|ok, ich melde mich an|gut, jetzt also]"
+   ],
+   [
+    "B",
+    "[und lern nebenbei {s:hobby}|kurs im spiel, {s:hobby} im leben|zwei kurse gleichzeitig]"
+   ],
+   [
+    "A",
+    "[übertreib nicht|eins nach dem anderen|yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-bewerbung-warten-1",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab mich beworben und warte|bewerbung geschickt, keine antwort|ich warte auf den chef]"
+   ],
+   [
+    "B",
+    "[das dauert manchmal ein bisschen|sanduhr kann die wartezeit kürzen|mit sanduhr geht es schneller]"
+   ],
+   [
+    "A",
+    "[ich hab keine sanduhren mehr|alle verbraucht|null sanduhren]"
+   ],
+   [
+    "C",
+    "[dann tagesaufgaben|drei aufgaben, eine sanduhr|morgen bekommst du eine]"
+   ],
+   [
+    "A",
+    "[aber ich hab keinen job für aufgaben|ich bin arbeitslos, was mach ich|ok, ich versuch es]"
+   ],
+   [
+    "C",
+    "[kurier geht immer ohne chef|kurier kannst du direkt starten|kurier braucht keinen arbeitgeber]"
+   ],
+   [
+    "A",
+    "[dann kurier in der zwischenzeit|gute idee, danke|erst {s:drink}, dann kurier]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-arbeitslos-tipp-1",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mein geld ist fast weg|ich bin fast pleite im spiel|pleite, was jetzt]"
+   ],
+   [
+    "B",
+    "[dann musst du einen job annehmen|job suchen, sofort|arbeit, ist pflicht]"
+   ],
+   [
+    "C",
+    "[und keine investitionen, bis die schulden weg sind|bis die schulden weg sind, kannst du nicht investieren|erst schulden, dann investieren]"
+   ],
+   [
+    "A",
+    "[ok, kurier dann|ich mach kurier|ich fang morgen an]"
+   ],
+   [
+    "B",
+    "[und {s:food} nicht bestellen, selber machen|keine extras jetzt|sparmodus an]"
+   ],
+   [
+    "A",
+    "[nur {s:food} zu hause|{s:food} aus dem schrank, sparen|ich koch {s:food}, das ist billig]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-fruehjahr-hoffnung-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich kann es nicht erwarten, dass es frühling wird|noch zwei monate winter|wann kommt der frühling]"
+   ],
+   [
+    "B",
+    "[märz|bald|noch ein bisschen]"
+   ],
+   [
+    "C",
+    "[ich mag den winter|winter ist schön|bitte keine wintervorwürfe]"
+   ],
+   [
+    "A",
+    "[was magst du daran|wieso|erklär]"
+   ],
+   [
+    "C",
+    "[{s:drink} und decke|{s:drink}, decke, serie|{s:drink} und stille]"
+   ],
+   [
+    "B",
+    "[das argument zählt|ok, das ist gut|stark]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-kurs-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[welchen kurs macht ihr gerade|wer ist in einem kurs|umfrage: welcher kurs ist am besten]"
+   ],
+   [
+    "B",
+    "[beamtenprüfung|kpss, wie die türken sagen|beamter]"
+   ],
+   [
+    "C",
+    "[makler|maklerschein|immobilien]"
+   ],
+   [
+    "D",
+    "[buchhaltung|ich lerne buchhaltung|buchhalter]"
+   ],
+   [
+    "A",
+    "[also alle unterschiedlich|jeder macht was anderes|gute mischung]"
+   ],
+   [
+    "D",
+    "[und nebenbei {s:hobby}|und in echt {s:hobby}|und {s:hobby} nebenbei]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-moin-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[moin aus dem norden|moin moin|moin, kalt hier]"
+   ],
+   [
+    "B",
+    "[moin|servus aus dem süden|grüß gott]"
+   ],
+   [
+    "C",
+    "[und hallo aus der mitte|guten morgen aus {C.sehir}|morgen aus {C.sehir}]"
+   ],
+   [
+    "A",
+    "[ganz deutschland ist wach|wir sind alle da|perfekt]"
+   ],
+   [
+    "B",
+    "[wer hat {s:drink} schon getrunken|wer ist schon bei {s:drink}|{s:drink} läuft schon?]"
+   ],
+   [
+    "C",
+    "[ich, zweite tasse|ich, noch warm|ja, gerade]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-wiedersehen-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich war eine woche weg, was hab ich verpasst|zurück nach einer woche|nach pause wieder da]"
+   ],
+   [
+    "B",
+    "[willkommen zurück!|schön dich zu sehen|wieder da!]"
+   ],
+   [
+    "A",
+    "[mein café hat ohne mich gearbeitet|meine aushilfe hat das café geführt|ich hab gesehen, die zeit lief weiter]"
+   ],
+   [
+    "C",
+    "[und viel gekostet?|aushilfen sind teuer|wie viel hat es gekostet]"
+   ],
+   [
+    "A",
+    "[zu viel|genug|lieber nicht reden]"
+   ],
+   [
+    "B",
+    "[dann heute {s:food} und neustart|neustart mit {s:food}|{s:food} und weiter]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-chat-schnell-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[der chat ist heute so schnell|ich komm gar nicht hinterher|so viele nachrichten]"
+   ],
+   [
+    "B",
+    "[das ist der global-chat|alle sprachen auf einmal|willkommen]"
+   ],
+   [
+    "C",
+    "[ich lese nur deutsch|ich lese nur die sprache, die ich kann|ich versteh nur türkisch und deutsch]"
+   ],
+   [
+    "A",
+    "[ich hab \"afiyet olsun\" gelesen und hunger bekommen|jemand schreibt von {s:food}, jetzt hab ich hunger|jetzt will ich {s:food}]"
+   ],
+   [
+    "B",
+    "[haha|gleich gehts mir auch so|danke, jetzt auch ich]"
+   ],
+   [
+    "C",
+    "[chat macht hunger|gefährlicher chat|warnung: chat macht hungrig]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-roller-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich fahr jetzt mit dem e-roller zur arbeit|e-roller, statt bahn|neues fahrzeug: roller]"
+   ],
+   [
+    "B",
+    "[im winter?|bei der kälte?|mutig]"
+   ],
+   [
+    "A",
+    "[schneller als die bahn|weniger stress|wenigstens pünktlich]"
+   ],
+   [
+    "C",
+    "[ich wünsch dir warme hände|handschuhe nicht vergessen|gut anziehen]"
+   ],
+   [
+    "A",
+    "[hab ich, aber {s:family} hält mich für verrückt|{s:family} sagt, ich spinne|{s:family} findet es gefährlich]"
+   ],
+   [
+    "B",
+    "[{s:family} hat vielleicht recht|gute familie|hör auf die familie]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kurier-tipp-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[tipp an neue kuriere: ladet das handy auf|kurier-tipp: immer powerbank|als kurier niemals ohne powerbank]"
+   ],
+   [
+    "B",
+    "[warum?|gute idee|wieso so wichtig]"
+   ],
+   [
+    "A",
+    "[weil ich heute mitten in der lieferung keinen akku hatte|akku leer, auftrag weg|handy aus, auftrag futsch]"
+   ],
+   [
+    "C",
+    "[aua|oh nein|das tut weh]"
+   ],
+   [
+    "A",
+    "[und {s:drink} in der thermoskanne|und immer {s:drink} dabei|und zweitens: {s:drink}]"
+   ],
+   [
+    "B",
+    "[zwei weise regeln|notiert|gute tipps]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kassierer-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kassierer im spiel hat gehalt und aufgaben, oder|wie verdient man als kassierer|kassierer, wie läuft das]"
+   ],
+   [
+    "B",
+    "[ja, grundgehalt plus aufgaben|gehalt und pro aufgabe extra|beides]"
+   ],
+   [
+    "A",
+    "[und brauche ich einen kurs|gibt es voraussetzungen|wie fange ich an]"
+   ],
+   [
+    "C",
+    "[kein kurs, stufe eins|gar nichts, direkt bewerben|einfach bewerben]"
+   ],
+   [
+    "A",
+    "[perfekt, dann bewerbe ich mich|dann ist das mein job|gut, dann kassierer]"
+   ],
+   [
+    "B",
+    "[und dann jeden tag {s:food} in der pause|und pause mit {s:food}|arbeitspause mit {s:food}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-ausgehen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[wer geht heute abend noch raus|ausgehen bei der kälte?|heute noch was vor?]"
+   ],
+   [
+    "B",
+    "[nein, viel zu kalt|ich bleibe drin|nein]"
+   ],
+   [
+    "C",
+    "[ich treff mich mit freunden zu {s:food}|ich geh {s:food} essen|wir gehen in ein restaurant, {s:food}]"
+   ],
+   [
+    "A",
+    "[neid|viel spaß|klingt gut]"
+   ],
+   [
+    "C",
+    "[kommt mit|ihr seid eingeladen|wer will]"
+   ],
+   [
+    "B",
+    "[ich bleib bei {s:hobby}|ich hab {s:hobby}|danke, aber {s:hobby} ruft]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-schach-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[wer spielt online schach|spielt hier jemand schach|ich suche einen schachgegner]"
+   ],
+   [
+    "B",
+    "[ich, aber schlecht|ich, aber ich verliere immer|gelegentlich]"
+   ],
+   [
+    "C",
+    "[{s:family} hat mich mal geschlagen|{s:family} schlägt mich jedes mal|{s:family} ist mein einziger gegner]"
+   ],
+   [
+    "A",
+    "[dann spielen wir mal|ok, eine runde?|lass uns spielen]"
+   ],
+   [
+    "B",
+    "[am {s:day}?|wann?|heute abend?]"
+   ],
+   [
+    "A",
+    "[passt|ok|deal]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-vermisst-tuerken-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[die türkischen spieler sind heute so leise|wo sind heute die türken im chat|kein türkisch heute, komisch]"
+   ],
+   [
+    "B",
+    "[vielleicht ein feiertag dort|vielleicht arbeiten sie|vielleicht schlafen sie]"
+   ],
+   [
+    "C",
+    "[ich vermisse das \"kolay gelsin\"|ich vermisse \"abi\"|ohne sie ist der chat leer]"
+   ],
+   [
+    "A",
+    "[wir müssen das selbst machen: kolay gelsin alle|kolay gelsin, leute|dann sag ich es: kolay gelsin]"
+   ],
+   [
+    "B",
+    "[und afiyet olsun für alle, die {s:food} essen|afiyet olsun für {s:food}|afiyet olsun an alle mit {s:food} auf dem teller]"
+   ],
+   [
+    "C",
+    "[perfekt|gut gemacht|sie wären stolz]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-uebersetzung-falsch-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab \"ellerine sağlık\" an einen türken geschrieben|ich hab \"ellerine sağlık\" zum ersten mal benutzt|hab heute \"ellerine sağlık\" gesagt]"
+   ],
+   [
+    "B",
+    "[und? richtig benutzt?|was bedeutet das|wann sagt man das]"
+   ],
+   [
+    "A",
+    "[das sagt man, wenn jemand gekocht hat, \"gesundheit deinen händen\"|wenn jemand was gemacht hat, zum dank|für essen, als dankeschön]"
+   ],
+   [
+    "C",
+    "[das ist so schön|warum haben wir das nicht|{s:family} bräuchte das auch]"
+   ],
+   [
+    "A",
+    "[ich sag es jetzt immer|ich sag es nach jedem essen|ab heute bei jedem essen]"
+   ],
+   [
+    "B",
+    "[auch wenn du {s:food} selbst machst?|auch für {s:food} aus der tiefkühltruhe?|auch wenn es nur {s:food} ist?]"
+   ],
+   [
+    "A",
+    "[dann sag ich es mir selbst|dann lobe ich mich|ellerine sağlık, {A}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-chat-vorstellen-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurze runde: name und was ihr im spiel seid|wer seid ihr, im spiel|kennenlernrunde!]"
+   ],
+   [
+    "B",
+    "[{B}, {B.meslek}|ich bin {B}, {B.meslek}|{B}, und ich arbeite als {B.meslek}]"
+   ],
+   [
+    "C",
+    "[{C}, {C.meslek} aus {C.sehir}|{C} aus {C.sehir}, {C.meslek}|{C}, {C.meslek}]"
+   ],
+   [
+    "A",
+    "[und hobby?|noch was über euch?|hobby?]"
+   ],
+   [
+    "B",
+    "[{s:hobby}|{s:hobby}, schon lange|im echten leben: {s:hobby}]"
+   ],
+   [
+    "C",
+    "[dieses spiel ist mein hobby|ich schlafe gern|ich esse gern]"
+   ],
+   [
+    "A",
+    "[gute antworten|schön, euch kennenzulernen|super]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-mitbewohner-kochen-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ich hab für die ganze wg {s:food} gekocht|wg-abend mit {s:food}|heute koche ich für alle]"
+   ],
+   [
+    "B",
+    "[und? hat es geschmeckt|wurde alles gegessen|wie war es]"
+   ],
+   [
+    "A",
+    "[alles weg in 10 minuten|keiner hat was übrig gelassen|sie wollten nachschlag]"
+   ],
+   [
+    "C",
+    "[dann bist du jetzt wg-koch|das ist jetzt dein job|gratulation, das machst du jetzt jeden {s:day}]"
+   ],
+   [
+    "A",
+    "[oh nein|was hab ich getan|fehler]"
+   ],
+   [
+    "B",
+    "[ellerine sağlık|gut gemacht|lecker klingt es]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-tuerkisch-hadi-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich sag zu allem \"hadi\"|\"hadi\" ist mein neues lieblingswort|hadi hadi, sagt mein kopf]"
+   ],
+   [
+    "B",
+    "[los, komm, oder?|heißt so was wie los, oder|ja, \"hadi\" heißt \"komm schon\"]"
+   ],
+   [
+    "A",
+    "[genau, perfekt für die bahn|\"hadi\" zur bahn sagen|hadi, zug, komm]"
+   ],
+   [
+    "C",
+    "[der zug versteht kein türkisch|der zug ignoriert dich|hilft nicht]"
+   ],
+   [
+    "A",
+    "[und {s:family} auch nicht|wie {s:family}|genau wie {s:family} vor dem ersten kaffee]"
+   ],
+   [
+    "B",
+    "[haha|stimmt|universell]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-zeit-rechnen-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ein spieltag ist eine stunde, richtig|1 spieltag = 1 echte stunde?|wie rechnet man die zeit im spiel]"
+   ],
+   [
+    "B",
+    "[ja, und ein monat sind 30 spieltage|genau, 30 tage ein monat|richtig, ein monat sind 30 stunden]"
+   ],
+   [
+    "A",
+    "[also hab ich im spiel schon jahre gespielt|ich bin schon monate drin|oha]"
+   ],
+   [
+    "C",
+    "[und die zeit läuft auch offline|auch wenn du schläfst|auch ohne spielen geht es weiter]"
+   ],
+   [
+    "A",
+    "[also bin ich jetzt fünf spieltage älter, seit {s:food}|während {s:food} sind zwei tage vergangen|ich hab {s:food} gegessen und ein tag ist um]"
+   ],
+   [
+    "B",
+    "[haha|aber ohne alter|keine sorge, kein alter]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-fuenf-vor-12-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[fünf vor zwölf und ich hab schon hunger|noch fünf minuten bis mittag|ich zähl die minuten bis zur pause]"
+   ],
+   [
+    "B",
+    "[was gibts|worauf freust du dich|essen?]"
+   ],
+   [
+    "A",
+    "[{s:food}, hab ich mitgebracht|{s:food}, selbst gemacht|heute {s:food}]"
+   ],
+   [
+    "C",
+    "[ich hab gar nichts|ich hab nichts dabei|ich bin dabei, zu verhungern]"
+   ],
+   [
+    "A",
+    "[ich teile|ich geb dir was ab|halb halb]"
+   ],
+   [
+    "B",
+    "[so ist das mit freundschaft|teilen ist schön|gut gemacht]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umzug-planung-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich ziehe nächsten monat um, im winter|umzug im januar, schlechte idee|wer zieht im winter um, ich]"
+   ],
+   [
+    "B",
+    "[hast du helfer?|brauchst du hilfe?|wer hilft]"
+   ],
+   [
+    "A",
+    "[{s:family} und zwei freunde|{s:family} hilft|{s:family} und ich]"
+   ],
+   [
+    "C",
+    "[pizza und {s:drink} für alle, dann kommen mehr|als dank immer pizza|bezahlung in {s:drink}]"
+   ],
+   [
+    "A",
+    "[deal|das klingt fair|gute idee]"
+   ],
+   [
+    "B",
+    "[und kartons beim supermarkt holen|kartons gratis im markt|gute kartons sind gold]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kartoffel-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[welche kartoffel-art ist die beste|pommes, bratkartoffeln oder kartoffelbrei?|die wichtigste frage: welche kartoffel]"
+   ],
+   [
+    "B",
+    "[bratkartoffeln|brei, ohne frage|pommes]"
+   ],
+   [
+    "C",
+    "[kartoffeln sind keine frage, sondern ein lebensstil|jede kartoffel ist gut|alle]"
+   ],
+   [
+    "A",
+    "[ich wollte eigentlich {s:food} essen|ich esse heute {s:food}, aber trotzdem|heute gibt es {s:food}]"
+   ],
+   [
+    "B",
+    "[verräter|{A}, du hast die frage gestellt|ich bin enttäuscht]"
+   ],
+   [
+    "A",
+    "[entschuldigung|ich liebe kartoffeln, ehrlich|morgen kartoffeln]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-nacht-schicht-ende-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[nachtschicht vorbei, ich geh nach hause|feierabend um 3 uhr nachts|schicht geschafft]"
+   ],
+   [
+    "B",
+    "[gut gemacht|sehr müde?|wie war es]"
+   ],
+   [
+    "A",
+    "[lang, aber gut|ruhig|müde, aber zufrieden]"
+   ],
+   [
+    "C",
+    "[zu hause gibt es {s:drink}|dann {s:drink} und bett|jetzt {s:drink}]"
+   ],
+   [
+    "A",
+    "[genau mein plan|nein, direkt ins bett|ich schlaf schon im stehen]"
+   ],
+   [
+    "B",
+    "[gute nacht dann|schlaf gut|morgen guten morgen]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-guten-morgen-schnee-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[guten morgen, bei mir schneit es|morgen zusammen, draußen alles weiß|es schneit, guten morgen]"
+   ],
+   [
+    "B",
+    "[hier regnet es nur|bei mir nichts|schön für dich]"
+   ],
+   [
+    "C",
+    "[ich mache {s:drink} und schau aus dem fenster|mit {s:drink} am fenster|{s:drink}, fenster, schnee]"
+   ],
+   [
+    "A",
+    "[perfekter morgen|genau so|beneidenswert]"
+   ],
+   [
+    "B",
+    "[ich muss raus|ich muss zur bahn|ich muss zur arbeit]"
+   ],
+   [
+    "A",
+    "[kolay gelsin|viel glück|pass auf, glatt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-kopfweh-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab kopfweh|kopfschmerzen seit heute morgen|mein kopf brummt]"
+   ],
+   [
+    "B",
+    "[genug getrunken?|wasser?|trink was]"
+   ],
+   [
+    "A",
+    "[nur {s:drink}|zu viel {s:drink}|nein, nur {s:drink}]"
+   ],
+   [
+    "C",
+    "[wasser und frische luft|ruhe|handy weg]"
+   ],
+   [
+    "A",
+    "[handy weg geht nicht, mein café|ich muss nach dem café schauen|mein laden braucht mich]"
+   ],
+   [
+    "B",
+    "[das café läuft auch ohne dich|aushilfe arbeitet|nur zwei minuten]"
+   ],
+   [
+    "A",
+    "[ok|gut|ihr habt recht]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-tschuess-2",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[so, ich muss los|ich bin dann weg|tschüss leute]"
+   ],
+   [
+    "B",
+    "[schon?|bis später|ciao]"
+   ],
+   [
+    "A",
+    "[{s:family} wartet mit essen|essen ist fertig, {s:food}|es gibt {s:food}]"
+   ],
+   [
+    "C",
+    "[guten appetit|afiyet olsun|lass es dir schmecken]"
+   ],
+   [
+    "A",
+    "[danke, bis morgen|bis morgen|morgen wieder]"
+   ],
+   [
+    "B",
+    "[bis dann|tschüss|görüşürüz, sagt man auf türkisch]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-wunschjob-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[welcher beruf fehlt euch im spiel|was würdet ihr gern im spiel arbeiten|welchen job wünscht ihr euch]"
+   ],
+   [
+    "B",
+    "[bäcker|lokführer|koch]"
+   ],
+   [
+    "C",
+    "[lokführer, damit wenigstens im spiel ein zug pünktlich ist|schaffner|bahn-chef]"
+   ],
+   [
+    "A",
+    "[haha|das wäre die bahn-rache|die rache der pendler]"
+   ],
+   [
+    "B",
+    "[oder bäcker mit {s:food}|bäcker, der {s:food} verkauft|bäcker mit {s:food} auf der karte]"
+   ],
+   [
+    "C",
+    "[dann kaufen alle bei dir|du wärst reich|ich wäre dein stammkunde]"
+   ],
+   [
+    "A",
+    "[ich schlag es vor|wir schreiben dem team|vielleicht im nächsten update]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-adventskalender-rest-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab noch drei türchen vom adventskalender übrig|im januar den adventskalender fertig gegessen|adventskalender-reste, im januar]"
+   ],
+   [
+    "B",
+    "[wie geht das|warum?|du hattest im dezember keine zeit?]"
+   ],
+   [
+    "A",
+    "[ich hab sie vergessen, jetzt ist es ein januarkalender|ich spare sie, wie im spiel|ich bin ein disziplinierter mensch]"
+   ],
+   [
+    "C",
+    "[das ist die beste sparstrategie, die ich je gehört hab|du solltest finanzberater werden|yavaş yavaş, auch bei schokolade]"
+   ],
+   [
+    "A",
+    "[morgen gibt es dafür {s:food}|danach nur noch {s:food}|als nächstes kommt wieder {s:food}]"
+   ],
+   [
+    "B",
+    "[zurück zur realität|ein harter übergang|januar halt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-bahncard-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[lohnt sich bei euch eine monatskarte|wer hat hier ein monatsticket|monatskarte oder einzelticket, was nehmt ihr]"
+   ],
+   [
+    "B",
+    "[monatskarte, sonst bin ich arm|monatskarte, rechnet sich|ich fahr jeden tag, also ja]"
+   ],
+   [
+    "C",
+    "[ich fahr nur am {s:day}, also nein|nur am {s:day}, lohnt sich nicht|ich zahl einzeln, nur am {s:day}]"
+   ],
+   [
+    "A",
+    "[im spiel gibt es zum glück keine tickets|im spiel geht man einfach zur arbeit|im spiel gibt es keine bahn, deswegen ist es pünktlich]"
+   ],
+   [
+    "B",
+    "[deswegen ist das spiel so entspannend|das erklärt alles|ein traum]"
+   ],
+   [
+    "C",
+    "[im spiel ist nur die miete ein problem|im spiel ist das problem die inflation|dafür gibt es im spiel lebenshaltungskosten]"
+   ],
+   [
+    "A",
+    "[alles hat seinen preis|nichts ist umsonst|so ist es]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-baecker-frueh-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[mein nachbar ist bäcker und steht um 3 uhr auf|bäcker stehen mitten in der nacht auf, krass|wer ist hier bäcker und schläft nie]"
+   ],
+   [
+    "B",
+    "[respekt|ich könnte das nicht|deswegen sind brötchen heilig]"
+   ],
+   [
+    "A",
+    "[er sagt, man gewöhnt sich dran|er sagt, nachmittags schläft er|er macht dann früh feierabend]"
+   ],
+   [
+    "C",
+    "[früher feierabend klingt eigentlich gut|um 12 feierabend, das klingt traumhaft|er hat den ganzen nachmittag frei]"
+   ],
+   [
+    "A",
+    "[und er bringt mir manchmal was mit, zu {s:drink}|dafür krieg ich manchmal was, passt zu {s:drink}|ab und zu gibt es was gratis, ich mach {s:drink}]"
+   ],
+   [
+    "B",
+    "[bester nachbar|heirate ihn|den nachbarn musst du behalten]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-raten-geplant-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[noch 10 raten, dann bin ich schuldenfrei|14 raten noch|die hälfte vom kredit ist schon bezahlt]"
+   ],
+   [
+    "B",
+    "[stark|du schaffst das schon|weiter so]"
+   ],
+   [
+    "A",
+    "[ich zähl jede rate wie einen sieg|jeder monat ist ein kleiner sieg|ich hab eine liste und streiche ab]"
+   ],
+   [
+    "C",
+    "[und nach dem kredit ist die bonität höher|danach ist dein kreditscore besser|jede pünktliche rate hilft dem score]"
+   ],
+   [
+    "A",
+    "[und dann gibt es {s:food} und ein neues ziel|am ende gibt es {s:food}|das große finale mit {s:food}]"
+   ],
+   [
+    "B",
+    "[wir feiern mit|wir sind dabei|ich bringe {s:drink}]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-cafe-preis-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[meine aushilfe ist teurer als mein umsatz|mein café macht minus wegen der aushilfen|aushilfen und miete fressen alles]"
+   ],
+   [
+    "B",
+    "[wie viele feste mitarbeiter hast du|du brauchst feste leute|stellenanzeige ist offen?]"
+   ],
+   [
+    "A",
+    "[einen, und die anzeige ist offen|einer, der andere ist aushilfe|ja, aber keiner bewirbt sich]"
+   ],
+   [
+    "C",
+    "[geduld, oder gehalt etwas hoch|mehr gehalt, dann kommen bewerbungen|vielleicht ist die anzeige zu streng]"
+   ],
+   [
+    "A",
+    "[ich setz mich am {s:day} hin und mach alles neu|{s:day} wird umgebaut|am {s:day} neue anzeige]"
+   ],
+   [
+    "B",
+    "[viel erfolg, chef|hoffentlich klappt es|wird schon]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-turkisch-cok-guzel-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ich hab heute \"çok güzel\" gesagt und ein türke hat sich gefreut|\"çok güzel\" kommt immer gut an|ich sag jetzt oft \"çok güzel\"]"
+   ],
+   [
+    "B",
+    "[sehr schön, oder?|das heißt sehr schön|çok güzel!]"
+   ],
+   [
+    "A",
+    "[genau|ja, für alles|ja, für essen, für wetter, für alles]"
+   ],
+   [
+    "C",
+    "[für {s:food} sagt man auch \"çok lezzetli\", lecker|für essen gibt es \"lezzetli\", habe ich gelernt|lecker heißt \"lezzetli\", für {s:food}]"
+   ],
+   [
+    "A",
+    "[{s:food} çok lezzetli|heute ist {s:food} lezzetli|ok: {s:food}, çok lezzetli]"
+   ],
+   [
+    "B",
+    "[du wirst immer besser|perfekt|die türken wären stolz]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-umfrage-schlaf-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[wie viele stunden schlaft ihr|eure schlafzeit pro nacht?|wie lange schlaft ihr normalerweise]"
+   ],
+   [
+    "B",
+    "[sechs, das reicht nicht|sechs, wenn es gut läuft|fünf, ich bin ein zombie]"
+   ],
+   [
+    "C",
+    "[acht, ich bin ein baby|neun, und ich schäme mich nicht|acht, schlaf ist heilig]"
+   ],
+   [
+    "D",
+    "[ich weiß es nicht, ich bin um diese zeit immer hier|keine ahnung, ich bin jetzt hier|ich schlafe nach {s:drink}, also wenig]"
+   ],
+   [
+    "A",
+    "[{D}, du bist teil des problems|{D}, geh schlafen|{D}, das ist keine antwort]"
+   ],
+   [
+    "D",
+    "[ihr seid auch hier|du auch, {A}|wir alle]"
+   ],
+   [
+    "A",
+    "[touché|stimmt|erwischt]"
+   ]
+  ]
+ },
+ {
+  "id": "de3-wetter-wechsel-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[gestern minus 8, heute plus 6, ich verstehe das wetter nicht|das wetter spielt verrückt|erst schnee, jetzt regen, was soll das]"
+   ],
+   [
+    "B",
+    "[januar macht, was er will|aprilwetter im januar|deutsches wetter, typisch]"
+   ],
+   [
+    "A",
+    "[ich hab nicht mal eine passende jacke|ich weiß nicht was ich anziehen soll|zwiebellook, sonst gehts nicht]"
+   ],
+   [
+    "C",
+    "[das ist wie das kreditlimit, es ändert sich jeden monat|wie die preise im spiel, nie gleich|das wetter hat inflation]"
+   ],
+   [
+    "A",
+    "[haha {C}|was für ein vergleich|du denkst nur an das spiel]"
+   ],
+   [
+    "C",
+    "[und an {s:food}|und an {s:hobby}|nur an das spiel und {s:hobby}]"
+   ],
+   [
+    "B",
+    "[gesunde mischung|ausgeglichen|ein runder mensch]"
+   ]
+  ]
+ }
+]

@@ -1779,7 +1779,10 @@
       if (sayilar.length) { const n = sayilar[sayilar.length - 1], mulkte = /mulk/.test(st.konu) || (st.varlik && st.varlik.mulk); ny.varlik = Object.assign({}, ny.varlik, { tutar: Math.round(mulkte && n < 50 ? n * 1e6 : n * 1000) }); if (ny.niyet === 'genel') ny.niyet = 'teklif'; }
     }
     let takip = st ? takipTuru(katli, ny, st) : null;
-    const gucluYeniKonu = ny.guven >= .6 && !['evet', 'hayir', 'genel', 'teklif', 'maas_sorusu', 'fiyat_sorusu', 'kisisel_yer', 'tesekkur'].includes(ny.niyet) && (!st || ny.niyet !== st.konu);
+    // Yeni konu sayılmak için: model eminse ve kurallar da aynı niyeti görüyorsa (kısa takip mesajında modelin tek başına tahmini konuyu değiştirmez)
+    const kuralDestek = ny.kural ? (ny.kural.niyet === ny.niyet || (ny.puanlar && (ny.puanlar[ny.niyet] || 0) >= 2)) : true;
+    const kisaTakip = st && takip && katli.split(' ').length <= 5 && TAKIP_DESEN.some(([, re]) => re.test(katli));
+    const gucluYeniKonu = ny.guven >= .6 && !['evet', 'hayir', 'genel', 'teklif', 'maas_sorusu', 'fiyat_sorusu', 'kisisel_yer', 'tesekkur', 'oneri_kabul'].includes(ny.niyet) && (!st || ny.niyet !== st.konu) && (kuralDestek || !kisaTakip);
     if (gucluYeniKonu && takip !== 'miktar' && takip !== 'yer') takip = null;
     // Kum Saati konuşulurken kısa soru ("kursta kullanılır mı"): konu sürer
     if (st && st.ilk && /kum saat/.test(st.ilk) && !/kum saat/.test(katli) && katli.split(' ').length <= 5 && ny.soru) takip = 'detay';
@@ -2200,7 +2203,7 @@
       return { metin: bilgiPaketi(world, meta, npcId, { metin: mt, kisisel: true }, rng, 1500).metin, gecikmeMs: 2500 };
     }
     const takip = st ? takipTuru(katli, ny, st) : null;
-    const gucluYeni = ny.guven >= .6 && !['evet', 'hayir', 'genel', 'teklif', 'maas_sorusu', 'fiyat_sorusu', 'kisisel_yer', 'tesekkur'].includes(ny.niyet) && (!st || ny.niyet !== st.konu);
+    const gucluYeni = ny.guven >= .6 && !['evet', 'hayir', 'genel', 'teklif', 'maas_sorusu', 'fiyat_sorusu', 'kisisel_yer', 'tesekkur', 'oneri_kabul'].includes(ny.niyet) && (!st || ny.niyet !== st.konu);
     let konu = takip && !gucluYeni ? st.konu : ny.niyet;
     // "dairen satılık mı": oyuncu ALICI (NPC'nin mülkü soruluyor)
     if (/\b(dairen|evin|arsan|dukkanin|mulkun|daireni|evini|arsani)\b/.test(katli) && /(satilik|satar misin|satiyor musun|verir misin|kaca)/.test(katli)) { konu = 'mulk_ariyorum'; ny.varlik = Object.assign({}, ny.varlik, { mulk: /arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : 'daire' }); }

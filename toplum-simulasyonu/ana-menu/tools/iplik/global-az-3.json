@@ -1,0 +1,4300 @@
+[
+ {
+  "id": "az3-cay-murebbe-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[axşam çayı hazırdır, kim gəlir|çay dəmlədim, mürəbbə də var|stəkanlar düzüldü, çay vaxtıdır]"
+   ],
+   [
+    "B",
+    "[hansı mürəbbə|ağ gilas mürəbbəsi olsa, gəlirəm|qoz mürəbbəsi var?]"
+   ],
+   [
+    "A",
+    "[əncir, nənəmin bişirdiyi|ərik mürəbbəsi|qarışıq, hər şeydən bir az]"
+   ],
+   [
+    "C",
+    "[mən çay əvəzinə {s:drink} içirəm, bağışlayın|mən bu gün {s:drink} istəyirəm|çay yox, {s:drink}]"
+   ],
+   [
+    "B",
+    "[{C}, bu necə sözdür|{C}, ayıb olsun|çaysız axşam olmaz, {C}]"
+   ],
+   [
+    "C",
+    "[yaxşı, bir stəkan da çay|oldu, çay da içərəm|razıyam, əvvəl çay]"
+   ],
+   [
+    "A",
+    "[belə də olsun|bax bu başqa məsələ|afərin]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-nerd-cayxana-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dünən çayxanada nərd oynadım, üç dəfə uduzdum|çayxanada nərddə məğlub oldum|nərddə qocalar məni darmadağın etdi]"
+   ],
+   [
+    "B",
+    "[kimə uduzdun|kim udu?|qocalarla oynama, onlar peşəkardır]"
+   ],
+   [
+    "A",
+    "[yetmiş yaşlı bir kişiyə|çayxananın ustası olan bir əmiyə|çayxananın ən yaşlı adamına]"
+   ],
+   [
+    "C",
+    "[o kişilər zəri danışdırır|onlar zərlə danışır|onlar şeşbeşi yuxuda da atır]"
+   ],
+   [
+    "A",
+    "[növbəti dəfə qisas alacağam|{s:day} yenə gedirəm|qisas {s:day} günü]"
+   ],
+   [
+    "B",
+    "[uğurlar, lazım olacaq|çox çətin olacaq|əvvəlcə məşq et]"
+   ],
+   [
+    "C",
+    "[oyunda da belədir, təcrübəsiz uduzursan|oyundakı kurs kimidir, təcrübə lazımdır|burada da hər şey təcrübədir]"
+   ],
+   [
+    "A",
+    "[düz deyirsən|doğrudur|hə, eynidir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-toy-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:day} toya gedirəm, beş yüz qonaq|toy dəvətnaməsi gəldi, yenə|bu qış üçüncü toydur]"
+   ],
+   [
+    "B",
+    "[musiqi səsindən qulağın batacaq|sabaha qədər rəqs|yenə səhərə qədər]"
+   ],
+   [
+    "A",
+    "[ən çox yeməklərə görə gedirəm|{s:food} olacaqsa, razıyam|ən sevdiyim hissə: {s:food}]"
+   ],
+   [
+    "C",
+    "[bir də \"nə vaxt evlənirsən\" sualı|xalalar mütləq soruşacaq \"bəs səninki nə vaxtdır\"|hazır ol, sual gələcək]"
+   ],
+   [
+    "A",
+    "[deyəcəm ki, əvvəl mənzil almalıyam|cavabım hazırdır: oyunda mənzil üçün pul yığıram|\"əvvəlcə ev\", deyəcəm]"
+   ],
+   [
+    "B",
+    "[ağıllı cavab|işləyər|yaxşı strategiya]"
+   ],
+   [
+    "C",
+    "[sonra rəqsə qaçarsan|sonra masaya qayıt|sonra mövzunu dəyiş]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-bulvar-kulek-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bulvarda gəzirdim, xəzri az qala məni dənizə atdı|bu gün Bakıda külək dəhşətdir|xəzri əsir, çətirim sındı]"
+   ],
+   [
+    "B",
+    "[Bakıdır da|xəzri olmasa, Bakı Bakı olmaz|külək şəhəri]"
+   ],
+   [
+    "A",
+    "[{s:thing} də uçdu getdi|{s:thing} əlimdən çıxdı|küləkdən sonra {s:thing} yoxa çıxdı]"
+   ],
+   [
+    "C",
+    "[qışda bulvara getməyin özü igidlikdir|qışda dəniz kənarı soyuqdur|belə havada evdə otur]"
+   ],
+   [
+    "A",
+    "[amma dəniz çox gözəl idi|dalğalar qəşəng idi|yenə də gözəl idi]"
+   ],
+   [
+    "B",
+    "[sonra isti {s:drink} iç|evə gəl, {s:drink} iç|indi {s:drink} vaxtıdır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qar-baki-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[Bakıya qar yağıb!|ay camaat, qar yağır|bu gün səhər hər yer ağ idi]"
+   ],
+   [
+    "B",
+    "[nə qədər|foto at|doğrudan?]"
+   ],
+   [
+    "A",
+    "[iki santimetr, amma şəhər dayandı|bir az, amma maşınlar sürüşür|çox deyil, amma hamı həyəcanlıdır]"
+   ],
+   [
+    "C",
+    "[bizdə iki santimetr qar fövqəladə haldır|Bakıda qar bayram kimidir|uşaqlar küçəyə tökülüb]"
+   ],
+   [
+    "A",
+    "[mən evdən işləyirəm, {s:drink} ilə|bu gün evdəyəm, {s:drink} əlimdə|divanda, {s:drink} ilə]"
+   ],
+   [
+    "B",
+    "[paxıllıq edirəm|xoşbəxtsən|mən də istəyirəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-metro-sixliq-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[səhər metroda nəfəs almaq olmurdu|metro yenə dolu idi|iynə atsan yerə düşməzdi]"
+   ],
+   [
+    "B",
+    "[tıxac saatı|hər səhər belədir|bazar ertəsi, nə gözləyirdin]"
+   ],
+   [
+    "A",
+    "[içəri isti, bayır soyuq|içəridə hamam, bayırda buz|tərlədim, sonra dondum]"
+   ],
+   [
+    "C",
+    "[mən {s:thing} vaqonda unutdum|{s:thing} metroda qaldı|mənim {s:thing} orda itdi]"
+   ],
+   [
+    "A",
+    "[tapdın?|itirilmiş əşyalar bürosuna get|vay, yazıq]"
+   ],
+   [
+    "C",
+    "[hələ yox|axşam soruşacağam|ümid edirəm]"
+   ],
+   [
+    "B",
+    "[kaş tapılsın|uğurlar|tapılsın]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-marsrut-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[marşrut avtobusu iyirmi dəqiqədir gəlmir|dayanacaqda donuram|avtobus yoxdur ki yoxdur]"
+   ],
+   [
+    "B",
+    "[gələndə də dolu olacaq|sonra üç dənə birdən gələcək|həmişə belə]"
+   ],
+   [
+    "A",
+    "[heç olmasa termosda {s:drink} var|yaxşı ki, {s:drink} götürmüşəm|{s:drink} əlimdə, dözürəm]"
+   ],
+   [
+    "C",
+    "[oyunda avtobus yoxdur, ona görə hamı vaxtında işdədir|oyunda işə getmək üçün nəqliyyat lazım deyil|oyunda heç kim gecikmir]"
+   ],
+   [
+    "A",
+    "[oyuna köçmək istəyirəm|oyun qalib gəldi|mən oyunda yaşamaq istəyirəm]"
+   ],
+   [
+    "B",
+    "[odur, gəlir|gəldi, qaç|tələs]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-bazar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[bazara getdim, satıcı məni \"bacı\" deyə çağırdı|bazarda hamı mənə \"qadan alım\" deyir|şənbə bazarı, ən sevdiyim iş]"
+   ],
+   [
+    "B",
+    "[supermarketdə belə şey olmur|bazarın ruhu var|ən yaxşısı bazardır]"
+   ],
+   [
+    "A",
+    "[bir də pulsuz göyərti verdi|üstəlik bir limon hədiyyə etdi|ən yaxşısını mənə saxladı]"
+   ],
+   [
+    "C",
+    "[oyunda da bazar olmalıdır|oyunda bazar köşkü açardım|dükan da təxminən eynidir]"
+   ],
+   [
+    "A",
+    "[{s:food} üçün nə lazımdısa aldım|evdə {s:food} bişirəcəm|bu gün {s:food} təzə məhsulla]"
+   ],
+   [
+    "B",
+    "[nuş olsun|belə yaxşıdır|əla şənbə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qonaq-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[axşam qəfildən qonaq gəldi|xəbərsiz qonaq gəldi, evdə heç nə yoxdur|qonaqlar yolda, mən panikadayam]"
+   ],
+   [
+    "B",
+    "[soyuducuda nə var|çay qoy, qalanı sonra|çay və şirniyyat bəsdir]"
+   ],
+   [
+    "A",
+    "[{s:food} qalıb, kifayət edərmi|bir az {s:food} var|ancaq {s:food} və çörək]"
+   ],
+   [
+    "C",
+    "[azərbaycanlı ev sahibi heç vaxt \"heç nə yoxdur\" deməz|beş dəqiqəyə süfrə açılır|ana-nənə üsulu: hər şeyi masaya qoy]"
+   ],
+   [
+    "A",
+    "[{s:family} gəldi, kömək edir|{s:family} artıq mətbəxdədir|{s:family} vəziyyəti xilas etdi]"
+   ],
+   [
+    "B",
+    "[həmişə belə olur|qəhrəman|çox yaxşı]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qohumlar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bazar günü bütün qohumlar bizə yığışır|ailə məclisi, otuz nəfər|qohumlar gəlir, ev doludur]"
+   ],
+   [
+    "B",
+    "[nə bişirirsiniz|menyu nədir|yemək nə olacaq]"
+   ],
+   [
+    "A",
+    "[{s:food}, bir də dolma|{s:food} və bir qazan plov|{s:food}, salat, şirniyyat]"
+   ],
+   [
+    "C",
+    "[sonra da hamı sənin işini soruşacaq|\"maaşın neçədir\" sualı gələcək|\"nə vaxt ev alırsan\" soruşacaqlar]"
+   ],
+   [
+    "A",
+    "[oyundakı işimi danışacam|deyəcəm ki, oyunda kafe sahibi olmağa hazırlaşıram|oyundakı vəzifəmi deyəcəm]"
+   ],
+   [
+    "B",
+    "[maraqlı cavab|onlar başa düşməyəcək|xalan heç nə anlamayacaq]"
+   ],
+   [
+    "C",
+    "[əsas olan yeməkdir|sonra hamı çay içər|sonda hamı çaya keçər]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-oyun-menzil-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda mənzil üçün pul yığıram|ilk mənzilim üçün ilkin ödəniş yığıram|kirayədən canımı qurtarmaq istəyirəm]"
+   ],
+   [
+    "B",
+    "[nə qədər qalıb|yarısı var?|nə qədər lazımdır]"
+   ],
+   [
+    "A",
+    "[yarısını yığmışam|təxminən altmış faiz|hələ çox var, amma gedirəm]"
+   ],
+   [
+    "C",
+    "[kreditlə təxminən beşdə biri ilkin ödənişdir|ilkin ödəniş iyirmi faiz civarındadır|sənə ancaq iyirmi faiz lazımdır]"
+   ],
+   [
+    "A",
+    "[amma qiymətlər hər ay artır|problem inflyasiyadır|mən yığıram, qiymət qaçır]"
+   ],
+   [
+    "B",
+    "[davam et, alınacaq|ruhdan düşmə|yavaş-yavaş]"
+   ],
+   [
+    "A",
+    "[bu axşam yalnız {s:food}, qənaət|qənaət rejimi: hər gün {s:food}|restoran yox, {s:food}]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-birja-gozlemek-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[birja nə vaxt gələcək, bilən var|birja niyə hələ yoxdur|birja haqqında xəbər var?]"
+   ],
+   [
+    "B",
+    "[deyirlər növbəti yenilənmədə|növbəti yeniləmə ilə gələcəkmiş|hələ yox, amma gələcək]"
+   ],
+   [
+    "A",
+    "[mən artıq strategiya hazırlamışam|olmayan səhmləri seçmişəm|mən hazıram, dünya hazır deyil]"
+   ],
+   [
+    "C",
+    "[olmayan şeyi alırsan?|olmayan funksiya üçün plan?|sən vaxtını qabaqlayırsan]"
+   ],
+   [
+    "A",
+    "[hazırlıq hər şeydir|birinci olmaq istəyirəm|qabaqda olan qazanır]"
+   ],
+   [
+    "B",
+    "[mən gözləyirəm, {s:hobby} ilə|o vaxta qədər {s:hobby}|gözləyərkən {s:hobby}]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kafe-musteri-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kafemə bu ay az müştəri gəlir|kafedə satış düşüb|bu gün kafe boşdur]"
+   ],
+   [
+    "B",
+    "[yaxında yeni kafe açılıb?|rəqib var?|kafe çox olanda müştəri bölünür]"
+   ],
+   [
+    "A",
+    "[iki yeni açılıb|hə, düz yanımda|deyəsən hə]"
+   ],
+   [
+    "C",
+    "[daimi işçi götür, müvəqqəti baha başa gəlir|əsl işçi ilə satış artır|müvəqqəti işçi bahadır və zəifdir]"
+   ],
+   [
+    "A",
+    "[elan açmışam, müraciət yoxdur|elan verdim, heç kim yoxdur|gözləyirəm]"
+   ],
+   [
+    "B",
+    "[səbr et, o vaxta qədər {s:drink} iç|{s:drink} iç, gələcəklər|sakit ol, {s:drink} iç]"
+   ],
+   [
+    "A",
+    "[öz kafemin müştərisiyəm|heç olmasa biri alır|bir müştəri də mən]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-muveqqeti-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[müvəqqəti işçi çox baha başa gəlir|niyə müvəqqəti işçi bu qədər bahadır|müvəqqətilər məni müflis edir]"
+   ],
+   [
+    "B",
+    "[ona görə ki, əsl işçi götürəsən|belə qurulub ki, işçi axtarasan|baha və zəif, işçi tapasan deyə]"
+   ],
+   [
+    "A",
+    "[amma heç kim müraciət etmir|namizəd gəlmir|çalışıram, yoxdur]"
+   ],
+   [
+    "C",
+    "[elanda maaşı bir az qaldır|minimumdan bir az çox təklif et|elanı təzədən aç]"
+   ],
+   [
+    "A",
+    "[{s:day} dəyişərəm|{s:day} baxaram|{s:day} yenidən cəhd edəcəm]"
+   ],
+   [
+    "B",
+    "[uğurlar, rəis|ruhdan düşmə|tapılar]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kurs-gozlemek-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kursun bitməsinə beş gün qalıb|kurs heç bitmir|kurs mənə əbədi kimi gəlir]"
+   ],
+   [
+    "B",
+    "[beş gün beş real saatdır|bir gün bir saatdır, o qədər də çox deyil|real saatla hesabla]"
+   ],
+   [
+    "A",
+    "[bilirəm, amma səbrim tükənir|məntiqlə başa düşürəm, hisslə yox|yenə də uzundur]"
+   ],
+   [
+    "C",
+    "[qum saatı qısaldır|hər gün üçün bir qum saatı|qum saatın qalıb?]"
+   ],
+   [
+    "A",
+    "[biri var|iki|heç biri, təəssüf]"
+   ],
+   [
+    "C",
+    "[onda istifadə et və {s:hobby} ilə məşğul ol|işlət və bir az {s:hobby}|işlət, sonra {s:hobby}, vaxt uçacaq]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qum-pulsuz-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[qum saatını pulsuz necə almaq olar|pulsuz qum saatı var?|qum saatı üçün pul ödəməmək olar?]"
+   ],
+   [
+    "B",
+    "[hər gün üç gündəlik tapşırıq, bir qum saatı|gündəlik tapşırıqlarla|üç tapşırıq et, biri gəlir]"
+   ],
+   [
+    "A",
+    "[hər gün?|gündə bir?|hər gün belədir?]"
+   ],
+   [
+    "B",
+    "[hə, gündə bir|hər gün|hə, gündəlik]"
+   ],
+   [
+    "C",
+    "[mən səhər {s:drink} ilə edirəm|mənim ritualım: {s:drink} və tapşırıqlar|{s:drink}, üç tapşırıq, sonra iş]"
+   ],
+   [
+    "A",
+    "[bu ritualı götürürəm|mən də belə edəcəm|yaxşı plan]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kredit-qorxu-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kredit götürməyə qorxuram|kredit götürüm, ya yox|kredit yaxşı fikirdir?]"
+   ],
+   [
+    "B",
+    "[nə üçün lazımdır|nəyə?|asılıdır, nə üçün]"
+   ],
+   [
+    "A",
+    "[mənzilin ilkin ödənişi üçün|biznes açmaq üçün|dükan üçün]"
+   ],
+   [
+    "C",
+    "[əsas odur ki, taksit buraxmayasan|üç taksit ödəməsən, icra gəlir|vaxtında ödəsən, hər şey qaydasındadır]"
+   ],
+   [
+    "B",
+    "[iyirmi dörd aydır, əvvəlcədən hesabla|ayda nə qədər ödəyə biləcəyini hesabla|maaşına görə hesabla]"
+   ],
+   [
+    "A",
+    "[{s:day} oturub hesablayacam|bu {s:day} hesab edəcəm|{s:day} sakit-sakit hesablayaram]"
+   ],
+   [
+    "C",
+    "[çox yaxşı|belə lazımdır|ağıllısan]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kredit-reytinq-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kredit reytinqim qalxıb|nəhayət, kredit balım artdı|reytinqim yüksəldi, sevinirəm]"
+   ],
+   [
+    "B",
+    "[vaxtında ödəyərək?|taksitlərə görə?|necə etdin]"
+   ],
+   [
+    "A",
+    "[hər taksit vaxtında|bir dəfə də gecikmədim|saat kimi dəqiq]"
+   ],
+   [
+    "C",
+    "[bununla limit də artır|kredit limiti buna bağlıdır|bir də keçən ayın gəlirinə]"
+   ],
+   [
+    "A",
+    "[bunu {s:food} ilə qeyd edəcəm|bu gün {s:food} yeyirəm, bayramdır|qeyd üçün {s:food}]"
+   ],
+   [
+    "B",
+    "[haqq etmisən|layiqsən|nuş olsun]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-turk-dil-ferq-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türk dostum \"konuşalım\" dedi, mən elə bildim ki, məsləhətləşmək istəyir|türklər \"danışmak\" deyəndə başqa şey nəzərdə tuturlar|maraqlı fərq: bizdə danışmaq, onlarda konuşmak]"
+   ],
+   [
+    "B",
+    "[hə, onlarda \"danışmak\" məsləhət almaqdır|onlarda danışmak başqa mənadadır|bizdə danışmaq, onlarda konuşmak]"
+   ],
+   [
+    "C",
+    "[bir də \"gözləmək\", onlarda \"beklemek\"|biz \"gözləyirik\", onlar \"bekliyor\"|\"gözlemek\" onlarda baxmaq deməkdir]"
+   ],
+   [
+    "A",
+    "[yəni türk dostum \"seni gözlüyorum\" desə, gözləmir, baxır?|çaşdım|indi başım qarışdı]"
+   ],
+   [
+    "B",
+    "[haha, təxminən|elədir|hə, bir az fərqlidir]"
+   ],
+   [
+    "A",
+    "[{s:family} də həmişə çaşır|{s:family} hələ də öyrənir|{s:family} türk seriallarından öyrənib]"
+   ],
+   [
+    "C",
+    "[dil eyni kökdür, amma sürprizlər çoxdur|qardaş dillər, amma tələlər var|yarı eyni, yarı sürpriz]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-tamam-oldu-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türklər \"tamam\" deyir, biz \"oldu\"|\"oldu\" deyəndə türk dostum başa düşmədi|türklərlə danışanda \"tamam\" deyirəm, \"oldu\" yox]"
+   ],
+   [
+    "B",
+    "[\"oldu\" onlar üçün \"olub\" kimidir|onlar \"oldu\" deyəndə keçmiş zamandır|onlarda \"oldu\" başqa cür səslənir]"
+   ],
+   [
+    "A",
+    "[indi evdə də \"tamam\" deyirəm|artıq \"tamam\" mənim sözümdür|\"tamam\" ağzımdan düşmür]"
+   ],
+   [
+    "C",
+    "[{s:family} deyir türk olmusan|{s:family} gülür mənə|{s:family} də başladı \"tamam\" deməyə]"
+   ],
+   [
+    "A",
+    "[tamam|oldu, yəni tamam|tamam, qardaş]"
+   ],
+   [
+    "B",
+    "[haha|lol|oldu]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kolay-gelsin-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türklər \"kolay gelsin\" deyir, bizdə nə deyirlər|\"kolay gelsin\" bizdə necədir|işləyənə türklər \"kolay gelsin\" deyir]"
+   ],
+   [
+    "B",
+    "[bizdə \"işin asan olsun\" ya \"yorulmayasan\"|\"yorulmayasan\" deyirik|\"əlin var olsun\", amma o başqadır]"
+   ],
+   [
+    "A",
+    "[\"yorulmayasan\" çox gözəldir|ikisi də qəşəngdir|bunu sevirəm]"
+   ],
+   [
+    "C",
+    "[bu gün {s:family} yemək bişirəndə dedim|{s:family} təmizlik edəndə \"kolay gelsin\" dedim|{s:family} üzərində sınaqdan keçirdim]"
+   ],
+   [
+    "B",
+    "[nə dedi?|reaksiya?|sevindi?]"
+   ],
+   [
+    "C",
+    "[güldü|\"türk olmusan\" dedi|başa düşdü, gülümsədi]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-yeni-gelen-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[salam, dünəndən oyundayam|salam hamıya, yeniyəm|salam, ilk günümdür]"
+   ],
+   [
+    "B",
+    "[xoş gəldin|xoş gəlmisən|xoş gördük]"
+   ],
+   [
+    "C",
+    "[haralısan|hansı şəhərdənsən|haradan yazırsan]"
+   ],
+   [
+    "A",
+    "[{A.sehir}|şəhərim: {A.sehir}|mən {A.sehir}]"
+   ],
+   [
+    "B",
+    "[məsləhət: əvvəl sadə iş, kuryer ya ofisiant, sonra yığ|sadə işlə başla və yığ|əvvəlcə iş, sonra kurslar]"
+   ],
+   [
+    "C",
+    "[bir də ilk həftədə hər şeyi {s:food} üçün xərcləmə|{s:food} üçün pulu dağıtma|hamısını {s:food} üçün xərcləmə, haha]"
+   ],
+   [
+    "A",
+    "[gecdir artıq|ay|artıq etmişəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-yeni-is-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeniyəm, hansı işi məsləhət görürsünüz|təzə gəlmişəm, hansı işlə başlayım|ilk gün, hansı iş sərfəlidir]"
+   ],
+   [
+    "B",
+    "[çox oynayırsansa kuryer, hər sifarişə görə qazanırsan|aktivsənsə, kuryer|kuryer, nə qədər çox, o qədər çox pul]"
+   ],
+   [
+    "C",
+    "[az vaxtın varsa məmur, amma kurs lazımdır|məmur maaş alır, oynamasan da|məmur üçün əvvəl kurs lazımdır]"
+   ],
+   [
+    "A",
+    "[onda kuryerlə başlayıram|oldu, kuryer|yaxşı, kuryer]"
+   ],
+   [
+    "B",
+    "[gündəlik tapşırıqları da unutma|hər gün üç tapşırığı et|gündəlik tapşırıq qum saatı verir]"
+   ],
+   [
+    "A",
+    "[sağ olun, {s:drink} götürüb başlayıram|əvvəl {s:drink}, sonra iş|{s:drink} və yola düşdüm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sorgu-qis-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[sorğu: qış, ya yay?|qış, yoxsa yay?|tez deyin: qış, yay?]"
+   ],
+   [
+    "B",
+    "[yay, oktyabrdan donuram|yay, sözsüz|həmişə yay]"
+   ],
+   [
+    "C",
+    "[qış, {s:drink} və yorğan üçün|qış, divanda {s:drink} içmək olur|qış, pəncərə qarşısında {s:drink}]"
+   ],
+   [
+    "D",
+    "[payız, mən üsyançıyam|yaz, ikiniz də səhvsiniz|mən yazı seçirəm]"
+   ],
+   [
+    "A",
+    "[{D}, bu variant yox idi|{D}, olmaz|{D} sorğunu pozdu]"
+   ],
+   [
+    "D",
+    "[fərqi yoxdur|vecimə deyil|fikrimdə qalıram]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sorgu-seher-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[səhər yeməyi: şirin, ya duzlu?|səhər nə yeyirsiniz, şirin, yoxsa duzlu?|səhər yeməyi sorğusu]"
+   ],
+   [
+    "B",
+    "[duzlu, pendir-çörək|duzlu, yumurta|pendir, çörək, çay]"
+   ],
+   [
+    "C",
+    "[şirin, mürəbbə|şirin, bal və qaymaq|qaymaq və bal, bağışlayın]"
+   ],
+   [
+    "D",
+    "[mən səhər {s:food} yeyirəm, qaydam yoxdur|səhər {s:food}|səhər yeməyi? dünəndən qalan {s:food}]"
+   ],
+   [
+    "B",
+    "[{D}, bu səhər yeməyi deyil|{D}, sayılmır|{D}, sənə nə olub]"
+   ],
+   [
+    "D",
+    "[bu səmərəlilikdir|qalıqlar ən yaxşı səhər yeməyidir|soyuq daha dadlıdır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-plov-sorgu-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[plovun ən dadlı hissəsi qazmaqdır, razısınız?|qazmaqsız plov plov deyil|plovda ilk qazmağı kim götürür]"
+   ],
+   [
+    "B",
+    "[qazmaq həmişə nənəmə çatır|bizdə qazmaq üstündə dava olur|qazmaq ən böyük mükafatdır]"
+   ],
+   [
+    "C",
+    "[mən qazmağı sevmirəm|mənə ancaq düyü verin|mənə şah plov lazımdır]"
+   ],
+   [
+    "A",
+    "[{C}, sən təhlükəlisən|{C}, bunu kimsə eşitməsin|{C}, səni chatdan çıxaracağıq]"
+   ],
+   [
+    "C",
+    "[amma {s:food} ilə plov yeyirəm|onun əvəzinə {s:food}|mən {s:food} tərəfdarıyam]"
+   ],
+   [
+    "B",
+    "[bağışlanmadın|hələ düşünəcəyik|şübhəlisən]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kuryer-qis-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[qışda kuryer olmaq çətindir|bu gün mənfi beşdə sifariş daşıdım|barmaqlarım buz kimidir]"
+   ],
+   [
+    "B",
+    "[neçə sifariş|neçə çatdırılma|dəydi?]"
+   ],
+   [
+    "A",
+    "[on iki, pis deyil|xeyli, yaxşı gün idi|bu gün üçün bəsdir]"
+   ],
+   [
+    "C",
+    "[kuryer hər sifarişə görə qazanır, soyuq pul deməkdir|hər sifariş sayılır, afərin|çox sifariş, çox pul]"
+   ],
+   [
+    "A",
+    "[indi {s:drink} lazımdır|əvvəlcə {s:drink}, isinmək üçün|{s:drink} və isitici, dərhal]"
+   ],
+   [
+    "B",
+    "[haqq etmisən|layiqsən|özünü əzizlə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-ofisiant-1",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ofisiant kimi yanvar sakit keçir|kafedə az adam var|bu ay müştəri azdır]"
+   ],
+   [
+    "B",
+    "[bayramlardan sonra hamı qənaət edir|yanvarda hamının pulu qurtarır|normaldır]"
+   ],
+   [
+    "A",
+    "[yenə də tapşırıqlarımı edirəm|ayda iyirmi tapşırıq etsəm, maaş tam gəlir|iyirmi tapşırıq olmasa, tam maaş yoxdur]"
+   ],
+   [
+    "C",
+    "[edə biləcəksən|çalışqansan, alınacaq|asandır]"
+   ],
+   [
+    "A",
+    "[ümid edirəm, yoxsa fevralda ancaq {s:food}|yoxsa bir ay {s:food}|yoxsa {s:food} yeyəcəm]"
+   ],
+   [
+    "B",
+    "[{s:food} da pis deyil|daha pisi də var|hər gün {s:food}, dram deyil]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-memur-1",
+  "konu": "is",
+  "kosul": [
+   "A.memur"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[məmur olmağın ən yaxşı tərəfi: oynamasan da maaş gəlir|oyuna girməsəm də maaşım gəlir|məmurluq əladır]"
+   ],
+   [
+    "B",
+    "[paxıllıq|ədalətsizlikdir|mən də istəyirəm]"
+   ],
+   [
+    "A",
+    "[dövlət imtahanı kursunu keç|kurs və otuz gün təcrübə|kurs, sonra təcrübə]"
+   ],
+   [
+    "C",
+    "[mən kuryer qalıram, hərəkəti sevirəm|mən aktiv olmağı sevirəm|oturmaq mənlik deyil]"
+   ],
+   [
+    "A",
+    "[hər kəs öz yolu|mən sakitliyi sevirəm|{s:drink} və sakitlik]"
+   ],
+   [
+    "B",
+    "[{s:day} yazılacam|deyəsən {s:day} başlayacam|{s:day} qədər fikirləşərəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-muhasib-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[mühasibat kursunu bitirdim!|artıq rəsmən mühasibəm|mühasib kursu bitdi]"
+   ],
+   [
+    "B",
+    "[təbrik edirəm!|əla|afərin]"
+   ],
+   [
+    "A",
+    "[indi təcrübə qalır|otuz gün təcrübə lazımdır|otuz gün, sonra hazır]"
+   ],
+   [
+    "C",
+    "[sonra da sabit maaş|yatanda da sabit maaş|dəyər]"
+   ],
+   [
+    "A",
+    "[bu axşam qeyd üçün {s:food}|{s:food} ilə qeyd edirəm|mükafat: {s:food}]"
+   ],
+   [
+    "B",
+    "[haqq etmisən|nuş olsun|belə davam]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-emlakci-ilk-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[emlak məsləhətçisi kimi ilk satışım|ilk komissiyamı aldım|bu gün ilk mükafatım gəldi]"
+   ],
+   [
+    "B",
+    "[necə hiss edirsən|nə qədər idi|xoş hissdir?]"
+   ],
+   [
+    "A",
+    "[kiçik lotereya uduşu kimi|çox deyil, amma qürurluyam|maaş üstəgəl komissiya, pis deyil]"
+   ],
+   [
+    "C",
+    "[deməli kurs dəydi|sertifikat yaxşı investisiya imiş|kurs uzun çəkdi?]"
+   ],
+   [
+    "A",
+    "[bir neçə gün, qum saatı ilə tez|qum saatı ilə sürətli getdi|gözlədiyimdən tez]"
+   ],
+   [
+    "B",
+    "[{s:family} eşitsə, sevinər|indi {s:family} zəng edəcək|{s:family} fəxr edəcək]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-torpaq-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[torpaq sahəsi kirayə gətirir?|torpaqdan gəlir olur?|torpaq almağa dəyər?]"
+   ],
+   [
+    "B",
+    "[yox, kirayə gətirmir, amma qiyməti artır|ancaq dəyəri artır|gəlir yoxdur, yalnız dəyər]"
+   ],
+   [
+    "A",
+    "[deməli gözləmək|onda saxlayıram|səbr]"
+   ],
+   [
+    "C",
+    "[{s:hobby} kimi, səbr lazımdır|səbr, {s:hobby} kimi|{s:hobby} öyrədir: gözləməyi bacar]"
+   ],
+   [
+    "A",
+    "[qəribə müqayisə|uyğun gəlmir məncə|oldu {C}, sən deyən olsun]"
+   ],
+   [
+    "C",
+    "[fikrimdə qalıram|tam uyğundur|müqayisəm mükəmməldir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kiraye-agir-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kirayə maaşımın yarısını yeyir|hər ay pulun yarısı kirayəyə gedir|kirayə ödəmək ağrılıdır]"
+   ],
+   [
+    "B",
+    "[ona görə hamı öz evini istəyir|öz evin olsa, kirayə yoxdur|al və kirayədən qurtar]"
+   ],
+   [
+    "A",
+    "[bilirəm, yığıram|yavaş-yavaş gedirəm|dəli kimi yığıram]"
+   ],
+   [
+    "C",
+    "[iki mənzilin olsa, ikincisi kirayə gətirir|sonra özün kirayəyə verərsən|ikinci mənzil gəlir verir]"
+   ],
+   [
+    "A",
+    "[{s:hobby} edəndə bunu xəyal edirəm|hər dəfə {s:hobby} zamanı bunu düşünürəm|arzum budur]"
+   ],
+   [
+    "B",
+    "[arzu yaşayır|bir gün, {A}|tezliklə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-faiz-yox-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[niyə hesabda faiz yoxdur|faizsiz əmanət, ciddi?|pul yatır, faiz sıfır]"
+   ],
+   [
+    "B",
+    "[oyun istəyir ki, investisiya edəsən|bir şey edəsən deyə|alasan deyə]"
+   ],
+   [
+    "C",
+    "[inflyasiya da yavaş-yavaş yeyir|hər ay dəyəri azalır|yığan inflyasiyadan itirir]"
+   ],
+   [
+    "A",
+    "[onda nəsə alım|mənzil ya torpaq daha yaxşıdır|investisiya edirəm]"
+   ],
+   [
+    "B",
+    "[ya da {s:food} üçün xərclə|{s:food} də investisiyadır|qarnına investisiya: {s:food}]"
+   ],
+   [
+    "C",
+    "[bu strategiya deyil, {B}|qısa müddətə, hə|qarın üçün, bəli]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-milyon-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.zengin"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda ilk milyon!|hesabımda bir milyon|milyonçuyam. oyunda, amma yenə də]"
+   ],
+   [
+    "B",
+    "[necə?|nə qədər çəkdi|sirr nədir]"
+   ],
+   [
+    "A",
+    "[dükan və iki mənzil kirayədə|biznes və kirayə|səbr və yaxşı işləyən dükan]"
+   ],
+   [
+    "C",
+    "[indi nə|növbəti hədəf?|nə edəcəksən]"
+   ],
+   [
+    "A",
+    "[daha çox mənzil|nüfuz üçün ianə|ikinci dükan]"
+   ],
+   [
+    "B",
+    "[sənin şərəfinə {s:food} yeyirəm|sənin üçün {s:food} ilə qeyd edirəm|bu gün {s:food}, sənin adından]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-iane-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda ianə etməyin faydası var?|ianə nə verir|ianə mənalıdır?]"
+   ],
+   [
+    "B",
+    "[nüfuz, hər on minə bir|nüfuz qazanırsan|hər on min üçün bir xal]"
+   ],
+   [
+    "A",
+    "[bayramlarda?|bonus var?|əlavə nəsə?]"
+   ],
+   [
+    "C",
+    "[bayramda iki qat|bayram günləri ikiqat sayılır|bayramda iki dəfə çox]"
+   ],
+   [
+    "A",
+    "[onda bayramı gözləyirəm|bayrama saxlayıram|bilmək yaxşıdır]"
+   ],
+   [
+    "B",
+    "[nüfuz kredit reytinqinə də kömək edir|işə müraciətdə də kömək edir|çox şeyə yarayır]"
+   ],
+   [
+    "C",
+    "[həm də ürəyin rahat olur, {s:food} paylamaq kimi|həm də xoşdur, {s:family} kimi səxavətli olursan|həm də insan sevinir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-dukan-isci-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dükanıma satıcı axtarıram|dükanımda işləmək istəyən var?|dükanıma adam lazımdır]"
+   ],
+   [
+    "B",
+    "[nə qədər verirsən|maaş nə qədərdir|nə təklif edirsən]"
+   ],
+   [
+    "A",
+    "[minimumdan çox və vaxtında|ədalətli və həmişə vaxtında|vaxtında, söz verirəm]"
+   ],
+   [
+    "C",
+    "[vaxtında ödəmək yüksək maaşdan vacibdir|vaxtında ödəyən rəis qızıldır|əsas budur]"
+   ],
+   [
+    "B",
+    "[{s:food} yeyib müraciət edirəm|on dəqiqə ver, {s:food} yeyirəm|əvvəl {s:food}, sonra müraciət]"
+   ],
+   [
+    "A",
+    "[elan açıqdır|elan verilib|gözləyirəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-reis-maas-yox-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda rəisimin maaşıma pulu yoxdur|maaş gəlmədi|rəis müflis olub?]"
+   ],
+   [
+    "B",
+    "[borc kimi yazılır|sənə borclu qalır|qeyd olunur]"
+   ],
+   [
+    "C",
+    "[onun nüfuzu düşür|nüfuz itirir|bu ona baha başa gəlir]"
+   ],
+   [
+    "A",
+    "[heç olmasa ədalətlidir|yaxşı, ədalətlidir|heç nə yoxdan yaxşıdır]"
+   ],
+   [
+    "B",
+    "[başqa iş tapa bilərsən|işi dəyiş|daha yaxşı rəis tap]"
+   ],
+   [
+    "A",
+    "[{s:day} qədər gözləyirəm|{s:day} qədər möhlət verirəm|{s:day}, sonra gedirəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-reis-yaxsi-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyundakı rəisim həmişə vaxtında ödəyir|ən yaxşı rəisim var|rəisimə alqış]"
+   ],
+   [
+    "B",
+    "[kimdir|danış|belə şey olur?]"
+   ],
+   [
+    "C",
+    "[o mənəm, {A}|ay, bu ki mənəm|sağ ol {A}, kövrəldim]"
+   ],
+   [
+    "A",
+    "[{C}! burada olduğunu bilmirdim|vay, {C} oxuyur|salam rəis]"
+   ],
+   [
+    "C",
+    "[sabah {s:food} məndən|mükafat: {s:food}|{s:food} müəssisədən]"
+   ],
+   [
+    "B",
+    "[mən də {C} ilə işləmək istəyirəm|{C}, işçi götürürsən?|harada müraciət edilir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-ince-belli-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türklər armudu stəkana \"ince belli\" deyir|türk dostum armudu stəkanı göstərib \"ince belli\" dedi|\"ince belli\" bizim armudu stəkandır]"
+   ],
+   [
+    "B",
+    "[incə bel, çox uyğun ad|bizdə \"armudu\", onlarda \"ince belli\"|ikisi də gözəldir]"
+   ],
+   [
+    "A",
+    "[hə, eyni stəkan|eyni forma|bəli]"
+   ],
+   [
+    "C",
+    "[amma bizim çay daha dəmlidir|çayı biz daha yaxşı dəmləyirik|türklər də eyni şeyi deyir, haha]"
+   ],
+   [
+    "A",
+    "[mübahisə etməyək, hamı {s:drink} içsin|barışıq: hamıya {s:drink}|çay mübahisəsi yox, {s:drink} iç]"
+   ],
+   [
+    "B",
+    "[ağıllı qərar|diplomatik|razıyam]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-yavas-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türk sözü: \"yavaş yavaş\"|türklər \"yavaş yavaş\" deyir, biz də|ortaq söz: yavaş-yavaş]"
+   ],
+   [
+    "B",
+    "[bizdə də var|eyni sözdür|hə, eynidir]"
+   ],
+   [
+    "A",
+    "[oyunda mottom budur|qənaət üçün mükəmməldir|mənzil üçün belə yığıram]"
+   ],
+   [
+    "C",
+    "[{s:hobby} üçün də|{s:hobby} da belədir|mənim üçün {s:hobby}]"
+   ],
+   [
+    "B",
+    "[yavaş-yavaş, hər şey yaxşı|tələsmə|düzdür, yavaş-yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sagol-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türk \"sağ ol\" deyəndə nə cavab verim|\"sağ ol\"a necə cavab verilir|\"sağ ol\" deyəndə nə deyirsiniz]"
+   ],
+   [
+    "B",
+    "[\"sən də sağ ol\"|bizdə \"dəyməz\" deyirik|türklər \"rica ederim\" deyir]"
+   ],
+   [
+    "A",
+    "[türk deyəndə \"dəyməz\" başa düşür?|\"dəyməz\" türkdə işləyir?|başa düşür?]"
+   ],
+   [
+    "C",
+    "[bəlkə yox, \"bir şey değil\" de|\"rica ederim\" daha yaxşıdır|bilmirəm, soruşmaq lazımdır]"
+   ],
+   [
+    "A",
+    "[{s:family} ilə məşq edəcəm|{s:family} mənə öyrədəcək|{s:family} türkcəni yaxşı bilir]"
+   ],
+   [
+    "B",
+    "[yaxşı|tez öyrənərsən|yavaş-yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-gunaydin-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[günaydın!|günaydın hamıya|günaydın, türklər kimi]"
+   ],
+   [
+    "B",
+    "[sabahın xeyir|günaydın sənə də|sabahınız xeyir]"
+   ],
+   [
+    "C",
+    "[türkcədə niyə \"günaydın\", bizdə \"sabahın xeyir\"|iki fərqli salam|maraqlıdır]"
+   ],
+   [
+    "B",
+    "[mənası təxminən \"işıqlı gün\"|\"gün aydın olsun\" kimi|günə işıq deməkdir]"
+   ],
+   [
+    "C",
+    "[onda günaydın və hamıya {s:drink}|günaydın, {s:drink} hazırdır|günaydın, bir dövrə {s:drink}]"
+   ],
+   [
+    "A",
+    "[əla|mən də|sağ ol {C}]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-ellerine-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türklər \"ellerine sağlık\" deyir|bu gün \"ellerine sağlık\" sözünü öyrəndim|türk dostuma \"ellerine sağlık\" yazdım]"
+   ],
+   [
+    "B",
+    "[bizdə \"əllərin var olsun\"|biz \"əlinə sağlıq\" deyirik|bizdə də var, \"əlin dərd görməsin\"]"
+   ],
+   [
+    "A",
+    "[çox oxşardır|demək olar eynidir|qardaş dillər]"
+   ],
+   [
+    "C",
+    "[{s:family} yemək bişirəndə deyirəm|{s:family} bunu eşidəndə sevinir|{s:family} üçün hər gün deyirəm]"
+   ],
+   [
+    "A",
+    "[{s:food} bişirəndə də?|{s:food} üçün də deyilir?|hətta {s:food} üçün?]"
+   ],
+   [
+    "B",
+    "[hər yemək üçün|əlbəttə|hə, hər dəfə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-soyuq-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bu gün çox soyuqdur|ayaz var, sümüyə işləyir|bu gün havaya dözmək olmur]"
+   ],
+   [
+    "B",
+    "[bizdə sıfır dərəcə|bizdə mənfi|bizdə yağış və soyuq]"
+   ],
+   [
+    "C",
+    "[bizdə otuz dərəcədir, bağışlayın|bizdə istidir, yay|mən qısa qolludayam]"
+   ],
+   [
+    "A",
+    "[{C}, belə demək olmaz|{C}, səni bir az sevmirik|{C}, sus bir az]"
+   ],
+   [
+    "C",
+    "[sizə isti {s:drink} göndərirəm|xəyali {s:drink} alın|sizə {s:drink} göndərim?]"
+   ],
+   [
+    "B",
+    "[isti olsun|qaynar olsun|sağ ol, isti olsun]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qar-adam-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:family} ilə qar adamı düzəltdik|{s:family} və mən qar adamı düzəltdik|qar adamı hazırdır, {s:family} də kömək etdi]"
+   ],
+   [
+    "B",
+    "[böyükdür?|şəkil at|necə alındı]"
+   ],
+   [
+    "A",
+    "[kiçik və əyri|qəmgin görünür|bir əli var]"
+   ],
+   [
+    "C",
+    "[əyri qar adamlarının xarakteri var|belə mükəmməldir|sənət əsəri kimidir]"
+   ],
+   [
+    "A",
+    "[adını \"bankir\" qoyduq|adı Əhməd dayıdır|indi Rəşid əmidir]"
+   ],
+   [
+    "B",
+    "[haha, niyə|yaraşır|mükəmməl ad]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-bazar-gunu-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bazar günü niyə belə tez keçir|bazar günləri çox qısadır|bazar günü yenə bitir]"
+   ],
+   [
+    "B",
+    "[çünki heç nə etmirsən|tənbəllik tez uçur|divanda vaxt uçur]"
+   ],
+   [
+    "C",
+    "[bu gün ancaq {s:hobby} ilə məşğul oldum|bu gün {s:hobby} günü idi|bütün günü {s:hobby}]"
+   ],
+   [
+    "A",
+    "[bu da nəsə|məhsuldar|heç olmasa]"
+   ],
+   [
+    "C",
+    "[sonra da serialın altı seriyası|bir də bütöv mövsüm|sonra gecəyə qədər serial]"
+   ],
+   [
+    "B",
+    "[mükəmməl bazar|belə olmalıdır|bazar qazanıldı]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-bazar-ertesi-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[bazar ertəsi. yenə|bazar ertəsini kim icad edib|bazar ertəsi səhəri, cəza kimi]"
+   ],
+   [
+    "B",
+    "[başını dik tut|olacaq|həftə yaxşı keçəcək]"
+   ],
+   [
+    "A",
+    "[{B}, çox şənsən|necə belə şən ola bilərsən|{B}, nə içmisən]"
+   ],
+   [
+    "B",
+    "[{s:drink} içmişəm|iki stəkan {s:drink}|{s:drink}, çox {s:drink}]"
+   ],
+   [
+    "C",
+    "[mən hələ yataqdayam|hələ qalxmamışam|rəsmən hələ oyanmamışam]"
+   ],
+   [
+    "A",
+    "[{C} mənim idealımdır|{C} düz edir|{C} olmaq istəyirəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sarj-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[batareya üç faizdir və {s:thing} evdə qalıb|iki faiz, {s:thing} də yoxdur|batareya bitir, {s:thing} evdə]"
+   ],
+   [
+    "B",
+    "[klassika|həmişə olur|lazım olanda belə olur]"
+   ],
+   [
+    "C",
+    "[tez gündəlik tapşırıqları et, sönməmiş|tez tapşırıqlar və sağol|son bir sifariş tez]"
+   ],
+   [
+    "A",
+    "[yaxşı fik|gec oldu, mən ged|oldu, ed]"
+   ],
+   [
+    "B",
+    "[getdi|sağol {A}|rəhmətlik telefon]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-acar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[{s:thing} yenə itib, gecikirəm|{s:thing} tapılmır, yenə|on dəqiqədir {s:thing} axtarıram]"
+   ],
+   [
+    "B",
+    "[paltonun cibinə baxdın?|cibdə?|mətbəxdə baxdın?]"
+   ],
+   [
+    "A",
+    "[hə, hər yerdə|hə, yoxdur|üç dəfə]"
+   ],
+   [
+    "C",
+    "[soyuducuda|soyuducuda, mütləq|mən bir dəfə özümkünü soyuducuda tapmışdım]"
+   ],
+   [
+    "A",
+    "[... ordaymış|inanmayacaqsınız|{C}, haradan bildin]"
+   ],
+   [
+    "C",
+    "[təcrübə|bu işi bilirəm|ən yaxşılarının başına gəlir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-usta-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.usta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[nəhayət ustayam!|oyunda usta oldum|ustalıq sertifikatı alındı]"
+   ],
+   [
+    "B",
+    "[təbriklər, nə qədər çəkdi|neçə gün fəhlə oldun|nə vaxt başladın]"
+   ],
+   [
+    "A",
+    "[iyirmi gün tikinti, üstəgəl kurs|iyirmi gün, sonra kurs|fasilələrə görə gözlədiyimdən uzun]"
+   ],
+   [
+    "C",
+    "[indi sonra podratçı ola bilərsən|növbəti addım podratçı?|iyirmi gün ustalıqdan sonra podratçı]"
+   ],
+   [
+    "A",
+    "[əvvəl qeyd edək, {s:food} ilə|bu gün ancaq {s:food} və bayram|əvvəl {s:food}, sonra planlar]"
+   ],
+   [
+    "B",
+    "[belə yaxşıdır|haqq etmisən|{s:drink} ilə sağlığına]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-icra-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[taksit ödəməsəm nə olur|bir taksit buraxsam nə olar|ödənməmiş taksit ciddidir?]"
+   ],
+   [
+    "B",
+    "[üç taksit ödənməsə icra gəlir|üç taksit = icra|biri son deyil, amma üçdə ciddiləşir]"
+   ],
+   [
+    "A",
+    "[vay|uf|çox sərtdir]"
+   ],
+   [
+    "C",
+    "[kredit reytinqin də düşür|nüfuzun da|nüfuz və reytinq düşür]"
+   ],
+   [
+    "A",
+    "[onda {s:food} yemək üçün çölə çıxmaq yox, əvvəl taksit|{s:food} restoranda bitdi|hamısını ödəyənə qədər {s:food} yoxdur]"
+   ],
+   [
+    "B",
+    "[ağıllısan|düzgün|yaxşı qərar]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-limit-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kredit limiti necə hesablanır|limitim niyə aşağıdır|limit nədən asılıdır]"
+   ],
+   [
+    "B",
+    "[keçən ayın gəliri vurulsun reytinq, bölünsün yüzə|son ayın gəliri və kredit balı|maaş və reytinq]"
+   ],
+   [
+    "A",
+    "[deməli daha çox qazanmaq|daha çox qazanmalıyam|məntiqlidir]"
+   ],
+   [
+    "C",
+    "[reytinq altı yüz iyirmidən başlayır|hamı 620 ilə başlayır|başlanğıc bal 620-dir]"
+   ],
+   [
+    "A",
+    "[necə qalxır|harayadək?|necə yaxşılaşır]"
+   ],
+   [
+    "C",
+    "[vaxtında ödəməklə və nüfuzla|vaxtında taksitlə|dəqiq bilmirəm, baxmaq lazımdır]"
+   ],
+   [
+    "B",
+    "[{s:family} mənə şəkillə izah etdi|mənə {s:family} izah etdi|{s:family} sxem çəkdi]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-yenilenme-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[növbəti yenilənmə nə gətirəcək|yeniləmə haqqında nəsə məlumdur?|yenilənmə şayiələri?]"
+   ],
+   [
+    "B",
+    "[deyirlər birja və valyuta|birja, qızıl, valyuta|birja haqqında eşitmişəm]"
+   ],
+   [
+    "C",
+    "[tikinti sonra gələcək|ev tikmək sonra olacaq|tikinti şirkətləri sonra]"
+   ],
+   [
+    "A",
+    "[mən sadəcə ortaq istəyirəm|biznesdə ortaq olmaq istəyirəm|birlik istəyirəm]"
+   ],
+   [
+    "B",
+    "[ortaqlıq da planlaşdırılıb deyəsən|gələcəkmiş deyəsən|bilmirəm, amma yaxşı olardı]"
+   ],
+   [
+    "A",
+    "[o vaxta qədər {s:hobby}|o vaxta qədər bir az {s:hobby}|{s:hobby} ilə gözləyirəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kohne-oyuncu-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iki yüz gündən çoxdur oynayıram|bu gün oyunda iki yüzüncü günüm|artıq köhnə oyunçuyam]"
+   ],
+   [
+    "B",
+    "[nə öyrəndin|müdrik sözlər, xahiş|ən yaxşı məsləhətin nədir]"
+   ],
+   [
+    "A",
+    "[hər şeyi bir yerə qoyma|səbr, həmişə səbr|taksitləri heç vaxt buraxma]"
+   ],
+   [
+    "C",
+    "[bu həyat üçün də məsləhətdir|real həyatda da işləyir|təkcə oyunda yox]"
+   ],
+   [
+    "A",
+    "[bir də səhər həmişə {s:drink}|{s:drink} olmadan başlama|bir də {s:drink}, çox vacib]"
+   ],
+   [
+    "B",
+    "[yazdım|yadda saxladım|bunu unutmaram]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-gece-oyaq-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[oyaq olan var?|kim hələ onlayndır|burada kimsə var?]"
+   ],
+   [
+    "B",
+    "[mən|buradayam|iştirak edirəm]"
+   ],
+   [
+    "A",
+    "[yata bilmirəm|bir saatdır fırlanıram|yuxu gəlmir]"
+   ],
+   [
+    "B",
+    "[mən də, gec {s:drink} içmişəm|mən də, saat on birdə {s:drink} səhv idi|eyni dərd, çox {s:drink}]"
+   ],
+   [
+    "C",
+    "[mən gecə növbəsindən çıxıram|hələ işləyirəm|gecə işindəyəm]"
+   ],
+   [
+    "A",
+    "[biz gecə komandasıyıq|yuxusuzlar klubuna xoş gəldiniz|yuxusuz komanda]"
+   ],
+   [
+    "B",
+    "[loqo lazımdır|xoşuma gəlir|köynək tikdirək]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-gece-ac-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[saat ikidir və {s:food} istəyirəm|bu vaxt {s:food} yemək istəyirəm|gecə ikidə {s:food} düşünürəm]"
+   ],
+   [
+    "B",
+    "[get ye|problem nədir|mətbəxə]"
+   ],
+   [
+    "A",
+    "[saat ikidir|tənbəlliyim gəlir|sağlam deyil]"
+   ],
+   [
+    "C",
+    "[gecə yarısından sonra kalori sayılmır|gecədən sonra hər şey olar|saat ikidə qayda yoxdur]"
+   ],
+   [
+    "A",
+    "[oldu, razı saldınız|gedirəm|pis təsirsiniz]"
+   ],
+   [
+    "B",
+    "[nuş olsun|afiyet olsun, türklər deyən kimi|ləzzətlə ye]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qonsu-ses-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[yuxarı qonşu gecə saat on ikidə mebel çəkir|yuxarıdakı gecə yarısı təmir edir|bu vaxt dəlmə səsi gəlir]"
+   ],
+   [
+    "B",
+    "[klassika|mənzil həyatı|həmişə belə]"
+   ],
+   [
+    "A",
+    "[sabah tez durmalıyam|sabah səkkizdə işdəyəm|sabah {s:day}, tez qalxmalıyam]"
+   ],
+   [
+    "C",
+    "[qulaq tıxacı|qulaqcıq və musiqi|qalx, nəzakətlə de]"
+   ],
+   [
+    "A",
+    "[qalxdım, məni {s:food} yeməyə dəvət etdi|dedim, sonda birlikdə {s:food} yedik|sakitlik istədim, {s:food} ilə qayıtdım]"
+   ],
+   [
+    "B",
+    "[haha, əla final|qonşuluq budur|yaxşı qonşular]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-nene-yemek-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[bazar günü nənəgildə nahar|nənəm bu bazar hamını yığır|nənəgildə ailə naharı]"
+   ],
+   [
+    "B",
+    "[nə bişirir|menyu nədir|nə olacaq]"
+   ],
+   [
+    "A",
+    "[{s:food}, üstəlik yanına da qablaşdırır|{s:food}, sonra da paket verir|{s:food}, partlayana qədər]"
+   ],
+   [
+    "C",
+    "[nənələr həmişə arıq olduğunu düşünür|\"çox arıqlamısan, ye\"|üç boşqabdan sonra \"niyə yemirsən\"]"
+   ],
+   [
+    "A",
+    "[elə bu|dəqiq|söz-söz eynidir]"
+   ],
+   [
+    "B",
+    "[nənənin paketi maaşdan qiymətlidir|o paket qızıldır|nənə paketi, ən yaxşı qənaət]"
+   ],
+   [
+    "C",
+    "[oyunda nənə yoxdur, ona görə çətindir|oyunun problemi budur, paket yoxdur|oyuna nənə lazımdır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-bulvar-gezinti-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[axşam bulvarda gəzinti, külək olmasa|dənizkənarı gəzmək istəyirəm|bulvara çıxan var?]"
+   ],
+   [
+    "B",
+    "[bu soyuqda?|xəzri əsirsə, getmə|qalın geyin]"
+   ],
+   [
+    "A",
+    "[{s:drink} alıb gəzərəm|əlimdə {s:drink} olsa, soyuq qorxulu deyil|termosda {s:drink} götürərəm]"
+   ],
+   [
+    "C",
+    "[mən evdə {s:hobby} ilə qalıram|mən gəlmirəm, {s:hobby} var|bu gün yox, {s:hobby}]"
+   ],
+   [
+    "A",
+    "[sıxıcısan|sən itirirsən|itirirsən, {C}]"
+   ],
+   [
+    "C",
+    "[belə xoşbəxtəm|bilirəm və peşman deyiləm|başqa dəfə, söz verirəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-cay-sayi-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[gündə neçə stəkan çay içirsiniz|sorğu: gündəlik çay|neçə stəkansız yaşaya bilmirsiniz]"
+   ],
+   [
+    "B",
+    "[on, az da olsa|səkkiz, səhər üç|sayını itirmişəm]"
+   ],
+   [
+    "C",
+    "[mən ancaq {s:drink} içirəm|çay yox, {s:drink}|mən {s:drink} adamıyam]"
+   ],
+   [
+    "D",
+    "[on beş, məni mühakimə etməyin|nə qədər lazımdırsa|samovar boşalana qədər]"
+   ],
+   [
+    "A",
+    "[{D}, bu narahatedicidir|{D}, həkimə get|{D}, nəfəs al]"
+   ],
+   [
+    "D",
+    "[çaysız nəfəs ala bilmirəm|yaxşıyam deyəsən|gözüm bir az səyriyir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qohum-zeng-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:family} zəng etdi, bir saat danışdıq|{s:family} ilə telefonda bir saat|{s:family} zəng edib bütün qohumların xəbərini verdi]"
+   ],
+   [
+    "B",
+    "[nə danışdınız|xəbər nə|nə dedi]"
+   ],
+   [
+    "A",
+    "[kim evlənir, kim ev alır, kim xəstədir|bütün qohumların xəbərləri|hamının həyatı, bir saata]"
+   ],
+   [
+    "C",
+    "[bizdə də belədir|ailə xəbər agentliyi|bu, mətbuatdan sürətlidir]"
+   ],
+   [
+    "A",
+    "[sonda soruşdu ki, mən nə vaxt ev alıram|sonra mənim mənzilimi soruşdu|\"bəs sən nə vaxt?\" sualı gəldi]"
+   ],
+   [
+    "B",
+    "[oyunda alıram de|\"oyunda yığıram\" de|yavaş-yavaş de]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-xala-sual-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[xalam soruşdu ki, oyunda nə işləyirəm|xalama oyunu izah etdim|xalam oyundakı maaşımı soruşdu]"
+   ],
+   [
+    "B",
+    "[nə dedin|başa düşdü?|reaksiya?]"
+   ],
+   [
+    "A",
+    "[kuryer olduğumu deyəndə qorxdu|dedi ki, real işin hanı|dedi ki, oyunda da ev al]"
+   ],
+   [
+    "C",
+    "[xalalar hər yerdə eynidir|klassik xala|xala məntiqi]"
+   ],
+   [
+    "A",
+    "[sonra mənə {s:food} göndərdi|sonra \"ac qalma\" deyib {s:food} verdi|sonda {s:food} paketi aldım]"
+   ],
+   [
+    "B",
+    "[xalalar ən yaxşısıdır|həmişə belə bitir|xala sevgisi]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-dolma-mubahise-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yarpaq dolması, ya kələm dolması?|dolma mübahisəsi: yarpaq, kələm, badımcan?|ciddi sual: ən yaxşı dolma hansıdır]"
+   ],
+   [
+    "B",
+    "[yarpaq, sözsüz|kələm, qışda|üç bacı dolması]"
+   ],
+   [
+    "C",
+    "[dolma sual deyil, həyat tərzidir|hər dolma yaxşıdır|hamısı]"
+   ],
+   [
+    "A",
+    "[əslində bu gün {s:food} yeyirəm|bu gün {s:food} var, amma yenə də|mən bu gün {s:food} bişirmişəm]"
+   ],
+   [
+    "B",
+    "[xain|{A}, sualı sən verdin|məyus oldum]"
+   ],
+   [
+    "A",
+    "[bağışlayın|dolmanı sevirəm, düz deyirəm|sabah dolma]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qutab-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[günorta üçün qutab aldım|yolda isti qutab tapdım|naharım: göy qutabı]"
+   ],
+   [
+    "B",
+    "[ət, ya göy?|balqabaqlı?|sumaqla?]"
+   ],
+   [
+    "A",
+    "[göy, sumaqla|ət, isti-isti|qarışıq, iki növ]"
+   ],
+   [
+    "C",
+    "[mən {s:food} ilə doyuram|mənim naharım {s:food}|bu gün mənə {s:food} çatdı]"
+   ],
+   [
+    "A",
+    "[hamı xoşbəxtdir|nuş olsun|ikisi də yaxşıdır]"
+   ],
+   [
+    "B",
+    "[qutab haqqında oxudum, indi acam|indi qutab istəyirəm|sağ ol, acdım]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kafe-adi-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda kafe açsam, adını nə qoyum|kafe üçün ad ideyası|kafeyə ad lazımdır]"
+   ],
+   [
+    "B",
+    "[\"Xəzri\"|\"Armudu stəkan\"|\"Çayxana bulvar\"]"
+   ],
+   [
+    "C",
+    "[türk sözü olsun, \"keyif\"|\"Keyif\", türkcə həzz deməkdir|\"Çay bahçesi\"]"
+   ],
+   [
+    "A",
+    "[\"Armudu stəkan\" xoşuma gəldi|\"Keyif\" seçirəm|adım hazırdır]"
+   ],
+   [
+    "B",
+    "[xüsusi yemək də {s:food} olsun|menyuda {s:food}|{s:food} verilsin]"
+   ],
+   [
+    "A",
+    "[razılaşdıq|oldu|yaxşı kombinasiya]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kafe-menzil-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[əvvəl kafe, ya mənzil?|kafedən qabaq mənzil?|ağıllısı nədir, kafe, ya mənzil]"
+   ],
+   [
+    "B",
+    "[mənzil, kirayə bitir|əvvəl mənzil|mənzil, etibarlıdır]"
+   ],
+   [
+    "C",
+    "[kafe çox qazandırır, amma altmış gün təcrübə lazımdır|kafe üçün təcrübə və kapital lazımdır|kafe 3-cü səviyyədir, vaxt aparır]"
+   ],
+   [
+    "A",
+    "[onda mənzil|əvvəl mənzil|məntiqlidir]"
+   ],
+   [
+    "B",
+    "[{s:day} günü {s:food} ilə qeyd edərsən|ev qonaqlığı {s:food} ilə|qonaqlıq yeməyi: {s:food}]"
+   ],
+   [
+    "A",
+    "[hamınız dəvətlisiniz|hamınız gəlin|hamı dəvətlidir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-reqib-dukan-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dükanımın yanında başqası açıldı|eyni küçədə rəqib|düz qarşımda təzə dükan]"
+   ],
+   [
+    "B",
+    "[indi müştəriləri bölürsünüz|kassada hiss olunur|oyun müştərini bölür]"
+   ],
+   [
+    "A",
+    "[necə saxlayım|nə edim|məsləhət?]"
+   ],
+   [
+    "C",
+    "[daha çox işçi, daha yaxşı keyfiyyət|yaxşı adam götür|həmişə keyfiyyət]"
+   ],
+   [
+    "A",
+    "[onda bir nəfər də götürürəm|elan açıram|elan verirəm]"
+   ],
+   [
+    "B",
+    "[əvvəl {s:drink} iç, sonra döyüş|sakit ol, {s:drink}|{s:drink} və sakitlik]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-geri-dondum-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bir həftə yox idim, nə qaçırdım|bir həftədən sonra qayıtdım|fasilədən sonra yenə buradayam]"
+   ],
+   [
+    "B",
+    "[xoş gəldin!|səni görmək xoşdur|qayıtdı!]"
+   ],
+   [
+    "A",
+    "[kafem məndən müvəqqəti işçi ilə işlədi|oyun məndən asılı olmadan davam edib|vaxt yenə də keçdi]"
+   ],
+   [
+    "C",
+    "[baha başa gəldi?|müvəqqətilər bahadır|nə qədər xərclədin]"
+   ],
+   [
+    "A",
+    "[çox|xeyli|danışmayaq]"
+   ],
+   [
+    "B",
+    "[bu gün {s:food} və yenidən başla|{s:food} və irəli|{s:food} və təzə başlanğıc]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-taksit-qalib-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[on taksit qalıb|on dörd taksit və azadam|kreditin yarısını ödədim]"
+   ],
+   [
+    "B",
+    "[əla|az qalıb|ruhdan düşmə]"
+   ],
+   [
+    "A",
+    "[hər taksiti qələbə kimi pozuram|hər ay kiçik qələbədir|siyahım var, pozuram]"
+   ],
+   [
+    "C",
+    "[bitəndə reytinqin daha yaxşı olacaq|sonra kredit balın artacaq|hər vaxtında taksit bala kömək edir]"
+   ],
+   [
+    "A",
+    "[sonda {s:food} və yeni hədəf|böyük final {s:food} ilə|{s:food} ilə qeyd edəcəm]"
+   ],
+   [
+    "B",
+    "[biz də qoşuluruq|biz də varıq|mən {s:drink} gətirirəm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-yeni-kredit-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeniyəm, kredit neçə aylıqdır|kreditlər neçə ayadır|təzə sualı: kreditin müddəti?]"
+   ],
+   [
+    "B",
+    "[ehtiyac krediti iyirmi dörd aydır|iyirmi dörd ay|iki il taksit]"
+   ],
+   [
+    "A",
+    "[bəs mənzil üçün?|ev üçün?|ipoteka?]"
+   ],
+   [
+    "C",
+    "[ipotekada təxminən iyirmi faiz ilkin ödəniş|ilkin ödəniş təxminən 20 faiz|müddətini dəqiq bilmirəm, oyundakı banka bax]"
+   ],
+   [
+    "A",
+    "[sağ olun, {s:day} baxaram|oldu, sakit baxaram|yaxşı, yoxlayaram]"
+   ],
+   [
+    "B",
+    "[ödəyə bildiyindən çox götürmə|taksitlərə diqqət|əvvəl hesabla]"
+   ],
+   [
+    "A",
+    "[oldu, ana|tamam|başa düşdüm]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-pulsuz-qaldim-1",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda pulum qurtarır|az qala müflisəm|pulsuzam, nə edim]"
+   ],
+   [
+    "B",
+    "[hökmən işləməlisən|dərhal iş tap|məcburidir, işə]"
+   ],
+   [
+    "C",
+    "[borcu ödəyənə qədər investisiya edə bilməzsən|əvvəl borc, sonra investisiya|borc bitənə qədər investisiya yox]"
+   ],
+   [
+    "A",
+    "[oldu, kuryer|onda kuryer|sabah başlayıram]"
+   ],
+   [
+    "B",
+    "[bir də {s:food} sifariş etmək yox|əlavə xərc yox|qənaət rejimi]"
+   ],
+   [
+    "A",
+    "[ancaq evdə {s:food}|şkafdan {s:food}|{s:food} bişirirəm, ucuzdur]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-muraciet-1",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[müraciət etdim, gözləyirəm|müraciət getdi, cavab yoxdur|rəisin cavabını gözləyirəm]"
+   ],
+   [
+    "B",
+    "[bəzən bir az çəkir|qum saatı gözləməni qısaldır|qum saatı ilə tez olur]"
+   ],
+   [
+    "A",
+    "[qalmayıb|hamısını xərclədim|sıfır qum saatı]"
+   ],
+   [
+    "C",
+    "[gündəlik tapşırıqlar|üç tapşırıq, bir qum saatı|sabah biri gələcək]"
+   ],
+   [
+    "B",
+    "[o vaxta qədər kuryer ol, rəis lazım deyil|kuryer birbaşa başlayır|kuryerin işəgötürəni yoxdur, karyeradan başla]"
+   ],
+   [
+    "A",
+    "[onda arada kuryerəm|yaxşı fikir|əvvəl {s:drink}, sonra işə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kassir-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kassir həm maaş, həm tapşırıq alır?|kassir necə qazanır|kassir, necə işləyir]"
+   ],
+   [
+    "B",
+    "[hə, əsas maaş üstəgəl tapşırıqlar|maaş və hər tapşırığa əlavə|ikisi də]"
+   ],
+   [
+    "A",
+    "[kurs lazımdır?|şərt var?|necə başlayım]"
+   ],
+   [
+    "C",
+    "[yox, birinci səviyyə|heç nə, birbaşa müraciət et|sadəcə müraciət]"
+   ],
+   [
+    "A",
+    "[əla|onda kassir|super]"
+   ],
+   [
+    "B",
+    "[fasilədə də {s:food}|fasilə {s:food} ilə|{s:food} ilə istirahət]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sorgu-axsam-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bu axşam: bişirmək, ya sifariş?|bu gün kim yemək bişirir|şam yeməyi: evdə, ya sifariş]"
+   ],
+   [
+    "B",
+    "[{s:food} bişirirəm|evdə, {s:food}|mən {s:food} hazırlayıram]"
+   ],
+   [
+    "C",
+    "[sifariş, yorğunam|sifariş, sözsüz|sifariş, gücüm yoxdur]"
+   ],
+   [
+    "D",
+    "[{s:family} bişirir, gedirəm|{s:family} məni yeməyə çağırıb|{s:family} gildəyəm, pulsuz yemək]"
+   ],
+   [
+    "A",
+    "[{D} qalib gəldi|{D} ən ağıllısıdır|{D}, peşəkar]"
+   ],
+   [
+    "D",
+    "[bilirəm|illərin təcrübəsi|ən yaxşı strategiya]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sorgu-yuxu-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[neçə saat yatırsınız|gecədə nə qədər yatırsınız|yuxu sorğusu]"
+   ],
+   [
+    "B",
+    "[altı, bəs etmir|yaxşı olsa altı|beş, zombiyəm]"
+   ],
+   [
+    "C",
+    "[səkkiz, körpə kimi|doqquz, utanmıram|səkkiz, yuxu müqəddəsdir]"
+   ],
+   [
+    "D",
+    "[bilmirəm, bu vaxt həmişə buradayam|bilmirəm, buradayam|{s:drink} içəndən sonra yatıram, az]"
+   ],
+   [
+    "A",
+    "[{D}, problemin bir hissəsisən|{D}, yat|{D}, bu cavab deyil]"
+   ],
+   [
+    "D",
+    "[sən də buradasan|sən də, {A}|hamımız]"
+   ],
+   [
+    "A",
+    "[haqlısan|doğrudur|tutuldum]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sorgu-seyahet-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[indi səyahət etsəydiniz, hara|yanvar üçün arzu olunan yer|indi harada olmaq istərdiniz]"
+   ],
+   [
+    "B",
+    "[çimərliyə|isti bir yerə|günəşə, harada olsa]"
+   ],
+   [
+    "C",
+    "[İstanbula, türklərə görə|Türkiyəyə, Boğaz kənarında simit|İstanbul, çox eşitmişəm]"
+   ],
+   [
+    "A",
+    "[yaxşı seçim|mənim də arzum|mən də]"
+   ],
+   [
+    "C",
+    "[bir də dəniz kənarında {s:food}|Boğaza baxıb {s:drink}|su qarşısında {s:drink}]"
+   ],
+   [
+    "B",
+    "[səyahət istədim|sağ ol, indi kədərliyəm|niyə mənimlə belə edirsiniz]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-heseret-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[evdən uzaqdayam, {s:food} üçün darıxmışam|{s:food} üçün çox darıxıram|ev {s:food} həsrətindəyəm]"
+   ],
+   [
+    "B",
+    "[ananın kimi?|evdəki kimi?|hansı]"
+   ],
+   [
+    "A",
+    "[{s:family} necə bişirirsə|{s:family} bişirən kimi|ancaq {s:family} belə bişirir]"
+   ],
+   [
+    "C",
+    "[resept istə|reseptini al|resept, sonra bişir]"
+   ],
+   [
+    "A",
+    "[heç vaxt eyni olmur|cəhd etmişəm|nəsə çatmır]"
+   ],
+   [
+    "B",
+    "[qazandadır|sirr qazandadır|həmişə qazandır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-otaq-novbe-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kirayə evdə təmizlik növbəsi qurduq|evdə təmizlik cədvəli|otaq yoldaşları ilə növbə]"
+   ],
+   [
+    "B",
+    "[necə də mütəşəkkil|bu çox çəkməz|alman kimi]"
+   ],
+   [
+    "A",
+    "[bu həftə mətbəx məndədir|vanna məndədir|zibil məndədir]"
+   ],
+   [
+    "C",
+    "[əməl edilir?|hörmət edirlər?|nə qədər davam edir]"
+   ],
+   [
+    "A",
+    "[{s:day} qədər, sonra yox|ən çox {s:day} qədər|{s:day} qədər möhlət]"
+   ],
+   [
+    "B",
+    "[real|səmimi|klassik]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-lift-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[liftdə qonşu soruşdu \"yuxarı, yoxsa aşağı\"|liftdə yeddi mərtəbə narahat sükut|lift söhbəti sənətdir]"
+   ],
+   [
+    "B",
+    "[nə dedin|bəs sən|necə reaksiya verdin]"
+   ],
+   [
+    "A",
+    "[havadan danışdım|\"bu gün soyuqdur, eləmi\"|\"hə\" dedim]"
+   ],
+   [
+    "C",
+    "[mükəmməl lift söhbəti|dərslik kimi|çox düzgün]"
+   ],
+   [
+    "A",
+    "[{s:day} günündən pilləkən|sabahdan piyada|bir daha lift yox]"
+   ],
+   [
+    "B",
+    "[ayaqlar üçün yaxşıdır|pulsuz idman|ayaq günü kimi]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-stomatoloq-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:day} stomatoloqa gedirəm, qorxuram|{s:day} diş həkimi|{s:day}: diş həkimi. indidən titrəyirəm]"
+   ],
+   [
+    "B",
+    "[sakit ol|yoxlamadır?|bacararsan]"
+   ],
+   [
+    "A",
+    "[yoxlama, amma çox {s:food} yemişəm|ən pisini gözləyirəm|vicdanım narahatdır]"
+   ],
+   [
+    "C",
+    "[diş həkimləri hər şeyi görür|nə yediyini həmişə bilirlər|rentgen gözləri var]"
+   ],
+   [
+    "A",
+    "[təsəlli üçün sağ olun|kömək etmirsiniz|indi daha çox qorxuram]"
+   ],
+   [
+    "B",
+    "[əvvəlcədən geçmiş olsun|uğurlar|səni düşünəcəyik]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-idman-yanvar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yanvarda idman zalı doludur|yanvarda boş aparat yoxdur|zal yeni il qərarları ilə doludur]"
+   ],
+   [
+    "B",
+    "[fevralda yenə boşalır|fevrala qədər|üç həftə gözlə]"
+   ],
+   [
+    "C",
+    "[mən də onlardanam|mən yanvar adamıyam|birinci gündən gəlirəm, bağışlayın]"
+   ],
+   [
+    "A",
+    "[xoş gəldin|buraxma|{C}, dözümlü ol]"
+   ],
+   [
+    "C",
+    "[çalışıram, yoxsa yenə {s:hobby}|yoxsa {s:hobby} ilə qalacağam|yoxsa {s:hobby}, vəssalam]"
+   ],
+   [
+    "B",
+    "[{s:hobby} də idmandır|o da sayılır|o da hərəkətdir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-fasile-is-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[fasilədə həmkarlar ancaq işdən danışır|niyə fasilədə işdən danışılır|fasilə fasilə deyil]"
+   ],
+   [
+    "B",
+    "[həftə sonunu soruş|mövzunu dəyiş|{s:hobby} haqqında soruş]"
+   ],
+   [
+    "A",
+    "[soruşdum, ofisdəki həftə sonundan danışdılar|həmişə rəisdən danışırlar|cədvəllərdən danışırlar]"
+   ],
+   [
+    "C",
+    "[başqa həmkarlar tap|çöldə ye|gəzintiyə çıx]"
+   ],
+   [
+    "A",
+    "[tək {s:food} yemək daha yaxşıdır|{s:food} və telefon, kifayətdir|{s:food} və telefon, mükəmməl]"
+   ],
+   [
+    "B",
+    "[oyunla|bizimlə|həmkarların bizik]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-uzun-sozler-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[alman oyunçu mənə \"Feierabend\" sözünü öyrətdi|almanlar \"Feierabend\" deyir, iş bitəndən sonrakı vaxt|chatda \"Feierabend\" öyrəndim]"
+   ],
+   [
+    "B",
+    "[nə deməkdir|mənası?|o nədir]"
+   ],
+   [
+    "A",
+    "[işin bitdiyi an və azad axşam|iş günü bitdi, sevinc|\"iş bitdi\" kimi, amma sevincli]"
+   ],
+   [
+    "C",
+    "[biz də onlara \"çayxana\" öyrədək|əvəzində \"nərd\" öyrədək|mədəni mübadilə: Feierabend əvəzinə çayxana]"
+   ],
+   [
+    "A",
+    "[yaxşı alver|ədalətli|mükəmməl balans]"
+   ],
+   [
+    "B",
+    "[ispanlar da \"sobremesa\" deyir, süfrə arxası söhbət|ispanların \"sobremesa\"sı var|ispanlarda da var: yeməkdən sonra oturmaq]"
+   ],
+   [
+    "C",
+    "[sonda hamı {s:food} haqqında danışır|sonda hamı {s:food} başa düşür|{s:food} universal dildir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-gece-ses-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[evdə səslər eşidirəm|mətbəxdə nəsə səslənir|gecə üçdə qəribə səs]"
+   ],
+   [
+    "B",
+    "[isitici|soyuducu|evdir də]"
+   ],
+   [
+    "A",
+    "[ya da {s:family} gizlicə yeyir|deyəsən {s:family} mətbəxdədir|{s:family} yemək axtarır]"
+   ],
+   [
+    "C",
+    "[get sən də ye|mətbəxə|ikilikdə gecə qəlyanaltısı]"
+   ],
+   [
+    "A",
+    "[{s:food} imiş!|kimsə {s:food} qızdırıb|saat üçdə {s:food}, gedirəm]"
+   ],
+   [
+    "B",
+    "[haha|əla|ən yaxşı gecə tapıntısı]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-ay-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[bu gün ay nəhəngdir|aya baxdınız?|bədirlənmiş ay, nə işıq]"
+   ],
+   [
+    "B",
+    "[ona görə yata bilmirəm|aha, ona görə oyağam|bədir ay, bilirdim]"
+   ],
+   [
+    "C",
+    "[mən ancaq bulud görürəm|bizdə hər yer boz|{C.sehir} buludludur]"
+   ],
+   [
+    "A",
+    "[heyif, {C}|şəkil göndərim|təsəvvür et]"
+   ],
+   [
+    "C",
+    "[{s:drink} ilə təsəvvür edirəm|{s:drink} dəmləyib təsəvvür edirəm|oldu, {s:drink} və təxəyyül]"
+   ],
+   [
+    "B",
+    "[nə gözəl|bu kifayətdir|elə belə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-gece-fikir-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gecələr həmişə həyatım haqqında düşünürəm|bu vaxt böyük suallar gəlir|gecə ikidə fəlsəfə saatı]"
+   ],
+   [
+    "B",
+    "[məsələn?|hansı suallar?|nə haqqında]"
+   ],
+   [
+    "A",
+    "[niyə oyunda hələ kafem yoxdur|niyə {s:hobby} ilə məşğul olmağı buraxdım|daha çox yığmalıyammı]"
+   ],
+   [
+    "C",
+    "[vacib suallar|əsl fəlsəfə|çox dərin]"
+   ],
+   [
+    "A",
+    "[bir də {s:food} səhər yeməyi ola bilərmi|bir də yenə {s:food} yeyimmi|{s:food} qalıbmı]"
+   ],
+   [
+    "B",
+    "[hə, olar|cavab bəlidir|get yat, {A}]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-zarafat-qum-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[qum saatım xarab olub|deyəsən qum saatım işləmir|qum saatımda nəsə problem var]"
+   ],
+   [
+    "B",
+    "[niyə|nə olub|izah et]"
+   ],
+   [
+    "A",
+    "[silkələdim, kurs bitmədi|qışqırdım, heç nə|başıaşağı çevirdim, yenə eynidir]"
+   ],
+   [
+    "C",
+    "[qışqırmaq kömək etmir|işlətmək lazımdır, silkələmək yox|haha]"
+   ],
+   [
+    "A",
+    "[səhərlər {s:family} kimi|çaydan əvvəl {s:family} kimi|{s:family} da qışqıranda tələsmir]"
+   ],
+   [
+    "B",
+    "[universal həqiqət|yadda saxladım|nə müdriklik]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-zarafat-hesab-2",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[hesabım yanvar havası kimidir|hesabım yanvar kimidir|bank hesabım: qış]"
+   ],
+   [
+    "B",
+    "[soyuq?|boz və kədərli?|buz?]"
+   ],
+   [
+    "A",
+    "[sıfırdan aşağı|mənfi|donub]"
+   ],
+   [
+    "C",
+    "[üstünə {s:thing} qoy, üşüməsin|ona {s:thing} ver|isti saxla, yazıq]"
+   ],
+   [
+    "B",
+    "[birinci dərəcəli maliyyə məsləhəti|bu planlaşdırmadır|böyük məsləhət]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qardas-oyun-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:family} oyunu gördü və oynamaq istəyir|{s:family} oyunu yüklədi|indi {s:family} də oynayır]"
+   ],
+   [
+    "B",
+    "[ailəyə xoş gəldi|əla, indi komandasınız|indi rəqabət?]"
+   ],
+   [
+    "A",
+    "[beş dəqiqədən sonra kafe istədi|soruşur ki, niyə hələ varlı deyil|artıq səbirsizdir]"
+   ],
+   [
+    "C",
+    "[səbr öyrənsin, hamımız kimi|yavaş-yavaş, de ona|əvvəl kuryer, sonra kafe]"
+   ],
+   [
+    "A",
+    "[sonra {s:drink} ilə izah edərəm|{s:drink} içə-içə danışarıq|səbr və {s:drink} ilə öyrədərəm]"
+   ],
+   [
+    "B",
+    "[yaxşı müəllim|ekspert sənsən|ailə məsləhətçisi]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-telefon-sindi-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[telefon yerə düşdü, ekran çatladı|oyunun ortasında ekran sındı|telefonu yerə saldım]"
+   ],
+   [
+    "B",
+    "[vay|uf|ciddidir?]"
+   ],
+   [
+    "A",
+    "[çat düz kafemin üstündən keçir|oynamaq olur|işləyir, amma çirkin]"
+   ],
+   [
+    "C",
+    "[qoruyucu şüşə və davam|davam et|irəli]"
+   ],
+   [
+    "A",
+    "[təmiri bir aylıq {s:food} qədərdir|təmir çox bahadır|indi onun üçün yığıram]"
+   ],
+   [
+    "B",
+    "[içəridə də, çöldə də qənaət|ikiqat qənaət|iki həyat]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-baglama-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bağlamamı qonşuya veriblər|yenə bağlamam başqa mənzildə|bağlamam binada haradasa]"
+   ],
+   [
+    "B",
+    "[hansı qonşu|bilirsən harada?|qutuda qeyd var?]"
+   ],
+   [
+    "A",
+    "[beşinci mərtəbə, tanımıram|qeyddə ancaq \"qonşu\" yazılıb|heç görmədiyim bir xanım]"
+   ],
+   [
+    "C",
+    "[belə tanış olursan|sosial təcrübə|qonşuları belə tanıyırsan]"
+   ],
+   [
+    "A",
+    "[təşəkkür üçün {s:food} aparım?|{s:food} aparıram|təşəkkür: {s:food}]"
+   ],
+   [
+    "B",
+    "[çox nəzakətli|əla|bu xal qazandırır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-baslangic-pul-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[hamı yüz minlə başlayır, düzdür?|neçə ilə başladınız|başlanğıc pul hamı üçün eynidir?]"
+   ],
+   [
+    "B",
+    "[hə, hamı eyni|hə, hər kəsə yüz min|hamı yüz minlə]"
+   ],
+   [
+    "C",
+    "[mən yarısını ilk həftə xərclədim|mən dərhal dağıtdım|pulum tez getdi]"
+   ],
+   [
+    "A",
+    "[nəyə|niyə|nə aldın]"
+   ],
+   [
+    "C",
+    "[yaşayış xərci və pis fikir|kirayə və tələsik qərar|bilmirəm, soyuducudakı {s:food} kimi yox oldu]"
+   ],
+   [
+    "B",
+    "[hamının başına gəlir|yeni başlayan səhvi|öyrənirsən]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sehv-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[başlanğıcda ən böyük səhvim|əvvəlcə nəyi səhv etdim|səhvimdən öyrənin]"
+   ],
+   [
+    "B",
+    "[danış|hansı?|eşidək]"
+   ],
+   [
+    "A",
+    "[hesablamadan kredit götürdüm|torpaq aldım, kirayə gətirəcək sandım|heç vaxt gündəlik tapşırıq etmirdim]"
+   ],
+   [
+    "C",
+    "[olur|hamı öyrənir|əsas odur ki, indi bilirsən]"
+   ],
+   [
+    "A",
+    "[bu gün kuryer və qənaətlə başlayardım|indi daha ağıllıyam|indi təcrübəm var]"
+   ],
+   [
+    "B",
+    "[{s:day} bələdçi yaz|bələdçi hazırla|məsləhət verməlisən]"
+   ],
+   [
+    "A",
+    "[bəlkə, {s:drink} ilə|{s:drink} ilə, oldu|vaxtım olanda]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qenaet-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[qənaət hiyləsi: hər ay sabit məbləğ ayır|mən həmişə eyni qədər ayırıram|hiyləm: sabit qənaət]"
+   ],
+   [
+    "B",
+    "[məndə hamısı kirayəyə gedir|heç nə qalmır|mümkün deyil, hamısı gedir]"
+   ],
+   [
+    "C",
+    "[onda iş dəyiş, çox qazan|kurs keç və yüksəl|ikinci səviyyə çox ödəyir]"
+   ],
+   [
+    "B",
+    "[hansı kurs?|hansı tezdir?|hansı dəyər?]"
+   ],
+   [
+    "C",
+    "[mühasib, ya məmur, sabit maaş|emlakçı, maaş və komissiya|nə qədər oynamağından asılıdır]"
+   ],
+   [
+    "A",
+    "[bir də az {s:food} sifariş et|bir də daha az {s:food}|{s:food} evdə bişir]"
+   ],
+   [
+    "B",
+    "[bu ağrıdır|ah|hücuma məruz qaldım]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-darixdim-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[darıxıram|tam cansıxıcılıq|bu gün edəcək iş yoxdur]"
+   ],
+   [
+    "B",
+    "[bir az {s:hobby}|{s:hobby} sına|{s:hobby}?]"
+   ],
+   [
+    "A",
+    "[etmişəm|dünən|həvəsim yoxdur]"
+   ],
+   [
+    "C",
+    "[{s:food} bişir|{s:food} hazırla|dadlı nəsə bişir]"
+   ],
+   [
+    "A",
+    "[çox işdir|çətindir|tənbəllik]"
+   ],
+   [
+    "B",
+    "[onda oyundakı kafenə bax|onda oyna|onda tapşırıqlar]"
+   ],
+   [
+    "A",
+    "[hə, bu olar|onu edə bilərəm|oldu, getdim]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sabahin-xeyir-qis-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[buz kimi {A.sehir} şəhərindən sabahınız xeyir|sabahınız xeyir, burada dəhşətli soyuqdur|sabahın xeyir camaat, nə soyuqdur]"
+   ],
+   [
+    "B",
+    "[sabahın xeyir, burada yağış|sabahın xeyir, günəş var, amma soyuq|salam, bizdə bulud]"
+   ],
+   [
+    "C",
+    "[pəncərə qarşısında {s:drink} ilə|artıq {s:drink} içirəm|{s:drink} əlimdə, yarı oyaq]"
+   ],
+   [
+    "A",
+    "[ən yaxşı səhər planı|paxıllıq edirəm|belə başlanır]"
+   ],
+   [
+    "B",
+    "[mən indi çıxmalıyam|işə gedirəm|çıxmaq vaxtıdır]"
+   ],
+   [
+    "A",
+    "[işin asan olsun|uğurlar|isti geyin]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-chat-suretli-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bu gün chat çox sürətlidir|chata çata bilmirəm|nə qədər mesaj]"
+   ],
+   [
+    "B",
+    "[qlobal chatdır|bütün dillər bir yerdə|xaosa xoş gəldin]"
+   ],
+   [
+    "C",
+    "[mən ancaq azərbaycanca oxuyuram|anladığımı oxuyuram|azərbaycanca və türkcə başa düşürəm]"
+   ],
+   [
+    "A",
+    "[\"afiyet olsun\" oxudum, acdım|kimsə {s:food} haqqında yazır, acdım|indi {s:food} istəyirəm]"
+   ],
+   [
+    "B",
+    "[haha|mən də|sağ ol, indi mən də]"
+   ],
+   [
+    "C",
+    "[chat iştah açır|təhlükəli chat|xəbərdarlıq: chat acıqdırır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-skuter-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[indi işə elektrik skuterlə gedirəm|avtobus əvəzinə skuter|yeni nəqliyyat: skuter]"
+   ],
+   [
+    "B",
+    "[qışda?|bu soyuqda?|cəsursan]"
+   ],
+   [
+    "A",
+    "[avtobusdan sürətli|daha az stres|heç olmasa vaxtında]"
+   ],
+   [
+    "C",
+    "[əllərin donmasın|əlcək|qalın geyin]"
+   ],
+   [
+    "A",
+    "[hə, amma {s:family} deyir ki, dəliyəm|{s:family} məni dəli sayır|{s:family} təhlükəli hesab edir]"
+   ],
+   [
+    "B",
+    "[bəlkə {s:family} haqlıdır|yaxşı ailə|qulaq as]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kuryer-mesleh-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeni kuryerlərə məsləhət: telefonu doldurun|kuryer: həmişə əlavə batareya|heç vaxt əlavə batareyasız çıxma]"
+   ],
+   [
+    "B",
+    "[niyə|yaxşı fikir|o qədər vacibdir?]"
+   ],
+   [
+    "A",
+    "[bu gün sifarişin ortasında batareya bitdi|batareya sıfır, sifariş itdi|telefon söndü, sifariş getdi]"
+   ],
+   [
+    "C",
+    "[vay|nə acıdır|ağrıdır]"
+   ],
+   [
+    "A",
+    "[bir də termosda həmişə {s:drink}|bir də həmişə yanında {s:drink}|ikincisi: {s:drink}]"
+   ],
+   [
+    "B",
+    "[iki müdrik qayda|yazdım|yaxşı məsləhətlər]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-axsam-cixmaq-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bu axşam çölə çıxan var?|bu soyuqda çıxmaq?|bu gün planınız var?]"
+   ],
+   [
+    "B",
+    "[yox, çox soyuqdur|evdə qalıram|yox]"
+   ],
+   [
+    "C",
+    "[dostlarla {s:food} yeməyə gedirik|{s:food} yeməyə çıxıram|{s:food} olan bir yerə gedirik]"
+   ],
+   [
+    "A",
+    "[paxıllıq|xoş keçsin|yaxşı səslənir]"
+   ],
+   [
+    "C",
+    "[gəlin|dəvətlisiniz|kim istəsə]"
+   ],
+   [
+    "B",
+    "[mən {s:hobby} ilə qalıram|{s:hobby} var|sağ ol, {s:hobby} çağırır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sahmat-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[onlayn şahmat oynayan var?|burada şahmat oynayan var?|şahmat rəqibi axtarıram]"
+   ],
+   [
+    "B",
+    "[mən, amma pis|mən, amma həmişə uduzuram|arabir]"
+   ],
+   [
+    "C",
+    "[bir dəfə {s:family} məni udmuşdu|{s:family} məni hər dəfə udur|ancaq {s:family} ilə oynayıram]"
+   ],
+   [
+    "A",
+    "[oynayaq|bir partiya?|gəl oynayaq]"
+   ],
+   [
+    "B",
+    "[{s:day}?|nə vaxt?|bu axşam?]"
+   ],
+   [
+    "A",
+    "[oldu|olar|razılaşdıq]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-turkler-sakit-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bu gün türklər sakitdir|chatdakı türklər haradadır|bu gün heç kim türkcə yazmır, qəribədir]"
+   ],
+   [
+    "B",
+    "[orada bayramdır yəqin|işləyirlər yəqin|yatırlar yəqin]"
+   ],
+   [
+    "C",
+    "[\"kolay gelsin\" üçün darıxıram|\"abi\" üçün darıxıram|onlarsız chat boşdur]"
+   ],
+   [
+    "A",
+    "[özümüz deyək: kolay gelsin hamıya|kolay gelsin, camaat|mən deyirəm: kolay gelsin]"
+   ],
+   [
+    "B",
+    "[{s:food} yeyənlərə də afiyet olsun|{s:food} üçün afiyet olsun|{s:food} yeyənlərə nuş olsun]"
+   ],
+   [
+    "C",
+    "[əla|yaxşı etdin|fəxr edərdilər]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-tanisliq-2",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[qısa dövrə: ad və oyunda kimsiniz|oyunda kimsiniz?|tanışlıq dövrəsi!]"
+   ],
+   [
+    "B",
+    "[{B}, {B.meslek}|mən {B}, {B.meslek}|{B}, {B.meslek} işləyirəm]"
+   ],
+   [
+    "C",
+    "[{C}, {C.sehir}, {C.meslek}|{C.sehir} şəhərindən {C}, {C.meslek}|{C}, {C.meslek}]"
+   ],
+   [
+    "A",
+    "[hobbi?|başqa nə var?|maraqlarınız?]"
+   ],
+   [
+    "B",
+    "[{s:hobby}|{s:hobby}, çoxdan|real həyatda: {s:hobby}]"
+   ],
+   [
+    "C",
+    "[bu oyun mənim hobbimdir|yatmaq|yemək]"
+   ],
+   [
+    "A",
+    "[yaxşı cavablar|tanış olmağa şadam|əla]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-otaq-yemek-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bütün ev üçün {s:food} bişirdim|evdə {s:food} axşamı|bu gün hamıya mən bişirirəm]"
+   ],
+   [
+    "B",
+    "[bəyəndilər?|hamısını yedilər?|necə oldu]"
+   ],
+   [
+    "A",
+    "[on dəqiqəyə heç nə qalmadı|heç kim qoymadı|yenə istədilər]"
+   ],
+   [
+    "C",
+    "[indi rəsmi aşpazsan|bu indi sənin işindir|təbriklər, indi hər {s:day} sən bişirirsən]"
+   ],
+   [
+    "A",
+    "[ay yox|nə etdim|səhv etdim]"
+   ],
+   [
+    "B",
+    "[əllərin var olsun|afərin|dadlı səslənir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-hadi-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[türklər \"hadi\" deyir, biz \"hadi\" də deyirik, \"gəl\" də|\"hadi\" ortaq sözdür|hadi, hadi, deyirəm hər şeyə]"
+   ],
+   [
+    "B",
+    "[hə, bizdə də var|\"hadi\" bizdə də işlənir|biz də deyirik]"
+   ],
+   [
+    "A",
+    "[avtobusa \"hadi\" deyirəm|hadi, avtobus, gəl|hadi, marşrut]"
+   ],
+   [
+    "C",
+    "[avtobus türkcə başa düşmür|avtobus səni saymır|kömək etmir]"
+   ],
+   [
+    "A",
+    "[{s:family} kimi|eynən {s:family}|səhərlər {s:family} kimi]"
+   ],
+   [
+    "B",
+    "[haha|doğrudur|universal]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-oyun-vaxt-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda bir gün bir saatdır, eləmi?|bir gün = bir real saat?|oyunda vaxt necə keçir]"
+   ],
+   [
+    "B",
+    "[hə, bir ay otuz oyun günüdür|otuz gün bir ay|elədir, bir ay otuz saatdır]"
+   ],
+   [
+    "A",
+    "[deməli artıq illərdir oynayıram|aylardır içərisindəyəm|vay]"
+   ],
+   [
+    "C",
+    "[oynamasan da vaxt keçir|yatsan da|sənsiz də davam edir]"
+   ],
+   [
+    "A",
+    "[{s:food} yeyəndə iki gün keçdi|{s:food} yedim, bir gün keçdi|{s:food} yeyəndən beş gün keçib]"
+   ],
+   [
+    "B",
+    "[haha|amma yaş yoxdur|narahat olma, yaş yoxdur]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-nahar-saat-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[saat on ikiyə beş dəqiqə qalıb, acam|nahara beş dəqiqə|nahara qədər dəqiqələri sayıram]"
+   ],
+   [
+    "B",
+    "[nə var|nə yeyəcəksən|yemək?]"
+   ],
+   [
+    "A",
+    "[{s:food}, evdən gətirmişəm|ev {s:food}|bu gün {s:food}]"
+   ],
+   [
+    "C",
+    "[məndə heç nə yoxdur|heç nə gətirməmişəm|acından ölürəm]"
+   ],
+   [
+    "A",
+    "[paylaşaram|sənə də verərəm|yarı-yarı]"
+   ],
+   [
+    "B",
+    "[dostluq budur|paylaşmaq gözəldir|afərin]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kocme-qis-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[gələn ay köçürəm, qışın ortasında|yanvarda köçmək pis fikirdir|qışda kim köçür? mən]"
+   ],
+   [
+    "B",
+    "[köməkçin var?|əl lazımdır?|kim kömək edir]"
+   ],
+   [
+    "A",
+    "[{s:family} və iki dost|{s:family} kömək edir|{s:family} və mən]"
+   ],
+   [
+    "C",
+    "[hamıya plov və {s:drink}, daha çox adam gələr|plovla ödə|ödəniş {s:drink} ilə]"
+   ],
+   [
+    "A",
+    "[razıyam|ədalətlidir|yaxşı fikir]"
+   ],
+   [
+    "B",
+    "[qutuları marketdən istə|dükanda pulsuz qutular|yaxşı qutu qızıldır]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-gece-novbe-bitdi-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gecə növbəsi bitdi, evə|saat üçdə işdən çıxıram|növbə bitdi]"
+   ],
+   [
+    "B",
+    "[afərin|çox yorğunsan?|necə keçdi]"
+   ],
+   [
+    "A",
+    "[uzun, amma yaxşı|sakit|yorğun, amma razı]"
+   ],
+   [
+    "C",
+    "[evdə {s:drink} gözləyir|sonra {s:drink} və yataq|indi {s:drink}]"
+   ],
+   [
+    "A",
+    "[planım budur|yox, birbaşa yatağa|ayaq üstə yatıram]"
+   ],
+   [
+    "B",
+    "[gecən xeyrə|yaxşı dincəl|sabah sabahın xeyir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-bas-agrisi-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[başım ağrıyır|səhərdən baş ağrım var|başım partlayacaq]"
+   ],
+   [
+    "B",
+    "[kifayət qədər su içmisən?|su?|nəsə iç]"
+   ],
+   [
+    "A",
+    "[ancaq {s:drink}|çox {s:drink}|yox, ancaq {s:drink}]"
+   ],
+   [
+    "C",
+    "[su və təmiz hava|dincəl|telefonu burax]"
+   ],
+   [
+    "A",
+    "[olmaz, kafem|kafeyə baxmalıyam|dükanım mənə lazımdır]"
+   ],
+   [
+    "B",
+    "[kafe sənsiz də işləyir|müvəqqəti işçi işləyir|ancaq iki dəqiqə]"
+   ],
+   [
+    "A",
+    "[oldu|yaxşı|haqlısınız]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sagolun-axsam-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[yaxşı, mən gedirəm|getməliyəm|hələlik camaat]"
+   ],
+   [
+    "B",
+    "[artıq?|sonra görüşərik|sağ ol]"
+   ],
+   [
+    "A",
+    "[{s:family} şam yeməyinə gözləyir|yemək hazırdır, {s:food}|{s:food} var]"
+   ],
+   [
+    "C",
+    "[nuş olsun|afiyet olsun|ləzzətlə ye]"
+   ],
+   [
+    "A",
+    "[sağ olun, sabaha qədər|sabaha qədər|sabah qayıdıram]"
+   ],
+   [
+    "B",
+    "[görüşənədək|hələlik|görüşürüz, türklər deyən kimi]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-arzu-pese-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda hansı peşə çatışmır|oyunda nə işləmək istərdiniz|oyuna hansı iş əlavə olunsun]"
+   ],
+   [
+    "B",
+    "[çörəkçi|avtobus sürücüsü|aşpaz]"
+   ],
+   [
+    "C",
+    "[sürücü, heç olmasa oyunda avtobus vaxtında gəlsin|metro maşinisti|nəqliyyat rəisi]"
+   ],
+   [
+    "A",
+    "[haha|sərnişin qisası|gözləyənlərin intiqamı]"
+   ],
+   [
+    "B",
+    "[ya da {s:food} satan təndir|{s:food} köşkü|{s:food} çörəkçisi]"
+   ],
+   [
+    "C",
+    "[hamı səndən alardı|varlı olardın|mən daimi müştəri olardım]"
+   ],
+   [
+    "A",
+    "[təklif edəcəyəm|komandaya yazaq|bəlkə növbəti yenilənmədə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-yemekden-sonra-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[nahardan sonra yuxu tutur|{s:food} yedim, gözlərim yumulur|yeməkdən sonra iş olmur]"
+   ],
+   [
+    "B",
+    "[ispanların siestası var|qısa yuxu lazımdır|iyirmi dəqiqə yatmaq olardı]"
+   ],
+   [
+    "A",
+    "[ofisdə olmaz|rəis başa düşməz|mümkün deyil]"
+   ],
+   [
+    "C",
+    "[çay iç, keçər|bir stəkan dəmli çay|{s:drink} iç, oyan]"
+   ],
+   [
+    "A",
+    "[üçüncü stəkandır|artıq içirəm|yenə yuxuluyam]"
+   ],
+   [
+    "B",
+    "[dözümlü ol|axşama az qalıb|dayan]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-cay-ve-oyun-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunu ən çox nə vaxt oynayırsınız|gündə neçə dəfə oynayırsınız|bütün günü oynayırsınız?]"
+   ],
+   [
+    "B",
+    "[səhər və axşam qısaca|gündə iki dəfə|səhər tapşırıqlar, axşam qısa]"
+   ],
+   [
+    "C",
+    "[bəzən unuduram, amma vaxt yenə keçir|bir gün yox oluram, vaxt davam edir|oyun oflayn da gedir]"
+   ],
+   [
+    "A",
+    "[düzdür, bir gün bir saatdır|oyun gözləmir|vaxt öz yolu ilə]"
+   ],
+   [
+    "B",
+    "[mən ən çox {s:drink} içəndə baxıram|{s:drink} ilə həmişə girirəm|{s:drink} və oyun, səhər ritualı]"
+   ],
+   [
+    "C",
+    "[mən də belə|eynən|adətdir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-tikinti-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[tikinti fəhləsi kimi bu gün on tapşırıq etdim|tikintidə ağır gün idi|fəhlə günü: on tapşırıq]"
+   ],
+   [
+    "B",
+    "[hər tapşırığa pul, eləmi?|tapşırığa görə ödənir?|çox tapşırıq, çox pul]"
+   ],
+   [
+    "A",
+    "[hə, elədir|hə, kuryer kimi|düzdür]"
+   ],
+   [
+    "C",
+    "[sonra usta olarsan|iyirmi gündən sonra, kursla usta ola bilərsən|ustalıq sertifikatı və iyirmi gün]"
+   ],
+   [
+    "A",
+    "[planım budur|dəqiq bunu istəyirəm|ona görə edirəm]"
+   ],
+   [
+    "B",
+    "[indi {s:food}|indi {s:food} fasiləsi|{s:food} haqq etmisən]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-novruz-gozle-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yaza nə qədər qalıb|yaza iki ay qalıb, gözləyə bilmirəm|yaz tez gəlsin]"
+   ],
+   [
+    "B",
+    "[martda gəlir|az qalıb|tezliklə]"
+   ],
+   [
+    "A",
+    "[tonqal, səməni, şəkərbura|şəkərbura və paxlava üçün darıxıram|yazın bayram süfrəsi]"
+   ],
+   [
+    "C",
+    "[mən {s:food} üçün daha çox darıxıram|mənim üçün ən yaxşısı {s:food}|{s:food} olsa, razıyam]"
+   ],
+   [
+    "A",
+    "[hamısı olacaq|süfrədə hər şey olacaq|onu da qoyarıq]"
+   ],
+   [
+    "B",
+    "[indidən acdım|indi iştahım açıldı|sağ olun, acdım]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-xezri-sorgu-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[sorğu: Bakı küləyi, sevirsiniz, ya yox|xəzri: dost, ya düşmən?|külək haqqında fikriniz]"
+   ],
+   [
+    "B",
+    "[düşmən, çətirlərimin hamısını sındırıb|düşmən, saçım məhv olur|nifrət edirəm]"
+   ],
+   [
+    "C",
+    "[dost, havanı təmizləyir|dost, yayda sərinlik verir|onsuz Bakı olmaz]"
+   ],
+   [
+    "D",
+    "[mən {s:thing} üçün qorxuram, hər dəfə uçur|külək {s:thing} götürüb aparır|xəzri olanda {s:thing} evdə qalır]"
+   ],
+   [
+    "A",
+    "[{D} praktik yanaşır|{D} haqlıdır|ağıllı {D}]"
+   ],
+   [
+    "D",
+    "[təcrübə|çox itirmişəm|dərs almışam]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-xalca-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[nənəm mənə xalça toxumağı öyrədir|bu gün xalça toxumağa başladım|nənəmlə xalça toxuyuruq]"
+   ],
+   [
+    "B",
+    "[çətindir?|nə qədər çəkir?|əla]"
+   ],
+   [
+    "A",
+    "[çox çətin, bir sıra bir saat|barmaqlarım ağrıyır|səbr lazımdır]"
+   ],
+   [
+    "C",
+    "[oyundakı kurs kimi, yavaş-yavaş|qum saatı kimi, gözləmək|hər şey səbrdir]"
+   ],
+   [
+    "A",
+    "[nənəm deyir ki, {s:hobby} daha asandır|nənəm deyir ki, mən {s:hobby} ilə məşğul olum|nənəm gülür, deyir {s:hobby} et]"
+   ],
+   [
+    "B",
+    "[nənə haqlıdır|davam et|sən bacararsan]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-cayxana-oyun-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda kafe əvəzinə çayxana açmaq olarmı|kafeni çayxana kimi təsəvvür edirəm|mənim kafem oyunda çayxana olacaq]"
+   ],
+   [
+    "B",
+    "[oyunda kafe var, adını özün düşün|kafe kimi açılır, xəyalında çayxana|eyni şeydir, təxminən]"
+   ],
+   [
+    "C",
+    "[nərd masaları da olsun|gərək nərd olsun|nərdsiz çayxana olmaz]"
+   ],
+   [
+    "A",
+    "[müştərilər {s:drink} içib nərd oynayacaq|menyu: çay, {s:drink}, şirniyyat|hamıya {s:drink}]"
+   ],
+   [
+    "B",
+    "[mən daimi müştəri olaram|mən hər axşam gələrəm|gəlirəm]"
+   ],
+   [
+    "C",
+    "[amma udsam, pulsuz çay|uduzana çay mənim hesabıma|kim uduzsa, çay ondan]"
+   ],
+   [
+    "A",
+    "[razıyam|oldu|qəbul]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-bazar-alver-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bazarda alver etməyi bacarmıram|satıcı birinci qiymət dedi, mən razılaşdım|qiymət danışmağı öyrənmək istəyirəm]"
+   ],
+   [
+    "B",
+    "[səhv etdin, həmişə yarısını təklif et|heç vaxt birinci qiymətə razı olma|gülümsə və az təklif et]"
+   ],
+   [
+    "C",
+    "[{s:family} bu işin ustasıdır|{s:family} mənim əvəzimə danışır|{s:family} ilə get, hər şey ucuz olur]"
+   ],
+   [
+    "A",
+    "[növbəti dəfə {s:family} gəlir|{s:day} birlikdə gedərik|onda {s:day} kömək istəyəcəm]"
+   ],
+   [
+    "B",
+    "[oyunda da danışıq olsaydı|oyunda qiymətlər sabitdir, yaxşıdır|oyunda danışıq yoxdur]"
+   ],
+   [
+    "A",
+    "[şükür|çox yaxşı|ona görə rahatam]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-qis-geyim-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[üç qat geyinmişəm, yenə soyuqdur|bu gün kürk də kömək etmir|hər şeyi geyinmişəm]"
+   ],
+   [
+    "B",
+    "[başına papaq qoy|şərf|yun corab]"
+   ],
+   [
+    "A",
+    "[{s:thing} isə evdə qaldı|üstəlik {s:thing} unutdum|{s:thing} götürməmişəm]"
+   ],
+   [
+    "C",
+    "[bu gün sənin günün deyil|qış səni sınayır|belə günlər olur]"
+   ],
+   [
+    "A",
+    "[axşam {s:drink} ilə özümü təsəlli edəcəm|evdə {s:drink} gözləyir|{s:drink} xilas edər]"
+   ],
+   [
+    "B",
+    "[mütləq|belə lazımdır|haqq etmisən]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-yeni-il-qerar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yeni il qərarlarınız necə gedir|qərarları artıq pozdunuz?|ilk qərarınızı saxlayırsınız?]"
+   ],
+   [
+    "B",
+    "[üç yanvara qədər dözdüm|ikinci gün pozdum|qərarım yoxdur, ona görə uğursuz olmuram]"
+   ],
+   [
+    "C",
+    "[çox {s:hobby} istəyirdim, gedir|qərarım {s:hobby} idi, hələ davam edirəm|həqiqətən çox {s:hobby} edirəm]"
+   ],
+   [
+    "A",
+    "[hörmət|qəhrəmansan|vay]"
+   ],
+   [
+    "C",
+    "[fevralda soruş|iki həftə gözlə|görərik]"
+   ],
+   [
+    "B",
+    "[oyunda qərarım mənzil almaqdır|oyunda: mənzil|oyundakı qərar: qənaət]"
+   ],
+   [
+    "A",
+    "[o daha realdır|o yaxşıdır|onu bacararsan]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-kabab-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[axşam kabab bişirmək olar, ya çox soyuqdur|qışda manqal, dəlilikdir?|qışda kabab istəyirəm]"
+   ],
+   [
+    "B",
+    "[kabab üçün fəsil yoxdur|olar, isti geyin|həmişə olar]"
+   ],
+   [
+    "C",
+    "[mən evdə {s:food} ilə qane oluram|soyuqda evdə {s:food}|mən {s:food} tərəfdarıyam]"
+   ],
+   [
+    "A",
+    "[tüstünü pəncərədən görüb qonşular gələcək|qonşular qoxuya gələcək|bütün həyət gələcək]"
+   ],
+   [
+    "B",
+    "[onda çox al|onda hamıya çatsın|qonşu payı da hazırla]"
+   ],
+   [
+    "A",
+    "[doğrudur|elə edəcəm|yaxşı fikir]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-pul-kisesi-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[pul kisəmi açdım, içindən güvə uçdu|pul kisəm boşdur, ayın on beşi|maaşa on beş gün var]"
+   ],
+   [
+    "B",
+    "[klassik yanvar|yanvar belədir|hamıda eyni]"
+   ],
+   [
+    "A",
+    "[oyunda varlıyam, real həyatda yox|oyunda milyonçu, həyatda tələbə|oyunda dükanım var, cibimdə heç nə]"
+   ],
+   [
+    "C",
+    "[heç olmasa biri yaxşıdır|birində qalib gəlirsən|oyun təsəlli verir]"
+   ],
+   [
+    "A",
+    "[bu axşam {s:food}, ucuz|ucuz {s:food} ilə yaşayıram|{s:food} və səbr]"
+   ],
+   [
+    "B",
+    "[dözərsən|maaş gələcək|yavaş-yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-cay-qend-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çayı qəndlə içirsiniz, yoxsa mürəbbə ilə?|sual: çaya qənd, ya mürəbbə?|qəndi stəkana atırsınız, yoxsa dişləyirsiniz?]"
+   ],
+   [
+    "B",
+    "[qənd dişləyirəm, babam kimi|mürəbbə ilə, həmişə|şəkərsiz, sadə]"
+   ],
+   [
+    "C",
+    "[türklər qəndi stəkana atır, biz dişləyirik|türk dostum qəndi dişləməyimə təəccübləndi|türklərdə qənd stəkana gedir]"
+   ],
+   [
+    "A",
+    "[maraqlı fərq|bunu bilmirdim|hər ölkənin öz yolu]"
+   ],
+   [
+    "B",
+    "[ən yaxşısı yanında {s:food} olsun|çayın yanında {s:food} olsa, əladır|mənə çay və {s:food} bəsdir]"
+   ],
+   [
+    "C",
+    "[razıyam|dəqiq|buna söz ola bilməz]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-ad-gunu-nene-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:day} nənəmin ad günüdür, nə hədiyyə alım|nənəyə hədiyyə fikri?|babalara-nənələrə nə hədiyyə edirsiniz]"
+   ],
+   [
+    "B",
+    "[vaxt, düzünü desəm|ən yaxşısı ziyarətdir|sadəcə get]"
+   ],
+   [
+    "C",
+    "[ya da özün düzəlt|tort|ev əl işi]"
+   ],
+   [
+    "A",
+    "[bişirməyi bacarmıram|mətbəx mənlik deyil|hər şeyi yandırıram]"
+   ],
+   [
+    "C",
+    "[onda {s:food}, onu hamı bacarır|{s:food} bişir, asandır|{s:food} həmişə alınır]"
+   ],
+   [
+    "A",
+    "[yaxşı fikir|oldu, belə edəcəm|sağ ol, qərar verildi]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-cayxana-xeber-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çayxanada hamı oyundan danışırdı|bu gün çayxanada kişilər bizim oyunu müzakirə edirdi|çayxanada oyun haqqında eşitdim]"
+   ],
+   [
+    "B",
+    "[doğrudan?|nə deyirdilər|hansı oyunu?]"
+   ],
+   [
+    "A",
+    "[biri dedi ki, oyunda dükanı var|bir əmi kredit reytinqindən şikayət edirdi|biri deyirdi ki, mənzil alıb]"
+   ],
+   [
+    "C",
+    "[oyun çayxanaya da çatıb|indi hamı oynayır|çayxana da bizimlədir]"
+   ],
+   [
+    "A",
+    "[sonra yenə nərdə qayıtdılar|sonra {s:drink} sifariş edib nərdə keçdilər|sonda hamı {s:drink} içdi]"
+   ],
+   [
+    "B",
+    "[hər şey nərdlə bitir|çayxana qaydası|həmişə belə]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-sobe-1",
+  "konu": "hava",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[evdə istilik pisdir, sobanın qabağından tərpənmirəm|radiator isitmir, elektrik sobası yandırdım|bu qış evim buz kimidir]"
+   ],
+   [
+    "B",
+    "[hesab çox gələcək|elektrik hesabından qorx|işıq pulu artacaq]"
+   ],
+   [
+    "A",
+    "[oyunda hesab yoxdur, ancaq yaşayış xərci|oyunda hər şey aylıq xərcdədir|heç olmasa oyunda istilik pulu yoxdur]"
+   ],
+   [
+    "C",
+    "[oyun daha mehribandır|oyunun üstünlüyü|kaş real həyatda da belə olaydı]"
+   ],
+   [
+    "A",
+    "[onda oyuna köçürəm, {s:drink} ilə|{s:drink} ilə oyunda qalıram|mən isti {s:drink} ilə buradayam]"
+   ],
+   [
+    "B",
+    "[isti geyin|corab da|hə, bir də kazak]"
+   ]
+  ]
+ },
+ {
+  "id": "az3-axsam-dovga-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[soyuq axşamda isti nə yeyirsiniz|qışda axşam yeməyi nə olsun|bu soyuqda isti yemək lazımdır]"
+   ],
+   [
+    "B",
+    "[piti, daha nə|dovğa, isti-isti|xəngəl]"
+   ],
+   [
+    "C",
+    "[bu gün {s:food} bişirmişəm|evdə {s:food} var|{s:food}, qazandan təzə çıxıb]"
+   ],
+   [
+    "A",
+    "[dəvət edirsən?|gəlirəm|ünvanı at]"
+   ],
+   [
+    "C",
+    "[hamıya çatar|gəl, yer var|çay da olacaq]"
+   ],
+   [
+    "B",
+    "[mən də gəlirəm|məni də yaz|ikinci qonaq mənəm]"
+   ]
+  ]
+ }
+]

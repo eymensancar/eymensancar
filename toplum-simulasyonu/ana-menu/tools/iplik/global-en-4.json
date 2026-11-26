@@ -1,0 +1,6298 @@
+[
+  {
+    "id": "en4-life-market-day-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[street market at dawn, bought way too many vegetables|early market trip, my bag weighs a ton|street market this morning, i bought half of it]"
+      ],
+      [
+        "B",
+        "[what will you make with all that|soup season?|planning {s:food}?]"
+      ],
+      [
+        "A",
+        "[{s:food}, a lot of it|{s:food} for the whole week|probably {s:food}, maybe twice]"
+      ],
+      [
+        "C",
+        "[invite the chat|save some for us|i'm coming over]"
+      ],
+      [
+        "A",
+        "[bring {s:drink} and you're in|only if you bring {s:drink}|entry fee: {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-wrong-bus-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[took the wrong bus and saw a whole new part of town|wrong bus, accidental city tour|ended up somewhere random, wrong bus again]"
+      ],
+      [
+        "B",
+        "[free sightseeing|adventure|that's how you explore]"
+      ],
+      [
+        "C",
+        "[did you find anything good|any good spots|worth it?]"
+      ],
+      [
+        "A",
+        "[a tiny shop selling {s:food}|a cafe with great {s:drink}|a park i never knew]"
+      ],
+      [
+        "B",
+        "[so the bus was right after all|destiny|fate]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-neighbour-cake-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} left a note on my door asking me to water their plants|{s:family} asked me to feed their fish this week|i'm house-sitting for {s:family}]"
+      ],
+      [
+        "B",
+        "[easy job|free side gig|responsibility]"
+      ],
+      [
+        "A",
+        "[i can barely keep myself alive|i forget my own {s:drink}|my own plants are dead]"
+      ],
+      [
+        "C",
+        "[set a reminder every time you eat {s:food}|alarm, twice a day|write it on your hand]"
+      ],
+      [
+        "A",
+        "[writing on my hand now|alarm set|ok, hand note done]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-power-nap-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "ogle",
+    "turlar": [
+      [
+        "A",
+        "[20 minute nap at lunch, changed my life|discovered the lunch nap, never going back|power nap at noon, i'm a new person]"
+      ],
+      [
+        "B",
+        "[where do you nap at work|how, at work?|in the office?]"
+      ],
+      [
+        "A",
+        "[in my car|on the break room chair|at my desk, head on {s:thing}]"
+      ],
+      [
+        "C",
+        "[the true heroes of productivity|nap culture|respect]"
+      ],
+      [
+        "B",
+        "[my boss would fire me|i'd get caught|i wish]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-recycling-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[spent 10 minutes deciding which bin a {s:drink} cup goes in|recycling rules here are a puzzle|which bin? i never know]"
+      ],
+      [
+        "B",
+        "[every city has different rules|it changes every year|it's a test]"
+      ],
+      [
+        "C",
+        "[i just ask {s:family}|{s:family} knows all the bins|{s:family} is the bin expert]"
+      ],
+      [
+        "A",
+        "[i need my own bin expert|can i borrow them|i'll call them then]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-stairs-broken-elevator-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[elevator broken, walked 8 floors with groceries|8 floors with shopping bags, no elevator|stairs with bags, legs gone]"
+      ],
+      [
+        "B",
+        "[free leg day|gym membership cancelled|cardio]"
+      ],
+      [
+        "C",
+        "[did {s:food} survive the climb|groceries ok?|eggs alive?]"
+      ],
+      [
+        "A",
+        "[the eggs did not|one bag tore|{s:food} is now on floor 5]"
+      ],
+      [
+        "B",
+        "[rip|oof|sad]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-early-bird-market-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[city is so quiet at 6am, i like it|walked around at 6am, empty streets|early morning walk, nobody around]"
+      ],
+      [
+        "B",
+        "[the secret hour|best time of day|peace]"
+      ],
+      [
+        "C",
+        "[i've never seen 6am on purpose|6am exists?|only seen it from the other side]"
+      ],
+      [
+        "A",
+        "[get {s:drink} and try it once|try it with {s:drink}|it's worth it once]"
+      ],
+      [
+        "C",
+        "[maybe on {s:day}|sometime|one day, maybe]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-snow-commute-1",
+    "konu": "hava",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[snow on the roads, my 20 minute commute took an hour|everything is slow because of snow|snow day traffic is a nightmare]"
+      ],
+      [
+        "B",
+        "[work from home if you can|stay in|not worth it]"
+      ],
+      [
+        "A",
+        "[boss says no|can't, boss|they want us in the office]"
+      ],
+      [
+        "C",
+        "[bring {s:drink} for the road|take a thermos of {s:drink}|road {s:drink}]"
+      ],
+      [
+        "A",
+        "[good idea|i have one|thermos packed]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-cold-car-1",
+    "konu": "hava",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[scraped ice off the car for 15 minutes|car was frozen this morning|ice on the windows again]"
+      ],
+      [
+        "B",
+        "[winter's toll|the morning tax|ugh]"
+      ],
+      [
+        "C",
+        "[no car, i just freeze at the bus stop|i don't have a car, i freeze waiting|bus people suffer too]"
+      ],
+      [
+        "A",
+        "[we all suffer equally|winter unites us|cold for everyone]"
+      ],
+      [
+        "B",
+        "[{s:drink} for all|everyone get {s:drink}|warm {s:drink} round]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-language-exchange-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[in my city there's a language exchange night every {s:day}|going to a language exchange on {s:day}|language cafe night this week]"
+      ],
+      [
+        "B",
+        "[sounds fun|i want that|how does it work]"
+      ],
+      [
+        "A",
+        "[you talk half in one language, half in another, with {s:drink}|swap languages over {s:drink}|{s:drink} and talking]"
+      ],
+      [
+        "C",
+        "[we should do one here|global chat is one already|this chat is a language exchange]"
+      ],
+      [
+        "A",
+        "[true, i learned \"afiyet olsun\" here|i know five turkish words from here|yep, aynen]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-bakery-1",
+    "konu": "yemek",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[the bakery near me gives {s:food} for free if you're the first customer|first customer at the bakery gets a bonus, i was first|bakery opened, i was first in line]"
+      ],
+      [
+        "B",
+        "[competitive breakfast|dedication|you're a pro]"
+      ],
+      [
+        "C",
+        "[what time did you wake up|how early was that|that's commitment]"
+      ],
+      [
+        "A",
+        "[5:50|before six|early enough to regret it]"
+      ],
+      [
+        "B",
+        "[worth it?|was it good|tasty?]"
+      ],
+      [
+        "A",
+        "[very|yes|totally worth it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-lost-in-new-city-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[visiting a new city and my phone died, lost|phone dead, new city, no map|i'm lost in a city i don't know]"
+      ],
+      [
+        "B",
+        "[ask someone|find a cafe and charge|follow the crowd]"
+      ],
+      [
+        "A",
+        "[i'm charging at a cafe with {s:drink}|found a cafe, charging now|sitting with {s:drink}, charging]"
+      ],
+      [
+        "C",
+        "[so you're in global chat at 3%|and you use the battery on chat|priorities]"
+      ],
+      [
+        "A",
+        "[5% now, all good|i'm fine|this chat is my map]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-cooking-for-family-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[cooking dinner for {s:family} for the first time, pressure|{s:family} is coming to dinner and i'm cooking|first time making dinner for {s:family}]"
+      ],
+      [
+        "B",
+        "[what's on the menu|what are you making|menu?]"
+      ],
+      [
+        "A",
+        "[{s:food}, the only thing i can make|{s:food}, safe choice|{s:food}, fingers crossed]"
+      ],
+      [
+        "C",
+        "[add a dessert and they'll forgive anything|dessert saves every dinner|buy a good dessert]"
+      ],
+      [
+        "A",
+        "[buying one now|already have one|smart, going now]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-family-phone-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} sends me photos of every meal they eat|every day {s:family} sends a photo of {s:food}|i get daily photos of {s:food} from {s:family}]"
+      ],
+      [
+        "B",
+        "[that's love|that's their way of saying hi|cute]"
+      ],
+      [
+        "C",
+        "[send them yours back|reply with your meal|send a photo of {s:food#2}]"
+      ],
+      [
+        "A",
+        "[mine is instant noodles, they'll worry|they'll judge my food|i eat {s:food#2} every day, they'll be upset]"
+      ],
+      [
+        "B",
+        "[send a nice one once|fake it|borrow a photo]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-family-tech-help-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[spent 2 hours fixing the phone of {s:family}|tech support for {s:family} again|i'm the family it guy]"
+      ],
+      [
+        "B",
+        "[every family has one|the curse|same here]"
+      ],
+      [
+        "C",
+        "[what was the problem|what was wrong|how bad was it]"
+      ],
+      [
+        "A",
+        "[it was on silent|they turned off the wifi|the screen was just dirty]"
+      ],
+      [
+        "B",
+        "[classic|lol|every time]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-family-food-pack-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[visited {s:family} and came back with three bags of food|{s:family} packed me {s:food} for a month|came home from {s:family} with a mountain of {s:food}]"
+      ],
+      [
+        "B",
+        "[the family care package|love that|best part of visiting]"
+      ],
+      [
+        "C",
+        "[freeze half|freezer time|portion it out]"
+      ],
+      [
+        "A",
+        "[freezer is already full of {s:food} from last time|freezer is full from the last visit|no space left]"
+      ],
+      [
+        "B",
+        "[eat faster|invite us|problem solved: chat dinner]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-family-advice-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} gave me advice about money and it was actually good|{s:family} said \"save first, spend later\" and i hate that they're right|money advice from {s:family}, annoyingly smart]"
+      ],
+      [
+        "B",
+        "[they usually are right|parents energy|wisdom]"
+      ],
+      [
+        "C",
+        "[does it work in the game too|apply it in the game|game test?]"
+      ],
+      [
+        "A",
+        "[trying it in the game this month|testing it on my savings|yes, game experiment]"
+      ],
+      [
+        "B",
+        "[report back|let us know|update us]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-family-old-photos-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[{s:family} found my old childhood photos, i'm dying|{s:family} showed old photos of me, so embarrassing|embarrassing baby photos came out tonight]"
+      ],
+      [
+        "B",
+        "[post them|we need to see|show us]"
+      ],
+      [
+        "A",
+        "[never|absolutely not|no way]"
+      ],
+      [
+        "C",
+        "[describe one at least|one description|just tell us one]"
+      ],
+      [
+        "A",
+        "[me eating {s:food} with my face|covered in {s:food}|{s:food} all over me]"
+      ],
+      [
+        "B",
+        "[iconic|adorable|classic baby]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-family-road-trip-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[road trip with {s:family} on {s:day}, 6 hours in a car|long drive with {s:family} this {s:day}|family road trip, pray for me]"
+      ],
+      [
+        "B",
+        "[snacks and headphones|download music first|bring {s:food}]"
+      ],
+      [
+        "A",
+        "[{s:family} controls the music|i'm not in charge of music|the music will be bad]"
+      ],
+      [
+        "C",
+        "[then sleep the whole way|nap through it|pretend to sleep]"
+      ],
+      [
+        "A",
+        "[good strategy|yes|doing that]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-life-family-big-gathering-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[25 relatives in one house tonight|huge family gathering, so loud|everyone in my family came at once]"
+      ],
+      [
+        "B",
+        "[survive|good luck|hide in the kitchen]"
+      ],
+      [
+        "A",
+        "[kitchen is where everyone is|the kitchen is full|everyone is in the kitchen]"
+      ],
+      [
+        "C",
+        "[then go where {s:food} is|follow the {s:drink}|stay near the food]"
+      ],
+      [
+        "A",
+        "[smart|will do|found a corner with {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thing-left-at-home-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[left {s:thing} at home and only realized at work|got to work without {s:thing}|{s:thing} is at home, i'm not]"
+      ],
+      [
+        "B",
+        "[go back?|can you live without it today|survivable?]"
+      ],
+      [
+        "A",
+        "[no way, too far|no time|i'll survive]"
+      ],
+      [
+        "C",
+        "[one day without it is a detox|it's a test|think of it as a break]"
+      ],
+      [
+        "A",
+        "[a very annoying break|ok detox|sure, detox]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thing-broke-at-worst-time-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:thing} broke the day before my trip|perfect timing, {s:thing} just broke|of course {s:thing} broke today]"
+      ],
+      [
+        "B",
+        "[things know when you need them|the universe|always the worst moment]"
+      ],
+      [
+        "C",
+        "[tape fixes everything|try tape|tape and hope]"
+      ],
+      [
+        "A",
+        "[it's a {s:hobby} level disaster, tape won't help|no, too broken|tape wouldn't survive this]"
+      ],
+      [
+        "B",
+        "[rip|buy a new one|time to shop]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thing-hidden-spot-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[hid {s:thing} somewhere \"safe\" and now i can't find it|i put {s:thing} in a safe place, can't remember where|lost {s:thing} by hiding it from myself]"
+      ],
+      [
+        "B",
+        "[classic, the safe place|the safe place is a trap|i do this every month]"
+      ],
+      [
+        "C",
+        "[check your {s:hobby} bag|look where you'd never look|the drawer you never open]"
+      ],
+      [
+        "A",
+        "[found it in a shoe|it was in my sock drawer|under the mattress, why]"
+      ],
+      [
+        "B",
+        "[very safe indeed|safe from you|working as intended]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thing-forgot-name-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[met someone today and forgot their name in 2 seconds|introduced myself and forgot their name instantly|name gone right after they said it]"
+      ],
+      [
+        "B",
+        "[just say \"hey you\" forever|avoid names forever|call everyone \"friend\"]"
+      ],
+      [
+        "C",
+        "[ask for their number and read it there|look at their phone|find it somehow]"
+      ],
+      [
+        "A",
+        "[they called me by my name, i felt so guilty|they remembered mine, ouch|they said my name like 5 times]"
+      ],
+      [
+        "B",
+        "[oof|the guilt|i feel that]"
+      ],
+      [
+        "D",
+        "[offer them {s:food} to make up|buy them {s:drink}|{s:drink} as apology]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thing-borrowed-from-friend-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[friend lent me {s:thing} and now it's broken|broke {s:thing} that i borrowed, help|borrowed {s:thing}, returned it broken]"
+      ],
+      [
+        "B",
+        "[tell them now|honesty|confess]"
+      ],
+      [
+        "C",
+        "[buy a new one first then tell|replace it, then confess|new one plus apology]"
+      ],
+      [
+        "A",
+        "[buying one and adding {s:food} as apology|replacement plus {s:food}|new one and {s:food}]"
+      ],
+      [
+        "B",
+        "[good friend move|sorry via {s:food}|that's the way]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thing-weird-found-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[found {s:thing} in the freezer, i have no memory of this|why was {s:thing} in my freezer|freezer surprise: {s:thing}]"
+      ],
+      [
+        "B",
+        "[sleepwalking?|late night you did that|midnight you is chaos]"
+      ],
+      [
+        "C",
+        "[last time i found my phone in the cereal box|i once put my keys in the oven|i put a remote in the fridge once]"
+      ],
+      [
+        "A",
+        "[we're all broken|so it's normal|relief]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thing-phone-at-3-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[phone at 3%, charger is in the other room next to {s:thing}|3% battery, charger 5 meters away, too lazy|battery almost dead, charger far]"
+      ],
+      [
+        "B",
+        "[get up|the walk is short|go]"
+      ],
+      [
+        "A",
+        "[but then i have to get up|bed is warm|it's cold out of bed]"
+      ],
+      [
+        "C",
+        "[let it die, you'll sleep|sign from the universe|let it go and sleep]"
+      ],
+      [
+        "A",
+        "[ok goodnight|it died|bye, 1%]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hobby-cooking-class-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[signed up for a cooking class, first lesson was {s:food}|cooking class tonight, we made {s:food}|learning to cook properly, today {s:food}]"
+      ],
+      [
+        "B",
+        "[how did it go|was it good|did you burn anything]"
+      ],
+      [
+        "A",
+        "[the teacher tasted mine and was quiet|it was edible|not bad, not great]"
+      ],
+      [
+        "C",
+        "[quiet is ok|edible is a win|progress]"
+      ],
+      [
+        "A",
+        "[next week we do {s:food#2}|next lesson is {s:food#2}|{s:food#2} next, scared]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hobby-music-instrument-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my neighbours know i'm learning {s:hobby} because of the noise|learning {s:hobby} in an apartment, sorry neighbours|{s:hobby} practice, neighbours suffer]"
+      ],
+      [
+        "B",
+        "[wait {s:hobby} makes noise?|how is that loud|what kind of noise]"
+      ],
+      [
+        "A",
+        "[i'm very passionate|i'm loud at everything|you haven't seen me]"
+      ],
+      [
+        "C",
+        "[lol|that's dedication|respect the passion]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hobby-hobby-club-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[joined a {s:hobby} club, first meeting on {s:day}|there's a {s:hobby} group in my city, going on {s:day}|{s:hobby} club on {s:day}, nervous]"
+      ],
+      [
+        "B",
+        "[fun!|you'll make friends|good for you]"
+      ],
+      [
+        "C",
+        "[bring {s:food}, everyone loves the snack person|snacks make friends fast|be the {s:drink} person]"
+      ],
+      [
+        "A",
+        "[smart, bringing {s:food}|ok snacks it is|good tip]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hobby-old-hobby-back-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[picked up {s:hobby} after 5 years, i forgot everything|back to {s:hobby} after years, rusty|returned to {s:hobby}, my body forgot]"
+      ],
+      [
+        "B",
+        "[it comes back fast|muscle memory|give it a week]"
+      ],
+      [
+        "A",
+        "[my muscles have no memory|i doubt it|my body is a stranger]"
+      ],
+      [
+        "C",
+        "[start slow, with {s:drink} after|small steps|yavaş yavaş, as the turks say]"
+      ],
+      [
+        "A",
+        "[yavaş yavaş it is|ok slowly|i'll go slow]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hobby-competitive-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[entered a {s:hobby} competition for fun|signing up for a {s:hobby} contest|first {s:hobby} competition next {s:day}]"
+      ],
+      [
+        "B",
+        "[good luck|you'll do great|go win]"
+      ],
+      [
+        "C",
+        "[what's the prize|is there a prize|for what]"
+      ],
+      [
+        "A",
+        "[a certificate and {s:food}|the winner gets {s:food} for free|a voucher for {s:food}]"
+      ],
+      [
+        "B",
+        "[worth it|ok now i want to join|motivating]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hobby-budget-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my hobby budget is bigger than my food budget|spent more on {s:hobby} than on {s:food} this month|{s:hobby} costs more than groceries now]"
+      ],
+      [
+        "B",
+        "[priorities|that's passion|a hobby is a need]"
+      ],
+      [
+        "C",
+        "[same with my {s:hobby#2} stuff|i'm the same with {s:hobby#2}|no comment, {s:hobby#2} person here]"
+      ],
+      [
+        "A",
+        "[we need a game where hobbies make money|if only {s:hobby} paid|i want {s:hobby} as a job in the game]"
+      ],
+      [
+        "B",
+        "[next update|suggest it|put it on the wishlist]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-exam-result-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[exam results today, refreshing the page every minute|waiting for grades, can't sit still|results are coming out today, help]"
+      ],
+      [
+        "B",
+        "[breathe|distract yourself|go eat {s:food}]"
+      ],
+      [
+        "A",
+        "[can't eat, too nervous|not hungry|i'll eat after]"
+      ],
+      [
+        "A",
+        "[passed!!|got it, passed|i passed, going to eat {s:food} now]"
+      ],
+      [
+        "C",
+        "[yes!!|congrats|proud of you]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-flat-noise-exam-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[flatmate having a party the night before my exam|exam tomorrow, flatmate has guests over|party next door, exam in the morning]"
+      ],
+      [
+        "B",
+        "[earplugs|go to a library|study somewhere else]"
+      ],
+      [
+        "A",
+        "[library's closed|it's late, nowhere to go|no options]"
+      ],
+      [
+        "C",
+        "[join the party, study tomorrow morning with {s:drink}|wake up early with {s:drink}|early morning study]"
+      ],
+      [
+        "A",
+        "[that's a terrible idea|tempting|risky but tempting]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-roommate-help-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my flatmate helped me with math for 2 hours|flatmate tutored me tonight, legend|my flatmate is better than any teacher]"
+      ],
+      [
+        "B",
+        "[keep them|protect them|good flatmate]"
+      ],
+      [
+        "A",
+        "[paying them in {s:food}|i owe them {s:food}|cooking them {s:food} as thanks]"
+      ],
+      [
+        "C",
+        "[best deal ever|fair trade|{s:food} for math, good economy]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-motivation-low-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[zero motivation to study today|brain says no studying|can't make myself study]"
+      ],
+      [
+        "B",
+        "[study 10 minutes only|just open the book|start tiny]"
+      ],
+      [
+        "C",
+        "[reward: {s:food} after one chapter|one chapter = {s:food}|{s:food} is the motivation]"
+      ],
+      [
+        "A",
+        "[ok one chapter for {s:food}|deal|fine]"
+      ],
+      [
+        "A",
+        "[did two chapters|finished more than planned|ok i did it]"
+      ],
+      [
+        "B",
+        "[nice|told you|starting is the hard part]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-campus-cafe-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": "ogle",
+    "turlar": [
+      [
+        "A",
+        "[campus cafe raised the price of {s:drink} again|{s:drink} on campus costs so much now|campus {s:drink} prices are a joke]"
+      ],
+      [
+        "B",
+        "[inflation everywhere|even here|like the game]"
+      ],
+      [
+        "C",
+        "[bring a thermos|make it at home|home {s:drink}]"
+      ],
+      [
+        "A",
+        "[tried, it's not the same|home version is bad|i like their {s:drink}]"
+      ],
+      [
+        "B",
+        "[then pay the price|addiction|lol]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-first-salary-irl-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my first real job just paid me|got my first real paycheck|payday, my first ever]"
+      ],
+      [
+        "B",
+        "[congrats!|nice!|how does it feel]"
+      ],
+      [
+        "A",
+        "[half is rent already|it's gone already|rent took most]"
+      ],
+      [
+        "C",
+        "[welcome to adulthood|that's the experience|yep, the game was right]"
+      ],
+      [
+        "A",
+        "[at least there's {s:food} tonight|celebrate with {s:food}|still buying {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-printer-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[the office printer jammed and everyone looked at me|broke the printer, everyone saw|printer jammed on my turn, of course]"
+      ],
+      [
+        "B",
+        "[the printer is cursed|printers hate people|it's always the printer]"
+      ],
+      [
+        "C",
+        "[kick it gently|turn it off and on|blame the last person]"
+      ],
+      [
+        "A",
+        "[fixed it by unplugging|turned it off and on, works|it worked]"
+      ],
+      [
+        "B",
+        "[tech genius|it guy now|hired]"
+      ],
+      [
+        "D",
+        "[celebrate with {s:drink}|{s:drink} break|you earned {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-coworker-birthday-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[coworker's birthday, the office cake is {s:food} for some reason|office birthday treat: {s:food} instead of cake|they brought {s:food} instead of cake for a birthday]"
+      ],
+      [
+        "B",
+        "[unique choice|honestly better|i'd prefer that]"
+      ],
+      [
+        "C",
+        "[did you sing|was there singing|the awkward office song?]"
+      ],
+      [
+        "A",
+        "[worst singing ever|everyone mumbled|yes, terrible]"
+      ],
+      [
+        "B",
+        "[tradition|always|lol]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-commute-reading-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[i read on the train every morning, best part of my day|train reading is my me time|30 minutes of reading on the commute]"
+      ],
+      [
+        "B",
+        "[i just stare out the window|i sleep on the train|i play this game on the train]"
+      ],
+      [
+        "C",
+        "[same, i check my rent on the train|train = game time|commute courier tasks]"
+      ],
+      [
+        "A",
+        "[we're all doing tasks on trains|we have the same life|lol yes]"
+      ],
+      [
+        "D",
+        "[with {s:drink}|{s:drink} in one hand|and {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-difficult-customer-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[customer asked to speak to my manager, i am the manager|someone wanted the manager, it's me|\"manager please\" - i'm the manager]"
+      ],
+      [
+        "B",
+        "[lol what did you do|did you go get yourself|what next]"
+      ],
+      [
+        "A",
+        "[walked away and came back|changed my voice|\"one moment\"]"
+      ],
+      [
+        "C",
+        "[legend|iconic|that's genius]"
+      ],
+      [
+        "B",
+        "[give them {s:food} and they calm down|{s:food} on the house fixes everything|{s:drink} on the house]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-apt-which-floor-1",
+    "konu": "mulk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[when the game adds floors i'm buying the top one|top floor apartment dreams|i want a penthouse in the game someday]"
+      ],
+      [
+        "B",
+        "[there's no floor choice yet|apartments are just apartments now|no floors in the game lol]"
+      ],
+      [
+        "A",
+        "[a person can dream|let me dream|one day]"
+      ],
+      [
+        "C",
+        "[the 1.2 update has construction they say|bigger buildings come later|residences come later i heard]"
+      ],
+      [
+        "A",
+        "[saving for it with {s:drink} discipline|ok saving till then|i'll wait, {s:drink} in hand]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-apt-rent-or-sell-1",
+    "konu": "mulk",
+    "kosul": [
+      "A.evsahibi"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[own two apartments now, rent both or sell one|two apartments, keep or sell|should i sell my second apartment]"
+      ],
+      [
+        "B",
+        "[rent, monthly money|keep both, rent them|rent beats selling]"
+      ],
+      [
+        "C",
+        "[depends if you need cash|sell if you want a business|need capital? sell]"
+      ],
+      [
+        "A",
+        "[no rush, keeping them|renting both then|hold and rent]"
+      ],
+      [
+        "D",
+        "[landlord {A}, scary|{A} the property tycoon|look at {A} with two homes, buy us {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-apt-tiny-1",
+    "konu": "mulk",
+    "kosul": [
+      "A.kiraci"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my real flat is so small i can touch both walls|real apartment: tiny, game apartment: imaginary|my irl flat is the size of a {s:hobby} mat]"
+      ],
+      [
+        "B",
+        "[game apartments have no size, so they're huge|in the game it can be a palace|imagine it big]"
+      ],
+      [
+        "C",
+        "[mine has a window that faces a wall|my view is a brick wall|i see the neighbour's laundry]"
+      ],
+      [
+        "A",
+        "[we need the game to buy us real flats|game money to real flats please|if only]"
+      ],
+      [
+        "B",
+        "[never, rules|can't convert|never happening]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-cafe-music-1",
+    "konu": "isletme",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[if i could choose music for my game cafe it'd be {s:hobby} podcasts|wish i could pick the playlist in my cafe|my cafe needs background music]"
+      ],
+      [
+        "B",
+        "[npcs would leave|customers would run|lol no podcasts]"
+      ],
+      [
+        "C",
+        "[soft music and {s:drink}, that's the vibe|quiet music, good {s:drink}|jazz and {s:drink}]"
+      ],
+      [
+        "A",
+        "[the cafe of my dreams|yes that|perfect cafe]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-cafe-location-1",
+    "konu": "isletme",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[does location matter for a cafe in this game|where should i open a cafe|best spot for a cafe?]"
+      ],
+      [
+        "B",
+        "[yes, location affects revenue|location is one of the big three|revenue depends on location]"
+      ],
+      [
+        "C",
+        "[and how many cafes are nearby|avoid crowded areas|don't open next to 5 others]"
+      ],
+      [
+        "A",
+        "[so somewhere empty but busy|rare combo|the impossible spot]"
+      ],
+      [
+        "B",
+        "[welcome to business|that's the game|find it and win]"
+      ],
+      [
+        "D",
+        "[or open where they sell {s:food}|next to where they make {s:food}|near people eating {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-cafe-staff-sick-1",
+    "konu": "isletme",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my worker didn't log in for days, temps again|my barista disappeared, temps running everything|missing worker, temps eating my profit]"
+      ],
+      [
+        "B",
+        "[post a new job ad|hire a backup|get someone new]"
+      ],
+      [
+        "A",
+        "[but they were good when active|i like them|they're nice]"
+      ],
+      [
+        "C",
+        "[nice doesn't pay rent|business is business|the cafe can't wait]"
+      ],
+      [
+        "A",
+        "[ok, sending them a message first, over {s:drink}|one message first|giving them one more day]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-cafe-first-week-1",
+    "konu": "isletme",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[first week as a cafe owner: i've checked the stats 400 times|new cafe owner, can't stop checking|i open the cafe screen every 5 minutes]"
+      ],
+      [
+        "B",
+        "[that's normal for week one|it fades|it gets better]"
+      ],
+      [
+        "C",
+        "[i still do that after 2 months|i never stopped|addicted forever]"
+      ],
+      [
+        "A",
+        "[good to know it's forever|great|so it's a lifestyle]"
+      ],
+      [
+        "D",
+        "[grab {s:food} and look away for an hour|step away with {s:food}|close the app, eat {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-shop-npc-funny-1",
+    "konu": "isletme",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[imagining npc customers being picky about {s:food} in my shop|i think npcs complain about my prices|my npc customers look unhappy, in my head]"
+      ],
+      [
+        "B",
+        "[they're npcs, they don't think|they just buy|no feelings]"
+      ],
+      [
+        "C",
+        "[the npcs are judging all of us|they talk behind our backs|they have a group chat]"
+      ],
+      [
+        "A",
+        "[global chat for npcs|their own chat|they complain about us]"
+      ],
+      [
+        "B",
+        "[about the price of {s:food}|\"the {s:drink} was cold\"|\"service was slow\"]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-course-many-days-1",
+    "konu": "kurs",
+    "kosul": [
+      "A.kursta"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[course says many days left, i'm sitting here like a student|stuck in a course, days to go|course day 5 of many]"
+      ],
+      [
+        "B",
+        "[hourglasses!|use hourglasses|skip some days]"
+      ],
+      [
+        "A",
+        "[saving them|i only have 2|i want to keep them]"
+      ],
+      [
+        "C",
+        "[then patience and {s:drink}|wait with {s:drink}|just play other stuff]"
+      ],
+      [
+        "A",
+        "[fine, i'll study... in the game... while eating {s:food}|ok waiting|yavaş yavaş]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-course-cost-1",
+    "konu": "kurs",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[courses cost money and time, which one is worth it|which course pays back fastest|course value ranking?]"
+      ],
+      [
+        "B",
+        "[depends on what you like|each one leads to different jobs|depends on your plan]"
+      ],
+      [
+        "C",
+        "[accounting is steady salary|memur exam course for chill life|real estate for bonuses]"
+      ],
+      [
+        "A",
+        "[i like bonuses|bonuses sound fun|i'm a bonus person]"
+      ],
+      [
+        "C",
+        "[real estate then|go agent|estate it is]"
+      ],
+      [
+        "D",
+        "[and buy {s:food} with the first bonus|first bonus: {s:food}|{s:food} on the first bonus]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-course-passed-celebrate-1",
+    "konu": "kurs",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[certificate is in, i'm officially qualified in a game|finished my course, small proud moment|qualified! in a phone game, but still]"
+      ],
+      [
+        "B",
+        "[still counts|proud of you|nice]"
+      ],
+      [
+        "C",
+        "[now the experience part|30 days now|experience next]"
+      ],
+      [
+        "A",
+        "[30 game days, which is a day and a half|30 days is like 30 hours lol|not that long in real time]"
+      ],
+      [
+        "B",
+        "[perfect, then a party with {s:food}|celebrate with {s:food}|{s:food} for the graduate]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-loan-rejected-1",
+    "konu": "kredi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[loan got rejected, limit too low|can't get a loan, limit is tiny|bank said no]"
+      ],
+      [
+        "B",
+        "[limit uses last month's income|your income last month was low?|it's based on last month]"
+      ],
+      [
+        "A",
+        "[i took a break last month|i didn't work much|i was offline mostly]"
+      ],
+      [
+        "C",
+        "[work a full month, try again|earn more, then apply|next month will be better]"
+      ],
+      [
+        "A",
+        "[ok, grinding with {s:drink}|back to work|fine, full month it is]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-loan-advice-careful-1",
+    "konu": "kredi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[friend says take the biggest loan possible, smart?|max loan, good idea?|thinking of taking the max loan]"
+      ],
+      [
+        "B",
+        "[only if you have a plan|what for?|loans need a plan]"
+      ],
+      [
+        "A",
+        "[a shop|buy a shop|for an apartment]"
+      ],
+      [
+        "C",
+        "[then check if the income covers installments|can you pay monthly|do the math]"
+      ],
+      [
+        "A",
+        "[i did the math on {s:thing}, i mean on paper|math done, it works|yes, numbers ok]"
+      ],
+      [
+        "B",
+        "[then go|ok then|sounds fine]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-inflation-explain-1",
+    "konu": "ekonomi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[can someone explain inflation like i'm five|inflation in simple words please|eli5 inflation]"
+      ],
+      [
+        "B",
+        "[next month {s:food} costs more, same thing, higher price|you buy {s:food} again, it's pricier|{s:food} today vs next month: same, but pricier|money buys less over time, that's it]"
+      ],
+      [
+        "A",
+        "[oh no|that's sad|i hate it]"
+      ],
+      [
+        "C",
+        "[salaries also go up, just slower|your pay rises a bit too|wages catch up, late]"
+      ],
+      [
+        "A",
+        "[so eat {s:food} today|buy now|ok, eating today]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-inflation-chart-1",
+    "konu": "ekonomi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[i make a chart of prices in the game every month, nerd alert|tracking game prices in a notebook|i log prices on {s:day} every week]"
+      ],
+      [
+        "B",
+        "[nerd|respect|that's dedication]"
+      ],
+      [
+        "C",
+        "[share it|what does it show|results?]"
+      ],
+      [
+        "A",
+        "[everything goes up a bit, every time|small steady rise|up, always up]"
+      ],
+      [
+        "B",
+        "[nobody needed a chart for that|we could feel it|thanks i hate it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-stock-joke-2",
+    "konu": "ekonomi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my stock market strategy is ready, i just need the stock market|waiting for stocks with a full plan|i have a stock plan, no stocks]"
+      ],
+      [
+        "B",
+        "[same, i've been \"investing\" in {s:food}|my only portfolio is {s:food}|i invest in snacks]"
+      ],
+      [
+        "C",
+        "[they said it comes later|1.1 maybe|it's on the roadmap i think]"
+      ],
+      [
+        "A",
+        "[then the plan stays in my notes, next to the photo of {s:thing}|plan saved|patience]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-gold-currency-1",
+    "konu": "ekonomi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[will there be gold and currency trading|gold trading in this game?|currency exchange coming?]"
+      ],
+      [
+        "B",
+        "[later, not yet|not now|coming later supposedly]"
+      ],
+      [
+        "C",
+        "[the turks are waiting for it hard|\"altın\" is a word they say a lot|turkish players love gold]"
+      ],
+      [
+        "A",
+        "[what's altın|altın = gold?|altın means?]"
+      ],
+      [
+        "C",
+        "[gold|yes, gold|gold, very important word]"
+      ],
+      [
+        "A",
+        "[learning words and waiting for features, with {s:drink}|noted|altın, got it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-hourglass-buy-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[hourglasses for real money, anyone actually buy them|buying hourglasses with real money, worth it?|do people buy hourglasses]"
+      ],
+      [
+        "B",
+        "[if you're impatient|depends how fast you want stuff|only if you're in a hurry]"
+      ],
+      [
+        "C",
+        "[they don't make you richer, just faster|they skip waiting only|no money from them]"
+      ],
+      [
+        "A",
+        "[so it's time, not money|ok, just speed|good to know]"
+      ],
+      [
+        "D",
+        "[i just do dailies and drink {s:drink}|dailies are enough for me|free ones with {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-hourglass-first-1",
+    "konu": "oyun",
+    "kosul": [
+      "A.yeni"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[got my first hourglass, what do i do with it|new hourglass, no idea|i got an hourglass, now what]"
+      ],
+      [
+        "B",
+        "[save it for a course|skip a day on a course|use it when you start a course]"
+      ],
+      [
+        "C",
+        "[or a job application wait|applications too|for waiting]"
+      ],
+      [
+        "A",
+        "[ok keeping it safe, unlike {s:thing}|safe for now|stored]"
+      ],
+      [
+        "B",
+        "[lol|good|smart]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-salary-auto-1",
+    "konu": "oyun",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[wages go out automatically, i forgot and almost went broke|salaries took my cash, i forgot about them|auto payments ate my money]"
+      ],
+      [
+        "B",
+        "[always keep a buffer|cash reserve|keep some cash]"
+      ],
+      [
+        "C",
+        "[or it becomes debt and reputation drops|reputation hit is worse|don't let it bounce]"
+      ],
+      [
+        "A",
+        "[buffer created, skipping {s:food} this week|ok, saving more|lesson learned]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-reputation-donate-2",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[donated in game today, felt good|gave some to charity in the game|did a small donation, reputation up]"
+      ],
+      [
+        "B",
+        "[nice|good person|in game good deeds]"
+      ],
+      [
+        "C",
+        "[on bayram it counts double|wait for bayram next time|holidays give 2x]"
+      ],
+      [
+        "A",
+        "[i didn't know|next time then|good tip]"
+      ],
+      [
+        "D",
+        "[and irl donate {s:food} to someone|do it irl too|real kindness too]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-tier-dreams-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[dream final job in the game? mine is factory owner|fabrikatör goals|my end goal is a factory]"
+      ],
+      [
+        "B",
+        "[contractor for me|müteahhit|building stuff]"
+      ],
+      [
+        "C",
+        "[import export, travel the world|currency office|real estate office]"
+      ],
+      [
+        "A",
+        "[we'll all be bosses, who'll work for us|if everyone is boss, who works|bosses need workers]"
+      ],
+      [
+        "B",
+        "[npcs|the temps|lol temps]"
+      ],
+      [
+        "D",
+        "[i'll work for {s:food}|hire me, pay me in {s:food}|i'll be the worker, for {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-nakliyeci-done-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[finally became a nakliyeci, my truck is ready|started the transport job|i own a truck in the game now]"
+      ],
+      [
+        "B",
+        "[big step|congrats|trucker life]"
+      ],
+      [
+        "C",
+        "[what will you carry|first job?|where to]"
+      ],
+      [
+        "A",
+        "[{s:food} across the city, i hope|whatever pays|furniture and {s:food}]"
+      ],
+      [
+        "B",
+        "[deliver me some|i ordered|i'm waiting]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-two-week-review-1",
+    "konu": "oyun",
+    "kosul": [
+      "A.yeni"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[two weeks in, i have a job, some savings, and no idea what's next|2 weeks playing, what now|halfway into my first month, what's next]"
+      ],
+      [
+        "B",
+        "[course for a better job|save for an apartment|pick a goal]"
+      ],
+      [
+        "C",
+        "[think about what you like, business or salary|owner or employee?|choose a path]"
+      ],
+      [
+        "A",
+        "[i like {s:food}, so a cafe|cafe, because {s:drink}|business]"
+      ],
+      [
+        "B",
+        "[then save for it|go for it|plan it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-quick-money-myth-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[someone said there's a trick for quick money, is it true|heard there's a money trick, real?|secret money glitch?]"
+      ],
+      [
+        "B",
+        "[no tricks, just work|no shortcuts|there's no trick]"
+      ],
+      [
+        "C",
+        "[the only trick is not spending it on {s:food}|skip spending|discipline]"
+      ],
+      [
+        "A",
+        "[so no trick|boring truth|ok fine]"
+      ],
+      [
+        "D",
+        "[the trick is patience, sorry|patience|slow and steady]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-server-money-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[someone asked if you can sell game money for real money|can you cash out game money?|game money to real money, possible?]"
+      ],
+      [
+        "B",
+        "[no, never|not allowed|no]"
+      ],
+      [
+        "C",
+        "[you can buy, not sell|one way only|buying is ok, selling never]"
+      ],
+      [
+        "A",
+        "[makes sense|fair|ok]"
+      ],
+      [
+        "D",
+        "[if it could, i'd retire and eat {s:food} forever|i'd buy {s:food} in real life|imagine]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-monthly-living-cost-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[living costs every month in the game feel like real life|monthly bills hit in the game too|the game charges me to live lol]"
+      ],
+      [
+        "B",
+        "[it's a life sim|that's the point|realism]"
+      ],
+      [
+        "C",
+        "[homeowners don't pay rent at least|own a home, save rent|buy and stop paying rent]"
+      ],
+      [
+        "A",
+        "[on my list, after {s:food}|someday|goal]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-week-recap-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[this week in game: got a job, lost a job, got another job|weekly recap: chaos|my game week was a rollercoaster]"
+      ],
+      [
+        "B",
+        "[still employed?|where are you now|current status?]"
+      ],
+      [
+        "A",
+        "[employed as {A.meslek}|{A.meslek} now|stable, {A.meslek}]"
+      ],
+      [
+        "C",
+        "[good enough|progress|ok that's fine]"
+      ],
+      [
+        "D",
+        "[reward: {s:food}|{s:food} for surviving|treat with {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-chat-trading-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[wish we could trade items in chat|why can't i sell my shop to someone here|player to player sales when?]"
+      ],
+      [
+        "B",
+        "[coming later i think|not yet|it's on the list i heard]"
+      ],
+      [
+        "C",
+        "[until then trade jokes|trade recipes for {s:food}|trade tips]"
+      ],
+      [
+        "A",
+        "[fine, here's a tip: eat {s:food}|tip: drink {s:drink}|tip: sleep]"
+      ],
+      [
+        "B",
+        "[valuable|thanks|priceless]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-npc-job-ad-1",
+    "konu": "isletme",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[posted a job ad, three people applied in an hour|job ad got applicants fast|hiring is easier than i thought]"
+      ],
+      [
+        "B",
+        "[pick the one with experience|experience matters|check who did 20 tasks before]"
+      ],
+      [
+        "A",
+        "[they all look the same|they're all new|no idea who to pick]"
+      ],
+      [
+        "C",
+        "[pick the one whose name sounds like {s:food}|random choice|eeny meeny]"
+      ],
+      [
+        "A",
+        "[picked one|done|hired the first one]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-tired-of-courier-1",
+    "konu": "is",
+    "kosul": [
+      "A.kurye"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[tired of courier life, want something calmer|want to switch from courier|courier is fun but exhausting]"
+      ],
+      [
+        "B",
+        "[memur course, chill|try civil servant|salary jobs are calm]"
+      ],
+      [
+        "A",
+        "[but i like the action|i'll miss the running|sounds boring]"
+      ],
+      [
+        "C",
+        "[then courier on {s:day} only lol|courier as a hobby|stay but rest]"
+      ],
+      [
+        "A",
+        "[i'll think about it over {s:drink}|maybe|let me decide]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-cashier-mix-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[cashier gets salary plus task money, decent combo|cashier pay is salary + tasks, nice|market job: salary and tasks]"
+      ],
+      [
+        "B",
+        "[underrated job|good start|stable]"
+      ],
+      [
+        "C",
+        "[and people are nice mostly|npcs don't yell at least|no angry customers]"
+      ],
+      [
+        "A",
+        "[unlike real life|irl is different|the game is kinder]"
+      ],
+      [
+        "D",
+        "[irl someone yelled at me over {s:food}|irl customers fight over {s:food}|real ones are wild]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-construction-weather-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[doing construction tasks while it's snowing irl, empathy|construction in game, snow outside, i feel it|game builder life in winter vibes]"
+      ],
+      [
+        "B",
+        "[real builders in winter, respect|imagine doing it for real|respect to real workers]"
+      ],
+      [
+        "C",
+        "[hot {s:drink} for every worker|bring them {s:drink}|{s:drink} for builders]"
+      ],
+      [
+        "A",
+        "[agreed|yes|100%]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-usta-done-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[i'm an usta now, the builders salute me|became a master builder|usta at last]"
+      ],
+      [
+        "B",
+        "[congrats usta|well done|big step]"
+      ],
+      [
+        "C",
+        "[taşeron next?|next is subcontractor|20 days then taşeron]"
+      ],
+      [
+        "A",
+        "[one day, first {s:food}|eventually, now resting|later, now celebrating]"
+      ],
+      [
+        "B",
+        "[deserved|rest|enjoy]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-who-online-early-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[who's playing this early|anyone online at this hour|early players, where are you]"
+      ],
+      [
+        "B",
+        "[me, with {s:drink}|here, {s:drink} in hand|me, can't sleep]"
+      ],
+      [
+        "C",
+        "[always here at this time|different timezone, it's afternoon here|for me it's evening]"
+      ],
+      [
+        "A",
+        "[global chat never sleeps|someone's always awake|the world never sleeps]"
+      ],
+      [
+        "B",
+        "[and someone always eats {s:food}|there's always {s:food} talk|{s:food} at every hour]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-playtime-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[daily playtime check, be honest|your playtime per day, honestly|how long are you on this game per day]"
+      ],
+      [
+        "B",
+        "[10 minutes, a few times|short visits|check in often]"
+      ],
+      [
+        "C",
+        "[i keep it open all day|all day in the background|always open]"
+      ],
+      [
+        "A",
+        "[same, between {s:hobby} and work|in breaks|during {s:food}]"
+      ],
+      [
+        "D",
+        "[i only read chat, i don't play|i'm here for the chat|the chat is the game for me]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-g-advice-from-old-1",
+    "konu": "oyun",
+    "kosul": [
+      "A.eski"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[been playing for 200 days, ask me anything|old player here, any questions|veteran here, ama]"
+      ],
+      [
+        "B",
+        "[biggest mistake?|best move you made?|what would you do differently]"
+      ],
+      [
+        "A",
+        "[should've bought an apartment earlier|i bought a shop too early|i ignored dailies for months]"
+      ],
+      [
+        "C",
+        "[what's your favourite part|what's fun after 200 days|still fun?]"
+      ],
+      [
+        "A",
+        "[the chat, honestly, and {s:drink}|chat keeps me here|the people]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-kolay-gelsin-reply-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[a turk said \"kolay gelsin\" and i panicked and said \"you too\"|replied \"you too\" to kolay gelsin, was that right|someone wished me kolay gelsin, i answered in english]"
+      ],
+      [
+        "B",
+        "[close enough|they'll understand|fine actually]"
+      ],
+      [
+        "C",
+        "[\"sağ ol\" is the answer|next time say sağ ol|just say sağ ol]"
+      ],
+      [
+        "A",
+        "[sağ ol, writing it on my hand, next to \"buy {s:food}\"|ok sağ ol, noted|sağ ol, sağ ol, practicing]"
+      ],
+      [
+        "D",
+        "[you'll be fluent by {s:day}|fluent soon|at this rate, next month]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-tamam-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[\"tamam\" means ok right? i hear it everywhere|is tamam just ok|tamam = ok?]"
+      ],
+      [
+        "B",
+        "[yes, tamam|yep, ok|exactly, tamam]"
+      ],
+      [
+        "C",
+        "[and \"tamam tamam\" means \"ok ok, calm down\"|double tamam is different|tamam tamam is a whole mood]"
+      ],
+      [
+        "A",
+        "[tamam tamam, i'll stop asking and drink {s:drink}|ok tamam|tamam, got it]"
+      ],
+      [
+        "B",
+        "[perfect usage|nailed it|you sound local]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-hadi-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[what's \"hadi\", turks say it before everything|hadi??|hadi means what]"
+      ],
+      [
+        "B",
+        "[like \"come on\" or \"let's go\"|\"let's go\" basically|come on]"
+      ],
+      [
+        "C",
+        "[\"hadi bye\" is how they leave|\"hadi görüşürüz\" is bye|they say hadi to end chats]"
+      ],
+      [
+        "A",
+        "[hadi, let's go eat {s:food}|hadi chat, going for {s:food}|ok hadi, i'm off for {s:food}]"
+      ],
+      [
+        "B",
+        "[hadi!|afiyet olsun|hadi görüşürüz]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-cok-guzel-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[learned \"çok güzel\" today, means very nice?|çok güzel = very beautiful?|is çok güzel very nice]"
+      ],
+      [
+        "B",
+        "[yes, very nice|very good, very beautiful|yep]"
+      ],
+      [
+        "A",
+        "[this {s:drink} is çok güzel|{s:drink}: çok güzel|çok güzel {s:drink} right now]"
+      ],
+      [
+        "C",
+        "[perfect sentence|you're improving|fast learner]"
+      ],
+      [
+        "D",
+        "[next: \"harika\", even better|learn \"harika\" next|harika = amazing]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-iyi-geceler-2",
+    "konu": "dil",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[going to sleep, how do i say good night properly in turkish|good night in turkish please, i want to say it right|turkish good night?]"
+      ],
+      [
+        "B",
+        "[iyi geceler|it's iyi geceler|iyi geceler, easy one]"
+      ],
+      [
+        "A",
+        "[iyi geceler everyone|iyi geceler chat|iyi geceler, see you after {s:food} tomorrow]"
+      ],
+      [
+        "C",
+        "[iyi geceler {A}|good night, iyi geceler|sleep well, iyi geceler]"
+      ],
+      [
+        "D",
+        "[and \"tatlı rüyalar\" means sweet dreams|add tatlı rüyalar|tatlı rüyalar too]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-pahali-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[what's the turkish word for expensive, i need it for this game|turkish for expensive please, inflation season|word for \"expensive\"?]"
+      ],
+      [
+        "B",
+        "[pahalı|it's pahalı|pahalı, sadly a useful word]"
+      ],
+      [
+        "C",
+        "[and cheap is ucuz|ucuz = cheap|opposite is ucuz]"
+      ],
+      [
+        "A",
+        "[{s:food} used to be ucuz, now pahalı|everything is pahalı|nothing is ucuz anymore]"
+      ],
+      [
+        "B",
+        "[perfect, you can complain in two languages now|bilingual complaining|fluent in complaints]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-kira-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[saw turks write \"kira\" a lot, is that rent|kira = rent?|what's kira]"
+      ],
+      [
+        "B",
+        "[yes, rent|rent|it's rent]"
+      ],
+      [
+        "C",
+        "[also the most hated word in the chat|they complain about kira daily|kira is the enemy]"
+      ],
+      [
+        "A",
+        "[my kira went up again, see i'm learning|kira up, sad|i hate kira too now]"
+      ],
+      [
+        "D",
+        "[buy an apartment, no more kira|own a home, kira gone|homeowner = no kira]"
+      ],
+      [
+        "A",
+        "[after {s:food}, maybe|one day|saving for it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-yorgunum-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[turkish for \"i'm tired\"? need it today|how to say tired in turkish|i'm so tired, tell me in turkish]"
+      ],
+      [
+        "B",
+        "[yorgunum|it's yorgunum|yorgunum, we all say it]"
+      ],
+      [
+        "A",
+        "[yorgunum, very yorgunum|yorgunum, {s:drink} isn't working|yorgunum after {s:day}]"
+      ],
+      [
+        "C",
+        "[then \"geçmiş olsun\" lol|go to bed|rest, yorgun friend]"
+      ],
+      [
+        "A",
+        "[going after {s:food}|soon|ok ok]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-abi-abla-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[why do turks call each other \"abi\"|what's abi, everyone says it|abi = brother?]"
+      ],
+      [
+        "B",
+        "[big brother, but used for any guy, friendly|older brother, used as respect|it's like \"bro\"]"
+      ],
+      [
+        "C",
+        "[and \"abla\" for big sister|abla is the female one|abla for women]"
+      ],
+      [
+        "A",
+        "[so {B} is abi now|ok {B} abi|{B} abi, nice]"
+      ],
+      [
+        "B",
+        "[lol fine|i accept|thank you, i'll take it]"
+      ],
+      [
+        "D",
+        "[abi, can you pass the {s:drink}|abi bring {s:food}|lol]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-guzel-name-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[a turk told me my name means something in turkish|apparently {A} sounds like a turkish word|someone said my name is funny in turkish]"
+      ],
+      [
+        "B",
+        "[what does it mean|which word|what's the meaning]"
+      ],
+      [
+        "A",
+        "[they wouldn't tell me|they just laughed|they said \"something with {s:food}\"]"
+      ],
+      [
+        "C",
+        "[now i need to know|lol suspicious|mystery]"
+      ],
+      [
+        "A",
+        "[i'm scared to ask|it's fine|i'll live with it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-word-of-day-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[turkish word of the day please, i'm collecting|teach me one turkish word for today|daily turkish word, who's teaching]"
+      ],
+      [
+        "B",
+        "[\"kahvaltı\", breakfast|kahvaltı = breakfast|kahvaltı]"
+      ],
+      [
+        "C",
+        "[and for turks kahvaltı is a whole event|turkish breakfast is huge|they eat like 20 things]"
+      ],
+      [
+        "A",
+        "[kahvaltı, i'm having {s:food} for mine|my kahvaltı is {s:food}|kahvaltı today: {s:food} and {s:drink}]"
+      ],
+      [
+        "B",
+        "[turks would be sad|that's a small kahvaltı|not enough plates]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-cay-glass-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[turks drink tea from small glasses, why|why tiny tea glasses|tea in a little glass, how come]"
+      ],
+      [
+        "B",
+        "[so it stays hot and you drink more|so you have many glasses|small = more refills]"
+      ],
+      [
+        "C",
+        "[they drink like 10 a day|a turk can drink 15|the record is unknown]"
+      ],
+      [
+        "A",
+        "[i drink {s:drink} by the liter, rookie numbers|i do 3 big {s:drink} cups|my {s:drink} cup is a bucket]"
+      ],
+      [
+        "B",
+        "[different philosophy|not the same|quality vs quantity]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-numbers-money-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[\"bin\" means thousand right, i see \"100 bin\" in turkish chat|bin = 1000?|what's bin in prices]"
+      ],
+      [
+        "B",
+        "[yes, bin is thousand|yep|1000]"
+      ],
+      [
+        "C",
+        "[and milyon is million, easy|milyon you can guess|milyon = million]"
+      ],
+      [
+        "A",
+        "[one day i'll have milyon, today i can afford {s:food}|one milyon someday|i have bin, not milyon]"
+      ],
+      [
+        "B",
+        "[yavaş yavaş|slowly|you'll get there]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-tr-word-funny-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[favourite turkish word you learned here?|best turkish word from this chat|which turkish word stuck with you]"
+      ],
+      [
+        "B",
+        "[\"boşver\", life motto|boşver|boşver, always]"
+      ],
+      [
+        "C",
+        "[\"afiyet olsun\", i say it to {s:family} now|afiyet olsun, use it at home|\"kolay gelsin\"]"
+      ],
+      [
+        "D",
+        "[\"aynen\"|aynen, obviously|aynen aynen]"
+      ],
+      [
+        "A",
+        "[we're all becoming turkish|turkish class graduates|this chat is a school]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-new-welcome-warm-1",
+    "konu": "selam",
+    "kosul": [
+      "A.yeni"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[hey all, just started today|hi! first day|hello, new player here]"
+      ],
+      [
+        "B",
+        "[welcome welcome|hoş geldin!|welcome to global]"
+      ],
+      [
+        "C",
+        "[grab {s:drink}, stay a while|make yourself at home|get {s:drink}, sit]"
+      ],
+      [
+        "A",
+        "[thanks, everyone is so nice|wow friendly people|thank you]"
+      ],
+      [
+        "D",
+        "[we're nice until you insult {s:food}|careful with opinions about {s:food}|don't diss {s:food} and you're safe]"
+      ],
+      [
+        "A",
+        "[noted|lol ok|i'll be careful]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-new-welcome-confused-1",
+    "konu": "selam",
+    "kosul": [
+      "A.yeni"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[i don't understand anything yet but hi|new and confused, hello|hi, i'm lost but here]"
+      ],
+      [
+        "B",
+        "[that's normal, ask anything|ask us|we'll help]"
+      ],
+      [
+        "A",
+        "[why is everyone talking about rent|why does everyone hate rent|what's with the rent jokes]"
+      ],
+      [
+        "C",
+        "[because rent goes up every month, like irl|inflation|you'll see soon]"
+      ],
+      [
+        "A",
+        "[oh no|uh oh|can't wait]"
+      ],
+      [
+        "D",
+        "[welcome, here's {s:food} for comfort|have some {s:drink}|{s:food} helps]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-new-welcome-country-1",
+    "konu": "selam",
+    "kosul": [
+      "A.yeni"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[hi from far away, i don't think anyone here is from my country|hello, probably the only one from my country|first one from my country here?]"
+      ],
+      [
+        "B",
+        "[where are you from|which country|tell us]"
+      ],
+      [
+        "A",
+        "[from {A.sehir}|{A.sehir}, far away|{A.sehir}, very cold now]"
+      ],
+      [
+        "C",
+        "[welcome! what's a typical dish there|welcome, what's good to eat there|what do people eat in {A.sehir}]"
+      ],
+      [
+        "A",
+        "[lots of {s:food}|{s:food}, everywhere|{s:food} mostly]"
+      ],
+      [
+        "C",
+        "[we have that too|same here|everyone has {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-new-welcome-help-offer-1",
+    "konu": "selam",
+    "kosul": [
+      "A.yeni"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[new here, does anyone want to explain the basics|anyone have 2 minutes for a newbie|basics please, new player]"
+      ],
+      [
+        "B",
+        "[sure: get a job, save money, buy property|job, save, invest|work, save, buy]"
+      ],
+      [
+        "C",
+        "[courses unlock better jobs|courses help|do courses later]"
+      ],
+      [
+        "D",
+        "[and daily tasks give hourglasses|dailies = hourglasses|daily tasks every day]"
+      ],
+      [
+        "A",
+        "[job, save, course, dailies, got it, and {s:drink}|noted all|thanks!]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-new-welcome-late-night-1",
+    "konu": "selam",
+    "kosul": [
+      "A.yeni"
+    ],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[just installed at 1am, is anyone here|new player at 1am, hi|hello? new here, late night]"
+      ],
+      [
+        "B",
+        "[we're here, always|hi! night crew|welcome to night chat]"
+      ],
+      [
+        "C",
+        "[night crew is the best crew|the quiet hours|the real ones]"
+      ],
+      [
+        "A",
+        "[what do you talk about at night|night topics?|what's the night vibe]"
+      ],
+      [
+        "B",
+        "[{s:food} and life|sleep and {s:food}|snacks and thoughts]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-new-welcome-returning-1",
+    "konu": "selam",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[three months away and everything is different|returned after a long time, what changed|i'm back, what's new]"
+      ],
+      [
+        "B",
+        "[welcome back!|wb|hey you're back]"
+      ],
+      [
+        "C",
+        "[prices went up, that's the news|inflation, as always|everything is more expensive]"
+      ],
+      [
+        "A",
+        "[of course it did|classic|so nothing changed really]"
+      ],
+      [
+        "D",
+        "[and we still argue about {s:food}|the debate about {s:food} is ongoing|still the same {s:drink} fights]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-chat-chef-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{B} you talk about {s:food} so much, are you a chef|{B} the global chat expert on {s:food}|{B} why do you always talk about {s:food}]"
+      ],
+      [
+        "B",
+        "[i'm just hungry all the time|i love food, that's it|i'm a professional eater]"
+      ],
+      [
+        "C",
+        "[{B} has mentioned {s:food} 40 times today|i counted, {B} said {s:food} a lot|{B} is the ambassador of {s:food}]"
+      ],
+      [
+        "B",
+        "[and i'll say it 40 more|proudly|no regrets]"
+      ],
+      [
+        "A",
+        "[respect|legend|ok fair]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-chat-mvp-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[chat mvp today is {B}|{B} wins best message of the day|award goes to {B}]"
+      ],
+      [
+        "B",
+        "[what did i do|why me|thank you, i guess]"
+      ],
+      [
+        "A",
+        "[you made me laugh while i spilled {s:drink}|the joke about {s:food}|you know what you did]"
+      ],
+      [
+        "C",
+        "[no award for me?|i'm hurt|rigged]"
+      ],
+      [
+        "A",
+        "[next time {C}|{C} tomorrow maybe|try harder {C}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-autoreply-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[is {B} even real, they answer instantly every time|{B} replies in one second always|{B} types faster than i think]"
+      ],
+      [
+        "B",
+        "[i'm just bored at work|i have no life|i'm always here, waiting]"
+      ],
+      [
+        "C",
+        "[{B} lives in this chat|rent free|{B} pays no kira here]"
+      ],
+      [
+        "B",
+        "[true, cheapest apartment ever|best deal in the game|no inflation in global chat]"
+      ],
+      [
+        "A",
+        "[lol|fair|ok that's good]"
+      ],
+      [
+        "D",
+        "[{B} bring us {s:food} then|landlord {B}, where's {s:food}|{s:food} tax for {B}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-guess-food-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[guess what i'm eating, three tries|guessing game: my dinner|three guesses for my dinner]"
+      ],
+      [
+        "B",
+        "[{s:food}|is it {s:food}|{s:food}?]"
+      ],
+      [
+        "C",
+        "[{s:food#2}|{s:food#2}, final answer|i say {s:food#2}]"
+      ],
+      [
+        "A",
+        "[{B} wins|{B} got it|{B}, how]"
+      ],
+      [
+        "B",
+        "[you always eat that|i know you|lucky guess]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-caps-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[CAPS LOCK WAS ON THIS WHOLE TIME|sorry caps lock was on|oops CAPS]"
+      ],
+      [
+        "B",
+        "[WE CAN HEAR YOU|NO NEED TO SHOUT|indoor voice please]"
+      ],
+      [
+        "A",
+        "[sorry, i'm calm now, i'm eating {s:food}|fixed, back to {s:food}|ok calm now]"
+      ],
+      [
+        "C",
+        "[the shouting was fun though|keep it|i liked it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-chat-weather-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[weather in global chat: cloudy with a chance of talking about {s:food}|global chat forecast: storms of opinions about {s:food}|today's chat weather: sunny, low drama]"
+      ],
+      [
+        "B",
+        "[accurate|lol|spot on]"
+      ],
+      [
+        "C",
+        "[and heavy {s:drink} showers in the morning|{s:drink} winds from the east|high pressure of rent complaints]"
+      ],
+      [
+        "A",
+        "[stay safe out there|bring an umbrella|dress warm]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-fake-rich-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[just bought a mansion|bought an island today|got a yacht]"
+      ],
+      [
+        "B",
+        "[in which game|irl?|proof?]"
+      ],
+      [
+        "A",
+        "[in my head|in my dreams|in my imagination, with {s:drink}]"
+      ],
+      [
+        "C",
+        "[same, i own a {s:hobby} studio in my head|i'm a millionaire in my head|i have three cafes, imaginary]"
+      ],
+      [
+        "A",
+        "[we're all rich in there|the dream economy|inflation free]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-sleep-talk-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} says i talked in my sleep about rent|apparently i said \"pay the installment\" in my sleep|{s:family} heard me say \"temps\" in my sleep]"
+      ],
+      [
+        "B",
+        "[the game took over|you need a break|that's too much game]"
+      ],
+      [
+        "C",
+        "[i dreamed in loans once|i dream about {s:food}|mine is about {s:food}]"
+      ],
+      [
+        "A",
+        "[at least yours are tasty|better dreams|i want yours]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-banter-chat-snack-share-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[passing {s:food} around the chat, virtually|everyone take some, it's {s:food}|{s:food} for the whole chat, from me]"
+      ],
+      [
+        "B",
+        "[thank you|yum|nice]"
+      ],
+      [
+        "C",
+        "[i'm allergic, virtually|do you have anything else|can i get {s:drink} instead]"
+      ],
+      [
+        "A",
+        "[{s:drink} coming up|here's {s:drink}|ok {s:drink} for {C}]"
+      ],
+      [
+        "D",
+        "[best chat host|5 stars|service is good here]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-joke-calendar-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[why is the calendar always stressed|joke: why was the calendar nervous|the calendar is anxious, why]"
+      ],
+      [
+        "B",
+        "[why|tell us|go]"
+      ],
+      [
+        "A",
+        "[its days are numbered|it had too many dates|it's on {s:day} again]"
+      ],
+      [
+        "C",
+        "[ok that's actually good|not bad|i laughed]"
+      ],
+      [
+        "B",
+        "[i hate that i liked it|ugh, good|fine, a point]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-joke-fridge-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my fridge and i have a lot in common|joke: me and my fridge, same thing|me = my fridge, explain later]"
+      ],
+      [
+        "B",
+        "[how|why|ok explain]"
+      ],
+      [
+        "A",
+        "[both full of {s:food} and cold inside|we're both empty by {s:day}|we both run all night]"
+      ],
+      [
+        "C",
+        "[get help|lol|relatable]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-joke-temp-worker-1",
+    "konu": "saka",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[hired a temp worker, they said \"temporarily available\"|my temp quit, it was temporary|temp worker joke: they're here temporarily, like my money]"
+      ],
+      [
+        "B",
+        "[boo|ok that's sad|too real]"
+      ],
+      [
+        "C",
+        "[the only permanent thing is the bill|the bill stays forever|expenses are permanent]"
+      ],
+      [
+        "A",
+        "[and my love for {s:food}|and {s:food}|and {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-joke-hourglass-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[bought an hourglass but i don't have time to use it|i have hourglasses but no time|joke: i saved time and lost it]"
+      ],
+      [
+        "B",
+        "[classic|lol|the paradox]"
+      ],
+      [
+        "C",
+        "[time is money, and both are gone|no time, no money|i'm out of both]"
+      ],
+      [
+        "A",
+        "[but i have {s:food}|i have {s:drink} at least|still have snacks]"
+      ],
+      [
+        "B",
+        "[you're rich then|that's wealth|win]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-joke-apartment-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[bought an apartment, now i'm a \"home owner\", the home owns me|owning a home means the home owns you|i own an apartment and it owns my savings]"
+      ],
+      [
+        "B",
+        "[deep|true|that's real estate]"
+      ],
+      [
+        "C",
+        "[at least it doesn't ask for {s:food}|it doesn't eat|better than a pet]"
+      ],
+      [
+        "A",
+        "[it eats money|it eats savings|it's hungry for cash]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-joke-weekday-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:day} is my favourite day because it's not {s:day#2}|i like {s:day} only because {s:day#2} is worse|ranking days by how bad {s:day#2} is]"
+      ],
+      [
+        "B",
+        "[logic|solid|can't argue]"
+      ],
+      [
+        "C",
+        "[everyday is not {s:day#2} if you're brave|{s:day#2} is a state of mind|ban {s:day#2}]"
+      ],
+      [
+        "A",
+        "[i'll vote for that|yes ban it|i support]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-flat-chores-chart-1",
+    "konu": "ev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[made a chore chart for the flat, nobody follows it|flat chore chart day 3, ignored|the chore chart is art now]"
+      ],
+      [
+        "B",
+        "[add rewards|stickers|give gold stars]"
+      ],
+      [
+        "C",
+        "[whoever does the most gets {s:food}|winner gets {s:food}|prize: {s:food}]"
+      ],
+      [
+        "A",
+        "[now everyone is cleaning|it worked|flat is spotless]"
+      ],
+      [
+        "B",
+        "[bribery works|food motivation|power of {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-flat-music-taste-1",
+    "konu": "ev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my flatmate plays music while doing {s:hobby} and it's the same song|flatmate on repeat, same song all day|one song for 4 hours next door]"
+      ],
+      [
+        "B",
+        "[you know all the lyrics now|you'll sing it in your sleep|it's in your head forever]"
+      ],
+      [
+        "A",
+        "[i'm humming it at work|i hum it while eating {s:food}|it's my song now]"
+      ],
+      [
+        "C",
+        "[join them|duet|start a band]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-flat-thermostat-1",
+    "konu": "ev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[flatmate likes the flat at 18 degrees, i'm dying|flatmate says 18 is warm|18 degrees inside, flatmate happy, me frozen]"
+      ],
+      [
+        "B",
+        "[wear a blanket|hoodie and {s:drink}|three layers]"
+      ],
+      [
+        "C",
+        "[buy a small heater for your room|room heater|electric blanket]"
+      ],
+      [
+        "A",
+        "[but the bill|the bill will go up|then we fight about the bill]"
+      ],
+      [
+        "B",
+        "[endless cycle|circle of life|lol]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-flat-guests-1",
+    "konu": "ev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[flatmate's friends stayed for three days|guests for 3 days, i didn't know them|strangers in my kitchen all weekend]"
+      ],
+      [
+        "B",
+        "[did they at least clean|did they bring food|were they nice]"
+      ],
+      [
+        "A",
+        "[they made {s:food} for everyone|they cooked {s:food}, i forgave them|they brought {s:drink}]"
+      ],
+      [
+        "C",
+        "[then they can stay|invite them back|best guests]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-flat-shared-shopping-1",
+    "konu": "ev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[flat shopping list: who keeps adding {s:food}|someone adds {s:food} to our list every day|our shared list has {s:food} 5 times]"
+      ],
+      [
+        "B",
+        "[it's me|guilty|i plead the fifth]"
+      ],
+      [
+        "C",
+        "[we know {B}|{B} obviously|it was always {B}]"
+      ],
+      [
+        "B",
+        "[you all eat it too|everyone eats it|you're welcome]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-flat-cooking-turns-1",
+    "konu": "ev",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[my night to cook, making {s:food} again|my cooking night, {s:food} as always|tonight it's {s:food} again because it's my turn]"
+      ],
+      [
+        "B",
+        "[we know|we can smell it|every time]"
+      ],
+      [
+        "C",
+        "[we love it though|no complaints|your {s:food} is good]"
+      ],
+      [
+        "A",
+        "[thanks, i'll make {s:food#2} one day|maybe {s:food#2} next week|i'm learning {s:food#2}]"
+      ],
+      [
+        "B",
+        "[no, don't change|stay with what works|don't risk it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-ceiling-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[lying in bed staring at the ceiling, thinking about {s:food}|1am ceiling staring session|can't sleep, just thinking about life and {s:food}]"
+      ],
+      [
+        "B",
+        "[the ceiling has answers|big thoughts at night|night brain is wild]"
+      ],
+      [
+        "C",
+        "[i'm thinking about the thing i said 5 years ago|i'm replaying a conversation from {s:day}|i'm cringing about something old]"
+      ],
+      [
+        "A",
+        "[we're all the same at night|night brain unites|same club]"
+      ],
+      [
+        "B",
+        "[go to sleep, all of you|sleep, chat|goodnight, really]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-stars-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[went outside, clear sky, lots of stars|clear night here, so many stars|stepped out for air, the sky is beautiful]"
+      ],
+      [
+        "B",
+        "[freezing though?|cold out?|jacket?]"
+      ],
+      [
+        "A",
+        "[very, wrapped in a blanket with {s:drink}|yes, i'm holding {s:drink}|yes, wearing everything]"
+      ],
+      [
+        "C",
+        "[cloudy here, describe them|i can't see any, tell me|lucky, it's grey here]"
+      ],
+      [
+        "A",
+        "[tiny bright dots, very pretty|like sugar on black paper|a lot, trust me]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-noise-house-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[heard a noise in the kitchen at 2am, it was the fridge|2am noise, investigated, it was the heater|scary noise at night, just the pipes]"
+      ],
+      [
+        "B",
+        "[brave of you to check|i'd stay in bed|you checked? hero]"
+      ],
+      [
+        "C",
+        "[did you take a weapon|what did you take with you|armed with what]"
+      ],
+      [
+        "A",
+        "[{s:thing}|i took {s:thing}|{s:thing}, for protection]"
+      ],
+      [
+        "B",
+        "[deadly|very safe|lol]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-snack-guilt-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[ate {s:food} at midnight, no regrets yet|midnight snack: {s:food}|it's late and i just ate {s:food}]"
+      ],
+      [
+        "B",
+        "[the regret comes at 7am|wait for tomorrow|morning you will be mad]"
+      ],
+      [
+        "C",
+        "[night food has no calories, science|it doesn't count at night|the midnight rule: it doesn't count]"
+      ],
+      [
+        "A",
+        "[i trust {C}|{C} the scientist|{C} is right]"
+      ],
+      [
+        "B",
+        "[{C} is not a scientist|don't listen to {C}|lies]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-music-quiet-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[late night music with headphones, perfect|listening to slow music at 2am|night music hits different]"
+      ],
+      [
+        "B",
+        "[what are you listening to|genre?|share]"
+      ],
+      [
+        "A",
+        "[something calm with no words|soft piano stuff|rain sounds honestly]"
+      ],
+      [
+        "C",
+        "[i listen to rain sounds while it actually rains|i play rain sounds in summer|i need a fire sound, it's cold]"
+      ],
+      [
+        "A",
+        "[{C} chaos|that's cozy|with {s:drink}, perfect]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-overthinking-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[overthinking a message i sent at work today|i sent \"ok.\" with a dot to my boss, now i'm worried|did my text sound rude, can't sleep]"
+      ],
+      [
+        "B",
+        "[they didn't even notice|nobody reads that deep|it's fine]"
+      ],
+      [
+        "C",
+        "[i once sent \"love you\" to my boss by accident|i texted my teacher \"thanks mum\"|i sent {s:food} pictures to my boss once]"
+      ],
+      [
+        "A",
+        "[ok i feel better now|yours is worse, thanks|that's way worse, i'm fine]"
+      ],
+      [
+        "B",
+        "[chat therapy works|glad to help|free therapy here]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-insomnia-tips-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[tips for falling asleep, please|i need sleep tips, i've tried everything|how do you all fall asleep]"
+      ],
+      [
+        "B",
+        "[no phone an hour before|screen off|read a boring book]"
+      ],
+      [
+        "C",
+        "[warm {s:drink}|{s:drink}, warm|counting sheep, then {s:drink}]"
+      ],
+      [
+        "D",
+        "[think about the rules of the bank in this game, instant sleep|read loan terms, works every time|read the 24 month installment plan]"
+      ],
+      [
+        "A",
+        "[{D} lol|{D} that might work|{D} genius]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-friends-far-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[love that it's night here and morning for {B}|{B} is having breakfast while i go to bed|{B} where you are it's morning right]"
+      ],
+      [
+        "B",
+        "[yep, {s:food} for breakfast|morning here, {s:drink} time|good morning from the future]"
+      ],
+      [
+        "A",
+        "[good night from the past|night from here|tell me how tomorrow is]"
+      ],
+      [
+        "B",
+        "[cold and full of {s:food}|it's ok|same as today]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-movie-ending-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[just finished a movie and the ending made no sense|weird ending, can't sleep now|movie ended and i'm confused]"
+      ],
+      [
+        "B",
+        "[no spoilers but which|which movie|was it the sad one]"
+      ],
+      [
+        "A",
+        "[one with a twist i didn't get|a strange one, no name|the one everyone talks about]"
+      ],
+      [
+        "C",
+        "[endings are optional|they're meant to confuse|the director didn't know either]"
+      ],
+      [
+        "A",
+        "[comforting|thanks|going to eat {s:food} and forget]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-late-lonely-1",
+    "konu": "gece",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[feeling a bit lonely tonight, glad this chat exists|quiet night, nice to have people here|everyone's asleep at home, chat keeps me company]"
+      ],
+      [
+        "B",
+        "[we're here|always someone here|you're not alone]"
+      ],
+      [
+        "C",
+        "[grab {s:drink}, let's talk|tell us about your day|what's up]"
+      ],
+      [
+        "A",
+        "[nothing big, just a long day|work was long|just a quiet one]"
+      ],
+      [
+        "B",
+        "[then let's talk about {s:food}|let's chat about nothing|that's what night chat is for]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-argue-turned-friends-1",
+    "konu": "tartisma",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{B} and i argued about {s:food} for a week and now we're friends|weird how fighting with {B} made us friends|me and {B} used to fight, now we're close]"
+      ],
+      [
+        "B",
+        "[the power of {s:food}|it was a good fight|respect earned]"
+      ],
+      [
+        "C",
+        "[so i should fight with someone|how do i make friends then|i'll start a fight]"
+      ],
+      [
+        "A",
+        "[only about {s:food}|food fights only|gentle fights]"
+      ],
+      [
+        "C",
+        "[ok, {s:food#2} is better than {s:food}|{s:food#2} > {s:food}, fight me|i choose {s:food#2}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-argue-misunderstood-1",
+    "konu": "tartisma",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{B} i didn't mean it like that earlier|{B} sorry, my message came out wrong|{B} that message was a joke, didn't sound right]"
+      ],
+      [
+        "B",
+        "[oh, i thought you were serious|all good, i got confused|ok, text is hard]"
+      ],
+      [
+        "A",
+        "[text has no tone|i need a sarcasm button|my sarcasm doesn't type well]"
+      ],
+      [
+        "C",
+        "[put \"lol\" after everything|add \"jk\"|use more \"haha\"]"
+      ],
+      [
+        "A",
+        "[noted, lol|ok lol|ok, sorry {B}, lol]"
+      ],
+      [
+        "B",
+        "[lol fine, have {s:drink}|we're good|forgiven, buy me {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-argue-who-better-time-1",
+    "konu": "tartisma",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[night chat is better than day chat, fact|day chat is too fast, night is better|night people are better in this chat]"
+      ],
+      [
+        "B",
+        "[wrong, day chat is alive|day crew is better|morning chat has {s:drink} energy]"
+      ],
+      [
+        "C",
+        "[why not both|both are fine|i'm in both, no complaints]"
+      ],
+      [
+        "A",
+        "[{C} the diplomat|{C} you can't pick both|{C} chooses peace]"
+      ],
+      [
+        "C",
+        "[i choose {s:food}|i choose sleep|i choose neutrality]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-argue-advice-wrong-1",
+    "konu": "tartisma",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{B} your advice made me lose money|{B} i took your advice and my shop flopped|{B} your tip was bad, i'm broke]"
+      ],
+      [
+        "B",
+        "[oops, sorry|what did you do exactly|did you follow all of it]"
+      ],
+      [
+        "A",
+        "[i opened a cafe next to 3 others|i bought land and needed cash next week|i used temps for a month]"
+      ],
+      [
+        "B",
+        "[i never said that part|that wasn't my advice|i said the opposite]"
+      ],
+      [
+        "A",
+        "[oh. my bad then|ok maybe i misread|sorry {B}, my fault]"
+      ],
+      [
+        "C",
+        "[buy {B} {s:food} as an apology|{s:food} for {B}|peace with {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-argue-loud-resolved-1",
+    "konu": "tartisma",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[sorry for yelling in caps earlier, bad day|apologies for my rant, it was a rough {s:day}|sorry about my mood yesterday]"
+      ],
+      [
+        "B",
+        "[it's fine, we all have those|no worries|happens]"
+      ],
+      [
+        "C",
+        "[want to talk about it|what happened|all ok now?]"
+      ],
+      [
+        "A",
+        "[lost {s:thing} and missed the bus, all at once|{s:thing} broke and work was hard|everything went wrong at once]"
+      ],
+      [
+        "B",
+        "[geçmiş olsun, as the turks say|hope today is better|sending virtual {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-argue-spelling-1",
+    "konu": "tartisma",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[it's spelled \"colour\", {B}|{B} it's \"favourite\" not \"favorite\"|{B} you spelled it wrong]"
+      ],
+      [
+        "B",
+        "[no, that's the other way|both are correct|depends where you're from]"
+      ],
+      [
+        "C",
+        "[please don't start this|not this again|we just finished the {s:day} fight]"
+      ],
+      [
+        "A",
+        "[ok, both are fine|fine, truce|peace]"
+      ],
+      [
+        "B",
+        "[thank you|good|great, now let's talk about {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-cram-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[cramming a whole semester in one night|exam tomorrow, learning everything tonight|all-nighter mode]"
+      ],
+      [
+        "B",
+        "[you'll forget everything tomorrow|sleep is better than cramming|rest!]"
+      ],
+      [
+        "A",
+        "[no choice now|too late for that|the exam is at 9]"
+      ],
+      [
+        "C",
+        "[{s:drink} and a snack every hour|eat {s:food} for energy|short breaks]"
+      ],
+      [
+        "A",
+        "[{s:drink} number three|{s:food} acquired|ok, snack time]"
+      ],
+      [
+        "B",
+        "[good luck|go go|you can do it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-test-anxiety-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[hands shaking before my exam|so nervous, exam in 30 min|exam soon, can't breathe]"
+      ],
+      [
+        "B",
+        "[breathe in for 4, out for 4|deep breaths|slow breathing]"
+      ],
+      [
+        "C",
+        "[you studied, trust yourself|you know it|you're ready]"
+      ],
+      [
+        "A",
+        "[i forgot everything though|my mind is blank|i don't remember anything]"
+      ],
+      [
+        "C",
+        "[it comes back when you see the question|it'll come back|it always comes back]"
+      ],
+      [
+        "A",
+        "[ok going in with {s:drink}|going in|wish me luck]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-teacher-good-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[my teacher stayed late to help me, i love them|best teacher ever, explained it 3 times|my tutor is so patient]"
+      ],
+      [
+        "B",
+        "[good teachers are gold|protect them|give them a gift]"
+      ],
+      [
+        "A",
+        "[bringing them {s:food} tomorrow|baking something for them|a box of {s:food} as thanks]"
+      ],
+      [
+        "C",
+        "[they'll love it|best thank you|wholesome]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-grades-family-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} asked about my grades at dinner|{s:family} wants to see my exam result|grade talk at dinner with {s:family}]"
+      ],
+      [
+        "B",
+        "[was it good|how did it go|uh oh]"
+      ],
+      [
+        "A",
+        "[passed, but barely|good, they were happy|not great, they were nice about it]"
+      ],
+      [
+        "C",
+        "[then dessert!|treat yourself|{s:food} as reward]"
+      ],
+      [
+        "A",
+        "[they made {s:food}|yes, {s:food} was waiting|they bought {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-uni-application-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[applying to universities, the stress is unreal|so many applications, help|application season, i'm dying]"
+      ],
+      [
+        "B",
+        "[you'll get in somewhere|do your best|one at a time]"
+      ],
+      [
+        "C",
+        "[reward after each one|{s:food} after each form|one form, one {s:drink}]"
+      ],
+      [
+        "A",
+        "[that's a lot of {s:food}|i'll get fat|i like this plan]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-study-notes-lost-1",
+    "konu": "ders",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[lost my notes the night before the exam|can't find my notebook, exam tomorrow|notes gone, along with {s:thing}]"
+      ],
+      [
+        "B",
+        "[ask a friend for photos|someone in class has them|message your group]"
+      ],
+      [
+        "A",
+        "[group chat to the rescue|asked, waiting|sent a message]"
+      ],
+      [
+        "A",
+        "[got them!|someone sent photos|saved]"
+      ],
+      [
+        "C",
+        "[friends are better than notes|true friends|good group]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-burnout-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[so tired of work lately, i need a holiday|burnout is real this month|my job is draining me]"
+      ],
+      [
+        "B",
+        "[take a day off|rest a bit|can you take a break]"
+      ],
+      [
+        "A",
+        "[not until {s:day}|maybe next week|soon i hope]"
+      ],
+      [
+        "C",
+        "[do something nice for yourself today, {s:food} at least|eat {s:food}, small happiness|{s:hobby} for an hour]"
+      ],
+      [
+        "A",
+        "[{s:food} tonight, yes|ok, {s:hobby} tonight|i'll try]"
+      ],
+      [
+        "B",
+        "[take care|look after yourself|good]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-deadline-friday-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": "ogle",
+    "turlar": [
+      [
+        "A",
+        "[deadline moved up to tomorrow, no warning|boss just moved my deadline|surprise deadline today]"
+      ],
+      [
+        "B",
+        "[classic|of course|why do they do that]"
+      ],
+      [
+        "A",
+        "[going to live on {s:drink} today|{s:drink} and panic|{s:drink} drip incoming]"
+      ],
+      [
+        "C",
+        "[you'll make it|you got this|go]"
+      ],
+      [
+        "A",
+        "[if i survive i'm eating {s:food}|{s:food} after this|reward: {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-colleague-kind-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[colleague covered for me today when i was late|my coworker saved me from the boss|someone at work helped me so much today]"
+      ],
+      [
+        "B",
+        "[buy them {s:drink}|return the favour|good colleague]"
+      ],
+      [
+        "A",
+        "[bought them {s:food}|got them {s:drink} tomorrow|already planning it]"
+      ],
+      [
+        "C",
+        "[that's how work friends happen|that's friendship|nice]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-interview-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[job interview today, what do i say|big interview this afternoon, tips|interview soon, advice please]"
+      ],
+      [
+        "B",
+        "[be yourself, but the nice version|smile and listen|prepare one good story]"
+      ],
+      [
+        "C",
+        "[don't eat {s:food} before, nervous stomach|eat light|skip {s:food}, trust me]"
+      ],
+      [
+        "A",
+        "[noted|ok|thanks]"
+      ],
+      [
+        "A",
+        "[did it, i think it went ok|done! they smiled|finished, nervous]"
+      ],
+      [
+        "B",
+        "[fingers crossed|good luck|hope you get it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-salary-day-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[payday irl, i'm rich for one day|salary came, feeling rich|money day]"
+      ],
+      [
+        "B",
+        "[enjoy it while it lasts|rent day tomorrow|savor it]"
+      ],
+      [
+        "A",
+        "[buying {s:food} and paying rent, in that order|{s:food} first|treat then bills]"
+      ],
+      [
+        "C",
+        "[priorities|smart|balanced]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-quit-dream-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[dreaming of quitting and opening a {s:hobby} shop irl|if i quit i'd open something for {s:hobby}|real life cafe dreams]"
+      ],
+      [
+        "B",
+        "[do it in the game first|practice in the game|game first, then real]"
+      ],
+      [
+        "A",
+        "[in the game i opened a cafe and temps ruined it|game cafe went badly|tried, failed in the game]"
+      ],
+      [
+        "C",
+        "[so real life will be fine|learn from the game|now you know what not to do]"
+      ],
+      [
+        "A",
+        "[true|ok|good point]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-work-mondays-team-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[team meeting at 8am on {s:day}, why|early meeting on {s:day}, criminal|8am meeting, no {s:drink} yet]"
+      ],
+      [
+        "B",
+        "[bring {s:drink}|camera off|survive]"
+      ],
+      [
+        "A",
+        "[camera off, {s:drink} on|ok, {s:drink} in hand|doing that]"
+      ],
+      [
+        "C",
+        "[same meeting probably|we're all in one|everyone is in that meeting]"
+      ],
+      [
+        "A",
+        "[hello from meeting land|lol|send help]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-small-weekend-recap-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[how was your weekend, one word|weekend in one word|describe your weekend in one word]"
+      ],
+      [
+        "B",
+        "[sleep|lazy|{s:food}]"
+      ],
+      [
+        "C",
+        "[busy|{s:family}|chores]"
+      ],
+      [
+        "D",
+        "[{s:hobby}|perfect|short]"
+      ],
+      [
+        "A",
+        "[{B} wins|{D} wins|mine was \"cold\"]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-small-random-fact-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[random fact: octopuses have three hearts|fun fact: honey never spoils|random: bananas are berries]"
+      ],
+      [
+        "B",
+        "[wait really|no way|i didn't know that]"
+      ],
+      [
+        "C",
+        "[my fact: i ate {s:food} today|fact: i'm tired|my fact is that i need {s:drink}]"
+      ],
+      [
+        "A",
+        "[thank you {C}, very educational|{C} wow|{C} ground breaking]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-small-dinner-plans-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[what's for dinner everyone|dinner plans?|what are you having tonight]"
+      ],
+      [
+        "B",
+        "[{s:food}|{s:food} again|probably {s:food}]"
+      ],
+      [
+        "C",
+        "[{s:food#2}|i'm making {s:food#2}|{s:food#2} from the place downstairs]"
+      ],
+      [
+        "A",
+        "[sounds good|can i come|nice]"
+      ],
+      [
+        "B",
+        "[you can bring {s:drink}|bring {s:drink}|if you bring {s:drink}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-small-shoes-on-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[wearing two pairs of socks today, it's that cold|double socks day|thick socks, warm {s:drink}, survive]"
+      ],
+      [
+        "B",
+        "[same|smart|legend]"
+      ],
+      [
+        "C",
+        "[i'm wearing slippers in the office|slippers at work, no shame|fluffy socks at my desk]"
+      ],
+      [
+        "A",
+        "[dream workplace|can i work there|iconic]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-small-good-news-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[share one good news, small or big|good news only, go|anyone have good news today]"
+      ],
+      [
+        "B",
+        "[found {s:thing}|my {s:hobby} is getting better|i slept 8 hours]"
+      ],
+      [
+        "C",
+        "[{s:family} is visiting|made {s:food} and it was great|got a day off]"
+      ],
+      [
+        "A",
+        "[love all of it|nice everyone|good vibes]"
+      ],
+      [
+        "D",
+        "[my rent went up only a little|in the game? temp quit, finally hired someone|dailies done]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-small-nicknames-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[does anyone have a nickname here|what do people call you irl|nickname check]"
+      ],
+      [
+        "B",
+        "[they call me \"{s:food}\" because i love it|my family calls me something embarrassing|no nickname, sad]"
+      ],
+      [
+        "C",
+        "[mine is my name shortened|just the first letter|\"the {s:hobby} guy\"]"
+      ],
+      [
+        "A",
+        "[{B} that's the best nickname|{B} perfect|lol {B}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-lunch-break-length-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": "ogle",
+    "turlar": [
+      [
+        "A",
+        "[how long is lunch break in your country|lunch break length where you work?|is a one hour lunch normal for you]"
+      ],
+      [
+        "B",
+        "[30 minutes, sad|half an hour|30 min, eat fast]"
+      ],
+      [
+        "C",
+        "[two hours, we go home and eat {s:food}|long lunch here, 2 hours|we nap after lunch]"
+      ],
+      [
+        "A",
+        "[{C} i'm moving to your country|{C} that's the dream|{C} take me with you]"
+      ],
+      [
+        "C",
+        "[but we work late|we pay for it in the evening|we finish at 8pm though]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-street-food-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[best street food in your city, go|what do people eat on the street where you live|street food check]"
+      ],
+      [
+        "B",
+        "[{s:food} from carts everywhere|{s:food}, the cheap kind|{s:food} at night markets]"
+      ],
+      [
+        "C",
+        "[grilled corn in winter|roasted chestnuts when it's cold|{s:food#2} by the train station]"
+      ],
+      [
+        "A",
+        "[chestnuts in winter sound perfect|now i'm hungry|i want to visit both]"
+      ],
+      [
+        "D",
+        "[turks will say simit, every time|the turkish players will say simit|someone will say simit soon]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-birthday-food-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[what do people eat on birthdays where you live|birthday food in your country|birthday tradition food?]"
+      ],
+      [
+        "B",
+        "[cake, always|cake and {s:food}|{s:food} and cake]"
+      ],
+      [
+        "C",
+        "[long noodles for long life|special soup|whatever {s:family} cooks]"
+      ],
+      [
+        "A",
+        "[noodles for long life, i love that|that's a nice tradition|beautiful]"
+      ],
+      [
+        "B",
+        "[i'd eat noodles every day then|i'll live forever|more noodles please]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-winter-tradition-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[winter tradition in your country?|what do you do in winter where you live|any cold season traditions]"
+      ],
+      [
+        "B",
+        "[hot {s:drink} and family nights|lots of {s:drink} with {s:family}|board games with {s:family}]"
+      ],
+      [
+        "C",
+        "[we go to the mountains|skiing for some, sofa for me|winter fairs]"
+      ],
+      [
+        "A",
+        "[sofa tradition is universal|sofa for me too|same]"
+      ],
+      [
+        "B",
+        "[the sofa unites us|the best tradition|a global sport]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-transport-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[commute check, how do you get to work in your city|commute style poll: bus, train, bike, walk|how do you all commute]"
+      ],
+      [
+        "B",
+        "[bus, always late|metro, crowded|bike, cold]"
+      ],
+      [
+        "C",
+        "[walking, 20 minutes|car, traffic|i work from home, bed to desk]"
+      ],
+      [
+        "A",
+        "[{C} the winner|{C} lucky|{C} i'm jealous]"
+      ],
+      [
+        "C",
+        "[but i talk to {s:thing} all day|my only coworker is {s:thing}|it gets lonely]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-house-sizes-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[do people in your country live with family until late|living with parents till 30, normal there?|when do people move out where you live]"
+      ],
+      [
+        "B",
+        "[here people move out at 18|early, like 18|young, for studies]"
+      ],
+      [
+        "C",
+        "[here many stay until they marry|we stay with {s:family} for a long time|we live with family long]"
+      ],
+      [
+        "A",
+        "[both sound fine honestly|depends on rent|rent decides everything]"
+      ],
+      [
+        "B",
+        "[rent is the boss everywhere|kira, the global boss|inflation decides]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-tipping-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[do people tip in restaurants where you live|tipping rules in your country|do you tip waiters]"
+      ],
+      [
+        "B",
+        "[yes, 10-15%|yes, always|some, small]"
+      ],
+      [
+        "C",
+        "[not really, it's included|no tipping culture here|rarely]"
+      ],
+      [
+        "A",
+        "[game waiters need tips too|i'd tip my game waiter|can i tip a game waiter]"
+      ],
+      [
+        "D",
+        "[tip them in {s:food}|pay in {s:food}|{s:food} is the best tip]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-cty-favourite-season-1",
+    "konu": "ulkeler",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[best season in your country|when should someone visit your country|which season is best where you live]"
+      ],
+      [
+        "B",
+        "[spring, flowers everywhere|autumn, perfect weather|summer, beach time]"
+      ],
+      [
+        "C",
+        "[winter, snow and {s:drink}|winter, cozy|winter, for {s:food} at home]"
+      ],
+      [
+        "A",
+        "[i'm planning a world tour in my head|noting all this|i'll visit everyone]"
+      ],
+      [
+        "B",
+        "[bring {s:food}|come with {s:drink}|we'll host you]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-photography-cold-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[took photos of frost on the window this morning|frost patterns on the glass, so pretty|morning frost photos]"
+      ],
+      [
+        "B",
+        "[show off|nice|must be beautiful]"
+      ],
+      [
+        "C",
+        "[my camera battery died in the cold|cold kills batteries|my phone dies outside]"
+      ],
+      [
+        "A",
+        "[keep it in your pocket with {s:thing}|warm it in your jacket|pocket warm]"
+      ],
+      [
+        "C",
+        "[good tip|noted|thanks]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-yoga-fail-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[tried yoga, fell over in the first pose|yoga class, i was the only one who fell|first yoga session, i'm not flexible]"
+      ],
+      [
+        "B",
+        "[everyone starts like that|it gets better|you'll bend eventually]"
+      ],
+      [
+        "C",
+        "[my {s:hobby} start was worse|i fell in {s:hobby} too|try {s:hobby} next, easier]"
+      ],
+      [
+        "A",
+        "[no thanks, i'll stick to sitting with {s:drink}|sitting is my yoga|i'll try again on {s:day}]"
+      ],
+      [
+        "B",
+        "[brave|good|we believe]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-swimming-winter-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[swimming in winter, indoor pool, best decision|winter swimming at the indoor pool|went to the pool, felt like summer]"
+      ],
+      [
+        "B",
+        "[the hair drying in the cold though|going outside after is the worst|wet hair in winter, brave]"
+      ],
+      [
+        "A",
+        "[hat, always a hat|i bring a hat|{s:thing} and a hat]"
+      ],
+      [
+        "C",
+        "[then {s:drink}|hot {s:drink} after|reward with {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-gaming-night-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[gaming night with friends, someone bring {s:food}|online gaming with friends tonight|game night on {s:day}]"
+      ],
+      [
+        "B",
+        "[i'm in|count me in|what game]"
+      ],
+      [
+        "A",
+        "[something fun, not this one|a different one, this one is too slow for game night|anything, we just talk anyway]"
+      ],
+      [
+        "C",
+        "[we always just talk and eat {s:food}|half talking, half eating {s:food}|we play 10 minutes, eat for an hour]"
+      ],
+      [
+        "A",
+        "[exactly the plan|perfect|that's game night]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-drawing-daily-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[drawing one thing every day, today i drew {s:food}|day 20 of daily sketches, today: {s:food}|daily drawing challenge, {s:food} today]"
+      ],
+      [
+        "B",
+        "[nice!|love that|keep going]"
+      ],
+      [
+        "C",
+        "[draw {s:thing} next|tomorrow: {s:drink}|draw something from this chat]"
+      ],
+      [
+        "A",
+        "[drawing global chat as a cafe|i'll draw this chat|ok, i'll draw {s:drink}]"
+      ],
+      [
+        "B",
+        "[put me in it|draw me|i want to be in it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-guitar-song-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[finally learned a full song on guitar|played my first whole song|i can play one entire song now]"
+      ],
+      [
+        "B",
+        "[play it for us|concert time|perform]"
+      ],
+      [
+        "C",
+        "[{s:family} must be happy|your neighbours must be relieved|the people around you heard it 400 times]"
+      ],
+      [
+        "A",
+        "[{s:family} said \"nice, now learn another one\"|they're sick of it|they know it by heart]"
+      ],
+      [
+        "B",
+        "[lol|classic|supportive]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-cooking-hobby-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[cooking is my new hobby, made {s:food} from scratch|started cooking for fun, today {s:food}|i'm getting into cooking, tonight {s:food}]"
+      ],
+      [
+        "B",
+        "[how was it|did it work|photo?]"
+      ],
+      [
+        "A",
+        "[it was edible, which is a win|good, surprisingly|better than takeout]"
+      ],
+      [
+        "C",
+        "[next level: {s:food#2}|try {s:food#2} next|{s:food#2} is the next challenge]"
+      ],
+      [
+        "A",
+        "[scared|ok, on {s:day}|challenge accepted]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-hob-cycling-snow-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[cycled to work in the snow, i'm a hero or an idiot|bike in the snow today|snow cycling, bad idea]"
+      ],
+      [
+        "B",
+        "[both|idiot hero|hero idiot]"
+      ],
+      [
+        "C",
+        "[did you fall|any falls|still in one piece?]"
+      ],
+      [
+        "A",
+        "[once, gracefully|almost, twice|no but {s:thing} did]"
+      ],
+      [
+        "B",
+        "[rip|lol|glad you're ok]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thg-umbrella-lost-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[lost three umbrellas this winter|another umbrella gone, number four|i keep losing umbrellas]"
+      ],
+      [
+        "B",
+        "[umbrellas are travelers|they go on adventures|someone has a collection of yours]"
+      ],
+      [
+        "C",
+        "[buy a cheap one|get the cheapest|don't buy good ones]"
+      ],
+      [
+        "A",
+        "[and {s:thing}? also lost|i lose {s:thing} too|{s:thing} is next]"
+      ],
+      [
+        "B",
+        "[get a bag for everything|key ring for life|attach everything to you]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thg-cleaning-found-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[moved the sofa and found {s:thing}, coins, and a sock|under the sofa: {s:thing} and mystery crumbs|found {s:thing} behind the sofa]"
+      ],
+      [
+        "B",
+        "[the sofa monster|treasure|the sofa eats things]"
+      ],
+      [
+        "C",
+        "[i found a whole sandwich once|i found {s:food} from last month under mine|i don't move my sofa, scared]"
+      ],
+      [
+        "A",
+        "[{C} that's horror|{C} no|eww]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thg-wrong-coat-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[grabbed someone else's coat at a party|wore someone else's jacket home|grabbed the wrong coat last night]"
+      ],
+      [
+        "B",
+        "[did it fit|was it nicer|better coat?]"
+      ],
+      [
+        "A",
+        "[better, honestly|warmer than mine|it has {s:thing} in the pocket, not mine]"
+      ],
+      [
+        "C",
+        "[return it, they have yours|swap back|message the host]"
+      ],
+      [
+        "A",
+        "[ok, swapping today|messaged them|doing it now]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thg-gift-forgot-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[bought a gift for {s:family} weeks ago and forgot where i hid it|hid a gift for {s:family}, can't find it|the gift for {s:family} is lost in my room]"
+      ],
+      [
+        "B",
+        "[check the safe place|the closet|under the bed]"
+      ],
+      [
+        "A",
+        "[checked, nothing|not there|i checked everywhere]"
+      ],
+      [
+        "C",
+        "[it'll show up after the birthday|you'll find it next year|classic]"
+      ],
+      [
+        "A",
+        "[buying {s:food} as backup gift|backup plan: cook {s:food}|ok, {s:food} it is]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-thg-water-bottle-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[a stranger texted me, they found {s:thing} on the train|someone found {s:thing} and called me|a stranger returned {s:thing} today]"
+      ],
+      [
+        "B",
+        "[good people exist|faith restored|wholesome]"
+      ],
+      [
+        "C",
+        "[give them {s:food} as thanks|treat them to {s:drink}|thank them]"
+      ],
+      [
+        "A",
+        "[bought them {s:drink}|yes, {s:drink} for them|gave them a little gift]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-pol-hot-cold-1",
+    "konu": "anket",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[poll: hot {s:drink} or iced {s:drink} in january|january {s:drink}: hot or cold|hot or cold {s:drink} right now]"
+      ],
+      [
+        "B",
+        "[hot, obviously|hot, it's winter|hot, always]"
+      ],
+      [
+        "C",
+        "[iced, even in snow|iced, i'm built different|iced, no matter what]"
+      ],
+      [
+        "A",
+        "[{C} you're scary|{C} how|{C} brave]"
+      ],
+      [
+        "C",
+        "[my heart is warm|i run hot|i like pain]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-pol-ideal-sunday-1",
+    "konu": "anket",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[describe your ideal {s:day} in 5 words|perfect {s:day}, 5 words|5 words for a dream {s:day}]"
+      ],
+      [
+        "B",
+        "[sleep, {s:food}, sofa, movie, sleep|late breakfast, walk, nap, {s:food}|no alarm, no work, {s:food}]"
+      ],
+      [
+        "C",
+        "[{s:hobby}, {s:drink}, friends, food, rest|{s:hobby} all day, then {s:drink}|{s:hobby}, sun, {s:drink}]"
+      ],
+      [
+        "A",
+        "[both perfect|i want both|combine them]"
+      ],
+      [
+        "D",
+        "[global chat all day|here, all day|this chat and snacks]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-pol-dessert-1",
+    "konu": "anket",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[poll: favourite thing after dinner|after dinner: dessert, walk, or sofa|what do you do after dinner]"
+      ],
+      [
+        "B",
+        "[dessert, always|sweets|something sweet]"
+      ],
+      [
+        "C",
+        "[walk, it helps|short walk|walk in the cold]"
+      ],
+      [
+        "D",
+        "[sofa and {s:drink}|sofa|sofa with {s:hobby}]"
+      ],
+      [
+        "A",
+        "[sofa team is winning|sofa wins|the sofa always wins]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-pol-coffee-count-1",
+    "konu": "anket",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[how many cups of {s:drink} before you're human|{s:drink} count before you can talk|cups of {s:drink} needed in the morning]"
+      ],
+      [
+        "B",
+        "[one|two|3, minimum]"
+      ],
+      [
+        "C",
+        "[zero, i'm naturally awake|none, i wake up fine|i drink water, sorry]"
+      ],
+      [
+        "A",
+        "[{C} we don't trust you|{C} suspicious|{C} not human]"
+      ],
+      [
+        "C",
+        "[maybe|i'm a robot then|ok]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-pol-best-sandwich-1",
+    "konu": "anket",
+    "kosul": [],
+    "saat": "ogle",
+    "turlar": [
+      [
+        "A",
+        "[lunch poll: {s:food} or {s:food#2}|today's lunch vote: {s:food} vs {s:food#2}|help me pick: {s:food} or {s:food#2}]"
+      ],
+      [
+        "B",
+        "[{s:food}|first one|{s:food}, easy]"
+      ],
+      [
+        "C",
+        "[{s:food#2}|second one|{s:food#2}, trust]"
+      ],
+      [
+        "D",
+        "[both, you deserve it|why not both|both, it's cold, you need energy]"
+      ],
+      [
+        "A",
+        "[{D} wins, both|doing both|ok both]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-pol-fav-chat-time-1",
+    "konu": "anket",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[when is global chat best: morning, lunch, night|best time for this chat?|favourite chat hour]"
+      ],
+      [
+        "B",
+        "[night, the deep talks|night|late night]"
+      ],
+      [
+        "C",
+        "[lunch, everyone is eating {s:food}|lunch, everyone talks about {s:food}|lunchtime]"
+      ],
+      [
+        "D",
+        "[morning, {s:drink} crew|morning|early]"
+      ],
+      [
+        "A",
+        "[so it's always good|every time is good|ok all of them]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-pol-hobby-time-1",
+    "konu": "anket",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[how much time do you spend on {s:hobby} per week|weekly hours on hobbies?|hobby hours poll]"
+      ],
+      [
+        "B",
+        "[like 5 hours|not enough|barely any]"
+      ],
+      [
+        "C",
+        "[way too much|20 hours, help|it's my second job]"
+      ],
+      [
+        "A",
+        "[{C} that's dedication|{C} wow|{C} pro level]"
+      ],
+      [
+        "C",
+        "[or no life|or addiction|it's fine]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-gm-cafe-menu-1",
+    "konu": "isletme",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[dream menu for your game cafe, what's on it|game cafe menu ideas|what would your cafe sell, if we could choose]"
+      ],
+      [
+        "B",
+        "[{s:food} and {s:drink}|just {s:drink}|only {s:food}]"
+      ],
+      [
+        "C",
+        "[whatever is cheap and fast|{s:food#2}, everyone likes it|soup in winter]"
+      ],
+      [
+        "A",
+        "[i'd add çay for the turks|çay for the turkish players|tea, the turkish way]"
+      ],
+      [
+        "B",
+        "[they'd come every day|instant success|best idea]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-gm-shop-open-first-day-1",
+    "konu": "isletme",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[opened my shop, first customer was an npc in 2 minutes|shop opened, first sale already|first day as shop owner, customers coming]"
+      ],
+      [
+        "B",
+        "[congrats!|nice|the first one is special]"
+      ],
+      [
+        "C",
+        "[watch out for the monthly costs|expenses come monthly|check your fixed costs]"
+      ],
+      [
+        "A",
+        "[yes, saving a buffer|already planned|i have a buffer]"
+      ],
+      [
+        "D",
+        "[celebrate with {s:food}|{s:food} for the boss|buy yourself {s:food}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-gm-landlord-tip-1",
+    "konu": "mulk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[tip: the apartment pays rent every month even when you're offline|rent comes even when the app is closed|offline rent is the best feeling]"
+      ],
+      [
+        "B",
+        "[passive income|true|love it]"
+      ],
+      [
+        "C",
+        "[unlike my job|i have to work for mine|courier life is active]"
+      ],
+      [
+        "A",
+        "[buy one, it's worth it|save for one|it's the best purchase]"
+      ],
+      [
+        "D",
+        "[i'm saving, eating {s:food}|after {s:food} i'll save|working on it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-gm-crash-course-1",
+    "konu": "kurs",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[started the real estate course, the days go slow|course started, slow progress|real estate course day 2]"
+      ],
+      [
+        "B",
+        "[hourglasses!|do your dailies for hourglasses|skip with hourglasses]"
+      ],
+      [
+        "A",
+        "[using one tonight|have one, using it|yes, one left]"
+      ],
+      [
+        "C",
+        "[then bonuses soon|agent life soon|prim money soon]"
+      ],
+      [
+        "A",
+        "[buying {s:food} with my first bonus|first bonus: {s:food}|the dream]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-gm-advice-newbies-old-1",
+    "konu": "oyun",
+    "kosul": [
+      "A.eski"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[newbies, a tip from an old player: don't panic about prices|old player advice: prices rise, it's normal|been here long, inflation is part of it]"
+      ],
+      [
+        "B",
+        "[thanks, i was panicking|good to know|i was worried]"
+      ],
+      [
+        "A",
+        "[buy property, it rises too|own something|apartments keep value]"
+      ],
+      [
+        "C",
+        "[and enjoy the chat|have fun|it's a game]"
+      ],
+      [
+        "A",
+        "[and eat {s:food} irl|yes and {s:drink}|and take breaks]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-gm-time-math-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[time math: 1 game month = 30 hours, so my loan is about a month irl|quick math: 24 month loan is a month real time|the game is fast in real time]"
+      ],
+      [
+        "B",
+        "[wow, faster than i thought|that's not long|good to know]"
+      ],
+      [
+        "C",
+        "[so payments come often|installments are every 30 hours|rent every 30 hours too]"
+      ],
+      [
+        "A",
+        "[exactly, plan ahead|set alarms|yes, be ready]"
+      ],
+      [
+        "D",
+        "[and my money for {s:food} lasts 3 days|i can't plan, i eat {s:food}|i only plan meals]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-bad-hair-day-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[hat hair all day because of winter|wore a hat, now my hair is a disaster|winter hat ruined my hair]"
+      ],
+      [
+        "B",
+        "[keep the hat on all day|never take it off|hat forever]"
+      ],
+      [
+        "C",
+        "[the static too, i shock everyone|my hair stands up from the static|i'm electric this winter]"
+      ],
+      [
+        "A",
+        "[same, i shocked {s:family} today|i zapped {s:family} by accident|{s:family} got a shock from me]"
+      ],
+      [
+        "B",
+        "[winter powers|superhero|lol]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-kindness-stranger-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[a stranger paid for my {s:drink} today|someone in line bought my {s:drink}|random person paid for my {s:drink}, i'm emotional]"
+      ],
+      [
+        "B",
+        "[pay it forward|do the same tomorrow|nice!]"
+      ],
+      [
+        "C",
+        "[that made my day and it wasn't even me|wholesome|love that]"
+      ],
+      [
+        "A",
+        "[tomorrow i'll buy someone {s:food}|i'll do it for someone on {s:day}|passing it on]"
+      ],
+      [
+        "B",
+        "[good chain|the kindness chain|yes]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-bad-cook-flatmate-1",
+    "konu": "ev",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[flatmate tried to cook {s:food} and the whole flat smells like smoke|smoke everywhere, flatmate made {s:food}|flatmate's cooking: {s:food}, burned]"
+      ],
+      [
+        "B",
+        "[open all windows|ventilate|it's freezing though]"
+      ],
+      [
+        "A",
+        "[windows open, we're freezing and coughing|cold and smoky|the worst combo]"
+      ],
+      [
+        "C",
+        "[order {s:food#2} and forget it|takeaway night|order out]"
+      ],
+      [
+        "A",
+        "[ordering now|good idea|yes, done]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-rainy-sunday-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[grey {s:day}, i'm not leaving the house|staying in all {s:day}, it's grim outside|cold grey {s:day}, sofa all day]"
+      ],
+      [
+        "B",
+        "[perfect excuse|a cozy day|best kind of day]"
+      ],
+      [
+        "C",
+        "[make {s:food} and watch something|{s:food} and a movie|cook {s:food}, blanket, done]"
+      ],
+      [
+        "A",
+        "[already planned|that's the plan|exactly]"
+      ],
+      [
+        "D",
+        "[and {s:drink}, lots|don't forget {s:drink}|{s:drink} on repeat]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-neighbour-cat-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[neighbour's cat sits at my window every morning|a cat visits my balcony daily|stray cat at my door again]"
+      ],
+      [
+        "B",
+        "[it chose you|adopt it|name it]"
+      ],
+      [
+        "A",
+        "[named it {s:food}|it's called {s:food} now|i call it {s:food}]"
+      ],
+      [
+        "C",
+        "[{s:food} the cat, perfect name|lol great name|love it]"
+      ],
+      [
+        "A",
+        "[it ignores me unless i have food|it only loves me for food|relationship based on snacks]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-first-snowman-kids-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kids in my street made a snowman taller than me|huge snowman outside my building|the street kids built a giant snowman]"
+      ],
+      [
+        "B",
+        "[photo?|nice!|impressive]"
+      ],
+      [
+        "A",
+        "[they gave it {s:thing} as a nose|it's wearing a scarf and has {s:thing}|they used {s:thing} for arms]"
+      ],
+      [
+        "C",
+        "[wait is that yours|did you check if it's yours|that's your {s:hobby} stuff probably]"
+      ],
+      [
+        "A",
+        "[...it might be|checking now|oh no]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-coffee-spill-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[spilled {s:drink} on my keyboard first thing|{s:drink} all over my desk this morning|knocked over {s:drink}, great start]"
+      ],
+      [
+        "B",
+        "[rice!|dry it upside down|rip keyboard]"
+      ],
+      [
+        "C",
+        "[the day can only get better|it's uphill from here|worst part done]"
+      ],
+      [
+        "A",
+        "[hope so|it better|please let it be true]"
+      ],
+      [
+        "D",
+        "[new {s:drink}, new start|get another one, reset|second {s:drink}, second chance]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-forgot-day-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[thought today was {s:day#2}, went to the gym, it was closed|confused the days, it's {s:day}, not {s:day#2}|i lived a {s:day#2} on {s:day}]"
+      ],
+      [
+        "B",
+        "[this happens to me weekly|the days blend in winter|january confusion]"
+      ],
+      [
+        "C",
+        "[the game time doesn't help|game days are hours, my brain is broken|i blame the game]"
+      ],
+      [
+        "A",
+        "[yes, it's the game's fault|definitely the game|i'll blame the game]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-learn-cook-turkish-1",
+    "konu": "yemek",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[tried a turkish recipe today, the turks in chat helped|made a turkish dish with help from chat|turkish players taught me a recipe]"
+      ],
+      [
+        "B",
+        "[what did you make|which dish|how was it]"
+      ],
+      [
+        "A",
+        "[lentil soup, perfect for winter|menemen, eggs and tomatoes|something with {s:food}, can't pronounce it]"
+      ],
+      [
+        "C",
+        "[afiyet olsun|eline sağlık|çok güzel]"
+      ],
+      [
+        "A",
+        "[see, i know these words now|sağ ol!|thanks, sağ ol]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-ask-turks-food-1",
+    "konu": "yemek",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[turkish friends, what should i eat if i visit|turks, best food i should try|what's the first thing to eat in turkey]"
+      ],
+      [
+        "B",
+        "[ask them at lunch, they'll write a whole list|they'll say breakfast, trust|get ready for 50 answers]"
+      ],
+      [
+        "C",
+        "[i asked, they said kahvaltı first|they said \"everything\"|they said simit and çay]"
+      ],
+      [
+        "A",
+        "[i'll eat everything, with {s:drink}|noted|everything it is]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-small-business-irl-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} has a small shop irl, playing this game makes me understand them|understand {s:family} better since playing, they run a shop|{s:family} runs a real shop, now i get the stress]"
+      ],
+      [
+        "B",
+        "[game teaches empathy|the expenses part is real|that's nice]"
+      ],
+      [
+        "C",
+        "[tell them about temp workers|do they have temps|ask them for tips]"
+      ],
+      [
+        "A",
+        "[they laughed and said \"now you know\"|they said the game is easy|they said real life has no hourglasses]"
+      ],
+      [
+        "B",
+        "[lol|true|fair point]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-flatmate-plants-2",
+    "konu": "ev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[flatmate and i adopted a cactus, it's our child now|we got a cactus for the flat|shared cactus, shared responsibility]"
+      ],
+      [
+        "B",
+        "[easy to keep alive|good starter plant|cactus is the beginner level]"
+      ],
+      [
+        "C",
+        "[it needs almost no water|don't overwater it|once a month]"
+      ],
+      [
+        "A",
+        "[we've been watering daily|oops, we watered it every day|we gave it {s:drink}]"
+      ],
+      [
+        "B",
+        "[oh no|rip cactus|that's not water]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-weekend-family-food-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[going to {s:family} for {s:day} lunch, i'll come back three kilos heavier|{s:day} lunch at {s:family}, i won't eat for a week after|{s:family} cooks enough for 20]"
+      ],
+      [
+        "B",
+        "[lucky|bring containers|bring me some]"
+      ],
+      [
+        "A",
+        "[they always make {s:food}|there will be {s:food}|it's always {s:food}]"
+      ],
+      [
+        "C",
+        "[and they'll say \"you're so thin, eat\"|and \"eat more\" every 5 minutes|and you'll take leftovers home]"
+      ],
+      [
+        "A",
+        "[exactly|every time|always]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-family-holiday-plan-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} wants a family trip, nobody agrees where|planning a trip with {s:family}, chaos|family trip planning group chat is war]"
+      ],
+      [
+        "B",
+        "[beach|mountains|city]"
+      ],
+      [
+        "C",
+        "[let {s:family} decide, avoid the fight|whoever pays decides|just vote]"
+      ],
+      [
+        "A",
+        "[we voted, it's a tie|three places, five votes|nobody agrees]"
+      ],
+      [
+        "D",
+        "[go wherever they make {s:food}|choose the place that does {s:food} right|food decides]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-gym-january-1",
+    "konu": "spor",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[gym is full of new year people, no free machines|january gym is packed|new year resolution crowd at the gym]"
+      ],
+      [
+        "B",
+        "[wait two weeks, it empties|by february it's empty|patience]"
+      ],
+      [
+        "C",
+        "[i'm one of them, sorry|i'm new year crowd|that's me, hi]"
+      ],
+      [
+        "A",
+        "[welcome, stay past february|good luck, stay|respect, keep going]"
+      ],
+      [
+        "C",
+        "[i'll try, {s:food} is calling me|if i survive|we'll see]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-running-buddy-1",
+    "konu": "spor",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[anyone run in the cold, i need a buddy|looking for a running buddy, virtual|who runs here, motivate me]"
+      ],
+      [
+        "B",
+        "[i run on {s:day}|i do mornings|i'm a {s:hobby} person, but i'll cheer]"
+      ],
+      [
+        "A",
+        "[let's both run on {s:day} and report|deal, report back|ok we run and chat]"
+      ],
+      [
+        "C",
+        "[and i'll eat {s:food} and cheer|i'll be the support team|i'll watch from the sofa]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-gratitude-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": "aksam",
+    "turlar": [
+      [
+        "A",
+        "[one thing you're grateful for today|gratitude round, go|what are you thankful for today]"
+      ],
+      [
+        "B",
+        "[warm {s:drink}|{s:drink} in winter|a hot {s:drink}]"
+      ],
+      [
+        "C",
+        "[{s:family}|my friends|{s:family} calling me]"
+      ],
+      [
+        "D",
+        "[this chat|{s:food}|sleep, soon]"
+      ],
+      [
+        "A",
+        "[all good answers|nice|love this]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-motivation-monday-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[tell me something to get me through this {s:day}|need a pep talk for {s:day}|motivate me, it's {s:day}]"
+      ],
+      [
+        "B",
+        "[it's almost over|you can do it|one hour at a time]"
+      ],
+      [
+        "C",
+        "[there's {s:food} at the end|reward: {s:food} tonight|dinner is {s:food}, think of that]"
+      ],
+      [
+        "A",
+        "[ok, {s:food} is motivating|working for {s:food}|got it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-chat-nicknames-for-all-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[giving everyone nicknames: {B} is \"the {s:drink} person\"|{B} you're officially \"{s:drink} king\"|new nickname for {B}: the one who loves {s:drink}]"
+      ],
+      [
+        "B",
+        "[accurate|i accept|proudly]"
+      ],
+      [
+        "C",
+        "[what's mine|me next|name me]"
+      ],
+      [
+        "A",
+        "[{C} is \"the {s:hobby} one\"|{C} = {s:hobby}|{C} is our {s:hobby} expert]"
+      ],
+      [
+        "C",
+        "[i'm not even good at it|i barely do it|lol fine]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-chat-poem-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": "gece",
+    "turlar": [
+      [
+        "A",
+        "[writing a poem about global chat: roses are red, rent is high|poem time: rent goes up, so does my tea|global chat poem, here goes]"
+      ],
+      [
+        "B",
+        "[go on|continue|we're listening]"
+      ],
+      [
+        "A",
+        "[inflation grows, so does my love for {s:food}|{s:food} is cheap... wait no|savings are low, {s:drink} is warm]"
+      ],
+      [
+        "C",
+        "[poet of the year|beautiful|print it]"
+      ],
+      [
+        "A",
+        "[thank you, i'll be here all night|no autographs|thank you, thank you]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-chat-chain-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[let's make a story, one word each: once|story game: one line each. \"a courier walked into a cafe\"|story chain starts: {s:food} walked into a bank]"
+      ],
+      [
+        "B",
+        "[and asked for a loan|the bank said no|it wanted a loan]"
+      ],
+      [
+        "C",
+        "[because its credit score was 620|the limit was tiny|it had no income last month]"
+      ],
+      [
+        "D",
+        "[so it became a courier|it got a job|it ate {s:food#2} and cried]"
+      ],
+      [
+        "A",
+        "[best story ever|the end|literature]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-dance-moves-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[dancing in the kitchen while making {s:food}|kitchen dance party, just me and {s:food}|cooking {s:food} with music on, dancing]"
+      ],
+      [
+        "B",
+        "[the best kind of cooking|that's the secret ingredient|food tastes better]"
+      ],
+      [
+        "C",
+        "[until {s:family} walks in|wait till someone sees|the moment someone enters]"
+      ],
+      [
+        "A",
+        "[{s:family} joined|happened, now we both dance|they laughed and joined]"
+      ],
+      [
+        "B",
+        "[wholesome|a family tradition now|love it]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-sneeze-chat-1",
+    "konu": "saka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[sneezed so loud {s:family} in the next room said bless you|sneezed and the whole office turned|loudest sneeze of my life just now]"
+      ],
+      [
+        "B",
+        "[çok yaşa|bless you|çok yaşa, as we learned]"
+      ],
+      [
+        "A",
+        "[sen de gör! i remembered|i remembered: sen de gör|sen de gör, look at me]"
+      ],
+      [
+        "C",
+        "[proud teacher moment|the class is learning|perfect]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-tired-parents-1",
+    "konu": "aile",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{s:family} called at 7am to ask how to use the microwave|{s:family} needed help with the tv remote at 7|early morning call from {s:family}, tech help]"
+      ],
+      [
+        "B",
+        "[the family helpdesk never closes|24/7 support|you're the it department]"
+      ],
+      [
+        "C",
+        "[did you fix it|was it serious|did it work]"
+      ],
+      [
+        "A",
+        "[it wasn't plugged in|the batteries were dead|they had it on mute]"
+      ],
+      [
+        "B",
+        "[classic|lol|every time]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-lost-glasses-head-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[searched 10 minutes for {s:thing}, it was in my hand|looked everywhere for {s:thing}, i was holding it|lost {s:thing} while holding it]"
+      ],
+      [
+        "B",
+        "[classic brain|we all do this|the human brain]"
+      ],
+      [
+        "C",
+        "[i once looked for my glasses while wearing them|i searched for my phone using my phone|i called my phone while talking on it]"
+      ],
+      [
+        "A",
+        "[ok i feel better|we're all a mess|good to know]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-car-keys-frozen-1",
+    "konu": "gundelik",
+    "kosul": [],
+    "saat": "sabah",
+    "turlar": [
+      [
+        "A",
+        "[car door frozen shut, had to use warm {s:drink}|poured {s:drink} on the lock, it worked|frozen lock this morning, fixed with {s:drink}]"
+      ],
+      [
+        "B",
+        "[genius|smart|did it actually work]"
+      ],
+      [
+        "A",
+        "[yes, but i lost my {s:drink}|yes, now i have no {s:drink}|it worked, but no more {s:drink}]"
+      ],
+      [
+        "C",
+        "[sacrifice|worth it|a hero]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-new-language-app-1",
+    "konu": "dil",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[started learning turkish with an app, the chat is better|learning turkish, chat > app|the app teaches \"the apple is red\", chat teaches \"kolay gelsin\"]"
+      ],
+      [
+        "B",
+        "[chat turkish is real turkish|we teach the useful stuff|street turkish]"
+      ],
+      [
+        "C",
+        "[the app won't teach \"boşver\"|no app teaches \"aynen\"|the app doesn't have \"abi\"]"
+      ],
+      [
+        "A",
+        "[true, all my useful words are from here|the chat is my teacher|i learned more here]"
+      ],
+      [
+        "D",
+        "[and food words: {s:food}, çay, simit|food is the first lesson|{s:food} first]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-time-zone-meet-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[{B} it's always night for you when it's morning for me|{B} our times never match|{B} we're on opposite clocks]"
+      ],
+      [
+        "B",
+        "[yep, you're my breakfast chat|you're my late night chat|you're my evening buddy]"
+      ],
+      [
+        "A",
+        "[and you're my {s:drink} chat|my morning {s:drink} chat|my {s:drink} friend]"
+      ],
+      [
+        "C",
+        "[global chat, connecting timezones|time zone friendships|love this]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-office-cold-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[office heating is broken, we work in coats|no heating at work, everyone in jackets|typing with gloves today]"
+      ],
+      [
+        "B",
+        "[go home|work from home|strike]"
+      ],
+      [
+        "C",
+        "[bring {s:drink} for everyone|{s:drink} for the team|hot {s:drink} round]"
+      ],
+      [
+        "A",
+        "[the {s:drink} machine is also broken|even the {s:drink} machine is cold|nothing works today]"
+      ],
+      [
+        "B",
+        "[then go home|leave|it's a sign]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-hobby-teach-1",
+    "konu": "hobi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[teaching {s:family} how to do {s:hobby}|showing {s:family} the basics of {s:hobby}|{s:family} wants to learn {s:hobby} from me]"
+      ],
+      [
+        "B",
+        "[patience test|good luck|family teaching is hard]"
+      ],
+      [
+        "A",
+        "[they're better than me after one day|they learned faster than me|they're already good]"
+      ],
+      [
+        "C",
+        "[humbling|ouch|the student wins]"
+      ],
+      [
+        "A",
+        "[proud and annoyed|happy for them, sad for me|mixed feelings]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-plans-friday-1",
+    "konu": "sohbet",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[plans for {s:day} night?|{s:day} night, anyone going out|what's everyone doing on {s:day} night]"
+      ],
+      [
+        "B",
+        "[staying in, too cold|sofa|home with {s:food}]"
+      ],
+      [
+        "C",
+        "[friends coming over|dinner out|going to a {s:hobby} event]"
+      ],
+      [
+        "A",
+        "[cold weather keeps us home|home team wins|most of us stay in]"
+      ],
+      [
+        "D",
+        "[home is warm and has {s:food}|home has {s:drink}|why go out]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-game-friend-real-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[met someone from this chat in real life, same city|turns out {B} lives in my city|{B} and i are from the same city]"
+      ],
+      [
+        "B",
+        "[small world|wow|we should get {s:drink}]"
+      ],
+      [
+        "A",
+        "[we did! {s:drink} and talked about the game|we met for {s:drink}, talked only about rent|we met, talked about {s:food} the whole time]"
+      ],
+      [
+        "C",
+        "[of course you talked about rent|of course|nerds]"
+      ],
+      [
+        "B",
+        "[and {s:food}|and the stock market we don't have|and inflation]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-game-business-real-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[this game made me think about real business plans|thinking about a real cafe because of this game|the game gave me business ideas]"
+      ],
+      [
+        "B",
+        "[start small irl|test it first|careful]"
+      ],
+      [
+        "C",
+        "[real life has no npcs|real customers are harder|real temps cost more]"
+      ],
+      [
+        "A",
+        "[true, but i can dream with {s:drink}|dreaming is free|maybe one day]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-game-proud-moment-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[proudest moment in the game?|best thing you did in game|game achievement brag time]"
+      ],
+      [
+        "B",
+        "[first apartment|paid off my loan|got my certificate]"
+      ],
+      [
+        "C",
+        "[hired my first worker|my cafe had a record day|i became usta]"
+      ],
+      [
+        "D",
+        "[made friends here|learned turkish words|ate {s:food} while playing, every day]"
+      ],
+      [
+        "A",
+        "[{D} the real winner|{D} best answer|lol {D}]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-game-npc-rename-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[i name my npc customers in my head|i imagine my npc customers have names|the npcs in my cafe have stories in my head]"
+      ],
+      [
+        "B",
+        "[like what|example?|what are they called]"
+      ],
+      [
+        "A",
+        "[one always orders {s:drink}, i call him mister {s:drink}|another one only orders {s:food}|\"the {s:drink} guy\"]"
+      ],
+      [
+        "C",
+        "[you need sleep|that's adorable|that's a novel]"
+      ],
+      [
+        "A",
+        "[maybe both|probably|lol yes]"
+      ]
+    ]
+  },
+  {
+    "id": "en4-x-game-chill-1",
+    "konu": "oyun",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[honestly this game is relaxing after work|chill game after a long day|perfect game to unwind]"
+      ],
+      [
+        "B",
+        "[except rent day|until rent goes up|except when temps run your shop]"
+      ],
+      [
+        "A",
+        "[ok except that|yeah except that|fair]"
+      ],
+      [
+        "C",
+        "[chat + {s:drink} + game = evening|game, {s:drink}, chat, done|my evening routine]"
+      ],
+      [
+        "A",
+        "[same|perfect|aynen]"
+      ]
+    ]
+  }
+]

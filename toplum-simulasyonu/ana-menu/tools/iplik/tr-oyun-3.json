@@ -1,0 +1,7106 @@
+[
+ {
+  "id": "o3-kasa-acik-veriyor",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[gün sonu kasayı saydım|kasayı kapattım şimdi|akşam kasa sayımı bitti], [tutmuyor|bir türlü tutmuyor|hesap şaşmış]"
+   ],
+   [
+    "B",
+    "[ne kadar fark var|kaç lira eksik|eksik mi fazla mı]"
+   ],
+   [
+    "A",
+    "[üç beş kuruş değil|az değil ama|çok değil ama sinir bozucu], [geçici personelin gününe denk geldi|geçici personel varken oldu|o gün geçici eleman vardı]"
+   ],
+   [
+    "C",
+    "[geçici personel zaten verimsiz|geçicilerden hayır gelmez|geçiciye kasa bırakılmaz bence], [kendin dur kasada|kendi başında dur|ilan aç birini al]"
+   ],
+   [
+    "A",
+    "[ilan açtım zaten|ilan açık, kimse gelmedi|ilana {s:sayi} kişi baktı, başvuran yok]"
+   ],
+   [
+    "B",
+    "[akşam {s:saat} gibi bir daha bak|biraz bekle, gelir|sabah bakarsın], [şimdi çay iç dinlen|bugünlük yeter|kafana takma]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ilk-musteri-tatli",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[sabah açar açmaz ilk müşteri geldi|kepenği kaldırdım, ilk müşteri hemen geldi|daha bardaklar yıkanmadan müşteri geldi]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun|siftah bereketli olsun|bereketli olsun inşallah]"
+   ],
+   [
+    "A",
+    "[{s:icecek} istedi bir de {s:tatli}|adam bir {s:icecek} söyledi, yanına {s:tatli}|{s:tatli} ile {s:icecek} istedi]"
+   ],
+   [
+    "C",
+    "[güzel siftah|iyi başlangıç|ilk müşteri tatlıcı, gün tatlı geçer]"
+   ],
+   [
+    "A",
+    "[umarım öyle olur|inşallah dediğin gibi|bakalım öğlene kadar]"
+   ],
+   [
+    "C",
+    "[ben de öğlen uğrayayım belki|öğle arası gelirim belki|bi gün {s:semt} tarafına gelirsem uğrarım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-malzeme-zammi-isletme",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[işletmenin gideri yine arttı|bu ay sabit gider yine yükselmiş|giderler yine kabarmış]"
+   ],
+   [
+    "B",
+    "[enflasyon {enflasyon} diyorlar ya|yıllık {enflasyon} diyorlar|fiyatlar her ay artıyor zaten]"
+   ],
+   [
+    "A",
+    "[geçen ay {s:yemek} malzemesi daha ucuzdu|{s:meyve} kasası bile pahalanmış|geçen ay bu kadar değildi hiçbir şey]"
+   ],
+   [
+    "C",
+    "[kafede gider {kafe.gider} civarı gördüm en son|kafe gideri {kafe.gider} yazıyordu|benim bildiğim kafe gideri {kafe.gider}]"
+   ],
+   [
+    "A",
+    "[o da her ay biraz biraz artıyor|o da yerinde durmuyor|onu da geçti bu ay herhalde]"
+   ],
+   [
+    "B",
+    "[ciroyu artırmaktan başka yol yok|müşteri artmazsa zor|çalışan alıp ciroyu kaldırmak lazım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-garson-patron-cay",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[patronum bugün herkese {s:icecek} ısmarladı|patron bugün bizi {s:icecek} ile şımarttı|patronumuz bugün çok cömertti]"
+   ],
+   [
+    "B",
+    "[ne oldu, iyi bir gün mü|kutlama mı var|neye sevindi bu kadar]"
+   ],
+   [
+    "C",
+    "[ya kâra geçmiştir ya da bir şey isteyecek|bi şey isteyecek o, benden söylemesi|ya zam ya da fazla mesai haberi]"
+   ],
+   [
+    "A",
+    "[haha ben de öyle düşündüm|aynen, şüpheliyim|hayır olsun diyorum]"
+   ],
+   [
+    "B",
+    "[{A} sen yine de keyfini çıkar|bedava {s:icecek} bedavadır|sorgulama iç]"
+   ],
+   [
+    "C",
+    "[ama 20 görevi doldur bu ay, sonra bakarsın|ayın 20 görevini kaçırma, maaş tam yatsın|20 görevi tamamlarsan maaş tam]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-cirak-telasi",
+  "konu": "is",
+  "kosul": [
+   "A.sartsiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk günüm, her şeyi karıştırıyorum|daha ilk gün, elim ayağım birbirine dolaştı|bugün başladım, kafam karman çorman]"
+   ],
+   [
+    "B",
+    "[herkes öyle başladı|ilk gün herkes böyle|normal bu, ben de öyleydim]"
+   ],
+   [
+    "A",
+    "[{s:esya} bile evde kaldı, bir de o var|sabah {s:esya} unuttum, gün ona göre başladı|{s:ulasim} kaçırdım, geç kaldım]"
+   ],
+   [
+    "C",
+    "[ilk hafta geçince oturuyor|bir haftaya alışırsın|üç dört günde alışıyorsun valla]"
+   ],
+   [
+    "B",
+    "[görevleri sırayla yap, acele etme|telaş yapma, görev kaçmaz|yavaş yavaş, kimse kovalamıyor]"
+   ],
+   [
+    "A",
+    "[tamam deneyeceğim|eyvallah, rahatladım biraz|sağ olun, moral oldu]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-ilk-ders",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[kursun ilk günündeyim|bugün kursa başladım|kursa yazıldım, ilk gün]"
+   ],
+   [
+    "B",
+    "[hangisi|hangi kurs|ne kursu]"
+   ],
+   [
+    "A",
+    "[muhasebe|muhasebe kursu|muhasebeciliğe hazırlanıyorum], [{kurs.muhasebe.gun} gün sürecekmiş|toplam {kurs.muhasebe.gun} gün|{kurs.muhasebe.gun} gün diyor]"
+   ],
+   [
+    "C",
+    "[ben bitirdim onu, sabır|onu ben de bitirdim, geçiyor|ben geçen ay bitirdim, sabret]"
+   ],
+   [
+    "A",
+    "[bu arada kuryeliğe devam edebiliyor muyum|kursta çalışmaya devam mı|kurs sürerken çalışıyor muyuz]"
+   ],
+   [
+    "C",
+    "[ben çalışmaya devam ettim|ben bırakmadım işi|işi bırakmana gerek yok bence], [yoksa geçim parası nereden gelecek|geçim gideri bekler mi|kira ve geçim duruyor mu]"
+   ],
+   [
+    "B",
+    "[{s:icecek} al otur bekle haha|kurs bitene kadar {s:hobi} ile oyalan|bekle bekle, {s:dizi_tur} izle]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-bitti-an",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurs bitti bildirimi geldi|şu an kurs bitti yazısı çıktı|kursun bitti yazdı az önce]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun|tebrikler|helal olsun]"
+   ],
+   [
+    "A",
+    "[ama {s:hobi} ile uğraşırken kaçırdım bildirimi|telefonu bırakmıştım, sonradan gördüm|{s:mekan} oturuyordum, görünce sevinçten bağırdım]"
+   ],
+   [
+    "C",
+    "[şimdi deneyim süresi kalmış mı bak|deneyim gününü doldurdun mu|30 gün deneyim de tamam mı]"
+   ],
+   [
+    "A",
+    "[tamam, doldurmuştum|deneyim çoktan doldu|onu da bitirdim geçen hafta]"
+   ],
+   [
+    "C",
+    "[o zaman kariyer ekranına koş|o zaman hemen meslek değiştir|kariyerden geçişi yap hemen]"
+   ],
+   [
+    "B",
+    "[bugün kutlama var mı|tatlı ısmarlıyor musun|{s:tatli} sende o zaman]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kpss-ezber",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[kamu sınavı kursundayım, sıkıldım|kpss kursu bitmek bilmiyor|kurs günleri saymaktan yoruldum]"
+   ],
+   [
+    "B",
+    "[kaç gün kaldı|bitişe ne kadar var|sayaç ne diyor]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gün daha var|{s:sayi} gün kaldı sadece ama geçmiyor|sayaç {s:sayi} gün diyor]"
+   ],
+   [
+    "C",
+    "[kum saati var mı|kum saatin varsa bas|kum saatiyle kısalt]"
+   ],
+   [
+    "A",
+    "[ikiyi kenara koymuştum|iki tane var|bir tane kaldı elimde], [harcasam mı|basayım mı|saklasam mı bilmiyorum]"
+   ],
+   [
+    "B",
+    "[memurluk maaşı sabit, erken başlarsan erken kazanırsın|memur maaşı {maas.memur} civarı, erken başlamak iyi|bence harca, maaş erken başlasın]"
+   ],
+   [
+    "C",
+    "[ben olsam basardım|ben basarım|harca gitsin]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-usta-belgesi-sabir",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ustalık kursundayım ama|ustalık belgesine çalışıyorum], [20 gün işçilik şartı aklımdan çıkmış|20 gün inşaat işçiliği lazımmış, yeni öğrendim|meğer 20 gün inşaatta çalışmak gerekiyormuş]"
+   ],
+   [
+    "B",
+    "[evet, belge yetmiyor|belge tek başına yetmiyor|kurs bir yana deneyim bir yana]"
+   ],
+   [
+    "A",
+    "[ben {A.meslek} olarak çalışıyorum ama|şu an {A.meslek} olarak çalışıyorum|ben {A.meslek} işindeyim]"
+   ],
+   [
+    "C",
+    "[o zaman kurs bitene kadar inşaata geç|kurs sürerken inşaat işçiliğine başla|inşaata geçersen ikisi beraber biter]"
+   ],
+   [
+    "B",
+    "[inşaat işçiliği de {maas.insaat} civarı getiriyor, fena değil|inşaatçı maaşı {maas.insaat} falan|para da kaybetmezsin pek]"
+   ],
+   [
+    "A",
+    "[mantıklı, yarın {s:saat} geçerim|tamam, yarın başlarım|hah işte, aklımdan geçmemişti]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kademe-atladim-hikaye",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[garsonluktan başladım, bugün kafe sahibiyim|kuryelikten başlayıp bugün işletme sahibi oldum|sıfırdan başlayıp işletmemi kurdum]"
+   ],
+   [
+    "B",
+    "[vay, anlat bakalım|nasıl oldu, anlat|ne kadar sürdü]"
+   ],
+   [
+    "A",
+    "[önce 60 gün deneyim|60 gün çalıştım önce|deneyim için 60 gün bekledim], [her ay biraz biriktirdim|her ay kenara para koydum|harcamadım hiç]"
+   ],
+   [
+    "C",
+    "[ben 40. gündeyim, umut verdin|bana da gaz verdin|ben de o yoldayım]"
+   ],
+   [
+    "A",
+    "[{s:yemek} bile dışarıda yemedim neredeyse|her akşam evde {s:yemek} yaptım|lüks sıfırdı valla]"
+   ],
+   [
+    "B",
+    "[helal|helal olsun|emeğine sağlık]"
+   ],
+   [
+    "C",
+    "[kuruluş parası ne kadar tuttu|kuruluşa ne verdin|kuruluş kaç tuttu]"
+   ],
+   [
+    "A",
+    "[kafe kuruluşu {kafe.kurulus} civarı|{kafe.kurulus} gibi bir şey|kafe {kafe.kurulus}, dükkan biraz farklı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-ilani-gezme",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ev bakıyorum, kiradan bıktım|kira ödemekten yoruldum, ev bakıyorum|artık ev sahibi olmak istiyorum]"
+   ],
+   [
+    "B",
+    "[daire {daire} civarı şu an|daire fiyatı {daire} gibi|daireler {daire} falan]"
+   ],
+   [
+    "A",
+    "[peşin almak hayal|peşin alınmaz o|o para yok bende]"
+   ],
+   [
+    "C",
+    "[kredili alırsan peşinat {pesinat} gibi|kredi çekersen {pesinat} peşinat yeter|peşinat {pesinat} civarı]"
+   ],
+   [
+    "A",
+    "[{s:semt} tarafında mı bakayım, oralar daha ucuz mu|{s:semt} daha ucuz olur mu|semt fark ediyor mu]"
+   ],
+   [
+    "B",
+    "[şu an semte göre fiyat değişmiyor|fiyat her yerde aynı şimdilik|semt fark etmiyor şu an]"
+   ],
+   [
+    "A",
+    "[o zaman sevdiğim yerden alırım|o zaman manzaraya göre seçerim haha|iyi, kafa rahat]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ilk-daire-anahtar",
+  "konu": "mulk",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk dairemi aldım|bugün ilk mülküm oldu|ev sahibi oldum az önce]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun|güle güle oturun|oha tebrikler]"
+   ],
+   [
+    "A",
+    "[{s:akraba} bile benden önce sevindi|ilk {s:akraba} aradı beni|haberi ilk {s:akraba} aldı], [ağladı neredeyse|çok sevindi|hemen dua etti]"
+   ],
+   [
+    "C",
+    "[kira ödemekten kurtuldun, en büyüğü bu|artık kira yok, bu ay fark edeceksin|kira kalktı, bu ay hesapta görürsün]"
+   ],
+   [
+    "A",
+    "[evet {evkira} gibi bir para cebimde kalacak|her ay {evkira} kurtardım|kira {evkira} idi, bitti]"
+   ],
+   [
+    "D",
+    "[ev hediyesi olarak {s:esya} gönderiyorum haha|ben de {s:esya} hediye ediyorum hayali|hayali hediye: {s:esya}]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kira-ev-cikmak",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[kira {evkira} oldu bu ay|bu ay kira {evkira} gelmiş|kira yine {evkira}], [geçen ay daha azdı|her ay biraz artıyor|bu böyle gitmez]"
+   ],
+   [
+    "B",
+    "[fiyatlar endekse bağlı, her ay artıyor|her şey endeksle artıyor, kira da|enflasyon her şeyi artırıyor]"
+   ],
+   [
+    "A",
+    "[maaş artıyor mu peki aynı hızla|maaş da artıyor mu|maaş geriden geliyor sanki]"
+   ],
+   [
+    "C",
+    "[artıyor ama geriden|geriden geliyor evet|artıyor ama biraz gecikmeli]"
+   ],
+   [
+    "A",
+    "[o zaman ev almak şart|o zaman ev sahibi olmak lazım|o zaman kiradan çıkmam lazım]"
+   ],
+   [
+    "C",
+    "[peşinatı topla, sonra bak|önce peşinatı biriktir|{pesinat} biriktirirsen yol açılır]"
+   ],
+   [
+    "B",
+    "[ben {s:gun} günü almayı düşünüyorum|ben de bu {s:gun} bakacağım|bu hafta {s:gun} karar vereceğim ben de]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-tablo",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ay sonu hesabımı yaptım|ay sonu gelir gider çıkardım|bu ayın hesabını yazdım]"
+   ],
+   [
+    "B",
+    "[paylaş bakalım|döktür|nasıl çıktı]"
+   ],
+   [
+    "A",
+    "[gelir {maas.kasiyer} civarı, kira {evkira}, geçim {yasam}|gelir {maas.kasiyer}, gider kira {evkira} ve geçim {yasam}|kasiyerlikten {maas.kasiyer}, gider kira ve geçim]"
+   ],
+   [
+    "C",
+    "[geriye kalan az değil mi|ne kaldı geriye|elde bir şey kalıyor mu]"
+   ],
+   [
+    "A",
+    "[{s:yemek} parası kadar kalıyor|bir {s:yemek} parası kalıyor|çok az, cep harçlığı]"
+   ],
+   [
+    "B",
+    "[ev alınca rahatlarsın|kira gidince nefes alırsın|kiradan kurtulunca fark büyük]"
+   ],
+   [
+    "C",
+    "[ya da kurs alıp kademe atla|kurs alıp maaşı yükselt|bir üst mesleğe geç]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gecen-ay-yemek-fiyati",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[geçen ay {s:yemek} başka fiyattı|{s:yemek} bile zamlanmış|dışarıda {s:yemek} yemek lüks olmuş]"
+   ],
+   [
+    "B",
+    "[oyunda mı gerçekte mi haha|oyunun içinde mi|oyunda mı diyorsun]"
+   ],
+   [
+    "A",
+    "[oyunda tabii, geçim gideri {yasam} olmuş|oyunda, geçim {yasam} gördüm|oyunda, geçim gideri arttı ya]"
+   ],
+   [
+    "C",
+    "[enflasyon {enflasyon} gösteriyor|yıllık {enflasyon} diyor haber|{enflasyon} enflasyon var]"
+   ],
+   [
+    "B",
+    "[gerçekten de öyle haha|gerçekte de aynı|dışarıda da durum farklı değil]"
+   ],
+   [
+    "A",
+    "[en azından oyunda {s:tatli} bedava olsa|bari {s:tatli} bedava olsa|bi {s:tatli} indirimi verseler]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-borsa-ne-zaman-sizlanma",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[borsa ne zaman gelcek ya|ne zaman borsa gelecek|borsayı bekliyorum, gelmedi hâlâ]"
+   ],
+   [
+    "B",
+    "[sonraki güncellemede diyorlar|sonraki güncellemeye diyorlar|gelecekmiş, sabır]"
+   ],
+   [
+    "A",
+    "[hep sonraki güncelleme|her seferinde sonraki|sonraki sonraki derken], [paramı bir yere koymam lazım|para boşta yatıyor|nakit eriyor]"
+   ],
+   [
+    "C",
+    "[mülk al, arsa değerleniyor|arsa al, değeri artıyor|daire al kira gelsin]"
+   ],
+   [
+    "A",
+    "[arsa kira getirmiyor ama|arsa kira vermez ama|daire mi o zaman]"
+   ],
+   [
+    "C",
+    "[daire kira getirir, arsa değerlenir|ikisinin farkı bu|daire düzenli, arsa uzun vade]"
+   ],
+   [
+    "B",
+    "[ben {s:gun} günü güncelleme gelecek diye dedikodu duydum|{s:gun} gelecek diyen var ama bilmiyorum|tarih yok, dedikodu çok]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-doviz-dedikodu",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[döviz bürosu açılacakmış diye duydum|döviz bürosu geliyormuş, doğru mu|döviz gelecek diyorlar]"
+   ],
+   [
+    "B",
+    "[döviz henüz yok|şimdilik döviz yok|daha yok o]"
+   ],
+   [
+    "A",
+    "[ama {s:akraba} bile sordu bana|{s:akraba} oyunu duymuş, dolar alınıyor mu dedi|{s:akraba} bile merak ediyor]"
+   ],
+   [
+    "C",
+    "[döviz bürosu 4. kademe meslek olacak|o 4. kademede, milyonlar lazım|döviz bürosu 4. kademe, uzun yol]"
+   ],
+   [
+    "B",
+    "[döviz gelse bile önce para birikecek|para yoksa ne fark eder|önce sermaye lazım]"
+   ],
+   [
+    "A",
+    "[hayal kurmak bedava ama|hayaller bedava|kafamda büro açtım bile]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-kiskanc-1",
+  "konu": "siralama",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[sıralamaya baktım, ilk on bambaşka dünya|sıralamada ilk ondakiler uzay gibi|sıralamada ilk onu görünce moralim bozuldu]"
+   ],
+   [
+    "B",
+    "[onlar 200 gündür oynuyor|onlar eski, normal|ilk gün başlayanlar onlar]"
+   ],
+   [
+    "A",
+    "[ben {s:sayi} haftadır buradayım|ben daha {s:sayi} haftalığım|ben yeniyim sayılır]"
+   ],
+   [
+    "C",
+    "[kendinle yarış|kendi geçen ayınla kıyasla|sen kendi büyümene bak]"
+   ],
+   [
+    "D",
+    "[ben de ilk geldiğimde kıskanıyordum|ben de kıskanıyordum, sonra geçti|kıskanma, ilham al]"
+   ],
+   [
+    "A",
+    "[peki ilk on ne yapıyor sizce|ilk on nasıl yaptı bunu|onların sırrı ne]"
+   ],
+   [
+    "B",
+    "[mülk, işletme, sabır|işletme ve mülk, bir de sabır|kira ve kâr, yıllarca]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-hedef-1",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kendime hedef koydum|bir hedefim var artık|bu ay hedef belirledim]"
+   ],
+   [
+    "B",
+    "[ne hedefi|neymiş|söyle bakalım]"
+   ],
+   [
+    "A",
+    "[{pesinat} biriktirip daire|peşinatı toplayıp ev|ay sonuna peşinat]"
+   ],
+   [
+    "C",
+    "[kaç ay sürer|ne kadar sürer sence|hesapladın mı]"
+   ],
+   [
+    "A",
+    "[her ay {s:sayi} parça ayırırsam olur gibi|kabaca {s:sayi} ay|{s:sayi} ay falan]"
+   ],
+   [
+    "C",
+    "[harcamaları kıs, {s:icecek} parasından başla haha|her gün {s:icecek} içme yeter haha|{s:tatli} yemeyi bırak, iki ayda tamam]"
+   ],
+   [
+    "A",
+    "[{s:tatli} asla haha|ondan vazgeçmem|başka yerden kısarım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-cekeyim-mi-kafe",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[krediyle işletme kurmak mantıklı mı|işletme için kredi çekmeye değer mi|kredi çekip işletme kursam mı]"
+   ],
+   [
+    "B",
+    "[ihtiyaç kredisi 24 ay vadeli|24 ay vade var|vade 24 ay, hesapla]"
+   ],
+   [
+    "C",
+    "[faiz {faiz} aylık|aylık faiz {faiz}|faiz {faiz} şu an]"
+   ],
+   [
+    "A",
+    "[ama limitim yetmiyor|limit az çıkıyor|limit düşük benim]"
+   ],
+   [
+    "B",
+    "[limit geçen ayki gelir çarpı not bölü 100|limit gelirine ve notuna bağlı|gelirin artınca limit artar]"
+   ],
+   [
+    "D",
+    "[ben çektim, ilk aylar zor geçti|ben çekmiştim, ilk aylar sıkıştım|ben çektim, pişman değilim ama zordu]"
+   ],
+   [
+    "A",
+    "[taksit aksarsa ne olur|ödeyemezsem ne oluyor|aksatırsam]"
+   ],
+   [
+    "D",
+    "[3 taksit kaçırırsan icra|üç taksit kaçarsa icra var|üçü kaçırma yeter], [{s:akraba} gibi her ay ilk iş taksiti öde|ben taksiti hep {s:gun} öderim|taksit günü {s:mekan} bile olsam öderim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-eski-duzeltiyor-kum",
+  "konu": "yanlis-bilgi",
+  "kosul": [
+   "B.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kum saatiyle servet artıyor değil mi|kum saati basınca para çıkıyor mu|kum saati zengin yapar mı]"
+   ],
+   [
+    "B",
+    "[hayır, hiç alakası yok|yok öyle bir şey|yanlış duymuşsun]"
+   ],
+   [
+    "B",
+    "[sadece beklemeyi kısaltıyor|bir tanesi bir günlük beklemeyi siliyor|kurs ve başvuru beklemesini kısaltır]"
+   ],
+   [
+    "A",
+    "[peki nereden geliyor|nasıl kazanılıyor|nereden bulunuyor]"
+   ],
+   [
+    "C",
+    "[günlük 3 görev yap, bir tane geliyor|her gün 3 görev, bir kum saati|günlük görevlerden]"
+   ],
+   [
+    "A",
+    "[{s:akraba} yanlış anlatmış o zaman|{s:akraba} öyle demişti|yanlış duymuşum, sağ olun]"
+   ],
+   [
+    "B",
+    "[{s:akraba} bile mi oynuyor haha|herkes oynuyor bu oyunu|oyun aileye yayılmış]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-is-arayan-isveren-1",
+  "konu": "is",
+  "kosul": [
+   "A.issiz",
+   "B.patron"
+  ],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[iş arıyorum, ilan açan var mı|ilanı olan var mı, iş arıyorum|iş lazım, kimde ilan var]"
+   ],
+   [
+    "B",
+    "[benim ilanım var, garson lazım|bende ilan var|ilanım açık, başvurabilirsin]"
+   ],
+   [
+    "A",
+    "[nerede işletme|nerede|hangi semtte]"
+   ],
+   [
+    "B",
+    "[{B.yer} tarafında|{B.yer}, bilirsin|{B.yer} merkezde]"
+   ],
+   [
+    "A",
+    "[ben de oraya yakınım|tam bana göre|hemen başvuruyorum]"
+   ],
+   [
+    "C",
+    "[patron iyidir, ben çalıştım yanında|iyi patrondur o|maaşı zamanında yatırır]"
+   ],
+   [
+    "B",
+    "[{C} övme, şımarırım haha|{C} sağ ol, borçlandım|{C} reklamın için teşekkürler], [{A} {s:gun} başlarsın|{A} yarın {s:saat} gel|{A} başvurunu bekliyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-pismanlik-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[muhasebeci oldum ama pişmanım galiba|muhasebeciliğe geçtim, kuryeliği özledim|sabit maaş beni sıktı]"
+   ],
+   [
+    "B",
+    "[neden|niye|ne oldu ki]"
+   ],
+   [
+    "A",
+    "[kuryeyken çalıştıkça kazanıyordum|kuryeyken iyi gün kötü gün belliydi|kurye maaşı {maas.kurye} civarıydı, ben çok koşardım]"
+   ],
+   [
+    "C",
+    "[muhasebeci {maas.muhasebeci} civarı, hiç girmesen de yatıyor|muhasebeci maaşı {maas.muhasebeci} ve garanti|{maas.muhasebeci} oturduğun yerden]"
+   ],
+   [
+    "A",
+    "[biliyorum ama içim sıkılıyor|o güzel ama heyecan yok|hep aynı]"
+   ],
+   [
+    "B",
+    "[kendine {s:hobi} gibi bir uğraş bul haha|boş vaktinde {s:hobi} ile uğraş|kalan vakitte {s:hobi}]"
+   ],
+   [
+    "C",
+    "[ya da birikip işletme kur, heyecanı orada bulursun|para biriksin, sonra işletme|heyecan istiyorsan 3. kademe]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gunluk-gorev-ritim",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[her sabah ilk iş günlük görevleri yapıyorum|sabah {s:icecek} ve günlük görevler|güne günlük görevle başlıyorum]"
+   ],
+   [
+    "B",
+    "[ben akşama bırakıyorum, sonra unutuyorum|ben hep unutuyorum|ben {s:saat} yapayım derken kaçırıyorum]"
+   ],
+   [
+    "A",
+    "[3 görev bitince bir kum saati geliyor ya|bir kum saati her gün kar|kum saati biriksin diye]"
+   ],
+   [
+    "C",
+    "[ben bir hafta aksatmadım, {s:sayi} tane birikti|ben de biriktiriyorum|ben kurslarda harcıyorum hepsini]"
+   ],
+   [
+    "B",
+    "[alarm kurayım bari|telefon hatırlatsın|bundan sonra sabah yapacağım]"
+   ],
+   [
+    "A",
+    "[{s:saat} alarm kur|alarmı {s:saat} kur|sabah {s:saat} iyi]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-bagis-itibar-sohbet",
+  "konu": "bagis",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün ilk bağışımı yaptım|ilk kez bağış yaptım|bağış ekranını yeni keşfettim]"
+   ],
+   [
+    "B",
+    "[ne kadar|kaç para|ne kadar verdin]"
+   ],
+   [
+    "A",
+    "[20 bin|yirmi bin verdim|20 bin, ilk sefer için]"
+   ],
+   [
+    "C",
+    "[2 itibar gelmiştir|iki itibar aldın|10 binde 1 itibar, 2 etti]"
+   ],
+   [
+    "A",
+    "[itibar ne işe yarıyor tam|itibar ne kazandırıyor|itibar neye yarıyor]"
+   ],
+   [
+    "C",
+    "[kredi notunu ve iş başvurularını etkiliyor|kredi notuna ve başvurulara etkisi var|not yükselir, başvuru kolaylaşır]"
+   ],
+   [
+    "D",
+    "[bayrama saklasan iki katı olurdu|bayramda yapsan çift sayılırdı|bayramda 2 katı itibar veriyor]"
+   ],
+   [
+    "A",
+    "[{bayram} için de ayırırım, {s:akraba} bile öyle yapıyor|{bayram} gelince bir daha veririm|{bayram} {bayram.gun} gün sonra, onda da veririm]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gecici-personel-gunu",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[çalışanım bugün yok, geçici personel çalışıyor|bugün geçici personelle idare ediyorum|çalışanım çevrimdışı, geçici personel geldi]"
+   ],
+   [
+    "B",
+    "[kaç para yazdı|maliyeti nasıl|pahalı mı]"
+   ],
+   [
+    "A",
+    "[pahalı ve yavaş|hem pahalı hem verimsiz|para yiyor iş yapmıyor]"
+   ],
+   [
+    "C",
+    "[müşteri {s:sayi} kişiydi sabah, hepsine yetişemedi|benimki de {s:sayi} müşteriyi kaçırdı|geçen sefer benimki de batırmıştı]"
+   ],
+   [
+    "A",
+    "[haha aynen|tam olarak|aynı dertteyiz]"
+   ],
+   [
+    "B",
+    "[iki çalışan al, biri yokken öbürü çalışsın|yedek eleman tut|bir kişi daha al bence]"
+   ],
+   [
+    "A",
+    "[maaş yükü de var ama|iki maaşı nasıl ödeyeyim|ciro buna yeter mi bilmiyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-musteri-sikayet",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[müşteri sayısı düştü bu hafta|bu hafta müşteri az|işletmeye bu hafta pek uğrayan yok]"
+   ],
+   [
+    "B",
+    "[yakınına aynı türden işletme açılmış olabilir|aynı türden başkası açılmıştır|rakip mi çıktı]"
+   ],
+   [
+    "A",
+    "[haberim yok ama olabilir|bilmiyorum, bakmadım|öyle bir şey duymadım]"
+   ],
+   [
+    "C",
+    "[aynı tür işletme çoğalınca müşteri bölünüyor|çok işletme olunca müşteri paylaşılıyor|pazar doyuyor, müşteri bölünüyor]"
+   ],
+   [
+    "B",
+    "[kaliteyi yükselt, çalışan ekle|kalite ve çalışan ciroyu etkiliyor|çalışanın tam mı]"
+   ],
+   [
+    "A",
+    "[{s:gun} günü bakarım, şimdi kafam dolu|bugün değil, {s:gun} ilgilenirim|yarın bakarım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yeni-saf-patron-ol",
+  "konu": "soru",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[patron nasıl olunuyor|ben de patron olmak istiyorum|patronluk için ne yapmak lazım]"
+   ],
+   [
+    "B",
+    "[önce 1. kademede başla|önce garson ya da kurye ol|şartsız bir işle başla]"
+   ],
+   [
+    "A",
+    "[direkt olamaz mıyım|hemen olamıyor muyum|parayla olmuyor mu]"
+   ],
+   [
+    "C",
+    "[3. kademe için 60 gün deneyim lazım|60 gün deneyim şart|deneyim parayla atlanmıyor]"
+   ],
+   [
+    "A",
+    "[60 gün çok uzun|60 gün mü|o kadar beklenir mi]"
+   ],
+   [
+    "B",
+    "[oyunda 60 gün, gerçekte {s:sayi} günden az|bir oyun günü bir saat, düşününce geçer|gece uyurken de akıyor]"
+   ],
+   [
+    "A",
+    "[aa öyle mi|tamam o zaman makul|o zaman sorun yok]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-notu-uzun-yol",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[notum 620de kaldı, kıpırdamıyor|kredi notum hâlâ başlangıçta|not hiç artmıyor]"
+   ],
+   [
+    "B",
+    "[hiç kredi çektin mi|kredin var mı|taksit ödüyor musun]"
+   ],
+   [
+    "A",
+    "[yok, korkuyorum|çekmedim|hiç çekmedim]"
+   ],
+   [
+    "C",
+    "[taksit ödedikçe yükseliyor not|taksit ödeyince artıyor|kredi olmadan zor artar]"
+   ],
+   [
+    "D",
+    "[bağışla itibar da artırıyor|itibar da notu yukarı iter|bağış yap biraz]"
+   ],
+   [
+    "A",
+    "[küçük bir kredi çekip ödesem mi|ufak bir kredi çeksem|az çekip düzenli ödesem]"
+   ],
+   [
+    "C",
+    "[mantıklı ama 3 taksiti kaçırma|olur ama aksatma|yaparsın, aksatmazsan]"
+   ],
+   [
+    "A",
+    "[{s:gun} günü bakarım|tamam, {s:gun} çekerim|düşüneyim biraz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-emlak-prim-gunu",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bugün bir satış prim gibi geldi|bugün primim yattı|emlakçılık bugün yüzümü güldürdü]"
+   ],
+   [
+    "B",
+    "[ne kadar|ne kadar yattı|kaç para]"
+   ],
+   [
+    "A",
+    "[söylemeyeyim nazar değer haha|rakam vermem haha|az değil diyelim]"
+   ],
+   [
+    "C",
+    "[emlak danışmanı {maas.emlak} civarı diye biliyorum|emlakçı ortalama {maas.emlak}|{maas.emlak} falan değil mi ortalama]"
+   ],
+   [
+    "A",
+    "[ortalaması öyle ama prim günü başka|ortalama o ama bazı günler patlıyor|ortalama sakin ama inişli çıkışlı]"
+   ],
+   [
+    "B",
+    "[o zaman {s:tatli} sende|bugün ısmarlıyorsun|kutla bari]"
+   ],
+   [
+    "A",
+    "[hayali {s:tatli} herkese|herkese hayali {s:tatli}|tamam, hayali ikram benden]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-memur-sabah-rahat",
+  "konu": "is",
+  "kosul": [
+   "A.memur"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[günaydın, maaş yine yattı|sabah kalktım maaş yatmış|memurluk güzel, maaş yine düştü]"
+   ],
+   [
+    "B",
+    "[biz koşuyoruz sen uyuyorsun haha|kıskandım|ben sabahtan {s:sayi} görev yaptım]"
+   ],
+   [
+    "A",
+    "[ben de kurs çektim ama|ben de kurslarla geldim buraya|ben de kuryeliği geçtim]"
+   ],
+   [
+    "C",
+    "[memur maaşı {maas.memur} civarı, fena değil|{maas.memur} sabit, garanti|garanti para güzel]"
+   ],
+   [
+    "B",
+    "[ama yükselmiyor|kâr yok ama|sabit kalıyor]"
+   ],
+   [
+    "A",
+    "[biriktirip mülk alacağım|biriktirip daire alacağım|kenara koyup yatırım yapacağım]"
+   ],
+   [
+    "B",
+    "[mantıklı, hadi bol {s:icecek} içilen sabahlar|keyfin bol olsun|iyi günler memur bey haha]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-nakliyeci-araba",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[nakliyeci olmak istiyorum|nakliyeciliğe geçmeyi düşünüyorum|nakliyecilik gözüme kestirdim]"
+   ],
+   [
+    "B",
+    "[800 bin sermaye lazım, araç dahil|araç parası dahil 800 bin|sermaye 800 bin]"
+   ],
+   [
+    "A",
+    "[o kadar param yok|800 bin mi|çok para]"
+   ],
+   [
+    "C",
+    "[60 gün deneyim de lazım|deneyim şartı da var, 60 gün|bir de 60 gün]"
+   ],
+   [
+    "A",
+    "[nakliyeci kaç kazanıyor peki|kazancı ne|ayda ne getiriyor]"
+   ],
+   [
+    "C",
+    "[ortalama {maas.nakliyeci} civarı|{maas.nakliyeci} gibi bir şey|{maas.nakliyeci} falan]"
+   ],
+   [
+    "D",
+    "[bir de {s:ulasim} gibi kalabalık olmuyorsun haha|kendi aracın olur, {s:ulasim} beklemezsin haha|en azından {s:ulasim} derdi bitiyor haha]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yanlis-semt-fiyat",
+  "konu": "yanlis-bilgi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:semt} tarafında daire almayın, pahalı|{s:semt} pahalı, oralara bakmayın|{s:semt} fiyatları uçuk]"
+   ],
+   [
+    "B",
+    "[şu an fiyat semte göre değişmiyor ama|semt fark etmiyor şimdilik|her yerde aynı fiyat şu an]"
+   ],
+   [
+    "A",
+    "[emin misin|gerçekten mi|nereden biliyorsun]"
+   ],
+   [
+    "B",
+    "[daire her yerde {daire} civarı|ben üç farklı semte baktım, hepsi {daire}|baktım, fark yok]"
+   ],
+   [
+    "C",
+    "[ileride değişebilir ama şimdilik aynı|şimdilik aynı, ileride bilmem|sonra gelir belki semt farkı]"
+   ],
+   [
+    "A",
+    "[peki, yanlış biliyormuşum|tamam, düzelttim kafamda|o zaman {s:semt} bile olur]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-calisan-gecikti",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[çalışanım bugün yine girmedi|elemanım yine yok|bugün yine elemansızım]"
+   ],
+   [
+    "B",
+    "[geçici personel çalışır o zaman|o zaman geçici personel girer|geçici devreye girer]"
+   ],
+   [
+    "A",
+    "[girer de para yer|evet, para yiyor|ve verimi çok düşük]"
+   ],
+   [
+    "C",
+    "[belki uyuyordur, saat {s:saat} daha|sabah erken, uyumuştur|daha erken, sabret]"
+   ],
+   [
+    "A",
+    "[ben {s:saat} açtım dükkanı|ben açtım bile|ben çoktan başladım]"
+   ],
+   [
+    "D",
+    "[konuş onunla, belki saati uymuyor|vardiya saatini sor|bir mesaj at]"
+   ],
+   [
+    "A",
+    "[{D} haklısın, mesaj atayım|mantıklı, soracağım|tamam yazarım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-cay-ocagi-sohbet",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[işletmesi olanlar, öğle saatleri nasıl|öğle saatinde müşteri yoğun mu|öğlen yoğunluk nasıl sizde]"
+   ],
+   [
+    "B",
+    "[benimkinde öğle iyi|öğle en iyi saat|öğlen dolup taşıyor]"
+   ],
+   [
+    "C",
+    "[bende akşam daha iyi|ben akşamları kazanıyorum|akşam {s:saat} gibi patlıyor]"
+   ],
+   [
+    "A",
+    "[ben açmayı düşünüyorum, ona göre çalışan saati ayarlarım|açınca saatlere göre plan yaparım|planı ona göre yapacağım]"
+   ],
+   [
+    "B",
+    "[çalışan oyuna girmezse geçici personel girer, unutma|çalışanın aktif olması önemli|çevrimdışı çalışan verimsiz]"
+   ],
+   [
+    "C",
+    "[öğle arası ben de {s:yemek} yiyorum şimdi|ben şimdi {s:yemek} yiyorum bu arada|şu an {s:yemek} başında yazıyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-pahali-geliyor",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[emlak kursuna bakıyorum, {kurs.emlak} istiyor|emlak belgesi {kurs.emlak} tutuyor|emlak kursu {kurs.emlak}]"
+   ],
+   [
+    "B",
+    "[{kurs.emlak.gun} gün sürüyor bir de|süre de {kurs.emlak.gun} gün|{kurs.emlak.gun} gün beklersin]"
+   ],
+   [
+    "A",
+    "[değer mi sizce|buna değer mi|parayı çıkarır mı]"
+   ],
+   [
+    "C",
+    "[emlakçı {maas.emlak} civarı ve prim var|emlakçılık {maas.emlak}, primle daha fazla|bence çıkarır]"
+   ],
+   [
+    "D",
+    "[ben {s:sayi} ayda çıkardım parasını|ben çabuk çıkardım|ben iki ayda çıkardım]"
+   ],
+   [
+    "A",
+    "[tamam, kafama yattı|ikna oldum|o zaman yazılıyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-dedikodu-enflasyon-haber",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[haberlere baktınız mı, fiyatlar yine artacak diyor|haberlerde yine fiyat artışı var|yine zam haberi]"
+   ],
+   [
+    "B",
+    "[her ay artıyor zaten|her ay biraz artıyor|enflasyon her ay işliyor]"
+   ],
+   [
+    "A",
+    "[ama bu sefer çok gibi|bu sefer daha fazla gibi|bence bu ay sert]"
+   ],
+   [
+    "C",
+    "[ekonomi haberleri genelde bir gün önce çıkıyor|kararlar bir gün önce haber oluyor|bir gün önceden haber düşüyor]"
+   ],
+   [
+    "B",
+    "[ben {s:sayi} dairemi bekletiyorum, değeri artar|mülk varsa enflasyon dost|mülkü olan kazanır]"
+   ],
+   [
+    "A",
+    "[mülkü olmayan ne yapacak|benim mülküm yok ama|kiracılar ne yapsın]"
+   ],
+   [
+    "C",
+    "[biriktir ve al, başka yolu yok|peşinatı topla|kurs alıp maaşı yükselt]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-saf-kira-yatmadi",
+  "konu": "soru",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[arsa aldım ama kira yatmadı|arsamdan kira bekliyorum|arsa kirası ne zaman yatar]"
+   ],
+   [
+    "B",
+    "[arsa kira getirmez|arsa kira vermiyor|arsadan kira çıkmaz]"
+   ],
+   [
+    "A",
+    "[neden aldım o zaman|eyvah|bunu bilmiyordum]"
+   ],
+   [
+    "C",
+    "[arsa değerleniyor ama, beklersen kazandırır|değeri artar, sabret|uzun vadede değerlenir]"
+   ],
+   [
+    "B",
+    "[kira istiyorsan daire ya da dükkan|kira için daire al|daire kira getirir, {daire.kira} gibi]"
+   ],
+   [
+    "A",
+    "[tamam, bir dahakine daire|bir sonrakine daire alırım|öğrendim, sağ olun]"
+   ],
+   [
+    "D",
+    "[herkes bir kere arsa hatası yapar haha|ben de aynısını yapmıştım|klasik ilk hata], [{s:akraba} bile güldü bana|ilk mülküm de arsaydı|bir {s:icecek} iç, geçer]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-patron-maas-zamani",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çalışanlarımın maaşını ödedim, kasa bomboş|maaş günü geçti, kasa boşaldı|maaşları yatırdım, elimde bir şey kalmadı]"
+   ],
+   [
+    "B",
+    "[maaşı ödemek iyi, itibar getiriyor|zamanında ödemek itibar kazandırır|itibar puanın artar]"
+   ],
+   [
+    "A",
+    "[itibar karın doyurmuyor ama|itibarla {s:yemek} alınmıyor ama haha|itibar güzel de para nerede]"
+   ],
+   [
+    "C",
+    "[ödeyemeseydin borç yazılırdı, itibar düşerdi|ödemesen borç olur, itibar gider|ödemek her zaman daha iyi]"
+   ],
+   [
+    "A",
+    "[biliyorum, o yüzden ödedim|tabii ödedim|aksatmam onu]"
+   ],
+   [
+    "D",
+    "[helal olsun, iyi patronlar az|iyi patron bulmak zor|keşke benim patronum da böyle olsa]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kpss-bitti-memur",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kamu sınavı kursu bitti|kpss kursu bitti sonunda|kursu bitirdim, kamu sınavı tamam]"
+   ],
+   [
+    "B",
+    "[ne kadar sürdü|kaç gün sürdü|kaç gün]"
+   ],
+   [
+    "A",
+    "[{kurs.kpss.gun} gün sürdü|{kurs.kpss.gun} gün, kum saati kullanmadım|toplam {kurs.kpss.gun} gün]"
+   ],
+   [
+    "C",
+    "[30 gün deneyimin var mı|deneyim tamam mı|deneyim şartı doldu mu]"
+   ],
+   [
+    "A",
+    "[kuryelikten var|kuryeyken doldurdum|vardı zaten]"
+   ],
+   [
+    "C",
+    "[o zaman kariyerden memurluğa geç, işveren yok|memurlukta işveren yok, direkt başlıyorsun|kariyerden direkt]"
+   ],
+   [
+    "B",
+    "[artık sabit maaş, {s:hobi} zamanı|bol bol {s:hobi} ile uğraşırsın|artık {s:hobi} vakti]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-esya-hayali",
+  "konu": "mulk",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[evime yeni {s:esya} aldım hayalen|evi düşündükçe {s:esya} almak istiyorum|ev oldu, şimdi eşya derdi]"
+   ],
+   [
+    "B",
+    "[oyunda eşya yok ama haha|eşya almıyoruz ki|oyunda mobilya yok]"
+   ],
+   [
+    "A",
+    "[biliyorum, hayal ediyorum|hayalimde dekore ediyorum|kafamda döşedim]"
+   ],
+   [
+    "C",
+    "[ileride lüks tüketim gelecekmiş|lüks şeyler sonra gelecekmiş|ileride gelir belki]"
+   ],
+   [
+    "A",
+    "[o zaman {s:renk} koltuk alırım|ilk {s:renk} bir halı|{s:renk} perde şart]"
+   ],
+   [
+    "B",
+    "[{s:renk} mi, zevkine şaşırdım haha|tam senlik|güzel seçim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kasiyer-yogun-gun",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[kasiyerlik bugün çok yoğundu|kasada bugün hiç durmadım|bugün kasa başında bitmedi müşteri]"
+   ],
+   [
+    "B",
+    "[kasiyer hem maaş alıyor hem görev değil mi|maaş artı görev ya|görev yaptıkça ek geliyor]"
+   ],
+   [
+    "A",
+    "[evet, ortalama {maas.kasiyer} civarı|{maas.kasiyer} gibi ortalaması|ayda {maas.kasiyer} falan]"
+   ],
+   [
+    "C",
+    "[bugün kaç görev|kaç görev yaptın|görev sayısı]"
+   ],
+   [
+    "A",
+    "[{s:sayi} değil, daha fazla|saymadım bile|bir sürü]"
+   ],
+   [
+    "B",
+    "[eve git {s:yemek} ye, dinlen|ayaklarını uzat|bugün iyi dinlen]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ilan-mulakat",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilana {s:sayi} kişi başvurmuş|{s:sayi} başvuru gelmiş ilana|ilanıma {s:sayi} başvuru var]"
+   ],
+   [
+    "B",
+    "[kimi alacaksın|nasıl seçeceksin|neye bakacaksın]"
+   ],
+   [
+    "A",
+    "[itibarına bakarım|itibarı yüksek olanı|deneyimli olanı]"
+   ],
+   [
+    "C",
+    "[itibar iyi işaret, maaşı zamanında almış demektir|itibarlı olan genelde düzgün|itibar başvuruyu etkiliyor zaten]"
+   ],
+   [
+    "D",
+    "[ben de başvurdum o ilana haha|ben de başvurmuştum|başvuranlardan biri benim]"
+   ],
+   [
+    "A",
+    "[{D} cidden mi haha|{D} sen misin|{D} o zaman torpil var haha]"
+   ],
+   [
+    "D",
+    "[torpil istemem, adil ol haha|adil ol|sırana göre bak]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-zam-karsilastir-kira",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[geçen ay kira bu kadar değildi|kira geçen aydan fazla|kira yine artmış]"
+   ],
+   [
+    "B",
+    "[şimdi kaç|ne kadar oldu|kaç yazıyor]"
+   ],
+   [
+    "A",
+    "[{evkira}|şu an {evkira}|{evkira} gördüm]"
+   ],
+   [
+    "C",
+    "[geçim de {yasam} oldu|geçim gideri {yasam}|bir de geçim {yasam}]"
+   ],
+   [
+    "A",
+    "[maaşa yetiyor mu kimseye|kimin maaşı yetiyor bunlara|yetiyor mu sizin]"
+   ],
+   [
+    "D",
+    "[ben {A.meslek} değilim ama yetmiyor haha|bana da yetmiyor|yetmiyor kimseye]"
+   ],
+   [
+    "B",
+    "[{s:akraba} gibi yapacağız, kemer sıkacağız|{s:akraba} hep kemer sık der|{s:akraba} hep idare et der]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gece-kar-hesabi",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece yarısı işletmenin hesabına bakıyorum|uyuyamadım, ciro tablosuna bakıyorum|gece gece kâr hesabı]"
+   ],
+   [
+    "B",
+    "[uyu artık|bırak uyu|sabah bakarsın]"
+   ],
+   [
+    "A",
+    "[bu ay gider {dukkan.gider} gibi ama ciro yaklaştı|dükkan gideri {dukkan.gider}, ciro onu geçecek gibi|ciro gideri geçmek üzere]"
+   ],
+   [
+    "C",
+    "[geçerse kâr, geçmezse zarar, basit|ya kâr ya zarar|o çizgiyi geçmek önemli]"
+   ],
+   [
+    "A",
+    "[ayın {s:sayi} günü kaldı|{s:sayi} gün kaldı ay sonuna|bitmesine {s:sayi} gün var]"
+   ],
+   [
+    "B",
+    "[o zaman uyu, sabah müşteri gelir|uyurken de akıyor zaman|uyu, ay kendi biter]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-saka-kurye-hiz",
+  "konu": "saka",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün o kadar hızlı teslimat yaptım ki|bugün rekor hızdaydım|bugün resmen uçtum]"
+   ],
+   [
+    "B",
+    "[ne kadar hızlı|ne kadar|anlat bakalım]"
+   ],
+   [
+    "A",
+    "[{s:ulasim} bile geride kaldı|{s:ulasim} benden yavaştı|{s:ulasim} ile yarıştım, kazandım]"
+   ],
+   [
+    "C",
+    "[haha görev başı {gorev.kurye} için değer|{gorev.kurye} için bu kadar koşu|bu hızla {gorev.kurye} az bile]"
+   ],
+   [
+    "A",
+    "[bir de {s:hayvan} kovaladı beni|yolda {s:hayvan} peşime takıldı|{s:hayvan} bile peşimdeydi]"
+   ],
+   [
+    "B",
+    "[oyunda mı gerçekte mi artık anlamıyorum haha|hikayen her seferinde büyüyor|abartıyorsun haha]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-mi-isletme-mi-karar",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[elimde {pesinat} kadar para var|{pesinat} biriktirdim sonunda|peşinat param hazır]"
+   ],
+   [
+    "B",
+    "[ev mi alacaksın|daire mi|ne düşünüyorsun]"
+   ],
+   [
+    "A",
+    "[ya ev ya işletme için birikim|ev mi işletme mi karar veremedim|ikisi arasında kaldım]"
+   ],
+   [
+    "C",
+    "[ev alırsan kira gider, net kazanç|ev al, kirayı kes|kirayı kesmek garanti kazanç]"
+   ],
+   [
+    "D",
+    "[işletme daha çok kazandırır ama risk var|işletme riskli ama tavanı yüksek|işletme kârlıysa daha iyi]"
+   ],
+   [
+    "A",
+    "[60 gün deneyimim yok zaten|deneyimim tutmuyor daha|işletme için deneyimim eksik]"
+   ],
+   [
+    "C",
+    "[o zaman karar belli, ev|o zaman ev|o zaman ev al, sonra işletme]"
+   ],
+   [
+    "A",
+    "[mantıklı, {s:gun} bakarım|evet, ev|haklısın, {s:gun} karar]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yagmur-teslimat",
+  "konu": "gundelik",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dışarıda {s:kis_hava}, görev yağıyor|{s:kis_hava} ama siparişler durmuyor|hava berbat, görev bol]"
+   ],
+   [
+    "B",
+    "[kötü havada herkes evden sipariş veriyor|herkes evde, sen yoldasın|kötü havada kurye kazanır]"
+   ],
+   [
+    "A",
+    "[ıslandım ama {s:sayi} görev daha yaptım|ıslak ama mutlu|soğuk ama cep doluyor]"
+   ],
+   [
+    "C",
+    "[{s:icecek} iç ısın|bir {s:icecek} iç önce|dur bir {s:icecek} molası ver]"
+   ],
+   [
+    "A",
+    "[görev başı {gorev.kurye}, mola lüks haha|mola verirsem görev kaçıyor|mola yok bugün]"
+   ],
+   [
+    "B",
+    "[hasta olma da|kendini koru bari|üşütme]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-patron-iyi-gun",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[patron bugün çok iyi davrandı|patronum bugün beni övdü|patron bugün teşekkür etti]"
+   ],
+   [
+    "B",
+    "[ne yaptın ki|neden|ne oldu]"
+   ],
+   [
+    "A",
+    "[{s:sayi} müşteriyi tek başıma halletmişim|yoğunlukta tek başıma yetiştim|geçici personel yerine ben koştum]"
+   ],
+   [
+    "C",
+    "[zam iste o zaman|tam zam isteme anı|şimdi maaş konuşulur]"
+   ],
+   [
+    "A",
+    "[maaş ilanda yazıyordu ama|maaşım belli zaten|20 görevi doldurunca tam yatıyor zaten]"
+   ],
+   [
+    "C",
+    "[bir sonraki ilanda yükseltsin diye söyle|söylemekten zarar gelmez|bir dile getir]"
+   ],
+   [
+    "A",
+    "[{s:gun} günü söylerim|cesaretimi toplarım|bakarız haha]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-cirak-patron-yeni",
+  "konu": "is",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk işime girdim, patronum çok genç biri|patronum bana yaşıt gibi|patronum da yeni galiba]"
+   ],
+   [
+    "B",
+    "[oyunda yaş yok ki haha|yaş yok oyunda|kimse yaşlı değil burada haha]"
+   ],
+   [
+    "A",
+    "[ama öyle hissettim|tavırları öyle|enerjisinden anladım haha]"
+   ],
+   [
+    "C",
+    "[patronun itibarına bak, ona göre anla|itibarına bak, maaşı düzgün ödüyor mu bil|itibarı yüksekse rahat ol]"
+   ],
+   [
+    "A",
+    "[itibarı fena değil|itibarı iyi görünüyor|iyi galiba]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun, ilk maaşta {s:tatli} yersin|ilk maaşla {s:yemek} ısmarla kendine|ilk maaş güzel olur]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-sinav-stresi",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurs bitince bir şey çıkacak mı, test falan|kurs sonu sınav var mı|kurs bitince test mi var]"
+   ],
+   [
+    "B",
+    "[yok, süre dolunca bitiyor|sınav yok, süre bitiyor|sadece bekliyorsun]"
+   ],
+   [
+    "A",
+    "[o kadar mı|bu kadar basit mi|ben {s:sayi} gündür stres yapıyorum]"
+   ],
+   [
+    "C",
+    "[haha sınav yok, rahat ol|stres yapma, sayaç yeter|rahat ol, bitecek]"
+   ],
+   [
+    "A",
+    "[{s:akraba} ders çalış diyordu|{s:akraba} bana ders çalıştırdı az kalsın|{s:akraba} sınav var sanıyordu]"
+   ],
+   [
+    "B",
+    "[{s:akraba} bile mi oyunda haha|bu aile oyun ailesi|herkes kursa yazılmış]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ustalik-sonrasi-ilk-gorev",
+  "konu": "is",
+  "kosul": [
+   "A.usta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[usta olduktan sonra ilk görevim bugün|ilk ustalık görevini yaptım|usta olarak ilk günüm]"
+   ],
+   [
+    "B",
+    "[nasıldı|fark var mı|işçilikten farkı ne]"
+   ],
+   [
+    "A",
+    "[kazanç daha iyi|görev başına daha çok veriyor|ortalama {maas.usta} civarı gidecek galiba]"
+   ],
+   [
+    "C",
+    "[inşaat işçisiyken {maas.insaat} idi değil mi|işçilik {maas.insaat} gibiydi|fark büyük]"
+   ],
+   [
+    "A",
+    "[aynen, 20 günün karşılığı|20 gün çektim ama değdi|çile bitti]"
+   ],
+   [
+    "D",
+    "[taşeronluk için 20 gün ustalık lazım, aklında olsun|sonraki durak taşeronluk, 20 gün ustalık|taşerona giden yol buradan]"
+   ],
+   [
+    "A",
+    "[{s:gun} günü saymaya başladım bile|sayaç başladı|hemen hedefe kilitlendim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kiraci-ev-sahibi-arkadas",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci",
+   "B.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen ev aldın ya, nasıl hissettiriyor|{B} ev sahibi olmak nasıl|{B} kira ödememek nasıl bir duygu]"
+   ],
+   [
+    "B",
+    "[ay başı geliyor, korkmuyorum|ay başı rahat|ay başını unuttum resmen]"
+   ],
+   [
+    "A",
+    "[ben her ay başı {evkira} ödüyorum|bende {evkira} kira her ay|her ay kira için ağlıyorum]"
+   ],
+   [
+    "B",
+    "[peşinatı topla, sen de kurtul|{pesinat} biriktir, krediyle al|kredi notun iyiyse kredi çek]"
+   ],
+   [
+    "C",
+    "[ama kredi çekersen taksit var, kira gibi|taksit de bir çeşit kira haha|taksit de var unutma]"
+   ],
+   [
+    "B",
+    "[taksit bitince ev senin, kira bitmez|taksit biter, kira bitmez|fark orada]"
+   ],
+   [
+    "A",
+    "[ikna oldum, {s:gun} başlıyorum biriktirmeye|tamam, birikim başlasın|en kısa zamanda]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-ararken-semt-hayal",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ev alacağım ama {s:semt} mi {s:semt#2} mi|kafam karıştı, {s:semt} mi {s:semt#2} mi|{s:semt} ile {s:semt#2} arasında kaldım]"
+   ],
+   [
+    "B",
+    "[fiyat aynı şu an, istediğini seç|fiyat semte göre değişmiyor|hangisi hoşuna gidiyorsa]"
+   ],
+   [
+    "A",
+    "[o zaman {s:semt} çünkü sahil var|{s:semt} çünkü {s:akraba} orada|{s:semt}, çünkü işe yakın]"
+   ],
+   [
+    "C",
+    "[ben {C.yer} tarafındayım, gel komşu olalım|{C.yer} de güzel ama|{C.yer} tarafını da düşün]"
+   ],
+   [
+    "A",
+    "[{C} seni de düşündüm haha|{C} komşu fikri güzel|{C} bakarım valla]"
+   ],
+   [
+    "B",
+    "[ne olursa olsun kiradan kurtul|önemli olan ev sahibi olmak|semt sonra, önce ev]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ilk-mulk-dukkan-kira",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk mülküm dükkan oldu|ilk aldığım şey dükkan|daire değil dükkan aldım ilk]"
+   ],
+   [
+    "B",
+    "[neden daire değil|niye dükkan|ilginç seçim]"
+   ],
+   [
+    "A",
+    "[kira getirisi var diye|dükkan da kira getiriyor|kira geliri için]"
+   ],
+   [
+    "C",
+    "[dükkan {dukkan}, daire {daire}|fiyatlara bak, dükkan {dukkan}|dükkan şu an {dukkan} civarı]"
+   ],
+   [
+    "A",
+    "[ama ben hâlâ kiradayım haha|kendim kirada oturuyorum ama|evim yok, dükkanım var haha]"
+   ],
+   [
+    "B",
+    "[ev sahibi değilsen kira ödersin, bunu hesapla|kira ödemeye devam yani|kendi kiran devam]"
+   ],
+   [
+    "A",
+    "[dükkanın kirası benim kirayı ödüyor gibi|biri ötekini götürüyor|denkleşiyor gibi, {s:sayi} ayda bakarım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-sevinc-memur",
+  "konu": "ekonomi",
+  "kosul": [
+   "A.memur"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ay kapandı, ilk defa artıda kaldım|ilk kez ay sonunda para kaldı|ay sonu, hesap artıda]"
+   ],
+   [
+    "B",
+    "[helal|harika|tebrikler]"
+   ],
+   [
+    "A",
+    "[maaş {maas.memur}, kira ve geçim çıkınca bir şey kaldı|memur maaşı yetiyormuş meğer|sabit maaş, sabit gider, kalan birikim]"
+   ],
+   [
+    "C",
+    "[şimdi onu biriktir|bunu harcama sakın|birikime at]"
+   ],
+   [
+    "A",
+    "[{s:tatli} yiyecektim ama tamam|bir {s:tatli} hakkım var ama|kutlama küçük olsun bari]"
+   ],
+   [
+    "B",
+    "[bir {s:tatli} batırmaz|küçük kutlama serbest|bir tanesine izin var]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-ekside",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bu ay ekside kapattım|ay sonu ekside bitti|hesap eksiye düştü]"
+   ],
+   [
+    "B",
+    "[nasıl oldu|ne oldu|neden]"
+   ],
+   [
+    "A",
+    "[kira {evkira}, geçim {yasam}, görevleri de az yaptım|görev az yaptım bu ay|bu ay tembellik ettim]"
+   ],
+   [
+    "C",
+    "[görevle kazanan meslekte boş gün pahalı|kurye ve garson yaptıkça kazanıyor|görev yoksa para yok]"
+   ],
+   [
+    "D",
+    "[param biterse işe girmek zorunlu, borç kapanana kadar yatırım yok|dikkat, borca düşersen yatırım kapanıyor|para biterse yatırım yasak]"
+   ],
+   [
+    "A",
+    "[hemen {s:sayi} görev yapıyorum şimdi|hemen çalışmaya|toparlarım, sağ olun]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-fiyat-oyun-gercek",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunda {s:yemek} fiyatı gerçekten de pahalı geldi|oyundaki geçim bile beni korkuttu|oyunda da mı zam ya]"
+   ],
+   [
+    "B",
+    "[geçim {yasam} şu an|{yasam} geçim gideri|aylık geçim {yasam}]"
+   ],
+   [
+    "A",
+    "[geçen ay bu kadar değildi kesin|geçen ay daha azdı|geçen ay altındaydı]"
+   ],
+   [
+    "C",
+    "[{enflasyon} enflasyonla her ay biraz biraz|enflasyon {enflasyon}, her ay ekleniyor|her ay endeksle artıyor]"
+   ],
+   [
+    "B",
+    "[maaş da artıyor ama geriden|maaşlar da artıyor yavaş yavaş|maaşa da yansıyor biraz]"
+   ],
+   [
+    "A",
+    "[ben {s:meyve} alamıyorum diyecektim, geçim zaten genel|ben {s:meyve} istiyordum sadece haha|{s:meyve} bile lüks]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-guncelleme-insaat-bekle",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[inşaat ne zaman açılacak|inşaat yapabilecek miyiz|bina dikmek istiyorum]"
+   ],
+   [
+    "B",
+    "[inşaat henüz yok|daha yok, gelecekmiş|sonra gelecek diyorlar]"
+   ],
+   [
+    "A",
+    "[müteahhit olacaktım ben|müteahhitlik hayalim vardı|ben bina yapacaktım]"
+   ],
+   [
+    "C",
+    "[müteahhit 4. kademe zaten, milyonlar lazım|önce milyonları topla|4. kademe uzun iş]"
+   ],
+   [
+    "A",
+    "[o zaman toplarken inşaat gelir|para birikene kadar gelir herhalde|zaten toplamam {s:sayi} ay sürer]"
+   ],
+   [
+    "D",
+    "[ben şimdiden {s:renk} bina hayal ediyorum|ilk binamı {s:renk} boyayacağım|ben de {s:semt} tarafına bina dikerim]"
+   ],
+   [
+    "B",
+    "[hayal güzel, gelsin de|gelsin bakalım|bekliyoruz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ortaklik-istegi-sizlanma",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ortaklık gelmedi mi hâlâ|ortak kafe açmak istiyoruz, ortaklık yok mu|ortaklık özelliği ne zaman]"
+   ],
+   [
+    "B",
+    "[daha yok, gelecekmiş|ortaklık sonra gelecek|şimdilik yok]"
+   ],
+   [
+    "A",
+    "[{s:akraba} ile ortak olacaktık|{s:akraba} ile anlaşmıştık bile|kuzenle planı yaptık]"
+   ],
+   [
+    "C",
+    "[şimdilik biri kursun, öbürü çalışsın|biri patron biri çalışan olun|birin açsın, ötekini işe alsın]"
+   ],
+   [
+    "A",
+    "[haha {s:akraba} patron olursa çekilmez|patron ben olurum, o çalışsın|kim patron olacak kavgası çıkar]"
+   ],
+   [
+    "D",
+    "[ortaklık gelse de bu kavga bitmez|ortaklık geldiğinde de aynı kavga|ortaklıkta da bu tartışma var]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-tepeye-bakis",
+  "konu": "siralama",
+  "kosul": [
+   "A.zengin"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[sıralamada ilk yüze girdim|ilk yüzdeyim artık|sıralamada sonunda göründüm]"
+   ],
+   [
+    "B",
+    "[kıskandım açıkçası|ben de girmek istiyorum|nasıl yaptın]"
+   ],
+   [
+    "A",
+    "[{s:sayi} daire, bir işletme|kira gelirleri ve işletme|mülk mülk büyüdüm]"
+   ],
+   [
+    "C",
+    "[biz garibanlar alttan bakıyoruz haha|aşağıdan selam haha|biz de geleceğiz]"
+   ],
+   [
+    "A",
+    "[gelirsiniz, ben de kuryeydim|ben de sıfırdan başladım|herkes 100 binle başlıyor]"
+   ],
+   [
+    "B",
+    "[bu bilgi hiç teselli etmiyor haha|bu cümle beni kızdırdı haha|herkes aynı başlıyor diye daha kötü]"
+   ],
+   [
+    "C",
+    "[{B} kıskançlık bırak, {s:icecek} iç|{B} sakin, biz de olacağız|{B} sabır]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-dusus",
+  "konu": "siralama",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[sıralamada {s:sayi} basamak düştüm|bu hafta sıralamada geriledim|sıralamam düşmüş]"
+   ],
+   [
+    "B",
+    "[neden|ne oldu|ne yaptın]"
+   ],
+   [
+    "A",
+    "[mülk aldım, nakit gitti|krediyle yatırım yaptım|kurs parası verdim]"
+   ],
+   [
+    "C",
+    "[net servet hesaplanıyor, mülk de sayılır sanırım|mülk de servete girer bence|bilmiyorum, bakmak lazım]"
+   ],
+   [
+    "A",
+    "[ben de emin değilim|bilmiyorum ki|merak ettim şimdi]"
+   ],
+   [
+    "D",
+    "[uzun vadede yukarı çıkarsın, merak etme|yatırım geri döner|kira gelince yükselirsin]"
+   ],
+   [
+    "A",
+    "[umarım, {s:gun} bakarım tekrar|{s:gun} kontrol ederim|iyi geceler, kafam yandı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-kumbara",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ben her maaştan bir kısmı ayırıyorum|maaşın bir parçası hiç dokunmuyorum|her ay sabit birikim yapıyorum]"
+   ],
+   [
+    "B",
+    "[faiz yok ama, boşa yatıyor|bankada faiz yok|mevduat faizi yok, eriyor]"
+   ],
+   [
+    "A",
+    "[biliyorum, peşinat için|ev için biriktiriyorum|peşinata az kaldı]"
+   ],
+   [
+    "C",
+    "[peşinat {pesinat}, enflasyonla o da artıyor|{pesinat} şu an ama artıyor|hızlı biriktir, fiyat kaçıyor]"
+   ],
+   [
+    "A",
+    "[hep bir adım gerideyim|yetişemiyorum|koştukça kaçıyor]"
+   ],
+   [
+    "B",
+    "[{s:hobi} gibi, sabır işi|{s:hobi} gibi bu, yavaş yavaş|sabır sabır]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-araba-yok",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[araba almak için biriktiriyorum|arabaya para biriktiriyorum|bir araba alacağım]"
+   ],
+   [
+    "B",
+    "[galeri yok oyunda|araba galerisi henüz yok|araba alınmıyor şu an]"
+   ],
+   [
+    "A",
+    "[ne|ciddi mi|nasıl yok]"
+   ],
+   [
+    "C",
+    "[sonra gelecekmiş|gelecekmiş ama tarih yok|ileride gelecek]"
+   ],
+   [
+    "D",
+    "[nakliyecilik araç parasını içeriyor ama, 800 bin|nakliyeci olursan araç dahil|araç istiyorsan nakliyecilik]"
+   ],
+   [
+    "A",
+    "[hah, iş arabası da araba|iş arabası olsun bari|o zaman nakliyeci olayım haha]"
+   ],
+   [
+    "B",
+    "[{s:ulasim} ile idare et şimdilik|şimdilik {s:ulasim}|bir süre daha {s:ulasim}]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-tartisma-iki-gorus",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kredi çekmek zenginleştirir mi fakirleştirir mi|kredi iyi mi kötü mü|kredi konusunda ikiye bölündük]"
+   ],
+   [
+    "B",
+    "[ne için çektiğine bağlı|amaca bağlı|harcamaya çekersen kötü]"
+   ],
+   [
+    "C",
+    "[ev için çekilir, gerisi gereksiz|ev kredisi mantıklı, başka değil|kira yerine taksit mantıklı]"
+   ],
+   [
+    "D",
+    "[işletme için de çekilir, kâr ederse|kârlı işletme için çekilir|getiri faizi geçerse çek]"
+   ],
+   [
+    "B",
+    "[faiz {faiz} aylık, onu geçen her şey kâr|{faiz} faizi geçiyorsa olur|faizden fazla kazanıyorsan çek]"
+   ],
+   [
+    "A",
+    "[{s:akraba} hiç çekme diyor|{s:akraba} kredi düşmanı|{s:akraba} borçtan korkar]"
+   ],
+   [
+    "C",
+    "[{s:akraba} haklı olabilir haha|eski kafa ama haksız değil|çekmeyen de rahat uyur]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-icra-kurtulus",
+  "konu": "kredi",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iki taksit kaçırdım, korkuyorum|ikinci taksiti de ödeyemedim|iki taksit gecikmede]"
+   ],
+   [
+    "B",
+    "[üçüncüyü kaçırma, icra|3 olursa icra var|üçüncü olmasın sakın]"
+   ],
+   [
+    "A",
+    "[ne yapayım|nasıl toparlarım|param yok]"
+   ],
+   [
+    "C",
+    "[hemen görev yap, para topla|bugün {s:sayi} görev yap|görev yaparak toparla]"
+   ],
+   [
+    "D",
+    "[mülkün varsa sat|varsa bir mülk sat|nakit lazım]"
+   ],
+   [
+    "A",
+    "[mülk yok, sadece {s:esya} var haha|bir tek {s:esya} var haha|elimde kum saati var o kadar]"
+   ],
+   [
+    "B",
+    "[kum saati para etmez, çalış|kum saati paraya dönmüyor|çalışmaktan başka yol yok]"
+   ],
+   [
+    "A",
+    "[tamam, kaçtım çalışmaya|hemen işe|şimdi başlıyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-eski-dogru-not-limit",
+  "konu": "yanlis-bilgi",
+  "kosul": [
+   "B.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kredi limiti kredi notuyla direkt artıyor, gelir önemsiz|limit sadece nota bakıyor|limit için gelir lazım değil]"
+   ],
+   [
+    "B",
+    "[yanlış|öyle değil|tam değil]"
+   ],
+   [
+    "B",
+    "[limit geçen ayki gelir çarpı not bölü 100|gelir de var formülde|gelir çarpı not bölü yüz]"
+   ],
+   [
+    "A",
+    "[yani gelirim düşükse limit de düşük|gelirim azsa limitim az|o zaman gelir şart]"
+   ],
+   [
+    "C",
+    "[aynen, önce geliri artır|gelir artınca limit artar|ikisi de önemli]"
+   ],
+   [
+    "A",
+    "[{s:akraba} yanlış anlatmış yine|yanlış biliyormuşum|bunu bilmiyordum]"
+   ],
+   [
+    "B",
+    "[tecrübe konuşuyor haha|200 gündür buradayım boşuna değil|eskiler bilir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-eski-dogru-mevduat",
+  "konu": "yanlis-bilgi",
+  "kosul": [
+   "B.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[parayı bankada tutun, ayda faiz veriyor|banka faiz veriyor, ben koydum|banka faizi iyiymiş]"
+   ],
+   [
+    "B",
+    "[mevduat faizi yok ama|bankada faiz yok|faiz almıyorsun, yanlış]"
+   ],
+   [
+    "A",
+    "[ama hesabım arttı|hesabımdaki para arttı ama|para artmış gibi geldi]"
+   ],
+   [
+    "B",
+    "[maaş ya da kira yatmıştır|maaştır o, faiz değil|kira gelirindir]"
+   ],
+   [
+    "C",
+    "[para bankada sadece eriyor enflasyonla|faizsiz para enflasyonda erir|bekleyen para kaybettirir]"
+   ],
+   [
+    "A",
+    "[eyvah, {s:sayi} aydır bekletiyorum|ben {s:sayi} aydır öyle tutuyorum|o zaman paramı kaybetmişim]"
+   ],
+   [
+    "B",
+    "[mülk al, en azından değer korur|daire al, kira gelsin|beklersen erir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-is-ariyorum-tanisma-2",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[selam, garsonluk ya da kasiyerlik arıyorum|kasiyer ya da garson olurum, kimde iş var|şartsız bir iş lazım bana]"
+   ],
+   [
+    "B",
+    "[benim işletmeme garson lazım|bende garson ilanı var|garsonum yok, gel]"
+   ],
+   [
+    "A",
+    "[maaş nasıl|ne veriyorsun|şartlar ne]"
+   ],
+   [
+    "B",
+    "[ortalama garson kazancı {maas.garson} civarı|{maas.garson} civarı, görev yaptıkça|görevle kazanıyorsun, {maas.garson} falan]"
+   ],
+   [
+    "A",
+    "[kabul, nereye başvurayım|tamam, ilanı nasıl bulurum|başvuruyorum]"
+   ],
+   [
+    "B",
+    "[iş ilanlarında {B.yer} yazanı bul|ilanlarda {B.yer} diye ara|{B.yer} tarafındaki ilanım]"
+   ],
+   [
+    "C",
+    "[kum saatiyle başvuru beklemesini de kısaltabilirsin|başvuru beklemesine kum saati basabilirsin|kum saati varsa bas, hızlı olur]"
+   ],
+   [
+    "A",
+    "[{s:sayi} tane var, basarım|hemen basarım|tamam, sağ olun]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-degisim-kasiyer",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kasiyerlikten garsonluğa geçtim, hata mı yaptım|kasiyerliği bıraktım, garson oldum|kasiyerden garsona geçiş yaptım]"
+   ],
+   [
+    "B",
+    "[neden geçtin|niye|ne oldu]"
+   ],
+   [
+    "A",
+    "[kasiyerde hem maaş hem görev vardı, garsonda sadece görev|garsonda sadece görev var, şimdi fark ettim|garsonda maaş yok, görev var]"
+   ],
+   [
+    "C",
+    "[kasiyer {maas.kasiyer}, garson {maas.garson}, fark az|ikisi birbirine yakın|ortalamalar yakın]"
+   ],
+   [
+    "A",
+    "[ama kasiyer daha düzenliydi|kasiyerde içim rahattı|kasiyerde boş gün bile maaş vardı]"
+   ],
+   [
+    "D",
+    "[geri dön o zaman|tekrar kasiyerliğe başvur|geri geçebilirsin]"
+   ],
+   [
+    "A",
+    "[utanırım haha|{s:gun} geri dönerim belki|biraz deneyeyim önce]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-memur-pisman",
+  "konu": "is",
+  "kosul": [
+   "A.memur"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[memur oldum ama işletme kuranları görünce içim gidiyor|işletmesi olanlara bakınca kıskanıyorum|memurlukta kalmak doğru mu]"
+   ],
+   [
+    "B",
+    "[sabit maaş güven ama|güven var memurlukta|en azından garanti]"
+   ],
+   [
+    "C",
+    "[para biriktir, 60 gün deneyimle işletmeye geç|biriktir, sonra 3. kademeye|memurken birikim yap, sonra işletme]"
+   ],
+   [
+    "A",
+    "[memurluk deneyimi sayılıyor mu|memurken deneyim doluyor mu|hangi deneyim lazım]"
+   ],
+   [
+    "C",
+    "[emin değilim, bakmak lazım|bilmiyorum, kariyer ekranına bak|ondan emin değilim]"
+   ],
+   [
+    "B",
+    "[ben kariyerde yazıyor diye hatırlıyorum|kariyer ekranında şartı görürsün|şartlar orada yazıyor]"
+   ],
+   [
+    "A",
+    "[{s:gun} bakarım, şimdi {s:dizi_tur} izliyorum|bakarım, şu an {s:dizi_tur} izliyorum|sonra bakarım, şimdi yorgunum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kum-saati-tasarruf",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ben kum saatlerini hiç harcamıyorum|kum saati biriktiriyorum, {s:sayi} oldu|kum saatlerimi saklıyorum]"
+   ],
+   [
+    "B",
+    "[neden, ne için|ne zaman harcayacaksın|biriktirip ne yapacaksın]"
+   ],
+   [
+    "A",
+    "[uzun kurs için|en uzun kursa|ustalık kursuna]"
+   ],
+   [
+    "C",
+    "[ustalık {kurs.ustalik.gun} gün, hepsini silersin|ustalık kursu {kurs.ustalik.gun} gün sürüyor|{kurs.ustalik.gun} günü silmek güzel olur]"
+   ],
+   [
+    "A",
+    "[ama deneyim günleri kum saatiyle kısalır mı|deneyime de geçer mi|deneyim günlerine kum saati?]"
+   ],
+   [
+    "B",
+    "[kurs ve başvuru beklemesine yarıyor, deneyimi bilmiyorum|bildiğim kurs ve başvuru|deneyimden emin değilim, bakmak lazım]"
+   ],
+   [
+    "A",
+    "[tamam, bakarım|araştırayım|oyunda görürüm]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gunluk-gorev-seri",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[{s:sayi} gündür günlük görevleri aksatmadım|günlük görev serim devam ediyor|günlük görevleri hiç kaçırmıyorum bu ara]"
+   ],
+   [
+    "B",
+    "[nasıl hatırlıyorsun|alışkanlık mı|disiplin]"
+   ],
+   [
+    "A",
+    "[yatmadan önce {s:icecek} içerken yapıyorum|yatmadan önce yapıyorum|gece {s:saat} gibi yapıyorum]"
+   ],
+   [
+    "C",
+    "[ben {s:ev_isi} yaparken unutuyorum|ben {s:ev_isi} derken kaçırıyorum|ben hep unutuyorum]"
+   ],
+   [
+    "A",
+    "[alarm kur|telefona not al|yatmadan önce yap]"
+   ],
+   [
+    "B",
+    "[ben {s:dizi_tur} izlerken yaparım bundan sonra|dizi arası yaparım|reklam arası işi]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-bagis-gizli",
+  "konu": "bagis",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bağış yapınca kimse görüyor mu|bağışlar görünüyor mu herkese|bağış yaptığımı kim bilir]"
+   ],
+   [
+    "B",
+    "[itibarına yansıyor|itibar puanın artıyor|itibar artar, o görünür]"
+   ],
+   [
+    "A",
+    "[ben gösteriş için değil yaptım ama|gösteriş istemem|sessiz yapmak istiyorum]"
+   ],
+   [
+    "C",
+    "[itibar sana yarıyor, kredi notu ve iş başvurusu|kendi işine yarar, gösteriş değil|faydası sana]"
+   ],
+   [
+    "D",
+    "[güzel niyet, helal olsun|niyet güzel|helal]"
+   ],
+   [
+    "A",
+    "[{s:akraba} hep sağ elin verdiğini sol el görmesin der|{s:akraba} böyle öğretti|{s:akraba} gibi sessiz bağışlıyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-bagis-bayram-sayac",
+  "konu": "bagis",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{bayram} gelmesine {bayram.gun} gün var|{bayram.gun} gün sonra {bayram}|{bayram} için geri sayım başladı]"
+   ],
+   [
+    "B",
+    "[bağışları biriktiriyorum, iki kat itibar|bayramda bağış iki kat sayılıyor|bayram bağışı daha değerli]"
+   ],
+   [
+    "A",
+    "[ne kadar ayırdın|kaç para ayıracaksın|ne kadar vereceksin]"
+   ],
+   [
+    "B",
+    "[birkaç on bin|geçen bayramdan fazla|söylemem haha]"
+   ],
+   [
+    "C",
+    "[bayramda {s:akraba} bize gelecek, oyuna ara haha|bayramda {s:akraba} ile buluşacağız|bayram tatlısı {s:tatli} şart]"
+   ],
+   [
+    "A",
+    "[{s:tatli} hazır mı peki|bayramın {s:tatli} şart|bayram sofrası bekliyor]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kafe-hayali-gun",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kafe sahiplerine soru, bir gün nasıl geçiyor|kafe sahibi olunca gün nasıl|kafeci olmak nasıl bir şey]"
+   ],
+   [
+    "B",
+    "[sabah açıyorsun, çalışanlar geliyor ya da gelmiyor haha|sabah çalışan kontrolü, sonra ciro takibi|ilk iş çalışan var mı bak]"
+   ],
+   [
+    "C",
+    "[ciro konum, çalışan ve kaliteye bağlı|kalite, çalışan, konum|üç şey: konum, çalışan, kalite]"
+   ],
+   [
+    "A",
+    "[konum diyorsunuz, {s:semt} iyi mi|konum önemli mi gerçekten|nereyi seçeyim]"
+   ],
+   [
+    "B",
+    "[ciroya konumun etkisi var ama mülk fiyatı semte göre değişmiyor|konum ciroyu etkiler, fiyatı değil|bilmiyorum hangisi iyi, bakmak lazım]"
+   ],
+   [
+    "A",
+    "[karışık işmiş|epey düşünülecek şey var|kafam karıştı ama heyecanlıyım]"
+   ],
+   [
+    "C",
+    "[{kafe.kurulus} biriktirince düşünürsün|önce kuruluş parası, {kafe.kurulus}|parayı topla sonra kafa yorarsın]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-calisan-teskkur",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[çalışanım bu ay 20 görevi doldurdu, maaşı tam yattı|çalışanım bu ay tam çalıştı|elemanım tüm görevlerini bitirdi]"
+   ],
+   [
+    "B",
+    "[iyi eleman bulmuşsun|şanslısın|değerli eleman]"
+   ],
+   [
+    "A",
+    "[teşekkür ettim, çok sevindi|ona bir mesaj attım|kanalda da teşekkür edeyim dedim]"
+   ],
+   [
+    "C",
+    "[patronlar böyle olmalı|böyle patron az|iyi patron iyi eleman yapar]"
+   ],
+   [
+    "D",
+    "[benim çalışanım {s:sayi} görevde kaldı bu ay|benimki eksik çalıştı|benimki ay ortasında kayboldu]"
+   ],
+   [
+    "A",
+    "[{D} konuş onunla, belki saat uymuyor|{D} sabret, belki toparlar|{D} bir konuşmak lazım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kasa-fazla-cikti",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün ciro beklediğimden iyi geldi|bugün işler şahane|ciro bugün patladı]"
+   ],
+   [
+    "B",
+    "[ne oldu, bayram mı|neden|bir sebebi var mı]"
+   ],
+   [
+    "A",
+    "[bilmiyorum, belki rakip kapandı|rakip işletme kapanmış olabilir|bilmem, şans]"
+   ],
+   [
+    "C",
+    "[aynı türden işletme azalınca müşteri sana kalır|rakip kapandıysa müşteri sana döner|pazar boşaldı herhalde]"
+   ],
+   [
+    "A",
+    "[{s:icecek} ısmarlıyorum kanala|herkese hayali {s:icecek}|bugün kanala {s:tatli} benden]"
+   ],
+   [
+    "B",
+    "[hayali {s:tatli} kabul|hayali olsa da sağ ol|bedavaysa alırım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-malzeme-kalite-tartisma",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kaliteyi yükseltmek pahalı ama değer mi|kalite yatırımı geri dönüyor mu|kaliteye para basayım mı]"
+   ],
+   [
+    "B",
+    "[ciro kaliteye bağlı, değer bence|kalite ciroyu artırıyor|bence değer]"
+   ],
+   [
+    "C",
+    "[ama çalışan eksikse kalite tek başına kurtarmaz|önce çalışan, sonra kalite|çalışan yoksa kalite boşa]"
+   ],
+   [
+    "A",
+    "[ikisi de para|her şey para|bütçe yetmiyor]"
+   ],
+   [
+    "D",
+    "[biri bu ay biri gelecek ay|sırayla yap|bir ay çalışan, bir ay kalite]"
+   ],
+   [
+    "A",
+    "[{s:gun} karar veririm|mantıklı, {s:gun} hallederim|plan güzel]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gece-kurs-dusunce",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[hangi kursa yazılsam, uyuyamıyorum|kurs seçimi kafamı yedi|kpss mi muhasebe mi emlak mı]"
+   ],
+   [
+    "B",
+    "[para mı istiyorsun garanti mi|garanti mi istiyorsun heyecan mı|ne istiyorsun]"
+   ],
+   [
+    "A",
+    "[garanti ama biraz da heyecan|ikisi de|garanti ağır basıyor]"
+   ],
+   [
+    "C",
+    "[muhasebe sabit maaş, {maas.muhasebeci} civarı|muhasebeci {maas.muhasebeci} ve garanti|muhasebe kursu {kurs.muhasebe}]"
+   ],
+   [
+    "D",
+    "[emlak maaş artı prim, biraz heyecan var|emlakçılık {maas.emlak} artı prim|emlak heyecanlı]"
+   ],
+   [
+    "A",
+    "[emlak galiba|emlak kursuna yazılıyorum|emlakta karar kıldım]"
+   ],
+   [
+    "B",
+    "[iyi uykular, sabah {s:icecek} ile yazılırsın|sabah karar ver, şimdi uyu|yarın {s:saat} yazıl]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-arkadasi",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta",
+   "B.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sen de kurstasın değil mi|{B} hangi kurstaydın|{B} kurs nasıl gidiyor]"
+   ],
+   [
+    "B",
+    "[ustalık, {s:sayi} gün kaldı|ustalıkta, az kaldı|ustalık kursu, sabrediyorum]"
+   ],
+   [
+    "A",
+    "[ben emlak, beraber bitirelim|ben emlaktayım, yarışalım|ben de emlak kursunda]"
+   ],
+   [
+    "B",
+    "[kim önce biterse {s:tatli} ısmarlar|önce biten {s:icecek} ısmarlar|önce biten kazanır]"
+   ],
+   [
+    "C",
+    "[ikinizi de takipteyim haha|hakem benim|ben izliyorum]"
+   ],
+   [
+    "A",
+    "[anlaştık|tamam|kabul]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kademe-3-ilk-gun",
+  "konu": "is",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[3. kademeye geçtim, ilk gün|işletme sahibi olarak ilk sabahım|bugün patronluğun ilk günü]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun|bol kazançlar|bereketli olsun]"
+   ],
+   [
+    "A",
+    "[ilk iş ilan açtım|ilan açtım çalışan için|çalışan arıyorum]"
+   ],
+   [
+    "C",
+    "[ilk günler geçici personelle geçer, pahalı|ilan dolana kadar geçici personel var|başta geçici personel yer]"
+   ],
+   [
+    "A",
+    "[onu hesaba kattım|biliyorum, kenara para ayırdım|ona hazırım]"
+   ],
+   [
+    "D",
+    "[ben başvuru yapacağım|başvuran ben olayım|ben şu an {D.meslek} olarak çalışıyorum]"
+   ],
+   [
+    "A",
+    "[{D} başvur, bakarım|{D} hemen gel|{D} beklerim], [{s:gun} görüşme yaparız|yarın {s:saat} bakarım ilanlara|{s:gun} cevap veririm]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kademe-atlama-gecikti",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kademe atlamaya {s:sayi} gün kaldı ama param yetmiyor|deneyim tamam ama sermaye yok|deneyim bitti, para eksik]"
+   ],
+   [
+    "B",
+    "[kaç lazım|ne kadar eksik|hangi işletme]"
+   ],
+   [
+    "A",
+    "[dükkan için {dukkan.kurulus}|dükkan kuruluşu {dukkan.kurulus}|{dukkan.kurulus} lazım]"
+   ],
+   [
+    "C",
+    "[kredi çek|kredi düşünebilirsin|limitine bak]"
+   ],
+   [
+    "D",
+    "[ya da biraz daha çalış, borçsuz başla|borçsuz başlamak daha rahat|acele etme]"
+   ],
+   [
+    "A",
+    "[ikisi de mantıklı|kararsızım|ikisi arasında kaldım]"
+   ],
+   [
+    "C",
+    "[{s:akraba} ne derdi sence|{s:akraba} olsa ne derdi|{s:akraba} gibi düşün]"
+   ],
+   [
+    "A",
+    "[{s:akraba} borç alma derdi haha|{s:akraba} çalış derdi|o zaman çalışırım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kiraya-veren-ev-sahibi",
+  "konu": "mulk",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ikinci daireyi kiraya verdim|ikinci daire kiraya çıktı|kira geliri başladı]"
+   ],
+   [
+    "B",
+    "[kaç geliyor|ne kadar|kira ne kadar]"
+   ],
+   [
+    "A",
+    "[{daire.kira} civarı|ayda {daire.kira}|{daire.kira} gibi]"
+   ],
+   [
+    "C",
+    "[daire {daire}, kendini kaç ayda öder|kaç ayda çıkarır kendini|amorti ne kadar sürer]"
+   ],
+   [
+    "A",
+    "[uzun sürer ama değeri de artıyor|uzun ama güvenli|değerlenmeyle birlikte iyi]"
+   ],
+   [
+    "D",
+    "[ben de {s:sayi} ay sonra ikinciyi alacağım|bir sonraki benim|yakında ben de]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yeni-saf-ev-oyunu",
+  "konu": "soru",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ev alınca içine girebiliyor muyuz|evin içini görebiliyor muyuz|ev alınca ne değişiyor]"
+   ],
+   [
+    "B",
+    "[içeri girme yok haha|ev görsel değil|ev bir mülk, kira ödemezsin]"
+   ],
+   [
+    "A",
+    "[sadece kira mı değişiyor|o kadar mı|başka bir şey yok mu]"
+   ],
+   [
+    "C",
+    "[kira gider, net servetin artar|servet artar, kira biter|kira kalkar, servete eklenir]"
+   ],
+   [
+    "A",
+    "[ben {s:renk} duvar yapacaktım|ben {s:hayvan} besleyecektim haha|ben bahçe hayal etmiştim]"
+   ],
+   [
+    "B",
+    "[hayal serbest haha|hayalde istediğin olur|belki ileride]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yeni-saf-memur-isveren",
+  "konu": "soru",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[memur olmak için hangi patrona başvuracağım|memurluk ilanını bulamıyorum|memur ilanı nerede]"
+   ],
+   [
+    "B",
+    "[memurun işvereni yok|memurlukta patron yok|memur ilan beklemez]"
+   ],
+   [
+    "C",
+    "[kariyer ekranından doğrudan başlıyorsun|kariyerden direkt geçiyorsun|kariyer ekranı, oradan]"
+   ],
+   [
+    "A",
+    "[şart yok mu|şartsız mı|hemen olur mu]"
+   ],
+   [
+    "B",
+    "[kamu sınavı kursu ve 30 gün deneyim|kpss kursu {kurs.kpss} ve 30 gün|kurs ve 30 gün deneyim]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gündür kuryeyim, tamam|deneyimim var|30 günü doldurdum]"
+   ],
+   [
+    "C",
+    "[o zaman kurs al, gerisi kolay|kursa yazıl|kurs yeter]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ekonomi-faiz-haber",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[faiz değişecek diye haber çıktı mı|faiz kararı var mı|faiz ne olacak bu ay]"
+   ],
+   [
+    "B",
+    "[kararlar bir gün önceden haber oluyor|haber bir gün önce düşer|bir gün önceden belli olur]"
+   ],
+   [
+    "A",
+    "[şu an {faiz} değil mi|şimdilik {faiz}|{faiz} görüyorum]"
+   ],
+   [
+    "C",
+    "[enflasyon {enflasyon}, faiz artabilir|enflasyon yüksekse faiz artar|enflasyonla faiz birlikte]"
+   ],
+   [
+    "D",
+    "[kredi çekecekler önce çeksin haha|faiz artmadan çekin|çekecekseniz şimdi]"
+   ],
+   [
+    "A",
+    "[panik yapmayın, ben {s:gun} günü bakarım|haberi bekleyin|bekleyelim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-dedikodu-kim-zengin",
+  "konu": "dedikodu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[duydunuz mu, biri {s:sayi} daire almış bir günde|biri bir günde {s:sayi} daire almış|kanalda biri daire topluyor]"
+   ],
+   [
+    "B",
+    "[kim|kimmiş|ismi ne]"
+   ],
+   [
+    "A",
+    "[isim vermeyeyim, dedikodu olmasın|söylemem, kendisi söyler|bilmiyorum, duydum sadece]"
+   ],
+   [
+    "C",
+    "[para varsa alınır, kıskanmayın|helal olsun ona|kıskançlık iyi değil]"
+   ],
+   [
+    "D",
+    "[ben {s:sayi} daireyi zor aldım|ben birini zor aldım|ben bir tane bile alamadım]"
+   ],
+   [
+    "A",
+    "[herkes kendi yolunda|kıyas yapmayalım|kendi hızımız]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-guncelleme-dernek-sizlanma",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[lonca dernek ne zaman gelecek|dernek kurmak istiyorum|kuryeler derneği hayalim var]"
+   ],
+   [
+    "B",
+    "[lonca ve dernek henüz yok|daha gelmedi|gelecekmiş]"
+   ],
+   [
+    "A",
+    "[biz yine de kanalda bir araya gelelim|kanalda gayriresmi dernek kuralım haha|kendi aramızda örgütlenelim]"
+   ],
+   [
+    "C",
+    "[haha başkan kim|başkanı ben olurum|aidat var mı]"
+   ],
+   [
+    "A",
+    "[aidat {s:tatli} haha|aidat bir {s:icecek}|aidat yok, sadece muhabbet]"
+   ],
+   [
+    "D",
+    "[üye oldum|ben de varım|beni de yaz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gecici-personel-sakasi",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[geçici personel bugün müşteriye {s:icecek} yerine {s:icecek#2} vermiş herhalde|geçici personel her şeyi karıştırıyor herhalde|geçici personel kasayı yine karıştırdı]"
+   ],
+   [
+    "B",
+    "[haha verimsiz derler ya|geçici personel efsane|klasik geçici]"
+   ],
+   [
+    "C",
+    "[ciddi ciddi pahalı ama|şaka bir yana çok pahalı|para yiyor gerçekten]"
+   ],
+   [
+    "A",
+    "[kalıcı eleman lazım|ilan açacağım|ilanım açık, kimse yok]"
+   ],
+   [
+    "D",
+    "[ben {D.meslek} olarak çalışıyorum, ama ararsan bakarım|ben bakabilirim|başvurayım mı]"
+   ],
+   [
+    "A",
+    "[{D} bekliyorum|{D} çok iyi olur|{D} gel]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-sabah-kepenk",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[kepenk açıldı, ilk {s:icecek} demlendi|işletmeyi açtım, {s:icecek} hazır|sabah {s:saat} açtım, şimdi bekliyorum]"
+   ],
+   [
+    "B",
+    "[hayırlı işler|bol müşteriler|bereketli günler]"
+   ],
+   [
+    "A",
+    "[dün akşam {s:kis_hava}, bugün müşteri gelir mi|hava kötü, müşteri gelir mi bilmem|bugün sakin geçecek gibi]"
+   ],
+   [
+    "C",
+    "[hava oyunda ciroyu etkiliyor mu ki|havanın etkisi var mı, bilmiyorum|bence etkilemez ama bilmiyorum]"
+   ],
+   [
+    "A",
+    "[bilmem, his bu haha|hissediyorum sadece|içimden geliyor]"
+   ],
+   [
+    "B",
+    "[hisle işletme yönetilmez haha|hisler yanıltır|rakamlara bak]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-patron-siki",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[patronum her şeye karışıyor|patron her dakika kontrol ediyor sanki|patronum çok titiz]"
+   ],
+   [
+    "B",
+    "[oyunda patron karışamaz ki, görev yapıyorsun|patron sadece maaşı öder|ne karışıyor]"
+   ],
+   [
+    "A",
+    "[kanalda bana mesaj atıp duruyor haha|sürekli yazıyor, görev yaptın mı diye|her saat soruyor]"
+   ],
+   [
+    "C",
+    "[20 görevi tamamlarsan maaş tam, boşver|görevi bitir, susar|ay sonu tam maaş al, gerisi önemsiz]"
+   ],
+   [
+    "A",
+    "[{s:sayi} görevim kaldı zaten|az kaldı|bitiriyorum]"
+   ],
+   [
+    "D",
+    "[patronun ben miyim acaba haha|o patron ben olmayayım|ben de çalışanıma çok yazıyorum, bu sen misin]"
+   ],
+   [
+    "A",
+    "[haha {D} değil merak etme|{D} sen değilsin|{D} rahat ol]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-patron-eleman-ayrildi-uzgun",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[en iyi çalışanım kendi işini kurmak için ayrıldı|elemanım ayrıldı, patron oluyormuş|çalışanım 3. kademeye geçmiş, gitti]"
+   ],
+   [
+    "B",
+    "[gurur duy, yetiştirdin|sevin, büyüttün onu|başarısı senin de başarın]"
+   ],
+   [
+    "A",
+    "[gurur var ama yerine kimse yok|gururluyum ama şimdi geçici personel|seviniyorum ama işletme boş]"
+   ],
+   [
+    "C",
+    "[ilan aç hemen|hemen ilan|yeni birini al]"
+   ],
+   [
+    "A",
+    "[açtım, {s:sayi} başvuru gelmiş|açtım, başvurular geliyor|açtım bile]"
+   ],
+   [
+    "D",
+    "[eski elemanın rakip olmasın sakın haha|aynı türden işletme açarsa müşteri bölünür haha|rakip yetiştirmişsin]"
+   ],
+   [
+    "A",
+    "[haha {s:semt} tarafına açacakmış, uzak|uzağa açıyor şükür|o da bir şey değil]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-ortasi-pes",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kursun yarısındayım, bırakmak istiyorum|kursu yarıda bıraksam mı|kurs yarıda, sıkıldım]"
+   ],
+   [
+    "B",
+    "[neden|niye|sabret]"
+   ],
+   [
+    "A",
+    "[para lazım oldu, kursa verdiğim para gitti|param azaldı, kurs ne işime yarayacak|geçim zorladı]"
+   ],
+   [
+    "C",
+    "[kurs sürerken çalışabiliyorsun, bırakma|çalışmaya devam et, kurs bitsin|kurs bitince kazanç artar]"
+   ],
+   [
+    "D",
+    "[kum saati bas, bitir gitsin|kum saatin varsa kısalt|kum saati yok mu]"
+   ],
+   [
+    "A",
+    "[{s:sayi} tane var|var birkaç tane|bir tane]"
+   ],
+   [
+    "D",
+    "[bas, bitir, yüzün gülsün|hemen bas|bas geç]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-bitis-sevinc-2",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece yarısı kurs bitti, ben de uyanıktım|kurs tam şimdi bitti|gece {s:saat} gibi kurs bitti]"
+   ],
+   [
+    "B",
+    "[bu saatte uyanık mısın|uyumadın mı|gece kuşu]"
+   ],
+   [
+    "A",
+    "[beklemek için uyanık kaldım|bitişi görmek istedim|uykum kaçtı zaten]"
+   ],
+   [
+    "C",
+    "[şimdi uyu, sabah meslek değiştir|sabah geçersin|yarın {s:icecek} ile geçiş yap]"
+   ],
+   [
+    "A",
+    "[yok hemen geçtim bile|geçtim bile|anında geçtim]"
+   ],
+   [
+    "B",
+    "[tebrikler, iyi uykular|helal, şimdi uyu|hayırlı olsun, yat artık]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-pahali-kiyas",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurs fiyatlarını kıyasladım|bütün kursların fiyatına baktım|kursları yan yana koydum]"
+   ],
+   [
+    "B",
+    "[ne çıktı|hangisi ucuz|anlat]"
+   ],
+   [
+    "A",
+    "[kpss {kurs.kpss}, muhasebe {kurs.muhasebe}|muhasebe {kurs.muhasebe}, emlak {kurs.emlak}|ustalık {kurs.ustalik}, emlak {kurs.emlak}]"
+   ],
+   [
+    "C",
+    "[süreler de farklı|günler de farklı, ona da bak|süre önemli]"
+   ],
+   [
+    "A",
+    "[en kısa hangisi|hangisi çabuk biter|süreleri bilen]"
+   ],
+   [
+    "C",
+    "[bilmiyorum hepsini, kursa göre değişiyor|tam hatırlamıyorum, ekranda yazıyor|kurs ekranında yazıyor]"
+   ],
+   [
+    "B",
+    "[ben {s:hobi} ile beklemek istiyorum, en uzunu da olur|en uzunu bile geçer|bence fiyata göre değil hedefe göre seç]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kademe-hikaye-eski",
+  "konu": "is",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ben 200 gün önce kurye olarak başladım|ilk gün kuryeydim, şimdi bakın|eskiler bilir, ben kuryeydim]"
+   ],
+   [
+    "B",
+    "[şimdi ne yapıyorsun|şu an ne|şimdi nerdesin]"
+   ],
+   [
+    "A",
+    "[şimdi {A.meslek}|{A.meslek} olarak devam ediyorum|bugün {A.meslek}]"
+   ],
+   [
+    "C",
+    "[en zor kısım neydi|en çok neye zorlandın|hangi aşama zordu]"
+   ],
+   [
+    "A",
+    "[ilk ev için birikim|ilk peşinat|ilk 60 gün]"
+   ],
+   [
+    "B",
+    "[biz de oradayız haha|biz de o aşamadayız|biz hâlâ oradayız]"
+   ],
+   [
+    "A",
+    "[geçer, ben {s:sayi} kere bırakacaktım|sabredin, ben de az kalsın bırakıyordum|siz de geçersiniz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kira-ev-ilk-kiracilik",
+  "konu": "mulk",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[her ay param azalıyor, kira mı|her ay bir para gidiyor|neden her ay para düşüyor]"
+   ],
+   [
+    "B",
+    "[ev sahibi değilsen kira ödüyorsun|kira ve geçim gideri|kiracısın, kira gidiyor]"
+   ],
+   [
+    "A",
+    "[ne kadar|kaç para|her ay ne kadar]"
+   ],
+   [
+    "C",
+    "[kira {evkira}, geçim {yasam} civarı|{evkira} kira, {yasam} geçim|kira ve geçim, {evkira} ve {yasam}]"
+   ],
+   [
+    "A",
+    "[bunu kimse söylememişti|bilmiyordum|hiç dikkat etmemişim]"
+   ],
+   [
+    "B",
+    "[şimdi öğrendin, iyi oldu|erken öğrenmek iyi|plan yap ona göre]"
+   ],
+   [
+    "D",
+    "[ben de ilk ay {s:mekan} fark etmiştim haha|ben de geç fark ettim|herkes böyle öğrenir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-almak-korku",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[yarın ilk evimi alacağım, korkuyorum|ilk mülk alımı yarın, heyecandan uyuyamıyorum|yarın ev alıyorum, eller titriyor]"
+   ],
+   [
+    "B",
+    "[neden korku|neyden korkuyorsun|korkulacak ne var]"
+   ],
+   [
+    "A",
+    "[paranın hepsi gidecek|nakit sıfırlanacak|kenarda para kalmayacak]"
+   ],
+   [
+    "C",
+    "[kenara bir aylık geçim ayır|bir ay kira ve geçim kadar bırak|acil durum parası bırak]"
+   ],
+   [
+    "A",
+    "[geçim {yasam} kadar ayırırım|{yasam} bırakırım|tamam ayırırım]"
+   ],
+   [
+    "B",
+    "[hayırlısı, yarın haber ver|yarın müjde bekliyoruz|yarın {s:tatli} sende]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-kiraya-mi-otur",
+  "konu": "mulk",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ikinci daireyi aldım, birini kiraya mı versem|iki dairem var, birinde oturuyorum|ikinci daire boş duruyor]"
+   ],
+   [
+    "B",
+    "[boş bırakma, kiraya ver|kiraya ver, {daire.kira} gelir|boşta durmasın]"
+   ],
+   [
+    "A",
+    "[kendiliğinden kiraya mı çıkıyor|nasıl kiraya veriyorum|kira kendisi mi geliyor]"
+   ],
+   [
+    "C",
+    "[daire kira getiriyor, otomatik|kira geliri otomatik|ben bir şey yapmadan geliyordu]"
+   ],
+   [
+    "A",
+    "[harika, {s:akraba} gibi kiracı kovalamak yok|kiracı derdi yok o zaman|güzel, kafa rahat]"
+   ],
+   [
+    "B",
+    "[oyunun güzel yanı bu|gerçekte böyle değil haha|gerçekte keşke böyle olsa]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-patron-hesabi",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ay sonu, işletmenin karnesi geldi|işletme ay sonu hesabı çıktı|bu ayın işletme raporu]"
+   ],
+   [
+    "B",
+    "[kâr mı zarar mı|artıda mısın|nasıl]"
+   ],
+   [
+    "A",
+    "[az kâr|başabaş|ucu ucuna kâr]"
+   ],
+   [
+    "C",
+    "[gider ne kadar|giderin|sabit gider ne]"
+   ],
+   [
+    "A",
+    "[{dukkan.gider} civarı|dükkan gideri {dukkan.gider}|{dukkan.gider} gibi bir şey]"
+   ],
+   [
+    "D",
+    "[geçici personel parasını düş, gerçek kâr çıkar|geçici personel ne yedi bak|geçici personel kalemine bak]"
+   ],
+   [
+    "A",
+    "[onu kesince kâr artacak|onu kesmem lazım|ilan açıp kalıcı alacağım], [{s:gun} ilan açıyorum|yarın {s:saat} ilan|bu {s:gun} hallederim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-kurye-rekor",
+  "konu": "ekonomi",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[bu ay kuryelik rekor|bu ay en çok kazandığım ay|ayı rekorla kapattım]"
+   ],
+   [
+    "B",
+    "[ne kadar|kaç görev|anlat]"
+   ],
+   [
+    "A",
+    "[ortalamayı geçtim, {maas.kurye} civarı ortalama ya|ortalama {maas.kurye}, ben üstündeyim|{maas.kurye} ortalamanın üstü]"
+   ],
+   [
+    "C",
+    "[her gün kaç görev yaptın|günde ne kadar|nasıl yaptın]"
+   ],
+   [
+    "A",
+    "[{s:sayi} değil, daha fazla haha|saymadım, çok|sabah {s:saat} başladım her gün]"
+   ],
+   [
+    "D",
+    "[kendine dikkat et, uyu da|yorulma çok|bu tempo zor]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-zam-kiyasi-tatli",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[geçen ay {s:tatli} parasıyla bir şey alıyordum, şimdi yetmiyor|{s:tatli} hesabıyla ölçüyorum, her şey pahalandı|benim ölçüm {s:tatli}, o da zamlandı haha]"
+   ],
+   [
+    "B",
+    "[oyunda tatlı satılmıyor ama haha|oyunda tatlı mı var|bu ne ölçüsü]"
+   ],
+   [
+    "A",
+    "[benim kafamda var haha|kafamdaki ekonomi|kendi endeksim]"
+   ],
+   [
+    "C",
+    "[{s:tatli} endeksi, güzel fikir|ben de {s:icecek} endeksi tutuyorum|herkesin kendi endeksi var]"
+   ],
+   [
+    "D",
+    "[resmi enflasyon {enflasyon}|resmi rakam {enflasyon}|{enflasyon} yazıyor]"
+   ],
+   [
+    "A",
+    "[benim endeksim daha yüksek haha|benimki daha acı|benim endeksim yalan söylemez]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-maas-artti-ama",
+  "konu": "ekonomi",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[maaşım arttı, sevinmiştim|maaşa zam geldi|maaşım biraz yükseldi]"
+   ],
+   [
+    "B",
+    "[ama|ve|sonra]"
+   ],
+   [
+    "A",
+    "[kira ve geçim daha çok artmış|geçim gideri daha çok zamlanmış|fiyatlar önden koşuyor]"
+   ],
+   [
+    "C",
+    "[maaşlar endeksi geriden takip ediyor|maaş geriden geliyor, bilinen|fiyat önde, maaş arkada]"
+   ],
+   [
+    "A",
+    "[hep böyle mi olacak|hep geride mi kalacağız|kurtuluşu yok mu]"
+   ],
+   [
+    "D",
+    "[mülk al, değer korur|ev sahibi ol, kirayı kes|kurs alıp kademe atla]"
+   ],
+   [
+    "A",
+    "[{s:akraba} bile böyle diyor|tamam, {s:gun} kurs bakarım|ev mi kurs mu yine]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-guncelleme-hayal-listesi",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[güncelleme gelince ilk ne yapacaksınız|güncellemede ilk neyi deneyeceksiniz|yeni özellik gelince ilk ne]"
+   ],
+   [
+    "B",
+    "[borsa|borsa, kesin|ben borsa]"
+   ],
+   [
+    "C",
+    "[ben araba galerisi|galeri gelince araba|ben lüks şeyler]"
+   ],
+   [
+    "D",
+    "[ben inşaat, {s:semt} tarafına bina|ben inşaat|ben ihale]"
+   ],
+   [
+    "A",
+    "[ben ortaklık, {s:akraba} ile kafe|ortaklık bekliyorum|ben dernek]"
+   ],
+   [
+    "B",
+    "[hepsi gelecekmiş, sabır|hepsini bekliyoruz|sırayla gelir herhalde]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-guncelleme-sitem",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[oyunda yapacak şey kalmadı gibi|her şeyi yaptım galiba|sıkılmaya başladım]"
+   ],
+   [
+    "B",
+    "[kaç dairen var|işletmen var mı|4. kademe oldun mu]"
+   ],
+   [
+    "A",
+    "[{s:sayi} daire, bir işletme|iki işletme var|4. kademeye çalışıyorum]"
+   ],
+   [
+    "C",
+    "[4. kademe için daha çok yol var|4. kademe milyonlar ister|daha bitmedi oyun]"
+   ],
+   [
+    "A",
+    "[ama borsa yok, döviz yok|yeni bir şey lazım|borsa gelsin artık]"
+   ],
+   [
+    "D",
+    "[sonraki güncellemede gelecekmiş|gelecekmiş, bekle|gelecek diyorlar]"
+   ],
+   [
+    "A",
+    "[bekliyoruz, {s:hobi} ile oyalanıyorum|bekliyorum, şimdilik {s:hobi}|bekleriz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-arkadas-yaris",
+  "konu": "siralama",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} sıralamada beni geçmişsin|{B} sıralamada önüme geçtin|{B} sıralamada üstümdesin]"
+   ],
+   [
+    "B",
+    "[haha dün bir daire aldım|bir dükkan ekledim|kira geliri birikti]"
+   ],
+   [
+    "A",
+    "[bu hafta geri alırım|haftaya geçerim seni|sana yetişeceğim]"
+   ],
+   [
+    "B",
+    "[bekliyorum|hodri meydan|göreceğiz]"
+   ],
+   [
+    "C",
+    "[ikiniz de altımdasınız haha|ben ikinizi de geçtim|benim yerim sabit]"
+   ],
+   [
+    "A",
+    "[{C} sen başka lig|{C} seni sonra geçeriz|{C} sen bekle]"
+   ],
+   [
+    "B",
+    "[{s:tatli} bahsine var mısın|kaybeden {s:tatli} ısmarlar|kaybeden {s:icecek} ısmarlar]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-kiskanc-yorum",
+  "konu": "siralama",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[sıralamanın başındakiler kesin para satın almıştır|ilk sıradakiler kesin gerçek para vermiştir|tepedekiler kesin para basmıştır]"
+   ],
+   [
+    "B",
+    "[para satın alınabiliyor ama deneyim ve kurs atlanmıyor|para alınır ama kademe şartı atlanmaz|para tek başına yetmez]"
+   ],
+   [
+    "C",
+    "[o kadar parayla kademe 3-4 olmazlar|deneyimi parayla alamazsın|deneyim sabır işi]"
+   ],
+   [
+    "A",
+    "[yine de avantaj|yine de önde başlıyorlar|kıskanıyorum ama haha]"
+   ],
+   [
+    "D",
+    "[ben bir kuruş vermedim, {s:sayi} daire aldım|ben vermeden geldim|vermeden de olur]"
+   ],
+   [
+    "A",
+    "[{D} nasıl|{D} anlat|{D} sırrın ne]"
+   ],
+   [
+    "D",
+    "[her gün görev ve sabır, {s:akraba} gibi|sabır ve plan|günlük görev, birikim, mülk]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-hedef-kafe",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kafe için birikim yapıyorum, sayaç gibi bakıyorum|her gün kafe paramı sayıyorum|kafe birikimi ilerliyor]"
+   ],
+   [
+    "B",
+    "[ne kadar lazım|hedef ne|kuruluş kaç]"
+   ],
+   [
+    "A",
+    "[kuruluş {kafe.kurulus} civarı|{kafe.kurulus} hedef|{kafe.kurulus} gibi]"
+   ],
+   [
+    "C",
+    "[bir de gider {kafe.gider} var, onu da hesapla|aylık gider {kafe.gider}, kenarda tut|gideri de unutma]"
+   ],
+   [
+    "A",
+    "[hiç düşünmemiştim|eyvah, onu unuttum|hedef büyüdü]"
+   ],
+   [
+    "D",
+    "[ilk ay geçici personel de olur, ekstra|ilan dolana kadar geçici personel|ilk ay pahalı geçer]"
+   ],
+   [
+    "A",
+    "[hedefi {s:sayi} ay ertele o zaman|biraz daha bekleyeceğim|tamam, plan güncellendi]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-motivasyon",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[birikim yaparken nasıl motive oluyorsunuz|biriktirmek sıkıcı, siz nasıl yapıyorsunuz|para biriktirmek zor geliyor]"
+   ],
+   [
+    "B",
+    "[hedefi yaz, her gün bak|hedefini görünür yap|kâğıda yaz]"
+   ],
+   [
+    "C",
+    "[ben her birikimde {s:tatli} ödülü veriyorum kendime|kendime küçük ödüller|her adımda ödül]"
+   ],
+   [
+    "D",
+    "[ben hesaplamıyorum, sadece görev yapıyorum|düşünmeden çalışıyorum|hiç bakmıyorum, birikiyor]"
+   ],
+   [
+    "A",
+    "[{D} yöntemi bana göre|{C} fikri hoşuma gitti|hepsini karıştıracağım]"
+   ],
+   [
+    "C",
+    "[önemli olan devam|devam etmek yeter|bırakmamak]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-limiti-sevinc",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kredi limitim ilk defa yükseldi|limit arttı sonunda|limitim iki katına çıkmış]"
+   ],
+   [
+    "B",
+    "[geçen ay gelir mi arttı|gelirin mi arttı|notun mu yükseldi]"
+   ],
+   [
+    "A",
+    "[ikisi de, kurs bitti meslek değiştirdim|yeni meslekle gelir arttı|gelir arttı, not da biraz]"
+   ],
+   [
+    "C",
+    "[limit geçen ayki gelir çarpı not bölü 100 ya|formül bu, gelir artınca limit artar|aynen formül]"
+   ],
+   [
+    "A",
+    "[peki şimdi çekmeli miyim|çekeyim mi|ne yapayım bu limitle]"
+   ],
+   [
+    "D",
+    "[limit var diye çekme|ihtiyaç yoksa çekme|plan yoksa dokunma]"
+   ],
+   [
+    "A",
+    "[{D} haklı, {s:gun} düşünürüm|planım yok aslında|tamam, bekliyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-kafe-kurtar",
+  "konu": "kredi",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[işletme zararda, kredi çekip kurtarayım mı|kötü ay geçti, kredi çeksem mi|işletmeyi krediyle ayakta tutsam mı]"
+   ],
+   [
+    "B",
+    "[zararın sebebi ne|neden zarar|önce sebebi bul]"
+   ],
+   [
+    "A",
+    "[geçici personel ve az müşteri|geçici personel ve rakip|eleman yok, müşteri az]"
+   ],
+   [
+    "C",
+    "[krediyle kurtarmak sorunu ertelemek|önce çalışan bul|kredi yara bandı]"
+   ],
+   [
+    "D",
+    "[faiz {faiz} aylık, zarar eden işletmeye borç ağır|faiz ağır gelir|taksit zarara eklenir]"
+   ],
+   [
+    "A",
+    "[ilanı tekrar açayım o zaman|önce çalışan|tamam, kredi sonra]"
+   ],
+   [
+    "B",
+    "[doğru karar|mantıklı|iyi düşündün], [{s:akraba} olsa aynısını derdi|bir {s:icecek} iç, sonra ilan|önce eleman, sonra hesap]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-eski-dogru-arsa-kira",
+  "konu": "yanlis-bilgi",
+  "kosul": [
+   "C.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[arsa en iyi yatırım, kira da veriyor|arsa al, kira gelsin|arsa kira getirir]"
+   ],
+   [
+    "B",
+    "[ben de öyle duymuştum|doğru mu|emin misin]"
+   ],
+   [
+    "C",
+    "[arsa kira getirmiyor|arsa kira vermez, sadece değerlenir|arsadan kira yok]"
+   ],
+   [
+    "A",
+    "[nasıl yani|ama|ben aldım ama]"
+   ],
+   [
+    "C",
+    "[arsa değer kazanır, kira daire ve dükkanda|kira istersen daire ya da dükkan|kira {daire.kira} daireden gelir]"
+   ],
+   [
+    "A",
+    "[eyvah, {s:sayi} arsa aldım|ben arsaya yüklendim|aman]"
+   ],
+   [
+    "C",
+    "[satma, değerlenecek|bekle, kazanırsın|sorun değil, değerlenir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-eski-dogru-kademe",
+  "konu": "yanlis-bilgi",
+  "kosul": [
+   "B.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kum saatiyle deneyim süresi de atlanıyor|kum saatiyle 60 günü atlarız|deneyimi kum saati siliyor]"
+   ],
+   [
+    "B",
+    "[kum saati kurs ve başvuru beklemesini kısaltıyor|kum saati beklemeleri kısaltır, deneyimden emin değilim|bildiğim kurs ve başvuru]"
+   ],
+   [
+    "A",
+    "[ama {s:akraba} öyle dedi|ama bir arkadaş öyle dedi|ama ben öyle duydum]"
+   ],
+   [
+    "B",
+    "[deneyim için bilmiyorum, bakmak lazım|kariyer ekranına bak, net|ben deneyimde denemedim]"
+   ],
+   [
+    "C",
+    "[3-4. kademede deneyim parayla atlanmıyor diye biliyorum|deneyim parayla alınmıyor, kum saati de para|ben atlanmaz diye biliyorum]"
+   ],
+   [
+    "A",
+    "[tamam, kontrol edeceğim|bakayım|yanlış duymuş olabilirim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-tanisma-usta-arayan",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[usta lazım, iş verecek kimse var mı|usta arıyorum|ustası olan var mı]"
+   ],
+   [
+    "B",
+    "[usta olarak ilan bekleyen bir arkadaşım var|ben ustayım ama işim var|ustalar genelde görev yapıyor]"
+   ],
+   [
+    "C",
+    "[usta görev yaptıkça kazanıyor, ortalama {maas.usta}|ustalar {maas.usta} civarı|usta maaşı {maas.usta} falan]"
+   ],
+   [
+    "A",
+    "[ben taşeron olmak istiyorum, ustalara iş|taşeronluk için ustalık deneyimi topluyorum|ben de usta olacağım aslında]"
+   ],
+   [
+    "B",
+    "[taşeronluk 20 gün ustalık ister|20 gün ustalık lazım taşeron için|önce 20 gün usta ol]"
+   ],
+   [
+    "A",
+    "[o zaman ben önce usta olayım haha|yanlış taraftayım|önce kendim]"
+   ],
+   [
+    "D",
+    "[{s:gun} itibariyle başla|bugün başla|hemen başla]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-tanisma-kasiyer-arayan",
+  "konu": "is",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[dükkana kasiyer arıyorum, bugün başlayabilecek|bugün başlayacak kasiyer lazım|acil kasiyer]"
+   ],
+   [
+    "B",
+    "[ben başvururum, şu an işsizim|bende iş yok, başvururum|ben buradayım]"
+   ],
+   [
+    "A",
+    "[{B} başvur, kum saatin varsa bas, hızlansın|{B} başvur, hemen bakarım|{B} hadi başvur]"
+   ],
+   [
+    "B",
+    "[basıyorum, {s:sayi} tane var|basarım|tamam]"
+   ],
+   [
+    "C",
+    "[{B} iyi şanslar|{B} bol kazanç|hayırlı olsun ikinize]"
+   ],
+   [
+    "A",
+    "[ay sonu 20 görevi tamamlarsan maaş tam|20 görev şartını unutma|20 görevi tamamla yeter]"
+   ],
+   [
+    "B",
+    "[tamam patron|anlaşıldı|söz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-insaat-pisman",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[inşaat işçiliğine geçtim, kurye daha iyiydi|inşaat beni yordu|inşaat işçisi olmak zormuş]"
+   ],
+   [
+    "B",
+    "[ama usta olacaksan şart|usta için 20 gün lazım|ustalık yolu bu]"
+   ],
+   [
+    "C",
+    "[inşaatçı {maas.insaat}, kurye {maas.kurye}|kazanç farkı ne kadar|ikisi ne kazandırıyor]"
+   ],
+   [
+    "A",
+    "[benzer ama yorgunluk başka|para yakın ama yoruluyorum|fark yok ama bıktım]"
+   ],
+   [
+    "B",
+    "[20 gün bitince usta olunca değer|ustalıkta {maas.usta} gibi|sonu iyi]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gün kaldı, dayanıyorum|az kaldı, sabır|dayanırım]"
+   ],
+   [
+    "D",
+    "[gece {s:yemek} ye, kas yap haha|güç için {s:yemek} haha|iyi beslen]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-emlakcidan-garsona",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[emlak danışmanlığını bıraktım, garsona döndüm|emlakçılık bana göre değilmiş|emlakçıydım, bıraktım]"
+   ],
+   [
+    "B",
+    "[neden|niye|ciddi mi]"
+   ],
+   [
+    "A",
+    "[prim günleri iyi ama diğer günler sıkıcı|prim gelmeyince çok sıkıldım|belirsizlik beni yordu]"
+   ],
+   [
+    "C",
+    "[maaş da var ama, {maas.emlak} civarı ortalama|ortalama {maas.emlak}, kötü değil|emlakta maaş var]"
+   ],
+   [
+    "A",
+    "[biliyorum ama içim rahat değildi|ama bana göre değil|rakamlar iyi, ruhum değil haha]"
+   ],
+   [
+    "D",
+    "[kurs parası yandı mı|emlak kursu boşa mı gitti|kurs parası gitti mi]"
+   ],
+   [
+    "A",
+    "[belge duruyor, belki dönerim|belgem var, istersem dönerim|gitmedi, belge bende]"
+   ],
+   [
+    "B",
+    "[{s:gun} fikrin değişir haha|bakarsın dönersin|iyi yaptın bence]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kum-saati-kim-satin-alir",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kum saati satın alıyor musunuz|kum saatine para veren var mı|kum saati alanlar]"
+   ],
+   [
+    "B",
+    "[ben hiç almadım, günlükten biriktiriyorum|almıyorum, günlük görev yetiyor|ben bedavaları kullanıyorum]"
+   ],
+   [
+    "C",
+    "[ben bir kere aldım, kursu bitirmek için|bir kere aldım, aceleydi|bir kez aldım]"
+   ],
+   [
+    "A",
+    "[değdi mi|işe yaradı mı|pişman mısın]"
+   ],
+   [
+    "C",
+    "[{s:sayi} gün kazandım, değdi|değdi ama gerek yoktu belki|o an iyi geldi]"
+   ],
+   [
+    "D",
+    "[servete etkisi yok, bilin|maaşı artırmıyor ama|sadece zaman kazandırıyor]"
+   ],
+   [
+    "A",
+    "[o zaman günlükle idare ederim|ben de biriktiririm|bedavayla yetinirim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gunluk-gorev-zorlandim",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[günlük görevlerin biri zor geldi bugün|bugünkü görev beni uğraştırdı|bugünün görevi biraz zor]"
+   ],
+   [
+    "B",
+    "[hangisi|ne görevi|ne istiyordu]"
+   ],
+   [
+    "A",
+    "[{s:sayi} görev yap diyor, ben yorgunum|çok görev istiyor bugün|görev sayısı yüksek]"
+   ],
+   [
+    "C",
+    "[kum saati için değer|bitir, kum saati gelir|3 görevi bitirince kum saati]"
+   ],
+   [
+    "A",
+    "[{s:yemek} yiyip devam|önce {s:yemek}, sonra görev|bir {s:icecek} içip devam]"
+   ],
+   [
+    "B",
+    "[kolay gelsin|hadi bitir|başarılar]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-bagis-ilk-tereddut",
+  "konu": "bagis",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bağış yapmak istiyorum ama param az|az parayla bağış olur mu|küçük bağış yapılır mı]"
+   ],
+   [
+    "B",
+    "[olur, ne kadar istersen|her miktar olur|tabii olur]"
+   ],
+   [
+    "C",
+    "[her 10 bine 1 itibar|10 bin 1 itibar ediyor|itibar için 10 bin birimi var]"
+   ],
+   [
+    "A",
+    "[10 bin bende çok|10 bin büyük para benim için|henüz 10 bin veremem]"
+   ],
+   [
+    "D",
+    "[önce kendini toparla, sonra bağış|önce birikim, sonra bağış|acele yok]"
+   ],
+   [
+    "B",
+    "[{bayram} gelince düşün, iki kat sayılır|bayrama sakla|{bayram} için {bayram.gun} gün var]"
+   ],
+   [
+    "A",
+    "[tamam, {bayram} hedef|bayrama kadar biriktiririm|güzel fikir, {s:akraba} gibi bayramda veririm]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-itibar-ne-kazandirir",
+  "konu": "bagis",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[itibarım {s:sayi} oldu, ne değişti|itibar arttı ama bir şey görmüyorum|itibarın somut faydası ne]"
+   ],
+   [
+    "B",
+    "[kredi notu yükseliyor|kredi notunu etkiliyor|not yükselir]"
+   ],
+   [
+    "C",
+    "[iş başvurularında öne geçiyorsun|başvurular kabul ediliyor daha çok|patronlar itibara bakıyor]"
+   ],
+   [
+    "A",
+    "[ben patronum, başvuru yapmıyorum|ben başvuru yapmam ki|bana fark etmez o zaman]"
+   ],
+   [
+    "D",
+    "[işçiye iyi davranmak da itibar getiriyor, maaş zamanında|maaşları zamanında öde, itibar gelir|patronluk itibarı da var]"
+   ],
+   [
+    "A",
+    "[anladım, uzun vadeli şey|yavaş birikiyor|sabır işi]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-isletme-garip-musteri",
+  "konu": "saka",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün müşterilerden biri {s:sayi} saat oturdu|bir müşteri sabahtan beri oturuyor sanki|müşteri gelmiş, kalkmıyor haha]"
+   ],
+   [
+    "B",
+    "[oyunda müşteriler NPC ama haha|onlar sayı, gerçek değil|müşteriler rakam aslında]"
+   ],
+   [
+    "A",
+    "[ben kafamda canlandırıyorum haha|hikaye yazıyorum kafamda|hayal gücü]"
+   ],
+   [
+    "C",
+    "[bence {s:icecek} içiyordur|elinde {s:icecek}, {s:dizi_tur} izliyor|tabletinde {s:dizi_tur} izliyordur haha]"
+   ],
+   [
+    "A",
+    "[aynen öyle görüyorum|tam canlandırdığım gibi|haha evet]"
+   ],
+   [
+    "D",
+    "[kira ödemiyor, oturuyor haha|ondan kira alalım|masa kirası iste]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-isletme-tatil-yok",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[işletme sahibi olunca tatil yok|patron olunca gece gündüz kontrol|işletme hiç bırakmıyor]"
+   ],
+   [
+    "B",
+    "[oyun kapalıyken de akıyor ya|kapatsan da işliyor|zaman duruyor mu]"
+   ],
+   [
+    "C",
+    "[akıyor, çalışanlar ve geçici personel çalışıyor|oyun kapalıyken de devam ediyor|evet akıyor]"
+   ],
+   [
+    "A",
+    "[o yüzden kafam rahat değil|o yüzden hep bakıyorum|bu yüzden tatile çıkamıyorum]"
+   ],
+   [
+    "D",
+    "[iyi çalışan al, sen tatile {s:sehir} git|güvendiğin eleman al, {s:sehir} tatiline çık|eleman sağlamsa rahat]"
+   ],
+   [
+    "A",
+    "[{s:sehir} hayal oldu|{s:sehir} mi, keşke|bir gün]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-calisan-saat-ayari",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çalışanların hangi saat aktif olduğu önemli mi|çalışan gece girse olur mu|çalışanın girme saati fark eder mi]"
+   ],
+   [
+    "B",
+    "[girmediği zaman verimi düşük oluyor|çevrimdışı olunca geçici gibi çalışıyor|çevrimdışıyken verim az]"
+   ],
+   [
+    "C",
+    "[o yüzden farklı saatte giren iki çalışan iyi|biri sabah biri akşam giren|vardiya gibi düşün]"
+   ],
+   [
+    "A",
+    "[mantıklı, biri sabah biri gece|sabah {s:saat} gelen biri lazım|iki kişi]"
+   ],
+   [
+    "D",
+    "[maaş yükü artar ama|iki maaş ciroya yeter mi|maaşı hesapla]"
+   ],
+   [
+    "A",
+    "[hesaplarım, {s:gun} karar|bakarım|düşüneyim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-musteri-ciro-sorusu",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ciroyu ne belirliyor tam|işletmenin cirosu neye bağlı|ciro nasıl hesaplanıyor]"
+   ],
+   [
+    "B",
+    "[konum, çalışan ve kalite|üç şey: konum, çalışan sayısı, kalite|konum, eleman, kalite]"
+   ],
+   [
+    "C",
+    "[bir de rakip sayısı, aynı türden çoksa bölünüyor|pazar doygunluğu var|aynı türden çok işletme olunca müşteri bölünüyor]"
+   ],
+   [
+    "A",
+    "[o zaman herkes kafe açarsa batarız|kafe sayısı artınca hepimiz kayıptayız|herkes aynı şeyi açmasın]"
+   ],
+   [
+    "D",
+    "[o yüzden ben dükkan açtım|ben farklı bir şey açtım|ben kalabalığa uymadım]"
+   ],
+   [
+    "A",
+    "[akıllıca, {s:akraba} hep farklı ol der|iyi strateji|ben de düşüneyim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-anisi-saka",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[muhasebe kursunda hayalimde hesap makinesi bozuldu haha|kursta kafamda hep {s:esya} kaybettim haha|kurs anılarımı anlatayım mı haha]"
+   ],
+   [
+    "B",
+    "[anlat|dök|dinliyoruz]"
+   ],
+   [
+    "A",
+    "[kurs boyunca {s:hobi} ile uğraştım, kurs kendiliğinden bitti|hiçbir şey yapmadım, süre doldu|bekledim sadece haha]"
+   ],
+   [
+    "B",
+    "[kursun en güzel yanı bu|kurs bu kadar kolay|kurs bekleme işi]"
+   ],
+   [
+    "C",
+    "[ben kursta bir {s:dizi_tur} bitirdim|ben kurs süresince {s:sayi} dizi bitirdim|ben uyudum haha]"
+   ],
+   [
+    "A",
+    "[kurs anıları efsane|en verimli kurs|kurslar dizi molası haha]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-taksit-kira-kiyas",
+  "konu": "mulk",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ev kredisiyle aldım, taksit kiradan az mı|taksit mi kira mı daha ağır|taksitle kira kıyası yaptım]"
+   ],
+   [
+    "B",
+    "[ne çıktı|hangisi|sonuç]"
+   ],
+   [
+    "A",
+    "[taksit biraz fazla ama ev benim|taksit yüksek ama sonunda benim|taksit daha ağır ama bitecek]"
+   ],
+   [
+    "C",
+    "[kira {evkira}, sonsuza kadar|kira bitmez ama taksit biter|kiraya göre mantıklı]"
+   ],
+   [
+    "A",
+    "[{s:sayi} ay sıkacağım|biraz sıkışacağım|kemer sıkıyorum]"
+   ],
+   [
+    "D",
+    "[3 taksit kaçırma sadece|taksiti aksatma, icra var|aksatma]"
+   ],
+   [
+    "A",
+    "[her ay {s:gun} ödüyorum|aksatmam, alarm kurdum|ilk iş taksit]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-sahibi-olunca-fark",
+  "konu": "mulk",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ev sahibi olduktan sonra ilk ay sonu|ilk kirasız ay|bu ay kira ödemedim]"
+   ],
+   [
+    "B",
+    "[fark ettin mi|hissettin mi|nasıl]"
+   ],
+   [
+    "A",
+    "[hesapta {evkira} fazla kaldı gibi|her ay {evkira} kâr gibi|aynen, net fark]"
+   ],
+   [
+    "C",
+    "[şimdi onunla ikinci daireyi düşün|o farkı biriktir|o parayla yatırım]"
+   ],
+   [
+    "A",
+    "[önce bir {s:tatli}, sonra yatırım|bir {s:yemek} yemek hakkım|bu ay kutlama]"
+   ],
+   [
+    "B",
+    "[kutla tabii|hakkın|afiyet olsun]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ekonomi-haber-dedikodu-fiyat",
+  "konu": "dedikodu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[fiyatlar yarın çok artacakmış diyorlar|yarın büyük zam var diye duydum|bir dedikodu: fiyatlar uçacak]"
+   ],
+   [
+    "B",
+    "[kim diyor|kaynak ne|nereden duydun]"
+   ],
+   [
+    "A",
+    "[kanalda biri dedi|biri yazdı|{s:akraba} oyunu oynuyor, o dedi]"
+   ],
+   [
+    "C",
+    "[fiyatlar her ay biraz artıyor, büyük zam diye bir şey bilmiyorum|enflasyon {enflasyon}, her ay biraz|her ay olağan artış]"
+   ],
+   [
+    "D",
+    "[ekonomi kararları bir gün önce haber olur, habere bakın|haber ekranına bak|resmi habere bak, dedikoduya değil]"
+   ],
+   [
+    "A",
+    "[tamam, panik yok|haklısın|habere bakayım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-dedikodu-yeni-sehir",
+  "konu": "dedikodu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:sehir} açılacakmış diye duydum|yeni şehir geliyormuş, {s:sehir}|{s:sehir} tarafı açılıyor mu]"
+   ],
+   [
+    "B",
+    "[ülkeler gelecek diye biliyorum, şehir bilmiyorum|bilmiyorum, duymadım|emin değilim]"
+   ],
+   [
+    "C",
+    "[şimdilik İstanbul|şu an sadece İstanbul var bildiğim|İstanbul'dayız şimdilik]"
+   ],
+   [
+    "A",
+    "[{s:sehir} memleketim, orada ev alırdım|memlekette ev alırdım|ben orayı beklerim]"
+   ],
+   [
+    "D",
+    "[dedikodu bu, gelince görürüz|bekleyip görelim|gelirse süper]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-saf-ev-semt-sorusu",
+  "konu": "soru",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[hangi semtte ev almalıyım|en iyi semt hangisi|ev için semt önerisi]"
+   ],
+   [
+    "B",
+    "[fiyat şu an semte göre değişmiyor|semt fiyatı etkilemiyor şimdilik|her yerde aynı fiyat]"
+   ],
+   [
+    "A",
+    "[o zaman {s:semt} alırım, adı güzel|adı en güzel olanı seçerim haha|{s:semt} olsun o zaman]"
+   ],
+   [
+    "C",
+    "[adı güzel diye ev alan ilk kişi haha|en mantıklı seçim kriteri haha|ben de manzara diye seçmiştim]"
+   ],
+   [
+    "A",
+    "[{s:akraba} eskiden orada otururdu|{s:akraba} oradan|nostalji]"
+   ],
+   [
+    "B",
+    "[nostalji de kriter|güzel sebep|olur]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-isletme-rakip-dost",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron",
+   "B.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} senin işletme benimkine yakın galiba|{B} sen de {A.yer} tarafındasın değil mi|{B} komşu işletmeyiz galiba]"
+   ],
+   [
+    "B",
+    "[evet haha, müşteriyi bölüşüyoruz|evet, rakibiz resmen|aynen, bölgede ikimiz]"
+   ],
+   [
+    "A",
+    "[kavga etmeyelim, ikimiz de kazanalım|dostluk bozulmasın|rekabet dostça olsun]"
+   ],
+   [
+    "B",
+    "[aynı türden değilsek bölünmüyor zaten|benimki farklı tür, rahat ol|farklı işletmeyiz galiba]"
+   ],
+   [
+    "C",
+    "[aynı türse bölünür, farklıysa sorun yok|tür farklıysa sorun yok|türlerinize bakın]"
+   ],
+   [
+    "A",
+    "[o zaman {s:icecek} ısmarlarım komşuya|komşuluk {s:tatli} benden|o zaman barış]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-sabah-kurs-baslangic",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[sabah {s:icecek} ile kursa yazıldım|bugün kurs başlattım|güne kursla başladım]"
+   ],
+   [
+    "B",
+    "[hangisi|ne kursu|neyin]"
+   ],
+   [
+    "A",
+    "[ustalık|ustalık belgesi|usta olacağım]"
+   ],
+   [
+    "C",
+    "[ustalık {kurs.ustalik} ve {kurs.ustalik.gun} gün|{kurs.ustalik.gun} gün sürüyor|{kurs.ustalik} verdin o zaman]"
+   ],
+   [
+    "D",
+    "[20 gün inşaat işçiliği de lazım, unutma|inşaat işçiliğini de yap|deneyim şartı var]"
+   ],
+   [
+    "A",
+    "[biliyorum, inşaattayım zaten|şu an inşaattayım|onu da yapıyorum]"
+   ],
+   [
+    "D",
+    "[harika, ikisi beraber biter|süper plan|mükemmel]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ogle-arasi-garson",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[öğle yoğunluğu bitti, nefes alıyorum|öğle telaşı geçti|öğlen müşteri akını bitti]"
+   ],
+   [
+    "B",
+    "[kaç masaya baktın|yorgun musun|nasıl geçti]"
+   ],
+   [
+    "A",
+    "[{s:sayi} görev üst üste|bir sürü görev, saymadım|ayaklarım kopuyor]"
+   ],
+   [
+    "C",
+    "[şimdi bir {s:yemek} ye|otur bir {s:icecek} iç|mola ver]"
+   ],
+   [
+    "A",
+    "[patron izin verirse haha|mola var mı bilmem haha|beş dakika kaçarım]"
+   ],
+   [
+    "B",
+    "[oyunda mola serbest haha|kimse saymıyor|görev bekler]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kasiyer-patron-yeni-raf",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[patronum bugün dükkanın kalitesini yükseltti|dükkana kalite yatırımı yapıldı|patron dükkanı yeniledi]"
+   ],
+   [
+    "B",
+    "[müşteri artar|ciro artar o zaman|güzel haber]"
+   ],
+   [
+    "A",
+    "[inşallah, görev de artar|görev artarsa ben de kazanırım|kasiyer olarak görev artar umarım]"
+   ],
+   [
+    "C",
+    "[kasiyer maaş artı görev, ikisinden de kazanıyorsun|maaş sabit, görev ekstra|görev bonus gibi]"
+   ],
+   [
+    "A",
+    "[ortalama {maas.kasiyer} civarı, bakalım artacak mı|{maas.kasiyer} gibi şu an|bakalım bu ay]"
+   ],
+   [
+    "D",
+    "[patronun iyi biri|iyi patron yatırım yapar|şanslısın]"
+   ],
+   [
+    "A",
+    "[{s:akraba} bile tanıyor patronu haha|evet, {s:gun} teşekkür ederim|iyidir valla]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-patron-maas-gecikti-borc",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[patronun parası yetmemiş, maaşım borç yazılmış|maaş yatmadı, borç yazıldı diyor|maaşım borç olarak görünüyor]"
+   ],
+   [
+    "B",
+    "[patronun itibarı düşer|patron itibar kaybeder|itibarı gider]"
+   ],
+   [
+    "A",
+    "[ben ne yapayım peki|ben ne olacağım|benim param ne olacak]"
+   ],
+   [
+    "C",
+    "[borç olarak duruyor, ödeyecek|borç yazılıyor, sonra ödenir herhalde|ödenmesi lazım]"
+   ],
+   [
+    "D",
+    "[başka ilanlara da bak|güvenmiyorsan değiştir|itibarı yüksek patron bul]"
+   ],
+   [
+    "A",
+    "[{s:gun} günü bekleyeceğim|biraz bekleyeyim|bir ay daha bakarım]"
+   ],
+   [
+    "B",
+    "[{s:akraba} olsa hemen istifa derdi haha|ben olsam beklemezdim|sen bilirsin]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-ilk-adim-korku",
+  "konu": "kurs",
+  "kosul": [
+   "A.sartsiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kursa yazılmak istiyorum ama para gidecek|kurs parası çok gibi|kurs pahalı geliyor]"
+   ],
+   [
+    "B",
+    "[kurs uzun vadede kazandırır|yatırım gibi düşün|kurs geri döner]"
+   ],
+   [
+    "A",
+    "[garanti mi|kesin mi|emin misin]"
+   ],
+   [
+    "C",
+    "[memur {maas.memur}, muhasebeci {maas.muhasebeci}, 1. kademeden fazla|2. kademe maaşlar daha iyi|rakamlara bak]"
+   ],
+   [
+    "A",
+    "[ama 30 gün deneyim de lazım|deneyim de istiyor|30 gün]"
+   ],
+   [
+    "C",
+    "[sen zaten çalışıyorsun, deneyim doluyor|çalışırken doluyor|o zaten akıyor]"
+   ],
+   [
+    "A",
+    "[tamam, {s:gun} yazılırım|ikna oldum|yazılıyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-tamam-kutlama-kanal",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[millet muhasebeciyim artık|muhasebeci oldum|resmen muhasebeciyim]"
+   ],
+   [
+    "B",
+    "[helal|tebrik ederim|hayırlı olsun]"
+   ],
+   [
+    "C",
+    "[şimdi sabit maaş, {maas.muhasebeci} civarı|{maas.muhasebeci} oturduğun yerden|artık giriş yapmasan da maaş]"
+   ],
+   [
+    "A",
+    "[ilk iş {s:akraba} duyacak|ilk {s:akraba} duysun|{s:akraba} çok sevinecek]"
+   ],
+   [
+    "D",
+    "[kendi hesabını tutarsın artık haha|ay sonu hesabı sende|hepimizin muhasebesini yap haha]"
+   ],
+   [
+    "A",
+    "[ücretli haha|hesabı {s:tatli} ile öde haha|sırayla]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kademe-sicrama-plan",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[1. kademeden 4. kademeye en hızlı yol ne|en hızlı nasıl tepeye çıkılır|4. kademeye yol haritası]"
+   ],
+   [
+    "B",
+    "[hızlısı yok, deneyim şartları var|kısayol yok|sabır]"
+   ],
+   [
+    "C",
+    "[önce 2. kademe kurs, sonra 60 gün, sonra işletme|kurs, deneyim, sermaye, sırayla|adım adım]"
+   ],
+   [
+    "D",
+    "[4. kademe milyonlar, kurs ve uzun deneyim|4. kademe çok uzun|milyonlar lazım]"
+   ],
+   [
+    "A",
+    "[para satın alsam|gerçek parayla hızlansa|parayla atlarım]"
+   ],
+   [
+    "B",
+    "[para alınıyor ama 3-4 için deneyim ve kurs atlanmıyor|deneyim parayla olmaz|parayla deneyim alınmaz]"
+   ],
+   [
+    "A",
+    "[{s:sayi} ay sürer o zaman|uzun yolmuş|tamam, sabır]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-arayisi-uzun",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:sayi} aydır ev için biriktiriyorum|ev parası biriktirmek bitmedi|aylardır ev bekliyorum]"
+   ],
+   [
+    "B",
+    "[ne kadar kaldı|hedefe ne kadar var|peşinat tamam mı]"
+   ],
+   [
+    "A",
+    "[peşinat {pesinat}, yarısı oldu|{pesinat} hedefin yarısındayım|yarısı tamam]"
+   ],
+   [
+    "C",
+    "[kredi notun iyi mi|notun kaç|kredi çıkar mı]"
+   ],
+   [
+    "A",
+    "[altı yüz küsur haha|620 civarı|çok yüksek değil]"
+   ],
+   [
+    "C",
+    "[düzenli taksit ödersen artar|bağışla da artar|biraz yükseltmeye çalış]"
+   ],
+   [
+    "A",
+    "[ikisini birden yapacağım|plan tamam|tamam]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ilk-mulk-pisman-mi",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk mülkü aldım, şimdi param yok, pişman mıyım bilmiyorum|nakdim bitti, ev var ama|ev aldım, cep boş]"
+   ],
+   [
+    "B",
+    "[ev sahibi oldun, kira yok, rahatlarsın|kira gitmeyince toparlanır|bir iki ayda düzelir]"
+   ],
+   [
+    "C",
+    "[geçim {yasam} devam ediyor ama|geçim ödenmeye devam|geçim için çalış]"
+   ],
+   [
+    "A",
+    "[çalışıyorum, {A.meslek} olarak|işim var şükür|maaş geliyor]"
+   ],
+   [
+    "D",
+    "[o zaman pişmanlık yok|o zaman iyi yaptın|gayet iyi]"
+   ],
+   [
+    "A",
+    "[{s:icecek} içip rahatlayayım|tamam, rahatladım|sağ olun]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-iki-taraf",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ay sonu, kim artıda kim ekside|ay bitti, kim ne durumda|bu ayın bilançosu nasıl]"
+   ],
+   [
+    "B",
+    "[artıdayım|ben artı|iyiyim bu ay]"
+   ],
+   [
+    "C",
+    "[eksideyim, kurs parası|ben eksi, kurs aldım|eksi, ama yatırım]"
+   ],
+   [
+    "D",
+    "[ben başabaş|ne artı ne eksi|sıfır]"
+   ],
+   [
+    "A",
+    "[ben de {s:sayi} parça artıdayım|ben biraz artı|ben eksi haha]"
+   ],
+   [
+    "B",
+    "[kurs eksisi eksi sayılmaz|kurs yatırım|yatırımı eksi saymayın]"
+   ],
+   [
+    "C",
+    "[{B} moral verdin|{B} haklısın|{B} sağ ol]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-fiyat-karsilastir-daire",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[geçen ay daire bu kadar değildi|daire fiyatı yine artmış|daireler pahalanmış]"
+   ],
+   [
+    "B",
+    "[şu an {daire}|{daire} civarı|{daire} görünüyor]"
+   ],
+   [
+    "A",
+    "[geçen ay daha ucuzdu kesin|geçen ay aşağıdaydı|kaçırdım]"
+   ],
+   [
+    "C",
+    "[mülk fiyatı da endeksle artıyor|mülkler de enflasyonla gidiyor|her şey artıyor]"
+   ],
+   [
+    "D",
+    "[mülkü olan kazanıyor yani|ev sahibi sevinçli|alan kârda]"
+   ],
+   [
+    "A",
+    "[bekleyen kaybediyor|ben bekledim, kaybettim|daha fazla bekleyemem]"
+   ],
+   [
+    "B",
+    "[{s:gun} al o zaman|hemen al|bekleme]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-guncelleme-tahmin",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bence borsa {s:gun} gelir|borsa yakında gelecek bence|içimden borsa geliyor]"
+   ],
+   [
+    "B",
+    "[hangi {s:gun}|tarih yok ki|kesin değil]"
+   ],
+   [
+    "A",
+    "[his haha|tahmin|hissediyorum]"
+   ],
+   [
+    "C",
+    "[her hafta biri böyle diyor|her hafta tahmin geliyor|hep böyle denir]"
+   ],
+   [
+    "D",
+    "[gelince haber olur, şimdilik yok|gelirse duyarız|şimdilik yok]"
+   ],
+   [
+    "A",
+    "[tamam, tahmin iddiasına girelim|iddia var mı|kim haklı çıkacak]"
+   ],
+   [
+    "C",
+    "[kaybeden {s:tatli} ısmarlar|kaybeden {s:icecek}|iddia {s:tatli}]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-gecme-hirs",
+  "konu": "siralama",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[şu an sıralamada önümde biri var, onu geçmeden uyumayacağım|önümdekini geçmeden yatmam|bu gece biri geçilecek]"
+   ],
+   [
+    "B",
+    "[nasıl geçeceksin bu saatte|gece ne yapabilirsin|ne yapacaksın]"
+   ],
+   [
+    "A",
+    "[bir dükkan alacağım|mülk alıp servetimi artıracağım|bir yatırım]"
+   ],
+   [
+    "C",
+    "[mülk almak serveti artırır mı ki, nakit düşer|nakit mülke döner, servet değişmez gibi|bilmiyorum, nasıl sayılıyor]"
+   ],
+   [
+    "A",
+    "[hmm, bilmiyorum açıkçası|emin değilim|bakmak lazım]"
+   ],
+   [
+    "D",
+    "[uyu, sabah bakarsın|yarın {s:saat} bak|uyu, sıralama kaçmaz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-mahalle",
+  "konu": "siralama",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{A.yer} tarafının en zengini kim acaba|semtimizin en zengini kim|bölgede kim önde]"
+   ],
+   [
+    "B",
+    "[mahalle sıralaması var mı|semt sıralaması var mı ki|öyle bir sıralama gördün mü]"
+   ],
+   [
+    "A",
+    "[bilmiyorum, ben merak ettim|bilmem, olsa güzel olurdu|yok galiba]"
+   ],
+   [
+    "C",
+    "[mahalle özelliği sonra gelecek diye duydum|mahalle sonra|ileride gelecekmiş]"
+   ],
+   [
+    "A",
+    "[gelince {A.yer} birincisi ben olacağım|ben birinci olurum|hedef koydum]"
+   ],
+   [
+    "D",
+    "[{s:semt} tarafı seni yener haha|bizim {s:semt} yener|rakip benim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-hedef-milyon",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[hedefim ilk milyon|bir milyon nakit hedefim|ilk milyona ne kadar kaldı bakıyorum]"
+   ],
+   [
+    "B",
+    "[nerede şu an|kaçtasın|ne kadar var]"
+   ],
+   [
+    "A",
+    "[yarısı yok haha|birkaç yüz bin civarı|yolun başı]"
+   ],
+   [
+    "C",
+    "[nakitte tutma, mülke çevir|nakit erir, enflasyon {enflasyon}|nakit beklemez]"
+   ],
+   [
+    "A",
+    "[ama milyon görmek istiyorum|ekranda milyon yazsın istiyorum|bir kere görmek istiyorum]"
+   ],
+   [
+    "D",
+    "[gördükten sonra yatırıma çevir haha|bir an gör, sonra harca|fotoğrafını çek sonra yatırım]"
+   ],
+   [
+    "A",
+    "[anlaştık, {s:gun} başlıyorum|plan bu, {s:akraba} şahit|haha tamam, ekran görüntüsü alırım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-kardes-tavsiye",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{s:akraba} bana oyunda nasıl birikim yapılır sordu|{s:akraba} yeni başladı, birikim sordu|{s:akraba} tavsiye istiyor, ne diyeyim]"
+   ],
+   [
+    "B",
+    "[önce ev, kirayı kes|ilk hedef ev|kira kesmek ilk iş]"
+   ],
+   [
+    "C",
+    "[önce kurs, maaşı yükselt|kurs önce|önce meslek]"
+   ],
+   [
+    "D",
+    "[önce günlük görevleri alışkanlık yapsın|günlük görevleri aksatmasın|her gün görev]"
+   ],
+   [
+    "A",
+    "[herkes başka diyor haha|üç farklı tavsiye|kafası karışacak]"
+   ],
+   [
+    "B",
+    "[üçünü sırayla yapsın|hepsi doğru, sırası tartışma|sırasını kendi seçsin]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-mantik-hesap",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kredi limitim birkaç yüz bin, çekip daire alsam|limitle daire alınır mı|limitim daireye yeter mi]"
+   ],
+   [
+    "B",
+    "[ihtiyaç kredisi mi konut kredisi mi|hangi kredi|konut kredisi peşinatla]"
+   ],
+   [
+    "C",
+    "[konut kredisinde peşinat yaklaşık %20|peşinat {pesinat} civarı|peşinat lazım]"
+   ],
+   [
+    "A",
+    "[peşinat yok ama|peşinatım yok|peşinat bulamam]"
+   ],
+   [
+    "D",
+    "[önce peşinat biriktir, sonra kredi|peşinat olmadan zor|önce birikim]"
+   ],
+   [
+    "A",
+    "[{s:sayi} ay sürer|o kadar beklerim artık|tamam bekliyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-taksit-gunu-hatirlatma",
+  "konu": "kredi",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[taksit günü bugün, hatırlatayım dedim kendime|bugün taksit var|sabah taksit ödedim]"
+   ],
+   [
+    "B",
+    "[ödedin mi|yatırdın mı|tamam mı]"
+   ],
+   [
+    "A",
+    "[ödedim, notum da biraz arttı|ödedim, not yükseldi|ödendi]"
+   ],
+   [
+    "C",
+    "[düzenli ödemek notu yükseltir, devam|aksatma, not yükselir|böyle devam]"
+   ],
+   [
+    "A",
+    "[{s:sayi} taksit kaldı|bitmesine az kaldı|yarısı bitti]"
+   ],
+   [
+    "D",
+    "[bitince kutlama {s:tatli} ile|bitince {s:yemek} ısmarlarsın|son taksitte parti]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yanlis-bilgi-kira-ev-sahibi",
+  "konu": "yanlis-bilgi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ev sahibi de kira ödüyor ama daha az|ev sahibi olunca kira yarıya düşüyor|ev alınca az kira ödersin]"
+   ],
+   [
+    "B",
+    "[hayır, ev sahibi kira ödemiyor|ev sahibi kira ödemez|kira sıfır]"
+   ],
+   [
+    "A",
+    "[emin misin|gerçekten mi|nereden biliyorsun]"
+   ],
+   [
+    "C",
+    "[ev aldım, kira kalktı, hesapta gördüm|bende kira tamamen bitti|kendi evimde oturuyorum, kira yok]"
+   ],
+   [
+    "D",
+    "[geçim gideri devam ediyor ama, kira yok|geçim {yasam} sürüyor, kira bitti|kira biter, geçim sürer]"
+   ],
+   [
+    "A",
+    "[o zaman ev almak daha da mantıklı|harika, ev şart|ikna oldum]"
+   ],
+   [
+    "B",
+    "[{s:gun} başla biriktirmeye|hadi birikim|hadi bakalım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yanlis-bilgi-kurye-patron-2",
+  "konu": "yanlis-bilgi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurye olmak için bir dükkana başvurdum, cevap bekliyorum|kuryelik ilanına başvurdum|kurye ilanı arıyorum]"
+   ],
+   [
+    "B",
+    "[kuryenin işvereni yok|kuryelikte patron yok|kurye ilan beklemez]"
+   ],
+   [
+    "C",
+    "[kariyer ekranından direkt başlıyorsun|kariyerden direkt kurye ol|kariyer ekranı]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gün boşuna bekledim yani|boşuna beklemişim|eyvah]"
+   ],
+   [
+    "B",
+    "[şimdi başla, kayıp az|hemen başla|şimdi geç]"
+   ],
+   [
+    "A",
+    "[geçtim, ilk görev geldi|başladım bile|tamam, kuryeyim]"
+   ],
+   [
+    "C",
+    "[görev başı {gorev.kurye}, bol kazanç|{gorev.kurye} görev başı, hadi|hayırlı olsun]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-tanisma-ilan-kanal",
+  "konu": "is",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kanala ilan bırakıyorum, garson lazım|ilan: garson arıyorum|garson arıyorum, ilanım açık]"
+   ],
+   [
+    "B",
+    "[nerede|hangi semt|yer]"
+   ],
+   [
+    "A",
+    "[{A.yer}|{A.yer} tarafında|{A.yer}, merkezi]"
+   ],
+   [
+    "C",
+    "[ben {C.yer} tarafındayım, uzak mı|ben {C.yer} tarafındayım, olur mu|{C.yer} uzak sayılır mı]"
+   ],
+   [
+    "A",
+    "[oyunda uzaklık önemli değil|mesafe fark etmiyor|uzaklık yok oyunda]"
+   ],
+   [
+    "C",
+    "[o zaman başvuruyorum|başvuruyorum|tamam, başvurdum]"
+   ],
+   [
+    "A",
+    "[{C} kum saatin varsa bas, hemen bakarım|{C} başvurunu gördüm|{C} hoş geldin]"
+   ],
+   [
+    "D",
+    "[{s:gun} bir garson daha lazım olursa ben buradayım|bir dahakine ben de varım|ben de başvurayım mı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-tanisma-patron-seciyor",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[iki ilan var, birini seçeceğim, yardım edin|iki patron arasında kaldım|iki iş teklifi gibi bir şey]"
+   ],
+   [
+    "B",
+    "[maaşlar ne|maaşlara bak|ne veriyorlar]"
+   ],
+   [
+    "A",
+    "[ikisi de aynı gibi|ikisi de garson, aynı|maaş benzer]"
+   ],
+   [
+    "C",
+    "[patronun itibarına bak|itibarı yüksek olanı seç|itibar önemli]"
+   ],
+   [
+    "D",
+    "[bir de işletmenin cirosu iyi mi bak|kâr ediyor mu bak|batmayacak yeri seç]"
+   ],
+   [
+    "A",
+    "[birinin itibarı {s:sayi} kat fazla|biri çok daha itibarlı|biri belli fark]"
+   ],
+   [
+    "B",
+    "[o zaman belli|o zaman o|seçim yapıldı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-memur-geri-kurye",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[memurdan kuryeliğe dönen var mı|memur olup kuryeliğe dönmek saçma mı|memuru bırakıp kuryeye dönsem]"
+   ],
+   [
+    "B",
+    "[neden|niye|ne oldu]"
+   ],
+   [
+    "A",
+    "[kurye çalıştıkça daha çok kazanıyor bence|kuryeyken daha çok kazanıyordum|ben çok koşan biriyim]"
+   ],
+   [
+    "C",
+    "[kurye {maas.kurye}, memur {maas.memur}, ortalama|ortalamalara bak|ortalama kıyası yap]"
+   ],
+   [
+    "D",
+    "[ama memur girmesen de kazanıyor|memur garanti|memurluk sabit]"
+   ],
+   [
+    "A",
+    "[ben zaten her gün giriyorum|ben hep oyundayım|ben bırakmam]"
+   ],
+   [
+    "B",
+    "[o zaman sana kurye uyar|sen kuryesin ruhen haha|dön o zaman]"
+   ],
+   [
+    "A",
+    "[{s:gun} karar veririm|düşüneyim|bakalım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-kasiyer-muhasebe",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kasiyerden muhasebeciye geçeceğim|muhasebe kursuna yazıldım, kasiyerliği bırakacağım|kasiyerlik son günler]"
+   ],
+   [
+    "B",
+    "[kurs ne kadar|kaç para|süre]"
+   ],
+   [
+    "A",
+    "[{kurs.muhasebe} ve {kurs.muhasebe.gun} gün|{kurs.muhasebe.gun} gün, {kurs.muhasebe}|{kurs.muhasebe}]"
+   ],
+   [
+    "C",
+    "[kasada {s:sayi} ay geçirmişsin, muhasebe yakışır|kasadan muhasebeye doğal geçiş|hesap kitap işi zaten]"
+   ],
+   [
+    "A",
+    "[haha evet|aynen|para saymayı biliyorum]"
+   ],
+   [
+    "D",
+    "[sabit maaşta sıkılmazsan|sabit maaş sıkar bazılarını|sıkılırsan dön]"
+   ],
+   [
+    "A",
+    "[sıkılırsam {s:hobi} var|{s:hobi} ile oyalanırım|sıkılmam]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kum-saati-gunluk-gorev-fikir",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[günlük görev kum saatini neye harcıyorsunuz|bedava kum saatleri nereye gidiyor|kum saatlerinizi nereye basıyorsunuz]"
+   ],
+   [
+    "B",
+    "[kurslara|kurs bekleyişine|kursa]"
+   ],
+   [
+    "C",
+    "[iş başvurusu beklemesine|başvurulara|başvuru bekleyişine]"
+   ],
+   [
+    "D",
+    "[ben biriktiriyorum, {s:sayi} oldu|harcamıyorum|saklıyorum]"
+   ],
+   [
+    "A",
+    "[{D} neden saklıyorsun|{D} biriktirip ne yapacaksın|{D} neyi bekliyorsun]"
+   ],
+   [
+    "D",
+    "[büyük kurs için|uzun bekleme gelince|ileride inşaat beklemesi olursa]"
+   ],
+   [
+    "B",
+    "[inşaat henüz yok ama|inşaat gelince belki|o daha yok]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gunluk-gorev-unuttu-sizlanma",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[günlük görev yarım kaldı, {s:saat} sıfırlanıyor mu|günlük görev bitmeden gün bitecek|görev kaldı, gün dönüyor]"
+   ],
+   [
+    "B",
+    "[hızlı yap|koş|çabuk bitir]"
+   ],
+   [
+    "A",
+    "[{s:sayi} görev daha lazım|bir tane kaldı|az kaldı]"
+   ],
+   [
+    "C",
+    "[bitir, kum saati gelsin|kum saati için değer|bitirirsen bir kum saati]"
+   ],
+   [
+    "A",
+    "[bitti|tamamlandı|yetiştim]"
+   ],
+   [
+    "B",
+    "[helal|bravo|son dakika golü haha]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-bagis-kiyaslama",
+  "konu": "bagis",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kim ne kadar bağış yapıyor|bağış miktarlarınız ne|ne kadar bağışlıyorsunuz]"
+   ],
+   [
+    "B",
+    "[miktar söylemek iyi değil|söylenmez bence|gizli kalsın]"
+   ],
+   [
+    "A",
+    "[haklısın, merak ettim sadece|tamam, sormadım say|pardon]"
+   ],
+   [
+    "C",
+    "[her 10 bin 1 itibar, kendine göre ayarla|kendi gücüne göre|gücün yettiğince]"
+   ],
+   [
+    "D",
+    "[{bayram} yaklaşıyor, ona sakla|bayramda iki kat|{bayram} için {bayram.gun} gün]"
+   ],
+   [
+    "A",
+    "[{s:akraba} hep bayramda verir|{s:akraba} gibi bayramı bekleyeceğim|bayram iyi fikir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-itibar-kaybetme",
+  "konu": "bagis",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[itibarım düştü, neden|itibar puanım azalmış|itibar eksilmiş]"
+   ],
+   [
+    "B",
+    "[maaş geç mi ödedin|maaş borcu mu var|çalışana borç mu yazıldı]"
+   ],
+   [
+    "A",
+    "[geçen ay para yetmedi, borç yazıldı|bir maaş borca düştü|evet, kasa boştu]"
+   ],
+   [
+    "C",
+    "[ödeyemeyince itibar düşüyor|itibar oradan gitti|borç itibar götürür]"
+   ],
+   [
+    "A",
+    "[nasıl toplarım|geri nasıl gelir|nasıl düzeltirim]"
+   ],
+   [
+    "D",
+    "[borcu kapat, maaşları zamanında öde, bağış yap|borcu öde, bağış ekle|zamanında ödeme ve bağış]"
+   ],
+   [
+    "A",
+    "[{s:gun} başlıyorum|tamam, plan yaptım|toparlarım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-isletme-ilk-calisan-ise",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[ilk çalışanım bugün başlıyor|ilk elemanım geliyor bugün|işe aldım, bugün ilk günü]"
+   ],
+   [
+    "B",
+    "[heyecanlı|hayırlı olsun|kolay gelsin ona]"
+   ],
+   [
+    "A",
+    "[geçici personelden kurtuldum|geçici personel dönemi bitti|artık geçici yok]"
+   ],
+   [
+    "C",
+    "[maaşı zamanında öde, itibar gelir|maaşı aksatma|iyi patron ol]"
+   ],
+   [
+    "A",
+    "[söz|tabii|kesinlikle]"
+   ],
+   [
+    "D",
+    "[ilk gün {s:icecek} ısmarla ona|ilk gününde {s:tatli} ikram et|hoş geldin {s:yemek} yaparsın]"
+   ],
+   [
+    "A",
+    "[hayali {s:tatli} hazır|tamam, hayalen ısmarlıyorum|güzel fikir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-isletme-cok-musteri-az-eleman",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[müşteri bol ama eleman yetmiyor|müşteri var, çalışan az|yoğunluk var, el yetmiyor]"
+   ],
+   [
+    "B",
+    "[bir çalışan daha al|ilan aç|bir kişi daha]"
+   ],
+   [
+    "A",
+    "[maaş ödeyebilir miyim bilmiyorum|maaş yükü|maaşı nasıl öderim]"
+   ],
+   [
+    "C",
+    "[çalışan ciroyu artırıyor, kendini öder genelde|çalışan sayısı ciroya etki eder|eleman ciroyu yükseltir]"
+   ],
+   [
+    "D",
+    "[ama aynı türden rakip açılırsa müşteri bölünür, dikkat|rakip çıkarsa düşebilir|pazar doygunluğu var]"
+   ],
+   [
+    "A",
+    "[risk alayım|alıyorum bir kişi|{s:gun} ilan açıyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-cay-sohbeti-esnaf",
+  "konu": "gundelik",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[esnaf arkadaşlar öğle yemeği ne|işletme sahipleri öğlen ne yiyor|öğlen işletmede ne yiyorsunuz]"
+   ],
+   [
+    "B",
+    "[{s:yemek}|bugün {s:yemek}|ben {s:yemek} söyledim]"
+   ],
+   [
+    "C",
+    "[ben kasanın başında {s:yemek#2}|ben {s:yemek#2} getirdim evden|ben öğlen yemiyorum, ciro takibi]"
+   ],
+   [
+    "A",
+    "[ciro takibi yemekten önemli mi haha|aç aç ciro mu olur|önce yemek]"
+   ],
+   [
+    "C",
+    "[haha haklısın|tamam, yiyorum|ikna oldum]"
+   ],
+   [
+    "D",
+    "[ben garsonum, servis bitince yerim|ben servisteyim, sonra|ben müşterilerin yemeğini taşıyorum haha]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-tasinma-saka",
+  "konu": "saka",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[eve taşındım ama hayali kamyon yok haha|ev aldım, taşınma bedava haha|oyunda taşınma ne güzel]"
+   ],
+   [
+    "B",
+    "[nakliyecilere iş yok|nakliyeci arkadaşlar üzüldü haha|nakliyeciye iş çıkmadı]"
+   ],
+   [
+    "C",
+    "[ben nakliyeciyim, sitem ediyorum haha|nakliyeci olarak itiraz|bizim ekmekle oynadın haha]"
+   ],
+   [
+    "A",
+    "[{C} gerçekte olsa seni çağırırdım|{C} bir dahakine|{C} gönlün olsun]"
+   ],
+   [
+    "D",
+    "[ben {s:sayi} kere taşındım gerçekte, oyun daha iyi|gerçek taşınma kabus|gerçekte {s:ev_isi} bitmez]"
+   ],
+   [
+    "B",
+    "[oyunda {s:ev_isi} bile yok haha|oyunda temizlik yok|ne güzel]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kira-arayisi-paylasim",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kiracılar el kaldırsın|kirada oturan kaç kişi var|kiracılar kulübü toplansın]"
+   ],
+   [
+    "B",
+    "[ben|buradayım|ben de]"
+   ],
+   [
+    "C",
+    "[ben de|ben de kiracıyım|kira kurbanı burada]"
+   ],
+   [
+    "A",
+    "[her ay {evkira} veriyoruz|ayda {evkira}|kira {evkira} bu ay]"
+   ],
+   [
+    "D",
+    "[ben kurtuldum, ev sahibiyim haha|ben aranızdan çıktım|ben artık mezunum]"
+   ],
+   [
+    "B",
+    "[{D} kıskandık|{D} bizi unutma|{D} bir {s:tatli} ısmarla]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ilk-dukkan-mulk-kirada",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dükkan aldım, kirada işletme mi açarım kendi dükkanımda mı|işletmemi kendi dükkanıma mı kursam|dükkan mülkümde işletme olur mu]"
+   ],
+   [
+    "B",
+    "[bilmiyorum, oyunda bağlantılı mı|emin değilim, bakmak lazım|bilmiyorum açıkçası]"
+   ],
+   [
+    "C",
+    "[bildiğim işletme kurulumu ayrı, dükkan mülkü kira getiriyor|dükkan mülkü kira getirir|ikisini ayrı düşün]"
+   ],
+   [
+    "A",
+    "[o zaman dükkan kirası gelsin, işletme ayrı|ikisi ayrı gelir|kira artı işletme kârı]"
+   ],
+   [
+    "D",
+    "[iki gelir kapısı, güzel|harika plan|iyi düşünce]"
+   ],
+   [
+    "A",
+    "[{s:sayi} ay sonra bakarım|hedef bu|yakında]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ekonomi-maas-endeks",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[asgari ücret {asgari} oldu, artmış|asgari {asgari} şimdi|asgari ücrete baktım, {asgari}]"
+   ],
+   [
+    "B",
+    "[patronlar da ödemek zorunda|oyun içi asgari ücret var|asgariden az ödenmiyor]"
+   ],
+   [
+    "C",
+    "[fiyatlar da arttı ama|geçim {yasam}|kira {evkira}]"
+   ],
+   [
+    "A",
+    "[asgari ile kira ve geçim yetmiyor|asgari yetmez buna|zor hesap]"
+   ],
+   [
+    "D",
+    "[1. kademede kalmayın o yüzden|kurs alıp atlayın|yükselmek şart]"
+   ],
+   [
+    "A",
+    "[{s:gun} kurs bakarım|anladım|haklı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-dedikodu-bilmis-ekonomi",
+  "konu": "dedikodu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ben size söyleyeyim, ekonomi motoru kararını vermiş|bu ay faiz artacak, eminim|ben biliyorum, fiyatlar düşecek]"
+   ],
+   [
+    "B",
+    "[nereden biliyorsun|kaynak|neye dayanarak]"
+   ],
+   [
+    "A",
+    "[tecrübe|hissim güçlü|ben bilirim]"
+   ],
+   [
+    "C",
+    "[kararlar bir gün önce haber olur, habere bak|haber yoksa karar yok|bekle haberi]"
+   ],
+   [
+    "D",
+    "[fiyatlar düşmez, her ay artar biraz|fiyat düşmez|enflasyon {enflasyon} var]"
+   ],
+   [
+    "A",
+    "[peki, bekleyip göreceğiz|tamam, bekleriz|zaman gösterir]"
+   ],
+   [
+    "B",
+    "[haklı çıkarsan {s:tatli} senden|yanılırsan {s:tatli} senden|iddia {s:icecek}]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-dedikodu-zengin-kim-kurye",
+  "konu": "dedikodu",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ilk on'daki biri hâlâ kuryelik yapıyormuş|sıralamanın tepesinden biri kurye diye duydum|zenginlerden biri hâlâ kurye]"
+   ],
+   [
+    "B",
+    "[olur mu öyle|ciddi mi|imkansız]"
+   ],
+   [
+    "A",
+    "[eğlence için yapıyormuş|keyif için kuryelik|alışkanlık]"
+   ],
+   [
+    "C",
+    "[olabilir, meslek değiştirmeden mülk biriktirmiş|mülkle zengin olunur, meslek ayrı|olur bence]"
+   ],
+   [
+    "D",
+    "[bence uydurma|dedikodu|inanmadım]"
+   ],
+   [
+    "A",
+    "[bilmiyorum, duyduğumu söyledim|bilmem, öyle dendi|dedikodu işte]"
+   ],
+   [
+    "B",
+    "[{s:sayi} daireli kurye haha|zengin kurye efsanesi|gerçekse efsane]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-saf-zaman-kayip",
+  "konu": "soru",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[oyunu kapatınca her şey duruyor mu|uyuyunca oyun bekliyor mu|kapatınca zaman durur mu]"
+   ],
+   [
+    "B",
+    "[durmuyor, akıyor|zaman akar|kapalıyken de devam]"
+   ],
+   [
+    "A",
+    "[o zaman sabah {s:sayi} gün geçmiş olur|gece uyuyunca kaç gün|bir gece ne kadar]"
+   ],
+   [
+    "C",
+    "[bir oyun günü bir saat, {s:sayi} saat uyursan {s:sayi} gün|bir gün bir saat|saat başına bir gün]"
+   ],
+   [
+    "A",
+    "[kira ne olacak|kira da mı akıyor|gider de akıyor mu]"
+   ],
+   [
+    "B",
+    "[evet, ay dolunca kira ve geçim düşer|giderler de işler|her şey akar]"
+   ],
+   [
+    "A",
+    "[vay, dikkatli olmak lazım|anladım|tamam]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-saf-garson-maas",
+  "konu": "soru",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[garsonum ama maaş yatmadı|garsonluk maaşı ne zaman|neden para gelmiyor]"
+   ],
+   [
+    "B",
+    "[garson görev yaptıkça kazanır|görev yaptın mı|görev yapmazsan yok]"
+   ],
+   [
+    "A",
+    "[görev mi|hangi görev|görev nerede]"
+   ],
+   [
+    "C",
+    "[işletmede çalışan ayda 20 görevi tamamlarsa maaş tam yatar|20 görev tamamla|görev ekranına bak]"
+   ],
+   [
+    "A",
+    "[{s:sayi} görev yaptım sadece|hiç yapmamışım|bilmiyordum]"
+   ],
+   [
+    "D",
+    "[herkes böyle öğreniyor|ilk ay herkes şaşırır|bundan sonra yaparsın]"
+   ],
+   [
+    "A",
+    "[sağ olun, başlıyorum|tamam, hadi|hemen yapıyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-patron-calisanla-sohbet",
+  "konu": "is",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} işletmeye geldiğinden beri ciro arttı|{B} senin sayende kâr ediyorum|{B} iyi ki işe aldım]"
+   ],
+   [
+    "B",
+    "[teşekkürler patron|sağ olun patron|ne demek]"
+   ],
+   [
+    "A",
+    "[20 görevi her ay tamamlıyorsun|hiç aksatmadın|disiplinlisin]"
+   ],
+   [
+    "B",
+    "[kurs alıp ayrılırsam kızma ama haha|bir gün kendi işimi açacağım haha|ben de patron olmak istiyorum]"
+   ],
+   [
+    "A",
+    "[kızmam, gurur duyarım|başarını isterim|rakibim olma yeter haha]"
+   ],
+   [
+    "C",
+    "[ne güzel ilişki|örnek patron çalışan|kanalın en tatlı muhabbeti]"
+   ],
+   [
+    "B",
+    "[{s:tatli} günü yaparız|bir gün {s:icecek} içeriz|kutlamayı sonra yaparız]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gece-vardiya-isletme",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[gece de müşteri geliyor mu sizde|gece saatleri ciro nasıl|gece işletme boş mu]"
+   ],
+   [
+    "B",
+    "[benimkine gece de geliyor|gece de geliyor biraz|az ama var]"
+   ],
+   [
+    "C",
+    "[çalışanlar gece çevrimdışı olunca geçici personel giriyor|gece genelde geçici personel|gece verim düşük]"
+   ],
+   [
+    "A",
+    "[o yüzden gece hep zarar sanırım|gece maliyetli|gece hesabı kötü]"
+   ],
+   [
+    "D",
+    "[gece oynayan çalışan bul|gece kuşu eleman al|gece {s:saat} oynayan biri]"
+   ],
+   [
+    "A",
+    "[gece kuşları başvursun|kanalda gece kuşu var mı|ilan açtım]"
+   ],
+   [
+    "B",
+    "[ben gece kuşuyum ama işim var|ben gece buradayım haha|ben uyumam ki]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-is-gunu-kurye-ani",
+  "konu": "gundelik",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[bugün görev giderken {s:mekan} {s:akraba} geçiyor sandım|bugün teslimat yolunda {s:mekan} durdum|teslimat sırasında {s:mekan} mola verdim]"
+   ],
+   [
+    "B",
+    "[oyunda mı haha|gerçekte mi|hikaye mi bu]"
+   ],
+   [
+    "A",
+    "[hayalimde haha|kafamda hikaye kuruyorum|kafamda kurye hikayesi]"
+   ],
+   [
+    "C",
+    "[kuryelerin hayal gücü güçlü|hayalle görev daha zevkli|güzel hikaye]"
+   ],
+   [
+    "A",
+    "[{s:sayi} görev daha var, devam|devam ediyorum|hadi yola]"
+   ],
+   [
+    "B",
+    "[kolay gelsin|yolun açık olsun|hızlı ol]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-ev-sahibi-rahat",
+  "konu": "ekonomi",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ay sonu geldi, kira derdim yok|ay sonu stresi bitti|ay başı korkum kalmadı]"
+   ],
+   [
+    "B",
+    "[kıskanıyorum|şanslısın|ne güzel]"
+   ],
+   [
+    "A",
+    "[geçim {yasam} sadece|sadece geçim|geçim gideri yeter]"
+   ],
+   [
+    "C",
+    "[ev sahibi olunca hayat değişiyor|ev alınca nefes|kira olmayınca birikim hızlanıyor]"
+   ],
+   [
+    "D",
+    "[ben {s:sayi} ay sonra|benim de sıram gelecek|yakında ben]"
+   ],
+   [
+    "A",
+    "[{D} gel aramıza|{D} bekliyoruz|{D} hadi]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-enflasyon-tavsiye-esnaf",
+  "konu": "ekonomi",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[enflasyon {enflasyon}, işletme giderim artıyor ama ciro artıyor mu|giderler artıyor, ciro ne yapıyor|gider artınca ciro da artmalı]"
+   ],
+   [
+    "B",
+    "[NPC harcamaları da endeksle artıyor diye biliyorum|fiyatlar endeksliyse ciro da artar sanırım|bilmiyorum, bakmak lazım]"
+   ],
+   [
+    "C",
+    "[benim cirom geçen aya göre biraz arttı|bende biraz arttı|bende aynı kaldı]"
+   ],
+   [
+    "A",
+    "[o zaman denge var gibi|o zaman çok dert değil|bakmaya devam]"
+   ],
+   [
+    "D",
+    "[{s:gun} raporuna bak, karşılaştır|ay ay karşılaştır|tablo tut]"
+   ],
+   [
+    "A",
+    "[{s:sayi} aylık tablo tutacağım|tablo başlıyor|tamam]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-guncelleme-galeri-sizlanma",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ikinci el galeri gelince ilk {s:renk} araba alacağım|galeri gelsin, {s:renk} araba kafamda|galeriye {s:renk} araba için hazırım]"
+   ],
+   [
+    "B",
+    "[galeri daha yok|galeri gelecekmiş|sonra gelir]"
+   ],
+   [
+    "A",
+    "[parayı ayırdım bile|para hazır|kenarda bekliyor]"
+   ],
+   [
+    "C",
+    "[enflasyonda eriyor o para|nakit bekletme|eriyor ama]"
+   ],
+   [
+    "A",
+    "[eriyor ama araba hayali|ama hayal|yine de]"
+   ],
+   [
+    "D",
+    "[mülke koy, galeri gelince sat|mülk al, sonra çevirirsin|şimdilik mülk]"
+   ],
+   [
+    "A",
+    "[mantıklı|olabilir|düşünürüm]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-ve-kira-zor",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta",
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurs parası verdim, kira günü geldi|kurs ve kira aynı aya denk geldi|bu ay kurs ve kira birden]"
+   ],
+   [
+    "B",
+    "[kurs sürerken çalış|çalışmaya devam ediyorsun değil mi|iş var mı]"
+   ],
+   [
+    "A",
+    "[var, {A.meslek} olarak|çalışıyorum|evet]"
+   ],
+   [
+    "C",
+    "[kira {evkira}, geçim {yasam}, çıkar mı|hesap çıkıyor mu|yetiyor mu]"
+   ],
+   [
+    "A",
+    "[ucu ucuna|zor ama çıkıyor|çıkıyor galiba]"
+   ],
+   [
+    "D",
+    "[kurs bitince rahatlarsın|bir aylık çile|sonu güzel]"
+   ],
+   [
+    "A",
+    "[{s:icecek} ile sabrediyorum|sabır|dayanırım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kademe-ilk-terfi-hissi",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilk terfi hissi nasıldı sizin için|ilk kademe atladığınızda ne hissettiniz|ilk meslek değiştirme anınız]"
+   ],
+   [
+    "B",
+    "[ben ağladım haha|ben bağırdım|ben inanamadım]"
+   ],
+   [
+    "C",
+    "[ilk {s:akraba} aradı beni|ben {s:akraba} ile kutladım|ilk {s:akraba} duydu]"
+   ],
+   [
+    "D",
+    "[ben hemen ikinci kursu aldım|hemen sonraki hedefe|durmadım]"
+   ],
+   [
+    "A",
+    "[ben {s:sayi} gün sonra yaşayacağım|benimki yakında|ben de yaklaşıyorum]"
+   ],
+   [
+    "B",
+    "[kanala yaz, kutlarız|bize haber ver|bekliyoruz]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kepenk-kapanis",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[işletmeyi kapatıyorum bugünlük, yoruldum|bugünlük kapanış|akşam kapanışı yaptım]"
+   ],
+   [
+    "B",
+    "[oyunda kapanış var mı ki|kapatılıyor mu|işletme kapanmıyor sanki]"
+   ],
+   [
+    "A",
+    "[kafamda kapatıyorum haha|benim için kapandı, ciroya bakmayacağım|telefonu bırakıyorum, o kadar]"
+   ],
+   [
+    "C",
+    "[zaman akıyor, sabah bak|sabah {s:saat} bakarsın|uyurken de çalışıyor]"
+   ],
+   [
+    "A",
+    "[çalışanlar aktif değilse geçici personel girecek ama|gece yine geçici personel|gece hesabı kötü olacak]"
+   ],
+   [
+    "B",
+    "[bir gecelik maliyet, dert etme|bir gece bir şey olmaz|yat uyu]"
+   ],
+   [
+    "A",
+    "[iyi geceler, {s:yemek} beni bekliyor|ben {s:yemek} yiyip yatıyorum|iyi geceler millet]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-calisan-kursa-gitti",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[çalışanım kursa başlamış, iş aksar mı|elemanım kursa yazılmış|çalışanım kursa gidiyor]"
+   ],
+   [
+    "B",
+    "[kurs sürerken çalışabiliyor bence|kursta da çalışılıyor|aksamaz bence]"
+   ],
+   [
+    "A",
+    "[kurs bitince ayrılacak ama|kurs bitince kendi yoluna gider|bitince kaybederim onu]"
+   ],
+   [
+    "C",
+    "[herkes yükselmek ister, normal|yükselmesine sevin|bu oyunun doğası]"
+   ],
+   [
+    "D",
+    "[yerine şimdiden ilan aç|şimdiden yedek bul|ilan aç, hazırlıklı ol]"
+   ],
+   [
+    "A",
+    "[{s:gun} açarım|tamam, açıyorum|mantıklı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-erken-bitir-itiraf",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[itiraf: kursu kum saatiyle {s:sayi} gün kısalttım|kum saatlerin hepsini kursa bastım|bütün kum saatlerim kursa gitti]"
+   ],
+   [
+    "B",
+    "[iyi yapmışsın|neden itiraf haha|günah değil ki]"
+   ],
+   [
+    "A",
+    "[biriktiriyordum ama dayanamadım|sabır bitti|beklemeye tahammülüm kalmadı]"
+   ],
+   [
+    "C",
+    "[biriktirip ne yapacaktın, zaten kurs içindi|kurs için harcamak en iyisi|amacına uygun]"
+   ],
+   [
+    "D",
+    "[ben de {s:sayi} tane bastım geçen hafta|ben de aynısını yaptım|hepimiz yaptık]"
+   ],
+   [
+    "A",
+    "[o zaman suç ortağıyız|o zaman rahatladım|tamam, vicdan rahat]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kpss-memur-bekleyis",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[memur olunca ne değişecek|memurlukta gün nasıl|memur olunca ne yapacağım]"
+   ],
+   [
+    "B",
+    "[hiçbir şey, maaş yatar|maaş gelir, sen yaşarsın|oyuna girmesen de yatar]"
+   ],
+   [
+    "A",
+    "[görev yok mu|hiç mi görev yok|çalışmayacak mıyım]"
+   ],
+   [
+    "C",
+    "[memurluk sabit maaş, {maas.memur} civarı|görev yok, sabit|sabit maaşlı]"
+   ],
+   [
+    "A",
+    "[o zaman boş vaktimde ne yapacağım|boş zamanda ne yapılır|sıkılmaz mıyım]"
+   ],
+   [
+    "B",
+    "[{s:hobi} ile uğraş|kanalda muhabbet haha|mülk yatırımı planla]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-ilan-dolandirici-yok",
+  "konu": "mulk",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ev alırken dikkat edeceğim bir şey var mı|ev alırken nelere bakılır|ev alacağım, uyarı var mı]"
+   ],
+   [
+    "B",
+    "[fiyat şu an semte göre değişmiyor, kafan rahat|semt fark etmiyor|fiyat her yerde aynı]"
+   ],
+   [
+    "C",
+    "[kenarda bir aylık geçim bırak|geçim parası bırak|nakdi sıfırlama]"
+   ],
+   [
+    "D",
+    "[kredi çekeceksen peşinat yaklaşık %20|peşinat {pesinat}|kredi varsa taksitleri aksatma]"
+   ],
+   [
+    "A",
+    "[not aldım|tamam|yazdım hepsini]"
+   ],
+   [
+    "B",
+    "[hayırlı olsun şimdiden, {s:gun} müjde bekliyoruz|müjdeyi bekleriz|{s:tatli} sözü ver]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ay-sonu-gorev-kosusu",
+  "konu": "gorev",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ay bitiyor, 20 göreve {s:sayi} eksik|ay sonu yaklaştı, görevler eksik|20 görevi tamamlamam lazım]"
+   ],
+   [
+    "B",
+    "[koş koş|hadi hadi|yetiş]"
+   ],
+   [
+    "A",
+    "[maaş tam yatsın diye|maaş eksik yatmasın|tam maaş için]"
+   ],
+   [
+    "C",
+    "[işletmede çalışan 20 görevi tamamlarsa tam maaş, aynen|20 görev şart|tam yatsın]"
+   ],
+   [
+    "A",
+    "[bugün {s:saat} kadar çalışacağım|gece yarısına kadar|bitirmeden yatmam]"
+   ],
+   [
+    "D",
+    "[kolay gelsin|başarılar|hadi bakalım]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-dukkan-gider-sizlanma",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[dükkan açacaktım ama gider {dukkan.gider}|dükkan gideri {dukkan.gider} görünce durdum|{dukkan.gider} aylık gider, korktum]"
+   ],
+   [
+    "B",
+    "[ciro onu geçerse sorun yok|ciro yeterse kâr|ciro önemli]"
+   ],
+   [
+    "C",
+    "[kuruluş da {dukkan.kurulus}|kuruluşu {dukkan.kurulus}|{dukkan.kurulus} kuruluş]"
+   ],
+   [
+    "A",
+    "[{s:sayi} ay biriktiririm|biraz daha bekleyeceğim|hazır değilim]"
+   ],
+   [
+    "D",
+    "[hazır olunca aç, acele etme|acele yok|sağlam başla]"
+   ],
+   [
+    "A",
+    "[{s:akraba} bile acele etme diyor|herkes aynı şeyi diyor|tamam, bekliyorum]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-guncelleme-ihale-hayal",
+  "konu": "guncelleme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[devlet ihaleleri gelince büyük para var mı|ihale gelince zenginleşir miyiz|ihale ne zaman]"
+   ],
+   [
+    "B",
+    "[ihale henüz yok|daha yok, gelecekmiş|gelince bakarız]"
+   ],
+   [
+    "A",
+    "[müteahhitler kazanacak galiba|müteahhit olanlar şanslı|ihale müteahhite]"
+   ],
+   [
+    "C",
+    "[müteahhit 4. kademe, milyonlar ve deneyim|müteahhitlik uzun yol|4. kademe]"
+   ],
+   [
+    "A",
+    "[ben {s:sayi} yıllık plan yaptım haha|uzun plan yaptım|beş yıllık plan haha]"
+   ],
+   [
+    "D",
+    "[beş yıllık plan haha bürokrat gibi|planlı adam|plan güzel]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-siralama-esit-baslangic",
+  "konu": "siralama",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[herkes 100 binle başlıyor ama arada uçurum var|aynı parayla başladık, şimdi bakın|eşit başladık ama]"
+   ],
+   [
+    "B",
+    "[farklı kararlar farklı sonuçlar|kararlar farkı yaratıyor|yatırım farkı]"
+   ],
+   [
+    "C",
+    "[bir de zaman, eskiler önde|zaman en büyük fark|200 gündür oynayanlar önde]"
+   ],
+   [
+    "D",
+    "[ve sabır|sabır ve plan|bir de şans haha]"
+   ],
+   [
+    "A",
+    "[bende sabır yok|ben sabırsızım|benim sorun sabır]"
+   ],
+   [
+    "B",
+    "[sabır öğrenilir, {s:hobi} gibi|{s:hobi} gibi alışırsın|zamanla gelir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-birikim-hedef-bayram",
+  "konu": "birikim",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{bayram} için bağış hedefi koydum|bayrama kadar bağış parası biriktiriyorum|{bayram} bağışı için kenara koyuyorum]"
+   ],
+   [
+    "B",
+    "[güzel hedef|harika|helal]"
+   ],
+   [
+    "A",
+    "[{bayram.gun} gün var, her gün biraz|her gün ayırıyorum|günde bir parça]"
+   ],
+   [
+    "C",
+    "[bayramda itibar iki kat, değer|iki kat itibar|bayram bağışı çift sayılıyor]"
+   ],
+   [
+    "D",
+    "[ben {s:tatli} hazırlayacağım gerçekte haha|ben bayramda {s:tatli} yerim|bayram demek {s:tatli} demek]"
+   ],
+   [
+    "A",
+    "[{D} haha herkesin önceliği farklı|{D} sen bayramı tatlıyla bil|{D} olur, ikisi de]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kredi-tartisma-esnaf",
+  "konu": "kredi",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[işletmeyi büyütmek için kredi düşünüyorum|ikinci işletme için kredi|büyümek için kredi]"
+   ],
+   [
+    "B",
+    "[ilk işletme kâr ediyor mu|kâr var mı|şu an kârda mısın]"
+   ],
+   [
+    "A",
+    "[ediyor, her ay|evet, düzenli kâr|kârdayım]"
+   ],
+   [
+    "C",
+    "[o zaman taksit kârdan ödenir, mantıklı|kâr varsa çekilir|risk az]"
+   ],
+   [
+    "D",
+    "[ama aynı türden açarsan kendi müşterini bölersin haha|ikinci aynı türse bölünür|farklı tür aç]"
+   ],
+   [
+    "A",
+    "[farklı açarım, {s:gun} bakarım|farklı tür, tamam|iyi uyarı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-yanlis-bilgi-kurs-parayla",
+  "konu": "yanlis-bilgi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[gerçek parayla kurs süresi sıfırlanıyor|para verince kurs anında bitiyor|kursu parayla atlarsın]"
+   ],
+   [
+    "B",
+    "[kum saati satın alınabiliyor, bir tanesi bir gün|kum saati alırsın, gün gün kısalır|anında değil, kum saati kadar]"
+   ],
+   [
+    "C",
+    "[ama kademe 3-4 şartları parayla atlanmıyor|deneyim ve kurs şartı atlanmaz|3-4. kademede parayla atlama yok]"
+   ],
+   [
+    "A",
+    "[yani kısmen doğru|tamam, yarı doğru|o zaman abartmışım]"
+   ],
+   [
+    "B",
+    "[yarı doğru haha|kısmen|biraz]"
+   ],
+   [
+    "D",
+    "[{s:akraba} gibi büyütüyorsun haha|her şeyi büyütme|dedikodu böyle başlar]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-tanisma-mulakat-saka",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} ilanına başvurdum, mülakat var mı|{B} iş görüşmesi yapacak mıyız|{B} başvurdum, sorular hazır mı]"
+   ],
+   [
+    "B",
+    "[soru 1: en sevdiğin {s:icecek}|soru bir: {s:yemek} mi {s:tatli} mı|ilk soru: sabahçı mısın]"
+   ],
+   [
+    "A",
+    "[{s:icecek} tabii|kolay soru|cevap belli]"
+   ],
+   [
+    "B",
+    "[kabul edildin haha|işe alındın|tebrikler, başlıyorsun]"
+   ],
+   [
+    "C",
+    "[en ciddi mülakat|bu mülakat çok zor haha|ben de başvurayım]"
+   ],
+   [
+    "B",
+    "[{C} senin soru: {s:hayvan} mı|{C} sana zor soru gelir|{C} sıraya gir]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-meslek-garson-mutlu",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ben garsonluktan memnunum, kimse inanmıyor|garsonluk bana iyi geliyor|garsonluğu seviyorum]"
+   ],
+   [
+    "B",
+    "[neden yükselmiyorsun|kurs almayacak mısın|kademe atlamayacak mısın]"
+   ],
+   [
+    "A",
+    "[acelem yok, {maas.garson} yetiyor|şimdilik iyiyim|zamanı gelince]"
+   ],
+   [
+    "C",
+    "[kira veriyor musun|ev sahibi misin|kiracı mısın]"
+   ],
+   [
+    "A",
+    "[kiracıyım ama biriktiriyorum|kiradayım, birikim var|kiradayım]"
+   ],
+   [
+    "D",
+    "[mutlu olman önemli|herkes aynı yolda değil|sen bilirsin]"
+   ],
+   [
+    "A",
+    "[{s:icecek} ve huzur|huzur, {s:hobi} ve iş|kafa rahat]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kum-saati-yanlis-harcama",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kum saatini yanlışlıkla başvuruya bastım|yanlış yere kum saati harcadım|kum saatini başvuruya harcadım, kurs için saklıyordum]"
+   ],
+   [
+    "B",
+    "[başvuru da hızlandı en azından|boşa gitmedi|başvuru hızlandı]"
+   ],
+   [
+    "A",
+    "[ama kabul edilmedi|başvuru reddedildi|itibarım yetmedi galiba]"
+   ],
+   [
+    "C",
+    "[üzülme, günlük görevle yenisi gelir|yarın yeni gelir|3 görev yap, bir tane daha]"
+   ],
+   [
+    "A",
+    "[{s:sayi} gün daha uğraşırım|tamam, toplarım|yeniden]"
+   ],
+   [
+    "B",
+    "[{s:icecek} iç, unut|kafana takma|olur böyle]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-gunluk-gorev-rutini-anlatim",
+  "konu": "gorev",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[sizin günlük rutininiz ne|oyunda günlük rutininiz nasıl|her gün ne yapıyorsunuz oyunda]"
+   ],
+   [
+    "B",
+    "[sabah günlük görev, sonra iş|günlük görev, iş, kanal|görev görev görev]"
+   ],
+   [
+    "C",
+    "[ben akşam {s:saat} giriyorum, hepsini yapıyorum|ben akşamcıyım|akşam toplu]"
+   ],
+   [
+    "D",
+    "[ben gün boyu kanaldayım haha|ben hiç çıkmıyorum|ben burada yaşıyorum]"
+   ],
+   [
+    "A",
+    "[{D} biraz dışarı çık haha|{D} {s:mekan} biraz gez|{D} hava al]"
+   ],
+   [
+    "D",
+    "[oyunda {s:mekan} gezerim haha|dışarı kanalın kendisi|burası dışarı]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-bagis-yardimsever-yeniye",
+  "konu": "bagis",
+  "kosul": [
+   "A.zengin",
+   "B.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[{B} yeni başladın galiba|{B} hoş geldin|{B} kanala hoş geldin]"
+   ],
+   [
+    "B",
+    "[evet, {s:sayi} gün oldu|yeniyim|yeni geldim]"
+   ],
+   [
+    "A",
+    "[para gönderemiyorum ama tavsiye verebilirim|yeni hesaplara transfer limiti var ama tavsiye bedava|tavsiye vereyim]"
+   ],
+   [
+    "B",
+    "[lütfen|dinliyorum|tabii]"
+   ],
+   [
+    "A",
+    "[önce iş, sonra kurs, sonra ev|günlük görevleri kaçırma, iş bul|kirayı kesmeyi hedefle]"
+   ],
+   [
+    "C",
+    "[bir de bağış itibar getiriyor, ileride|itibar için bağış unutma|bayramda bağış]"
+   ],
+   [
+    "B",
+    "[hepsini not aldım|teşekkürler|harika]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-isletme-ilan-maasi-yuksek",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ilanda maaşı yüksek yazdım, başvuran yağdı|maaşı yükseltince ilana {s:sayi} başvuru|yüksek maaş yazınca kuyruk oluştu]"
+   ],
+   [
+    "B",
+    "[tabii|normal|para konuşur]"
+   ],
+   [
+    "A",
+    "[ama ciro bunu kaldırır mı bilmiyorum|maaş yükü artacak|kâr düşecek]"
+   ],
+   [
+    "C",
+    "[iyi çalışan ciroyu artırır|eleman ciroya katkı|kendini çıkarır belki]"
+   ],
+   [
+    "D",
+    "[asgarinin üstü vermek itibar için de iyi|iyi maaş iyi patron|çalışana iyi davranmak itibar]"
+   ],
+   [
+    "A",
+    "[{s:gun} raporuna bakarım|deneyelim|bir ay deneyeceğim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-hayali-kafe-menusu",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kafem olsa menüde {s:yemek} olurdu|hayali kafemin menüsü: {s:yemek} ve {s:icecek}|kafe açarsam {s:tatli} satarım]"
+   ],
+   [
+    "B",
+    "[oyunda menü yok ama haha|menü seçemiyoruz ki|hayal güzel]"
+   ],
+   [
+    "C",
+    "[ben {s:tatli} ve {s:icecek} isterdim|benimkinde {s:icecek} olurdu|ben {s:yemek#2} koyardım]"
+   ],
+   [
+    "A",
+    "[{C} ortak olalım|{C} gel ortaklık|{C} ortaklık gelince seninle]"
+   ],
+   [
+    "C",
+    "[ortaklık daha yok ama söz|gelince konuşuruz|söz]"
+   ],
+   [
+    "D",
+    "[ben müşteri olurum|ben ilk müşteri|ben gelirim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-kurs-saati-gece-gunduz",
+  "konu": "soru",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[kurs gece de ilerliyor mu|uyurken kurs devam ediyor mu|oyunu kapatınca kurs durur mu]"
+   ],
+   [
+    "B",
+    "[ilerliyor, zaman akıyor|devam ediyor|durmaz]"
+   ],
+   [
+    "A",
+    "[o zaman gece başlatayım|gece başlatırsam sabah {s:sayi} gün ilerler|gece kurs mantıklı]"
+   ],
+   [
+    "C",
+    "[bir gün bir saat, {s:sayi} saat uyursan {s:sayi} gün|hesap basit|saati hesapla]"
+   ],
+   [
+    "A",
+    "[akıllıca|harika|tamam]"
+   ],
+   [
+    "B",
+    "[ben hep {s:saat} başlatırım|gece başlatmak taktik|bilinen taktik]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ev-alirken-akraba",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[ev alacağım dedim, {s:akraba} bana gerçek ev mi sandı|{s:akraba} oyunda ev aldığımı duyunca şaşırdı|{s:akraba} oyundaki evime sevindi haha]"
+   ],
+   [
+    "B",
+    "[haha anlattın mı oyunu|açıkladın mı|ne dedin]"
+   ],
+   [
+    "A",
+    "[anlattım, şimdi o da oynayacak|anlattım, merak etti|anlattım, güldü]"
+   ],
+   [
+    "C",
+    "[aile oyuncusu bir kişi daha|kanala bir kişi daha|hoş geldin {s:akraba} haha]"
+   ],
+   [
+    "D",
+    "[ona söyle, ilk iş kurye olsun|ilk tavsiye: kurye|önce kuryelik]"
+   ],
+   [
+    "A",
+    "[söylerim|tamam|iletirim]"
+   ]
+  ]
+ },
+ {
+  "id": "o3-ekonomi-haber-bekleyis",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[sabah haberleri okudunuz mu|ekonomi haberlerine baktınız mı bugün|haber ekranında ne var]"
+   ],
+   [
+    "B",
+    "[bakmadım|ne var|önemli bir şey mi]"
+   ],
+   [
+    "A",
+    "[enflasyon {enflasyon} görünüyor, faiz {faiz}|faiz {faiz}, enflasyon {enflasyon}|rakamlar aynı gibi]"
+   ],
+   [
+    "C",
+    "[değişiklik varsa bir gün önce haber olur|karar haberi gelmedi o zaman|değişen yok]"
+   ],
+   [
+    "A",
+    "[o zaman rahat|o zaman sorun yok|iyi]"
+   ],
+   [
+    "B",
+    "[{s:icecek} içip işe|haber tamam, şimdi iş|hadi işe]"
+   ]
+  ]
+ }
+]
