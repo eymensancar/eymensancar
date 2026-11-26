@@ -184,12 +184,15 @@
    "evimi kiraya nasıl veririm",
    "kiracıyı ben mi buluyorum",
    "kiracıyı kim buluyor",
-   "kiracı kendiliğinden mi geliyor"
+   "kiracı kendiliğinden mi geliyor",
+   "kiracı bulmak gerekiyor mu",
+   "kiracı aramam gerekir mi",
+   "kiraya vermek için kiracı lazım mı"
   ],
   "cevap": [
    "Kiracıyı aramana gerek yok, kiracı NPC. Kira her ay kendiliğinden hesabına geçiyor",
-   "Kiracı oyuncu değil, NPC. Sen mülkü alıyorsun, içinde oturmuyorsan kira ay sonu geliyor",
-   "İlan falan yok, kira otomatik geliyor. Daire ayda {daire.kira}, dükkan {dukkan.kira}"
+   "Kiracı aramana gerek yok, NPC oluyor. İçinde oturmuyorsan kira ay sonu geliyor",
+   "Gerek yok, ilan falan yok, kira otomatik geliyor. Daire ayda {daire.kira}, dükkan {dukkan.kira}"
   ]
  },
  {
@@ -295,6 +298,307 @@
    "Başvuruda bekleme var, işveren kabul edene kadar sürüyor. Kum Saati her biri 1 gün kısaltır",
    "Cevap gelmediyse işveren daha bakmamıştır. Beklemeyi Kum Saati ile gün gün kısaltabilirsin",
    "Bekleme oyun günüyle sayılıyor, 1 gün 1 saat. İtibarın yüksekse daha çok kabul görürsün"
+  ]
+ },
+ {
+  "id": "taseron-calisan",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "taşerona hangi meslekler alınır",
+   "taşeron firmasında kimler çalışır",
+   "taşeronda hangi çalışanlar olur",
+   "taşerona muhasebeci alınır mı",
+   "taşeron için hangi elemanları alırım",
+   "taşeron firmasına kim başvurabilir",
+   "taşeronun kadrosu kimlerden oluşur",
+   "taşerona kasiyer alınır mı",
+   "taşeron firmasında hangi pozisyonlar var",
+   "taşerona usta alabilir miyim",
+   "taşeron işçi alımı",
+   "taşerona garson alınır mı",
+   "taşeron için kimi işe alayım"
+  ],
+  "cevap": [
+   "Taşerona inşaat işçisi, usta ve muhasebeci alınıyor, kadro 4 kişi",
+   "İnşaat işçisi, usta ya da muhasebeci; başka meslek taşerona uymuyor",
+   "4 kişilik kadro: inşaat işçisi, usta, muhasebeci alabilirsin"
+  ]
+ },
+ {
+  "id": "muhasebeci-her-isletme",
+  "konu": "genel",
+  "sorular": [
+   "muhasebeci her işletmede çalışabilir mi",
+   "muhasebeci hangi işletmelerde çalışır",
+   "muhasebeci kafeye alınır mı",
+   "muhasebeciyi her yere alabilir miyim",
+   "muhasebeci her yerde iş bulur mu",
+   "muhasebeci hangi firmalara girebilir",
+   "muhasebeci dükkanda çalışır mı",
+   "muhasebeciler nerelerde çalışıyor",
+   "muhasebeci taşerona girer mi",
+   "her işletme muhasebeci alır mı",
+   "muhasebeci her yerde lazım mı",
+   "muhasebeci emlak ofisinde çalışabilir mi",
+   "muhasebeciyi hangi işletme alabilir"
+  ],
+  "cevap": [
+   "Evet, muhasebeci her işletme türüne alınabiliyor: kafe, dükkan, taşeron, emlak ofisi",
+   "Evet, muhasebeci bütün işletmelerde çalışabiliyor, en esnek meslek o",
+   "Evet, muhasebeciyi her işletme alır; diğer meslekler türüne göre değişiyor"
+  ]
+ },
+ {
+  "id": "kredi-erken-not",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "erken kapatırsam kredi notum artar mı",
+   "krediyi erken bitirmek notu yükseltir mi",
+   "borcu erken ödeyince not artıyor mu",
+   "erken ödeme kredi notuna yarar mı",
+   "kredi kapatınca not yükselir mi",
+   "erken kapama nota etki eder mi",
+   "kredi borcunu bitirince kredi notu artar mı",
+   "tüm borcu ödersem notum ne olur",
+   "borcumu kapatırsam notum yükselir mi",
+   "kredi notu erken ödemeyle artar mı",
+   "krediyi bitirince not ne oluyor",
+   "erken kapatmak notu etkiler mi"
+  ],
+  "cevap": [
+   "Erken kapamanın nota ayrı bir katkısı yok; not her ay taksidi zamanında ödeyince 5 puan artıyor",
+   "Doğrudan artmıyor, not düzenli ödenen taksitle yükseliyor. Taksit kaçırırsan da sert düşüyor",
+   "Nota ayrı puan vermiyor ama faizden kurtarıyor; not her zamanında ödenen taksitte artar"
+  ]
+ },
+ {
+  "id": "emlak-sabit-maas",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "emlakçı sabit maaş alıyor mu",
+   "emlak danışmanı maaşlı mı",
+   "emlakçının maaşı sabit mi",
+   "emlakçı sadece primle mi kazanır",
+   "emlak danışmanı komisyonla mı çalışıyor",
+   "emlakçı maaş mı alır komisyon mu",
+   "emlak danışmanına maaş yatıyor mu",
+   "emlakçılar maaş alıyor mu",
+   "emlakçı görev yapmasa da maaş alır mı",
+   "emlakçının sabit geliri var mı",
+   "emlak danışmanının maaşı sabit mi",
+   "emlakçıya maaş veriliyor mu yoksa sadece prim mi"
+  ],
+  "cevap": [
+   "Evet, sabit maaşı var, üstüne satış denk gelince prim alıyor; ortalama {maas.emlak}",
+   "Evet, maaş sabit, prim ek; ayda {maas.emlak} civarı ediyor",
+   "Hem maaş hem prim var: maaş sabit yatıyor, prim arada bir"
+  ]
+ },
+ {
+  "id": "zam-vermiyor",
+  "konu": "zam_istegi",
+  "sorular": [
+   "patronum zam vermiyor",
+   "işveren zam yapmıyor ne yapayım",
+   "patron maaşımı artırmıyor",
+   "zam alamıyorum ne yapmalıyım",
+   "patronum zam yapmıyo",
+   "zam vermeyen patrona ne yapılır",
+   "işverenim maaş artırmıyor",
+   "patron zam yapmazsa ne yapayım",
+   "zam istedim vermedi",
+   "zam alamazsam istifa mı etsem",
+   "patron zam vermezse istifa edeyim mi",
+   "zam vermiyorsa ayrılayım mı"
+  ],
+  "cevap": [
+   "Önce bir daha konuş, ilişkiniz iyiyse esner. Olmazsa istifa edip daha iyi bir ilana başvurursun",
+   "Konuş, bu ay iyi çalıştıysan ikna olur. Vermezse Kariyer'den istifa edip başka ilana geçersin",
+   "İstifa etmeden önce yeni işi ayarla, sonra bir daha konuş"
+  ]
+ },
+ {
+  "id": "deneyim-issiz",
+  "konu": "genel",
+  "sorular": [
+   "işsizken deneyim gelir mi",
+   "işsiz kalınca deneyim sayılır mı",
+   "mesleğim yokken gün sayılıyor mu",
+   "boştayken deneyim artar mı",
+   "çalışmazsam deneyim gelir mi",
+   "işim yokken deneyim kazanır mıyım",
+   "işsizlikte deneyim",
+   "iş yokken deneyim birikir mi",
+   "işsizken de günler sayılıyor mu",
+   "mesleksizken deneyim olur mu",
+   "işsizken deneyim kazanılır mı",
+   "mesleğim yokken deneyimim artar mı"
+  ],
+  "cevap": [
+   "Hayır, deneyim için bir mesleğin olmalı; işsizken sayılmıyor",
+   "Mesleğin yoksa deneyim gelmez, en azından kuryelik yap",
+   "Deneyim meslekte geçen günden geliyor; görevli işte de o gün görev yapınca sayılıyor"
+  ]
+ },
+ {
+  "id": "param-var-deneyim-yok",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "param var ama deneyimim yok ne yapayım",
+   "sermayem var deneyimim yok",
+   "param yetiyor ama deneyim eksik",
+   "deneyimim az param çok",
+   "para var tecrübe yok",
+   "param hazır ama gün şartı tutmuyor",
+   "sermaye tamam deneyim eksik",
+   "param çok ama deneyimim yetmiyor",
+   "param yeterli ama deneyimim az ne yapsam",
+   "deneyim yok ama birikimim var",
+   "sermayem hazır gün eksik",
+   "paramı ne yapayım deneyimim dolana kadar"
+  ],
+  "cevap": [
+   "Deneyim parayla gelmiyor; şartsız işte gün doldururken paranı mülke yatır",
+   "Bekleyen paranı daire ya da dükkana koy, kira gelsin; deneyim günleri dolunca işletmeyi açarsın",
+   "Deneyim için çalışmak şart; o arada para mülkte dursun"
+  ]
+ },
+ {
+  "id": "mulk-mantikli",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "mülk almak mantıklı mı",
+   "ev alsam mantıklı olur mu",
+   "mülke yatırım yapmak mantıklı mı",
+   "daire almak karlı mı",
+   "mülk almalı mıyım",
+   "ev alayım mı sizce",
+   "mülk yatırımı kazandırır mı",
+   "dükkan almak mantıklı mı",
+   "mülk almak iyi fikir mi",
+   "mülke para yatırmaya değer mi",
+   "mülk almak akıllıca mı",
+   "ev almak karlı bir yatırım mı"
+  ],
+  "cevap": [
+   "Mantıklı, daire ayda {daire.kira} kira getiriyor, değeri de enflasyonla artıyor",
+   "Bence evet, nakit eriyor ama mülk değerlenir; dükkan ayda {dukkan.kira} kira getiriyor",
+   "Kira geliri istiyorsan daire ya da dükkan al, arsa sadece değerlenir"
+  ]
+ },
+ {
+  "id": "kumsaati-satma",
+  "konu": "genel",
+  "sorular": [
+   "kum saati satabilir miyim",
+   "kum saatimi satmak istiyorum",
+   "kum saati satışı var mı",
+   "kum saatini başkasına satsam",
+   "kum saati oyuncuya satılır mı",
+   "fazla kum saatimi satarım",
+   "kum saati satılıyor mu pazarda",
+   "kum saati alıp satmak",
+   "kum saati satılır mı",
+   "kum saatlerimi satabilir miyim",
+   "kum saati satıp para kazanılır mı",
+   "kum saati ticareti var mı"
+  ],
+  "cevap": [
+   "Olmaz, Kum Saati satılmıyor, gönderilemiyor da",
+   "Satmak olmuyor, sadece kendi beklemelerinde kullanırsın",
+   "Olmaz, oyuncular arası Kum Saati alışverişi yok"
+  ]
+ },
+ {
+  "id": "kurs-en-pahali",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "en pahalı kurs hangisi",
+   "en pahalı kurs müteahhitlik mi",
+   "kursların en pahalısı",
+   "en çok para tutan kurs",
+   "en yüksek ücretli kurs",
+   "hangi kurs en pahalı",
+   "en pahalı belge hangisi",
+   "en ucuz ve en pahalı kurs",
+   "müteahhitlikten pahalı kurs var mı",
+   "en pahalı kurs ne",
+   "kurslardan hangisi en pahalı",
+   "müteahhitlik belgesi en pahalı kurs mu"
+  ],
+  "cevap": [
+   "En pahalısı müteahhitlik belgesi, {kurs.muteahhit}; ondan sonra döviz lisansı {kurs.doviz}",
+   "Evet, müteahhitlik en pahalısı, {kurs.muteahhit} tutuyor",
+   "Müteahhitlik belgesi en pahalı kurs, {kurs.muteahhit}; en ucuzu kamu sınavı {kurs.kpss}"
+  ]
+ },
+ {
+  "id": "mulk-kira-kiyas",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "dükkanın kirası daireden iyi mi",
+   "dükkan daireden çok kira getirir mi",
+   "dükkan kira oranı daireden yüksek mi",
+   "en çok kira getiren mülk hangisi",
+   "kira getirisi en yüksek mülk",
+   "dükkan mı daha çok kira getiriyor",
+   "daire mi daha çok kira getirir dükkan mı",
+   "dükkanın getirisi daha mı iyi",
+   "dükkanın kira getirisi daireden fazla mı",
+   "daire mi dükkan mı daha iyi kira getirir",
+   "kira oranı hangisinde yüksek",
+   "dükkan kirası daireden yüksek mi"
+  ],
+  "cevap": [
+   "Evet, dükkan değerinin %0,6'sı, daire %0,5'i kadar kira getiriyor; dükkan ayda {dukkan.kira}, daire {daire.kira}",
+   "Evet dükkan biraz daha iyi, ayda {dukkan.kira}; ama fiyatı da {dukkan}",
+   "Oran olarak dükkan önde: daire ayda {daire.kira}, dükkan {dukkan.kira}"
+  ]
+ },
+ {
+  "id": "kurs-pes-pese",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "bir kurs bitince başka kurs alabilir miyim",
+   "muhasebeden sonra ustalık kursu alınır mı",
+   "ikinci kursu alabilir miyim",
+   "kurs bitince yenisine başlanır mı",
+   "birden fazla kurs bitirebilir miyim",
+   "kurs üstüne kurs",
+   "iki farklı kurs bitirmek",
+   "bütün kursları alabilir miyim",
+   "sırayla kurs almak",
+   "kurs bitirdikten sonra bir kurs daha",
+   "bir kurs daha alabilir miyim",
+   "kursu bitirdim başka kurs alabilir miyim"
+  ],
+  "cevap": [
+   "Evet, biri bitince öbürüne yazılırsın, aynı anda tek kurs",
+   "Evet, bitirdiğin kurs kalıyor, sonra yenisine başlarsın; ama meslek tek",
+   "Olur, sırayla alırsın; mesleğin yine tek olur"
+  ]
+ },
+ {
+  "id": "kira-vergi",
+  "konu": "ekonomi",
+  "sorular": [
+   "kira gelirinden vergi alınıyor mu",
+   "kiradan vergi kesilir mi",
+   "kira geliri vergiye girer mi",
+   "kira gelirine vergi var mı",
+   "kiralardan vergi ödüyor muyuz",
+   "kira vergisi var mı",
+   "kira gelirim vergilendirilir mi",
+   "kira gelirinden gelir vergisi kesilir mi",
+   "kira alınca vergi ödenir mi",
+   "kiraya vergi var mı",
+   "kira gelirinin vergisi ne kadar",
+   "kira geliri vergisiz mi"
+  ],
+  "cevap": [
+   "Kira da ay sonu gelirine ekleniyor, toplam gelirin dilimli vergiye giriyor",
+   "Ayrı kira vergisi yok ama kira gelirin maaşla toplanıp gelir vergisine giriyor; ilk 30 bin vergisiz",
+   "Evet, kira ay sonu gelire eklenir, vergi dilimine göre kesilir"
   ]
  }
 ]

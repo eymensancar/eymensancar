@@ -110,12 +110,16 @@
    "kurye olmak için işveren lazım mı",
    "kurye için ilana mı başvuracağım",
    "kuryelik her zaman açık mı",
-   "kuryelik her zaman boş mu"
+   "kuryelik her zaman boş mu",
+   "kurye olmak için bir yere başvurmak lazım mı",
+   "kuryelik için başvuru gerekiyor mu",
+   "kurye olunca kimseye başvurmuyor muyuz",
+   "kurye ilana başvurur mu"
   ],
   "cevap": [
    "Kuryenin işvereni yok, kendi başına görev yapıp kazanıyor",
-   "Kimse işe almıyor, Kariyer'den kurye olup görevlere başlıyorsun",
-   "Patron yok, ilan yok, kurye serbest çalışıyor"
+   "Başvuru yok, işvereni de yok; Kariyer'den kurye olup görevlere başlıyorsun",
+   "İşveren yok, ilan yok, kurye serbest çalışıyor"
   ]
  },
  {
@@ -189,10 +193,12 @@
    "markette kasada durmak kaç bin",
    "kasiyer ayda ne alıyo",
    "kasiyer görev başı ek alıyor mu",
-   "market çalışanının maaşı asgari mi"
+   "market çalışanının maaşı asgari mi",
+   "kasiyerler asgari ücret mi alıyor",
+   "kasiyer asgari ücretle mi çalışıyor"
   ],
   "cevap": [
-   "Kasiyer asgari ücret maaşı alır, üstüne görev başı biraz ek gelir; ortalama {maas.kasiyer}",
+   "Evet, kasiyer asgari ücret maaşı alır, üstüne görev başı biraz ek gelir; ortalama {maas.kasiyer}",
    "Maaş artı görev, ayda {maas.kasiyer} civarı",
    "Market çalışanı ayda {maas.kasiyer} kadar, maaşın tabanı {asgari}"
   ]
@@ -379,7 +385,10 @@
    "memur kıdemi",
    "memurun maaşı kaç günde artar",
    "memura zam yapılıyor mu",
-   "memur maaşına ne zaman zam gelir"
+   "memur maaşına ne zaman zam gelir",
+   "memura kaç günde bir zam gelir",
+   "memurun zammı ne sıklıkla",
+   "memurunki ne zaman artıyor"
   ],
   "cevap": [
    "Memura kıdemle kendiliğinden zam gelir, 180 günde bir artar",
@@ -460,7 +469,10 @@
    "muhasebecinin maaşı kaç günde artar",
    "muhasebeciye zam yapılıyor mu",
    "muhasebeci zammı otomatik mi",
-   "muhasebeci maaşı ne zaman yükselir"
+   "muhasebeci maaşı ne zaman yükselir",
+   "muhasebeciye ne sıklıkla zam geliyor",
+   "muhasebeci zammı kaç günde bir",
+   "muhasebecinin maaşı ne zaman artar"
   ],
   "cevap": [
    "Muhasebecide kıdem zammı 90 günde bir kendiliğinden gelir",
@@ -512,12 +524,16 @@
    "emlak danışmanı satış primi",
    "prim ne sıklıkla geliyor",
    "emlakçı primi kaç para",
-   "emlakta komisyon var mı"
+   "emlakta komisyon var mı",
+   "prim ne sıklıkla çıkıyor",
+   "emlakçı ne sıklıkla prim alır",
+   "prim kaç görevde bir geliyor",
+   "emlakçının primi sık mı"
   ],
   "cevap": [
    "Emlakçı görev yaptıkça arada bir satış denk gelir, o zaman prim çıkar",
-   "Prim şansa bağlı, ne kadar görev yaparsan ihtimal o kadar artıyor",
-   "Maaş sabit, prim her görevde küçük bir ihtimalle geliyor"
+   "Prim şansa bağlı, arada bir çıkar; ne kadar görev yaparsan ihtimal o kadar artıyor",
+   "Maaş sabit, prim her görevde küçük bir ihtimalle, arada bir geliyor"
   ]
  },
  {
@@ -600,7 +616,9 @@
    "ustalık kursundan önce ne gerekiyor",
    "usta olmak için önce inşaatta mı çalışmak lazım",
    "ustalık belgesini alıp direkt usta olunur mu",
-   "ustalik belgesi kimde var nasil alinir"
+   "ustalik belgesi kimde var nasil alinir",
+   "ustalık belgesi bitince usta olur muyum",
+   "belgeyi alınca direkt usta mı oluyorum"
   ],
   "cevap": [
    "Ustalık belgesi ve 20 gün inşaat işçiliği gerekiyor",
@@ -766,11 +784,16 @@
    "ustadan sonra ne olunur",
    "usta sonrası hangi meslek",
    "ustalıktan sonra taşeron mu",
-   "usta olduktan sonra ne yapayım"
+   "usta olduktan sonra ne yapayım",
+   "taşeron firması kurmanın şartı ne",
+   "taşeron şirketi kurmak için ne gerekir",
+   "taşeron açma şartı",
+   "taşeronluk için usta olmak şart mı",
+   "taşeron için önce usta olmak mı lazım"
   ],
   "cevap": [
    "Taşeron için sermaye ve 20 gün ustalık gerekiyor, sermaye 1,2 milyon civarı",
-   "Önce usta olup 20 gün çalışacaksın, sonra 1,2 milyon kadar sermaye",
+   "Evet, önce usta olup 20 gün çalışacaksın, sonra 1,2 milyon kadar sermaye",
    "Başka iş deneyimi sayılmıyor, 20 gün ustalık şart"
   ]
  },
@@ -844,12 +867,13 @@
    "döviz bürosu kurmak",
    "döviz bürosu 4. kademe mi",
    "döviz bürosu açmak ne kadar",
-   "döviz bürosu kaç kişi çalıştırır"
+   "döviz bürosu kaç kişi çalıştırır",
+   "döviz bürosu kurmak istiyom"
   ],
   "cevap": [
    "Döviz bürosu 4. kademe: 6 milyon civarı sermaye, döviz bürosu lisansı ve 120 gün deneyim",
    "Lisans kursu {kurs.doviz}, {kurs.doviz.gun} gün sürüyor; üstüne 6 milyon ve 120 gün",
-   "Milyonlar istiyor, önce küçük işlerle sermaye biriktirmen lazım"
+   "6 milyon sermaye istiyor, önce küçük işlerle biriktirmen lazım"
   ]
  },
  {
@@ -1238,12 +1262,15 @@
    "dükkan sahibiyken kuryelik",
    "işletmem var başka mesleğe geçemiyorum",
    "işletme sahibi olunca meslek değişmez mi",
-   "patron başka iş yapabilir mi"
+   "patron başka iş yapabilir mi",
+   "dükkan sahibiyken başka mesleğe geçebilir miyim",
+   "işletme sahibiyim meslek değiştirebilir miyim",
+   "kafem var başka işe geçebilir miyim"
   ],
   "cevap": [
    "İşletme sahibiyken başka mesleğe geçemezsin",
    "Önce işletmeni kapatman lazım, sonra başka meslek",
-   "Patronluk tam zamanlı iş sayılıyor, başka meslek olmuyor"
+   "Patronluk tam zamanlı iş sayılıyor, başka mesleğe geçemezsin"
   ]
  },
  {
@@ -1290,11 +1317,13 @@
    "kurslar hangileri",
    "bütün kurslar",
    "kaç tane kurs var",
-   "kursların listesi"
+   "kursların listesi",
+   "kursları listeler misin",
+   "hangi kurslar var say"
   ],
   "cevap": [
    "Kamu sınavı, muhasebe, ustalık, emlak belgesi; büyükler için döviz lisansı, dış ticaret ve müteahhitlik",
-   "Yedi kurs var, Kariyer ekranında ücret ve süreleriyle yazıyor",
+   "Yedi kurs var: kamu sınavı, muhasebe, ustalık, emlak, döviz lisansı, dış ticaret, müteahhitlik",
    "En çok alınanlar kamu sınavı ve ustalık belgesi"
   ]
  },
@@ -1316,7 +1345,9 @@
    "muhasebe kursu hangi meslek için",
    "döviz lisansı ne işe yarar",
    "müteahhitlik belgesi ne işe yarar",
-   "hangi meslek hangi kursu istiyor"
+   "hangi meslek hangi kursu istiyor",
+   "emlak belgesi bitince hangi iş",
+   "belgeyi bitirince ne iş yaparım"
   ],
   "cevap": [
    "Kamu sınavı memurluğu, muhasebe kursu muhasebeciliği, emlak belgesi emlakçılığı, ustalık belgesi ustalığı açar",
@@ -1551,7 +1582,10 @@
    "döviz bürosu lisansı kaça",
    "doviz lisansi ne kadar surer",
    "döviz lisans kursu",
-   "döviz bürosu belgesi kaç para"
+   "döviz bürosu belgesi kaç para",
+   "döviz lisansı kursu kaç gün",
+   "lisans kursu kaç gün sürüyor",
+   "döviz lisansının parası ne kadar"
   ],
   "cevap": [
    "Döviz bürosu lisansı {kurs.doviz}, {kurs.doviz.gun} gün sürüyor",
@@ -1577,12 +1611,16 @@
    "dış ticaret kursu kaça",
    "dis ticaret kursu ne kadar surer",
    "ithalat ihracat kursu kaç para",
-   "dış ticaret belgesi"
+   "dış ticaret belgesi",
+   "ithalat ihracat için hangi kurs lazım",
+   "ithalatçı olmak için kurs",
+   "ithalat ihracat kursu ne",
+   "dış ticaret kursu ne kadar sürüyor"
   ],
   "cevap": [
    "Dış ticaret kursu {kurs.dis}, {kurs.dis.gun} gün sürüyor",
-   "{kurs.dis} tutuyor, ithalat-ihracat için şart",
-   "Kurs {kurs.dis}; 6 milyon sermaye ve 120 gün deneyim de gerekiyor"
+   "Dış ticaret kursu {kurs.dis} tutuyor, ithalat-ihracat için şart",
+   "Dış ticaret kursu {kurs.dis}; 6 milyon sermaye ve 120 gün deneyim de gerekiyor"
   ]
  },
  {
@@ -1715,7 +1753,12 @@
    "kursa kaydolmak istiyorum",
    "kursa nereden başlanır",
    "kurs almak için nereye girmeli",
-   "kurslar hangi ekranda"
+   "kurslar hangi ekranda",
+   "kurslar nereden alınıyor",
+   "kursları nerden alıyoruz",
+   "kurs almak için hangi ekran",
+   "kurslara nereden ulaşırım",
+   "kurs nerde satılıyor"
   ],
   "cevap": [
    "Kariyer ekranında Kurslar bölümünden yazılırsın",
@@ -2057,12 +2100,16 @@
    "usta için de 30 gün mü",
    "usta için kaç gün deneyim lazım",
    "usta olmak için kaç gün inşaatta çalışmalıyım",
-   "ustalık için kuryelik deneyimi sayılır mı"
+   "ustalık için kuryelik deneyimi sayılır mı",
+   "usta olmak için illa inşaatta mı çalışmalıyım",
+   "kuryelik ustalığa sayılmaz mı",
+   "başka işle usta olunmaz mı",
+   "ustalık için inşaat işçiliği şart mı"
   ],
   "cevap": [
-   "Usta için 20 gün özellikle inşaat işçiliği lazım",
+   "Evet, usta için 20 gün özellikle inşaat işçiliği lazım",
    "Başka işteki deneyim sayılmıyor, inşaat işçisi olarak 20 gün çalış",
-   "20 gün işçilik ve ustalık belgesi, ikisi birden"
+   "20 gün inşaat işçiliği ve ustalık belgesi, ikisi birden"
   ]
  },
  {
@@ -2317,11 +2364,14 @@
    "çalışan 20 görevi yapmazsa ne olur",
    "aylik kac gorev yapinca maas tam",
    "çalışan görev yapmadan tam maaş alır mı",
-   "çalışanlarım görev yapmıyor maaşları tam mı"
+   "çalışanlarım görev yapmıyor maaşları tam mı",
+   "20 görev ayda mı",
+   "20 görev günlük mü aylık mı",
+   "20 görev her gün mü"
   ],
   "cevap": [
    "İşletmede çalışan ayda 20 görevi yaparsa maaşı tam yatar",
-   "20 görevin altında kalırsan maaşın eksik yatar",
+   "Ayda 20 görevin altında kalırsan maaşın eksik yatar",
    "Ayda 20 görev, günde 1 bile yetiyor aslında"
   ]
  },
@@ -2459,12 +2509,17 @@
    "kurye günde kaç görev yapar",
    "günde en fazla kaç görev var",
    "günlük görev sınırı kaç",
-   "kurye gunde kac paket"
+   "kurye gunde kac paket",
+   "usta günde kaç iş yapabiliyor",
+   "inşaat işçisi günde kaç görev yapar",
+   "günde kaç görev var",
+   "kurye günde kaç teslimat yapar",
+   "ustanın günlük görev sınırı"
   ],
   "cevap": [
    "Çoğu işte günde 5 görev var, usta ve nakliyecide 2",
-   "Görevler bir sonraki oyun gününde yenilenir, yani bir saat sonra",
-   "Bugünlük bittiyse bekle, 1 oyun günü 1 saat"
+   "Çoğu meslekte günde 5, usta ve nakliyecide 2; ertesi oyun günü yenilenir",
+   "Günde 5 görev, usta ile nakliyecide 2; bittiyse 1 saat bekle"
   ]
  },
  {
@@ -2729,7 +2784,9 @@
    "kafede kaç eleman çalışır",
    "kafe çalışan sayısı",
    "kafeye garson lazım kaç",
-   "restoran kaç çalışan"
+   "restoran kaç çalışan",
+   "kafede kaç kişi çalışıyor",
+   "kafe kaç kişiyle açılır"
   ],
   "cevap": [
    "Kafe 3 kişilik kadro ister, garson ya da muhasebeci alırsın",
@@ -2810,12 +2867,14 @@
    "dükkan çalışan sayısı",
    "markete kaç kasiyer lazım",
    "bakkal kaç çalışan",
-   "dükkana muhasebeci alınır mı"
+   "dükkana muhasebeci alınır mı",
+   "dükkana kaç kişi lazım",
+   "dükkan için kaç çalışan gerek"
   ],
   "cevap": [
    "Dükkan 2 kişilik kadro ister, kasiyer ya da muhasebeci",
    "2 çalışan; eksik kalırsa geçici personel girer",
-   "Dükkana market çalışanı ve muhasebeci alınabiliyor"
+   "Dükkana 2 kişi, market çalışanı ya da muhasebeci alınabiliyor"
   ]
  },
  {
@@ -2837,12 +2896,15 @@
    "dükkan mı yoksa kafe mi",
    "ilk işletme kafe mi dükkan mı",
    "kafe dükkan farkı ne",
-   "hangisi daha kazançlı"
+   "hangisi daha kazançlı",
+   "kafe mi dükkan mı daha ucuz",
+   "hangisi daha ucuza açılır kafe mi dükkan mı",
+   "dükkan kafeden ucuz mu"
   ],
   "cevap": [
    "Dükkan daha ucuz ve 2 kişiyle döner, kafe daha pahalı ama cirosu biraz yüksek",
    "Paran azsa dükkan, kadro bulabiliyorsan kafe",
-   "Yakınında aynı türden çok işletme varsa müşteri bölünür, ona da bak"
+   "Dükkan daha ucuz; yakınında aynı türden çok işletme varsa müşteri bölünür, ona da bak"
   ]
  },
  {
@@ -2863,12 +2925,16 @@
    "işletmemde müşteri yok",
    "müşteri gelmesi için ne yapmalı",
    "kim müşteri oluyor",
-   "müşteri nasıl artar"
+   "müşteri nasıl artar",
+   "müşteriler kim",
+   "müşteriler nereden geliyor ki",
+   "dükkana kim geliyor alışverişe",
+   "müşteri gerçek oyuncu mu"
   ],
   "cevap": [
    "Müşteriler oyunun kendi insanları, NPC olarak gelip harcıyor",
-   "Ciro konuma, çalışan sayısına ve kaliteye bağlı",
-   "Aynı türden çok işletme varsa müşteri aralarında bölünüyor"
+   "Müşteri NPC, oyunun kendi insanları; ciro konuma ve çalışana bağlı",
+   "NPC müşteriler geliyor, aynı türden çok işletme varsa aralarında bölünüyor"
   ]
  },
  {
@@ -2890,12 +2956,17 @@
    "işletme cirosu neye bağlı",
    "ciro artırma yolu",
    "günlük satış az",
-   "ciro yükseltmek"
+   "ciro yükseltmek",
+   "ciro neye göre değişir",
+   "ciroyu ne belirliyor",
+   "işletme cirosu neye bağlı oluyor",
+   "günlük ciro nasıl hesaplanıyor",
+   "ciro neden düşük"
   ],
   "cevap": [
    "Ciro konuma, çalışan sayısına ve kaliteye bağlı",
-   "Kadroyu doldur, her gün İşletmeni yönet ile ilgilen; ciro artar",
-   "Geçici personel verimsiz, gerçek çalışan alırsan ciro yükselir"
+   "Konum, kadro ve kalite belirliyor; kadroyu doldurup her gün İşletmeni yönet dersen ciro artar",
+   "Konumuna ve çalışanına bakıyor; geçici personel verimsiz, gerçek çalışan alırsan ciro yükselir"
   ]
  },
  {
@@ -3703,12 +3774,14 @@
    "milyoner nasıl olunur",
    "nasıl servet yaparım",
    "zenginleşmek",
-   "en zengin nasıl olunur"
+   "en zengin nasıl olunur",
+   "zengin olmanın en kısa yolu ne",
+   "zenginleşmenin yolu ne"
   ],
   "cevap": [
-   "Kurslu meslekle başla, biriktir, işletme aç, kâr ve kirayla büyü",
-   "Kademe kademe çıkacaksın, deneyim kısa yolu yok",
-   "Kazanan en yüksek net servet; harcamayı az tut, yatırımı çok"
+   "Kurslu meslekle başla, biriktir, mülk al, işletme aç; kâr ve kirayla büyü",
+   "Kademe kademe çıkacaksın; biriktirdiğini mülke yatır, deneyimin kısa yolu yok",
+   "Kazanan en yüksek net servet; harcamayı az tut, mülke ve işe yatır"
   ]
  },
  {
@@ -3757,7 +3830,9 @@
    "ek iş var mı",
    "hem memur hem kurye",
    "ikinci meslek",
-   "iki meslek olur mu"
+   "iki meslek olur mu",
+   "iki kursu da bitirince iki meslek yapabilir miyim",
+   "iki belgem olunca iki işte çalışır mıyım"
   ],
   "cevap": [
    "Tek meslek oluyor, aynı anda iki işte çalışamazsın",
@@ -3829,11 +3904,14 @@
    "bedava kum saati almak için ne yapmalı",
    "kum saati görevle mi kazanılıyor",
    "kum saati kaç görevde geliyor",
-   "kum saati kaç görev yapınca gelir"
+   "kum saati kaç görev yapınca gelir",
+   "her gün kum saati veriyor mu",
+   "kum saati her gün gelir mi",
+   "kum saati günde bir mi"
   ],
   "cevap": [
-   "Günde 3 görev yapınca 1 Kum Saati bedava geliyor",
-   "Günlük hedef 3 görev, tamamlayınca 1 Kum Saati",
+   "Evet, her gün 3 görev yapınca 1 Kum Saati bedava geliyor",
+   "Günlük hedef 3 görev, her gün tamamlayınca 1 Kum Saati",
    "Oyunda tek yolu günlük hedef, bir de mağazadan gerçek parayla"
   ]
  },
@@ -3893,12 +3971,15 @@
    "arkadaşa kum saati gönderilir mi",
    "kum saatimi başkasına verebilir miyim",
    "kum saati transfer edilebiliyor mu",
-   "arkadasa kumsaati yollanir mi"
+   "arkadasa kumsaati yollanir mi",
+   "kum saatini arkadaşa yollayabilir miyim",
+   "kum saati atabilir miyim birine",
+   "neden kum saati gönderilmiyor"
   ],
   "cevap": [
    "Kum Saati kimseye gönderilemez",
-   "Aktarılmıyor, herkes kendisininkini kazanıyor",
-   "Gönderemiyorum, olsa verirdim; sen de günde 3 görevle kazanırsın"
+   "Gönderilemez, herkes kendisininkini kazanıyor",
+   "Kimseye gönderilemez, olsa verirdim; sen de günde 3 görevle kazanırsın"
   ]
  },
  {
@@ -3932,8 +4013,8 @@
   ],
   "cevap": [
    "Kum Saati maaşı da serveti de etkilemez",
-   "Paraya dönmüyor, sadece beklemeyi kısaltıyor",
-   "Servete sayılmıyor, deneyimi de kısaltmıyor"
+   "Paraya dönmüyor, sadece beklemeyi kısaltıyor; serveti etkilemez",
+   "Servete sayılmıyor, deneyimi de kısaltmıyor; serveti etkilemez"
   ]
  },
  {
@@ -4094,12 +4175,16 @@
    "kuryelikten sonra hangi meslek",
    "kuryeden sonra büyümek için ne yapmalı",
    "şartsız işten sonra ne yapayım",
-   "sıradaki hedef hangi meslek olsun"
+   "sıradaki hedef hangi meslek olsun",
+   "kuryelikten sonra ne yapayım",
+   "kuryeden sonra hangi işe geçmeli",
+   "ilk işten sonra ne yapılır",
+   "şartsız işten sonra ne yapmalı"
   ],
   "cevap": [
    "Şartsız işle başla, 30 gün dolunca kurslu mesleğe geç, sonra sermayeyle işletme",
-   "Kurye, sonra memur ya da muhasebeci, 60 gün ve sermaye olunca kafe ya da dükkan",
-   "Usta yolu da var: işçi, 20 gün, belge, usta, 20 gün daha, taşeron"
+   "Kurye, sonra kursla memur ya da muhasebeci, 60 gün ve sermaye olunca kafe ya da dükkan",
+   "Usta yolu da var: işçi, 20 gün, belge kursu, usta, 20 gün daha, taşeron"
   ]
  },
  {
@@ -4181,12 +4266,14 @@
    "oyun kapanınca deneyim durur mu",
    "çevrimdışıyken deneyim",
    "oyundan çıksam deneyim gider mi",
-   "oyunda değilken günler sayılıyor mu"
+   "oyunda değilken günler sayılıyor mu",
+   "oyun kapalıyken de gün sayılıyor mu",
+   "girmezsem de deneyim sayılır mı"
   ],
   "cevap": [
-   "Oyun kapalıyken de zaman akıyor, mesleğin varsa günler sayılıyor",
-   "1 oyun günü 1 gerçek saat, sen yokken de geçiyor",
-   "Mesleğin olsun yeter, deneyim kendi kendine birikir; görevli işte kazanç için girmen lazım"
+   "Evet, oyun kapalıyken de zaman akıyor; maaşlı meslekte günler kendiliğinden sayılıyor",
+   "Evet, 1 oyun günü 1 gerçek saat, sen yokken de geçiyor; kurye gibi görevli işte o gün görev yapman lazım",
+   "Evet, memur ya da muhasebecisen girmesen de sayılıyor; görevli işte deneyim için o gün görev yapmalısın"
   ]
  },
  {

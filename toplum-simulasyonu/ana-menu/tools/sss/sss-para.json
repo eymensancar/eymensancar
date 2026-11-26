@@ -179,8 +179,8 @@
   ],
   "cevap": [
    "Arsa kira getirmez, sadece zamanla değerlenir",
-   "Arsadan aylık gelir yok, fiyatı artınca satarsın",
-   "Kira istiyorsan daire ya da dükkan al, arsa beklemelik"
+   "Arsa kira getirmez, fiyatı artınca satarsın",
+   "Arsa kira getirmez; kira istiyorsan daire ya da dükkan al"
   ]
  },
  {
@@ -306,12 +306,15 @@
    "ev sahibiysem kira ödüyor muyum",
    "kira oduyor muyum ev sahibiysem",
    "ev alırsam kira ödemem dimi",
-   "kendi evim olunca kira biter mi"
+   "kendi evim olunca kira biter mi",
+   "kendi evime geçersem kira ödemeye devam eder miyim",
+   "evime taşınınca kira ödemem gerekir mi",
+   "taşınırsam kira ödeyecek miyim"
   ],
   "cevap": [
    "Ev sahibi kira ödemez, kendi evine taşınırsan kira biter",
-   "Daire alıp taşınırsan aylık {evkira} kiradan kurtulursun",
-   "Evin varsa ve içinde oturuyorsan kira yok"
+   "Daire alıp taşınırsan aylık {evkira} kirayı ödemezsin artık",
+   "Evin varsa ve içinde oturuyorsan kira ödemezsin"
   ]
  },
  {
@@ -708,12 +711,15 @@
    "evimi kiraya vermekle oturmak arasında fark ne",
    "ilk dairemi aldım taşınayım mı kiraya mı vereyim",
    "dairede oturayım mı kiraya mı vereyim",
-   "evde oturayım mı kiraya mı vereyim"
+   "evde oturayım mı kiraya mı vereyim",
+   "eve nasıl taşınıyorum",
+   "taşınmak için ne yapmam lazım",
+   "evime nasıl geçerim"
   ],
   "cevap": [
    "Mülk ekranında dairene taşın de, kiradan kurtulursun",
-   "Alırken al ve taşın seçersen direkt geçersin",
-   "Taşınınca aylık {evkira} kira biter ama o daire kira getirmez"
+   "Mülk alırken al ve taşın seçersen direkt geçersin",
+   "Mülk ekranından taşınınca aylık {evkira} kira biter ama o daire kira getirmez"
   ]
  },
  {
@@ -765,12 +771,17 @@
    "kira hangi günde yatar",
    "kiralar ayda bir mi",
    "kira geliri gelmedi",
-   "kira ne zaman öder"
+   "kira ne zaman öder",
+   "kiraya verdiğim dairenin kirası ne zaman gelir",
+   "kira ne zaman hesaba geçer",
+   "kira geliri hangi gün yatıyor",
+   "kira her gün mü geliyor",
+   "kira ayda bir mi yatıyor"
   ],
   "cevap": [
    "Kira ay sonunda kendiliğinden hesaba geçiyor, kiracı aramana gerek yok",
-   "Aylık geliyor, 30 oyun gününde bir",
-   "Ay dönünce yatar, içinde oturuyorsan o daire kira getirmez"
+   "Ay sonunda geliyor, 30 oyun gününde bir",
+   "Ay sonu yatar, içinde oturuyorsan o daire kira getirmez"
   ]
  },
  {
@@ -986,7 +997,9 @@
    "işletme kurmak için mülk şart mı",
    "dükkan alıp kiraya mı versem işletme mi açsam",
    "dükkan mülkü mü alayım işletme mi kurayım",
-   "dükkanı kiraya vermek mi işletmek mi"
+   "dükkanı kiraya vermek mi işletmek mi",
+   "dükkanı alınca işletme sahibi olur muyum",
+   "dükkan mülkü alırsam işletme açılmış olur mu"
   ],
   "cevap": [
    "Dükkan mülkü kira getirir, işletme ayrı bir şey, Kariyer ekranından açılır",
@@ -1611,12 +1624,15 @@
    "erken kapatabiliyomuyuz krediyi",
    "kredi borcunu erken ödeyebilir miyim",
    "taksitleri beklemeden krediyi kapatmak",
-   "kredinin tamamını şimdi ödesem olur mu"
+   "kredinin tamamını şimdi ödesem olur mu",
+   "erken kapatınca ceza var mı",
+   "krediyi erken ödemenin cezası",
+   "erken kapamada ek ücret var mı"
   ],
   "cevap": [
    "Banka ekranında tamamını öde var, kalan borcu kapatırsın",
-   "Erken kapatırsan sonraki faizden kurtulursun",
-   "Paran varsa kapat, taksit yükü kalkar"
+   "Erken kapatabilirsin, tamamını ya da bir kısmını öde, sonraki faizden kurtulursun",
+   "Paran varsa tamamını kapat, ceza yok, taksit yükü kalkar"
   ]
  },
  {
@@ -2367,12 +2383,14 @@
    "dolar kredisi var mı",
    "döviz kredisi çekilir mi",
    "euro kredisi var mı",
-   "dolar hesabı açılır mı"
+   "dolar hesabı açılır mı",
+   "bari döviz var mı",
+   "döviz de mi yok"
   ],
   "cevap": [
    "Döviz daha yok, gelecekmiş",
    "Dolar euro alınmıyor şimdilik, ileride geliyor",
-   "Kur yok oyunda henüz, her şey TL"
+   "Kur yok oyunda henüz, döviz yok, her şey TL"
   ]
  },
  {
@@ -2457,12 +2475,15 @@
    "biriyle ortak dükkan açabilir miyiz",
    "arkadaşla ortak işletme kurulur mu",
    "ortak kafe açabilir miyiz",
-   "iki kişi ortak iş kurabilir mi"
+   "iki kişi ortak iş kurabilir mi",
+   "biriyle ortak şirket kurabilir miyim",
+   "ortak firma açmak",
+   "arkadaşla şirket kurmak"
   ],
   "cevap": [
    "Ortaklık daha yok, gelecekmiş",
    "Ortak iş şimdilik yok, ileride geliyor diyorlar",
-   "Herkes kendi işini kuruyor şimdilik"
+   "Ortaklık yok, herkes kendi işini kuruyor şimdilik"
   ]
  },
  {
@@ -2787,12 +2808,14 @@
    "itibar kredi notunu etkiler mi",
    "itibar iş başvurusunu etkiler mi",
    "itibar ne ise yariyor",
-   "itibar faydası"
+   "itibar faydası",
+   "itibar ne işe yarıyor",
+   "itibarın faydası ne"
   ],
   "cevap": [
    "İtibar kredi notuna ve iş başvurularına yarıyor",
-   "İtibarın yüksekse iş bulman kolaylaşır, not da artar",
-   "Saygınlık gibi, bankada da işte de işe yarıyor"
+   "İtibarın yüksekse iş bulman kolaylaşır, kredi notu da artar",
+   "Saygınlık gibi, kredi notunda da iş başvurusunda da işe yarıyor"
   ]
  },
  {
@@ -3008,7 +3031,9 @@
    "tamtakır kaldım",
    "hiç param yok",
    "param yok ne yapayım",
-   "nakit bitti"
+   "nakit bitti",
+   "param biterse borçlu kalırsam ne olur",
+   "borçlu kalırsam ne olur"
   ],
   "cevap": [
    "Para bitince bir işe girmek zorundasın, borç kapanana kadar yatırım yok",
@@ -3043,12 +3068,15 @@
    "param bitince mülk alamıyor muyum",
    "para bitince yatırım neden kapandı",
    "borcum var yatirim yapabilir miyim",
-   "borçluyken kredi çekip mülk alabilir miyim"
+   "borçluyken kredi çekip mülk alabilir miyim",
+   "borcu kapatınca tekrar yatırım yapabilir miyim",
+   "borç bitince yatırım açılır mı",
+   "borcum kapanınca mülk alabilir miyim"
   ],
   "cevap": [
    "Para bitince önce işe girmek zorunlu, borç kapanana kadar yatırım kapalı",
-   "Bir mesleğe başla, borcun kapanınca kilit açılır",
-   "İş bul, gecikmiş borç sıfırlansın, yatırım açılır"
+   "Evet, bir mesleğe başla, borcun kapanınca kilit açılır",
+   "Evet, gecikmiş borç kapanınca yatırım yine açılır, önce iş bul"
   ]
  },
  {
@@ -3479,11 +3507,14 @@
    "bu oyunun amacı nedir",
    "oyunu neden oynuyoruz",
    "oyun neyi anlatıyor",
-   "amacımız ne bu oyunda"
+   "amacımız ne bu oyunda",
+   "oyunda hedef ne",
+   "oyun neyi amaçlıyor",
+   "ne için oynuyoruz bu oyunu"
   ],
   "cevap": [
-   "Herkes aynı parayla başlıyor, çalışıp biriktirip yatırım yapıyor, en zengin olan önde",
-   "Ekonomiyi oyuncular birlikte kuruyor. İşçi de patron da lazım",
+   "Herkes aynı parayla başlıyor, çalışıp biriktirip yatırım yapıyor; net serveti en yüksek olan önde",
+   "Ekonomiyi oyuncular birlikte kuruyor, amaç net servetini büyütmek. İşçi de patron da lazım",
    "Çalış, mülk al, işletme kur, servetini büyüt"
   ]
  },
@@ -3734,12 +3765,15 @@
    "kendi evim kira kazandırmıyor neden",
    "dükkanda oturulur mu",
    "dükkana taşınabilir miyim",
-   "arsada oturulur mu"
+   "arsada oturulur mu",
+   "içinde oturursam kira geliri gider mi",
+   "taşınınca o evin kira geliri kesilir mi",
+   "eve taşınırsam kira gelirini kaybeder miyim"
   ],
   "cevap": [
-   "İçinde oturduğun daire kira getirmez, ama sen de kira ödemezsin",
-   "Taşındığın ev boş sayılmaz, kira gelmez. Diğer mülkler getirir",
-   "Sadece daireye taşınılıyor, oturduğunda kirası gelmiyor"
+   "Evet, içinde oturduğun daire kira getirmez, ama sen de kira ödemezsin",
+   "Evet, taşındığın ev kira getirmez. Diğer mülkler getirir",
+   "Evet gider, oturduğun dairenin kirası gelmiyor"
   ]
  },
  {
@@ -3889,12 +3923,17 @@
    "vergi ödemek zorunda mıyım",
    "vergi yüksek mi",
    "vergi nasıl hesaplanıyor",
-   "vergiden kurtulmak"
+   "vergiden kurtulmak",
+   "vergi yüzde kaç",
+   "kaç yüzde vergi kesiliyor",
+   "vergi oranı ne",
+   "ne kadarına kadar vergi yok",
+   "vergisiz sınır ne"
   ],
   "cevap": [
    "Aylık gelirin ilk 30 bini vergisiz, sonra yüzde 20, 100 binden sonrası yüzde 30 civarı",
-   "Ay sonunda gelir vergisi kesiliyor, dilimli",
-   "Az kazanana vergi yok, çok kazanan yüzde 30'a kadar öder"
+   "Ay sonunda dilimli kesiliyor: ilk 30 bin vergisiz, sonra yüzde 20, 100 binden sonrası yüzde 30",
+   "Az kazanana vergi yok, 30 binin üstü yüzde 20, çok kazanan yüzde 30'a kadar öder"
   ]
  },
  {
@@ -3941,12 +3980,14 @@
    "evin vergisi var mı",
    "mülke vergi var mı",
    "emlak vergisi ne kadar",
-   "daire vergisi"
+   "daire vergisi",
+   "emlak vergisi çok mu",
+   "mülk vergisi yüksek mi"
   ],
   "cevap": [
    "Mülklerin değerinin yılda binde 2'si kadar emlak vergisi var, çok az",
-   "Ufak bir emlak vergisi ve bakım gideri var, kiranın yanında önemsiz",
-   "Var ama küçük, yıllık binde 2 civarı"
+   "Az, ufak bir emlak vergisi ve bakım gideri var, kiranın yanında önemsiz",
+   "Var ama az, yıllık binde 2 civarı"
   ]
  },
  {
@@ -3998,12 +4039,15 @@
    "işçime maaş ödeyemezsem ne olur",
    "çalışanımın maaşını ödeyecek param yok",
    "elemana maaş veremezsem napar",
-   "patron maaşı ödeyemezse ne olur"
+   "patron maaşı ödeyemezse ne olur",
+   "maaşları kendi cebimden mi öderim",
+   "kasa yetmezse maaşı ben mi öderim",
+   "işletmenin parası bitince maaşı kim öder"
   ],
   "cevap": [
    "Maaş önce işletmenin kasasından, yetmezse senin cebinden çıkar. O da yetmezse borç yazılır, itibarın düşer",
    "Maaşı ödeyemezsen itibar sert düşer, işçiye borçlu kalırsın",
-   "İşçinin maaşı otomatik ödeniyor, para yoksa borç olur"
+   "Evet, kasa yetmezse maaş senin cebinden çıkar; o da yetmezse borç olur"
   ]
  },
  {
@@ -4026,7 +4070,14 @@
    "maaşın yatma zamanı",
    "maaş ayda bir mi yatıyor",
    "ayda bir mi maaş",
-   "maaş her ay mı geliyor"
+   "maaş her ay mı geliyor",
+   "maaşlar ne zaman yatıyor",
+   "maaş hangi gün yatar",
+   "maaslar ne zmn geliyo",
+   "maaş her gün mü yatıyor",
+   "kazandığım para ne zaman hesabıma geçiyor",
+   "maaşı ay sonunda mı veriyorlar",
+   "maaşlar ayda bir mi yatıyor"
   ],
   "cevap": [
    "Maaş ay sonunda yatıyor, 30 oyun gününde bir",
