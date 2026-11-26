@@ -1620,7 +1620,10 @@
     if (r0 && r0.odak) meta._odakSon = { odak: r0.odak, t: Date.now() }; return r0;
   }
   let SSS_GUCLU = .8, SSS_ESIK = .35;
-  let ERKEN_SSS = .7, KURALSIZ_SSS = .5, TAKIP_SSS = .6;
+  let ERKEN_SSS = .7, KURALSIZ_SSS = .5, TAKIP_SSS = .6, EH_SSS = .5;
+  // Evet/hayır sorusu ("... olur mu", "... var mı"): kalıp cevaplar genelde miktar söyler, soruyu cevaplamaz
+  const ISTEK_FIIL = /\b(ari\w*yor\w*|ariyom\w*|lazim\w*|istiyor\w*|satiyor\w*|satilik|aliyor\w*|kiralik|bakiyor\w*)\b/;
+  const EVET_HAYIR = /\b(mi|mu|miyim|miyiz|misin|musun|muyum|muyuz|mudur|midir|di mi|degil mi)\b|(miyim|muyum|miyiz|muyuz|misin|musun)$/;
   /** Mesajda, verilen önceki metinde (kök olarak) geçmeyen içerik kelimesi sayısı. */
   function yeniKelimeSay(katli, onceki) {
     const ok = new Set(String(onceki).split(/\s+/).filter(Boolean).map(x => kok5(SSS_ESANLAM[x] || x)));
@@ -2021,7 +2024,7 @@
       const eylem = ERKEN_SOSYAL.has(ny.niyet);
       const sc = eylem ? (idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, EYLEM_SSS)) : idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, kuralDestek || ny.niyet === 'genel' || katli.split(' ').length < 3 ? ERKEN_SSS : KURALSIZ_SSS);
       // Takip sayılan ama kendi içeriği olan soru (önceki mesajlarda geçmeyen en az iki kelime): kendi başına da aranır
-      const sc2 = sc || (!eylem && idE && (!takip || takip === 'detay' || takip === 'tekrar') && yeniKelimeSay(katli, takip ? (st.ilk || '') + ' ' + (st.onceki || '') : (oncekiSt && oncekiSt.simdiki) || '') >= 2 && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, TAKIP_SSS));
+      const sc2 = sc || (!eylem && idE && (!takip || takip === 'detay' || takip === 'tekrar') && yeniKelimeSay(katli, takip ? (st.ilk || '') + ' ' + (st.onceki || '') : (oncekiSt && oncekiSt.simdiki) || '') >= 2 && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, EVET_HAYIR.test(katli) && !ISTEK_FIIL.test(katli) && !/\b(kac|ne kadar|nerede|nerden|nereden|nasil|hangi\w*|neden|niye)\b/.test(katli) ? EH_SSS : TAKIP_SSS));
       if (sc2) { cevaplar.push(bilgiPaketi(world, meta, idE, { metin: sc2.metin, sss: sc2.sss }, rng, 1800)); if (!st.cevaplayan.includes(idE)) st.cevaplayan.push(idE); st.sonNpc = idE; sonuc.niyet.sss = sc2.sss; return sonuc; }
     }
     // Son konuşana dönük ikinci tekil soru: o kişi kendi gerçek verisinden cevap verir
