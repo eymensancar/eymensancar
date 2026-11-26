@@ -1121,6 +1121,7 @@
     let metin = '';
     for (let d = 0; d < 10; d++) { const soz0 = ip.soz ? Object.assign({}, ip.soz) : null; metin = iplikMetni(sab, ip.roller, kisiler, kanal === 'global' ? {} : iplikVeri(world, meta), rng, ip, kanal === 'global' ? ip.dil : null); if (!(meta.kanalSon || []).includes(normSoz(metin)) && !gorulduMu(meta, metin)) break; if (d < 9 && d >= 4 && soz0) ip.soz = soz0; if (d === 9 && metin.length >= 20) { ip.i = sb.turlar.length; return null; } } // söylenmemiş hâli kalmadıysa iplik burada biter
     const kim = meta.npc[id] || NPCYZ.figuranBul(meta, id) || meta.yabanci.find(x => x.id === id);
+    const ham = metin;
     // Kalabalık kanalda kime cevap verildiği belli olsun: bir önceki konuşana ara sıra adıyla seslen
     { const onceki = ip.i > 0 ? sb.turlar[ip.i - 1][0] : null; if (onceki && onceki !== r0 && kisiler[onceki] && !/\{[ABCD]\}/.test(sab) && rng.chance(.22)) { const ad0 = kisiler[onceki].ad; if (ad0 && !metin.toLocaleLowerCase('tr').includes(ad0.toLocaleLowerCase('tr'))) metin = (rng.chance(.5) ? '@' + ad0 + ' ' : (kanal === 'global' ? ad0.toLowerCase() : ad0.toLocaleLowerCase('tr')) + ' ') + metin; } }
     if (kanal !== 'global') { try { metin = (dil().stillendir)(metin, stilOf(kim), rng, { korunan: Object.values(kisiler).filter(Boolean).map(k => k.ad) }); } catch (e) { } }
@@ -1129,7 +1130,7 @@
     if (!metin) return null;
     if (!sb.turlar.slice(ip.i + 1).some(x => x[0] === r0) && kim && /(görüşürüz|gorusuruz|iyi geceler|kaçtım|kactim|ben çıkıyorum|ben çıktım|yatıyorum|yatmaya gidiyorum|goodnight|good night|\bbye\b|gotta go|me voy|tschüss|bis morgen|getdim|gecəniz xeyr|ma3 el salama)/i.test(metin)) kim.vedaZaman = ip.t;
     const ad = kanal === 'global' ? (kim.gorunen) : ks.gorunen;
-    return { npcId: id, ad, metin, iplik: ip.id, yabanci: kanal === 'global' || undefined, dil: ip.dil || undefined, figuran: (!meta.npc[id]) || undefined };
+    return { npcId: id, ad, metin, ham, iplik: ip.id, yabanci: kanal === 'global' || undefined, dil: ip.dil || undefined, figuran: (!meta.npc[id]) || undefined };
   }
   /** Figüranın oyuncuya cevabı: kendi sabit bilgisinden (meslek, yer) ya da benzer bir NPC'nin bildiğinden. */
   function figuranCevap(world, meta, f, kanal, katli, ny, oyuncu, rng) {
@@ -1229,7 +1230,7 @@
       meta.ipl[kanal] = akt;
     }
     if (donus) yeni.push(donus);
-    yeni.forEach(m => { m.metin = emojisiz(m.metin); if (kanal !== 'sirket') gorulduEkle(meta, m.metin); });
+    yeni.forEach(m => { m.metin = emojisiz(m.metin); if (kanal !== 'sirket') { gorulduEkle(meta, m.metin); if (m.ham) gorulduEkle(meta, m.ham); } delete m.ham; });
     yeni.sort((a, b) => a.zaman - b.zaman);
     meta.kanal[kanal] = meta.kanal[kanal].concat(yeni).slice(-200);
     return yeni;
