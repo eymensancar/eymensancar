@@ -1,0 +1,2800 @@
+[
+ {
+  "id": "daire-fiyat",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "daire fiyatı ne kadar",
+   "daire kaç para",
+   "bir daire kaça",
+   "daire fiyatlari nekadar",
+   "ev fiyatı kaç",
+   "ev almak kaça patlar",
+   "daireler ne kadar",
+   "daire kac tl",
+   "bi daire kaç lira",
+   "daire almak istiyorum fiyatı ne",
+   "evlerin fiyatı ne alemde",
+   "ev kaç para knk",
+   "daire?",
+   "daire fiyat",
+   "ev fiyatları çok mu pahalı",
+   "şu an daire kaçtan gidiyor",
+   "daire almaya kaç para lazım",
+   "evler nekadar",
+   "daire ne kadar ediyor",
+   "ev fiyatini merak ediyorum"
+  ],
+  "cevap": [
+   "Daire şu an {daire} civarı",
+   "Bir daire {daire}, her ay biraz artıyor",
+   "{daire} diyorlar, Mülk ekranında görürsün",
+   "Daireler {daire}, peşin alacaksan o kadar lazım"
+  ]
+ },
+ {
+  "id": "dukkan-fiyat",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "dükkan fiyatı ne kadar",
+   "dukkan kac para",
+   "bir dükkan kaça",
+   "dükkan almak kaça",
+   "dükkan fiyatlari",
+   "dukkan ne kadar",
+   "dükkanlar kaçtan",
+   "işyeri fiyatı ne kadar",
+   "dükkan kaç lira",
+   "dükkan?",
+   "dükkan almak istiyorum kaç para",
+   "dukan fiyatı",
+   "dükkan ne ediyor şu an",
+   "dükkan satın almak ne kadar tutar",
+   "bir dükkanın fiyatını merak ediyorum",
+   "dukkan nekadar knk"
+  ],
+  "cevap": [
+   "Dükkan {dukkan} civarında",
+   "Bir dükkan {dukkan}, daireden pahalı",
+   "{dukkan} istiyorlar dükkana",
+   "Dükkan şu an {dukkan}, kirası da {dukkan.kira}"
+  ]
+ },
+ {
+  "id": "arsa-fiyat",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "arsa fiyatı ne kadar",
+   "arsa kaç para",
+   "bir arsa kaça",
+   "arsa kac tl",
+   "arsalar ne kadar",
+   "arsa almak kaça",
+   "arsa?",
+   "arsa fiyatlari nekadar",
+   "tarla arsa ne kadar",
+   "arsa ne ediyor",
+   "arsa almak istiyorum fiyatı",
+   "en ucuz mülk arsa mı",
+   "arsa kaçtan gidiyor",
+   "arsanın fiyatını merak ediyorum",
+   "arsa ucuz mu"
+  ],
+  "cevap": [
+   "Arsa {arsa}, mülklerin en ucuzu",
+   "{arsa} civarı arsa",
+   "Bir arsa {arsa}, ama kira getirmez bilesin",
+   "Arsa şu an {arsa}"
+  ]
+ },
+ {
+  "id": "daire-kira-getiri",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "daire kiraya verince ne kadar kazandırır",
+   "dairenin kirası ne kadar",
+   "daire kira getirisi",
+   "daire ayda kaç kira getirir",
+   "evimi kiraya versem ne kadar alırım",
+   "daire kirası kaç",
+   "daireden ayda ne kazanırım",
+   "ev kirası getirisi ne kadar",
+   "kiradan ayda kaç para gelir daire",
+   "daire kira geliri",
+   "daire alsam kira ne kadar gelir",
+   "ev kira verir mi ne kadar",
+   "daire kira nekadar",
+   "kiraya verilen daire ayda ne getirir",
+   "daire kirasi ne alemde"
+  ],
+  "cevap": [
+   "Daire ayda {daire.kira} kira getiriyor",
+   "{daire.kira} civarı her ay hesaba geçiyor",
+   "Daire {daire}, kirası ayda {daire.kira}"
+  ]
+ },
+ {
+  "id": "dukkan-kira-getiri",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "dükkan kirası ne kadar",
+   "dükkan ayda kaç kira getirir",
+   "dükkan kira getirisi",
+   "dukkan kira geliri ne",
+   "dükkanı kiraya versem ne alırım",
+   "dükkan kiraya verince ne kazandırır",
+   "dükkandan ayda ne gelir",
+   "dükkan kirasi kac",
+   "işyeri kirası ne kadar getirir",
+   "dükkan kira nekadar",
+   "dükkan alsam kira ne kadar gelir",
+   "dükkanın kira geliri ne alemde"
+  ],
+  "cevap": [
+   "Dükkan ayda {dukkan.kira} kira getiriyor",
+   "{dukkan.kira} her ay, daireden biraz daha iyi getiriyor",
+   "Dükkan {dukkan}, kirası {dukkan.kira}"
+  ]
+ },
+ {
+  "id": "arsa-kira-yok",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "arsa kira getirir mi",
+   "arsadan kira gelir mi",
+   "arsa kiraya verilir mi",
+   "arsa ayda para kazandırır mı",
+   "arsa neden kira getirmiyor",
+   "arsamdan hiç para gelmiyor",
+   "arsa gelir getiriyor mu",
+   "arsa kira yok mu",
+   "arsa kirası ne kadar",
+   "arsaya kiracı olur mu",
+   "arsa aldım para gelmiyor neden",
+   "arsanin geliri var mi"
+  ],
+  "cevap": [
+   "Arsa kira getirmez, sadece zamanla değerlenir",
+   "Arsadan aylık gelir yok, fiyatı artınca satarsın",
+   "Kira istiyorsan daire ya da dükkan al, arsa beklemelik"
+  ]
+ },
+ {
+  "id": "arsa-deger",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "arsa değerlenir mi",
+   "arsa fiyatı artar mı",
+   "arsa almak mantıklı mı",
+   "arsa uzun vadede kazandırır mı",
+   "arsa yatırımı iyi mi",
+   "arsaya para yatırılır mı",
+   "arsa alıp beklesem",
+   "arsa ne işe yarar",
+   "arsa alip satsam kar eder miyim",
+   "arsa almak neden mantıklı",
+   "arsa değer kazanır mı",
+   "arsa yatirimlik mi"
+  ],
+  "cevap": [
+   "Arsa kira getirmez ama fiyatı zamanla artar, beklemelik yatırım",
+   "Değerlenir, fiyatlar her ay biraz yükseliyor. Ama aylık gelir yok",
+   "Ucuz olduğu için ilk mülk olarak mantıklı, ama kira bekleme"
+  ]
+ },
+ {
+  "id": "mulk-hangisi-karli",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "hangi mülk daha kârlı",
+   "en karlı mülk hangisi",
+   "daire mi dükkan mı arsa mı",
+   "hangisini alayım daire dükkan arsa",
+   "en iyi yatırım hangi mülk",
+   "mülk alacağım hangisi iyi",
+   "hangisi daha çok kazandırır",
+   "daire mi alsam dükkan mı",
+   "dükkan mı daha karlı daire mi",
+   "kira için hangisi iyi",
+   "mulk tavsiye",
+   "hangi mülke para yatırayım",
+   "en mantikli mulk hangisi",
+   "para yatırmak için hangi mülk",
+   "mülklerden hangisi daha iyi getirir"
+  ],
+  "cevap": [
+   "Kira için dükkan biraz daha iyi getiriyor, ama pahalı. Daire {daire}, dükkan {dukkan}",
+   "Para azsa arsa al bekle, çoksa dükkan al kira topla",
+   "Dükkan ayda {dukkan.kira}, daire {daire.kira} getiriyor. Arsa kira getirmez, değerlenir"
+  ]
+ },
+ {
+  "id": "semt-fiyat",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "semte göre fiyat değişir mi",
+   "semt fiyatı etkiler mi",
+   "hangi semtte ev ucuz",
+   "kadıköyde ev daha mı pahalı",
+   "mahalle fiyat değiştirir mi",
+   "konum mülk fiyatını etkiler mi",
+   "her yerde fiyat aynı mı",
+   "semtler arası fiyat farkı var mı",
+   "ucuz semt neresi",
+   "pahalı semt hangisi",
+   "istanbulun neresinde ev ucuz",
+   "semte gore ev fiyati",
+   "lokasyon fiyatı değiştiriyor mu",
+   "merkezde ev pahalı mı"
+  ],
+  "cevap": [
+   "Şu an semt fark etmiyor, her yerde fiyat aynı",
+   "Mülk fiyatı semte göre değişmiyor, ileride değişebilir diyorlar",
+   "Hangi semtte alırsan al aynı fiyat şimdilik"
+  ]
+ },
+ {
+  "id": "ev-sahibi-kira",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "ev sahibi kira öder mi",
+   "evim olursa kira öder miyim",
+   "kendi evimde oturursam kira var mı",
+   "ev alınca kira biter mi",
+   "ev sahibiysem kira yok mu",
+   "evim varken neden kira ödüyorum",
+   "kira ödememek için ne yapmalıyım",
+   "kiradan kurtulmak istiyorum",
+   "ev alırsam kira derdi biter mi",
+   "kendi evim olsa kira gider mi",
+   "ev sahibi olunca kira kalkar mi"
+  ],
+  "cevap": [
+   "Ev sahibi kira ödemez, kendi evine taşınırsan kira biter",
+   "Daire alıp taşınırsan aylık {evkira} kiradan kurtulursun",
+   "Evin varsa ve içinde oturuyorsan kira yok"
+  ]
+ },
+ {
+  "id": "kirada-oturma",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "kirada oturmak kaça patlıyor",
+   "ev kirası ne kadar",
+   "aylık kiram ne kadar",
+   "kira kaç para",
+   "oturduğum evin kirası kaç",
+   "kira ödüyorum ne kadar",
+   "kira cok yuksek",
+   "her ay kira kesiliyor neden",
+   "kirada oturmanın maliyeti",
+   "evkira ne kadar",
+   "bu kira ne böyle",
+   "kira bedeli nedir",
+   "kiracıyım ayda ne ödüyorum",
+   "kira gideri ne kadar"
+  ],
+  "cevap": [
+   "Ev sahibi olmayan her ay {evkira} kira öder",
+   "Aylık kiran {evkira}, ev alıp taşınırsan biter",
+   "{evkira} kira gidiyor, artı geçim {yasam}"
+  ]
+ },
+ {
+  "id": "ev-almak-mi-kira-mi",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "ev almak mı mantıklı kirada oturmak mı",
+   "kirada mı oturayım ev mi alayım",
+   "ev almak kâr mı",
+   "ev almaya değer mi",
+   "kira vermek yerine ev alsam",
+   "ev almak mantikli mi",
+   "kendi evim mi olsun kira mı",
+   "kredi çekip ev alsam kiradan iyi mi",
+   "ev alırsam ne kazanırım",
+   "kirayı ödeyeceğime taksit öderim"
+  ],
+  "cevap": [
+   "Ev alıp taşınırsan {evkira} kiradan kurtulursun, uzun vadede iyi",
+   "Kredi çekersen faiz de var, hesabını yap. Aylık faiz {faiz}",
+   "Kira {evkira}, peşinat {pesinat}. Peşinatı biriktirince almak mantıklı"
+  ]
+ },
+ {
+  "id": "mulk-satma",
+  "konu": "mulk_satiyorum",
+  "sorular": [
+   "mülkümü nasıl satarım",
+   "evimi satmak istiyorum",
+   "daireyi nasıl satarım",
+   "mülk satma nasıl oluyor",
+   "arsamı satacağım nereden",
+   "dükkanımı satmak istiyorum",
+   "mulk nasil satilir",
+   "evi satıp para yapmak istiyorum",
+   "mülk satışı nereden yapılıyor",
+   "satış butonu nerede",
+   "evimi elden çıkarmak istiyorum",
+   "mülkü nakde çevirmek",
+   "daire satılır mı",
+   "mülkümü bozdurmak istiyorum"
+  ],
+  "cevap": [
+   "Mülk ekranından satabilirsin, piyasa fiyatının biraz altına hemen alınıyor",
+   "Mülk ekranında mülkünü seç, sat de. Piyasa yaklaşık yüzde 5 eksiğine alıyor",
+   "Piyasaya satınca para hemen hesaba geçer, ama biraz ucuza gider"
+  ]
+ },
+ {
+  "id": "mulk-satis-fiyati",
+  "konu": "mulk_satiyorum",
+  "sorular": [
+   "mülkü satınca kaça gider",
+   "piyasaya satarsam ne kadar alırım",
+   "satış fiyatı neden düşük",
+   "evimi sattım az para verdi",
+   "neden piyasa fiyatından ucuza alıyorlar",
+   "satarken zarar eder miyim",
+   "mülk satışında kesinti var mı",
+   "sattığım evin parası eksik geldi",
+   "daireyi satsam kaç para eder",
+   "satış fiyatı piyasa fiyatı mı",
+   "yuzde kac eksigine satiliyor",
+   "mulk satinca kayip var mi"
+  ],
+  "cevap": [
+   "Piyasaya satınca yaklaşık yüzde 5 eksiğine gidiyor",
+   "Piyasa fiyatının biraz altı, daire şu an {daire}, ondan yüzde 5 düş",
+   "Hemen nakit verdikleri için biraz kırıyorlar, yüzde 5 kadar"
+  ]
+ },
+ {
+  "id": "mulk-al-sat",
+  "konu": "mulk_satiyorum",
+  "sorular": [
+   "alıp hemen satsam kâr eder miyim",
+   "al sat yapsam para kazanır mıyım",
+   "mülk alıp satarak zengin olunur mu",
+   "ev alıp ertesi gün satsam",
+   "al sat mantıklı mı",
+   "flip yapılır mı",
+   "mülk ticareti kârlı mı",
+   "hemen satınca zarar mı ederim",
+   "alsat yapan var mi",
+   "ucuza alıp pahalıya satmak"
+  ],
+  "cevap": [
+   "Hemen satarsan yüzde 5 kadar zarar edersin, beklemek lazım",
+   "Fiyatlar ay ay artıyor, uzun tutarsan kazanırsın. Kısa al satta kaybedersin",
+   "Al sat değil, al tut. Kira da toplarsın"
+  ]
+ },
+ {
+  "id": "mulk-oyuncuya-satis",
+  "konu": "mulk_satiyorum",
+  "sorular": [
+   "mülkümü başka oyuncuya satabilir miyim",
+   "ilan verip ev satılır mı",
+   "mülk ilanı nasıl verilir",
+   "oyunculara ev satmak",
+   "kendi fiyatımı koyup satabilir miyim",
+   "ilan nerede",
+   "ev ilani vermek istiyorum",
+   "başka birine dükkan satmak",
+   "oyuncudan ev alınır mı",
+   "arkadaşıma evimi satsam",
+   "ilana koymak istiyorum mülkümü",
+   "oyuncular arasi mulk satisi var mi"
+  ],
+  "cevap": [
+   "Oyuncuya ilanla satış daha tam gelmedi, şimdilik piyasaya satılıyor",
+   "Şu an mülkü Mülk ekranından piyasaya satıyorsun. Oyuncu ilanları gelecekmiş",
+   "İlan açıp oyuncuya satma ileride geliyor diyorlar"
+  ]
+ },
+ {
+  "id": "mulk-pazarlik",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "pazarlık yapılır mı",
+   "fiyat kırılır mı",
+   "indirim olur mu evde",
+   "biraz ucuza versene",
+   "son fiyat ne",
+   "pazarlık payı var mı",
+   "ev fiyatında indirim",
+   "daireyi ucuza alabilir miyim",
+   "pazarlik olurmu",
+   "fiyatı düşürür müsün",
+   "biraz in bakalım",
+   "ucuza mülk nereden bulunur"
+  ],
+  "cevap": [
+   "Piyasa fiyatı sabit, pazarlık yok. Daire {daire}",
+   "Mülk ekranındaki fiyat neyse o, kırılmıyor",
+   "Pazarlık yok kardeşim, fiyat herkese aynı"
+  ]
+ },
+ {
+  "id": "mulk-alma",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "mülk nasıl alınır",
+   "ev nereden alınır",
+   "daire almak istiyorum nasıl",
+   "arsa nereden alıyoruz",
+   "dükkan nasıl satın alınır",
+   "mulk nasil alinir",
+   "mülk ekranı nerede",
+   "ev satın alma nasıl",
+   "ilk evimi almak istiyorum",
+   "nereden mülk alabilirim",
+   "satılık ev var mı",
+   "satilik daire ariyorum",
+   "ev bakıyorum",
+   "mülk almak için ne yapmalıyım"
+  ],
+  "cevap": [
+   "Mülk ekranına gir, daire, dükkan ya da arsa seç, al de",
+   "Peşin parayla ya da krediyle Mülk ekranından alınıyor",
+   "Satılık mülk Mülk ekranında. Daire {daire}, arsa {arsa}"
+  ]
+ },
+ {
+  "id": "mulk-pesin",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "peşin ev alınır mı",
+   "peşin parayla daire almak",
+   "nakit ev alsam",
+   "kredisiz ev almak",
+   "peşin almak mı iyi kredi mi",
+   "ev parasının tamamını ödemek",
+   "pesin alicam",
+   "bütün parayla ev alsam olur mu",
+   "faizsiz ev almanın yolu",
+   "parayı biriktirip peşin alsam"
+  ],
+  "cevap": [
+   "Paran yetiyorsa peşin al, faiz ödemezsin. Daire {daire}",
+   "Peşin alırsan faiz yok ama nakdin biter, dikkat et",
+   "Peşin daha ucuza gelir, kredide faiz var"
+  ]
+ },
+ {
+  "id": "krediyle-ev",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "krediyle ev alınır mı",
+   "konut kredisi var mı",
+   "ev kredisi nasıl çekilir",
+   "krediyle daire almak",
+   "kredili ev alma",
+   "mortgage var mı",
+   "ev için kredi çekebilir miyim",
+   "konut kredisi nasil",
+   "evi taksitle alsam",
+   "krediyle al butonu ne",
+   "ev kredisi çekmek istiyorum",
+   "taksitli mülk alınır mı"
+  ],
+  "cevap": [
+   "Mülk ekranında krediyle al var, peşinatı verirsin gerisi 120 ay taksit",
+   "Konut kredisi var, peşinat {pesinat}, 120 ay vade",
+   "Peşinatı öde, kalanı banka verir. Taksit gelirinin yarısını geçmemeli"
+  ]
+ },
+ {
+  "id": "pesinat-orani",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "peşinat ne kadar",
+   "peşinat oranı kaç",
+   "ev için ne kadar peşinat lazım",
+   "peşinat yüzde kaç",
+   "pesinat kac",
+   "krediyle almak için ne kadar para lazım",
+   "daire peşinatı ne kadar",
+   "peşin ne kadar vermem lazım",
+   "peşinatsız ev olur mu",
+   "peşinat çok mu",
+   "ön ödeme ne kadar ev için",
+   "pesinat ne kadar tutuyor"
+  ],
+  "cevap": [
+   "Peşinat yaklaşık yüzde 20, daire için {pesinat}",
+   "{pesinat} peşinat verirsen gerisini kredi öder",
+   "Peşinatsız olmaz, en az yüzde 20 civarı lazım"
+  ]
+ },
+ {
+  "id": "konut-kredisi-vade",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "konut kredisi kaç ay",
+   "ev kredisi vadesi ne",
+   "konut kredisi vade kaç",
+   "ev kredisi kaç yıl",
+   "120 ay mı",
+   "ev taksiti kaç ay sürer",
+   "kredili evin vadesi",
+   "konut kredisinin süresi",
+   "ev borcu kaç ayda biter",
+   "mortgage vadesi"
+  ],
+  "cevap": [
+   "Konut kredisi 120 ay vadeli",
+   "120 ay, yani 10 oyun yılı ödüyorsun",
+   "Ev kredisi 120 ay, ihtiyaç kredisi 24 ay"
+  ]
+ },
+ {
+  "id": "mulk-bakim",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "mülkün bakım gideri var mı",
+   "evin aidatı var mı",
+   "mülk masraf çıkarır mı",
+   "daire bakım ücreti",
+   "evden para kesiliyor neden",
+   "mülk bakim masrafi",
+   "dükkanın gideri var mı",
+   "aidat ödüyor muyuz",
+   "mülk sahibi olmanın masrafı",
+   "ev alınca başka gider var mı"
+  ],
+  "cevap": [
+   "Daire ve dükkanın çok küçük bir aylık bakım gideri var, kira bunu rahat karşılıyor",
+   "Az bir bakım masrafı kesiliyor, arsanın yok",
+   "Bakım gideri var ama ufak, kiranın yanında devede kulak"
+  ]
+ },
+ {
+  "id": "eve-tasinma",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "aldığım eve nasıl taşınırım",
+   "evime taşınmak istiyorum",
+   "kendi daireme geçmek",
+   "eve taşın butonu",
+   "al ve taşın ne demek",
+   "yeni evime nasıl geçerim",
+   "evime yerleşmek",
+   "tasinmak istiyorum",
+   "aldım evi taşınamadım",
+   "kendi evimde oturmak istiyorum"
+  ],
+  "cevap": [
+   "Mülk ekranında dairene taşın de, kiradan kurtulursun",
+   "Alırken al ve taşın seçersen direkt geçersin",
+   "Taşınınca aylık {evkira} kira biter ama o daire kira getirmez"
+  ]
+ },
+ {
+  "id": "mulk-fiyat-artar",
+  "konu": "ekonomi",
+  "sorular": [
+   "mülk fiyatları artar mı",
+   "ev fiyatları yükselir mi",
+   "evler pahalanıyor mu",
+   "daire fiyatı neden arttı",
+   "geçen ay daha ucuzdu ev",
+   "mülk fiyatı düşer mi",
+   "ev fiyatları ne olacak",
+   "konut fiyatları artıyor mu",
+   "evler ucuzlar mı",
+   "ev fiyatlari surekli artiyor",
+   "mülk değer kaybeder mi"
+  ],
+  "cevap": [
+   "Fiyatlar her ay enflasyonla biraz artıyor, mülk de",
+   "Yıllık enflasyon {enflasyon}, mülk fiyatı da onunla yükseliyor",
+   "Ucuzlamaz pek, her ay biraz çıkıyor. Daire şu an {daire}"
+  ]
+ },
+ {
+  "id": "kira-ne-zaman",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "kira ne zaman yatıyor",
+   "kira geliri ne zaman gelir",
+   "kiram yatmadı",
+   "kira hangi gün gelir",
+   "kira parası ne zaman hesaba geçer",
+   "kira aylık mı günlük mü",
+   "kira geliri yatmiyor",
+   "kiracı ödemedi mi",
+   "kira her ay mı gelir",
+   "kiralar ne zaman tahsil",
+   "kiracı bulmam lazım mı"
+  ],
+  "cevap": [
+   "Kira ay sonunda kendiliğinden hesaba geçiyor, kiracı aramana gerek yok",
+   "Aylık geliyor, 30 oyun gününde bir",
+   "Ay dönünce yatar, içinde oturuyorsan o daire kira getirmez"
+  ]
+ },
+ {
+  "id": "kira-yuzde",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "kira getirisi yüzde kaç",
+   "mülkün yıllık getirisi",
+   "amortisman süresi ne",
+   "ev kendini kaç yılda öder",
+   "kira getiri oranı",
+   "yüzde kaç kazandırır mülk",
+   "mülk yatırımı kaç yılda çıkar",
+   "yatirim geri donusu ne kadar",
+   "kira kendini kaç ayda kurtarır",
+   "getiri oranı daire"
+  ],
+  "cevap": [
+   "Daire ayda fiyatının yüzde yarımı kadar kira getiriyor, dükkan biraz daha fazla",
+   "Daire {daire}, kirası {daire.kira}, hesabını sen yap uzun sürüyor",
+   "Yılda yüzde 6-7 civarı kira, artı değer artışı"
+  ]
+ },
+ {
+  "id": "mulk-icra",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "icrada mülkler ne oluyor",
+   "icra olunca evim gider mi",
+   "icrada ev satılır mı",
+   "haciz evime gelir mi",
+   "icra mülkleri ucuza mı satıyor",
+   "borcum yüzünden evimi alırlar mı",
+   "icra olursam dairem ne olur",
+   "haciz olur mu",
+   "ev haczedilir mi",
+   "icrada mulk kac paraya satilir"
+  ],
+  "cevap": [
+   "İcra olursan mülklerin piyasanın yüzde 80'ine satılıp borca sayılır",
+   "İcrada evin gider, hem de ucuza. 3 taksiti kaçırma",
+   "Haciz gibi, mülkler satılıyor, para borcu kapatıyor"
+  ]
+ },
+ {
+  "id": "mulk-100bin",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "100 bin ile ev alınır mı",
+   "başlangıç parasıyla mülk alabilir miyim",
+   "yüz binle ne alınır",
+   "ilk paramla arsa alsam",
+   "başta ev alınabiliyor mu",
+   "100k ile mülk",
+   "cebimdeki parayla ev alır mıyım",
+   "yeni başladım ev alabilir miyim",
+   "baslangic parasiyla daire"
+  ],
+  "cevap": [
+   "100 binle mülk alınmıyor, arsa bile {arsa}",
+   "Önce çalış biriktir, sonra peşinatla krediye girersin",
+   "Başta ev hayal, önce iş bul. Peşinat {pesinat}"
+  ]
+ },
+ {
+  "id": "villa-yok",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "villa var mı",
+   "rezidans alınır mı",
+   "villa almak istiyorum",
+   "lüks konut var mı",
+   "avm alınır mı",
+   "bina yapabilir miyim",
+   "kendi binamı dikmek",
+   "inşaat yapılıyor mu",
+   "arsaya ev yapabilir miyim",
+   "arsaya bina dikilir mi",
+   "rezidans var mi oyunda",
+   "apartman yapmak istiyorum"
+  ],
+  "cevap": [
+   "Villa, rezidans, inşaat daha yok, gelecekmiş",
+   "Şimdilik daire, dükkan ve arsa var sadece",
+   "Arsaya bina dikme ileride geliyor diyorlar, şimdi yok"
+  ]
+ },
+ {
+  "id": "mulk-sayisi",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "kaç tane mülk alabilirim",
+   "birden fazla ev alınır mı",
+   "sınırsız mülk alınır mı",
+   "iki daire alsam olur mu",
+   "mülk sınırı var mı",
+   "bir sürü ev alabilir miyim",
+   "çok mülk alıp kira toplamak",
+   "mulk limiti var mi",
+   "5 tane dükkan alsam"
+  ],
+  "cevap": [
+   "Paran yettikçe alırsın, kira toplarsın",
+   "Birden fazla alabilirsin, her biri ayrı kira getirir",
+   "Paran neyse o kadar, sonra kiralarla yine alırsın"
+  ]
+ },
+ {
+  "id": "mulk-ariyorum-npc",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "satılık evin var mı",
+   "bana ev satar mısın",
+   "senden daire alabilir miyim",
+   "dükkanını satar mısın",
+   "arsan var mı satılık",
+   "elinde mülk var mı",
+   "sende satilik ev var mi",
+   "kiralık ev arıyorum",
+   "kiralık daire var mı",
+   "ucuz ev biliyor musun",
+   "ev arıyorum yardım et"
+  ],
+  "cevap": [
+   "Bende yok, Mülk ekranında piyasada satılık var",
+   "Ben satmıyorum, piyasadan al, daire {daire}",
+   "Kiralık derdi yok, ev sahibi değilsen zaten {evkira} kira ödüyorsun"
+  ]
+ },
+ {
+  "id": "mulk-satiyorum-npc",
+  "konu": "mulk_satiyorum",
+  "sorular": [
+   "evimi satıyorum alır mısın",
+   "dairemi almak ister misin",
+   "dükkanımı sana satayım mı",
+   "arsamı alır mısın",
+   "mülk satıyorum ilgilenen",
+   "satılık evim var",
+   "ucuza ev veriyorum",
+   "kim ev almak ister",
+   "dairemi sana satsam",
+   "evim satılık ilgilenir misin"
+  ],
+  "cevap": [
+   "Bende o kadar para yok, piyasaya sat sen",
+   "Mülk ekranından piyasaya satabilirsin, hemen alıyorlar",
+   "Ben almam, oyuncu ilanı da daha yok. Piyasa alır"
+  ]
+ },
+ {
+  "id": "dukkan-mulk-isletme",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "dükkan alıp işletme açabilir miyim",
+   "aldığım dükkanda kafe açılır mı",
+   "dükkan mülkü ile dükkan işletmesi aynı mı",
+   "dükkan sahibi olmak için dükkan mı almalıyım",
+   "dükkan kiralamak ile işletme açmak farkı",
+   "işletme için mülk lazım mı",
+   "dükkan alırsam esnaf olur muyum"
+  ],
+  "cevap": [
+   "Dükkan mülkü kira getirir, işletme ayrı bir şey, Kariyer ekranından açılır",
+   "İşletme için mülk almana gerek yok, sermaye ve 60 gün deneyim lazım",
+   "Mülk dükkanı kira içindir, dükkan işletmesi ayrı kuruluyor"
+  ]
+ },
+ {
+  "id": "mulk-ekranda-ne",
+  "konu": "yardim",
+  "sorular": [
+   "mülk ekranında ne var",
+   "mülk sekmesi ne işe yarar",
+   "mulk ekrani nasil kullanilir",
+   "mülklerimi nerede görürüm",
+   "kaç mülküm var nereden bakarım",
+   "mülklerim nerede",
+   "sahip olduğum evler",
+   "mülk listesi nerede"
+  ],
+  "cevap": [
+   "Mülk ekranında piyasa fiyatları ve senin mülklerin var",
+   "Al, sat, taşın hepsi Mülk ekranında",
+   "Mülklerini Mülk sekmesinde görürsün, kiraları da orada"
+  ]
+ },
+ {
+  "id": "kredi-faiz",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi faizi kaç",
+   "faiz oranı ne kadar",
+   "bankanın faizi ne",
+   "kredi çeksem ne kadar faiz öderim",
+   "aylık faiz yüzde kaç",
+   "faizler ne alemde",
+   "kredinin faizi nekadar",
+   "faiz kac",
+   "faiz?",
+   "kredi faiz oranı",
+   "banka faizi ne kadar",
+   "ihtiyaç kredisi faizi",
+   "faiz yüzde kaç knk",
+   "kredi faizi ne durumda",
+   "faizi merak ediyorum",
+   "faiz oranlari",
+   "kredi faizi ne kadar şu an",
+   "bankada faiz kaçtan"
+  ],
+  "cevap": [
+   "Aylık faiz {faiz}, ihtiyaç kredisi 24 ay vadeli",
+   "{faiz} aylık, yıllığa vurunca epey ediyor",
+   "Bankada aylık {faiz} faiz var, yıllık {faiz.yillik}"
+  ]
+ },
+ {
+  "id": "kredi-faiz-sikayet",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "bu faiz ne böyle",
+   "faiz çok yüksek",
+   "faiz neden bu kadar yüksek",
+   "faizler uçmuş",
+   "banka soyuyor resmen",
+   "bu faizle kredi çekilmez",
+   "faiz soygun",
+   "faiz cok fazla ya",
+   "bu faize kim kredi çeker",
+   "faiz düşmeyecek mi",
+   "faiz yüksek değil mi",
+   "faizler ne zaman düşer",
+   "faiz indirimi olur mu",
+   "bu kadar faiz olur mu"
+  ],
+  "cevap": [
+   "Aylık {faiz}, yıllık {faiz.yillik}. Haklısın az değil",
+   "Enflasyon {enflasyon} olunca faiz de böyle oluyor",
+   "Faize kızma, kısa tut, borcu erken kapat"
+  ]
+ },
+ {
+  "id": "kredi-faiz-yillik",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "yıllık faiz ne kadar",
+   "faiz yıllık kaç",
+   "yıllık kredi faizi",
+   "senelik faiz",
+   "yillik faiz kac",
+   "yıllığa vurunca faiz ne",
+   "faiz yıllık yüzde kaç",
+   "bir yılda ne kadar faiz biner",
+   "faiz senelik ne ediyor",
+   "yıllık bazda faiz"
+  ],
+  "cevap": [
+   "Yıllık {faiz.yillik}, aylık {faiz}",
+   "Aylık {faiz}, yıla vurunca {faiz.yillik} ediyor",
+   "{faiz.yillik} yıllık, enflasyon {enflasyon}"
+  ]
+ },
+ {
+  "id": "kredi-vade",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi vadesi kaç ay",
+   "kredi kaç ayda ödenir",
+   "vade ne kadar",
+   "ihtiyaç kredisi kaç ay",
+   "kredi süresi ne kadar",
+   "taksit sayısı kaç",
+   "vade uzatılır mı",
+   "kredi kaç taksit",
+   "vade kac",
+   "24 ay mı",
+   "kredi kaç ay sürüyor",
+   "vadeyi seçebilir miyim",
+   "36 ay kredi var mı",
+   "kredi ne kadar sürede biter"
+  ],
+  "cevap": [
+   "İhtiyaç kredisi 24 ay vadeli, seçemiyorsun",
+   "24 taksit, yani 24 oyun ayı",
+   "Vade sabit 24 ay. Konut kredisi 120 ay"
+  ]
+ },
+ {
+  "id": "kredi-limit-hesap",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi limiti nasıl hesaplanıyor",
+   "limit neye göre belirleniyor",
+   "kredi limiti nasıl belirlenir",
+   "limit neden bu kadar",
+   "kredi limiti neye bağlı",
+   "limit hesaplama",
+   "banka limiti neye göre veriyor",
+   "limitimi ne belirliyor",
+   "limit formülü ne",
+   "kredi limiti nasil hesaplaniyor",
+   "ne kadar kredi verirler neye göre",
+   "limit gelire mi bağlı"
+  ],
+  "cevap": [
+   "Limit geçen ayki gelirin çarpı kredi notun bölü 100",
+   "Geçen ay ne kazandıysan, onu kredi notunla çarp 100'e böl",
+   "Gelirin ve kredi notun belirliyor. Senin limitin şu an {o.limit}"
+  ]
+ },
+ {
+  "id": "kredi-limitim",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "benim kredi limitim ne kadar",
+   "limitim kaç",
+   "ne kadar kredi çekebilirim",
+   "kaç para kredi alabilirim",
+   "kredi limitim",
+   "limitim ne",
+   "bana ne kadar kredi verirler",
+   "en fazla ne kadar kredi",
+   "limit kac bende",
+   "kredi çeksem kaça kadar",
+   "maksimum kredi ne kadar",
+   "kredi limitimi söyler misin"
+  ],
+  "cevap": [
+   "Senin limitin şu an {o.limit}",
+   "{o.limit} kadar çekebilirsin, notun {o.not}",
+   "Limitin {o.limit}, ama taksit gelirinin yarısını geçmemeli"
+  ]
+ },
+ {
+  "id": "kredi-limit-sifir",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi limitim neden sıfır",
+   "limit 0 görünüyor",
+   "neden kredi veremiyorlar",
+   "limitim yok",
+   "kredi limiti sıfır neden",
+   "yeni başladım kredi çekemiyorum",
+   "limit sifir",
+   "bana neden kredi yok",
+   "limit gözükmüyor",
+   "kredi limiti boş",
+   "geliri olmayana kredi var mı"
+  ],
+  "cevap": [
+   "Limit geçen ayki gelire bağlı, geçen ay gelirin yoksa limit sıfır",
+   "Önce bir ay çalış, gelir oluşunca limit açılır",
+   "Gelir yok, limit yok. Senin şu an {o.limit}"
+  ]
+ },
+ {
+  "id": "kredi-limit-artirma",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi limitini nasıl artırırım",
+   "limit nasıl yükselir",
+   "daha fazla kredi için ne yapmalıyım",
+   "limitimi büyütmek istiyorum",
+   "limit artışı nasıl",
+   "kredi limiti arttırma",
+   "limit yükseltme",
+   "limitim az nasıl artar",
+   "daha çok kredi almak istiyorum",
+   "limit nasil artar",
+   "banka bana daha fazla versin"
+  ],
+  "cevap": [
+   "Daha çok kazan ve notunu yükselt, ikisi limiti büyütür",
+   "Geçen ayki gelirin artınca limit de artar. Taksiti zamanında öde not yükselir",
+   "Gelir çarpı not bölü 100. Şu an notun {o.not}, limitin {o.limit}"
+  ]
+ },
+ {
+  "id": "kredi-notu-nedir",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi notu nedir",
+   "kredi notu ne demek",
+   "findeks puanı var mı",
+   "kredi skoru ne",
+   "kredi notu ne işe yarar",
+   "not ne işe yarıyor",
+   "kredi puanı neyi etkiler",
+   "kredi notunun önemi",
+   "kredi notu niye önemli",
+   "kredi notu neye yarar",
+   "skor ne demek bankada"
+  ],
+  "cevap": [
+   "Kredi notu limitini belirliyor, bazı büyük mesleklerde de şart",
+   "Not yüksekse limit büyür. 620'den başlıyor",
+   "Bankanın sana güveni gibi, limitini ve büyük işlere girişini etkiler"
+  ]
+ },
+ {
+  "id": "kredi-notum",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi notum kaç",
+   "benim notum ne",
+   "notum ne kadar",
+   "kredi puanım kaç",
+   "skorum kaç",
+   "kredi notumu söyler misin",
+   "notum iyi mi",
+   "kredi notum düşük mü",
+   "not kac bende",
+   "kredi notum ne durumda",
+   "benim skor ne alemde"
+  ],
+  "cevap": [
+   "Notun {o.not}",
+   "Şu an {o.not}, 620'den başlıyor herkes",
+   "{o.not}, limitin de {o.limit}"
+  ]
+ },
+ {
+  "id": "kredi-notu-baslangic",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi notu kaçtan başlar",
+   "başlangıç kredi notu",
+   "ilk kredi notu ne",
+   "herkesin notu kaç başlıyor",
+   "yeni oyuncunun kredi notu",
+   "kredi notu en baş kaç",
+   "başta not kaç",
+   "620 ne",
+   "not 620 mi başlıyor",
+   "ilk notum kaçtı"
+  ],
+  "cevap": [
+   "Herkes 620'den başlar",
+   "620 ile başlıyorsun, sonra ödedikçe yükselir",
+   "Başlangıç 620, en yüksek 900"
+  ]
+ },
+ {
+  "id": "kredi-notu-yukseltme",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi notu nasıl yükselir",
+   "notumu nasıl artırırım",
+   "kredi notu yükseltme",
+   "not nasil artar",
+   "kredi puanı arttırmak",
+   "notum yükselsin istiyorum",
+   "notu yükseltmenin yolu",
+   "kredi notu artırma",
+   "nasıl iyi not alırım",
+   "not nasıl çıkar",
+   "kredi skorunu düzeltmek"
+  ],
+  "cevap": [
+   "Taksitleri zamanında öde, her ödemede not biraz artar. İtibar da yardım eder",
+   "Düzenli taksit öde, gecikme yapma. Bağışla itibar kazanmak da iyi",
+   "Ödedikçe çıkıyor, en çok 900. Şu an {o.not}"
+  ]
+ },
+ {
+  "id": "kredi-notu-dusme",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi notu neden düştü",
+   "notum düştü",
+   "kredi notu ne zaman düşer",
+   "not neden azaldı",
+   "kredi notum azaldı",
+   "notu ne düşürür",
+   "kredi puanı düşme sebebi",
+   "not dustu neden",
+   "puanım eriyor",
+   "notumu kim düşürdü"
+  ],
+  "cevap": [
+   "Taksit kaçırınca not 40 düşer, ay sonu ödemeyi yapamayınca da düşer",
+   "Gecikme yaptıysan düşmüştür. İcrada çok düşer",
+   "Ödemeleri aksatma, not oradan düşüyor. Şu an {o.not}"
+  ]
+ },
+ {
+  "id": "kredi-notu-sinir",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi notu en fazla kaç olur",
+   "maksimum kredi notu",
+   "kredi notu en düşük kaç",
+   "not 1000 olur mu",
+   "en yüksek not ne",
+   "notun sınırı var mı",
+   "kredi notu tavan",
+   "not en az kaç",
+   "kredi notu aralığı",
+   "900 mü en yüksek"
+  ],
+  "cevap": [
+   "300 ile 900 arasında oynuyor",
+   "En yüksek 900, en düşük 300",
+   "Tavan 900. Sen şu an {o.not}"
+  ]
+ },
+ {
+  "id": "kredi-notu-meslek",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "kredi notu meslek için gerekli mi",
+   "müteahhit olmak için kredi notu",
+   "hangi meslek kredi notu ister",
+   "büyük işler için not şartı",
+   "kredi notu şartı ne",
+   "fabrikatör için not lazım mı",
+   "kademe 4 kredi notu",
+   "not şartı olan meslekler"
+  ],
+  "cevap": [
+   "Dördüncü kademenin bazı işleri belli bir kredi notu istiyor",
+   "Müteahhitlik gibi büyük işlerde not şartı var, Kariyer ekranında yazar",
+   "Not düşükse büyük işlere giremezsin, şimdiden yükselt"
+  ]
+ },
+ {
+  "id": "kredi-cekme",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi nasıl çekilir",
+   "kredi çekmek istiyorum",
+   "bankadan para nasıl alınır",
+   "kredi nereden çekiyoruz",
+   "kredi başvurusu nasıl",
+   "kredi alma",
+   "kredi cekmek istiyorum nasil",
+   "banka nerede kredi için",
+   "krediyi nasıl alırım",
+   "ihtiyaç kredisi nasıl",
+   "kredi butonu nerede",
+   "kredi kullanmak istiyorum",
+   "bankaya gidip kredi",
+   "kredi alınır mı"
+  ],
+  "cevap": [
+   "Banka ekranına gir, tutarı yaz, kredi çek de",
+   "Banka ekranından, limitin kadar çekebilirsin. Limitin {o.limit}",
+   "Banka sekmesi, tutar gir, onayla. 24 ay vadeli"
+  ]
+ },
+ {
+  "id": "kredi-red",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredim neden reddedildi",
+   "kredi vermiyorlar neden",
+   "kredi çekemiyorum",
+   "gelirin bu krediyi karşılamıyor ne demek",
+   "banka kredi vermedi",
+   "kredi red sebebi",
+   "neden kredi alamıyorum",
+   "kredi onaylanmadı",
+   "kredi olmuyor",
+   "banka beni reddetti",
+   "kredi reddi",
+   "kredi hata veriyor"
+  ],
+  "cevap": [
+   "Ya limiti aştın ya da taksitler gelirinin yarısını geçiyor",
+   "Gecikmiş borcun varsa ya da paran bitip iş bulmadıysan kredi açılmaz",
+   "Limitin {o.limit}. Taksitlerin toplamı gelirinin yarısından az olmalı"
+  ]
+ },
+ {
+  "id": "kredi-taksit-gelir",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "taksit gelirin yüzde kaçı olabilir",
+   "taksit sınırı var mı",
+   "gelirimin ne kadarı taksite gider",
+   "gelirin yarısı kuralı ne",
+   "taksit oranı",
+   "maaşımın kaçta kaçı taksit olur",
+   "taksit çok yüksek olunca",
+   "taksitler gelirden fazla olabilir mi",
+   "taksit gelir orani"
+  ],
+  "cevap": [
+   "Bütün taksitlerin toplamı geçen ayki gelirinin yarısını geçemez",
+   "Gelirin yarısı kadar taksit kaldırırlar, fazlasına izin yok",
+   "Yüzde 50 kuralı var, taksitler gelirinin yarısını geçmez"
+  ]
+ },
+ {
+  "id": "kredi-taksit-ne-kadar",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "aylık taksitim ne kadar",
+   "kredi taksiti kaç",
+   "taksidim kaç lira",
+   "ne kadar taksit ödüyorum",
+   "taksit hesaplama",
+   "100 bin kredi çeksem taksit ne",
+   "taksit ne kadar olur",
+   "kredi taksiti nasıl hesaplanır",
+   "taksit nekadar",
+   "ayda ne kadar ödeyeceğim"
+  ],
+  "cevap": [
+   "Banka ekranında kredilerinin altında aylık taksit yazıyor",
+   "24 aya bölünüyor, üstüne aylık {faiz} faiz",
+   "Taksiti Banka ekranından gör, ay sonu kendiliğinden kesiliyor"
+  ]
+ },
+ {
+  "id": "kredi-odeme",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi nasıl ödenir",
+   "taksit kendiliğinden mi kesiliyor",
+   "kredi ödemesi nasıl yapılır",
+   "taksiti elle mi ödüyorum",
+   "kredi borcunu ödemek",
+   "taksit otomatik mi",
+   "ay sonu taksit kesilir mi",
+   "kredi ödeme nerden",
+   "taksiti nereden öderim",
+   "odeme nasil yapiliyor"
+  ],
+  "cevap": [
+   "Taksit her ay kendiliğinden kesiliyor, paran yeterse",
+   "Ay sonu hesaptan düşer. İstersen Banka ekranında öde de var",
+   "Otomatik, sen sadece hesapta para bulundur"
+  ]
+ },
+ {
+  "id": "kredi-erken-kapama",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "krediyi erken kapatabilir miyim",
+   "borcun tamamını ödemek",
+   "kredi erken kapama",
+   "krediyi bitirmek istiyorum",
+   "toptan ödeyebilir miyim",
+   "kredi kapatma",
+   "kalan borcu ödesem",
+   "tamamını öde ne demek",
+   "erken ödesem faiz düşer mi",
+   "kredimi kapatmak istiyorum",
+   "borcu bir anda kapatmak"
+  ],
+  "cevap": [
+   "Banka ekranında tamamını öde var, kalan borcu kapatırsın",
+   "Erken kapatırsan sonraki faizden kurtulursun",
+   "Paran varsa kapat, taksit yükü kalkar"
+  ]
+ },
+ {
+  "id": "kredi-odemezsem",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "krediyi ödemezsem ne olur",
+   "taksit ödemezsem",
+   "taksit kaçırırsam ne olur",
+   "ödeme yapmazsam",
+   "borcumu ödeyemiyorum",
+   "krediyi ödeyemezsem",
+   "taksiti geciktirsem",
+   "kredi odemezsem ne olur",
+   "bir taksit atlarsam",
+   "para yok taksit ödeyemem",
+   "ödemeyi kaçırdım ne olacak"
+  ],
+  "cevap": [
+   "Her kaçan taksitte not 40 düşer, 3 taksit kaçarsa icra",
+   "Kaçırma, 3 olunca icraya düşersin",
+   "Bir iki taksit not düşürür, üçüncüsünde icra kapıda"
+  ]
+ },
+ {
+  "id": "icra-nedir",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "icra nedir",
+   "icra ne demek",
+   "icraya düşmek ne",
+   "icra ne zaman olur",
+   "kaç taksitte icra",
+   "icra olur mu",
+   "icra nasıl oluyor",
+   "icra kac taksitte",
+   "icralık oldum mu",
+   "icraya ne zaman düşülür",
+   "haciz ne zaman gelir",
+   "icra sistemi"
+  ],
+  "cevap": [
+   "3 taksit kaçırırsan icra olur",
+   "İcrada mülklerin ucuza satılır, nakdin borca gider, not 100 düşer",
+   "Üç taksit kaçınca icra. Sonra işe girmek zorunda kalırsın"
+  ]
+ },
+ {
+  "id": "icra-sonrasi",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "icraya düştüm ne olacak",
+   "icradan sonra ne oluyor",
+   "icra oldum ne yapmalıyım",
+   "icradan kurtulmak",
+   "icra sonrası",
+   "icraya düştüm yardım",
+   "icra bitti şimdi ne",
+   "icra olunca oyun biter mi",
+   "icradan nasil kurtulurum",
+   "icralık olunca her şey gider mi"
+  ],
+  "cevap": [
+   "Oyun bitmez. İşe gir, çalış, borcu kapat, sonra yine yatırım yaparsın",
+   "İcradan sonra çalışmak zorundasın, borç bitene kadar yatırım yok",
+   "Not düştü ama yükselir. Düzenli çalış, taksit öde"
+  ]
+ },
+ {
+  "id": "birden-fazla-kredi",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "birden fazla kredi çekebilir miyim",
+   "iki kredi aynı anda",
+   "kredi üstüne kredi",
+   "ikinci kredi çekilir mi",
+   "kredim varken yeni kredi",
+   "bir kredi daha çeksem",
+   "kredi sayısı sınırı",
+   "yeni kredi alabilir miyim borcum varken",
+   "ikinci kredi"
+  ],
+  "cevap": [
+   "Çekebilirsin, yeter ki limit ve gelirin yarısı kuralına sığsın",
+   "Toplam taksitler gelirinin yarısını geçmezse ikinci kredi de olur",
+   "Olur ama dikkat et, kredi üstüne kredi batırır"
+  ]
+ },
+ {
+  "id": "kredi-almali-miyim",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi çekmeli miyim",
+   "kredi çekmek mantıklı mı",
+   "krediyle yatırım yapılır mı",
+   "borçlanmak iyi mi",
+   "kredi çeksem mi",
+   "kredi almak akıllıca mı",
+   "kredi cekeyim mi",
+   "borç alıp mülk almak",
+   "kredi çekmek riskli mi",
+   "kredi kullanmak tavsiye eder misin"
+  ],
+  "cevap": [
+   "Getirisi faizden yüksek bir işse çek, değilse çekme. Faiz aylık {faiz}",
+   "Kira {daire.kira}, faiz {faiz}. Hesabını yapmadan çekme",
+   "Düzenli gelirin varsa çek, yoksa icra riski var"
+  ]
+ },
+ {
+  "id": "isletme-kredisi",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "işletme kredisi var mı",
+   "krediyle kafe açılır mı",
+   "dükkanı krediyle açmak",
+   "işletme açmak için kredi",
+   "krediyle aç ne demek",
+   "kafe kurmak için kredi çekebilir miyim",
+   "esnaf kredisi",
+   "ticari kredi var mı",
+   "isletme kredisi nasil"
+  ],
+  "cevap": [
+   "Kariyer ekranında krediyle aç seçeneği var, işletmeyi kredili kurarsın",
+   "Var, ama taksit gelirine sığmalı. Kafe kuruluşu {kafe.kurulus}",
+   "İşletme kredisi var, gelirin karşılamazsa vermiyorlar"
+  ]
+ },
+ {
+  "id": "gecikmis-borc",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "gecikmiş borç ne",
+   "gecikmiş borcum var ne yapayım",
+   "gecikmiş borçlarını kapat diyor",
+   "önce gecikmiş borçlarını kapatmalısın ne demek",
+   "gecikmiş ödemelerim",
+   "borç gecikmesi",
+   "gecikmis borc nasil kapanir",
+   "ödenmemiş borcum var diyor",
+   "neden yatırım yapamıyorum borç diyor"
+  ],
+  "cevap": [
+   "Ay sonu ödeyemediklerin birikti, onları kapatmadan yatırım yok",
+   "Gecikmiş borcu kapat, sonra kredi ve mülk açılır",
+   "Para gelince önce o kapanıyor. Çalış, kapat"
+  ]
+ },
+ {
+  "id": "mevduat-yok",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "mevduat faizi var mı",
+   "parayı bankaya yatırsam faiz alır mıyım",
+   "vadeli hesap var mı",
+   "bankada para faiz getirir mi",
+   "faize para yatırmak",
+   "mevduat var mı",
+   "banka faiz veriyor mu",
+   "parayı bankada tutsam büyür mü",
+   "vadeli var mi",
+   "faiz geliri olur mu",
+   "faiz kazanmak istiyorum",
+   "nemalandırmak"
+  ],
+  "cevap": [
+   "Mevduat faizi yok, para bankada büyümüyor",
+   "Bankada faiz geliri yok, parayı mülke ya da işe yatır",
+   "Vadeli hesap yok kardeşim, para yatarsa yatar öyle"
+  ]
+ },
+ {
+  "id": "banka-ekrani",
+  "konu": "yardim",
+  "sorular": [
+   "banka nerede",
+   "banka ekranı ne işe yarar",
+   "bankaya nasıl girilir",
+   "banka sekmesi",
+   "bankada ne var",
+   "banka menüsü nerde",
+   "bankada neler yapılır",
+   "banka ne işe yarıyor",
+   "bankaya gitmek istiyorum",
+   "banka ekranini bulamadim"
+  ],
+  "cevap": [
+   "Banka ekranında kredi, limit, notun, bağış ve giderlerin var",
+   "Alttaki sekmelerde Banka var, kredi oradan",
+   "Bankada kredi çekersin, borç ödersin, bağış yaparsın"
+  ]
+ },
+ {
+  "id": "kredi-kimden",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "senden borç alabilir miyim",
+   "bana kredi verir misin",
+   "biraz borç ver",
+   "borç para lazım",
+   "bana para verir misin",
+   "ödünç para var mı",
+   "bana borc ver",
+   "bi 10 bin versene",
+   "elden borç alınır mı",
+   "oyuncudan borç alınır mı"
+  ],
+  "cevap": [
+   "Oyuncular arası para gönderme yok, banka kredisi var",
+   "Ben veremem, Banka ekranından kredi çek. Limitin {o.limit}",
+   "Elden borç yok oyunda, bankaya git"
+  ]
+ },
+ {
+  "id": "kredi-yeni-baslayan",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "yeni başlayan kredi çekebilir mi",
+   "ilk gün kredi alınır mı",
+   "başta kredi çekip mülk alsam",
+   "hiç çalışmadan kredi",
+   "ilk ay kredi var mı",
+   "daha işim yok kredi çekebilir miyim",
+   "yeni geldim kredi",
+   "baslangicta kredi var mi"
+  ],
+  "cevap": [
+   "İlk ay gelirin olmadığı için limit sıfır, önce bir ay çalış",
+   "Kredi geçen ayki gelire bakıyor, işe girmeden olmaz",
+   "Önce iş, sonra kredi. Notun {o.not} hazır bekliyor"
+  ]
+ },
+ {
+  "id": "konut-kredisi-sart",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "konut kredisi için şart ne",
+   "ev kredisi alabilir miyim",
+   "ev kredisi için gelir lazım mı",
+   "konut kredisi neden vermiyorlar",
+   "krediyle ev alamıyorum",
+   "ev kredisi reddedildi",
+   "konut kredisi limiti",
+   "ev kredisi hangi şartla",
+   "krediyle al çalışmıyor"
+  ],
+  "cevap": [
+   "Peşinat {pesinat} hazır olacak, taksit de gelirinin yarısına sığacak",
+   "Gelirin karşılamazsa konut kredisi açılmaz",
+   "Peşinatın ve düzenli gelirin varsa açılıyor"
+  ]
+ },
+ {
+  "id": "enflasyon",
+  "konu": "ekonomi",
+  "sorular": [
+   "enflasyon kaç",
+   "enflasyon ne kadar",
+   "yıllık enflasyon",
+   "enflasyon yüzde kaç",
+   "enflasyon?",
+   "enflasyon oranı",
+   "enflasyon ne durumda",
+   "enflasyon kac",
+   "enflasyon yuksek mi",
+   "pahalılık ne kadar",
+   "enflasyon ne alemde",
+   "enflasyon artıyor mu",
+   "bu sene enflasyon",
+   "enflasyonu merak ediyorum",
+   "enflasyon rakamı ne"
+  ],
+  "cevap": [
+   "Yıllık enflasyon {enflasyon}",
+   "{enflasyon} yıllık, her ay fiyatlar biraz artıyor",
+   "Enflasyon {enflasyon}, faiz de aylık {faiz}"
+  ]
+ },
+ {
+  "id": "fiyatlar-artiyor",
+  "konu": "ekonomi",
+  "sorular": [
+   "fiyatlar neden artıyor",
+   "her şey pahalandı",
+   "fiyatlar sürekli yükseliyor",
+   "neden her ay zam geliyor",
+   "her şeye zam",
+   "her sey pahali",
+   "geçim pahalandı",
+   "fiyatlar ne zaman duracak",
+   "bu pahalılık ne",
+   "fiyatlar artar mı",
+   "ucuzlama olmaz mı",
+   "fiyatlar düşer mi hiç",
+   "zam üstüne zam",
+   "her ay neden pahalanıyor"
+  ],
+  "cevap": [
+   "Fiyatlar her ay biraz artıyor, yıllık enflasyon {enflasyon}",
+   "Enflasyon var, düşmez pek. Paranı mülke çevir",
+   "Her şey ay ay pahalanıyor, geçim de şu an {yasam}"
+  ]
+ },
+ {
+  "id": "maas-enflasyon",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "maaşlar enflasyona göre artar mı",
+   "maaşıma zam gelir mi",
+   "maaş artışı var mı",
+   "maaşlar artıyor mu",
+   "maaş zammı ne zaman",
+   "maaşlar fiyatlara yetişiyor mu",
+   "maas artar mi",
+   "maaşım neden artmadı",
+   "maaşlar enflasyonun gerisinde mi",
+   "maaş artıyor ama fiyat daha çok",
+   "zam gelmiyor maaşa",
+   "maaşlar endekse bağlı mı",
+   "maaşlar geriden geliyor"
+  ],
+  "cevap": [
+   "Maaşlar endekse göre artıyor ama fiyatların biraz gerisinden geliyor",
+   "Artıyor ama geç, o yüzden sadece maaşla zengin olunmuyor",
+   "Endeksli artıyor, fiyatlar önden koşuyor. Enflasyon {enflasyon}"
+  ]
+ },
+ {
+  "id": "ekonomi-motoru",
+  "konu": "ekonomi",
+  "sorular": [
+   "ekonomi motoru nedir",
+   "ekonomiyi kim yönetiyor",
+   "faizi kim belirliyor",
+   "faiz değişir mi",
+   "merkez bankası var mı",
+   "faiz kararları ne zaman",
+   "ekonomi nasıl işliyor",
+   "faizler değişecek mi",
+   "ekonomi kararlarını kim veriyor",
+   "faiz artacak mı",
+   "ekonomi motoru ne yapar",
+   "politika faizi"
+  ],
+  "cevap": [
+   "Ekonomi motoru ülkenin oyun içi ekonomisine bakıp faiz gibi kararlar verecek, kararlar bir gün önce haber olacak",
+   "Şimdilik faiz aylık {faiz}. İleride ekonomiye göre değişecekmiş",
+   "Enflasyon artarsa faiz artar, öyle bir sistem geliyor"
+  ]
+ },
+ {
+  "id": "ekonomi-durum",
+  "konu": "ekonomi",
+  "sorular": [
+   "ekonomi nasıl",
+   "ekonomi ne durumda",
+   "piyasa nasıl",
+   "piyasalar ne alemde",
+   "ekonomi iyi mi kötü mü",
+   "piyasa durumu",
+   "ekonomi kriz mi",
+   "ekonomi nasil gidiyor",
+   "ortalık nasıl para açısından",
+   "işler nasıl piyasada",
+   "piyasa durgun mu",
+   "ekonominin hali"
+  ],
+  "cevap": [
+   "Enflasyon {enflasyon}, faiz aylık {faiz}. Fena değil ama pahalılık var",
+   "Fiyatlar artıyor, maaşlar geriden geliyor. Mülk tutan kazanıyor",
+   "Daire {daire}, faiz {faiz}. Ona göre düşün"
+  ]
+ },
+ {
+  "id": "yasam-maliyeti",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "geçim ne kadar",
+   "aylık geçim masrafı",
+   "yaşam maliyeti ne",
+   "ayda ne kadar harcıyorum",
+   "geçinmek için ne kadar lazım",
+   "gecim kac",
+   "yemek fatura ne kadar tutuyor",
+   "aylık gider ne",
+   "geçim parası",
+   "her ay ne kadar kesiliyor",
+   "ayda kaç para yeter",
+   "asgari geçim ne kadar",
+   "hayat pahalı mı"
+  ],
+  "cevap": [
+   "Aylık geçim {yasam}, ev sahibi değilsen üstüne {evkira} kira",
+   "Geçim {yasam}, yemek fatura falan",
+   "Ayda {yasam} geçim, kira ayrı"
+  ]
+ },
+ {
+  "id": "aylik-giderler",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "ay sonu ne kesiliyor",
+   "aylık giderlerim neler",
+   "ay sonu ödemeleri ne",
+   "ay sonunda param neden azaldı",
+   "ay sonu kesintiler",
+   "giderlerimi nereden görürüm",
+   "ay sonu para nereye gitti",
+   "her ay param eriyor",
+   "ay basi kesinti",
+   "aylik giderlerim ne kadar"
+  ],
+  "cevap": [
+   "Ay sonu geçim {yasam}, kiran varsa {evkira}, kredi taksitleri kesiliyor",
+   "Banka ekranında aylık giderlerin yazıyor",
+   "Geçim, kira ve taksit. Ev alırsan kira gider"
+  ]
+ },
+ {
+  "id": "asgari-ucret",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "asgari ücret ne kadar",
+   "asgari ücret kaç",
+   "asgari kac",
+   "en düşük maaş ne",
+   "asgari ücret oyunda",
+   "minimum maaş",
+   "asgari ücretin altında maaş olur mu",
+   "işçiye en az ne vermem lazım",
+   "asgari ucret nekadar",
+   "asgari ücret ne alemde"
+  ],
+  "cevap": [
+   "Asgari ücret {asgari}",
+   "{asgari}, işçiye bunun altında maaş verilmiyor",
+   "En az {asgari}, geçim de {yasam}"
+  ]
+ },
+ {
+  "id": "para-kazanma",
+  "konu": "genel",
+  "sorular": [
+   "nasıl para kazanılır",
+   "para kazanmanın yolu ne",
+   "hızlı para nasıl kazanırım",
+   "zengin olmak istiyorum",
+   "nasıl zengin olurum",
+   "para nasıl yapılır",
+   "para kazanmak",
+   "en hızlı para nerede",
+   "para kasmak",
+   "para nasil kazanilir",
+   "çok para kazanmanın yolu",
+   "zengin olmanın sırrı ne",
+   "para nereden gelir"
+  ],
+  "cevap": [
+   "Önce çalış biriktir, sonra mülk ya da işletme. Kira ve kâr seni büyütür",
+   "Kurye gibi görevle kazan, birikince mülk al, kira topla",
+   "Maaşla zengin olunmaz, yatırım lazım. Daire {daire}"
+  ]
+ },
+ {
+  "id": "pasif-gelir",
+  "konu": "genel",
+  "sorular": [
+   "pasif gelir nasıl olur",
+   "çalışmadan para kazanılır mı",
+   "oyuna girmeden para gelir mi",
+   "otomatik gelir",
+   "yatırken para kazanmak",
+   "uyurken para kazanmak",
+   "pasif gelir var mı",
+   "oyun kapalıyken kazanır mıyım",
+   "girmeden kazanc",
+   "offline kazanç"
+  ],
+  "cevap": [
+   "Kira pasif gelir, daire {daire.kira}, dükkan {dukkan.kira}",
+   "Memur ve muhasebeci maaşı oyuna girmesen de yatar",
+   "Mülk al, kira kendiliğinden gelir"
+  ]
+ },
+ {
+  "id": "ekonomi-kim-kuruyor",
+  "konu": "genel",
+  "sorular": [
+   "para nereden geliyor oyunda",
+   "npc müşteriler ne",
+   "müşteriler kim",
+   "ciro neye bağlı",
+   "para oyuna nasıl giriyor",
+   "müşteriler gerçek mi",
+   "esnafa kim para veriyor",
+   "npc nedir",
+   "müşteri nereden geliyor"
+  ],
+  "cevap": [
+   "İşletmelere NPC müşteriler gelip harcıyor, para oradan giriyor",
+   "Ciro konuma, çalışana ve kaliteye bağlı",
+   "Müşteriler NPC, aynı türden çok işletme olursa bölünüyorlar"
+  ]
+ },
+ {
+  "id": "pazar-doygunlugu",
+  "konu": "ekonomi",
+  "sorular": [
+   "herkes kafe açarsa ne olur",
+   "çok kafe olunca müşteri azalır mı",
+   "pazar doygunluğu var mı",
+   "rekabet ciroyu düşürür mü",
+   "aynı işi açan çok",
+   "piyasa doymuş mu",
+   "kafeler çoğaldı ciro düştü",
+   "müşteri bölünüyor mu",
+   "rakip çok"
+  ],
+  "cevap": [
+   "Aynı türden çok işletme olunca müşteri bölünüyor",
+   "Herkes kafe açarsa ciro düşer, az olan işi seç",
+   "Doygunluk var, kalabalık işe girme"
+  ]
+ },
+ {
+  "id": "borsa-yok",
+  "konu": "genel",
+  "sorular": [
+   "borsa var mı",
+   "hisse alınır mı",
+   "borsaya yatırım",
+   "hisse senedi var mı",
+   "borsa ne zaman gelecek",
+   "borsa oynamak istiyorum",
+   "borsada para kazanılır mı",
+   "hisse almak",
+   "borsa var mi oyunda",
+   "bist var mı"
+  ],
+  "cevap": [
+   "Borsa daha yok, gelecekmiş",
+   "Hisse falan yok şimdilik, sonraki güncellemede diyorlar",
+   "Borsa gelmedi daha, mülk al şimdilik"
+  ]
+ },
+ {
+  "id": "doviz-yok",
+  "konu": "genel",
+  "sorular": [
+   "döviz var mı",
+   "dolar alınır mı",
+   "euro alabilir miyim",
+   "dolar kaç",
+   "doviz var mi",
+   "dolar almak istiyorum",
+   "döviz bürosu nerede",
+   "kur ne kadar",
+   "dolar kuru",
+   "döviz yatırımı",
+   "parite var mı"
+  ],
+  "cevap": [
+   "Döviz daha yok, gelecekmiş",
+   "Dolar euro alınmıyor şimdilik, ileride geliyor",
+   "Kur yok oyunda henüz, her şey TL"
+  ]
+ },
+ {
+  "id": "altin-yok",
+  "konu": "genel",
+  "sorular": [
+   "altın var mı",
+   "altın alınır mı",
+   "gram altın kaç",
+   "altına yatırım",
+   "altin var mi",
+   "çeyrek altın",
+   "altın almak istiyorum",
+   "altın fiyatı ne",
+   "altın biriktirmek",
+   "ons kaç"
+  ],
+  "cevap": [
+   "Altın daha yok, gelecekmiş",
+   "Altın almak şimdilik yok, sonraki güncellemede diyorlar",
+   "Altın yok henüz, arsa al o da değerleniyor"
+  ]
+ },
+ {
+  "id": "kripto-yok",
+  "konu": "genel",
+  "sorular": [
+   "kripto var mı",
+   "bitcoin alınır mı",
+   "coin var mı",
+   "kripto para",
+   "btc alabilir miyim",
+   "bitcoin var mi oyunda",
+   "kriptoya yatırım",
+   "kripto borsası"
+  ],
+  "cevap": [
+   "Kripto yok, öyle bir şey duymadım",
+   "Bitcoin falan yok, mülk var",
+   "Yok öyle bir şey, borsa bile daha gelmedi"
+  ]
+ },
+ {
+  "id": "ortaklik-yok",
+  "konu": "genel",
+  "sorular": [
+   "ortaklık var mı",
+   "ortak olabilir miyiz",
+   "beraber işletme açalım",
+   "ortaklık nasıl kurulur",
+   "şirket ortaklığı",
+   "biriyle ortak iş",
+   "ortak olalim mi",
+   "ortaklık kuralım mı",
+   "hisse ortaklığı",
+   "ortak dükkan"
+  ],
+  "cevap": [
+   "Ortaklık daha yok, gelecekmiş",
+   "Ortak iş şimdilik yok, ileride geliyor diyorlar",
+   "Herkes kendi işini kuruyor şimdilik"
+  ]
+ },
+ {
+  "id": "ihale-yok",
+  "konu": "genel",
+  "sorular": [
+   "ihale var mı",
+   "devlet ihalesi",
+   "ihaleye girmek istiyorum",
+   "ihale nasıl alınır",
+   "kamu ihalesi",
+   "ihale ne zaman",
+   "ihaleler nerede",
+   "ihale var mi"
+  ],
+  "cevap": [
+   "İhale daha yok, gelecekmiş",
+   "Devlet ihaleleri ileride geliyor, müteahhitlikle birlikte",
+   "Şimdilik ihale yok"
+  ]
+ },
+ {
+  "id": "galeri-yok",
+  "konu": "genel",
+  "sorular": [
+   "araba alınır mı",
+   "araba galerisi var mı",
+   "araba satın almak",
+   "galeri nerede",
+   "lüks araba var mı",
+   "ikinci el araba",
+   "otomobil alabilir miyim",
+   "araba var mi oyunda",
+   "galeriden araba",
+   "araba almak istiyorum"
+  ],
+  "cevap": [
+   "Galeri daha yok, gelecekmiş",
+   "Araba falan şimdilik yok. Nakliyecinin aracı sermayesine dahil",
+   "Lüks tüketim ileride geliyor diyorlar"
+  ]
+ },
+ {
+  "id": "dernek-yok",
+  "konu": "genel",
+  "sorular": [
+   "dernek var mı",
+   "lonca kurabilir miyiz",
+   "dernek kurmak",
+   "lonca var mı",
+   "klan var mı",
+   "grup kurulur mu",
+   "takım kurmak",
+   "dernege uye olmak",
+   "guild var mı"
+  ],
+  "cevap": [
+   "Dernek, lonca daha yok, gelecekmiş",
+   "Şimdilik yok, ileride geliyor diyorlar",
+   "Lonca yok henüz"
+  ]
+ },
+ {
+  "id": "baska-ulke-yok",
+  "konu": "genel",
+  "sorular": [
+   "başka ülke var mı",
+   "yurtdışında iş yapılır mı",
+   "başka ülkeye gidebilir miyim",
+   "almanyada iş",
+   "ülke değiştirmek",
+   "yurt dışı yatırım",
+   "baska ulke var mi",
+   "başka şehir var mı",
+   "ankara var mı",
+   "izmir var mı"
+  ],
+  "cevap": [
+   "Başka ülkeler daha yok, gelecekmiş. Şimdilik İstanbul",
+   "Yurtdışı ileride geliyor, sermaye olunca diyorlar",
+   "Şimdilik sadece burası"
+  ]
+ },
+ {
+  "id": "zekat-yok",
+  "konu": "genel",
+  "sorular": [
+   "zekat var mı",
+   "zekat vermek",
+   "zekat nasıl verilir",
+   "zekat oranı",
+   "zekat zorunlu mu",
+   "zekat ne zaman",
+   "zekatimi vermek istiyorum",
+   "zekat gelecek mi"
+  ],
+  "cevap": [
+   "Zekat daha yok, ileride isteğe bağlı gelecekmiş",
+   "Şimdilik bağış var, zekat sonra gelecek",
+   "Zekat yok henüz, bağış yapabilirsin"
+  ]
+ },
+ {
+  "id": "acik-artirma-yok",
+  "konu": "genel",
+  "sorular": [
+   "açık artırma var mı",
+   "mezat var mı",
+   "icra açık artırması",
+   "artırmaya katılmak",
+   "açık arttırma ne zaman",
+   "mezattan ev almak",
+   "ihaleden mal almak"
+  ],
+  "cevap": [
+   "Açık artırma daha yok, gelecekmiş",
+   "Mezat ileride geliyor, icra mallarıyla birlikte",
+   "Şimdilik yok"
+  ]
+ },
+ {
+  "id": "sans-carki-yok",
+  "konu": "genel",
+  "sorular": [
+   "şans çarkı var mı",
+   "kumar var mı",
+   "piyango var mı",
+   "loto oynanır mı",
+   "bahis var mı",
+   "çark çevirmek",
+   "iddaa var mı",
+   "piyango bileti",
+   "kazı kazan var mı"
+  ],
+  "cevap": [
+   "Şans çarkı yok, onun yerine günlük görevler var",
+   "Kumar, bahis yok bu oyunda",
+   "Piyango yok, çalışarak kazanıyorsun"
+  ]
+ },
+ {
+  "id": "bagis-nasil",
+  "konu": "genel",
+  "sorular": [
+   "bağış nasıl yapılır",
+   "bağış yapmak istiyorum",
+   "nereden bağış yaparım",
+   "bağış butonu",
+   "hayır yapmak istiyorum",
+   "bagis nasil yapilir",
+   "yardım etmek istiyorum para",
+   "sadaka verilir mi",
+   "bağış nerede",
+   "fakire para vermek"
+  ],
+  "cevap": [
+   "Banka ekranında bağış var, tutarı yaz yap",
+   "Bankadan bağış yapıyorsun, itibar kazanıyorsun",
+   "Banka sekmesi, bağış. Her 10 bine 1 itibar"
+  ]
+ },
+ {
+  "id": "bagis-oran",
+  "konu": "genel",
+  "sorular": [
+   "bağış ne kadar itibar verir",
+   "kaç bağışa kaç itibar",
+   "bağış oranı ne",
+   "10 bin bağış ne kazandırır",
+   "itibar için ne kadar bağış lazım",
+   "bagis itibar orani",
+   "bağışın karşılığı ne",
+   "bağış yapınca ne olur",
+   "az bağış işe yarar mı",
+   "5 bin bağışlasam"
+  ],
+  "cevap": [
+   "Her 10 bin TL'ye 1 itibar, bayramda 2 katı",
+   "10 binin altı itibar getirmiyor, 10 bin 1 itibar",
+   "10 bine 1 itibar. Bayramda yap, 2 katı"
+  ]
+ },
+ {
+  "id": "bagis-bayram",
+  "konu": "bayram",
+  "sorular": [
+   "bayramda bağış daha mı iyi",
+   "bayram bağışı 2 kat mı",
+   "bayramda itibar fazla mı",
+   "bayramda bağış yapsam",
+   "bayramda neden bağış",
+   "bayram bonusu",
+   "bayramda bağış iki kat",
+   "bayramda bagis",
+   "özel günlerde bağış"
+  ],
+  "cevap": [
+   "Bayramda bağış 2 kat itibar veriyor",
+   "Bağışı bayrama sakla, 10 bine 2 itibar",
+   "{bayram} gelince yap, iki kat sayılıyor"
+  ]
+ },
+ {
+  "id": "itibar-ne-ise-yarar",
+  "konu": "genel",
+  "sorular": [
+   "itibar ne işe yarar",
+   "itibar nedir",
+   "itibar neyi etkiler",
+   "itibar önemli mi",
+   "itibar ne demek",
+   "itibarın faydası",
+   "itibar ne yapar",
+   "itibar kazanınca ne olur",
+   "itibar ne ise yarar",
+   "ün ne işe yarıyor"
+  ],
+  "cevap": [
+   "İtibar kredi notuna ve iş başvurularına yarıyor",
+   "İtibarın yüksekse iş bulman kolaylaşır, not da artar",
+   "Saygınlık gibi, bankada da işte de işe yarıyor"
+  ]
+ },
+ {
+  "id": "itibar-artirma",
+  "konu": "genel",
+  "sorular": [
+   "itibar nasıl artar",
+   "itibarımı yükseltmek istiyorum",
+   "itibar kazanmak",
+   "itibar nasil kazanilir",
+   "itibar nasıl yükselir",
+   "daha çok itibar",
+   "itibar artırmanın yolu",
+   "saygınlık nasıl kazanılır",
+   "itibarım az"
+  ],
+  "cevap": [
+   "Bağış yap, borcunu ödemeyi aksatma, ay sonlarını sorunsuz kapat",
+   "Ay sonu ödemeleri düzgün giderse itibar biraz artar, bağış da artırır",
+   "Her 10 bin bağış 1 itibar, bayramda 2"
+  ]
+ },
+ {
+  "id": "itibar-dusme",
+  "konu": "genel",
+  "sorular": [
+   "itibar neden düştü",
+   "itibarım azaldı",
+   "itibar ne zaman düşer",
+   "itibar kaybetmek",
+   "itibar dustu",
+   "ne yaptım itibarım gitti",
+   "işçi maaşı ödemezsem itibar",
+   "itibarı ne düşürür"
+  ],
+  "cevap": [
+   "Ay sonu ödemeyi yapamazsan itibar düşer",
+   "Patronsan işçinin maaşını ödeyemezsen itibar sert düşer",
+   "Borç ve ödenmeyen maaş itibarı yer"
+  ]
+ },
+ {
+  "id": "hayir-eserleri",
+  "konu": "genel",
+  "sorular": [
+   "cami yaptırabilir miyim",
+   "okul yaptırmak",
+   "çeşme yaptırmak",
+   "hastane yaptırılır mı",
+   "hayır eseri var mı",
+   "vakıf kurulur mu",
+   "cami okul çeşme",
+   "vakif var mi",
+   "hayrat yapmak istiyorum"
+  ],
+  "cevap": [
+   "Cami, okul, çeşme gibi eserler ileride gelecek",
+   "Şimdilik bağış var, hayır eserleri sonra geliyor",
+   "Vakıf ve eserler daha yok, gelecekmiş"
+  ]
+ },
+ {
+  "id": "bayram-ne-zaman",
+  "konu": "bayram",
+  "sorular": [
+   "bayram ne zaman",
+   "sonraki bayram ne zaman",
+   "bayrama kaç gün var",
+   "bayram yaklaştı mı",
+   "bayram hangi gün",
+   "bayram geliyor mu",
+   "bayrama ne kadar var",
+   "bayram kac gun sonra",
+   "ramazan bayramı ne zaman",
+   "kurban bayramı ne zaman"
+  ],
+  "cevap": [
+   "{bayram} {bayram.gun} gün sonra",
+   "{bayram} geliyor, {bayram.gun} gün kaldı",
+   "{bayram.gun} gün var {bayram} için, bağışı sakla"
+  ]
+ },
+ {
+  "id": "bayram-ne-olur",
+  "konu": "bayram",
+  "sorular": [
+   "bayramda ne oluyor",
+   "bayram etkinliği ne",
+   "bayramda ne yapılır",
+   "bayramın oyunda etkisi",
+   "bayramda özel bir şey var mı",
+   "bayram etkinligi",
+   "bayram ne getirir",
+   "bayram bonusu ne"
+  ],
+  "cevap": [
+   "Bayramda bağışın itibar değeri 2 kat oluyor",
+   "Bayram etkinliği var, bağış iki kat sayılıyor",
+   "{bayram} geliyor, o gün bağış yap"
+  ]
+ },
+ {
+  "id": "etkinlik",
+  "konu": "genel",
+  "sorular": [
+   "etkinlik var mı",
+   "şu an etkinlik var mı",
+   "özel gün var mı",
+   "event var mı",
+   "yeni etkinlik ne zaman",
+   "etkinlik ne zaman",
+   "etkinlikler neler",
+   "etkinlik takvimi",
+   "kampanya var mı"
+  ],
+  "cevap": [
+   "Bayramlar etkinlik oluyor, bağış 2 kat itibar veriyor. {bayram} {bayram.gun} gün sonra",
+   "Şimdilik bayram etkinlikleri var",
+   "Sıradaki {bayram}, {bayram.gun} gün kaldı"
+  ]
+ },
+ {
+  "id": "haftalik-yarisma-yok",
+  "konu": "genel",
+  "sorular": [
+   "haftalık yarışma var mı",
+   "turnuva var mı",
+   "yarışma ne zaman",
+   "lig var mı",
+   "dönemsel lig",
+   "ticaret yarışması",
+   "haftalik yarisma",
+   "sezon var mı"
+  ],
+  "cevap": [
+   "Haftalık yarışma ve ligler daha yok, gelecekmiş",
+   "Şimdilik genel sıralama var, yarışma sonra geliyor",
+   "Turnuva yok henüz"
+  ]
+ },
+ {
+  "id": "para-bitti",
+  "konu": "dert",
+  "sorular": [
+   "param bitti ne yapacağım",
+   "para kalmadı",
+   "beş param yok",
+   "meteliğe kurşun atıyorum",
+   "param sıfırlandı",
+   "iflas ettim",
+   "batırdım her şeyi",
+   "param bitti yardim",
+   "cebimde para yok",
+   "param kalmadi ne yapmaliyim",
+   "parasız kaldım",
+   "eksiye düştüm",
+   "tamtakır kaldım",
+   "hiç param yok"
+  ],
+  "cevap": [
+   "Para bitince bir işe girmek zorundasın, borç kapanana kadar yatırım yok",
+   "Kurye ya da garson ol, şartsız. Toparlarsın",
+   "Önce iş bul, çalış, borcu kapat. Sonra yine yatırım"
+  ]
+ },
+ {
+  "id": "para-bitti-yatirim",
+  "konu": "genel",
+  "sorular": [
+   "paran bitti önce bir işe girmelisin diyor",
+   "neden yatırım yapamıyorum",
+   "yatırım yapmama izin vermiyor",
+   "mülk alamıyorum para bitti diye",
+   "işe girmek zorunda mıyım",
+   "zorla çalıştırıyor mu oyun",
+   "neden işe girmek zorundayım",
+   "para bitince yatırım yasak mı",
+   "kilitlendim yatırım yapamıyorum"
+  ],
+  "cevap": [
+   "Para bitince önce işe girmek zorunlu, borç kapanana kadar yatırım kapalı",
+   "Bir mesleğe başla, borcun kapanınca kilit açılır",
+   "İş bul, gecikmiş borç sıfırlansın, yatırım açılır"
+  ]
+ },
+ {
+  "id": "para-gonderme",
+  "konu": "genel",
+  "sorular": [
+   "para gönderebilir miyim",
+   "arkadaşıma para atmak",
+   "başka oyuncuya para göndermek",
+   "havale var mı",
+   "eft yapılır mı",
+   "para transferi",
+   "para yolla",
+   "sana para atayım mı",
+   "para gönderme nasıl",
+   "iban var mı",
+   "arkadaşa para vermek",
+   "para gonderme var mi",
+   "kardeşime para göndermek"
+  ],
+  "cevap": [
+   "Oyuncular arası para gönderme yok",
+   "Para göndermek yok, herkes kendi kazanıyor",
+   "Transfer yok, hile olmasın diye kapalı"
+  ]
+ },
+ {
+  "id": "gercek-para",
+  "konu": "genel",
+  "sorular": [
+   "gerçek parayla para alınır mı",
+   "oyun parası satın almak",
+   "tl satın alınır mı",
+   "mağazada para var mı",
+   "para paketleri",
+   "gerçek para harcamak",
+   "oyun parasını gerçek paraya çevirebilir miyim",
+   "kazandığım parayı çekebilir miyim",
+   "oyundan para kazanılır mı gerçek",
+   "nakde çevirmek gerçek",
+   "para satisi var mi"
+  ],
+  "cevap": [
+   "Gerçek parayla oyun parası alınıyor ama oyun parası gerçek paraya çevrilmez",
+   "Oyundaki para oyunda kalır, gerçek hayata çekilemez",
+   "Mağazada var, ama tersine yok. Oyuncular arasında da satılmaz"
+  ]
+ },
+ {
+  "id": "para-satis-oyuncu",
+  "konu": "genel",
+  "sorular": [
+   "oyun parası satarım",
+   "parasını satan var mı",
+   "hesap satılır mı",
+   "gerçek parayla oyuncudan para almak",
+   "para satışı yapıyorum",
+   "ucuza oyun parası",
+   "hesabımı satmak istiyorum",
+   "para ticareti oyuncular arasında"
+  ],
+  "cevap": [
+   "Oyuncular arasında gerçek parayla satış yasak",
+   "Öyle şeylere girme, hesabın gider. Para göndermek de yok zaten",
+   "Gerçek parayla oyuncudan para alınmaz"
+  ]
+ },
+ {
+  "id": "nakdim",
+  "konu": "genel",
+  "sorular": [
+   "ne kadar param var",
+   "nakdim ne kadar",
+   "bakiyem kaç",
+   "cebimde kaç para var",
+   "param ne kadar",
+   "hesabımda ne var",
+   "kaç liram var",
+   "nakit ne kadar bende",
+   "bakiye",
+   "benim param",
+   "param kac"
+  ],
+  "cevap": [
+   "Şu an nakdin {o.nakit}",
+   "{o.nakit} var hesabında",
+   "Nakdin {o.nakit}, limitin {o.limit}"
+  ]
+ },
+ {
+  "id": "baslangic-parasi",
+  "konu": "genel",
+  "sorular": [
+   "başlangıç parası ne kadar",
+   "herkes kaç parayla başlıyor",
+   "ilk para kaç",
+   "başta ne kadar para veriliyor",
+   "yüz binle mi başlıyoruz",
+   "baslangic parasi",
+   "oyuna kaç parayla başlanır",
+   "ilk sermaye ne",
+   "herkes eşit mi başlıyor"
+  ],
+  "cevap": [
+   "Herkes 100 bin TL ile eşit başlıyor",
+   "100 bin TL, kimse önde başlamıyor",
+   "Başta 100 bin, gerisi senin elinde"
+  ]
+ },
+ {
+  "id": "oyun-zamani",
+  "konu": "genel",
+  "sorular": [
+   "oyunda bir gün kaç saat",
+   "oyun günü ne kadar sürer",
+   "1 oyun günü kaç dakika",
+   "zaman nasıl işliyor",
+   "oyun saati",
+   "bir gün gerçekte ne kadar",
+   "oyunda zaman hızlı mı",
+   "gün kaç saatte geçiyor",
+   "oyun gunu kac saat",
+   "zaman nasil akiyor",
+   "bir gün bir saat mi"
+  ],
+  "cevap": [
+   "1 oyun günü 1 gerçek saat",
+   "Her gerçek saat bir oyun günü",
+   "Bir saatte bir gün geçiyor, 30 günde bir ay"
+  ]
+ },
+ {
+  "id": "oyun-ayi",
+  "konu": "genel",
+  "sorular": [
+   "oyunda bir ay kaç gün",
+   "ay ne zaman biter",
+   "ay sonu ne zaman",
+   "bir ay gerçekte ne kadar",
+   "ay kaç günde dönüyor",
+   "oyun ayı kaç saat",
+   "30 gün mü bir ay",
+   "ay sonuna ne kadar var",
+   "ay basi ne zaman",
+   "bir ay kac saat"
+  ],
+  "cevap": [
+   "Bir oyun ayı 30 oyun günü, yani 30 gerçek saat",
+   "30 günde bir ay dönüyor, maaş ve kira o zaman",
+   "Ay 30 gün, gerçekte bir gün biraz fazlası"
+  ]
+ },
+ {
+  "id": "oyun-kapaliyken",
+  "konu": "genel",
+  "sorular": [
+   "oyun kapalıyken zaman akar mı",
+   "uygulamayı kapatırsam ne olur",
+   "oyuna girmezsem zaman durur mu",
+   "offline iken gün geçer mi",
+   "kapattım gün geçmiş",
+   "telefonu kapatınca oyun duruyor mu",
+   "girmediğim zaman ne oluyor",
+   "oyun kapaliyken",
+   "zaman duruyor mu"
+  ],
+  "cevap": [
+   "Oyun kapalıyken de zaman akar, gün geçer",
+   "Girmesen de günler geçiyor, maaşlar kiralar gene işliyor",
+   "Durmaz, dünya sen yokken de dönüyor"
+  ]
+ },
+ {
+  "id": "yas-yok",
+  "konu": "genel",
+  "sorular": [
+   "oyunda yaş var mı",
+   "kaç yaşındayım",
+   "yaşlanıyor muyum",
+   "karakter ölür mü",
+   "emekli olunur mu",
+   "yaş kavramı var mı",
+   "karakterim yaşlanır mı",
+   "emeklilik var mı",
+   "yasim kac",
+   "ölüm var mı"
+  ],
+  "cevap": [
+   "Oyunda yaş yok, yaşlanma da emeklilik de yok",
+   "Yaş kavramı yok, istediğin kadar çalış",
+   "Kimse yaşlanmıyor, ölüm de yok"
+  ]
+ },
+ {
+  "id": "okul-yok",
+  "konu": "genel",
+  "sorular": [
+   "okul var mı",
+   "üniversite okunur mu",
+   "eğitim nasıl alınır",
+   "okula gidebilir miyim",
+   "diploma alınır mı",
+   "üniversite bitirmek",
+   "lise var mı",
+   "okul okumak istiyorum"
+  ],
+  "cevap": [
+   "Okul yok, onun yerine ücretli kurslar var",
+   "Doğum okul yok, meslek için kursa gidiyorsun",
+   "Üniversite yok, kurs var. Kariyer ekranında"
+  ]
+ },
+ {
+  "id": "kazanan",
+  "konu": "genel",
+  "sorular": [
+   "oyunu kim kazanır",
+   "kazanan nasıl belirlenir",
+   "oyunun sonu var mı",
+   "oyun biter mi",
+   "kazanmak için ne lazım",
+   "birinci kim olur",
+   "oyunu nasıl kazanırım",
+   "oyunun bitişi",
+   "kazanan kim",
+   "oyun ne zaman biter"
+  ],
+  "cevap": [
+   "En yüksek net servet kazanır, dünya kalıcı, bitmiyor",
+   "Kazanan en zengin olan. Sıralamaya bak",
+   "Oyun bitmez, net servetin en büyük olan önde"
+  ]
+ },
+ {
+  "id": "net-servet",
+  "konu": "genel",
+  "sorular": [
+   "net servet nedir",
+   "servetim nasıl hesaplanıyor",
+   "net servet ne demek",
+   "servet neye göre",
+   "varlıklarım nasıl sayılıyor",
+   "borçlar servetten düşer mi",
+   "mülkler servete dahil mi",
+   "net servet hesabi",
+   "servetimi ne artırır"
+  ],
+  "cevap": [
+   "Nakit artı mülklerin değeri artı işletmeler, eksi borçlar",
+   "Mülkler piyasa fiyatından sayılıyor, krediler düşülüyor",
+   "Özet ekranında net servetin yazıyor"
+  ]
+ },
+ {
+  "id": "siralama",
+  "konu": "genel",
+  "sorular": [
+   "sıralama nerede",
+   "kaçıncıyım",
+   "sıralamada kaçıncıyım",
+   "lider tablosu var mı",
+   "en zengin kim",
+   "birinci kim",
+   "siralama nasil",
+   "sıramı nereden görürüm",
+   "türkiye sıralaması",
+   "en zenginler listesi",
+   "rank nerede",
+   "sıralama neye göre"
+  ],
+  "cevap": [
+   "Sıralama net servete göre, şehirde, ülkede ve dünyada bakabilirsin",
+   "Özette sıralama düğmesi var, kaçıncı olduğun yazıyor",
+   "Ülkeler ve şehirler de kişi başı servetle sıralanıyor"
+  ]
+ },
+ {
+  "id": "ilk-adimlar",
+  "konu": "yardim",
+  "sorular": [
+   "yeni başladım ne yapmalıyım",
+   "ilk ne yapayım",
+   "nereden başlamalıyım",
+   "yeni oyuncuyum yardım",
+   "ilk adım ne",
+   "başlangıç tavsiyesi",
+   "ne yapacağımı bilmiyorum",
+   "yeni geldim ne yapıyoruz",
+   "nasıl başlanır",
+   "ilk gün ne yapılır",
+   "yeniyim taktik ver",
+   "acemiyim nereden başlarım",
+   "ilk iş ne olsun",
+   "baslangic icin tavsiye"
+  ],
+  "cevap": [
+   "Kariyer ekranından şartsız bir işe gir, kurye ya da garson. Biriktirince kurs ve mülk",
+   "Önce çalış, günlük görevleri yap. Sonra kursla bir üst mesleğe geç",
+   "İlk ay çalış, gelir olunca kredi limiti açılır. Acele etme"
+  ]
+ },
+ {
+  "id": "ilk-yatirim",
+  "konu": "yardim",
+  "sorular": [
+   "ilk yatırım ne olmalı",
+   "ilk paramı neye yatırayım",
+   "ilk birikimle ne alayım",
+   "biraz para biriktirdim ne yapayım",
+   "kurs mu mülk mü",
+   "ilk büyük harcama ne olsun",
+   "parayı nereye koyayım",
+   "ilk yatirim",
+   "birikimimi değerlendirmek"
+  ],
+  "cevap": [
+   "Önce kurs al, maaşın artsın. Sonra arsa ya da peşinatla daire",
+   "Arsa {arsa}, en ucuz mülk. Ama kurs önce gelir artırır",
+   "Ev sahibi olmak kirayı bitirir, peşinat {pesinat}"
+  ]
+ },
+ {
+  "id": "oyunun-amaci",
+  "konu": "genel",
+  "sorular": [
+   "oyunun amacı ne",
+   "bu oyun ne",
+   "oyunda ne yapıyoruz",
+   "oyun ne hakkında",
+   "neyi amaçlıyoruz",
+   "bu oyunda amaç ne",
+   "oyunun mantığı ne",
+   "toplum simülasyonu ne demek",
+   "oyun nasıl bir oyun",
+   "bu ne oyunu"
+  ],
+  "cevap": [
+   "Herkes aynı parayla başlıyor, çalışıp biriktirip yatırım yapıyor, en zengin olan önde",
+   "Ekonomiyi oyuncular birlikte kuruyor. İşçi de patron da lazım",
+   "Çalış, mülk al, işletme kur, servetini büyüt"
+  ]
+ },
+ {
+  "id": "oyun-nasil-oynanir",
+  "konu": "yardim",
+  "sorular": [
+   "oyun nasıl oynanır",
+   "nasıl oynuyoruz",
+   "oyunu anlamadım",
+   "kuralları ne",
+   "nasıl oynanıyor bu",
+   "oyunu anlat",
+   "oyun rehberi",
+   "oyun nasil oynanir",
+   "neler yapabilirim oyunda",
+   "oyunda ne yapılır"
+  ],
+  "cevap": [
+   "Kariyerden iş seç, görev yap, Bankadan kredi, Mülkten ev al",
+   "Özet, Kariyer, Mülk ve Banka var. Hepsini gez",
+   "Çalış, kursla meslek atla, para birikince mülk ve işletme"
+  ]
+ },
+ {
+  "id": "cok-oyunculu",
+  "konu": "genel",
+  "sorular": [
+   "bu oyun çok oyunculu mu",
+   "diğer oyuncular gerçek mi",
+   "online mı",
+   "başka insanlar var mı",
+   "tek kişilik mi",
+   "gerçek oyuncularla mı",
+   "multiplayer mi",
+   "herkes aynı dünyada mı",
+   "cok oyunculu mu"
+  ],
+  "cevap": [
+   "Çok oyunculu, herkes aynı dünyada ekonomi kuruyor",
+   "Gerçek oyuncular ve NPC'ler beraber",
+   "Aynı şehirde herkes, ekonomiyi birlikte döndürüyoruz"
+  ]
+ },
+ {
+  "id": "sehir",
+  "konu": "genel",
+  "sorular": [
+   "hangi şehirdeyiz",
+   "oyun nerede geçiyor",
+   "istanbul mu",
+   "şehir neresi",
+   "hangi ülke",
+   "oyun türkiyede mi",
+   "neredeyiz",
+   "harita var mı",
+   "bu şehir ne"
+  ],
+  "cevap": [
+   "İstanbul'dayız, şimdilik tek şehir",
+   "Türkiye, İstanbul. Başka ülkeler ileride",
+   "Şimdilik İstanbul, semt fiyatı da değiştirmiyor"
+  ]
+ },
+ {
+  "id": "hile-yok",
+  "konu": "genel",
+  "sorular": [
+   "hile var mı",
+   "para hilesi",
+   "bug ile para",
+   "sonsuz para",
+   "hack var mı",
+   "hile yapılır mı",
+   "para çoğaltma",
+   "hile kodu",
+   "cheat var mi"
+  ],
+  "cevap": [
+   "Para tamamen sunucuda, hile yok",
+   "Hile yapan yakalanıyor, uğraşma",
+   "Sonsuz para yok, çalışacaksın"
+  ]
+ },
+ {
+  "id": "zengin-para-ne-yapar",
+  "konu": "genel",
+  "sorular": [
+   "çok param var ne yapayım",
+   "zenginim ne yapayım",
+   "paramı nereye harcayayım",
+   "milyonerim şimdi ne",
+   "param çok ne alayım",
+   "para birikti harcayacak yer yok",
+   "lüks harcama var mı",
+   "zengin olunca ne yapılır"
+  ],
+  "cevap": [
+   "Mülk al, büyük işletme kur, bağış yap itibar kazan",
+   "Dördüncü kademe işlere bak, milyon istiyorlar",
+   "Bağış yap, bayramda 2 katı itibar. Lüks harcamalar ileride geliyor"
+  ]
+ },
+ {
+  "id": "gunluk-gorev",
+  "konu": "genel",
+  "sorular": [
+   "günlük görevler ne",
+   "günlük görev nerede",
+   "bugünkü görevler",
+   "günlük görev yapınca ne olur",
+   "gorev nedir",
+   "günlük ödül var mı",
+   "günde kaç görev",
+   "görevler ne işe yarar",
+   "gunluk gorev"
+  ],
+  "cevap": [
+   "Günlük 3 görev yapınca 1 Kum Saati bedava geliyor",
+   "Mesleğinin görevlerini yap, kazanırsın, 3 görevde Kum Saati",
+   "Görevler Kariyer ekranında"
+  ]
+ },
+ {
+  "id": "para-nereye-yatirmali",
+  "konu": "genel",
+  "sorular": [
+   "parayı nerede tutayım",
+   "para bankada mı dursun",
+   "nakit tutmak mantıklı mı",
+   "paramı değerlendirmek",
+   "para eriyor ne yapayım",
+   "enflasyondan korunmak",
+   "param değer kaybediyor",
+   "parayı boş tutmak"
+  ],
+  "cevap": [
+   "Bankada faiz yok, enflasyon {enflasyon}. Mülke çevir",
+   "Nakit eriyor, arsa ya da daire al",
+   "Boş durmasın, kurs ya da mülk"
+  ]
+ },
+ {
+  "id": "kirada-mi-oturuyorum",
+  "konu": "genel",
+  "sorular": [
+   "kirada mı oturuyorum",
+   "evim var mı benim",
+   "nerede oturuyorum",
+   "kira ödüyor muyum",
+   "evim kendi evim mi",
+   "oturduğum ev kimin",
+   "kiraci miyim"
+  ],
+  "cevap": [
+   "Kendi dairene taşınmadıysan kiradasın, ayda {evkira}",
+   "Mülk ekranında bak, taşındığın ev varsa kira yok",
+   "Ev sahibi değilsen her ay {evkira} kira gidiyor"
+  ]
+ }
+]

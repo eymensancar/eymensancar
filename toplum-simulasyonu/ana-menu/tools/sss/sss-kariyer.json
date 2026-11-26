@@ -1,0 +1,2987 @@
+[
+ {
+  "id": "kurye-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "kurye ne kadar kazanıyor",
+   "kuryelik kaç para",
+   "kurye maaşı ne kadar",
+   "kurye ayda ne kazanır",
+   "kurye kazancı nasıl",
+   "kuryenin maaşı kaç",
+   "kurye maasi nekadar",
+   "kuryelik para ediyor mu",
+   "motor kuryesi ayda kaç bin yapar",
+   "kurye olsam ne kadar kazanırım",
+   "kurye kazanc?",
+   "kuryeler iyi kazanıyo mu",
+   "kuryelik kazandırır mı knk",
+   "paket servis kuryesi ne kadar alıyor",
+   "kurye aylık gelir",
+   "kuryeliğin parası iyi mi",
+   "kurye olunca ayda ne geçer elime",
+   "kuryeler kaç kazanıyo ya"
+  ],
+  "cevap": [
+   "Kurye görev yaptıkça kazanır, ayda ortalama {maas.kurye} eder",
+   "Görev başına {gorev.kurye}, düzenli yaparsan ayda {maas.kurye} civarı",
+   "Kuryelik ayda {maas.kurye} kadar getiriyor, ne kadar teslimat o kadar para"
+  ]
+ },
+ {
+  "id": "kurye-gorev-ucreti",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "kurye görev başı kaç para",
+   "bir teslimat kaç lira",
+   "kurye paket başına ne alıyor",
+   "teslimat ücreti ne kadar",
+   "kurye bir görevden kaç kazanır",
+   "paket başı ücret kaç",
+   "teslimat başına kaç tl",
+   "bir sipariş götürünce kaç para veriyor",
+   "kurye tek görev parası",
+   "kuryede görev ücreti",
+   "paket başi kac",
+   "her teslimata ne kadar ödüyorlar",
+   "kurye seferi kaç tl",
+   "bir paket bırakınca ne kazanıyorum"
+  ],
+  "cevap": [
+   "Kuryede görev başı {gorev.kurye}, günde 5 tane yapabiliyorsun",
+   "Her teslimat {gorev.kurye}, gün içinde en fazla 5 görev var",
+   "Paket başına {gorev.kurye} veriyor, ayda {maas.kurye} civarı ediyor"
+  ]
+ },
+ {
+  "id": "kurye-nasil",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "nasıl kurye olurum",
+   "kurye olmak için ne lazım",
+   "kuryelik için şart var mı",
+   "kurye nasıl olunur",
+   "kuryeliğe nasıl başlanır",
+   "kurye olmak istiyorum",
+   "kurye olmak icin ne gerekli",
+   "kuryelik için kurs gerekiyor mu",
+   "kurye işine nasıl girerim",
+   "kurye olmaya ehliyet lazım mı",
+   "kuryeliğe hemen başlayabilir miyim",
+   "kurye olma şartları",
+   "kuryeye başlamak istiyom",
+   "kurye olcam nerden",
+   "kurye olmanın yolu ne",
+   "kuryeliğe girmek kolay mı"
+  ],
+  "cevap": [
+   "Kuryelik şartsız, Kariyer ekranından direkt başlarsın",
+   "Hiçbir şart yok, Kariyer'e gir kurye seç, o kadar",
+   "Kurs da deneyim de istemiyor, Kariyer'den hemen başlıyorsun"
+  ]
+ },
+ {
+  "id": "kurye-isveren",
+  "konu": "genel",
+  "sorular": [
+   "kuryenin patronu var mı",
+   "kurye bir işletmeye mi bağlı",
+   "kurye kimin yanında çalışıyor",
+   "kuryelik için işveren lazım mı",
+   "kurye ilana başvurmak zorunda mı",
+   "kuryeye kim maaş veriyor",
+   "kuryenin işvereni kim",
+   "kurye serbest mi çalışıyor",
+   "kurye kendi başına mı",
+   "kurye olmak için birinin işe alması gerekiyor mu",
+   "kurye bağımsız mı",
+   "kurye patronsuz mu çalışır"
+  ],
+  "cevap": [
+   "Kuryenin işvereni yok, kendi başına görev yapıp kazanıyor",
+   "Kimse işe almıyor, Kariyer'den kurye olup görevlere başlıyorsun",
+   "Patron yok, ilan yok, kurye serbest çalışıyor"
+  ]
+ },
+ {
+  "id": "garson-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "garson ne kadar kazanıyor",
+   "garsonluk kaç para",
+   "garson maaşı ne kadar",
+   "garsonun aylığı kaç",
+   "garson ayda kaç bin alır",
+   "kafede garson olsam ne kazanırım",
+   "garsonluk para ediyo mu",
+   "garson maasi kac",
+   "garson kazancı nasıl",
+   "restoranda çalışan ne kadar alıyor",
+   "garsonlar iyi kazanır mı",
+   "garson görev başı ne alıyor",
+   "garsonun geliri",
+   "garson olunca ayda ne kazanılır",
+   "garsonluk mu kazandırır"
+  ],
+  "cevap": [
+   "Garson görev yaptıkça kazanır, ayda ortalama {maas.garson}",
+   "Garsonluk ayda {maas.garson} civarı, günde 5 göreve kadar yapabiliyorsun",
+   "{maas.garson} kadar ediyor ama görevlerini aksatmaman lazım"
+  ]
+ },
+ {
+  "id": "garson-nasil",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "nasıl garson olurum",
+   "garson olmak için ne lazım",
+   "garsonluk için şart var mı",
+   "garsonluğa nasıl başlarım",
+   "garson olarak işe girmek istiyorum",
+   "kafede çalışmak istiyorum",
+   "garson olmak icin kurs lazim mi",
+   "garson işine nasıl girilir",
+   "restoranda iş arıyorum",
+   "garsonluk istiyorum nerden",
+   "garsonluğa başvuru nasıl",
+   "garson olma şartı",
+   "bi kafede garsonluk bulsam"
+  ],
+  "cevap": [
+   "Garsonluk şartsız, Kariyer'deki kafe ilanlarına başvurursun",
+   "Kurs istemiyor, Kariyer ekranındaki ilanlardan bir kafeye başvur",
+   "Şart yok, kafe ilanına başvurup işe alınınca başlıyorsun"
+  ]
+ },
+ {
+  "id": "kasiyer-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "kasiyer ne kadar kazanıyor",
+   "market çalışanı maaşı ne kadar",
+   "kasiyerlik kaç para",
+   "markette çalışınca ne kazanırım",
+   "kasiyer maaşı kaç",
+   "kasiyer maaş mı alıyor görev mi",
+   "market çalışanı aylık kaç",
+   "kasiyer maasi nekadar",
+   "mağaza çalışanı ne kadar alır",
+   "kasiyerin geliri ne",
+   "kasiyerlik para ediyor mu",
+   "markette kasada durmak kaç bin",
+   "kasiyer ayda ne alıyo"
+  ],
+  "cevap": [
+   "Kasiyer asgari ücret maaşı alır, üstüne görev başı biraz ek gelir; ortalama {maas.kasiyer}",
+   "Maaş artı görev, ayda {maas.kasiyer} civarı",
+   "Market çalışanı ayda {maas.kasiyer} kadar, maaşın tabanı {asgari}"
+  ]
+ },
+ {
+  "id": "kasiyer-nasil",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "nasıl kasiyer olurum",
+   "kasiyer olmak için ne lazım",
+   "markette iş nasıl bulunur",
+   "market çalışanı olmak istiyorum",
+   "kasiyerlik için şart var mı",
+   "kasiyerliğe nasıl girilir",
+   "markete eleman alıyolar mı",
+   "kasiyer olmak icin kurs gerekli mi",
+   "mağazada çalışmak istiyorum",
+   "kasiyerliğe başlamak için ne yapmalı",
+   "dükkanda çalışmak istiyom",
+   "kasiyer olma yolu"
+  ],
+  "cevap": [
+   "Kasiyerlik şartsız, Kariyer'deki dükkan ilanlarına başvur",
+   "Kurs gerekmiyor, bir market ilanına başvurup işe alınman yeter",
+   "Şart yok, Kariyer ekranında dükkan ve market ilanlarına bak"
+  ]
+ },
+ {
+  "id": "insaat-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "inşaat işçisi ne kadar kazanıyor",
+   "inşaatta çalışmak kaç para",
+   "inşaat işçisi maaşı",
+   "amelelik ne kadar kazandırır",
+   "inşaat işçisi ayda kaç alır",
+   "inşaatçı maaşı kaç",
+   "insaat iscisi maasi nekadar",
+   "şantiyede çalışınca ne kazanırım",
+   "inşaat işçiliği para ediyo mu",
+   "işçi ayda kaç bin yapar",
+   "inşaat işçisinin geliri",
+   "şantiye işçisi kazancı",
+   "inşaatta görev başı ne veriyor"
+  ],
+  "cevap": [
+   "İnşaat işçisi görevle kazanır, ayda ortalama {maas.insaat}",
+   "Ayda {maas.insaat} civarı, günde 5 göreve kadar var",
+   "{maas.insaat} kadar eder, ama asıl güzelliği ustalığa basamak olması"
+  ]
+ },
+ {
+  "id": "insaat-nasil",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "nasıl inşaat işçisi olurum",
+   "inşaatta iş nasıl bulunur",
+   "inşaat işçisi olmak için ne lazım",
+   "şantiyede çalışmak istiyorum",
+   "inşaat işi arıyorum",
+   "inşaat işçiliği için şart var mı",
+   "inşaata nasıl girerim",
+   "insaat iscisi olmak icin kurs lazim mi",
+   "amele olmak istiyom",
+   "şantiyeye eleman lazım mı",
+   "inşaat işine başvuru"
+  ],
+  "cevap": [
+   "İnşaat işçiliği şartsız, Kariyer'deki taşeron ilanlarına başvur",
+   "Kurs gerekmiyor, taşeron ilanına başvurup işe alınınca başlarsın",
+   "Şart yok; usta olmak istiyorsan da önce buradan 20 gün işçilik lazım"
+  ]
+ },
+ {
+  "id": "memur-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "memur ne kadar kazanıyor",
+   "memur maaşı ne kadar",
+   "memurluk kaç para",
+   "memurun aylığı kaç",
+   "memur olunca ayda kaç alırım",
+   "devlet memuru maaşı",
+   "memur maasi kac",
+   "memurlar iyi kazanır mı",
+   "memurluk para eder mi",
+   "memurun geliri ne kadar",
+   "memur maaşı sabit mi",
+   "memur ayda ne kazanır",
+   "memurlar kaç bin alıyo"
+  ],
+  "cevap": [
+   "Memur sabit maaş alır, şu an {maas.memur}",
+   "Memur maaşı {maas.memur}, görev yapmasan da her ay yatar",
+   "{maas.memur} sabit, üstüne kıdem zammı geliyor"
+  ]
+ },
+ {
+  "id": "memur-nasil",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "nasıl memur olurum",
+   "memur olmak için ne lazım",
+   "memurluk şartları neler",
+   "memur olmak istiyorum",
+   "devlet memuru nasıl olunur",
+   "memurluğa nasıl geçilir",
+   "memur olmak icin kac gun deneyim lazim",
+   "memurluk için kurs şart mı",
+   "kpss olmadan memur olunur mu",
+   "memur olmanın yolu ne",
+   "memurluk için ne yapmam gerek",
+   "memur olcam ne lazım",
+   "kamu sınavı kursu memurluk için mi",
+   "memur olabilmek için şartlar"
+  ],
+  "cevap": [
+   "Memur için kamu sınavı kursu ve 30 gün deneyim gerekiyor",
+   "Önce kamu sınavı kursunu bitir, 30 gün de herhangi bir işte deneyimin olsun",
+   "Kurs {kurs.kpss} tutuyor, {kurs.kpss.gun} gün sürüyor; üstüne 30 gün deneyim"
+  ]
+ },
+ {
+  "id": "memur-isveren",
+  "konu": "genel",
+  "sorular": [
+   "memurun işvereni var mı",
+   "memur bir işletmeye mi bağlı",
+   "memur olmak için ilana başvurmak gerekir mi",
+   "memurlar kimin yanında çalışıyor",
+   "memura kim maaş ödüyor",
+   "memur birinin işletmesinde mi çalışıyor",
+   "memurluk için işe alınmak lazım mı",
+   "memur patronu kim",
+   "memur ilansız mı başlıyor",
+   "memur bağımsız mı"
+  ],
+  "cevap": [
+   "Memurun işvereni yok, şartları tutunca Kariyer'den direkt memur olursun",
+   "İlana başvurmuyorsun, maaşı devlet öder, her ay yatar",
+   "Kimsenin yanında çalışmıyor, şartlar tamamsa Kariyer'den geçiyorsun"
+  ]
+ },
+ {
+  "id": "memur-zam",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "memur maaşına zam geliyor mu",
+   "memur zammı ne zaman",
+   "memurun maaşı artar mı",
+   "memurlara kıdem zammı var mı",
+   "memur maaşı yükselir mi",
+   "memur zam alır mı",
+   "memur zammi kac",
+   "memurlukta maaş artışı",
+   "memur kaç günde bir zam alır",
+   "memur maaşının tavanı ne",
+   "memur maaşı sabit mi kalıyor"
+  ],
+  "cevap": [
+   "Memura kıdemle kendiliğinden zam gelir, 180 günde bir artar",
+   "Kıdem zammı var, belli bir tavana kadar her 180 günde yükseliyor",
+   "Zam istemene gerek yok, memurda zam kıdemle geliyor"
+  ]
+ },
+ {
+  "id": "muhasebeci-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "muhasebeci ne kadar kazanıyor",
+   "muhasebeci maaşı ne kadar",
+   "muhasebecilik kaç para",
+   "muhasebecinin aylığı",
+   "muhasebeci ayda kaç alır",
+   "muhasebeci maasi kac",
+   "muhasebe yapınca ne kazanırım",
+   "muhasebeciler iyi kazanır mı",
+   "muhasebecilik para ediyo mu",
+   "muhasebecinin geliri",
+   "muhasebeci maaşı sabit mi",
+   "muhasebeci olsam ayda ne alırım"
+  ],
+  "cevap": [
+   "Muhasebeci sabit maaşlı, şu an {maas.muhasebeci}",
+   "{maas.muhasebeci} alıyor, görev yapmasan da her ay yatıyor",
+   "Muhasebeci maaşı {maas.muhasebeci}, kıdemle de artıyor"
+  ]
+ },
+ {
+  "id": "muhasebeci-nasil",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "nasıl muhasebeci olurum",
+   "muhasebeci olmak için ne lazım",
+   "muhasebecilik şartları",
+   "muhasebeci olmak istiyorum",
+   "muhasebeciliğe nasıl geçilir",
+   "muhasebeci olmak icin kurs lazim mi",
+   "muhasebe kursu muhasebecilik için mi",
+   "muhasebeci olmanın yolu",
+   "muhasebeci olcam ne yapayım",
+   "muhasebeci için kaç gün deneyim gerek",
+   "muhasebeciliğe geçmek istiyorum"
+  ],
+  "cevap": [
+   "Muhasebe kursu ve 30 gün deneyim yeter",
+   "Muhasebe kursunu bitir, {kurs.muhasebe} tutuyor, {kurs.muhasebe.gun} gün sürüyor; 30 gün deneyim de lazım",
+   "Kurs artı 30 gün herhangi bir işte deneyim, sonra Kariyer'den geçersin"
+  ]
+ },
+ {
+  "id": "muhasebeci-zam",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "muhasebeciye zam geliyor mu",
+   "muhasebeci maaşı artar mı",
+   "muhasebeci zammı ne zaman",
+   "muhasebecide kıdem zammı var mı",
+   "muhasebeci kaç günde zam alır",
+   "muhasebeci maaşı yükselir mi",
+   "muhasebecinin tavan maaşı",
+   "muhasebeci zam alıyo mu",
+   "muhasebecilikte maaş artışı",
+   "muhasebeci zammi kac gunde bir"
+  ],
+  "cevap": [
+   "Muhasebecide kıdem zammı 90 günde bir kendiliğinden gelir",
+   "90 günde bir artıyor, bir tavana kadar",
+   "Zam için uğraşmana gerek yok, muhasebecide kıdemle geliyor"
+  ]
+ },
+ {
+  "id": "emlak-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "emlak danışmanı ne kadar kazanıyor",
+   "emlakçı maaşı ne kadar",
+   "emlak danışmanlığı kaç para",
+   "emlakçı ayda ne kazanır",
+   "emlak danismani maasi kac",
+   "emlakçılar iyi kazanır mı",
+   "emlak danışmanı maaş mı alıyor",
+   "emlakçılık para eder mi",
+   "emlakçının geliri ne kadar",
+   "emlak danışmanı aylık kaç",
+   "emlakçı olsam kaç bin alırım"
+  ],
+  "cevap": [
+   "Emlak danışmanı maaş artı prim alır, ortalama {maas.emlak}",
+   "Ayda {maas.emlak} civarı, satış denk gelince prim de çıkıyor",
+   "Maaşın yanında prim var, ortalamada {maas.emlak} ediyor"
+  ]
+ },
+ {
+  "id": "emlak-prim",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "emlakçının primi nasıl",
+   "emlak danışmanı prim alıyor mu",
+   "prim ne zaman çıkıyor",
+   "emlakçı primi kaç",
+   "emlak primi şansa mı bağlı",
+   "prim nasıl kazanılır emlakta",
+   "danışman primi ne kadar",
+   "emlakçı satış yapınca ne alır",
+   "emlakta prim garantili mi",
+   "prim cikmiyo neden"
+  ],
+  "cevap": [
+   "Emlakçı görev yaptıkça arada bir satış denk gelir, o zaman prim çıkar",
+   "Prim şansa bağlı, ne kadar görev yaparsan ihtimal o kadar artıyor",
+   "Maaş sabit, prim her görevde küçük bir ihtimalle geliyor"
+  ]
+ },
+ {
+  "id": "emlak-nasil",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "nasıl emlak danışmanı olurum",
+   "emlakçı olmak için ne lazım",
+   "emlak danışmanlığı şartları",
+   "emlakçı olmak istiyorum",
+   "emlak belgesi nasıl alınır",
+   "emlakçılığa nasıl geçilir",
+   "emlakci olmak icin kurs lazim mi",
+   "emlak danışmanı olmanın yolu",
+   "emlakçı olcam ne yapmam lazım",
+   "emlak danışmanlığı için kaç gün deneyim"
+  ],
+  "cevap": [
+   "Emlak danışmanlığı belgesi ve 30 gün deneyim gerekiyor",
+   "Belge kursu {kurs.emlak}, {kurs.emlak.gun} gün sürüyor; 30 gün deneyim de lazım",
+   "Kursu bitir, 30 gün deneyimin olsun, Kariyer'den geçersin"
+  ]
+ },
+ {
+  "id": "usta-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "usta ne kadar kazanıyor",
+   "ustalık kaç para",
+   "usta maaşı ne kadar",
+   "elektrikçi ne kazanır",
+   "tesisatçı kaç para alır",
+   "usta ayda kaç bin yapar",
+   "usta maasi nekadar",
+   "ustalar iyi kazanıyo mu",
+   "ustanın geliri",
+   "usta görev başı ne alır",
+   "usta günde kaç iş yapar",
+   "ustalık para ediyor mu",
+   "usta olunca ayda ne kazanırım"
+  ],
+  "cevap": [
+   "Usta görevle kazanır, iş başı yüksek ama günde 2 iş var; ayda ortalama {maas.usta}",
+   "Ayda {maas.usta} civarı, işçiye göre epey iyi",
+   "Usta ayda {maas.usta} yapıyor, günde iki işini kaçırmazsan"
+  ]
+ },
+ {
+  "id": "usta-nasil",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "nasıl usta olurum",
+   "usta olmak için ne lazım",
+   "ustalık şartları neler",
+   "usta olmak istiyorum",
+   "ustalık belgesi nasıl alınır",
+   "ustalığa nasıl geçilir",
+   "usta olmak icin kac gun iscilik lazim",
+   "elektrikçi olmak istiyorum",
+   "tesisatçı nasıl olunur",
+   "usta olmanın yolu",
+   "usta olcam ne yapayim",
+   "işçiden ustaya nasıl geçilir",
+   "usta için inşaatta çalışmak şart mı"
+  ],
+  "cevap": [
+   "Ustalık belgesi ve 20 gün inşaat işçiliği gerekiyor",
+   "Önce 20 gün inşaat işçisi ol, belgeyi al; belge {kurs.ustalik}, {kurs.ustalik.gun} gün",
+   "Başka işteki deneyim sayılmıyor, 20 gün özellikle inşaat işçiliği lazım"
+  ]
+ },
+ {
+  "id": "nakliyeci-kazanc",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "nakliyeci ne kadar kazanıyor",
+   "nakliyecilik kaç para",
+   "taksici ne kazanır",
+   "nakliyeci ayda kaç alır",
+   "nakliyeci maasi kac",
+   "nakliyat para ediyo mu",
+   "taksicilik kazandırır mı",
+   "nakliyecinin geliri ne",
+   "nakliyeci günde kaç sefer yapar",
+   "kamyoncu ne kadar kazanır",
+   "nakliyeci olsam ne kazanırım"
+  ],
+  "cevap": [
+   "Nakliyeci sefer başına kazanır, günde 2 sefer; ayda ortalama {maas.nakliyeci}",
+   "Ayda {maas.nakliyeci} civarı, araç bakımı ayrıca gidiyor",
+   "{maas.nakliyeci} kadar ediyor, ama önce araca büyük para yatırıyorsun"
+  ]
+ },
+ {
+  "id": "nakliyeci-nasil",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nasıl nakliyeci olurum",
+   "nakliyeci olmak için ne lazım",
+   "nakliyecilik şartları",
+   "taksici olmak istiyorum",
+   "nakliyeciliğe nasıl başlanır",
+   "nakliyeci için araç lazım mı",
+   "nakliyeci olmak icin ne kadar para lazim",
+   "kamyon almak için kaç para",
+   "nakliyeci sermayesi ne kadar",
+   "taksi almak istiyom",
+   "nakliyeci olmanın yolu",
+   "nakliyeci olcam kac para"
+  ],
+  "cevap": [
+   "Araç dahil {nakliyeci.sermaye} sermaye ve 60 gün deneyim gerekiyor",
+   "Araç parası sermayenin içinde, {nakliyeci.sermaye} civarı; 60 gün deneyim de şart",
+   "Kurs yok ama {nakliyeci.sermaye} ve 60 gün deneyim istiyor"
+  ]
+ },
+ {
+  "id": "nakliyeci-bakim",
+  "konu": "genel",
+  "sorular": [
+   "nakliyecinin aracı masraf çıkarır mı",
+   "araç bakımı ne kadar",
+   "nakliyeci aylık gider",
+   "araç masrafı kaç",
+   "kamyon bakımı aylık",
+   "nakliyecinin sabit gideri var mı",
+   "taksinin bakımı ne tutar",
+   "araç bakımı her ay mı ödeniyor",
+   "nakliyeci gideri",
+   "arac bakimi kac para"
+  ],
+  "cevap": [
+   "Nakliyecinin aracı ayda 5 bin civarı bakım istiyor",
+   "Her ay araç bakımı gidiyor, 5 bin kadar; enflasyonla biraz artar",
+   "Sabit gider olarak sadece araç bakımı var, aylık 5 bin falan"
+  ]
+ },
+ {
+  "id": "kafe-sahibi-nasil",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nasıl kafe sahibi olurum",
+   "kafe açmak için ne lazım",
+   "kafe sahibi olma şartları",
+   "kafe açmak istiyorum",
+   "restoran nasıl açılır",
+   "kafe açmak icin kac gun deneyim lazim",
+   "kafe sahibi olmak için kurs lazım mı",
+   "kafe açma şartı",
+   "kendi kafemi açsam",
+   "kafe açabilmek için ne gerekli",
+   "restoran sahibi olmak istiyom"
+  ],
+  "cevap": [
+   "Kafe için {kafe.sermaye} sermaye ve 60 gün deneyim gerekiyor",
+   "Kurs yok; {kafe.sermaye} paran ve 60 gün deneyimin olsun, açarsın",
+   "60 gün deneyim artı {kafe.sermaye}, kuruluş {kafe.kurulus} tutuyor"
+  ]
+ },
+ {
+  "id": "dukkan-sahibi-nasil",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nasıl dükkan sahibi olurum",
+   "market açmak için ne lazım",
+   "dükkan açmak istiyorum",
+   "dükkan sahibi olma şartları",
+   "bakkal nasıl açılır",
+   "dukkan acmak icin kac gun deneyim lazim",
+   "market sahibi olmak istiyorum",
+   "dükkan açma şartı",
+   "kendi marketimi açsam",
+   "dükkan işletmek için kurs lazım mı",
+   "mağaza açmak istiyom"
+  ],
+  "cevap": [
+   "Dükkan için {dukkan.sermaye} sermaye ve 60 gün deneyim gerekiyor",
+   "Kurs yok; {dukkan.sermaye} ve 60 gün deneyim yeter",
+   "Kuruluşu {dukkan.kurulus}, 60 gün deneyimin de olmalı"
+  ]
+ },
+ {
+  "id": "taseron-nasil",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nasıl taşeron olurum",
+   "taşeron firması açmak için ne lazım",
+   "taşeronluk şartları",
+   "taşeron olmak istiyorum",
+   "taseron olmak icin kac gun ustalik lazim",
+   "taşeron firma kurmak",
+   "taşeronluğa nasıl geçilir",
+   "taşeron için usta olmak şart mı",
+   "taşeron sermayesi ne kadar",
+   "inşaat firması açmak istiyom",
+   "taşeron olmanın yolu"
+  ],
+  "cevap": [
+   "Taşeron için sermaye ve 20 gün ustalık gerekiyor, sermaye 1,2 milyon civarı",
+   "Önce usta olup 20 gün çalışacaksın, sonra 1,2 milyon kadar sermaye",
+   "Başka iş deneyimi sayılmıyor, 20 gün ustalık şart"
+  ]
+ },
+ {
+  "id": "taseron-isletme",
+  "konu": "genel",
+  "sorular": [
+   "taşeron firması ne kadar kazanır",
+   "taşeronun gideri ne kadar",
+   "taşeron kaç kişi çalıştırır",
+   "taşeron firmasında kaç işçi lazım",
+   "taşeronluk kar ediyor mu",
+   "taşeron aylık sabit gider",
+   "taseron kac eleman ister",
+   "taşeron kimleri işe alır",
+   "taşeronda kim çalışabilir",
+   "taşeron firmasının kadrosu"
+  ],
+  "cevap": [
+   "Taşeron 4 kişilik kadro ister, işçi, usta ya da muhasebeci alırsın; sabit gideri ayda 50 bin civarı",
+   "Kadro 4 kişi, gider aylık 50 bin kadar; kârı ciroya ve çalışana bağlı",
+   "Ciro yüksek ama malzeme payı da yüksek, 4 çalışanı doldurmazsan geçici personel pahalıya gelir"
+  ]
+ },
+ {
+  "id": "emlak-ofisi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "emlak ofisi nasıl açılır",
+   "emlak ofisi açmak için ne lazım",
+   "emlak ofisi sahibi olma şartı",
+   "kendi emlak ofisimi açmak istiyorum",
+   "emlak ofisi kaç para",
+   "emlak ofisi icin kac gun lazim",
+   "emlak ofisi açabilmek için danışman olmak şart mı",
+   "emlak bürosu açmak",
+   "emlak ofisinin sermayesi"
+  ],
+  "cevap": [
+   "Emlak ofisi 4. kademe: 3 milyon civarı sermaye ve 60 gün emlak danışmanlığı ister",
+   "Önce emlak danışmanı olup 60 gün çalışacaksın, sonra 3 milyon kadar sermaye",
+   "Büyük iş, milyonlar istiyor; danışmanlık deneyimi de şart"
+  ]
+ },
+ {
+  "id": "doviz-burosu",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "döviz bürosu nasıl açılır",
+   "döviz bürosu açmak için ne lazım",
+   "döviz bürosu sahibi olma şartı",
+   "döviz bürosu kaç para",
+   "doviz burosu icin kac gun deneyim",
+   "döviz lisansı nedir",
+   "döviz bürosu açmak istiyorum",
+   "döviz bürosunun sermayesi",
+   "doviz burosu sartlari"
+  ],
+  "cevap": [
+   "Döviz bürosu 4. kademe: 6 milyon civarı sermaye, döviz bürosu lisansı ve 120 gün deneyim",
+   "Lisans kursu {kurs.doviz}, {kurs.doviz.gun} gün sürüyor; üstüne 6 milyon ve 120 gün",
+   "Milyonlar istiyor, önce küçük işlerle sermaye biriktirmen lazım"
+  ]
+ },
+ {
+  "id": "ithalat-ihracat",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "ithalat ihracat nasıl yapılır",
+   "ithalatçı olmak için ne lazım",
+   "ihracat firması açmak istiyorum",
+   "ithalat ihracat şartları",
+   "dış ticaret kursu ne işe yarar",
+   "ithalat ihracat kaç para",
+   "ithalatci olmak icin kac gun",
+   "tüccar olmak istiyorum",
+   "dış ticaret firması kurmak"
+  ],
+  "cevap": [
+   "İthalat-ihracat 4. kademe: 6 milyon civarı sermaye, dış ticaret kursu ve 120 gün deneyim",
+   "Dış ticaret kursu {kurs.dis}, {kurs.dis.gun} gün; sermaye 6 milyon kadar",
+   "Büyük oyun bu, 120 gün deneyim ve milyonlar istiyor"
+  ]
+ },
+ {
+  "id": "muteahhit",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nasıl müteahhit olurum",
+   "müteahhit olmak için ne lazım",
+   "müteahhitlik şartları",
+   "müteahhit olmak istiyorum",
+   "müteahhitlik belgesi ne kadar",
+   "muteahhit olmak icin kac gun",
+   "müteahhit kaç para ister",
+   "müteahhit için kredi notu kaç olmalı",
+   "müteahhitlik firması kurmak",
+   "inşaat şirketi açmak istiyorum"
+  ],
+  "cevap": [
+   "Müteahhit 4. kademe: 12 milyon civarı sermaye, müteahhitlik belgesi, 700 kredi notu ve 180 gün deneyim",
+   "Belge kursu {kurs.muteahhit}, {kurs.muteahhit.gun} gün; üstüne 12 milyon ve 180 gün",
+   "En zor meslek bu, kredi notun da en az 700 olmalı"
+  ]
+ },
+ {
+  "id": "fabrikator",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nasıl fabrikatör olurum",
+   "fabrika açmak için ne lazım",
+   "fabrika kurmak istiyorum",
+   "fabrikatör olma şartları",
+   "fabrika kaç para",
+   "fabrika icin kac gun deneyim",
+   "fabrika açmak için kredi notu",
+   "fabrikatör olmak istiyom",
+   "fabrikanın sermayesi ne kadar"
+  ],
+  "cevap": [
+   "Fabrikatör için 30 milyon civarı sermaye, 650 kredi notu ve 180 gün deneyim gerekiyor",
+   "Kurs istemiyor ama 30 milyon kadar sermaye ve 180 gün deneyim şart",
+   "En tepedeki iş, fabrika 15 kişilik kadro istiyor"
+  ]
+ },
+ {
+  "id": "kademe-nedir",
+  "konu": "genel",
+  "sorular": [
+   "kademe ne demek",
+   "kademeler nasıl işliyor",
+   "kaç kademe var",
+   "meslek kademeleri neler",
+   "kademe sistemi nedir",
+   "kademe nedir oyunda",
+   "kademeler ne işe yarıyor",
+   "1. kademe 2. kademe ne demek",
+   "kademe atlamak ne",
+   "meslekler kaç basamak",
+   "kademe olayı ne knk",
+   "kademe mantığı nasıl",
+   "meslek seviyeleri neler",
+   "kademeler kac tane",
+   "basamak basamak meslek mi var"
+  ],
+  "cevap": [
+   "4 kademe var: şartsız işler, kurslu meslekler, kendi işin ve büyük sermaye",
+   "1. kademe şartsız, 2. kurs ve deneyim, 3. sermaye ve 60 gün, 4. milyonlar",
+   "Kademe yükseldikçe şart da kazanç da büyüyor"
+  ]
+ },
+ {
+  "id": "kademe1",
+  "konu": "genel",
+  "sorular": [
+   "1. kademe meslekler neler",
+   "birinci kademe hangi işler",
+   "ilk kademede ne var",
+   "giriş seviyesi meslekler",
+   "1.kademe hangileri",
+   "kademe 1 meslekleri",
+   "en alt kademe işler",
+   "birinci basamak meslekler",
+   "başlangıç meslekleri neler",
+   "ilk kademe işleri say"
+  ],
+  "cevap": [
+   "1. kademe: garson, inşaat işçisi, kurye ve kasiyer; hepsi şartsız",
+   "Kurye, garson, kasiyer, inşaat işçisi; kurs falan istemiyor",
+   "Dördü de şartsız, hemen başlarsın"
+  ]
+ },
+ {
+  "id": "sartsiz-isler",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "şartsız hangi işler var",
+   "kurssuz yapılan işler",
+   "hiç şart istemeyen meslek",
+   "deneyimsiz ne iş yapabilirim",
+   "kurs almadan çalışabileceğim iş",
+   "hemen başlanabilen işler",
+   "sartsiz meslek var mi",
+   "şart yok iş lazım",
+   "sıfırdan hangi işe girerim",
+   "tecrübe istemeyen iş",
+   "direkt girilen işler",
+   "deneyim istemeyen meslekler hangileri"
+  ],
+  "cevap": [
+   "Kurye, garson, kasiyer ve inşaat işçisi şartsız",
+   "Şartsız dört iş var: kurye, garson, kasiyer, inşaat işçisi",
+   "Kurye hemen başlar, diğerleri için ilana başvurman yeterli"
+  ]
+ },
+ {
+  "id": "kademe2",
+  "konu": "genel",
+  "sorular": [
+   "2. kademe meslekler neler",
+   "ikinci kademe hangi işler",
+   "kademe 2 meslekleri",
+   "2.kademeye nasıl geçerim",
+   "ikinci basamak meslekler",
+   "kurslu meslekler hangileri",
+   "2. kademe şartları",
+   "ikinci kademe için ne lazım",
+   "orta kademe işler neler",
+   "kademe iki ne istiyor"
+  ],
+  "cevap": [
+   "2. kademe: memur, muhasebeci, emlak danışmanı ve usta",
+   "Memur, muhasebeci, emlakçı için kurs ve 30 gün deneyim; usta için belge ve 20 gün inşaat işçiliği",
+   "Kursunu al, deneyimini doldur, Kariyer'den geç"
+  ]
+ },
+ {
+  "id": "kademe3",
+  "konu": "genel",
+  "sorular": [
+   "3. kademe meslekler neler",
+   "üçüncü kademe hangi işler",
+   "kademe 3 meslekleri",
+   "3. kademe şartları",
+   "kendi işini kurmak hangi kademe",
+   "3.kademeye nasıl geçilir",
+   "üçüncü basamak ne istiyor",
+   "işletme sahipliği kademesi",
+   "kademe üç ne lazım"
+  ],
+  "cevap": [
+   "3. kademe: kafe, dükkan, taşeron sahibi ve nakliyeci",
+   "Sermaye ve 60 gün deneyim istiyor, taşeron ise 20 gün ustalık",
+   "Kendi işinin kademesi bu, kurs yok ama para lazım"
+  ]
+ },
+ {
+  "id": "kademe4",
+  "konu": "genel",
+  "sorular": [
+   "4. kademe meslekler neler",
+   "dördüncü kademe hangi işler",
+   "kademe 4 meslekleri",
+   "en üst kademe ne",
+   "4. kademe şartları",
+   "4.kademe için ne lazım",
+   "en büyük meslekler hangileri",
+   "son kademe işler",
+   "dördüncü basamak ne istiyor",
+   "zirve meslekler"
+  ],
+  "cevap": [
+   "4. kademe: emlak ofisi, döviz bürosu, ithalat-ihracat, müteahhit, fabrikatör",
+   "Milyonlarca sermaye, kurs ve 120-180 gün deneyim istiyor",
+   "En üst kademe bu, uzun yol ama kazancı da büyük"
+  ]
+ },
+ {
+  "id": "kademe-para-atlama",
+  "konu": "genel",
+  "sorular": [
+   "kademeyi parayla atlayabilir miyim",
+   "para verip üst kademeye geçilir mi",
+   "kademe satın alınır mı",
+   "gerçek parayla meslek alınır mı",
+   "deneyimi para ile alabilir miyim",
+   "kademe atlamanın kısa yolu var mı",
+   "para basıp üst meslek olunur mu",
+   "kademe parali mi atlaniyor",
+   "şartları parayla geçebilir miyim",
+   "elmasla kademe atlanır mı",
+   "hızlı kademe atlama"
+  ],
+  "cevap": [
+   "Para olur ama deneyim ve kurs şartı parayla atlanmıyor",
+   "Sermayeyi biriktirirsin ama deneyim günlerini mutlaka doldurman lazım",
+   "Kısa yol yok, deneyim zamanla geliyor"
+  ]
+ },
+ {
+  "id": "eksik-sartlar",
+  "konu": "yardim",
+  "sorular": [
+   "neden bu mesleğe geçemiyorum",
+   "meslek açılmıyor",
+   "eksik şartlarım ne",
+   "şartlarım tutmuyor mu",
+   "mesleğe geçince eksik şart yazıyor",
+   "hangi şartım eksik",
+   "meslek kilitli neden",
+   "eksik sartlar diyor",
+   "geçemiyom niye",
+   "meslek seçince hata veriyor",
+   "neden memur olamıyorum",
+   "neden usta olamıyorum"
+  ],
+  "cevap": [
+   "Kariyer'de meslek seçince eksik şartları yazıyor, ona bak",
+   "Ya kurs eksik ya deneyim günü ya sermaye, uyarıda yazıyor",
+   "Eksik şartlar listesine bak, genelde deneyim günü eksik oluyor"
+  ]
+ },
+ {
+  "id": "meslek-listesi",
+  "konu": "genel",
+  "sorular": [
+   "hangi meslekler var",
+   "kaç meslek var",
+   "meslekleri say",
+   "meslek listesi",
+   "oyunda neler olunabilir",
+   "bütün meslekler neler",
+   "meslekler hangileri",
+   "ne iş yapılabiliyor oyunda",
+   "kac meslek var bu oyunda",
+   "tüm işleri yazar mısın",
+   "meslek seçenekleri"
+  ],
+  "cevap": [
+   "17 meslek var, 4 kademede; en alttan kurye, garson, kasiyer, inşaat işçisi",
+   "Kurye, garson, memur, muhasebeci, usta, emlakçı, kafe sahibi, nakliyeci, müteahhit... toplam 17",
+   "Kariyer ekranında hepsi şartlarıyla yazıyor"
+  ]
+ },
+ {
+  "id": "meslek-degistirme",
+  "konu": "genel",
+  "sorular": [
+   "meslek değiştirebilir miyim",
+   "başka mesleğe geçmek istiyorum",
+   "mesleğimi nasıl değiştiririm",
+   "işimi değiştirmek",
+   "meslek değişince deneyim gider mi",
+   "kuryeden garsonluğa geçilir mi",
+   "meslek degistirmek",
+   "başka işe geçince ne olur",
+   "yeni meslek seçmek",
+   "mesleği bırakıp başka iş",
+   "meslek değiştirmek zor mu"
+  ],
+  "cevap": [
+   "Kariyer ekranından şartını tuttuğun başka mesleğe geçebilirsin",
+   "Toplam deneyimin gitmiyor, başka mesleğe geçince de sayılıyor",
+   "İşletme sahibiyken başka mesleğe geçemiyorsun, onun dışında serbest"
+  ]
+ },
+ {
+  "id": "isletme-sahibi-meslek",
+  "konu": "genel",
+  "sorular": [
+   "işletmem varken kurye olabilir miyim",
+   "kafe sahibiyken başka iş yapılır mı",
+   "patronken memur olunur mu",
+   "işletme sahibi başka meslek seçebilir mi",
+   "dükkanım var başka işe girebilir miyim",
+   "isletme sahibiyken meslek degistiremiyorum",
+   "patron iken başka işe geçmek",
+   "hem kafe hem başka iş"
+  ],
+  "cevap": [
+   "İşletme sahibiyken başka mesleğe geçemezsin",
+   "Önce işletmeni kapatman lazım, sonra başka meslek",
+   "Patronluk tam zamanlı iş sayılıyor, başka meslek olmuyor"
+  ]
+ },
+ {
+  "id": "istifa-etmek",
+  "konu": "genel",
+  "sorular": [
+   "işten nasıl ayrılırım",
+   "istifa etmek istiyorum",
+   "işverenden ayrılmak",
+   "istifa nasıl edilir",
+   "işi bırakmak istiyorum",
+   "patronumdan ayrılacağım",
+   "istifa edersem ne olur",
+   "istifa butonu nerede",
+   "işten çıkmak",
+   "istifa edince maaş ne olur",
+   "işyerinden ayrılmak istiyom"
+  ],
+  "cevap": [
+   "Kariyer ekranında İstifa et var, işverenin işletmesinden ayrılırsın",
+   "İstifa edince maaşın kesilir, önce yeni işini ayarla",
+   "Kariyer'den istifa edebilirsin ama maaş da gider"
+  ]
+ },
+ {
+  "id": "kurs-listesi",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "hangi kurslar var",
+   "kurs listesi",
+   "kurslar neler",
+   "kaç kurs var",
+   "kursları say",
+   "oyunda kurs var mı",
+   "hangi kursa gidebilirim",
+   "kurs seçenekleri",
+   "kurs çeşitleri",
+   "kurslar hangi meslekler için",
+   "kurs nerden alınıyo"
+  ],
+  "cevap": [
+   "Kamu sınavı, muhasebe, ustalık, emlak belgesi; büyükler için döviz lisansı, dış ticaret ve müteahhitlik",
+   "Yedi kurs var, Kariyer ekranında ücret ve süreleriyle yazıyor",
+   "En çok alınanlar kamu sınavı ve ustalık belgesi"
+  ]
+ },
+ {
+  "id": "kurs-hangi-meslek",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "hangi kurs hangi mesleği açıyor",
+   "kamu sınavı kursu ne işe yarar",
+   "ustalık belgesi neyi açar",
+   "emlak belgesi hangi meslek için",
+   "muhasebe kursu ne açıyor",
+   "bu kurs neye yarıyor",
+   "kurs alınca hangi meslek açılır",
+   "kurs-meslek eşleşmesi",
+   "hangi kurs ne icin",
+   "kursların faydası ne"
+  ],
+  "cevap": [
+   "Kamu sınavı memurluğu, muhasebe kursu muhasebeciliği, emlak belgesi emlakçılığı, ustalık belgesi ustalığı açar",
+   "Döviz lisansı döviz bürosu, dış ticaret ithalat-ihracat, müteahhitlik belgesi müteahhitlik için",
+   "Her kurs bir mesleğin şartı, ama deneyim de ayrıca lazım"
+  ]
+ },
+ {
+  "id": "kurs-kpss-ucret",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kamu sınavı kursu kaç para",
+   "kpss kursu ne kadar",
+   "memurluk kursu ücreti",
+   "kpss kursu kac tl",
+   "kamu personel sınavı kursu fiyatı",
+   "memur kursunun parası",
+   "kpss ne kadar tutuyor",
+   "kamu sınavı kursuna kaç lira",
+   "kpss kursu pahalı mı",
+   "memurluk için kurs kaç bin"
+  ],
+  "cevap": [
+   "Kamu sınavı kursu {kurs.kpss}",
+   "{kurs.kpss} tutuyor, kursların en ucuzu",
+   "Memurluk kursu {kurs.kpss}, {kurs.kpss.gun} gün sürüyor"
+  ]
+ },
+ {
+  "id": "kurs-kpss-sure",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kamu sınavı kursu kaç gün",
+   "kpss kursu ne kadar sürüyor",
+   "memurluk kursu kaç gün sürer",
+   "kpss kac gun",
+   "kamu sınavı kursu ne zaman biter",
+   "kpss kursunun süresi",
+   "memur kursu uzun mu",
+   "kpss bitmesi kaç saat"
+  ],
+  "cevap": [
+   "Kamu sınavı kursu {kurs.kpss.gun} gün sürüyor",
+   "{kurs.kpss.gun} gün, yani gerçekte {kurs.kpss.gun} saat",
+   "Kısa sürüyor, {kurs.kpss.gun} gün; Kum Saati ile de kısaltabilirsin"
+  ]
+ },
+ {
+  "id": "kurs-muhasebe-ucret",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "muhasebe kursu kaç para",
+   "muhasebe kursu ne kadar",
+   "muhasebecilik kursu ücreti",
+   "muhasebe kursu kac tl",
+   "muhasebe kursunun fiyatı",
+   "muhasebe kursu pahalı mı",
+   "muhasebe kursuna kaç lira",
+   "muhasebe kursu kaç bin"
+  ],
+  "cevap": [
+   "Muhasebe kursu {kurs.muhasebe}",
+   "{kurs.muhasebe} tutuyor, 2. kademe kursların en pahalısı",
+   "Muhasebe kursu {kurs.muhasebe}, {kurs.muhasebe.gun} gün sürüyor"
+  ]
+ },
+ {
+  "id": "kurs-muhasebe-sure",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "muhasebe kursu kaç gün",
+   "muhasebe kursu ne kadar sürer",
+   "muhasebe kursu kac gun",
+   "muhasebe kursu ne zaman biter",
+   "muhasebe kursunun süresi",
+   "muhasebe kursu uzun mu",
+   "muhasebe kursu bitmiyo",
+   "muhasebe kursu kaç saat sürüyor"
+  ],
+  "cevap": [
+   "Muhasebe kursu {kurs.muhasebe.gun} gün sürüyor",
+   "{kurs.muhasebe.gun} gün, biraz uzun; Kum Saati kısaltır",
+   "{kurs.muhasebe.gun} gün bekleyeceksin, gerçek hayatta {kurs.muhasebe.gun} saat"
+  ]
+ },
+ {
+  "id": "kurs-ustalik-ucret",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "ustalık belgesi kaç para",
+   "ustalık kursu ne kadar",
+   "usta kursu ücreti",
+   "ustalik belgesi kac tl",
+   "ustalık belgesinin fiyatı",
+   "ustalık belgesi pahalı mı",
+   "usta olmak için kurs kaç lira",
+   "ustalık belgesine kaç bin"
+  ],
+  "cevap": [
+   "Ustalık belgesi {kurs.ustalik}",
+   "{kurs.ustalik} tutuyor, {kurs.ustalik.gun} gün sürüyor",
+   "Belge {kurs.ustalik}, ama 20 gün inşaat işçiliğin de olmalı"
+  ]
+ },
+ {
+  "id": "kurs-ustalik-sure",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "ustalık belgesi kaç gün",
+   "ustalık kursu ne kadar sürer",
+   "ustalik kac gun",
+   "usta kursu kaç günde biter",
+   "ustalık belgesinin süresi",
+   "ustalık kursu uzun mu",
+   "ustalık belgesi ne zaman çıkar",
+   "usta kursu kaç saat"
+  ],
+  "cevap": [
+   "Ustalık belgesi {kurs.ustalik.gun} gün sürüyor",
+   "{kurs.ustalik.gun} gün bekleyeceksin, Kum Saati ile kısalır",
+   "{kurs.ustalik.gun} gün, işçilik günlerin dolarken alırsan vakit kazanırsın"
+  ]
+ },
+ {
+  "id": "kurs-emlak-ucret",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "emlak belgesi kaç para",
+   "emlak kursu ne kadar",
+   "emlak danışmanlığı belgesi ücreti",
+   "emlak kursu kac tl",
+   "emlakçılık kursunun fiyatı",
+   "emlak belgesi pahalı mı",
+   "emlak belgesine kaç lira",
+   "emlakçı kursu kaç bin"
+  ],
+  "cevap": [
+   "Emlak danışmanlığı belgesi {kurs.emlak}",
+   "{kurs.emlak} tutuyor, {kurs.emlak.gun} gün sürüyor",
+   "Emlak belgesi {kurs.emlak}"
+  ]
+ },
+ {
+  "id": "kurs-emlak-sure",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "emlak belgesi kaç gün",
+   "emlak kursu ne kadar sürer",
+   "emlak kursu kac gun",
+   "emlak belgesi ne zaman çıkar",
+   "emlak kursunun süresi",
+   "emlakçılık kursu uzun mu",
+   "emlak belgesi kaç saatte biter",
+   "emlak kursu bitmesi"
+  ],
+  "cevap": [
+   "Emlak belgesi {kurs.emlak.gun} gün sürüyor",
+   "{kurs.emlak.gun} gün, Kum Saati varsa kısaltırsın",
+   "{kurs.emlak.gun} günde biter"
+  ]
+ },
+ {
+  "id": "kurs-doviz",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "döviz bürosu lisansı kaç para",
+   "döviz lisansı ne kadar",
+   "doviz lisansi kac gun",
+   "döviz bürosu kursu ücreti",
+   "döviz lisansının süresi",
+   "döviz lisansı pahalı mı",
+   "döviz bürosu lisansı ne kadar sürer",
+   "doviz kursu kac tl"
+  ],
+  "cevap": [
+   "Döviz bürosu lisansı {kurs.doviz}, {kurs.doviz.gun} gün sürüyor",
+   "{kurs.doviz} tutuyor; döviz bürosu için 6 milyon sermaye ve 120 gün deneyim de lazım",
+   "Lisans {kurs.doviz}, süresi {kurs.doviz.gun} gün"
+  ]
+ },
+ {
+  "id": "kurs-dis-ticaret",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "dış ticaret kursu kaç para",
+   "dış ticaret kursu ne kadar",
+   "dis ticaret kursu kac gun",
+   "ithalat kursu ücreti",
+   "dış ticaret kursunun süresi",
+   "dış ticaret kursu pahalı mı",
+   "ihracat kursu ne kadar sürer",
+   "dis ticaret kac tl"
+  ],
+  "cevap": [
+   "Dış ticaret kursu {kurs.dis}, {kurs.dis.gun} gün sürüyor",
+   "{kurs.dis} tutuyor, ithalat-ihracat için şart",
+   "Kurs {kurs.dis}; 6 milyon sermaye ve 120 gün deneyim de gerekiyor"
+  ]
+ },
+ {
+  "id": "kurs-muteahhit",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "müteahhitlik belgesi kaç para",
+   "müteahhitlik kursu ne kadar",
+   "muteahhitlik belgesi kac gun",
+   "müteahhit kursu ücreti",
+   "müteahhitlik belgesinin süresi",
+   "müteahhitlik belgesi pahalı mı",
+   "müteahhit belgesi ne kadar sürer",
+   "muteahhit kursu kac tl"
+  ],
+  "cevap": [
+   "Müteahhitlik belgesi {kurs.muteahhit}, {kurs.muteahhit.gun} gün sürüyor",
+   "En pahalı kurs bu, {kurs.muteahhit}",
+   "Belge {kurs.muteahhit}, süresi {kurs.muteahhit.gun} gün"
+  ]
+ },
+ {
+  "id": "kurs-sinav",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kursun sonunda sınav var mı",
+   "kurs sınavı zor mu",
+   "kamu sınavında kalınır mı",
+   "kurs bitince sınava mı giriyoruz",
+   "sınav olmadan belge verilir mi",
+   "kursta sınav var mi",
+   "kpss sınavını geçemezsem",
+   "kurstan kalınır mı",
+   "sınav sorusu çıkıyor mu kursta",
+   "kursu bitirmek için test var mı"
+  ],
+  "cevap": [
+   "Sınav yok, süre dolunca kurs kendiliğinden biter",
+   "Kurstan kalınmıyor, parasını öde ve günlerini bekle",
+   "Sınav falan yok, kurs bitince belgen hazır"
+  ]
+ },
+ {
+  "id": "kurs-ayni-anda",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "aynı anda iki kurs alabilir miyim",
+   "iki kursa birden gidilir mi",
+   "kurs devam ederken başka kurs",
+   "iki kurs birlikte olur mu",
+   "kurs varken yenisine başlayamıyorum",
+   "zaten devam eden kursun var diyor",
+   "kursları paralel almak",
+   "iki kurs ayni anda",
+   "bir kurs bitmeden diğerine başlanır mı",
+   "üst üste kurs almak"
+  ],
+  "cevap": [
+   "Olmuyor, bir kurs bitmeden yenisine başlayamazsın",
+   "Aynı anda tek kurs; ilki bitsin, sonra ötekine yazıl",
+   "Devam eden kurs varken yenisi açılmıyor, Kum Saati ile bitirebilirsin"
+  ]
+ },
+ {
+  "id": "kurs-hizlandirma",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kursu hızlandırabilir miyim",
+   "kurs nasıl çabuk biter",
+   "kursu kısaltmanın yolu var mı",
+   "kurs beklemesini geçebilir miyim",
+   "kurs süresini azaltmak",
+   "kursu hemen bitirmek istiyorum",
+   "kum saatiyle kurs kısalır mı",
+   "kursu hizlandir",
+   "kurs çok uzun sürüyor ne yapayım",
+   "kursu beklemeden bitirmek"
+  ],
+  "cevap": [
+   "Kum Saati ile hızlandırırsın, her biri 1 günü kısaltır",
+   "Kariyer'de kursun yanında Kum Saati ile hızlandır var",
+   "1 Kum Saati 1 gün eder, kalan gün kadar harcarsan kurs biter"
+  ]
+ },
+ {
+  "id": "kurs-nereden",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kursa nereden yazılırım",
+   "kurs nasıl alınır",
+   "kursa nasıl başlanır",
+   "kurs almak istiyorum nereye",
+   "kursa kayıt nasıl",
+   "kurs butonu nerede",
+   "kursa yazılmak",
+   "kurs başlatma",
+   "kursa nasil kaydolunur",
+   "kurs nereden alınır"
+  ],
+  "cevap": [
+   "Kariyer ekranında Kurslar bölümünden yazılırsın",
+   "Kariyer'e gir, kursu seç, ücreti ödenince başlar",
+   "Kurslar Kariyer ekranında, parası peşin ödeniyor"
+  ]
+ },
+ {
+  "id": "kurs-para-yetmiyor",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kurs parası yetmiyor",
+   "kursa param yok",
+   "kurs ücreti için para yetmiyor diyor",
+   "kursu nasıl öderim",
+   "kurs için kredi çekilir mi",
+   "kursa para biriktirmek",
+   "kurs çok pahalı param yok",
+   "kurs parasi yok ne yapayim",
+   "kurs ücretini taksitle ödeyebilir miyim"
+  ],
+  "cevap": [
+   "Önce şartsız bir işte çalışıp kurs parasını biriktir",
+   "Kurs ücreti peşin, para yetmiyorsa birkaç gün kuryelik yap",
+   "En ucuzu kamu sınavı, {kurs.kpss}; oradan başlayabilirsin"
+  ]
+ },
+ {
+  "id": "kurs-bitti",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kurs bitti şimdi ne olacak",
+   "kursu bitirdim meslek açılmadı",
+   "kurs bitince direkt meslek mi olurum",
+   "kurs bitince otomatik geçiyor muyum",
+   "kursum tamamlandı ne yapayım",
+   "kurs bitti ama memur olamıyorum",
+   "belgem çıktı sonra",
+   "kurs bitti hala kilitli",
+   "kursu bitirince ne yapmalı"
+  ],
+  "cevap": [
+   "Kurs tek başına yetmiyor, deneyim günlerin de tamam olmalı",
+   "Deneyimin yetiyorsa Kariyer'den mesleğe kendin geç",
+   "Kurs bitti diye otomatik geçmiyorsun, Kariyer'den mesleği seç"
+  ]
+ },
+ {
+  "id": "kurs-tekrar",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "aynı kursu tekrar alabilir miyim",
+   "kursu iki kere almak",
+   "bu kursu zaten bitirdin diyor",
+   "kurs tekrar gerekir mi",
+   "belge süresi doluyor mu",
+   "kursu yeniden almam lazım mı",
+   "kurs belgesi kalıcı mı",
+   "kurs tekrar alinir mi"
+  ],
+  "cevap": [
+   "Bir kez bitirdin mi kalıcı, tekrar almana gerek yok",
+   "Aynı kurs ikinci kez alınmıyor, belgen hep duruyor",
+   "Belgenin süresi dolmuyor, bir kere yeter"
+  ]
+ },
+ {
+  "id": "kurs-ucuz",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "en ucuz kurs hangisi",
+   "en pahalı kurs hangisi",
+   "hangi kurs daha ucuz",
+   "kurs fiyatları",
+   "kursların fiyatları ne kadar",
+   "tüm kurs ücretleri",
+   "kurslar kaç para",
+   "en kısa kurs hangisi",
+   "kurs ucretleri listesi",
+   "ilk hangi kursu alayım ucuz olsun"
+  ],
+  "cevap": [
+   "En ucuz kamu sınavı kursu {kurs.kpss}, en pahalısı müteahhitlik {kurs.muteahhit}",
+   "Kamu sınavı {kurs.kpss}, ustalık {kurs.ustalik}, emlak {kurs.emlak}, muhasebe {kurs.muhasebe}",
+   "En kısası da kamu sınavı, {kurs.kpss.gun} gün"
+  ]
+ },
+ {
+  "id": "kurs-degerli-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "kurs almaya değer mi",
+   "kursa para vermek mantıklı mı",
+   "kurs alsam karlı mı",
+   "kurs parası geri çıkar mı",
+   "kurs boşa mı para",
+   "kurs almalı mıyım",
+   "kursa yatırım yapılır mı",
+   "kurs alayım mı almayayım mı",
+   "kurs almaya deger mi knk"
+  ],
+  "cevap": [
+   "Değer, kurslu meslekler şartsızlardan çok daha iyi kazanıyor",
+   "Muhasebeci {maas.muhasebeci} alıyor, kurs parası kısa sürede çıkar",
+   "Bence değer, ama önce 30 gün deneyim lazım onu unutma"
+  ]
+ },
+ {
+  "id": "deneyim-nedir",
+  "konu": "genel",
+  "sorular": [
+   "deneyim nedir",
+   "deneyim günü ne demek",
+   "deneyim nasıl sayılıyor",
+   "deneyim ne işe yarıyor",
+   "tecrübe nasıl kazanılır",
+   "deneyim gün olarak mı",
+   "deneyim sistemi nasıl",
+   "deneyim nasil artar",
+   "her gün çalışınca deneyim mi geliyor",
+   "tecrübe günleri ne",
+   "deneyim neye göre artıyor"
+  ],
+  "cevap": [
+   "Bir meslekte geçirdiğin her gün deneyim sayılıyor",
+   "Çalıştığın gün kadar deneyim birikir, üst meslekler bunu ister",
+   "Deneyim gün gün gelir, 1 oyun günü 1 saat"
+  ]
+ },
+ {
+  "id": "deneyim-benim",
+  "konu": "kisisel_meslek",
+  "sorular": [
+   "benim deneyimim kaç gün",
+   "kaç gün deneyimim var",
+   "deneyimime nereden bakarım",
+   "deneyim günüm ne kadar",
+   "toplam deneyimim kaç",
+   "ne kadar tecrübem var",
+   "deneyimim yetiyor mu",
+   "deneyim sayacım nerde",
+   "benim kac gun deneyimim var",
+   "tecrübem kaç gün oldu"
+  ],
+  "cevap": [
+   "Toplam deneyimin {o.deneyim} gün",
+   "Şu an {o.deneyim} gün deneyimin var, profilde de yazıyor",
+   "{o.deneyim} gün; Profil'de meslek meslek ayrıntısı var"
+  ]
+ },
+ {
+  "id": "deneyim-parayla",
+  "konu": "genel",
+  "sorular": [
+   "deneyim satın alınır mı",
+   "deneyimi parayla alabilir miyim",
+   "deneyim günlerini atlamak",
+   "para verip deneyim kazanılır mı",
+   "deneyimi hızlandırmak",
+   "deneyim beklemeden geçilir mi",
+   "deneyim için ödeme",
+   "deneyim parali mi",
+   "gerçek parayla tecrübe alınır mı",
+   "deneyim kısa yolu"
+  ],
+  "cevap": [
+   "Deneyim parayla atlanmıyor, günlerini doldurman lazım",
+   "Hiçbir şekilde satın alınmıyor, sadece çalışarak geliyor",
+   "Deneyimin kısa yolu yok, sabır işi"
+  ]
+ },
+ {
+  "id": "kumsaati-deneyim",
+  "konu": "genel",
+  "sorular": [
+   "kum saati deneyimi kısaltır mı",
+   "kum saatiyle deneyim kazanılır mı",
+   "deneyim için kum saati kullanılır mı",
+   "kum saati tecrübe verir mi",
+   "30 gün deneyimi kum saatiyle geçebilir miyim",
+   "kum saati deneyim günlerini atlatır mı",
+   "kumsaati deneyim",
+   "deneyimi kum saatiyle hızlandırmak"
+  ],
+  "cevap": [
+   "Hayır, Kum Saati deneyimi kısaltmaz",
+   "Kum Saati sadece kurs ve başvuru beklemesini kısaltır, deneyimi değil",
+   "Deneyim günleri gerçekten geçmeli, Kum Saati işe yaramıyor"
+  ]
+ },
+ {
+  "id": "deneyim-30-gun",
+  "konu": "genel",
+  "sorular": [
+   "30 gün deneyim nasıl dolar",
+   "30 gün deneyim ne kadar sürer",
+   "30 gün deneyim herhangi bir işte mi",
+   "30 gün kuryelik sayılır mı",
+   "30 gün deneyim gerçek hayatta kaç saat",
+   "otuz gün tecrübe",
+   "30 gun deneyim",
+   "memurluk için kuryelik deneyimi sayılır mı",
+   "deneyim hangi işte olmalı"
+  ],
+  "cevap": [
+   "Herhangi bir işte 30 gün yeter, kuryelik de sayılır",
+   "30 oyun günü, gerçekte 30 saat ediyor",
+   "Memur, muhasebeci, emlakçı için hangi işte olduğu fark etmiyor"
+  ]
+ },
+ {
+  "id": "deneyim-60-gun",
+  "konu": "genel",
+  "sorular": [
+   "60 gün deneyim nasıl dolar",
+   "60 gün deneyim ne kadar sürer",
+   "60 gün deneyim herhangi bir işte mi",
+   "60 gün ne kadar zaman",
+   "altmış gün tecrübe",
+   "60 gun deneyim lazim neden",
+   "işletme için 60 gün deneyim",
+   "60 günü nasıl doldururum"
+  ],
+  "cevap": [
+   "Herhangi bir işte toplam 60 gün yeter",
+   "60 oyun günü, gerçekte iki buçuk gün kadar",
+   "Kafe, dükkan ve nakliyeci için toplam 60 gün deneyim lazım"
+  ]
+ },
+ {
+  "id": "deneyim-usta-20",
+  "konu": "genel",
+  "sorular": [
+   "usta için 20 gün deneyim nereden",
+   "ustalık için hangi işte çalışmalıyım",
+   "20 gün işçilik şartı",
+   "kuryelik ustalık için sayılır mı",
+   "usta olmak için işçi deneyimi",
+   "20 gün inşaatta çalışmak",
+   "usta 20 gun",
+   "işçilik deneyimi nasıl dolar",
+   "usta olmak için başka deneyim geçmez mi"
+  ],
+  "cevap": [
+   "Usta için 20 gün özellikle inşaat işçiliği lazım",
+   "Başka işteki deneyim sayılmıyor, inşaat işçisi olarak 20 gün çalış",
+   "20 gün işçilik ve ustalık belgesi, ikisi birden"
+  ]
+ },
+ {
+  "id": "is-ariyorum",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "iş arıyorum",
+   "iş lazım",
+   "işim yok",
+   "iş bulmak istiyorum",
+   "bi iş bulsam",
+   "nerede iş bulurum",
+   "iş var mı",
+   "is ariyorum",
+   "çalışacak bir yer arıyorum",
+   "işsizim yardım",
+   "bana iş lazım",
+   "iş bulamıyorum",
+   "iş nasıl bulunur",
+   "nasıl işe girerim",
+   "iş bakıyorum",
+   "is varmi",
+   "eleman arayan var mı"
+  ],
+  "cevap": [
+   "Kariyer ekranındaki ilanlara bak, şartsızlar hemen başlıyor",
+   "Kuryelikle başla, şartsız ve işveren istemiyor",
+   "Kariyer'de En uygun ilan diye öneri çıkıyor, ona bir bak"
+  ]
+ },
+ {
+  "id": "kariyer-ekrani",
+  "konu": "yardim",
+  "sorular": [
+   "kariyer ekranı nerede",
+   "kariyer menüsü ne işe yarıyor",
+   "kariyer sekmesi",
+   "meslek seçme ekranı nerede",
+   "kariyer bölümünde ne var",
+   "kariyer ekranina nasil girilir",
+   "işlerin olduğu menü",
+   "kariyer paneli",
+   "meslekler nerede yazıyor"
+  ],
+  "cevap": [
+   "Kariyer sekmesi soldaki rayda, meslekler, ilanlar ve kurslar orada",
+   "Kariyer'de meslekler şartlarıyla, ilanlar ve kurslar var",
+   "Soldan Kariyer'e gir, her şey orada"
+  ]
+ },
+ {
+  "id": "ilanlar",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "iş ilanları nerede",
+   "ilanlara nereden bakılır",
+   "açık ilanlar",
+   "kim eleman arıyor",
+   "ilan listesi",
+   "ilanlara bak",
+   "hangi işletmeler eleman alıyor",
+   "ilanlar nerde",
+   "iş ilanı var mı",
+   "yeni ilan çıktı mı",
+   "ilan görmüyorum"
+  ],
+  "cevap": [
+   "Kariyer ekranında İlanlara bak düğmesi var",
+   "İlanlar Kariyer'de, maaşları da yazıyor",
+   "Kariyer'deki ilanlara bak, işletmeler oraya eleman ilanı açıyor"
+  ]
+ },
+ {
+  "id": "basvuru-nasil",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "işe nasıl başvurulur",
+   "başvuru nasıl yapılır",
+   "ilana başvurmak",
+   "başvurdum ne olacak",
+   "başvuru sonucu ne zaman",
+   "başvurum kabul edilir mi",
+   "basvuru nasil yapilir",
+   "ilana başvurdum cevap yok",
+   "başvuru ne kadar sürer",
+   "işe alınmak ne kadar sürer"
+  ],
+  "cevap": [
+   "İlanı seçip başvur; işveren kabul edince başlıyorsun",
+   "Başvurunun bir bekleme süresi var, Kum Saati kısaltır",
+   "İtibarın yüksekse başvurun daha çok kabul görüyor"
+  ]
+ },
+ {
+  "id": "basvuru-itibar",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "başvuruda itibar önemli mi",
+   "itibar işe alınmayı etkiler mi",
+   "neden başvurum reddedildi",
+   "itibarım düşük işe alınmıyorum",
+   "işe alınmak için ne önemli",
+   "başvuru reddi",
+   "işveren neye bakıyor",
+   "itibar iş başvurusu"
+  ],
+  "cevap": [
+   "İtibar başvurularda önemli, işveren ona bakıyor",
+   "Borcunu ödemek, bağış yapmak itibarını artırır, başvurun kolaylaşır",
+   "İtibarın düşükse başka ilanları dene, kuryelik de her zaman açık"
+  ]
+ },
+ {
+  "id": "en-uygun-ilan",
+  "konu": "is_ariyorum",
+  "sorular": [
+   "bana en uygun iş hangisi",
+   "en uygun ilan ne",
+   "hangi ilana başvurayım",
+   "benim için iyi iş",
+   "bana göre iş var mı",
+   "hangi işi yapmalıyım şu an",
+   "şartlarıma uyan iş",
+   "bana uyan meslek",
+   "en iyi ilan hangisi"
+  ],
+  "cevap": [
+   "Kariyer'de En uygun ilan önerisi çıkıyor, şartlarına göre seçiyor",
+   "Şu an {o.meslek} gözüküyorsun, bir üst kademeye bak",
+   "Şartlarını tutan en yüksek kazançlı ilana başvur"
+  ]
+ },
+ {
+  "id": "para-bitti",
+  "konu": "dert",
+  "sorular": [
+   "param bitti ne yapayım",
+   "param kalmadı",
+   "beş kuruşum yok",
+   "param sıfırlandı",
+   "paran bitti yazıyor",
+   "iflas ettim",
+   "param yok ne yapcam",
+   "para bitince ne oluyor",
+   "param bitti işe girmem lazım mı",
+   "borçluyum param yok",
+   "meteliğe kurşun atıyorum",
+   "para kalmayınca oyun bitiyor mu"
+  ],
+  "cevap": [
+   "Para bitince bir işe girmek zorunlu, borç kapanana kadar yatırım yapamazsın",
+   "Hemen kuryeliğe başla, şartsız ve beklemesiz",
+   "Oyun bitmiyor, çalışıp borcunu kapatınca yine yatırım yapabilirsin"
+  ]
+ },
+ {
+  "id": "hemen-para",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "hemen para kazanmak istiyorum",
+   "en hızlı nasıl para kazanırım",
+   "acil para lazım",
+   "bugün para nasıl kazanılır",
+   "çabuk para",
+   "hızlı para kazanma yolu",
+   "acil nakit lazım ne yapayım",
+   "hemen para",
+   "hizli para",
+   "kısa yoldan para"
+  ],
+  "cevap": [
+   "Kuryelik en hızlısı, hemen başlar görev başı {gorev.kurye}",
+   "Kurye ol, günde 5 görev yap; kazanç ay sonunda yatar",
+   "Beklemesiz iş kuryelik, ilan da istemiyor"
+  ]
+ },
+ {
+  "id": "ayda-20-gorev",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "ayda kaç görev yapmam lazım",
+   "20 görev ne demek",
+   "tam maaş için kaç görev",
+   "maaşın tam yatması için",
+   "20 görevi yapmazsam ne olur",
+   "ayda 20 görev şart mı",
+   "görev eksik kalırsa maaş kesilir mi",
+   "20 gorev",
+   "maaşım neden eksik yattı",
+   "eksik görev maaşı düşürür mü",
+   "kaç görev yaparsam tam maaş alırım"
+  ],
+  "cevap": [
+   "İşletmede çalışan ayda 20 görevi yaparsa maaşı tam yatar",
+   "20 görevin altında kalırsan maaşın eksik yatar",
+   "Ayda 20 görev, günde 1 bile yetiyor aslında"
+  ]
+ },
+ {
+  "id": "maas-ne-zaman",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "maaş ne zaman yatıyor",
+   "maaşım ne zaman gelir",
+   "maaş günü ne zaman",
+   "kazancım ne zaman hesaba geçer",
+   "para ne zaman yatar",
+   "ay sonu mu yatıyor",
+   "maas ne zaman",
+   "görev parası hemen mi geliyor",
+   "maaş kaç günde bir",
+   "ay sonu ne zaman",
+   "maaşımı ne zaman alırım",
+   "kazandığım para nerede"
+  ],
+  "cevap": [
+   "Kazanç ay sonunda yatıyor, ay 30 oyun günü",
+   "Görev paran birikiyor, ay sonunda hesabına geçer",
+   "Özet'te ay sonunda yatacak kazanç yazıyor, orada birikiyor"
+  ]
+ },
+ {
+  "id": "maas-yatmadi",
+  "konu": "dert",
+  "sorular": [
+   "maaşım yatmadı",
+   "param gelmedi",
+   "maaş neden yatmadı",
+   "ay bitti para yok",
+   "maaşımı alamadım",
+   "patronum maaş ödemedi",
+   "maas yatmadi",
+   "maaşım eksik geldi",
+   "param yatmadı neden",
+   "maaşım gecikti"
+  ],
+  "cevap": [
+   "Maaş ay sonunda yatar; patronun parası yoksa borç yazılır",
+   "Görevin 20'nin altındaysa eksik yatmış olabilir",
+   "Patron ödemezse borç olarak yazılıyor ve onun itibarı düşüyor"
+  ]
+ },
+ {
+  "id": "asgari-ucret",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "asgari ücret ne kadar",
+   "asgari ücret kaç",
+   "asgari maaş ne",
+   "oyunda asgari ücret var mı",
+   "minimum maaş ne kadar",
+   "asgari ucret kac tl",
+   "en az maaş ne",
+   "asgari ücretin altında maaş verilir mi",
+   "asgari ücret artıyor mu",
+   "asgari kaç bin"
+  ],
+  "cevap": [
+   "Asgari ücret {asgari}",
+   "Oyun içi asgari ücret {asgari}, kimse bunun altında maaş veremez",
+   "{asgari}, fiyatlarla birlikte o da yavaş yavaş artıyor"
+  ]
+ },
+ {
+  "id": "gorev-nedir",
+  "konu": "yardim",
+  "sorular": [
+   "görev nasıl yapılır",
+   "görev nedir",
+   "görev yap butonu nerede",
+   "görevler nerede",
+   "nasıl görev yaparım",
+   "görev yapmak ne demek",
+   "görevler ne işe yarıyor",
+   "gorev nasil yapilir",
+   "iş görevi nerde"
+  ],
+  "cevap": [
+   "Özet'te Görev yap düğmesi var, her basış bir görev",
+   "Görev yaptıkça kazanç birikir, ay sonunda yatar",
+   "Görevini yap, hem para hem Kum Saati için sayılıyor"
+  ]
+ },
+ {
+  "id": "gunluk-gorev-limit",
+  "konu": "yardim",
+  "sorular": [
+   "günde kaç görev yapabilirim",
+   "bugünlük görevler bitti diyor",
+   "görev hakkım bitti",
+   "günlük görev sınırı",
+   "daha fazla görev yapamıyorum",
+   "gorev limiti",
+   "günde en fazla kaç görev",
+   "görevler ne zaman yenilenir",
+   "görev sayacı",
+   "bugünkü görevlerim bitti"
+  ],
+  "cevap": [
+   "Çoğu işte günde 5 görev var, usta ve nakliyecide 2",
+   "Görevler bir sonraki oyun gününde yenilenir, yani bir saat sonra",
+   "Bugünlük bittiyse bekle, 1 oyun günü 1 saat"
+  ]
+ },
+ {
+  "id": "maasli-gorev",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "memur görev yapmak zorunda mı",
+   "sabit maaşlılar görev yapar mı",
+   "muhasebeci görev yapmazsa maaş alır mı",
+   "oyuna girmesem maaş yatar mı",
+   "oyuna girmeden para kazanılır mı",
+   "maaşlı meslekte görev var mı",
+   "bu meslekte görev yok diyor",
+   "girmeden maaş",
+   "oyun kapalıyken maaş yatıyor mu"
+  ],
+  "cevap": [
+   "Memur ve muhasebecide görev yok, oyuna girmesen de maaş yatar",
+   "Sabit maaşlılar her ay maaşını alır, görev şartı yok",
+   "Oyun kapalıyken de zaman akıyor, maaşlı meslekte maaş geliyor"
+  ]
+ },
+ {
+  "id": "maas-vergi",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "maaştan vergi kesiliyor mu",
+   "gelir vergisi var mı",
+   "vergi ne kadar",
+   "asgari ücretten vergi alınıyor mu",
+   "vergi oranı kaç",
+   "maaşımdan kesinti var mı",
+   "vergi kesintisi",
+   "oyunda vergi var mi",
+   "kazancın vergisi"
+  ],
+  "cevap": [
+   "Asgari ücret civarı vergiden muaf, üstüne kademeli vergi var",
+   "Düşük gelir vergisiz; gelir arttıkça yüzde 20, sonra yüzde 30 dilim",
+   "Şirket kârından da vergi kesiliyor, işletme açarsan bil"
+  ]
+ },
+ {
+  "id": "patron-odemezse",
+  "konu": "genel",
+  "sorular": [
+   "patronun parası yoksa ne olur",
+   "işverenim maaş ödeyemezse",
+   "patron batarsa maaşım",
+   "patron ödemezse ne olur",
+   "işveren borç yaparsa",
+   "patronun parası bitti",
+   "maaşı ödenmeyen çalışan",
+   "patron maaş vermiyor"
+  ],
+  "cevap": [
+   "Patronun parası yoksa maaş borç olarak yazılır, itibarı düşer",
+   "Borç yazılıyor, sonradan ödüyor; o arada patronun itibarı gidiyor",
+   "İstersen istifa edip başka ilana başvurabilirsin"
+  ]
+ },
+ {
+  "id": "maas-pazarlik",
+  "konu": "zam_istegi",
+  "sorular": [
+   "patrondan zam nasıl istenir",
+   "maaşımı artırmak istiyorum",
+   "zam istiyorum",
+   "işverenimle maaş konuşmak",
+   "maaş pazarlığı",
+   "zam alabilir miyim",
+   "maaşım az zam lazım",
+   "patronuma zam istesem",
+   "maas artisi nasil olur",
+   "zam nasıl alınır"
+  ],
+  "cevap": [
+   "Bir oyuncunun işletmesinde çalışıyorsan maaşı işverenle konuşursun",
+   "Memur ve muhasebecide zam kıdemle kendiliğinden gelir",
+   "Patronun maaşını Çalışanlar ekranından değiştirebiliyor, iste bakalım"
+  ]
+ },
+ {
+  "id": "maasim-ne-kadar",
+  "konu": "kisisel_meslek",
+  "sorular": [
+   "benim maaşım ne kadar",
+   "ne kadar kazanıyorum",
+   "bu ay ne kazandım",
+   "maaşıma nereden bakarım",
+   "kazancımı nerede görürüm",
+   "benim gelirim ne",
+   "ay sonu ne yatacak",
+   "maasim kac",
+   "bu ay kaç para birikti"
+  ],
+  "cevap": [
+   "Özet'te ay sonunda yatacak kazanç yazıyor",
+   "Şu an {o.meslek} olarak çalışıyorsun, birikenini Özet'te görürsün",
+   "Ay sonunda yatacak kazanç Özet ekranında, nakitin şu an {o.nakit}"
+  ]
+ },
+ {
+  "id": "mesleğim-ne",
+  "konu": "kisisel_meslek",
+  "sorular": [
+   "benim mesleğim ne",
+   "şu an ne işi yapıyorum",
+   "mesleğim neydi",
+   "ben ne iş yapıyorum",
+   "hangi meslekteyim",
+   "şimdiki işim ne",
+   "benim isim ne",
+   "mesleğimi unuttum"
+  ],
+  "cevap": [
+   "Şu an {o.meslek} olarak görünüyorsun",
+   "Mesleğin {o.meslek}, Kariyer'de de yazıyor",
+   "{o.meslek}; değiştirmek istersen Kariyer'e bak"
+  ]
+ },
+ {
+  "id": "isletme-acma",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "işletme nasıl açılır",
+   "kendi işimi kurmak istiyorum",
+   "işletme açmak için ne lazım",
+   "hangi işletmeleri açabilirim",
+   "işletme kurmak",
+   "şirket açmak istiyorum",
+   "isletme acmak",
+   "kendi patronum olmak istiyorum",
+   "işyeri açmak",
+   "işletme açma şartları",
+   "dükkan kafe falan nasıl açılıyor",
+   "patron nasıl olunur"
+  ],
+  "cevap": [
+   "Kafe, dükkan ya da taşeron açabilirsin; sermaye ve deneyim lazım",
+   "Kafe ve dükkan için 60 gün deneyim, taşeron için 20 gün ustalık gerekiyor",
+   "Kariyer'den işletme sahibi mesleğini seç, kuruluş parası peşin gider"
+  ]
+ },
+ {
+  "id": "kafe-kurulus",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "kafe açmak kaç para",
+   "kafe kuruluşu ne kadar",
+   "kafe açmanın maliyeti",
+   "restoran açmak kaç tl",
+   "kafe kurmak için ne kadar para",
+   "kafe kac paraya acilir",
+   "kafenin kuruluş ücreti",
+   "kafe sermayesi ne kadar",
+   "kafe açmaya kaç bin lazım",
+   "kafe pahalı mı açması"
+  ],
+  "cevap": [
+   "Kafe kuruluşu {kafe.kurulus}",
+   "{kafe.kurulus} tutuyor, sermayen en az {kafe.sermaye} olmalı",
+   "Kafe {kafe.kurulus}, dükkan daha ucuz {dukkan.kurulus}"
+  ]
+ },
+ {
+  "id": "kafe-gider",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "kafenin aylık gideri ne kadar",
+   "kafe sabit gider",
+   "kafe masrafı kaç",
+   "kafenin kirası ne",
+   "kafe aylık ne harcar",
+   "kafe gideri",
+   "kafe ayda kaç para yer",
+   "kafe isletme gideri ne",
+   "kafede elektrik su masrafı"
+  ],
+  "cevap": [
+   "Kafenin aylık sabit gideri {kafe.gider}, maaşlar ayrı",
+   "{kafe.gider} sabit gider var, üstüne çalışan maaşları",
+   "Ayda {kafe.gider} gidiyor, malzeme payı da cirodan düşülüyor"
+  ]
+ },
+ {
+  "id": "kafe-calisan",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "kafe kaç çalışan ister",
+   "kafede kaç kişi çalışır",
+   "kafenin kadrosu kaç",
+   "kafeye kaç garson lazım",
+   "kafe için kaç eleman",
+   "kafede kimler çalışabilir",
+   "kafeye kimi işe alırım",
+   "kafe kadro",
+   "kafede muhasebeci çalışır mı"
+  ],
+  "cevap": [
+   "Kafe 3 kişilik kadro ister, garson ya da muhasebeci alırsın",
+   "3 çalışan; boş kalanların yerine geçici personel çalışır",
+   "Kafeye garson ve muhasebeci alınabiliyor, toplam 3 kişi"
+  ]
+ },
+ {
+  "id": "dukkan-kurulus",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "dükkan açmak kaç para",
+   "market açmak ne kadar",
+   "dükkan kuruluşu",
+   "dükkan açmanın maliyeti",
+   "market kurmak için ne kadar para",
+   "dukkan kac paraya acilir",
+   "dükkanın kuruluş ücreti",
+   "dükkan sermayesi ne kadar",
+   "bakkal açmaya kaç bin lazım"
+  ],
+  "cevap": [
+   "Dükkan kuruluşu {dukkan.kurulus}",
+   "{dukkan.kurulus}, sermayen en az {dukkan.sermaye} olmalı",
+   "İşletmelerin en ucuzu dükkan, {dukkan.kurulus}"
+  ]
+ },
+ {
+  "id": "dukkan-gider",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "dükkanın aylık gideri ne kadar",
+   "dükkan sabit gider",
+   "market masrafı kaç",
+   "dükkan ayda ne harcar",
+   "dükkan gideri",
+   "dükkan ayda kaç para yer",
+   "market aylık gider",
+   "dukkan isletme gideri"
+  ],
+  "cevap": [
+   "Dükkanın aylık sabit gideri {dukkan.gider}, maaşlar ayrı",
+   "{dukkan.gider} sabit gider, üstüne iki kişinin maaşı",
+   "Ayda {dukkan.gider}, mal maliyeti de cirodan düşüyor"
+  ]
+ },
+ {
+  "id": "dukkan-calisan",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "dükkan kaç çalışan ister",
+   "markette kaç kişi çalışır",
+   "dükkanın kadrosu kaç",
+   "dükkana kaç kasiyer lazım",
+   "market için kaç eleman",
+   "dükkanda kimler çalışabilir",
+   "dükkana kimi işe alırım",
+   "dukkan kadro"
+  ],
+  "cevap": [
+   "Dükkan 2 kişilik kadro ister, kasiyer ya da muhasebeci",
+   "2 çalışan; eksik kalırsa geçici personel girer",
+   "Dükkana market çalışanı ve muhasebeci alınabiliyor"
+  ]
+ },
+ {
+  "id": "kafe-mi-dukkan-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "kafe mi açayım dükkan mı",
+   "kafe mi dükkan mı daha iyi",
+   "hangisi daha karlı kafe dükkan",
+   "dükkan mı kafe mi kazandırır",
+   "kafeyle dükkan farkı",
+   "kafe dukkan hangisi",
+   "ilk işletme olarak ne açayım",
+   "hangi işletme daha iyi",
+   "en karlı işletme hangisi"
+  ],
+  "cevap": [
+   "Dükkan daha ucuz ve 2 kişiyle döner, kafe daha pahalı ama cirosu biraz yüksek",
+   "Paran azsa dükkan, kadro bulabiliyorsan kafe",
+   "Yakınında aynı türden çok işletme varsa müşteri bölünür, ona da bak"
+  ]
+ },
+ {
+  "id": "musteri",
+  "konu": "genel",
+  "sorular": [
+   "müşteri nereden geliyor",
+   "işletmeme kim alışveriş yapar",
+   "müşteriler oyuncu mu",
+   "müşteri nasıl gelir",
+   "müşteri gelmiyor",
+   "npc müşteri ne",
+   "işletmeye müşteri çekmek",
+   "musteri nerden",
+   "müşteri sayısı neye bağlı",
+   "dükkanıma kimse gelmiyor"
+  ],
+  "cevap": [
+   "Müşteriler oyunun kendi insanları, NPC olarak gelip harcıyor",
+   "Ciro konuma, çalışan sayısına ve kaliteye bağlı",
+   "Aynı türden çok işletme varsa müşteri aralarında bölünüyor"
+  ]
+ },
+ {
+  "id": "ciro",
+  "konu": "genel",
+  "sorular": [
+   "ciro neye bağlı",
+   "ciroyu nasıl artırırım",
+   "işletmem az kazanıyor",
+   "ciro nasıl yükselir",
+   "satışlarım düşük",
+   "günlük ciro ne kadar",
+   "cironun artması için ne yapmalı",
+   "ciro dusuk neden",
+   "işletmenin geliri neden az"
+  ],
+  "cevap": [
+   "Ciro konuma, çalışan sayısına ve kaliteye bağlı",
+   "Kadroyu doldur, her gün İşletmeni yönet ile ilgilen; ciro artar",
+   "Geçici personel verimsiz, gerçek çalışan alırsan ciro yükselir"
+  ]
+ },
+ {
+  "id": "isletme-yonet",
+  "konu": "genel",
+  "sorular": [
+   "işletmeni yönet ne işe yarıyor",
+   "patron görev yapar mı",
+   "işletme sahibi her gün ne yapmalı",
+   "yönetim görevi",
+   "işletmeyi yönetmek",
+   "yönetim görevleri bitti diyor",
+   "patron olarak görev",
+   "isletmeni yonet",
+   "patronun günlük işi ne"
+  ],
+  "cevap": [
+   "İşletmeni yönet her gün o günkü ciroyu artırıyor",
+   "Patronun günde 3 yönetim görevi var, yaparsan ciro yükselir",
+   "Yönetim görevleri de günlük hedefe sayılıyor, Kum Saati için"
+  ]
+ },
+ {
+  "id": "ayni-turden-cok",
+  "konu": "genel",
+  "sorular": [
+   "aynı türden çok işletme olursa ne olur",
+   "herkes kafe açarsa",
+   "çok kafe var müşteri azaldı",
+   "rakip işletme",
+   "rekabet nasıl işliyor",
+   "pazar doygunluğu",
+   "her yer dükkan dolu",
+   "ayni isletmeden cok var",
+   "rakip çok kazanç düşer mi",
+   "herkes market açmış"
+  ],
+  "cevap": [
+   "Aynı türden çok işletme olunca müşteri bölünüyor",
+   "Herkes kafe açarsa kafeler daha az kazanır, az olan türe yönel",
+   "Pazar doyuyor, o yüzden kimsenin açmadığı türü seçmek mantıklı"
+  ]
+ },
+ {
+  "id": "gecici-personel",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "geçici personel nedir",
+   "eleman yoksa kim çalışıyor",
+   "boş kadro ne olur",
+   "geçici çalışan pahalı mı",
+   "npc personel",
+   "çalışanım yok işletme çalışır mı",
+   "gecici personel",
+   "eksik çalışanın yerine kim",
+   "kadroyu doldurmasam ne olur"
+  ],
+  "cevap": [
+   "Eksik çalışanın yerine geçici personel çalışır, pahalı ve verimsiz",
+   "Geçici personel asgarinin üstüne yüzde 20 fazla tutar, verimi de düşük",
+   "İşletme durmaz ama kâr düşer, gerçek eleman al"
+  ]
+ },
+ {
+  "id": "cevrimdisi-calisan",
+  "konu": "genel",
+  "sorular": [
+   "çalışanım oyuna girmezse ne olur",
+   "çevrimdışı çalışan",
+   "çalışan görev yapmazsa",
+   "elemanım hiç girmiyor",
+   "çalışan offline olunca",
+   "oyuncu çalışan gelmezse",
+   "çalışanım tembel",
+   "calisan girmiyor"
+  ],
+  "cevap": [
+   "Gelmeyen çalışanın yerine geçici NPC çalışır ama verimi düşük",
+   "Çalışan görev yapmazsa hem verim düşer hem maaşı tam yatmaz",
+   "Aktif çalışan seç, gelmeyenin yerini NPC verimsiz doldurur"
+  ]
+ },
+ {
+  "id": "eleman-bulma",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "eleman nasıl bulurum",
+   "çalışan arıyorum",
+   "işletmeme eleman lazım",
+   "işçi nasıl alınır",
+   "eleman arıyorum",
+   "personel lazım",
+   "birini işe almak istiyorum",
+   "nasil eleman bulunur",
+   "çalışan bulamıyorum",
+   "garson arıyorum",
+   "işe adam almak",
+   "kasiyer arıyorum"
+  ],
+  "cevap": [
+   "İşletme ekranından ilan aç, başvuranları görüp işe alırsın",
+   "İlan açınca başvurular gelir, Başvurular'dan kabul edersin",
+   "Mesleği işletmene uygun olanı alabilirsin, maaş en az asgari ücret"
+  ]
+ },
+ {
+  "id": "ilan-acma",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "ilan nasıl açılır",
+   "iş ilanı vermek",
+   "eleman ilanı açmak",
+   "ilanlarım nerede",
+   "ilan vermek istiyorum",
+   "ilan açma",
+   "ilan nasil acilir",
+   "ilanı nasıl kapatırım",
+   "ilanda maaşı nasıl belirlerim",
+   "ilan ücretli mi"
+  ],
+  "cevap": [
+   "İşletme ekranında İlanlarım bölümünden ilan açarsın",
+   "Pozisyonu ve maaşı yazıp ilanı açıyorsun, başvurular gelince bakarsın",
+   "İş bitince ilanı kapatabilirsin, başvuruları da silinir"
+  ]
+ },
+ {
+  "id": "basvurular-gorme",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "başvuranları nerede görürüm",
+   "kim başvurdu",
+   "başvurular nerede",
+   "başvuranı nasıl işe alırım",
+   "başvuru kabul etmek",
+   "başvurana bakmak",
+   "basvurulari gormek",
+   "başvuranlar arasından seçmek",
+   "kimi seçeyim başvuranlardan"
+  ],
+  "cevap": [
+   "İşletme ekranında Başvurular düğmesi var",
+   "Başvuranın deneyimi, itibarı ve istediği maaş yazıyor, uygun olanı al",
+   "İstediği maaşa bak, ilandakinden yüksek isteyen de olabiliyor"
+  ]
+ },
+ {
+  "id": "kadro-dolu",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "kadro dolu diyor",
+   "daha fazla eleman alamıyorum",
+   "fazla çalışan alınır mı",
+   "kadroyu büyütmek",
+   "kadro sınırı",
+   "neden yeni eleman alamıyorum",
+   "kadro dolu ne demek",
+   "kaç kişiye kadar alabilirim"
+  ],
+  "cevap": [
+   "Her işletmenin kadrosu sabit: dükkan 2, kafe 3, taşeron 4",
+   "Kadro dolunca yeni eleman alınmıyor, birini çıkarman lazım",
+   "Kadro sınırı türe göre, fazlasını almıyor"
+  ]
+ },
+ {
+  "id": "meslek-uygun-degil",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "bu kişinin mesleği uygun değil diyor",
+   "kafeye kurye alabilir miyim",
+   "hangi meslek hangi işletmede çalışır",
+   "dükkana garson alınır mı",
+   "taşerona kimi alabilirim",
+   "mesleği uygun değil",
+   "kimi işe alabilirim",
+   "muhasebeci her yerde çalışır mı",
+   "bu meslekteki kişi bende çalışabilir mi"
+  ],
+  "cevap": [
+   "Kafe garson, dükkan kasiyer, taşeron işçi ve usta alır; muhasebeci hepsinde çalışır",
+   "Kurye ve memur işletmede çalışmaz, işverenleri yok",
+   "Mesleği işletme türüne uymayanı alamazsın"
+  ]
+ },
+ {
+  "id": "calisan-maas",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "çalışana ne kadar maaş vermeliyim",
+   "elemana kaç para vereyim",
+   "çalışan maaşı en az ne",
+   "maaşı asgari ücretin altında verebilir miyim",
+   "çalışanın maaşını ben mi belirliyorum",
+   "eleman maaşı",
+   "calisana ne kadar odenir",
+   "maaş en az asgari ücret olmalı diyor"
+  ],
+  "cevap": [
+   "Maaş en az asgari ücret, {asgari}",
+   "Maaşı sen belirlersin ama asgarinin altına inemezsin",
+   "Az verirsen moral düşer, istifa edebilir; makul bir maaş ver"
+  ]
+ },
+ {
+  "id": "calisan-zam",
+  "konu": "zam_istegi",
+  "sorular": [
+   "çalışanım zam istiyor",
+   "elemana zam yapmak",
+   "çalışanın maaşını artırmak",
+   "zam istiyor yazıyor",
+   "çalışana zam vermeli miyim",
+   "maaşını nasıl değiştiririm",
+   "calisana zam",
+   "zam vermezsem ne olur",
+   "çalışanın maaşını düşürebilir miyim"
+  ],
+  "cevap": [
+   "Çalışanlar'da maaşı değiştir'e bas, yüzdeyle artırırsın",
+   "Zam istediği tutar yazıyor, vermezsen morali düşer",
+   "Maaşı düşürebilirsin de ama asgarinin altına inemez, moral de gider"
+  ]
+ },
+ {
+  "id": "calisan-istifa",
+  "konu": "eleman_ariyorum",
+  "sorular": [
+   "çalışanım istifa ediyor",
+   "eleman istifa edecek yazıyor",
+   "çalışan neden istifa eder",
+   "istifayı nasıl önlerim",
+   "çalışanım ayrıldı",
+   "elemanım işi bıraktı",
+   "calisan istifa",
+   "işçim gitti ne yapayım",
+   "çalışanın morali düşük"
+  ],
+  "cevap": [
+   "Morali düşen çalışan istifa edebilir, maaşına ve zam isteğine bak",
+   "Zam isteğini karşılarsan genelde kalıyor",
+   "Giderse yerini geçici personel tutar, yeni ilan aç"
+  ]
+ },
+ {
+  "id": "isletme-kar",
+  "konu": "genel",
+  "sorular": [
+   "işletme kar ediyor mu",
+   "işletme ne kadar kazandırır",
+   "kafe ayda ne kadar kazanır",
+   "dükkan kârı ne kadar",
+   "işletme açmak karlı mı",
+   "işletmenin kârı",
+   "patron ayda ne kazanır",
+   "isletme kac para kazandirir",
+   "kafe sahibi ne kadar kazanıyor"
+  ],
+  "cevap": [
+   "Kâr = ciro eksi mal, sabit gider ve maaşlar; kadro doluysa iyi kazandırır",
+   "Kafe ve dükkan dolu kadroyla maaşlı işlerden fazla getiriyor",
+   "Rakip çoksa müşteri bölünüyor, kâr düşebilir"
+  ]
+ },
+ {
+  "id": "isletme-zarar",
+  "konu": "dert",
+  "sorular": [
+   "işletmem zarar ediyor",
+   "dükkanım para kaybediyor",
+   "kafem batıyor",
+   "zarar ediyorum ne yapayım",
+   "işletme zarar",
+   "işletmem kar etmiyor",
+   "kafe batiyo",
+   "giderler gelirden fazla"
+  ],
+  "cevap": [
+   "Kadroyu gerçek çalışanla doldur, geçici personel pahalı",
+   "Her gün yönetim görevlerini yap, ciroyu artırır",
+   "Rakip çoksa kapatıp başka türe geçmeyi düşün"
+  ]
+ },
+ {
+  "id": "isletme-kapatma",
+  "konu": "genel",
+  "sorular": [
+   "işletmeyi nasıl kapatırım",
+   "dükkanı kapatmak istiyorum",
+   "kafemi kapatsam ne olur",
+   "işletme kapatma",
+   "işletmeyi satabilir miyim",
+   "isletmeyi kapat",
+   "patronluğu bırakmak",
+   "işletme kapatınca para geri gelir mi"
+  ],
+  "cevap": [
+   "İşletme ekranından kapatabilirsin, sonra başka meslek seçersin",
+   "Kapatınca çalışanların işsiz kalır, önceden düşün",
+   "Kuruluş parası tam geri gelir mi bilmiyorum, kapatmadan bak"
+  ]
+ },
+ {
+  "id": "isletme-kredisi",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "işletme açmak için kredi çekebilir miyim",
+   "işletme kredisi var mı",
+   "kafe açmak için kredi",
+   "sermaye için kredi",
+   "işletme kredisi kaç ay",
+   "dükkan için banka kredisi",
+   "isletme kredisi",
+   "param yetmiyor işletmeye kredi"
+  ],
+  "cevap": [
+   "İşletme kredisi var, kuruluşun en fazla yüzde 70'i, 60 ay vadeli",
+   "Gelirin taksiti karşılamalı, yoksa banka vermiyor",
+   "Aylık faiz {faiz}, iyi hesapla"
+  ]
+ },
+ {
+  "id": "isletme-konum",
+  "konu": "genel",
+  "sorular": [
+   "işletmeyi nereye açayım",
+   "konum ciroyu etkiler mi",
+   "hangi semtte kafe açılır",
+   "işletmenin yeri önemli mi",
+   "konum seçimi",
+   "en iyi yer neresi işletme için",
+   "isletme yeri",
+   "kafe için iyi semt"
+  ],
+  "cevap": [
+   "Ciro konuma da bağlı, aynı türden az işletme olan yer iyi",
+   "Rakibin az olduğu yere aç, müşteri bölünmesin",
+   "Konum önemli, ama asıl fark kadro ve kaliteden çıkıyor"
+  ]
+ },
+ {
+  "id": "yeni-baslayan",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "yeni başladım ne yapayım",
+   "oyuna yeni girdim nereden başlamalıyım",
+   "ilk ne yapmalıyım",
+   "yeni başlayana tavsiye",
+   "acemiyim ne yapayım",
+   "ilk gün ne yapılır",
+   "oyunu yeni indirdim",
+   "başlangıçta ne yapmak lazım",
+   "yeniyim yol göster",
+   "nasıl başlamalıyım",
+   "ilk adım ne olmalı",
+   "yeni oyuncu ne yapmalı"
+  ],
+  "cevap": [
+   "Kuryelikle başla, şartsız; deneyim birikirken kurs parası topla",
+   "Önce bir işe gir, 30 gün dolunca kurslu bir mesleğe geç",
+   "100 bini hemen harcama, kamu sınavı kursu ucuz ve memurluk sabit maaş"
+  ]
+ },
+ {
+  "id": "yuzbin-ne-yapilir",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "100 binle ne yapabilirim",
+   "başlangıç parasını nasıl kullanayım",
+   "yüz bin lirayla ne yapılır",
+   "ilk paramı nereye harcayayım",
+   "100 bin nereye yatırılır",
+   "başlangıç parası ne işe yarar",
+   "100k ile ne yapsam",
+   "elimdeki 100 bin yeter mi"
+  ],
+  "cevap": [
+   "100 binle işletme açılmaz ama kurs alınır, kamu sınavı {kurs.kpss}",
+   "Birkaç aylık geçim ve kira var, {yasam} ve {evkira}; önce bir işe gir",
+   "Kurs al, deneyim doldur, sonra büyük işlere birikir"
+  ]
+ },
+ {
+  "id": "en-cok-kazandiran",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "en çok kazandıran meslek hangisi",
+   "en iyi meslek ne",
+   "hangi iş en çok para kazandırır",
+   "en yüksek maaş hangisi",
+   "en karlı meslek",
+   "en cok para veren is",
+   "zengin eden meslek",
+   "hangi meslek daha çok kazanır",
+   "en iyi kazanç hangi işte",
+   "para basan meslek"
+  ],
+  "cevap": [
+   "Başta usta ve muhasebeci iyi kazanıyor, usta {maas.usta}, muhasebeci {maas.muhasebeci}",
+   "Uzun vadede işletme sahipleri ve 4. kademe en çok kazanıyor",
+   "Nakliyeci de iyi, ayda {maas.nakliyeci}, ama araç parası istiyor"
+  ]
+ },
+ {
+  "id": "en-kolay",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "en kolay meslek hangisi",
+   "en kolay iş ne",
+   "zahmetsiz meslek",
+   "en rahat iş hangisi",
+   "en az uğraştıran meslek",
+   "kolay para kazanılan iş",
+   "yorulmadan para",
+   "en kolay is hangisi"
+  ],
+  "cevap": [
+   "En kolayı memurluk, görev yok, maaş sabit",
+   "Şartsızlar arasında kurye en kolayı, hemen başlıyor",
+   "Rahat olsun diyorsan sabit maaşlı iş seç, memur ya da muhasebeci"
+  ]
+ },
+ {
+  "id": "sabit-mi-gorev-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "sabit maaş mı görevle kazanmak mı",
+   "maaşlı iş mi görevli iş mi",
+   "hangisi iyi sabit maaş görev",
+   "görev mi maaş mı",
+   "sabit maaş daha mı iyi",
+   "görevle kazanmak mantıklı mı",
+   "maasli mi gorevli mi",
+   "sabit gelir mi görev geliri mi",
+   "her gün girmek istemiyorum hangi iş"
+  ],
+  "cevap": [
+   "Sık giriyorsan görevli işler, az giriyorsan sabit maaş daha iyi",
+   "Memur ve muhasebeci oyuna girmesen de maaş alır",
+   "Kurye, usta gibi görevli işlerde çalıştıkça daha çok kazanırsın"
+  ]
+ },
+ {
+  "id": "az-giriyorum",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "oyuna az giriyorum hangi meslek",
+   "vaktim yok hangi iş",
+   "günde bir kere giriyorum",
+   "meşgulüm hangi işi seçeyim",
+   "az oynayan için meslek",
+   "sık giremiyorum ne yapayım",
+   "oyuna pek giremiyorum",
+   "vakit az meslek önerisi"
+  ],
+  "cevap": [
+   "Az giriyorsan memur ya da muhasebeci ol, görev istemiyor",
+   "Sabit maaşlı işler sen yokken de kazandırıyor",
+   "Görevli işler her gün emek istiyor, sana maaşlı daha uygun"
+  ]
+ },
+ {
+  "id": "kurye-mi-garson-mu",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "kurye mi garson mu",
+   "kuryelik mi garsonluk mu",
+   "kurye mi inşaat işçisi mi",
+   "şartsız işlerden hangisi iyi",
+   "kasiyer mi kurye mi",
+   "ilk iş olarak hangisi",
+   "kurye garson hangisi iyi",
+   "1. kademede en iyisi hangisi"
+  ],
+  "cevap": [
+   "Kurye daha çok kazanıyor, görev başı {gorev.kurye}, ayda {maas.kurye}",
+   "Usta olmak istiyorsan inşaat işçisi ol, 20 gün işçilik lazım",
+   "Kasiyerin maaşı sabit tabanlı, kurye ise çalıştıkça kazanır"
+  ]
+ },
+ {
+  "id": "memur-mu-muhasebeci-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "memur mu muhasebeci mi",
+   "memurluk mu muhasebecilik mi",
+   "hangisi daha iyi memur muhasebeci",
+   "memur muhasebeci farkı",
+   "kurslu meslekten hangisi",
+   "memur mu olayım muhasebeci mi",
+   "emlakçı mı memur mu",
+   "2. kademede en iyisi hangisi"
+  ],
+  "cevap": [
+   "Muhasebeci daha çok kazanıyor, {maas.muhasebeci}; memur {maas.memur}",
+   "Memur kursu ucuz ve kısa, muhasebe kursu pahalı ama maaşı yüksek",
+   "Muhasebeci işletmelerde de çalışabiliyor, memurun işvereni yok"
+  ]
+ },
+ {
+  "id": "usta-mantikli",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "usta olmak mantıklı mı",
+   "ustalık değer mi",
+   "usta olsam iyi mi",
+   "ustalığa yatırım",
+   "usta olmaya değer mi",
+   "usta mı olayım",
+   "ustalık kazandırır mı uzun vadede",
+   "usta olmak karlı mi"
+  ],
+  "cevap": [
+   "Mantıklı, usta {maas.usta} kazanıyor ve taşeronluğun yolu açılıyor",
+   "20 gün işçilik ve belge istiyor, sonrası iyi",
+   "Günde 2 iş var ama iş başı yüksek, değer bence"
+  ]
+ },
+ {
+  "id": "nakliyeci-mantikli",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nakliyeci olmak mantıklı mı",
+   "nakliyecilik değer mi",
+   "araç almaya değer mi",
+   "taksicilik karlı mı",
+   "nakliyeci mi olayım",
+   "araca 800 bin vermek mantıklı mı",
+   "nakliyeci olsam iyi mi"
+  ],
+  "cevap": [
+   "Ayda {maas.nakliyeci} getiriyor, araç parası birkaç ayda çıkar",
+   "Sermaye büyük, {nakliyeci.sermaye}; ama kadro derdi yok",
+   "Aktif oynuyorsan iyi, günde 2 seferi kaçırmamak lazım"
+  ]
+ },
+ {
+  "id": "isletme-acmali-miyim",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "işletme açmalı mıyım",
+   "işletme açmaya değer mi",
+   "patron olmak mantıklı mı",
+   "işletme mi açayım maaşlı mı kalayım",
+   "işletme açmak riskli mi",
+   "kafe açmak mantıklı mı",
+   "dükkan açsam mı",
+   "isletme acmaya deger mi"
+  ],
+  "cevap": [
+   "Kadroyu doldurabileceksen değer, yoksa geçici personel kârı yer",
+   "Rakip az olan bir tür seç, müşteri bölünmesin",
+   "Önce birikim yap, kuruluş ve ilk ayların gideri birden çıkıyor"
+  ]
+ },
+ {
+  "id": "zengin-olmak",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nasıl zengin olurum",
+   "zengin olmanın yolu",
+   "çok para nasıl kazanılır",
+   "milyoner olmak istiyorum",
+   "servet nasıl yapılır",
+   "en hızlı nasıl zengin olunur",
+   "zengin olmak icin ne yapmali",
+   "oyunda nasıl büyürüm",
+   "birinci olmak istiyorum servet"
+  ],
+  "cevap": [
+   "Kurslu meslekle başla, biriktir, işletme aç, kâr ve kirayla büyü",
+   "Kademe kademe çıkacaksın, deneyim kısa yolu yok",
+   "Kazanan en yüksek net servet; harcamayı az tut, yatırımı çok"
+  ]
+ },
+ {
+  "id": "dorduncu-kademe-hedef",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "4. kademeye ne zaman çıkarım",
+   "büyük işlere nasıl ulaşırım",
+   "müteahhit olmak ne kadar sürer",
+   "en üst kademeye kaç günde",
+   "fabrikatör olmak kaç ay sürer",
+   "4. kademeye hedef",
+   "büyük patron olmak",
+   "dorduncu kademe ne zaman"
+  ],
+  "cevap": [
+   "En az 120-180 gün deneyim ve milyonlar lazım, birkaç gerçek hafta sürer",
+   "Önce 3. kademede işletmeyle para biriktir",
+   "Müteahhit için 180 gün ve 700 kredi notu, fabrikatör için 180 gün ve 650"
+  ]
+ },
+ {
+  "id": "iki-is",
+  "konu": "genel",
+  "sorular": [
+   "iki iş birden yapabilir miyim",
+   "aynı anda iki meslek",
+   "hem kurye hem garson olunur mu",
+   "iki işte çalışmak",
+   "ek iş yapılır mı",
+   "ikinci iş",
+   "iki meslek ayni anda",
+   "yan iş yapabilir miyim"
+  ],
+  "cevap": [
+   "Tek meslek oluyor, aynı anda iki işte çalışamazsın",
+   "Ek gelir istiyorsan mülk alıp kiraya ver",
+   "Bir mesleğin var, değiştirmek istersen Kariyer'den geçersin"
+  ]
+ },
+ {
+  "id": "kumsaati-nedir",
+  "konu": "genel",
+  "sorular": [
+   "kum saati nedir",
+   "kum saati ne işe yarar",
+   "kum saati ne",
+   "kumsaati ne ise yarar",
+   "kum saatleri ne için",
+   "kum saati olayı ne",
+   "kum saati ne yapıyor",
+   "kum saatini nerede kullanırım",
+   "kum saati kullanmak",
+   "kum saati faydası"
+  ],
+  "cevap": [
+   "1 Kum Saati 1 günlük beklemeyi kısaltır, kurs ve başvuruda",
+   "Beklemeyi hızlandırıyor, 1 tanesi 1 oyun günü",
+   "Kursta Kum Saati ile hızlandır'a basınca kalan günden düşüyor"
+  ]
+ },
+ {
+  "id": "kumsaati-kazanma",
+  "konu": "genel",
+  "sorular": [
+   "kum saati nasıl kazanılır",
+   "kum saati nereden bulunur",
+   "bedava kum saati",
+   "kum saati nasıl alırım",
+   "kum saati kazanmanın yolu",
+   "günlük hedef nedir",
+   "günde 3 görev ne veriyor",
+   "kumsaati nasil kazanilir",
+   "kum saati veren görev",
+   "kum saati gelmedi"
+  ],
+  "cevap": [
+   "Günde 3 görev yapınca 1 Kum Saati bedava geliyor",
+   "Günlük hedef 3 görev, tamamlayınca 1 Kum Saati",
+   "Oyunda tek yolu günlük hedef, bir de mağazadan gerçek parayla"
+  ]
+ },
+ {
+  "id": "kumsaati-fiyat",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "kum saati kaç para",
+   "kum saati satın alınır mı",
+   "kum saati fiyatı",
+   "kum saati gerçek parayla mı",
+   "kum saati nereden satın alınır",
+   "kum saati mağazada var mı",
+   "kumsaati kac tl",
+   "kum saati almak istiyorum",
+   "kum saati paralı mı"
+  ],
+  "cevap": [
+   "Gerçek parayla mağazadan alınıyor, fiyatı mağazada yazıyor",
+   "Mağazada satılıyor ama günde 3 görevle bedava da geliyor",
+   "Fiyatını tam bilmiyorum, mağazaya bak"
+  ]
+ },
+ {
+  "id": "kumsaati-gonderme",
+  "konu": "genel",
+  "sorular": [
+   "kum saati gönderebilir miyim",
+   "kum saatimi arkadaşıma verebilir miyim",
+   "kum saati hediye edilir mi",
+   "kum saati transferi",
+   "kum saati başkasına aktarılır mı",
+   "kum saati satabilir miyim",
+   "kumsaati gonder",
+   "bana kum saati atar mısın",
+   "kum saati paylaşılır mı"
+  ],
+  "cevap": [
+   "Kum Saati kimseye gönderilemez",
+   "Aktarılmıyor, herkes kendisininkini kazanıyor",
+   "Gönderemiyorum, olsa verirdim; sen de günde 3 görevle kazanırsın"
+  ]
+ },
+ {
+  "id": "kumsaati-maas",
+  "konu": "genel",
+  "sorular": [
+   "kum saati maaşı artırır mı",
+   "kum saati para eder mi",
+   "kum saati servete eklenir mi",
+   "kum saati paraya çevrilir mi",
+   "kum saati zengin eder mi",
+   "kum saati kazanç sağlar mı",
+   "kumsaati maasi etkiler mi",
+   "kum saati net servet"
+  ],
+  "cevap": [
+   "Kum Saati maaşı da serveti de etkilemez",
+   "Paraya dönmüyor, sadece beklemeyi kısaltıyor",
+   "Servete sayılmıyor, deneyimi de kısaltmıyor"
+  ]
+ },
+ {
+  "id": "kumsaati-benim",
+  "konu": "kisisel_meslek",
+  "sorular": [
+   "kaç kum saatim var",
+   "kum saatime nereden bakarım",
+   "kum saatim nerede yazıyor",
+   "kum saati sayım",
+   "kumsaatim kac tane",
+   "bende kaç kum saati var",
+   "kum saatlerim nerde"
+  ],
+  "cevap": [
+   "Profil'de Kum Saati sayın yazıyor",
+   "Kaç tane olduğunu Profil ekranında görürsün",
+   "Profil'e bak, kum saati satırı var"
+  ]
+ },
+ {
+  "id": "kumsaati-yetmiyor",
+  "konu": "genel",
+  "sorular": [
+   "yeterli kum saatin yok diyor",
+   "kum saatim yetmiyor",
+   "hızlandırılacak bekleme yok diyor",
+   "kum saati kullanamıyorum",
+   "kum saati çalışmıyor",
+   "kum saati neden kullanılmıyor",
+   "kum saati hata veriyor"
+  ],
+  "cevap": [
+   "Kum Saati yetmiyorsa günlük hedefle biriktir",
+   "Bekleyen bir kurs ya da başvuru yoksa kullanılmıyor",
+   "Sadece kurs ve başvuru beklemesinde işe yarıyor"
+  ]
+ }
+]
