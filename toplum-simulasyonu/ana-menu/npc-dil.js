@@ -658,6 +658,7 @@
     ['hal_hatir', 2.4, '\\bkeyf\\w* (yerinde|nasil)\\w*'],
     ['hal_hatir', 3.2, '\\b(ben de|bende|ben|ben de cok) (iyiyim|iyi|idare ediyor|fena degil|iyi sayilir)\\b|^(iyiyim|iyidir|idare|eh iste|fena degil)\\b'],
     ['iltifat', 3.2, '\\b(guzel|hos|cok guzel|ne guzel) (isim|ad|adin|ismin)\\b|\\b(ismin|adin) (cok )?(guzel|hos)\\w*'],
+    ['dert', 3.4, '\\b(ayaklarim koptu|belim koptu|yoruldum|yorgunum|cok yorucu|yorucu ya|bitik|helak oldum|anam agladi|canim cikti)\\b'],
     ['saka', 4.5, '\\bharclik\\w*|\\b(beni|bana) (evlat edin|sponsor ol)\\w*'],
     ['tebrik', 3.2, '\\b(helal\\w*|masallah|eline saglik|ellerine saglik|super olmus|guzel olmus|cok yakisti)\\b'],
     ['veda', 2.4, '\\b(hosca kal\\w*|ben (gideyim|kacayim|cikayim|yatayim|kaciyorum|gidiyorum)|(gideyim|kacayim|cikayim|yatayim) (ben|artik|hadi)|hadi (bana )?(eyvallah|gorusuruz|kactim)|gitmem (lazim|gerek)|ise gec kal\\w*)'],

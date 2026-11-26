@@ -1511,6 +1511,16 @@
     if (/\b(yemek|yemegi|aksam yeme|kahvalti|film|dizi|mac|tatil|hava|uyku|cay|kahve|muzik|sarki)\b/.test(katli) && !/(kurs|maas|kredi|mulk|is\b|isletme|kafe)/.test(katli)) return null;
     if (/\b(altin|dolar|euro|doviz|borsa|bitcoin|kripto|hisse)\w*/.test(katli) && !/(doviz burosu|doviz lisans)/.test(katli)) return { metin: `Altın, döviz, borsa daha yok oyunda, sonraki güncellemede gelecekmiş. Şimdilik en sağlamı mülk: daire ${paraYaz(T.propertyMarketPrice(world, 'daire'))}, kirası ayda ${paraYaz(T.propertyMarketPrice(world, 'daire') * ((C().PROPERTY_TYPES.find(x => x.kind === 'daire') || {}).monthlyRentRate || .005))} civarı` };
     if (/kum saat/.test(katli) && /(gonder|aktar|ver(ebilir|ir|sem)|hediye)/.test(katli)) return { metin: 'Kum Saati gönderilmiyor, herkes kendi kazanıyor. Günlük 3 görevi yapınca her gün 1 tane geliyor' };
+    if (/limit\w*/.test(katli) && /(neye gore|nasil|nedir|ne kadar|kac|artar|belirlen|hesaplan|yukselir|artirilir)/.test(katli)) { const l = Math.round(oyuncu.lastMonthIncome * oyuncu.creditScore / 100); return { metin: `Limit geçen ayki gelirine göre: gelir çarpı kredi notu bölü 100. Yani gelirin ya da notun artarsa limit de artıyor. Senin şu an ${paraYaz(l)}` }; }
+    if (/kum saat/.test(katli) && /(kac tl|kac lira|kac para|fiyat|ucret|satin)/.test(katli)) return { metin: 'Kum Saati gerçek parayla mağazadan alınıyor ama oyunda da bedava geliyor: günlük 3 görevi yapınca 1 tane' };
+    if (/(kum saat.*bedava|bedava.*kum saat)/.test(katli)) return { metin: 'Günlük 3 görevi tamamlayınca her gün 1 Kum Saati bedava geliyor' };
+    if (/zekat/.test(katli)) return { metin: /zorunlu/.test(katli) ? 'Zorunlu değil, isteğe bağlı olacakmış. Şimdilik oyunda yok, bağış var' : 'Zekat daha yok, ileride isteğe bağlı gelecekmiş. Şimdilik bağış var, 10 bine 1 itibar' };
+    if (/(ihale|mega proje|baska ulke|yurt ?disi|yurtdisi|almanya|ingiltere|baska ulkede)/.test(katli)) return { metin: 'Daha yok, sonraki güncellemelerde gelecekmiş. Şimdilik sadece Türkiye var' };
+    if (/(parayla|para ile|para verip|satin al\w*) .*(gec|atla)|(deneyim|kurs)\w* .*(parayla|satin)|(gec|atla)\w* .*parayla/.test(katli)) return { metin: 'Hayır, kurs ve deneyim parayla atlanmıyor. Kum Saati sadece bekleme süresini kısaltıyor, deneyim günlerini değil' };
+    if (/hangisi (daha )?(karli|mantikli|iyi|kazancli)|hangisini alay/.test(katli) && (mulk || /(arsa|daire|dukkan)/.test(katli))) { const fD = T.propertyMarketPrice(world, 'daire'), fA = T.propertyMarketPrice(world, 'arsa'), fK = T.propertyMarketPrice(world, 'dukkan'); return { metin: `Daire ayda ${paraYaz(fD * .005)} kira getiriyor, dükkan ${paraYaz(fK * .006)}. Arsa kira getirmiyor ama ${paraYaz(fA)} ile en ucuzu ve değerleniyor. Kira istiyorsan daire ya da dükkan` }; }
+    { const mk = bul(katli, MESLEK_ANAHTAR); if (mk && /(olmak istiyo|olabilir miyim|olsam|yeter mi|olur mu|ne lazim)/.test(katli) && T.getProfession(mk)) { const rq = T.getProfession(mk).requirements, eks = T.missingRequirements(world, oyuncu.id, mk), cap = rq.capital ? T.indexed(world, rq.capital) : 0; const tutar = varlik && varlik.tutar;
+      const parca = [rq.capital ? `${paraYaz(cap)} sermaye` : null, rq.course ? kursSoz(rq.course) : null, rq.anyExperienceDays ? `${rq.anyExperienceDays} gün iş deneyimi` : null, rq.professionExperience ? `${rq.professionExperience.days} gün ${meslekAdi(rq.professionExperience.profession).toLocaleLowerCase('tr')} deneyimi` : null, rq.minCreditScore ? `${rq.minCreditScore} kredi notu` : null].filter(Boolean);
+      return { metin: `${meslekAdi(mk)} için ${parca.join(', ') || 'şart yok'} lazım.${tutar && rq.capital ? (tutar >= cap ? ' Para yetiyor ama' : ' Para yetmiyor, üstelik') + ' deneyim şartı da var' : eks.length ? ' Sende eksik olan var, Kariyer ekranında görünüyor' : ' Sen şartları tutuyorsun'}`, odak: { meslek: mk, kurs: rq.course || null } }; } }
     for (const [re, f] of NASIL) if (re.test(katli)) return { metin: f(world, meta, oyuncu) };
     if (/\b(cami|okul|cesme|hastane|vakif|hayir eser\w*|bagis\w*)\b/.test(katli) && /\b(mi|mu|ne|nasil|kac|hangisi|olur|oluyor|yarar|kazandir\w*|degisir)\b/.test(katli)) { const o = ozelGun(world.day); return { metin: `Şu an hangisini yaptırdığın fark etmiyor, her 10 bin bağışa 1 itibar geliyor${o && o.bayram ? ', bugün bayram olduğu için 2' : ', bayramda 2 katı'}. İtibar da kredi notuna ve iş başvurularına yarıyor` }; }
     if (/taksi/.test(katli) && /(ucuz|pahali|fark|ayni|daha mi|mi daha|yoksa)/.test(katli)) return { metin: 'Taksicilik de nakliyecilikle aynı meslek sayılıyor, şartları da kazancı da aynı' };
@@ -1550,7 +1560,7 @@
     if (isletme && /\b(ac|acmak|acsam|acarim|acilir|kur|kurmak|kursam|maliyet\w*|sermaye\w*|kac|kaca|ne kadar|patlar|tutar|gerek\w*|lazim)\b/.test(katli) && !/(calis|eleman|garson ari|lisans|belge|kursu)/.test(katli)) {
       const d = T.getBusinessDef(isletme), sahip = C().PROFESSIONS.find(m => m.business === isletme), rq = sahip ? sahip.requirements : {};
       const sart = [rq.course ? kursSoz(rq.course) : null, rq.anyExperienceDays ? `${rq.anyExperienceDays} gün iş deneyimi` : null, rq.professionExperience ? `${rq.professionExperience.days} gün ${meslekAdi(rq.professionExperience.profession)} deneyimi` : null].filter(Boolean);
-      return { metin: `${isletmeAdi(isletme).charAt(0).toLocaleUpperCase('tr') + isletmeAdi(isletme).slice(1)} açmak ${paraYaz(T.indexed(world, d.setupCost))}, aylık sabit gideri ${paraYaz(T.indexed(world, d.monthlyFixedCost))}, ${d.staffNeeded} çalışan istiyor.${sart.length ? ' Şart: ' + sart.join(', ') + '.' : ''} İyi giderse ayda ${paraYaz(Math.max(0, T.estimateBusinessMonthlyProfit(world, isletme, 2)))} kâr bırakıyor`, odak: { isletme, kurs: rq.course || null } };
+      return { metin: `${isletmeAdi(isletme).charAt(0).toLocaleUpperCase('tr') + isletmeAdi(isletme).slice(1)} açmak ${paraYaz(T.indexed(world, d.setupCost))}, aylık sabit gideri ${paraYaz(T.indexed(world, d.monthlyFixedCost))}, ${d.staffNeeded} çalışan istiyor.${sart.length ? ' Şart: ' + sart.join(', ') + '.' : ''} İyi giderse ayda ${paraYaz(Math.max(0, T.estimateBusinessMonthlyProfit(world, isletme, 2)))} kâr bırakıyor`, odak: { isletme, kurs: rq.course || null, meslek: sahip ? sahip.id : null } };
     }
     if (isletme && /(kazan|kar\b|kâr|gelir|nasil para|nerden para|kur farki)/.test(katli)) { const d = T.getBusinessDef(isletme); return { metin: `${isletmeAdi(isletme)} iyi giderse ayda ${paraYaz(Math.max(0, T.estimateBusinessMonthlyProfit(world, isletme, 2)))} kâr bırakıyor. Cironun ${yuzdeSi(Math.round((1 - d.costOfGoodsRate) * 100))} sana kalıyor, gerisi mal maliyeti. Bir de ${paraYaz(T.indexed(world, d.monthlyFixedCost))} sabit gider var`, odak: { isletme } }; }
     const sorulanMeslek = (varlik && varlik.meslek) || bul(katli, MESLEK_ANAHTAR);
@@ -1697,6 +1707,7 @@
     ['tekrar', /\b(baska|hic|kimse|biri|baska biri) (yok|var) mu\w*|\byok mu\w*\s*\??$|\bhala (gecerli|var|duruyor)\w*|\bhala ari\w*/],
     ['miktar', /\b(ciddi mi\w*|gercekten mi)\b.*\d|\d+ ?(bin|k|tl|lira)? mi\b|\b(az|cok|pahali|ucuz) (degil mi|mi|biraz)\b|\bpahali\b|\bpazarlik\w*/],
     ['ne_zaman', /\b(part ?time|yari zamanli|aksamlari|hafta sonu|vardiya|saat kac\w*|kacta)\b/],
+    ['onay', /\b(ucret|maas|fiyat)\w* (konusuruz|konusalim|anlasiriz|hallederiz)|\b(dm|ozelden) (atin|at|yazin|yaz|konusalim)\b/],
   ];
   // Son cevap verene dönük doğrulama soruları
   const TEYIT = /\b(hala (gecerli|lazim|duruyor|var mi|ariyor)\w*|gecerli mi\w*|sizden mi|senden mi|sende mi|ciddi misin|gercek mi|emin misin|lazim mi hala|kesin mi)\b/;
@@ -1858,6 +1869,12 @@
     if (!hedefKisi && sk && meta.npc[sk] && world.players[sk] && (IKINCI_TEKIL.test(katli) || /^(sen|ya sen|peki sen)\b/.test(katli))) {
       const kc = kendisi(world, meta, meta.npc[sk], katli);
       if (kc) { cevaplar.push(bilgiPaketi(world, meta, sk, { metin: kc }, rng, 1500)); st.sonNpc = sk; return sonuc; }
+    }
+    // "aranızda kurye olan var mı": o meslekten olanlar kendisi cevap verir
+    if (/(olan|calisan|yapan) var mi|aranizda|kim (kurye|garson|memur|usta|kasiyer|muhasebeci)/.test(katli) && ny.varlik && ny.varlik.meslek && !/(ariyorum|lazim|ariyoruz)/.test(katli)) {
+      const mk = ny.varlik.meslek, ol = npcIdler.filter(x => world.players[x] && world.players[x].profession === mk);
+      for (let i = 0; i < Math.min(2, ol.length); i++) { const id = rng.pick(ol.filter(x => !cevaplar.some(c => c.npcId === x))); if (!id) break; const g = suAnkiGelir(world, meta.npc[id], world.players[id]); cevaplar.push(bilgiPaketi(world, meta, id, { metin: rng.pick([`Ben ${yim(meslekAdi(mk).toLocaleLowerCase('tr'))}, ${sureYaz(world.day - world.players[id].professionSince)}`, `Ben varım, ${meslekAdi(mk).toLocaleLowerCase('tr')} olarak çalışıyorum. Ayda ${paraYaz(g || beklenenGelir(world, meta.npc[id], mk))} civarı`]), kisisel: true }, rng, 2000 + i * 2500)); }
+      if (cevaplar.length) { st.sonNpc = cevaplar[0].npcId; return sonuc; }
     }
     // Oyuncunun kendi başarısı ("kurs bitti usta oldum", "dükkanımı açtım"): tebrik edilir
     if (!ny.soru && /\b(oldum|bitirdim|bitti|aldim|actim|kurdum|kazandim|girdim|baslamis|basladim|terfi)\b/.test(katli) && /\b(ben|sonunda|nihayet|bugun|artik|kursu|kursum|evimi|dukkanimi|kafemi|isimi|oldum|aldim|actim)\b/.test(katli) && !/(zarar|batt|kaybett|kovul|cikarildim|reddedildi)/.test(katli)) {

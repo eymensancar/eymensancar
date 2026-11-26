@@ -51,7 +51,7 @@ const BOS_ONAY = /^(dogru diyorsun\w*|hakli\w*|aynen\w*|anladim|eyw\w*,? anladim
 const YERLER = new Set([].concat(...D.veri.yerler.map(y => [y.ad].concat(y.ilceler || []))).map(x => D.normal(x).katli));
 const somutMu = m => D.normal(m).katli.split(/[^a-z0-9]+/).some(w => YERLER.has(w)) || /₺|\d/.test(m) || /(dükkan|kafe|market|ofis|firma|büro|fabrika|kurye|garson|kasiyer|memur|muhasebe|usta|emlak|inşaat|nakliye|taşeron|daire|arsa)/i.test(m) || /'(de|da|te|ta)\b/.test(m);
 
-let toplamTur = 0, gecenTur = 0, toplamKontrol = 0, gecenKontrol = 0, konuDogru = 0, konuToplam = 0;
+let cevapIyi = 0, toplamTur = 0, gecenTur = 0, toplamKontrol = 0, gecenKontrol = 0, konuDogru = 0, konuToplam = 0;
 const hatalar = [];
 function oyna(diyalog, tohum) {
   const kanal0 = diyalog.kanal === 'dm' ? null : 'ulke';
@@ -91,6 +91,7 @@ function oyna(diyalog, tohum) {
     }
     toplamTur++; toplamKontrol += kontrol.length;
     const iyi = kontrol.filter(k => k[1]).length; gecenKontrol += iyi;
+    if (kontrol.every(k => k[1] || /^konu /.test(k[0]))) cevapIyi++;
     if (iyi === kontrol.length) gecenTur++; else { dokum.push('     ✗ ' + kontrol.filter(k => !k[1]).map(k => k[0]).join(', ')); hatalar.push({ diyalog: diyalog.ad, m: tur.m, eksik: kontrol.filter(k => !k[1]).map(k => k[0]) }); }
     if (r.cevaplar.length) son = r.cevaplar;
     oncekiKonu = tur.konu || oncekiKonu;
@@ -111,6 +112,6 @@ if (KORPUS && fs.existsSync(tekilDosya)) {
   console.log(`\nKör tekil set: ${dogru}/${tek.length} doğru (%${(dogru / tek.length * 100).toFixed(1)})`);
   Object.entries(yanlis).sort((a, b) => b[1].length - a[1].length).slice(0, 25).forEach(([k, l]) => console.log(`  ${k} (${l.length}): ${l.slice(0, 4).map(x => JSON.stringify(x)).join(', ')}`));
 }
-console.log(`\nDiyalog: ${diyaloglar.length} konuşma, ${toplamTur} tur. Tamamen doğru tur: ${gecenTur}/${toplamTur} (%${(gecenTur / toplamTur * 100).toFixed(1)}). Kontrol: ${gecenKontrol}/${toplamKontrol}. Konu doğruluğu: ${konuDogru}/${konuToplam} (%${(konuDogru / konuToplam * 100).toFixed(1)})`);
+console.log(`\nDiyalog: ${diyaloglar.length} konuşma, ${toplamTur} tur. Tamamen doğru tur: ${gecenTur}/${toplamTur} (%${(gecenTur / toplamTur * 100).toFixed(1)}). Cevabı doğru tur (konu etiketi hariç): ${cevapIyi}/${toplamTur} (%${(cevapIyi / toplamTur * 100).toFixed(1)}). Kontrol: ${gecenKontrol}/${toplamKontrol}. Konu doğruluğu: ${konuDogru}/${konuToplam} (%${(konuDogru / konuToplam * 100).toFixed(1)})`);
 const ozet = {}; hatalar.forEach(h => h.eksik.forEach(e => (ozet[e] = (ozet[e] || 0) + 1)));
 console.log('Eksik türleri:', JSON.stringify(ozet));
