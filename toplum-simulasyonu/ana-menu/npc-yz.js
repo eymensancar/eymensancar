@@ -1626,6 +1626,8 @@
     const ok = new Set(String(onceki).split(/\s+/).filter(Boolean).map(x => kok5(SSS_ESANLAM[x] || x)));
     return katli.split(/\s+/).filter(x => x.length >= 3 && !SSS_DUR.has(x) && !ok.has(kok5(SSS_ESANLAM[x] || x))).length;
   }
+  // Eylem niyetleri (satıyorum, eleman arıyorum, teklif...): soru biçimindeyse banka ancak çok güçlü eşleşmeyle öne geçer
+  const EYLEM_NIYET = new Set(['teklif', 'mulk_satiyorum', 'eleman_ariyorum', 'yetki_istegi', 'zam_istegi']), EYLEM_SSS = .7;
   const ERKEN_SOSYAL = new Set(['selam', 'veda', 'tesekkur', 'evet', 'hayir', 'oneri_kabul', 'teklif', 'hakaret', 'ozur', 'saka', 'tebrik', 'iltifat', 'hal_hatir', 'mulk_satiyorum', 'eleman_ariyorum', 'zam_istegi', 'yetki_istegi']);
   const ERKEN_SORU = /\b(mi|mu|misin|miyim|miyiz|musun|ne|neden|niye|nasil|kac|kim|nerde|nerede|nereden|nerden|hangi\w*|ne zaman|ne kadar|olur mu|var mi)$|\b(neden|niye|nasil|kac|hangi\w*|ne zaman|ne kadar)\b/;
   NPCYZ.sssAyar = (g, e, k) => { SSS_GUCLU = g; SSS_ESIK = e; if (k != null) ERKEN_SSS = k; };
@@ -1999,12 +2001,13 @@
     }
 
     // Yeni bir bilgi sorusu bankayla güçlü eşleşiyorsa, önceki konunun akışına kapılmadan doğrudan banka cevabı verilir
-    if (ERKEN_SSS < 1 && !hedefKisi && kanal === 'ulke' && !ERKEN_SOSYAL.has(ny.niyet) && !st.satis && !IKINCI_TEKIL.test(katli) && (/\?/.test(metin) || ERKEN_SORU.test(katli) || (!kuralDestek && ny.soru && katli.split(' ').length >= 3))) {
+    if (ERKEN_SSS < 1 && !hedefKisi && kanal === 'ulke' && (!ERKEN_SOSYAL.has(ny.niyet) || (EYLEM_NIYET.has(ny.niyet) && ny.soru && !takip)) && !st.satis && !IKINCI_TEKIL.test(katli) && (/\?/.test(metin) || ERKEN_SORU.test(katli) || (!kuralDestek && ny.soru && katli.split(' ').length >= 3))) {
       const idE = takip && st.sonNpc && meta.npc[st.sonNpc] && world.players[st.sonNpc] ? st.sonNpc : agirlikliSec(rng, npcIdler.filter(x => world.players[x] && !st.cevaplayan.includes(x)), x => DUZEN[meta.npc[x].kronotip][saat] + .15);
       // Niyet yalnız modelin tahminiyse (kurallar o niyeti hiç görmüyorsa) banka daha düşük eşikle de öne geçer
-      const sc = idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, kuralDestek || ny.niyet === 'genel' || katli.split(' ').length < 3 ? ERKEN_SSS : KURALSIZ_SSS);
+      const eylem = ERKEN_SOSYAL.has(ny.niyet);
+      const sc = eylem ? (idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, EYLEM_SSS)) : idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, kuralDestek || ny.niyet === 'genel' || katli.split(' ').length < 3 ? ERKEN_SSS : KURALSIZ_SSS);
       // Takip sayılan ama kendi içeriği olan soru (önceki mesajlarda geçmeyen en az iki kelime): kendi başına da aranır
-      const sc2 = sc || (idE && (!takip || takip === 'detay' || takip === 'tekrar') && yeniKelimeSay(katli, takip ? (st.ilk || '') + ' ' + (st.onceki || '') : (oncekiSt && oncekiSt.simdiki) || '') >= 2 && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, TAKIP_SSS));
+      const sc2 = sc || (!eylem && idE && (!takip || takip === 'detay' || takip === 'tekrar') && yeniKelimeSay(katli, takip ? (st.ilk || '') + ' ' + (st.onceki || '') : (oncekiSt && oncekiSt.simdiki) || '') >= 2 && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, TAKIP_SSS));
       if (sc2) { cevaplar.push(bilgiPaketi(world, meta, idE, { metin: sc2.metin, sss: sc2.sss }, rng, 1800)); if (!st.cevaplayan.includes(idE)) st.cevaplayan.push(idE); st.sonNpc = idE; sonuc.niyet.sss = sc2.sss; return sonuc; }
     }
     // Son konuşana dönük ikinci tekil soru: o kişi kendi gerçek verisinden cevap verir
