@@ -1559,6 +1559,7 @@
     const n = (dil().normal)(metin), out = [n.kucuk || n.katli]; if (n.katli && n.katli !== out[0]) out.push(n.katli);
     const st = meta && meta.diyalog && meta.diyalog[kanal], b = st && (st.simdiki || st.ilk);
     if (b && n.katli.split(' ').length <= 5 && b !== n.katli) out.push(b + ' ' + n.katli);
+    if (b && n.katli.split(' ').length <= 5 && n.katli.split(' ').length >= 2 && b !== n.katli && !VARLIK_RE.test(n.katli)) { const vk = (b.match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) out.push(n.katli + ' ' + vk); }
     return out.filter(Boolean);
   };
   // Oyuncunun Türkçe harfli yazdığı hâli (varsa) gömmeye o hâliyle gider
