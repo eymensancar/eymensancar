@@ -1336,6 +1336,8 @@
   const KONU_SURE = 5 * 60e3; // 5 dakika içinde gelen kısa mesaj aynı konuşmanın devamıdır
 
   /** Bağlaç "de/da": son ünlüye göre (kasiyer de, kurye de, garson da). */
+  /** Birinci tekil ek: kuryeyim, garsonum, memurum, kasiyerim. */
+  function yim(soz) { const t = String(soz), u = (t.match(/[aıoueiöü](?=[^aıoueiöü]*$)/i) || ['e'])[0].toLocaleLowerCase('tr'), e = { a: 'ım', ı: 'ım', o: 'um', u: 'um', e: 'im', i: 'im', ö: 'üm', ü: 'üm' }[u]; return t + (/[aıoueiöü]$/i.test(t) ? 'y' : '') + e; }
   function deDa(soz) { const u = (String(soz).toLocaleLowerCase('tr').match(/[aıoueiöü](?=[^aıoueiöü]*$)/) || ['a'])[0]; return /[eiöü]/.test(u) ? 'de' : 'da'; }
   function takipTuru(katli, ny, st) {
     for (const [tur, re] of TAKIP_DESEN) if (re.test(katli)) return tur;
@@ -1504,6 +1506,18 @@
     // ================= İŞ ARAYAN OYUNCU =================
     if (konu === 'is_ariyorum' && kanal !== 'sirket') {
       if (takip === 'ben_de' && varlik.meslek) st.istenenMeslek = varlik.meslek;
+      // İşverensiz meslekler (kurye, memur): iş aramaya gerek yok, Kariyer'den doğrudan girilir
+      if (takip && st.istenenMeslek && st.sonNpc && meta.npc[st.sonNpc] && !Object.values(C().BUSINESS_STAFF_PROFESSIONS).some(l => l.includes(st.istenenMeslek)) && !(varlik.meslek && varlik.meslek !== st.istenenMeslek)) {
+        const im = st.istenenMeslek, pr = T.getProfession(im), ay = paraYaz(beklenenGelir(world, { k: { caliskan: .75 } }, im));
+        const mt = takip === 'yer' ? 'Yeri yok, görevler telefona geliyor, nereden istersen yaparsın' : takip === 'miktar' || takip === 'teklif' ? (pr.earning === 'task' ? `Görev başına ${paraYaz(T.indexed(world, pr.payPerTask))}, günde ${pr.maxTasksPerDay || 'birkaç'} görev. Ayda ${ay} civarı ediyor` : `Sabit maaş, ayda ${ay} civarı`) : /\b(motor|arac|araba|ekipman)\w*/.test(katli) ? 'Gerekmiyor, görevi yapman yeterli' : takip === 'onay' ? 'Kariyer ekranına gir, oradan başla. Kolay gelsin' : null;
+        if (mt) { cevaplar.push(bilgiPaketi(world, meta, st.sonNpc, { metin: mt, kisisel: true }, rng, 1800)); return sonuc; }
+      }
+      { const im = (!takip || takip === 'ben_de' || takip === 'detay') && varlik.meslek; const kadrolu = im && Object.values(C().BUSINESS_STAFF_PROFESSIONS).some(l => l.includes(im));
+        if (im && !kadrolu && T.getProfession(im) && !T.getProfession(im).business) { const pr = T.getProfession(im), id = konusanSec(world, meta, rng, saat, x => npcIdler.includes(x) && world.players[x].profession === im) || konusanSec(world, meta, rng, saat, x => npcIdler.includes(x));
+          if (id) { const ne = pr.earning === 'task' ? `görev başına ${paraYaz(T.indexed(world, pr.payPerTask))}` : `sabit maaş, ayda ${paraYaz(beklenenGelir(world, { k: { caliskan: .75 } }, im))} civarı`; const sart = pr.requirements.course ? `Önce ${kursSoz(pr.requirements.course)} ve ${pr.requirements.anyExperienceDays || 0} gün deneyim lazım. ` : '';
+            const ben = world.players[id].profession === im ? `Ben de ${yim(meslekAdi(im).toLocaleLowerCase('tr'))}, ` : '';
+            const g0 = sart ? `${ben}${ben ? 'işveren' : meslekAdi(im) + ' için işveren'} gerekmiyor. ${sart.replace(/\. $/, '')}, sonra Kariyer'den başlıyorsun, ${ne}` : `${ben}${ben ? 'işveren' : meslekAdi(im) + ' için işveren'} aramana gerek yok. Kariyer'den doğrudan başlıyorsun, ${ne}`;
+            cevaplar.push(bilgiPaketi(world, meta, id, { metin: g0.charAt(0).toLocaleUpperCase('tr') + g0.slice(1), kisisel: !!ben, odak: { meslek: im } }, rng, 2200)); st.sonNpc = id; st.odak = { meslek: im }; st.istenenMeslek = im; return sonuc; } } }
       let firsatlar = isFirsatlari(world, meta, oyuncu, st.istenenMeslek || varlik.meslek);
       if (varlik.yer) { const yerde = firsatlar.filter(x => x.yer === varlik.yer || (meta.npc[x.npcId].yer && meta.npc[x.npcId].yer.sehir === varlik.yer)); if (yerde.length) firsatlar = yerde.concat(firsatlar.filter(x => !yerde.includes(x))); else st.yerUyumsuz = varlik.yer; }
       const f = st.firsat && firsatlar.find(x => x.isletmeId === st.firsat.isletmeId) || null;
