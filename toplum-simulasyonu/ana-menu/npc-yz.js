@@ -1052,7 +1052,7 @@
     return { npcId: f.id, ad: f.gorunen, metin: emojisiz(m), gecikmeMs: 3000 + rng.next() * 4000 };
   }
   /** Kanalın saatlik hızı (dakikada mesaj): Türkiye 25, global 40; gece biraz düşer. */
-  function kanalHizi(kanal, saat) { if (kanal === 'global') return 40; const f = saat < 2 ? .8 : saat < 7 ? .55 : saat < 9 ? .8 : 1; return 25 * f; }
+  function kanalHizi(kanal, saat) { if (kanal === 'global') return 80; const f = saat < 2 ? .8 : saat < 7 ? .55 : saat < 9 ? .8 : 1; return 50 * f; }
   NPCYZ.kanalHizi = kanalHizi;
   /** Şu an yazmakta olanlar: birkaç saniye içinde iplikte sırası gelecek kişiler (arayüzdeki "yazıyor…"). */
   NPCYZ.yazanlar = function (meta, kanal, simdi) {
@@ -1075,7 +1075,7 @@
     // Uzun aradan sonra yalnız son birkaç dakikanın akışı üretilir (geri kalanı "kaçırılmış" sayılır)
     const pencere = kanal === 'sirket' ? gecen : Math.min(gecen, (ilkAcilis ? 4 : 3) * 60e3);
     let n = Math.round(pencere / 60e3 * dakikada);
-    n = Math.min(n, kanal === 'sirket' ? 4 : 20);
+    n = Math.min(n, kanal === 'sirket' ? 4 : 30);
     if (n <= 0 && rngYap(hash(kanal + simdiMs)).chance(gecen / 60e3 * dakikada)) n = 1;
     if (ilkAcilis && kanal !== 'sirket') n = Math.max(n, 6); // ilk girişte kanal boş görünmesin
     const rng = rngYap(hash(kanal + ':' + simdiMs + ':' + world.day));
@@ -1097,7 +1097,7 @@
     // İplikler: aynı anda birkaç konuşma, her biri kendi hızında ilerler
     if (ipliVar) {
       meta.ipl = meta.ipl || {}; let akt = (meta.ipl[kanal] || []).filter(ip => ip.t >= bas - 90e3);
-      const K = kanal === 'global' ? 12 : 8, ort = K / (R * (1 - (kanal === 'global' ? .08 : .14))) * 60e3;
+      const K = kanal === 'global' ? 24 : 16, ort = K / (R * (1 - (kanal === 'global' ? .08 : .14))) * 60e3;
       const mesgul = () => new Set([].concat(...akt.map(ip => Object.values(ip.roller))));
       while (akt.length < K) { const ip = iplikBaslat(world, meta, kanal, rng, saat, bas + rng.next() * ort, mesgul(), new Set(akt.map(x => x.id))); if (!ip) break; akt.push(ip); }
       for (let guv = 0; guv < 400; guv++) {

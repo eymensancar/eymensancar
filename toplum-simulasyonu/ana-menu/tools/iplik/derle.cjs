@@ -5,7 +5,7 @@ const kok = __dirname, cikti = path.join(__dirname, '..', '..', 'npc-iplik.js');
 const veri = { tr: [], global: {} };
 for (const f of fs.readdirSync(kok).filter(f => f.endsWith('.json')).sort()) {
   const l = JSON.parse(fs.readFileSync(path.join(kok, f), 'utf8'));
-  const m = /^global-(\w+)\.json$/.exec(f);
+  const m = /^global-([a-z]+)(?:-\d+)?\.json$/.exec(f);
   if (m) (veri.global[m[1]] = veri.global[m[1]] || []).push(...l); else if (/^tr-/.test(f)) veri.tr.push(...l);
 }
 const temiz = l => l.map(x => ({ id: x.id, kosul: x.kosul && x.kosul.length ? x.kosul : undefined, saat: x.saat || undefined, turlar: x.turlar }));
