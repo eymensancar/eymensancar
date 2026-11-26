@@ -1573,7 +1573,10 @@
     if (r0 && r0.odak) meta._odakSon = { odak: r0.odak, t: Date.now() }; return r0;
   }
   let SSS_GUCLU = .8, SSS_ESIK = .35;
-  NPCYZ.sssAyar = (g, e) => { SSS_GUCLU = g; SSS_ESIK = e; };
+  let ERKEN_SSS = .7;
+  const ERKEN_SOSYAL = new Set(['selam', 'veda', 'tesekkur', 'evet', 'hayir', 'oneri_kabul', 'teklif', 'hakaret', 'ozur', 'saka', 'tebrik', 'iltifat', 'hal_hatir', 'mulk_satiyorum', 'eleman_ariyorum', 'zam_istegi', 'yetki_istegi']);
+  const ERKEN_SORU = /\b(mi|mu|misin|miyim|miyiz|musun|ne|neden|niye|nasil|kac|kim|nerde|nerede|nereden|nerden|hangi\w*|ne zaman|ne kadar|olur mu|var mi)$|\b(neden|niye|nasil|kac|hangi\w*|ne zaman|ne kadar)\b/;
+  NPCYZ.sssAyar = (g, e, k) => { SSS_GUCLU = g; SSS_ESIK = e; if (k != null) ERKEN_SSS = k; };
   function bilgi0(world, meta, kim, konu, varlik, oyuncu, katli, takip) {
     const p = world.players[kim.id];
     const mulkAcik = /arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : /(daire|\bev\b|konut|1\+1|2\+1|3\+1)/.test(katli) ? 'daire' : null;
@@ -1943,6 +1946,12 @@
       meta.ihtiyac = (meta.ihtiyac || []).filter(x => x.tur !== IHTIYAC[konu]).concat([{ tur: IHTIYAC[konu], zaman: simdi, gun: world.day, npcler: [], once: { meslek: oyuncu.profession, isveren: oyuncu.employerBusinessId, mulk: oyuncu.propertyIds.length, nakit: oyuncu.cash, calisan: oyuncu.businessIds.length ? Object.keys((world.businesses[oyuncu.businessIds[0]] || { employees: {} }).employees).length : 0 }, soruldu: false }]).slice(-4);
     }
 
+    // Yeni bir bilgi sorusu bankayla güçlü eşleşiyorsa, önceki konunun akışına kapılmadan doğrudan banka cevabı verilir
+    if (ERKEN_SSS < 1 && !hedefKisi && kanal === 'ulke' && !ERKEN_SOSYAL.has(ny.niyet) && !st.satis && !IKINCI_TEKIL.test(katli) && (/\?/.test(metin) || ERKEN_SORU.test(katli))) {
+      const idE = takip && st.sonNpc && meta.npc[st.sonNpc] && world.players[st.sonNpc] ? st.sonNpc : agirlikliSec(rng, npcIdler.filter(x => world.players[x] && !st.cevaplayan.includes(x)), x => DUZEN[meta.npc[x].kronotip][saat] + .15);
+      const sc = idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, ERKEN_SSS);
+      if (sc) { cevaplar.push(bilgiPaketi(world, meta, idE, { metin: sc.metin, sss: sc.sss }, rng, 1800)); if (!st.cevaplayan.includes(idE)) st.cevaplayan.push(idE); st.sonNpc = idE; sonuc.niyet.sss = sc.sss; return sonuc; }
+    }
     // Son konuşana dönük ikinci tekil soru: o kişi kendi gerçek verisinden cevap verir
     const sk = st.sonNpc || sonKonusan;
     if (!hedefKisi && sk && meta.npc[sk] && world.players[sk] && (IKINCI_TEKIL.test(katli) || /^(sen|ya sen|peki sen)\b/.test(katli))) {

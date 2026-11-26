@@ -32,7 +32,7 @@ function ekle(m, niyet, kaynak) {
   gor.add(a);
   veri.push({ m, niyet, kaynak });
 }
-for (const k of ['korpus', 'korpus2']) {
+for (const k of ['korpus', 'korpus2', 'korpus5', 'korpus6', 'korpus7']) {
   const tek = path.join(__dirname, k, 'tekil-gelistirme.json');
   const dia = path.join(__dirname, k, 'diyalog-gelistirme.json');
   if (fs.existsSync(tek)) JSON.parse(fs.readFileSync(tek, 'utf8')).forEach(x => ekle(x.m, x.niyet, k));
