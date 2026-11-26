@@ -2674,11 +2674,13 @@
   }
 
   var SELAMLASMA = /^(selam|merhaba|günaydın|hoş|iyi |hayırlı|tebrik|teşekkür|rica|sağ ol|görüşürüz|bay|aleyküm|oo|ooo|hey|haha|hehe|ah|bak|valla|ya |hocam|kanka|abi)/i;
+  // Başına dolgu kelimesi almayan cümleler: zaten dolgulu, kişisel ya da çok kısa
+  var ONEKSIZ = /^(ben\b|bence|bildi[gğ]im|benim bildi|bilmiyor|onu |ke[sş]ke|evet|hay[ıi]r|yok\b|valla|bak\b|ya\b|yaa|of\b|dedi[gğ]im|az [oö]nce|aa+\b|ha(ha)+|tamam|sa[gğ] ?ol|eyvallah|kusura|emin de[gğ]il|hmm|oo+\b|s[uü]per|helal|aynen|kesinlikle)/i;
   function samimilestir(t, st, rng, korunan) {
     t = degistir(t, 'teşekkür ederim', 'sağ ol', rng, 0.5);
     t = degistir(t, 'merhaba', 'selam', rng, 0.4);
     var p = (0.4 - st.resmi) * 0.7;
-    if (sans(rng, p) && !SELAMLASMA.test(t) && !/^[@\d]/.test(t)) {
+    if (sans(rng, p) && !SELAMLASMA.test(t) && !/^[@\d]/.test(t) && !ONEKSIZ.test(t) && t.split(' ').length >= 4) {
       var dolgu = st.nese < -0.3 ? ['of', 'ya', 'valla'] : ['ya', 'valla', 'hocam', 'bak', 'kanka', 'abi', 'yaa'];
       var ilk = (t.match(/^[\p{L}\p{N}']+/u) || [''])[0];
       t = sec(rng, dolgu) + ' ' + (korunuyor(ilk, korunan || []) ? t : ilkKucuk(t));
@@ -2814,6 +2816,7 @@
     dilBul: dilBul,
     niyetBul: niyetBul,
     // egitim betigi icin (tools/niyet-egit.cjs): ayni ozellik ve birlestirme kodu
+    ONEKSIZ: ONEKSIZ,
     _egitim: { ozellikler: ozellikler, karma: karma, kuralLog: kuralLog, logNormal: logNormal, modelVar: function () { return !!NIYET_MODEL; } },
     uret: uret,
     stillendir: stillendir,
