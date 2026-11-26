@@ -10,8 +10,8 @@ vm.runInContext(fs.readFileSync(path.join(kok, 'npc-yz.js'), 'utf8'), ctx);
 const T = ctx.Toplum, N = ctx.NPCYZ, D = ctx.NPCDil;
 const YAZ = process.argv.includes('--yaz'), KORPUS = !process.argv.includes('--elle');
 const SET = process.argv.includes('--sakli') ? 'sakli' : process.argv.includes('--hepsi') ? null : 'gelistirme';
-const K2 = process.argv.includes('--korpus2');
-const dosya = ad => K2 ? path.join(__dirname, 'korpus2', SET && process.argv.includes('--sakli') ? `${ad}-sakli.json` : SET && process.argv.includes('--gelistirme2') ? `${ad}-gelistirme.json` : `${ad}.json`) : path.join(__dirname, 'korpus', SET ? `${ad}-${SET}.json` : `${ad}.json`);
+const K2 = process.argv.includes('--korpus2'), K5 = process.argv.includes('--korpus5');
+const dosya = ad => K5 ? path.join(__dirname, 'korpus5', process.argv.includes('--sakli') ? `${ad}-sakli.json` : `${ad}-gelistirme.json`) : K2 ? path.join(__dirname, 'korpus2', SET && process.argv.includes('--sakli') ? `${ad}-sakli.json` : SET && process.argv.includes('--gelistirme2') ? `${ad}-gelistirme.json` : `${ad}.json`) : path.join(__dirname, 'korpus', SET ? `${ad}-${SET}.json` : `${ad}.json`);
 console.log('Kör set:', SET || 'hepsi');
 
 // Dünya: 150 gün ön yaşam, oyuncu işsiz yeni gelmiş biri (en zor durum)
@@ -21,6 +21,8 @@ function dunyaKur(tohum, durum) {
   const o = T.addPlayer(w, 'Eymen Sancar');
   if (durum === 'kurye') T.takeProfession(w, o.id, 'kurye');
   if (durum === 'patron') { o.totalExperienceDays = 60; T.credit(w, o, 700000, 'test'); T.takeProfession(w, o.id, 'dukkan_sahibi'); }
+  if (durum === 'evsahibi') { T.credit(w, o, 2500000, 'test'); T.buyProperty(w, o.id, 'daire', { liveIn: false }); }
+  if (durum === 'zengin') T.credit(w, o, 3000000, 'test');
   return { w, meta, o };
 }
 
@@ -52,6 +54,7 @@ const somutMu = m => D.normal(m).katli.split(/[^a-z0-9]+/).some(w => YERLER.has(
 let toplamTur = 0, gecenTur = 0, toplamKontrol = 0, gecenKontrol = 0, konuDogru = 0, konuToplam = 0;
 const hatalar = [];
 function oyna(diyalog, tohum) {
+  const kanal0 = diyalog.kanal === 'dm' ? null : 'ulke';
   const { w, meta, o } = dunyaKur(tohum, diyalog.durum || (/patron|eleman/.test(diyalog.ad) ? 'patron' : 'issiz'));
   let son = null, oncekiKonu = null;
   const dokum = [];
@@ -59,7 +62,14 @@ function oyna(diyalog, tohum) {
   const gercekNow = Date.now;
   for (const tur of diyalog.turlar) {
     zaman += 40e3; Date.now = () => zaman; // her mesaj arasında 40 sn
-    const r = N.oyuncuMesaji(w, meta, 'ulke', tur.m, o, 20, []);
+    let r;
+    if (diyalog.kanal === 'dm') {
+      // Özel mesaj: konuşulan NPC (dmKim: patron = işletmesi olan, ev = mülkü olan, yoksa herhangi biri)
+      if (!diyalog._npc) { const ids = Object.keys(meta.npc).filter(id => w.players[id]); diyalog._npc = diyalog.dmKim === 'patron' ? (ids.find(id => w.players[id].businessIds.length) || ids[0]) : diyalog.dmKim === 'ev' ? (ids.find(id => w.players[id].propertyIds.length) || ids[0]) : ids[(tohum >> 3) % ids.length]; }
+      const d = N.dmGonder(w, meta, diyalog._npc, tur.m, o);
+      r = { cevaplar: d && (d.metin || d.hata) ? [{ npcId: diyalog._npc, ad: meta.npc[diyalog._npc].gorunen, metin: d.metin || d.hata }] : [], niyet: Object.assign({ etkin: tur.konu }, D.niyetBul(tur.m, { adlar: [] })), dm: d && d.teklif ? [1] : null };
+      if (d && d.metin) N.dmCevapEkle(w, meta, diyalog._npc, d.metin);
+    } else r = N.oyuncuMesaji(w, meta, 'ulke', tur.m, o, 20, []);
     Date.now = gercekNow;
     dokum.push(`  Sen: ${tur.m}   [${r.niyet.niyet}→${r.niyet.etkin}${r.niyet.takip ? ', takip:' + r.niyet.takip : ''}]`);
     r.cevaplar.forEach(c => dokum.push(`     ${c.ad}: ${c.metin}`));
@@ -73,6 +83,11 @@ function oyna(diyalog, tohum) {
       if (b === 'ayni_kisi') kontrol.push([b, !son || !son.length || r.cevaplar.some(c => son.some(x => x.npcId === c.npcId))]);
       if (b === 'baglam') kontrol.push([b, r.niyet.etkin === (tur.konu || oncekiKonu) || r.niyet.etkin === oncekiKonu || (altSoru[tur.konu] && r.niyet.takip === altSoru[tur.konu])]);
       if (b === 'dm_teklif') kontrol.push([b, !!(r.dm && r.dm.length)]);
+    }
+    // icermeli: cevaplardan en az biri bu kalıplardan birini içermeli (büyük/küçük harf ve Türkçe harf farkı gözetilmez)
+    if (tur.icermeli && tur.icermeli.length) { const ns = x => D.normal(x).katli; const ok = r.cevaplar.some(c => tur.icermeli.some(k => new RegExp(ns(k).replace(/\s+/g, '\\s*'), 'i').test(ns(c.metin)))); kontrol.push(['icermeli:' + tur.icermeli[0], ok]); }
+    if (tur.icermemeli && tur.icermemeli.length) { const ns = x => D.normal(x).katli; const ok = !r.cevaplar.some(c => tur.icermemeli.some(k => ns(c.metin).includes(ns(k)))); kontrol.push(['icermemeli:' + tur.icermemeli[0], ok]); }
+    {
     }
     toplamTur++; toplamKontrol += kontrol.length;
     const iyi = kontrol.filter(k => k[1]).length; gecenKontrol += iyi;
