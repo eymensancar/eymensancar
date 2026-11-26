@@ -1759,7 +1759,7 @@
    ],
    [
     "B",
-    "[hemen {s:sayi} yüz yükle karta|karta para yükle hemen|bugün yükle unutma], [{s:mekan} dolum makinesi var|{s:mekan} yükleme yeri var|yakında yükleme yeri var]"
+    "[hemen {s:sayi} yüz yükle karta|karta para yükle hemen|bugün yükle unutma], [{s:semt} tarafındaki istasyonda dolum makinesi var|{s:semt} tarafındaki istasyonda yükleme yeri var|yakında yükleme yeri var]"
    ]
   ]
  },
@@ -2661,7 +2661,7 @@
    ],
    [
     "C",
-    "[ben bir kere {s:mekan} çorap aldım bu yüzden|ben bir keresinde {s:mekan} çorap almak zorunda kaldım|bir keresinde yoldan çorap aldım]"
+    "[ben bir kere {s:semt} tarafında çorap aldım bu yüzden|ben bir keresinde {s:semt} tarafında çorap almak zorunda kaldım|bir keresinde yoldan çorap aldım]"
    ],
    [
     "A",
@@ -2725,7 +2725,7 @@
    ],
    [
     "C",
-    "[hafta sonu biraz {s:mekan} dolaş|öğlen biraz dışarı çık|gün ışığı lazım sana]"
+    "[hafta sonu biraz {s:semt} tarafında dolaş|öğlen biraz dışarı çık|gün ışığı lazım sana]"
    ],
    [
     "A",
@@ -3241,7 +3241,7 @@
    ],
    [
     "C",
-    "[ben {s:mekan} gördüm bir grup|{s:mekan} bir grup var, toplanıyorlar|{s:mekan} bir topluluk var]"
+    "[ben {s:semt} tarafında gördüm bir grup|{s:semt} tarafında bir grup var, toplanıyorlar|{s:semt} tarafında bir topluluk var]"
    ],
    [
     "A",
@@ -3301,7 +3301,7 @@
    ],
    [
     "A",
-    "[alıştım artık|her gün çıkıyorum|kaçırmıyorum], [{s:mekan} turlıyorum|her sabah {s:mekan} koşuyorum|{s:mekan} koşu yolu var]"
+    "[alıştım artık|her gün çıkıyorum|kaçırmıyorum], [{s:semt} sahilinde turlıyorum|her sabah {s:semt} sahilinde koşuyorum|{s:semt} sahilinde koşu yolu var]"
    ],
    [
     "C",
@@ -3697,7 +3697,7 @@
    ],
    [
     "A",
-    "[{s:mekan} mama aldım|bugün {s:mekan} mama aldım|mama da aldım {s:mekan}]"
+    "[{s:semt} tarafında mama aldım|bugün {s:semt} tarafında mama aldım|mama da aldım {s:semt} tarafında]"
    ],
    [
     "D",
@@ -3753,7 +3753,7 @@
    ],
    [
     "A",
-    "[o çok mutlu, ben dondum|o koşuyor, ben donuyorum|ona hiçbir şey olmuyor], [{s:mekan} turladık|{s:mekan} bir tur attık|{s:mekan} dolandık]"
+    "[o çok mutlu, ben dondum|o koşuyor, ben donuyorum|ona hiçbir şey olmuyor], [{s:semt} tarafında turladık|{s:semt} tarafında bir tur attık|{s:semt} tarafında dolandık]"
    ],
    [
     "C",
@@ -3809,7 +3809,7 @@
   "turlar": [
    [
     "A",
-    "[{s:hayvan} maması yine zamlanmış|mama fiyatları uçtu|{s:mekan} mamaya baktım, şok oldum]"
+    "[{s:hayvan} maması yine zamlanmış|mama fiyatları uçtu|{s:semt} tarafında mamaya baktım, şok oldum]"
    ],
    [
     "B",
@@ -4505,7 +4505,7 @@
   "turlar": [
    [
     "A",
-    "[bu {s:gun} kim kahveye gelir|{s:gun} günü {s:mekan} oturacağım, gelen olur mu|{s:gun} kahve içmek isteyen]"
+    "[bu {s:gun} kim kahveye gelir|{s:gun} günü {s:semt} tarafında oturacağım, gelen olur mu|{s:gun} kahve içmek isteyen]"
    ],
    [
     "B",
@@ -4513,7 +4513,7 @@
    ],
    [
     "A",
-    "[{s:mekan} sıcak bir köşe buldum|{s:mekan} güzel yer var|{s:mekan} oturuyorum hep], [{s:icecek} güzel|{s:icecek} tam kıvamında|en iyi {s:icecek} orada]"
+    "[{s:semt} tarafında sıcak bir köşe buldum|{s:semt} tarafında güzel yer var|{s:semt} tarafında oturuyorum hep], [{s:icecek} güzel|{s:icecek} tam kıvamında|en iyi {s:icecek} orada]"
    ],
    [
     "C",
@@ -4725,7 +4725,7 @@
    ],
    [
     "A",
-    "[o zaman {s:mekan} gidiyorum yenisini almaya|hemen gidip alayım|bakalım kural çalışacak mı]"
+    "[o zaman {s:semt} tarafına gidiyorum yenisini almaya|hemen gidip alayım|bakalım kural çalışacak mı]"
    ]
   ]
  },
