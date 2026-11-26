@@ -103,7 +103,14 @@
    "kuryeyi işe alan biri var mı",
    "kurye kimseye bağlı değil mi",
    "kurye bir şirkette mi çalışıyor",
-   "kuryenin işyeri var mı"
+   "kuryenin işyeri var mı",
+   "kurye olmak için kime başvuracağım",
+   "kuryelik için kime başvurulur",
+   "kuryenin patronu yok mu",
+   "kurye olmak için işveren lazım mı",
+   "kurye için ilana mı başvuracağım",
+   "kuryelik her zaman açık mı",
+   "kuryelik her zaman boş mu"
   ],
   "cevap": [
    "Kuryenin işvereni yok, kendi başına görev yapıp kazanıyor",
@@ -262,7 +269,13 @@
    "taşerona işçi olarak girmek",
    "inşaat ilanı nerede",
    "inşaat işçisi olarak başvurmak",
-   "şantiye işi nasıl bulunur"
+   "şantiye işi nasıl bulunur",
+   "inşaat işçisi nasıl olunuyor",
+   "inşaatta çalışmak istiyorum yer var mı",
+   "inşaat işçiliğine nasıl başlarım",
+   "inşaat işi nereden bulunur",
+   "inşaat işçisi olmak için şart var mı",
+   "inşaatta iş arıyorum"
   ],
   "cevap": [
    "İnşaat işçiliği şartsız, Kariyer'deki taşeron ilanlarına başvur",
@@ -392,7 +405,10 @@
    "muhasebeci olsam ayda ne alırım",
    "muhasebeci aylık kazanç",
    "muhasebeciler ne kadar alıyor",
-   "muhasebecinin maaşı yüksek mi"
+   "muhasebecinin maaşı yüksek mi",
+   "muhasebeci sabit maaş alıyor değil mi",
+   "muhasebecinin maaşı sabit mi",
+   "muhasebeci görev yapmadan maaş alır mı"
   ],
   "cevap": [
    "Muhasebeci sabit maaşlı, şu an {maas.muhasebeci}",
@@ -522,7 +538,11 @@
    "emlak danışmanı olmak istiyom",
    "emlakçı şartı ne",
    "emlak danışmanlığına geçmek",
-   "emlakçı olmak için kurs şart mı"
+   "emlakçı olmak için kurs şart mı",
+   "emlakci olmk icim ne lazm",
+   "emlak danışmanı olmak için ofis lazım mı",
+   "emlak danışmanına ofis gerekir mi",
+   "emlakçılık için kaç gün deneyim lazım"
   ],
   "cevap": [
    "Emlak danışmanlığı belgesi ve 30 gün deneyim gerekiyor",
@@ -574,7 +594,13 @@
    "işçiden ustaya nasıl geçilir",
    "usta için inşaatta çalışmak şart mı",
    "usta olmak icin ne lazim",
-   "ustalık için kaç gün işçilik"
+   "ustalık için kaç gün işçilik",
+   "ustalık belgesi almak için önce ne yapmalı",
+   "ustalik belgesi icin once ne lazim",
+   "ustalık kursundan önce ne gerekiyor",
+   "usta olmak için önce inşaatta mı çalışmak lazım",
+   "ustalık belgesini alıp direkt usta olunur mu",
+   "ustalik belgesi kimde var nasil alinir"
   ],
   "cevap": [
    "Ustalık belgesi ve 20 gün inşaat işçiliği gerekiyor",
@@ -626,7 +652,13 @@
    "nakliyeci olcam kac para",
    "nakliyeci için kaç gün deneyim",
    "nakliyecilik için kurs var mı",
-   "nakliyeci şartı ne"
+   "nakliyeci şartı ne",
+   "nakliyeci olabilir miyim kuryeden",
+   "kuryeden nakliyeciliğe geçebilir miyim",
+   "nakliyeci sermayesi araç dahil mi",
+   "nakliyecilikte araç parası sermayeye dahil mi",
+   "nakliyecilik sermayesi aracla mi",
+   "nakliyeci için ayrıca araç almam lazım mı"
   ],
   "cevap": [
    "Araç dahil {nakliyeci.sermaye} sermaye ve 60 gün deneyim gerekiyor",
@@ -730,7 +762,11 @@
    "taşeronluk için ne lazım",
    "taşeron olmak için kaç gün",
    "taşeron şartı ne",
-   "taşeron firması kurmak için ne gerek"
+   "taşeron firması kurmak için ne gerek",
+   "ustadan sonra ne olunur",
+   "usta sonrası hangi meslek",
+   "ustalıktan sonra taşeron mu",
+   "usta olduktan sonra ne yapayım"
   ],
   "cevap": [
    "Taşeron için sermaye ve 20 gün ustalık gerekiyor, sermaye 1,2 milyon civarı",
@@ -860,7 +896,13 @@
    "müteahhit olmak kaç milyon",
    "müteahhitlik 4. kademe mi",
    "müteahhit olmanın yolu",
-   "müteahhit şartları neler"
+   "müteahhit şartları neler",
+   "müteahhitlik var mı",
+   "muteahhitlik var mi oyunda",
+   "müteahhit olunabiliyor mu",
+   "müteahhitlik meslek olarak var mı",
+   "müteahhit olmak mümkün mü",
+   "müteahhitlik kaçıncı kademe"
   ],
   "cevap": [
    "Müteahhit 4. kademe: 12 milyon civarı sermaye, müteahhitlik belgesi, 700 kredi notu ve 180 gün deneyim",
@@ -886,7 +928,12 @@
    "fabrika kaç kişi çalıştırır",
    "fabrikatör için kurs var mı",
    "fabrikatör olmanın yolu",
-   "fabrika kurmanın şartı"
+   "fabrika kurmanın şartı",
+   "fabrikatör olmak istiyorum 3 milyonum var yeter mi",
+   "fabrikatör için kaç milyon lazım",
+   "fabrika kurmak için ne kadar para lazım",
+   "fabrikatör olmak için kaç gün deneyim",
+   "3 milyonla fabrika kurulur mu"
   ],
   "cevap": [
    "Fabrikatör için 30 milyon civarı sermaye, 650 kredi notu ve 180 gün deneyim gerekiyor",
@@ -1017,7 +1064,11 @@
    "üçüncü kademede kaç meslek var",
    "3.kademe meslekler",
    "3. kademeye geçmek istiyorum",
-   "üçüncü kademe ne demek"
+   "üçüncü kademe ne demek",
+   "3. kademe için ne lazım",
+   "peki 3. kademe icin ne lazim",
+   "üçüncü kademe şartları ne",
+   "3. kademeye geçmek için ne gerekiyor"
   ],
   "cevap": [
    "3. kademe: kafe, dükkan, taşeron sahibi ve nakliyeci",
@@ -1069,7 +1120,14 @@
    "para ile kademe atlanır mı",
    "kademe için para yeter mi",
    "deneyimsiz kademe atlamak",
-   "kurs şartını parayla geçmek"
+   "kurs şartını parayla geçmek",
+   "4. kademe için sadece para yeter mi",
+   "dördüncü kademeye yalnız parayla geçilir mi",
+   "param çok kurs ve deneyimi parayla geçebilir miyim",
+   "parayla deneyim şartını geçebilir miyim",
+   "3. kademeye parayla atlanır mı",
+   "kademe atlamak için para yeterli mi",
+   "yalniz para yeter mi ust kademeye"
   ],
   "cevap": [
    "Para olur ama deneyim ve kurs şartı parayla atlanmıyor",
@@ -1148,7 +1206,13 @@
    "başka mesleğe nasıl geçilir",
    "yeni mesleğe geçmek",
    "işimi değiştirmek istiyorum",
-   "meslek değişikliği"
+   "meslek değişikliği",
+   "kuryeliği bıraksam deneyim gider mi",
+   "işimi bırakırsam deneyimim kaybolur mu",
+   "mesleği bırakınca deneyim siliniyor mu",
+   "istifa edersem deneyimim gider mi",
+   "başka mesleğe geçince deneyim sıfırlanır mı",
+   "kuryeligi birakirsam deneyim gunlerim gider mi"
   ],
   "cevap": [
    "Kariyer ekranından şartını tuttuğun başka mesleğe geçebilirsin",
@@ -1617,7 +1681,15 @@
    "kurs hızlı biter mi",
    "kursun süresini kısaltabilir miyim",
    "kurs süresi kısaltma",
-   "kurs beklemesi uzun"
+   "kurs beklemesi uzun",
+   "kum saati kursu kaç gün kısaltır",
+   "kursta kum saati kullanınca kaç gün kısalır",
+   "kum saatiyle kurs hemen biter mi",
+   "kum saatiyle kursu bitirebilir miyim",
+   "kurslar beklemekle geçmez herhalde",
+   "kurs beklemesi çok uzun hızlandırılır mı",
+   "kursu beklemeden bitirmenin yolu",
+   "kurs süresini kısaltmak mümkün mü"
   ],
   "cevap": [
    "Kum Saati ile hızlandırırsın, her biri 1 günü kısaltır",
@@ -1882,7 +1954,12 @@
    "kum saati deneyimi hızlandırır mı",
    "kum saatiyle 60 gün geçer mi",
    "deneyim beklemesine kum saati",
-   "kum saati ile tecrübe"
+   "kum saati ile tecrübe",
+   "kum saati deneyimde de işe yarar mı",
+   "kum saati deneyim günlerini kısaltıyor mu",
+   "kum saatiyle deneyimi hızlandırabilir miyim",
+   "deneyim beklemesine kum saati kullanılır mı",
+   "kumsaati deneyim gunu dusurur mu"
   ],
   "cevap": [
    "Hayır, Kum Saati deneyimi kısaltmaz",
@@ -1908,7 +1985,15 @@
    "otuz gün deneyim nasıl dolar",
    "30 gün deneyim hangi işten",
    "30 günlük tecrübe şartı",
-   "garsonluk deneyimi memurluğa sayılır mı"
+   "garsonluk deneyimi memurluğa sayılır mı",
+   "2. kademeye geçmek için kaç gün çalışmak lazım",
+   "ikinci kademe için kaç gün deneyim",
+   "kuryelik de deneyime sayılıyor mu",
+   "kuryelik deneyimi memurluk için sayılır mı",
+   "memur için kaç gün deneyim lazım",
+   "muhasebeci için deneyim şartı var mı",
+   "emlakçı için kaç gün deneyim gerekiyor",
+   "kurs bitince 30 gün daha mı çalışmam lazım"
   ],
   "cevap": [
    "Herhangi bir işte 30 gün yeter, kuryelik de sayılır",
@@ -1934,7 +2019,13 @@
    "60 günlük tecrübe şartı",
    "60 gün kaç saat",
    "kafe için kaç gün deneyim lazım",
-   "60 gün deneyim çok uzun"
+   "60 gün deneyim çok uzun",
+   "dükkan sahibi olmak için kaç gün çalışmam lazım",
+   "kafe açmak için kaç gün deneyim",
+   "60 gün deneyim hangi işte olursa sayılır mı",
+   "dükkan sahipliği için deneyim şartı kaç gün",
+   "nakliyeci için kaç gün deneyim lazım",
+   "3. kademe için kaç gün çalışmak gerek"
   ],
   "cevap": [
    "Herhangi bir işte toplam 60 gün yeter",
@@ -1960,7 +2051,13 @@
    "20 gün işçilik kaç saat",
    "usta deneyimi nereden gelir",
    "yirmi gün işçilik",
-   "ustalık için kuryelik geçer mi"
+   "ustalık için kuryelik geçer mi",
+   "inşaatta 20 gün çalışınca otomatik mi usta oluyorum",
+   "20 gün inşaat işçiliği yapınca usta olur muyum",
+   "usta için de 30 gün mü",
+   "usta için kaç gün deneyim lazım",
+   "usta olmak için kaç gün inşaatta çalışmalıyım",
+   "ustalık için kuryelik deneyimi sayılır mı"
   ],
   "cevap": [
    "Usta için 20 gün özellikle inşaat işçiliği lazım",
@@ -2015,7 +2112,12 @@
    "kariyere nereden girilir",
    "kariyer sayfası",
    "meslek ekranı nerede",
-   "kariyer bölümü"
+   "kariyer bölümü",
+   "iş nereden aranır menüde",
+   "iş aramak için hangi menü",
+   "iş ilanları hangi ekranda",
+   "meslek seçmek için nereye gireyim",
+   "iş bulmak için hangi sekme"
   ],
   "cevap": [
    "Kariyer sekmesi soldaki rayda, meslekler, ilanlar ve kurslar orada",
@@ -2202,7 +2304,20 @@
    "ayda 20 görev yapmazsam",
    "tam maaş için ne lazım",
    "maaş kesintisi görev",
-   "görev sayısı maaşı etkiler mi"
+   "görev sayısı maaşı etkiler mi",
+   "çalışanım görevleri yapmazsa maaşı tam mı veriyorum",
+   "eleman görev yapmazsa maaşı yine tam mı yatar",
+   "işçim görev yapmazsa maaşı kesilir mi",
+   "calisan gorev yapmazsa maas tam yatarmi",
+   "çalışanım kaç görev yaparsa maaşı tam yatar",
+   "ayda kaç görev yaparsam maaşımın hepsi gelir",
+   "tam maaş için ayda kaç görev lazım",
+   "maaşın tamamı için kaç görev yapmalıyım",
+   "maaşım eksik yatmasın diye kaç görev",
+   "çalışan 20 görevi yapmazsa ne olur",
+   "aylik kac gorev yapinca maas tam",
+   "çalışan görev yapmadan tam maaş alır mı",
+   "çalışanlarım görev yapmıyor maaşları tam mı"
   ],
   "cevap": [
    "İşletmede çalışan ayda 20 görevi yaparsa maaşı tam yatar",
@@ -2283,7 +2398,9 @@
    "asgari ücret ne",
    "oyundaki asgari ücret",
    "asgari kac para",
-   "asgari ücret yükseldi mi"
+   "asgari ücret yükseldi mi",
+   "asgari ücret de enflasyonla artar mı",
+   "asgari ücrete zam geliyor mu"
   ],
   "cevap": [
    "Asgari ücret {asgari}",
@@ -2337,7 +2454,12 @@
    "görev hakkım ne zaman dolar",
    "günlük görev sayısı",
    "görev sınırı ne",
-   "günde 5 görev mi"
+   "günde 5 görev mi",
+   "kurye günde kaç teslimat yapabiliyor",
+   "kurye günde kaç görev yapar",
+   "günde en fazla kaç görev var",
+   "günlük görev sınırı kaç",
+   "kurye gunde kac paket"
   ],
   "cevap": [
    "Çoğu işte günde 5 görev var, usta ve nakliyecide 2",
@@ -2822,7 +2944,15 @@
    "rakip kafeler",
    "müşteri bölünüyor mu",
    "çok dükkan var",
-   "rekabet müşteriyi böler mi"
+   "rekabet müşteriyi böler mi",
+   "yanıma aynı dükkandan açarlarsa ne olur",
+   "yanima ayni dukkandan acarlarsa",
+   "herkes kafe açıyor kazanç kalır mı",
+   "aynı sokakta 5 kafe var müşteri bölünüyor mu",
+   "rakip kafe açılınca müşterim azalır mı",
+   "kafe çoksa dükkan mı açsam",
+   "kafe cok ise dukkan acsam",
+   "çok rakip varsa işletme kazanır mı"
   ],
   "cevap": [
    "Aynı türden çok işletme olunca müşteri bölünüyor",
@@ -2849,7 +2979,13 @@
    "geçici personel verimli mi",
    "npc çalışan ne",
    "eleman almasam ne olur",
-   "geçici personel ne kadar tutar"
+   "geçici personel ne kadar tutar",
+   "çalışanım yok dükkan yine de açılıyor mu",
+   "çalışan yokken işletme çalışır mı",
+   "eleman almazsam dükkan kapanır mı",
+   "geçici personelin verimi düşük mü",
+   "geçici personel pahalı mı",
+   "calisanim yok kafe acik kalir mi"
   ],
   "cevap": [
    "Eksik çalışanın yerine geçici personel çalışır, pahalı ve verimsiz",
@@ -2957,7 +3093,12 @@
    "başvuranları işe almak",
    "başvuru listesi",
    "işe başvuranlar",
-   "başvuru geldi mi"
+   "başvuru geldi mi",
+   "ilana başvuran olunca ne oluyor",
+   "başvuran gelince ne yapacağım",
+   "ilanıma başvuru gelince nasıl işe alırım",
+   "basvuran olunca ne olcak ilanda",
+   "başvuru gelince kabul nasıl ediliyor"
   ],
   "cevap": [
    "İşletme ekranında Başvurular düğmesi var",
@@ -3333,7 +3474,10 @@
    "zahmetsiz iş hangisi",
    "en az emek isteyen iş",
    "kolay iş önerisi",
-   "rahat iş"
+   "rahat iş",
+   "en basit iş hangisi",
+   "en kolay meslek hangisi yeni başlayana",
+   "yeni gelene hangi iş kolay"
   ],
   "cevap": [
    "En kolayı memurluk, görev yok, maaş sabit",
@@ -3360,7 +3504,11 @@
    "görevli meslek mi maaşlı meslek mi",
    "sabit maaş görev farkı",
    "hangisi mantıklı sabit maaş mı",
-   "görevle mi kazanayım maaşla mı"
+   "görevle mi kazanayım maaşla mı",
+   "memur ve muhasebeci ikisi de sabit maaşlı mı",
+   "ikisi de sabit maaşlı mı memur ile muhasebeci",
+   "sabit maaşlı meslekler hangileri",
+   "hangi meslekler sabit maaş alıyor"
   ],
   "cevap": [
    "Sık giriyorsan görevli işler, az giriyorsan sabit maaş daha iyi",
@@ -3388,7 +3536,14 @@
    "oyuna fazla giremiyorum",
    "haftada bir giriyorum",
    "az vaktim var",
-   "oyuna girmeye vaktim yok"
+   "oyuna girmeye vaktim yok",
+   "çok oyun oynayamıyorum hangi meslek uygun",
+   "oyuna az vakit ayırıyorum hangi meslek",
+   "vaktim yok hangi iş bana uygun",
+   "fazla giremiyorum hangi meslek iyi",
+   "her gün oyuna giremem hangi meslek",
+   "cok giremiyorum ne is yapayim",
+   "az oynayana hangi meslek"
   ],
   "cevap": [
    "Az giriyorsan memur ya da muhasebeci ol, görev istemiyor",
@@ -3629,7 +3784,14 @@
    "kum saati nerelerde kullanılır",
    "kum saati ne için var",
    "kum saati neye yarıyor",
-   "kum saati açıklama"
+   "kum saati açıklama",
+   "1 kum saati kaç gün kısaltıyor",
+   "bir kum saati kaç günlük",
+   "kum saati başvuruda da işe yarıyor mu",
+   "kum saati iş başvurusunu hızlandırır mı",
+   "kum saati hangi beklemelerde kullanılıyor",
+   "kum saati neye yarıyor ciddi",
+   "kum saati neyi kısaltıyor"
   ],
   "cevap": [
    "1 Kum Saati 1 günlük beklemeyi kısaltır, kurs ve başvuruda",
@@ -3657,7 +3819,17 @@
    "günlük hedef ne",
    "günlük 3 görev",
    "kum saati nasıl gelir",
-   "bedava kum saati nasıl"
+   "bedava kum saati nasıl",
+   "kaç görevde 1 kum saati",
+   "kac gorevde bir kum saati geliyor",
+   "kum saati nereden bulacağım",
+   "kum saati bedava nasıl gelir",
+   "günlük görevden kaç tane yapınca ödül var",
+   "günlük görev ödülü için kaç görev",
+   "bedava kum saati almak için ne yapmalı",
+   "kum saati görevle mi kazanılıyor",
+   "kum saati kaç görevde geliyor",
+   "kum saati kaç görev yapınca gelir"
   ],
   "cevap": [
    "Günde 3 görev yapınca 1 Kum Saati bedava geliyor",
@@ -3685,7 +3857,11 @@
    "kum saati fiyatı ne",
    "kum saati mağaza",
    "kum saati paralı",
-   "kum saati nereden alınır"
+   "kum saati nereden alınır",
+   "kum saati parayla da alınıyor mu",
+   "kum saati satın alınabiliyor mu",
+   "kum saatini gerçek parayla alabilir miyim",
+   "kum saati mağazada satılıyor mu"
   ],
   "cevap": [
    "Gerçek parayla mağazadan alınıyor, fiyatı mağazada yazıyor",
@@ -3713,7 +3889,11 @@
    "kum saati aktarma",
    "kum saati başkasına",
    "kum saati verebilir miyim",
-   "kum saati yollamak"
+   "kum saati yollamak",
+   "arkadaşa kum saati gönderilir mi",
+   "kum saatimi başkasına verebilir miyim",
+   "kum saati transfer edilebiliyor mu",
+   "arkadasa kumsaati yollanir mi"
   ],
   "cevap": [
    "Kum Saati kimseye gönderilemez",
@@ -3741,7 +3921,14 @@
    "kum saati servetimi artırır mı",
    "kum saati satıp para",
    "kum saati değeri",
-   "kum saati maaşa etkisi"
+   "kum saati maaşa etkisi",
+   "kum saati maaşı arttırır mı",
+   "kum saati maaşımı yükseltir mi",
+   "kum saati servete sayılıyor mu",
+   "kum saati net servetimi artırır mı",
+   "kumsaati maasa etki eder mi",
+   "kum saati para eder mi servette",
+   "kum saati kazancımı artırır mı"
   ],
   "cevap": [
    "Kum Saati maaşı da serveti de etkilemez",
@@ -3902,7 +4089,12 @@
    "kariyer yol haritası",
    "nasıl terfi ederim",
    "kariyer tavsiyesi sırayla",
-   "adım adım ne yapayım"
+   "adım adım ne yapayım",
+   "kuryeden sonra ne olurum",
+   "kuryelikten sonra hangi meslek",
+   "kuryeden sonra büyümek için ne yapmalı",
+   "şartsız işten sonra ne yapayım",
+   "sıradaki hedef hangi meslek olsun"
   ],
   "cevap": [
    "Şartsız işle başla, 30 gün dolunca kurslu mesleğe geç, sonra sermayeyle işletme",
@@ -3929,7 +4121,13 @@
    "maaş masraf dengesi",
    "geçinmek için ne kadar lazım",
    "maaşım giderleri karşılar mı",
-   "geçim pahalı mı"
+   "geçim pahalı mı",
+   "garson maaşıyla kira ve geçim ödenir mi",
+   "maaşımla kira ve geçimi karşılayabilir miyim",
+   "bu maaşla eksiye düşer miyim",
+   "garson maasi kiraya ve gecime yeter mi",
+   "maaş kirayı ve geçimi çıkarır mı",
+   "kurye maaşı geçime yetiyor mu"
   ],
   "cevap": [
    "Aylık geçim {yasam}, ev sahibi değilsen kira {evkira} daha var",

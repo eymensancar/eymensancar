@@ -38,7 +38,6 @@
   "konu": "fiyat_sorusu",
   "sorular": [
    "dükkan fiyatı ne kadar",
-   "dukkan kac para",
    "bir dükkan kaça",
    "dükkan almak kaça",
    "dükkan fiyatlari",
@@ -140,7 +139,11 @@
    "dükkan kiraya verilir mi ne kadar",
    "dükkan aylık kira getirisi",
    "dukkan kira kac para",
-   "dükkanın kirası kaç lira"
+   "dükkanın kirası kaç lira",
+   "dükkan alıp kiraya vermek mantıklı mı",
+   "dukkan alip kiraya vermek",
+   "dükkanı kiraya verirsem ne kadar gelir",
+   "dükkan kirası ne kadar getirir"
   ],
   "cevap": [
    "Dükkan ayda {dukkan.kira} kira getiriyor",
@@ -168,7 +171,11 @@
    "arsadan para gelmez mi",
    "arsam kira vermiyor",
    "arsa kira geliri var mı",
-   "arsa sadece bekliyor mu"
+   "arsa sadece bekliyor mu",
+   "arsanın kirası olur mu",
+   "arsa kira getirmez di mi",
+   "arsa aylık kira getiriyor mu",
+   "arsa mı dükkan mı kira getirir"
   ],
   "cevap": [
    "Arsa kira getirmez, sadece zamanla değerlenir",
@@ -222,7 +229,12 @@
    "hangi mülke para yatırayım",
    "en mantikli mulk hangisi",
    "para yatırmak için hangi mülk",
-   "mülklerden hangisi daha iyi getirir"
+   "mülklerden hangisi daha iyi getirir",
+   "dükkan mı arsa mı daha iyi",
+   "arsadan dükkan iyi mi",
+   "daire mi dükkan mı arsa mı karlı",
+   "kira için dükkan mı daire mi",
+   "hangi mülk daha çok getiriyor"
   ],
   "cevap": [
    "Kira için dükkan biraz daha iyi getiriyor, ama pahalı. Daire {daire}, dükkan {dukkan}",
@@ -250,7 +262,17 @@
    "merkezde ev pahalı mı",
    "semtin önemi var mı",
    "beşiktaşta ev pahalı mı",
-   "semt seçmek fiyatı değiştirir mi"
+   "semt seçmek fiyatı değiştirir mi",
+   "en iyi semt hangisi ev almak için",
+   "ev almak için hangi semt iyi",
+   "hangi semtte ev alayım",
+   "kira da semte göre değişmiyor mu",
+   "kiralar semte göre farklı mı",
+   "semtten semte kira değişir mi",
+   "mülk fiyatları semte göre mi",
+   "en ucuz semt hangisi",
+   "kadıköy mü üsküdar mı ev için",
+   "semtin fiyata etkisi var mı"
   ],
   "cevap": [
    "Şu an semt fark etmiyor, her yerde fiyat aynı",
@@ -277,7 +299,14 @@
    "ev sahibi kira ödüyor mu",
    "ev sahipleri kira verir mi",
    "kendi evimde oturunca kira yok mu",
-   "mülk sahibi kira öder mi"
+   "mülk sahibi kira öder mi",
+   "oturursam kira ödemem di mi",
+   "evimde oturursam kira ödemem mi",
+   "ev sahibi olunca kira gider mi",
+   "ev sahibiysem kira ödüyor muyum",
+   "kira oduyor muyum ev sahibiysem",
+   "ev alırsam kira ödemem dimi",
+   "kendi evim olunca kira biter mi"
   ],
   "cevap": [
    "Ev sahibi kira ödemez, kendi evine taşınırsan kira biter",
@@ -438,7 +467,11 @@
    "oyuncular arasi mulk satisi var mi",
    "mülk ilanı var mı",
    "ilan açıp ev satmak",
-   "kendi fiyatımla satmak"
+   "kendi fiyatımla satmak",
+   "başka oyuncuya ev satabiliyor muyuz",
+   "evimi bir oyuncuya satabilir miyim",
+   "mülkümü başka oyuncuya nasıl satarım",
+   "oyuncuya daire satmak mümkün mü"
   ],
   "cevap": [
    "Oyuncuya ilanla satış daha tam gelmedi, şimdilik piyasaya satılıyor",
@@ -490,7 +523,11 @@
    "ev bakıyorum",
    "mülk almak için ne yapmalıyım",
    "daire nasıl alınır",
-   "mülk almak istiyorum"
+   "mülk almak istiyorum",
+   "satılık daire ilanlarına nereden bakılır",
+   "satılık ev nerede bakılır",
+   "satılık mülk ilanları nerede",
+   "daire almak için hangi ekran"
   ],
   "cevap": [
    "Mülk ekranına gir, daire, dükkan ya da arsa seç, al de",
@@ -543,7 +580,11 @@
    "taksitli mülk alınır mı",
    "kredili daire almak",
    "ev alacağım kredi lazım",
-   "konut kredisi çekmek"
+   "konut kredisi çekmek",
+   "kira ödemekten bıktım ama param az ev alabilir miyim",
+   "param az ama ev almak istiyorum krediyle",
+   "az parayla krediyle ev alınır mı",
+   "krediyle ev almak için ne lazım"
   ],
   "cevap": [
    "Mülk ekranında krediyle al var, peşinatı verirsin gerisi 120 ay taksit",
@@ -569,7 +610,15 @@
    "pesinat ne kadar tutuyor",
    "peşinat yüzdesi",
    "peşinat kaç para",
-   "ev peşinatı"
+   "ev peşinatı",
+   "konut kredisiyle ev alacağım peşinat kaç",
+   "konut kredisinde peşinat ne kadar",
+   "kredi çekersem peşinat ne kadar",
+   "krediyle daire alırsam peşinat kaç",
+   "kredi cekersem pesinat",
+   "ev kredisi peşinatı kaç para",
+   "peşinat yüzde kaç konut kredisinde",
+   "pesinat orani nedir ev alirken"
   ],
   "cevap": [
    "Peşinat yaklaşık yüzde 20, daire için {pesinat}",
@@ -650,7 +699,16 @@
    "kendi evime geçmek istiyorum",
    "taşınma nasıl yapılır",
    "taşınma butonu nerede",
-   "ev aldım nasıl yerleşirim"
+   "ev aldım nasıl yerleşirim",
+   "kiraya mı vereyim içinde mi oturayım",
+   "evi kiraya mi vereyim icinde mi oturayim",
+   "aldığım evde oturmam lazım mı",
+   "aldığım daireye taşınmak zorunda mıyım",
+   "daireyi alınca içinde oturmak şart mı",
+   "evimi kiraya vermekle oturmak arasında fark ne",
+   "ilk dairemi aldım taşınayım mı kiraya mı vereyim",
+   "dairede oturayım mı kiraya mı vereyim",
+   "evde oturayım mı kiraya mı vereyim"
   ],
   "cevap": [
    "Mülk ekranında dairene taşın de, kiradan kurtulursun",
@@ -676,7 +734,12 @@
    "mülk fiyatları yükseliyor mu",
    "ev fiyatı artacak mı",
    "daireler pahalanacak mı",
-   "mülkler değer kazanır mı"
+   "mülkler değer kazanır mı",
+   "ev fiyatları artıyor mu",
+   "ev fiyatları zamanla yükselir mi",
+   "daire fiyatları artar mı",
+   "mülk değer kazanır mı",
+   "konut fiyatları her ay artıyor mu"
   ],
   "cevap": [
    "Fiyatlar her ay enflasyonla biraz artıyor, mülk de",
@@ -756,7 +819,11 @@
    "icrada dükkanım gider mi",
    "haciz gelirse mülküm",
    "icrada mulkler ucuza mi gidiyor",
-   "icra evimi alır mı"
+   "icra evimi alır mı",
+   "icra olursam evim gider mi",
+   "icrada dairem elimden gider mi",
+   "icra olunca mülklerime ne olur",
+   "icra mülkümü alır mı"
   ],
   "cevap": [
    "İcra olursan mülklerin piyasanın yüzde 80'ine satılıp borca sayılır",
@@ -916,7 +983,10 @@
    "mülk dükkan ile işletme farkı",
    "aldığım dükkanı işletmek",
    "dükkan alınca dükkan sahibi olur muyum",
-   "işletme kurmak için mülk şart mı"
+   "işletme kurmak için mülk şart mı",
+   "dükkan alıp kiraya mı versem işletme mi açsam",
+   "dükkan mülkü mü alayım işletme mi kurayım",
+   "dükkanı kiraya vermek mi işletmek mi"
   ],
   "cevap": [
    "Dükkan mülkü kira getirir, işletme ayrı bir şey, Kariyer ekranından açılır",
@@ -1053,7 +1123,13 @@
    "36 ay kredi var mı",
    "kredi ne kadar sürede biter",
    "kredi kaç taksit oluyor",
-   "ihtiyaç kredisi vadesi"
+   "ihtiyaç kredisi vadesi",
+   "ihtiyaç kredisi kaç ay vadeli",
+   "ihtiyac kredisinin vadesi kac ay oluyo",
+   "kredi kaç ay vadeli ve kaç taksit kaçırınca icra",
+   "kaç ay ödenir ihtiyaç kredisi",
+   "kredi vadesi iki yıl mı",
+   "ihtiyaç kredisi 24 ay mı"
   ],
   "cevap": [
    "İhtiyaç kredisi 24 ay vadeli, seçemiyorsun",
@@ -1080,7 +1156,13 @@
    "limit nasıl belirleniyor",
    "kredi limiti nasıl çıkıyor",
    "limiti hangi formülle veriyorlar",
-   "limitim neye göre hesaplandı"
+   "limitim neye göre hesaplandı",
+   "kredi limiti neye göre",
+   "kredi limitim neye göre belirleniyor",
+   "kredi limiti tam hesabı nasıl",
+   "limitteki gelir aylık mı",
+   "limit hesabındaki gelir geçen ayın mı",
+   "kredi limitim neden bu kadar düşük"
   ],
   "cevap": [
    "Limit geçen ayki gelirin çarpı kredi notun bölü 100",
@@ -1134,7 +1216,11 @@
    "kredi limitim yok neden",
    "kredi limiti neden çıkmıyor",
    "ilk ay limit yok mu",
-   "limit 0 tl"
+   "limit 0 tl",
+   "kredi limitim 0 neden",
+   "limitim 0 görünüyor niye",
+   "kredi limiti sıfır çıkıyor",
+   "neden hiç kredi limitim yok"
   ],
   "cevap": [
    "Limit geçen ayki gelire bağlı, geçen ay gelirin yoksa limit sıfır",
@@ -1161,7 +1247,13 @@
    "limit nasıl çoğalır",
    "limit artırma yolu",
    "limit yükselsin istiyorum",
-   "daha yüksek limit"
+   "daha yüksek limit",
+   "kredi limitimi nasıl arttırırım",
+   "bu ay çok çalışırsam gelecek ay limitim artar mı",
+   "maaşım artarsa kredi limitim artar mı",
+   "gelirim artınca limit yükselir mi",
+   "kredi limiti nasıl yükselir",
+   "limit artsın diye ne yapmalıyım"
   ],
   "cevap": [
    "Daha çok kazan ve notunu yükselt, ikisi limiti büyütür",
@@ -1242,7 +1334,9 @@
    "ilk kredi puanı",
    "kredi notu başta kaç oluyor",
    "yeni hesap kredi notu",
-   "herkes 620 mi"
+   "herkes 620 mi",
+   "kredi notu kaçtan başlıyor",
+   "başlangıç kredi notu kaç"
   ],
   "cevap": [
    "Herkes 620'den başlar",
@@ -1323,7 +1417,10 @@
    "kredi notu limiti 900 mü",
    "kredi notu kaça kadar düşer",
    "en düşük kredi notu",
-   "kredi notu sınırı"
+   "kredi notu sınırı",
+   "kredi notunun tavanı ne",
+   "kredi notu tavanı kaç",
+   "kredi notu en fazla kaça çıkar"
   ],
   "cevap": [
    "300 ile 900 arasında oynuyor",
@@ -1509,7 +1606,12 @@
    "krediyi erken ödemek",
    "tüm borcu kapatmak",
    "borcumun tamamını ödesem",
-   "kredi kapatılır mı"
+   "kredi kapatılır mı",
+   "krediyi erken kapatabiliyor muyuz",
+   "erken kapatabiliyomuyuz krediyi",
+   "kredi borcunu erken ödeyebilir miyim",
+   "taksitleri beklemeden krediyi kapatmak",
+   "kredinin tamamını şimdi ödesem olur mu"
   ],
   "cevap": [
    "Banka ekranında tamamını öde var, kalan borcu kapatırsın",
@@ -1536,7 +1638,15 @@
    "krediyi ödemesem",
    "taksidi atlasam",
    "ödemedim ne olur",
-   "kredi borcunu ödemezsem"
+   "kredi borcunu ödemezsem",
+   "kredi çektim ama gelirim yok 3 ay sonra ne olur",
+   "kredi çekip dükkan açtım batarsam ne olur",
+   "kredi taksitlerini ödeyemezsem ne olur",
+   "2 taksit kaçırdım ne yapacağım",
+   "iki taksit kaçırdım icra olur mu",
+   "kaç taksit kaçırınca icra",
+   "taksit ödeyemezsem batar mıyım",
+   "kredi cekip batarsam"
   ],
   "cevap": [
    "Her kaçan taksitte not 40 düşer, 3 taksit kaçarsa icra",
@@ -1562,7 +1672,10 @@
    "icra sistemi",
    "icra ne oluyor",
    "icraya düşünce ne olur",
-   "icra nasil olur"
+   "icra nasil olur",
+   "icra ne zaman gelir",
+   "icraya ne zaman düşerim",
+   "ne zaman icralık olurum"
   ],
   "cevap": [
    "3 taksit kaçırırsan icra olur",
@@ -1589,7 +1702,12 @@
    "icraya düştüm şimdi ne olacak",
    "icra yedim ne yapayim",
    "icradan çıkmak",
-   "icradan sonra kredi çekilir mi"
+   "icradan sonra kredi çekilir mi",
+   "icra olunca kredi notu sıfırlanır mı",
+   "icradan sonra kredi notum ne olur",
+   "icra olan arkadaş ne yapacak",
+   "icradan kurtulmanın yolu ne",
+   "icra sonrası nasıl toparlanırım"
   ],
   "cevap": [
    "Oyun bitmez. İşe gir, çalış, borcu kapat, sonra yine yatırım yaparsın",
@@ -1723,7 +1841,15 @@
    "paramı bankada büyütmek",
    "faiz getiren hesap",
    "bankaya para koysam artar mı",
-   "birikime faiz veriliyor mu"
+   "birikime faiz veriliyor mu",
+   "param bankada boşuna yatıyor",
+   "bankadaki param faiz getirmiyor mu",
+   "bankada mevduat faizi yok mu",
+   "bankaya para yatırınca faiz var mı",
+   "param yatiyo bankada bosuna faiz yok mu",
+   "bankada faiz geliri var mı",
+   "bankadaki paraya faiz var mı",
+   "bankadaki para faiz getirir mi"
   ],
   "cevap": [
    "Mevduat faizi yok, para bankada büyümüyor",
@@ -1886,7 +2012,16 @@
    "zam üstüne zam",
    "her ay neden pahalanıyor",
    "herşey zamlanıyor",
-   "neden fiyatlar artiyor"
+   "neden fiyatlar artiyor",
+   "fiyatlar neden sürekli artıyor",
+   "fiyatlar niye hep artıyo",
+   "her şey neden sürekli zamlanıyor",
+   "fiyatlar neden durmadan yükseliyor",
+   "bu fiyat artışı neden",
+   "fiyatlar surekli artiyo neden ya",
+   "neden her ay her şey pahalanıyor",
+   "her şeyin fiyatı neden artıyor",
+   "fiyatlar sürekli artıyor neden"
   ],
   "cevap": [
    "Fiyatlar her ay biraz artıyor, yıllık enflasyon {enflasyon}",
@@ -1914,7 +2049,17 @@
    "maaşlar artmıyor mu",
    "maaş zammı var mı",
    "maaşa zam ne zaman",
-   "maaşlar artiyor mu"
+   "maaşlar artiyor mu",
+   "maaşlar da artıyor mu fiyatlarla",
+   "zam geliyor ama yetmiyor neden",
+   "maaşa zam geliyo ama fiyatlara yetişmiyor",
+   "memur maaşı da mı fiyatların gerisinde",
+   "maaşlar enflasyonun gerisinde mi kalıyor",
+   "maaşım fiyatlara yetişmiyor neden",
+   "maaslar fiyatlardan geride mi",
+   "maaşlara ne zaman zam geliyor",
+   "memur maaşı da geride mi",
+   "memur maaşı enflasyondan geride kalıyor mu"
   ],
   "cevap": [
    "Maaşlar endekse göre artıyor ama fiyatların biraz gerisinden geliyor",
@@ -1987,7 +2132,6 @@
    "aylık geçim masrafı",
    "yaşam maliyeti ne",
    "ayda ne kadar harcıyorum",
-   "geçinmek için ne kadar lazım",
    "gecim kac",
    "yemek fatura ne kadar tutuyor",
    "aylık gider ne",
@@ -1996,7 +2140,6 @@
    "ayda kaç para yeter",
    "asgari geçim ne kadar",
    "hayat pahalı mı",
-   "geçim masrafı ne kadar",
    "aylık yaşam gideri",
    "yaşamak kaç para",
    "hayat ne kadar pahalı"
@@ -2027,7 +2170,17 @@
    "her ay ne ödüyorum",
    "aylık masraflarım ne kadar",
    "giderlerim ne",
-   "ay sonu ne kadar kesiliyor"
+   "ay sonu ne kadar kesiliyor",
+   "her ay param neden azalıyor hiç harcamadım",
+   "her ay para kesiliyor neden",
+   "her ay hesabımdan para neden gidiyor",
+   "harcamadım ama param azaldı",
+   "ay sonunda param neden düşüyor",
+   "hiçbir şey almadım para eksiliyor",
+   "aylık ne kadar gidiyor geçime ve kiraya",
+   "her ay neler kesiliyor hesaptan",
+   "hesabımdan neden para düşüyor",
+   "param her ay neden düşüyor"
   ],
   "cevap": [
    "Ay sonu geçim {yasam}, kiran varsa {evkira}, kredi taksitleri kesiliyor",
@@ -2069,8 +2222,6 @@
    "nasıl para kazanılır",
    "para kazanmanın yolu ne",
    "hızlı para nasıl kazanırım",
-   "zengin olmak istiyorum",
-   "nasıl zengin olurum",
    "para nasıl yapılır",
    "para kazanmak",
    "en hızlı para nerede",
@@ -2123,18 +2274,15 @@
    "para nereden geliyor oyunda",
    "npc müşteriler ne",
    "müşteriler kim",
-   "ciro neye bağlı",
    "para oyuna nasıl giriyor",
    "müşteriler gerçek mi",
    "esnafa kim para veriyor",
    "npc nedir",
-   "müşteri nereden geliyor",
    "ekonomi nasıl dönüyor",
    "oyuna para nereden giriyor",
    "npc müşteriler para harcar mı",
    "işletmeye müşteri nereden gelir",
    "ciro nasıl oluşur",
-   "müşteri sayısı neye bağlı",
    "kafeye kim gelir",
    "dükkana müşteri gelir mi"
   ],
@@ -2155,7 +2303,6 @@
    "aynı işi açan çok",
    "piyasa doymuş mu",
    "kafeler çoğaldı ciro düştü",
-   "müşteri bölünüyor mu",
    "rakip çok",
    "çok rakip olunca ne olur",
    "aynı işten çok varsa",
@@ -2216,7 +2363,11 @@
    "döviz alınır mı",
    "dolar ne kadar",
    "euro var mı",
-   "döviz ne zaman gelecek"
+   "döviz ne zaman gelecek",
+   "dolar kredisi var mı",
+   "döviz kredisi çekilir mi",
+   "euro kredisi var mı",
+   "dolar hesabı açılır mı"
   ],
   "cevap": [
    "Döviz daha yok, gelecekmiş",
@@ -2243,7 +2394,12 @@
    "altın yatırımı yapılır mı",
    "çeyrek altın alınır mı",
    "altin fiyati",
-   "altın yok mu"
+   "altın yok mu",
+   "hisse yoksa altın var mı",
+   "altın hesabı var mı",
+   "altın hesabı açılır mı",
+   "bankada altın hesabı",
+   "altın alınıyor mu"
   ],
   "cevap": [
    "Altın daha yok, gelecekmiş",
@@ -2297,7 +2453,11 @@
    "biriyle ortaklık",
    "ortak işletme kurmak",
    "ortaklık ne zaman gelecek",
-   "ortaklik var mi"
+   "ortaklik var mi",
+   "biriyle ortak dükkan açabilir miyiz",
+   "arkadaşla ortak işletme kurulur mu",
+   "ortak kafe açabilir miyiz",
+   "iki kişi ortak iş kurabilir mi"
   ],
   "cevap": [
    "Ortaklık daha yok, gelecekmiş",
@@ -2324,7 +2484,11 @@
    "kamu ihalesine girmek",
    "ihaleye katilmak",
    "ihale kazanmak",
-   "ihale nerede yapılıyor"
+   "ihale nerede yapılıyor",
+   "devlet ihalesine nasıl girilir",
+   "devlet ihaleleri ne zaman gelecek",
+   "ihale sistemi var mı",
+   "ihaleye nasıl katılırım"
   ],
   "cevap": [
    "İhale daha yok, gelecekmiş",
@@ -2350,7 +2514,15 @@
    "arabam olabilir mi",
    "araba galerisi nerede",
    "araç alınır mı",
-   "ikinci el galeri"
+   "ikinci el galeri",
+   "lüks bir şey yok mu hiç",
+   "lüks tüketim var mı",
+   "sacma lux bisey yok mu",
+   "lüks araba alınıyor mu",
+   "yat alabiliyor muyuz",
+   "parayı lükse harcayacak yer yok mu",
+   "lüks eşya satın alınıyor mu",
+   "galeriden araba alınmıyor mu"
   ],
   "cevap": [
    "Galeri daha yok, gelecekmiş",
@@ -2377,7 +2549,15 @@
    "derneğe katılmak",
    "lonca var mi",
    "klan kurmak",
-   "birlik kurmak"
+   "birlik kurmak",
+   "dernek kurabiliyor muyuz",
+   "derneğe nasıl girilir",
+   "dernege nasil katilinir",
+   "dernek kurmak istiyorum",
+   "lonca da yok mu",
+   "lonca var mıydı",
+   "loncaya katılmak mümkün mü",
+   "lonca kurulabiliyor mu"
   ],
   "cevap": [
    "Dernek, lonca daha yok, gelecekmiş",
@@ -2404,7 +2584,13 @@
    "ülke değiştirilir mi",
    "başka ülkeler ne zaman",
    "yurt dışı var mı",
-   "başka şehre taşınmak"
+   "başka şehre taşınmak",
+   "almanyada işletme açsam",
+   "almanyada açabilir miyim",
+   "yurt dışında dükkan açılır mı",
+   "başka ülkede şirket kurabilir miyim",
+   "almanyada açsam olur mu",
+   "yurt dışında işletme açsam"
   ],
   "cevap": [
    "Başka ülkeler daha yok, gelecekmiş. Şimdilik İstanbul",
@@ -2431,7 +2617,9 @@
    "zekat ne kadar",
    "zekat ödemek",
    "zekat farz mı oyunda",
-   "zekat sistemi"
+   "zekat sistemi",
+   "zekat vermek zorunlu mu",
+   "zekat veriliyor mu oyunda"
   ],
   "cevap": [
    "Zekat daha yok, ileride isteğe bağlı gelecekmiş",
@@ -2538,7 +2726,14 @@
    "bağış ne kadar itibar kazandırır",
    "10 bine kaç itibar",
    "bağışın itibar karşılığı",
-   "itibar kaç bağışa"
+   "itibar kaç bağışa",
+   "kaç liraya 1 itibar normalde",
+   "kaç para bağışlarsam 1 itibar",
+   "1 itibar için ne kadar bağış lazım",
+   "bağış yapınca ne oluyor",
+   "simdilik bagis yapinca ne oluyo",
+   "bağış kaç itibar kazandırır",
+   "10 bin bağışa kaç itibar"
   ],
   "cevap": [
    "Her 10 bin TL'ye 1 itibar, bayramda 2 katı",
@@ -2619,7 +2814,8 @@
    "itibar kasmak",
    "itibarımı artırmak",
    "itibar nasil artar",
-   "itibar puanı nasıl artar"
+   "itibar puanı nasıl artar",
+   "itibarımı nasıl yükseltirim"
   ],
   "cevap": [
    "Bağış yap, borcunu ödemeyi aksatma, ay sonlarını sorunsuz kapat",
@@ -2673,7 +2869,12 @@
    "çeşme yaptırabilir miyim",
    "vakıf kurmak",
    "hastane yaptırmak",
-   "eser yaptırmak"
+   "eser yaptırmak",
+   "cami yaptırmak istiyorum mümkün mü",
+   "okul çeşme yaptırabilir miyim",
+   "çeşme yaptırmak mümkün mü",
+   "hastane yaptırılabiliyor mu",
+   "vakıf kurabilir miyim"
   ],
   "cevap": [
    "Cami, okul, çeşme gibi eserler ileride gelecek",
@@ -2835,7 +3036,14 @@
    "para bitince ne kısıtlanır",
    "zorunlu çalışma ne",
    "işe girmek mecburi mi",
-   "kilit ne zaman açılır"
+   "kilit ne zaman açılır",
+   "param bitti yatırım yapamaz mıyım",
+   "borcum varken yatırım yapamaz mıyım",
+   "borç kapanmadan yatırım yapılır mı",
+   "param bitince mülk alamıyor muyum",
+   "para bitince yatırım neden kapandı",
+   "borcum var yatirim yapabilir miyim",
+   "borçluyken kredi çekip mülk alabilir miyim"
   ],
   "cevap": [
    "Para bitince önce işe girmek zorunlu, borç kapanana kadar yatırım kapalı",
@@ -2993,7 +3201,16 @@
    "bir oyun günü ne kadar",
    "oyunda gün nasıl geçiyor",
    "oyun günü gerçekte kaç saat",
-   "1 gün kac dakika"
+   "1 gün kac dakika",
+   "oyun zamanı gerçek zamanla aynı mı",
+   "oyunda 1 gün kaç saat",
+   "oyunda bir gün gerçekte kaç saat",
+   "oyun gerçek zamandan 24 kat hızlı mı",
+   "oyun zamani 24 kat hizli mi",
+   "30 günlük deneyim gerçekte 30 saat mi",
+   "30 gunluk deneyim de 30 saat yani",
+   "60 gün deneyim gerçekte kaç saat",
+   "oyun saati gerçek saatle aynı mı"
   ],
   "cevap": [
    "1 oyun günü 1 gerçek saat",
@@ -3007,7 +3224,6 @@
   "sorular": [
    "oyunda bir ay kaç gün",
    "ay ne zaman biter",
-   "ay sonu ne zaman",
    "bir ay gerçekte ne kadar",
    "ay kaç günde dönüyor",
    "oyun ayı kaç saat",
@@ -3020,7 +3236,12 @@
    "ay ne zaman dönüyor",
    "oyun ayı gerçekte ne kadar",
    "bir ayda kaç gün var oyunda",
-   "ay kac gun"
+   "ay kac gun",
+   "bir oyun ayı gerçekte kaç gün",
+   "oyunda bir ay gercekte kac gun",
+   "oyun ayı gerçek hayatta ne kadar sürüyor",
+   "bir oyun ayı kaç saat",
+   "oyunda ay kaç gerçek saat"
   ],
   "cevap": [
    "Bir oyun ayı 30 oyun günü, yani 30 gerçek saat",
@@ -3032,7 +3253,6 @@
   "id": "oyun-kapaliyken",
   "konu": "genel",
   "sorular": [
-   "oyun kapalıyken zaman akar mı",
    "uygulamayı kapatırsam ne olur",
    "oyuna girmezsem zaman durur mu",
    "offline iken gün geçer mi",
@@ -3041,7 +3261,6 @@
    "girmediğim zaman ne oluyor",
    "oyun kapaliyken",
    "zaman duruyor mu",
-   "oyunu kapatınca zaman durur mu",
    "oyun kapalıyken para gelir mi",
    "uygulama kapalıyken gün geçer mi",
    "girmesem ne olur",
@@ -3198,11 +3417,9 @@
    "nereden başlamalıyım",
    "yeni oyuncuyum yardım",
    "ilk adım ne",
-   "başlangıç tavsiyesi",
    "ne yapacağımı bilmiyorum",
    "yeni geldim ne yapıyoruz",
    "nasıl başlanır",
-   "ilk gün ne yapılır",
    "yeniyim taktik ver",
    "acemiyim nereden başlarım",
    "ilk iş ne olsun",
@@ -3289,7 +3506,13 @@
    "bu oyunu nasıl oynarım",
    "oyun nasıl işliyor",
    "oyunu öğretir misin",
-   "nasıl oynanır anlat"
+   "nasıl oynanır anlat",
+   "rehber yok mu oyunda",
+   "oyunda rehber var mı",
+   "tutorial yok mu",
+   "nasıl oynandığını anlatır mısın",
+   "kimse bir şey anlatmıyor bu oyunda kayboldum",
+   "oyunu bana anlatsana"
   ],
   "cevap": [
    "Kariyerden iş seç, görev yap, Bankadan kredi, Mülkten ev al",
@@ -3414,7 +3637,6 @@
    "günlük görev nerede",
    "bugünkü görevler",
    "günlük görev yapınca ne olur",
-   "gorev nedir",
    "günlük ödül var mı",
    "günde kaç görev",
    "görevler ne işe yarar",
@@ -3425,7 +3647,6 @@
    "günde kaç görev yapmalıyım",
    "görevleri yapınca ne kazanırım",
    "günlük görevlerin ödülü",
-   "gorevler nerede",
    "günlük görev ödülü"
   ],
   "cevap": [
@@ -3455,7 +3676,11 @@
    "enflasyondan nasıl korunurum",
    "para yatırmak için yer",
    "paramı değerlendirmenin yolu",
-   "parayı ne yapayım"
+   "parayı ne yapayım",
+   "o zamana kadar para nerede değerlenir",
+   "borsa yokken para nerede değerlenir",
+   "param nerede değer kazanır",
+   "parayı nerede değerlendireyim"
   ],
   "cevap": [
    "Bankada faiz yok, enflasyon {enflasyon}. Mülke çevir",
@@ -3654,12 +3879,9 @@
   "konu": "ekonomi",
   "sorular": [
    "vergi var mı",
-   "gelir vergisi ne kadar",
    "maaşımdan vergi kesiliyor mu",
-   "vergi oranı kaç",
    "vergi dilimi ne",
    "ne kadar vergi ödüyorum",
-   "vergi kesintisi",
    "gelir vergisi yüzde kaç",
    "vergi kac",
    "vergiler ne alemde",
@@ -3771,7 +3993,12 @@
    "personel maaşını karşılayamıyorum",
    "çalışanlara maaş ödeyemezsem itibar",
    "işçiye maaş borcum kaldı",
-   "maaş ödemede zorlanıyorum"
+   "maaş ödemede zorlanıyorum",
+   "çalışan aldım ama param azaldı maaş ödeyemezsem ne olur",
+   "işçime maaş ödeyemezsem ne olur",
+   "çalışanımın maaşını ödeyecek param yok",
+   "elemana maaş veremezsem napar",
+   "patron maaşı ödeyemezse ne olur"
   ],
   "cevap": [
    "Maaş önce işletmenin kasasından, yetmezse senin cebinden çıkar. O da yetmezse borç yazılır, itibarın düşer",
@@ -3784,7 +4011,6 @@
   "konu": "maas_sorusu",
   "sorular": [
    "maaş ne zaman yatar",
-   "maaşım yatmadı",
    "maaş hangi gün gelir",
    "maaş ayda bir mi",
    "maaşım ne zaman yatacak",
@@ -3797,7 +4023,10 @@
    "maaş günü kaçıncı gün",
    "maaşım ne zaman gelir",
    "maaş ne zaman hesaba geçer",
-   "maaşın yatma zamanı"
+   "maaşın yatma zamanı",
+   "maaş ayda bir mi yatıyor",
+   "ayda bir mi maaş",
+   "maaş her ay mı geliyor"
   ],
   "cevap": [
    "Maaş ay sonunda yatıyor, 30 oyun gününde bir",
@@ -3811,7 +4040,6 @@
   "sorular": [
    "parayla meslek atlanır mı",
    "para verip kademe atlamak",
-   "deneyim satın alınır mı",
    "gerçek parayla müteahhit olunur mu",
    "parayla deneyim almak",
    "kademe atlamak için para yeter mi",
@@ -3821,7 +4049,6 @@
    "parayla üst meslek",
    "deneyimi kum saatiyle atlasam",
    "para ile kademe atlama",
-   "deneyimi parayla alabilir miyim",
    "kademe parayla atlanır mı",
    "parayla kurs şartı geçilir mi"
   ],
@@ -4109,7 +4336,10 @@
    "mahalle ne zaman açılacak",
    "komşuluk var mı",
    "mahalle var mi oyunda",
-   "mahalle kurulur mu"
+   "mahalle kurulur mu",
+   "mahalle sistemi var mı",
+   "mahalleye katılınıyor mu",
+   "mahalle kurabiliyor muyuz"
   ],
   "cevap": [
    "Mahalle daha yok, gelecekmiş",
