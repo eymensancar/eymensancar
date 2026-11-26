@@ -1,0 +1,15 @@
+'use strict';
+const fs = require('fs'), path = require('path');
+const dosya = process.argv[2]; const l = JSON.parse(fs.readFileSync(dosya, 'utf8'));
+const D = require(path.join(__dirname, '..', '..', 'npc-dil.js'));
+const IZIN = new Set('daire arsa dukkan daire.kira dukkan.kira pesinat maas.kurye maas.garson maas.kasiyer maas.insaat maas.memur maas.muhasebeci maas.usta maas.emlak maas.nakliyeci gorev.kurye asgari yasam evkira kurs.kpss kurs.kpss.gun kurs.muhasebe kurs.muhasebe.gun kurs.ustalik kurs.ustalik.gun kurs.emlak kurs.emlak.gun kurs.doviz kurs.doviz.gun kurs.dis kurs.dis.gun kurs.muteahhit kurs.muteahhit.gun kafe.kurulus kafe.gider dukkan.kurulus dukkan.gider nakliyeci.sermaye kafe.sermaye dukkan.sermaye enflasyon faiz faiz.yillik bayram bayram.gun o.limit o.not o.nakit o.deneyim o.meslek'.split(' '));
+const h = [], ids = new Set(), soru = new Map();
+l.forEach((x, i) => { const y = `#${i} ${x.id}`;
+  if (!x.id || !/^[a-z0-9-]+$/.test(x.id) || ids.has(x.id)) h.push(y + ': id'); ids.add(x.id);
+  if (!D.NIYETLER.includes(x.konu)) h.push(y + ': konu ' + x.konu);
+  if (!Array.isArray(x.sorular) || x.sorular.length < 12) h.push(y + ': en az 12 soru');
+  if (!Array.isArray(x.cevap) || x.cevap.length < 2) h.push(y + ': en az 2 cevap');
+  (x.cevap || []).forEach(c => { for (const m of c.matchAll(/\{([^}]*)\}/g)) if (!IZIN.has(m[1])) h.push(y + ': yer tutucu {' + m[1] + '}'); if (/\p{Extended_Pictographic}/u.test(c)) h.push(y + ': emoji'); if (/\}'/.test(c)) h.push(y + ': eke yapışık'); });
+  (x.sorular || []).forEach(s => { const k = D.normal(s).katli; if (soru.has(k) && soru.get(k) !== x.id) h.push(y + ': aynı soru başka kayıtta: ' + s + ' (' + soru.get(k) + ')'); soru.set(k, x.id); });
+});
+console.log(`${l.length} kayıt, ${[...soru.keys()].length} soru. Hata: ${h.length}`); h.slice(0, 40).forEach(x => console.log('HATA ' + x)); process.exit(h.length ? 1 : 0);

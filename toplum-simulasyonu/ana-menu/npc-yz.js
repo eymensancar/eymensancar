@@ -1500,7 +1500,57 @@
   // Mesaj son konuşana mı dönük? ("sen", "-dın", "-sın" ...)
   const IKINCI_TEKIL = /\b(sen|senin|sana|seni|sende)\b|\w(iyorsun|uyorsun|ıyorsun|üyorsun|yorsun|dın|din|dun|dün|tın|tin|tun|tün|sın|sin|sun|sün)( mi| mı| mu| mü)?\b/;
   const MESLEK_ANAHTAR = [['emlakci|emlak danisman', 'emlak_danismani'], ['muhasebeci|muhasebe', 'muhasebeci'], ['memur', 'memur'], ['kurye', 'kurye'], ['garson', 'garson'], ['kasiyer', 'market_calisani'], ['usta|elektrikci|tesisatci', 'usta'], ['insaat iscisi|insaatta', 'insaat_iscisi'], ['taksici|taksi|nakliyeci|sofor', 'nakliyeci']];
-  function bilgi(world, meta, kim, konu, varlik, oyuncu, katli, takip) { const r0 = bilgi0(world, meta, kim, konu, varlik, oyuncu, katli, takip); if (r0 && r0.odak) meta._odakSon = { odak: r0.odak, t: Date.now() }; return r0; }
+  // ---- Soru-cevap bankası araması (npc-sss.js): örnek soruluşlarla ağırlıklı kelime benzerliği ----
+  const SSS_DUR = new Set('bir bu su o ve ile de da ki mi mu mı mü ya abi kanka knk hocam valla ama ben sen biz siz bana sana bunu sunu icin gibi cok daha en her hic bi sey seyi oyunda oyun bu oyunda acaba peki merak ediyorum biliyor bilen var kimse arkadaslar millet'.split(' '));
+  const kok5 = w => w.length > 5 ? w.slice(0, 5) : w;
+  function sssTokenler(katli) { const w = katli.split(/\s+/).filter(x => x && !SSS_DUR.has(x)).map(kok5); const t = w.slice(); for (let i = 0; i + 1 < w.length; i++) t.push(w[i] + '_' + w[i + 1]); return t; }
+  let SSS_IDX = null;
+  function sssIndeks() {
+    const L = (typeof NPCSSS !== 'undefined' ? NPCSSS : (typeof globalThis !== 'undefined' && globalThis.NPCSSS)) || null; if (!L || !L.length) return null;
+    if (SSS_IDX && SSS_IDX.L === L) return SSS_IDX;
+    const df = new Map(), dokuman = [];
+    L.forEach((e, ei) => e.sorular.forEach(q => { const t = [...new Set(sssTokenler((dil().normal)(q).katli))]; dokuman.push({ ei, t }); t.forEach(x => df.set(x, (df.get(x) || 0) + 1)); }));
+    const N = dokuman.length, idf = x => Math.log(1 + N / (1 + (df.get(x) || 0)));
+    dokuman.forEach(d => { d.v = new Map(d.t.map(x => [x, idf(x) * (x.includes('_') ? 1.3 : 1)])); d.n = Math.sqrt([...d.v.values()].reduce((a, b) => a + b * b, 0)) || 1; });
+    SSS_IDX = { L, dokuman, idf }; return SSS_IDX;
+  }
+  /** En yakın kayıt: {e, skor, ikinci}. */
+  function sssAra(katli) {
+    const I = sssIndeks(); if (!I) return null;
+    const qt = [...new Set(sssTokenler(katli))]; if (!qt.length) return null;
+    const qv = new Map(qt.map(x => [x, I.idf(x) * (x.includes('_') ? 1.3 : 1)])), qn = Math.sqrt([...qv.values()].reduce((a, b) => a + b * b, 0)) || 1;
+    const enIyi = new Map();
+    for (const d of I.dokuman) { let c = 0; for (const [x, w] of qv) { const v = d.v.get(x); if (v) c += w * v; } if (!c) continue; const sk = c / (qn * d.n); if (sk > (enIyi.get(d.ei) || 0)) enIyi.set(d.ei, sk); }
+    const sirali = [...enIyi.entries()].sort((a, b) => b[1] - a[1]); if (!sirali.length) return null;
+    return { e: I.L[sirali[0][0]], skor: sirali[0][1], ikinci: sirali[1] ? sirali[1][1] : 0 };
+  }
+  NPCYZ.sssAra = (metin) => sssAra((dil().normal)(metin).katli);
+  function sssVeri(world, meta, oyuncu) {
+    const v = Object.assign({}, iplikVeri(world, meta)), kc = id => T.getCourse(id), pr = id => T.getProfession(id);
+    Object.assign(v, { 'dukkan.kira': sade(T.propertyMarketPrice(world, 'dukkan') * ((C().PROPERTY_TYPES.find(x => x.kind === 'dukkan') || {}).monthlyRentRate || .006)),
+      'kurs.doviz': sade(T.indexed(world, kc('doviz_lisansi').cost)), 'kurs.doviz.gun': String(kc('doviz_lisansi').durationDays), 'kurs.dis': sade(T.indexed(world, kc('dis_ticaret').cost)), 'kurs.dis.gun': String(kc('dis_ticaret').durationDays), 'kurs.muteahhit': sade(T.indexed(world, kc('muteahhitlik').cost)), 'kurs.muteahhit.gun': String(kc('muteahhitlik').durationDays),
+      'nakliyeci.sermaye': sade(T.indexed(world, pr('nakliyeci').requirements.capital)), 'kafe.sermaye': sade(T.indexed(world, pr('kafe_sahibi').requirements.capital)), 'dukkan.sermaye': sade(T.indexed(world, pr('dukkan_sahibi').requirements.capital)),
+      'faiz.yillik': yuzde(((1 + world.policy.loanMonthlyRate) ** 12 - 1) * 100),
+      'o.limit': oyuncu ? sade(Math.round(oyuncu.lastMonthIncome * oyuncu.creditScore / 100)) : '0 TL', 'o.not': oyuncu ? String(oyuncu.creditScore) : '620', 'o.nakit': oyuncu ? sade(oyuncu.cash) : '', 'o.deneyim': oyuncu ? String(oyuncu.totalExperienceDays) : '0', 'o.meslek': oyuncu && oyuncu.profession ? meslekAdi(oyuncu.profession).toLocaleLowerCase('tr') : 'işsiz' });
+    return v;
+  }
+  function sssCevap(world, meta, kim, oyuncu, katli, esik) {
+    const a = sssAra(katli); if (!a || a.skor < esik) return null;
+    const v = sssVeri(world, meta, oyuncu), sec = a.e.cevap.map(c => c.replace(/\{([\w.]+)\}/g, (m, k) => v[k] != null ? v[k] : m)).filter(c => !/\{[\w.]+\}/.test(c));
+    if (!sec.length) return null; const taze = sec.filter(c => !tekrarMi(meta, kim, c));
+    return { metin: (taze.length ? taze : sec)[Math.floor(Math.random() * (taze.length || sec.length))], sss: a.e.id, skor: a.skor };
+  }
+  NPCYZ.sssCevap = (world, meta, id, oyuncu, metin, esik = .45) => sssCevap(world, meta, meta.npc[id], oyuncu, (dil().normal)(metin).katli, esik);
+  function bilgi(world, meta, kim, konu, varlik, oyuncu, katli, takip) {
+    // Çok güçlü banka eşleşmesi elle yazılmış kuralların önüne geçer; kurallar bir şey bulamazsa banka denenir
+    const s0 = sssCevap(world, meta, kim, oyuncu, katli, SSS_GUCLU);
+    let r0 = s0 && s0.skor >= SSS_GUCLU ? null : bilgi0(world, meta, kim, konu, varlik, oyuncu, katli, takip);
+    if (!r0 && s0) r0 = { metin: s0.metin, sss: s0.sss };
+    if (!r0) { const s1 = sssCevap(world, meta, kim, oyuncu, katli, SSS_ESIK); if (s1) r0 = { metin: s1.metin, sss: s1.sss }; }
+    if (r0 && r0.odak) meta._odakSon = { odak: r0.odak, t: Date.now() }; return r0;
+  }
+  let SSS_GUCLU = .8, SSS_ESIK = .45;
+  NPCYZ.sssAyar = (g, e) => { SSS_GUCLU = g; SSS_ESIK = e; };
   function bilgi0(world, meta, kim, konu, varlik, oyuncu, katli, takip) {
     const p = world.players[kim.id];
     const mulkAcik = /arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : /(daire|\bev\b|konut|1\+1|2\+1|3\+1)/.test(katli) ? 'daire' : null;

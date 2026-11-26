@@ -7,11 +7,12 @@ const ctx = { console, Date, Math, JSON }; ctx.globalThis = ctx; vm.createContex
 vm.runInContext(fs.readFileSync(path.join(kok, 'toplum-cekirdek.js'), 'utf8') + ';globalThis.Toplum=Toplum;', ctx);
 vm.runInContext(fs.readFileSync(path.join(kok, 'npc-dil.js'), 'utf8'), ctx);
 vm.runInContext(fs.readFileSync(path.join(kok, 'npc-yz.js'), 'utf8'), ctx);
+if (fs.existsSync(path.join(kok, 'npc-sss.js')) && !process.argv.includes('--sssyok')) vm.runInContext(fs.readFileSync(path.join(kok, 'npc-sss.js'), 'utf8'), ctx);
 const T = ctx.Toplum, N = ctx.NPCYZ, D = ctx.NPCDil;
 const YAZ = process.argv.includes('--yaz'), KORPUS = !process.argv.includes('--elle');
 const SET = process.argv.includes('--sakli') ? 'sakli' : process.argv.includes('--hepsi') ? null : 'gelistirme';
-const K2 = process.argv.includes('--korpus2'), K5 = process.argv.includes('--korpus5');
-const dosya = ad => K5 ? path.join(__dirname, 'korpus5', process.argv.includes('--sakli') ? `${ad}-sakli.json` : `${ad}-gelistirme.json`) : K2 ? path.join(__dirname, 'korpus2', SET && process.argv.includes('--sakli') ? `${ad}-sakli.json` : SET && process.argv.includes('--gelistirme2') ? `${ad}-gelistirme.json` : `${ad}.json`) : path.join(__dirname, 'korpus', SET ? `${ad}-${SET}.json` : `${ad}.json`);
+const K2 = process.argv.includes('--korpus2'), K5 = process.argv.includes('--korpus5') ? 'korpus5' : process.argv.includes('--korpus6') ? 'korpus6' : null;
+const dosya = ad => K5 ? path.join(__dirname, K5, process.argv.includes('--sakli') ? `${ad}-sakli.json` : `${ad}-gelistirme.json`) : K2 ? path.join(__dirname, 'korpus2', SET && process.argv.includes('--sakli') ? `${ad}-sakli.json` : SET && process.argv.includes('--gelistirme2') ? `${ad}-gelistirme.json` : `${ad}.json`) : path.join(__dirname, 'korpus', SET ? `${ad}-${SET}.json` : `${ad}.json`);
 console.log('Kör set:', SET || 'hepsi');
 
 // Dünya: 150 gün ön yaşam, oyuncu işsiz yeni gelmiş biri (en zor durum)
