@@ -1216,7 +1216,7 @@
       meta.ipl = meta.ipl || {}; let akt = (meta.ipl[kanal] || []).filter(ip => ip.t >= bas - 90e3);
       // Erken biten iplikler hızı düşürürse aynı anda süren iplik sayısı kendiliğinden artar (hedef hız korunur)
       meta.hiz = meta.hiz || {}; const Kt = kanal === 'global' ? 24 : 16, hz = meta.hiz[kanal] || R;
-      const K = Math.round(Math.min(Kt * 2.2, Math.max(Kt, Kt * R / Math.max(R * .3, hz)))), ort = K / (R * (1 - (kanal === 'global' ? .08 : .14))) * 60e3;
+      const K = Math.round(Math.min(Kt * 3.2, Math.max(Kt, Kt * R / Math.max(R * .3, hz)))), ort = K / (R * (1 - (kanal === 'global' ? .08 : .14))) * 60e3;
       const mesgul = () => new Set([].concat(...akt.map(ip => Object.values(ip.roller))));
       while (akt.length < K) { const ip = iplikBaslat(world, meta, kanal, rng, saat, bas + rng.next() * ort, mesgul(), new Set(akt.map(x => x.id))); if (!ip) break; akt.push(ip); }
       for (let guv = 0; guv < 400; guv++) {
