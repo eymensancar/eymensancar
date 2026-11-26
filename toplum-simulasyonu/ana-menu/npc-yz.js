@@ -183,7 +183,7 @@
     meta.adKontrol = oyuncu.name;
     const ilk = oyuncu.name.split(/\s+/)[0].toLocaleLowerCase('tr'), v = dil().veri, adlar = new Set(Object.values(world.players).map(p => p.name));
     const rng = rngYap(hash(oyuncu.name));
-    for (const kim of Object.values(meta.npc)) {
+    for (const kim of Object.values(meta.npc).concat(meta.figuran || [])) {
       if (kim.ad.toLocaleLowerCase('tr') !== ilk) continue;
       const liste = (kim.kadin ? v.kadinAdlari : v.erkekAdlari).filter(a => a.toLocaleLowerCase('tr') !== ilk);
       for (let i = 0; i < 20; i++) {
@@ -191,7 +191,7 @@
         const asc = x => x.replace(/[çğıöşü]/g, h => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' })[h]);
         const g = kim.gorunen.replace(new RegExp(kim.ad, 'g'), yeni).replace(new RegExp(kim.ad.toLocaleLowerCase('tr'), 'g'), kucuk).replace(new RegExp(asc(kim.ad.toLocaleLowerCase('tr')), 'gi'), m => /^[A-Z]/.test(m) ? asc(yeni) : asc(kucuk));
         if (g === kim.gorunen || adlar.has(g)) continue;
-        adlar.add(g); kim.ad = yeni; kim.gorunen = g; if (world.players[kim.id]) world.players[kim.id].name = g; break;
+        adlar.add(g); kim.ad = yeni; kim.gorunen = g; if (world.players[kim.id] && meta.npc[kim.id]) world.players[kim.id].name = g; break;
       }
     }
   }
@@ -925,7 +925,8 @@
     const adlar = new Set(Object.values(meta.npc).map(k => k.gorunen));
     meta.figuran = [];
     for (let i = 0; i < 220; i++) {
-      let k = kimlikUret(rng); for (let j = 0; j < 12 && adlar.has(k.gorunen); j++) k = kimlikUret(rng); adlar.add(k.gorunen);
+      const yasak = (meta.adKontrol || '').split(/\s+/)[0].toLocaleLowerCase('tr');
+      let k = kimlikUret(rng); for (let j = 0; j < 12 && (adlar.has(k.gorunen) || (yasak && k.ad.toLocaleLowerCase('tr') === yasak)); j++) k = kimlikUret(rng); adlar.add(k.gorunen);
       const mk = FIG_MESLEK[agirlikliSec(rng, FIG_MESLEK.map((x, ii) => ii), ii => FIG_MESLEK[ii][1])][0];
       meta.figuran.push({ id: 'f' + i, ad: k.ad, gorunen: k.gorunen, kadin: k.kadin, yer: k.yer, kronotip: k.kronotip, k: k.k, ascii: k.ascii, meslek: mk, ev: rng.chance(.22), borc: rng.chance(.3), gun: Math.floor(rng.between(1, 420)), zengin: mk && /sahibi/.test(mk) ? rng.chance(.5) : rng.chance(.04), kurs: rng.chance(.07) });
     }
@@ -1080,7 +1081,7 @@
     const bas = simdiMs - pencere;
     for (let i = 0; i < n; i++) {
       const zaman = bas + Math.round((i + 1) * pencere / (n + 1));
-      const m = kanal === 'global' ? globalMesaj(world, meta, rng, saat) : kanal === 'sirket' ? sirketMesaj(world, meta, rng, sirketNpcIdleri || [], oyuncu) : ulkeMesaj(world, meta, rng, saat, meta.kanal[kanal].slice(-8).concat(yeni));
+      const m = kanal === 'global' ? globalMesaj(world, meta, rng, saat) : kanal === 'sirket' ? sirketMesaj(world, meta, rng, sirketNpcIdleri || [], oyuncu) : ulkeMesaj(world, meta, rng, saat, meta.kanal[kanal].slice(-40).concat(yeni).filter(m => !m.iplik).slice(-8));
       if (!m) continue;
       // Aynı cümle kanalda yakın zamanda geçtiyse yazılmaz; vedalaşan kişi saatlerce yazmaz
       { const nm = normSoz(m.metin); if ((meta.kanalSon || []).includes(nm)) continue; meta.kanalSon = (meta.kanalSon || []).concat([nm]).slice(-150); }
@@ -1201,7 +1202,7 @@
         // Soruya gerçek bilgiyle cevap (soran NPC'nin kendi durumuna göre)
         const soran = meta.npc[onceki.npcId] && world.players[onceki.npcId];
         if (soran && ny.soru) { const b = bilgi(world, meta, kim, ny.niyet, ny.varlik || {}, soran, (dil().normal)(onceki.metin).katli, null); if (b && !b.satis && !tekrarMi(meta, kim, b.metin)) { const c = bilgiPaketi(world, meta, cevapci, { metin: (rng.chance(.5) ? '@' + meta.npc[onceki.npcId].ad + ' ' : '') + b.metin }, rng, 0); return { npcId: cevapci, ad: kim.gorunen, metin: c.metin, cevap: onceki.id }; } }
-        if (ny.soru && !['selam', 'eleman_ariyorum', 'is_ariyorum', 'mulk_satiyorum', 'bayram'].includes(ny.niyet) && rng.chance(.75)) return null; // cevabını bilmediği soruya çoğu kişi hiç yazmaz
+        if (ny.soru && !['selam', 'eleman_ariyorum', 'is_ariyorum', 'mulk_satiyorum', 'bayram'].includes(ny.niyet)) return null; // cevabını bilmediği soruya kimse "hangi konuda" diye yazmaz // cevabını bilmediği soruya çoğu kişi hiç yazmaz
         if (ny.niyet === 'veda') return { npcId: cevapci, ad: kim.gorunen, metin: konus(world, meta, kim, 'cevap.veda', { kisi: meta.npc[onceki.npcId] ? meta.npc[onceki.npcId].ad : '' }, rng), cevap: onceki.id };
         const katliO = (dil().normal)(onceki.metin).katli;
         // Gündelik, görüş bildirmeyen cümle ("akşam yemeği ne yapsam", "trafikte kaldım"): çoğu zaman kimse cevap vermez
