@@ -2776,6 +2776,7 @@
     if (st.resmi > 0.6) p *= 0.4;
     if (duygu === 'is' || duygu === 'notr') p *= 0.5;
     if (!sans(rng, p)) return t;
+    if (/\p{Extended_Pictographic}/u.test(t)) return t; // zaten emoji varsa ikincisi eklenmez
     var d = duygu || 'notr';
     if (st.nese < -0.3 && (d === 'mutlu' || d === 'sevinc' || d === 'gulme')) d = 'notr';
     if (st.nese > 0.5 && d === 'notr') d = 'mutlu';

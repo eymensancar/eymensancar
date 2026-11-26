@@ -1136,11 +1136,13 @@
   /** NPC'ye kendisi hakkında sorulan sorular: kendi gerçek verisinden cevap. */
   function kendisi(world, meta, kim, katli) {
     const p = world.players[kim.id];
+    const pr0 = m => { const q = T.getProfession(m); return q.earning === 'task' ? 'görev yaptıkça artıyor' : q.earning === 'salary' ? 'sabit maaş' : q.earning === 'business' ? 'işletmenin kârı' : 'maaş artı prim'; };
     if (/\b(adin|ismin|isim)\b/.test(katli)) return `Ben ${kim.ad}${kim.gorunen !== kim.ad && !kim.gorunen.startsWith(kim.ad + ' ') ? ', burada ' + kim.gorunen + ' yazıyor' : ''}`;
     if (/(kaca|kac paraya|ne kadara) (al|aldin|aldiniz|aldin mi)/.test(katli)) { const m = p.propertyIds.map(x => world.properties[x]).filter(Boolean).pop(); return m ? `${paraYaz(m.boughtFor)}'ye aldım, şimdi ${paraYaz(T.propertyMarketPrice(world, m.kind))} ediyor` : 'Mülküm yok daha, biriktiriyorum'; }
+    if (/(ne kadar|kac|ayda ne) (kazaniyorsun|kazaniyon|kaziyorsun|aliyorsun|aliyon)|maasin (ne kadar|kac)|kazancin (nasil|ne kadar)/.test(katli)) { const g = suAnkiGelir(world, kim, p); return p.profession ? (g ? `Ayda ${paraYaz(g)} civarı, ${pr0(p.profession)}` : 'Bu ay pek kazanamadım açıkçası') : 'Şu an işsizim, kazanç yok'; }
     if (/kredi (mi )?(cektin|aldin|var mi)|borcun var/.test(katli)) { const l = p.loans; return l.length ? `Evet, ${l.length} kredim var, aylık ${paraYaz(l.reduce((t, x) => t + x.monthlyPayment, 0))} taksit ödüyorum` : (p.propertyIds.length || p.businessIds.length ? 'Yok, kredi çekmedim, peşin aldım' : 'Yok, hiç kredi çekmedim'); }
     if (/ne zaman(dir|dan beri) (oynu|buradas|burda|calis)|kac gundur/.test(katli)) return `${sureYaz(world.day - (kim.katildi || 0))} buradayım`;
-    if (/ne (is|iş) yapiyorsun|ne yapiyorsun orda|orda ne is|mesleg/.test(katli)) return p.profession ? rng0(kim.id).pick([`${meslekAdi(p.profession)}ım, ${sureYaz(world.day - p.professionSince)}`, `${meslekAdi(p.profession)} olarak çalışıyorum, ${sureYaz(world.day - p.professionSince)}`, `${sureYaz(world.day - p.professionSince)} ${meslekAdi(p.profession)}ım`]).replace(/ımım/, 'ım') : 'Şu an boştayım';
+    if (/ne (is|iş) yapiyorsun|ne yapiyorsun orda|orda ne is|mesleg/.test(katli)) return p.profession ? rng0(kim.id).pick([`${yim(meslekAdi(p.profession))}, ${sureYaz(world.day - p.professionSince)}`, `${meslekAdi(p.profession)} olarak çalışıyorum, ${sureYaz(world.day - p.professionSince)}`, `${sureYaz(world.day - p.professionSince)} ${meslekAdi(p.profession)}ım`]).replace(/ımım/, 'ım') : 'Şu an boştayım';
     if (/nerelisin|nerdesin|neredesin|nerden yaziyor/.test(katli)) return `${yerAdi(kim)}${kim.yer && kim.yer.sehir !== yerAdi(kim) ? ', ' + kim.yer.sehir : ''}`;
     return null;
   }
@@ -1828,9 +1830,26 @@
     meta.diyalog = meta.diyalog || {};
     const dk = 'dm:' + npcId, simdi = Date.now(), katli = (dil().normal)(metin).katli;
     let st = meta.diyalog[dk]; if (st && simdi - st.zaman > 30 * 60e3) st = null;
+    // Kapanış: teşekkür / veda / "tamam sağol" -> kısa kapanış, bilgi yinelenmez
+    if (['tesekkur', 'veda'].includes(ny.niyet) || /^(tamam|tmm|ok|peki)\W*\s*(sag ?ol|sagol|tesekkur|tsk|eyv)/.test(katli)) { const c = cevapPaketi(world, meta, npcId, ny.niyet === 'veda' ? 'cevap.veda' : 'cevap.tesekkur', { oyuncuAd: oyuncu.name.split(' ')[0] }, rng); meta.diyalog['dm:' + npcId] = null; return { metin: c.metin, gecikmeMs: c.gecikmeMs }; }
+    const p0 = world.players[npcId];
+    if (ny.varlik && ny.varlik.meslek && /(dusunuyorum|olmak istiyorum|olcam|olacagim|olayim mi|olsam mi|olmayi)/.test(katli)) {
+      const m = ny.varlik.meslek, g = paraYaz(beklenenGelir(world, { k: { caliskan: .75 } }, m)), rq = T.getProfession(m).requirements;
+      const mt = p0 && p0.profession === m ? rng.pick([`İyi karar bence, ben memnunum. Ayda ${g} civarı oluyor, alışınca artıyor`, `Yap bence, ben de öyle başladım. Ayda ${g} gibi, ama boş durmayacaksın`]) : `${meslekAdi(m)} ayda ${g} civarı kazandırıyor.${rq.course ? ' Önce ' + kursSoz(rq.course) + ' lazım.' : ' Şart yok, hemen başlarsın.'} Bence mantıklı`;
+      meta.diyalog['dm:' + npcId] = { konu: 'meslek_tavsiyesi', varlik: { meslek: m }, zaman: simdi, cevaplayan: [npcId], sonNpc: npcId, odak: { meslek: m } };
+      return { metin: bilgiPaketi(world, meta, npcId, { metin: mt, kisisel: true }, rng, 1500).metin, gecikmeMs: 3000 };
+    }
+    if (st && st.konu === 'kisisel_yer' && /\b(ben|bende|ben de)\b/.test(katli) && /(l[iıuü]y[iıuü]m|deyim|dayim|oturuyorum|oraliyim|hemseri)/.test(katli)) {
+      const yer = ny.varlik && ny.varlik.yer, ayni = /oraliyim|hemseri/.test(katli) || (yer && kim.yer && (kim.yer.sehir === yer || yerAdi(kim) === yer));
+      const mt = ayni ? rng.pick(['Aa hemşehriyiz o zaman 😄', 'Ooo hemşehrim! Ne güzel']) : yer ? rng.pick([`${yer} güzel ya, bir ara gitmek istiyorum`, `Aa ${yer}, oraları severim. Orada iş nasıl?`]) : 'Güzel, hoş geldin';
+      meta.diyalog[dk] = { konu: 'genel', varlik: {}, zaman: simdi, cevaplayan: [npcId], sonNpc: npcId };
+      return { metin: bilgiPaketi(world, meta, npcId, { metin: mt, kisisel: true }, rng, 1500).metin, gecikmeMs: 2500 };
+    }
     const takip = st ? takipTuru(katli, ny, st) : null;
     const gucluYeni = ny.guven >= .6 && !['evet', 'hayir', 'genel', 'teklif', 'maas_sorusu', 'fiyat_sorusu', 'kisisel_yer', 'tesekkur'].includes(ny.niyet) && (!st || ny.niyet !== st.konu);
-    const konu = takip && !gucluYeni ? st.konu : ny.niyet;
+    let konu = takip && !gucluYeni ? st.konu : ny.niyet;
+    // "dairen satılık mı": oyuncu ALICI (NPC'nin mülkü soruluyor)
+    if (/\b(dairen|evin|arsan|dukkanin|mulkun|daireni|evini|arsani)\b/.test(katli) && /(satilik|satar misin|satiyor musun|verir misin|kaca)/.test(katli)) { konu = 'mulk_ariyorum'; ny.varlik = Object.assign({}, ny.varlik, { mulk: /arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : 'daire' }); }
     const varlik = Object.assign({}, takip && st ? st.varlik : {}, ny.varlik || {});
     meta.diyalog[dk] = { konu, varlik, zaman: simdi, cevaplayan: [npcId], sonNpc: npcId };
     const p = world.players[npcId];
@@ -1845,6 +1864,14 @@
       const f = isFirsatlari(world, meta, oyuncu, varlik.meslek).find(x => x.npcId === npcId);
       if (f) { const cikti = []; teklifYap(world, meta, cikti, { tur: 'is', npcId, isletmeId: f.isletmeId, isletme: f.isletme, meslek: f.meslek, maas: f.maas, sure: 5 }); const son = meta.dm[npcId].pop(); return { metin: son.metin, gecikmeMs: 3500, teklif: true }; }
       return { metin: konus(world, meta, kim, 'cevap.takip_yok', {}, rng), gecikmeMs: 3000 };
+    }
+    if (st && st.konu === 'mulk_yok' && (takip || (ny.varlik && ny.varlik.tutar) || /(kac|son fiyat|olur mu|verir)/.test(katli))) { meta.diyalog[dk] = st; return { metin: bilgiPaketi(world, meta, npcId, { metin: rng.pick(['Satacak mülküm yok ki 😄 Kanalda satılık ilanı çıkarsa ona yaz', 'Dedim ya, bende mülk yok. Mülklerim ekranından piyasadan alabilirsin']), kisisel: true }, rng, 1500).metin, gecikmeMs: 2500 }; }
+    // Kendisine soru ("ne kadar kazanıyorsun", "kredi çektin mi"): kendi gerçek verisinden
+    if (IKINCI_TEKIL.test(katli) || /^(sen|peki sen|ya sen)\b/.test(katli)) { const kc = kendisi(world, meta, kim, katli); if (kc) { const c0 = bilgiPaketi(world, meta, npcId, { metin: kc, kisisel: true }, rng, 1500); return { metin: c0.metin, gecikmeMs: c0.gecikmeMs }; } }
+    // NPC'nin kendi mülkü soruluyor
+    if (konu === 'mulk_ariyorum' && /\b(dairen|evin|arsan|dukkanin|mulkun|daireni|evini|arsani)\b/.test(katli) && p) {
+      const ms = p.propertyIds.map(x => world.properties[x]).filter(Boolean), satilik = ms.filter(m => !m.ownerLivesIn && (!varlik.mulk || m.kind === varlik.mulk));
+      if (!satilik.length) { meta.diyalog[dk] = { konu: 'mulk_yok', varlik: {}, zaman: simdi, cevaplayan: [npcId], sonNpc: npcId }; const mt = ms.some(m => m.ownerLivesIn) ? rng.pick(['Oturduğum ev o, satmayı düşünmüyorum', 'Yok, kendim oturuyorum, satılık değil']) : rng.pick(['Benim mülküm yok ki, kiradayım ben de 😄', 'Yok bende mülk, biriktiriyorum daha']); return { metin: bilgiPaketi(world, meta, npcId, { metin: mt, kisisel: true }, rng, 1500).metin, gecikmeMs: 2500 }; }
     }
     const b = bilgi(world, meta, kim, konu, varlik, oyuncu, katli, takip);
     if (b && !b.satis) { const c0 = bilgiPaketi(world, meta, npcId, b, rng, 1500); return { metin: c0.metin, gecikmeMs: c0.gecikmeMs }; }
