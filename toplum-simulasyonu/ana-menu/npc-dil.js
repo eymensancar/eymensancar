@@ -1825,7 +1825,7 @@
     'Var var, bende {meslek} açığı var, {tutar}. [Yazayım mı?|Ne dersin?]',
     'Ben buradayım! {isletme} için {meslek} arıyorum, {tutar}',
     'Bende var iş, {meslek}. Maaş {tutar}, [ister misin?|yazayım mı?]',
-    'Kimse cevap vermemiş, ben vereyim: {meslek} lazım, {tutar}',
+    'Bende {meslek} işi var, {tutar}. [Bakarsan yaz|Düşünürsen yaz]',
     'Geç kaldım pardon, {kisi} değil ama ben {meslek} arıyorum, {tutar}'
   ]);
   // Oyuncu kendi mesleğini söyledi ("ben de garsonum")
@@ -2668,6 +2668,8 @@
     // kosul: değilsen -> değilseniz, aksatırsan -> aksatırsanız
     t = t.replace(/(^|[^\p{L}])(\p{Ll}{2,}[rlyzkmnt])(san|sen)(?=[^\p{L}]|$)/gu,
       function (x, o, g, e) { return o + g + e + (e === 'san' ? 'ız' : 'iz'); });
+    // siz'li sözcükten sonra bağlaç uyumu: "size da" -> "size de", "sizin da" -> "sizin de"
+    t = t.replace(/(^|[^\p{L}])([Ss]ize|[Ss]izin|[Ss]izde|[Ss]izi|[Ss]iz) da(?=[^\p{L}]|$)/gu, '$1$2 de');
     return duzelt(t.replace(/\s+,/g, ',').replace(/,\s*([.!?])/g, '$1'));
   }
 

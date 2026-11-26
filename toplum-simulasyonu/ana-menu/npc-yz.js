@@ -880,7 +880,7 @@
     for (const k in s) if (s[k] == null || s[k] === '') delete s[k];
     let m = '';
     // Bayram kutlaması bayram olmayan bir günde (Yılbaşı, 23 Nisan...): o güne uygun kısa kutlama
-    if (anahtar === 'cevap.bayram') { const o = ozelGun(world.day); if (o && !o.bayram) { m = rng.pick(o.ad === 'Yılbaşı' ? ['Mutlu yıllar! 🎉', 'Sana da mutlu yıllar', 'Nice yıllara', 'İyi seneler, bol kazançlı bir yıl olsun'] : [`Sana da, ${o.ad} kutlu olsun`, 'Kutlu olsun 🇹🇷', 'Nice nicelerine']); try { m = (dil().stillendir)(m, stilOf(kim), rng); } catch (e) { } soyledi(meta, kim, m); return m; } }
+    if (anahtar === 'cevap.bayram') { const o = ozelGun(world.day); if (o && !o.bayram && !/(bayram|mubarek|kandil|bayraminiz|bayramin)/.test(meta._gelen || '')) { m = rng.pick(o.ad === 'Yılbaşı' ? ['Mutlu yıllar! 🎉', 'Sana da mutlu yıllar', 'Nice yıllara', 'İyi seneler, bol kazançlı bir yıl olsun'] : [`Sana da, ${o.ad} kutlu olsun`, 'Kutlu olsun 🇹🇷', 'Nice nicelerine']); try { m = (dil().stillendir)(m, stilOf(kim), rng); } catch (e) { } soyledi(meta, kim, m); return m; } }
     try { for (let i = 0; i < 6; i++) { m = (dil().uret)(anahtar, s, stilOf(kim), rng); if (!tekrarMi(meta, kim, m) && (i > 3 || !basTekrar(meta, m))) break; } } catch (e) { m = YEDEK_DIL.uret('cevap.genel', {}); }
     m = yuvarla(m, rng);
     soyledi(meta, kim, m);
@@ -930,6 +930,9 @@
       const zaman = son + Math.round((i + 1) * gecen / (n + 1));
       const m = kanal === 'global' ? globalMesaj(world, meta, rng, saat) : kanal === 'sirket' ? sirketMesaj(world, meta, rng, sirketNpcIdleri || [], oyuncu) : ulkeMesaj(world, meta, rng, saat, meta.kanal[kanal].slice(-8).concat(yeni));
       if (!m) continue;
+      // Aynı cümle kanalda yakın zamanda geçtiyse yazılmaz; vedalaşan kişi saatlerce yazmaz
+      { const nm = normSoz(m.metin); if ((meta.kanalSon || []).includes(nm)) continue; meta.kanalSon = (meta.kanalSon || []).concat([nm]).slice(-150); }
+      if (m.npcId && meta.npc[m.npcId]) { const kv = meta.npc[m.npcId]; if (kv.vedaZaman && zaman - kv.vedaZaman < 4 * 3600e3) continue; try { if ((dil().niyetBul)(m.metin, { adlar: [] }).niyet === 'veda' && !m.cevap) kv.vedaZaman = zaman; } catch (e) { } }
       m.zaman = zaman; m.kanal = kanal; m.id = 'k' + (++meta.sayac); m.oyunGun = world.day;
       yeni.push(m);
     }
@@ -977,7 +980,8 @@
 
   function konusanSec(world, meta, rng, saat, filtre) {
     const yakin = new Set([].concat(...Object.values(meta.kanal || {}).map(l => l.slice(-8).map(m => m.npcId))));
-    return agirlikliSec(rng, Object.keys(meta.npc).filter(id => world.players[id] && (!filtre || filtre(id))), id => { const k = meta.npc[id]; return DUZEN[k.kronotip][saat] * (.15 + k.k.sosyal) * (1 + Math.max(0, k.ruh) * .3) * (yakin.has(id) ? .15 : 1); });
+    const simdi0 = Date.now();
+    return agirlikliSec(rng, Object.keys(meta.npc).filter(id => world.players[id] && (!filtre || filtre(id)) && !(meta.npc[id].vedaZaman && simdi0 - meta.npc[id].vedaZaman < 4 * 3600e3 && simdi0 >= meta.npc[id].vedaZaman)), id => { const k = meta.npc[id]; return DUZEN[k.kronotip][saat] * (.15 + k.k.sosyal) * (1 + Math.max(0, k.ruh) * .3) * (yakin.has(id) ? .15 : 1); });
   }
 
   // Başkasının iyi haberine tepki (cevap.tebrik "tebrik edilene teşekkür" kalıbıdır, bu değil)
@@ -1021,10 +1025,10 @@
       const onceki = kok;
       const cevapci = konusanSec(world, meta, rng, saat, id => id !== onceki.npcId && !sonMesajlar.some(m => m.cevap === onceki.id && m.npcId === id));
       if (cevapci) {
-        const kim = meta.npc[cevapci], ny = (dil().niyetBul)(onceki.metin, { adlar: [] });
+        const kim = meta.npc[cevapci], ny = (dil().niyetBul)(onceki.metin, { adlar: [] }); meta._gelen = (dil().normal)(onceki.metin).katli;
         // Soruya gerçek bilgiyle cevap (soran NPC'nin kendi durumuna göre)
         const soran = meta.npc[onceki.npcId] && world.players[onceki.npcId];
-        if (soran && ny.soru) { const b = bilgi(world, meta, kim, ny.niyet, ny.varlik || {}, soran, (dil().normal)(onceki.metin).katli, null); if (b && !b.satis) { const c = bilgiPaketi(world, meta, cevapci, { metin: (rng.chance(.5) ? '@' + meta.npc[onceki.npcId].ad + ' ' : '') + b.metin }, rng, 0); return { npcId: cevapci, ad: kim.gorunen, metin: c.metin, cevap: onceki.id }; } }
+        if (soran && ny.soru) { const b = bilgi(world, meta, kim, ny.niyet, ny.varlik || {}, soran, (dil().normal)(onceki.metin).katli, null); if (b && !b.satis && !tekrarMi(meta, kim, b.metin)) { const c = bilgiPaketi(world, meta, cevapci, { metin: (rng.chance(.5) ? '@' + meta.npc[onceki.npcId].ad + ' ' : '') + b.metin }, rng, 0); return { npcId: cevapci, ad: kim.gorunen, metin: c.metin, cevap: onceki.id }; } }
         if (ny.soru && !['selam', 'eleman_ariyorum', 'is_ariyorum', 'mulk_satiyorum', 'bayram'].includes(ny.niyet) && rng.chance(.75)) return null; // cevabını bilmediği soruya çoğu kişi hiç yazmaz
         if (ny.niyet === 'veda') return { npcId: cevapci, ad: kim.gorunen, metin: konus(world, meta, kim, 'cevap.veda', { kisi: meta.npc[onceki.npcId] ? meta.npc[onceki.npcId].ad : '' }, rng), cevap: onceki.id };
         const katliO = (dil().normal)(onceki.metin).katli;
@@ -1152,6 +1156,10 @@
     if (/\b(altin|dolar|euro|doviz|borsa|bitcoin|kripto|hisse)\w*/.test(katli) && !/(doviz burosu|doviz lisans)/.test(katli)) return { metin: `Altın, döviz, borsa daha yok oyunda, sonraki güncellemede gelecekmiş. Şimdilik en sağlamı mülk: daire ${paraYaz(T.propertyMarketPrice(world, 'daire'))}, kirası ayda ${paraYaz(T.propertyMarketPrice(world, 'daire') * ((C().PROPERTY_TYPES.find(x => x.kind === 'daire') || {}).monthlyRentRate || .005))} civarı` };
     for (const [re, f] of NASIL) if (re.test(katli)) return { metin: f(world, meta, oyuncu) };
     if (/\b(cami|okul|cesme|hastane|vakif|hayir eser\w*|bagis\w*)\b/.test(katli) && /\b(mi|mu|ne|nasil|kac|hangisi|olur|oluyor|yarar|kazandir\w*|degisir)\b/.test(katli)) { const o = ozelGun(world.day); return { metin: `Şu an hangisini yaptırdığın fark etmiyor, her 10 bin bağışa 1 itibar geliyor${o && o.bayram ? ', bugün bayram olduğu için 2' : ', bayramda 2 katı'}. İtibar da kredi notuna ve iş başvurularına yarıyor` }; }
+    if (/taksi/.test(katli) && /(ucuz|pahali|fark|ayni|daha mi|mi daha|yoksa)/.test(katli)) return { metin: 'Taksicilik de nakliyecilikle aynı meslek sayılıyor, şartları da kazancı da aynı' };
+    if (/\b(arac|kamyon|kamyonet|taksi|tir)\w*/.test(katli) && (/nakliye|taksi|kamyon/.test(katli) || (varlik && varlik.meslek === 'nakliyeci') || /(lazim|gerek|almak|alsam|kac para|ne kadar)/.test(katli))) { const pr = C().PROFESSIONS.find(x => x.id === 'nakliyeci'), rq = pr.requirements; if (/kazan/.test(katli)) return { metin: `Nakliyeci ayda ${paraYaz(beklenenGelir(world, { k: { caliskan: .75 } }, 'nakliyeci'))} civarı kazanıyor. Ama önce ${paraYaz(T.indexed(world, rq.capital))} sermaye lazım, aracın parası o`, odak: { meslek: 'nakliyeci' } }; return { metin: `Nakliyeci olmak için ${paraYaz(T.indexed(world, rq.capital))} sermaye lazım, aracın parası o. Bir de ${rq.anyExperienceDays} gün iş deneyimi. Araç bakımı her ay ${paraYaz(T.indexed(world, C().VEHICLE_MONTHLY_UPKEEP))} kesiliyor`, odak: { meslek: 'nakliyeci' } }; }
+    if (/kademe/.test(katli) && /(atla|gec|lazim|gerek|nasil|ne kadar|kac)/.test(katli)) { const P = C().PROFESSIONS, mn = t => { const l = P.filter(x => x.tier === t); return l; }; const k2 = mn(2), k3 = mn(3), k4 = mn(4); const g2 = Math.min(...k2.map(x => x.requirements.anyExperienceDays || (x.requirements.professionExperience || {}).days || 0)), g3 = Math.min(...k3.map(x => x.requirements.anyExperienceDays || 60)), s3 = Math.min(...k3.map(x => x.requirements.capital || 0)), g4 = Math.min(...k4.map(x => x.requirements.anyExperienceDays || 60)), s4 = Math.min(...k4.map(x => x.requirements.capital || 0));
+      return { metin: `2. kademe için kurs ve en az ${g2} gün deneyim, 3. kademe için ${g3} gün deneyim ve en az ${paraYaz(T.indexed(world, s3))} sermaye lazım. 4. kademe ${paraYaz(T.indexed(world, s4))} sermaye ve ${g4} gün deneyimle başlıyor` }; }
     if (/asgari/.test(katli)) return { metin: `Asgari ücret ${paraYaz(T.indexed(world, C().MIN_WAGE))}, işletmeler bunun altında maaş veremiyor` };
     if (konu === 'yetki_istegi') return { metin: rng0(katli).pick(['Ben admin değilim ki 😄 Herkes gibi oyuncuyum', 'Para gönderme diye bir şey yok oyunda, herkes kendi kazanıyor', 'Hile falan yok valla, çalışıp biriktireceksin', 'Yetki işleri bizde değil, oyunun kuralları belli']) };
     // İki seçeneği karşılaştırma: "ustalık mı muhasebe mi", "kurye mi garson mu"
@@ -1375,6 +1383,7 @@
     const rng = rngYap(hash(metin + ':' + Date.now()));
     const npcIdler = kanal === 'sirket' ? (sirketNpcIdleri || []).filter(id => meta.npc[id]) : Object.keys(meta.npc);
     adCakismasi(world, meta, oyuncu);
+    meta._gelen = (dil().normal)(metin).katli;
     const adlar = npcIdler.map(id => meta.npc[id].gorunen).concat(npcIdler.map(id => meta.npc[id].ad));
     const ny = (dil().niyetBul)(metin, { adlar, oyuncuAd: oyuncu.name });
     const dilTr = (dil().dilBul)(metin);
@@ -1385,7 +1394,11 @@
     let st = meta.diyalog[kanal];
     if (st && simdi - st.zaman > KONU_SURE) st = null;
     const sonKonusan = st && st.sonNpc;
-    const hedefKisi = ny.varlik && ny.varlik.kisi ? npcIdler.find(id => meta.npc[id].gorunen === ny.varlik.kisi || meta.npc[id].ad === ny.varlik.kisi || meta.npc[id].gorunen.startsWith(ny.varlik.kisi)) : null;
+    const hitapAd = (metin.match(/@([\p{L}._0-9]+)/u) || [])[1];
+    const sade = x => String(x || '').toLocaleLowerCase('tr').replace(/[çğıöşü]/g, h => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' })[h]);
+    const sonKonusanlar = new Set((meta.kanal[kanal] || []).slice(-15).map(m => m.npcId));
+    const hitapBul = h => { const hs = sade(h); const ad = npcIdler.filter(id => sade(meta.npc[id].ad) === hs || sade(meta.npc[id].gorunen) === hs || sade(meta.npc[id].gorunen).startsWith(hs + ' ') || sade(meta.npc[id].gorunen).startsWith(hs + '_') || sade(meta.npc[id].gorunen).startsWith(hs + '.')); return ad.find(id => sonKonusanlar.has(id) || (st && st.cevaplayan && st.cevaplayan.includes(id))) || ad[0] || null; };
+    const hedefKisi = ny.varlik && ny.varlik.kisi ? npcIdler.find(id => meta.npc[id].gorunen === ny.varlik.kisi || meta.npc[id].ad === ny.varlik.kisi || meta.npc[id].gorunen.startsWith(ny.varlik.kisi)) : (hitapAd ? hitapBul(hitapAd) : null);
     // Küfür / hakaret: biri uyarır; ilişkiler bozulur
     if (ny.kufur || ny.niyet === 'hakaret') {
       meta.oyuncuHakaret = (meta.oyuncuHakaret || 0) + 1;
@@ -1464,6 +1477,13 @@
     // Hitap edilen kişi: her zaman o cevaplar (konusu ne olursa olsun)
     const ekle = (id, anahtar, slot, gec) => { const c = cevapPaketi(world, meta, id, anahtar, slot, rng, gec); cevaplar.push(c); (meta.ihtiyac || []).forEach(x => { if (x.zaman === simdi && !x.npcler.includes(id)) x.npcler.push(id); }); if (!st.cevaplayan.includes(id)) st.cevaplayan.push(id); st.sonNpc = id; iliski(meta, id).mesaj++; iliski(meta, id).tanir = true; return c; };
     const oAd = oyuncu.name.split(' ')[0];
+    // Kanalda olmayan birine hitap: o yok; konuşmadaki kişi kendisi devam eder ya da biri "bugün girmedi galiba" der
+    if (hitapAd && !hedefKisi) {
+      const h = hitapAd.charAt(0).toLocaleUpperCase('tr') + hitapAd.slice(1);
+      const fl = st && st.konu === 'is_ariyorum' ? isFirsatlari(world, meta, oyuncu) : [], f0 = fl.find(x => x.npcId === st.sonNpc) || fl.find(x => (st.cevaplayan || []).includes(x.npcId)) || null;
+      if (f0) { cevaplar.push(bilgiPaketi(world, meta, f0.npcId, { metin: rng.pick([`${h} yok galiba, ama bizde de ${meslekAdi(f0.meslek).toLocaleLowerCase('tr')} lazım, ${paraYaz(f0.maas)}`, `${h} burada değil sanırım. Benim teklif duruyor: ${paraYaz(f0.maas)}`]), kisisel: true }, rng, 2500)); return sonuc; }
+      const id = konusanSec(world, meta, rng, saat, x => npcIdler.includes(x)); if (id && rng.chance(ny.soru ? .5 : .6)) cevaplar.push(bilgiPaketi(world, meta, id, { metin: rng.pick([`${h} bugün girmedi galiba`, `${h} şu an yok sanırım`, `${h} az önce çıktı`]), kisisel: true }, rng, 3000)); if (!ny.soru) return sonuc;
+    }
 
     // ================= KAPANIŞ: teşekkür, tamam sağ ol → kısa karşılık (bilgi dökümü yok) =================
     if (st.sonNpc && meta.npc[st.sonNpc] && (ny.niyet === 'tesekkur' || ny.niyet === 'veda' || /^(tamam|tmm|ok|peki)\w* (sag ?ol|tesekkur|eyv|bakarim|anladim)/.test(katli))) {
