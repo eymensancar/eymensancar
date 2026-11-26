@@ -961,6 +961,7 @@
     aksam: ['akşam maç var, izleyen?', 'akşam yemeği ne yapsam', 'bugün de bitti şükür', 'eve geldim, biraz oyun', 'yarın hafta sonu galiba', 'trafikte 1 saat kaldım'],
     gece: ['uykum gelmedi hiç', 'yarın erken kalkacağım ama hâlâ buradayım', 'gece kuşları burada mı', 'iyi geceler herkese, yarın görüşürüz', 'kim ayakta'],
   };
+  const OLAY_KISA = ['ooo', 'hayırlısı', '👏', 'helal', 'süper', 'vay be', 'bravo', 'oo güzel'];
   const KISA_TEPKI = ['aynen', '+1', '😂', 'hayırlısı', 'bende de aynı', 'ooo', 'kesinlikle', 'haha', 'doğru valla', 'hmm'];
   const TAKILMA = { ay_sonu_iyi: ['{k} abartma 😂', 'herkes kâr ediyor ben niye zarar ediyorum', '{k} bize de bir kahve ısmarlarsın artık 😄'], isletme_acti: ['{k} indirim var mı bize 😄', '{k} açılışa çağırmadın ama'], mulk_aldi: ['{k} ev sahibi oldun, kira yok artık, kıskandım', 'ev partisi ne zaman {k}'] };
   function ulkeMesaj(world, meta, rng, saat, sonMesajlar) {
@@ -976,7 +977,7 @@
       if (cevapci0 && kok.olay && TEPKI[kok.olay]) { const k0 = meta.npc[cevapci0], kisi = meta.npc[kok.npcId].ad; let metin;
         const dostMu = NPCYZ.dostlar(meta, kok.npcId).includes(cevapci0);
         if (TAKILMA[kok.olay] && (k0.k.mizah > .55 || dostMu) && rng.chance(dostMu ? .45 : .25)) { metin = rng.pick(TAKILMA[kok.olay]).replace('{k}', kisi); }
-        else if (rng.chance(.25)) metin = rng.pick(KISA_TEPKI.slice(0, 7));
+        else if (rng.chance(.25)) metin = rng.pick(OLAY_KISA);
         else if (TEBRIK_ET[kok.olay]) { metin = rng.pick(TEBRIK_ET[kok.olay]).replace('{k}', kisi); try { metin = (dil().stillendir)(metin, stilOf(k0), rng); } catch (e) { } }
         else metin = konus(world, meta, k0, TEPKI[kok.olay], { oyuncuAd: kisi }, rng);
         return { npcId: cevapci0, ad: k0.gorunen, metin, cevap: kok.id }; }
@@ -989,6 +990,7 @@
         // Soruya gerçek bilgiyle cevap (soran NPC'nin kendi durumuna göre)
         const soran = meta.npc[onceki.npcId] && world.players[onceki.npcId];
         if (soran && ny.soru) { const b = bilgi(world, meta, kim, ny.niyet, ny.varlik || {}, soran, (dil().normal)(onceki.metin).katli, null); if (b && !b.satis) { const c = bilgiPaketi(world, meta, cevapci, { metin: (rng.chance(.5) ? '@' + meta.npc[onceki.npcId].ad + ' ' : '') + b.metin }, rng, 0); return { npcId: cevapci, ad: kim.gorunen, metin: c.metin, cevap: onceki.id }; } }
+        if (ny.soru && !['selam', 'eleman_ariyorum', 'is_ariyorum', 'mulk_satiyorum', 'bayram'].includes(ny.niyet) && rng.chance(.75)) return null; // cevabını bilmediği soruya çoğu kişi hiç yazmaz
         const anahtar = ['selam', 'eleman_ariyorum', 'is_ariyorum', 'mulk_satiyorum', 'ekonomi', 'dert', 'tebrik', 'saka', 'bayram'].includes(ny.niyet) ? 'cevap.' + ny.niyet : ny.soru ? 'cevap.genel_soru' : rng.chance(.25) ? 'cevap.katilim' : 'paylasim.npc_cevap';
         return { npcId: cevapci, ad: kim.gorunen, metin: konus(world, meta, kim, anahtar, { kisi: meta.npc[onceki.npcId] ? meta.npc[onceki.npcId].ad : '' }, rng), cevap: onceki.id };
       }
@@ -1105,7 +1107,7 @@
     const p = world.players[kim.id];
     const mulk = (varlik && varlik.mulk) || (/arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : /(daire|ev\b|konut|1\+1|2\+1|3\+1|kira)/.test(katli) ? 'daire' : null);
     if (mulk && (takip === 'yer' || (varlik && varlik.yer && takip)) && ['mulk_ariyorum', 'fiyat_sorusu', 'mulk_satiyorum'].includes(konu)) { const f = T.propertyMarketPrice(world, mulk); const ev = p.propertyIds.map(x => world.properties[x]).find(Boolean); return { metin: `Fiyat semte göre değişmiyor şu an, her yerde ${mulkAdi(mulk).toLocaleLowerCase('tr')} ${paraYaz(f)} civarı. ${ev ? `Benimki ${yerAdi(kim)} tarafında, memnunum` : `Ben olsam ${yerAdi(kim)} tarafına bakardım`}` }; }
-    if (mulk && /(kira\w* (kac|ne kadar)|kac kira|kira getir|kira gelir)/.test(katli)) { const f = T.propertyMarketPrice(world, mulk), oran = (C().PROPERTY_TYPES.find(x => x.kind === mulk) || {}).monthlyRentRate || 0; return { metin: oran ? `${mulkAdi(mulk)} ayda ${paraYaz(f * oran)} civarı kira getiriyor, değerinin yaklaşık %${(oran * 100).toLocaleString('tr-TR')}'i` : `${mulkAdi(mulk)} kira getirmiyor, ama değeri artıyor` }; }
+    if (mulk && /(kira\w* (kac|ne kadar|ne durumda|nasil|ne alemde|yuksek mi|pahali mi)|kac kira|kira getir|kira gelir)/.test(katli)) { const f = T.propertyMarketPrice(world, mulk), oran = (C().PROPERTY_TYPES.find(x => x.kind === mulk) || {}).monthlyRentRate || 0; return { metin: oran ? `${mulkAdi(mulk)} ayda ${paraYaz(f * oran)} civarı kira getiriyor, değerinin yaklaşık %${(oran * 100).toLocaleString('tr-TR')}'i` : `${mulkAdi(mulk)} kira getirmiyor, ama değeri artıyor` }; }
     for (const [re, f] of NASIL) if (re.test(katli)) return { metin: f(world, meta, oyuncu) };
     if (/asgari/.test(katli)) return { metin: `Asgari ücret ${paraYaz(T.indexed(world, C().MIN_WAGE))}, işletmeler bunun altında maaş veremiyor` };
     if (konu === 'yetki_istegi') return { metin: rng0(katli).pick(['Ben admin değilim ki 😄 Herkes gibi oyuncuyum', 'Para gönderme diye bir şey yok oyunda, herkes kendi kazanıyor', 'Hile falan yok valla, çalışıp biriktireceksin', 'Yetki işleri bizde değil, oyunun kuralları belli']) };

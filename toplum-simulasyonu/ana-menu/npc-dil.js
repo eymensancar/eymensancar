@@ -1742,7 +1742,7 @@
     '[Tam anlamadım|Anlayamadım], ne demek istedin?',
     'Bunu ben de merak ediyorum açıkçası',
     'Emin değilim, [kariyer ya da banka ekranına bak istersen|biri bilen çıkar elbet]',
-    'Onu bilmiyorum ama [başka bir şey sorarsan yardım ederim|biri cevaplar elbet]',
+    'Onu bilmiyorum, biri cevaplar elbet',
     'İyi soru, [hiç düşünmemiştim|ben de bilmiyorum]'
   ]);
   // Başka birinin GÖRÜŞÜNE katılma (yalnız NPC'ler arası sohbette)
