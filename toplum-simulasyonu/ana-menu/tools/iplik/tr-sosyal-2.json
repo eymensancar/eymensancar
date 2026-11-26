@@ -9,27 +9,27 @@
   "turlar": [
    [
     "A",
-    "patron bugün sabah toplantısı yaptı, kırk dakika boyunca masa silmeyi anlattı"
+    "[patron bugün sabah toplantısı yaptı|patron sabah toplantı yaptı], [kırk dakika boyunca masa silmeyi anlattı|kırk dakika masa silmeyi anlattı|kırk dakika masa silme dersi verdi]"
    ],
    [
     "B",
-    "bir masa silmek kırk dakika mı"
+    "[bir masa silmek kırk dakika mı|masa silmek kırk dakika mı sürer|kırk dakika masa mı]"
    ],
    [
     "A",
-    "sağdan sola mı soldan sağa mı, uzun konu"
+    "[sağdan sola mı soldan sağa mı|sağdan sola mı, soldan sağa mı], [uzun konu|derin konu|uzun mesele]"
    ],
    [
     "C",
-    "bizde de müdür her pazartesi aynı konuşmayı yapıyor, ezberledim"
+    "[bizde de müdür her pazartesi aynı konuşmayı yapıyor|bizim müdür de her pazartesi aynı konuşmayı yapar], [ezberledim|ezberledim artık|kelimesi kelimesine biliyorum]"
    ],
    [
     "A",
-    "ben de ezberleyeceğim yakında"
+    "[ben de ezberleyeceğim yakında|yakında ben de ezberlerim|ben de yakında ezbere bilirim]"
    ],
    [
     "B",
-    "yakında sen anlatırsın {A}"
+    "[yakında sen anlatırsın|yakında sen anlatırsın valla|sıra sana gelir] {A}"
    ]
   ]
  },
@@ -43,27 +43,27 @@
   "turlar": [
    [
     "A",
-    "{A.meslek} olarak izin istesem nasıl isterim, ilk defa isteyeceğim"
+    "{A.meslek} olarak [izin istesem nasıl isterim|nasıl izin isterim], [ilk defa isteyeceğim|ilk kez isteyeceğim|hiç istemedim daha]"
    ],
    [
     "B",
-    "direkt söyle, gerekçeni de kısa tut"
+    "[direkt söyle|açık açık söyle], [gerekçeni de kısa tut|sebebini kısa anlat|uzatma]"
    ],
    [
     "A",
-    "kuzenimin düğünü var"
+    "[kuzenimin düğünü var|kuzenim evleniyor|kuzenin düğünü var]"
    ],
    [
     "C",
-    "düğün geçerli sebep, kimse hayır demez"
+    "[düğün geçerli sebep|düğün sağlam sebep], [kimse hayır demez|kimse hayır diyemez|hayır diyen olmaz]"
    ],
    [
     "A",
-    "peki ya derse"
+    "[peki ya derse|ya hayır derse|ya derse]"
    ],
    [
     "B",
-    "o zaman bir pasta götür, ikinci denemede[ haha|]"
+    "[o zaman bir pasta götür|o zaman pastayla git|bir pasta götürürsün], [ikinci denemede|ikinci sefere|tekrar denersin][ haha|]"
    ]
   ]
  },
@@ -77,27 +77,27 @@
   "turlar": [
    [
     "A",
-    "patron bugün beni herkesin önünde övdü"
+    "[patron bugün beni herkesin önünde övdü|bugün patron beni herkesin önünde övdü|patron bugün herkesin içinde beni övdü]"
    ],
    [
     "B",
-    "oha, ne yaptın"
+    "[oha, ne yaptın|vay, ne yaptın|ne yaptın ki]"
    ],
    [
     "A",
-    "masaları hiç karıştırmadan getirdim, yoğun saatte"
+    "[masaları hiç karıştırmadan getirdim|siparişleri hiç karıştırmadım], [yoğun saatte|en yoğun saatte|tam yoğunlukta]"
    ],
    [
     "C",
-    "helal olsun {A}"
+    "[helal olsun|helal|aferin] {A}"
    ],
    [
     "D",
-    "övgü her şeye değer, maaş artışı da gelir belki"
+    "[övgü her şeye değer|övgü güzel şey], [maaş artışı da gelir belki|belki zam da gelir|arkasından zam gelir]"
    ],
    [
     "A",
-    "umalım[ valla|]"
+    "[umalım|inşallah|umarım][ valla|]"
    ]
   ]
  },
@@ -111,27 +111,27 @@
   "turlar": [
    [
     "A",
-    "gece on birde patrondan mesaj geldi, \"yarın erken gel\" diye"
+    "[gece on birde patrondan mesaj geldi|gece on birde patron yazdı], [\"yarın erken gel\" diye|\"yarın erken gel\" diyor|\"yarın erken gel\" demiş]"
    ],
    [
     "B",
-    "neden ki"
+    "[neden ki|niye ki|hayırdır]"
    ],
    [
     "A",
-    "bilmiyorum, uyuyamıyorum şimdi"
+    "[bilmiyorum|bilmiyorum ki], [uyuyamıyorum şimdi|şimdi uyuyamıyorum|uyku kaçtı]"
    ],
    [
     "C",
-    "kötü bir şey değildir, iş yoğundur sadece"
+    "[kötü bir şey değildir|kötü bir şey olmaz], [iş yoğundur sadece|yoğunluk vardır|iş çoktur herhalde]"
    ],
    [
     "A",
-    "umarım, zihnimde bin senaryo var"
+    "[umarım|inşallah], [zihnimde bin senaryo var|kafamda bin senaryo var|kafamda film dönüyor]"
    ],
    [
     "D",
-    "sabah sorarsın, şimdi uyu"
+    "[sabah sorarsın|sabah öğrenirsin], [şimdi uyu|şimdi yat|hadi uyu artık]"
    ]
   ]
  },
@@ -145,27 +145,27 @@
   "turlar": [
    [
     "A",
-    "iş yerine yeni müdür geldi, herkes tedirgin"
+    "[iş yerine yeni müdür geldi|işe yeni müdür geldi], [herkes tedirgin|herkes gergin|herkes diken üstünde]"
    ],
    [
     "B",
-    "nasıl biri"
+    "[nasıl biri|nasıl biri peki|nasıl adam]"
    ],
    [
     "A",
-    "ilk gün herkese çay ısmarladı"
+    "[ilk gün herkese çay ısmarladı|ilk gün herkese çay söyledi|ilk gün çaylar ondan]"
    ],
    [
     "C",
-    "bu iyi bir başlangıç"
+    "[bu iyi bir başlangıç|iyi başlangıç|güzel başlamış]"
    ],
    [
     "A",
-    "ikinci gün de mesai saatlerini değiştirdi"
+    "[ikinci gün de mesai saatlerini değiştirdi|ikinci gün mesaiyi değiştirdi|ertesi gün mesai saatlerini değiştirdi]"
    ],
    [
     "B",
-    "o kadar da iyi değil o zaman"
+    "[o kadar da iyi değil o zaman|o zaman o kadar iyi değil|eh, yarı yarıya]"
    ]
   ]
  },
@@ -179,27 +179,27 @@
   "turlar": [
    [
     "A",
-    "bugün patronun önünde tepsiyi düşürdüm"
+    "[bugün patronun önünde tepsiyi düşürdüm|bugün tepsiyi patronun gözü önünde düşürdüm|tepsi patronun önünde elimden kaydı]"
    ],
    [
     "B",
-    "eyvah, ne dedi"
+    "[eyvah, ne dedi|eyvah, kızdı mı|ne dedi peki]"
    ],
    [
     "A",
-    "güldü, ilk işe başladığında kendisi de düşürmüş"
+    "[güldü|gülmeye başladı], [ilk işe başladığında kendisi de düşürmüş|kendisi de ilk günlerinde düşürmüş|o da başlarken düşürmüş]"
    ],
    [
     "C",
-    "iyi patronmuş"
+    "[iyi patronmuş|iyi patron varmış|şanslısın, iyi patron]"
    ],
    [
     "A",
-    "evet, sonra beraber topladık"
+    "[evet|aynen], [sonra beraber topladık|sonra birlikte topladık|beraber topladık sonra]"
    ],
    [
     "D",
-    "bu hikaye güzel bitti"
+    "[bu hikaye güzel bitti|güzel bitmiş|mutlu son]"
    ]
   ]
  },
@@ -213,23 +213,23 @@
   "turlar": [
    [
     "A",
-    "öğle molası yarım saat, yemek kuyruğu yirmi dakika"
+    "[öğle molası yarım saat|mola yarım saat], [yemek kuyruğu yirmi dakika|kuyruk yirmi dakika|yemek sırası yirmi dakika]"
    ],
    [
     "B",
-    "on dakikada yemek mi yiyorsun"
+    "[on dakikada yemek mi yiyorsun|on dakikada mı yiyorsun|yemeğe on dakika mı kalıyor]"
    ],
    [
     "A",
-    "aynen, çiğnemeden yutuyorum"
+    "[aynen|aynen ya], [çiğnemeden yutuyorum|çiğnemeden yutuyorum resmen|yutup kalkıyorum]"
    ],
    [
     "C",
-    "evden yemek getir, kuyruk derdi biter"
+    "[evden yemek getir|evden yemek getirsene], [kuyruk derdi biter|kuyruk derdi kalmaz|sıra beklemezsin]"
    ],
    [
     "A",
-    "annem hazırlıyor bazen, o günler bayram"
+    "[annem hazırlıyor bazen|bazen annem hazırlıyor], [o günler bayram|o günler bayram gibi|o gün keyfime diyecek yok]"
    ]
   ]
  },
@@ -243,27 +243,27 @@
   "turlar": [
    [
     "A",
-    "otobüs kaçtı, işe geç kalacağım"
+    "[otobüs kaçtı|otobüsü kaçırdım], [işe geç kalacağım|geç kalacağım|işe yetişemeyeceğim]"
    ],
    [
     "B",
-    "patronu ara, haber ver"
+    "[patronu ara|patronu ara hemen], [haber ver|haber ver bari|söyle durumu]"
    ],
    [
     "A",
-    "aradım, \"ben de yoldayım\" dedi"
+    "[aradım|aradım ki], [\"ben de yoldayım\" dedi|\"ben de yoldayım\" diyor|o da \"yoldayım\" dedi]"
    ],
    [
     "C",
-    "ikiniz de aynı otobüsü bekliyorsunuz belki"
+    "[ikiniz de aynı otobüsü bekliyorsunuz belki|belki aynı otobüsü bekliyorsunuz|aynı durakta olabilirsiniz]"
    ],
    [
     "A",
-    "dur bakayım, durakta tanıdık biri var"
+    "[dur bakayım|dur bi bakayım], [durakta tanıdık biri var|durakta tanıdık bir yüz var|durakta biri bana el sallıyor]"
    ],
    [
     "B",
-    "olamaz[ haha|]"
+    "[olamaz|yok artık|olamaz ya][ haha|]"
    ]
   ]
  },
@@ -277,27 +277,27 @@
   "turlar": [
    [
     "A",
-    "maaş zammı istemek için cesaret topluyorum"
+    "[maaş zammı istemek için cesaret topluyorum|zam istemek için cesaret topluyorum|zam isteyeceğim, cesaret arıyorum]"
    ],
    [
     "B",
-    "ne zamandır çalışıyorsun"
+    "[ne zamandır çalışıyorsun|kaç zamandır oradasın|ne kadardır çalışıyorsun]"
    ],
    [
     "A",
-    "bir yılı geçti"
+    "[bir yılı geçti|bi yılı geçti|bir yılı doldurdum]"
    ],
    [
     "C",
-    "o zaman hak ettin, yaptıklarını listele, öyle git"
+    "[o zaman hak ettin|hak etmişsin o zaman], [yaptıklarını listele, öyle git|ne yaptığını listele, öyle konuş|önce listeni yap, sonra git]"
    ],
    [
     "A",
-    "liste uzun, bu güzel"
+    "[liste uzun|listem uzun], [bu güzel|bu iyi|iyi haber]"
    ],
    [
     "D",
-    "bol şans {A}, sonucu yaz"
+    "[bol şans|başarılar] {A}, [sonucu yaz|sonucu bize de yaz|haber ver]"
    ]
   ]
  },
@@ -311,23 +311,23 @@
   "turlar": [
    [
     "A",
-    "patron bana kahve yapmayı öğretti, artık en iyi kahveyi ben yapıyorum"
+    "[patron bana kahve yapmayı öğretti|patron kahve yapmayı öğretti bana], [artık en iyi kahveyi ben yapıyorum|şimdi en iyi kahve benden|en iyi kahve artık benim]"
    ],
    [
     "B",
-    "gelip içeceğim bir gün"
+    "[gelip içeceğim bir gün|bi gün gelip içeceğim|bir gün gelirim içmeye]"
    ],
    [
     "A",
-    "gel, ama sıra beklersin"
+    "[gel|gel tabii], [ama sıra beklersin|sıra var ama|ama kuyruk var]"
    ],
    [
     "C",
-    "reklam güzel"
+    "[reklam güzel|güzel reklam|reklamı iyi yapıyorsun]"
    ],
    [
     "A",
-    "müşteri de öyle diyor"
+    "[müşteri de öyle diyor|müşteriler de öyle diyor|müşteriler de aynı fikirde]"
    ]
   ]
  },
@@ -339,27 +339,27 @@
   "turlar": [
    [
     "A",
-    "bu kanalda {A.sehir} dışından olan var mı merak ettim"
+    "[bu kanalda|merak ettim, bu kanalda|soruyorum, burada] {A.sehir} dışından [olan var mı merak ettim|olan var mı|gelen var mı]"
    ],
    [
     "B",
-    "ben aslen başka yerdenim, okul için gelmiştim"
+    "[ben aslen başka yerdenim|ben aslen başka şehirliyim], [okul için gelmiştim|okumaya gelmiştim|okul için geldim]"
    ],
    [
     "C",
-    "ben burada doğdum büyüdüm"
+    "[ben burada doğdum büyüdüm|ben buranın yerlisiyim|ben burada doğup büyüdüm]"
    ],
    [
     "A",
-    "ben de sonradan geldim, hala alışamadım bazı şeylere"
+    "[ben de sonradan geldim|ben de sonradan geldim ya], [hala alışamadım bazı şeylere|bazı şeylere hala alışamadım|hala alışamadığım şeyler var]"
    ],
    [
     "B",
-    "en çok neye"
+    "[en çok neye|en çok neye alışamadın|mesela neye]"
    ],
    [
     "A",
-    "trafiğe"
+    "[trafiğe|trafiğe tabii|trafik]"
    ]
   ]
  },
@@ -371,23 +371,23 @@
   "turlar": [
    [
     "A",
-    "{B} sen kaç yıldır buradasın, hep seni görüyorum"
+    "{B} [sen kaç yıldır buradasın|kaç yıldır buradasın sen], [hep seni görüyorum|seni hep görüyorum|hep buradasın]"
    ],
    [
     "B",
-    "bayağı oldu, eskilerdenim artık"
+    "[bayağı oldu|epey oldu|çok oldu], [eskilerdenim artık|eski sayılırım|eski kadrodanım]"
    ],
    [
     "A",
-    "ben daha yeni sayılırım"
+    "[ben daha yeni sayılırım|ben yeni sayılırım|ben daha yeniyim]"
    ],
    [
     "B",
-    "kolay gelsin, sor ne istersen"
+    "[kolay gelsin|hoş geldin], [sor ne istersen|ne istersen sor|takıldığın yerde sor]"
    ],
    [
     "C",
-    "{B} herkese yardım eder, iyi biri bulmuşsun"
+    "{B} [herkese yardım eder|herkese yardımcı olur], [iyi biri bulmuşsun|doğru kişiyi bulmuşsun|şanslısın]"
    ]
   ]
  },
@@ -399,23 +399,23 @@
   "turlar": [
    [
     "A",
-    "{B} adın çok güzelmiş, nereden geliyor"
+    "{B} [adın çok güzelmiş|adın ne güzel], [nereden geliyor|kim koydu|hikayesi var mı]"
    ],
    [
     "B",
-    "dedemin adı, ona çekmişim"
+    "[dedemin adı|dedemin ismi], [ona çekmişim|onun adını vermişler|ondan almışım]"
    ],
    [
     "A",
-    "çok güzel, benimkini annem dizide duymuş"
+    "[çok güzel|ne güzel], [benimkini annem dizide duymuş|benimkini annem bir diziden almış|benim adım bir diziden]"
    ],
    [
     "C",
-    "benimkini de komşu teyze koymuş, annem karşı çıkamamış"
+    "[benimkini de komşu teyze koymuş|benim adımı komşu teyze koymuş], [annem karşı çıkamamış|annem itiraz edememiş|annem bir şey diyememiş]"
    ],
    [
     "A",
-    "ad koyma hikayeleri hep komik"
+    "[ad koyma hikayeleri hep komik|isim hikayeleri hep komik|ad koyma hikayeleri ayrı bir dünya]"
    ]
   ]
  },
@@ -429,27 +429,27 @@
   "turlar": [
    [
     "A",
-    "ben bu kanalı okuyordum ama ilk defa yazıyorum"
+    "[ben bu kanalı okuyordum ama ilk defa yazıyorum|kanalı hep okuyordum, ilk kez yazıyorum|uzun süredir okuyorum ama ilk mesajım bu]"
    ],
    [
     "B",
-    "hoş geldin, sonunda cesaret ettin"
+    "[hoş geldin|hoş geldin valla], [sonunda cesaret ettin|sonunda yazdın|nihayet]"
    ],
    [
     "A",
-    "evet, herkes çok samimi görünüyordu"
+    "[evet|evet ya], [herkes çok samimi görünüyordu|herkes çok samimi duruyordu|burası samimi görünüyordu]"
    ],
    [
     "C",
-    "samimiyiz, ama bazen biraz gürültülü"
+    "[samimiyiz|samimiyiz tabii], [ama bazen biraz gürültülü|ama arada gürültülü|bazen kalabalık ama]"
    ],
    [
     "A",
-    "gürültüyü seviyorum"
+    "[gürültüyü seviyorum|gürültü severim|gürültü bana göre]"
    ],
    [
     "B",
-    "o zaman doğru yerdesin"
+    "[o zaman doğru yerdesin|doğru yerdesin o zaman|tam yerine gelmişsin]"
    ]
   ]
  },
@@ -463,27 +463,27 @@
   "turlar": [
    [
     "A",
-    "{B} sen ne iş yapıyorsun oyunda"
+    "{B} [sen ne iş yapıyorsun oyunda|oyunda ne iş yapıyorsun|sen oyunda ne yapıyorsun]"
    ],
    [
     "B",
-    "{B.meslek} olarak çalışıyorum"
+    "{B.meslek} olarak [çalışıyorum|çalışıyorum şimdilik|devam ediyorum]"
    ],
    [
     "A",
-    "nasıl gidiyor"
+    "[nasıl gidiyor|nasıl gidiyor peki|memnun musun]"
    ],
    [
     "B",
-    "iyi, yavaş yavaş birikiyor"
+    "[iyi|fena değil], [yavaş yavaş birikiyor|yavaş yavaş biriktiriyorum|azar azar birikiyor]"
    ],
    [
     "C",
-    "{B} çok çalışkandır, sabahtan akşama kadar"
+    "{B} [çok çalışkandır|çalışkan biridir], [sabahtan akşama kadar|sabah akşam çalışır|hiç durmaz]"
    ],
    [
     "B",
-    "abartma {C}[ haha|]"
+    "[abartma|abartıyorsun|o kadar değil] {C}[ haha|]"
    ]
   ]
  },
@@ -495,27 +495,27 @@
   "turlar": [
    [
     "A",
-    "{B} seni bir yerden tanıyorum gibi"
+    "{B} [seni bir yerden tanıyorum gibi|seni bi yerden tanıyor gibiyim|seni tanıyorum sanki]"
    ],
    [
     "B",
-    "kanaldan olabilir mi"
+    "[kanaldan olabilir mi|kanaldan olabilir|burada görmüşsündür]"
    ],
    [
     "A",
-    "yok, daha önce başka bir yerde konuştuk sanki"
+    "[yok|yok ya], [daha önce başka bir yerde konuştuk sanki|başka bir yerde konuşmuştuk sanki|başka yerde karşılaştık gibi]"
    ],
    [
     "B",
-    "emin değilim, belki"
+    "[emin değilim, belki|bilmiyorum, olabilir|olabilir, emin değilim]"
    ],
    [
     "C",
-    "burada herkes birbirini bir yerden tanıyor gibi hissediyor zaten"
+    "[burada herkes birbirini bir yerden tanıyor gibi hissediyor zaten|burada herkes birbirini tanıyor gibi zaten|zaten herkes birbirine tanıdık geliyor burada]"
    ],
    [
     "A",
-    "doğru, kanal mahalle gibi"
+    "[doğru|aynen], [kanal mahalle gibi|kanal bir mahalle|burası mahalle gibi]"
    ]
   ]
  },
@@ -527,23 +527,23 @@
   "turlar": [
    [
     "A",
-    "burada en çok kiminle konuşuyorsunuz"
+    "[burada en çok kiminle konuşuyorsunuz|kanalda en çok kiminle yazışıyorsunuz|en çok kiminle konuşuyorsunuz burada]"
    ],
    [
     "B",
-    "{C} ile, aynı saatte geliyoruz"
+    "{C} ile, [aynı saatte geliyoruz|hep aynı saatte giriyoruz|saatlerimiz aynı]"
    ],
    [
     "C",
-    "aynen, sabah kahvesi arkadaşıyız"
+    "[aynen|evet], [sabah kahvesi arkadaşıyız|sabah kahvesi ekibiyiz|kahve arkadaşıyız]"
    ],
    [
     "A",
-    "kıskandım, ben de katılabilir miyim"
+    "[kıskandım|kıskandım valla], [ben de katılabilir miyim|ben de gelebilir miyim|bana da yer var mı]"
    ],
    [
     "B",
-    "tabii, saat dokuz, kahveni al gel"
+    "[tabii|tabii ki], [saat dokuz, kahveni al gel|dokuzda kahveni kap gel|dokuzda buluşuyoruz, kahveni al]"
    ]
   ]
  },
@@ -555,27 +555,27 @@
   "turlar": [
    [
     "A",
-    "tanışmak için soruyorum, kimin ne hobisi var"
+    "[tanışmak için soruyorum|tanışalım diye soruyorum], [kimin ne hobisi var|hobileriniz ne|kim ne yapar boş zamanında]"
    ],
    [
     "B",
-    "balık tutmak"
+    "[balık tutmak|balık tutarım|balığa çıkmak]"
    ],
    [
     "C",
-    "resim yapıyorum, kötü ama seviyorum"
+    "[resim yapıyorum|ben resim yapıyorum], [kötü ama seviyorum|kötüyüm ama seviyorum|kötü ama keyifli]"
    ],
    [
     "D",
-    "ben bahçede domates yetiştiriyorum"
+    "[ben bahçede domates yetiştiriyorum|ben bahçede domates ekiyorum|benim domateslerim var bahçede]"
    ],
    [
     "A",
-    "çok güzel hepsi, ben de yürüyüş yapıyorum"
+    "[çok güzel hepsi|hepsi güzel], [ben de yürüyüş yapıyorum|ben yürüyüşçüyüm|ben de yürürüm]"
    ],
    [
     "B",
-    "hobilerin hepsi barışçıl, iyi kanal"
+    "[hobilerin hepsi barışçıl|hepsi sakin hobiler], [iyi kanal|güzel kanal|huzurlu kanal]"
    ]
   ]
  },
@@ -589,27 +589,27 @@
   "turlar": [
    [
     "A",
-    "{B} merhaba, yenisin galiba"
+    "{B} [merhaba|selam], [yenisin galiba|yeni misin|seni ilk kez görüyorum]"
    ],
    [
     "B",
-    "evet, birkaç gündür buradayım"
+    "[evet|evet ya], [birkaç gündür buradayım|bi kaç gündür buradayım|birkaç gün oldu]"
    ],
    [
     "A",
-    "çekinme, sor ne merak edersen"
+    "[çekinme|çekinme hiç], [sor ne merak edersen|ne merak edersen sor|her şeyi sorabilirsin]"
    ],
    [
     "B",
-    "nasıl para biriktiriyorsunuz diye soracaktım"
+    "[nasıl para biriktiriyorsunuz diye soracaktım|para nasıl biriktiriliyor onu soracaktım|nasıl birikim yapıyorsunuz]"
    ],
    [
     "C",
-    "sabırla[ valla|], ve kira gününü unutmadan"
+    "[sabırla|sabırla tabii|sabır işi][ valla|], [ve kira gününü unutmadan|kira gününü unutmadan|bir de kira gününe dikkat]"
    ],
    [
     "A",
-    "bir de günlük görevleri yap, kum saati gelir"
+    "[bir de günlük görevleri yap|bi de günlük görevleri yap], [kum saati gelir|kum saati kazanırsın|kum saati veriyor]"
    ]
   ]
  },
@@ -621,23 +621,23 @@
   "turlar": [
    [
     "A",
-    "siz arkadaşlarınızla mı oynuyorsunuz yoksa tek başınıza mı"
+    "[siz arkadaşlarınızla mı oynuyorsunuz yoksa tek başınıza mı|arkadaşlarla mı oynuyorsunuz, tek mi|siz tek mi oynuyorsunuz, arkadaşla mı]"
    ],
    [
     "B",
-    "kardeşimle oynuyoruz, kim daha çok biriktirecek diye"
+    "[kardeşimle oynuyoruz|kardeşle oynuyoruz], [kim daha çok biriktirecek diye|kim çok biriktirecek yarışı|aramızda yarış var]"
    ],
    [
     "C",
-    "ben tek başıma, ama burada arkadaşlar edindim"
+    "[ben tek başıma|ben yalnız oynuyorum], [ama burada arkadaşlar edindim|ama burada arkadaşlarım oldu|ama kanalda arkadaş buldum]"
    ],
    [
     "A",
-    "ben de kuzenimi getirdim, ama o benden hızlı ilerliyor"
+    "[ben de kuzenimi getirdim|ben kuzenimi de oyuna soktum], [ama o benden hızlı ilerliyor|ama benden hızlı gidiyor|ama beni geçti bile]"
    ],
    [
     "B",
-    "kuzenler hep öyle, rekabet"
+    "[kuzenler hep öyle|kuzen dediğin öyle], [rekabet|rekabet hep var|hep yarış]"
    ]
   ]
  },
@@ -649,27 +649,27 @@
   "turlar": [
    [
     "A",
-    "karnıyarık tarifi lazım ama annem telefona çıkmıyor"
+    "[karnıyarık tarifi lazım|karnıyarık yapacağım, tarif lazım], [ama annem telefona çıkmıyor|annem açmıyor telefonu|annem ulaşılamıyor]"
    ],
    [
     "B",
-    "ben veririm. patlıcanı kızart, içine kıyma koy, domates sos, fırın"
+    "[ben veririm|ben söyleyeyim]. [patlıcanı kızart, içine kıyma koy, domates sos, fırın|patlıcanı kızart, kıymayı doldur, sos, fırın]"
    ],
    [
     "A",
-    "kıymayı soğanla mı kavuruyorum"
+    "[kıymayı soğanla mı kavuruyorum|kıymayı soğanla mı kavurayım|kıyma soğanla mı]"
    ],
    [
     "B",
-    "tabii, biber de ekle"
+    "[tabii|tabii ki], [biber de ekle|biber de koy|yeşil biber de at]"
    ],
    [
     "C",
-    "bir de üstüne domates dilimi koy, güzel görünür"
+    "[bir de üstüne domates dilimi koy|üstüne domates dilimi koy], [güzel görünür|şık durur|görüntüsü güzel olur]"
    ],
    [
     "A",
-    "teşekkürler, annem dönünce test ettireceğim"
+    "[teşekkürler|sağ olun], [annem dönünce test ettireceğim|annem dönünce tadına baktıracağım|annem aradığında ona tattıracağım]"
    ]
   ]
  },
@@ -681,27 +681,27 @@
   "turlar": [
    [
     "A",
-    "biri bana yüzde hesabını anlatabilir mi, aklım karışıyor"
+    "[biri bana yüzde hesabını anlatabilir mi|yüzde hesabını anlatan olur mu], [aklım karışıyor|kafam karışıyor|hiç anlamıyorum]"
    ],
    [
     "B",
-    "ne hesaplıyorsun"
+    "[ne hesaplıyorsun|neyi hesaplıyorsun|ne lazım]"
    ],
    [
     "A",
-    "yüzde yirmi indirimde ne kadar ödeyeceğimi"
+    "[yüzde yirmi indirimde ne kadar ödeyeceğimi|yüzde yirmi indirimle ne ödeyeceğimi|yüzde yirmi indirim ne eder]"
    ],
    [
     "B",
-    "fiyatı beşe böl, bir parçayı çıkar. kalanı ödersin"
+    "[fiyatı beşe böl, bir parçayı çıkar|fiyatı beşe böl, birini çıkar]. [kalanı ödersin|kalan senin ödeyeceğin|kalanı öde]"
    ],
    [
     "A",
-    "ha bu kolaymış"
+    "[ha bu kolaymış|aa bu kolaymış|ha, bu kadar mı]"
    ],
    [
     "C",
-    "bunu okulda böyle anlatsalardı"
+    "[bunu okulda böyle anlatsalardı|okulda böyle anlatsalar ya|keşke okulda böyle anlatılsaydı]"
    ]
   ]
  },
@@ -715,27 +715,27 @@
   "turlar": [
    [
     "A",
-    "evde musluk damlıyor, ne yaparım"
+    "[evde musluk damlıyor|musluk damlıyor evde], [ne yaparım|ne yapayım|nasıl düzeltirim]"
    ],
    [
     "B",
-    "{B.meslek} olarak söyleyeyim, contası gitmiştir. önce vanayı kapat"
+    "{B.meslek} olarak söyleyeyim, [contası gitmiştir|conta bitmiştir]. [önce vanayı kapat|ilk iş vanayı kapat|önce suyu kes]"
    ],
    [
     "A",
-    "vana nerede"
+    "[vana nerede|vana nerde|vanayı nerede bulurum]"
    ],
    [
     "B",
-    "lavabonun altında, küçük bir musluk"
+    "[lavabonun altında|lavabonun altına bak], [küçük bir musluk|ufak bir musluk|küçük bir kol]"
    ],
    [
     "A",
-    "buldum, kapattım"
+    "[buldum, kapattım|buldum, kapadım|tamam, kapattım]"
    ],
    [
     "B",
-    "yarın hırdavatçıdan conta al, beş dakikalık iş"
+    "[yarın hırdavatçıdan conta al|yarın hırdavattan conta al], [beş dakikalık iş|beş dakikada biter|çok kolay iş]"
    ]
   ]
  },
@@ -747,31 +747,31 @@
   "turlar": [
    [
     "A",
-    "kedim kaçtı, sokakta arıyorum"
+    "[kedim kaçtı|kedi kaçtı], [sokakta arıyorum|sokak sokak arıyorum|her yere baktım]"
    ],
    [
     "B",
-    "en son nerede gördün"
+    "[en son nerede gördün|son nerede gördün|en son neredeydi]"
    ],
    [
     "A",
-    "balkondaydı, sonra yok"
+    "[balkondaydı, sonra yok|balkondaydı, birden yok oldu|balkonda gördüm, sonra kayboldu]"
    ],
    [
     "C",
-    "mama kabını kapının önüne koy, sesinle çağır"
+    "[mama kabını kapının önüne koy|mama kabını kapıya koy], [sesinle çağır|adını seslen|sesinle çağır onu]"
    ],
    [
     "D",
-    "akşam olunca sessizleşince gelir, korkmuş olabilir"
+    "[akşam olunca sessizleşince gelir|akşam sessizlik olunca gelir], [korkmuş olabilir|korkmuştur|ürkmüş olabilir]"
    ],
    [
     "A",
-    "teşekkürler, umarım bulurum"
+    "[teşekkürler|sağ olun], [umarım bulurum|inşallah bulurum|umarım döner]"
    ],
    [
     "B",
-    "bulursun, haber ver"
+    "[bulursun|bulursun merak etme], [haber ver|bize yaz|haber et]"
    ]
   ]
  },
@@ -783,27 +783,27 @@
   "turlar": [
    [
     "A",
-    "kedi döndü"
+    "[kedi döndü|kedim döndü|kedi geri geldi]"
    ],
    [
     "B",
-    "oha ne zaman"
+    "[oha ne zaman|oha, ne zaman|vay, ne zaman]"
    ],
    [
     "A",
-    "az önce, kapıda miyavlıyordu"
+    "[az önce|biraz önce], [kapıda miyavlıyordu|kapıda miyavlıyordu ya|kapının önünde bağırıyordu]"
    ],
    [
     "C",
-    "çok sevindim {A}"
+    "[çok sevindim|çok sevindim valla|ne güzel, sevindim] {A}"
    ],
    [
     "D",
-    "mama kabı işe yaradı demek"
+    "[mama kabı işe yaradı demek|demek mama kabı işe yaradı|mama taktiği tuttu]"
    ],
    [
     "A",
-    "evet, karnı açmış"
+    "[evet|aynen], [karnı açmış|acıkmış|açlık getirdi]"
    ]
   ]
  },
@@ -817,27 +817,27 @@
   "turlar": [
    [
     "A",
-    "iş başvurusu için öz geçmiş yazıyorum, ne yazacağımı bilmiyorum"
+    "[iş başvurusu için öz geçmiş yazıyorum|öz geçmiş hazırlıyorum], [ne yazacağımı bilmiyorum|ne yazayım bilmiyorum|nasıl yazılır bilmiyorum]"
    ],
    [
     "B",
-    "önce ne yaptığını yaz, kısa ve net"
+    "[önce ne yaptığını yaz|ne yaptıysan onu yaz], [kısa ve net|kısa, net|uzatmadan]"
    ],
    [
     "A",
-    "çok tecrübem yok"
+    "[çok tecrübem yok|fazla tecrübem yok|tecrübem az]"
    ],
    [
     "C",
-    "gönüllü yaptığın şeyler de sayılır, bir de öğrenmeye açık olduğunu belirt"
+    "[gönüllü yaptığın şeyler de sayılır|gönüllü işler de sayılır], [bir de öğrenmeye açık olduğunu belirt|bir de öğrenmeye hevesli olduğunu yaz|öğrenmeye açık olduğunu da ekle]"
    ],
    [
     "A",
-    "bu güzel, birkaç yerde gönüllü çalışmıştım"
+    "[bu güzel|bu iyi], [birkaç yerde gönüllü çalışmıştım|birkaç yerde gönüllüydüm|bir iki yerde gönüllü çalıştım]"
    ],
    [
     "B",
-    "tamam o zaman, güzel olacak"
+    "[tamam o zaman|o zaman tamam], [güzel olacak|iyi olacak|güzel bir öz geçmiş çıkar]"
    ]
   ]
  },
@@ -852,27 +852,27 @@
   "turlar": [
    [
     "A",
-    "bir şey anlamadım, kira neden bu ay iki kere düştü"
+    "[bir şey anlamadım|bişey anlamadım], [kira neden bu ay iki kere düştü|bu ay kira niye iki kere düştü|kira iki kez mi düştü]"
    ],
    [
     "B",
-    "iki kere mi, emin misin"
+    "[iki kere mi|iki kez mi], [emin misin|emin misin ya|bir daha bak]"
    ],
    [
     "A",
-    "sanırım biri yaşam gideri"
+    "[sanırım biri yaşam gideri|galiba biri yaşam gideri|biri yaşam gideri sanırım]"
    ],
    [
     "C",
-    "evet, kira ayrı geçim ayrı. ikisi her ay düşer"
+    "[evet|aynen], [kira ayrı geçim ayrı|kira başka, geçim başka]. [ikisi her ay düşer|ikisi de her ay kesilir|her ay ikisi de gider]"
    ],
    [
     "A",
-    "aa tamam, iki farklı şeymiş"
+    "[aa tamam|ha tamam], [iki farklı şeymiş|ayrı şeylermiş|iki ayrı kalemmiş]"
    ],
    [
     "B",
-    "kafa karıştırıcı ama alışırsın"
+    "[kafa karıştırıcı ama alışırsın|başta karışık ama alışırsın|alışırsın, başta herkes karıştırıyor]"
    ]
   ]
  },
@@ -884,27 +884,27 @@
   "turlar": [
    [
     "A",
-    "koltuğu kapıdan sokamıyoruz, ne yapalım"
+    "[koltuğu kapıdan sokamıyoruz|koltuk kapıdan girmiyor], [ne yapalım|ne yapsak|fikri olan var mı]"
    ],
    [
     "B",
-    "ayaklarını sök"
+    "[ayaklarını sök|önce ayaklarını sökün|ayakları çıkar]"
    ],
    [
     "A",
-    "söktük"
+    "[söktük|söktük ama|çıkardık]"
    ],
    [
     "C",
-    "yan çevir, kapı pervanesinden döndür"
+    "[yan çevir|yan yatır], [kapı pervanesinden döndür|kapı pervazından döndür|pervazdan çevirerek sok]"
    ],
    [
     "A",
-    "oldu!"
+    "[oldu!|oldu ya!|girdi!]"
    ],
    [
     "D",
-    "yardım kanalı her zamanki gibi başarılı"
+    "[yardım kanalı her zamanki gibi başarılı|kanalın yardım hattı yine başarılı|yardım kanalı yine iş başında]"
    ]
   ]
  },
@@ -916,27 +916,27 @@
   "turlar": [
    [
     "A",
-    "babam için hediye fikri lazım, her şeyi var demeye başladı"
+    "[babam için hediye fikri lazım|babama hediye arıyorum], [her şeyi var demeye başladı|her şeyim var diyor|her şeyi olduğunu söylüyor]"
    ],
    [
     "B",
-    "el yapımı bir şey"
+    "[el yapımı bir şey|el yapımı bir şey al|kendin bir şey yap]"
    ],
    [
     "C",
-    "bir sepet yap, en sevdiği yiyecekler"
+    "[bir sepet yap|bi sepet hazırla], [en sevdiği yiyecekler|sevdiği yiyeceklerle|en sevdiği şeylerle]"
    ],
    [
     "A",
-    "sevdiği tek şey çay"
+    "[sevdiği tek şey çay|tek sevdiği çay|çaydan başka bir şey sevmez]"
    ],
    [
     "D",
-    "o zaman güzel bir demlik ve iki kilo çay"
+    "[o zaman güzel bir demlik ve iki kilo çay|güzel bir demlik, yanına iki kilo çay|o zaman demlik ve bol çay]"
    ],
    [
     "A",
-    "bu kesin olur"
+    "[bu kesin olur|bu kesin tutar|işte bu]"
    ]
   ]
  },
@@ -948,27 +948,27 @@
   "turlar": [
    [
     "A",
-    "saksıdaki bitkim sararıyor, kurtarabilir miyiz"
+    "[saksıdaki bitkim sararıyor|bitkim sararmaya başladı], [kurtarabilir miyiz|kurtarılır mı|ne yapayım]"
    ],
    [
     "B",
-    "güneş alıyor mu"
+    "[güneş alıyor mu|güneş görüyor mu|ışık alıyor mu]"
    ],
    [
     "A",
-    "pencere kenarında"
+    "[pencere kenarında|pencerenin önünde|cam kenarında]"
    ],
    [
     "C",
-    "fazla su olabilir, toprağı yokla, ıslaksa bekle"
+    "[fazla su olabilir|fazla sulamış olabilirsin], [toprağı yokla, ıslaksa bekle|toprağa dokun, ıslaksa sulama|toprağa bak, ıslaksa bekle]"
    ],
    [
     "A",
-    "çok ıslak"
+    "[çok ıslak|sırılsıklam|bayağı ıslak]"
    ],
    [
     "B",
-    "işte cevap, bir hafta sulama"
+    "[işte cevap|cevap bu], [bir hafta sulama|bi hafta su verme|bir hafta dokunma]"
    ]
   ]
  },
@@ -982,23 +982,23 @@
   "turlar": [
    [
     "A",
-    "biri {kurs.emlak.gun} günlük kursu hatırlatsın, ne zaman bitiyordu benimki"
+    "[biri|kim] {kurs.emlak.gun} günlük kursu [hatırlatsın, ne zaman bitiyordu benimki|hatırlatsın, benimki ne zaman bitiyor]"
    ],
    [
     "B",
-    "tam bilmiyorum, kurs ekranında yazıyor olmalı, bir bak"
+    "[tam bilmiyorum|emin değilim], [kurs ekranında yazıyor olmalı, bir bak|kurs ekranında yazar, bak|kurs ekranına bir bak]"
    ],
    [
     "A",
-    "buldum, iki gün kalmış"
+    "[buldum|baktım], [iki gün kalmış|iki gün kaldı|iki günüm varmış]"
    ],
    [
     "C",
-    "kum saatin varsa kısaltırsın"
+    "[kum saatin varsa kısaltırsın|kum saatin varsa kısalt|kum saatiyle kısaltabilirsin]"
    ],
    [
     "A",
-    "var ama saklıyorum, bekleyeceğim"
+    "[var ama saklıyorum|var ama biriktiriyorum], [bekleyeceğim|beklerim|iki gün beklerim]"
    ]
   ]
  },
@@ -1010,27 +1010,27 @@
   "turlar": [
    [
     "A",
-    "pantolonun düğmesi koptu, dikiş bilmiyorum"
+    "[pantolonun düğmesi koptu|pantolon düğmesi düştü], [dikiş bilmiyorum|dikiş dikemem|iğne iplik bilmem]"
    ],
    [
     "B",
-    "iğneyi ip ile dört kez çapraz geçir, düğüm at"
+    "[iğneyi ip ile dört kez çapraz geçir, düğüm at|ipi dört kez çapraz geçir, sonra düğüm at|dört kere çapraz geçir, düğüm at]"
    ],
    [
     "A",
-    "iğneye ipi geçiremiyorum"
+    "[iğneye ipi geçiremiyorum|ip iğneye girmiyor|iğneye ip geçiremedim]"
    ],
    [
     "C",
-    "ipin ucunu ıslat, kolay geçer"
+    "[ipin ucunu ıslat|ipin ucunu biraz ıslat], [kolay geçer|hemen geçer|rahat girer]"
    ],
    [
     "A",
-    "geçti!"
+    "[geçti!|geçti ya!|oldu!]"
    ],
    [
     "B",
-    "ilk dikiş tebrikler"
+    "[ilk dikiş tebrikler|ilk dikişin hayırlı olsun|tebrikler, ilk dikiş]"
    ]
   ]
  },
@@ -1042,27 +1042,27 @@
   "turlar": [
    [
     "A",
-    "{B} bana kızdın mı, cevap vermedin"
+    "{B} [bana kızdın mı|bana kırıldın mı], [cevap vermedin|yazmadın|ses çıkarmadın]"
    ],
    [
     "B",
-    "yok ya, yemekteydim"
+    "[yok ya|yok canım], [yemekteydim|yemek yiyordum|sofradaydım]"
    ],
    [
     "A",
-    "emin misin"
+    "[emin misin|emin misin ya|gerçekten mi]"
    ],
    [
     "B",
-    "eminim, niye kızayım"
+    "[eminim|eminim tabii], [niye kızayım|neden kızayım|kızmam için sebep yok]"
    ],
    [
     "A",
-    "geçen gün yemeğine laf etmiştim"
+    "[geçen gün yemeğine laf etmiştim|geçen gün yemeğine laf etmiştim ya|yemeğin hakkında bir şey demiştim]"
    ],
    [
     "B",
-    "o mu, ben unuttum bile[ haha|]"
+    "[o mu|ha o mu], [ben unuttum bile|unuttum bile|aklımda bile yok][ haha|]"
    ]
   ]
  },
@@ -1074,27 +1074,27 @@
   "turlar": [
    [
     "A",
-    "{B} dün yaptığım şakaya alındın galiba, kusura bakma"
+    "{B} [dün yaptığım şakaya alındın galiba|dünkü şakama alındın sanırım], [kusura bakma|özür dilerim|kusura bakma ya]"
    ],
    [
     "B",
-    "biraz alınmıştım, ama geçti"
+    "[biraz alınmıştım|biraz kırılmıştım], [ama geçti|ama geçti şimdi|sorun yok artık]"
    ],
    [
     "A",
-    "seni kırmak istemedim"
+    "[seni kırmak istemedim|kırmak istememiştim|niyetim kırmak değildi]"
    ],
    [
     "B",
-    "biliyorum, sen öylesin"
+    "[biliyorum|biliyorum zaten], [sen öylesin|sen öyle değilsin|sen iyi birisin]"
    ],
    [
     "C",
-    "barıştınız mı, hadi çay içelim"
+    "[barıştınız mı|barıştınız mı şimdi], [hadi çay içelim|hadi çaylar gelsin|o zaman çay içelim]"
    ],
    [
     "A",
-    "{B} çayı benden"
+    "{B} [çayı benden|çaylar benden|bugün çay benden]"
    ]
   ]
  },
@@ -1106,27 +1106,27 @@
   "turlar": [
    [
     "A",
-    "{B} seni bu akşam görmek güzeldi"
+    "{B} [seni bu akşam görmek güzeldi|bu akşam seni görmek güzeldi|bu akşam karşılaşmak güzeldi]"
    ],
    [
     "B",
-    "ben bu akşam evdeydim ama"
+    "[ben bu akşam evdeydim ama|ben akşam evdeydim ama|ama ben evden çıkmadım]"
    ],
    [
     "A",
-    "dur bir dakika, kimi gördüm o zaman"
+    "[dur bir dakika|dur bi dakika|bi saniye], [kimi gördüm o zaman|o zaman kimi gördüm|kiminle konuştum ben]"
    ],
    [
     "C",
-    "korkunç bir an"
+    "[korkunç bir an|korkunç an|gerilim anı]"
    ],
    [
     "A",
-    "herhalde başka {B} idi, özür dilerim[ haha|]"
+    "[herhalde|galiba|demek ki] başka {B} idi, [özür dilerim|kusura bakma|pardon][ haha|]"
    ],
    [
     "B",
-    "önemli değil, ben de sana hoş geldin diyorum"
+    "[önemli değil|sorun değil], [ben de sana hoş geldin diyorum|ben de sana selam diyorum|ben de buradan el sallıyorum]"
    ]
   ]
  },
@@ -1138,27 +1138,27 @@
   "turlar": [
    [
     "A",
-    "{B} \"tamam\" yazınca kızdın sandım"
+    "{B} [\"tamam\" yazınca kızdın sandım|\"tamam\" deyince kızgınsın sandım|sadece \"tamam\" yazınca kızdın sandım]"
    ],
    [
     "B",
-    "yok ya, sadece tamam"
+    "[yok ya|yok canım], [sadece tamam|sadece tamam demek istedim|tamam işte]"
    ],
    [
     "C",
-    "kısa mesajlar hep kızgın görünür"
+    "[kısa mesajlar hep kızgın görünür|kısa mesaj hep sert durur|tek kelime hep kızgın gibi okunur]"
    ],
    [
     "A",
-    "bir \"tamamdır\" yazsan"
+    "[bir \"tamamdır\" yazsan|bi \"tamamdır\" yazsan|\"tamamdır\" desen bari]"
    ],
    [
     "B",
-    "tamamdır o zaman"
+    "[tamamdır o zaman|o zaman tamamdır|tamamdır]"
    ],
    [
     "A",
-    "bak bu daha sevimli"
+    "[bak bu daha sevimli|bu daha sevimli|işte bu daha tatlı]"
    ]
   ]
  },
@@ -1170,27 +1170,27 @@
   "turlar": [
    [
     "A",
-    "{C} dünkü yemek tarifin çok güzeldi"
+    "{C} [dünkü yemek tarifin çok güzeldi|dün verdiğin tarif harikaydı|dünkü tarif çok iyiydi]"
    ],
    [
     "B",
-    "o tarifi ben verdim ama"
+    "[o tarifi ben verdim ama|tarifi ben vermiştim ama|o tarif benimdi ama]"
    ],
    [
     "A",
-    "eyvah, karıştırdım"
+    "[eyvah|eyvah ya|eyvahlar], [karıştırdım|isimleri karıştırdım|karıştırmışım]"
    ],
    [
     "C",
-    "ben de tarif vermedim zaten, biraz şaşırmıştım"
+    "[ben de tarif vermedim zaten|ben tarif vermemiştim zaten], [biraz şaşırmıştım|biraz şaşırdım|ne diyorsun diyordum]"
    ],
    [
     "A",
-    "{B} çok teşekkürler o zaman, iyi ki varsın"
+    "{B} [çok teşekkürler o zaman|o zaman çok teşekkürler], [iyi ki varsın|harikaydı|eline sağlık]"
    ],
    [
     "B",
-    "rica ederim, isim karışması olur"
+    "[rica ederim|rica ederim ya], [isim karışması olur|isim karışır|olur böyle şeyler]"
    ]
   ]
  },
@@ -1202,27 +1202,27 @@
   "turlar": [
    [
     "A",
-    "{B} senin semtin pahalı demiştim ama kötü niyetle değil"
+    "{B} [senin semtin pahalı demiştim|semtin pahalı dedim], [ama kötü niyetle değil|ama kötü bir niyetle değil|kötü anlamda değil]"
    ],
    [
     "B",
-    "biliyorum, takılmadım"
+    "[biliyorum|biliyorum zaten], [takılmadım|takılmadım ki|hiç takılmadım]"
    ],
    [
     "A",
-    "emin misin, cevap vermemiştin"
+    "[emin misin|gerçekten mi], [cevap vermemiştin|yazmamıştın|sessiz kalmıştın]"
    ],
    [
     "B",
-    "telefonum bozuktu iki gündür"
+    "[telefonum bozuktu iki gündür|iki gündür telefonum bozuktu|telefonum iki gün çalışmadı]"
    ],
    [
     "C",
-    "her sessizliği kızgınlık sanıyoruz, eski hastalık"
+    "[her sessizliği kızgınlık sanıyoruz|her sessizliği kızgınlığa yoruyoruz], [eski hastalık|eski huyumuz|bilinen hastalık]"
    ],
    [
     "A",
-    "haklısın, düzeleceğim"
+    "[haklısın|doğru], [düzeleceğim|düzelteceğim|kendime not]"
    ]
   ]
  },
@@ -1234,27 +1234,27 @@
   "turlar": [
    [
     "A",
-    "özür dilerim, dün biraz sert yazdım"
+    "[özür dilerim|kusura bakma], [dün biraz sert yazdım|dün sert yazdım|dün biraz kaba yazdım]"
    ],
    [
     "B",
-    "sorun yok, gergin bir gündü"
+    "[sorun yok|dert etme], [gergin bir gündü|gergin bir gündü zaten|herkes gergindi]"
    ],
    [
     "A",
-    "kötü bir gündü benim için de"
+    "[kötü bir gündü benim için de|benim için de kötü bir gündü|benim de günüm kötüydü]"
    ],
    [
     "C",
-    "hepimizin öyle günleri olur"
+    "[hepimizin öyle günleri olur|herkesin öyle günü olur|olur öyle günler]"
    ],
    [
     "B",
-    "gel bugün güzel bir sohbet yapalım"
+    "[gel bugün güzel bir sohbet yapalım|bugün güzel bir sohbet edelim|hadi bugün güzel konuşalım]"
    ],
    [
     "A",
-    "olur, yeni sayfa"
+    "[olur, yeni sayfa|olur, sayfa yeni|tamam, yeni sayfa]"
    ]
   ]
  },
@@ -1266,27 +1266,27 @@
   "turlar": [
    [
     "A",
-    "{B} sen benim lafımı kesiyorsun hep"
+    "{B} [sen benim lafımı kesiyorsun hep|hep lafımı kesiyorsun|sürekli sözümü kesiyorsun]"
    ],
    [
     "B",
-    "ben mi, hiç sanmıyorum"
+    "[ben mi|ben mi ya|kim ben mi], [hiç sanmıyorum|hiç sanmam|asla]"
    ],
    [
     "C",
-    "biraz kesiyorsun {B}[ haha|]"
+    "[biraz kesiyorsun|biraz kesiyorsun ama|azıcık kesiyorsun] {B}[ haha|]"
    ],
    [
     "B",
-    "tamam tamam, söyle sen"
+    "[tamam tamam|peki peki], [söyle sen|sen söyle|dinliyorum]"
    ],
    [
     "A",
-    "unuttum ne diyecektim"
+    "[unuttum ne diyecektim|ne diyecektim unuttum|unuttum şimdi]"
    ],
    [
     "B",
-    "işte bu yüzden kesiyorum"
+    "[işte bu yüzden kesiyorum|bu yüzden kesiyorum işte|işte o yüzden]"
    ]
   ]
  },
@@ -1298,35 +1298,35 @@
   "turlar": [
    [
     "A",
-    "size bugün başıma geleni anlatayım, uzun ama"
+    "[size bugün başıma geleni anlatayım|bugün başıma geleni anlatayım mı], [uzun ama|biraz uzun|uzun hikaye ama]"
    ],
    [
     "B",
-    "anlat dinliyoruz"
+    "[anlat dinliyoruz|anlat, dinliyoruz|anlat hadi]"
    ],
    [
     "A",
-    "otobüste yanımdaki teyze çantasından bir tencere çıkardı"
+    "[otobüste yanımdaki teyze çantasından bir tencere çıkardı|otobüste yanımdaki teyze çantadan tencere çıkardı|otobüste teyzenin biri çantasından tencere çıkardı]"
    ],
    [
     "C",
-    "tencere mi"
+    "[tencere mi|tencere mi ya|ne tenceresi]"
    ],
    [
     "A",
-    "evet, sarma dolu. bana ve yanındakilere dağıttı"
+    "[evet, sarma dolu|evet, içi sarma dolu]. [bana ve yanındakilere dağıttı|bize dağıttı|etrafındakilere dağıttı]"
    ],
    [
     "A",
-    "sonra da \"torunuma götürüyordum ama siz de torun sayılırsınız\" dedi"
+    "[sonra da|sonra] \"torunuma götürüyordum ama siz de torun sayılırsınız\" [dedi|demez mi|diye güldü]"
    ],
    [
     "D",
-    "bu teyzeyi tanımak istiyorum"
+    "[bu teyzeyi tanımak istiyorum|bu teyzeyle tanışmak istiyorum|o teyzeyi bulun bana]"
    ],
    [
     "B",
-    "hikaye güzel bitti"
+    "[hikaye güzel bitti|güzel hikaye|mutlu son]"
    ]
   ]
  },
@@ -1338,31 +1338,31 @@
   "turlar": [
    [
     "A",
-    "çocukken bisikletle bahçe duvarına girmiştim, size hiç anlattım mı"
+    "[çocukken bisikletle bahçe duvarına girmiştim|küçükken bisikletle duvara girmiştim], [size hiç anlattım mı|anlattım mı hiç|bilmiyorsunuz değil mi]"
    ],
    [
     "B",
-    "yok anlat"
+    "[yok anlat|yok, anlat|anlatmadın, anlat]"
    ],
    [
     "A",
-    "frensiz bir bisiklet, yokuş aşağı, annem pencereden bağırıyor"
+    "[frensiz bir bisiklet, yokuş aşağı|frensiz bisiklet, yokuş aşağı], [annem pencereden bağırıyor|annem camdan bağırıyor|annem pencerede çığlık atıyor]"
    ],
    [
     "A",
-    "duvar hedefim değildi ama başka seçenek kalmamıştı"
+    "[duvar hedefim değildi|duvara gitmek istememiştim], [ama başka seçenek kalmamıştı|ama başka yol yoktu|ama başka seçenek yoktu]"
    ],
    [
     "C",
-    "eyvah, yaralandın mı"
+    "[eyvah|eyvah ya], [yaralandın mı|bir şey oldu mu|canın yandı mı]"
    ],
    [
     "A",
-    "dizim kanadı, ama bisiklet daha kötü oldu"
+    "[dizim kanadı|dizim kanadı biraz], [ama bisiklet daha kötü oldu|bisiklet benden kötü oldu|bisiklet perişan oldu]"
    ],
    [
     "B",
-    "en azından bir hikayen var"
+    "[en azından bir hikayen var|en azından hikayesi kaldı|bir anın oldu en azından]"
    ]
   ]
  },
@@ -1374,31 +1374,31 @@
   "turlar": [
    [
     "A",
-    "ilk iş günümü anlatayım mı"
+    "[ilk iş günümü anlatayım mı|ilk iş günümü anlatayım|ilk iş günüm nasıl geçti biliyor musunuz]"
    ],
    [
     "B",
-    "anlat"
+    "[anlat|anlat hadi|anlat bakalım]"
    ],
    [
     "A",
-    "ilk gün bana yanlış adres verdiler, yarım saat kayboldum"
+    "[ilk gün bana yanlış adres verdiler|ilk gün yanlış adres verdiler], [yarım saat kayboldum|yarım saat kaybolup gittim|yarım saat sokaklarda dolaştım]"
    ],
    [
     "A",
-    "geç kaldığım için müdürün odasına çağrıldım"
+    "[geç kaldığım için müdürün odasına çağrıldım|geç kaldım diye müdüre çağrıldım|geç kalınca müdür odasına çağırdı]"
    ],
    [
     "A",
-    "müdür de bana bakıp \"ben de ilk gün kaybolmuştum\" dedi"
+    "[müdür de bana bakıp \"ben de ilk gün kaybolmuştum\" dedi|müdür \"ben de ilk gün kaybolmuştum\" dedi|müdür güldü, \"ben de ilk gün kaybolmuştum\" dedi]"
    ],
    [
     "C",
-    "demek ki gelenek"
+    "[demek ki gelenek|gelenek demek|demek ki bir gelenek]"
    ],
    [
     "B",
-    "güzel bir müdürmüş"
+    "[güzel bir müdürmüş|iyi müdürmüş|şanslısın, iyi müdür]"
    ]
   ]
  },
@@ -1410,31 +1410,31 @@
   "turlar": [
    [
     "A",
-    "bir kış köye gidiyorduk, yol kar yüzünden kapandı"
+    "[bir kış köye gidiyorduk|bi kış köye gidiyorduk], [yol kar yüzünden kapandı|kar yolu kapattı|yolu kar kapattı]"
    ],
    [
     "B",
-    "eyvah, ne yaptınız"
+    "[eyvah, ne yaptınız|eyvah, sonra|ne yaptınız peki]"
    ],
    [
     "A",
-    "arabada saatlerce bekledik, annem çantadan peynir ekmek çıkardı"
+    "[arabada saatlerce bekledik|saatlerce arabada kaldık], [annem çantadan peynir ekmek çıkardı|annem peynir ekmek çıkardı|annem çantadan azık çıkardı]"
    ],
    [
     "A",
-    "bir köylü amca traktörle gelip bizi çekti"
+    "[bir köylü amca traktörle gelip bizi çekti|bi köylü amca traktörle gelip çekti bizi|sonra bir amca traktörle gelip bizi kurtardı]"
    ],
    [
     "C",
-    "köylüler hep yardım eder"
+    "[köylüler hep yardım eder|köylüler hep yardımseverdir|köyde insanlar hep yardım eder]"
    ],
    [
     "A",
-    "evine çay içmeye götürdü, sabaha kadar sohbet ettik"
+    "[evine çay içmeye götürdü|bizi evine çaya götürdü], [sabaha kadar sohbet ettik|sabaha kadar konuştuk|gece boyu sohbet ettik]"
    ],
    [
     "D",
-    "en güzel kış anısı bu olur"
+    "[en güzel kış anısı bu olur|bundan güzel kış anısı olmaz|en güzel kış anısı]"
    ]
   ]
  },
@@ -1446,31 +1446,31 @@
   "turlar": [
    [
     "A",
-    "cüzdanımı kaybettim, sonra ne oldu biliyor musunuz"
+    "[cüzdanımı kaybettim|cüzdanım kayboldu], [sonra ne oldu biliyor musunuz|sonra ne oldu bilin|bakın sonra ne oldu]"
    ],
    [
     "B",
-    "bulundu mu"
+    "[bulundu mu|buldun mu|geri geldi mi]"
    ],
    [
     "A",
-    "bir çocuk buldu, içindeki kartvizitten beni aradı"
+    "[bir çocuk buldu|bi çocuk bulmuş], [içindeki kartvizitten beni aradı|kartvizitten beni aradı|içindeki kartvizitten ulaştı]"
    ],
    [
     "A",
-    "gidip aldım, çocuk ödül istemedi bile"
+    "[gidip aldım|gittim aldım], [çocuk ödül istemedi bile|ödül bile istemedi|çocuk hiçbir şey istemedi]"
    ],
    [
     "C",
-    "dünya hala güzel"
+    "[dünya hala güzel|dünya hala güzel valla|iyi insanlar var hala]"
    ],
    [
     "A",
-    "ben de ona bir dondurma ısmarladım"
+    "[ben de ona bir dondurma ısmarladım|ona dondurma ısmarladım ben de|ben de bir dondurma aldım ona]"
    ],
    [
     "B",
-    "dondurma en iyi ödül"
+    "[dondurma en iyi ödül|en iyi ödül dondurma|dondurmadan iyi ödül olmaz]"
    ]
   ]
  },
@@ -1482,31 +1482,31 @@
   "turlar": [
    [
     "A",
-    "dedemin bir hikayesi vardı, akşam anlatayım mı"
+    "[dedemin bir hikayesi vardı|dedemin anlattığı bir hikaye var], [akşam anlatayım mı|anlatayım mı|şimdi anlatayım mı]"
    ],
    [
     "B",
-    "anlat, ben çay koyuyorum"
+    "[anlat|anlat hadi], [ben çay koyuyorum|ben çayı koyayım|çayımı aldım]"
    ],
    [
     "A",
-    "gençken bir ağaca isim vermiş, her yıl onun altında oturmuş"
+    "[gençken bir ağaca isim vermiş|gençken bi ağaca isim koymuş], [her yıl onun altında oturmuş|her yıl altında oturmuş|her sene altına gitmiş]"
    ],
    [
     "A",
-    "şimdi o ağaç hala orada, kocaman"
+    "[şimdi o ağaç hala orada|o ağaç hala duruyor], [kocaman|kocaman oldu|dev gibi]"
    ],
    [
     "C",
-    "çok anlamlı bir hikaye"
+    "[çok anlamlı bir hikaye|ne anlamlı hikaye|çok güzel bir hikaye]"
    ],
    [
     "A",
-    "gidince ben de altında oturuyorum"
+    "[gidince ben de altında oturuyorum|ben de gidince altına oturuyorum|şimdi ben de altında oturuyorum]"
    ],
    [
     "D",
-    "dedenin ağacı, ne güzel"
+    "[dedenin ağacı, ne güzel|dedenin ağacı|ne güzel, dedenin ağacı]"
    ]
   ]
  },
@@ -1518,31 +1518,31 @@
   "turlar": [
    [
     "A",
-    "ilk tren yolculuğumu anlatayım, on iki saat sürdü"
+    "[ilk tren yolculuğumu anlatayım|ilk tren yolculuğumu anlatayım mı], [on iki saat sürdü|on iki saat sürmüştü|tam on iki saat]"
    ],
    [
     "B",
-    "on iki saat mi"
+    "[on iki saat mi|on iki saat mi ya|o kadar mı]"
    ],
    [
     "A",
-    "evet, kompartımanda yaşlı bir çiftle oturdum"
+    "[evet|evet ya], [kompartımanda yaşlı bir çiftle oturdum|kompartımanda yaşlı bir çift vardı|yaşlı bir çiftle aynı kompartımandaydım]"
    ],
    [
     "A",
-    "bütün yol bana çocuklarının fotoğraflarını gösterdiler"
+    "[bütün yol bana çocuklarının fotoğraflarını gösterdiler|yol boyunca çocuklarının fotoğraflarını gösterdiler|bütün yol çocuklarının fotoğraflarına baktık]"
    ],
    [
     "A",
-    "sonunda adreslerini verdiler, bayramda ziyarete gittim"
+    "[sonunda adreslerini verdiler|inerken adreslerini verdiler], [bayramda ziyarete gittim|bayramda ziyaretlerine gittim|bayramda gidip ziyaret ettim]"
    ],
    [
     "C",
-    "bu muhteşem"
+    "[bu muhteşem|muhteşem|bu harika]"
    ],
    [
     "B",
-    "kanalın en tatlı hikayesi"
+    "[kanalın en tatlı hikayesi|kanalın en güzel hikayesi|bugünün en tatlı hikayesi]"
    ]
   ]
  },
@@ -1554,27 +1554,27 @@
   "turlar": [
    [
     "A",
-    "ben {A.yer} tarafındayım, sen {B} nerelisin"
+    "ben {A.yer} [tarafındayım|civarındayım], sen {B} [nerelisin|nerdesin|hangi taraftasın]"
    ],
    [
     "B",
-    "ben de {B.yer}"
+    "[ben de|ben] {B.yer}[| tarafındayım| civarı]"
    ],
    [
     "A",
-    "aa yakınız o zaman"
+    "[aa yakınız o zaman|o zaman yakınız|aa komşu sayılırız]"
    ],
    [
     "C",
-    "bu kanal küçük bir dünya"
+    "[bu kanal küçük bir dünya|bu kanal küçük dünya|dünya küçük, kanal daha küçük]"
    ],
    [
     "B",
-    "bir gün karşılaşırız belki markette"
+    "[bir gün karşılaşırız belki markette|belki bi gün markette karşılaşırız|markette denk geliriz belki]"
    ],
    [
     "A",
-    "tanıyamayız ama[ haha|]"
+    "[tanıyamayız ama|tanımayız ki birbirimizi|ama tanıyamayız][ haha|]"
    ]
   ]
  },
@@ -1586,23 +1586,23 @@
   "turlar": [
    [
     "A",
-    "{A.yer} tarafındaki fırının poğaçası efsane"
+    "{A.yer} tarafındaki [fırının poğaçası efsane|fırının poğaçası bir harika|fırında poğaça efsane]"
    ],
    [
     "B",
-    "hangi fırın"
+    "[hangi fırın|hangisi|hangi fırın o]"
    ],
    [
     "A",
-    "köşedeki, sabah yedide sıcak çıkıyor"
+    "[köşedeki|köşedeki fırın], [sabah yedide sıcak çıkıyor|sabah yedide sıcacık çıkıyor|yedide fırından yeni çıkıyor]"
    ],
    [
     "C",
-    "ben de {C.yer} taraflarındayım, oralara bir giderim"
+    "ben de {C.yer} [taraflarındayım|civarındayım], [oralara bir giderim|bi uğrarım oraya|bir gün giderim]"
    ],
    [
     "A",
-    "git, pişman olmazsın"
+    "[git|git kesin], [pişman olmazsın|pişman olmazsın valla|bayılacaksın]"
    ]
   ]
  },
@@ -1614,27 +1614,27 @@
   "turlar": [
    [
     "A",
-    "{B} profiline baktım, {B.yer} yazıyor, ben de oradayım"
+    "{B} [profiline baktım|profilini gördüm], {B.yer} yazıyor, [ben de oradayım|ben de oralıyım]"
    ],
    [
     "B",
-    "oha gerçekten mi"
+    "[oha gerçekten mi|oha, gerçekten mi|cidden mi]"
    ],
    [
     "A",
-    "evet, belki aynı otobüse biniyoruz"
+    "[evet|aynen], [belki aynı otobüse biniyoruz|aynı otobüse biniyor olabiliriz|belki her gün aynı otobüsteyiz]"
    ],
    [
     "B",
-    "sabah sekiz otobüsü mü"
+    "[sabah sekiz otobüsü mü|sabah sekizdeki otobüs mü|sekiz otobüsü mü]"
    ],
    [
     "A",
-    "aynen"
+    "[aynen|aynen o|evet o]"
    ],
    [
     "C",
-    "yarın otobüste \"kanal\" diye fısıldayın birbirinize"
+    "[yarın otobüste \"kanal\" diye fısıldayın birbirinize|yarın otobüste \"kanal\" diye fısıldayın|şifre: otobüste \"kanal\" diye fısıldayın]"
    ]
   ]
  },
@@ -1646,27 +1646,27 @@
   "turlar": [
    [
     "A",
-    "semtimizin parkı yenilendi, çocuklar çok mutlu"
+    "[semtimizin parkı yenilendi|bizim semtin parkı yenilendi], [çocuklar çok mutlu|çocuklar bayılıyor|çocuklar sevinçten uçuyor]"
    ],
    [
     "B",
-    "nerede"
+    "[nerede|nerde|hangi park]"
    ],
    [
     "A",
-    "{A.yer} tarafında"
+    "{A.yer} [tarafında|civarında|taraflarında]"
    ],
    [
     "C",
-    "bizim tarafta da park lazım, hep inşaat var"
+    "[bizim tarafta da park lazım|bize de park lazım], [hep inşaat var|her yer inşaat|sadece inşaat var]"
    ],
    [
     "A",
-    "parkın yanında çay ocağı da açılmış"
+    "[parkın yanında çay ocağı da açılmış|parkın yanına çay ocağı da açmışlar|bir de yanına çay ocağı açılmış]"
    ],
    [
     "B",
-    "oraya taşınıyorum"
+    "[oraya taşınıyorum|oraya taşınıyorum ben|ben oraya taşınıyorum]"
    ]
   ]
  },
@@ -1678,27 +1678,27 @@
   "turlar": [
    [
     "A",
-    "{A.yer} pazarı salı kuruluyor, bilen var mı"
+    "{A.yer} [pazarı salı kuruluyor|pazarı salıları kuruluyor], [bilen var mı|giden var mı|bilen olan var mı]"
    ],
    [
     "B",
-    "biliyorum, peyniri çok iyi"
+    "[biliyorum|biliyorum tabii], [peyniri çok iyi|peynirleri çok iyi|peynir harika]"
    ],
    [
     "A",
-    "sen de mi oralısın"
+    "[sen de mi oralısın|oralı mısın sen de|sen de mi oradasın]"
    ],
    [
     "B",
-    "yok, ama annem orada oturuyor"
+    "[yok|yok ya], [ama annem orada oturuyor|annem orada oturuyor|annem oralarda]"
    ],
    [
     "C",
-    "annenden selam söyle {B}"
+    "[annenden selam söyle|annene selam söyle|annene selamlar] {B}"
    ],
    [
     "B",
-    "söylerim, peynir de getiririm"
+    "[söylerim|söylerim tabii], [peynir de getiririm|bi de peynir getiririm|dönüşte peynir de alırım]"
    ]
   ]
  },
@@ -1710,27 +1710,27 @@
   "turlar": [
    [
     "A",
-    "{A.yer} eskiden ne güzeldi, şimdi her yer bina"
+    "{A.yer} [eskiden ne güzeldi|eskiden ne güzel yerdi], [şimdi her yer bina|şimdi bina dolu|şimdi beton]"
    ],
    [
     "B",
-    "her semt öyle oldu"
+    "[her semt öyle oldu|her yer öyle oldu|bütün semtler aynı]"
    ],
    [
     "A",
-    "çocukken bahçelerde top oynardık"
+    "[çocukken bahçelerde top oynardık|küçükken bahçelerde top oynardık|eskiden bahçede top oynardık]"
    ],
    [
     "C",
-    "şimdi otopark oldu o bahçeler"
+    "[şimdi otopark oldu o bahçeler|o bahçeler şimdi otopark|şimdi o bahçelerde araba var]"
    ],
    [
     "A",
-    "eski fotoğraflara bakıyorum bazen"
+    "[eski fotoğraflara bakıyorum bazen|bazen eski fotoğraflara bakıyorum|ara sıra eski fotoğraflara bakarım]"
    ],
    [
     "B",
-    "o fotoğraflar çok kıymetli, sakla"
+    "[o fotoğraflar çok kıymetli|o fotoğraflar çok değerli], [sakla|iyi sakla|kaybetme]"
    ]
   ]
  },
@@ -1742,27 +1742,27 @@
   "turlar": [
    [
     "A",
-    "bugün hiç iyi geçmedi"
+    "[bugün hiç iyi geçmedi|bugün hiç iyi değildi|bugün kötü bir gündü]"
    ],
    [
     "B",
-    "ne oldu {A}"
+    "[ne oldu|ne oldu ya|hayırdır] {A}"
    ],
    [
     "A",
-    "her şey üst üste geldi, işte de evde de"
+    "[her şey üst üste geldi|her şey üst üste bindi], [işte de evde de|hem işte hem evde|iş de ev de]"
    ],
    [
     "C",
-    "anlatmak istersen buradayız"
+    "[anlatmak istersen buradayız|anlatmak istersen dinleriz|istersen anlat, buradayız]"
    ],
    [
     "A",
-    "anlatmayacağım, sadece yazmak istedim"
+    "[anlatmayacağım|anlatmak istemiyorum], [sadece yazmak istedim|sadece içimi dökmek istedim|sadece yazasım geldi]"
    ],
    [
     "D",
-    "tamam, yanındayız. bir çay iç, yarın daha iyi olacak"
+    "[tamam, yanındayız|tamam, biz buradayız]. [bir çay iç, yarın daha iyi olacak|bi çay iç, yarın daha iyi|çayını iç, yarın yeni gün]"
    ]
   ]
  },
@@ -1774,23 +1774,23 @@
   "turlar": [
    [
     "A",
-    "bazen çok yalnız hissediyorum"
+    "[bazen çok yalnız hissediyorum|bazen kendimi çok yalnız hissediyorum|bazen yalnızlık çöküyor]"
    ],
    [
     "B",
-    "burada yalnız değilsin"
+    "[burada yalnız değilsin|yalnız değilsin burada|burada yalnız değilsin ki]"
    ],
    [
     "C",
-    "biz varız {A}, gece de olsa"
+    "[biz varız|biz buradayız] {A}, [gece de olsa|gecenin bu saatinde bile|gece gündüz]"
    ],
    [
     "A",
-    "sağ olun, yazınca biraz hafifledim"
+    "[sağ olun|teşekkürler], [yazınca biraz hafifledim|yazınca hafifledim|biraz rahatladım]"
    ],
    [
     "B",
-    "ne zaman istersen yaz"
+    "[ne zaman istersen yaz|istediğin zaman yaz|her zaman yazabilirsin]"
    ]
   ]
  },
@@ -1802,27 +1802,27 @@
   "turlar": [
    [
     "A",
-    "sınavı geçemedim, iki aydır çalışıyordum"
+    "[sınavı geçemedim|sınavdan kaldım], [iki aydır çalışıyordum|iki ay çalışmıştım|iki aydır hazırlanıyordum]"
    ],
    [
     "B",
-    "üzüldüm {A}, ama bir dahaki sefere"
+    "[üzüldüm|çok üzüldüm] {A}, [ama bir dahaki sefere|bir dahakine olur|sıradakinde geçersin]"
    ],
    [
     "A",
-    "tekrar başlamak zor geliyor"
+    "[tekrar başlamak zor geliyor|yeniden başlamak zor|baştan başlamak ağır geliyor]"
    ],
    [
     "C",
-    "bir hafta dinlen, sonra yeniden bak"
+    "[bir hafta dinlen|bi hafta dinlen], [sonra yeniden bak|sonra tekrar başla|sonra kitapları aç]"
    ],
    [
     "D",
-    "ben de iki kere kalmıştım, üçüncüde geçtim"
+    "[ben de iki kere kalmıştım|ben iki kez kalmıştım], [üçüncüde geçtim|üçüncüsünde geçtim|üçüncü sefer oldu]"
    ],
    [
     "A",
-    "sizin hikayeleriniz iyi geldi"
+    "[sizin hikayeleriniz iyi geldi|hikayeleriniz iyi geldi|anlattıklarınız iyi geldi]"
    ]
   ]
  },
@@ -1836,27 +1836,27 @@
   "turlar": [
    [
     "A",
-    "işimi kaybettim, moralim çok bozuk"
+    "[işimi kaybettim|işten çıkarıldım], [moralim çok bozuk|moralim sıfır|çok moralsizim]"
    ],
    [
     "B",
-    "geçmiş olsun, yenisi gelecek"
+    "[geçmiş olsun|geçmiş olsun ya], [yenisi gelecek|yenisi gelir|daha iyisi gelecek]"
    ],
    [
     "A",
-    "biliyorum ama ilk günler zor"
+    "[biliyorum ama ilk günler zor|biliyorum, ilk günler zor ama|bilmesine biliyorum, ilk günler ağır]"
    ],
    [
     "C",
-    "kariyer ekranına bak, kurye gibi şartsız işler hemen başlar"
+    "[kariyer ekranına bak|kariyer ekranına bi bak], [kurye gibi şartsız işler hemen başlar|kurye gibi şartsız işlere hemen başlanıyor|kuryelik gibi şartsız işler hemen var]"
    ],
    [
     "D",
-    "bu arada kendine iyi bak, moral her şeyden önce"
+    "[bu arada kendine iyi bak|bu arada kendini ihmal etme], [moral her şeyden önce|moral her şeyden önemli|önce moral]"
    ],
    [
     "A",
-    "haklısınız, yarın başlayacağım"
+    "[haklısınız|haklısınız valla], [yarın başlayacağım|yarın başlıyorum|yarın kalkıp başlayacağım]"
    ]
   ]
  },
@@ -1868,27 +1868,27 @@
   "turlar": [
    [
     "A",
-    "ailemden uzakta yaşıyorum, bugün çok özledim"
+    "[ailemden uzakta yaşıyorum|ailemden uzaktayım], [bugün çok özledim|bugün çok burnumda tüttüler|bugün özlem çöktü]"
    ],
    [
     "B",
-    "görüntülü ara"
+    "[görüntülü ara|görüntülü ara hemen|bi görüntülü ara]"
    ],
    [
     "A",
-    "aradım, annem ağladı ben ağladım"
+    "[aradım|aradım ya], [annem ağladı ben ağladım|annem ağladı, ben de ağladım|ikimiz de ağladık]"
    ],
    [
     "C",
-    "güzel ağlamak o, özlem güzel bir şey"
+    "[güzel ağlamak o|o güzel ağlamak], [özlem güzel bir şey|özlem de güzel|özlemek de sevgi]"
    ],
    [
     "D",
-    "yakında kavuşursunuz, {bayram} geliyor"
+    "[yakında kavuşursunuz|yakında görüşürsünüz], {bayram} [geliyor|yaklaşıyor|kapıda]"
    ],
    [
     "A",
-    "evet, bilet bakıyorum"
+    "[evet|evet ya], [bilet bakıyorum|bilete bakıyorum şimdi|bilet arıyorum]"
    ]
   ]
  },
@@ -1900,27 +1900,27 @@
   "turlar": [
    [
     "A",
-    "son zamanlarda kafam çok dolu, odaklanamıyorum"
+    "[son zamanlarda kafam çok dolu|bu ara kafam çok dolu], [odaklanamıyorum|hiçbir şeye odaklanamıyorum|toparlanamıyorum]"
    ],
    [
     "B",
-    "kısa bir yürüyüş yap"
+    "[kısa bir yürüyüş yap|bi yürüyüşe çık|kısa bir yürü]"
    ],
    [
     "A",
-    "denedim, düşüncelerim de benimle yürüdü"
+    "[denedim|yaptım], [düşüncelerim de benimle yürüdü|düşünceler de benimle geldi|kafamdakiler de yürüdü benimle]"
    ],
    [
     "C",
-    "bir kağıda yaz hepsini, kafadan çıkar"
+    "[bir kağıda yaz hepsini|hepsini bir kağıda yaz], [kafadan çıkar|kafandan at|kafadan boşalt]"
    ],
    [
     "A",
-    "bu ilginç, deneyeceğim"
+    "[bu ilginç|ilginçmiş], [deneyeceğim|denerim|bunu deneyeceğim]"
    ],
    [
     "B",
-    "sonra kağıdı katla, bir kenara koy"
+    "[sonra kağıdı katla|sonra kağıdı katlayıp], [bir kenara koy|kenara koy|çekmeceye at]"
    ]
   ]
  },
@@ -1932,23 +1932,23 @@
   "turlar": [
    [
     "A",
-    "dün moralim bozuktu, yazdıklarınız çok iyi geldi"
+    "[dün moralim bozuktu|dün çok moralsizdim], [yazdıklarınız çok iyi geldi|yazdıklarınız iyi geldi|sizin mesajlarınız iyi geldi]"
    ],
    [
     "B",
-    "ne güzel, iyi olmana sevindik"
+    "[ne güzel|sevindik], [iyi olmana sevindik|iyi olmana çok sevindik|iyileşmene sevindik]"
    ],
    [
     "C",
-    "her zaman burdayız {A}"
+    "[her zaman burdayız|her zaman buradayız|biz hep buradayız] {A}"
    ],
    [
     "A",
-    "bu kanal benim için önemli"
+    "[bu kanal benim için önemli|bu kanal benim için çok önemli|burası benim için değerli]"
    ],
    [
     "D",
-    "biz de seni seviyoruz, iyi ki varsın"
+    "[biz de seni seviyoruz|biz de seni çok seviyoruz], [iyi ki varsın|iyi ki buradasın|iyi ki aramızdasın]"
    ]
   ]
  },
@@ -1960,27 +1960,27 @@
   "turlar": [
    [
     "A",
-    "biri bana motivasyon versin, hiçbir şey yapmak istemiyorum"
+    "[biri bana motivasyon versin|motivasyon lazım bana], [hiçbir şey yapmak istemiyorum|hiçbir şey yapasım yok|bir şey yapmak istemiyorum]"
    ],
    [
     "B",
-    "en küçük şeyi yap, sadece yatağı topla"
+    "[en küçük şeyi yap|en ufak şeyle başla], [sadece yatağı topla|sadece yatağını topla|önce yatağı topla]"
    ],
    [
     "A",
-    "topladım"
+    "[topladım|tamam topladım|topladım bile]"
    ],
    [
     "C",
-    "şimdi bir bardak su iç"
+    "[şimdi bir bardak su iç|şimdi bi bardak su iç|şimdi su iç]"
    ],
    [
     "A",
-    "içtim"
+    "[içtim|içtim bile|tamam içtim]"
    ],
    [
     "B",
-    "bak iki şey yaptın, devam"
+    "[bak iki şey yaptın|bak iki iş yaptın], [devam|devam et|sıradakine geç]"
    ]
   ]
  },
@@ -1992,27 +1992,27 @@
   "turlar": [
    [
     "A",
-    "alo, burası boş mu"
+    "[alo, burası boş mu|alo, kimse yok mu|alo, kanal boş mu]"
    ],
    [
     "A",
-    "bir saattir yazıyorum, cevap yok"
+    "[bir saattir yazıyorum|bi saattir yazıyorum], [cevap yok|kimse cevap vermiyor|ses yok]"
    ],
    [
     "B",
-    "buradayım, yeni geldim"
+    "[buradayım|buradayım ben], [yeni geldim|şimdi geldim|daha yeni girdim]"
    ],
    [
     "A",
-    "oh şükür, yalnız kalmıştım"
+    "[oh şükür|oh be], [yalnız kalmıştım|yapayalnızdım|yalnızdım]"
    ],
    [
     "B",
-    "gece kanal sessiz, herkes uyuyor"
+    "[gece kanal sessiz|gece kanal sessiz olur], [herkes uyuyor|herkes uykuda|millet uyuyor]"
    ],
    [
     "A",
-    "ben uyuyamıyorum, sohbet edelim"
+    "[ben uyuyamıyorum|bende uyku yok], [sohbet edelim|konuşalım biraz|biraz muhabbet edelim]"
    ]
   ]
  },
@@ -2024,23 +2024,23 @@
   "turlar": [
    [
     "A",
-    "ses yok, seda yok, nerede herkes"
+    "[ses yok, seda yok|ses seda yok], [nerede herkes|herkes nerede|millet nerede]"
    ],
    [
     "A",
-    "kanal mı bozuldu"
+    "[kanal mı bozuldu|kanal bozuldu mu|kanal çöktü mü]"
    ],
    [
     "B",
-    "bozulmadı, herkes işte galiba"
+    "[bozulmadı|bozuk değil], [herkes işte galiba|herkes iştedir|herkes çalışıyordur]"
    ],
    [
     "A",
-    "sonunda biri, {B} hoş geldin"
+    "[sonunda biri|nihayet biri], {B} [hoş geldin|hoş geldin valla|hoş bulduk]"
    ],
    [
     "B",
-    "ben de seni bekliyordum, kimse yazmayınca"
+    "[ben de seni bekliyordum|ben de birini bekliyordum], [kimse yazmayınca|kimse yazmıyordu|kanal sessizdi]"
    ]
   ]
  },
@@ -2052,27 +2052,27 @@
   "turlar": [
    [
     "A",
-    "yankı yankı yankı"
+    "[yankı yankı yankı|yankı... yankı... yankı|yankıııı]"
    ],
    [
     "A",
-    "kimse yok galiba"
+    "[kimse yok galiba|kimse yok anlaşılan|galiba kimse yok]"
    ],
    [
     "A",
-    "tamam yalnız konuşuyorum"
+    "[tamam yalnız konuşuyorum|o zaman kendi kendime konuşuyorum|tamam, monolog]"
    ],
    [
     "B",
-    "konuşma, buradayım[ haha|]"
+    "[konuşma, buradayım|dur, buradayım|yalnız değilsin, buradayım][ haha|]"
    ],
    [
     "A",
-    "{B} seni seviyorum"
+    "{B} [seni seviyorum|seni seviyorum ya|iyi ki geldin]"
    ],
    [
     "C",
-    "ben de geldim, kalabalık oluyoruz"
+    "[ben de geldim|ben de buradayım], [kalabalık oluyoruz|kalabalıklaşıyoruz|üç kişi olduk]"
    ]
   ]
  },
@@ -2084,23 +2084,23 @@
   "turlar": [
    [
     "A",
-    "sabah kahvemi tek başıma içiyorum, kanal sessiz"
+    "[sabah kahvemi tek başıma içiyorum|sabah kahvemi yalnız içiyorum], [kanal sessiz|kanal da sessiz|kanalda kimse yok]"
    ],
    [
     "A",
-    "kahve soğumak üzere"
+    "[kahve soğumak üzere|kahvem soğuyor|kahve soğudu bile]"
    ],
    [
     "B",
-    "ben de içiyorum, yeni geldim"
+    "[ben de içiyorum|ben de kahve içiyorum], [yeni geldim|şimdi geldim|daha yeni girdim]"
    ],
    [
     "A",
-    "sonunda bir kahve arkadaşı"
+    "[sonunda bir kahve arkadaşı|sonunda kahve arkadaşı geldi|nihayet kahve arkadaşı]"
    ],
    [
     "B",
-    "şerefe"
+    "[şerefe|şerefe o zaman|kahveye]"
    ]
   ]
  },
@@ -2112,27 +2112,27 @@
   "turlar": [
    [
     "A",
-    "bir soru sordum yarım saat önce, kimse görmedi galiba"
+    "[bir soru sordum yarım saat önce|yarım saat önce bir şey sordum], [kimse görmedi galiba|kimse görmedi herhalde|kimse görmemiş]"
    ],
    [
     "B",
-    "ne sordun, kaçırdım"
+    "[ne sordun|ne sordun ya], [kaçırdım|ben kaçırdım|görmedim]"
    ],
    [
     "A",
-    "en iyi kumpir nerede diye"
+    "[en iyi kumpir nerede diye|kumpir nerede güzel diye|en iyi kumpiri soruyordum]"
    ],
    [
     "C",
-    "benim taraflarda bir yer var, ama adını söyleyemem"
+    "[benim taraflarda bir yer var|bizim tarafta bir yer var], [ama adını söyleyemem|adını veremem ama|ama adını söylemem]"
    ],
    [
     "A",
-    "neden"
+    "[neden|niye|niye ki]"
    ],
    [
     "C",
-    "hatırlamıyorum[ haha|]"
+    "[hatırlamıyorum|hatırlamıyorum ki|adını unuttum][ haha|]"
    ]
   ]
  },
@@ -2144,19 +2144,19 @@
   "turlar": [
    [
     "A",
-    "herkes öğle yemeğinde mi, ne bu sessizlik"
+    "[herkes öğle yemeğinde mi|herkes yemekte mi], [ne bu sessizlik|bu sessizlik ne|kanal sessiz]"
    ],
    [
     "A",
-    "ben de yemek yiyorum ama yazıyorum"
+    "[ben de yemek yiyorum ama yazıyorum|ben de yiyorum ama yazıyorum|ben yemek yerken yazıyorum]"
    ],
    [
     "B",
-    "ben de ağzım dolu yazıyorum"
+    "[ben de ağzım dolu yazıyorum|ben de lokma ağzımda yazıyorum|bende de ağız dolu]"
    ],
    [
     "A",
-    "ikimiz yeteriz"
+    "[ikimiz yeteriz|ikimiz yeteriz bu kanala|iki kişi yeter]"
    ]
   ]
  },
@@ -2168,27 +2168,27 @@
   "turlar": [
    [
     "A",
-    "rüyamda uçuyordum, uyanınca çok üzüldüm"
+    "[rüyamda uçuyordum|bu gece rüyamda uçtum], [uyanınca çok üzüldüm|uyanınca üzüldüm|uyanmak istemedim]"
    ],
    [
     "B",
-    "uçma rüyası güzel olur"
+    "[uçma rüyası güzel olur|uçmak güzel rüyadır|uçma rüyası en güzeli]"
    ],
    [
     "A",
-    "şehrin üstünde, kuşlarla beraber"
+    "[şehrin üstünde, kuşlarla beraber|şehrin üstünde kuşlarla|kuşlarla beraber şehrin üstünde]"
    ],
    [
     "C",
-    "ben rüyamda hep düşüyorum, uçmak bana nasip olmadı"
+    "[ben rüyamda hep düşüyorum|bende hep düşme rüyası], [uçmak bana nasip olmadı|uçmak hiç nasip olmadı|uçamadım hiç]"
    ],
    [
     "A",
-    "bir dahaki rüyanda kanadını aç"
+    "[bir dahaki rüyanda kanadını aç|bi dahaki rüyada kanatlarını aç|sonraki rüyanda kanat aç]"
    ],
    [
     "C",
-    "deneyeceğim"
+    "[deneyeceğim|deneyeceğim valla|bir denerim]"
    ]
   ]
  },
@@ -2200,27 +2200,27 @@
   "turlar": [
    [
     "A",
-    "rüyamda yine sınava giriyordum, okulu bitireli yıllar oldu"
+    "[rüyamda yine sınava giriyordum|yine rüyamda sınava girdim], [okulu bitireli yıllar oldu|okul biteli yıllar oldu|okul çoktan bitti halbuki]"
    ],
    [
     "B",
-    "herkes görüyor o rüyayı"
+    "[herkes görüyor o rüyayı|o rüyayı herkes görür|herkesin rüyası o]"
    ],
    [
     "A",
-    "hiç çalışmamıştım rüyada"
+    "[hiç çalışmamıştım rüyada|rüyada hiç çalışmamıştım|rüyada hiçbir şey bilmiyordum]"
    ],
    [
     "C",
-    "bende de, hep matematik"
+    "[bende de|bende de aynı], [hep matematik|hep matematik sınavı|hep matematikten]"
    ],
    [
     "D",
-    "ben de rüyamda okul koridorunda kayboluyorum"
+    "[ben de rüyamda okul koridorunda kayboluyorum|ben de rüyada okul koridorunda kayboluyorum|ben rüyada okulda kayboluyorum]"
    ],
    [
     "A",
-    "okul bizi bırakmıyor"
+    "[okul bizi bırakmıyor|okul peşimizi bırakmıyor|okul yakamızı bırakmıyor]"
    ]
   ]
  },
@@ -2232,23 +2232,23 @@
   "turlar": [
    [
     "A",
-    "rüyamda dişlerim döküldü, ne demek bu"
+    "[rüyamda dişlerim döküldü|rüyamda dişlerim dökülüyordu], [ne demek bu|bu neye işaret|bunun anlamı ne]"
    ],
    [
     "B",
-    "kötü bir şey değil, stres"
+    "[kötü bir şey değil|korkma, kötü değil], [stres|strestendir|stres işareti derler]"
    ],
    [
     "A",
-    "stres altındayım gerçekten"
+    "[stres altındayım gerçekten|gerçekten stresliyim|evet, çok stresliyim bu ara]"
    ],
    [
     "C",
-    "dinlen biraz, rüyalar da düzelir"
+    "[dinlen biraz|biraz dinlen], [rüyalar da düzelir|rüyalar da güzelleşir|rüyalar da sakinleşir]"
    ],
    [
     "A",
-    "bu gece güzel bir şey görmek istiyorum"
+    "[bu gece güzel bir şey görmek istiyorum|bu gece güzel bir rüya istiyorum|bu gece güzel bi şey göreyim]"
    ]
   ]
  },
@@ -2260,27 +2260,27 @@
   "turlar": [
    [
     "A",
-    "rüyamda kedi bana çay yaptı"
+    "[rüyamda kedi bana çay yaptı|rüyamda kedim bana çay demledi|rüyada kedi bana çay getirdi]"
    ],
    [
     "B",
-    "şekerli mi"
+    "[şekerli mi|kaç şeker|şekerli miydi bari]"
    ],
    [
     "A",
-    "iki şeker, ince belli bardakta"
+    "[iki şeker|iki şekerli], [ince belli bardakta|ince belli bardakta hem de|tavşan kanı]"
    ],
    [
     "C",
-    "kedin rüyada da hizmet ediyor"
+    "[kedin rüyada da hizmet ediyor|kedin rüyada bile hizmette|rüyada kedi bile çalışıyor]"
    ],
    [
     "A",
-    "gerçekte hiç etmiyor ama"
+    "[gerçekte hiç etmiyor ama|gerçekte hiç etmez ama|gerçekte tam tersi ama]"
    ],
    [
     "D",
-    "rüyada borcunu ödüyor"
+    "[rüyada borcunu ödüyor|rüyada borcunu kapatıyor|rüyada telafi ediyor]"
    ]
   ]
  },
@@ -2292,27 +2292,27 @@
   "turlar": [
    [
     "A",
-    "rüyamda {B} vardı"
+    "[rüyamda|dün gece rüyamda|bu gece rüyamda] {B} [vardı|gördüm]"
    ],
    [
     "B",
-    "ben mi, ne yapıyordum"
+    "[ben mi|ben mi ya|nasıl ben], [ne yapıyordum|ne yapıyordum peki|ne işim vardı]"
    ],
    [
     "A",
-    "bir pazarda domates satıyordun"
+    "[bir pazarda domates satıyordun|pazarda domates satıyordun|pazar tezgahında domates satıyordun]"
    ],
    [
     "B",
-    "güzel bir iş"
+    "[güzel bir iş|fena iş değil|güzel meslek]"
    ],
    [
     "C",
-    "{B} domates işine girersen ben müşteri olurum"
+    "{B} [domates işine girersen ben müşteri olurum|domatesçi olursan ilk müşteri benim|domates satarsan müşterin hazır]"
    ],
    [
     "B",
-    "hepinize indirim"
+    "[hepinize indirim|hepinize indirim var|kanala özel indirim]"
    ]
   ]
  },
@@ -2324,23 +2324,23 @@
   "turlar": [
    [
     "A",
-    "çok güzel bir rüya gördüm ama hatırlamıyorum"
+    "[çok güzel bir rüya gördüm ama hatırlamıyorum|çok güzel bi rüya gördüm, hatırlamıyorum|güzel bir rüyaydı ama unuttum]"
    ],
    [
     "B",
-    "bunun en kötü hissi"
+    "[bunun en kötü hissi|en kötü his bu|en sinir bozucu şey]"
    ],
    [
     "A",
-    "sadece mutlu uyandığımı biliyorum"
+    "[sadece mutlu uyandığımı biliyorum|bir tek mutlu uyandığımı biliyorum|mutlu uyandım, o kadar]"
    ],
    [
     "C",
-    "uyanır uyanmaz yaz, sonra kaçıyor"
+    "[uyanır uyanmaz yaz|uyanınca hemen yaz], [sonra kaçıyor|yoksa kaçıyor|sonra uçup gidiyor]"
    ],
    [
     "A",
-    "yatağın yanına defter koyacağım"
+    "[yatağın yanına defter koyacağım|başucuma defter koyacağım|yatağın yanına bi defter koyarım]"
    ]
   ]
  },
@@ -2352,27 +2352,27 @@
   "turlar": [
    [
     "A",
-    "kabus gördüm, uyandım, ışığı açtım"
+    "[kabus gördüm|kötü bir rüya gördüm], [uyandım, ışığı açtım|uyandım, ışıkları yaktım|ışığı açtım hemen]"
    ],
    [
     "B",
-    "geçmiş olsun, su iç"
+    "[geçmiş olsun|geçti geçti], [su iç|bi bardak su iç|biraz su iç]"
    ],
    [
     "A",
-    "içtim ama tekrar uyumaya korkuyorum"
+    "[içtim ama tekrar uyumaya korkuyorum|içtim, ama uyumaya korkuyorum|içtim de tekrar uyuyamıyorum]"
    ],
    [
     "C",
-    "güzel bir şey düşün, mesela tatil"
+    "[güzel bir şey düşün|güzel bi şey düşün], [mesela tatil|tatil mesela|deniz mesela]"
    ],
    [
     "A",
-    "deniz kenarı düşünüyorum"
+    "[deniz kenarı düşünüyorum|deniz kenarını düşünüyorum|kumsal düşünüyorum]"
    ],
    [
     "B",
-    "tamam şimdi gözlerini kapat"
+    "[tamam şimdi gözlerini kapat|şimdi gözlerini kapat|tamam, gözler kapalı]"
    ]
   ]
  },
@@ -2384,27 +2384,27 @@
   "turlar": [
    [
     "A",
-    "eskiden sokakta misket oynardık"
+    "[eskiden sokakta misket oynardık|eskiden misket oynardık sokakta|biz çocukken sokakta misket oynardık]"
    ],
    [
     "B",
-    "ben de, kavanoz dolu misketim vardı"
+    "[ben de|biz de], [kavanoz dolu misketim vardı|bir kavanoz misketim vardı|kavanoz kavanoz misketim vardı]"
    ],
    [
     "C",
-    "ben hep kaybederdim"
+    "[ben hep kaybederdim|ben hep kaybediyordum|benim misketler hep giderdi]"
    ],
    [
     "A",
-    "kaybedenin misketini alırdık, acımasız oyun"
+    "[kaybedenin misketini alırdık|kaybedenin misketi alınırdı], [acımasız oyun|acımasızdı|merhamet yoktu]"
    ],
    [
     "D",
-    "şimdi çocuklar ekrandan oynuyor"
+    "[şimdi çocuklar ekrandan oynuyor|şimdiki çocuklar ekranda oynuyor|şimdi her şey ekranda]"
    ],
    [
     "B",
-    "bizim zamanımız başkaydı"
+    "[bizim zamanımız başkaydı|bizim zamanımız bambaşkaydı|eski zamanlar başkaydı]"
    ]
   ]
  },
@@ -2416,23 +2416,23 @@
   "turlar": [
    [
     "A",
-    "eskiden bakkalda üç kuruşa çikolata alırdık"
+    "[eskiden bakkalda üç kuruşa çikolata alırdık|eskiden bakkaldan üç kuruşa çikolata alırdık|eskiden çikolata üç kuruştu bakkalda]"
    ],
    [
     "B",
-    "bir de sakız, içinden kart çıkardı"
+    "[bir de sakız|bi de sakız], [içinden kart çıkardı|içinden kart çıkan|içinden resimli kart çıkardı]"
    ],
    [
     "C",
-    "ben o kartları biriktirirdim, kutu kutu"
+    "[ben o kartları biriktirirdim|o kartları ben biriktirirdim], [kutu kutu|kutularca|ayakkabı kutusu doluydu]"
    ],
    [
     "A",
-    "hala var mı"
+    "[hala var mı|hala duruyor mu|hala sende mi]"
    ],
    [
     "C",
-    "annem attı, hala kızgınım"
+    "[annem attı|annem çöpe attı], [hala kızgınım|hala affetmedim|hala kızıyorum]"
    ]
   ]
  },
@@ -2444,23 +2444,23 @@
   "turlar": [
    [
     "A",
-    "eskiden televizyonda tek kanal vardı, akşam herkes aynı şeyi izlerdi"
+    "[eskiden televizyonda tek kanal vardı|eskiden tek kanal vardı], [akşam herkes aynı şeyi izlerdi|herkes aynı şeyi izlerdi|bütün ülke aynı şeyi izlerdi]"
    ],
    [
     "B",
-    "ertesi gün okulda herkes konuşurdu"
+    "[ertesi gün okulda herkes konuşurdu|ertesi gün okulda herkes onu konuşurdu|sabah okulda tek konu oydu]"
    ],
    [
     "C",
-    "şimdi herkes başka şey izliyor"
+    "[şimdi herkes başka şey izliyor|şimdi herkes farklı şey izliyor|şimdi herkesin dizisi ayrı]"
    ],
    [
     "A",
-    "kimse aynı şeyi konuşmuyor"
+    "[kimse aynı şeyi konuşmuyor|ortak konu kalmadı|kimse aynı şeyden bahsetmiyor]"
    ],
    [
     "B",
-    "bu kanal o eksikliği kapatıyor biraz"
+    "[bu kanal o eksikliği kapatıyor biraz|bu kanal o boşluğu biraz dolduruyor|biraz bu kanal kapatıyor o eksiği]"
    ]
   ]
  },
@@ -2472,23 +2472,23 @@
   "turlar": [
    [
     "A",
-    "eskiden mektup yazardık, cevabı haftalar sonra gelirdi"
+    "[eskiden mektup yazardık|eskiden mektuplaşırdık], [cevabı haftalar sonra gelirdi|cevap haftalar sonra gelirdi|cevap için haftalarca beklerdik]"
    ],
    [
     "B",
-    "ben askerdeki abime yazardım"
+    "[ben askerdeki abime yazardım|ben askerdeki abime mektup yazardım|benim abim askerdeydi, ona yazardım]"
    ],
    [
     "C",
-    "ben bir kez mektup arkadaşım vardı, başka şehirden"
+    "[benim bir kez mektup arkadaşım vardı|bir mektup arkadaşım vardı], [başka şehirden|başka bir şehirden|uzak bir şehirden]"
    ],
    [
     "A",
-    "hala görüşüyor musunuz"
+    "[hala görüşüyor musunuz|hala konuşuyor musunuz|hala yazışıyor musunuz]"
    ],
    [
     "C",
-    "görüşüyoruz, mektup değil mesajla artık"
+    "[görüşüyoruz|hala görüşüyoruz], [mektup değil mesajla artık|artık mesajla|şimdi mesajla yazışıyoruz]"
    ]
   ]
  },
@@ -2500,23 +2500,23 @@
   "turlar": [
    [
     "A",
-    "sokak lambaları yanınca eve dönerdik, annelerin kuralıydı"
+    "[sokak lambaları yanınca eve dönerdik|lambalar yanınca eve girerdik], [annelerin kuralıydı|annelerin kuralı buydu|anne kuralı]"
    ],
    [
     "B",
-    "ben hep beş dakika geç kalırdım"
+    "[ben hep beş dakika geç kalırdım|ben hep beş dakika geç girerdim|benim beş dakika gecikmem hep olurdu]"
    ],
    [
     "C",
-    "sokakta saklambaç, yakar top, ip atlama"
+    "[sokakta saklambaç, yakar top, ip atlama|saklambaç, yakar top, ip atlama|sokakta saklambaç, yakar top, seksek]"
    ],
    [
     "A",
-    "şimdi sokaklar sessiz"
+    "[şimdi sokaklar sessiz|şimdi sokaklar çok sessiz|sokaklar artık sessiz]"
    ],
    [
     "D",
-    "çocuklar parkta oynuyor ama, o da güzel"
+    "[çocuklar parkta oynuyor ama|ama çocuklar parkta oynuyor], [o da güzel|o da fena değil|o da bir şey]"
    ]
   ]
  },
@@ -2528,23 +2528,23 @@
   "turlar": [
    [
     "A",
-    "eskiden dondurmacı tahta arabayla gelirdi, zil çalardı"
+    "[eskiden dondurmacı tahta arabayla gelirdi|eskiden dondurmacı tahta arabasıyla gelirdi], [zil çalardı|zilini çalardı|zil sesiyle gelirdi]"
    ],
    [
     "B",
-    "o zili duyunca herkes koşardı"
+    "[o zili duyunca herkes koşardı|o zil çalınca herkes koşardı|zili duyan koşardı]"
    ],
    [
     "C",
-    "bir top dondurma için kumbarayı boşaltırdım"
+    "[bir top dondurma için kumbarayı boşaltırdım|tek top dondurma için kumbarayı boşaltırdım|bir top için kumbarayı kırardım]"
    ],
    [
     "A",
-    "şimdi dondurma pahalı, kumbara yetmez"
+    "[şimdi dondurma pahalı|şimdi dondurma pahalandı], [kumbara yetmez|kumbara kurtarmaz|kumbara az gelir]"
    ],
    [
     "B",
-    "kumbara aynı kumbara ama"
+    "[kumbara aynı kumbara ama|ama kumbara hala aynı|kumbara aynı, fiyat değil]"
    ]
   ]
  },
@@ -2556,27 +2556,27 @@
   "turlar": [
    [
     "A",
-    "çocukken en sevdiğiniz oyuncak neydi"
+    "[çocukken en sevdiğiniz oyuncak neydi|küçükken en sevdiğiniz oyuncak neydi|en sevdiğiniz çocukluk oyuncağı hangisiydi]"
    ],
    [
     "B",
-    "tahta at, dedem yapmıştı"
+    "[tahta at|tahta bir at], [dedem yapmıştı|dedemin yaptığı|dedem oymuştu]"
    ],
    [
     "C",
-    "benim oyuncak arabam vardı, tekerleri kopuktu"
+    "[benim oyuncak arabam vardı|bende bir oyuncak araba vardı], [tekerleri kopuktu|tekerleri yoktu|bir tekeri kopuktu]"
    ],
    [
     "D",
-    "ben bir bez bebek, adı Pamuk'tu"
+    "[ben bir bez bebek|benimki bez bebekti], [adı Pamuk'tu|adını Pamuk koymuştum|adı Pamuk'tu, hala hatırlıyorum]"
    ],
    [
     "A",
-    "hepsi o kadar değerliymiş ki"
+    "[hepsi o kadar değerliymiş ki|hepsi ne kadar değerliymiş|ne değerliymiş hepsi]"
    ],
    [
     "B",
-    "şimdi oyuncakların değeri yok sanki"
+    "[şimdi oyuncakların değeri yok sanki|şimdi oyuncakların kıymeti yok gibi|şimdi oyuncak çok, değer yok]"
    ]
   ]
  },
@@ -2588,27 +2588,27 @@
   "turlar": [
    [
     "A",
-    "eskiden kaseti kalemle geri sarardık"
+    "[eskiden kaseti kalemle geri sarardık|eskiden kaseti kalemle sarardık|kaseti kalemle sarmak vardı eskiden]"
    ],
    [
     "B",
-    "bunu bilen kaldı mı"
+    "[bunu bilen kaldı mı|bunu bilen var mı hala|bunu hatırlayan kaldı mı]"
    ],
    [
     "C",
-    "ben hala yapabilirim, refleks"
+    "[ben hala yapabilirim|ben hala yaparım], [refleks|refleks oldu|el alışkanlığı]"
    ],
    [
     "A",
-    "kaset çalarda bir şarkıyı yakalamak için bekliyordun"
+    "[kaset çalarda bir şarkıyı yakalamak için bekliyordun|kasette bir şarkıyı bulmak için beklerdin|kaset çalarda şarkı aramak sabır isterdi]"
    ],
    [
     "B",
-    "en sevdiğin şarkıya gelene kadar bütün kaseti dinliyordun"
+    "[en sevdiğin şarkıya gelene kadar bütün kaseti dinliyordun|en sevdiğin şarkıya kadar bütün kaseti dinlerdin|o şarkıya gelene kadar her şeyi dinlerdin]"
    ],
    [
     "D",
-    "sabır okuluydu"
+    "[sabır okuluydu|sabır okulu|sabır dersi gibiydi]"
    ]
   ]
  },
@@ -2620,27 +2620,27 @@
   "turlar": [
    [
     "A",
-    "sütü ocağa koydum, kanala baktım, süt taştı"
+    "[sütü ocağa koydum, kanala baktım|sütü ocağa koyup kanala baktım], [süt taştı|süt taştı tabii|her yer süt]"
    ],
    [
     "B",
-    "klasik, süt bekletmeyi sevmez"
+    "[klasik|tabii], [süt bekletmeyi sevmez|süt beklemeyi sevmez|süt hiç bekletmez]"
    ],
    [
     "A",
-    "ocak bembeyaz oldu"
+    "[ocak bembeyaz oldu|ocak bembeyaz|ocağın her yeri süt]"
    ],
    [
     "C",
-    "süt kaynarken başında durmak lazım, nöbet gibi"
+    "[süt kaynarken başında durmak lazım|süt kaynarken başından ayrılmayacaksın], [nöbet gibi|nöbet tutar gibi|asker gibi]"
    ],
    [
     "A",
-    "bir dahaki sefere kanalı kapatırım"
+    "[bir dahaki sefere kanalı kapatırım|bi dahakine kanalı kapatırım|bir dahaki sefer kanal yok]"
    ],
    [
     "B",
-    "kanalı kapatma, sütü bırak"
+    "[kanalı kapatma|kanal kalsın], [sütü bırak|sütten vazgeç|süt kaynatmayı bırak]"
    ]
   ]
  },
@@ -2652,27 +2652,27 @@
   "turlar": [
    [
     "A",
-    "kekim fırında çöktü"
+    "[kekim fırında çöktü|kek fırında söndü|kekim çöktü fırında]"
    ],
    [
     "B",
-    "fırının kapağını açtın mı"
+    "[fırının kapağını açtın mı|fırının kapağını açtın değil mi|kapağı açtın mı]"
    ],
    [
     "A",
-    "beş dakikada bir açtım, merak ettim"
+    "[beş dakikada bir açtım|her beş dakikada açtım], [merak ettim|merak ediyordum|dayanamadım]"
    ],
    [
     "C",
-    "işte orada, açmayacaksın"
+    "[işte orada|işte sorun o], [açmayacaksın|açılmaz|kapak açılmayacak]"
    ],
    [
     "A",
-    "şimdi öğrendim, yazık oldu yumurtalara"
+    "[şimdi öğrendim|şimdi öğrendim ama], [yazık oldu yumurtalara|yumurtalara yazık oldu|o yumurtalar boşa gitti]"
    ],
    [
     "D",
-    "çöken keki ufala, puding yap"
+    "[çöken keki ufala|çöken keki ufala ufala], [puding yap|pudinge kat|tatlı yap]"
    ]
   ]
  },
@@ -2684,27 +2684,27 @@
   "turlar": [
    [
     "A",
-    "çaya şeker yerine tuz attım"
+    "[çaya şeker yerine tuz attım|çaya şeker diye tuz attım|şeker yerine çaya tuz koydum]"
    ],
    [
     "B",
-    "hahah nasıl oldu"
+    "[hahah nasıl oldu|ahah nasıl oldu|nasıl oldu ya]"
    ],
    [
     "A",
-    "kavanozlar aynı, etiket yok"
+    "[kavanozlar aynı|kavanozlar birbirinin aynısı], [etiket yok|etiket de yok|hiç etiket yok]"
    ],
    [
     "C",
-    "bir etiket yap, ilk iş"
+    "[bir etiket yap|bi etiket yapıştır], [ilk iş|hemen|önce o]"
    ],
    [
     "A",
-    "yaptım, şimdi tuz kavanozunda kocaman TUZ yazıyor"
+    "[yaptım|yapıştırdım], [şimdi tuz kavanozunda kocaman TUZ yazıyor|şimdi tuzun üstünde kocaman TUZ yazıyor|şimdi kavanozda dev harflerle TUZ yazıyor]"
    ],
    [
     "B",
-    "ikinci kaza olmaz artık"
+    "[ikinci kaza olmaz artık|artık ikinci kaza olmaz|bir daha olmaz artık]"
    ]
   ]
  },
@@ -2716,27 +2716,27 @@
   "turlar": [
    [
     "A",
-    "pilavı yaktım, ev duman doldu"
+    "[pilavı yaktım|pilav yandı], [ev duman doldu|ev dumana boğuldu|her yer duman]"
    ],
    [
     "B",
-    "pencereleri aç"
+    "[pencereleri aç|camları aç|hemen pencereleri aç]"
    ],
    [
     "A",
-    "açtım, komşu da camdan baktı"
+    "[açtım|açtım ama], [komşu da camdan baktı|komşu camdan bakıyor|komşular camdan baktı]"
    ],
    [
     "C",
-    "dibine yapışanı kazıma, üst kısmı yenir"
+    "[dibine yapışanı kazıma|dibini kazıma], [üst kısmı yenir|üstü yenir|üst tarafı kurtarılır]"
    ],
    [
     "A",
-    "üstü de biraz is kokuyor"
+    "[üstü de biraz is kokuyor|üstü de is kokuyor|üst kısmı da duman kokuyor]"
    ],
    [
     "D",
-    "tava pilavı olarak sun, kimse anlamaz"
+    "[tava pilavı olarak sun|isli pilav diye sun|yeni tarif de], [kimse anlamaz|kimse fark etmez|kimse bilmez]"
    ]
   ]
  },
@@ -2748,27 +2748,27 @@
   "turlar": [
    [
     "A",
-    "yumurtayı kırarken yarısı yere düştü"
+    "[yumurtayı kırarken yarısı yere düştü|yumurtayı kırarken yarısı yere gitti|yumurtanın yarısı yere düştü]"
    ],
    [
     "B",
-    "yere mi"
+    "[yere mi|yere mi ya|nereye]"
    ],
    [
     "A",
-    "ayağımın üstüne"
+    "[ayağımın üstüne|tam ayağımın üstüne|ayağıma]"
    ],
    [
     "C",
-    "kırarken kasenin kenarına değil, düz bir yüzeye vur"
+    "[kırarken kasenin kenarına değil, düz bir yüzeye vur|kasenin kenarına değil, düz yere vur|düz bir yüzeye vurarak kır]"
    ],
    [
     "A",
-    "şimdi söylüyorsun"
+    "[şimdi söylüyorsun|şimdi mi söylüyorsun|şimdi mi]"
    ],
    [
     "B",
-    "sonra söylenecek bir şeyler bırakmışız"
+    "[sonra söylenecek bir şeyler bırakmışız|sonraya da söylenecek bir şey kalsın|her şeyi önceden söylemeyiz]"
    ]
   ]
  },
@@ -2780,27 +2780,27 @@
   "turlar": [
    [
     "A",
-    "dolabı açtım, üstümden un düştü"
+    "[dolabı açtım|üst dolabı açtım], [üstümden un düştü|üstüme un döküldü|tepemden un yağdı]"
    ],
    [
     "B",
-    "un yağmuru"
+    "[un yağmuru|un yağmuru başlamış|beyaz yağmur]"
    ],
    [
     "A",
-    "tepeden tırnağa beyazım"
+    "[tepeden tırnağa beyazım|tepeden tırnağa beyaz oldum|baştan aşağı beyazım]"
    ],
    [
     "C",
-    "fotoğraf çek, anı olsun"
+    "[fotoğraf çek|bi fotoğraf çek], [anı olsun|hatıra olsun|kanala at]"
    ],
    [
     "A",
-    "çekmeye bile vaktim yok, temizliyorum"
+    "[çekmeye bile vaktim yok|fotoğrafa vakit yok], [temizliyorum|temizlikteyim|süpürüyorum]"
    ],
    [
     "D",
-    "bir sonraki tarife hazır hale geldin"
+    "[bir sonraki tarife hazır hale geldin|bir sonraki tarife hazırsın|sıradaki tarif için unlandın]"
    ]
   ]
  },
@@ -2812,27 +2812,27 @@
   "turlar": [
    [
     "A",
-    "ocağı açık unuttum, çaydanlık kurudu"
+    "[ocağı açık unuttum|ocağı kapatmayı unuttum], [çaydanlık kurudu|çaydanlıkta su kalmamış|çaydanlık kupkuru]"
    ],
    [
     "B",
-    "eyvah, hasar var mı"
+    "[eyvah|eyvah ya], [hasar var mı|bir şey oldu mu|zarar var mı]"
    ],
    [
     "A",
-    "çaydanlığın dibi kapkara"
+    "[çaydanlığın dibi kapkara|çaydanlığın dibi kömür gibi|dibi simsiyah oldu]"
    ],
    [
     "C",
-    "sitrik ve sirke ile kaynat, temizlenir"
+    "[sitrik ve sirke ile kaynat|limon tuzu ve sirkeyle kaynat], [temizlenir|tertemiz olur|çıkar]"
    ],
    [
     "A",
-    "deneyeceğim, sağ ol {C}"
+    "[deneyeceğim|deneyeceğim hemen|bakacağım], [sağ ol|teşekkürler|eyvallah] {C}"
    ],
    [
     "B",
-    "bir de ocağın başından ayrılırken telefon alarmı kur"
+    "[bir de ocağın başından ayrılırken telefon alarmı kur|ocaktan ayrılırken bir de alarm kur|bir dahakine ocaktan kalkınca alarm kur]"
    ]
   ]
  },
@@ -2844,27 +2844,27 @@
   "turlar": [
    [
     "A",
-    "mikrodalgada yumurta ısıttım, patladı"
+    "[mikrodalgada yumurta ısıttım|yumurtayı mikrodalgaya koydum], [patladı|patladı tabii|bum]"
    ],
    [
     "B",
-    "neden yumurta ısıtıyorsun mikrodalgada"
+    "[neden yumurta ısıtıyorsun mikrodalgada|mikrodalgada yumurta mı olur|niye mikrodalgada yumurta]"
    ],
    [
     "A",
-    "merak ettim"
+    "[merak ettim|merak işte|merakımdan]"
    ],
    [
     "C",
-    "merakın bedeli temizlik"
+    "[merakın bedeli temizlik|merakın bedeli bu|merak temizlikle ödenir]"
    ],
    [
     "A",
-    "yarım saattir temizliyorum"
+    "[yarım saattir temizliyorum|yarım saattir siliyorum|hala temizliyorum]"
    ],
    [
     "D",
-    "bilimsel bir deneydi, başarısız ama öğretici"
+    "[bilimsel bir deneydi|bilim için yaptın], [başarısız ama öğretici|başarısız ama ders verici|sonuç kötü, ders iyi]"
    ]
   ]
  },
@@ -2876,23 +2876,23 @@
   "turlar": [
    [
     "A",
-    "minibüste para elden ele uzatılıyor, ben hala heyecanlanıyorum"
+    "[minibüste para elden ele uzatılıyor|minibüste para elden ele gidiyor], [ben hala heyecanlanıyorum|hala heyecanlanıyorum|hala gerilirim]"
    ],
    [
     "B",
-    "bir kere üstümü ben yanlış verdim, utanıp indim"
+    "[bir kere üstümü ben yanlış verdim|bi kere üstünü yanlış verdim], [utanıp indim|utandım, indim|utancımdan indim]"
    ],
    [
     "C",
-    "ben en arkada oturdum, paramı şoföre yedi kişi iletti"
+    "[ben en arkada oturdum|ben en arkadaydım], [paramı şoföre yedi kişi iletti|param yedi kişiden geçip şoföre gitti|yedi kişi paramı şoföre uzattı]"
    ],
    [
     "A",
-    "işte bu toplum dayanışması"
+    "[işte bu toplum dayanışması|işte dayanışma|toplum dayanışması bu]"
    ],
    [
     "D",
-    "bir de \"müsait bir yerde\" demek, bilinen klasik"
+    "[bir de \"müsait bir yerde\" demek|bi de \"müsait bir yerde\"], [bilinen klasik|klasik|olmazsa olmaz]"
    ]
   ]
  },
@@ -2904,27 +2904,27 @@
   "turlar": [
    [
     "A",
-    "otobüste uyuyakaldım, son durakta uyandım"
+    "[otobüste uyuyakaldım|otobüste uyumuşum], [son durakta uyandım|son durakta açtım gözümü|uyandığımda son duraktaydık]"
    ],
    [
     "B",
-    "nereye kadar gittin"
+    "[nereye kadar gittin|nereye kadar gittin ya|neredeydin]"
    ],
    [
     "A",
-    "şehrin öbür ucuna"
+    "[şehrin öbür ucuna|şehrin diğer ucuna|şehrin bir ucuna]"
    ],
    [
     "C",
-    "şoför uyandırdı mı"
+    "[şoför uyandırdı mı|şoför mü uyandırdı|kim uyandırdı]"
    ],
    [
     "A",
-    "evet, \"abla ineceksin\" dedi, çok utandım"
+    "[evet|evet ya], [\"abla ineceksin\" dedi|\"abla son durak\" dedi], [çok utandım|utandım|yerin dibine girdim]"
    ],
    [
     "B",
-    "herkesin başına gelir, geri döndün mü"
+    "[herkesin başına gelir|herkesin başına gelir valla], [geri döndün mü|dönebildin mi|nasıl döndün]"
    ]
   ]
  },
@@ -2936,27 +2936,27 @@
   "turlar": [
    [
     "A",
-    "babamın eski arabası her yolculukta bozulurdu"
+    "[babamın eski arabası her yolculukta bozulurdu|babamın eski arabası her yolda bozulurdu|bizim eski araba her yolculukta yolda kalırdı]"
    ],
    [
     "B",
-    "bizimki de, itmeye alışmıştık"
+    "[bizimki de|bizimki de öyleydi], [itmeye alışmıştık|itmeye alışkındık|hep iterdik]"
    ],
    [
     "A",
-    "bir kere yokuşta durdu, bütün aile ittik"
+    "[bir kere yokuşta durdu|bi kere yokuşta kaldı], [bütün aile ittik|bütün aile itti|hep beraber ittik]"
    ],
    [
     "C",
-    "bu gerçek bir aile aktivitesi"
+    "[bu gerçek bir aile aktivitesi|gerçek aile etkinliği|en güzel aile aktivitesi]"
    ],
    [
     "D",
-    "bizim arabanın da teybinden tek bir kaset çıkmazdı, yol boyu aynı şarkı"
+    "[bizim arabanın da teybinden tek bir kaset çıkmazdı|bizim teypte tek kaset sıkışmıştı], [yol boyu aynı şarkı|bütün yol aynı şarkı|yol boyunca aynı şarkı]"
    ],
    [
     "A",
-    "işte gerçek yolculuk"
+    "[işte gerçek yolculuk|gerçek yolculuk bu|yolculuk dediğin bu]"
    ]
   ]
  },
@@ -2968,27 +2968,27 @@
   "turlar": [
    [
     "A",
-    "vapurda simidimi martı kaptı"
+    "[vapurda simidimi martı kaptı|vapurda martı simidimi kaptı|martı vapurda simidimi aldı]"
    ],
    [
     "B",
-    "klasik, martılar profesyonel"
+    "[klasik|tabii], [martılar profesyonel|martılar işini bilir|martılar usta]"
    ],
    [
     "A",
-    "elimden alıp uçtu"
+    "[elimden alıp uçtu|elimden kapıp gitti|elimden kaptı]"
    ],
    [
     "C",
-    "bir dahaki sefere çantada sakla"
+    "[bir dahaki sefere çantada sakla|bi dahakine çantada tut|bir dahaki sefer çantaya koy]"
    ],
    [
     "A",
-    "artık martıları besliyorum, yarısını onlara veriyorum"
+    "[artık martıları besliyorum|artık martılara ben veriyorum], [yarısını onlara veriyorum|yarısı onların|simidin yarısı onlara]"
    ],
    [
     "B",
-    "barış antlaşması"
+    "[barış antlaşması|barış yapılmış|ateşkes]"
    ]
   ]
  },
@@ -3000,27 +3000,27 @@
   "turlar": [
    [
     "A",
-    "şehirlerarası otobüste muavinin verdiği kek hala aklımda"
+    "[şehirlerarası otobüste muavinin verdiği kek hala aklımda|şehirlerarası otobüste verilen kek hala aklımda|otobüste muavinin dağıttığı keki unutamam]"
    ],
    [
     "B",
-    "o keki unutmak mümkün değil"
+    "[o keki unutmak mümkün değil|o kek unutulmaz|o keki kim unutur]"
    ],
    [
     "C",
-    "kolonya ikramı da var"
+    "[kolonya ikramı da var|bir de kolonya var|kolonya da gelir]"
    ],
    [
     "A",
-    "gece yolculuğunda dinlenme tesisi molası"
+    "[gece yolculuğunda dinlenme tesisi molası|gece yolculuğunda tesis molası|gece mola veren tesisler]"
    ],
    [
     "D",
-    "çorba içerdik o saatte, en güzel çorba"
+    "[çorba içerdik o saatte|o saatte çorba içerdik], [en güzel çorba|en lezzetlisi|en iyi çorba o]"
    ],
    [
     "B",
-    "gece mola çorbası başka"
+    "[gece mola çorbası başka|gece molasındaki çorba başka|mola çorbası bambaşka]"
    ]
   ]
  },
@@ -3032,27 +3032,27 @@
   "turlar": [
    [
     "A",
-    "bilet aldım, yanlış güne almışım"
+    "[bilet aldım|otobüs bileti aldım], [yanlış güne almışım|yanlış güne denk gelmiş|tarihi yanlış seçmişim]"
    ],
    [
     "B",
-    "hangi güne"
+    "[hangi güne|hangi güne aldın|ne zamana]"
    ],
    [
     "A",
-    "bir hafta sonraya"
+    "[bir hafta sonraya|bi hafta sonraya|tam bir hafta sonrasına]"
    ],
    [
     "C",
-    "değiştirebiliyor musun"
+    "[değiştirebiliyor musun|değiştirebildin mi|değişiyor mu]"
    ],
    [
     "A",
-    "değiştirdim, ama fark ödedim"
+    "[değiştirdim|değiştirdim ama], [ama fark ödedim|fark ödedim|fark parası verdim]"
    ],
    [
     "B",
-    "ders oldu, bir dahakine iki kere bak"
+    "[ders oldu|ders olsun], [bir dahakine iki kere bak|bi dahaki sefere iki kez bak|bir dahaki sefer tarihe iyi bak]"
    ]
   ]
  },
@@ -3064,23 +3064,23 @@
   "turlar": [
    [
     "A",
-    "dolmuşta herkes birbirine yer veriyor, şoför de müzik açıyor"
+    "[dolmuşta herkes birbirine yer veriyor|dolmuşta herkes yer veriyor], [şoför de müzik açıyor|şoför de müziği açıyor|şoför müzik çalıyor]"
    ],
    [
     "B",
-    "sabah sabah ne açıyor"
+    "[sabah sabah ne açıyor|ne açıyor sabah sabah|ne dinletiyor]"
    ],
    [
     "A",
-    "eski türküler, bayağı güzel"
+    "[eski türküler|eski türküler açıyor], [bayağı güzel|baya güzel|güzel oluyor]"
    ],
    [
     "C",
-    "bizim dolmuşçu da hep haberleri açar, herkes yorum yapar"
+    "[bizim dolmuşçu da hep haberleri açar|bizim dolmuşta hep haber açık], [herkes yorum yapar|herkes yorum yapıyor|herkes konuşur]"
    ],
    [
     "A",
-    "sohbet dolmuşu"
+    "[sohbet dolmuşu|dolmuş değil sohbet odası|tekerlekli kanal]"
    ]
   ]
  },
@@ -3092,27 +3092,27 @@
   "turlar": [
    [
     "A",
-    "{bayram} için bu sene de el öpmeye gideceğiz, şimdiden plan yaptım"
+    "{bayram} için [bu sene de el öpmeye gideceğiz|bu yıl da el öpmeye gidiyoruz], [şimdiden plan yaptım|plan hazır|şimdiden planladım]"
    ],
    [
     "B",
-    "kaç ev"
+    "[kaç ev|kaç ev var|kaç eve gideceksiniz]"
    ],
    [
     "A",
-    "sekiz ev, iki günde"
+    "[sekiz ev, iki günde|iki günde sekiz ev|sekiz ev, iki gün]"
    ],
    [
     "C",
-    "her evde bir tabak baklava, sekiz tabak"
+    "[her evde bir tabak baklava|her evde baklava var], [sekiz tabak|toplam sekiz tabak|sekiz tabak eder]"
    ],
    [
     "A",
-    "şimdiden midem ağrıdı"
+    "[şimdiden midem ağrıdı|şimdiden midem bulandı|midem şimdiden ağrıyor]"
    ],
    [
     "B",
-    "bayram sporu bu[ haha|]"
+    "[bayram sporu bu|bayram maratonu|bayram antrenmanı][ haha|]"
    ]
   ]
  },
@@ -3124,27 +3124,27 @@
   "turlar": [
    [
     "A",
-    "çocukken bayram harçlığını biriktirirdim"
+    "[çocukken bayram harçlığını biriktirirdim|küçükken bayram harçlığımı biriktirirdim|çocukken harçlıkları saklardım]"
    ],
    [
     "B",
-    "ben hepsini aynı gün harcardım"
+    "[ben hepsini aynı gün harcardım|ben aynı gün harcardım|bende o gün biterdi]"
    ],
    [
     "C",
-    "ben anneme verirdim, \"sana saklarım\" derdi"
+    "[ben anneme verirdim|ben anneme teslim ederdim], [\"sana saklarım\" derdi|\"sana saklıyorum\" derdi|\"saklarım\" derdi]"
    ],
    [
     "A",
-    "o paraları hala bekleyenler var mı"
+    "[o paraları hala bekleyenler var mı|o paraları bekleyen kaldı mı|o paralar hala bekleniyor mu]"
    ],
    [
     "C",
-    "bekliyorum, hala"
+    "[bekliyorum|ben bekliyorum], [hala|hala bekliyorum|yıllardır]"
    ],
    [
     "D",
-    "annelerin bankası faiz vermez[ haha|]"
+    "[annelerin bankası faiz vermez|anne bankası faiz vermez|annelerin bankası iade etmez][ haha|]"
    ]
   ]
  },
@@ -3156,27 +3156,27 @@
   "turlar": [
    [
     "A",
-    "{bayram} için {bayram.gun} gün kaldı, kimler sevinçli"
+    "{bayram} için {bayram.gun} gün kaldı, [kimler sevinçli|kim heyecanlı|sevinen var mı]"
    ],
    [
     "B",
-    "ben, izin aldım"
+    "[ben|ben tabii], [izin aldım|iznimi aldım|izin çıktı]"
    ],
    [
     "C",
-    "ben de memlekete gideceğim"
+    "[ben de memlekete gideceğim|ben memlekete gidiyorum|ben de memleket yolundayım]"
    ],
    [
     "A",
-    "ben bu sene evde kalıyorum, ama misafir ağırlayacağım"
+    "[ben bu sene evde kalıyorum|bu yıl ben evdeyim], [ama misafir ağırlayacağım|ama misafir gelecek|misafir ağırlayacağım ama]"
    ],
    [
     "B",
-    "güzel, sofra kur"
+    "[güzel|ne güzel], [sofra kur|sofrayı kur|güzel bir sofra kur]"
    ],
    [
     "A",
-    "şimdiden alışveriş listesi yaptım"
+    "[şimdiden alışveriş listesi yaptım|alışveriş listesi hazır bile|liste şimdiden hazır]"
    ]
   ]
  },
@@ -3188,27 +3188,27 @@
   "turlar": [
    [
     "A",
-    "bayramlık almak çocukken en güzel şeydi"
+    "[bayramlık almak çocukken en güzel şeydi|çocukken bayramlık almak en güzeliydi|bayramlık almak bambaşkaydı çocukken]"
    ],
    [
     "B",
-    "bayram sabahı yeni ayakkabıyla uyanmak"
+    "[bayram sabahı yeni ayakkabıyla uyanmak|bayram sabahı yeni ayakkabılarla uyanmak|yeni ayakkabıyla bayram sabahı]"
    ],
    [
     "C",
-    "ben ayakkabıyı yatağın yanına koyup uyurdum"
+    "[ben ayakkabıyı yatağın yanına koyup uyurdum|ben ayakkabıları başucuma koyup uyurdum|ayakkabıyı yanıma alıp uyurdum]"
    ],
    [
     "A",
-    "ben de, kokusunu çekerdim"
+    "[ben de|ben de öyle], [kokusunu çekerdim|kokusunu koklardım|kokluyordum]"
    ],
    [
     "D",
-    "şimdi bayramlık almıyoruz, ama alalım bu sene"
+    "[şimdi bayramlık almıyoruz|artık bayramlık yok], [ama alalım bu sene|bu sene alalım ama|bu yıl alalım]"
    ],
    [
     "A",
-    "alalım, gelenek"
+    "[alalım|alalım tabii], [gelenek|gelenek bu|geleneği bozmayalım]"
    ]
   ]
  },
@@ -3220,27 +3220,27 @@
   "turlar": [
    [
     "A",
-    "bayram ziyaretlerinden yeni döndüm, ayaklarım koptu"
+    "[bayram ziyaretlerinden yeni döndüm|ziyaretlerden yeni geldim], [ayaklarım koptu|ayaklarım şişti|ayak kalmadı]"
    ],
    [
     "B",
-    "kaç ev gezdin"
+    "[kaç ev gezdin|kaç eve gittin|kaç ev oldu]"
    ],
    [
     "A",
-    "beş, hepsinde de yemek yedik"
+    "[beş|beş ev], [hepsinde de yemek yedik|her evde yemek yedik|her evde sofra vardı]"
    ],
    [
     "C",
-    "bayram yemeği reddedilmez"
+    "[bayram yemeği reddedilmez|bayramda yemek reddedilmez|bayram sofrasına hayır denmez]"
    ],
    [
     "A",
-    "reddetmeye çalıştım, teyzem tabak doldurdu"
+    "[reddetmeye çalıştım|hayır demeye çalıştım], [teyzem tabak doldurdu|teyzem tabağı doldurdu|teyzem dinlemedi]"
    ],
    [
     "D",
-    "teyzeye hayır denmez"
+    "[teyzeye hayır denmez|teyzeye hayır diyemezsin|teyzeye itiraz edilmez]"
    ]
   ]
  },
@@ -3252,27 +3252,27 @@
   "turlar": [
    [
     "A",
-    "bayramda bütün akrabaları aramak iki saat sürüyor"
+    "[bayramda bütün akrabaları aramak iki saat sürüyor|bayramda akrabaları aramak iki saatimi alıyor|bütün akrabayı aramak iki saat]"
    ],
    [
     "B",
-    "ben listeli arıyorum"
+    "[ben listeli arıyorum|ben listeyle arıyorum|bende liste var]"
    ],
    [
     "A",
-    "ben unutuyorum, sonra küsüyorlar"
+    "[ben unutuyorum|ben hep birini unutuyorum], [sonra küsüyorlar|sonra darılıyorlar|sonra laf oluyor]"
    ],
    [
     "C",
-    "bir liste yap, telefonuna kaydet"
+    "[bir liste yap|bi liste yap], [telefonuna kaydet|telefona kaydet|telefonda tut]"
    ],
    [
     "A",
-    "geçen sene büyük dayıyı unuttum, hala hatırlatıyor"
+    "[geçen sene büyük dayıyı unuttum|geçen yıl büyük dayımı unuttum], [hala hatırlatıyor|hala yüzüme vuruyor|hala söylüyor]"
    ],
    [
     "B",
-    "bu sene ilk onu ara"
+    "[bu sene ilk onu ara|bu yıl ilk onu ara|ilk onu ara bu sene]"
    ]
   ]
  },
@@ -3284,27 +3284,27 @@
   "turlar": [
    [
     "A",
-    "bayram sofrasında en çok neyi bekliyorsunuz"
+    "[bayram sofrasında en çok neyi bekliyorsunuz|bayram sofrasında ne bekliyorsunuz|bayramda en çok hangi yemeği bekliyorsunuz]"
    ],
    [
     "B",
-    "baklava, kesinlikle"
+    "[baklava|baklava tabii], [kesinlikle|tartışmasız|başka yok]"
    ],
    [
     "C",
-    "ben kavurma"
+    "[ben kavurma|kavurma|bence kavurma]"
    ],
    [
     "D",
-    "annemin sarması"
+    "[annemin sarması|annemin sarmaları|benim için annemin sarması]"
    ],
    [
     "A",
-    "ben hepsini, tek tabakta"
+    "[ben hepsini|ben hepsini isterim], [tek tabakta|aynı tabakta|bir tabağa]"
    ],
    [
     "B",
-    "tek tabak yetmez"
+    "[tek tabak yetmez|bir tabak yetmez|tabak yetmez]"
    ]
   ]
  },
@@ -3316,27 +3316,27 @@
   "turlar": [
    [
     "A",
-    "serpme kahvaltı mı, tek tabak mı"
+    "[serpme kahvaltı mı, tek tabak mı|serpme mi tek tabak mı|kahvaltı serpme mi tek tabak mı]"
    ],
    [
     "B",
-    "serpme, masa dolsun"
+    "[serpme|serpme tabii], [masa dolsun|sofra dolsun|masa taşsın]"
    ],
    [
     "C",
-    "tek tabak, bulaşık az"
+    "[tek tabak|tek tabak bence], [bulaşık az|bulaşık az çıkar|bulaşık derdi yok]"
    ],
    [
     "A",
-    "ama serpme sohbetli oluyor"
+    "[ama serpme sohbetli oluyor|serpme daha sohbetli ama|ama serpme sofrada sohbet olur]"
    ],
    [
     "C",
-    "sohbetin bulaşığı çok"
+    "[sohbetin bulaşığı çok|sohbetin de bulaşığı çok|sohbet bulaşık getirir]"
    ],
    [
     "B",
-    "bulaşığı sohbet ederken yıkarız"
+    "[bulaşığı sohbet ederken yıkarız|bulaşık sohbet ederken yıkanır|sohbet ederek yıkarız]"
    ]
   ]
  },
@@ -3348,27 +3348,27 @@
   "turlar": [
    [
     "A",
-    "sucuklu yumurta kahvaltıya mı yoksa akşama mı"
+    "[sucuklu yumurta kahvaltıya mı yoksa akşama mı|sucuklu yumurta sabah mı akşam mı|sucuklu yumurta kahvaltıda mı yenir akşam mı]"
    ],
    [
     "B",
-    "kahvaltıya, kesinlikle"
+    "[kahvaltıya|kahvaltıya tabii], [kesinlikle|tartışmasız|şüphesiz]"
    ],
    [
     "C",
-    "bizde akşam yapılır, kahvaltı hafif olur"
+    "[bizde akşam yapılır|bizde akşam yenir], [kahvaltı hafif olur|sabah hafif kahvaltı|kahvaltı hafif tutulur]"
    ],
    [
     "A",
-    "hafif kahvaltı ne demek"
+    "[hafif kahvaltı ne demek|hafif kahvaltı mı olur|o nasıl kahvaltı]"
    ],
    [
     "C",
-    "peynir, zeytin, domates"
+    "[peynir, zeytin, domates|peynir, zeytin, domates işte|zeytin, peynir, domates]"
    ],
    [
     "B",
-    "bu kahvaltı değil, hazırlık"
+    "[bu kahvaltı değil, hazırlık|bu kahvaltı değil, ısınma|o ancak ön hazırlık]"
    ]
   ]
  },
@@ -3380,27 +3380,27 @@
   "turlar": [
    [
     "A",
-    "siyah zeytin mi yeşil zeytin mi"
+    "[siyah zeytin mi yeşil zeytin mi|zeytin siyah mı yeşil mi|siyah mı yeşil mi zeytin]"
    ],
    [
     "B",
-    "siyah, sabahın kralı"
+    "[siyah|siyah tabii], [sabahın kralı|kahvaltının kralı|sabahın yıldızı]"
    ],
    [
     "C",
-    "yeşil, çizik olsun"
+    "[yeşil|yeşil bence], [çizik olsun|çizik yeşil|kırma olsun]"
    ],
    [
     "D",
-    "ikisi de olsun, kim seçmek zorunda"
+    "[ikisi de olsun|ikisi birden olsun], [kim seçmek zorunda|seçmek zorunda mıyız|niye seçelim]"
    ],
    [
     "A",
-    "bu {D} her tartışmanın ortasını buluyor"
+    "[bu|yine bu|şu] {D} [her tartışmanın ortasını buluyor|yine ortayı buldu|her tartışmada ortada]"
    ],
    [
     "D",
-    "barış elçisiyim"
+    "[barış elçisiyim|barış elçisi benim|ben arabulucuyum]"
    ]
   ]
  },
@@ -3412,27 +3412,27 @@
   "turlar": [
    [
     "A",
-    "pazar kahvaltısı saat kaçta başlar"
+    "[pazar kahvaltısı saat kaçta başlar|pazar kahvaltısı kaçta|pazar kahvaltısı ne zaman olur]"
    ],
    [
     "B",
-    "on bir"
+    "[on bir|on bir gibi|on birde]"
    ],
    [
     "C",
-    "dokuz, geç kalan aç kalır"
+    "[dokuz|dokuzda], [geç kalan aç kalır|geç kalana yemek yok|geç gelen aç kalır]"
    ],
    [
     "A",
-    "on bir bence öğle yemeği"
+    "[on bir bence öğle yemeği|on bir öğle yemeği olur|on birde kahvaltı olmaz, öğle olur]"
    ],
    [
     "B",
-    "o zaman brunch diyelim"
+    "[o zaman brunch diyelim|brunch deriz o zaman|o zaman adı brunch]"
    ],
    [
     "C",
-    "bizde öyle bir şey yok, kahvaltı kahvaltıdır"
+    "[bizde öyle bir şey yok|bizde öyle şey yok], [kahvaltı kahvaltıdır|kahvaltının adı kahvaltı|kahvaltı tek isimdir]"
    ]
   ]
  },
@@ -3444,27 +3444,27 @@
   "turlar": [
    [
     "A",
-    "kahvaltıda reçel mi bal kaymak mı"
+    "[kahvaltıda reçel mi bal kaymak mı|reçel mi bal kaymak mı|sabah reçel mi bal kaymak mı]"
    ],
    [
     "B",
-    "bal kaymak, sorgusuz"
+    "[bal kaymak|bal kaymak tabii], [sorgusuz|tartışmasız|düşünmeden]"
    ],
    [
     "C",
-    "vişne reçeli, annem yapıyor"
+    "[vişne reçeli|vişne reçeli bence], [annem yapıyor|annemin yaptığı|annem kaynatıyor]"
    ],
    [
     "A",
-    "annem de gül reçeli yapıyor"
+    "[annem de gül reçeli yapıyor|benim annem gül reçeli yapar|bizde de gül reçeli var]"
    ],
    [
     "D",
-    "reçeller birleşin"
+    "[reçeller birleşin|reçelciler birleşin|reçel ekibi birleşsin]"
    ],
    [
     "B",
-    "bal kaymak yine kazanır"
+    "[bal kaymak yine kazanır|yine de bal kaymak kazanır|bal kaymak her türlü kazanır]"
    ]
   ]
  },
@@ -3476,27 +3476,27 @@
   "turlar": [
    [
     "A",
-    "ben sabahları kahvaltı yapmıyorum, sadece kahve"
+    "[ben sabahları kahvaltı yapmıyorum|ben sabah kahvaltı etmiyorum], [sadece kahve|bir kahve yeter|tek kahve]"
    ],
    [
     "B",
-    "nasıl ya, öğlene kadar nasıl dayanıyorsun"
+    "[nasıl ya|nasıl yani], [öğlene kadar nasıl dayanıyorsun|öğlene kadar nasıl duruyorsun|nasıl dayanıyorsun öğlene]"
    ],
    [
     "A",
-    "alıştım"
+    "[alıştım|alıştım artık|alışkanlık]"
    ],
    [
     "C",
-    "sabah kahvaltısı günün en önemli öğünü"
+    "[sabah kahvaltısı günün en önemli öğünü|kahvaltı günün en önemli öğünü|günün en önemli öğünü kahvaltı]"
    ],
    [
     "A",
-    "herkes söylüyor ama benim midem kabul etmiyor"
+    "[herkes söylüyor ama benim midem kabul etmiyor|herkes öyle diyor, midem kabul etmiyor|söyleniyor da benim midem almıyor]"
    ],
    [
     "D",
-    "bir dilim peynir dene, yavaş yavaş"
+    "[bir dilim peynir dene|bi dilim peynirle başla], [yavaş yavaş|azar azar|yavaştan]"
    ]
   ]
  },
@@ -3508,27 +3508,27 @@
   "turlar": [
    [
     "A",
-    "çay mı kahve mi, bir karar verin artık"
+    "[çay mı kahve mi|çay mı kahve mi millet], [bir karar verin artık|karar verin artık|bitirelim şu işi]"
    ],
    [
     "B",
-    "çay, tartışmaya gerek yok"
+    "[çay|çay tabii], [tartışmaya gerek yok|tartışılmaz|konu kapandı]"
    ],
    [
     "C",
-    "kahve, sabahları çay bana yetmiyor"
+    "[kahve|kahve bence], [sabahları çay bana yetmiyor|sabah çay yetmiyor|çay beni uyandırmıyor]"
    ],
    [
     "A",
-    "ben ikisini birden içiyorum"
+    "[ben ikisini birden içiyorum|ben ikisini de içiyorum|bende ikisi de var]"
    ],
    [
     "B",
-    "olmaz, bir tarafı seçmen lazım"
+    "[olmaz|olmaz öyle], [bir tarafı seçmen lazım|bir taraf seçeceksin|taraf seçmek zorundasın]"
    ],
    [
     "A",
-    "o zaman öğlene kadar kahve, sonra çay"
+    "[o zaman öğlene kadar kahve, sonra çay|öğlene kadar kahve, sonra çay|sabah kahve, öğleden sonra çay]"
    ]
   ]
  },
@@ -3540,27 +3540,27 @@
   "turlar": [
    [
     "A",
-    "bir bardak çay içmeden insan olamıyorum"
+    "[bir bardak çay içmeden insan olamıyorum|bi bardak çay içmeden kendime gelemiyorum|çay içmeden insan olamam]"
    ],
    [
     "B",
-    "ben kahve içmeden konuşamıyorum"
+    "[ben kahve içmeden konuşamıyorum|ben kahvesiz konuşamam|bende kahve içmeden ağız açılmaz]"
    ],
    [
     "A",
-    "o zaman sabah sen konuşma, ben konuşurum"
+    "[o zaman sabah sen konuşma, ben konuşurum|sabah sen sus, ben konuşurum|o zaman sabahları konuşma benden]"
    ],
    [
     "B",
-    "anlaştık"
+    "[anlaştık|anlaştık o zaman|tamam anlaşma]"
    ],
    [
     "C",
-    "ben ikinizden önce kalkıp ikisini de demliyorum"
+    "[ben ikinizden önce kalkıp ikisini de demliyorum|ben ikinizden erken kalkıp ikisini de hazırlıyorum|ben erken kalkar ikisini de yaparım]"
    ],
    [
     "A",
-    "{C} ev arkadaşı olmak istiyorum"
+    "{C} [ev arkadaşı olmak istiyorum|ev arkadaşım olur musun|seninle ev arkadaşı olalım]"
    ]
   ]
  },
@@ -3572,27 +3572,27 @@
   "turlar": [
    [
     "A",
-    "çay demlemenin doğru yolu ne, herkes başka söylüyor"
+    "[çay demlemenin doğru yolu ne|çay nasıl demlenir doğrusu], [herkes başka söylüyor|herkes farklı diyor|herkesin yöntemi ayrı]"
    ],
    [
     "B",
-    "önce demliği ısıt, sonra çayı koy"
+    "[önce demliği ısıt|demliği önce ısıt], [sonra çayı koy|sonra çayı at|ardından çay]"
    ],
    [
     "C",
-    "on beş dakika demlenecek, acele yok"
+    "[on beş dakika demlenecek|on beş dakika demlensin], [acele yok|acele etme|sabırla]"
    ],
    [
     "D",
-    "bir de kaynar suyu az koy, sonra tamamla"
+    "[bir de kaynar suyu az koy|bi de suyu az koy], [sonra tamamla|sonra üstünü tamamla|sonra ekle]"
    ],
    [
     "A",
-    "üç kişi üç farklı tarif"
+    "[üç kişi üç farklı tarif|üç kişi, üç tarif|herkesten başka tarif]"
    ],
    [
     "B",
-    "üçü de doğru"
+    "[üçü de doğru|hepsi doğru|üçü de doğru ama]"
    ]
   ]
  },
@@ -3604,23 +3604,23 @@
   "turlar": [
    [
     "A",
-    "kahve telvesi bitki için gübre oluyormuş"
+    "[kahve telvesi bitki için gübre oluyormuş|kahve telvesi bitkiye gübreymiş|telve gübre oluyormuş]"
    ],
    [
     "B",
-    "evet, ben saksılara koyuyorum"
+    "[evet|evet doğru], [ben saksılara koyuyorum|ben saksılara dökerim|saksılarıma koyuyorum]"
    ],
    [
     "C",
-    "bitkin kahve içmiş olur"
+    "[bitkin kahve içmiş olur|bitki de kahveci olur|bitkiler de kahve içsin]"
    ],
    [
     "A",
-    "bitkin sabah uyanık olur"
+    "[bitkin sabah uyanık olur|bitki sabah dinç olur|sabah uyanık bitki]"
    ],
    [
     "B",
-    "çok iyi[ haha|]"
+    "[çok iyi|güzeldi|iyiydi bu][ haha|]"
    ]
   ]
  },
@@ -3632,23 +3632,23 @@
   "turlar": [
    [
     "A",
-    "misafir geldi, ikisi de çay ister sandım, biri kahve istedi"
+    "[misafir geldi|misafirler geldi], [ikisi de çay ister sandım, biri kahve istedi|ikisi de çay der sandım, biri kahve dedi]"
    ],
    [
     "B",
-    "yeniden demle"
+    "[yeniden demle|kahve yap o zaman|bir de kahve yap]"
    ],
    [
     "A",
-    "kahve makinesi yok, cezve ile yaptım"
+    "[kahve makinesi yok|makine yok], [cezve ile yaptım|cezveyle yaptım|cezveye koydum]"
    ],
    [
     "C",
-    "cezve kahvesi en güzeli"
+    "[cezve kahvesi en güzeli|en güzeli cezve kahvesi|cezve kahvesinin üstüne yok]"
    ],
    [
     "A",
-    "misafir de öyle dedi, kanal kurtardı beni"
+    "[misafir de öyle dedi|misafir de aynısını dedi], [kanal kurtardı beni|kanal sayesinde kurtuldum|kanala teşekkürler]"
    ]
   ]
  },
@@ -3660,31 +3660,31 @@
   "turlar": [
    [
     "A",
-    "patlıcan dünyanın en güzel sebzesi"
+    "[patlıcan dünyanın en güzel sebzesi|patlıcan sebzelerin kralı|en güzel sebze patlıcan]"
    ],
    [
     "B",
-    "patlıcanı sevmeyen biri olarak katılmıyorum"
+    "[patlıcanı sevmeyen biri olarak katılmıyorum|patlıcan sevmeyen biri olarak itiraz ediyorum|katılmıyorum, ben patlıcan sevmem]"
    ],
    [
     "C",
-    "patlıcan sevmeyen biri olur mu"
+    "[patlıcan sevmeyen biri olur mu|patlıcan sevmeyen olur mu ya|nasıl sevmezsin patlıcanı]"
    ],
    [
     "B",
-    "olur, ben"
+    "[olur, ben|olur, işte ben|ben varım]"
    ],
    [
     "A",
-    "{B} sen karnıyarık yemedin mi"
+    "{B} [sen karnıyarık yemedin mi|karnıyarık yemedin mi sen|sen hiç karnıyarık yemedin mi]"
    ],
    [
     "B",
-    "yedim, sevmedim"
+    "[yedim, sevmedim|yedim, beğenmedim|yedim ama sevmedim]"
    ],
    [
     "D",
-    "bu kanalda bölünme başladı"
+    "[bu kanalda bölünme başladı|kanal ikiye bölündü|kanalda ayrılık başladı]"
    ]
   ]
  },
@@ -3696,27 +3696,27 @@
   "turlar": [
    [
     "A",
-    "kışın sıcak çorba, yazın soğuk karpuz. hangisi kazanır"
+    "[kışın sıcak çorba, yazın soğuk karpuz|kışın çorba, yazın karpuz]. [hangisi kazanır|hangisi daha iyi|seçin bakalım]"
    ],
    [
     "B",
-    "karpuz"
+    "[karpuz|karpuz tabii|karpuz bence]"
    ],
    [
     "C",
-    "çorba"
+    "[çorba|çorba tabii|çorba bence]"
    ],
    [
     "A",
-    "beraberlik"
+    "[beraberlik|berabere|bir bir]"
    ],
    [
     "B",
-    "karpuz ve peynir, o zaman kazanırım"
+    "[karpuz ve peynir|karpuz peynir], [o zaman kazanırım|o zaman kazandım|bununla kazanırım]"
    ],
    [
     "C",
-    "çorba ve ekmek, bende de"
+    "[çorba ve ekmek|çorba ekmek], [bende de|ben de bunu koyarım|o zaman yine berabere]"
    ]
   ]
  },
@@ -3728,27 +3728,27 @@
   "turlar": [
    [
     "A",
-    "bence dağ evinde yaşamak deniz kenarından güzel"
+    "[bence dağ evinde yaşamak deniz kenarından güzel|dağ evi deniz kenarından güzel bence|dağ evi, deniz kenarı fark atar]"
    ],
    [
     "B",
-    "nem yok mu dağda"
+    "[nem yok mu dağda|dağda nem yok mu|dağda nem olmaz mı]"
    ],
    [
     "A",
-    "nem yok, ama soğuk var"
+    "[nem yok|nem yok tabii], [ama soğuk var|soğuk var ama|ama soğuk]"
    ],
    [
     "C",
-    "deniz kenarı güzel, sabah balık"
+    "[deniz kenarı güzel|deniz kenarı daha güzel], [sabah balık|sabahları balık|sabah taze balık]"
    ],
    [
     "A",
-    "dağda sabah ötüşen kuşlar"
+    "[dağda sabah ötüşen kuşlar|dağda sabah kuş sesleri|dağda sabahları kuşlar]"
    ],
    [
     "B",
-    "ikisini de kiralayın[ haha|]"
+    "[ikisini de kiralayın|ikisini de tutun|ikisini birden alın][ haha|]"
    ]
   ]
  },
@@ -3760,27 +3760,27 @@
   "turlar": [
    [
     "A",
-    "evde pijamayla mı duruluyor, eşofmanla mı"
+    "[evde pijamayla mı duruluyor, eşofmanla mı|evde pijama mı eşofman mı|evde pijamacı mısınız eşofmancı mı]"
    ],
    [
     "B",
-    "pijama, rahat"
+    "[pijama|pijama tabii], [rahat|en rahatı|daha rahat]"
    ],
    [
     "C",
-    "eşofman, kapı çalarsa açabilirsin"
+    "[eşofman|eşofman bence], [kapı çalarsa açabilirsin|kapı çalınca açarsın|kapıya çıkabilirsin]"
    ],
    [
     "A",
-    "pijamayla da açılır"
+    "[pijamayla da açılır|pijamayla da açarsın|pijamayla da açılıyor]"
    ],
    [
     "C",
-    "açılmaz, komşu görür"
+    "[açılmaz|açılmaz ya], [komşu görür|komşu görür sonra|komşular görür]"
    ],
    [
     "B",
-    "komşu da pijamalıdır"
+    "[komşu da pijamalıdır|komşu da pijamayla|o da pijamalı zaten]"
    ]
   ]
  },
@@ -3792,27 +3792,27 @@
   "turlar": [
    [
     "A",
-    "sabah yatağı toplamak şart mı"
+    "[sabah yatağı toplamak şart mı|yatak toplamak şart mı|sabah yatağı toplar mısınız]"
    ],
    [
     "B",
-    "şart, güne düzenli başlarsın"
+    "[şart|şart tabii], [güne düzenli başlarsın|düzenli başlarsın güne|güne düzenli başlanır]"
    ],
    [
     "C",
-    "akşam yine yatacaksın, neden toplayayım"
+    "[akşam yine yatacaksın|akşam nasılsa yine yatacağım], [neden toplayayım|niye toplayayım|boşuna]"
    ],
    [
     "A",
-    "bu çok mantıklı bir argüman"
+    "[bu çok mantıklı bir argüman|çok mantıklı bir argüman|mantıklı, itiraz edemiyorum]"
    ],
    [
     "B",
-    "mantıklı ama tembel"
+    "[mantıklı ama tembel|mantıklı ama tembelce|tembel mantığı]"
    ],
    [
     "C",
-    "ben tembellik yapmıyorum, enerji tasarrufu"
+    "[ben tembellik yapmıyorum|tembellik değil bu], [enerji tasarrufu|enerji tasarrufu yapıyorum|enerji koruyorum]"
    ]
   ]
  },
@@ -3824,31 +3824,31 @@
   "turlar": [
    [
     "A",
-    "duş sıcak mı soğuk mu"
+    "[duş sıcak mı soğuk mu|duş sıcak mı olur soğuk mu|sıcak duş mu soğuk mu]"
    ],
    [
     "B",
-    "kaynar sıcak"
+    "[kaynar sıcak|kaynar su|sıcak, buhar olsun]"
    ],
    [
     "C",
-    "sabah soğuk, uyandırıyor"
+    "[sabah soğuk|soğuk], [uyandırıyor|insanı uyandırır|tak diye uyanırsın]"
    ],
    [
     "A",
-    "soğuk duş işkence"
+    "[soğuk duş işkence|soğuk duş işkence ya|soğuk duş zulüm]"
    ],
    [
     "C",
-    "işkence ama iyi geliyor"
+    "[işkence ama iyi geliyor|işkence ama yarar|zor ama iyi geliyor]"
    ],
    [
     "B",
-    "ben ikisinin ortası, ılık"
+    "[ben ikisinin ortası|ben ortası], [ılık|ılık seviyorum|ılık su]"
    ],
    [
     "A",
-    "ılık her şeyin ortası"
+    "[ılık her şeyin ortası|ılık hep orta yol|ılık tam orta]"
    ]
   ]
  },
@@ -3860,27 +3860,27 @@
   "turlar": [
    [
     "A",
-    "gece yemek yemek yasak mı"
+    "[gece yemek yemek yasak mı|gece yemek yasak mı|gece yemek yenir mi]"
    ],
    [
     "B",
-    "yasak değil ama sağlıksız"
+    "[yasak değil ama sağlıksız|yasak değil, sağlıksız ama|yasak değil, sağlıklı da değil]"
    ],
    [
     "C",
-    "gece acıkınca ne yapacağız, uyuyamıyoruz"
+    "[gece acıkınca ne yapacağız|gece acıkınca ne yapalım], [uyuyamıyoruz|uyuyamıyoruz ki|aç uyunmaz]"
    ],
    [
     "A",
-    "bir bardak süt"
+    "[bir bardak süt|bi bardak süt|bir bardak süt iç]"
    ],
    [
     "C",
-    "süt tok tutmaz"
+    "[süt tok tutmaz|süt doyurmaz|süt yetmez]"
    ],
    [
     "B",
-    "bir parça peynir, kural ihlali sayılmaz"
+    "[bir parça peynir|bi parça peynir], [kural ihlali sayılmaz|ihlal sayılmaz|sayılmaz o]"
    ]
   ]
  },
@@ -3892,27 +3892,27 @@
   "turlar": [
    [
     "A",
-    "denizde mi yüzülür havuzda mı"
+    "[denizde mi yüzülür havuzda mı|deniz mi havuz mu|yüzmek denizde mi havuzda mı]"
    ],
    [
     "B",
-    "deniz, havuzdaki klor gözümü yakıyor"
+    "[deniz|deniz tabii], [havuzdaki klor gözümü yakıyor|klor gözümü yakıyor|havuz suyu gözümü yakar]"
    ],
    [
     "C",
-    "havuz, denizde balık değiyor ayağıma"
+    "[havuz|havuz bence], [denizde balık değiyor ayağıma|denizde ayağıma balık değiyor|denizde balıklar ayağıma çarpıyor]"
    ],
    [
     "B",
-    "balık arkadaştır"
+    "[balık arkadaştır|balık arkadaş|balıklar dost]"
    ],
    [
     "C",
-    "ayağıma değen arkadaş istemem"
+    "[ayağıma değen arkadaş istemem|ayağıma dokunan arkadaş istemem|öyle arkadaş istemem]"
    ],
    [
     "A",
-    "bu tartışma bitmez"
+    "[bu tartışma bitmez|bu tartışma hiç bitmez|bu bitmeyecek]"
    ]
   ]
  },
@@ -3924,27 +3924,27 @@
   "turlar": [
    [
     "A",
-    "domates meyve mi sebze mi"
+    "[domates meyve mi sebze mi|domates sebze mi meyve mi|domates ne şimdi, meyve mi sebze mi]"
    ],
    [
     "B",
-    "sebze tabii"
+    "[sebze tabii|sebze|tabii ki sebze]"
    ],
    [
     "C",
-    "bilimsel olarak meyve"
+    "[bilimsel olarak meyve|bilime göre meyve|aslında meyve]"
    ],
    [
     "B",
-    "meyve salatasına domates koyuyor musun"
+    "[meyve salatasına domates koyuyor musun|meyve salatasına domates atar mısın|meyve tabağına domates koyar mısın]"
    ],
    [
     "C",
-    "koymuyorum ama"
+    "[koymuyorum ama|koymam ama|yok ama]"
    ],
    [
     "A",
-    "{B} kazandı bu turu"
+    "{B} [kazandı bu turu|bu turu aldı|bu turun galibi]"
    ]
   ]
  },
@@ -3958,23 +3958,23 @@
   "turlar": [
    [
     "A",
-    "tatilden döndüm, patron \"seni çok aradık\" dedi"
+    "[tatilden döndüm|tatil bitti, döndüm], [patron \"seni çok aradık\" dedi|patron \"seni çok özledik\" dedi|patron \"çok arandın\" dedi]"
    ],
    [
     "B",
-    "güzel, değerli hissettin"
+    "[güzel|ne güzel], [değerli hissettin|değerli olduğunu gördün|kıymetin anlaşıldı]"
    ],
    [
     "A",
-    "masalar dağılmış, bardaklar karışmış"
+    "[masalar dağılmış|masalar darmadağın], [bardaklar karışmış|bardaklar birbirine girmiş|her şey karışmış]"
    ],
    [
     "C",
-    "senin yokluğun hissedilmiş demek"
+    "[senin yokluğun hissedilmiş demek|demek yokluğun hissedilmiş|yokluğun belli olmuş]"
    ],
    [
     "A",
-    "ben de bir hafta toparlayacağım"
+    "[ben de bir hafta toparlayacağım|bir hafta toparlamakla geçecek|ben de bir hafta toplarım artık]"
    ]
   ]
  },
@@ -3986,27 +3986,27 @@
   "turlar": [
    [
     "A",
-    "{B} bu kanalda tanıştık ama hiç sohbet etmedik, nasılsın"
+    "{B} [bu kanalda tanıştık ama hiç sohbet etmedik|kanalda tanışıyoruz ama hiç konuşmadık], [nasılsın|nasılsın bakalım|ne var ne yok]"
    ],
    [
     "B",
-    "iyiyim, sen nasılsın"
+    "[iyiyim|iyiyim valla], [sen nasılsın|sen nasılsın peki|sende ne var ne yok]"
    ],
    [
     "A",
-    "ben de iyiyim, hep seni okuyorum"
+    "[ben de iyiyim|ben de iyiyim valla], [hep seni okuyorum|seni hep okuyorum|mesajlarını hep okurum]"
    ],
    [
     "B",
-    "bu çok tatlı, ben de seni okuyorum"
+    "[bu çok tatlı|ne tatlı], [ben de seni okuyorum|ben de seni okuyorum ya|ben de seninkileri okurum]"
    ],
    [
     "C",
-    "yeni bir arkadaşlık başlıyor"
+    "[yeni bir arkadaşlık başlıyor|yeni bir dostluk doğuyor|bir arkadaşlık başlıyor]"
    ],
    [
     "A",
-    "çay ile kutlayalım"
+    "[çay ile kutlayalım|çayla kutlayalım|çaylar benden, kutlayalım]"
    ]
   ]
  },
@@ -4018,27 +4018,27 @@
   "turlar": [
    [
     "A",
-    "telefonumun sesi kısıldı, açamıyorum"
+    "[telefonumun sesi kısıldı|telefonun sesi gitti], [açamıyorum|açamadım|sesi açamıyorum]"
    ],
    [
     "B",
-    "sessiz modda olabilir, yandaki tuşa bak"
+    "[sessiz modda olabilir|sessizde olabilir], [yandaki tuşa bak|yan tuşa bak|kenardaki tuşa bak]"
    ],
    [
     "A",
-    "tuş açık"
+    "[tuş açık|tuş açık ama|açık duruyor]"
    ],
    [
     "C",
-    "ayarlardan sese bak, ses düzeyini çek"
+    "[ayarlardan sese bak|ayarlara gir, sese bak], [ses düzeyini çek|sesi yükselt|ses çubuğunu çek]"
    ],
    [
     "A",
-    "oldu! herkes beni duyuyor şimdi"
+    "[oldu!|oldu ya!|tamam oldu!], [herkes beni duyuyor şimdi|şimdi herkes duyuyor|şimdi bütün ev duyuyor]"
    ],
    [
     "B",
-    "sesli mesajlarını bekliyoruz"
+    "[sesli mesajlarını bekliyoruz|sesli mesaj bekleriz o zaman|artık sesli mesaj atarsın]"
    ]
   ]
  },
@@ -4050,23 +4050,23 @@
   "turlar": [
    [
     "A",
-    "{A.yer} tarafındaki markette indirim varmış, bilen var mı"
+    "{A.yer} tarafındaki [markette indirim varmış|markette indirim var], [bilen var mı|duyan var mı|giden oldu mu]"
    ],
    [
     "B",
-    "ben {B.yer} taraflarındayım, biraz uzak"
+    "ben {B.yer} [taraflarındayım|civarındayım], [biraz uzak|bana uzak|uzak kalıyor]"
    ],
    [
     "C",
-    "ben gittim, deterjan yarı fiyat"
+    "[ben gittim|ben uğradım], [deterjan yarı fiyat|deterjan yarı fiyatına|deterjanlar yarı fiyat]"
    ],
    [
     "A",
-    "gidiyorum o zaman"
+    "[gidiyorum o zaman|o zaman gidiyorum|hemen gidiyorum]"
    ],
    [
     "C",
-    "kalmadıysa üzülme, sabah yine getiriyorlar"
+    "[kalmadıysa üzülme|bitmişse üzülme], [sabah yine getiriyorlar|sabah yine geliyor|sabah tekrar diziyorlar]"
    ]
   ]
  },
@@ -4078,27 +4078,27 @@
   "turlar": [
    [
     "A",
-    "bugün küçük bir şey beni çok mutlu etti"
+    "[bugün küçük bir şey beni çok mutlu etti|bugün ufak bir şey beni çok sevindirdi|bugün küçücük bir şeye çok sevindim]"
    ],
    [
     "B",
-    "ne oldu"
+    "[ne oldu|ne oldu anlat|neymiş]"
    ],
    [
     "A",
-    "otobüste bir çocuk bana el salladı"
+    "[otobüste bir çocuk bana el salladı|otobüste bi çocuk bana el salladı|otobüste küçük bir çocuk el salladı]"
    ],
    [
     "C",
-    "bu güzel, küçük şeyler önemli"
+    "[bu güzel|ne güzel], [küçük şeyler önemli|küçük şeyler çok önemli|mutluluk küçük şeylerde]"
    ],
    [
     "D",
-    "ben de bugün balkonda güneşlendim, mutluydum"
+    "[ben de bugün balkonda güneşlendim|bugün ben de balkonda güneşlendim], [mutluydum|çok mutluydum|iyi geldi]"
    ],
    [
     "A",
-    "böyle şeyleri paylaşalım burada"
+    "[böyle şeyleri paylaşalım burada|böyle şeyleri burada paylaşalım|bunları paylaşalım hep]"
    ]
   ]
  },
@@ -4110,27 +4110,27 @@
   "turlar": [
    [
     "A",
-    "rüyamda koca bir sofra vardı, uyandım aç"
+    "[rüyamda koca bir sofra vardı|rüyamda kocaman bir sofra gördüm], [uyandım aç|uyandım, açım|aç uyandım]"
    ],
    [
     "B",
-    "sofrada ne vardı"
+    "[sofrada ne vardı|ne vardı sofrada|neler vardı]"
    ],
    [
     "A",
-    "her şey, annemin bütün yemekleri"
+    "[her şey|her şey vardı], [annemin bütün yemekleri|annemin bütün yemekleri vardı|annemin yaptığı her şey]"
    ],
    [
     "C",
-    "bu rüya bir mesaj, anneni ara"
+    "[bu rüya bir mesaj|bu bir işaret], [anneni ara|hemen anneni ara|annene bir telefon et]"
    ],
    [
     "A",
-    "aradım, akşam yemeğe çağırdı"
+    "[aradım|aradım bile], [akşam yemeğe çağırdı|akşama yemeğe çağırdı|akşam yemeğe davet etti]"
    ],
    [
     "B",
-    "rüya gerçek oldu"
+    "[rüya gerçek oldu|rüya çıktı|rüyan gerçekleşti]"
    ]
   ]
  },
@@ -4142,23 +4142,23 @@
   "turlar": [
    [
     "A",
-    "okul kantininde tost için yarım saat kuyruk beklerdik"
+    "[okul kantininde tost için yarım saat kuyruk beklerdik|kantinde tost için yarım saat sıra beklerdik|okulda tost kuyruğu yarım saat sürerdi]"
    ],
    [
     "B",
-    "bir de teneffüs ziliyle koşardık"
+    "[bir de teneffüs ziliyle koşardık|bi de zil çalınca koşardık|zil çalınca kantine koşardık]"
    ],
    [
     "C",
-    "ben kantinde ayran ve simit, hep aynı"
+    "[ben kantinde ayran ve simit|benim kantin menüm ayran simit], [hep aynı|her gün aynı|değişmezdi]"
    ],
    [
     "A",
-    "şimdi o tadı hiçbir yerde bulamıyorum"
+    "[şimdi o tadı hiçbir yerde bulamıyorum|o tadı hiçbir yerde bulamıyorum artık|şimdi o tadı bulmak imkansız]"
    ],
    [
     "D",
-    "tadı değil, anısı güzel olan"
+    "[tadı değil, anısı güzel olan|güzel olan tadı değil, anısı|tat değil, anı güzel]"
    ]
   ]
  },
@@ -4170,27 +4170,27 @@
   "turlar": [
    [
     "A",
-    "buzdolabının kapısını açık bıraktım, sabah her şey ılıktı"
+    "[buzdolabının kapısını açık bıraktım|buzdolabının kapısı açık kalmış], [sabah her şey ılıktı|sabah her şey ılınmıştı|sabah her şey ılık]"
    ],
    [
     "B",
-    "eyvah, neler bozuldu"
+    "[eyvah|eyvah ya], [neler bozuldu|ne bozuldu|bir şey bozuldu mu]"
    ],
    [
     "A",
-    "yoğurt biraz, ama et sağlam"
+    "[yoğurt biraz|yoğurt biraz gitmiş], [ama et sağlam|et sağlam ama|et kurtuldu]"
    ],
    [
     "C",
-    "ılık yoğurt tehlikeli, at"
+    "[ılık yoğurt tehlikeli|ılınmış yoğurt riskli], [at|at onu|atmak lazım]"
    ],
    [
     "A",
-    "attım, kalbim kırıldı"
+    "[attım|attım ama], [kalbim kırıldı|içim acıdı|üzüldüm]"
    ],
    [
     "D",
-    "bir dahaki sefere kapıyı kontrol et"
+    "[bir dahaki sefere kapıyı kontrol et|bi dahakine kapıya bak|bir dahaki sefer kapıyı iyice kapat]"
    ]
   ]
  },
@@ -4202,23 +4202,23 @@
   "turlar": [
    [
     "A",
-    "trafik yüzünden otobüsten inip yürüdüm, otobüsten önce vardım"
+    "[trafik yüzünden otobüsten inip yürüdüm|trafikte otobüsten inip yürüdüm], [otobüsten önce vardım|otobüsü geçtim|otobüsten erken vardım]"
    ],
    [
     "B",
-    "klasik"
+    "[klasik|klasik ya|olur böyle]"
    ],
    [
     "A",
-    "otobüs geldiğinde ben durakta bekliyordum"
+    "[otobüs geldiğinde ben durakta bekliyordum|otobüs geldiğinde ben duraktaydım|otobüs geldi, ben zaten duraktaydım]"
    ],
    [
     "C",
-    "otobüsü geçtin, tebrikler"
+    "[otobüsü geçtin|otobüsü yendin], [tebrikler|helal|bravo]"
    ],
    [
     "A",
-    "yürüyüşün zaferi"
+    "[yürüyüşün zaferi|yürüyüş kazandı|yürümenin zaferi]"
    ]
   ]
  },
@@ -4230,27 +4230,27 @@
   "turlar": [
    [
     "A",
-    "{bayram} için şekerleme aldım, kapıya gelecek çocuklar için"
+    "{bayram} için [şekerleme aldım|şeker aldım], [kapıya gelecek çocuklar için|kapıya gelen çocuklar için|çocuklar için]"
    ],
    [
     "B",
-    "ne güzel"
+    "[ne güzel|güzel|ne hoş]"
    ],
    [
     "A",
-    "ama ben yedim yarısını"
+    "[ama ben yedim yarısını|ama yarısını ben yedim|ama yarısı bitti bile]"
    ],
    [
     "C",
-    "yeniden al"
+    "[yeniden al|yenisini al|bir daha al]"
    ],
    [
     "A",
-    "aldım, şimdi onu da yemem lazım değil mi"
+    "[aldım|aldım bile], [şimdi onu da yemem lazım değil mi|şimdi onu da yemeliyim değil mi|onu da yiyeyim mi]"
    ],
    [
     "B",
-    "yemeyeceksin {A}, sabır"
+    "[yemeyeceksin|dokunmayacaksın|sakın yeme] {A}, [sabır|sabret|biraz sabır]"
    ]
   ]
  },
@@ -4262,27 +4262,27 @@
   "turlar": [
    [
     "A",
-    "sabah pişi yaptım, mahalle kokuyor"
+    "[sabah pişi yaptım|sabah pişi kızarttım], [mahalle kokuyor|mahalleyi koku sardı|bütün sokak kokuyor]"
    ],
    [
     "B",
-    "pişi efsane, beyaz peynirle"
+    "[pişi efsane|pişi bir harika], [beyaz peynirle|yanında beyaz peynir|beyaz peynirle bir de]"
    ],
    [
     "C",
-    "ben bal ile yerim"
+    "[ben bal ile yerim|ben balla yerim|bence balla]"
    ],
    [
     "A",
-    "ikisi de serbest, sıcak sıcak"
+    "[ikisi de serbest|ikisi de olur], [sıcak sıcak|sıcakken|sıcak sıcak yenir]"
    ],
    [
     "D",
-    "davet var mı"
+    "[davet var mı|bize de davet var mı|biz de gelebilir miyiz]"
    ],
    [
     "A",
-    "herkese açık, kapı açık"
+    "[herkese açık|herkes davetli], [kapı açık|kapı açık, gelin|buyurun]"
    ]
   ]
  },
@@ -4294,27 +4294,27 @@
   "turlar": [
    [
     "A",
-    "gece kahve içersem uyuyamıyorum, ama içtim"
+    "[gece kahve içersem uyuyamıyorum|gece kahve içince uyuyamıyorum], [ama içtim|yine de içtim|ama içtim işte]"
    ],
    [
     "B",
-    "neden içtin"
+    "[neden içtin|niye içtin|e niye içtin]"
    ],
    [
     "A",
-    "bilmiyorum, canım istedi"
+    "[bilmiyorum|bilmiyorum ki], [canım istedi|canım çekti|içesim geldi]"
    ],
    [
     "C",
-    "şimdi kanalda sabaha kadar sohbet"
+    "[şimdi kanalda sabaha kadar sohbet|şimdi sabaha kadar kanal|o zaman sabaha kadar burdasın]"
    ],
    [
     "A",
-    "aynen, kim benimle"
+    "[aynen|aynen ya], [kim benimle|kim var benimle|kim eşlik eder]"
    ],
    [
     "B",
-    "ben buradayım, gece kuşu"
+    "[ben buradayım|ben varım], [gece kuşu|gece kuşu olarak|gece kuşu nöbette]"
    ]
   ]
  },
@@ -4326,27 +4326,27 @@
   "turlar": [
    [
     "A",
-    "uzun mesaj mı kısa mesaj mı"
+    "[uzun mesaj mı kısa mesaj mı|kısa mesaj mı uzun mesaj mı|uzun mu yazarsınız kısa mı]"
    ],
    [
     "B",
-    "kısa"
+    "[kısa|kısa tabii|kısa bence]"
    ],
    [
     "C",
-    "uzun, duyguları ifade etmek için"
+    "[uzun|uzun bence], [duyguları ifade etmek için|duyguları anlatmak için|duygu için uzun lazım]"
    ],
    [
     "B",
-    "duygular kısa da olur"
+    "[duygular kısa da olur|duygu kısa da anlatılır|kısa da duygu olur]"
    ],
    [
     "C",
-    "\"tamam\" duygu mu"
+    "[\"tamam\" duygu mu|\"tamam\" duygu mu ya|\"tamam\" ne duygusu]"
    ],
    [
     "A",
-    "işte bu kanalın ebedi tartışması"
+    "[işte bu kanalın ebedi tartışması|bu kanalın ebedi tartışması|kanalın bitmeyen tartışması]"
    ]
   ]
  },
@@ -4358,27 +4358,27 @@
   "turlar": [
    [
     "A",
-    "{B} dün aradım açmadın, darıldın mı"
+    "{B} [dün aradım açmadın|dün aradım, açmadın], [darıldın mı|kızdın mı|küs müsün]"
    ],
    [
     "B",
-    "yok, telefon sessizdeydi, şimdi gördüm"
+    "[yok|yok ya], [telefon sessizdeydi, şimdi gördüm|telefon sessizdeydi, yeni gördüm|sessizde kalmış, şimdi gördüm]"
    ],
    [
     "A",
-    "oh, rahatladım"
+    "[oh, rahatladım|oh be, rahatladım|rahatladım]"
    ],
    [
     "B",
-    "ne istemiştin"
+    "[ne istemiştin|ne için aramıştın|hayırdır, ne istedin]"
    ],
    [
     "A",
-    "hiçbir şey, sadece sesini duymak"
+    "[hiçbir şey|hiç], [sadece sesini duymak|sadece sesini duymak istedim|sesini duymak için]"
    ],
    [
     "C",
-    "bu kanalda dostluk böyle"
+    "[bu kanalda dostluk böyle|dostluk böyle olur|kanalda dostluk bu]"
    ]
   ]
  },
@@ -4390,27 +4390,27 @@
   "turlar": [
    [
     "A",
-    "bugün anahtarımı kaybettim, nerede buldum biliyor musunuz"
+    "[bugün anahtarımı kaybettim|bugün anahtarlar kayboldu], [nerede buldum biliyor musunuz|bakın nerede buldum|nereden çıktı bilin]"
    ],
    [
     "B",
-    "nerede"
+    "[nerede|nerde|neredeymiş]"
    ],
    [
     "A",
-    "buzdolabında, peynirin yanında"
+    "[buzdolabında|dolapta], [peynirin yanında|peynirin dibinde|peynirle beraber]"
    ],
    [
     "C",
-    "sabah aceleyle koymuşsun"
+    "[sabah aceleyle koymuşsun|sabah acele ederken koymuşsun|aceleden koymuşsundur]"
    ],
    [
     "A",
-    "hiç hatırlamıyorum"
+    "[hiç hatırlamıyorum|hiç hatırlamıyorum ya|aklımda yok]"
    ],
    [
     "D",
-    "en güzel saklama yeri, kimse bulamaz"
+    "[en güzel saklama yeri|en iyi saklama yeri], [kimse bulamaz|hırsız bile bulamaz|kimsenin aklına gelmez]"
    ]
   ]
  }

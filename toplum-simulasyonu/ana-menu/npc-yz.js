@@ -922,11 +922,11 @@
   const IPLIK = () => (typeof NPCIplik !== 'undefined' ? NPCIplik : (typeof globalThis !== 'undefined' && globalThis.NPCIplik) || null);
   const FIG_MESLEK = [['kurye', 5], ['garson', 4], ['market_calisani', 4], ['insaat_iscisi', 3], ['memur', 2.2], ['muhasebeci', 1.4], ['usta', 1.5], ['emlak_danismani', 1], ['nakliyeci', .5], ['kafe_sahibi', .6], ['dukkan_sahibi', .7], [null, 2.2]];
   function figuranlar(meta) {
-    if (meta.figuran && meta.figuran.length) return meta.figuran;
+    if (meta.figuran && meta.figuran.length >= 400) return meta.figuran;
     const rng = rngYap(hash('figuran:' + Object.keys(meta.npc).slice(0, 3).join(',')));
     const adlar = new Set(Object.values(meta.npc).map(k => k.gorunen));
     meta.figuran = [];
-    for (let i = 0; i < 220; i++) {
+    for (let i = 0; i < 400; i++) {
       const yasak = (meta.adKontrol || '').split(/\s+/)[0].toLocaleLowerCase('tr');
       let k = kimlikUret(rng); for (let j = 0; j < 12 && (adlar.has(k.gorunen) || (yasak && k.ad.toLocaleLowerCase('tr') === yasak)); j++) k = kimlikUret(rng); adlar.add(k.gorunen);
       const mk = FIG_MESLEK[agirlikliSec(rng, FIG_MESLEK.map((x, ii) => ii), ii => FIG_MESLEK[ii][1])][0];
@@ -935,11 +935,11 @@
     return meta.figuran;
   }
   function yabanciKalabalik(meta) {
-    if (meta.yabanciK && meta.yabanciK.length && meta.yabanciKS === 2) return meta.yabanciK;
-    meta.yabanciKS = 2;
+    if (meta.yabanciK && meta.yabanciK.length && meta.yabanciKS === 3) return meta.yabanciK;
+    meta.yabanciKS = 3;
     const rng = rngYap(hash('yabanciK:' + (meta.yabanci[0] || {}).gorunen));
     meta.yabanciK = [];
-    for (let i = 0; i < 260; i++) { const y = yabanciUret(rng, i + 1000); y.id = 'g' + i; delete y.servetUsd; meta.yabanciK.push(y); }
+    for (let i = 0; i < 400; i++) { const y = yabanciUret(rng, i + 1000); y.id = 'g' + i; delete y.servetUsd; meta.yabanciK.push(y); }
     return meta.yabanciK;
   }
   NPCYZ.figuranBul = (meta, id) => (meta.figuran || []).find(x => x.id === id) || (meta.yabanciK || []).find(x => x.id === id) || null;
@@ -1004,9 +1004,12 @@
     sb.turlar.forEach(([r0], i) => { if (ilk[r0] == null) ilk[r0] = i; });
     sb.turlar.forEach(([r0, m], i) => { for (const x of m.matchAll(/\{([ABCD])\}/g)) if (ilk[x[1]] > i) ileri.add(x[1]);
       for (const [re, k] of ROL_CIKARIM) if (re.test(m)) (cik[r0] = cik[r0] || new Set()).add(k); });
+    const CELISKI = [['kiraci', 'evsahibi'], ['borclu', 'borcsuz'], ['issiz', 'patron']];
+    for (const r0 in cik) for (const [a1, a2] of CELISKI) if (cik[r0].has(a1) && cik[r0].has(a2)) { cik[r0].delete(a1); cik[r0].delete(a2); }
+    for (const k of sb.kosul || []) { const r0 = k[0], kk = k.slice(2); if (cik[r0]) for (const [a1, a2] of CELISKI) { if (kk === a1) cik[r0].delete(a2); if (kk === a2) cik[r0].delete(a1); } }
     const VEDA_RE = /(görüşürüz|gorusuruz|iyi geceler|kaçtım|kactim|ben çıkıyorum|ben çıktım|goodnight|good night|\bbye\b|gotta go|me voy|tschüss|tschuss|bis morgen|getdim|gecəniz xeyr|ma3 el salama|تصبحون)/i;
     const vedaRol = {}; sb.turlar.forEach(([r0, m], i) => { if (VEDA_RE.test(m) && sb.turlar.slice(i + 1).some(x => x[0] === r0)) vedaRol[r0] = vedaRol[r0] == null ? i : vedaRol[r0]; });
-    b = { sicak: SICAK_RE.test(metin), soguk: SOGUK_RE.test(metin), ileri, cik, vedaRol, bayramYazi: /bayram/i.test(metin.replace(/\{bayram[^}]*\}/g, '')), bayramSlot: /\{bayram/.test(metin), imza: (sb.konu || '') + '|' + sb.turlar.map(x => x[0]).join('') };
+    b = { sicak: SICAK_RE.test(metin), soguk: SOGUK_RE.test(metin), ileri, cik, vedaRol, bayramYazi: /bayram/i.test(metin.replace(/\{bayram[^}]*\}/g, '')), bayramSlot: /\{bayram/.test(metin), imza: (sb.konu || '') + '|' + sb.turlar.map(x => x[0] + (x[1].match(/\{[^}]*\}/g) || []).length + (x[1].replace(/\[[^\]]*\]/g, 'X').split(/\s+/).length > 6 ? 'u' : 'k')).join('') };
     sablonBilgi.set(sb, b); return b;
   }
   /** Oyun takvimine göre mevsim (oyun 1 Ocak'ta başlar). */
@@ -1028,11 +1031,13 @@
     let bgun = 1; while (bgun < 60 && !((ozelGun(world.day + bgun) || {}).bayram)) bgun++;
     meta.iplImza = meta.iplImza || {};
     const uygunMevsim = x => { const b = sablonCoz(x); if (b.bayramYazi && !bayramYakin && !(b.bayramSlot && bgun <= 20)) return false; if (b.bayramSlot && bgun > 20 && !bayramYakin) return false;
-      if (kanal === 'global' && meta.iplImza[b.imza] && meta.iplImza[b.imza].dil !== dilSec && t - meta.iplImza[b.imza].t < 3600e3) return false;
+      if (kanal === 'global' && meta.iplImza[b.imza] && meta.iplImza[b.imza].dil !== dilSec && t - meta.iplImza[b.imza].t < 10 * 60e3) return false;
       return mv === 'kis' ? !b.sicak : mv === 'yaz' ? !b.soguk : !(b.sicak && b.soguk); };
-    let aday = havuz.filter(x => !aktif.has(x.id) && (!x.saat || x.saat === dlm) && uygunMevsim(x) && !(meta.iplSon[x.id] && t - meta.iplSon[x.id] < 8 * 3600e3));
+    const saatUyar = x => kanal === 'global' || !x.saat || x.saat === dlm; // yabancılar farklı saat dilimlerinde
+    let aday = havuz.filter(x => !aktif.has(x.id) && saatUyar(x) && uygunMevsim(x) && !(meta.iplSon[x.id] && t - meta.iplSon[x.id] < 8 * 3600e3));
     if (kanal === 'global') { const a2 = aday.filter(x => !x.konu || !aktifKonu.has(x.konu)); if (a2.length) aday = a2; }
-    const liste = aday.length ? aday : havuz.filter(x => !aktif.has(x.id) && uygunMevsim(x)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 20);
+    // Havuz yetmezse en uzun süredir kullanılmayanlar (LRU) eklenir; tek bir uygunsuz şablona takılmaz
+    const liste = aday.length >= 30 ? aday : aday.concat(havuz.filter(x => !aktif.has(x.id) && !aday.includes(x) && saatUyar(x) && uygunMevsim(x)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 40));
     const kisiHavuz = kanal === 'global' ? yabanciKalabalik(meta).filter(y => y.dil === dilSec).map(y => y.id).concat(meta.yabanci.filter(y => y.dil === dilSec).map(y => y.id)) : Object.keys(meta.npc).concat(figuranlar(meta).map(f => f.id));
     if (!liste.length) return null;
     for (let deneme = 0; deneme < 6; deneme++) {
@@ -1048,7 +1053,7 @@
         const sec = agirlikliSec(rng, uygun, id => {
           const kb = kanal === 'global' ? null : kisiBak(world, meta, id);
           if (kanal !== 'global' && (!kb || !kos.every(k => kosulUyar(kb, k)))) return 0;
-          const n = meta.npc[id] || NPCYZ.figuranBul(meta, id); if (n && n.vedaZaman && t - n.vedaZaman < 4 * 3600e3 && t >= n.vedaZaman) return 0;
+          const n = meta.npc[id] || NPCYZ.figuranBul(meta, id); if (n && n.vedaZaman && t - n.vedaZaman < 90 * 60e3 && t >= n.vedaZaman) return 0;
           const kr = (n && DUZEN[n.kronotip]) ? DUZEN[n.kronotip][saat] : .5;
           return .08 + kr;
         });
@@ -1080,7 +1085,7 @@
     else metin = yabanciStil(metin, kim, rng);
     metin = emojisiz(metin);
     if (!metin) return null;
-    if (!sb.turlar.slice(ip.i + 1).some(x => x[0] === r0)) { try { if ((dil().niyetBul)(metin, { adlar: [] }).niyet === 'veda' && kim) kim.vedaZaman = ip.t; } catch (e) { } }
+    if (!sb.turlar.slice(ip.i + 1).some(x => x[0] === r0) && kim && /(görüşürüz|gorusuruz|iyi geceler|kaçtım|kactim|ben çıkıyorum|ben çıktım|yatıyorum|yatmaya gidiyorum|goodnight|good night|\bbye\b|gotta go|me voy|tschüss|bis morgen|getdim|gecəniz xeyr|ma3 el salama)/i.test(metin)) kim.vedaZaman = ip.t;
     const ad = kanal === 'global' ? (kim.gorunen) : ks.gorunen;
     return { npcId: id, ad, metin, iplik: ip.id, yabanci: kanal === 'global' || undefined, dil: ip.dil || undefined, figuran: (!meta.npc[id]) || undefined };
   }
@@ -1147,7 +1152,7 @@
       if (!m) continue;
       // Aynı cümle kanalda yakın zamanda geçtiyse yazılmaz; vedalaşan kişi saatlerce yazmaz
       { const nm = normSoz(m.metin); if ((meta.kanalSon || []).includes(nm)) continue; meta.kanalSon = (meta.kanalSon || []).concat([nm]).slice(-150); }
-      if (m.npcId && meta.npc[m.npcId]) { const kv = meta.npc[m.npcId]; if (kv.vedaZaman && zaman - kv.vedaZaman < 4 * 3600e3) continue; try { if ((dil().niyetBul)(m.metin, { adlar: [] }).niyet === 'veda' && !m.cevap) kv.vedaZaman = zaman; } catch (e) { } }
+      if (m.npcId && meta.npc[m.npcId]) { const kv = meta.npc[m.npcId]; if (kv.vedaZaman && zaman - kv.vedaZaman < 90 * 60e3) continue; try { if ((dil().niyetBul)(m.metin, { adlar: [] }).niyet === 'veda' && !m.cevap) kv.vedaZaman = zaman; } catch (e) { } }
       m.zaman = zaman; m.kanal = kanal; m.id = 'k' + (++meta.sayac); m.oyunGun = world.day;
       yeni.push(m);
     }
@@ -1216,7 +1221,7 @@
   function konusanSec(world, meta, rng, saat, filtre) {
     const yakin = new Set([].concat(...Object.values(meta.kanal || {}).map(l => l.slice(-8).map(m => m.npcId))));
     const simdi0 = Date.now();
-    return agirlikliSec(rng, Object.keys(meta.npc).filter(id => world.players[id] && (!filtre || filtre(id)) && !(meta.npc[id].vedaZaman && simdi0 - meta.npc[id].vedaZaman < 4 * 3600e3 && simdi0 >= meta.npc[id].vedaZaman)), id => { const k = meta.npc[id]; return DUZEN[k.kronotip][saat] * (.15 + k.k.sosyal) * (1 + Math.max(0, k.ruh) * .3) * (yakin.has(id) ? .15 : 1); });
+    return agirlikliSec(rng, Object.keys(meta.npc).filter(id => world.players[id] && (!filtre || filtre(id)) && !(meta.npc[id].vedaZaman && simdi0 - meta.npc[id].vedaZaman < 90 * 60e3 && simdi0 >= meta.npc[id].vedaZaman)), id => { const k = meta.npc[id]; return DUZEN[k.kronotip][saat] * (.15 + k.k.sosyal) * (1 + Math.max(0, k.ruh) * .3) * (yakin.has(id) ? .15 : 1); });
   }
 
   // Başkasının iyi haberine tepki (cevap.tebrik "tebrik edilene teşekkür" kalıbıdır, bu değil)
