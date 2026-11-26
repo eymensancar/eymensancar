@@ -1,0 +1,4300 @@
+[
+ {
+  "id": "ar3-gom3a-teta-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[غدا الجمعة عند تيتا، كل العيلة|اليوم غدا العيلة عند ستي|لمة الجمعة عند جدتي، كالعادة]"
+   ],
+   [
+    "B",
+    "[shu el menu?|eh el akl el naharda?|3amla eh teta?]"
+   ],
+   [
+    "A",
+    "[{s:food} w ba3dein kaman shay|{s:food}, w kol wa7ed beyakhod 3elba|{s:food} le7ad ma nefra2a3]"
+   ],
+   [
+    "C",
+    "[والعمات بيسألوا امتى رح تتزوج|وأكيد في سؤال \"وإنت امتى؟\"|وحدا رح يسألك عن الشغل والراتب]"
+   ],
+   [
+    "A",
+    "[رح قلهم إني عم بوفر لشقة باللعبة|جوابي جاهز: عم جمّع لشقة|بقلهم \"بعد الشقة\"]"
+   ],
+   [
+    "B",
+    "[jawab zaki|da hayenfa3|estrategiya momtaza]"
+   ],
+   [
+    "C",
+    "[وبعدين اهرب عالمطبخ|وبعدين غيّر الموضوع للأكل|وبعدين روح ساعد بالجلي]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-falafel-sob7-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[فلافل سخنة من العربية الصبح، ما في أحلى|فطوري اليوم فلافل من الشارع|وقفت عند عربية الفول والفلافل]"
+   ],
+   [
+    "B",
+    "[ma3 tahina wala ma3 salata?|sandwich wala tabaq?|fe torshi?]"
+   ],
+   [
+    "A",
+    "[ma3 kol 7aga|sandwich w torshi|tabaq kbeer, ana ga3an]"
+   ],
+   [
+    "C",
+    "[أنا فطوري {s:drink} وبس|أنا ما بفطر، بشرب {s:drink}|{s:drink} هو فطوري]"
+   ],
+   [
+    "B",
+    "[{C}, kda ghalat|{C} lazem takol|da mesh fetar ya {C}]"
+   ],
+   [
+    "C",
+    "[tayeb, bokra falafel|ok, ha3azemko bokra|tamam, el {s:day} falafel]"
+   ],
+   [
+    "A",
+    "[اتفقنا|ماشي|حلو]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-shawarma-leil-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[الساعة وحدة بالليل وأنا بدور على شاورما|مين بعرف محل شاورما فاتح هلأ|جوعان، وبدي شاورما بنص الليل]"
+   ],
+   [
+    "B",
+    "[el ma7al elli 3al naseya fate7 24 sa3a|fe wa7ed 3and el dawar|delivery kda kda fate7]"
+   ],
+   [
+    "A",
+    "[ana keselt, mesh 3ayez anzel|el bard bara fazee3|mesh ha2dar albes w anzel]"
+   ],
+   [
+    "C",
+    "[كل {s:food} اللي بالبراد|اعمل {s:food} بسرعة|في {s:food} من مبارح؟]"
+   ],
+   [
+    "A",
+    "[fe {s:food} men embare7, tamam|la2, mafeesh 7aga|aho, la2eet {s:food}]"
+   ],
+   [
+    "B",
+    "[ba3d nos el leil el calories msh bet2ra|el akl bel leil 7alal 3al calories|bel hana]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ahwa-ba3d-shoghl-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[خلصت شغل، مين نازل عالقهوة|بعد الدوام، قعدة عالقهوة؟|مين بدو يطلع ع المقهى الليلة]"
+   ],
+   [
+    "B",
+    "[ana, bas mesh ba3d tes3a|ana gay, nos sa3a|yalla, 3and el ahwa el adeema]"
+   ],
+   [
+    "C",
+    "[أنا تعبان، رح ضل بالبيت مع {s:drink}|لا يا عمي، بدي بيت مع {s:drink}|أنا رح نام، أو {s:drink} وتلفزيون]"
+   ],
+   [
+    "A",
+    "[{C}, kol yom keda|{C} rag3et 3agooz|{C} ya3ni mafeesh fayda]"
+   ],
+   [
+    "C",
+    "[el {s:day} akeed|el marra el gaya|wa3d, el {s:day}]"
+   ],
+   [
+    "B",
+    "[سجلنا|كتبناها|اوك، رح نتذكر]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sahlab-shita-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[البرد اليوم بيقص، بدي سحلب|ما في متل السحلب بالشتي|الشتا بدها سحلب مع قرفة]"
+   ],
+   [
+    "B",
+    "[ma3 mekassarat w joz el hend|sa7lab ma3 fosto2|ana b7eb sa7lab bel 2erfa]"
+   ],
+   [
+    "C",
+    "[أنا بحب {s:drink} أكتر بالشتي|أنا جماعة {s:drink}|عندي {s:drink} ببرد الشتي]"
+   ],
+   [
+    "A",
+    "[ma3lesh {C}, sa7lab awel|kol wa7ed w zaw2o|tamam, bas garreb el sa7lab]"
+   ],
+   [
+    "B",
+    "[نعمل جلسة شتوية|بدنا قعدة دافية|في حدا عنده صوبة؟]"
+   ],
+   [
+    "C",
+    "[3andi sobba w {s:food}|3andi, w kaman {s:food}|ta3alo 3andi, fe {s:food}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-matar-amman-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[الدنيا عم تشتي من الصبح|مطر، مطر، والشوارع غرقت|الشتوة اليوم قوية]"
+   ],
+   [
+    "B",
+    "[el share3 b2a ba7r|el 3arabeyat w2fet|kol makan maya]"
+   ],
+   [
+    "A",
+    "[w nseet {s:thing} fel beit|w {s:thing} fel beit tab3an|w ana men gheir {s:thing}]"
+   ],
+   [
+    "C",
+    "[باللعبة ما في مطر، هيك أحسن|منيح اللي باللعبة الطقس ما بيأثر|باللعبة الكورير ما بيتبهدل]"
+   ],
+   [
+    "A",
+    "[ya reit kont fel le3ba|3ayez a3eesh fel le3ba|el le3ba aryah]"
+   ],
+   [
+    "B",
+    "[صبرك|بالسلامة|انتبه عالطريق]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-talg-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[في توقعات تلج على عمّان|يقولوا رح تتلج بكرا|الكل عم يحكي عن التلج]"
+   ],
+   [
+    "B",
+    "[el kol ra7 yeshtri khobz w beid|el kol fel souq bel khobz|3adet el ba2alat te2zab]"
+   ],
+   [
+    "A",
+    "[ana eshtareit {s:food} w ba2et mestaneya|ana mestaned, 3andi {s:food}|gahez, fe {s:food} fel bet]"
+   ],
+   [
+    "C",
+    "[وإذا ما تلجت؟|كل سنة بيقولوا وما بتتلج|بدي أشوف بعيني]"
+   ],
+   [
+    "A",
+    "[sa3etha nakol {s:food} w khalas|yeb2a 3azooma bel {s:food}|mesh mohem, el akl mawgood]"
+   ],
+   [
+    "B",
+    "[هيك الشغل|منطق قوي|حلو]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-turki-kolay-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[تعلمت من لاعب تركي كلمة \"kolay gelsin\"|لاعب تركي قلّي \"kolay gelsin\"|كلمة تركية جديدة: kolay gelsin]"
+   ],
+   [
+    "B",
+    "[ya3ni eh?|shu ma3naha?|targemha]"
+   ],
+   [
+    "A",
+    "[يعني \"يعطيك العافية\" تقريباً، للي عم يشتغل|بتنقال للي بيشتغل|متل \"يعطيك العافية\"]"
+   ],
+   [
+    "C",
+    "[حلوة، عنا متلها|عنا \"يعطيك العافية\"، نفس الفكرة|نفس الشي بالضبط]"
+   ],
+   [
+    "A",
+    "[oltaha le {s:family} wa2t el tanzeef|garrabtaha ma3 {s:family}|dehk men {s:family} lamma oltaha]"
+   ],
+   [
+    "B",
+    "[w eh el rad?|7asal eh?|rad el fe3l?]"
+   ],
+   [
+    "A",
+    "[7ayra shwaya w ba3dein dehk|gali so2al: gebtaha mnein?|el rad: \"enta b2eit torki\"]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-tamam-3arabi-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الأتراك بيقولوا \"tamam\" متلنا بالظبط|اكتشفت إنو \"tamam\" كلمة مشتركة|التركي قال \"tamam\" وأنا فهمت]"
+   ],
+   [
+    "B",
+    "[ah, kalemat keteer moshtaraka|fe keteer zay kida|kitap w kalem kaman]"
+   ],
+   [
+    "C",
+    "[\"hesap\" = حساب، \"saat\" = ساعة، \"hava\" = هوا|\"dünya\" = دنيا|حتى \"merhaba\" = مرحبا]"
+   ],
+   [
+    "A",
+    "[ya3ni ana ba3raf torki men gheir ma at3allem|ana tel3et torki men zaman|ana torki w mesh 3aref]"
+   ],
+   [
+    "B",
+    "[hahaha, la2 msh lel daraga di|zay {s:family} ma3 el mosalsalat el torkeya|habba habba, zay {s:family}]"
+   ],
+   [
+    "C",
+    "[بس انتبه، في كلمات نفس اللفظ ومعنى تاني|بعض الكلمات بتغش|في مفاجآت]"
+   ],
+   [
+    "A",
+    "[zay eh?|masalan?|e7ki]"
+   ],
+   [
+    "C",
+    "[معلومة لبكرا|بسأل صاحبي التركي وبقلك|ما بتذكر هلأ، بس في]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-afiyet-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[afiyet olsun ya gama3a|afiyet olsun, ra7 a2kol|afiyet olsun lel kol]"
+   ],
+   [
+    "B",
+    "[يعني \"صحتين\"، صح؟|يعني بالهنا والشفا|هاي \"صحة وهنا\"]"
+   ],
+   [
+    "A",
+    "[بالظبط|أيوا|تمام، هيك]"
+   ],
+   [
+    "C",
+    "[shu 3al 3asha?|eh el akl?|btakol eh?]"
+   ],
+   [
+    "A",
+    "[{s:food}|{s:food}, men 2eid {s:family}|{s:food}, akl beiti]"
+   ],
+   [
+    "C",
+    "[afiyet olsun!|bel hana w el shefa|sa7tein]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-gecmis-olsun-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ana 3ayan, kol gesmi waga3ni|gali bard gamed|ana nayem fel sereer men el sokhoneya]"
+   ],
+   [
+    "B",
+    "[geçmiş olsun!|geçmiş olsun ya {A}|salamtak, geçmiş olsun]"
+   ],
+   [
+    "A",
+    "[shukran, bas eh ma3naha?|sm3taha abl kda, ya3ni eh?|geçmiş olsun ya3ni eh?]"
+   ],
+   [
+    "B",
+    "[يعني \"تمرق على خير\"، بتنقال للمريض|متل \"سلامتك\"|يعني تمرق على خير]"
+   ],
+   [
+    "C",
+    "[ishrab {s:drink} w nam|{s:drink} w rahah|keteer {s:drink} sokhn]"
+   ],
+   [
+    "A",
+    "[7ader|shukran ya gama3a|ento 7elwin]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-abi-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ليش الأتراك كلهم بيقولولي \"abi\"|حدا قلي \"abi\"، منيح ولا عيب؟|شو يعني \"abi\"؟]"
+   ],
+   [
+    "B",
+    "[يعني الأخ الكبير، احترام|أخ كبير، كلمة حلوة|زي \"يا خوي\"]"
+   ],
+   [
+    "C",
+    "[lw enti bent, \"abla\"|lel banat \"abla\"|el mo2annath \"abla\"]"
+   ],
+   [
+    "A",
+    "[ana b2eit abi, level up|abi {A}, 3agbetni|rasmeyan abi]"
+   ],
+   [
+    "B",
+    "[oltaha le {s:family}?|garrabha ma3 {s:family}|2ol le {s:family} kda]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-jadid-ahlan-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[مرحبا، أنا جديد من مبارح|أهلين، أول يوم إلي|هاي، لسا جديد هون]"
+   ],
+   [
+    "B",
+    "[ahlan w sahlan|ya hala|nawwart]"
+   ],
+   [
+    "C",
+    "[منين إنت؟|من أي مدينة؟|من وين؟]"
+   ],
+   [
+    "A",
+    "[men {A.sehir}|{A.sehir}|ana fe {A.sehir}]"
+   ],
+   [
+    "B",
+    "[نصيحة: ابدأ بشغلة سهلة، كورير أو جرسون، ووفّر|اشتغل شغلة بسيطة وجمّع|أول شي شغل، بعدين كورسات]"
+   ],
+   [
+    "C",
+    "[w matsrafsh kol felosak 3ala {s:food} awel osboo3|w balash tesraf kolo 3ala {s:food}|matedi3sh kolo fel {s:food}, haha]"
+   ],
+   [
+    "A",
+    "[ta2akhart|oops|3amaltaha khalas]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-jadid-shoghl-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أنا جديدة، شو الشغل اللي بتنصحوني فيه؟|لسا واصلة، بأي شغل بلّش؟|أول يوم، أي شغل مربح؟]"
+   ],
+   [
+    "B",
+    "[كورير إذا بتلعبي كتير، بتقبضي عالطلبية|كورير، إذا نشيطة|كل ما وصلتي أكتر، قبضتي أكتر]"
+   ],
+   [
+    "C",
+    "[موظفة حكومة إذا وقتك قليل، بس بدك كورس|الموظف بيقبض حتى لو ما لعب|للوظيفة لازم كورس أول]"
+   ],
+   [
+    "A",
+    "[tayeb, ha2bda2 courier|ok, courier|tamam, courier]"
+   ],
+   [
+    "B",
+    "[w matenseesh el mahamm el yomeya|e3mli el 3 mahamm kol yom|el mahamm el yomeya bteddi sa3a ramleya]"
+   ],
+   [
+    "A",
+    "[shukran, hageeb {s:drink} w ab2a|awel {s:drink}, ba3dein shoghl|{s:drink} w yalla]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-istifta-shita-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[استفتاء: الشتا ولا الصيف؟|شتا ولا صيف، شو بتحبوا أكتر؟|بسرعة: شتا أو صيف]"
+   ],
+   [
+    "B",
+    "[الصيف، بردانة من تشرين|الصيف أكيد|الصيف دايماً]"
+   ],
+   [
+    "C",
+    "[el shita, 3ashan {s:drink} w el batteneya|shita, {s:drink} 3al kanaba|shita, ba7eb {s:drink} w ana bashoof el matar]"
+   ],
+   [
+    "D",
+    "[الخريف، أنا متمرد|الربيع، إنتو التنين غلطانين|أنا مع الربيع]"
+   ],
+   [
+    "A",
+    "[{D}, ma kansh fe ekhteyar kda|{D}, msh masmoo7|{D} kasar el estefta2]"
+   ],
+   [
+    "D",
+    "[mesh farqa|mesh mohem|ana thabet]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-istifta-fotoor-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[فطور حلو ولا مالح؟|الفطور: حلو أو مالح؟|شو بتفطروا، حلو ولا مالح؟]"
+   ],
+   [
+    "B",
+    "[مالح، لبنة وزعتر|مالح دايماً|فول وبيض]"
+   ],
+   [
+    "C",
+    "[حلو، مربى|حلو، زي الولاد|عسل وقشطة، آسف]"
+   ],
+   [
+    "D",
+    "[ana bafter {s:food}, mafeesh 2awa3ed|el sob7 3andi {s:food}|fetar? {s:food} men embare7]"
+   ],
+   [
+    "B",
+    "[{D}, da mesh fetar|{D}, ma bte7sab|{D}, malak?]"
+   ],
+   [
+    "D",
+    "[da efficiency|el ba2aya a7san fetar|baared a7la]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mahshi-lamma-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[اليوم لفّينا محشي كل العيلة|قعدة لف محشي مع ستي والعمات|يوم المحشي العائلي]"
+   ],
+   [
+    "B",
+    "[kam wa7ed laffeito?|mia?|alf?]"
+   ],
+   [
+    "A",
+    "[ana laffeit 3eshreen bas, w el ba2y 3ala {s:family}|ana 3ashra w ba3dein ze2eit|el asra3 fina kolena: {s:family}]"
+   ],
+   [
+    "C",
+    "[المحشي الحقيقي بيجي من القعدة والحكي|أطيب شي الحديث وإنتو عم تلفوا|اللف هو الحفلة]"
+   ],
+   [
+    "A",
+    "[w el akl?|w ba3d kol da el akl khelis fe 3ashar da2aye2|sa3tein laf, 3asher da2aye2 akl]"
+   ],
+   [
+    "B",
+    "[هاي قصة كل بيت|دايماً هيك|قانون العيلة]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-khotoba-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[عندي خطوبة ابن عمي الخميس|خطوبة بالعيلة، والكل رايح|الأسبوع الجاي عرس قرايبي]"
+   ],
+   [
+    "B",
+    "[el musi2a le7ad el fagr|ha tor2os le7ad el sob7|geeb sama3at lel wedan]"
+   ],
+   [
+    "A",
+    "[ana gay 3ashan el akl, sara7a|lw fe {s:food}, mwafe2|a7san 7aga: {s:food}]"
+   ],
+   [
+    "C",
+    "[والخالات رح يسألوا \"وإنت امتى؟\"|وأكيد في حدا رح يقلك \"عقبالك\"|استعد للسؤال]"
+   ],
+   [
+    "A",
+    "[ha2ool ana bagama3 le sha2a fel le3ba|gawabi: el sha2a el awel|\"ba3d el sha2a\" w khalas]"
+   ],
+   [
+    "B",
+    "[جواب ذكي|رح يمشي|خطة ممتازة]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sha2a-tawfeer-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[عم جمّع لدفعة أولى لشقة باللعبة|هدفي: الدفعة الأولى لأول شقة|بدي أخلص من الأجار]"
+   ],
+   [
+    "B",
+    "[fadel 2ad eh?|wasalt fein?|kam na2ess?]"
+   ],
+   [
+    "A",
+    "[el nos ma3aya|ta2reeban 60%|lessa ketir bas mashy]"
+   ],
+   [
+    "C",
+    "[مع القرض الدفعة تقريباً الخمس|الدفعة حوالي ٢٠٪|بدك بس ٢٠٪ دفعة]"
+   ],
+   [
+    "A",
+    "[bas el as3ar betetla3 kol shahr|el moshkela el taddakhom|ana bawaffar w el as3ar betgri]"
+   ],
+   [
+    "B",
+    "[kamel, hatwsal|ma testaslemsh|shwaya shwaya]"
+   ],
+   [
+    "A",
+    "[el naharda {s:food} bas, khetta tawfeer|wad3 el tawfeer: {s:food} kol yom|{s:food} badal el mat3am]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-borsa-imta-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[حدا بيعرف امتى رح تنزل البورصة؟|البورصة امتى جاية؟|في أخبار عن البورصة؟]"
+   ],
+   [
+    "B",
+    "[بيقولوا مع التحديث الجاي|مع التحديث الجاي، هيك بيقولوا|لسا لأ، بس جاية]"
+   ],
+   [
+    "A",
+    "[ana 3amalt khetta khalas|ana ekhtart ashom mesh mawgooda|ana gahez, el donya mesh gahza]"
+   ],
+   [
+    "C",
+    "[بتشتري شي مش موجود؟|خطة لميزة مش موجودة؟|إنت سابق زمانك]"
+   ],
+   [
+    "A",
+    "[el esti3dad kol 7aga|awel wa7ed yeksab|ana 3ayez akoon el awel]"
+   ],
+   [
+    "B",
+    "[ana mestani bel raa7a ma3 {s:hobby}|ana mestani ma3 shwayet {s:hobby}|le7ad ma tegi, {s:hobby}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-kafe-fadi-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الكافيه تبعي فاضي اليوم|ما في زباين بالكافيه|المبيعات نزلت هالشهر]"
+   ],
+   [
+    "B",
+    "[fata7 kafeh tani gamb?|fe monafsa gdeeda?|lama yeb2a fe kafehat aktar, el zabayen betet2assem]"
+   ],
+   [
+    "A",
+    "[etnein gdad fel man6e2a|aywa, wa7ed gambi bel zabt|ghaleban aywa]"
+   ],
+   [
+    "C",
+    "[وظّف ناس ثابتين، المؤقت غالي|مع موظفين حقيقيين بيزيد الدخل|المؤقت غالي وشغله ضعيف]"
+   ],
+   [
+    "A",
+    "[fata7t e3lan, mafeesh 7ad|7atait e3lan w mafeesh|mestanni]"
+   ],
+   [
+    "B",
+    "[estanna, w eshrab {s:drink}|{s:drink} w estanna|rayya7, {s:drink}, hayeego]"
+   ],
+   [
+    "A",
+    "[ana el zboon el wa7eed|3ala el a2al fe 7ad beyeshtri|ana zboon nafsi]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mo2a22at-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الموظف المؤقت عم يكلفني كتير|ليش المؤقت غالي هيك؟|المؤقتين رح يفلسوني]"
+   ],
+   [
+    "B",
+    "[3ashan twazzaf 7ad 7a2i2i|ma3mool kda 3ashan tdawwar 3ala nas|ghali w ba6ee2, 3ashan twazzaf]"
+   ],
+   [
+    "A",
+    "[bas mafeesh 7ad bey2addem|mafeesh moraha|b7awel, mafeesh]"
+   ],
+   [
+    "C",
+    "[ارفع الراتب شوي بالإعلان|اعرض أكتر من الحد الأدنى|افتح الإعلان من جديد]"
+   ],
+   [
+    "A",
+    "[el {s:day} hagharrab|haghayaro el {s:day}|el {s:day} ha7awel tani]"
+   ],
+   [
+    "B",
+    "[bel tawfee2, ya ra2ees|ma testaslemsh|hayetla2a]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-kors-intidhar-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[باقي خمس أيام عالكورس|الكورس ما عم يخلص|الكورس طويل كتير]"
+   ],
+   [
+    "B",
+    "[khamas ayam = khamas sa3at bas|yom = sa3a, mesh ketir|e7sebha bel sa3at]"
+   ],
+   [
+    "A",
+    "[3aref, bas mesh ader astanna|3a2leyan fahem, 3atefeyan la2|bardo taweel]"
+   ],
+   [
+    "C",
+    "[الساعة الرملية بتقصّر|ساعة رملية لكل يوم|عندك ساعات رملية؟]"
+   ],
+   [
+    "A",
+    "[wa7da|etnein|wala wa7da]"
+   ],
+   [
+    "C",
+    "[esta3melha w e3mel shwayet {s:hobby}|esta3melha w ba3dein {s:hobby}|w ma3aha {s:hobby}, el wa2t yetir]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sa3a-majjani-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[كيف بجيب ساعة رملية ببلاش؟|في ساعات رملية مجانية؟|بقدر آخد ساعة رملية من غير ما ادفع؟]"
+   ],
+   [
+    "B",
+    "[٣ مهام يومية، بتجيك وحدة|بالمهام اليومية|اعمل التلات مهام، بتجي وحدة]"
+   ],
+   [
+    "A",
+    "[kol yom?|wa7da fel yom?|dayman kda?]"
+   ],
+   [
+    "B",
+    "[aywa, wa7da kol yom|kol yom|aywa, yomeyan]"
+   ],
+   [
+    "C",
+    "[ana ba3melhom el sob7 ma3 {s:drink}|taqsi: {s:drink} w mahamm|{s:drink}, 3 mahamm, w shoghl]"
+   ],
+   [
+    "A",
+    "[hakhod el taqs da|ha3mel zayak|khetta 7elwa]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-qard-khof-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[خايف آخد قرض|آخد قرض ولا لأ؟|القرض فكرة منيحة؟]"
+   ],
+   [
+    "B",
+    "[3ashan eh?|le eh?|7asab 3ashan eh]"
+   ],
+   [
+    "A",
+    "[lel daf3a el oola|3ashan aftah mashroo3|lel ma7al]"
+   ],
+   [
+    "C",
+    "[أهم شي ما تفوّت ولا قسط|إذا فوّتت ٣ أقساط، حجز|إذا بتدفع عالوقت، ما في مشكلة]"
+   ],
+   [
+    "B",
+    "[٢٤ شهر، احسبها أول|احسب قديش بتقدر تدفع بالشهر|احسبها على راتبك]"
+   ],
+   [
+    "A",
+    "[el {s:day} ha23od w a7seb|{s:day} ha3mel 7esab|ha7sebha el {s:day} bel raa7a]"
+   ],
+   [
+    "C",
+    "[برافو|هيك الصح|عاقل]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-taqyeem-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[تقييمي الائتماني طلع|أخيراً علامة القرض ارتفعت|التصنيف تبعي ارتفع، مبسوط]"
+   ],
+   [
+    "B",
+    "[bel dafe3 fel ma3ad?|3ashan el a2sat?|3amaltaha ezay?]"
+   ],
+   [
+    "A",
+    "[kol 2est fel ma3ad|wala marra et2akhart|ze el sa3a]"
+   ],
+   [
+    "C",
+    "[وهيك الحد بيرتفع كمان|حد القرض مرتبط فيها|وبدخل الشهر الماضي]"
+   ],
+   [
+    "A",
+    "[ha7tefel bel {s:food}|el naharda {s:food}, 3eid|lel e7tefal, {s:food}]"
+   ],
+   [
+    "B",
+    "[tesla7|testahel|bel hana]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-courier-shita-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الكورير بالشتي صعب|اليوم وصلت طلبات بالبرد|إيديّ صاروا تلج]"
+   ],
+   [
+    "B",
+    "[kam talab?|kam tawseela?|yestahel?]"
+   ],
+   [
+    "A",
+    "[etnashar, mesh wa7esh|keteer, yom kwayes|kefaya lel naharda]"
+   ],
+   [
+    "C",
+    "[الكورير بيقبض عالطلبية، البرد مصاري|كل طلبية بتنحسب، برافو|طلبيات أكتر، مصاري أكتر]"
+   ],
+   [
+    "A",
+    "[delwa2ti 3ayez {s:drink}|awel {s:drink} 3ashan adfa|{s:drink} w daffaya]"
+   ],
+   [
+    "B",
+    "[testahel|7a2ak|dalla3 nafsak]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-garson-1",
+  "konu": "is",
+  "kosul": [
+   "A.garson"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[كجرسون، كانون التاني هادي|ما في ناس بالكافيه|زباين قليلين هالشهر]"
+   ],
+   [
+    "B",
+    "[ba3d el agazat el kol beywaffar|fe yanayer mafeesh felos|3adi]"
+   ],
+   [
+    "A",
+    "[bardo ba3mel el mahamm|lw 3amalt 20 mohemma fel shahr, el ratib kamel|men gheir 20 mohemma, ma fe ratib kamel]"
+   ],
+   [
+    "C",
+    "[رح تقدر|إنت شغّيل|سهلة]"
+   ],
+   [
+    "A",
+    "[yarait, walla febrayer {s:food} bas|walla shahr kamel {s:food}|walla ha2kol {s:food}]"
+   ],
+   [
+    "B",
+    "[{s:food} mesh we7esh|fe as3ab men {s:food}|{s:food} kol yom mesh moshkela]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mowazzaf-1",
+  "konu": "is",
+  "kosul": [
+   "A.memur"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أحلى شي بالوظيفة: الراتب بيجي لو ما لعبت|حتى لو ما فتت، الراتب نازل|الوظيفة نعمة]"
+   ],
+   [
+    "B",
+    "[7asad|mesh 3adel|ana kaman 3ayez]"
+   ],
+   [
+    "A",
+    "[e3mel kors el emte7an el 7okoomi|kors w 30 yom khebra|kors, ba3dein khebra]"
+   ],
+   [
+    "C",
+    "[أنا بضل كورير، بحب الحركة|بحب كون نشيط|القعدة مش إلي]"
+   ],
+   [
+    "A",
+    "[kol wa7ed w taree2o|ana ba7eb el hodoo2|{s:drink} w hodoo2]"
+   ],
+   [
+    "B",
+    "[el {s:day} hasaggel|ghaleban el {s:day} abda2|hafakkar le7ad el {s:day}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mo7aseb-tamam-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[خلصت كورس المحاسبة!|صرت محاسب رسمياً|كورس المحاسب خلص]"
+   ],
+   [
+    "B",
+    "[mabrook!|gamed|brafo]"
+   ],
+   [
+    "A",
+    "[fadel el khebra|30 yom khebra|30 yom w gahez]"
+   ],
+   [
+    "C",
+    "[وبعدين راتب ثابت|راتب ثابت وإنت نايم|بستاهل]"
+   ],
+   [
+    "A",
+    "[el leila {s:food} lel e7tefal|ba7tefel bel {s:food}|el ga2eza: {s:food}]"
+   ],
+   [
+    "B",
+    "[testahel|bel hana|kamel kda]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-simsar-awel-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أول بيعة إلي كسمسار عقارات|قبضت أول عمولة|اليوم نزلت أول عمولة]"
+   ],
+   [
+    "B",
+    "[e7sasak eh?|kam kanet?|e7sas 7elw?]"
+   ],
+   [
+    "A",
+    "[zay ma ksebt yanaseeb soghayyar|mesh ketir bas ana fakhoor|ratib w 3omoola, mesh wa7esh]"
+   ],
+   [
+    "C",
+    "[يعني الكورس كان بيستاهل|الشهادة كانت استثمار منيح|الكورس طوّل؟]"
+   ],
+   [
+    "A",
+    "[kam yom, bel sa3a el ramleya asra3|bel sa3at el ramleya kan sare3|asra3 men ma tawa22a3t]"
+   ],
+   [
+    "B",
+    "[kallem {s:family} w 2ool el khabar|2ool le {s:family}|ebsot {s:family} bel khabar da]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ard-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الأرض بتجيب أجار؟|في دخل من الأرض؟|بتستاهل الأرض؟]"
+   ],
+   [
+    "B",
+    "[la2, mafeesh egar, bas ateemetha betzeed|bas el 2eema betzeed|mafeesh dakhl, bas 2eema]"
+   ],
+   [
+    "A",
+    "[ya3ni astanna|yeb2a asebha|sabr]"
+   ],
+   [
+    "C",
+    "[زي {s:hobby}، بدها صبر|صبر، متل {s:hobby}|{s:hobby} بتعلمك الصبر]"
+   ],
+   [
+    "A",
+    "[tashbeeh ghareeb|mesh rakba|tayeb ya {C}, zay ma t2ool]"
+   ],
+   [
+    "C",
+    "[ana mesh ragee3|rakba tamam|tashbeehi momtaz]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-egar-tali3-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الأجار عم ياكل نص راتبي|كل شهر نص المصاري للأجار|الأجار بيوجع]"
+   ],
+   [
+    "B",
+    "[3ashan kda el kol 3ayez sha2a|sha2a melkak w khalas egar|eshtri w e2fel bab el egar]"
+   ],
+   [
+    "A",
+    "[3aref, bawaffar|shwaya shwaya|bawaffar zay el magnoon]"
+   ],
+   [
+    "C",
+    "[وإذا عندك شقتين، التانية بتجيب أجار|بعدين بتأجر إنت|الشقة التانية بتدخل]"
+   ],
+   [
+    "A",
+    "[ba7lam bkda w ana ba3mel {s:hobby}|kol marra fe {s:hobby} bafakkar fe kda|da 7elmi]"
+   ],
+   [
+    "B",
+    "[el 7elm 3ayesh|yom ma, ya {A}|2areeban]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mafi-fawa2ed-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ليش ما في فوايد عالحساب؟|توفير من غير فايدة، جد؟|المصاري قاعدة، صفر فايدة]"
+   ],
+   [
+    "B",
+    "[3ashan el le3ba 3ayzak testathmer|3ashan te3mel 7aga|3ashan teshtri]"
+   ],
+   [
+    "C",
+    "[والتضخم عم ياكلها شوي شوي|كل شهر قيمتها بتقل|اللي بيوفر بيخسر من التضخم]"
+   ],
+   [
+    "A",
+    "[yeb2a ashtri 7aga|sha2a aw ard a7san|ha2stathmer]"
+   ],
+   [
+    "B",
+    "[aw esrafha 3ala {s:food}|{s:food} kaman estethmar|estethmar fel batn: {s:food}]"
+   ],
+   [
+    "C",
+    "[da mesh estrategiya ya {B}|2aseer el mada, ah|lel batn, aywa]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-milyon-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.zengin"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أول مليون باللعبة!|مليون بالحساب|صرت مليونير. باللعبة، بس مع ذلك]"
+   ],
+   [
+    "B",
+    "[ezay?|2ad eh akhadt?|el ser eh?]"
+   ],
+   [
+    "A",
+    "[ma7al w sha2tein mo2ageren|mashroo3 w egar|sabr w ma7al shaghal kwayes]"
+   ],
+   [
+    "C",
+    "[w delwa2ti?|el hadaf el gay?|hate3mel eh?]"
+   ],
+   [
+    "A",
+    "[sha2a2 aktar|tabarro3 lel som3a|ma7al tani]"
+   ],
+   [
+    "B",
+    "[ana ha2kol {s:food} 3ala sharafak|ba7tefel lak bel {s:food}|el naharda {s:food} 3ala esmak]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-tabarro3-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[التبرع باللعبة إلو فايدة؟|شو بيعطي التبرع؟|التبرع إلو معنى؟]"
+   ],
+   [
+    "B",
+    "[سمعة، نقطة لكل عشرة آلاف|بتاخد سمعة|كل عشرة آلاف نقطة]"
+   ],
+   [
+    "A",
+    "[w fel a3yad?|fe bonus?|7aga zeyada?]"
+   ],
+   [
+    "C",
+    "[بالأعياد الضعف|أيام الأعياد بتنحسب مرتين|بالعيد مرتين]"
+   ],
+   [
+    "A",
+    "[yeb2a astanna el 3eid|ha7ottaha lel 3eid|7elw a3raf]"
+   ],
+   [
+    "B",
+    "[والسمعة بتساعد بالتقييم وبطلبات الشغل|السمعة بتساعد تتوظف|بتنفع لكتير شغلات]"
+   ],
+   [
+    "C",
+    "[w kaman betfra7, zay lamma te2assem {s:food} ma3 {s:family}|w el wa7ed beyeb2a mabsoot|w 7elw, zay ma te3zem nas 3ala {s:food}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ma7al-mowazzaf-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[عم دوّر على بياع للمحل|حدا بدو يشتغل بمحلي؟|المحل بدو ناس]"
+   ],
+   [
+    "B",
+    "[btedfa3 kam?|el ratib kam?|btedfa3 eh?]"
+   ],
+   [
+    "A",
+    "[aktar men el 7ad el adna w fel ma3ad|3adel w dayman fel ma3ad|fel ma3ad, wa3d]"
+   ],
+   [
+    "C",
+    "[الدفع بالوقت أهم من الراتب العالي|المدير اللي بيدفع بالوقت دهب|هاد الأهم]"
+   ],
+   [
+    "B",
+    "[akol {s:food} w a2addem|edeeni 3ashar da2aye2, bakhallas {s:food}|awel {s:food}, ba3dein a2addem]"
+   ],
+   [
+    "A",
+    "[el e3lan maftoo7|7atait el e3lan|mestanneek]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-modeer-mafi-ratib-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[مديري باللعبة ما عندو مصاري لراتبي|الراتب ما نزل|المدير أفلس؟]"
+   ],
+   [
+    "B",
+    "[betetketeb deen|yeb2a madyon lak|betetsaggel]"
+   ],
+   [
+    "C",
+    "[وسمعته بتنزل|بيخسر سمعة|بتكلفه غالي]"
+   ],
+   [
+    "A",
+    "[3ala el a2al 3adel|tamam, 3adel|a7san men mafeesh]"
+   ],
+   [
+    "B",
+    "[momken tela2y shoghl tani|ghayyar|dawwar 3ala modeer a7san]"
+   ],
+   [
+    "A",
+    "[mestanni le7ad el {s:day}|hadeelo le7ad el {s:day}|le7ad el {s:day} w ba3dein hamshi]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-modeer-mnee7-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[مديري باللعبة دايماً بيدفع بالوقت|عندي أحسن مدير|تحية لمديري]"
+   ],
+   [
+    "B",
+    "[meen?|e7ki|fe kda?]"
+   ],
+   [
+    "C",
+    "[ana, ya {A}|ah, da ana|shukran ya {A}, et2assart]"
+   ],
+   [
+    "A",
+    "[{C}! makontsh a3raf ennak hena|ah, {C} beye2ra|ahlan ya ra2ees]"
+   ],
+   [
+    "C",
+    "[bokra {s:food} 3alaya|ga2eza: {s:food}|{s:food} 3ala 7esab el ma7al]"
+   ],
+   [
+    "B",
+    "[ana kaman 3ayez ashtaghal ma3 {C}|{C}, betwazzaf?|a2addem fein?]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-chay-torki-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[اشتريت كاسة شاي تركية|صار عندي كاسة \"ince belli\"|كاسة شاي جديدة، شكل التوليب]"
+   ],
+   [
+    "B",
+    "[ince belli!|ya3ni \"west rafee3\"، sa7?|el kasa el 7elwa]"
+   ],
+   [
+    "A",
+    "[aywa|bel zabt|ah]"
+   ],
+   [
+    "C",
+    "[w delwa2ti 3ashar kasat fel yom?|delwa2ti shay bas|mod2en shay gdeed]"
+   ],
+   [
+    "A",
+    "[talata fel yom, w ba3dein {s:drink}|bagheyyar ma3 {s:drink}|shay el sob7, {s:drink} bel leil]"
+   ],
+   [
+    "B",
+    "[tawazon momtaz|se77i|3a2el]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-yavas-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[كلمة تركية: yavaş yavaş|تعلمت \"yavaş yavaş\"|اليوم: yavaş yavaş]"
+   ],
+   [
+    "B",
+    "[ya3ni eh?|targama?|ma3naha?]"
+   ],
+   [
+    "A",
+    "[يعني شوي شوي|على مهلك، خطوة خطوة|متل \"على رواق\"]"
+   ],
+   [
+    "C",
+    "[da shi3ari fel le3ba|momtaza lel tawfeer|kda bawaffar lel sha2a]"
+   ],
+   [
+    "A",
+    "[w kaman lel {s:hobby}|{s:hobby} kaman kda|3andi lel {s:hobby}]"
+   ],
+   [
+    "B",
+    "[yavaş yavaş, kolo tamam|yavaş yavaş, mafeesh este3gal|sa7, yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sagol-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[لما التركي يقول \"sağ ol\"، شو برد؟|كيف بنرد على \"sağ ol\"؟|شو بنقول لما حدا يقول \"sağ ol\"؟]"
+   ],
+   [
+    "B",
+    "[\"sen de sağ ol\" aw \"rica ederim\"|bey2olo \"rica ederim\"|\"bir şey değil\"، 3ala ma a3taqed]"
+   ],
+   [
+    "A",
+    "[kol el ekhteyarat di|wow, tamam|hatmarran]"
+   ],
+   [
+    "C",
+    "[ana ba2ool \"shukran\" bas|ana ba2ool \"tamam\"|ana babtesem bas, haha]"
+   ],
+   [
+    "A",
+    "[hata3allemha ma3 {s:family}|hagarrabha 3ala {s:family}|el talmeez el gdeed: {s:family}]"
+   ],
+   [
+    "B",
+    "[2areeb hatetkallem|7elw|yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-gunaydin-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[günaydın!|günaydın lel kol|günaydın, zay el atrak]"
+   ],
+   [
+    "B",
+    "[sabah el kheir|günaydın leik enta kaman|sabah el nour]"
+   ],
+   [
+    "C",
+    "[يعني شو؟|ما فهمت شي|ترجموا]"
+   ],
+   [
+    "B",
+    "[يعني صباح الخير|معناها صباح الخير|حرفياً \"نهار منوّر\"، على ما أظن]"
+   ],
+   [
+    "C",
+    "[yeb2a günaydın w {s:drink} lel kol|günaydın, el {s:drink} gahez|günaydın, gawla {s:drink}]"
+   ],
+   [
+    "A",
+    "[momtaz|ana kaman|shukran ya {C}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ellerine-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[كتبت لتركي \"ellerine sağlık\"|اليوم استعملت \"ellerine sağlık\" أول مرة|تعلمت \"ellerine sağlık\"]"
+   ],
+   [
+    "B",
+    "[ezay esta3maltaha?|ya3ni eh?|emta bet2oolha?]"
+   ],
+   [
+    "A",
+    "[لما حدا يطبخ، \"صحة لإيديك\"|للشكر على شي عملو حدا|على الأكل، للشكر]"
+   ],
+   [
+    "C",
+    "[عنا \"تسلم إيدك\"، نفس الشي|زي \"تسلم إيديكي\" بالظبط|عنا كمان هالشي]"
+   ],
+   [
+    "A",
+    "[ba2oolha le {s:family} kol yom|kol akla ba2oolha le {s:family}|el far7a 3and {s:family} lama a2oolha]"
+   ],
+   [
+    "B",
+    "[7atta lw {s:food} men el freezer?|7atta 3ala {s:food}?|7atta lw {s:food} bas?]"
+   ],
+   [
+    "A",
+    "[yeb2a a2oolha le nafsi|ba3mel tasge3 le nafsi|ellerine sağlık ya {A}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-bard-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[اليوم برد بيقص|في صقعة بتدخل بالعضم|ما بينحمل الطقس اليوم]"
+   ],
+   [
+    "B",
+    "[3andena sefr|3andena ta7t el sefr|3andena matar w bard]"
+   ],
+   [
+    "C",
+    "[عنا ٣٠ درجة، آسف|عنا شوب، صيف|أنا لابس نص كم]"
+   ],
+   [
+    "A",
+    "[{C}, mesh kda|{C}, mesh ba7ebak delwa2ti|{C}, oskot shwaya]"
+   ],
+   [
+    "C",
+    "[ab3atlko {s:drink}|khodo {s:drink} khayali|ab3atlko {s:drink}?]"
+   ],
+   [
+    "B",
+    "[bas sokhn|sokhn law sama7t|shukran, bas sokhn]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-talj-rajol-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[عملت رجل تلج مع {s:family}|رجل تلج، أنا ومعي {s:family}|رجل التلج جاهز، بمساعدة {s:family}]"
+   ],
+   [
+    "B",
+    "[kbeer?|ab3at sora|ezay tele3?]"
+   ],
+   [
+    "A",
+    "[soghayyar w ma2loob|shaklo za3lan|lih eid wa7da]"
+   ],
+   [
+    "C",
+    "[اللي معوج إلو شخصية|هيك كامل|فن]"
+   ],
+   [
+    "A",
+    "[semmeinah \"el banker\"|esmo 3am Sa3eed|delwa2ti esmo Abu 3arab]"
+   ],
+   [
+    "B",
+    "[haha leih?|lay2a 3aleih|esm momtaz]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-gom3a-sare3a-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ليش الويكند بيخلص بسرعة؟|الويكند قصير كتير|خلص الويكند كمان مرة]"
+   ],
+   [
+    "B",
+    "[3ashan ma3amaltsh 7aga|el kasal beyeteer|el wa2t beyeteer 3al kanaba]"
+   ],
+   [
+    "C",
+    "[ana el naharda 3amalt {s:hobby} bas|el naharda kan yom {s:hobby}|el yom kolo {s:hobby}]"
+   ],
+   [
+    "A",
+    "[da 7aga|enta mentege|3ala el a2al]"
+   ],
+   [
+    "C",
+    "[w ba3dein set 7ala2at mosalsal|w season kamel|w mosalsalat le7ad el leil]"
+   ],
+   [
+    "B",
+    "[weekend momtaz|kda el sa7|kesebt el weekend]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-a7ad-shoghl-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[أول يوم بالأسبوع. تاني|مين اخترع أول يوم شغل|أول يوم دوام، عقوبة]"
+   ],
+   [
+    "B",
+    "[shedd 7eilak|hatet7al|el osboo3 hayeb2a 7elw]"
+   ],
+   [
+    "A",
+    "[{B}, enta mabsoot zeyada|ezay enta mabsoot kda|{B}, sharebt eh?]"
+   ],
+   [
+    "B",
+    "[sharebt {s:drink}|kobayetein {s:drink}|{s:drink}, keteer {s:drink}]"
+   ],
+   [
+    "C",
+    "[ana lessa fel sereer|lessa ma 2omtsh|rasmeyan lessa ma s7eetsh]"
+   ],
+   [
+    "A",
+    "[{C} 2odwati|{C} sa7|3ayez abda zay {C}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-charger-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[البطارية ٣٪ ونسيت {s:thing} بالبيت|٢٪ وما معي {s:thing}|البطارية عم تموت، وتارك {s:thing} بالبيت]"
+   ],
+   [
+    "B",
+    "[klasik|dayman be7sal|lama te7tago bel zabt]"
+   ],
+   [
+    "C",
+    "[besor3a el mahamm el yomeya abl ma ymoot|besor3a el mahamm w bye|akher talab besor3a]"
+   ],
+   [
+    "A",
+    "[fekra 7el|ta2akhar, ana mash|tamam, ha3m]"
+   ],
+   [
+    "B",
+    "[ra7|bye ya {A}|RIP mobile]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ful-sob7-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[مين بيفطر فول بالشغل؟|فول وطعمية قبل الدوام|ما بتبلش النهار من غير فول]"
+   ],
+   [
+    "B",
+    "[ana! ma3 baskot w salata|ful bel zeit el 7ar|ful w ta3meya w beid]"
+   ],
+   [
+    "C",
+    "[ana bafter {s:food} el naharda|3andi {s:food} men el beit|{s:food} el sob7, mesh ful]"
+   ],
+   [
+    "A",
+    "[يعني خاين|لأ يا {C}|شو هالخيانة]"
+   ],
+   [
+    "C",
+    "[bokra ful, wa3d|el {s:day} ful|ma3lesh, marra wa7da]"
+   ],
+   [
+    "B",
+    "[مقبولة|سامحناك|ماشي]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ka3ak-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[كعك بسمسم من البياع عالموتور|الكعكة الصبح ما إلها بديل|كعك وزعتر عالطريق]"
+   ],
+   [
+    "B",
+    "[ma3 bayd mesalla2?|ma3 jebna?|sokhna?]"
+   ],
+   [
+    "A",
+    "[sokhna ma3 za3tar|ma3 jebna w {s:drink}|ma3 bayd w {s:drink}]"
+   ],
+   [
+    "C",
+    "[باللعبة لازم يكون في بياع كعك|بدي أفتح محل كعك باللعبة|محل كعك باللعبة رح ينجح]"
+   ],
+   [
+    "A",
+    "[el ma7al fel le3ba zay kda ta2reeban|momken teftah ma7al|el ma7al mesh 7a2 ka3ak bas 2areeb]"
+   ],
+   [
+    "B",
+    "[ana zboon awel|ana hashtri kol yom|7agez makan]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sahra-ba3d-shoghl-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[الليلة سهرة عالكورنيش بعد الشغل|مين جاي عالكورنيش؟|بدي اطلع اتمشى بعد الدوام]"
+   ],
+   [
+    "B",
+    "[el bard ra7 yemawwetak|eshtri 7aga sokhna|7ott jacket te2eela]"
+   ],
+   [
+    "A",
+    "[hageeb {s:drink} w amshi|ma3aya {s:drink} fel thermos|{s:drink} w hawa ba7r]"
+   ],
+   [
+    "C",
+    "[أنا قاعد بالبيت مع {s:hobby}|لا، عندي {s:hobby}|مش اليوم، {s:hobby}]"
+   ],
+   [
+    "A",
+    "[{C}, enta mamel|enta khasran|khasran ya {C}]"
+   ],
+   [
+    "C",
+    "[mabsoot kda|3aref w mesh nadem|marra tanya, wa3d]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-souq-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[رحت عالسوق، والبياع قلي \"تكرم عينك\"|بالسوق الكل بيحكيني \"يا غالي\"|سوق الجمعة، أحلى مشوار]"
+   ],
+   [
+    "B",
+    "[mesh zay el supermarket|el souq leeh roo7|a7la makan]"
+   ],
+   [
+    "A",
+    "[w eddani na3na3 bbalash|w zawwedli laymoona|w 7atteli a7san 7aga]"
+   ],
+   [
+    "C",
+    "[باللعبة بدنا سوق|بفتح بسطة بسوق اللعبة|المحل باللعبة نفس الفكرة تقريباً]"
+   ],
+   [
+    "A",
+    "[gebt kol 7aga le {s:food}|el naharda {s:food}|bokra {s:food} bel khodar el taza]"
+   ],
+   [
+    "B",
+    "[bel hana|kda a7san|gom3a 7elwa]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-dayf-mfaje2-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[إجونا ضيوف فجأة الليلة|ضيوف من غير خبر، والبيت فاضي|الضيوف بالطريق، وأنا بحالة ذعر]"
+   ],
+   [
+    "B",
+    "[shoof el talaga|7ott shay, w ba3dein nshoof|shay w 7elw kefaya]"
+   ],
+   [
+    "A",
+    "[fe {s:food} ba2y, yekaffi?|fe shwayet {s:food}|bas {s:food} w 3eish]"
+   ],
+   [
+    "C",
+    "[ست البيت العربية ما بتقول \"ما في شي\"|بخمس دقايق السفرة بتنفرش|طريقة الأمهات: حط كل شي عالطاولة]"
+   ],
+   [
+    "A",
+    "[gat el nagda: {s:family}|{s:family} fel matbakh delwa2ti|el batal: {s:family}]"
+   ],
+   [
+    "B",
+    "[kol marra kda|batal|7elw]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-zahma-sir-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[عالق بالعجقة من ساعة|الطريق واقف، ما في ولا حركة|ساعة بالسيارة لمسافة عشر دقايق]"
+   ],
+   [
+    "B",
+    "[kol yom kda|sa3et el zorwa|el khamees, tab3an]"
+   ],
+   [
+    "A",
+    "[7atait musi2a w {s:drink}|3andi {s:drink} w sabr|3ala el a2al {s:drink}]"
+   ],
+   [
+    "C",
+    "[باللعبة ما في عجقة، الكل بيوصل|باللعبة بتروح عالشغل بلا مواصلات|باللعبة ما حدا بيتأخر]"
+   ],
+   [
+    "A",
+    "[3ayez a3eesh fel le3ba|ana ha3azzel lel le3ba|el le3ba kesbet]"
+   ],
+   [
+    "B",
+    "[صبرك|هانت|قربت توصل]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-servees-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[السرفيس ما إجا من عشرين دقيقة|واقف بالبرد ناطر الباص|ولا باص ولا سرفيس]"
+   ],
+   [
+    "B",
+    "[w lama yegi hayeb2a malyan|w ba3dein yegi talata wara ba3d|dayman kda]"
+   ],
+   [
+    "A",
+    "[3ala el a2al 3andi {s:drink}|kwayes enni gebt {s:drink}|{s:drink} fe eidi, saamed]"
+   ],
+   [
+    "C",
+    "[نسيت {s:thing} بالسرفيس مرة، ما رجع|أنا مرة تركت {s:thing} بالباص|ضاع مني {s:thing} بالسرفيس]"
+   ],
+   [
+    "A",
+    "[maskeen|ya khsara|akeed ra7]"
+   ],
+   [
+    "B",
+    "[إجا!|وصل، اركض|يلا]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-3azooma-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[عزومة عند خالتي الجمعة، ثلاثين نفر|الكل معزوم عند عمتي|عزومة العيلة، والبيت مليان]"
+   ],
+   [
+    "B",
+    "[eh el menu?|btotbokh eh?|el akl eh?]"
+   ],
+   [
+    "A",
+    "[{s:food} w mansaf w salatat|{s:food} w ta3ama keteera|{s:food}, w el 7elw ba3do]"
+   ],
+   [
+    "C",
+    "[وبعدين الكل رح يسألك عن شغلك|رح يسألوك \"قديش راتبك\"|ورح يسألوا امتى بتشتري بيت]"
+   ],
+   [
+    "A",
+    "[ha2ollohom 3an shoghli fel le3ba|ha2ool ana bagahhez le kafeh fel le3ba|ha2ool waze2fti fel le3ba]"
+   ],
+   [
+    "B",
+    "[jawab ghareeb|mesh hayefhamo|khaltak mesh hatefham 7aga]"
+   ],
+   [
+    "C",
+    "[الأهم الأكل|وبعدين الكل بيشرب شاي|بالآخر الكل عالقهوة]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-istifta-shay-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[كم كاسة شاي بتشربوا باليوم؟|استفتاء: الشاي اليومي|بلا كم كاسة ما بتعيشوا؟]"
+   ],
+   [
+    "B",
+    "[3ashra, w 2alil|tamanya, talata el sob7|ma ba3ed]"
+   ],
+   [
+    "C",
+    "[ana bashrab {s:drink} bas|mesh shay, {s:drink}|ana nas {s:drink}]"
+   ],
+   [
+    "D",
+    "[khamastashar, mat7akmoonish|elli yelzam|le7ad ma el abreeq yekhlas]"
+   ],
+   [
+    "A",
+    "[{D}, da mo2le2|{D}, roo7 lel doktor|{D}, etnaffas]"
+   ],
+   [
+    "D",
+    "[ma ba2darsh atnaffes men gheir shay|ana kwayes, a3taqed|3eini betrof shwaya]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mo7adatha-mama-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[حكيت مع {s:family} ساعة عالتلفون|اتصال من {s:family}، وحكينا ساعة|ساعة عالتلفون مع {s:family}، كل أخبار العيلة]"
+   ],
+   [
+    "B",
+    "[7akeito 3an eh?|eh el akhbar?|2al eh?]"
+   ],
+   [
+    "A",
+    "[meen etgawwez, meen eshtara bet, meen 3ayan|kol akhbar el 2araib|7ayat el kol fe sa3a]"
+   ],
+   [
+    "C",
+    "[عنا نفس الشي|وكالة أنباء العيلة|أسرع من الأخبار]"
+   ],
+   [
+    "A",
+    "[w fel akher sa2al emta ana hashtri bet|w ba3dein sa2al 3an sha2ti|w gat el so2al \"w enta emta?\"]"
+   ],
+   [
+    "B",
+    "[2ool bashtri fel le3ba|2ool \"bagama3 fel le3ba\"|2ool yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-khalto-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[خالتي سألتني شو بشتغل باللعبة|شرحت اللعبة لخالتي|خالتي سألت عن راتبي باللعبة]"
+   ],
+   [
+    "B",
+    "[2olt eh?|fehmet?|rad fe3laha?]"
+   ],
+   [
+    "A",
+    "[lama 2olt courier, khafet|2alet fein shoghlak el 7a2i2i|2alet eshtri bet fel le3ba kaman]"
+   ],
+   [
+    "C",
+    "[الخالات نفس الشي بكل مكان|خالة كلاسيكية|منطق الخالات]"
+   ],
+   [
+    "A",
+    "[w ba3dein ba3atetli {s:food}|2alet \"mat2oo3sh\" w eddatni {s:food}|fel akher akhadt {s:food}]"
+   ],
+   [
+    "B",
+    "[el khalat a7san nas|dayman betekhlas kda|7ob el khala]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mansaf-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[المنسف باليد ولا بالمعلقة؟|سؤال جدي: المنسف بالإيد؟|مين بياكل المنسف بالمعلقة؟]"
+   ],
+   [
+    "B",
+    "[bel eid tab3an|bel eid, mafeesh 2esa|bel eid, ana asly]"
+   ],
+   [
+    "C",
+    "[أنا بالمعلقة، ما بعرف أكل بالإيد|معلقة، سامحوني|أنا بحب {s:food} أكتر]"
+   ],
+   [
+    "A",
+    "[{C}, enta khatar|{C}, 7ad yesma3ak?|{C}, hanetla3ak men el chat]"
+   ],
+   [
+    "C",
+    "[bas bakol {s:food} bel eid|3eweda, {s:food} bel eid|ana nas {s:food}]"
+   ],
+   [
+    "B",
+    "[lessa ma sama7nash|hanfakkar|moshtabah feek]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-maqluba-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[اليوم مقلوبة، ولحظة القلب رهيبة|لحظة قلب المقلوبة، الكل واقف|عملت مقلوبة لأول مرة]"
+   ],
+   [
+    "B",
+    "[ezay tele3et?|et2alabet sa7?|waqa3et?]"
+   ],
+   [
+    "A",
+    "[et2alabet bas el ta7t fedel fel 7alla|kamla 7elwa|nossaha bas]"
+   ],
+   [
+    "C",
+    "[أنا مقلوبتي دايماً بتطلع {s:food}|أنا ما بقرب، بعمل {s:food}|ما بتجرأ، بضل على {s:food}]"
+   ],
+   [
+    "A",
+    "[haha {C}|da 7al 3a2el|garreb marra]"
+   ],
+   [
+    "B",
+    "[tesla2 eedik|sa7tein|bel hana]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-kafe-esm-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[لو فتحت كافيه باللعبة، شو بسميه؟|أفكار اسم للكافيه|بدي اسم للكافيه]"
+   ],
+   [
+    "B",
+    "[\"el qa3da\"|\"sahra\"|\"fenjan\"]"
+   ],
+   [
+    "C",
+    "[حاجة تركية، \"keyif\"|\"Keyif\"، يعني متعة بالتركي|\"Çay bahçesi\"]"
+   ],
+   [
+    "A",
+    "[\"fenjan\" 3agabni|ha5tar keyif|khalas el esm gahez]"
+   ],
+   [
+    "B",
+    "[w el akla el khasa {s:food}|fel menu {s:food}|yekoon fe {s:food}]"
+   ],
+   [
+    "A",
+    "[ettafa2na|tamam|combination 7elwa]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-kafe-walla-sha2a-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أول كافيه ولا شقة؟|شقة قبل الكافيه؟|الأذكى: كافيه أو شقة]"
+   ],
+   [
+    "B",
+    "[sha2a, el egar beyekhlas|sha2a el awel|sha2a, amaan]"
+   ],
+   [
+    "C",
+    "[الكافيه بيربح أكتر بس بدك ٦٠ يوم خبرة|للكافيه بدك خبرة ورأس مال|الكافيه مستوى ٣، بياخد وقت]"
+   ],
+   [
+    "A",
+    "[yeb2a sha2a|sha2a awel|mantiqi]"
+   ],
+   [
+    "B",
+    "[el {s:day} te7tefel bel {s:food}|7aflet el sha2a bel {s:food}|3asha el bet el gdeed: {s:food}]"
+   ],
+   [
+    "A",
+    "[kolko ma3zoomin|ta3alo kolko|el kol ma3zoom]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-monafes-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[فتح محل تاني جنب محلي|منافس بنفس الشارع|محل جديد قبالي بالظبط]"
+   ],
+   [
+    "B",
+    "[delwa2ti bet2assemo el zabayen|bayen fel kashier|el le3ba bet2assem el zabayen]"
+   ],
+   [
+    "A",
+    "[ezay a7afez 3aleihom?|a3mel eh?|nasee7a?]"
+   ],
+   [
+    "C",
+    "[موظفين أكتر، جودة أعلى|وظّف ناس منيحة|الجودة دايماً]"
+   ],
+   [
+    "A",
+    "[yeb2a hawazzaf kaman wa7ed|hafta7 e3lan|ha7ott e3lan]"
+   ],
+   [
+    "B",
+    "[awel {s:drink}, ba3dein ma3raka|hadi nafsak, {s:drink}|{s:drink} w hodoo2]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-raje3-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[غبت أسبوع، شو فاتني؟|رجعت بعد أسبوع|بعد الغيبة، رجعنا]"
+   ],
+   [
+    "B",
+    "[ahlan bel raje3!|wa7ashtena|rege3!]"
+   ],
+   [
+    "A",
+    "[el kafeh eshtaghal men gheiri bel mo2a22at|el le3ba kamelet men gheiri|el wa2t mashy bardo]"
+   ],
+   [
+    "C",
+    "[كلّفك كتير؟|المؤقتين غاليين|قديش صرفت؟]"
+   ],
+   [
+    "A",
+    "[keteer|kefaya|balash netkallem]"
+   ],
+   [
+    "B",
+    "[el naharda {s:food} w nebda2 men gdeed|{s:food} w yalla|{s:food} w bedaya gdeeda]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-a2sat-ba2ya-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.borclu"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[باقي عشر أقساط|١٤ قسط وبصير حر|دفعت نص القرض]"
+   ],
+   [
+    "B",
+    "[momtaz|2arrabt|shedd 7eilak]"
+   ],
+   [
+    "A",
+    "[kol 2est bash6abo zay entesar|kol shahr entesar soghayyar|3andi list w bash6ab]"
+   ],
+   [
+    "C",
+    "[لما تخلص، تقييمك بيصير أحسن|بعدين علامتك بترتفع|كل قسط بالوقت بيساعد]"
+   ],
+   [
+    "A",
+    "[fel akher {s:food} w hadaf gdeed|el final el kbeer bel {s:food}|ha7tefel bel {s:food}]"
+   ],
+   [
+    "B",
+    "[e7na ma3ak|e7na mawgoodeen|ana hageeb {s:drink}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-qard-jadid-1",
+  "konu": "kredit",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أنا جديد، القرض كم شهر؟|القروض لكم شهر؟|سؤال جديد: مدة القرض؟]"
+   ],
+   [
+    "B",
+    "[قرض الحاجة ٢٤ شهر|٢٤ شهر|سنتين أقساط]"
+   ],
+   [
+    "A",
+    "[w lel sha2a?|w lel bet?|el rahn?]"
+   ],
+   [
+    "C",
+    "[بالرهن الدفعة الأولى حوالي ٢٠٪|الدفعة تقريباً ٢٠٪|المدة ما بعرفها بالظبط، شوف البنك باللعبة]"
+   ],
+   [
+    "A",
+    "[shukran, ha-shoof el {s:day}|tamam, hashoof|7ader, hatfa2ad]"
+   ],
+   [
+    "B",
+    "[ma takhodsh aktar men elli te2dar tedfa3o|khalli balak men el a2sat|e7seb el awel]"
+   ],
+   [
+    "A",
+    "[7ader ya mama|tamam|fehemt]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mafi-masari-1",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[المصاري عم تخلص باللعبة|تقريباً مفلس|ما معي مصاري، شو بعمل؟]"
+   ],
+   [
+    "B",
+    "[lazem teshtaghal|dawwar 3ala shoghl delwa2ti|egbari, lel shoghl]"
+   ],
+   [
+    "C",
+    "[لحد ما تسد الدين ما بتقدر تستثمر|أول الدين، بعدين الاستثمار|ما في استثمار لحد ما يخلص الدين]"
+   ],
+   [
+    "A",
+    "[tamam, courier|yeb2a courier|babda2 bokra]"
+   ],
+   [
+    "B",
+    "[w balash talab {s:food}|balash masareef zeyada|wad3 el tawfeer]"
+   ],
+   [
+    "A",
+    "[bas {s:food} fel bet|{s:food} men el dolab|ba3mel {s:food}, rekhees]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-talab-shoghl-1",
+  "konu": "is",
+  "kosul": [
+   "A.issiz"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[قدمت عالشغل وناطر|الطلب راح، ما في رد|ناطر رد المدير]"
+   ],
+   [
+    "B",
+    "[sa3at beyakhod wa2t|el sa3a el ramleya bet2assar el entezar|bel sa3a el ramleya asra3]"
+   ],
+   [
+    "A",
+    "[mafeesh ma3aya|khallasthom|sefr sa3at]"
+   ],
+   [
+    "C",
+    "[المهام اليومية|٣ مهام، ساعة رملية|بكرا بتجيك وحدة]"
+   ],
+   [
+    "B",
+    "[le7ad ma, courier, mesh me7tag modeer|el courier beyebda2 3ala tool|el courier malosh sa7eb shoghl]"
+   ],
+   [
+    "A",
+    "[yeb2a courier fel nos|fekra 7elwa|awel {s:drink}, ba3dein shoghl]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-kashier-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الكاشير بياخد راتب ومهام؟|كيف بيقبض الكاشير؟|الكاشير، كيف بيشتغل؟]"
+   ],
+   [
+    "B",
+    "[aywa, ratib asasi w mahamm|ratib w zeyada 3ala kol mohemma|el etnein]"
+   ],
+   [
+    "A",
+    "[lazem kors?|fe shoroot?|abda2 ezay?]"
+   ],
+   [
+    "C",
+    "[لأ، مستوى أول|ولا شي، قدّم دغري|بس قدّم]"
+   ],
+   [
+    "A",
+    "[momtaz|yeb2a kashier|super]"
+   ],
+   [
+    "B",
+    "[w fel break {s:food}|break ma3 {s:food}|este3ra7a bel {s:food}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-istifta-3asha-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[الليلة: نطبخ ولا نطلب؟|مين بيطبخ اليوم؟|العشا: بيتي ولا ديليفري؟]"
+   ],
+   [
+    "B",
+    "[ha3mel {s:food}|fel beit, {s:food}|ana bagahhez {s:food}]"
+   ],
+   [
+    "C",
+    "[delivery, ana halkan|delivery akeed|delivery, ma3andeesh ta2a]"
+   ],
+   [
+    "D",
+    "[ana ha2kol 3and {s:family}|3and {s:family}, akl bbalash|3azooma men {s:family}]"
+   ],
+   [
+    "A",
+    "[{D} kesib|{D} azka wa7ed|{D}, mo7taref]"
+   ],
+   [
+    "D",
+    "[3aref|khebret seneen|a7san estrategiya]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-istifta-nom-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[كم ساعة بتناموا؟|قديش بتناموا بالليل؟|استفتاء النوم]"
+   ],
+   [
+    "B",
+    "[setta, mesh kefaya|setta lw kwayes|khamsa, ana zombie]"
+   ],
+   [
+    "C",
+    "[tamanya, zay el bebe|tes3a w mesh maksoof|tamanya, el nom moqaddas]"
+   ],
+   [
+    "D",
+    "[ma3raf, ana dayman hena fel wa2t da|ma3raf, ana hena|banam ba3d {s:drink}, 2olayel]"
+   ],
+   [
+    "A",
+    "[{D}, enta goz2 men el moshkela|{D}, nam|{D}, da mesh gawab]"
+   ],
+   [
+    "D",
+    "[w enta kaman hena|w enta ya {A}|kolena]"
+   ],
+   [
+    "A",
+    "[3andak 7a2|sa7|etmaseket]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-safar-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[لو بتقدروا تسافروا هلأ، وين؟|وجهة الأحلام بكانون|وين بدكن تكونوا هلأ؟]"
+   ],
+   [
+    "B",
+    "[le ba7r|makan dafi|lel shams, ay makan]"
+   ],
+   [
+    "C",
+    "[إسطنبول، بسبب الأتراك هون|تركيا، بدي سميت عالبوسفور|إسطنبول، سمعت عنها كتير]"
+   ],
+   [
+    "A",
+    "[ekhteyar 7elw|7elmi kaman|ana kaman]"
+   ],
+   [
+    "C",
+    "[w {s:food} 3ala el ba7r|w {s:drink} 2oddam el Bosphorus|{s:drink} 2oddam el maya]"
+   ],
+   [
+    "B",
+    "[3ayez asafer|shukran, ana za3lan delwa2ti|leih bete3melo feyya kda]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-7aneen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أنا بعيد عن البيت ومشتاق لـ {s:food}|مشتاق كتير لـ {s:food}|حنين لـ {s:food} تبع البيت]"
+   ],
+   [
+    "B",
+    "[zay bta3 mama?|bta3 el beit?|anhi?]"
+   ],
+   [
+    "A",
+    "[zay akl {s:family}|bta3 {s:family}|bas 3and {s:family} beyetla3 kda]"
+   ],
+   [
+    "C",
+    "[اطلب الوصفة|خود الوصفة|وصفة، وبعدين اطبخ]"
+   ],
+   [
+    "A",
+    "[3omro ma beyetla3 zayo|garrabt|na2es 7aga]"
+   ],
+   [
+    "B",
+    "[el sar fel 7alla|el ser fel 7alla|dayman el 7alla]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-roommate-tanzeef-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[عملنا جدول تنضيف بالسكن|جدول تنضيف جديد بالبيت|دور التنضيف مع شركاء السكن]"
+   ],
+   [
+    "B",
+    "[monazzameen awi|mesh hayekammel|zay el almaan]"
+   ],
+   [
+    "A",
+    "[el osboo3 da el matbakh 3alaya|el 7ammam 3alaya|el zbala 3alaya]"
+   ],
+   [
+    "C",
+    "[وبيلتزموا؟|في احترام؟|قديش رح يكمّل؟]"
+   ],
+   [
+    "A",
+    "[le7ad el {s:day}, ba3dein la2|bel ketir le7ad el {s:day}|edeenah le7ad el {s:day}]"
+   ],
+   [
+    "B",
+    "[wa2e3i|saree7|klasik]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-asanseer-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[بالمصعد الجار سألني \"طالع ولا نازل\"|سكوت محرج بالمصعد سبع طوابق|حديث المصعد فن]"
+   ],
+   [
+    "B",
+    "[2olt eh?|w enta?|3amalt eh?]"
+   ],
+   [
+    "A",
+    "[et7addest 3an el ta2s|\"bard el naharda, mesh kda?\"|2olt \"ah\"]"
+   ],
+   [
+    "C",
+    "[حديث مصعد مثالي|متل الكتاب|صحيح جداً]"
+   ],
+   [
+    "A",
+    "[men el {s:day} sellem|men bokra 3ala regleiya|mafeesh asanseer tani]"
+   ],
+   [
+    "B",
+    "[kwayes lel regleen|reyada bbalash|zay yom el regleen]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-dakhtour-asnan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[عندي دكتور أسنان {s:day}، خايف|{s:day} موعد الأسنان|{s:day}: دكتور أسنان. من هلأ عم برجف]"
+   ],
+   [
+    "B",
+    "[ehda|kashf bas?|hatet7al]"
+   ],
+   [
+    "A",
+    "[kashf, bas kalt {s:food} keteer|mestanni el aswa2|domeeri mesh mertaa7]"
+   ],
+   [
+    "C",
+    "[دكاترة الأسنان بيشوفوا كل شي|دايماً بيعرفوا شو أكلت|عندهم عيون أشعة]"
+   ],
+   [
+    "A",
+    "[shukran 3al tamaneen|mesh betsa3do|delwa2ti khayef aktar]"
+   ],
+   [
+    "B",
+    "[geçmiş olsun men delwa2ti|bel tawfee2|hanfakkar feek]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-gym-kanoon-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الجيم بكانون التاني مليان|بكانون ما في أجهزة فاضية|الجيم مليان بقرارات السنة الجديدة]"
+   ],
+   [
+    "B",
+    "[fe febrayer beyfda tani|le7ad febrayer|estanna talat asabee3]"
+   ],
+   [
+    "C",
+    "[أنا منهم|أنا جماعة كانون|من أول يوم، آسف]"
+   ],
+   [
+    "A",
+    "[ahlan|ma tseebsh|{C}, esmod]"
+   ],
+   [
+    "C",
+    "[ba7awel, walla tani {s:hobby}|walla ha2fel 3ala {s:hobby}|walla {s:hobby} w khalas]"
+   ],
+   [
+    "B",
+    "[{s:hobby} kaman reyada|bardo bet7sab|7araka bardo]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-break-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[بالاستراحة الزملا بس بيحكوا عن الشغل|ليش بالاستراحة بنحكي عن الشغل؟|الاستراحة مش استراحة]"
+   ],
+   [
+    "B",
+    "[es2al 3an el weekend|ghayyar el mawdoo3|es2al 3an {s:hobby}]"
+   ],
+   [
+    "A",
+    "[sa2alt, et7akko 3an weekend el maktab|dayman beyet7akko 3an el modeer|beyet7akko 3an el excel]"
+   ],
+   [
+    "C",
+    "[دوّر على زملا تانيين|كول برا|اطلع تمشى]"
+   ],
+   [
+    "A",
+    "[a7san akol {s:food} lewa7di|{s:food} w el mobile, kefaya|{s:food} w mobile, perfect]"
+   ],
+   [
+    "B",
+    "[ma3 el le3ba|ma3ana e7na|e7na zamaylak]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-kalemat-moshtaraka-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[لاعب ألماني علمني كلمة \"Feierabend\"|الألمان عندهم \"Feierabend\"، الوقت بعد الشغل|تعلمت \"Feierabend\" بالشات]"
+   ],
+   [
+    "B",
+    "[ya3ni eh?|ma3naha?|da eh?]"
+   ],
+   [
+    "A",
+    "[لحظة خلص الشغل والسهرة الحرة|نهاية الدوام، وفرحة|متل \"خلص الدوام\"، بس بفرح]"
+   ],
+   [
+    "C",
+    "[e7na ne3allemhom \"sahra\"|badalha ne3allemhom \"lamma\"|tabadol sa2afi: sahra badal Feierabend]"
+   ],
+   [
+    "A",
+    "[safqa 7elwa|3adel|tawazon momtaz]"
+   ],
+   [
+    "B",
+    "[w el asbaan 3andohom \"sobremesa\", el 2a3da ba3d el akl|el asbaan 3andohom \"sobremesa\"|w 3and el asbaan kaman: el 2a3da ba3d el ghada]"
+   ],
+   [
+    "C",
+    "[w fel akher kolena benetkallem 3an {s:food}|fel akher el kol befham {s:food}|{s:food} logha 3alameya]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sot-leil-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[سامع أصوات بالبيت|في شي عم يطقطق بالمطبخ|صوت غريب الساعة تلاتة]"
+   ],
+   [
+    "B",
+    "[el daffaya|el tallaga|da el beit]"
+   ],
+   [
+    "A",
+    "[aw fe 7ad beyakol fel kheffa, ghaleban {s:family}|el zaher {s:family} fel matbakh|{s:family} w el akl bel leil, 2esa ma3roofa]"
+   ],
+   [
+    "C",
+    "[روح كول إنت كمان|عالمطبخ|سناك ليلي لشخصين]"
+   ],
+   [
+    "A",
+    "[{s:food}!|7ad sakhan {s:food}|{s:food} el sa3a talata, rayeh]"
+   ],
+   [
+    "B",
+    "[haha|7elw|a7la la2ya bel leil]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-amar-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[القمر اليوم ضخم|شفتوا القمر؟|بدر، شو هالنور]"
+   ],
+   [
+    "B",
+    "[3ashan kda mesh 3aref anam|ah, 3ashan kda sa7i|badr, kont 3aref]"
+   ],
+   [
+    "C",
+    "[أنا بس شايف غيم|عنا كل شي رمادي|{C.sehir} مغيّمة]"
+   ],
+   [
+    "A",
+    "[ya khsara ya {C}|ab3atlak sora|etkhayyal]"
+   ],
+   [
+    "C",
+    "[batkhayyal ma3 {s:drink}|ba3mel {s:drink} w batkhayyal|tamam, {s:drink} w khayal]"
+   ],
+   [
+    "B",
+    "[7elw awi|kefaya kda|bel zabt kda]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-afkar-leil-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[بالليل دايماً بفكر بحياتي|بهالوقت بتجي الأسئلة الكبيرة|الساعة تنتين، ساعة الفلسفة]"
+   ],
+   [
+    "B",
+    "[masalan?|as2ela zay eh?|3an eh?]"
+   ],
+   [
+    "A",
+    "[leih lessa ma3andeesh kafeh fel le3ba|leih bate6t {s:hobby}|lazem awaffar aktar?]"
+   ],
+   [
+    "C",
+    "[أسئلة مهمة|فلسفة حقيقية|عميق كتير]"
+   ],
+   [
+    "A",
+    "[w hal {s:food} yenfa3 fetar?|w hal akol {s:food} tani?|w hal fadel {s:food}?]"
+   ],
+   [
+    "B",
+    "[aywa, yenfa3|el gawab aywa|nam ya {A}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-nukta-sa3a-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الساعة الرملية تبعي خربانة|شكلها الساعة الرملية ما عم تشتغل|في شي غلط بساعتي الرملية]"
+   ],
+   [
+    "B",
+    "[leih?|7asal eh?|wadda7]"
+   ],
+   [
+    "A",
+    "[hazzeitha w el kors ma khelesh|za3a2t 3aleiha, wala 7aga|2alabtaha, nafs el 7aga]"
+   ],
+   [
+    "C",
+    "[الصريخ ما بيفيد|لازم تستعملها، مش تهزها|هههه]"
+   ],
+   [
+    "A",
+    "[zay {s:family} el sob7|zay {s:family} abl el ahwa|{s:family} bardo, el za3ee2 malosh fayda]"
+   ],
+   [
+    "B",
+    "[7a2i2a 3alameya|sagaltaha|7ekma]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-nukta-7esab-2",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[حسابي متل طقس كانون|حسابي شتوي|حسابي بالبنك: شتا]"
+   ],
+   [
+    "B",
+    "[bard?|rmadi w ka2eeb?|talg?]"
+   ],
+   [
+    "A",
+    "[ta7t el sefr|bel sale6|mettalleg]"
+   ],
+   [
+    "C",
+    "[7ottelo {s:thing} 3ashan mayebrdsh|eddeelo {s:thing}|daffeeh, ya 7aram]"
+   ],
+   [
+    "B",
+    "[nasee7a maleya daraga oola|da takhteet|nasee7a kbeera]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-akh-yel3ab-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[اللعبة عجبت {s:family} كتير|نزّلت اللعبة لـ {s:family}|هلأ صار عنا لاعب جديد بالبيت: {s:family}]"
+   ],
+   [
+    "B",
+    "[ahlan bel 3ela|7elw, delwa2ti team|w delwa2ti monafsa?]"
+   ],
+   [
+    "A",
+    "[ba3d khamas da2aye2 el talab: kafeh|el so2al: leih mesh ghani lessa|mafeesh sabr khales]"
+   ],
+   [
+    "C",
+    "[الصبر بيتعلموه متلنا|yavaş yavaş، هاي القاعدة|أول كورير، بعدين كافيه]"
+   ],
+   [
+    "A",
+    "[ba3dein ashra7 ma3 {s:drink}|nedardesh ma3 {s:drink}|bel sabr w {s:drink}]"
+   ],
+   [
+    "B",
+    "[mo3allem kwayes|enta el khabeer|mostashar 3a2ili]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mobile-et2asar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[وقع الموبايل وانكسرت الشاشة|الشاشة انكسرت بنص اللعب|وقّعت تلفوني عالأرض]"
+   ],
+   [
+    "B",
+    "[ya nahar|ouf|gamed?]"
+   ],
+   [
+    "A",
+    "[el sha2 3adey fo2 el kafeh bta3i|lessa ba3raf al3ab|shaghal bas we7esh]"
+   ],
+   [
+    "C",
+    "[لزقة حماية وكمّل|كمّل|لقدام]"
+   ],
+   [
+    "A",
+    "[el tasle7 be taman shahr {s:food}|el tasle7 ghali awi|delwa2ti bawaffar lel tasle7]"
+   ],
+   [
+    "B",
+    "[tawfeer gowwa w barra|tawfeer dabel|7ayatein]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-tard-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الطرد تبعي راح عند الجيران|كمان مرة الطرد بشقة تانية|طردي بمكان ما بالبناية]"
+   ],
+   [
+    "B",
+    "[anhi gar?|3aref fein?|fe wara2a?]"
+   ],
+   [
+    "A",
+    "[el dor el khames, ma3rafosh|el wara2a maktoob 3aleiha \"el gar\" bas|sitt 3omri ma shoftaha]"
+   ],
+   [
+    "C",
+    "[هيك بتتعرف عالجيران|تجربة اجتماعية|هيك منتعرف]"
+   ],
+   [
+    "A",
+    "[akhod {s:food} shokran?|hakhod {s:food}|shokr: {s:food}]"
+   ],
+   [
+    "B",
+    "[zoo2|momtaz|da beyekseb no2at]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-flous-bidaya-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الكل بيبلش بـ ١٠٠ ألف، صح؟|بكم بلشتوا؟|المصاري بالبداية نفسها للكل؟]"
+   ],
+   [
+    "B",
+    "[aywa, kolena zay ba3d|aywa, 100 alf lel kol|el kol be 100 alf]"
+   ],
+   [
+    "C",
+    "[أنا صرفت النص بأول أسبوع|أنا صرفتهم دغري|المصاري راحت بسرعة]"
+   ],
+   [
+    "A",
+    "[3ala eh?|leih?|eshtareit eh?]"
+   ],
+   [
+    "C",
+    "[masareef el ma3eesha w fekra we7sha|egar w esti3gal|ma3raf, ekhtafet zay {s:food} fel tallaga]"
+   ],
+   [
+    "B",
+    "[be7sal lel kol|ghaltet mobtade2|betet3allem]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ghalta-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أكبر غلطة عملتها بالبداية|شو عملت غلط بالأول|اتعلموا من غلطتي]"
+   ],
+   [
+    "B",
+    "[e7ki|anhi?|yalla]"
+   ],
+   [
+    "A",
+    "[akhadt 2ard men gheir 7esab|eshtareit ard w fakart betgeeb egar|3omri ma 3amalt el mahamm el yomeya]"
+   ],
+   [
+    "C",
+    "[بتصير|كلنا منتعلم|المهم إنك عرفت هلأ]"
+   ],
+   [
+    "A",
+    "[el naharda kont babda2 courier w bawaffar|delwa2ti azka|delwa2ti 3andi khebra]"
+   ],
+   [
+    "B",
+    "[el {s:day} ekteb daleel|e3mel daleel|lazem teddi nasaye7]"
+   ],
+   [
+    "A",
+    "[momken, ma3 {s:drink}|ma3 {s:drink}, tamam|lama ykoon fe wa2t]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-tawfeer-khedaa-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[خدعة توفير: حط مبلغ ثابت كل شهر|دايماً بحط نفس المبلغ عجنب|خدعتي: توفير ثابت]"
+   ],
+   [
+    "B",
+    "[3andi kolo beyrooh lel egar|mafeesh 7aga fadla|mesh momken, kolo beyrooh]"
+   ],
+   [
+    "C",
+    "[غيّر شغلك، اقبض أكتر|اعمل كورس واطلع|المستوى التاني بيدفع أكتر]"
+   ],
+   [
+    "B",
+    "[anhi kors?|anhi asra3?|anhi yestahel?]"
+   ],
+   [
+    "C",
+    "[محاسب أو موظف، راتب ثابت|سمسار، راتب وعمولة|على حسب قديش بتلعب]"
+   ],
+   [
+    "A",
+    "[w otlob {s:food} a2al|w {s:food} a2al|e3mel {s:food} fel beit]"
+   ],
+   [
+    "B",
+    "[da waga3|aah|et3arradt lel hogoom]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-zahqan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[زهقان|ملل كامل|ما في شي أعمله اليوم]"
+   ],
+   [
+    "B",
+    "[shwayet {s:hobby}|garreb {s:hobby}|{s:hobby}?]"
+   ],
+   [
+    "A",
+    "[3amalt|embare7|mesh 3ayez]"
+   ],
+   [
+    "C",
+    "[اطبخ {s:food}|اعمل {s:food}|اطبخ شي طيب]"
+   ],
+   [
+    "A",
+    "[shoghl keteer|sa3b|kasal]"
+   ],
+   [
+    "B",
+    "[yeb2a shoof el kafeh fel le3ba|yeb2a el3ab|yeb2a el mahamm]"
+   ],
+   [
+    "A",
+    "[ah, da momken|da a2dar a3melo|tamam, ana rayeh]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sabah-bard-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[صباح الخير من {A.sehir} المتجمدة|صباحو، البرد هون فظيع|صباح الخير يا جماعة، شو هالبرد]"
+   ],
+   [
+    "B",
+    "[sabah el nour, hena matar|sabah el kheir, shams bas bard|ahlan, 3andena gheim]"
+   ],
+   [
+    "C",
+    "[2oddam el shebbak ma3 {s:drink}|bashrab {s:drink} delwa2ti|{s:drink} fe eidi, nos sa7i]"
+   ],
+   [
+    "A",
+    "[a7san khetta lel sob7|7asad|kda el bedaya]"
+   ],
+   [
+    "B",
+    "[lazem anzel delwa2ti|rayeh el shoghl|wa2t el nezool]"
+   ],
+   [
+    "A",
+    "[kolay gelsin|bel tawfee2|elbes te2eel]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-chat-sare3-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الشات اليوم سريع كتير|مش ملحق عالشات|قديش رسايل]"
+   ],
+   [
+    "B",
+    "[da el chat el 3alami|kol el loghat ma3 ba3d|ahlan bel fawda]"
+   ],
+   [
+    "C",
+    "[أنا بقرا بس العربي|بقرا اللي بفهمه|بفهم عربي وشوي تركي]"
+   ],
+   [
+    "A",
+    "[2areet \"afiyet olsun\" w go3t|7ad beyetkallem 3an {s:food}, go3t|delwa2ti 3ayez {s:food}]"
+   ],
+   [
+    "B",
+    "[haha|ana kaman|shukran, delwa2ti ana kaman]"
+   ],
+   [
+    "C",
+    "[الشات بيفتح النفس|شات خطير|تحذير: الشات بيجوّع]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-scooter-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[صرت روح عالشغل بسكوتر كهربا|سكوتر بدل الباص|مواصلات جديدة: سكوتر]"
+   ],
+   [
+    "B",
+    "[fel shita?|fel bard da?|shogaa3]"
+   ],
+   [
+    "A",
+    "[asra3 men el bas|stress a2al|3ala el a2al fel ma3ad]"
+   ],
+   [
+    "C",
+    "[لا تتجمد إيديك|كفوف|البس منيح]"
+   ],
+   [
+    "A",
+    "[ah, bas {s:family} shayefni magnoon|3and {s:family} ana magnoon|7asab {s:family}, da khatar]"
+   ],
+   [
+    "B",
+    "[momken el 7a2 ma3 {s:family}|3ela kwayesa|esma3 el kalam]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-nasee7a-courier-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[نصيحة للكوريرية الجداد: اشحنوا الموبايل|كورير: دايماً باور بانك|ما تطلع بلا بطارية زيادة]"
+   ],
+   [
+    "B",
+    "[leih?|fekra 7elwa|mohemma kda?]"
+   ],
+   [
+    "A",
+    "[el naharda el battareya khelset fe nos el talab|battareya sefr, talab ra7|el mobile ta2a, el talab ra7]"
+   ],
+   [
+    "C",
+    "[آخ|شو هالقهر|بتوجع]"
+   ],
+   [
+    "A",
+    "[w dayman {s:drink} fel thermos|w dayman ma3ak {s:drink}|el tanya: {s:drink}]"
+   ],
+   [
+    "B",
+    "[2a3dtein 7ekma|sagalt|nasaye7 7elwa]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sahra-barra-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[حدا طالع الليلة؟|طلعة بهالبرد؟|في خطط الليلة؟]"
+   ],
+   [
+    "B",
+    "[la2, bard awi|2a3ed fel beit|la2]"
+   ],
+   [
+    "C",
+    "[rayhin nakol {s:food} ma3 el so7ab|tale3 akol {s:food}|rayhin makan fe {s:food}]"
+   ],
+   [
+    "A",
+    "[7asad|enbeset|7elw]"
+   ],
+   [
+    "C",
+    "[ta3alo|ma3zoomin|elli 3ayez]"
+   ],
+   [
+    "B",
+    "[ana 2a3ed ma3 {s:hobby}|3andi {s:hobby}|shukran, bas {s:hobby} beynadeeni]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-shatranj-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[حدا بيلعب شطرنج أونلاين؟|في حدا بيلعب شطرنج هون؟|بدور على خصم شطرنج]"
+   ],
+   [
+    "B",
+    "[ana, bas we7esh|ana, bas dayman bakhsar|sa3at]"
+   ],
+   [
+    "C",
+    "[marra khesert 2oddam {s:family}|el ghalib dayman: {s:family}|bal3ab bas ma3 {s:family}]"
+   ],
+   [
+    "A",
+    "[yalla nel3ab|dor wa7ed?|yalla]"
+   ],
+   [
+    "B",
+    "[el {s:day}?|emta?|el leila?]"
+   ],
+   [
+    "A",
+    "[tamam|mashy|ettafa2na]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-atrak-sakteen-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الأتراك ساكتين اليوم|وين الأتراك اللي بالشات؟|ولا حدا كاتب تركي اليوم، غريب]"
+   ],
+   [
+    "B",
+    "[yemkin 3andohom 3otla|yemkin beyeshtaghalo|yemkin nayemeen]"
+   ],
+   [
+    "C",
+    "[اشتقت لـ \"kolay gelsin\"|اشتقت لـ \"abi\"|بلاهن الشات فاضي]"
+   ],
+   [
+    "A",
+    "[e7na n2oolha: kolay gelsin lel kol|kolay gelsin ya gama3a|ana ha2oolha: kolay gelsin]"
+   ],
+   [
+    "B",
+    "[w afiyet olsun lelli beyakol {s:food}|afiyet olsun 3al {s:food}|bel hana lelli beyakol {s:food}]"
+   ],
+   [
+    "C",
+    "[momtaz|3ash|kano hayenbeseto]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ta3aruf-2",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[جولة سريعة: الاسم وشو إنتو باللعبة|مين إنتو باللعبة؟|جولة تعارف!]"
+   ],
+   [
+    "B",
+    "[{B}, {B.meslek}|ana {B}, {B.meslek}|{B}, bashtaghal {B.meslek}]"
+   ],
+   [
+    "C",
+    "[{C}, men {C.sehir}, {C.meslek}|{C} men {C.sehir}, {C.meslek}|{C}, {C.meslek}]"
+   ],
+   [
+    "A",
+    "[hobby?|7aga tanya?|ehtimamat?]"
+   ],
+   [
+    "B",
+    "[{s:hobby}|{s:hobby}, men zaman|fel 7aya: {s:hobby}]"
+   ],
+   [
+    "C",
+    "[el le3ba di hiya el hobby|el nom|el akl]"
+   ],
+   [
+    "A",
+    "[agwebah 7elwa|forsa sa3eeda|momtaz]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sakan-akl-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[طبخت {s:food} لكل السكن|ليلة {s:food} بالبيت|اليوم أنا الطباخ للكل]"
+   ],
+   [
+    "B",
+    "[3agabhom?|kalo kolo?|ezay kan?]"
+   ],
+   [
+    "A",
+    "[fe 3ashar da2aye2 mafeesh 7aga|ma7addesh sab 7aga|talabo tani]"
+   ],
+   [
+    "C",
+    "[هلأ إنت الطباخ الرسمي|هاد شغلك هلأ|مبروك، كل {s:day} إنت بتطبخ]"
+   ],
+   [
+    "A",
+    "[la2 la2|3amalt eh|ghalta]"
+   ],
+   [
+    "B",
+    "[tesla2 eedak|brafo|shaklo lazeez]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-yalla-hadi-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الأتراك بيقولوا \"hadi\"، نحنا بنقول \"يلا\"|\"hadi\" = يلا|تعلمت \"hadi\"، يعني يلا]"
+   ],
+   [
+    "B",
+    "[aywa, nafs el ma3na|ezay kda, zay yalla|hadi, yalla, nafs el 7aga]"
+   ],
+   [
+    "A",
+    "[ba2oolha lel bas|hadi ya bas, ta3ala|hadi, servees]"
+   ],
+   [
+    "C",
+    "[الباص ما بيفهم تركي|الباص مطنشك|ما بتنفع]"
+   ],
+   [
+    "A",
+    "[zay {s:family}|bel zabt zay {s:family}|zay {s:family} el sob7]"
+   ],
+   [
+    "B",
+    "[haha|sa7|3alami]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-wa2t-le3ba-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[يوم باللعبة ساعة، صح؟|يوم = ساعة حقيقية؟|كيف بيمشي الوقت باللعبة؟]"
+   ],
+   [
+    "B",
+    "[aywa, w el shahr 30 yom le3ba|30 yom shahr|sa7, el shahr 30 sa3a]"
+   ],
+   [
+    "A",
+    "[ya3ni ana bal3ab men seneen|ana gowwa men shohoor|ya salam]"
+   ],
+   [
+    "C",
+    "[والوقت بيمشي لو ما لعبت|لو نمت كمان|بيكمّل من دونك]"
+   ],
+   [
+    "A",
+    "[w ana bakol {s:food} 3ada yomein|kalt {s:food} w 3ada yom|men ba3d {s:food} 3adet khamas ayam]"
+   ],
+   [
+    "B",
+    "[haha|bas mafeesh 3omr|matkhafsh, mafeesh 3omr]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ghada-sa3a-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[الساعة وحدة إلا خمسة وجعت|خمس دقايق للغدا|عم عدّ الدقايق للاستراحة]"
+   ],
+   [
+    "B",
+    "[fe eh?|hatakol eh?|akl?]"
+   ],
+   [
+    "A",
+    "[{s:food}, gebto men el beit|{s:food} beiti|el naharda {s:food}]"
+   ],
+   [
+    "C",
+    "[أنا ما معي شي|ما جبت شي|ميت من الجوع]"
+   ],
+   [
+    "A",
+    "[ha2assem ma3ak|haddeelak|nos b nos]"
+   ],
+   [
+    "B",
+    "[di el sadaqa|el moshaaraka 7elwa|brafo]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-nakla-shita-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[رح انقل الشهر الجاي، بنص الشتا|نقلة بكانون، فكرة سيئة|مين بينقل بالشتي؟ أنا]"
+   ],
+   [
+    "B",
+    "[fe 7ad besa3dak?|me7tag eed?|meen besa3ed?]"
+   ],
+   [
+    "A",
+    "[{s:family} w etnein so7ab|el mosa3da men {s:family}|{s:family} w ana]"
+   ],
+   [
+    "C",
+    "[بيتزا ومعها {s:drink} للكل وبيجي ناس أكتر|ادفع بالبيتزا|الدفع بـ {s:drink}]"
+   ],
+   [
+    "A",
+    "[ettafa2na|3adel|fekra 7elwa]"
+   ],
+   [
+    "B",
+    "[w otlob kartoneyat men el supermarket|kartoneyat bbalash men el ma7al|el karton el kwayes dahab]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-nobatshi-leil-1",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[خلصت شفت الليل، عالبيت|طالع من الشغل الساعة تلاتة|الشفت خلص]"
+   ],
+   [
+    "B",
+    "[brafo|ta3ban awi?|ezay kan?]"
+   ],
+   [
+    "A",
+    "[taweel, bas kwayes|hadi|ta3ban bas radi]"
+   ],
+   [
+    "C",
+    "[بالبيت ناطرك {s:drink}|بعدين {s:drink} وتخت|هلأ {s:drink}]"
+   ],
+   [
+    "A",
+    "[di khetti|la2, 3al sereer 3ala tool|ana nayem wa2ef]"
+   ],
+   [
+    "B",
+    "[tesba7 3ala kheir|nam kwayes|bokra sabah el kheir]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sod3-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[راسي عم يوجعني|عندي صداع من الصبح|راسي رح ينفجر]"
+   ],
+   [
+    "B",
+    "[sharebt maya kefaya?|maya?|eshrab 7aga]"
+   ],
+   [
+    "A",
+    "[bas {s:drink}|{s:drink} keteer|la2, bas {s:drink}]"
+   ],
+   [
+    "C",
+    "[مي وهوا نضيف|ارتاح|اترك الموبايل]"
+   ],
+   [
+    "A",
+    "[mesh ha2dar, el kafeh|lazem ashoof el kafeh|el ma7al me7tagni]"
+   ],
+   [
+    "B",
+    "[el kafeh shaghal men gheirak|el mo2a22at shaghal|da2e2tein bas]"
+   ],
+   [
+    "A",
+    "[tamam|mashy|ma3ako 7a2]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-bye-3asha-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[طيب، أنا رايح|لازم امشي|باي يا جماعة]"
+   ],
+   [
+    "B",
+    "[badri?|ashoofak ba3dein|salam]"
+   ],
+   [
+    "A",
+    "[el 3asha 3and {s:family}|el akl gahez, {s:food}|fe {s:food}]"
+   ],
+   [
+    "C",
+    "[sa7tein|afiyet olsun|bel hana]"
+   ],
+   [
+    "A",
+    "[shukran, le bokra|le bokra|bokra rage3]"
+   ],
+   [
+    "B",
+    "[ma3 el salama|yalla bye|görüşürüz, zay ma bey2ool el atrak]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mehna-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[شو المهنة اللي ناقصة باللعبة؟|شو بدكن تشتغلوا باللعبة؟|أي شغل بدكن ينضاف؟]"
+   ],
+   [
+    "B",
+    "[khabbaz|sawwa2 bas|tabbakh]"
+   ],
+   [
+    "C",
+    "[سواق، ع الأقل باللعبة الباص بيوصل عالوقت|سواق مترو|مدير المواصلات]"
+   ],
+   [
+    "A",
+    "[haha|entiqam el rokkab|sar el mestanneyeen]"
+   ],
+   [
+    "B",
+    "[aw 3arabeyet {s:food}|kushk {s:food}|ma7al {s:food}]"
+   ],
+   [
+    "C",
+    "[الكل رح يشتري منك|رح تصير غني|أنا رح كون زبون دايم]"
+   ],
+   [
+    "A",
+    "[ha2tare7ha|nekteb lel fareeq|momken fel ta7dees el gay]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ba3d-ghada-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "[بعد الغدا النوم بيهجم|أكلت {s:food} وعيوني عم تسكّر|بعد الأكل ما في شغل]"
+   ],
+   [
+    "B",
+    "[el asbaan 3andohom siesta|lazem nom soghayyar|3eshreen da2ee2a nom]"
+   ],
+   [
+    "A",
+    "[fel maktab mesh momken|el modeer mesh hayefham|mostaheel]"
+   ],
+   [
+    "C",
+    "[اشرب قهوة|فنجان قهوة تركية|اشرب {s:drink} وفيق]"
+   ],
+   [
+    "A",
+    "[tany fengan|ana basharab|lessa na3san]"
+   ],
+   [
+    "B",
+    "[esmod|fadel shwaya lel ma3ad|estahmel]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ahwa-le3ba-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[إمتى بتلعبوا أكتر شي؟|كم مرة باليوم بتلعبوا؟|بتلعبوا طول النهار؟]"
+   ],
+   [
+    "B",
+    "[el sob7 w bel leil shwaya|marratein fel yom|el sob7 mahamm, bel leil shwaya]"
+   ],
+   [
+    "C",
+    "[ساعات بنسى، بس الوقت بيمشي|بغيب يوم، الوقت بيكمل|اللعبة بتمشي أوفلاين]"
+   ],
+   [
+    "A",
+    "[sa7, el yom sa3a|el le3ba mesh bestanna|el wa2t mashy]"
+   ],
+   [
+    "B",
+    "[ana bafta7 aktar ma3 {s:drink}|ma3 {s:drink} dayman badkhol|{s:drink} w le3ba, ta2s el sob7]"
+   ],
+   [
+    "C",
+    "[ana kaman|zayi bel zabt|3ada]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-3amel-bena-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[كعامل بناء عملت اليوم عشر مهام|يوم صعب بالورشة|يوم عامل: عشر مهام]"
+   ],
+   [
+    "B",
+    "[kol mohemma beflous, sa7?|beyedfa3o 3al mohemma?|mahamm aktar, flous aktar]"
+   ],
+   [
+    "A",
+    "[aywa, kda|aywa, zay el courier|sa7]"
+   ],
+   [
+    "C",
+    "[بعدين بتصير معلم|بعد ٢٠ يوم ومع كورس بتصير معلم|شهادة معلم و٢٠ يوم]"
+   ],
+   [
+    "A",
+    "[di khetti|da elli 3ayzo bel zabt|3ashan kda ba3mel kda]"
+   ],
+   [
+    "B",
+    "[delwa2ti {s:food}|break {s:food} delwa2ti|testahel {s:food}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-mo3allem-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.usta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أخيراً صرت معلم!|صرت معلم باللعبة|أخدت شهادة المعلم]"
+   ],
+   [
+    "B",
+    "[mabrook, akhadt 2ad eh?|kam yom kont 3amel?|bada2t emta?]"
+   ],
+   [
+    "A",
+    "[20 yom warsha w el kors|20 yom, ba3dein kors|atwal men ma tawa22a3t 3ashan el ghiyab]"
+   ],
+   [
+    "C",
+    "[بعدين بتقدر تصير مقاول|الخطوة الجاية مقاول؟|بعد ٢٠ يوم كمعلم، مقاول باطن]"
+   ],
+   [
+    "A",
+    "[awel ne7tefel bel {s:food}|el naharda {s:food} w 7afla|awel {s:food}, ba3dein khotat]"
+   ],
+   [
+    "B",
+    "[kda 7elw|testahel|fe se7tak bel {s:drink}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-7ajz-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[شو بيصير إذا ما دفعت الأقساط؟|إذا فوّتت قسط شو بيصير؟|قسط مش مدفوع، خطير؟]"
+   ],
+   [
+    "B",
+    "[لو ما دفعت ٣ أقساط، في حجز|٣ أقساط = حجز|واحد مش النهاية، بس بالتالت بتصير جد]"
+   ],
+   [
+    "A",
+    "[ya nahar|ouf|2asya]"
+   ],
+   [
+    "C",
+    "[وتقييمك بينزل|وسمعتك كمان|السمعة والتقييم بينزلوا]"
+   ],
+   [
+    "A",
+    "[yeb2a mafeesh {s:food} barra, el a2sat el awel|khalas {s:food} fel mat3am|mafeesh {s:food} le7ad ma adfa3 kolo]"
+   ],
+   [
+    "B",
+    "[3a2el|sa7|2arar kwayes]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-7ad-qard-1",
+  "konu": "kredit",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[حد القرض كيف بينحسب؟|ليش الحد تبعي واطي؟|الحد على شو بيعتمد؟]"
+   ],
+   [
+    "B",
+    "[دخل الشهر الماضي ضرب التقييم على مية|دخل آخر شهر والتقييم|الراتب والتقييم]"
+   ],
+   [
+    "A",
+    "[ya3ni akseb aktar|lazem akseb aktar|mantiqi]"
+   ],
+   [
+    "C",
+    "[والتقييم بيبلش من ٦٢٠|الكل بيبلش بـ ٦٢٠|البداية ٦٢٠]"
+   ],
+   [
+    "A",
+    "[w bey3la ezay?|le7ad fein?|betet7assen ezay?]"
+   ],
+   [
+    "C",
+    "[بالدفع بالوقت وبالسمعة|بالأقساط بالوقت|مش متأكد، لازم نشوف]"
+   ],
+   [
+    "B",
+    "[et3allemtaha men {s:family} bel rasm|el shar7 kan men {s:family}|3and {s:family} rasm lel mo3adla]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ta7dees-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[شو رح يجيب التحديث الجاي؟|في شي معروف عن التحديث؟|إشاعات التحديث؟]"
+   ],
+   [
+    "B",
+    "[بيقولوا بورصة وعملات|بورصة، دهب، عملات|سمعت عن البورصة]"
+   ],
+   [
+    "C",
+    "[البنا رح يجي بعدين|بنا البيوت بعدين|شركات المقاولات بعدين]"
+   ],
+   [
+    "A",
+    "[ana bas 3ayez sharik|3ayez sharaka fel shoghl|3ayez ashtarek ma3 7ad]"
+   ],
+   [
+    "B",
+    "[el sharaka mokhattat leiha kaman, a3taqed|ghaleban gaya|ma3raf, bas tekoon 7elwa]"
+   ],
+   [
+    "A",
+    "[le7ad ma tegi, {s:hobby}|le7ad sa3etha shwayet {s:hobby}|mestanni ma3 {s:hobby}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-qadeem-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[صرلي أكتر من ٢٠٠ يوم بالعبة|اليوم يومي ٢٠٠|صرت لاعب قديم]"
+   ],
+   [
+    "B",
+    "[et3allemt eh?|7ekam law sama7t|a7san nasee7a?]"
+   ],
+   [
+    "A",
+    "[ma t7otsh kolo fe 7aga wa7da|el sabr, dayman el sabr|ma tfawwetsh 2est abadan]"
+   ],
+   [
+    "C",
+    "[هاي نصيحة للحياة كمان|بالحياة الحقيقية كمان|مش بس باللعبة]"
+   ],
+   [
+    "A",
+    "[w kaman dayman {s:drink} el sob7|ma tebda2sh men gheir {s:drink}|w {s:drink}, mohem awi]"
+   ],
+   [
+    "B",
+    "[sagalt|7afazt|mesh hansa]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sahranin-2",
+  "konu": "gece",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[في حدا صاحي؟|مين لسا أونلاين؟|في حدا هون؟]"
+   ],
+   [
+    "B",
+    "[ana|hena|7ader]"
+   ],
+   [
+    "A",
+    "[mesh 3aref anam|ba2aly sa3a bal2allab|el nom mesh gay]"
+   ],
+   [
+    "B",
+    "[ana kaman, sharebt {s:drink} mota2akhar|ana kaman, {s:drink} el sa3a 7edashar ghalta|nafs el moshkela, {s:drink} keteer]"
+   ],
+   [
+    "C",
+    "[أنا طالع من شفت الليل|لسا عم اشتغل|بشغل الليل]"
+   ],
+   [
+    "A",
+    "[e7na team el leil|ahlan fe nadi el sahraneen|team bala nom]"
+   ],
+   [
+    "B",
+    "[lazem logo|3agbetni|ne3mel t-shirts]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-gar-dawsha-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "[الجار اللي فوق عم يجر عفش الساعة ١٢|الجيران فوق عم يصلحوا بنص الليل|صوت دريل بهالوقت]"
+   ],
+   [
+    "B",
+    "[klasik|7ayat el 3emarat|dayman]"
+   ],
+   [
+    "A",
+    "[w bokra la2em asha|w ana bokra el sa3a tamanya fel shoghl|bokra {s:day}, lazem as7a badri]"
+   ],
+   [
+    "C",
+    "[سدادات أدنين|سماعات وموسيقى|اطلع وقلّو بلطف]"
+   ],
+   [
+    "A",
+    "[tele3t, 3azamni 3ala {s:food}|2oltelo, w fel akher kalna {s:food}|talabt hodoo2, rege3t bel {s:food}]"
+   ],
+   [
+    "B",
+    "[haha, nehaya 3azeema|da el gera|geran kwayseen]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-turki-7elw-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[اليوم قلت \"çok güzel\" لتركي وانبسط|\"çok güzel\" دايماً بتنفع|صرت قول \"çok güzel\" كتير]"
+   ],
+   [
+    "B",
+    "[ya3ni \"7elw awi\"?|da \"gamel geddan\", sa7?|çok güzel!]"
+   ],
+   [
+    "A",
+    "[aywa|bel zabt|aywa, lel akl, lel ta2s, lel kol]"
+   ],
+   [
+    "C",
+    "[للأكل بيقولوا \"lezzetli\" يعني زاكي|للأكل في \"çok lezzetli\"|\"lezzetli\" يعني طيب، لـ {s:food}]"
+   ],
+   [
+    "A",
+    "[{s:food} çok lezzetli|el naharda {s:food} lezzetli|tamam: {s:food}, çok lezzetli]"
+   ],
+   [
+    "B",
+    "[betet7assen|perfect|el atrak hayefta5ro]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-kalimat-mokhaddi3a-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[صاحبي التركي قال \"kira\" وأنا فكرت بالكرا|\"kira\" بالتركي يعني إجار|اكتشفت إنو \"kira\" = الكرا = الإجار]"
+   ],
+   [
+    "B",
+    "[aywa, nafs el kelma ta2reeban|kteer kalemat mn el 3arabi|el torki feeh kalemat 3arabeya keteer]"
+   ],
+   [
+    "C",
+    "[\"dükkan\" = دكان، و\"hesap\" = حساب|\"hava\" = هوا بس معناها طقس|\"kahve\" = قهوة]"
+   ],
+   [
+    "A",
+    "[ya3ni el le3ba bel torki ana fahemha nossaha|fahem nos el chat el torki|ana torki ta2reeban]"
+   ],
+   [
+    "B",
+    "[msh awi, el ma3ani sa3at mokhtalefa|ba3d el kalemat bet8esh|khalli balak]"
+   ],
+   [
+    "A",
+    "[zay {s:family}, fahmeen nos el mosalsal|3and {s:family} bardo kalemat torki|{s:family} w el mosalsalat, nafs el 7aga]"
+   ],
+   [
+    "C",
+    "[kolena kda|7elw|logha 2areeba]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-karak-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[شاي كرك بالليل، مين معي؟|ما في متل الكرك بالبرد|الليلة كرك وحكي]"
+   ],
+   [
+    "B",
+    "[ana, ma3 hel zeyada|ana, bas a2al sokkar|ma3 2erfa]"
+   ],
+   [
+    "C",
+    "[ana {s:drink} bas|ana nas {s:drink}|3andi {s:drink}, mesh karak]"
+   ],
+   [
+    "A",
+    "[kol wa7ed w zaw2o|tamam, bas garreb|marra tanya karak]"
+   ],
+   [
+    "B",
+    "[ma3 {s:food} yeb2a a7la|w ma3ah {s:food}|{s:food} gamb el karak]"
+   ],
+   [
+    "C",
+    "[mashy|ettafa2na|3ash]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-dakhan-mashawi-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[الويكند مشاوي عالسطح، حتى لو برد|مين بيعمل مشاوي بالشتي؟ أنا|بدي أشوي حتى لو عم تشتي]"
+   ],
+   [
+    "B",
+    "[el mashawi malhash mawsem|yenfa3, elbes te2eel|dayman yenfa3]"
+   ],
+   [
+    "C",
+    "[ana fel beit ma3 {s:food}|fel bard {s:food} fel beit|ana nas {s:food}]"
+   ],
+   [
+    "A",
+    "[el geran hayeshoomo el re7a w yegoo|el geran gayeen 3al re7a|el 3emara kolha gaya]"
+   ],
+   [
+    "B",
+    "[yeb2a eshtri aktar|yeb2a ykaffi el kol|gahhez naseeb el geran]"
+   ],
+   [
+    "A",
+    "[sa7|ha3mel kda|fekra 7elwa]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ma7faza-fadya-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[فتحت المحفظة وطلعت منها فراشة|المحفظة فاضية، ولسا نص الشهر|١٥ يوم للراتب]"
+   ],
+   [
+    "B",
+    "[yanayer klasik|yanayer kda|kolena nafs el 7al]"
+   ],
+   [
+    "A",
+    "[fel le3ba ghani, fel 7a2ee2a la2|fel le3ba milyoneer, fel 7aya taleb|fel le3ba 3andi ma7al, fel geib mafeesh]"
+   ],
+   [
+    "C",
+    "[ع الأقل واحد منيح|بواحد عم تربح|اللعبة بتعزّي]"
+   ],
+   [
+    "A",
+    "[el leila {s:food}, rekhees|3ayesh 3ala {s:food}|{s:food} w sabr]"
+   ],
+   [
+    "B",
+    "[hatet7al|el ratib gay|yavaş yavaş]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-istifta-reeh-1",
+  "konu": "anket",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[استفتاء: المطر بتحبوه ولا لأ؟|الشتوة: صاحب ولا عدو؟|رأيكن بالمطر]"
+   ],
+   [
+    "B",
+    "[3adoww, dayman bensa {s:thing}|3adoww, sha3ri beyboz|bakrahha]"
+   ],
+   [
+    "C",
+    "[صاحب، الهوا بيصير نضيف|صاحب، ريحة الأرض بعد الشتوة|بلاها الشتا ما في خير]"
+   ],
+   [
+    "D",
+    "[ana bas bakhaf 3ala {s:thing}|el matar dayman beybawwaz {s:thing}|lama tmattar {s:thing} beyeb2a fel beit]"
+   ],
+   [
+    "A",
+    "[{D} 3amali|{D} 3ando 7a2|{D} zaki]"
+   ],
+   [
+    "D",
+    "[khebra|da3at menni 7agat keteer|et3allemt]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-sha2a-melk-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.evsahibi"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[أخيراً صارت عندي شقة باللعبة|صرت مالك|اشتريت أول شقة]"
+   ],
+   [
+    "B",
+    "[mabrook!|alf mabrook|ya salam]"
+   ],
+   [
+    "A",
+    "[mafeesh egar tani|khalas el egar|delwa2ti bala egar]"
+   ],
+   [
+    "C",
+    "[والجاية؟ وحدة للأجار؟|هلأ التانية للدخل|الخطوة الجاية: تأجير]"
+   ],
+   [
+    "A",
+    "[awel e7tefal bel {s:food}|el leila {s:food}|{s:food} w ba3dein khotat]"
+   ],
+   [
+    "B",
+    "[testahel|bel hana|fe se7tak bel {s:drink}]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-masareef-ma3eesha-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[ليش كل شهر بينقص مصروف معيشة؟|شو هو مصروف المعيشة الشهري؟|كل شهر المصاري بتنزل لحالها]"
+   ],
+   [
+    "B",
+    "[da el sakan w el ma3eesha|akl, bet, w kda|masareef el 7aya]"
+   ],
+   [
+    "C",
+    "[المالك ما بيدفع إجار|إذا عندك بيت، بتدفع أقل|بلا شقة، الإجار لحال]"
+   ],
+   [
+    "A",
+    "[sabab tani lel sha2a|fehemt|sha2a, sha2a, sha2a]"
+   ],
+   [
+    "B",
+    "[zay el 7aya bel zabt|zay barra|wa2e3eya awi]"
+   ],
+   [
+    "A",
+    "[w ma3 kda bashtri {s:food}|bas ana basraf kolo 3ala {s:food}|masroofi el kbeer {s:food}]"
+   ],
+   [
+    "C",
+    "[awlaweyat|fahmak|3adi]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-ahlan-khaleej-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[مرحبا يا شباب، شخباركم؟|هلا والله بالجميع|سلام من {A.sehir}]"
+   ],
+   [
+    "B",
+    "[ahlan|marhaba|ezayak]"
+   ],
+   [
+    "C",
+    "[منين إنت؟|من أي بلد؟|من وين بتكتب؟]"
+   ],
+   [
+    "A",
+    "[men {A.sehir}, el ta2s 7elw|men {A.sehir}, kolo hadi|men {A.sehir}, bakol {s:food}]"
+   ],
+   [
+    "B",
+    "[hanyan|7asad|bel hana]"
+   ],
+   [
+    "C",
+    "[nawwart|ahlan beek|e7na hena]"
+   ]
+  ]
+ },
+ {
+  "id": "ar3-bayya3-dor-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "[بياع الترمس والذرة عالزاوية رجع|رجعت عربية الذرة المشوية عالكورنيش|بالشتي في بياع كستنا جنب بيتي]"
+   ],
+   [
+    "B",
+    "[kastana sokhna fel bard, a7san 7aga|dorra mashweya w lamoon|termes bel kammoon]"
+   ],
+   [
+    "A",
+    "[eshtareit w kalt w ana mashy|3amalt sahra soghayra ma3 {s:drink}|wa2eft 3ando ma3 {s:drink}]"
+   ],
+   [
+    "C",
+    "[باللعبة بدي إفتح عربية زي هيك|بدي محل صغير متل هالبياع|بس اللعبة ما فيها عربيات، فيها محلات]"
+   ],
+   [
+    "A",
+    "[el ma7al 2areeb, bas eftekr el sabr|momken ma7al, bas me7tag 60 yom khebra|ah, el ma7al mostawa talet]"
+   ],
+   [
+    "B",
+    "[le7ad ma te2dar, eshtri menno|le7ad sa3etha, kon zboon|khalleek zboon delwa2ti]"
+   ],
+   [
+    "A",
+    "[3ando 7a2|ma3lesh, bokra tani|sa7]"
+   ]
+  ]
+ }
+]
