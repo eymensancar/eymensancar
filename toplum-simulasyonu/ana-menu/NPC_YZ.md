@@ -66,6 +66,28 @@ Sunucu gerekmez, ücretli yapay zekâ servisi kullanılmaz: her şey telefonda �
   - Üçüncü seferde sistem uyarısı çıkar.
   - Engelle ve şikâyet et var.
   - Siyaset, savaş, terör ve din/etnik çatışma konuşulmaz.
+- **Bağlam (diyalog durumu):** kanal başına 5 dakikalık konu hafızası (özel mesajda 30 dakika). Kısa takip soruları ("peki garson", "kaç gün sürüyor", "neden olabilir") önceki konuya bağlanır, önceki mesaj soruya eklenip cevaplanır.
+- **Gerçek bilgi katmanı (`bilgi`):** cevaplar oyunun verisinden kurulur. Konular:
+  - meslek kazancı, kurs ücreti ve süresi, işletme maliyeti, kademe şartları, asgari ücret;
+  - mülk fiyatı, kira getirisi, kredi limiti ve notu, kredi reddinin sebebi;
+  - enflasyon, mevduatın olmaması, hayır eserinin itibarı, sıradaki bayram.
+- **Bir mesajda en çok iki bilgi.** Aynı bilgi aynı kişide yinelenmez:
+  - Soru aynıysa "az önce yazmıştım" der.
+  - Soru değiştiyse ya yalnız sorulan parçayı söyler ("evet, bitince memur olabiliyorsun") ya da bilmediğini dürüstçe söyler.
+- **Roller korunur:**
+  - Danışman sonradan aday olmaz.
+  - "Sen alır mısın" sorusu konuşmadaki kişiye gider.
+  - Kanalda olmayan birine hitap edilince "bugün girmedi galiba" denir.
+  - Kurye ve memur için işveren gerekmediği söylenir.
+- **İnsan gibi:**
+  - Bilmediği soruya çoğu kişi hiç yazmaz.
+  - Aynı cümleyi iki kişi yazmaz, kalıp açılışları ("Kusura bakma geç gördüm") tekrarlanmaz.
+  - Vedalaşan kişi saatlerce yazmaz.
+  - Oyuncuyla aynı adı taşıyan NPC başka ada geçer.
+  - Gece kanal sessiz, akşam yoğundur; ilk girişte son 40 dakikanın geçmişi görünür.
+- **Şirket kanalı:** çalışanlar çalışan gibi konuşur. Görev sayısı, ciro ve maaş gününe kalan gün gerçektir; yönetici cümleleri yalnız müdürdedir.
+- **Global kanal:** yabancılar kendi dillerinde yazar. Bir kerelik olayları ("ilk evimi aldım") birer kez yaşanır. Selama, "where are you from" sorusuna, teşekküre ve vedaya uygun cevap verirler.
+- **Ölçüm:** `tools/sohbet-sinav.cjs` (iki kör set; geliştirme kısımları ayar için, saklı kısımlar yalnız rapor için). Niyet modeli `tools/niyet-egit.cjs` ile eğitilir. Eğitim verisi: korpus3 (sentetik) ve geliştirme setleri; saklı setler eğitimde kullanılmaz.
 
 ## 6. Ekonomik ilişkiler (gerçek işlemler)
 
