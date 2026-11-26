@@ -9,6 +9,13 @@ vm.runInContext(fs.readFileSync(path.join(kok, 'npc-dil.js'), 'utf8'), ctx);
 vm.runInContext(fs.readFileSync(path.join(kok, 'npc-yz.js'), 'utf8'), ctx);
 if (fs.existsSync(path.join(kok, 'npc-sss.js')) && !process.argv.includes('--sssyok')) vm.runInContext(fs.readFileSync(path.join(kok, 'npc-sss.js'), 'utf8'), ctx);
 const T = ctx.Toplum, N = ctx.NPCYZ, D = ctx.NPCDil;
+// --anlam: bilgi bankası aramasına anlam modeli (tools/anlam/; model dosyası ANLAM_MODEL ya da tools/anlam/model/model.onnx)
+if ((process.argv.includes('--anlam') || process.env.ANLAM) && N.gommeAyar && fs.existsSync(path.join(kok, 'npc-sss-gomme.js'))) {
+  vm.runInContext(fs.readFileSync(path.join(kok, 'npc-sss-gomme.js'), 'utf8'), ctx);
+  const A = path.join(__dirname, 'anlam'), g = require(path.join(A, 'anlam-node.cjs'))({ model: process.env.ANLAM_MODEL || path.join(A, 'model', 'model.onnx'), sozluk: path.join(A, 'sozluk.json'), modulKoku: process.env.ANLAM_MODUL, onEk: 'query: ', onbellek: process.env.ANLAM_ONBELLEK });
+  const [a, c0, c1, yol] = (process.env.ANLAM_AYAR || '').split(','); N.gommeAyar(g, a ? { a: +a, c0: +c0, c1: +c1, yol: yol || '' } : null);
+  process.on('exit', () => console.log('Anlam modeli:', JSON.stringify(g.istatistik())));
+}
 if (process.env.SSS && N.sssAyar) { const [g, e, k] = process.env.SSS.split(',').map(Number); N.sssAyar(g, e, isNaN(k) ? null : k); }
 const YAZ = process.argv.includes('--yaz'), KORPUS = !process.argv.includes('--elle');
 const SET = process.argv.includes('--sakli') ? 'sakli' : process.argv.includes('--hepsi') ? null : 'gelistirme';
