@@ -9,6 +9,7 @@ vm.runInContext(fs.readFileSync(path.join(kok, 'npc-dil.js'), 'utf8'), ctx);
 vm.runInContext(fs.readFileSync(path.join(kok, 'npc-yz.js'), 'utf8'), ctx);
 if (fs.existsSync(path.join(kok, 'npc-sss.js')) && !process.argv.includes('--sssyok')) vm.runInContext(fs.readFileSync(path.join(kok, 'npc-sss.js'), 'utf8'), ctx);
 const T = ctx.Toplum, N = ctx.NPCYZ, D = ctx.NPCDil;
+if (process.env.SSS && N.sssAyar) { const [g, e] = process.env.SSS.split(',').map(Number); N.sssAyar(g, e); }
 const YAZ = process.argv.includes('--yaz'), KORPUS = !process.argv.includes('--elle');
 const SET = process.argv.includes('--sakli') ? 'sakli' : process.argv.includes('--hepsi') ? null : 'gelistirme';
 const K2 = process.argv.includes('--korpus2'), K5 = process.argv.includes('--korpus5') ? 'korpus5' : process.argv.includes('--korpus6') ? 'korpus6' : null;

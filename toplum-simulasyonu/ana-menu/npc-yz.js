@@ -1549,7 +1549,7 @@
     if (!r0) { const s1 = sssCevap(world, meta, kim, oyuncu, katli, SSS_ESIK); if (s1) r0 = { metin: s1.metin, sss: s1.sss }; }
     if (r0 && r0.odak) meta._odakSon = { odak: r0.odak, t: Date.now() }; return r0;
   }
-  let SSS_GUCLU = .8, SSS_ESIK = .45;
+  let SSS_GUCLU = .8, SSS_ESIK = .35;
   NPCYZ.sssAyar = (g, e) => { SSS_GUCLU = g; SSS_ESIK = e; };
   function bilgi0(world, meta, kim, konu, varlik, oyuncu, katli, takip) {
     const p = world.players[kim.id];
