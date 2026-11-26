@@ -1906,7 +1906,18 @@
     });
   }
 
+  // Kanalda soru cevapsız kalmasın: kurallar kimseyi konuşturmadıysa bilgi bankasında karşılığı olan soruya biri cevap verir
   NPCYZ.oyuncuMesaji = function (world, meta, kanal, metin, oyuncu, saat, sirketNpcIdleri, yanit) {
+    const r = oyuncuMesaji0(world, meta, kanal, metin, oyuncu, saat, sirketNpcIdleri, yanit);
+    if (kanal !== 'ulke' || !r || r.cevaplar.length || r.uyari || r.adaylar || !r.niyet || r.niyet.kufur || ERKEN_SOSYAL.has(r.niyet.niyet) && !EYLEM_NIYET.has(r.niyet.niyet)) return r;
+    const katli = (dil().normal)(metin).katli; if (!(r.niyet.soru || /\?/.test(metin) || ERKEN_SORU.test(katli))) return r;
+    const st = meta.diyalog && meta.diyalog[kanal], rng = rngYap(hash(metin + ':bos:' + Date.now()));
+    const id = st && st.sonNpc && meta.npc[st.sonNpc] && world.players[st.sonNpc] ? st.sonNpc : konusanSec(world, meta, rng, saat, x => !!world.players[x]);
+    const sc = id && sssCevap(world, meta, meta.npc[id], oyuncu, katli, SSS_ESIK);
+    if (sc) { r.cevaplar.push(bilgiPaketi(world, meta, id, { metin: sc.metin, sss: sc.sss }, rng, 1800)); if (st) { st.sonNpc = id; if (st.cevaplayan && !st.cevaplayan.includes(id)) st.cevaplayan.push(id); } r.niyet.sss = sc.sss; }
+    return r;
+  };
+  function oyuncuMesaji0(world, meta, kanal, metin, oyuncu, saat, sirketNpcIdleri, yanit) {
     const rng = rngYap(hash(metin + ':' + Date.now()));
     const npcIdler = kanal === 'sirket' ? (sirketNpcIdleri || []).filter(id => meta.npc[id]) : Object.keys(meta.npc);
     adCakismasi(world, meta, oyuncu);
@@ -2350,7 +2361,7 @@
       if (c) { c.gecikmeMs += i * 2500; cevaplar.push(c); if (!st.cevaplayan.includes(id)) st.cevaplayan.push(id); st.sonNpc = id; }
     });
     return sonuc;
-  };
+  }
 
   /** Bir NPC bu niyete ne kadar uygun bir cevapçı? */
   function niyetUygunluk(world, meta, id, ny, oyuncu) {
