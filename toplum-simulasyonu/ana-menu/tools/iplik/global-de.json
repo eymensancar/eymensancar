@@ -7,23 +7,23 @@
   "turlar": [
    [
     "A",
-    "[guten morgen|moin] zusammen"
+    "[guten morgen zusammen|moin moin|morgen leute|guten morgen, jemand schon wach?]"
    ],
    [
     "B",
-    "moin {A}"
+    "[moin {A}|morgen|guten morgen {A}, auch schon da?]"
    ],
    [
     "C",
-    "morgen, kaffee läuft schon"
+    "[morgen, kaffee läuft schon|moin, die maschine brummt schon|morgen. erster kaffee ist durch]"
    ],
    [
     "A",
-    "bei mir noch nicht, ich bin ein zombie"
+    "[bei mir noch nicht, ich bin ein zombie|ich bin noch nicht mal richtig wach|kaffee? ich finde nicht mal die tasse]"
    ],
    [
     "B",
-    "erst kaffee, dann reden"
+    "[erst kaffee, dann reden|kaffee zuerst, alles andere später|ohne kaffee keine gespräche, regel nummer eins]"
    ]
   ]
  },
@@ -35,27 +35,27 @@
   "turlar": [
    [
     "A",
-    "wer ist hier noch aus {A.sehir}?"
+    "[wer ist hier noch aus {A.sehir}?|jemand aus {A.sehir} hier?|gibts hier leute aus {A.sehir}?]"
    ],
    [
     "B",
-    "ich nicht, {B.sehir}"
+    "[ich nicht, {B.sehir}|nö, ich bin aus {B.sehir}|{B.sehir} hier, sorry]"
    ],
    [
     "C",
-    "{C.sehir} hier, aber war mal in {A.sehir}"
+    "[{C.sehir} hier, aber war mal in {A.sehir}|ich wohn in {C.sehir}, war aber schon mal in {A.sehir}|nicht von da, aber {A.sehir} kenn ich, bin aus {C.sehir}]"
    ],
    [
     "A",
-    "und, wie wars"
+    "[und, wie wars|und? wie fandest dus|und, gefallen?]"
    ],
    [
     "C",
-    "schön, nur zu teuer"
+    "[schön, nur zu teuer|hübsch, aber teuer|nett, nur mein geldbeutel hat geweint]"
    ],
    [
     "B",
-    "wie überall"
+    "[wie überall|ist doch überall so|wo ist es heute nicht teuer]"
    ]
   ]
  },
@@ -67,27 +67,27 @@
   "turlar": [
    [
     "A",
-    "bin neu hier, was sollte ich zuerst machen?"
+    "[bin neu hier, was sollte ich zuerst machen?|neu hier, wo fang ich am besten an?|hallo, erster tag. tipps für den anfang?]"
    ],
    [
     "B",
-    "nicht alles auf einmal ausgeben"
+    "[nicht alles auf einmal ausgeben|gib nicht gleich alles aus|erstmal das geld zusammenhalten]"
    ],
    [
     "C",
-    "such dir nen job, kurier geht sofort ohne voraussetzungen"
+    "[such dir nen job, kurier geht sofort ohne voraussetzungen|nimm nen job, kurier kannst du ohne alles sofort machen|kurier. keine voraussetzungen, geht sofort los]"
    ],
    [
     "A",
-    "echt? einfach so?"
+    "[echt? einfach so?|ohne kurs oder so?|wirklich, sofort?]"
    ],
    [
     "C",
-    "ja, direkt im karriere bildschirm"
+    "[ja, direkt im karriere bildschirm|jap, im karriere bildschirm einfach starten|ja, karriere öffnen und los]"
    ],
    [
     "B",
-    "und mach die täglichen aufgaben, gibt eine sanduhr gratis"
+    "[und mach die täglichen aufgaben, gibt eine sanduhr gratis|und die tagesaufgaben nicht vergessen, da gibts ne gratis sanduhr|tägliche aufgaben machen, dafür gibts ne sanduhr umsonst]"
    ]
   ]
  },
@@ -99,23 +99,23 @@
   "turlar": [
    [
     "A",
-    "schon wieder regen in {A.sehir}"
+    "[schon wieder regen in {A.sehir}|in {A.sehir} regnets mal wieder|{A.sehir}: regen. wie immer]"
    ],
    [
     "B",
-    "hier auch, seit tagen"
+    "[hier auch, seit tagen|bei mir auch, schon seit tagen|same, hört gar nicht mehr auf]"
    ],
    [
     "C",
-    "bei uns sonne, sorry"
+    "[bei uns sonne, sorry|hier scheint die sonne, sorry|sonne pur bei mir, tut mir fast leid]"
    ],
    [
     "A",
-    "schick mal was rüber"
+    "[schick mal was rüber|schick mir mal bisschen davon|teil mal die sonne]"
    ],
    [
     "C",
-    "kostet extra"
+    "[kostet extra|nur gegen bezahlung|gibts nicht umsonst haha]"
    ]
   ]
  },
@@ -127,23 +127,23 @@
   "turlar": [
    [
     "A",
-    "was heißt eigentlich \"abi\"? die türken schreiben das ständig"
+    "[was heißt eigentlich \"abi\"? die türken schreiben das ständig|was bedeutet \"abi\"? lese ich hier dauernd|kurze frage, was ist \"abi\"? die türken sagen das ständig]"
    ],
    [
     "B",
-    "großer bruder, aber man sagt es zu jedem älteren"
+    "[großer bruder, aber man sagt es zu jedem älteren|heißt großer bruder, sagt man aber zu jedem der älter ist|großer bruder. wird aber für jeden älteren benutzt]"
    ],
    [
     "C",
-    "so wie \"alter\" ungefähr, nur netter"
+    "[so wie \"alter\" ungefähr, nur netter|bisschen wie \"alter\", nur freundlicher|wie \"digga\", nur höflicher]"
    ],
    [
     "A",
-    "ok abi"
+    "[ok abi|alles klar abi|danke abi]"
    ],
    [
     "B",
-    "[läuft bei dir|perfekt]"
+    "[läuft bei dir|perfekt|schon voll integriert]"
    ]
   ]
  },
@@ -155,27 +155,27 @@
   "turlar": [
    [
     "A",
-    "habt ihr das spiel gesehen?"
+    "[habt ihr das spiel gesehen?|wer hat gestern das spiel geguckt?|das spiel gesehen??]"
    ],
    [
     "B",
-    "ja, unfassbar, nachspielzeit"
+    "[ja, unfassbar, nachspielzeit|ja, wahnsinn, in der nachspielzeit|ja! nachspielzeit, unglaublich]"
    ],
    [
     "C",
-    "ich hab nur das ergebnis gelesen"
+    "[ich hab nur das ergebnis gelesen|hab nur das ergebnis mitbekommen|nur den endstand gesehen]"
    ],
    [
     "A",
-    "verpasst, sowas sieht man selten"
+    "[verpasst, sowas sieht man selten|da hast du was verpasst|selbst schuld, sowas gibts selten]"
    ],
    [
     "B",
-    "der schiri war aber schwach"
+    "[der schiri war aber schwach|aber der schiri, puh|schiedsrichter war eine katastrophe]"
    ],
    [
     "C",
-    "ist er immer"
+    "[ist er immer|wie immer|der ist doch immer so]"
    ]
   ]
  },
@@ -187,27 +187,27 @@
   "turlar": [
    [
     "A",
-    "heute [20|so viele] lieferungen, ich kann nicht mehr"
+    "[heute 20 lieferungen, ich kann nicht mehr|so viele lieferungen heute, bin fertig|20 aufträge heute, meine beine sind tot]"
    ],
    [
     "B",
-    "kurierleben halt"
+    "[kurierleben halt|tja, kurier eben|willkommen im kurierleben]"
    ],
    [
     "A",
-    "geld ist ok, aber die beine"
+    "[geld ist ok, aber die beine|das geld stimmt, aber die beine nicht|kohle passt, nur der körper nicht]"
    ],
    [
     "C",
-    "werd kellner, da hast du wenigstens ein dach"
+    "[werd kellner, da hast du wenigstens ein dach|mach kellner, da bist du wenigstens drinnen|kellnern, dann regnet es dir nicht auf den kopf]"
    ],
    [
     "A",
-    "und nervige gäste"
+    "[und nervige gäste|dafür nervige gäste|und dann hab ich gäste am hals]"
    ],
    [
     "C",
-    "irgendwas ist immer"
+    "[irgendwas ist immer|was anderes gibts nicht|tja, perfekt ist nichts]"
    ]
   ]
  },
@@ -219,27 +219,27 @@
   "turlar": [
    [
     "A",
-    "lohnt sich ne wohnung zu kaufen oder lieber warten"
+    "[lohnt sich ne wohnung zu kaufen oder lieber warten|wohnung kaufen oder noch warten, was meint ihr|jetzt kaufen oder lieber abwarten?]"
    ],
    [
     "B",
-    "wohnst du zur miete?"
+    "[wohnst du zur miete?|bist du mieter?|zahlst du gerade miete?]"
    ],
    [
     "A",
-    "ja, die miete frisst mich auf"
+    "[ja, die miete frisst mich auf|ja, und die miete bringt mich um|ja, jeden monat geht so viel weg]"
    ],
    [
     "B",
-    "dann kaufen, eigentümer zahlen keine miete"
+    "[dann kaufen, eigentümer zahlen keine miete|dann kauf, als eigentümer zahlst du keine miete|kaufen. eigentümer zahlen keine miete]"
    ],
    [
     "C",
-    "und die preise steigen jeden monat, warten kostet auch"
+    "[und die preise steigen jeden monat, warten kostet auch|die preise gehen jeden monat hoch, warten kostet|warten bringt nix, wird jeden monat teurer]"
    ],
    [
     "A",
-    "ok ich schau mir mal den kredit an"
+    "[ok ich schau mir mal den kredit an|ok, dann guck ich mir den kredit an|gut, ich check mal die kreditbedingungen]"
    ]
   ]
  },
@@ -251,23 +251,23 @@
   "turlar": [
    [
     "A",
-    "gibts hier eigentlich ne börse?"
+    "[gibts hier eigentlich ne börse?|kann man hier aktien kaufen?|börse gibts noch nicht, oder?]"
    ],
    [
     "B",
-    "noch nicht, soll mit nem update kommen"
+    "[noch nicht, soll mit nem update kommen|noch nicht, kommt angeblich im update|nein, soll aber nachgereicht werden]"
    ],
    [
     "A",
-    "schade, wollte zocken"
+    "[schade, wollte zocken|mist, wollte bisschen zocken|schade, hätte gern spekuliert]"
    ],
    [
     "C",
-    "devisen und gold auch noch nicht"
+    "[devisen und gold auch noch nicht|gold und devisen gibts auch noch nicht|auch kein gold, keine devisen]"
    ],
    [
     "B",
-    "also immobilien und arbeiten, wie früher"
+    "[also immobilien und arbeiten, wie früher|also arbeiten und immobilien, ganz oldschool|bleibt arbeiten und wohnungen, wie bei oma]"
    ]
   ]
  },
@@ -279,27 +279,27 @@
   "turlar": [
    [
     "A",
-    "hab mein café aufgemacht, die ersten kunden sind da"
+    "[hab mein café aufgemacht, die ersten kunden sind da|mein café ist offen, erste kunden kommen|café eröffnet! die ersten gäste sind drin]"
    ],
    [
     "B",
-    "glückwunsch! wie läufts"
+    "[glückwunsch! wie läufts|nice, glückwunsch! und?|wow, gratuliere! wie läuft es]"
    ],
    [
     "A",
-    "geht so, gegenüber ist noch ein café"
+    "[geht so, gegenüber ist noch ein café|mittel, gegenüber ist auch ein café|naja, direkt gegenüber gibts schon eins]"
    ],
    [
     "C",
-    "dann teilen sich die kunden auf"
+    "[dann teilen sich die kunden auf|dann werden die kunden geteilt|tja, dann gehen die kunden halbe halbe]"
    ],
    [
     "A",
-    "hab ich gemerkt, muss besser werden"
+    "[hab ich gemerkt, muss besser werden|merk ich, ich muss besser sein|ja, ich muss mich abheben]"
    ],
    [
     "B",
-    "gute leute einstellen, aushilfen sind teuer"
+    "[gute leute einstellen, aushilfen sind teuer|stell gute leute ein, aushilfen kosten viel|richtige mitarbeiter holen, aushilfen sind teuer und langsam]"
    ]
   ]
  },
@@ -311,27 +311,27 @@
   "turlar": [
    [
     "A",
-    "was gibts bei euch zum frühstück"
+    "[was gibts bei euch zum frühstück|was frühstückt ihr so|frühstück heute?]"
    ],
    [
     "B",
-    "brötchen, wie immer"
+    "[brötchen, wie immer|brötchen, was sonst|wie jeden tag, brötchen]"
    ],
    [
     "C",
-    "türkisches frühstück, hat mir ein kumpel gezeigt"
+    "[türkisches frühstück, hat mir ein kumpel gezeigt|türkisches frühstück, seit mir ein freund das gezeigt hat|kahvaltı, hab ich von nem kumpel gelernt]"
    ],
    [
     "A",
-    "das mit den hundert tellern?"
+    "[das mit den hundert tellern?|das mit den tausend kleinen tellern?|das wo der ganze tisch voll ist?]"
    ],
    [
     "C",
-    "genau, nie wieder müsli"
+    "[genau, nie wieder müsli|genau das, müsli ist tot für mich|ja, müsli kann einpacken]"
    ],
    [
     "B",
-    "das ist kein frühstück das ist ein buffet"
+    "[das ist kein frühstück das ist ein buffet|das ist kein frühstück mehr, das ist ein buffet|das ist ein ganzes buffet, kein frühstück]"
    ]
   ]
  },
@@ -343,27 +343,27 @@
   "turlar": [
    [
     "A",
-    "wer ist noch wach"
+    "[wer ist noch wach|noch jemand wach?|wer kann auch nicht schlafen]"
    ],
    [
     "B",
-    "ich, kann nicht schlafen"
+    "[ich, kann nicht schlafen|ich, schlaf kommt nicht|hier, liege wach]"
    ],
    [
     "C",
-    "nachtschicht"
+    "[nachtschicht|ich hab nachtschicht|arbeite noch]"
    ],
    [
     "A",
-    "was machst du?"
+    "[was machst du?|als was?|was arbeitest du?]"
    ],
    [
     "C",
-    "{C.meslek}, nachts ist es ruhig"
+    "[{C.meslek}, nachts ist es ruhig|{C.meslek}, nachts ist wenig los|bin {C.meslek}, nachts ist es angenehm ruhig]"
    ],
    [
     "B",
-    "ich guck nur auf meine miete und weine leise"
+    "[ich guck nur auf meine miete und weine leise|ich starr auf meine miete und heul leise|ich lese meine mietabrechnung und leide]"
    ]
   ]
  },
@@ -375,27 +375,27 @@
   "turlar": [
    [
     "A",
-    "wofür sind diese sanduhren?"
+    "[wofür sind diese sanduhren?|was machen die sanduhren eigentlich?|wozu sind die sanduhren gut?]"
    ],
    [
     "B",
-    "wartezeit verkürzen, eine sanduhr ist ein tag"
+    "[wartezeit verkürzen, eine sanduhr ist ein tag|die verkürzen wartezeit, eine ist ein tag|eine sanduhr spart dir einen tag warten]"
    ],
    [
     "A",
-    "auch für kurse?"
+    "[auch für kurse?|geht das auch bei kursen?|und bei kursen?]"
    ],
    [
     "B",
-    "ja, kurse und bewerbungen"
+    "[ja, kurse und bewerbungen|klar, für beides, kurse und bewerbungen|jo, auch für bewerbungen]"
    ],
    [
     "C",
-    "geld bringen sie aber keins"
+    "[geld bringen sie aber keins|aber geld gibts dafür nicht|machen dich aber nicht reicher]"
    ],
    [
     "A",
-    "alles klar"
+    "[alles klar|ok, danke|verstanden]"
    ]
   ]
  },
@@ -407,27 +407,27 @@
   "turlar": [
    [
     "A",
-    "mein vermieter hat schon wieder die miete erhöht"
+    "[mein vermieter hat schon wieder die miete erhöht|miete schon wieder hoch, danke vermieter|schon wieder mieterhöhung]"
    ],
    [
     "B",
-    "im spiel oder echt?"
+    "[im spiel oder echt?|im spiel oder im echten leben?|hier oder in echt?]"
    ],
    [
     "A",
-    "[beides|ja]"
+    "[beides|ja|leider beides]"
    ],
    [
     "C",
-    "autsch"
+    "[autsch|aua|oh nein]"
    ],
    [
     "B",
-    "kauf das haus, werd selbst vermieter"
+    "[kauf das haus, werd selbst vermieter|kauf die bude und werd selbst vermieter|dreh den spieß um, werd vermieter]"
    ],
    [
     "A",
-    "mit welchem geld, bitte"
+    "[mit welchem geld, bitte|mit welchem geld denn|klar, mit meinem nicht vorhandenen geld]"
    ]
   ]
  },
@@ -439,27 +439,27 @@
   "turlar": [
    [
     "A",
-    "warum ist mein kreditlimit so niedrig?"
+    "[warum ist mein kreditlimit so niedrig?|wieso krieg ich so wenig kredit?|mein kreditlimit ist lächerlich, warum?]"
    ],
    [
     "B",
-    "hängt vom einkommen letzten monat und der bonität ab"
+    "[hängt vom einkommen letzten monat und der bonität ab|das richtet sich nach letztem monatseinkommen und bonität|einkommen vom letzten monat mal bonität, so wird das berechnet]"
    ],
    [
     "A",
-    "letzten monat war ich halb arbeitslos"
+    "[letzten monat war ich halb arbeitslos|letzten monat hab ich kaum gearbeitet|hab letzten monat fast nix verdient]"
    ],
    [
     "C",
-    "da hast du es"
+    "[da hast du es|na also|da liegt der hund begraben]"
    ],
    [
     "B",
-    "raten pünktlich zahlen, dann steigt der score"
+    "[raten pünktlich zahlen, dann steigt der score|zahl die raten pünktlich, dann geht der score hoch|pünktlich zahlen hebt den score]"
    ],
    [
     "A",
-    "ok verstanden"
+    "[ok verstanden|alles klar|ok, merk ich mir]"
    ]
   ]
  },
@@ -471,27 +471,27 @@
   "turlar": [
    [
     "A",
-    "merhaba an alle türken hier"
+    "[merhaba an alle türken hier|merhaba an die türken im chat|merhaba leute aus der türkei]"
    ],
    [
     "B",
-    "merhaba! nasılsın?"
+    "[merhaba! nasılsın?|merhaba! wie gehts, nasılsın?|oh merhaba! nasılsın?]"
    ],
    [
     "A",
-    "mehr kann ich leider nicht"
+    "[mehr kann ich leider nicht|das war leider alles was ich kann|mein türkisch endet hier]"
    ],
    [
     "B",
-    "reicht doch, dazu noch \"çay\" und du bist dabei"
+    "[reicht doch, dazu noch \"çay\" und du bist dabei|reicht, lern noch \"çay\" und du gehörst dazu|passt schon, mit \"çay\" bist du dabei]"
    ],
    [
     "C",
-    "und \"tamam\", das brauchst du immer"
+    "[und \"tamam\", das brauchst du immer|und \"tamam\", das sagt man ständig|\"tamam\" noch, das hörst du dauernd]"
    ],
    [
     "A",
-    "tamam"
+    "[tamam|tamam!|ok, tamam]"
    ]
   ]
  },
@@ -503,27 +503,27 @@
   "turlar": [
    [
     "A",
-    "was habt ihr am wochenende vor?"
+    "[was habt ihr am wochenende vor?|pläne fürs wochenende?|was macht ihr am wochenende]"
    ],
    [
     "B",
-    "schlafen"
+    "[schlafen|ausschlafen|nur schlafen]"
    ],
    [
     "C",
-    "schlafen und pizza"
+    "[schlafen und pizza|pizza und schlafen|schlafen, dann pizza, dann schlafen]"
    ],
    [
     "A",
-    "ihr seid so produktiv"
+    "[ihr seid so produktiv|wow, so produktiv|große pläne habt ihr]"
    ],
    [
     "B",
-    "und du?"
+    "[und du?|und du so?|was machst du denn?]"
    ],
    [
     "A",
-    "[wäsche|aufräumen]. aufregend, ich weiß"
+    "[wäsche. aufregend, ich weiß|aufräumen. spannend, ich weiß|wäsche waschen. ja, ich weiß]"
    ]
   ]
  },
@@ -535,27 +535,27 @@
   "turlar": [
    [
     "A",
-    "überlege den buchhaltungskurs zu machen"
+    "[überlege den buchhaltungskurs zu machen|denke über den buchhaltungskurs nach|soll ich den buchhaltungskurs machen?]"
    ],
    [
     "B",
-    "hab ich gemacht, lohnt sich"
+    "[hab ich gemacht, lohnt sich|hab ich gemacht, war es wert|mach ihn, lohnt sich]"
    ],
    [
     "A",
-    "wie lange dauert der?"
+    "[wie lange dauert der?|wie lang geht der?|dauert der lange?]"
    ],
    [
     "B",
-    "ein paar tage, dazu brauchst du 30 tage erfahrung"
+    "[ein paar tage, dazu brauchst du 30 tage erfahrung|paar tage, plus 30 tage erfahrung vorher|ein paar tage, aber du brauchst noch 30 tage erfahrung]"
    ],
    [
     "A",
-    "und danach festes gehalt?"
+    "[und danach festes gehalt?|und dann festes gehalt?|danach gibts fixes gehalt?]"
    ],
    [
     "B",
-    "ja, auch wenn du nicht online bist"
+    "[ja, auch wenn du nicht online bist|ja, sogar wenn du offline bist|jap, auch wenn du gar nicht spielst]"
    ]
   ]
  },
@@ -567,23 +567,23 @@
   "turlar": [
    [
     "A",
-    "läuft die zeit weiter wenn die app zu ist?"
+    "[läuft die zeit weiter wenn die app zu ist?|geht die zeit weiter wenn ich offline bin?|läuft die uhr auch wenn das spiel zu ist?]"
    ],
    [
     "B",
-    "ja, ein spieltag ist eine echte stunde"
+    "[ja, ein spieltag ist eine echte stunde|ja, ein tag im spiel ist eine stunde echt|jap, eine echte stunde ist ein spieltag]"
    ],
    [
     "A",
-    "also ein monat 30 stunden?"
+    "[also ein monat 30 stunden?|dann ist ein monat 30 stunden?|heißt ein monat dauert 30 stunden?]"
    ],
    [
     "B",
-    "genau"
+    "[genau|jap|richtig]"
    ],
    [
     "C",
-    "deshalb kommt die miete so schnell"
+    "[deshalb kommt die miete so schnell|darum ist die miete ständig fällig|deswegen ist die miete immer so schnell wieder da]"
    ]
   ]
  },
@@ -595,23 +595,23 @@
   "turlar": [
    [
     "A",
-    "wird hier alles jeden monat teurer oder bilde ich mir das ein"
+    "[wird hier alles jeden monat teurer oder bilde ich mir das ein|wird alles monatlich teurer oder spinn ich|kommt mir das nur so vor oder steigen die preise jeden monat]"
    ],
    [
     "B",
-    "inflation, ist so gewollt"
+    "[inflation, ist so gewollt|inflation, absichtlich so|das ist inflation, gehört dazu]"
    ],
    [
     "A",
-    "realistisch bis zum schmerz"
+    "[realistisch bis zum schmerz|so realistisch, dass es weh tut|danke für den realismus]"
    ],
    [
     "C",
-    "löhne steigen auch, nur langsamer"
+    "[löhne steigen auch, nur langsamer|gehälter gehen auch hoch, nur hinterher|die löhne ziehen nach, aber langsam]"
    ],
    [
     "A",
-    "natürlich"
+    "[natürlich|klar, wie immer|wie im echten leben]"
    ]
   ]
  },
@@ -623,27 +623,27 @@
   "turlar": [
    [
     "A",
-    "n abend [allerseits|leute]"
+    "[n abend allerseits|abend leute|guten abend zusammen]"
    ],
    [
     "B",
-    "abend {A}"
+    "[abend {A}|n abend {A}|hey {A}]"
    ],
    [
     "C",
-    "hey, wie war dein tag"
+    "[hey, wie war dein tag|hi, wie lief dein tag|na, wie war der tag]"
    ],
    [
     "A",
-    "lang. und deiner?"
+    "[lang. und deiner?|lang. deiner?|zu lang. und bei dir?]"
    ],
    [
     "C",
-    "auch lang, lass uns über essen reden"
+    "[auch lang, lass uns über essen reden|auch lang, reden wir lieber über essen|genauso, lass uns übers essen reden]"
    ],
    [
     "B",
-    "bester vorschlag heute"
+    "[bester vorschlag heute|beste idee des tages|unterstütze ich voll]"
    ]
   ]
  },
@@ -655,27 +655,27 @@
   "turlar": [
    [
     "A",
-    "immobilienmakler, lohnt sich das?"
+    "[immobilienmakler, lohnt sich das?|lohnt sich makler?|wie ist das als immobilienmakler?]"
    ],
    [
     "B",
-    "gehalt plus provision, wenn du aktiv bist sehr gut"
+    "[gehalt plus provision, wenn du aktiv bist sehr gut|gehalt und provision, wer aktiv ist verdient gut|fixum plus provision, wenn du viel machst top]"
    ],
    [
     "A",
-    "braucht man nen kurs?"
+    "[braucht man nen kurs?|braucht man dafür nen kurs?|kurs nötig?]"
    ],
    [
     "B",
-    "ja, den maklerschein"
+    "[ja, den maklerschein|ja, den maklerschein brauchst du|ja, ohne maklerschein geht nix]"
    ],
    [
     "C",
-    "und vorher 30 tage erfahrung"
+    "[und vorher 30 tage erfahrung|plus 30 tage erfahrung vorher|und 30 tage berufserfahrung davor]"
    ],
    [
     "A",
-    "also nichts für tag eins"
+    "[also nichts für tag eins|also nicht für den ersten tag|ok, also später]"
    ]
   ]
  },
@@ -687,27 +687,27 @@
   "turlar": [
    [
     "A",
-    "meine katze ist gerade über mein handy gelaufen"
+    "[meine katze ist gerade über mein handy gelaufen|katze ist eben übers handy spaziert|meine katze hat grad auf meinem handy getanzt]"
    ],
    [
     "B",
-    "hat sie was gekauft?"
+    "[hat sie was gekauft?|hat sie was bestellt?|und, wohnung gekauft?]"
    ],
    [
     "A",
-    "zum glück nicht"
+    "[zum glück nicht|gott sei dank nicht|nein, zum glück]"
    ],
    [
     "C",
-    "katzen sind die wahren spieler"
+    "[katzen sind die wahren spieler|katzen sind die echten profis|die katze spielt besser als wir]"
    ],
    [
     "B",
-    "mein hund hat letzte woche das ladekabel gefressen"
+    "[mein hund hat letzte woche das ladekabel gefressen|mein hund hat letzte woche mein ladekabel zerlegt|bei mir hat der hund das ladekabel gegessen]"
    ],
    [
     "A",
-    "respekt"
+    "[respekt|stark|der hund weiß was er will]"
    ]
   ]
  },
@@ -719,27 +719,27 @@
   "turlar": [
    [
     "A",
-    "wie verdient man am schnellsten geld?"
+    "[wie verdient man am schnellsten geld?|schnellster weg zu geld?|wie komm ich am schnellsten an kohle?]"
    ],
    [
     "B",
-    "gibt keinen trick"
+    "[gibt keinen trick|da gibts keinen trick|einen trick gibts nicht]"
    ],
    [
     "C",
-    "wenn du viel online bist, kurier. sonst was mit festem gehalt"
+    "[wenn du viel online bist, kurier. sonst was mit festem gehalt|viel online? kurier. wenig? festes gehalt|kommt drauf an, viel online dann kurier, sonst festgehalt]"
    ],
    [
     "A",
-    "bin dauernd am handy"
+    "[bin dauernd am handy|ich hänge eh dauernd am handy|bin quasi immer online]"
    ],
    [
     "C",
-    "dann kurier, du kriegst pro auftrag"
+    "[dann kurier, du kriegst pro auftrag|dann kurier, da wird pro auftrag bezahlt|kurier, du verdienst pro lieferung]"
    ],
    [
     "B",
-    "und keine kredite nehmen die du nicht zahlen kannst"
+    "[und keine kredite nehmen die du nicht zahlen kannst|und nimm keine kredite, die du nicht stemmen kannst|aber keine kredite über deine verhältnisse]"
    ]
   ]
  },
@@ -751,23 +751,23 @@
   "turlar": [
    [
     "A",
-    "hab zwei raten verpasst, schlimm?"
+    "[hab zwei raten verpasst, schlimm?|zwei raten nicht gezahlt, ist das schlimm?|hab zwei raten vergessen, problem?]"
    ],
    [
     "B",
-    "ja, bei drei kommt die zwangsvollstreckung"
+    "[ja, bei drei kommt die zwangsvollstreckung|ja, nach drei verpassten kommt die vollstreckung|ja, eine mehr und es gibt zwangsvollstreckung]"
    ],
    [
     "A",
-    "oh nein"
+    "[oh nein|was, echt?|ach du schande]"
    ],
    [
     "C",
-    "zahl jetzt sofort eine, auch wenns weh tut"
+    "[zahl jetzt sofort eine, auch wenns weh tut|zahl sofort eine nach, auch wenns weh tut|sofort eine rate zahlen, egal wie knapp]"
    ],
    [
     "A",
-    "mach ich direkt"
+    "[mach ich direkt|mach ich sofort|ok, gleich erledigt]"
    ]
   ]
  },
@@ -779,27 +779,27 @@
   "turlar": [
    [
     "A",
-    "mittagstief, ich schlaf gleich am schreibtisch ein"
+    "[mittagstief, ich schlaf gleich am schreibtisch ein|mittagstief, gleich penn ich am tisch|nach dem essen bin ich komplett platt]"
    ],
    [
     "B",
-    "geh mal ne runde laufen"
+    "[geh mal ne runde laufen|lauf mal ne runde|geh kurz raus, frische luft]"
    ],
    [
     "A",
-    "laufen ist anstrengung"
+    "[laufen ist anstrengung|laufen? zu anstrengend|bewegung? nein danke]"
    ],
    [
     "C",
-    "dann kaffee"
+    "[dann kaffee|kaffee hilft|dann halt kaffee]"
    ],
    [
     "A",
-    "der dritte heute schon"
+    "[der dritte heute schon|hatte schon drei|bin bei kaffee nummer drei]"
    ],
    [
     "B",
-    "dann ist es hoffnungslos"
+    "[dann ist es hoffnungslos|dann kann dir keiner mehr helfen|dann ist alles verloren]"
    ]
   ]
  },
@@ -811,27 +811,27 @@
   "turlar": [
    [
     "A",
-    "wie sagt man danke auf türkisch?"
+    "[wie sagt man danke auf türkisch?|was heißt danke auf türkisch?|danke auf türkisch?]"
    ],
    [
     "B",
-    "teşekkürler"
+    "[teşekkürler|teşekkürler, sagt man|das ist teşekkürler]"
    ],
    [
     "A",
-    "so viele buchstaben"
+    "[so viele buchstaben|so ein langes wort|das sind ja tausend buchstaben]"
    ],
    [
     "C",
-    "\"sağ ol\" geht auch, kürzer"
+    "[\"sağ ol\" geht auch, kürzer|kürzer: \"sağ ol\"|sag einfach \"sağ ol\", ist kürzer]"
    ],
    [
     "A",
-    "sağ ol dann"
+    "[sağ ol dann|dann sağ ol|sağ ol!]"
    ],
    [
     "B",
-    "[gern geschehen|bitte] heißt \"rica ederim\", hausaufgabe für morgen"
+    "[gern geschehen heißt \"rica ederim\", hausaufgabe für morgen|bitte heißt \"rica ederim\", hausaufgabe bis morgen|nächste lektion: \"rica ederim\" heißt gern geschehen]"
    ]
   ]
  },
@@ -843,27 +843,27 @@
   "turlar": [
    [
     "A",
-    "café oder laden, was würdet ihr aufmachen?"
+    "[café oder laden, was würdet ihr aufmachen?|würdet ihr eher café oder laden eröffnen?|café oder laden, was ist besser?]"
    ],
    [
     "B",
-    "café, kaffee geht immer"
+    "[café, kaffee geht immer|café, kaffee trinkt jeder|café natürlich, kaffee läuft immer]"
    ],
    [
     "C",
-    "laden, weniger stress mit personal"
+    "[laden, weniger stress mit personal|laden, weniger ärger mit mitarbeitern|ich sag laden, personal ist stress]"
    ],
    [
     "A",
-    "brauchen beide 60 tage erfahrung oder?"
+    "[brauchen beide 60 tage erfahrung oder?|beide brauchen 60 tage erfahrung, oder?|bei beiden 60 tage erfahrung nötig?]"
    ],
    [
     "B",
-    "ja und startkapital"
+    "[ja und startkapital|ja, plus startkapital|ja, und ordentlich kapital]"
    ],
    [
     "C",
-    "also jetzt sparen"
+    "[also jetzt sparen|also erstmal sparen|heißt: sparen sparen sparen]"
    ]
   ]
  },
@@ -875,23 +875,23 @@
   "turlar": [
    [
     "A",
-    "bringt spenden eigentlich was?"
+    "[bringt spenden eigentlich was?|haben spenden einen sinn im spiel?|was bringt spenden?]"
    ],
    [
     "B",
-    "ansehen, pro 10 tausend ein punkt"
+    "[ansehen, pro 10 tausend ein punkt|ansehen, ein punkt pro 10 tausend|pro 10 tausend gibts einen punkt ansehen]"
    ],
    [
     "A",
-    "und wofür ist ansehen gut?"
+    "[und wofür ist ansehen gut?|und was bringt ansehen?|wofür brauch ich ansehen?]"
    ],
    [
     "C",
-    "bonität, bewerbungen und so"
+    "[bonität, bewerbungen und so|für bonität und bewerbungen|hilft bei bonität und bewerbungen]"
    ],
    [
     "A",
-    "dann spende ich mal ein bisschen"
+    "[dann spende ich mal ein bisschen|dann spende ich mal was|ok, ich spende mal ne runde]"
    ]
   ]
  },
@@ -903,23 +903,23 @@
   "turlar": [
    [
     "A",
-    "stehe seit 40 minuten im stau"
+    "[stehe seit 40 minuten im stau|seit 40 minuten stau|40 minuten stau, ich dreh durch]"
    ],
    [
     "B",
-    "schreibst du beim fahren??"
+    "[schreibst du beim fahren??|du schreibst beim fahren??|tippst du etwa am steuer??]"
    ],
    [
     "A",
-    "nein, im bus, entspann dich"
+    "[nein, im bus, entspann dich|nein, sitze im bus, ruhig bleiben|bus, keine panik]"
    ],
    [
     "C",
-    "busstau ist der schlimmste stau"
+    "[busstau ist der schlimmste stau|im bus im stau, das schlimmste|stau im bus ist doppelt schlimm]"
    ],
    [
     "B",
-    "ok dann passt es"
+    "[ok dann passt es|ok, dann ist gut|ah, dann alles gut]"
    ]
   ]
  },
@@ -931,27 +931,27 @@
   "turlar": [
    [
     "A",
-    "ist beamter langweilig?"
+    "[ist beamter langweilig?|beamter sein, langweilig?|wie ist beamter so, öde?]"
    ],
    [
     "B",
-    "bin einer, ist ruhig. festes gehalt"
+    "[bin einer, ist ruhig. festes gehalt|bin beamter, ist entspannt. fixes gehalt|ruhig, festes gehalt, mir gefällts]"
    ],
    [
     "A",
-    "braucht man da nen kurs?"
+    "[braucht man da nen kurs?|kurs nötig?|muss man da was machen vorher?]"
    ],
    [
     "B",
-    "den kurs für die staatsprüfung, und ein paar tage warten"
+    "[den kurs für die staatsprüfung, und ein paar tage warten|ja, den staatsprüfungskurs, dauert ein paar tage|den kurs zur staatsprüfung, plus paar tage warten]"
    ],
    [
     "C",
-    "und das gehalt kommt auch offline, oder?"
+    "[und das gehalt kommt auch offline, oder?|gehalt kommt auch wenn man offline ist, oder?|und man kriegt auch offline gehalt, richtig?]"
    ],
    [
     "B",
-    "genau, das ist das beste daran"
+    "[genau, das ist das beste daran|ja, das beste daran|genau, das ist der hauptgrund]"
    ]
   ]
  },
@@ -963,27 +963,27 @@
   "turlar": [
    [
     "A",
-    "bestelle pizza, welcher belag"
+    "[bestelle pizza, welcher belag|pizza wird bestellt, welcher belag?|welche pizza soll ich nehmen]"
    ],
    [
     "B",
-    "ananas"
+    "[ananas|hawaii|ananas, ganz klar]"
    ],
    [
     "A",
-    "ich verlasse den chat"
+    "[ich verlasse den chat|ich bin raus|ok tschüss]"
    ],
    [
     "C",
-    "lass dich nicht mobben {B}"
+    "[lass dich nicht mobben {B}|steh zu deiner ananas {B}|{B} lass dich nicht unterkriegen]"
    ],
    [
     "B",
-    "ananas für immer"
+    "[ananas für immer|ananas bleibt|ananas ist leben]"
    ],
    [
     "A",
-    "unglaublich"
+    "[unglaublich|nicht zu fassen|ich hab keine worte]"
    ]
   ]
  },
@@ -995,23 +995,23 @@
   "turlar": [
    [
     "A",
-    "job verloren, geld fast weg"
+    "[job verloren, geld fast weg|job weg, konto fast leer|arbeitslos und fast pleite]"
    ],
    [
     "B",
-    "du kannst nicht investieren bis du wieder arbeitest"
+    "[du kannst nicht investieren bis du wieder arbeitest|ohne job kannst du nicht investieren|erst wieder arbeiten, vorher keine investitionen]"
    ],
    [
     "A",
-    "ja hab ich gemerkt"
+    "[ja hab ich gemerkt|ja, schon gemerkt|hab ich schon bemerkt]"
    ],
    [
     "C",
-    "kurier, kein chef nötig, sofort anfangen"
+    "[kurier, kein chef nötig, sofort anfangen|werd kurier, kein chef, sofort los|kurier geht ohne chef, direkt starten]"
    ],
    [
     "A",
-    "ok mach ich jetzt"
+    "[ok mach ich jetzt|ok, mach ich gleich|gute idee, ich fang an]"
    ]
   ]
  },
@@ -1023,27 +1023,27 @@
   "turlar": [
    [
     "A",
-    "hab meine erste wohnung gekauft!"
+    "[hab meine erste wohnung gekauft!|erste wohnung gekauft!|endlich eigene wohnung!]"
    ],
    [
     "B",
-    "glückwunsch!"
+    "[glückwunsch!|wow, glückwunsch!|stark, gratuliere!]"
    ],
    [
     "C",
-    "kredit oder bar?"
+    "[kredit oder bar?|bar oder auf kredit?|mit kredit?]"
    ],
    [
     "A",
-    "kredit, anzahlung ungefähr 20 prozent"
+    "[kredit, anzahlung ungefähr 20 prozent|kredit, ungefähr 20 prozent angezahlt|mit kredit, so 20 prozent anzahlung]"
    ],
    [
     "C",
-    "klug, keine miete mehr"
+    "[klug, keine miete mehr|clever, keine miete mehr|gut, dann ist die miete weg]"
    ],
    [
     "A",
-    "nur raten haha"
+    "[nur raten haha|dafür raten haha|nur noch raten, juhu]"
    ]
   ]
  },
@@ -1055,23 +1055,23 @@
   "turlar": [
    [
     "A",
-    "hier [schneit es|ist es eiskalt] in {A.sehir}"
+    "[hier schneit es in {A.sehir}|eiskalt hier in {A.sehir}|in {A.sehir} liegt schnee]"
    ],
    [
     "B",
-    "hier 30 grad"
+    "[hier 30 grad|bei mir 30 grad|hier ist hochsommer, 30 grad]"
    ],
    [
     "A",
-    "ich hasse dich ein bisschen"
+    "[ich hasse dich ein bisschen|ich hasse dich|ich bin neidisch]"
    ],
    [
     "B",
-    "würde sofort tauschen"
+    "[würde sofort tauschen|ich würd sofort tauschen|tauschen wir, gern]"
    ],
    [
     "C",
-    "mit dem wetter ist nie jemand zufrieden"
+    "[mit dem wetter ist nie jemand zufrieden|zufrieden ist mit dem wetter nie einer|das wetter passt nie jemandem]"
    ]
   ]
  },
@@ -1083,27 +1083,27 @@
   "turlar": [
    [
     "A",
-    "was bringt ein grundstück, gibt ja keine miete"
+    "[was bringt ein grundstück, gibt ja keine miete|wozu ein grundstück, das bringt keine miete|grundstück kaufen, wofür? keine mieteinnahmen]"
    ],
    [
     "B",
-    "es steigt im wert"
+    "[es steigt im wert|der wert steigt|das wird wertvoller]"
    ],
    [
     "A",
-    "aber kein einkommen"
+    "[aber kein einkommen|aber kein geld jeden monat|einkommen gibts aber keins]"
    ],
    [
     "C",
-    "langfristig halt"
+    "[langfristig halt|ist was für langfristig|auf lange sicht eben]"
    ],
    [
     "B",
-    "wenn du einkommen willst, wohnung oder laden"
+    "[wenn du einkommen willst, wohnung oder laden|für einkommen eher wohnung oder laden|willst du einkommen, nimm wohnung oder laden]"
    ],
    [
     "A",
-    "ok dann erst wohnung"
+    "[ok dann erst wohnung|ok, zuerst wohnung|dann erstmal wohnung]"
    ]
   ]
  },
@@ -1115,27 +1115,27 @@
   "turlar": [
    [
     "A",
-    "werden wir im spiel eigentlich älter?"
+    "[werden wir im spiel eigentlich älter?|altert man im spiel?|gibts hier eigentlich ein alter?]"
    ],
    [
     "B",
-    "nein, gibt kein alter"
+    "[nein, gibt kein alter|nein, kein alter|nö, altern gibts nicht]"
    ],
    [
     "A",
-    "gott sei dank"
+    "[gott sei dank|zum glück|endlich mal gute nachrichten]"
    ],
    [
     "C",
-    "keine schule, alle starten mit 100 tausend"
+    "[keine schule, alle starten mit 100 tausend|keine schule, jeder fängt mit 100 tausend an|alle starten gleich, 100 tausend, keine schule]"
    ],
    [
     "A",
-    "also für immer jung und pleite"
+    "[also für immer jung und pleite|also ewig jung und pleite|für immer jung, für immer pleite]"
    ],
    [
     "B",
-    "der traum"
+    "[der traum|klingt nach mir|das leben, das ich wollte]"
    ]
   ]
  },
@@ -1147,23 +1147,23 @@
   "turlar": [
    [
     "A",
-    "hab reis gekocht, ist gleichzeitig angebrannt und roh"
+    "[hab reis gekocht, ist gleichzeitig angebrannt und roh|mein reis ist angebrannt und roh zugleich|reis gemacht: unten schwarz, oben roh]"
    ],
    [
     "B",
-    "das ist talent"
+    "[das ist talent|das muss man erstmal schaffen|echtes talent]"
    ],
    [
     "C",
-    "wasser verhältnis, mein freund"
+    "[wasser verhältnis, mein freund|das wasserverhältnis, mein freund|alles eine frage von wasser zu reis]"
    ],
    [
     "A",
-    "es gibt ein verhältnis??"
+    "[es gibt ein verhältnis??|da gibts ein verhältnis??|moment, es gibt regeln??]"
    ],
    [
     "B",
-    "bestell heute lieber was"
+    "[bestell heute lieber was|bestell lieber was heute|heute lieber lieferdienst]"
    ]
   ]
  },
@@ -1175,23 +1175,23 @@
   "turlar": [
    [
     "A",
-    "komme gerade vom training, spüre meine arme nicht"
+    "[komme gerade vom training, spüre meine arme nicht|bin vom gym zurück, arme sind tot|training fertig, ich spür nix mehr]"
    ],
    [
     "B",
-    "wie viele tage am stück?"
+    "[wie viele tage am stück?|wievielter tag in folge?|seit wann gehst du?]"
    ],
    [
     "A",
-    "zwei"
+    "[zwei|zwei tage|zweiter tag]"
    ],
    [
     "C",
-    "legende"
+    "[legende|absolute legende|respekt, legende]"
    ],
    [
     "B",
-    "tag drei ist der härteste"
+    "[tag drei ist der härteste|der dritte tag ist der schwerste|warte bis tag drei]"
    ]
   ]
  },
@@ -1203,23 +1203,23 @@
   "turlar": [
    [
     "A",
-    "so, ich bin raus, [gute nacht|bis morgen]"
+    "[so, ich bin raus, gute nacht|bin weg, bis morgen|ich geh pennen, gute nacht]"
    ],
    [
     "B",
-    "nacht {A}"
+    "[nacht {A}|gute nacht {A}|schlaf gut {A}]"
    ],
    [
     "C",
-    "vergiss die täglichen aufgaben nicht"
+    "[vergiss die täglichen aufgaben nicht|tagesaufgaben nicht vergessen|denk an die täglichen aufgaben]"
    ],
    [
     "A",
-    "niemals"
+    "[niemals|nie im leben|würde ich nie]"
    ],
    [
     "B",
-    "er vergisst sie"
+    "[er vergisst sie|wird er vergessen|wetten, er vergisst sie]"
    ]
   ]
  },
@@ -1231,31 +1231,31 @@
   "turlar": [
    [
     "A",
-    "mir ist langweilig auf der arbeit, unterhaltet mich"
+    "[mir ist langweilig auf der arbeit, unterhaltet mich|langweile mich auf arbeit, unterhaltet mich|so langweilig hier auf der arbeit, erzählt was]"
    ],
    [
     "B",
-    "klopf klopf"
+    "[klopf klopf|ok, witz: klopf klopf|ich hab was. klopf klopf]"
    ],
    [
     "A",
-    "wer ist da"
+    "[wer ist da|wer ist da?|herein?]"
    ],
    [
     "B",
-    "die miete"
+    "[die miete|deine miete|na, die miete]"
    ],
    [
     "A",
-    "die miete wer"
+    "[die miete wer|miete wer?|die miete wer?]"
    ],
    [
     "B",
-    "die miete ist fällig"
+    "[die miete ist fällig|die miete ist fällig!|miete ist fällig, zahl]"
    ],
    [
     "C",
-    "das ist kein witz, das ist ne drohung"
+    "[das ist kein witz, das ist ne drohung|das war kein witz, das war ne drohung|kein witz, eher ne warnung]"
    ]
   ]
  },
@@ -1267,23 +1267,23 @@
   "turlar": [
    [
     "A",
-    "weiß jemand was im nächsten update kommt?"
+    "[weiß jemand was im nächsten update kommt?|was kommt im nächsten update?|gibts infos zum nächsten update?]"
    ],
    [
     "B",
-    "angeblich börse und devisen, aber keine ahnung"
+    "[angeblich börse und devisen, aber keine ahnung|soll börse und devisen geben, weiß aber nicht|börse und devisen heißt es, ohne gewähr]"
    ],
    [
     "C",
-    "nur gerüchte"
+    "[nur gerüchte|alles nur gerüchte|sind nur gerüchte]"
    ],
    [
     "A",
-    "hoffentlich was lustiges"
+    "[hoffentlich was lustiges|hoffentlich was cooles|hauptsache was spaßiges]"
    ],
    [
     "B",
-    "ich hoffe auf billigere miete"
+    "[ich hoffe auf billigere miete|ich wünsch mir billigere miete|ich hoffe einfach auf weniger miete]"
    ]
   ]
  },
@@ -1295,23 +1295,23 @@
   "turlar": [
    [
     "A",
-    "familienessen heute, wünscht mir glück"
+    "[familienessen heute, wünscht mir glück|heute familienessen, drückt mir die daumen|gleich familienessen, wünscht mir glück]"
    ],
    [
     "B",
-    "warum glück"
+    "[warum glück|wieso glück?|warum brauchst du glück?]"
    ],
    [
     "A",
-    "tanten. fragen. \"wann heiratest du\""
+    "[tanten. fragen. \"wann heiratest du\"|tanten. fragen. \"und, wann heiratest du\"|tanten. und die frage nach der hochzeit]"
    ],
    [
     "C",
-    "sag du konzentrierst dich auf dein immobilienimperium"
+    "[sag du konzentrierst dich auf dein immobilienimperium|sag, du baust gerade dein immobilienimperium|sag einfach, du bist zu beschäftigt mit deinen wohnungen]"
    ],
    [
     "A",
-    "könnte tatsächlich klappen"
+    "[könnte tatsächlich klappen|das könnte funktionieren|gute ausrede, nehm ich]"
    ]
   ]
  },
@@ -1323,27 +1323,27 @@
   "turlar": [
    [
     "A",
-    "endlich 500 tausend auf dem konto"
+    "[endlich 500 tausend auf dem konto|500 tausend auf dem konto, endlich|konto bei 500 tausend!]"
    ],
    [
     "B",
-    "nice, und jetzt?"
+    "[nice, und jetzt?|stark, und was jetzt?|cool, was machst du damit?]"
    ],
    [
     "A",
-    "keine ahnung, hab angst es auszugeben"
+    "[keine ahnung, hab angst es auszugeben|keine ahnung, trau mich nicht es auszugeben|weiß nicht, hab angst was falsch zu machen]"
    ],
    [
     "C",
-    "liegendes geld verliert wert durch die inflation"
+    "[liegendes geld verliert wert durch die inflation|geld auf dem konto frisst die inflation|wenn es nur rumliegt, frisst es die inflation]"
    ],
    [
     "B",
-    "und zinsen aufs konto gibts auch keine"
+    "[und zinsen aufs konto gibts auch keine|und zinsen gibts aufs konto keine|und zinsen bekommst du dafür keine]"
    ],
    [
     "A",
-    "ok, schau mir wohnungen an"
+    "[ok, schau mir wohnungen an|ok, dann guck ich nach wohnungen|dann such ich mal ne wohnung]"
    ]
   ]
  },
@@ -1355,27 +1355,27 @@
   "turlar": [
    [
     "A",
-    "arbeitet hier jemand auf dem bau?"
+    "[arbeitet hier jemand auf dem bau?|ist hier jemand bauarbeiter?|wer arbeitet auf dem bau?]"
    ],
    [
     "B",
-    "ja, seit zwei wochen bauarbeiter"
+    "[ja, seit zwei wochen bauarbeiter|ich, seit zwei wochen auf dem bau|ja, bin seit zwei wochen bauarbeiter]"
    ],
    [
     "A",
-    "lohnt sich das?"
+    "[lohnt sich das?|und, lohnt es sich?|wie ist das so?]"
    ],
    [
     "B",
-    "bezahlung pro auftrag, also je mehr du machst"
+    "[bezahlung pro auftrag, also je mehr du machst|du wirst pro auftrag bezahlt, mehr arbeit mehr geld|pro auftrag bezahlt, also kommt drauf an wie viel du machst]"
    ],
    [
     "C",
-    "und später kannst du meister werden, mit dem schein"
+    "[und später kannst du meister werden, mit dem schein|später kannst du mit dem schein meister werden|und mit dem meisterschein wirst du später meister]"
    ],
    [
     "B",
-    "genau, 20 tage bau plus kurs"
+    "[genau, 20 tage bau plus kurs|genau, 20 tage auf dem bau und dann der kurs|ja, 20 tage bau plus den kurs]"
    ]
   ]
  }

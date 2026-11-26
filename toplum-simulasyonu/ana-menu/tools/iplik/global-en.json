@@ -7,31 +7,31 @@
   "turlar": [
    [
     "A",
-    "[good morning|morning] global chat"
+    "[good morning|morning|gm] [global chat|everyone|world]"
    ],
    [
     "B",
-    "morning? it's almost midnight here lol"
+    "[morning? it's almost midnight here lol|lol it's nearly midnight for me|morning?? i'm about to go to bed]"
    ],
    [
     "A",
-    "haha where are you"
+    "[haha where are you|wait where are you|lol where are you from]"
    ],
    [
     "B",
-    "{B.sehir}. you?"
+    "[{B.sehir}. you?|{B.sehir}, you?|i'm in {B.sehir}. and you?]"
    ],
    [
     "A",
-    "{A.sehir}, just woke up, coffee in hand"
+    "[{A.sehir}, just woke up, coffee in hand|{A.sehir}, literally just woke up|{A.sehir}. first coffee of the day rn]"
    ],
    [
     "C",
-    "timezones in this chat are chaos"
+    "[timezones in this chat are chaos|this chat has zero sense of time|every timezone at once, chaos]"
    ],
    [
     "B",
-    "honestly i love it, someone is always awake"
+    "[honestly i love it, someone is always awake|i love it tho, someone's always online|best part, there's always someone up]"
    ]
   ]
  },
@@ -43,23 +43,23 @@
   "turlar": [
    [
     "A",
-    "anyone else here from {A.sehir}?"
+    "[anyone else here from {A.sehir}?|anybody from {A.sehir} in here?|{A.sehir} people, you here?]"
    ],
    [
     "B",
-    "nope, {B.sehir} here"
+    "[nope, {B.sehir} here|not me, i'm in {B.sehir}|{B.sehir} here, sorry]"
    ],
    [
     "C",
-    "i've been to {A.sehir} once, [nice place|loved it]"
+    "[i've been to {A.sehir} once, nice place|visited {A.sehir} once, loved it|been to {A.sehir}, really liked it]"
    ],
    [
     "A",
-    "come back, the coffee is on me"
+    "[come back, the coffee is on me|come again, coffee's on me|next time you're there, coffee on me]"
    ],
    [
     "C",
-    "deal"
+    "[deal|bet|holding you to that]"
    ]
   ]
  },
@@ -71,31 +71,31 @@
   "turlar": [
    [
     "A",
-    "[just started|day one here], any tips?"
+    "[just started|day one here|brand new], [any tips?|what should i do first?|help a newbie out?]"
    ],
    [
     "B",
-    "don't spend all 100k on day one"
+    "[don't spend all 100k on day one|don't blow the 100k right away|first tip: don't spend everything day one]"
    ],
    [
     "C",
-    "get a job first, courier is easy to start"
+    "[get a job first, courier is easy to start|grab a job first, courier is the easiest|work first, courier needs nothing]"
    ],
    [
     "A",
-    "courier? no requirements?"
+    "[courier? no requirements?|wait courier has no requirements?|no conditions for courier?]"
    ],
    [
     "C",
-    "none, you start straight from the career screen"
+    "[none, you start straight from the career screen|nope, just start it from the career screen|zero, career screen and go]"
    ],
    [
     "B",
-    "and do the daily tasks, you get a free hourglass"
+    "[and do the daily tasks, you get a free hourglass|also do your daily tasks, free hourglass|daily tasks too, they give a free hourglass]"
    ],
    [
     "A",
-    "ok noted, thanks guys"
+    "[ok noted, thanks guys|noted, thx|got it, thanks all]"
    ]
   ]
  },
@@ -107,23 +107,23 @@
   "turlar": [
    [
     "A",
-    "raining [again|for the third day] in {A.sehir}"
+    "[raining again in {A.sehir}|third day of rain in {A.sehir}|{A.sehir} is underwater again lol]"
    ],
    [
     "B",
-    "sunny here, sorry"
+    "[sunny here, sorry|it's sunny here ngl|full sun over here, sorry]"
    ],
    [
     "A",
-    "rude"
+    "[rude|wow rude|how dare you]"
    ],
    [
     "C",
-    "send some rain over, we need it"
+    "[send some rain over, we need it|we need rain here, send it|pls send the rain, it's so dry here]"
    ],
    [
     "A",
-    "take all of it please"
+    "[take all of it please|take it all, please|it's yours, all of it]"
    ]
   ]
  },
@@ -135,23 +135,23 @@
   "turlar": [
    [
     "A",
-    "what does \"kanka\" mean? turkish guys keep saying it"
+    "[what does \"kanka\" mean? turkish guys keep saying it|turks keep saying \"kanka\", what is it|ok what does \"kanka\" mean]"
    ],
    [
     "B",
-    "like bro, buddy"
+    "[like bro, buddy|bro basically|it's like buddy, bro]"
    ],
    [
     "C",
-    "yeah close friend basically"
+    "[yeah close friend basically|yep, close friend|like your best mate]"
    ],
    [
     "A",
-    "ok kanka"
+    "[ok kanka|thanks kanka|got it kanka]"
    ],
    [
     "B",
-    "haha you're learning fast"
+    "[haha you're learning fast|lol fast learner|look at you, already fluent]"
    ]
   ]
  },
@@ -163,27 +163,27 @@
   "turlar": [
    [
     "A",
-    "did anyone watch the match [tonight|today]?"
+    "[did anyone watch the match tonight?|anyone catch the game today?|who watched the match?]"
    ],
    [
     "B",
-    "[yes|yeah], what a last minute goal"
+    "[yes, what a last minute goal|yeah, that last minute goal tho|i did, that late goal was insane]"
    ],
    [
     "A",
-    "i screamed so loud my neighbor knocked"
+    "[i screamed so loud my neighbor knocked|i yelled so hard my neighbor banged on the wall|my neighbor knocked cuz i was screaming]"
    ],
    [
     "C",
-    "i fell asleep at halftime, don't spoil it"
+    "[i fell asleep at halftime, don't spoil it|fell asleep at halftime, no spoilers pls|wait i slept through it, don't spoil]"
    ],
    [
     "B",
-    "too late {C}"
+    "[too late {C}|oops, too late {C}|sorry {C}, already did]"
    ],
    [
     "C",
-    "unbelievable"
+    "[unbelievable|wow thanks|great, ruined]"
    ]
   ]
  },
@@ -195,27 +195,27 @@
   "turlar": [
    [
     "A",
-    "[did 15 deliveries today|so many deliveries today], my legs are gone"
+    "[did 15 deliveries today|so many deliveries today|delivery after delivery all day], [my legs are gone|can't feel my legs|i'm dead]"
    ],
    [
     "B",
-    "courier life"
+    "[courier life|ah, courier life|welcome to courier life]"
    ],
    [
     "A",
-    "the money is ok but man"
+    "[the money is ok but man|pay's fine but man|money's decent but my body hates me]"
    ],
    [
     "C",
-    "switch to waiter, at least there's a roof"
+    "[switch to waiter, at least there's a roof|be a waiter, at least you're indoors|try waiter, at least no rain]"
    ],
    [
     "A",
-    "and rude customers"
+    "[and rude customers|yeah and rude customers instead|and deal with rude people? no thanks]"
    ],
    [
     "C",
-    "true, pick your poison"
+    "[true, pick your poison|fair, every job has something|true lol, pick your pain]"
    ]
   ]
  },
@@ -227,27 +227,27 @@
   "turlar": [
    [
     "A",
-    "should i buy an apartment now or wait?"
+    "[should i buy an apartment now or wait?|buy an apartment now or wait, what do you think?|apartment now or later?]"
    ],
    [
     "B",
-    "depends, are you renting?"
+    "[depends, are you renting?|are you renting rn?|depends, you paying rent?]"
    ],
    [
     "A",
-    "yeah, rent eats my salary every month"
+    "[yeah, rent eats my salary every month|yep, rent eats half my pay|yeah and rent eats everything]"
    ],
    [
     "B",
-    "then owning makes sense, owners don't pay rent"
+    "[then owning makes sense, owners don't pay rent|then buy, owners don't pay rent|owning makes sense then, no more rent]"
    ],
    [
     "C",
-    "prices go up every month too, waiting isn't free"
+    "[prices go up every month too, waiting isn't free|prices rise monthly, waiting costs you|plus prices go up every month]"
    ],
    [
     "A",
-    "hmm ok, i'll check the loan options"
+    "[hmm ok, i'll check the loan options|ok i'll look at loans|alright, checking loan options]"
    ]
   ]
  },
@@ -259,23 +259,23 @@
   "turlar": [
    [
     "A",
-    "is there a stock market in this game?"
+    "[is there a stock market in this game?|can you trade stocks here?|any stock market in this game?]"
    ],
    [
     "B",
-    "not yet, coming in a future update apparently"
+    "[not yet, coming in a future update apparently|not yet, apparently it's coming later|nope, supposedly next update]"
    ],
    [
     "A",
-    "aw i wanted to day trade"
+    "[aw i wanted to day trade|damn, i wanted to day trade|nooo my day trading dreams]"
    ],
    [
     "C",
-    "same, no forex no gold for now"
+    "[same, no forex no gold for now|same, no forex or gold either yet|yeah no forex, no gold for now]"
    ],
    [
     "B",
-    "property is the stock market for now lol"
+    "[property is the stock market for now lol|for now property is our stock market|just trade apartments lol]"
    ]
   ]
  },
@@ -287,27 +287,27 @@
   "turlar": [
    [
     "A",
-    "opened my cafe [yesterday|last week], first customers came in"
+    "[opened my cafe yesterday|my cafe opened last week|finally opened my cafe], [first customers came in|got my first customers|people are coming in]"
    ],
    [
     "B",
-    "congrats! how is the location"
+    "[congrats! how is the location|nice! how's the spot|congrats, good location?]"
    ],
    [
     "A",
-    "decent, but there's another cafe nearby"
+    "[decent, but there's another cafe nearby|not bad, but there's another cafe close by|ok but there's a cafe down the street]"
    ],
    [
     "C",
-    "then customers get split, careful"
+    "[then customers get split, careful|careful, customers get split then|uh oh, you'll share customers]"
    ],
    [
     "A",
-    "yeah i noticed, need better quality i guess"
+    "[yeah i noticed, need better quality i guess|i noticed, gotta raise quality|yeah, need to be better than them]"
    ],
    [
     "B",
-    "hire good staff, temp workers are expensive"
+    "[hire good staff, temp workers are expensive|get real staff, temps are pricey|hire people, temp staff costs a lot]"
    ]
   ]
  },
@@ -319,27 +319,27 @@
   "turlar": [
    [
     "A",
-    "what's everyone having for breakfast"
+    "[what's everyone having for breakfast|breakfast check, what are you eating|what's for breakfast guys]"
    ],
    [
     "B",
-    "eggs and toast"
+    "[eggs and toast|toast and eggs|just eggs and toast]"
    ],
    [
     "C",
-    "turkish breakfast, my friend from istanbul showed me"
+    "[turkish breakfast, my friend from istanbul showed me|turkish breakfast, an istanbul friend got me into it|full turkish breakfast, learned from a friend in istanbul]"
    ],
    [
     "A",
-    "the one with like 20 small plates?"
+    "[the one with like 20 small plates?|is that the one with tons of tiny plates?|the 20 plates thing?]"
    ],
    [
     "C",
-    "exactly, i'm never going back"
+    "[exactly, i'm never going back|yep, can't go back now|that one, ruined normal breakfast for me]"
    ],
    [
     "B",
-    "that's not breakfast that's a festival"
+    "[that's not breakfast that's a festival|that's a feast not breakfast|lol that's a whole event]"
    ]
   ]
  },
@@ -351,27 +351,27 @@
   "turlar": [
    [
     "A",
-    "who's still up"
+    "[who's still up|anyone awake?|who's up rn]"
    ],
    [
     "B",
-    "me, can't sleep"
+    "[me, can't sleep|me, insomnia again|here, can't sleep]"
    ],
    [
     "C",
-    "night shift here"
+    "[night shift here|working night shift|on night shift]"
    ],
    [
     "A",
-    "[what do you do|what's your job]?"
+    "[what do you do|what's your job|what do you work as]?"
    ],
    [
     "C",
-    "{C.meslek}, quiet hours"
+    "[{C.meslek}, quiet hours|{C.meslek}, it's quiet now|{C.meslek}, nights are calm]"
    ],
    [
     "B",
-    "i'm just staring at my rent counter lol"
+    "[i'm just staring at my rent counter lol|i'm just watching my rent tick lol|i'm staring at my bills lol]"
    ]
   ]
  },
@@ -383,27 +383,27 @@
   "turlar": [
    [
     "A",
-    "what are these hourglass things for?"
+    "[what are these hourglass things for?|what do hourglasses do?|ok what's the hourglass for]"
    ],
    [
     "B",
-    "skip waiting, one hourglass = one day off a course or application"
+    "[skip waiting, one hourglass = one day off a course or application|they skip waiting, 1 = one day off a course or application|each one cuts a day of waiting on courses and applications]"
    ],
    [
     "A",
-    "oh nice. how do i get them"
+    "[oh nice. how do i get them|nice, how do you get them|oh cool, where do i get them]"
    ],
    [
     "B",
-    "do 3 daily tasks, you get one free"
+    "[do 3 daily tasks, you get one free|finish 3 daily tasks, free one|3 daily tasks = 1 free]"
    ],
    [
     "C",
-    "they don't give money though, just time"
+    "[they don't give money though, just time|no money from them tho, only time|just time, not money]"
    ],
    [
     "A",
-    "got it"
+    "[got it|ok got it|makes sense]"
    ]
   ]
  },
@@ -415,27 +415,27 @@
   "turlar": [
    [
     "A",
-    "my landlord raised the rent again"
+    "[my landlord raised the rent again|rent went up again|landlord hiked the rent again]"
    ],
    [
     "B",
-    "in game or real life?"
+    "[in game or real life?|game or irl?|wait, game or real?]"
    ],
    [
     "A",
-    "[both|yes]"
+    "[both|yes|both lol]"
    ],
    [
     "C",
-    "rough"
+    "[rough|oof|that's rough]"
    ],
    [
     "B",
-    "buy the building, become the landlord"
+    "[buy the building, become the landlord|just buy the building lol|easy, become the landlord]"
    ],
    [
     "A",
-    "with what money haha"
+    "[with what money haha|with what money lol|sure, with my zero money]"
    ]
   ]
  },
@@ -447,27 +447,27 @@
   "turlar": [
    [
     "A",
-    "why is my loan limit so low"
+    "[why is my loan limit so low|my loan limit is tiny, why|why can i barely borrow anything]"
    ],
    [
     "B",
-    "it's based on last month's income times your credit score"
+    "[it's based on last month's income times your credit score|it's last month's income times credit score|limit = last month's income x credit score]"
    ],
    [
     "A",
-    "so i need to earn more first"
+    "[so i need to earn more first|so earn more first|ok so more income first]"
    ],
    [
     "C",
-    "and pay your installments on time, score goes up"
+    "[and pay your installments on time, score goes up|pay installments on time, score climbs|on time payments raise your score too]"
    ],
    [
     "A",
-    "makes sense, i've been unemployed half the month"
+    "[makes sense, i've been unemployed half the month|ah, i was jobless half the month|that explains it, no job half the month]"
    ],
    [
     "B",
-    "there you go"
+    "[there you go|yep, that's why|there it is]"
    ]
   ]
  },
@@ -479,27 +479,27 @@
   "turlar": [
    [
     "A",
-    "merhaba turkish friends"
+    "[merhaba turkish friends|merhaba turks|hi turkish people, merhaba]"
    ],
    [
     "B",
-    "merhaba! [nasılsın|how are you]?"
+    "[merhaba! nasılsın?|merhaba! how are you?|merhaba, how's it going?]"
    ],
    [
     "A",
-    "i only know merhaba and çay"
+    "[i only know merhaba and çay|merhaba and çay is all i know|that's it, merhaba and çay is my whole turkish]"
    ],
    [
     "B",
-    "that's 90% of the language honestly"
+    "[that's 90% of the language honestly|honestly that's most of it|you're basically fluent then]"
    ],
    [
     "C",
-    "add \"tamam\" and you're fluent"
+    "[add \"tamam\" and you're fluent|learn \"tamam\" and you're done|plus \"tamam\" and you're native]"
    ],
    [
     "A",
-    "tamam tamam"
+    "[tamam tamam|tamam!|ok tamam]"
    ]
   ]
  },
@@ -511,23 +511,23 @@
   "turlar": [
    [
     "A",
-    "so what are we talking about"
+    "[so what are we talking about|what did i miss|what's the topic]"
    ],
    [
     "B",
-    "[nothing much|pizza], {C} was complaining about work"
+    "[nothing much, {C} was complaining about work|pizza, and {C} complaining about work|{C} was whining about work]"
    ],
    [
     "C",
-    "i wasn't complaining, i was informing"
+    "[i wasn't complaining, i was informing|not complaining, just informing|i was informing, not complaining]"
    ],
    [
     "B",
-    "loudly informing"
+    "[loudly informing|very loudly|informing in caps lock]"
    ],
    [
     "A",
-    "classic"
+    "[classic|lol classic|typical]"
    ]
   ]
  },
@@ -539,31 +539,31 @@
   "turlar": [
    [
     "A",
-    "anyone working construction?"
+    "[anyone working construction?|any construction workers here?|who's doing construction?]"
    ],
    [
     "B",
-    "yeah, construction worker for 2 weeks now"
+    "[yeah, construction worker for 2 weeks now|me, 2 weeks in|yep, two weeks as a construction worker]"
    ],
    [
     "A",
-    "is it worth it?"
+    "[is it worth it?|worth it?|how is it?]"
    ],
    [
     "B",
-    "pay per task, so you earn as you work"
+    "[pay per task, so you earn as you work|paid per task, more work more money|you get paid per task]"
    ],
    [
     "C",
-    "and it leads to master builder later, you need the certificate"
+    "[and it leads to master builder later, you need the certificate|it leads to master builder too, with the certificate|later you can be a master builder, need the certificate]"
    ],
    [
     "A",
-    "oh nice, a path"
+    "[oh nice, a path|oh so there's a path|nice, a career ladder]"
    ],
    [
     "B",
-    "yep, 20 days as worker plus the course"
+    "[yep, 20 days as worker plus the course|yeah, 20 days working plus the course|20 days on site and the course]"
    ]
   ]
  },
@@ -575,27 +575,27 @@
   "turlar": [
    [
     "A",
-    "weekend plans?"
+    "[weekend plans?|what's the plan this weekend?|weekend, anything fun?]"
    ],
    [
     "B",
-    "sleep"
+    "[sleep|sleeping|bed. all weekend]"
    ],
    [
     "C",
-    "sleep but louder"
+    "[sleep but louder|same but with snoring|sleep, but harder]"
    ],
    [
     "A",
-    "you two are inspiring"
+    "[you two are inspiring|wow so inspiring|role models honestly]"
    ],
    [
     "B",
-    "what about you"
+    "[what about you|and you?|you?]"
    ],
    [
     "A",
-    "[cleaning|laundry]. thrilling stuff"
+    "[cleaning|laundry|cleaning the house]. [thrilling stuff|so exciting|living the dream]"
    ]
   ]
  },
@@ -607,27 +607,27 @@
   "turlar": [
    [
     "A",
-    "thinking about the accounting course"
+    "[thinking about the accounting course|considering the accounting course|might do the accounting course]"
    ],
    [
     "B",
-    "did it last month, worth it"
+    "[did it last month, worth it|did it last month, totally worth it|i did it, recommend]"
    ],
    [
     "A",
-    "how long does it take?"
+    "[how long does it take?|how many days?|is it long?]"
    ],
    [
     "B",
-    "few days, plus you need 30 days experience"
+    "[few days, plus you need 30 days experience|a few days, and 30 days experience too|couple days, plus 30 days of experience]"
    ],
    [
     "A",
-    "fixed salary after right?"
+    "[fixed salary after right?|then fixed salary right?|and it's fixed pay after?]"
    ],
    [
     "B",
-    "yep, even when you don't log in"
+    "[yep, even when you don't log in|yeah, even if you're offline|yup, paid even when you don't play]"
    ]
   ]
  },
@@ -639,27 +639,27 @@
   "turlar": [
    [
     "A",
-    "wait does time pass when the app is closed?"
+    "[wait does time pass when the app is closed?|does time keep going when i close the app?|is time running even when i'm offline?]"
    ],
    [
     "B",
-    "yes, 1 game day is 1 real hour"
+    "[yes, 1 game day is 1 real hour|yep, one hour = one game day|yeah, a game day is a real hour]"
    ],
    [
     "A",
-    "so a month is 30 hours?"
+    "[so a month is 30 hours?|so 30 hours is a month?|so a month is like 30 hours]"
    ],
    [
     "B",
-    "exactly"
+    "[exactly|yep|exactly that]"
    ],
    [
     "A",
-    "that explains my rent bill"
+    "[that explains my rent bill|ah that's why rent hits so often|explains my rent lol]"
    ],
    [
     "C",
-    "rent never sleeps"
+    "[rent never sleeps|rent doesn't sleep|rent is always awake]"
    ]
   ]
  },
@@ -671,27 +671,27 @@
   "turlar": [
    [
     "A",
-    "tea or coffee, go"
+    "[tea or coffee, go|coffee or tea?|tea vs coffee, choose]"
    ],
    [
     "B",
-    "coffee obviously"
+    "[coffee obviously|coffee, duh|coffee, no question]"
    ],
    [
     "C",
-    "tea, black, small glass"
+    "[tea, black, small glass|tea, black, in a small glass|tea. black. tiny glass]"
    ],
    [
     "A",
-    "{C} been talking to turks again"
+    "[{C} been talking to turks again|{C} has been hanging with turks|lol {C} the turks got you]"
    ],
    [
     "C",
-    "they converted me"
+    "[they converted me|they got me|i've been converted]"
    ],
    [
     "B",
-    "traitor"
+    "[traitor|betrayal|wow traitor]"
    ]
   ]
  },
@@ -703,23 +703,23 @@
   "turlar": [
    [
     "A",
-    "is it just me or does everything cost more every month"
+    "[is it just me or does everything cost more every month|why does everything get pricier every month|prices keep going up every month huh]"
    ],
    [
     "B",
-    "inflation, it's in the game"
+    "[inflation, it's in the game|that's inflation, it's built in|inflation is a game feature]"
    ],
    [
     "A",
-    "realistic game is too realistic"
+    "[realistic game is too realistic|this game is too realistic|a little too realistic tbh]"
    ],
    [
     "C",
-    "salaries go up too, just slower"
+    "[salaries go up too, just slower|pay rises too, just slower|wages follow, just late]"
    ],
    [
     "A",
-    "of course they do"
+    "[of course they do|ofc they do|naturally]"
    ]
   ]
  },
@@ -731,27 +731,27 @@
   "turlar": [
    [
     "A",
-    "working as a cashier, it's not bad actually"
+    "[working as a cashier, it's not bad actually|cashier job is actually fine|cashier life isn't bad tbh]"
    ],
    [
     "B",
-    "salary plus tasks right?"
+    "[salary plus tasks right?|that's salary plus tasks right?|you get salary and tasks?]"
    ],
    [
     "A",
-    "yeah, pretty chill"
+    "[yeah, pretty chill|yep, chill job|yeah, really relaxed]"
    ],
    [
     "C",
-    "i did that before courier, liked it"
+    "[i did that before courier, liked it|did it before courier, liked it|was a cashier before courier, it was nice]"
    ],
    [
     "B",
-    "boring though no?"
+    "[boring though no?|kinda boring tho?|isn't it boring]"
    ],
    [
     "A",
-    "i like boring"
+    "[i like boring|boring is good|boring is my thing]"
    ]
   ]
  },
@@ -763,27 +763,27 @@
   "turlar": [
    [
     "A",
-    "evening [all|everyone]"
+    "[evening all|evening everyone|good evening chat]"
    ],
    [
     "B",
-    "evening {A}"
+    "[evening {A}|hey {A}|evening]"
    ],
    [
     "C",
-    "hey, how was your day"
+    "[hey, how was your day|hi, how was the day|hey, good day?]"
    ],
    [
     "A",
-    "long. yours?"
+    "[long. yours?|long, you?|so long. you?]"
    ],
    [
     "C",
-    "long too, let's not talk about it"
+    "[long too, let's not talk about it|same, let's not|long too, skip it]"
    ],
    [
     "B",
-    "agreed, talk about food instead"
+    "[agreed, talk about food instead|yes, food talk instead|let's talk food]"
    ]
   ]
  },
@@ -795,27 +795,27 @@
   "turlar": [
    [
     "A",
-    "real estate agent, worth it?"
+    "[real estate agent, worth it?|is real estate agent worth it?|thoughts on being an agent?]"
    ],
    [
     "B",
-    "salary plus commission, if you're active it pays well"
+    "[salary plus commission, if you're active it pays well|salary and commission, pays good if you're active|base pay plus commission, good if active]"
    ],
    [
     "A",
-    "need the course?"
+    "[need the course?|course needed?|do you need a course?]"
    ],
    [
     "B",
-    "yeah the real estate certificate"
+    "[yeah the real estate certificate|yep, the real estate certificate|yeah, the certificate]"
    ],
    [
     "C",
-    "and 30 days experience somewhere first"
+    "[and 30 days experience somewhere first|plus 30 days experience first|and you need 30 days of experience]"
    ],
    [
     "A",
-    "ok so not day one stuff"
+    "[ok so not day one stuff|so not for day one|ok, not a day one thing]"
    ]
   ]
  },
@@ -827,23 +827,23 @@
   "turlar": [
    [
     "A",
-    "my cat just walked on my phone and bought nothing thankfully"
+    "[my cat just walked on my phone and bought nothing thankfully|my cat stepped on my phone, luckily bought nothing|cat walked across my screen, thank god nothing got bought]"
    ],
    [
     "B",
-    "cats are the real players"
+    "[cats are the real players|the cat's the real gamer|cats play better than us]"
    ],
    [
     "C",
-    "my dog ate my charger last week"
+    "[my dog ate my charger last week|my dog chewed my charger last week|dog ate my charger lol]"
    ],
    [
     "A",
-    "[respect|legend]"
+    "[respect|legend|lmao respect]"
    ],
    [
     "B",
-    "pets vs technology, endless war"
+    "[pets vs technology, endless war|pets vs tech, forever war|pets hate our devices]"
    ]
   ]
  },
@@ -855,27 +855,27 @@
   "turlar": [
    [
     "A",
-    "fastest way to make money?"
+    "[fastest way to make money?|quickest way to get money?|how do i make money fast?]"
    ],
    [
     "B",
-    "there's no shortcut honestly"
+    "[there's no shortcut honestly|honestly no shortcut|no real shortcut]"
    ],
    [
     "C",
-    "courier if you're active, fixed salary jobs if you're not"
+    "[courier if you're active, fixed salary jobs if you're not|active? courier. not active? salary job|courier if you play a lot, salary job if you don't]"
    ],
    [
     "A",
-    "i'm on my phone a lot"
+    "[i'm on my phone a lot|i'm always on my phone|i play a lot]"
    ],
    [
     "C",
-    "then courier, tasks pay as you go"
+    "[then courier, tasks pay as you go|courier then, paid per task|then courier for sure]"
    ],
    [
     "B",
-    "and don't take loans you can't pay"
+    "[and don't take loans you can't pay|and no loans you can't pay back|just don't borrow too much]"
    ]
   ]
  },
@@ -887,27 +887,27 @@
   "turlar": [
    [
     "A",
-    "missed two installments, should i worry?"
+    "[missed two installments, should i worry?|i missed 2 payments, is that bad?|two installments missed, worried?]"
    ],
    [
     "B",
-    "yes. three missed and you get foreclosure"
+    "[yes. three missed and you get foreclosure|yes, miss three and it's foreclosure|yeah, third one means foreclosure]"
    ],
    [
     "A",
-    "oh no"
+    "[oh no|uh oh|oh no no]"
    ],
    [
     "C",
-    "pay one now, even if it hurts"
+    "[pay one now, even if it hurts|pay one right now even if it hurts|pay at least one now]"
    ],
    [
     "A",
-    "ok doing it right now"
+    "[ok doing it right now|ok paying now|doing it now]"
    ],
    [
     "B",
-    "good call"
+    "[good call|smart|good]"
    ]
   ]
  },
@@ -919,23 +919,23 @@
   "turlar": [
    [
     "A",
-    "what's everyone listening to"
+    "[what's everyone listening to|music check, what are you listening to|what's playing for you guys]"
    ],
    [
     "B",
-    "old stuff, 80s mostly"
+    "[old stuff, 80s mostly|80s mostly|old music, lots of 80s]"
    ],
    [
     "C",
-    "whatever my sister plays loudly next door"
+    "[whatever my sister plays loudly next door|whatever my sister blasts next door|my sister's music through the wall]"
    ],
    [
     "A",
-    "so you don't have a choice"
+    "[so you don't have a choice|so no choice then|so not your choice lol]"
    ],
    [
     "C",
-    "i never had a choice"
+    "[i never had a choice|never had one|never did]"
    ]
   ]
  },
@@ -947,23 +947,23 @@
   "turlar": [
    [
     "A",
-    "post lunch sleepiness hitting hard"
+    "[post lunch sleepiness hitting hard|after lunch i'm so sleepy|the post lunch crash is real]"
    ],
    [
     "B",
-    "same, i'm at my desk pretending to type"
+    "[same, i'm at my desk pretending to type|same, pretending to work rn|same, typing nothing at my desk]"
    ],
    [
     "C",
-    "walk around, works for me"
+    "[walk around, works for me|take a walk, it helps|go walk a bit, works for me]"
    ],
    [
     "A",
-    "walking is effort"
+    "[walking is effort|walking? too much effort|that requires moving]"
    ],
    [
     "B",
-    "that's the spirit"
+    "[that's the spirit|lol the spirit|true dedication]"
    ]
   ]
  },
@@ -975,27 +975,27 @@
   "turlar": [
    [
     "A",
-    "goal: own 5 apartments and live off rent"
+    "[goal: own 5 apartments and live off rent|my goal is 5 apartments and rent income|dream: 5 apartments, live on rent]"
    ],
    [
     "B",
-    "ambitious, how many now"
+    "[ambitious, how many now|nice, how many do you have|big goal, how many now?]"
    ],
    [
     "A",
-    "zero"
+    "[zero|0|none yet]"
    ],
    [
     "C",
-    "everyone starts at zero"
+    "[everyone starts at zero|we all start at zero|zero is where everyone starts]"
    ],
    [
     "B",
-    "zero is a strong start [honestly|lol]"
+    "[zero is a strong start honestly|zero is a strong start lol|solid start]"
    ],
    [
     "A",
-    "thanks for believing"
+    "[thanks for believing|thanks for the support|appreciate the faith]"
    ]
   ]
  },
@@ -1007,27 +1007,27 @@
   "turlar": [
    [
     "A",
-    "how do you say thank you in turkish?"
+    "[how do you say thank you in turkish?|thank you in turkish is?|how do turks say thanks?]"
    ],
    [
     "B",
-    "teşekkürler"
+    "[teşekkürler|teşekkürler. or teşekkür ederim|it's teşekkürler]"
    ],
    [
     "A",
-    "that's a lot of letters"
+    "[that's a lot of letters|so many letters|too long for me]"
    ],
    [
     "C",
-    "\"sağ ol\" is shorter"
+    "[\"sağ ol\" is shorter|try \"sağ ol\", shorter|just say \"sağ ol\"]"
    ],
    [
     "A",
-    "sağ ol then"
+    "[sağ ol then|ok sağ ol|sağ ol!]"
    ],
    [
     "B",
-    "you're welcome = rica ederim, homework for tomorrow"
+    "[you're welcome = rica ederim, homework for tomorrow|homework: rica ederim means you're welcome|next lesson: rica ederim, you're welcome]"
    ]
   ]
  },
@@ -1039,27 +1039,27 @@
   "turlar": [
    [
     "A",
-    "cafe or shop, which one would you open?"
+    "[cafe or shop, which one would you open?|would you open a cafe or a shop?|shop or cafe, which is better?]"
    ],
    [
     "B",
-    "cafe, people always want coffee"
+    "[cafe, people always want coffee|cafe, everyone needs coffee|cafe, coffee always sells]"
    ],
    [
     "C",
-    "shop, less staff drama"
+    "[shop, less staff drama|shop, less staff headache|shop for me, less drama]"
    ],
    [
     "A",
-    "both need 60 days experience right"
+    "[both need 60 days experience right|both need 60 days experience?|it's 60 days experience for both right]"
    ],
    [
     "B",
-    "yeah and capital"
+    "[yeah and capital|yep, plus capital|yeah and money obviously]"
    ],
    [
     "C",
-    "start saving now then"
+    "[start saving now then|better start saving|time to save then]"
    ]
   ]
  },
@@ -1071,27 +1071,27 @@
   "turlar": [
    [
     "A",
-    "why are my expenses so high this month"
+    "[why are my expenses so high this month|my costs are crazy this month, why|expenses went way up this month]"
    ],
    [
     "B",
-    "missing employees? temp staff fills in"
+    "[missing employees? temp staff fills in|short on staff? temps fill in|someone missing? temps cover]"
    ],
    [
     "A",
-    "yeah two people quit"
+    "[yeah two people quit|yep, two quit|two people left]"
    ],
    [
     "B",
-    "temps are expensive and slow, open a job ad"
+    "[temps are expensive and slow, open a job ad|temps cost a lot and are slow, post an ad|open a job ad, temps are pricey]"
    ],
    [
     "C",
-    "applicants come in pretty quick usually"
+    "[applicants come in pretty quick usually|people usually apply fast|you get applicants quick]"
    ],
    [
     "A",
-    "on it"
+    "[on it|doing it|ok posting now]"
    ]
   ]
  },
@@ -1103,23 +1103,23 @@
   "turlar": [
    [
     "A",
-    "hello from {A.sehir}, first time in global"
+    "[hello from {A.sehir}, first time in global|hi from {A.sehir}, first time here|{A.sehir} here, first time in global chat]"
    ],
    [
     "B",
-    "welcome! hello from {B.sehir}"
+    "[welcome! hello from {B.sehir}|welcome, hi from {B.sehir}|hey welcome, {B.sehir} here]"
    ],
    [
     "C",
-    "hi {A}, how's it going"
+    "[hi {A}, how's it going|hey {A}, how's it going|welcome {A}, how are you]"
    ],
    [
     "A",
-    "good, nervous haha, the game is a lot"
+    "[good, nervous haha, the game is a lot|good, bit nervous, game is a lot|fine, the game is overwhelming lol]"
    ],
    [
     "C",
-    "take it slow, nobody wins in a week"
+    "[take it slow, nobody wins in a week|go slow, no one wins in a week|relax, it's a long game]"
    ]
   ]
  },
@@ -1131,27 +1131,27 @@
   "turlar": [
    [
     "A",
-    "does donating actually do anything?"
+    "[does donating actually do anything?|is donating worth anything?|what does donating do?]"
    ],
    [
     "B",
-    "reputation, every 10k gives 1"
+    "[reputation, every 10k gives 1|you get reputation, 1 per 10k|1 reputation per 10k]"
    ],
    [
     "A",
-    "what's reputation for"
+    "[what's reputation for|and reputation does what|what's that good for]"
    ],
    [
     "C",
-    "credit score, job applications, stuff like that"
+    "[credit score, job applications, stuff like that|helps credit score and job applications|credit score, applications, that kind of thing]"
    ],
    [
     "B",
-    "and holidays double it i think"
+    "[and holidays double it i think|i think it's double on holidays|doubles on holidays i think]"
    ],
    [
     "A",
-    "hmm might donate a bit"
+    "[hmm might donate a bit|ok maybe i'll donate some|might give a little then]"
    ]
   ]
  },
@@ -1163,23 +1163,23 @@
   "turlar": [
    [
     "A",
-    "stuck in traffic for 40 minutes"
+    "[stuck in traffic for 40 minutes|40 minutes in traffic already|traffic for 40 min, help]"
    ],
    [
     "B",
-    "are you typing while driving"
+    "[are you typing while driving|wait are you driving rn|you're not texting and driving right]"
    ],
    [
     "A",
-    "no i'm on the bus, relax"
+    "[no i'm on the bus, relax|relax, i'm on the bus|bus. chill]"
    ],
    [
     "B",
-    "ok good"
+    "[ok good|good|ok phew]"
    ],
    [
     "C",
-    "bus traffic is the worst traffic"
+    "[bus traffic is the worst traffic|bus traffic is the worst|traffic on a bus is pain]"
    ]
   ]
  },
@@ -1191,27 +1191,27 @@
   "turlar": [
    [
     "A",
-    "is civil servant boring?"
+    "[is civil servant boring?|being a civil servant, boring?|civil servant life, is it dull?]"
    ],
    [
     "B",
-    "i'm one, it's calm. fixed salary"
+    "[i'm one, it's calm. fixed salary|i am one, it's calm, fixed pay|it's chill, i'm one. fixed salary]"
    ],
    [
     "A",
-    "you need a course right"
+    "[you need a course right|course needed right?|there's a course for it right]"
    ],
    [
     "B",
-    "the public exam course, and some days of waiting"
+    "[the public exam course, and some days of waiting|the public exam course, plus some waiting|yep, public exam course and a few days wait]"
    ],
    [
     "C",
-    "civil servants get paid even offline right?"
+    "[civil servants get paid even offline right?|they get paid even when offline right?|paid even when you're not playing?]"
    ],
    [
     "B",
-    "yep, that's the best part"
+    "[yep, that's the best part|yes, best part|yeah, that's the perk]"
    ]
   ]
  },
@@ -1223,27 +1223,27 @@
   "turlar": [
    [
     "A",
-    "ordering pizza, toppings?"
+    "[ordering pizza, toppings?|pizza time, what toppings?|getting pizza, toppings?]"
    ],
    [
     "B",
-    "pineapple"
+    "[pineapple|pineapple obviously|pineapple pls]"
    ],
    [
     "A",
-    "leaving the chat"
+    "[leaving the chat|i'm leaving|bye forever]"
    ],
    [
     "C",
-    "don't let him bully you {B}"
+    "[don't let him bully you {B}|stay strong {B}|ignore him {B}]"
    ],
    [
     "B",
-    "pineapple forever"
+    "[pineapple forever|pineapple gang|never changing]"
    ],
    [
     "A",
-    "i'm reporting this"
+    "[i'm reporting this|reported|this is a crime]"
    ]
   ]
  },
@@ -1255,27 +1255,27 @@
   "turlar": [
    [
     "A",
-    "can someone lend me 50k"
+    "[can someone lend me 50k|anyone lend me 50k?|who wants to lend me 50k]"
    ],
    [
     "B",
-    "no"
+    "[no|nope|lol no]"
    ],
    [
     "C",
-    "what's in it for us"
+    "[what's in it for us|what do we get|and what do we get out of it]"
    ],
    [
     "A",
-    "my eternal gratitude"
+    "[my eternal gratitude|my endless thanks|i'll be grateful forever]"
    ],
    [
     "C",
-    "not enough"
+    "[not enough|not good enough|pass]"
    ],
    [
     "B",
-    "try the bank, they love gratitude"
+    "[try the bank, they love gratitude|ask the bank, they take gratitude lol|bank's over there]"
    ]
   ]
  },
@@ -1287,23 +1287,23 @@
   "turlar": [
    [
     "A",
-    "lost my job, money almost gone"
+    "[lost my job, money almost gone|i'm jobless and almost broke|no job and nearly out of money]"
    ],
    [
     "B",
-    "you can't invest until you work again btw"
+    "[you can't invest until you work again btw|btw no investing until you're working again|fyi you can't invest till you get a job]"
    ],
    [
     "A",
-    "yeah i saw, the game forced me to job search"
+    "[yeah i saw, the game forced me to job search|yeah the game made me look for work|i know, it pushed me to job search]"
    ],
    [
     "C",
-    "courier, no boss needed, start today"
+    "[courier, no boss needed, start today|go courier, no boss, start now|courier, no employer, start today]"
    ],
    [
     "A",
-    "ok doing that now"
+    "[ok doing that now|ok on it|doing it now]"
    ]
   ]
  },
@@ -1315,23 +1315,23 @@
   "turlar": [
    [
     "A",
-    "anyone play sports irl"
+    "[anyone play sports irl|who does sports irl|any real life sports people here]"
    ],
    [
     "B",
-    "basketball on weekends"
+    "[basketball on weekends|i play basketball weekends|weekend basketball]"
    ],
    [
     "C",
-    "i run, slowly"
+    "[i run, slowly|running, but slow|i jog. slowly]"
    ],
    [
     "A",
-    "slowly still counts"
+    "[slowly still counts|slow still counts|counts tho]"
    ],
    [
     "C",
-    "thank you, my knees disagree"
+    "[thank you, my knees disagree|thanks, my knees don't agree|tell that to my knees]"
    ]
   ]
  },
@@ -1343,31 +1343,31 @@
   "turlar": [
    [
     "A",
-    "bought my first apartment!"
+    "[bought my first apartment!|just bought my first apartment|first apartment, done!]"
    ],
    [
     "B",
-    "congrats [!|man]"
+    "[congrats!|congrats man|ayy congrats]"
    ],
    [
     "C",
-    "loan or cash?"
+    "[loan or cash?|cash or loan?|with a loan?]"
    ],
    [
     "A",
-    "loan, down payment around 20%"
+    "[loan, down payment around 20%|loan, about 20% down|loan, put roughly 20% down]"
    ],
    [
     "C",
-    "smart, now no more rent"
+    "[smart, now no more rent|smart, no more rent|nice, bye rent]"
    ],
    [
     "A",
-    "just installments lol"
+    "[just installments lol|just installments now lol|now it's installments instead]"
    ],
    [
     "B",
-    "at least you own it"
+    "[at least you own it|but it's yours|at least it's yours]"
    ]
   ]
  },
@@ -1379,27 +1379,27 @@
   "turlar": [
    [
     "A",
-    "credit score starts at what"
+    "[credit score starts at what|what's the starting credit score|what does credit score start at]"
    ],
    [
     "B",
-    "620"
+    "[620|starts at 620|620 i think]"
    ],
    [
     "A",
-    "mine is 640 already"
+    "[mine is 640 already|i'm at 640 already|already 640 for me]"
    ],
    [
     "C",
-    "paying on time?"
+    "[paying on time?|on time payments?|you pay on time?]"
    ],
    [
     "A",
-    "yeah every single month"
+    "[yeah every single month|every month, yeah|yep, never missed]"
    ],
    [
     "B",
-    "keep it up"
+    "[keep it up|nice, keep going|good stuff]"
    ]
   ]
  },
@@ -1411,23 +1411,23 @@
   "turlar": [
    [
     "A",
-    "i'm learning 3 languages from this chat alone"
+    "[i'm learning 3 languages from this chat alone|this chat is teaching me 3 languages|learning like 3 languages here]"
    ],
    [
     "B",
-    "which ones"
+    "[which ones|which?|which languages]"
    ],
    [
     "A",
-    "turkish, spanish and whatever {C} speaks"
+    "[turkish, spanish and whatever {C} speaks|turkish, spanish and the language of {C}|turkish, spanish, and whatever {C} types]"
    ],
    [
     "C",
-    "that's just english with typos"
+    "[that's just english with typos|that's english with typos|it's just english, badly typed]"
    ],
    [
     "A",
-    "oh"
+    "[oh|oh lol|ah]"
    ]
   ]
  },
@@ -1439,27 +1439,27 @@
   "turlar": [
    [
     "A",
-    "waiter shift done, finally"
+    "[waiter shift done, finally|finally done with my waiter shift|shift over, finally]"
    ],
    [
     "B",
-    "busy?"
+    "[busy?|was it busy?|packed?]"
    ],
    [
     "A",
-    "packed, everyone wanted dessert at the same time"
+    "[packed, everyone wanted dessert at the same time|so busy, everyone wanted dessert at once|full house, dessert rush]"
    ],
    [
     "C",
-    "tips at least?"
+    "[tips at least?|good tips at least?|any tips?]"
    ],
    [
     "A",
-    "some, my feet hate me"
+    "[some, my feet hate me|a few, feet are dead|some, but my feet are gone]"
    ],
    [
     "B",
-    "sleep well"
+    "[sleep well|rest up|get some sleep]"
    ]
   ]
  },
@@ -1471,23 +1471,23 @@
   "turlar": [
    [
     "A",
-    "it's [snowing|freezing] in {A.sehir}"
+    "[it's snowing in {A.sehir}|freezing in {A.sehir}|{A.sehir} is so cold today]"
    ],
    [
     "B",
-    "30 degrees here"
+    "[30 degrees here|it's 30 degrees here|hot here, 30 degrees]"
    ],
    [
     "A",
-    "i hate you a little"
+    "[i hate you a little|i hate you slightly|jealous, kinda hate you]"
    ],
    [
     "B",
-    "i'd trade for snow honestly"
+    "[i'd trade for snow honestly|i'd take snow tbh|honestly i want snow]"
    ],
    [
     "C",
-    "nobody is ever happy with weather"
+    "[nobody is ever happy with weather|no one's ever happy with the weather|weather complaints never end]"
    ]
   ]
  },
@@ -1499,23 +1499,23 @@
   "turlar": [
    [
     "A",
-    "sunday energy is low"
+    "[sunday energy is low|low energy sunday|sunday mood: zero]"
    ],
    [
     "B",
-    "sunday energy is always low"
+    "[sunday energy is always low|it's always low on sundays|always is]"
    ],
    [
     "C",
-    "i made pancakes, that's my whole contribution"
+    "[i made pancakes, that's my whole contribution|made pancakes, that's all i did|pancakes, my only achievement today]"
    ],
    [
     "A",
-    "pancakes count as productivity"
+    "[pancakes count as productivity|pancakes are productive|that counts]"
    ],
    [
     "C",
-    "thank you"
+    "[thank you|thanks|appreciated]"
    ]
   ]
  },
@@ -1527,27 +1527,27 @@
   "turlar": [
    [
     "A",
-    "what's the point of buying land, no rent from it"
+    "[what's the point of buying land, no rent from it|why buy land if it pays no rent|land gives no rent, what's the point]"
    ],
    [
     "B",
-    "it gains value over time"
+    "[it gains value over time|it goes up in value|value grows over time]"
    ],
    [
     "A",
-    "but no income"
+    "[but no income|but no money coming in|still no income tho]"
    ],
    [
     "C",
-    "long game, some people like that"
+    "[long game, some people like that|it's a long game, some like it|for patient people]"
    ],
    [
     "B",
-    "apartments and shops pay rent if you want income"
+    "[apartments and shops pay rent if you want income|if you want income, apartments and shops pay rent|want income? apartments or shops]"
    ],
    [
     "A",
-    "ok apartments first then"
+    "[ok apartments first then|ok, apartment first|apartments first then]"
    ]
   ]
  },
@@ -1559,23 +1559,23 @@
   "turlar": [
    [
     "A",
-    "this game is harder than real life"
+    "[this game is harder than real life|this game is harder than irl|real life is easier than this game]"
    ],
    [
     "B",
-    "nah real life has no hourglass"
+    "[nah real life has no hourglass|nah, no hourglass in real life|irl has no hourglass tho]"
    ],
    [
     "C",
-    "real life also has no global chat"
+    "[real life also has no global chat|and no global chat irl|real life has no chat like this]"
    ],
    [
     "A",
-    "[fair|true]"
+    "[fair|true|ok fair]"
    ],
    [
     "B",
-    "also real life rent is worse"
+    "[also real life rent is worse|and real rent is worse|real rent is scarier]"
    ]
   ]
  },
@@ -1587,23 +1587,23 @@
   "turlar": [
    [
     "A",
-    "yo"
+    "[yo|yoo|yo chat]"
    ],
    [
     "B",
-    "yo {A}"
+    "[yo {A}|yo yo {A}|sup {A}]"
    ],
    [
     "C",
-    "yo yo"
+    "[yo yo|yo|yooo]"
    ],
    [
     "A",
-    "ok that's enough yo for today"
+    "[ok that's enough yo for today|ok enough yo for today|that's the daily yo limit]"
    ],
    [
     "B",
-    "one more. yo"
+    "[one more. yo|last one. yo|yo]"
    ]
   ]
  },
@@ -1615,27 +1615,27 @@
   "turlar": [
    [
     "A",
-    "back from the gym, i can't feel my arms"
+    "[back from the gym, i can't feel my arms|gym done, arms are dead|just got back from the gym, no arms left]"
    ],
    [
     "B",
-    "how many days in a row?"
+    "[how many days in a row?|how many days straight?|streak?]"
    ],
    [
     "A",
-    "two"
+    "[two|2|two days]"
    ],
    [
     "C",
-    "legend"
+    "[legend|beast|a legend]"
    ],
    [
     "B",
-    "day three is where it breaks"
+    "[day three is where it breaks|day three is the real test|wait till day three]"
    ],
    [
     "A",
-    "thanks for the motivation"
+    "[thanks for the motivation|wow so motivating|great, thanks]"
    ]
   ]
  },
@@ -1647,27 +1647,27 @@
   "turlar": [
    [
     "A",
-    "going on vacation next week"
+    "[going on vacation next week|vacation next week|next week i'm on holiday]"
    ],
    [
     "B",
-    "where to?"
+    "[where to?|where are you going?|nice, where?]"
    ],
    [
     "A",
-    "somewhere with a beach and no wifi"
+    "[somewhere with a beach and no wifi|beach, no wifi|a beach with zero wifi]"
    ],
    [
     "C",
-    "so we won't see you"
+    "[so we won't see you|so you'll be gone|bye then]"
    ],
    [
     "A",
-    "i'll check the game once a day, i'm not a monster"
+    "[i'll check the game once a day, i'm not a monster|i'll still check the game daily lol|once a day, i'm not a monster]"
    ],
    [
     "B",
-    "rent doesn't take vacations"
+    "[rent doesn't take vacations|rent won't go on vacation|rent keeps working tho]"
    ]
   ]
  },
@@ -1679,27 +1679,27 @@
   "turlar": [
    [
     "A",
-    "i spent everything on a shop and now i'm broke"
+    "[i spent everything on a shop and now i'm broke|bought a shop, now i'm broke|shop took all my money, broke now]"
    ],
    [
     "B",
-    "oops"
+    "[oops|oof|whoops]"
    ],
    [
     "C",
-    "is it making money at least"
+    "[is it making money at least|is it earning at least?|making anything?]"
    ],
    [
     "A",
-    "slowly"
+    "[slowly|a bit|slowly, yeah]"
    ],
    [
     "C",
-    "then hang in there, first month is always rough"
+    "[then hang in there, first month is always rough|hang on, first month is always hard|stick with it, the first month is rough]"
    ],
    [
     "B",
-    "and don't fire everyone, temps cost more"
+    "[and don't fire everyone, temps cost more|don't fire people, temps are pricier|keep your staff, temps cost more]"
    ]
   ]
  },
@@ -1711,27 +1711,27 @@
   "turlar": [
    [
     "A",
-    "tried cooking rice, it's somehow burned and raw at the same time"
+    "[tried cooking rice, it's somehow burned and raw at the same time|made rice, it's burned and raw at once|my rice is burned and also raw, how]"
    ],
    [
     "B",
-    "that takes talent"
+    "[that takes talent|that's a skill|impressive honestly]"
    ],
    [
     "C",
-    "water ratio, my friend"
+    "[water ratio, my friend|it's the water ratio|ratio, friend, ratio]"
    ],
    [
     "A",
-    "there's a ratio??"
+    "[there's a ratio??|wait there's a ratio?|a ratio??]"
    ],
    [
     "C",
-    "oh no"
+    "[oh no|oh no no|oh dear]"
    ],
    [
     "B",
-    "order food tonight"
+    "[order food tonight|just order food|delivery tonight then]"
    ]
   ]
  },
@@ -1743,27 +1743,27 @@
   "turlar": [
    [
     "A",
-    "is there age in this game, like do we get old"
+    "[is there age in this game, like do we get old|do we age in this game?|can you get old in this game?]"
    ],
    [
     "B",
-    "no age at all"
+    "[no age at all|no aging at all|nope, no age]"
    ],
    [
     "A",
-    "thank god"
+    "[thank god|phew|good]"
    ],
    [
     "C",
-    "no school either, everyone just starts with 100k"
+    "[no school either, everyone just starts with 100k|no school too, just 100k to start|no school, everyone gets 100k]"
    ],
    [
     "A",
-    "so i'm forever young and broke"
+    "[so i'm forever young and broke|so forever young and poor|forever young, forever broke]"
    ],
    [
     "B",
-    "the dream"
+    "[the dream|living the dream|dream life]"
    ]
   ]
  },
@@ -1775,27 +1775,27 @@
   "turlar": [
    [
     "A",
-    "if you could live in any city which one"
+    "[if you could live in any city which one|any city in the world, which?|dream city to live in?]"
    ],
    [
     "B",
-    "{B.sehir}, i already do and i love it"
+    "[{B.sehir}, i already do and i love it|{B.sehir}, already here and love it|{B.sehir}, i'm already home]"
    ],
    [
     "C",
-    "somewhere by the sea"
+    "[somewhere by the sea|anywhere near the sea|by the sea, any city]"
    ],
    [
     "A",
-    "istanbul looks cool from the photos in this game"
+    "[istanbul looks cool from the photos in this game|istanbul looks nice from the game|the istanbul pics in this game look cool]"
    ],
    [
     "C",
-    "istanbul has sea, two seas even"
+    "[istanbul has sea, two seas even|istanbul has the sea, two actually|it has the sea, two of them]"
    ],
    [
     "A",
-    "sold"
+    "[sold|ok sold|done, istanbul]"
    ]
   ]
  },
@@ -1807,27 +1807,27 @@
   "turlar": [
    [
     "A",
-    "accidentally bought a shop instead of an apartment"
+    "[accidentally bought a shop instead of an apartment|bought a shop by mistake, meant apartment|oops, got a shop instead of an apartment]"
    ],
    [
     "B",
-    "how do you do that accidentally"
+    "[how do you do that accidentally|how is that an accident|how lol]"
    ],
    [
     "A",
-    "[i don't know|fat fingers]"
+    "[i don't know|fat fingers|no idea]"
    ],
    [
     "C",
-    "shops rent out too, not a disaster"
+    "[shops rent out too, not a disaster|shops pay rent too, it's fine|you can rent shops, no big deal]"
    ],
    [
     "A",
-    "ok that makes me feel better"
+    "[ok that makes me feel better|ok i feel better|phew, better]"
    ],
    [
     "B",
-    "still how"
+    "[still how|but how tho|still curious how]"
    ]
   ]
  },
@@ -1839,27 +1839,27 @@
   "turlar": [
    [
     "A",
-    "it's 3am and i'm checking my rent income"
+    "[it's 3am and i'm checking my rent income|3am and i'm checking rent income|it's 3am, i'm watching my rent come in]"
    ],
    [
     "B",
-    "go to sleep"
+    "[go to sleep|sleep|go to bed]"
    ],
    [
     "A",
-    "but the numbers"
+    "[but the numbers|but numbers|the numbers tho]"
    ],
    [
     "C",
-    "the numbers will be there tomorrow"
+    "[the numbers will be there tomorrow|they'll be there tomorrow|numbers don't run away]"
    ],
    [
     "A",
-    "...ok fine"
+    "[...ok fine|fine|ugh ok]"
    ],
    [
     "B",
-    "goodnight {A}"
+    "[goodnight {A}|night {A}|sleep well {A}]"
    ]
   ]
  },
@@ -1871,23 +1871,23 @@
   "turlar": [
    [
     "A",
-    "when forex comes i'm going to be rich"
+    "[when forex comes i'm going to be rich|forex update = i'm rich|when forex drops i'm getting rich]"
    ],
    [
     "B",
-    "or very poor"
+    "[or very poor|or super broke|or the opposite]"
    ],
    [
     "A",
-    "positive thinking only"
+    "[positive thinking only|only good vibes|stay positive]"
    ],
    [
     "C",
-    "write down your plan so we can laugh later"
+    "[write down your plan so we can laugh later|screenshot this, we'll laugh later|write it down, for later laughs]"
    ],
    [
     "A",
-    "rude but fair"
+    "[rude but fair|fair, but rude|ok fair]"
    ]
   ]
  },
@@ -1899,23 +1899,23 @@
   "turlar": [
    [
     "A",
-    "can you have two jobs?"
+    "[can you have two jobs?|is two jobs possible?|can i work two jobs?]"
    ],
    [
     "B",
-    "don't think so"
+    "[don't think so|i don't think so|probably not]"
    ],
    [
     "C",
-    "not sure, i've never tried, worth checking"
+    "[not sure, i've never tried, worth checking|not sure, never tried|no idea, check it]"
    ],
    [
     "A",
-    "i want to be courier and accountant at once"
+    "[i want to be courier and accountant at once|i wanna be a courier and accountant at the same time|courier plus accountant, that's the plan]"
    ],
    [
     "B",
-    "sleep is optional for you huh"
+    "[sleep is optional for you huh|so no sleep for you|you don't sleep huh]"
    ]
   ]
  },
@@ -1927,23 +1927,23 @@
   "turlar": [
    [
     "A",
-    "got a raise in real life today"
+    "[got a raise in real life today|real life raise today|got a raise irl]"
    ],
    [
     "B",
-    "congrats!!"
+    "[congrats!!|congrats!|nice!!]"
    ],
    [
     "C",
-    "buy yourself something nice"
+    "[buy yourself something nice|treat yourself|get something nice]"
    ],
    [
     "A",
-    "i bought a game apartment, does that count"
+    "[i bought a game apartment, does that count|bought a game apartment, counts?|got an apartment in game, that counts right]"
    ],
    [
     "B",
-    "strangely yes"
+    "[strangely yes|weirdly yes|honestly yes]"
    ]
   ]
  },
@@ -1955,23 +1955,23 @@
   "turlar": [
    [
     "A",
-    "this chat moves so fast"
+    "[this chat moves so fast|chat is so fast|can't keep up with this chat]"
    ],
    [
     "B",
-    "there are people from everywhere"
+    "[there are people from everywhere|people from everywhere here|it's the whole world in here]"
    ],
    [
     "C",
-    "i just read every tenth message"
+    "[i just read every tenth message|i read like every tenth message|i skim every tenth one]"
    ],
    [
     "A",
-    "that's a strategy"
+    "[that's a strategy|smart strategy|a strategy]"
    ],
    [
     "C",
-    "works for me"
+    "[works for me|it works|does the job]"
    ]
   ]
  },
@@ -1983,31 +1983,31 @@
   "turlar": [
    [
     "A",
-    "bored at work, entertain me"
+    "[bored at work, entertain me|so bored at work, entertain me|work is boring, someone entertain me]"
    ],
    [
     "B",
-    "knock knock"
+    "[knock knock|ok. knock knock|knock knock, ready?]"
    ],
    [
     "A",
-    "who's there"
+    "[who's there|who's there?|who is it]"
    ],
    [
     "B",
-    "rent"
+    "[rent|rent.|it's rent]"
    ],
    [
     "A",
-    "rent who"
+    "[rent who|rent who?|ok, rent who?]"
    ],
    [
     "B",
-    "rent is due"
+    "[rent is due|rent is due.|rent is due today]"
    ],
    [
     "C",
-    "that's not a joke that's a threat"
+    "[that's not a joke that's a threat|that's a threat not a joke|lol that's a threat]"
    ]
   ]
  },
@@ -2019,27 +2019,27 @@
   "turlar": [
    [
     "A",
-    "{B} you seem experienced, what would you do day one"
+    "[{B} you seem experienced, what would you do day one|{B} you seem to know stuff, day one plan?|{B} what would you do on day one]"
    ],
    [
     "B",
-    "courier for cash, daily tasks for hourglasses"
+    "[courier for cash, daily tasks for hourglasses|courier for money, daily tasks for hourglasses|first courier, plus daily tasks for hourglasses]"
    ],
    [
     "B",
-    "then a course when you have a buffer"
+    "[then a course when you have a buffer|then a course once you have savings|course after you save a bit]"
    ],
    [
     "A",
-    "which course"
+    "[which course|what course|which one]"
    ],
    [
     "B",
-    "whatever you like, accounting is chill, real estate pays more if active"
+    "[whatever you like, accounting is chill, real estate pays more if active|any, accounting's chill, real estate pays more if you're active|accounting is calm, real estate pays better if active]"
    ],
    [
     "C",
-    "solid advice"
+    "[solid advice|good advice|solid]"
    ]
   ]
  },
@@ -2051,27 +2051,27 @@
   "turlar": [
    [
     "A",
-    "how do i get more customers in my cafe"
+    "[how do i get more customers in my cafe|how to get more people in my cafe|my cafe needs more customers, tips?]"
    ],
    [
     "B",
-    "location, staff, quality"
+    "[location, staff, quality|location, staff and quality|staff, quality, location]"
    ],
    [
     "A",
-    "location i can't change"
+    "[location i can't change|can't change location|location's fixed]"
    ],
    [
     "C",
-    "then staff and quality"
+    "[then staff and quality|staff and quality then|work on staff and quality]"
    ],
    [
     "B",
-    "and pray no one opens another cafe next door"
+    "[and pray no one opens another cafe next door|and hope no new cafe opens nearby|pray no cafe opens next to you]"
    ],
    [
     "A",
-    "someone did yesterday"
+    "[someone did yesterday|one opened yesterday|too late, one opened yesterday]"
    ]
   ]
  },
@@ -2083,23 +2083,23 @@
   "turlar": [
    [
     "A",
-    "my turkish friend in game keeps offering me çay"
+    "[my turkish friend in game keeps offering me çay|my turkish friend keeps offering çay|a turk here always offers me çay]"
    ],
    [
     "B",
-    "accept it, it's a sign of friendship"
+    "[accept it, it's a sign of friendship|say yes, it's friendship|accept, it means friendship]"
    ],
    [
     "A",
-    "virtual tea is still tea"
+    "[virtual tea is still tea|virtual tea counts|tea is tea]"
    ],
    [
     "C",
-    "\"çay içelim mi\" means shall we drink tea"
+    "[\"çay içelim mi\" means shall we drink tea|\"çay içelim mi\" = shall we have tea|they say \"çay içelim mi\", shall we drink tea]"
    ],
    [
     "A",
-    "çay içelim then"
+    "[çay içelim then|ok, çay içelim|çay içelim!]"
    ]
   ]
  },
@@ -2111,23 +2111,23 @@
   "turlar": [
    [
     "A",
-    "anyone know what comes in the next update?"
+    "[anyone know what comes in the next update?|what's in the next update?|any news on the next update?]"
    ],
    [
     "B",
-    "heard borsa and forex, not sure"
+    "[heard borsa and forex, not sure|i heard stocks and forex, not sure|rumor is stocks and forex]"
    ],
    [
     "C",
-    "no idea, just rumors"
+    "[no idea, just rumors|idk, just rumors|only rumors so far]"
    ],
    [
     "A",
-    "hope it's something fun"
+    "[hope it's something fun|hope it's fun|hopefully fun stuff]"
    ],
    [
     "B",
-    "i hope it's cheaper rent"
+    "[i hope it's cheaper rent|i want cheaper rent|cheaper rent please]"
    ]
   ]
  },
@@ -2139,23 +2139,23 @@
   "turlar": [
    [
     "A",
-    "grey sky, cold tea, perfect day to do nothing"
+    "[grey sky, cold tea, perfect day to do nothing|grey sky and cold tea, perfect lazy day|grey weather, cold tea, doing nothing today]"
    ],
    [
     "B",
-    "poetic"
+    "[poetic|so poetic|wow poetry]"
    ],
    [
     "C",
-    "you just described my whole week"
+    "[you just described my whole week|that's my whole week|literally my week]"
    ],
    [
     "A",
-    "welcome to the club"
+    "[welcome to the club|join the club|club member]"
    ],
    [
     "B",
-    "the grey club"
+    "[the grey club|grey club|the grey club, nice]"
    ]
   ]
  },
@@ -2167,27 +2167,27 @@
   "turlar": [
    [
     "A",
-    "personal loan term is how long?"
+    "[personal loan term is how long?|how long is a personal loan?|personal loan term?]"
    ],
    [
     "B",
-    "24 months"
+    "[24 months|it's 24 months|two years, 24 months]"
    ],
    [
     "A",
-    "ok so not crazy long"
+    "[ok so not crazy long|ok not too long|fine, not that long]"
    ],
    [
     "C",
-    "monthly interest adds up though"
+    "[monthly interest adds up though|interest adds up tho|monthly interest piles up]"
    ],
    [
     "A",
-    "yeah i'll borrow small"
+    "[yeah i'll borrow small|i'll borrow a little|small loan then]"
    ],
    [
     "B",
-    "smart"
+    "[smart|good idea|wise]"
    ]
   ]
  },
@@ -2199,23 +2199,23 @@
   "turlar": [
    [
     "A",
-    "ok i'm off, [goodnight|see you] all"
+    "[ok i'm off, goodnight all|ok bye, see you all|i'm out, night everyone]"
    ],
    [
     "B",
-    "night {A}"
+    "[night {A}|bye {A}|gn {A}]"
    ],
    [
     "C",
-    "bye, don't forget your daily tasks"
+    "[bye, don't forget your daily tasks|bye, do your daily tasks|later, daily tasks first]"
    ],
    [
     "A",
-    "never"
+    "[never|wouldn't dare|not a chance]"
    ],
    [
     "B",
-    "he's going to forget"
+    "[he's going to forget|he'll forget|he's forgetting]"
    ]
   ]
  },
@@ -2227,23 +2227,23 @@
   "turlar": [
    [
     "A",
-    "{B}! haven't seen you in days"
+    "[{B}! haven't seen you in days|{B}! where have you been|{B} long time no see]"
    ],
    [
     "B",
-    "been busy, work is crazy"
+    "[been busy, work is crazy|busy, work is nuts|work's been crazy]"
    ],
    [
     "A",
-    "in game or real"
+    "[in game or real|game or real life?|game or irl]"
    ],
    [
     "B",
-    "both, my courier route and my real boss"
+    "[both, my courier route and my real boss|both, courier route and real boss|both, game deliveries and real boss]"
    ],
    [
     "C",
-    "welcome back"
+    "[welcome back|wb|good to see you]"
    ]
   ]
  },
@@ -2255,23 +2255,23 @@
   "turlar": [
    [
     "A",
-    "family dinner tonight, wish me luck"
+    "[family dinner tonight, wish me luck|family dinner tonight, pray for me|big family dinner tonight, wish me luck]"
    ],
    [
     "B",
-    "why luck"
+    "[why luck|why?|why luck lol]"
    ],
    [
     "A",
-    "aunts. questions. \"when will you get married\""
+    "[aunts. questions. \"when will you get married\"|aunts and the \"when are you getting married\" question|aunts asking when i'm getting married]"
    ],
    [
     "C",
-    "tell them you're focused on your apartment empire"
+    "[tell them you're focused on your apartment empire|say you're building your apartment empire|tell them your apartment empire comes first]"
    ],
    [
     "A",
-    "that might actually work"
+    "[that might actually work|that could work|might work tbh]"
    ]
   ]
  },
@@ -2283,23 +2283,23 @@
   "turlar": [
    [
     "A",
-    "{B} your name sounds like a famous chef"
+    "[{B} your name sounds like a famous chef|{B} you sound like a celebrity chef|{B} your name is chef material]"
    ],
    [
     "B",
-    "i can't even boil eggs"
+    "[i can't even boil eggs|i can't boil an egg|lol i can't cook]"
    ],
    [
     "C",
-    "chef of disappointment"
+    "[chef of disappointment|chef of fails|the disappointment chef]"
    ],
    [
     "B",
-    "thanks {C}"
+    "[thanks {C}|wow thanks {C}|appreciate it {C}]"
    ],
    [
     "A",
-    "chef of the chat at least"
+    "[chef of the chat at least|at least chef of the chat|chat chef then]"
    ]
   ]
  },
@@ -2311,27 +2311,27 @@
   "turlar": [
    [
     "A",
-    "i'm stuck, earning but not growing"
+    "[i'm stuck, earning but not growing|i earn but don't grow|stuck, money comes but i'm not growing]"
    ],
    [
     "B",
-    "what are you doing now"
+    "[what are you doing now|what's your job now|what do you do now]"
    ],
    [
     "A",
-    "courier, saving slowly"
+    "[courier, saving slowly|courier, saving bit by bit|courier, slow saving]"
    ],
    [
     "C",
-    "think about a course, fixed income helps planning"
+    "[think about a course, fixed income helps planning|try a course, fixed income makes planning easier|a course maybe, steady pay helps]"
    ],
    [
     "B",
-    "or rent out a place, passive income"
+    "[or rent out a place, passive income|or buy and rent out, passive income|or rent a place out for passive income]"
    ],
    [
     "A",
-    "ok, time to stop just running around"
+    "[ok, time to stop just running around|ok, time to stop just running deliveries|ok, time for a real plan]"
    ]
   ]
  },
@@ -2343,27 +2343,27 @@
   "turlar": [
    [
     "A",
-    "lunch break, what are you eating"
+    "[lunch break, what are you eating|lunch time, what are you having|what's for lunch guys]"
    ],
    [
     "B",
-    "sandwich again"
+    "[sandwich again|another sandwich|sandwich, again]"
    ],
    [
     "C",
-    "soup, it's cold here"
+    "[soup, it's cold here|soup, cold day|soup, it's freezing]"
    ],
    [
     "A",
-    "i'm having leftover pasta"
+    "[i'm having leftover pasta|leftover pasta for me|leftover pasta]"
    ],
    [
     "B",
-    "leftovers taste better, change my mind"
+    "[leftovers taste better, change my mind|leftovers are better, fight me|leftovers hit different]"
    ],
    [
     "C",
-    "can't, it's true"
+    "[can't, it's true|can't argue|it's facts]"
    ]
   ]
  },
@@ -2375,23 +2375,23 @@
   "turlar": [
    [
     "A",
-    "[it's 38 degrees|heat wave] in {A.sehir}, i'm melting"
+    "[it's 38 degrees|heat wave|it's so hot] in {A.sehir}, [i'm melting|i'm dying|help]"
    ],
    [
     "B",
-    "drink water"
+    "[drink water|stay hydrated|water, lots]"
    ],
    [
     "A",
-    "i'm drinking ice"
+    "[i'm drinking ice|i'm eating ice|i'm sitting on ice]"
    ],
    [
     "C",
-    "stay inside, play the game"
+    "[stay inside, play the game|stay in and play|indoors, game on]"
    ],
    [
     "A",
-    "that's the plan"
+    "[that's the plan|plan exactly|that's the idea]"
    ]
   ]
  },
@@ -2403,27 +2403,27 @@
   "turlar": [
    [
     "A",
-    "movie night, recommend something"
+    "[movie night, recommend something|movie night, suggestions?|need a movie for tonight]"
    ],
    [
     "B",
-    "something old, black and white"
+    "[something old, black and white|an old black and white one|black and white classic]"
    ],
    [
     "C",
-    "no, something with explosions"
+    "[no, something with explosions|nah, explosions|explosions, obviously]"
    ],
    [
     "A",
-    "you two have opposite brains"
+    "[you two have opposite brains|you two are opposites|opposite tastes lol]"
    ],
    [
     "B",
-    "watch both, balance"
+    "[watch both, balance|watch both|both, for balance]"
    ],
    [
     "C",
-    "explosions first though"
+    "[explosions first though|explosions first|but explosions first]"
    ]
   ]
  },
@@ -2435,27 +2435,27 @@
   "turlar": [
    [
     "A",
-    "finally hit 500k cash"
+    "[finally hit 500k cash|500k cash finally|i've got 500k now]"
    ],
    [
     "B",
-    "nice! what's the plan"
+    "[nice! what's the plan|nice, plans?|ooh, what now?]"
    ],
    [
     "A",
-    "no idea, scared to spend it"
+    "[no idea, scared to spend it|no clue, scared to spend|idk, afraid to touch it]"
    ],
    [
     "C",
-    "money sitting still loses value with inflation"
+    "[money sitting still loses value with inflation|idle cash loses value with inflation|inflation eats sitting money]"
    ],
    [
     "B",
-    "and there's no deposit interest either"
+    "[and there's no deposit interest either|no deposit interest either|banks don't pay interest here btw]"
    ],
    [
     "A",
-    "ok ok, i'll look at apartments"
+    "[ok ok, i'll look at apartments|ok, apartments then|fine, looking at apartments]"
    ]
   ]
  }
