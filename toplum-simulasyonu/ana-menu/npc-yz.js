@@ -1523,7 +1523,9 @@
   // ---- Soru-cevap bankası araması (npc-sss.js): örnek soruluşlarla ağırlıklı kelime benzerliği ----
   const SSS_DUR = new Set('bir bu su o ve ile de da ki mi mu mı mü ya abi kanka knk hocam valla ama ben sen biz siz bana sana bunu sunu icin gibi cok daha en her hic bi sey seyi oyunda oyun bu oyunda acaba peki merak ediyorum biliyor bilen var kimse arkadaslar millet'.split(' '));
   const kok5 = w => w.length > 5 ? w.slice(0, 5) : w;
-  function sssTokenler(katli) { const w = katli.split(/\s+/).filter(x => x && !SSS_DUR.has(x)).map(kok5); const t = w.slice(); for (let i = 0; i + 1 < w.length; i++) t.push(w[i] + '_' + w[i + 1]); return t; }
+  // Genel Türkçe eşanlamlılar: aynı şeyi soran farklı kelimeler bankada aynı kelime sayılır
+  const SSS_ESANLAM = { ucret: 'maas', ucretsiz: 'bedava', niye: 'neden', nicin: 'neden', gerek: 'lazim', gerekli: 'lazim', gerekiyor: 'lazim', gerekir: 'lazim', sart: 'lazim', sarti: 'lazim', magaza: 'dukkan', konut: 'daire', personel: 'eleman', isveren: 'patron', tutar: 'fiyat', firma: 'isletme', sirket: 'isletme' };
+  function sssTokenler(katli) { const w = katli.split(/\s+/).filter(x => x && !SSS_DUR.has(x)).map(x => kok5(SSS_ESANLAM[x] || x)); const t = w.slice(); for (let i = 0; i + 1 < w.length; i++) t.push(w[i] + '_' + w[i + 1]); return t; }
   let SSS_IDX = null;
   function sssIndeks() {
     const L = (typeof NPCSSS !== 'undefined' ? NPCSSS : (typeof globalThis !== 'undefined' && globalThis.NPCSSS)) || null; if (!L || !L.length) return null;
