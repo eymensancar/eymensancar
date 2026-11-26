@@ -2209,10 +2209,8 @@
     '{kisi} ben de aynısını yaşadım',
     '{kisi} kolay gelsin',
     '{kisi} katılıyorum, [bu aralar herkes öyle|aynı fikirdeyim]',
-    '@{kisi} özelden yazdım sana',
-    '{kisi} sende de mi? [Bende de aynı|Ben de şaşırdım]',
+    '{kisi} [bende de aynı|ben de aynısını düşündüm]',
     '{kisi} geçen gün bunu konuşmuştuk',
-    'Hahaha {kisi} [çok iyi|güldürdün]',
     'Aynen öyle',
     'Bence de'
   ]);
