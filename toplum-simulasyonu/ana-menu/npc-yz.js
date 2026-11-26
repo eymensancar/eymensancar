@@ -1068,7 +1068,7 @@
     if (satilik && kim.k.risk > .4) secenek.push(['paylasim.satilik', 1, { mulk: mulkAdi(satilik.kind), tutar: paraYaz(Math.round(T.propertyMarketPrice(world, satilik.kind) * rng.between(.98, 1.08) / 1000) * 1000) }]);
     if (p.tasksToday >= ((p.profession && T.getProfession(p.profession).maxTasksPerDay) || 99)) secenek.push(['paylasim.gorev_bitti', 2]);
     if (world.priceIndex > 1.03) secenek.push(['paylasim.ekonomi_zam', 1]);
-    const dilim = saat >= 6 && saat < 11 ? 'sabah' : saat < 17 ? 'ogle' : saat < 22 ? 'aksam' : 'gece';
+    const dilim = saat < 6 ? 'gece' : saat < 11 ? 'sabah' : saat < 17 ? 'ogle' : saat < 22 ? 'aksam' : 'gece';
     secenek.push(['gundelik', 3.2, { dilim }]);
     secenek.push(['paylasim.ekonomi_genel', .8], ['paylasim.soru', 1.6], ['paylasim.motivasyon', kim.ruh > 0 ? 1 : .3], ['paylasim.yorgun', kim.ruh < 0 ? 1.2 : .3]);
     if (T.netWorth(world, p) > 5e6) secenek.push(['paylasim.zengin_oldu', .3]);
