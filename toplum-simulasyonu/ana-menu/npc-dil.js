@@ -2668,6 +2668,8 @@
     // kosul: değilsen -> değilseniz, aksatırsan -> aksatırsanız
     t = t.replace(/(^|[^\p{L}])(\p{Ll}{2,}[rlyzkmnt])(san|sen)(?=[^\p{L}]|$)/gu,
       function (x, o, g, e) { return o + g + e + (e === 'san' ? 'ız' : 'iz'); });
+    // "Sizin limitin" -> "Sizin limitiniz" (iyelik de çoğul olur)
+    t = t.replace(/(^|[^\p{L}])([Ss]izin) (\p{Ll}{2,}?)(ın|in|un|ün)(?=[^\p{L}]|$)/gu, function (x, o, s1, g, e) { return o + s1 + ' ' + g + e + { 'ın': 'ız', 'in': 'iz', 'un': 'uz', 'ün': 'üz' }[e]; });
     // siz'li sözcükten sonra bağlaç uyumu: "size da" -> "size de", "sizin da" -> "sizin de"
     t = t.replace(/(^|[^\p{L}])([Ss]ize|[Ss]izin|[Ss]izde|[Ss]izi|[Ss]iz) da(?=[^\p{L}]|$)/gu, '$1$2 de');
     return duzelt(t.replace(/\s+,/g, ',').replace(/,\s*([.!?])/g, '$1'));
