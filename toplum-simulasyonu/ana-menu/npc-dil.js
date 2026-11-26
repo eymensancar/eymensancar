@@ -2681,9 +2681,9 @@
   function samimilestir(t, st, rng, korunan) {
     t = degistir(t, 'teşekkür ederim', 'sağ ol', rng, 0.5);
     t = degistir(t, 'merhaba', 'selam', rng, 0.4);
-    var p = (0.4 - st.resmi) * 0.7;
+    var p = (0.4 - st.resmi) * 0.45;
     if (sans(rng, p) && !SELAMLASMA.test(t) && !/^[@\d]/.test(t) && !ONEKSIZ.test(t) && t.split(' ').length >= 4) {
-      var dolgu = st.nese < -0.3 ? ['of', 'ya', 'valla'] : ['ya', 'valla', 'hocam', 'bak', 'kanka', 'abi', 'yaa'];
+      var dolgu = st.nese < -0.3 ? ['of', 'ya', 'off', 'ah'] : ['ya', 'valla', 'hocam', 'kanka', 'abi', 'yaa', 'e', 'hmm', 'şey'];
       var ilk = (t.match(/^[\p{L}\p{N}']+/u) || [''])[0];
       t = sec(rng, dolgu) + ' ' + (korunuyor(ilk, korunan || []) ? t : ilkKucuk(t));
     }
@@ -2705,7 +2705,7 @@
     t = t.replace(/(\p{L}{2,})[ae]cağım(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.7) ? g + 'cam' : x; });
     t = t.replace(/(\p{L}{2,})[ae]ceğim(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.7) ? g + 'cem' : x; });
     KISA.forEach(function (d) { if (d[0] !== d[1]) t = degistir(t, kacis(d[0]), d[1], rng, p); });
-    t = t.replace(/(\p{L}{2,}[ıiuü])yorum(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.7) ? g + 'yom' : x; });
+    t = t.replace(/(\p{L}{2,}[ıiuü])yorum(?=[^\p{L}]|$)/gu, function (x, g) { return k > 0.45 && sans(rng, p * 0.6) ? g + 'yom' : x; });
     t = t.replace(/(\p{L}{2,}[ıiuü])yorsun(?=[^\p{L}]|$)/gu, function (x, g) { return sans(rng, p * 0.5) ? g + 'yon' : x; });
     return t;
   }

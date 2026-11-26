@@ -117,7 +117,7 @@
     const k = {};
     for (const o of OZELLIKLER) k[o] = sinir(ARKETIP[arketip].k[o] + (rng.next() - .5) * .3, 0, 1);
     // Yer: oyuncular çoğunlukla İstanbul'da (oyunun başladığı şehir), kalanı diğer illerde.
-    const iller = v.yerler, il = rng.chance(.6) ? (iller.find(x => (x.ad || x.sehir) === 'İstanbul') || rng.pick(iller)) : rng.pick(iller);
+    const iller = v.yerler, il = rng.chance(.85) ? (iller.find(x => (x.ad || x.sehir) === 'İstanbul') || rng.pick(iller)) : rng.pick(iller);
     const yer = yerDuzelt(il, rng);
     // Görünen ad: çoğu "Ad Soyad", bir kısmı "Ad S." ya da takma ad (gerçek sunucudaki gibi karışık).
     const r = rng.next();
@@ -979,6 +979,7 @@
     _veri = { gun: world.day, w: world, v }; return v;
   }
   NPCYZ.iplikVeri = iplikVeri;
+  const kisaAd = g => { const a = String(g || '').split(/[ _.]/)[0].replace(/\d+$/, ''); return a.charAt(0).toUpperCase() + a.slice(1); };
   function iplikMetni(sablon, roller, kisiler, veri, rng) {
     let m = sablon.replace(/\[([^\]]*)\]/g, (a, b) => rng.pick(b.split('|')));
     m = m.replace(/\{([ABCD])(?:\.(\w+))?\}/g, (a, r0, alan) => { const kb = kisiler[r0]; if (!kb) return ''; if (!alan) return kb.ad; if (alan === 'meslek') return kb.meslek ? meslekAdi(kb.meslek).toLocaleLowerCase('tr') : 'işsiz'; if (alan === 'yer') return kb.yer || kb.sehir; if (alan === 'sehir') return kb.sehir; return ''; });
@@ -1003,7 +1004,9 @@
     sb.turlar.forEach(([r0], i) => { if (ilk[r0] == null) ilk[r0] = i; });
     sb.turlar.forEach(([r0, m], i) => { for (const x of m.matchAll(/\{([ABCD])\}/g)) if (ilk[x[1]] > i) ileri.add(x[1]);
       for (const [re, k] of ROL_CIKARIM) if (re.test(m)) (cik[r0] = cik[r0] || new Set()).add(k); });
-    b = { sicak: SICAK_RE.test(metin), soguk: SOGUK_RE.test(metin), ileri, cik };
+    const VEDA_RE = /(görüşürüz|gorusuruz|iyi geceler|kaçtım|kactim|ben çıkıyorum|ben çıktım|goodnight|good night|\bbye\b|gotta go|me voy|tschüss|tschuss|bis morgen|getdim|gecəniz xeyr|ma3 el salama|تصبحون)/i;
+    const vedaRol = {}; sb.turlar.forEach(([r0, m], i) => { if (VEDA_RE.test(m) && sb.turlar.slice(i + 1).some(x => x[0] === r0)) vedaRol[r0] = vedaRol[r0] == null ? i : vedaRol[r0]; });
+    b = { sicak: SICAK_RE.test(metin), soguk: SOGUK_RE.test(metin), ileri, cik, vedaRol, bayramYazi: /bayram/i.test(metin.replace(/\{bayram[^}]*\}/g, '')), bayramSlot: /\{bayram/.test(metin), imza: (sb.konu || '') + '|' + sb.turlar.map(x => x[0]).join('') };
     sablonBilgi.set(sb, b); return b;
   }
   /** Oyun takvimine göre mevsim (oyun 1 Ocak'ta başlar). */
@@ -1021,7 +1024,12 @@
     const aktif = aktifIdler || new Set();
     const mv = mevsim(world);
     const aktifKonu = new Set(); if (kanal === 'global') for (const ip of ((meta.ipl || {})[kanal] || [])) if (ip.konu) aktifKonu.add(ip.konu);
-    const uygunMevsim = x => { const b = sablonCoz(x); return mv === 'kis' ? !b.sicak : mv === 'yaz' ? !b.soguk : !(b.sicak && b.soguk); };
+    const bugun = ozelGun(world.day), bayramYakin = [0, 1, 2, 3].some(d => (ozelGun(world.day - d) || {}).bayram);
+    let bgun = 1; while (bgun < 60 && !((ozelGun(world.day + bgun) || {}).bayram)) bgun++;
+    meta.iplImza = meta.iplImza || {};
+    const uygunMevsim = x => { const b = sablonCoz(x); if (b.bayramYazi && !bayramYakin && !(b.bayramSlot && bgun <= 20)) return false; if (b.bayramSlot && bgun > 20 && !bayramYakin) return false;
+      if (kanal === 'global' && meta.iplImza[b.imza] && meta.iplImza[b.imza].dil !== dilSec && t - meta.iplImza[b.imza].t < 3600e3) return false;
+      return mv === 'kis' ? !b.sicak : mv === 'yaz' ? !b.soguk : !(b.sicak && b.soguk); };
     let aday = havuz.filter(x => !aktif.has(x.id) && (!x.saat || x.saat === dlm) && uygunMevsim(x) && !(meta.iplSon[x.id] && t - meta.iplSon[x.id] < 8 * 3600e3));
     if (kanal === 'global') { const a2 = aday.filter(x => !x.konu || !aktifKonu.has(x.konu)); if (a2.length) aday = a2; }
     const liste = aday.length ? aday : havuz.filter(x => !aktif.has(x.id) && uygunMevsim(x)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 20);
@@ -1046,11 +1054,11 @@
         });
         if (!sec) { ok = false; break; }
         kul.add(sec); adlar.add(ilkAd(sec)); roller[r0] = sec;
-        if (kanal === 'global') { const y = NPCYZ.figuranBul(meta, sec) || meta.yabanci.find(x => x.id === sec); kisiler[r0] = { ad: (y.gorunen || '').split(/[ _]/)[0], sehir: y.sehir, yer: y.sehir }; }
+        if (kanal === 'global') { const y = NPCYZ.figuranBul(meta, sec) || meta.yabanci.find(x => x.id === sec); kisiler[r0] = { ad: kisaAd(y.gorunen), sehir: y.sehir, yer: y.sehir }; }
         else kisiler[r0] = kisiBak(world, meta, sec);
       }
       if (!ok) continue;
-      meta.iplSon[sb.id] = t;
+      meta.iplSon[sb.id] = t; if (kanal === 'global') meta.iplImza[sablonCoz(sb).imza] = { dil: dilSec, t };
       return { id: sb.id, dil: dilSec, konu: sb.konu, roller, i: 0, t };
     }
     return null;
@@ -1060,12 +1068,15 @@
     const I = IPLIK(); const havuz = kanal === 'global' ? (I.global || {})[ip.dil] || [] : I.tr || [];
     const sb = havuz.find(x => x.id === ip.id); if (!sb || ip.i >= sb.turlar.length) return null;
     const [r0, sab] = sb.turlar[ip.i]; const id = ip.roller[r0];
-    const kisiler = {}; for (const [rr, kid] of Object.entries(ip.roller)) { if (kanal === 'global') { const y = NPCYZ.figuranBul(meta, kid) || meta.yabanci.find(x => x.id === kid); kisiler[rr] = y ? { ad: (y.gorunen || '').split(/[ _]/)[0], sehir: y.sehir, yer: y.sehir } : null; } else kisiler[rr] = kisiBak(world, meta, kid); }
+    { const vr = sablonCoz(sb).vedaRol[r0]; if (vr != null && ip.i > vr) return null; }
+    const kisiler = {}; for (const [rr, kid] of Object.entries(ip.roller)) { if (kanal === 'global') { const y = NPCYZ.figuranBul(meta, kid) || meta.yabanci.find(x => x.id === kid); kisiler[rr] = y ? { ad: kisaAd(y.gorunen), sehir: y.sehir, yer: y.sehir } : null; } else kisiler[rr] = kisiBak(world, meta, kid); }
     const ks = kisiler[r0]; if (!ks) return null;
     let metin = '';
     for (let d = 0; d < 4; d++) { metin = iplikMetni(sab, ip.roller, kisiler, kanal === 'global' ? {} : iplikVeri(world, meta), rng); if (!(meta.kanalSon || []).includes(normSoz(metin))) break; }
     const kim = meta.npc[id] || NPCYZ.figuranBul(meta, id) || meta.yabanci.find(x => x.id === id);
-    if (kanal !== 'global') { try { metin = (dil().stillendir)(metin, stilOf(kim), rng); } catch (e) { } }
+    // Kalabalık kanalda kime cevap verildiği belli olsun: bir önceki konuşana ara sıra adıyla seslen
+    { const onceki = ip.i > 0 ? sb.turlar[ip.i - 1][0] : null; if (onceki && onceki !== r0 && kisiler[onceki] && !/\{[ABCD]\}/.test(sab) && rng.chance(.22)) { const ad0 = kisiler[onceki].ad; if (ad0 && !metin.toLocaleLowerCase('tr').includes(ad0.toLocaleLowerCase('tr'))) metin = (rng.chance(.5) ? '@' + ad0 + ' ' : (kanal === 'global' ? ad0.toLowerCase() : ad0.toLocaleLowerCase('tr')) + ' ') + metin; } }
+    if (kanal !== 'global') { try { metin = (dil().stillendir)(metin, stilOf(kim), rng, { korunan: Object.values(kisiler).filter(Boolean).map(k => k.ad) }); } catch (e) { } }
     else metin = yabanciStil(metin, kim, rng);
     metin = emojisiz(metin);
     if (!metin) return null;
@@ -1559,7 +1570,8 @@
       kim.yazdimSayisi = (kim.yazdimSayisi || 0) + 1;
       const ilkParca = govde.split(/(?<=[.!?])\s+|,\s+/)[0].replace(/[.!]+$/, '');
       const ayniSoru = b.soru && kim.sonSoru && b.soru === kim.sonSoru;
-      govde = ayniSoru || !b.soru ? rng.pick(['Az önce yazmıştım, ', 'Yazdım ya, ', 'Dediğim gibi ']) + ilkParca.charAt(0).toLocaleLowerCase('tr') + ilkParca.slice(1) : rng.pick(['Onu tam bilmiyorum açıkçası', 'Ondan pek anlamam, başkası bilir', 'Bilmiyorum valla, hiç denemedim', 'Emin değilim, bilen biri yazar belki']);
+      const kendisiDedi = (kim.sonSozler || []).some(x => x.slice(0, 22) === normSoz(govde).slice(0, 22));
+      govde = (ayniSoru || !b.soru) && kendisiDedi ? rng.pick(['Az önce yazmıştım, ', 'Yazdım ya, ', 'Dediğim gibi ']) + ilkParca.charAt(0).toLocaleLowerCase('tr') + ilkParca.slice(1) : (ayniSoru || !b.soru) ? rng.pick(['Evet, ', 'Aynen, ', '']) + ilkParca.charAt(0).toLocaleLowerCase('tr') + ilkParca.slice(1) : rng.pick(['Onu tam bilmiyorum açıkçası', 'Ondan pek anlamam, başkası bilir', 'Bilmiyorum valla, hiç denemedim', 'Emin değilim, bilen biri yazar belki']);
     }
     if (giris && (/^(onu|bilmiyor|emin|ke[sş]ke|evet|hay[ıi]r|yok|dedi[gğ]im|az [oö]nce|ben\b|bence|valla|bak\b|[şs]u an bo[sş]ta)/i.test(govde) || govde.split(' ').length < 4 || (/^Bildi|^Benim/.test(giris) && /^\p{Lu}\p{Ll}+(,| )/u.test(govde) && govde.split(' ').length < 6))) giris = '';
     // Giriş kelimesinden sonra cümle küçük harfle devam eder (özel ad değilse)
