@@ -1848,6 +1848,7 @@
   const TEYIT = /\b(hala (gecerli|lazim|duruyor|var mi|ariyor)\w*|gecerli mi\w*|sizden mi|senden mi|sende mi|ciddi misin|gercek mi|emin misin|lazim mi hala|kesin mi)\b/;
   // Aynı konu ailesindeki sorular bağlamı bozmaz (kredi↔faiz, mülk↔fiyat↔teklif, eleman↔maaş, kurs↔meslek)
   const AILE = { kredi_sorusu: ['ekonomi', 'fiyat_sorusu', 'teklif', 'dert', 'yardim'], ekonomi: ['kredi_sorusu', 'fiyat_sorusu'], mulk_ariyorum: ['fiyat_sorusu', 'teklif', 'mulk_satiyorum', 'kredi_sorusu'], mulk_satiyorum: ['fiyat_sorusu', 'teklif', 'mulk_ariyorum'], is_ariyorum: ['maas_sorusu', 'teklif', 'kisisel_yer', 'fiyat_sorusu'], eleman_ariyorum: ['maas_sorusu', 'teklif', 'is_ariyorum', 'kurs_sorusu', 'fiyat_sorusu'], kurs_sorusu: ['meslek_tavsiyesi', 'maas_sorusu', 'fiyat_sorusu', 'yardim'], meslek_tavsiyesi: ['kurs_sorusu', 'maas_sorusu'], dert: ['yardim', 'meslek_tavsiyesi', 'kredi_sorusu', 'is_ariyorum'] };
+  const SOSYAL_KONU = new Set(['selam', 'veda', 'tesekkur', 'iltifat', 'hal_hatir', 'ozur', 'tebrik']);
   const KONU_SURE = 5 * 60e3; // 5 dakika içinde gelen kısa mesaj aynı konuşmanın devamıdır
 
   /** Bağlaç "de/da": son ünlüye göre (kasiyer de, kurye de, garson da). */
@@ -1997,6 +1998,8 @@
     if (st && !takip && AILE[st.konu] && AILE[st.konu].includes(ny.niyet)) takip = ny.niyet === 'teklif' || (ny.varlik && ny.varlik.tutar && ['maas_sorusu', 'fiyat_sorusu'].includes(ny.niyet)) ? 'teklif' : 'detay';
     if (st && ny.niyet === 'teklif' && ny.varlik && ny.varlik.tutar) takip = 'teklif';
     if (st && /^(biraz )?(in|insen|indir|kir|dusur|son fiyat|son rakam|yukari cik|biraz artir|artir)\b/.test(katli)) takip = 'teklif';
+    // Selam, teşekkür gibi sosyal mesajlar sürecek bir konu değildir: ardından gelen içerikli mesaj yeni konu açar
+    if (st && takip && takip !== 'onay' && takip !== 'ret' && SOSYAL_KONU.has(st.konu) && !SOSYAL_KONU.has(ny.niyet) && (ny.niyet !== 'genel' || ny.soru)) takip = null;
     const konu = takip ? st.konu : ny.niyet;
     const temiz = o => Object.fromEntries(Object.entries(o || {}).filter(([, v]) => v != null && v !== ''));
     const varlik = Object.assign({}, takip && st ? st.varlik : {}, temiz(ny.varlik));
