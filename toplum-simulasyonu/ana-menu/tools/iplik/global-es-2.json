@@ -1,0 +1,1920 @@
+[
+ {
+  "id": "es2-dia-pierna-1",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "me salté el día de pierna [otra vez|por tercera semana]"
+   ],
+   [
+    "B",
+    "se nota"
+   ],
+   [
+    "A",
+    "perdón?"
+   ],
+   [
+    "C",
+    "todos lo saltamos, es tradición"
+   ],
+   [
+    "A",
+    "tengo pantorrillas de palillo"
+   ],
+   [
+    "B",
+    "escaleras, gimnasio gratis"
+   ]
+  ]
+ },
+ {
+  "id": "es2-gym-novato-1",
+  "konu": "spor",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "primera vez en el gym y no sé usar ninguna máquina"
+   ],
+   [
+    "B",
+    "mira a otro y copia, así empezamos todos"
+   ],
+   [
+    "C",
+    "y limpia el banco después, que la gente se enoja"
+   ],
+   [
+    "A",
+    "hay que limpiarlo?"
+   ],
+   [
+    "C",
+    "sí {A}. sí."
+   ],
+   [
+    "B",
+    "jajaja"
+   ]
+  ]
+ },
+ {
+  "id": "es2-videojuegos-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "juegan a otros juegos además de este?"
+   ],
+   [
+    "B",
+    "uno de fútbol, siempre pierdo online"
+   ],
+   [
+    "C",
+    "rompecabezas antes de dormir"
+   ],
+   [
+    "D",
+    "yo miro mis alquileres aquí, ese es mi hobby"
+   ],
+   [
+    "A",
+    "{D} qué triste"
+   ],
+   [
+    "D",
+    "es relajante"
+   ]
+  ]
+ },
+ {
+  "id": "es2-dibujo-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "volví a dibujar después de años y mi mano olvidó todo"
+   ],
+   [
+    "B",
+    "qué dibujas"
+   ],
+   [
+    "A",
+    "árboles. parecen brócoli"
+   ],
+   [
+    "C",
+    "el brócoli es un árbol para hormigas"
+   ],
+   [
+    "A",
+    "...eso me consoló"
+   ],
+   [
+    "B",
+    "{C} el filósofo"
+   ]
+  ]
+ },
+ {
+  "id": "es2-guitarra-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "día 10 aprendiendo guitarra, me duelen las yemas"
+   ],
+   [
+    "B",
+    "se pasa en un mes"
+   ],
+   [
+    "C",
+    "qué canciones sabes"
+   ],
+   [
+    "A",
+    "una. mal. los vecinos ya se la saben"
+   ],
+   [
+    "B",
+    "aprenden contigo"
+   ],
+   [
+    "A",
+    "no están contentos"
+   ]
+  ]
+ },
+ {
+  "id": "es2-examen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "examen [mañana|en 8 horas] y yo aquí en el chat"
+   ],
+   [
+    "B",
+    "de qué"
+   ],
+   [
+    "A",
+    "estadística. no entiendo nada"
+   ],
+   [
+    "C",
+    "cierra la app y estudia"
+   ],
+   [
+    "A",
+    "cinco minutos más"
+   ],
+   [
+    "C",
+    "eso dijiste hace cinco minutos"
+   ],
+   [
+    "A",
+    "vale vale, me voy"
+   ]
+  ]
+ },
+ {
+  "id": "es2-aprobe-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "APROBÉ. el examen por el que lloraba la semana pasada"
+   ],
+   [
+    "B",
+    "felicidades!!"
+   ],
+   [
+    "C",
+    "cuál era"
+   ],
+   [
+    "A",
+    "el de conducir, tercer intento"
+   ],
+   [
+    "B",
+    "a la tercera va la vencida"
+   ],
+   [
+    "C",
+    "ahora no choques nada porfa"
+   ],
+   [
+    "A",
+    "no prometo nada"
+   ]
+  ]
+ },
+ {
+  "id": "es2-grupo-estudio-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "estudiamos en grupo y solo comimos snacks y chismeamos"
+   ],
+   [
+    "B",
+    "eso es una fiesta"
+   ],
+   [
+    "C",
+    "reprobar juntos es más bonito"
+   ],
+   [
+    "A",
+    "trabajo en equipo"
+   ],
+   [
+    "B",
+    "exacto"
+   ]
+  ]
+ },
+ {
+  "id": "es2-metro-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "me dormí en el metro y me pasé 4 estaciones"
+   ],
+   [
+    "B",
+    "clásico"
+   ],
+   [
+    "C",
+    "al menos dormiste bien?"
+   ],
+   [
+    "A",
+    "la mejor siesta de la semana"
+   ],
+   [
+    "B",
+    "y llegaste tarde?"
+   ],
+   [
+    "A",
+    "muy tarde. le dije al jefe que el metro era confuso"
+   ]
+  ]
+ },
+ {
+  "id": "es2-bus-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "el chofer del bus me esperó hoy, casi lloro"
+   ],
+   [
+    "B",
+    "un héroe"
+   ],
+   [
+    "C",
+    "el mío arranca cuando me ve correr"
+   ],
+   [
+    "A",
+    "empecé bien el día"
+   ],
+   [
+    "B",
+    "le diste las gracias?"
+   ],
+   [
+    "A",
+    "lo saludé como tonto, sí"
+   ]
+  ]
+ },
+ {
+  "id": "es2-bici-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "ahora voy en bici al trabajo, ahorro y me siento genial"
+   ],
+   [
+    "B",
+    "hasta que llueva"
+   ],
+   [
+    "A",
+    "...está lloviendo ahora mismo"
+   ],
+   [
+    "C",
+    "y cómo te sientes"
+   ],
+   [
+    "A",
+    "mojado. muy mojado"
+   ]
+  ]
+ },
+ {
+  "id": "es2-companero-piso-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "mi compañero de piso dejó los platos 4 días en el fregadero"
+   ],
+   [
+    "B",
+    "háblale"
+   ],
+   [
+    "C",
+    "o ponle los platos en la cama"
+   ],
+   [
+    "B",
+    "{C} no"
+   ],
+   [
+    "C",
+    "{B} sí"
+   ],
+   [
+    "A",
+    "tentador"
+   ]
+  ]
+ },
+ {
+  "id": "es2-yogur-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "alguien se comió mi yogur. vivo con una sola persona"
+   ],
+   [
+    "B",
+    "el detective del yogur"
+   ],
+   [
+    "C",
+    "ponle nombre"
+   ],
+   [
+    "A",
+    "le puse. seguro se comió la etiqueta también"
+   ],
+   [
+    "B",
+    "jaja"
+   ]
+  ]
+ },
+ {
+  "id": "es2-companero-bueno-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "mi compañero me hizo el desayuno hoy, sin razón"
+   ],
+   [
+    "B",
+    "no lo dejes ir nunca"
+   ],
+   [
+    "C",
+    "tiene un hermano buscando habitación?"
+   ],
+   [
+    "A",
+    "jaja"
+   ],
+   [
+    "B",
+    "compañero 10 de 10"
+   ]
+  ]
+ },
+ {
+  "id": "es2-rebajas-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "rebajas este finde, compré 3 cosas que no necesito"
+   ],
+   [
+    "B",
+    "ganaron las rebajas"
+   ],
+   [
+    "A",
+    "estaba al 50%, ahorré no?"
+   ],
+   [
+    "C",
+    "gastaste para ahorrar"
+   ],
+   [
+    "A",
+    "no me lo arruines {C}"
+   ]
+  ]
+ },
+ {
+  "id": "es2-super-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "fui por pan y volví con 12 cosas y sin pan"
+   ],
+   [
+    "B",
+    "siempre pasa"
+   ],
+   [
+    "C",
+    "el súper está hecho para eso"
+   ],
+   [
+    "A",
+    "ahora tengo que volver"
+   ],
+   [
+    "B",
+    "esta vez solo pan"
+   ]
+  ]
+ },
+ {
+  "id": "es2-cocina-experimento-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "hice pasta con salsa de yogur, no se rían"
+   ],
+   [
+    "B",
+    "los turcos lo aprobarían"
+   ],
+   [
+    "C",
+    "suena raro"
+   ],
+   [
+    "A",
+    "estaba buenísimo"
+   ],
+   [
+    "B",
+    "ellos tienen algo parecido con ajo"
+   ],
+   [
+    "A",
+    "ves, talento natural"
+   ]
+  ]
+ },
+ {
+  "id": "es2-picante-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "le eché demasiado chile a la sopa, estoy sudando"
+   ],
+   [
+    "B",
+    "leche, no agua"
+   ],
+   [
+    "A",
+    "por qué leche"
+   ],
+   [
+    "C",
+    "la leche calma el picante, el agua lo esparce"
+   ],
+   [
+    "A",
+    "leche entonces"
+   ]
+  ]
+ },
+ {
+  "id": "es2-pastel-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hice mi primer pastel y quedó plano como una crepa"
+   ],
+   [
+    "B",
+    "olvidaste el polvo de hornear?"
+   ],
+   [
+    "A",
+    "qué es el polvo de hornear"
+   ],
+   [
+    "C",
+    "ahí está el problema"
+   ],
+   [
+    "B",
+    "llámalo pastel crepa y listo"
+   ]
+  ]
+ },
+ {
+  "id": "es2-receta-mama-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "la receta de mi mamá dice \"sal al gusto\""
+   ],
+   [
+    "B",
+    "cuánto es al gusto"
+   ],
+   [
+    "A",
+    "eso, no me dice"
+   ],
+   [
+    "C",
+    "todas las mamás escriben así"
+   ],
+   [
+    "D",
+    "\"cocinar hasta que se vea bien\""
+   ],
+   [
+    "A",
+    "eso está en la siguiente línea"
+   ]
+  ]
+ },
+ {
+  "id": "es2-viaje-plan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "planeo un viaje, playa o montaña"
+   ],
+   [
+    "B",
+    "montaña, menos gente"
+   ],
+   [
+    "C",
+    "playa, obvio"
+   ],
+   [
+    "A",
+    "qué útiles"
+   ],
+   [
+    "D",
+    "las dos, primero playa y luego montaña"
+   ],
+   [
+    "A",
+    "con qué plata {D}"
+   ],
+   [
+    "D",
+    "detalles"
+   ]
+  ]
+ },
+ {
+  "id": "es2-maleta-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "la aerolínea perdió mi maleta en vacaciones"
+   ],
+   [
+    "B",
+    "noo"
+   ],
+   [
+    "A",
+    "día 2 con la misma camiseta"
+   ],
+   [
+    "C",
+    "cómprate una, es un recuerdo"
+   ],
+   [
+    "A",
+    "mejor consejo de la semana"
+   ]
+  ]
+ },
+ {
+  "id": "es2-viaje-turquia-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "algún día quiero ir a turquía, por qué ciudad empiezo"
+   ],
+   [
+    "B",
+    "estambul, todos empiezan ahí"
+   ],
+   [
+    "C",
+    "pregunta a los turcos, te arman todo el plan"
+   ],
+   [
+    "A",
+    "seguro me invitan a té también"
+   ],
+   [
+    "B",
+    "garantizado"
+   ]
+  ]
+ },
+ {
+  "id": "es2-idioma-lio-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "quise decir buenos días en turco y dije buenas noches"
+   ],
+   [
+    "B",
+    "al menos fue amable"
+   ],
+   [
+    "A",
+    "me contestó \"buenas noches también\" a las 10 de la mañana"
+   ],
+   [
+    "C",
+    "los turcos son educados"
+   ],
+   [
+    "A",
+    "muchísimo"
+   ]
+  ]
+ },
+ {
+  "id": "es2-idioma-ingles-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "estoy aprendiendo inglés con este chat"
+   ],
+   [
+    "B",
+    "y qué tal"
+   ],
+   [
+    "A",
+    "ya sé decir \"same\" y \"lol\""
+   ],
+   [
+    "C",
+    "con eso sobrevives aquí"
+   ],
+   [
+    "A",
+    "fluido total"
+   ]
+  ]
+ },
+ {
+  "id": "es2-finde-cama-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "plan del sábado: cama hasta el mediodía"
+   ],
+   [
+    "B",
+    "planazo"
+   ],
+   [
+    "C",
+    "yo trabajo"
+   ],
+   [
+    "A",
+    "de qué trabajas {C}"
+   ],
+   [
+    "C",
+    "{C.meslek}, para mí no existen los findes"
+   ],
+   [
+    "A",
+    "disfruto por ti entonces"
+   ]
+  ]
+ },
+ {
+  "id": "es2-cumple-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hoy es mi cumple"
+   ],
+   [
+    "B",
+    "feliz cumple {A}!"
+   ],
+   [
+    "C",
+    "felicidades! qué planes"
+   ],
+   [
+    "A",
+    "pastel y a dormir temprano, me hago viejo"
+   ],
+   [
+    "D",
+    "en el juego no hay edad por lo menos"
+   ],
+   [
+    "A",
+    "cierto, aquí soy eterno"
+   ]
+  ]
+ },
+ {
+  "id": "es2-cumple-olvido-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "olvidé el cumple de mi mejor amigo, fue ayer"
+   ],
+   [
+    "B",
+    "ay"
+   ],
+   [
+    "C",
+    "llámalo y dile que querías ser el último"
+   ],
+   [
+    "A",
+    "genial"
+   ],
+   [
+    "B",
+    "o el primero del año que viene"
+   ]
+  ]
+ },
+ {
+  "id": "es2-boda-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "voy a una boda el finde y no sé bailar"
+   ],
+   [
+    "B",
+    "nadie sabe, esa es la gracia"
+   ],
+   [
+    "C",
+    "muévete de lado a lado y sonríe"
+   ],
+   [
+    "A",
+    "practico esta noche"
+   ],
+   [
+    "B",
+    "manda video"
+   ],
+   [
+    "A",
+    "jamás"
+   ]
+  ]
+ },
+ {
+  "id": "es2-boda-turca-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "fui a una boda turca una vez, bailaron horas"
+   ],
+   [
+    "B",
+    "en círculo, de la mano?"
+   ],
+   [
+    "A",
+    "sí, me metieron al círculo"
+   ],
+   [
+    "C",
+    "sobreviviste?"
+   ],
+   [
+    "A",
+    "apenas, todos bailaban mejor que yo"
+   ]
+  ]
+ },
+ {
+  "id": "es2-pelea-arreglada-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{B} perdón por lo de ayer, estaba de mal humor"
+   ],
+   [
+    "B",
+    "tranqui, yo también fui duro"
+   ],
+   [
+    "A",
+    "amigos?"
+   ],
+   [
+    "B",
+    "siempre"
+   ],
+   [
+    "C",
+    "qué bonito el chat hoy"
+   ]
+  ]
+ },
+ {
+  "id": "es2-pina-pizza-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{B} sigo diciendo que la piña en la pizza está bien"
+   ],
+   [
+    "B",
+    "ya hablamos de esto"
+   ],
+   [
+    "C",
+    "otra vez no"
+   ],
+   [
+    "A",
+    "vale, vale, me equivoco. igual está bien"
+   ],
+   [
+    "B",
+    "...come lo que quieras"
+   ],
+   [
+    "C",
+    "paz por fin"
+   ]
+  ]
+ },
+ {
+  "id": "es2-ayuda-banco-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "dónde veo el historial de mi dinero, no lo encuentro"
+   ],
+   [
+    "B",
+    "en la pestaña del banco creo"
+   ],
+   [
+    "C",
+    "sí, baja un poco"
+   ],
+   [
+    "A",
+    "lo encontré, gracias"
+   ],
+   [
+    "B",
+    "de nada"
+   ]
+  ]
+ },
+ {
+  "id": "es2-ayuda-trabajo-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "dónde se pide trabajo"
+   ],
+   [
+    "B",
+    "en la pantalla de carrera"
+   ],
+   [
+    "A",
+    "solo veo repartidor y funcionario directo"
+   ],
+   [
+    "C",
+    "esos empiezan al instante, para los otros hay que postular"
+   ],
+   [
+    "A",
+    "vale, primero repartidor"
+   ]
+  ]
+ },
+ {
+  "id": "es2-ayuda-cursos-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "qué diferencia hay entre los cursos"
+   ],
+   [
+    "B",
+    "cada uno abre un trabajo distinto"
+   ],
+   [
+    "C",
+    "contabilidad para contable, el examen para funcionario"
+   ],
+   [
+    "D",
+    "y el certificado para agente inmobiliario"
+   ],
+   [
+    "A",
+    "y maestro de obra?"
+   ],
+   [
+    "C",
+    "certificado de maestría más unos días de obrero"
+   ]
+  ]
+ },
+ {
+  "id": "es2-vuelta-1",
+  "konu": "selam",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "volví! me tomé un mes libre"
+   ],
+   [
+    "B",
+    "{A}! dónde estabas"
+   ],
+   [
+    "A",
+    "la vida real se puso intensa"
+   ],
+   [
+    "C",
+    "el alquiler se pagó solo mientras tanto?"
+   ],
+   [
+    "A",
+    "sí, volví a una sorpresa bonita"
+   ]
+  ]
+ },
+ {
+  "id": "es2-presentacion-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hola, soy {A}, de {A.sehir}, en el juego soy {A.meslek}"
+   ],
+   [
+    "B",
+    "bienvenido {A}"
+   ],
+   [
+    "A",
+    "me gusta cocinar, las pelis malas y soy malísimo ahorrando"
+   ],
+   [
+    "C",
+    "estás en el juego correcto"
+   ],
+   [
+    "A",
+    "eso pensé"
+   ]
+  ]
+ },
+ {
+  "id": "es2-timido-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hola... soy nuevo y un poco tímido"
+   ],
+   [
+    "B",
+    "hola! no hace falta"
+   ],
+   [
+    "C",
+    "pregunta lo que quieras"
+   ],
+   [
+    "A",
+    "gracias. de dónde son?"
+   ],
+   [
+    "B",
+    "{B.sehir}"
+   ],
+   [
+    "C",
+    "{C.sehir}, encantado"
+   ]
+  ]
+ },
+ {
+  "id": "es2-husos-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[me voy a dormir|a la cama], buenas noches chat"
+   ],
+   [
+    "B",
+    "aquí son las 10 de la mañana"
+   ],
+   [
+    "A",
+    "buenas noches igual"
+   ],
+   [
+    "C",
+    "buenas tardes desde {C.sehir}"
+   ],
+   [
+    "B",
+    "estamos en tres horarios a la vez"
+   ],
+   [
+    "A",
+    "el tiempo no existe"
+   ]
+  ]
+ },
+ {
+  "id": "es2-madrugada-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "alguien más con hambre a esta hora"
+   ],
+   [
+    "B",
+    "siempre"
+   ],
+   [
+    "C",
+    "la tostada me llama"
+   ],
+   [
+    "A",
+    "cereal aquí"
+   ],
+   [
+    "B",
+    "club del bocadillo de medianoche"
+   ]
+  ]
+ },
+ {
+  "id": "es2-turno-noche-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "los del turno de noche, cómo aguantan"
+   ],
+   [
+    "B",
+    "café y música"
+   ],
+   [
+    "C",
+    "caminar cada hora"
+   ],
+   [
+    "D",
+    "hablar en este chat"
+   ],
+   [
+    "A",
+    "{D} igual"
+   ],
+   [
+    "B",
+    "grupo de apoyo"
+   ]
+  ]
+ },
+ {
+  "id": "es2-tienda-empleado-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "se me fue un empleado, ahora hay un temporal"
+   ],
+   [
+    "B",
+    "los temporales son caros y lentos"
+   ],
+   [
+    "A",
+    "ya lo noté, bajó la ganancia"
+   ],
+   [
+    "C",
+    "pon un anuncio, la gente postula rápido"
+   ],
+   [
+    "A",
+    "hecho, esperando"
+   ]
+  ]
+ },
+ {
+  "id": "es2-tienda-competencia-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "abrieron otra cafetería al lado de la mía"
+   ],
+   [
+    "B",
+    "se reparten los clientes"
+   ],
+   [
+    "A",
+    "ya bajaron mis ingresos"
+   ],
+   [
+    "C",
+    "mejor personal y mejor calidad"
+   ],
+   [
+    "A",
+    "ojalá funcione"
+   ]
+  ]
+ },
+ {
+  "id": "es2-ahorro-piso-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ahorrando para un piso, va lentísimo"
+   ],
+   [
+    "B",
+    "y cada mes sube el precio"
+   ],
+   [
+    "A",
+    "no me lo recuerdes"
+   ],
+   [
+    "C",
+    "con crédito necesitas como un 20% de entrada"
+   ],
+   [
+    "A",
+    "sí, ya casi"
+   ]
+  ]
+ },
+ {
+  "id": "es2-curso-listo-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "terminé el curso de contabilidad!!"
+   ],
+   [
+    "B",
+    "felicidades!"
+   ],
+   [
+    "A",
+    "ahora faltan 30 días de experiencia"
+   ],
+   [
+    "C",
+    "pasan rápido"
+   ],
+   [
+    "A",
+    "pronto contable de verdad"
+   ]
+  ]
+ },
+ {
+  "id": "es2-funcionario-curso-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "empecé el curso del examen para funcionario, cuántos días"
+   ],
+   [
+    "B",
+    "vale la pena, sueldo fijo"
+   ],
+   [
+    "A",
+    "aunque no entre al juego?"
+   ],
+   [
+    "C",
+    "sí, cobran aunque no se conecten"
+   ],
+   [
+    "A",
+    "eso es el sueño"
+   ]
+  ]
+ },
+ {
+  "id": "es2-sueldo-sube-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "me subió el sueldo este mes"
+   ],
+   [
+    "B",
+    "qué bien, por qué"
+   ],
+   [
+    "A",
+    "el índice, suben los precios y los sueldos también"
+   ],
+   [
+    "C",
+    "los sueldos van un poco detrás"
+   ],
+   [
+    "A",
+    "sí, el alquiler subió primero claro"
+   ]
+  ]
+ },
+ {
+  "id": "es2-precios-paises-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "el alquiler es igual en otros países?"
+   ],
+   [
+    "B",
+    "creo que sí, por ahora todo es igual"
+   ],
+   [
+    "C",
+    "dicen que luego cada país tendrá su economía"
+   ],
+   [
+    "A",
+    "habrá países ricos y pobres?"
+   ],
+   [
+    "B",
+    "a ver qué pasa"
+   ]
+  ]
+ },
+ {
+  "id": "es2-chiste-contable-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "por qué el contable dejó a su calculadora"
+   ],
+   [
+    "B",
+    "por qué"
+   ],
+   [
+    "A",
+    "ya no podía contar con ella"
+   ],
+   [
+    "C",
+    "buuu"
+   ],
+   [
+    "B",
+    "me reí y me da vergüenza"
+   ]
+  ]
+ },
+ {
+  "id": "es2-chiste-casero-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "el casero quiere que pague el alquiler a tiempo"
+   ],
+   [
+    "B",
+    "justo"
+   ],
+   [
+    "A",
+    "le dije: claro, qué hora es?"
+   ],
+   [
+    "C",
+    "{A} por favor"
+   ],
+   [
+    "B",
+    "no se rió verdad"
+   ],
+   [
+    "A",
+    "no"
+   ]
+  ]
+ },
+ {
+  "id": "es2-chiste-cuenta-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mi cuenta del banco es como una cebolla"
+   ],
+   [
+    "B",
+    "tiene capas?"
+   ],
+   [
+    "A",
+    "me hace llorar cuando la abro"
+   ],
+   [
+    "C",
+    "uf"
+   ],
+   [
+    "B",
+    "demasiado real {A}"
+   ]
+  ]
+ },
+ {
+  "id": "es2-turcos-amables-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "los jugadores turcos son súper amables, siempre dicen bienvenido"
+   ],
+   [
+    "B",
+    "verdad, me ayudaron con el crédito"
+   ],
+   [
+    "C",
+    "son como los profes del juego"
+   ],
+   [
+    "A",
+    "y están despiertos a cualquier hora"
+   ],
+   [
+    "B",
+    "poder del té"
+   ]
+  ]
+ },
+ {
+  "id": "es2-turco-roto-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "merhaba arkadaslar, nasilsiniz?"
+   ],
+   [
+    "B",
+    "wow {A} ya hablas turco?"
+   ],
+   [
+    "A",
+    "aprendo del chat turco"
+   ],
+   [
+    "C",
+    "muy bien"
+   ],
+   [
+    "A",
+    "tesekkur ederim, cok guzel"
+   ],
+   [
+    "B",
+    "impresionante"
+   ]
+  ]
+ },
+ {
+  "id": "es2-turco-roto-2",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "iyi aksamlar herkese. lo dije bien?"
+   ],
+   [
+    "B",
+    "sí! buenas tardes"
+   ],
+   [
+    "A",
+    "practico cada día con los turcos"
+   ],
+   [
+    "C",
+    "buenos profes"
+   ],
+   [
+    "A",
+    "se ríen de mí pero con cariño"
+   ]
+  ]
+ },
+ {
+  "id": "es2-una-palabra-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "los lunes deberían estar prohibidos"
+   ],
+   [
+    "B",
+    "cierto"
+   ],
+   [
+    "C",
+    "igual"
+   ],
+   [
+    "D",
+    "total"
+   ],
+   [
+    "A",
+    "wow todos de acuerdo, primera vez"
+   ]
+  ]
+ },
+ {
+  "id": "es2-sabelotodo-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "el terreno no da alquiler, no sirve"
+   ],
+   [
+    "B",
+    "falso, se revaloriza, todo el mundo lo sabe"
+   ],
+   [
+    "A",
+    "vale señor experto"
+   ],
+   [
+    "C",
+    "{B} tiene razón igual"
+   ],
+   [
+    "B",
+    "siempre tengo razón"
+   ],
+   [
+    "C",
+    "siempre no"
+   ],
+   [
+    "B",
+    "casi siempre"
+   ]
+  ]
+ },
+ {
+  "id": "es2-grunon-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "no me hablen antes del café"
+   ],
+   [
+    "B",
+    "buenos días {A}!"
+   ],
+   [
+    "A",
+    "dije que no"
+   ],
+   [
+    "C",
+    "jaja"
+   ],
+   [
+    "B",
+    "vale, disfruta el café"
+   ],
+   [
+    "A",
+    "...gracias"
+   ]
+  ]
+ },
+ {
+  "id": "es2-todos-hablan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "gente tengo noticias"
+   ],
+   [
+    "B",
+    "yo también"
+   ],
+   [
+    "C",
+    "espera yo primero"
+   ],
+   [
+    "A",
+    "trabajo nuevo"
+   ],
+   [
+    "B",
+    "gato nuevo"
+   ],
+   [
+    "C",
+    "me quemé la mano cocinando"
+   ],
+   [
+    "A",
+    "gana {C}, estás bien?"
+   ],
+   [
+    "C",
+    "sí, tranqui"
+   ]
+  ]
+ },
+ {
+  "id": "es2-planta-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mi planta se muere, algún experto"
+   ],
+   [
+    "B",
+    "mucha agua seguro"
+   ],
+   [
+    "A",
+    "la riego todos los días"
+   ],
+   [
+    "C",
+    "ahí está"
+   ],
+   [
+    "A",
+    "la quise hasta la muerte"
+   ]
+  ]
+ },
+ {
+  "id": "es2-repartidor-lluvia-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "todo el día repartiendo bajo la lluvia, empapado"
+   ],
+   [
+    "B",
+    "vida de repartidor"
+   ],
+   [
+    "C",
+    "al menos se gana bien si trabajas mucho"
+   ],
+   [
+    "A",
+    "por eso sigo"
+   ],
+   [
+    "B",
+    "ojalá tengas calcetines secos en casa"
+   ]
+  ]
+ },
+ {
+  "id": "es2-prestamo-pagado-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "terminé de pagar el préstamo, soy libre"
+   ],
+   [
+    "B",
+    "felicidades!"
+   ],
+   [
+    "C",
+    "subió tu nota de crédito?"
+   ],
+   [
+    "A",
+    "sí, poco a poco"
+   ],
+   [
+    "B",
+    "ahora te prestan más"
+   ],
+   [
+    "A",
+    "no gracias, disfruto la libertad"
+   ]
+  ]
+ },
+ {
+  "id": "es2-mudanza-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "me mudo este finde, cajas por todos lados"
+   ],
+   [
+    "B",
+    "el peor trabajo del mundo"
+   ],
+   [
+    "C",
+    "etiqueta las cajas"
+   ],
+   [
+    "A",
+    "tarde, todas dicen \"cosas\""
+   ],
+   [
+    "B",
+    "suerte buscando las cucharas"
+   ]
+  ]
+ },
+ {
+  "id": "es2-me-voy-dormir-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "ahora sí me voy a dormir"
+   ],
+   [
+    "B",
+    "eso dijiste hace una hora"
+   ],
+   [
+    "A",
+    "esta vez es verdad"
+   ],
+   [
+    "C",
+    "claro que sí"
+   ],
+   [
+    "A",
+    "chau chau"
+   ],
+   [
+    "B",
+    "buenas noches {A}"
+   ]
+  ]
+ }
+]

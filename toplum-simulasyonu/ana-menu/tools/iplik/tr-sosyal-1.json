@@ -1,0 +1,4498 @@
+[
+ {
+  "id": "s-alisveris-sepet",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "internetten sepete [on tane|bir sürü] şey attım, şimdi çıkarıyorum tek tek"
+   ],
+   [
+    "B",
+    "en sevdiğim hobi, sepet doldurup kapatmak"
+   ],
+   [
+    "A",
+    "aynen. bakmak bedava"
+   ],
+   [
+    "C",
+    "ben de gece yarısı sepet yapıp sabah pişman oluyorum"
+   ],
+   [
+    "B",
+    "sabah aklı başka, gece aklı başka[ valla|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-indirim-yalan",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "[yüzde elli indirim|yarı fiyatına] yazıyor ama geçen hafta da aynı fiyattı"
+   ],
+   [
+    "B",
+    "önce zam yapıp sonra indirim diyorlar"
+   ],
+   [
+    "A",
+    "tam olarak bu oldu, ekran görüntüsü almıştım"
+   ],
+   [
+    "C",
+    "artık fiyat geçmişine bakmadan bir şey almıyorum"
+   ],
+   [
+    "B",
+    "akıllı insan"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-kargo",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kargom üç gündür aynı şubede bekliyor"
+   ],
+   [
+    "B",
+    "dağıtıma çıktı yazıyor mu"
+   ],
+   [
+    "A",
+    "yok, transfer merkezinde diyor"
+   ],
+   [
+    "C",
+    "bende geçen ay bir hafta orada kaldı, sonra bir sabah kapıda buldum"
+   ],
+   [
+    "A",
+    "umarım öyle olur, hediye alacaktım"
+   ],
+   [
+    "B",
+    "kargo takibi ayrı bir dizi gibi[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-pazarlik",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bugün çarşıda ilk defa pazarlık yaptım"
+   ],
+   [
+    "B",
+    "indirebildin mi bari"
+   ],
+   [
+    "A",
+    "[elli lira|biraz] indirdi, ama ben utançtan kıpkırmızı oldum"
+   ],
+   [
+    "C",
+    "ilk seferde öyle olur, sonra alışırsın"
+   ],
+   [
+    "D",
+    "benim annem pazarlık ustası, satıcı ona kendi malını hediye edecek neredeyse"
+   ],
+   [
+    "A",
+    "annenden ders almam lazım"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-iade",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "aldığım montu iade etmeye gittim, fiş yok dediler"
+   ],
+   [
+    "B",
+    "fişi atmışsın değil mi"
+   ],
+   [
+    "A",
+    "çöpe gitti"
+   ],
+   [
+    "C",
+    "kart ekstresiyle olmuyor mu bazen"
+   ],
+   [
+    "A",
+    "denedim, kabul etmediler. bir mont daha kazandım evime"
+   ],
+   [
+    "B",
+    "giyersin işte, kış uzun"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-market-liste",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "markete liste yapmadan gidiyorum, hep fazla harcıyorum"
+   ],
+   [
+    "B",
+    "listeyle gitsen de olmuyor, kasa önündeki çikolatalar var"
+   ],
+   [
+    "C",
+    "ben aç karnına markete gitmiyorum artık, kural koydum"
+   ],
+   [
+    "A",
+    "mantıklı, aç gidince sepet doluyor"
+   ],
+   [
+    "B",
+    "açken alışveriş yapmak tehlikeli iş"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-kasim-kampanya",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kampanya günleri başlıyor, kim ne alacak"
+   ],
+   [
+    "B",
+    "hiçbir şey, cüzdanı saklayacağım"
+   ],
+   [
+    "C",
+    "ben bir süpürge bakıyorum, eskisi can çekişiyor"
+   ],
+   [
+    "A",
+    "ben de [ayakkabı|kulaklık] alacağım galiba"
+   ],
+   [
+    "D",
+    "geçen sene kampanyada aldığım şeyi hala kutusundan çıkarmadım"
+   ],
+   [
+    "B",
+    "işte o yüzden saklıyorum cüzdanı"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-pazar-taze",
+  "konu": "alisveris",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "semt pazarı mı market mi, hangisi daha ucuz sizce"
+   ],
+   [
+    "B",
+    "akşamüstü pazar. satıcılar toplanırken her şey yarı fiyat"
+   ],
+   [
+    "A",
+    "bunu hiç düşünmemiştim"
+   ],
+   [
+    "C",
+    "ama en iyi domatesler sabah gidiyor, seçmek istiyorsan erken git"
+   ],
+   [
+    "B",
+    "ucuz mu taze mi, karar senin {A}"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-kiyafet-beden",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "internetten aldığım tişört bana elbise oldu"
+   ],
+   [
+    "B",
+    "beden tablosuna bakmadın mı"
+   ],
+   [
+    "A",
+    "baktım, iki tablo başka şey söylüyor"
+   ],
+   [
+    "C",
+    "ben artık bir beden küçük alıyorum, her yerde büyük çıkıyor"
+   ],
+   [
+    "A",
+    "bir de pijama olarak kullanırım artık"
+   ],
+   [
+    "D",
+    "en rahat pijama boy boy tişörttür"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-taksit",
+  "konu": "alisveris",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "taksitle bir şey alsam mı acaba, maaşla zor bitiyor"
+   ],
+   [
+    "B",
+    "ne alacaksın önce onu söyle"
+   ],
+   [
+    "A",
+    "çamaşır makinesi, eskisi su kaçırıyor"
+   ],
+   [
+    "B",
+    "o zaman gerek, lüks değil ihtiyaç"
+   ],
+   [
+    "C",
+    "taksit sayısını uzun tutma ama, sonra unutuyorsun nereye ne gidiyor"
+   ],
+   [
+    "A",
+    "haklısın, kısa tutarım"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-ikinci-el",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ikinci el satış uygulamasından masa aldım, gelen fotoğraftakine hiç benzemiyor"
+   ],
+   [
+    "B",
+    "fotoğraf ışıkla çekilmiştir, efsane gösterir"
+   ],
+   [
+    "A",
+    "bacağı da sallanıyor"
+   ],
+   [
+    "C",
+    "altına katlanmış kağıt koy, eski usul"
+   ],
+   [
+    "A",
+    "[koydum|denedim], şimdi masa da kağıt da sallanıyor"
+   ],
+   [
+    "B",
+    "o zaman masa seni seçmiş, kabul et"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-indirim-kuyruk",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mağazanın önünde indirim kuyruğu var, sabahtan beri bekleyen var dediler"
+   ],
+   [
+    "B",
+    "ne kadar indirim varmış"
+   ],
+   [
+    "A",
+    "hepsi yüzde yetmiş diyorlar"
+   ],
+   [
+    "C",
+    "yüzde yetmiş olsa ben de beklerim"
+   ],
+   [
+    "D",
+    "bekleme, içeride beden kalmaz zaten"
+   ],
+   [
+    "A",
+    "dur ben bir bakayım, haber veririm"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-fis-saklama",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ben bütün fişleri bir kutuda saklıyorum"
+   ],
+   [
+    "B",
+    "neden ya, ne işe yarıyor"
+   ],
+   [
+    "A",
+    "garantiden, iadeden. bir de ay sonunda bakıyorum nereye gitmiş para"
+   ],
+   [
+    "C",
+    "bu çok iyi fikir aslında, ben hiç bilmiyorum param nereye gidiyor"
+   ],
+   [
+    "B",
+    "ben de bilmiyorum ama öğrenmek de istemiyorum[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-guncelleme",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "telefonu güncelledim, her şeyin yeri değişmiş"
+   ],
+   [
+    "B",
+    "klasik. menüler saklambaç oynuyor"
+   ],
+   [
+    "A",
+    "alarmı kurmak için beş dakika uğraştım"
+   ],
+   [
+    "C",
+    "bir haftaya alışırsın, sonra yine güncelleme gelir"
+   ],
+   [
+    "A",
+    "tam alışırken"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-hafiza-dolu",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "telefon hafıza dolu diyor, fotoğraf çekemiyorum"
+   ],
+   [
+    "B",
+    "galeride kaç fotoğraf var"
+   ],
+   [
+    "A",
+    "on iki bin falan"
+   ],
+   [
+    "B",
+    "oha"
+   ],
+   [
+    "C",
+    "yarısı ekran görüntüsüdür, bende öyle"
+   ],
+   [
+    "A",
+    "doğru, neden çektiğimi hatırlamadığım bir sürü şey var"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-annem-mesaj",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "annem büyük harfle yazıyor, sanki bana kızıyor"
+   ],
+   [
+    "B",
+    "benimki her mesajın sonuna üç nokta koyuyor, gerilim filmi gibi"
+   ],
+   [
+    "C",
+    "babam da sesli mesajı başlatıp elli saniye sessiz kalıyor"
+   ],
+   [
+    "A",
+    "bunlar hep aynı okuldan mezun galiba"
+   ],
+   [
+    "D",
+    "bizimkiler de aile grubuna günaydın resmi atıyor her sabah"
+   ],
+   [
+    "B",
+    "o resimler olmadan güne başlamak eksik kalıyor ama"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-sarj-hizli",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yeni telefonum yarım saatte doluyor, hayatım değişti"
+   ],
+   [
+    "B",
+    "benimki bütün gece takılı kalıyor yine de yüzde seksende"
+   ],
+   [
+    "A",
+    "eski telefon mu"
+   ],
+   [
+    "B",
+    "dört yıllık, ihtiyar artık"
+   ],
+   [
+    "C",
+    "ihtiyar ama sadık, atma hemen"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-sifre-unut",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bir uygulamanın şifresini unuttum, sıfırlayınca yeni şifre eskisi olamaz diyor"
+   ],
+   [
+    "B",
+    "yani eskisini hatırlıyor ama sana söylemiyor"
+   ],
+   [
+    "A",
+    "aynen, beni benden iyi tanıyor"
+   ],
+   [
+    "C",
+    "ben bütün şifreleri bir deftere yazıyorum"
+   ],
+   [
+    "B",
+    "o defteri kaybedersen ne olacak"
+   ],
+   [
+    "C",
+    "onu da düşünmek istemiyorum"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-kulaklik-tek",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kablosuz kulaklığın biri kayboldu, tekiyle geziyorum"
+   ],
+   [
+    "B",
+    "koltuğun arasına bak, hepsi oraya gidiyor"
+   ],
+   [
+    "A",
+    "baktım, bozuk para ve bir kalem çıktı"
+   ],
+   [
+    "C",
+    "çamaşır makinesine girmesin de"
+   ],
+   [
+    "A",
+    "[dur|eyvah], dün mont yıkadım"
+   ],
+   [
+    "B",
+    "şimdi gerçek gerilim başladı"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-kamera",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "telefonun kamerası çok iyi diyorlar ama ben yine bulanık çekiyorum"
+   ],
+   [
+    "B",
+    "lensi silmeyi dene"
+   ],
+   [
+    "A",
+    "sildim, düzeldi. utandım şimdi"
+   ],
+   [
+    "C",
+    "herkesin başına geliyor, cebe girince toz oluyor"
+   ],
+   [
+    "B",
+    "tişörtün ucuyla silmek de klasik"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-ekran-suresi",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "telefon bana haftalık ekran süreni söyledi, günde [yedi|sekiz] saatmış"
+   ],
+   [
+    "B",
+    "ben bakmıyorum o rakama, moral bozuyor"
+   ],
+   [
+    "A",
+    "işim telefonda da, ama yine de çok"
+   ],
+   [
+    "C",
+    "ben bir hafta akşamları telefonu başka odaya koydum, kitap okumaya başladım"
+   ],
+   [
+    "A",
+    "bir hafta dayanabildin mi"
+   ],
+   [
+    "C",
+    "dört gün. ama dört gün iyiydi"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-bilgisayar-yavas",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bilgisayar açılırken çay demlenip içiliyor"
+   ],
+   [
+    "B",
+    "eski mi"
+   ],
+   [
+    "A",
+    "sekiz yıllık"
+   ],
+   [
+    "C",
+    "diski değiştirirsen hızlanır diyorlar, bir ustaya sor"
+   ],
+   [
+    "B",
+    "ya da kapatma hiç, uykuya al"
+   ],
+   [
+    "A",
+    "elektrik faturası da gelsin o zaman[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-otomatik-duzeltme",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "otomatik düzeltme \"geliyorum\" yazdım \"gelin oyum\" yaptı"
+   ],
+   [
+    "B",
+    "hahah ne alaka"
+   ],
+   [
+    "A",
+    "patronuma yazmıştım bir de"
+   ],
+   [
+    "C",
+    "ben geçen gün \"kolay gelsin\" yerine \"kalay gelsin\" gönderdim"
+   ],
+   [
+    "D",
+    "bende o özellik kapalı, kendi hatalarımla mutluyum"
+   ],
+   [
+    "A",
+    "ben de kapatıyorum şimdi"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-karanlik-mod",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "karanlık mod mu aydınlık mod mu"
+   ],
+   [
+    "B",
+    "karanlık, gözlerim aydınlıkta yanıyor"
+   ],
+   [
+    "C",
+    "aydınlık, karanlık mod bana bodrum gibi geliyor"
+   ],
+   [
+    "A",
+    "ben gündüz aydınlık gece karanlık yapıyorum"
+   ],
+   [
+    "B",
+    "ortacı oldun yine {A}"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-uygulama-bildirim",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "telefonda kaç tane uygulamanın bildirimi açık bilmiyorum, sürekli titriyor"
+   ],
+   [
+    "B",
+    "hepsini kapat, sadece mesajlar kalsın"
+   ],
+   [
+    "A",
+    "oyunun bildirimini de mi"
+   ],
+   [
+    "B",
+    "yok o kalsın, kira gününü kaçırma"
+   ],
+   [
+    "C",
+    "ben bildirimleri kapattım, hayatım sessizleşti. biraz da sıkıcılaştı"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-telefon-dusurdu",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "telefonu yüzüstü düşürdüm, çevirmeye korkuyorum"
+   ],
+   [
+    "B",
+    "çevir bakalım"
+   ],
+   [
+    "A",
+    "çevirdim. sağlam"
+   ],
+   [
+    "C",
+    "kılıfa dua et"
+   ],
+   [
+    "A",
+    "kılıf bin parça ama ekran yerinde"
+   ],
+   [
+    "B",
+    "kahraman kılıf"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-yeni-telefon-kararsiz",
+  "konu": "teknoloji",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yeni telefon almak istiyorum ama fiyatlar korkunç"
+   ],
+   [
+    "B",
+    "senin telefon bozuk mu ki"
+   ],
+   [
+    "A",
+    "yok, çalışıyor. sadece canım istiyor"
+   ],
+   [
+    "C",
+    "çalışıyorsa bir yıl daha kullan, o para cebinde kalsın"
+   ],
+   [
+    "A",
+    "mantıklı ama kalbim kabul etmiyor"
+   ],
+   [
+    "B",
+    "kalp her zaman pahalı şeyler ister"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-ne-dinliyorsunuz",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "şu an ne dinliyorsunuz"
+   ],
+   [
+    "B",
+    "arabesk, sabah sabah gönlüm ağır"
+   ],
+   [
+    "C",
+    "ben yağmur sesi açtım, odaklanmak için"
+   ],
+   [
+    "A",
+    "yağmur sesi müzik mi sayılıyor"
+   ],
+   [
+    "C",
+    "bana göre sayılıyor"
+   ],
+   [
+    "D",
+    "ben çocukluğumun şarkılarını dinliyorum, nostalji modundayım"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-kafa-takildi",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bir şarkı sabahtan beri kafamda dönüyor, adını bilmiyorum"
+   ],
+   [
+    "B",
+    "mırıldan bakalım[ haha|]"
+   ],
+   [
+    "A",
+    "burada mırıldanamam ki"
+   ],
+   [
+    "C",
+    "şarkı bulan uygulamalar var, mırıldanınca buluyor"
+   ],
+   [
+    "A",
+    "deneyeceğim, gerçekten çıldıracağım yoksa"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-saz",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bağlama çalmayı öğreniyorum, parmaklarım acıyor"
+   ],
+   [
+    "B",
+    "ilk ay herkesin acıyor, sonra nasır oluyor"
+   ],
+   [
+    "A",
+    "sen de çalıyor musun"
+   ],
+   [
+    "B",
+    "gençken çalardım, şimdi duvarda asılı"
+   ],
+   [
+    "C",
+    "bir akşam canlı yayın açın, dinleriz"
+   ],
+   [
+    "A",
+    "[önce öğreneyim|biraz bekleyin], şimdi kimse dayanamaz"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-kulaklik-yuksek",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "otobüste yanımdaki çocuk kulaklıkla dinliyor ama ben de duyuyorum"
+   ],
+   [
+    "B",
+    "kulaklık değil hoparlör o zaman"
+   ],
+   [
+    "A",
+    "şarkı da güzel aslında, sormak istiyorum ne bu diye"
+   ],
+   [
+    "C",
+    "sor bence, iyi bir muhabbet çıkar"
+   ],
+   [
+    "A",
+    "sordum. utanarak söyledi, eski bir türküymüş"
+   ],
+   [
+    "D",
+    "gençler de türkü dinliyor demek, güzel haber"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-dugun-sarkisi",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "en sevdiğiniz oyun havası ne"
+   ],
+   [
+    "B",
+    "halay olsun da hangisi olursa"
+   ],
+   [
+    "C",
+    "ben halaya kalkınca durmuyorum, mendil bende"
+   ],
+   [
+    "A",
+    "ben kenarda alkış tutanlardanım"
+   ],
+   [
+    "B",
+    "kenarda durmak yasak bizim düğünlerde, seni de çekerler"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-calisirken",
+  "konu": "muzik",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{A.meslek} olarak çalışırken müzik dinleyebiliyor musunuz"
+   ],
+   [
+    "B",
+    "ben bir kulağıma takıyorum, öbürü işte"
+   ],
+   [
+    "C",
+    "bizde patron radyo açıyor, aynı istasyon her gün"
+   ],
+   [
+    "A",
+    "aynı şarkılar mı geliyor"
+   ],
+   [
+    "C",
+    "her gün aynı saatte aynı şarkı. artık saati şarkılardan anlıyorum"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-sarki-sozu",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yıllardır yanlış söylediğim bir şarkı sözü varmış, bugün öğrendim"
+   ],
+   [
+    "B",
+    "hangisi, söyle de gülelim"
+   ],
+   [
+    "A",
+    "söyleyemem, çok utanç verici"
+   ],
+   [
+    "C",
+    "bende de var, çocukken anlamını bambaşka sanıyordum"
+   ],
+   [
+    "A",
+    "herkes böyle mi"
+   ],
+   [
+    "B",
+    "herkes böyle, rahat ol"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-konser",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hiç konsere gittiniz mi"
+   ],
+   [
+    "B",
+    "bir kere, açık havada. yağmur yağdı ama kimse kıpırdamadı"
+   ],
+   [
+    "A",
+    "çok güzelmiş"
+   ],
+   [
+    "C",
+    "ben gitmedim ama mahalle düğünlerinde orkestra dinledim, sayılır mı"
+   ],
+   [
+    "B",
+    "sayılır sayılır, hatta daha eğlenceli"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-gece-sakin",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "gece sessiz bir şeyler dinlemek gibisi yok"
+   ],
+   [
+    "B",
+    "piyano açıyorum ben, uykum geliyor"
+   ],
+   [
+    "A",
+    "bana gelmiyor, düşünmeye başlıyorum"
+   ],
+   [
+    "C",
+    "o zaman neşeli bir şey aç"
+   ],
+   [
+    "A",
+    "gecenin üçünde neşeli şarkı mı"
+   ],
+   [
+    "C",
+    "kim dedi olmaz diye"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-mutfakta",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "yemek yaparken müzik açmazsam yemek tatsız oluyor"
+   ],
+   [
+    "B",
+    "bence de, soğan doğrarken hareketli şarkı lazım"
+   ],
+   [
+    "C",
+    "ben bulaşık yıkarken şarkı söylüyorum, komşu artık şikayet etmiyor"
+   ],
+   [
+    "A",
+    "alıştılar demek"
+   ],
+   [
+    "C",
+    "ya da pes ettiler"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-enstruman-hayal",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "keşke bir enstrüman çalabilseydim"
+   ],
+   [
+    "B",
+    "hiçbir zaman geç değil, yan sokakta kurs var"
+   ],
+   [
+    "A",
+    "zamanım olmuyor"
+   ],
+   [
+    "C",
+    "günde on beş dakika, telefona bakar gibi"
+   ],
+   [
+    "A",
+    "bu cümle canımı acıttı ama haklısın"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-radyo",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "sabahları hala radyo dinleyen var mı"
+   ],
+   [
+    "B",
+    "babam dinliyor, kahvaltıda radyo şart"
+   ],
+   [
+    "C",
+    "ben arabada dinliyorum, sunucuların sohbeti hoşuma gidiyor"
+   ],
+   [
+    "A",
+    "ben de seviyorum, sanki biri yanında konuşuyor"
+   ],
+   [
+    "B",
+    "aynı bu kanal gibi[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-ne-okuyorsun",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "şu an ne okuyorsunuz, yeni bir kitaba başlayacağım"
+   ],
+   [
+    "B",
+    "polisiye okuyorum, katili bulmak üzereyim"
+   ],
+   [
+    "C",
+    "ben tarihi roman, çok kalın ama akıyor"
+   ],
+   [
+    "A",
+    "polisiyeyi seviyorum, sonunu söylemeden öner"
+   ],
+   [
+    "B",
+    "söylemem merak etme, ama ilk elli sayfa yavaş"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-yarim-birakma",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kitabı yarım bırakmak suç mu"
+   ],
+   [
+    "B",
+    "değil, hayat kısa kitap çok"
+   ],
+   [
+    "C",
+    "ben bırakamıyorum, sıkılsam da bitiriyorum"
+   ],
+   [
+    "A",
+    "ben de öyleydim, son kitapta pes ettim"
+   ],
+   [
+    "C",
+    "nasıl hissettin"
+   ],
+   [
+    "A",
+    "özgür ama biraz suçlu"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-yatakta",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "yatakta kitap okurken yüzüme düştü yine"
+   ],
+   [
+    "B",
+    "klasik, kalın kitaplar tehlikeli"
+   ],
+   [
+    "A",
+    "bu sefer kalın da değildi"
+   ],
+   [
+    "C",
+    "uyku geliyordu demek, kitap haber veriyor"
+   ],
+   [
+    "A",
+    "haklısın, iyi geceler o zaman"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-otobus",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yolda kitap okuyan kaldı mı"
+   ],
+   [
+    "B",
+    "ben okuyorum, metroda en verimli zamanım"
+   ],
+   [
+    "C",
+    "bende mide bulandırıyor otobüste okumak"
+   ],
+   [
+    "B",
+    "sesli kitap dene o zaman"
+   ],
+   [
+    "C",
+    "bir dinledim, sesi o kadar güzeldi ki uyudum"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-kutuphane",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "semtteki kütüphaneye üye oldum, hepsi ücretsiz"
+   ],
+   [
+    "B",
+    "hala kütüphane mi var diyecektim, varmış demek"
+   ],
+   [
+    "A",
+    "var, hem de sıcacık. sessiz ve güzel"
+   ],
+   [
+    "C",
+    "ben ders çalışmaya giderdim, yer bulmak zordu"
+   ],
+   [
+    "A",
+    "şimdi de öyle, sabah erken gitmek lazım"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-sayfa-kivirma",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kitabın sayfasını kıvıranlar ve ayraç kullananlar diye ikiye ayrılır insanlar"
+   ],
+   [
+    "B",
+    "ben kıvırıyorum, kızmayın"
+   ],
+   [
+    "C",
+    "bu nasıl bir vahşet"
+   ],
+   [
+    "B",
+    "ayraç hep kayboluyor ama"
+   ],
+   [
+    "D",
+    "ben bulduğum her şeyi ayraç yapıyorum, fiş, bilet, kağıt peçete"
+   ],
+   [
+    "A",
+    "fiş saklamanın bir işe yaradığı nokta"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-film-mi",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kitabı mı okumak güzel filmi mi izlemek"
+   ],
+   [
+    "B",
+    "kitap, her zaman"
+   ],
+   [
+    "C",
+    "film, iki saatte bitiyor"
+   ],
+   [
+    "B",
+    "ama kafandaki film daha güzel"
+   ],
+   [
+    "A",
+    "bunu çok güzel söyledin {B}"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-okuma-hedef",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bu yıl yirmi kitap okuyacağım dedim, şu an üçteyim"
+   ],
+   [
+    "B",
+    "yıl bitmeden on yedi daha var"
+   ],
+   [
+    "A",
+    "matematik beni korkutuyor"
+   ],
+   [
+    "C",
+    "ince kitaplara geç, sayı tamamlanır"
+   ],
+   [
+    "A",
+    "hile gibi ama mantıklı"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-eski-baski",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sahafta eski bir kitap buldum, içinde birinin notları var"
+   ],
+   [
+    "B",
+    "ne yazmış"
+   ],
+   [
+    "A",
+    "kenarlara kendi düşüncelerini. bir yerde de \"bugün yağmur yağdı\" yazmış"
+   ],
+   [
+    "C",
+    "çok tatlı, birinin hayatından bir parça"
+   ],
+   [
+    "A",
+    "yarısını kitap için yarısını notlar için okuyorum"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-cocuk-kitap",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "çocukken okuduğunuz ilk kitabı hatırlıyor musunuz"
+   ],
+   [
+    "B",
+    "resimli masal kitabı, sayfaları yırtılmıştı"
+   ],
+   [
+    "C",
+    "ben ilkokulda okul kütüphanesinden aldığımı hatırlıyorum, geri vermedim"
+   ],
+   [
+    "A",
+    "hala sende mi"
+   ],
+   [
+    "C",
+    "hala bende. vicdan azabı da bende"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-oneri-ince",
+  "konu": "kitap",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "tembel okuyucular için ince bir kitap önerin"
+   ],
+   [
+    "B",
+    "kısa öykü kitabı al, her akşam bir tane"
+   ],
+   [
+    "A",
+    "bu iyi, bitirince başarmış gibi hissederim"
+   ],
+   [
+    "C",
+    "bir de mektup kitapları var, bölüm bölüm"
+   ],
+   [
+    "A",
+    "not aldım, sağ olun"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-ilk-gun",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "spor salonunun ilk gününden döndüm, merdiven çıkamıyorum"
+   ],
+   [
+    "B",
+    "ikinci gün daha kötü olacak, uyarayım"
+   ],
+   [
+    "A",
+    "neden ya"
+   ],
+   [
+    "C",
+    "kas ağrısı ikinci gün gelir, ama üçüncü gün gidersen geçer"
+   ],
+   [
+    "A",
+    "üçüncü güne gidebilirsem"
+   ],
+   [
+    "B",
+    "hepimiz o cümleyi kurduk {A}[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-aidat",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "spor salonuna aidat ödüyorum ama gitmiyorum"
+   ],
+   [
+    "B",
+    "bağış gibi düşün"
+   ],
+   [
+    "A",
+    "pahalı bir bağış"
+   ],
+   [
+    "C",
+    "ben de bir yıllık ödemiştim, üç kere gittim"
+   ],
+   [
+    "D",
+    "ben evde çalışıyorum artık, kanepeden halı kadar uzağa"
+   ],
+   [
+    "A",
+    "halıya kadar gitmek de bir başarı"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-yuruyus-adim",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bugün on bin adım attım"
+   ],
+   [
+    "B",
+    "tebrikler, nereye yürüdün"
+   ],
+   [
+    "A",
+    "[işe|çarşıya] gittim geldim, otobüs kaçınca"
+   ],
+   [
+    "C",
+    "kaçan otobüs en iyi antrenör"
+   ],
+   [
+    "A",
+    "haklısın, yarın da kaçırsam mı"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-sahil-yuruyus",
+  "konu": "spor",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "akşam sahilde yürüyüş yaptım, kafam boşaldı"
+   ],
+   [
+    "B",
+    "o saatte sahil kalabalık değil mi"
+   ],
+   [
+    "A",
+    "kalabalık ama herkes kendi halinde"
+   ],
+   [
+    "C",
+    "ben de geçen hafta başladım, tek başıma sıkılıyorum"
+   ],
+   [
+    "A",
+    "beraber yürüyelim o zaman bir gün"
+   ],
+   [
+    "C",
+    "olur, ama hızlı yürüme"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-kosu",
+  "konu": "spor",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "sabah koşusuna çıktım, iki sokak koşup yürüdüm"
+   ],
+   [
+    "B",
+    "iki sokak da bir başlangıç"
+   ],
+   [
+    "A",
+    "köpek kovaladı, son sokağı hızlı koştum"
+   ],
+   [
+    "C",
+    "köpek en iyi motivasyon"
+   ],
+   [
+    "D",
+    "köpeğe teşekkür et, rekor kırdırmış"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-esneme",
+  "konu": "spor",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{A.meslek} olarak çalışıyorum, akşam boynum tutuluyor"
+   ],
+   [
+    "B",
+    "esneme hareketleri yapıyor musun"
+   ],
+   [
+    "A",
+    "yok, ne yapacağımı bilmiyorum"
+   ],
+   [
+    "C",
+    "başını yavaşça sağa sola eğ, omuzları çevir, beş dakika yeter"
+   ],
+   [
+    "A",
+    "deneyeceğim, sağ ol {C}"
+   ],
+   [
+    "B",
+    "bir de telefona aşağı bakmak boynu bitiriyor, onu da azalt"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-bisiklet-ders",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "otuzumdan sonra bisiklete binmeyi öğreniyorum"
+   ],
+   [
+    "B",
+    "harika, korkma"
+   ],
+   [
+    "A",
+    "çocuklar beni geçiyor, çok utanıyorum"
+   ],
+   [
+    "C",
+    "onlar da bir gün öğrendi, sen de öğreniyorsun"
+   ],
+   [
+    "A",
+    "dün ilk defa düşmeden bir tur attım"
+   ],
+   [
+    "B",
+    "oha, tebrikler"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-merdiven",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "asansör bozuk, altıncı kata çıktım"
+   ],
+   [
+    "B",
+    "kardiyo yaptın sayılır"
+   ],
+   [
+    "A",
+    "nefesim hala yerine gelmedi"
+   ],
+   [
+    "C",
+    "ben hep merdiven çıkıyorum, alıştım"
+   ],
+   [
+    "A",
+    "sen kahramansın {C}"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-yuzme",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yüzmeyi bilmeyen var mı benim gibi"
+   ],
+   [
+    "B",
+    "ben de bilmiyorum, denize hep kenardan giriyorum"
+   ],
+   [
+    "C",
+    "bu yaz öğrenin, belediyenin havuzunda kurs var"
+   ],
+   [
+    "A",
+    "suya girince panik oluyorum ama"
+   ],
+   [
+    "C",
+    "ilk derste sadece suda durmayı öğretiyorlar, korkma"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-motivasyon",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "spora başlamak için motivasyon lazım, kim veriyor"
+   ],
+   [
+    "B",
+    "ben veririm. kalk!"
+   ],
+   [
+    "A",
+    "kalktım. şimdi ne"
+   ],
+   [
+    "B",
+    "bir tur odanın içinde yürü"
+   ],
+   [
+    "A",
+    "yürüdüm, tekrar oturdum"
+   ],
+   [
+    "C",
+    "sayılır, yarın iki tur"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-halter-saka",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bugün salonda yanımdaki adam benden iki kat ağır kaldırıyordu"
+   ],
+   [
+    "B",
+    "kıyaslama, herkes kendi yolunda"
+   ],
+   [
+    "A",
+    "ben de kendi yolumda boş bara bakıyordum"
+   ],
+   [
+    "C",
+    "boş bar da ağırdır, bilen bilir"
+   ],
+   [
+    "D",
+    "ilk hafta herkes boş barla başlar zaten"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-aksam-yogasi",
+  "konu": "spor",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "akşam esneme videosu açtım, kedi üstüme çıktı"
+   ],
+   [
+    "B",
+    "kedi de spor yapmak istedi"
+   ],
+   [
+    "A",
+    "ağırlık oldu bana"
+   ],
+   [
+    "C",
+    "ağırlıklı yoga, yeni akım"
+   ],
+   [
+    "A",
+    "ilk tanıtan ben olayım bari"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-pazartesi",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "diyete pazartesi başlayacağım"
+   ],
+   [
+    "B",
+    "hangi pazartesi"
+   ],
+   [
+    "A",
+    "bilmiyorum, uygun bir pazartesi"
+   ],
+   [
+    "C",
+    "o pazartesi hiç gelmiyor bende"
+   ],
+   [
+    "D",
+    "ben salı başladım, kimse beklemiyordu, işe yaradı"
+   ],
+   [
+    "A",
+    "salı stratejisi, not ettim"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-tatli-kriz",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "akşam tatlı krizi geldi, mutfakta dolaşıyorum"
+   ],
+   [
+    "B",
+    "meyve ye"
+   ],
+   [
+    "A",
+    "meyve tatlı değil ki"
+   ],
+   [
+    "C",
+    "bir kare bitter çikolata, sonra çık mutfaktan"
+   ],
+   [
+    "A",
+    "kare kare bitti"
+   ],
+   [
+    "B",
+    "kanal olarak seni durdurmak istiyoruz {A}"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-su",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "günde iki litre su içmeye çalışıyorum, sürekli tuvaletteyim"
+   ],
+   [
+    "B",
+    "ilk haftası öyle, vücut alışıyor"
+   ],
+   [
+    "A",
+    "işyerinde dalga geçiyorlar"
+   ],
+   [
+    "C",
+    "bir şişe al, üstüne saat çiz. öyle içiyorum ben"
+   ],
+   [
+    "A",
+    "çok iyi fikir"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-ekmek",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ekmeği bıraktım, üç gündür"
+   ],
+   [
+    "B",
+    "nasıl gidiyor"
+   ],
+   [
+    "A",
+    "rüyamda simit gördüm"
+   ],
+   [
+    "C",
+    "ekmeği bırakmak zor bu memlekette"
+   ],
+   [
+    "D",
+    "tam bırakma, azalt. sonra yine başlıyorsun yoksa"
+   ],
+   [
+    "A",
+    "sanırım haklısın, yarım dilim serbest"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-diyetisyen",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "diyetisyen bana listede haşlanmış yumurta yazmış, ben yumurta sevmem"
+   ],
+   [
+    "B",
+    "söylemedin mi"
+   ],
+   [
+    "A",
+    "utandım söylemeye"
+   ],
+   [
+    "C",
+    "söyle, değiştirir. sevmediğin şeyle diyet yapılmaz"
+   ],
+   [
+    "A",
+    "haklısın, randevuda söylerim"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-kilo-verdim",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bir ayda dört kilo verdim"
+   ],
+   [
+    "B",
+    "helal olsun, ne yaptın"
+   ],
+   [
+    "A",
+    "akşam yedi'den sonra yemiyorum, bir de yürüyorum"
+   ],
+   [
+    "C",
+    "ben akşam yedide yeni acıkıyorum ama"
+   ],
+   [
+    "A",
+    "ilk hafta zordu, sonra alıştım"
+   ],
+   [
+    "B",
+    "tebrikler {A}, devam"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-davet",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "diyetteyim ama akşam teyzemin yemeğine gidiyorum"
+   ],
+   [
+    "B",
+    "teyze dediğin yedirir, kaçış yok"
+   ],
+   [
+    "A",
+    "biliyorum, yemezsem küser"
+   ],
+   [
+    "C",
+    "az al, tabakta bir şey bırakma ki tekrar koymasın"
+   ],
+   [
+    "D",
+    "bu taktik işe yaramaz, boş tabak görünce ikinci tur gelir"
+   ],
+   [
+    "A",
+    "demek ki bu akşam diyet yok"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-salata",
+  "konu": "diyet",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "öğle yemeğinde salata yiyorum, yanımdakiler döner yiyor"
+   ],
+   [
+    "B",
+    "işkence bu"
+   ],
+   [
+    "A",
+    "koku geliyor, gözlerim doldu"
+   ],
+   [
+    "C",
+    "sen de bir gün döner gününü kendine hediye et"
+   ],
+   [
+    "A",
+    "cuma döner günü olsun o zaman"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-tarti",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "tartı bozuk sanırım, dün başka bugün başka gösteriyor"
+   ],
+   [
+    "B",
+    "sabah aç karnına tartıl, hep aynı saatte"
+   ],
+   [
+    "A",
+    "akşam tartılıyordum"
+   ],
+   [
+    "C",
+    "akşam tartılan kendine kötülük yapıyor"
+   ],
+   [
+    "A",
+    "sabaha kadar beklerim o zaman"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-cay-sekersiz",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "diyet için çaya şeker atmayı bıraktım, ilk gün korkunçtu"
+   ],
+   [
+    "B",
+    "şimdi nasıl"
+   ],
+   [
+    "A",
+    "şimdi şekerli çay içeni anlamıyorum"
+   ],
+   [
+    "C",
+    "dönüştün sen"
+   ],
+   [
+    "B",
+    "bir yere kadar haklı ama ben bırakmam"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-bas-agrisi",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sabahtan beri başım ağrıyor"
+   ],
+   [
+    "B",
+    "su içtin mi"
+   ],
+   [
+    "A",
+    "çay içtim"
+   ],
+   [
+    "C",
+    "çay su sayılmaz bu konuda {A}"
+   ],
+   [
+    "A",
+    "tamam bir bardak su içiyorum"
+   ],
+   [
+    "B",
+    "bir de ekrandan uzak dur biraz"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-grip",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "gribe yakalandım, burnum akıyor"
+   ],
+   [
+    "B",
+    "geçmiş olsun"
+   ],
+   [
+    "C",
+    "geçmiş olsun, ıhlamur iç"
+   ],
+   [
+    "A",
+    "ıhlamur, limon, bal, hepsi masada"
+   ],
+   [
+    "D",
+    "bir de dinlen, iş bekler"
+   ],
+   [
+    "A",
+    "{A.meslek} olarak beklemiyor ama, ne yapalım"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-gecmis-olsun",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{B} dün hastaydın, nasılsın şimdi"
+   ],
+   [
+    "B",
+    "daha iyiyim, ateş düştü"
+   ],
+   [
+    "C",
+    "geçmiş olsun {B}, sesin de gelmiyordu"
+   ],
+   [
+    "B",
+    "evet, yattım bütün gün"
+   ],
+   [
+    "A",
+    "çorba içtin mi"
+   ],
+   [
+    "B",
+    "annem üç tencere yaptı, mahalleye yeter"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-dis",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "diş ağrısı bütün ağrıların şahı"
+   ],
+   [
+    "B",
+    "dişçiye git hemen, bekleme"
+   ],
+   [
+    "A",
+    "korkuyorum"
+   ],
+   [
+    "C",
+    "ben de korkuyordum, gittim, beş dakikada bitti. ağrıdan daha kolay"
+   ],
+   [
+    "A",
+    "peki, yarın randevu alacağım"
+   ],
+   [
+    "B",
+    "söz mü"
+   ],
+   [
+    "A",
+    "söz"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-uykusuzluk",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "son günlerde başım dönüyor, uykusuzluktandır diyorum"
+   ],
+   [
+    "B",
+    "doktora görün yine de"
+   ],
+   [
+    "A",
+    "hep ihmal ediyorum"
+   ],
+   [
+    "C",
+    "ihmal etme, bir kontrol kimseye zarar vermez"
+   ],
+   [
+    "A",
+    "tamam, hafta içi giderim"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-sirt",
+  "konu": "saglik",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "belim tuttu, eğilemiyorum"
+   ],
+   [
+    "B",
+    "ağır bir şey mi kaldırdın"
+   ],
+   [
+    "A",
+    "{A.meslek} olarak her gün bir şey kaldırıyorum zaten"
+   ],
+   [
+    "C",
+    "dizlerini kırarak kaldır, belden eğilme"
+   ],
+   [
+    "A",
+    "biliyorum ama aklıma hep sonradan geliyor"
+   ],
+   [
+    "B",
+    "sıcak havlu koy, geçmiş olsun"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-alerji",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bahar geldi, alerji geldi, hapşırık geldi"
+   ],
+   [
+    "B",
+    "bende de, gözlerim kaşınıyor"
+   ],
+   [
+    "A",
+    "dışarı çıkınca hemen başlıyor"
+   ],
+   [
+    "C",
+    "bir de çiçek açan ağacın altından geçme"
+   ],
+   [
+    "A",
+    "bizim sokak tamamen o ağaçtan"
+   ],
+   [
+    "B",
+    "yeni sokak bulma vakti"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-nane-limon",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "boğazım yanıyor, ne yapsam"
+   ],
+   [
+    "B",
+    "nane limon, kesin çözüm"
+   ],
+   [
+    "C",
+    "tuzlu suyla gargara da iyi gelir"
+   ],
+   [
+    "D",
+    "bal, sıcak süt, yatmadan önce"
+   ],
+   [
+    "A",
+    "hepsini mi yapayım"
+   ],
+   [
+    "B",
+    "hepsini yap, sabaha yeni gibi olursun"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-gecmis-olsun-anne",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "annem hastanede, küçük bir ameliyat oldu"
+   ],
+   [
+    "B",
+    "geçmiş olsun, nasıl şimdi"
+   ],
+   [
+    "A",
+    "iyi, uyanmış, çorba istiyormuş"
+   ],
+   [
+    "C",
+    "geçmiş olsun {A}, acil şifalar"
+   ],
+   [
+    "D",
+    "çorba istiyorsa iyidir, sağlığına kavuşsun"
+   ],
+   [
+    "A",
+    "sağ olun hepiniz, iyi geldi yazdıklarınız"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-hapsirik",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ofiste biri durmadan hapşırıyor, ben de hasta olacağım"
+   ],
+   [
+    "B",
+    "maske takmasını söyle"
+   ],
+   [
+    "A",
+    "nasıl söylenir ki"
+   ],
+   [
+    "C",
+    "kibarca, bir paket mendil uzat, anlar"
+   ],
+   [
+    "A",
+    "anlamazsa"
+   ],
+   [
+    "C",
+    "ikinci paketi uzat"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-goz",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "gözlüğe ihtiyacım var galiba, tabelaları okuyamıyorum"
+   ],
+   [
+    "B",
+    "göz doktoruna git"
+   ],
+   [
+    "A",
+    "gözlükle nasıl görünürüm diye düşünüyorum"
+   ],
+   [
+    "C",
+    "çok yakışır, hem her şeyi net görürsün"
+   ],
+   [
+    "A",
+    "doğru, şu an kanalı da kısarak okuyorum"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-arkadasi-bulasik",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev arkadaşım yine bulaşıkları bıraktı"
+   ],
+   [
+    "B",
+    "kaç gündür"
+   ],
+   [
+    "A",
+    "üç gün. tencerede bir şey büyüyor"
+   ],
+   [
+    "C",
+    "konuşmanız lazım, nöbet çizelgesi yapın"
+   ],
+   [
+    "A",
+    "yaptık, buzdolabına astık. çizelgenin üstüne bulaşık bezi asmış"
+   ],
+   [
+    "B",
+    "mesajı aldın yani"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-zam",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev sahibi bu sene yine kira artışı istiyor"
+   ],
+   [
+    "B",
+    "ne kadar"
+   ],
+   [
+    "A",
+    "bayağı, şu an {evkira} veriyorum"
+   ],
+   [
+    "C",
+    "ev sahibiyle iyi iletişim önemli, belki biraz pazarlık olur"
+   ],
+   [
+    "A",
+    "konuşacağım, ama sesim titriyor"
+   ],
+   [
+    "D",
+    "nazikçe söyle, uzun süredir oturuyorsun de"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-arama",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev arıyorum, fotoğraflarda saray, gidince zindan"
+   ],
+   [
+    "B",
+    "geniş açı lens, bilinen numara"
+   ],
+   [
+    "A",
+    "mutfak dediği yer bir dolaptı"
+   ],
+   [
+    "C",
+    "ben gezdiğim bir evde banyo mutfağın içindeydi"
+   ],
+   [
+    "A",
+    "pratik ama hayır[ haha|]"
+   ],
+   [
+    "B",
+    "aramaya devam, güzel ev çıkar"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-arkadasi-gece",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "ev arkadaşım gece ikide gitar çalıyor"
+   ],
+   [
+    "B",
+    "güzel çalıyor mu bari"
+   ],
+   [
+    "A",
+    "bir şarkıyı iki haftadır öğrenemedi"
+   ],
+   [
+    "C",
+    "kulaklık hediye et ona"
+   ],
+   [
+    "A",
+    "gitarda kulaklık olmuyor ki"
+   ],
+   [
+    "D",
+    "kibar bir not bırak, saat on bir sonrası sessiz olsun de"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-depozito",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "evden çıktım, ev sahibi depozitoyu vermiyor"
+   ],
+   [
+    "B",
+    "evi nasıl teslim ettin"
+   ],
+   [
+    "A",
+    "tertemiz, fotoğrafını da çektim"
+   ],
+   [
+    "C",
+    "fotoğraf iyi, kibarca hatırlat"
+   ],
+   [
+    "A",
+    "hatırlattım, bir hafta içinde diyor"
+   ],
+   [
+    "B",
+    "bekle bakalım, olmazsa tekrar yazarsın"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-arkadasi-yemek",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "buzdolabına koyduğum yoğurt yine bitmiş"
+   ],
+   [
+    "B",
+    "ev arkadaşı mı"
+   ],
+   [
+    "A",
+    "başka kim olacak"
+   ],
+   [
+    "C",
+    "yoğurdun üstüne adını yaz"
+   ],
+   [
+    "A",
+    "yazdım. adımın yanına bir de \"teşekkürler\" yazmış"
+   ],
+   [
+    "D",
+    "bu adam efsane"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-tasinma",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bu hafta sonu taşınıyorum, kim yardım eder"
+   ],
+   [
+    "B",
+    "ne var ne yok"
+   ],
+   [
+    "A",
+    "elli koli kitap, bir de çamaşır makinesi"
+   ],
+   [
+    "C",
+    "kitaplar neden elli koli"
+   ],
+   [
+    "A",
+    "okuyorum ama"
+   ],
+   [
+    "B",
+    "akşam yemek ısmarlarsan gelirim"
+   ],
+   [
+    "A",
+    "anlaştık"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-sahibi-iyi",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev sahibim bugün kapıya kurabiye getirdi"
+   ],
+   [
+    "B",
+    "şanslısın, öyle ev sahibi az bulunur"
+   ],
+   [
+    "A",
+    "muslukları da kendisi tamir etti"
+   ],
+   [
+    "C",
+    "hiç çıkma o evden, söylüyorum"
+   ],
+   [
+    "A",
+    "çıkmayı düşünmüyorum zaten"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-arkadasi-arama",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev arkadaşı arıyorum, kurallarım basit"
+   ],
+   [
+    "B",
+    "söyle bakalım"
+   ],
+   [
+    "A",
+    "bulaşık aynı gün yıkanacak, gece müzik yok, kedim var"
+   ],
+   [
+    "C",
+    "kedi artı puan"
+   ],
+   [
+    "D",
+    "bulaşık şartı zor ama, insanlık için zor"
+   ],
+   [
+    "A",
+    "sen kendi adına konuşuyorsun galiba {D}"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-soguk",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "evim çok soğuk, kombi bir çalışıp bir duruyor"
+   ],
+   [
+    "B",
+    "ev sahibine söyledin mi"
+   ],
+   [
+    "A",
+    "söyledim, usta gönderecek, bir haftadır"
+   ],
+   [
+    "C",
+    "bu arada battaniye ve sıcak su torbası"
+   ],
+   [
+    "A",
+    "ikisini de kullanıyorum, kat kat giyiniyorum"
+   ],
+   [
+    "B",
+    "geçmiş olsun, kış çetin"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-arkadasi-misafir",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev arkadaşımın misafiri üç gündür bizde"
+   ],
+   [
+    "B",
+    "misafir değil artık, ev arkadaşı oldu"
+   ],
+   [
+    "A",
+    "kirayı da ben ödüyorum yarı yarıya"
+   ],
+   [
+    "C",
+    "bu konuşulmalı, nazikçe ama açık"
+   ],
+   [
+    "A",
+    "bugün akşam konuşacağım"
+   ],
+   [
+    "B",
+    "kolay gelsin, haber ver"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-gunu",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yarın kira günü, hesaba bakmaya korkuyorum"
+   ],
+   [
+    "B",
+    "ben de, her ayın başı aynı his"
+   ],
+   [
+    "C",
+    "ben otomatik talimat verdim, görmüyorum bile"
+   ],
+   [
+    "A",
+    "bu da bir yol, görmezsem acımaz"
+   ],
+   [
+    "B",
+    "göz görmeyince gönül katlanır"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-matkap",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "pazar sabahı yedide komşu matkapla duvar deliyor"
+   ],
+   [
+    "B",
+    "klasik, matkabın en sevdiği gün pazar"
+   ],
+   [
+    "A",
+    "kalktım, bir de kahve yaptım. ne yapayım"
+   ],
+   [
+    "C",
+    "kapıyı çal, \"kolay gelsin\" de. anlar"
+   ],
+   [
+    "A",
+    "bir de matkabı ödünç isterim, karşılık"
+   ],
+   [
+    "B",
+    "harika plan[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-yemek-tabak",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "komşu yemek getirdi, tabağı boş vermek olmaz"
+   ],
+   [
+    "B",
+    "kesinlikle olmaz, tatlı yap koy"
+   ],
+   [
+    "A",
+    "ben tatlı yapamıyorum"
+   ],
+   [
+    "C",
+    "kurabiye al çarşıdan, kimse bilmez"
+   ],
+   [
+    "D",
+    "ben de bir kez kek denemiştim, komşu kibarca güldü"
+   ],
+   [
+    "A",
+    "çarşıdan alıyorum o zaman"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-kapici",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "apartmanın görevlisi her şeyi biliyor, kime ne kargo geldiğini bile"
+   ],
+   [
+    "B",
+    "bizim yönetici de öyle"
+   ],
+   [
+    "A",
+    "dün bana yeni montunu beğendim dedi"
+   ],
+   [
+    "C",
+    "bizim apartmanda haber merkezi kapı önü"
+   ],
+   [
+    "A",
+    "bilgi akışı bu kanaldan hızlı"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-toplanti",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "apartman toplantısından çıktım, üç saat sürdü"
+   ],
+   [
+    "B",
+    "ne konuşuldu"
+   ],
+   [
+    "A",
+    "asansör, kedi maması ve kapı rengi"
+   ],
+   [
+    "C",
+    "kapı rengi mi"
+   ],
+   [
+    "A",
+    "evet, iki gruba ayrıldık. gri ve kahverengi"
+   ],
+   [
+    "B",
+    "sonuç"
+   ],
+   [
+    "A",
+    "haftaya devam edecek"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-ses",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "üst kat bütün gece mobilya taşıyor galiba"
+   ],
+   [
+    "B",
+    "ya da sandalye çekiyorlar, gecenin dördünde"
+   ],
+   [
+    "A",
+    "neden ki"
+   ],
+   [
+    "C",
+    "bazı evlerde sandalye bitmeyen bir yolculuktadır"
+   ],
+   [
+    "A",
+    "en azından tek sorun bu, güzel insanlar"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-teyze",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "karşı komşu teyze her gördüğünde evlenmeyi soruyor"
+   ],
+   [
+    "B",
+    "bizimki de \"büyümüşsün\" diyor, otuz yaşındayım"
+   ],
+   [
+    "A",
+    "ama tatlılar"
+   ],
+   [
+    "C",
+    "bana da kapı önünde dolma veriyor, ne istersen sorsun"
+   ],
+   [
+    "A",
+    "dolma veren her şeyi sorabilir"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-cicek",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "komşu tatile gitti, çiçeklerini sulamamı istedi"
+   ],
+   [
+    "B",
+    "güzel, güven var"
+   ],
+   [
+    "A",
+    "ama bir tanesi kurudu gibi, ne yapacağım"
+   ],
+   [
+    "C",
+    "belki az su istiyordur, fazla sulama"
+   ],
+   [
+    "A",
+    "eyvah, her gün sulamıştım"
+   ],
+   [
+    "D",
+    "kaktüs müydü"
+   ],
+   [
+    "A",
+    "sanırım evet"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-yeni",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "yan daireye yeni komşu geldi, tanışmak lazım"
+   ],
+   [
+    "B",
+    "çay davet et"
+   ],
+   [
+    "A",
+    "garip olur mu"
+   ],
+   [
+    "C",
+    "olmaz, eskiden hep böyleydi"
+   ],
+   [
+    "D",
+    "ben de yeni taşındığımda kimse kapıyı çalmamıştı, üzülmüştüm"
+   ],
+   [
+    "A",
+    "tamam, bu akşam çay ve kek götürüyorum"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-park",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "komşu arabasını yine benim kapının önüne park etmiş"
+   ],
+   [
+    "B",
+    "not bırak"
+   ],
+   [
+    "A",
+    "bıraktım, cevap yazmış: \"pardon, bir dakikalığına\""
+   ],
+   [
+    "C",
+    "bir dakika ne kadar sürdü"
+   ],
+   [
+    "A",
+    "üç saat"
+   ],
+   [
+    "B",
+    "bir dakika onun takviminde"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-elektrik",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "apartmanda elektrik gitti, herkes merdivende toplandı"
+   ],
+   [
+    "B",
+    "ne güzel, tanışma fırsatı"
+   ],
+   [
+    "A",
+    "evet, ilk defa alt kattakilerle konuştum"
+   ],
+   [
+    "C",
+    "mum ışığında apartman sohbeti, eski zamanlar gibi"
+   ],
+   [
+    "A",
+    "elektrik gelince herkes evine kaçtı ama"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-davet",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bu ay üç düğüne davetliyim"
+   ],
+   [
+    "B",
+    "cüzdan ağlıyor şimdi"
+   ],
+   [
+    "A",
+    "bir de ne giyeceğim bilmiyorum"
+   ],
+   [
+    "C",
+    "aynı kıyafeti giy, üçünde farklı insanlar var"
+   ],
+   [
+    "A",
+    "iki düğünde aynı akraba var ama"
+   ],
+   [
+    "D",
+    "o zaman kravatı değiştir, yeni kıyafet sayılır"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-nisan",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kuzenim nişanlanıyor, yüzükleri ben getireceğim"
+   ],
+   [
+    "B",
+    "büyük sorumluluk"
+   ],
+   [
+    "A",
+    "kaybetmekten korkuyorum, cebime dikiş attım"
+   ],
+   [
+    "C",
+    "dikiş iyi fikir ama sonra çıkarabilecek misin"
+   ],
+   [
+    "A",
+    "onu düşünmemiştim"
+   ],
+   [
+    "B",
+    "makas da götür[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-halay",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "düğünde halayın başına geçtim, mendil elimden uçtu"
+   ],
+   [
+    "B",
+    "nereye gitti"
+   ],
+   [
+    "A",
+    "geline"
+   ],
+   [
+    "C",
+    "büyük şans bu"
+   ],
+   [
+    "A",
+    "gelin güldü, damat bir daha oynayalım dedi"
+   ],
+   [
+    "D",
+    "işte düğün böyle olur"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-yemek",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "düğünlerde en sevdiğim kısım yemek"
+   ],
+   [
+    "B",
+    "pilav üstü et, sonra baklava"
+   ],
+   [
+    "A",
+    "aynen, bir de ayran"
+   ],
+   [
+    "C",
+    "bizim tarafta keşkek olur, kazanlarla"
+   ],
+   [
+    "A",
+    "hiç yemedim, davet bekliyorum"
+   ],
+   [
+    "C",
+    "bir dahaki düğüne çağırırım"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-takilar",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "düğünde altın takarken eller titriyor"
+   ],
+   [
+    "B",
+    "ben iğneyi kendi parmağıma batırdım geçen sefer"
+   ],
+   [
+    "C",
+    "ben gelinin elbisesine takıldım, beş dakika uğraştık"
+   ],
+   [
+    "A",
+    "herkesin bir hikayesi var"
+   ],
+   [
+    "B",
+    "düğün hikayesi olmayan yoktur"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-kina",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "bu akşam kına gecesi var, kızlar çok heyecanlı"
+   ],
+   [
+    "B",
+    "kınayı nerden alacaksınız, hazırladınız mı"
+   ],
+   [
+    "A",
+    "annem her şeyi hazırladı, ben sadece şarkı söyleyeceğim"
+   ],
+   [
+    "C",
+    "türküleri hep kına gecesinde ağlayarak söyleriz"
+   ],
+   [
+    "A",
+    "ben de hazırlıklıyım, mendil cebimde"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-uzak",
+  "konu": "dugun",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kuzenimin düğünü başka şehirde, izin alamadım"
+   ],
+   [
+    "B",
+    "üzüldün mü"
+   ],
+   [
+    "A",
+    "çok. görüntülü arayacağım"
+   ],
+   [
+    "C",
+    "gelin seni görünce çok sevinir, emin ol"
+   ],
+   [
+    "A",
+    "hediyesini kargoyla yolladım, umarım yetişir"
+   ],
+   [
+    "B",
+    "yetişir, kargo da düğünü bilir[ haha|]"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-ilk-dans",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "arkadaşım düğünde ilk dans için üç aydır kurs alıyor"
+   ],
+   [
+    "B",
+    "ciddi iş"
+   ],
+   [
+    "A",
+    "dün prova yaptılar, birbirlerinin ayağına bastılar"
+   ],
+   [
+    "C",
+    "gerçek düğünde de basarlar, gelenek oldu artık"
+   ],
+   [
+    "A",
+    "bence de, daha samimi olur"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-kalabalik",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "düğünde bin kişi vardı, yarısını tanımıyordum"
+   ],
+   [
+    "B",
+    "bizim düğünler böyle, köyün tamamı gelir"
+   ],
+   [
+    "C",
+    "yarısı da seni tanıyordur ama"
+   ],
+   [
+    "A",
+    "bir teyze \"seni kucağımda sevdim\" dedi, hatırlamıyorum"
+   ],
+   [
+    "D",
+    "hatırlamazsın, kucak sevgisi tek taraflıdır"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-konusma",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "arkadaşım düğünde konuşma yapmamı istedi"
+   ],
+   [
+    "B",
+    "güzel, ne anlatacaksın"
+   ],
+   [
+    "A",
+    "ilk tanıştığımız günü, okulda kavga etmiştik"
+   ],
+   [
+    "C",
+    "kavgayı süsleyerek anlat ama"
+   ],
+   [
+    "A",
+    "tabii, kavga değil \"tartışma\" diyeceğim"
+   ],
+   [
+    "B",
+    "en güzel arkadaşlıklar böyle başlar"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-kutlama",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bugün doğum günüm"
+   ],
+   [
+    "B",
+    "iyi ki doğdun {A}"
+   ],
+   [
+    "C",
+    "iyi ki doğdun, nice mutlu yıllara"
+   ],
+   [
+    "D",
+    "doğum günün kutlu olsun"
+   ],
+   [
+    "A",
+    "çok sağ olun, kanal en güzel hediye"
+   ],
+   [
+    "B",
+    "pasta var mı ama"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-unuttu",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "dün arkadaşımın doğum günüymüş, unuttum"
+   ],
+   [
+    "B",
+    "eyvah"
+   ],
+   [
+    "A",
+    "çok kötü hissediyorum"
+   ],
+   [
+    "C",
+    "hemen ara, gecikmeli kutlama da kutlamadır"
+   ],
+   [
+    "A",
+    "aradım, sesinden biraz bozulmuş gibi"
+   ],
+   [
+    "D",
+    "bir pasta al, kapısına götür. her şey düzelir"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-surpriz",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "arkadaşa sürpriz doğum günü yapacağız, öneri lazım"
+   ],
+   [
+    "B",
+    "balonlar, pasta, bir de arkadaşlar saklanacak"
+   ],
+   [
+    "A",
+    "hep birlikte bağıracağız yani"
+   ],
+   [
+    "C",
+    "kalbi sağlam mı ama, korkutmayın"
+   ],
+   [
+    "A",
+    "sağlam, sanırım"
+   ],
+   [
+    "B",
+    "o zaman ışıkları kapatın, en klasik sürpriz"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-pasta",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "doğum günü pastasını kendim yapmaya çalıştım"
+   ],
+   [
+    "B",
+    "nasıl oldu"
+   ],
+   [
+    "A",
+    "ortası çöktü, ama tadı güzel"
+   ],
+   [
+    "C",
+    "çökük pasta en lezzetli pastadır"
+   ],
+   [
+    "D",
+    "üstüne meyve koy, çukuru kapatır"
+   ],
+   [
+    "A",
+    "çukur meyve kasesi oldu"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-mum",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "doğum gününde mumu üflerken dilek tuttunuz mu"
+   ],
+   [
+    "B",
+    "tuttum, söylemem"
+   ],
+   [
+    "A",
+    "söylersen olmaz diyorlar"
+   ],
+   [
+    "C",
+    "ben geçen sene tuttum, oldu"
+   ],
+   [
+    "A",
+    "ne istemiştin"
+   ],
+   [
+    "C",
+    "söylemem işte"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-hediye",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "annem için doğum günü hediyesi ne alsam"
+   ],
+   [
+    "B",
+    "annelere en güzeli kendin bir şey yapmak"
+   ],
+   [
+    "A",
+    "el işim kötü"
+   ],
+   [
+    "C",
+    "bir mektup yaz, en güzel hediye"
+   ],
+   [
+    "D",
+    "bir de kahvaltı hazırla, annem olsa ağlardı"
+   ],
+   [
+    "A",
+    "ikisini birden yapıyorum"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-yas",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bugün yaşım ilerledi, bir yaş daha büyüdüm"
+   ],
+   [
+    "B",
+    "iyi ki doğdun, hiç göstermiyorsun"
+   ],
+   [
+    "A",
+    "görmüyorsun ki beni[ haha|]"
+   ],
+   [
+    "B",
+    "tahmin ediyorum, kanalda genç duruyorsun"
+   ],
+   [
+    "C",
+    "iyi ki doğdun {A}, nice senelere"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-kardes",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kardeşimin doğum gününe ne alsam, her şeyi var"
+   ],
+   [
+    "B",
+    "her şeyi olana deneyim al"
+   ],
+   [
+    "A",
+    "deneyim mi"
+   ],
+   [
+    "C",
+    "sinema, maç, yemek. beraber yapacağınız bir şey"
+   ],
+   [
+    "A",
+    "bu güzel fikir, birlikte dışarı çıkarız"
+   ]
+  ]
+ },
+ {
+  "id": "s-dogumgunu-mesaj",
+  "konu": "dogumgunu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "doğum günümde kırk mesaj geldi, cevap vermek iki saat sürdü"
+   ],
+   [
+    "B",
+    "tek tek mi"
+   ],
+   [
+    "A",
+    "evet, her birine farklı bir şey"
+   ],
+   [
+    "C",
+    "ben herkese aynı \"çok teşekkürler\" yazıyorum"
+   ],
+   [
+    "A",
+    "onu da yazmayı düşündüm, ama ayıp geldi"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-gece",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "yarın sınavım var, hala bir sayfa okumadım"
+   ],
+   [
+    "B",
+    "gece mi başlayacaksın şimdi"
+   ],
+   [
+    "A",
+    "evet, çay demledim"
+   ],
+   [
+    "C",
+    "bol şans {A}, sabaha kadar oturma ama"
+   ],
+   [
+    "A",
+    "bir saat uyusam yeter mi"
+   ],
+   [
+    "B",
+    "yetmez, en az dört saat uyu, uykusuz hafıza çalışmıyor"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-sonuc",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sınav sonucum açıklanıyor, bakmaya korkuyorum"
+   ],
+   [
+    "B",
+    "bak bak, ne olursa olsun"
+   ],
+   [
+    "A",
+    "gözümü kapatıp bakacağım"
+   ],
+   [
+    "C",
+    "kapalı gözle nasıl bakacaksın"
+   ],
+   [
+    "A",
+    "geçtim!"
+   ],
+   [
+    "B",
+    "oha tebrikler"
+   ],
+   [
+    "D",
+    "helal olsun {A}"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-ders-calisma",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ders çalışmaya oturdum, masayı topladım, kalemleri sıraladım"
+   ],
+   [
+    "B",
+    "ders hariç her şey"
+   ],
+   [
+    "A",
+    "aynen, şimdi de kanaldayım"
+   ],
+   [
+    "C",
+    "telefonu başka odaya koy"
+   ],
+   [
+    "A",
+    "o zaman kanala gelemem"
+   ],
+   [
+    "B",
+    "tam olarak olayı bu"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-matematik",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "matematik sınavına giriyorum, ellerim buz gibi"
+   ],
+   [
+    "B",
+    "derin nefes al, bildiğin soruyla başla"
+   ],
+   [
+    "A",
+    "bilmediğim soruyla başlarsam"
+   ],
+   [
+    "C",
+    "boş geç, sonra dönersin"
+   ],
+   [
+    "D",
+    "bol şans {A}, sakin ol"
+   ],
+   [
+    "A",
+    "sağ olun, çıkınca yazarım"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-kutuphane-yer",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "sabah yedide kütüphaneye geldim, kapı önünde kuyruk var"
+   ],
+   [
+    "B",
+    "sınav dönemi, herkes orada"
+   ],
+   [
+    "A",
+    "kuyrukta yanımdaki ders anlatıyor"
+   ],
+   [
+    "C",
+    "dinle, ücretsiz kurs"
+   ],
+   [
+    "A",
+    "gerçekten dinliyorum, benimkinden iyi anlatıyor"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-kopya-saka",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sınavda arkadaşım bana baktı, ben de ona baktım, ikimiz de bilmiyorduk"
+   ],
+   [
+    "B",
+    "en dürüst sınav"
+   ],
+   [
+    "A",
+    "hoca da bize baktı"
+   ],
+   [
+    "C",
+    "üçünüz bakıştınız yani"
+   ],
+   [
+    "A",
+    "sınavın en anlamlı anı buydu"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-uzaktan",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "internetten ders alıyorum, kamera açık ama ben yarı uykudayım"
+   ],
+   [
+    "B",
+    "kamerayı kapat"
+   ],
+   [
+    "A",
+    "hoca açık tutun dedi"
+   ],
+   [
+    "C",
+    "bardağı ağzına götürüp uyanık gibi görün"
+   ],
+   [
+    "A",
+    "bardak boş ama"
+   ],
+   [
+    "B",
+    "oyunculuk o zaman"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-not",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sınavdan yüz aldım"
+   ],
+   [
+    "B",
+    "oha"
+   ],
+   [
+    "C",
+    "süper, tebrikler"
+   ],
+   [
+    "A",
+    "ilk defa yüz aldım, inanamıyorum"
+   ],
+   [
+    "D",
+    "annene söyledin mi"
+   ],
+   [
+    "A",
+    "söyledim, hemen akrabalara yaydı"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-ezber",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ezberlemem gereken bir sürü tarih var, aklımda kalmıyor"
+   ],
+   [
+    "B",
+    "hikaye kur, her tarihe bir olay bağla"
+   ],
+   [
+    "A",
+    "mesela"
+   ],
+   [
+    "C",
+    "mesela on yedi, abinin doğum günü, gibi"
+   ],
+   [
+    "A",
+    "bizim evde kimse o tarihte doğmamış"
+   ],
+   [
+    "B",
+    "o zaman uydur, kimse bilmez"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-tatil",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sınavlar bitti, tatil başladı"
+   ],
+   [
+    "B",
+    "tebrikler, ne yapacaksın"
+   ],
+   [
+    "A",
+    "üç gün uyuyacağım, sonra düşünürüm"
+   ],
+   [
+    "C",
+    "hak ettin, iyi dinlen"
+   ],
+   [
+    "D",
+    "benim daha iki sınavım var, kıskandım"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-ogretmen",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "en sevdiğiniz öğretmen kimdi, neden"
+   ],
+   [
+    "B",
+    "lisedeki edebiyat öğretmenim, her derste hikaye anlatırdı"
+   ],
+   [
+    "C",
+    "ilkokul öğretmenim, harfleri o öğretti"
+   ],
+   [
+    "A",
+    "benim de beden eğitimi öğretmenim, herkese oyun oynatırdı"
+   ],
+   [
+    "D",
+    "öğretmenler hayatın ilk kahramanları"
+   ]
+  ]
+ },
+ {
+  "id": "s-sinav-kurs-gercek",
+  "konu": "sinav",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sınava hazırlanırken oyunda da kurs alıyorum, hayatım kurs oldu"
+   ],
+   [
+    "B",
+    "oyundaki kurs bitiyor ama, gerçek hayattaki uzun"
+   ],
+   [
+    "A",
+    "oyundakini kum saatiyle kısaltabiliyorum, gerçekte keşke olsa"
+   ],
+   [
+    "C",
+    "gerçekte kum saati yok, sadece çay"
+   ],
+   [
+    "A",
+    "çayla da gidiyor, yavaş yavaş"
+   ]
+  ]
+ },
+ {
+  "id": "s-alisveris-bakkal",
+  "konu": "alisveris",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mahalledeki bakkal hala deftere yazıyor"
+   ],
+   [
+    "B",
+    "veresiye defteri mi"
+   ],
+   [
+    "A",
+    "aynen, adımı da biliyor"
+   ],
+   [
+    "C",
+    "mahalle bakkalı başka, market gibi değil"
+   ],
+   [
+    "A",
+    "bana kendi demliğinden çay da verdi"
+   ],
+   [
+    "B",
+    "oraya her gün git"
+   ]
+  ]
+ },
+ {
+  "id": "s-tekno-sms-kod",
+  "konu": "teknoloji",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "doğrulama kodu bir türlü gelmiyor"
+   ],
+   [
+    "B",
+    "tekrar gönder dedin mi"
+   ],
+   [
+    "A",
+    "beş kere. şimdi beş kod birden geldi"
+   ],
+   [
+    "C",
+    "hangisi doğru ama"
+   ],
+   [
+    "A",
+    "sonuncusu galiba, denedim oldu"
+   ],
+   [
+    "B",
+    "teknolojinin adaleti"
+   ]
+  ]
+ },
+ {
+  "id": "s-muzik-dedemin-plaklari",
+  "konu": "muzik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "dedemin evinde eski plaklar buldum"
+   ],
+   [
+    "B",
+    "çalar var mı"
+   ],
+   [
+    "A",
+    "var, bozuk ama"
+   ],
+   [
+    "C",
+    "bir ustaya götür, tamir eder"
+   ],
+   [
+    "A",
+    "götüreceğim, dedemin gençliğini dinlemek istiyorum"
+   ],
+   [
+    "B",
+    "çok güzel, dinleyince yaz"
+   ]
+  ]
+ },
+ {
+  "id": "s-kitap-sesli",
+  "konu": "kitap",
+  "kosul": [
+   "A.calisan"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{A.meslek} olarak çalışırken sesli kitap dinliyorum, zaman uçuyor"
+   ],
+   [
+    "B",
+    "iş de bitiyor mu bari"
+   ],
+   [
+    "A",
+    "bazen hikayeye dalıyorum, iş yavaşlıyor"
+   ],
+   [
+    "C",
+    "o zaman heyecanlı bölümleri molaya sakla"
+   ],
+   [
+    "A",
+    "iyi fikir {C}"
+   ]
+  ]
+ },
+ {
+  "id": "s-spor-takim",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mahallede voleybol takımı kuruluyor, kim gelir"
+   ],
+   [
+    "B",
+    "ben gelirim ama boyum kısa"
+   ],
+   [
+    "A",
+    "sorun değil, servis atarsın"
+   ],
+   [
+    "C",
+    "ben seyirci olurum"
+   ],
+   [
+    "A",
+    "seyirci de lazım, gel"
+   ],
+   [
+    "D",
+    "bir de su getiren lazım"
+   ]
+  ]
+ },
+ {
+  "id": "s-diyet-yemek-tarifi",
+  "konu": "diyet",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "diyet yemeği önerin, tatsız olmasın"
+   ],
+   [
+    "B",
+    "fırında sebze, üstüne biraz kekik"
+   ],
+   [
+    "C",
+    "mercimek çorbası, doyurucu ve hafif"
+   ],
+   [
+    "A",
+    "ikisini de yaparım, çorba bu havaya iyi gider"
+   ],
+   [
+    "B",
+    "afiyet olsun"
+   ]
+  ]
+ },
+ {
+  "id": "s-saglik-uyku-ilac",
+  "konu": "saglik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "soğuk algınlığı ilacı içtim, uykum geldi"
+   ],
+   [
+    "B",
+    "bugün dinlen"
+   ],
+   [
+    "A",
+    "ama {A.meslek} olarak işim var"
+   ],
+   [
+    "C",
+    "hasta hasta çalışma, kendini yorma"
+   ],
+   [
+    "A",
+    "tamam yarın daha iyi olurum umarım"
+   ],
+   [
+    "B",
+    "geçmiş olsun"
+   ]
+  ]
+ },
+ {
+  "id": "s-komsu-kedi",
+  "konu": "komsu",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "komşunun kedisi her sabah benim balkonda uyuyor"
+   ],
+   [
+    "B",
+    "kedi seni seçmiş"
+   ],
+   [
+    "A",
+    "komşu \"ben ona mama veriyorum, o sana gidiyor\" diye kızıyor"
+   ],
+   [
+    "C",
+    "kediler sahiplerini seçer"
+   ],
+   [
+    "A",
+    "şimdi ikimiz ortak kedi sahibiyiz"
+   ]
+  ]
+ },
+ {
+  "id": "s-dugun-elbise",
+  "konu": "dugun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "düğün için elbise aldım ama ayakkabı uymadı"
+   ],
+   [
+    "B",
+    "ayakkabı her zaman sorun"
+   ],
+   [
+    "A",
+    "rengi uymuyor, ne yapacağım"
+   ],
+   [
+    "C",
+    "siyah ayakkabı her şeye uyar"
+   ],
+   [
+    "A",
+    "siyah var, ama çok rahat değil"
+   ],
+   [
+    "D",
+    "düğünde zaten yarı gece ayakkabıları çıkarıyoruz"
+   ]
+  ]
+ },
+ {
+  "id": "s-kira-ev-arkadasi-tesekkur",
+  "konu": "kira",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ev arkadaşım bugün benim için yemek yapmış"
+   ],
+   [
+    "B",
+    "bulaşıkları bırakan mı"
+   ],
+   [
+    "A",
+    "evet o, bulaşıkları da yıkamış"
+   ],
+   [
+    "C",
+    "ne oldu ona"
+   ],
+   [
+    "A",
+    "sanırım geçen hafta konuştuğumuz işe yaradı"
+   ],
+   [
+    "B",
+    "konuşmak her şeyi çözer"
+   ]
+  ]
+ }
+]

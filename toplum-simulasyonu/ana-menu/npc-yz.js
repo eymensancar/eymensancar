@@ -1054,6 +1054,11 @@
   /** Kanalın saatlik hızı (dakikada mesaj): Türkiye 25, global 40; gece biraz düşer. */
   function kanalHizi(kanal, saat) { if (kanal === 'global') return 40; const f = saat < 2 ? .8 : saat < 7 ? .55 : saat < 9 ? .8 : 1; return 25 * f; }
   NPCYZ.kanalHizi = kanalHizi;
+  /** Şu an yazmakta olanlar: birkaç saniye içinde iplikte sırası gelecek kişiler (arayüzdeki "yazıyor…"). */
+  NPCYZ.yazanlar = function (meta, kanal, simdi) {
+    const I = IPLIK(); if (!I || !meta.ipl || !meta.ipl[kanal]) return [];
+    return meta.ipl[kanal].filter(ip => ip.t > simdi && ip.t - simdi < 5000).map(ip => { const havuz = kanal === 'global' ? (I.global || {})[ip.dil] || [] : I.tr || []; const sb = havuz.find(x => x.id === ip.id); if (!sb || !sb.turlar[ip.i]) return null; const id = ip.roller[sb.turlar[ip.i][0]]; const n = meta.npc[id] || NPCYZ.figuranBul(meta, id) || (meta.yabanci || []).find(x => x.id === id); return n ? n.gorunen : null; }).filter(Boolean).slice(0, 3);
+  };
 
   NPCYZ.kanalAkisi = function (world, meta, kanal, simdiMs, saat, oyuncu, sirketNpcIdleri) {
     adCakismasi(world, meta, oyuncu);

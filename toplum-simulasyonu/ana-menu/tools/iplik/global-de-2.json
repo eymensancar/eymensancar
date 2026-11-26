@@ -1,0 +1,1992 @@
+[
+ {
+  "id": "de2-beintag-1",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hab den beintag [schon wieder|zum dritten mal] ausfallen lassen"
+   ],
+   [
+    "B",
+    "man sieht es"
+   ],
+   [
+    "A",
+    "wie bitte"
+   ],
+   [
+    "C",
+    "beintag ist für alle der schwerste tag"
+   ],
+   [
+    "A",
+    "meine waden sind wie zahnstocher"
+   ],
+   [
+    "B",
+    "treppe statt aufzug, ganz einfach"
+   ]
+  ]
+ },
+ {
+  "id": "de2-gym-neu-1",
+  "konu": "spor",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "erstes mal im fitnessstudio, keine ahnung wie die geräte gehen"
+   ],
+   [
+    "B",
+    "einfach andere beobachten und nachmachen"
+   ],
+   [
+    "C",
+    "und danach die bank abwischen, sonst gibts ärger"
+   ],
+   [
+    "A",
+    "man muss die abwischen?"
+   ],
+   [
+    "C",
+    "ja {A}. ja."
+   ],
+   [
+    "B",
+    "haha"
+   ]
+  ]
+ },
+ {
+  "id": "de2-zocken-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "spielt ihr außer diesem hier noch andere spiele"
+   ],
+   [
+    "B",
+    "manchmal fußball am handy, verliere immer online"
+   ],
+   [
+    "C",
+    "rätselspiele vorm schlafen"
+   ],
+   [
+    "D",
+    "ich guck hier meine mieteinnahmen an, das ist mein hobby"
+   ],
+   [
+    "A",
+    "{D} das ist traurig"
+   ],
+   [
+    "D",
+    "das ist entspannend"
+   ]
+  ]
+ },
+ {
+  "id": "de2-zeichnen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "zeichne wieder nach jahren, meine hand hat alles vergessen"
+   ],
+   [
+    "B",
+    "was zeichnest du"
+   ],
+   [
+    "A",
+    "bäume. sehen aus wie brokkoli"
+   ],
+   [
+    "C",
+    "brokkoli ist ein baum für ameisen"
+   ],
+   [
+    "A",
+    "...das hilft irgendwie"
+   ],
+   [
+    "B",
+    "{C} der philosoph"
+   ]
+  ]
+ },
+ {
+  "id": "de2-gitarre-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "tag 12 gitarre lernen, meine fingerkuppen tun weh"
+   ],
+   [
+    "B",
+    "wird nach nem monat besser"
+   ],
+   [
+    "C",
+    "welche lieder kannst du schon"
+   ],
+   [
+    "A",
+    "eins. schlecht. die nachbarn können es auswendig"
+   ],
+   [
+    "B",
+    "dann lernen die mit"
+   ],
+   [
+    "A",
+    "die sind keine glücklichen schüler"
+   ]
+  ]
+ },
+ {
+  "id": "de2-pruefung-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "prüfung [morgen früh|in 8 stunden] und ich bin im globalchat"
+   ],
+   [
+    "B",
+    "welches fach"
+   ],
+   [
+    "A",
+    "mathe. ich versteh nichts"
+   ],
+   [
+    "C",
+    "app zu, lernen"
+   ],
+   [
+    "A",
+    "noch fünf minuten"
+   ],
+   [
+    "C",
+    "das hast du vor fünf minuten auch gesagt"
+   ],
+   [
+    "A",
+    "ok ok bin weg"
+   ]
+  ]
+ },
+ {
+  "id": "de2-pruefung-bestanden-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "BESTANDEN. die prüfung wegen der ich letzte woche geheult hab"
+   ],
+   [
+    "B",
+    "glückwunsch!!"
+   ],
+   [
+    "C",
+    "was wars denn"
+   ],
+   [
+    "A",
+    "führerschein, dritter versuch"
+   ],
+   [
+    "B",
+    "aller guten dinge sind drei"
+   ],
+   [
+    "C",
+    "jetzt bitte nichts anfahren"
+   ],
+   [
+    "A",
+    "keine versprechen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-lerngruppe-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "lerngruppe heute, wir haben nur chips gegessen und gequatscht"
+   ],
+   [
+    "B",
+    "klassische lerngruppe"
+   ],
+   [
+    "C",
+    "zusammen durchfallen macht mehr spaß"
+   ],
+   [
+    "A",
+    "teamwork"
+   ],
+   [
+    "B",
+    "genau"
+   ]
+  ]
+ },
+ {
+  "id": "de2-bahn-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "in der bahn eingeschlafen und 4 stationen zu weit gefahren"
+   ],
+   [
+    "B",
+    "passiert"
+   ],
+   [
+    "C",
+    "wenigstens gut geschlafen?"
+   ],
+   [
+    "A",
+    "bester schlaf der woche ehrlich"
+   ],
+   [
+    "B",
+    "und zu spät zur arbeit?"
+   ],
+   [
+    "A",
+    "sehr. hab gesagt die bahn war verwirrend"
+   ]
+  ]
+ },
+ {
+  "id": "de2-bahn-verspaetung-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "zug hat [20|30] minuten verspätung, und es ist eiskalt"
+   ],
+   [
+    "B",
+    "kenn ich"
+   ],
+   [
+    "C",
+    "warmen kaffee holen"
+   ],
+   [
+    "A",
+    "kein kiosk hier, nur ich und die kälte"
+   ],
+   [
+    "B",
+    "durchhalten {A}"
+   ]
+  ]
+ },
+ {
+  "id": "de2-fahrrad-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "fahre jetzt mit dem rad zur arbeit, spart geld und ich fühl mich super"
+   ],
+   [
+    "B",
+    "bis es regnet"
+   ],
+   [
+    "A",
+    "...es regnet gerade"
+   ],
+   [
+    "C",
+    "und wie fühlst du dich jetzt"
+   ],
+   [
+    "A",
+    "nass. sehr nass"
+   ],
+   [
+    "B",
+    "haha"
+   ]
+  ]
+ },
+ {
+  "id": "de2-mitbewohner-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "mein mitbewohner lässt seit 4 tagen das geschirr stehen"
+   ],
+   [
+    "B",
+    "ansprechen"
+   ],
+   [
+    "C",
+    "oder das geschirr auf sein bett stellen"
+   ],
+   [
+    "B",
+    "{C} nein"
+   ],
+   [
+    "C",
+    "{B} doch"
+   ],
+   [
+    "A",
+    "klingt verlockend"
+   ]
+  ]
+ },
+ {
+  "id": "de2-mitbewohner-joghurt-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "jemand hat meinen joghurt gegessen. ich wohne mit einer person"
+   ],
+   [
+    "B",
+    "der joghurt-detektiv ermittelt"
+   ],
+   [
+    "C",
+    "beschriften"
+   ],
+   [
+    "A",
+    "hab ich. das etikett hat er bestimmt auch gegessen"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "de2-mitbewohner-nett-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "mein mitbewohner hat mir heute einfach so frühstück gemacht"
+   ],
+   [
+    "B",
+    "den behalten"
+   ],
+   [
+    "C",
+    "hat der nen bruder der ein zimmer sucht"
+   ],
+   [
+    "A",
+    "haha"
+   ],
+   [
+    "B",
+    "10 von 10"
+   ]
+  ]
+ },
+ {
+  "id": "de2-schlussverkauf-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "schlussverkauf, hab 3 sachen gekauft die ich nicht brauche"
+   ],
+   [
+    "B",
+    "der rabatt hat gewonnen"
+   ],
+   [
+    "A",
+    "50 prozent weniger, also gespart oder?"
+   ],
+   [
+    "C",
+    "geld ausgegeben um geld zu sparen"
+   ],
+   [
+    "A",
+    "mach es mir nicht kaputt {C}"
+   ]
+  ]
+ },
+ {
+  "id": "de2-einkauf-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "wollte nur brot holen, kam mit 12 sachen und ohne brot zurück"
+   ],
+   [
+    "B",
+    "jedes mal"
+   ],
+   [
+    "C",
+    "der laden ist dafür gebaut"
+   ],
+   [
+    "A",
+    "jetzt muss ich nochmal los"
+   ],
+   [
+    "B",
+    "diesmal nur brot"
+   ],
+   [
+    "A",
+    "mal sehen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-kochen-experiment-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "nudeln mit joghurtsoße probiert, nicht lachen"
+   ],
+   [
+    "B",
+    "die türken würden das gut finden"
+   ],
+   [
+    "C",
+    "klingt wild"
+   ],
+   [
+    "A",
+    "war echt lecker"
+   ],
+   [
+    "B",
+    "gibts bei denen ähnlich, mit knoblauch"
+   ],
+   [
+    "A",
+    "siehst du, naturtalent"
+   ]
+  ]
+ },
+ {
+  "id": "de2-kuchen-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "erster kuchen gebacken, flach wie ein pfannkuchen"
+   ],
+   [
+    "B",
+    "backpulver vergessen?"
+   ],
+   [
+    "A",
+    "was ist backpulver"
+   ],
+   [
+    "C",
+    "da haben wir es"
+   ],
+   [
+    "B",
+    "nenn es pfannkuchenkuchen"
+   ],
+   [
+    "A",
+    "gekauft"
+   ]
+  ]
+ },
+ {
+  "id": "de2-rezept-mama-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "rezept von mama: \"salz nach gefühl\""
+   ],
+   [
+    "B",
+    "wie viel ist gefühl"
+   ],
+   [
+    "A",
+    "eben, sie sagt es nicht"
+   ],
+   [
+    "C",
+    "alle mamas schreiben so"
+   ],
+   [
+    "D",
+    "\"kochen bis es gut aussieht\""
+   ],
+   [
+    "A",
+    "genau das steht in der nächsten zeile"
+   ]
+  ]
+ },
+ {
+  "id": "de2-reise-plan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "plane urlaub, meer oder berge"
+   ],
+   [
+    "B",
+    "berge, weniger leute"
+   ],
+   [
+    "C",
+    "meer, ganz klar"
+   ],
+   [
+    "A",
+    "sehr hilfreich ihr zwei"
+   ],
+   [
+    "D",
+    "beides, erst meer dann berge"
+   ],
+   [
+    "A",
+    "mit welchem geld {D}"
+   ],
+   [
+    "D",
+    "details"
+   ]
+  ]
+ },
+ {
+  "id": "de2-koffer-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "airline hat meinen koffer verloren"
+   ],
+   [
+    "B",
+    "oh nein"
+   ],
+   [
+    "A",
+    "tag 2 im selben shirt"
+   ],
+   [
+    "C",
+    "kauf ein neues, ist ein souvenir"
+   ],
+   [
+    "A",
+    "bester tipp der woche"
+   ]
+  ]
+ },
+ {
+  "id": "de2-reise-zurueck-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "zurück vom urlaub, kleines dorf am see, kein internet"
+   ],
+   [
+    "B",
+    "wie hast du ohne den chat überlebt"
+   ],
+   [
+    "A",
+    "gar nicht, hab abends im bus reingeschaut"
+   ],
+   [
+    "C",
+    "süchtig"
+   ],
+   [
+    "A",
+    "ein bisschen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-sprache-verwechselt-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wollte auf türkisch guten morgen sagen und hab gute nacht gesagt"
+   ],
+   [
+    "B",
+    "war wenigstens freundlich"
+   ],
+   [
+    "A",
+    "er hat um 10 uhr morgens \"dir auch gute nacht\" geantwortet"
+   ],
+   [
+    "C",
+    "die türken sind höflich"
+   ],
+   [
+    "A",
+    "sehr"
+   ]
+  ]
+ },
+ {
+  "id": "de2-sprache-spanisch-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "lerne spanisch und verwechsle es dauernd mit italienisch"
+   ],
+   [
+    "B",
+    "macht jeder"
+   ],
+   [
+    "C",
+    "bald hast du ne eigene sprache"
+   ],
+   [
+    "A",
+    "spatalienisch"
+   ],
+   [
+    "B",
+    "haha"
+   ]
+  ]
+ },
+ {
+  "id": "de2-sprache-lange-woerter-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "türkische wörter sind so lang, ein wort ist ein ganzer satz"
+   ],
+   [
+    "B",
+    "sagt der deutsche"
+   ],
+   [
+    "C",
+    "haha {B} hat recht"
+   ],
+   [
+    "A",
+    "ok wir sind quitt"
+   ],
+   [
+    "B",
+    "unsere wörter sind auch nicht kurz"
+   ]
+  ]
+ },
+ {
+  "id": "de2-wochenende-faul-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "samstag plan: bis mittags im bett"
+   ],
+   [
+    "B",
+    "solider plan"
+   ],
+   [
+    "C",
+    "ich muss arbeiten"
+   ],
+   [
+    "A",
+    "was machst du {C}"
+   ],
+   [
+    "C",
+    "{C.meslek}, wochenende gibts bei mir nicht"
+   ],
+   [
+    "A",
+    "dann genieß ich für dich mit"
+   ]
+  ]
+ },
+ {
+  "id": "de2-geburtstag-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "heute ist mein geburtstag"
+   ],
+   [
+    "B",
+    "alles gute {A}!"
+   ],
+   [
+    "C",
+    "herzlichen glückwunsch, was machst du heute"
+   ],
+   [
+    "A",
+    "kuchen und früh ins bett, man wird alt"
+   ],
+   [
+    "D",
+    "im spiel gibts zum glück kein alter"
+   ],
+   [
+    "A",
+    "stimmt, hier bin ich ewig jung"
+   ]
+  ]
+ },
+ {
+  "id": "de2-geburtstag-vergessen-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "hab den geburtstag von meinem besten freund vergessen, war gestern"
+   ],
+   [
+    "B",
+    "autsch"
+   ],
+   [
+    "C",
+    "ruf an und sag du wolltest der letzte sein"
+   ],
+   [
+    "A",
+    "genial"
+   ],
+   [
+    "B",
+    "oder der erste fürs nächste jahr"
+   ]
+  ]
+ },
+ {
+  "id": "de2-hochzeit-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bin am wochenende auf ner hochzeit, ich kann nicht tanzen"
+   ],
+   [
+    "B",
+    "kann keiner, das ist der witz"
+   ],
+   [
+    "C",
+    "einfach hin und her und lächeln"
+   ],
+   [
+    "A",
+    "ich üb heute abend"
+   ],
+   [
+    "B",
+    "video bitte"
+   ],
+   [
+    "A",
+    "niemals"
+   ]
+  ]
+ },
+ {
+  "id": "de2-streit-geklaert-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{B} sorry wegen gestern, hatte schlechte laune"
+   ],
+   [
+    "B",
+    "schon gut, war auch etwas hart"
+   ],
+   [
+    "A",
+    "wieder freunde?"
+   ],
+   [
+    "B",
+    "klar"
+   ],
+   [
+    "C",
+    "so nett hier heute"
+   ]
+  ]
+ },
+ {
+  "id": "de2-katze-hund-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hunde sind besser als katzen"
+   ],
+   [
+    "B",
+    "katzen, keine diskussion"
+   ],
+   [
+    "C",
+    "beide sind toll, wieso streiten"
+   ],
+   [
+    "A",
+    "weil es spaß macht"
+   ],
+   [
+    "B",
+    "trotzdem katzen"
+   ],
+   [
+    "C",
+    "ihr zwei seid hund und katze von diesem chat"
+   ]
+  ]
+ },
+ {
+  "id": "de2-hilfe-kontoauszug-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wo sehe ich meine kontobewegungen, ich finds nicht"
+   ],
+   [
+    "B",
+    "bank-reiter glaub ich"
+   ],
+   [
+    "C",
+    "ja, bisschen runterscrollen"
+   ],
+   [
+    "A",
+    "gefunden, danke"
+   ],
+   [
+    "B",
+    "gerne"
+   ]
+  ]
+ },
+ {
+  "id": "de2-hilfe-job-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "wo bewirbt man sich für nen job"
+   ],
+   [
+    "B",
+    "im karriere-bildschirm"
+   ],
+   [
+    "A",
+    "ich seh nur kurier und beamter direkt"
+   ],
+   [
+    "C",
+    "die startet man sofort, für die anderen bewirbt man sich"
+   ],
+   [
+    "A",
+    "ok dann erstmal kurier"
+   ]
+  ]
+ },
+ {
+  "id": "de2-hilfe-sanduhr-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mein kurs dauert noch ewig, geht das schneller"
+   ],
+   [
+    "B",
+    "sanduhren, eine sanduhr spart einen tag"
+   ],
+   [
+    "A",
+    "hab zwei"
+   ],
+   [
+    "C",
+    "dann rein damit"
+   ],
+   [
+    "A",
+    "erledigt, zwei tage weniger"
+   ]
+  ]
+ },
+ {
+  "id": "de2-zurueck-pause-1",
+  "konu": "selam",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "bin wieder da! war nen monat weg"
+   ],
+   [
+    "B",
+    "{A}! wo warst du"
+   ],
+   [
+    "A",
+    "echtes leben war stressig"
+   ],
+   [
+    "C",
+    "hat sich die miete von allein bezahlt?"
+   ],
+   [
+    "A",
+    "ja, schöne überraschung beim zurückkommen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-wer-ist-zurueck-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ratet mal wer wieder da ist"
+   ],
+   [
+    "B",
+    "keine ahnung"
+   ],
+   [
+    "A",
+    "das tut weh"
+   ],
+   [
+    "C",
+    "willkommen zurück {A} haha"
+   ],
+   [
+    "A",
+    "danke {C}, wenigstens einer"
+   ]
+  ]
+ },
+ {
+  "id": "de2-vorstellung-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hallo, ich bin {A} aus {A.sehir}, im spiel {A.meslek}"
+   ],
+   [
+    "B",
+    "willkommen {A}"
+   ],
+   [
+    "A",
+    "ich koche gern, schaue schlechte filme und spare schlecht"
+   ],
+   [
+    "C",
+    "dann bist du hier richtig"
+   ],
+   [
+    "A",
+    "dachte ich mir"
+   ]
+  ]
+ },
+ {
+  "id": "de2-schuechtern-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hallo... bin neu und etwas schüchtern"
+   ],
+   [
+    "B",
+    "hi! musst du nicht sein"
+   ],
+   [
+    "C",
+    "frag einfach alles"
+   ],
+   [
+    "A",
+    "danke. woher kommt ihr alle?"
+   ],
+   [
+    "B",
+    "{B.sehir}"
+   ],
+   [
+    "C",
+    "{C.sehir}, schön dich kennenzulernen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-zeitzone-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "gute nacht allerseits"
+   ],
+   [
+    "B",
+    "hier ist 10 uhr morgens"
+   ],
+   [
+    "A",
+    "trotzdem gute nacht"
+   ],
+   [
+    "C",
+    "guten mittag aus {C.sehir}"
+   ],
+   [
+    "B",
+    "wir sind in drei tageszeiten gleichzeitig"
+   ]
+  ]
+ },
+ {
+  "id": "de2-nacht-hunger-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "wer hat auch um diese uhrzeit hunger"
+   ],
+   [
+    "B",
+    "immer"
+   ],
+   [
+    "C",
+    "toast ruft mich"
+   ],
+   [
+    "A",
+    "müsli hier"
+   ],
+   [
+    "B",
+    "mitternachtssnack-club"
+   ]
+  ]
+ },
+ {
+  "id": "de2-laden-personal-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ein mitarbeiter ist weg, jetzt springt ne aushilfe ein"
+   ],
+   [
+    "B",
+    "aushilfen sind teuer und langsam"
+   ],
+   [
+    "A",
+    "merk ich, der gewinn ist runter"
+   ],
+   [
+    "C",
+    "stellenanzeige aufmachen, da bewerben sich schnell leute"
+   ],
+   [
+    "A",
+    "gemacht, warte auf bewerbungen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-laden-konkurrenz-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "direkt neben meinem café hat noch eins aufgemacht"
+   ],
+   [
+    "B",
+    "dann teilen sich die kunden auf"
+   ],
+   [
+    "A",
+    "merk ich schon"
+   ],
+   [
+    "C",
+    "besseres personal, bessere qualität"
+   ],
+   [
+    "A",
+    "hoffe es hilft"
+   ]
+  ]
+ },
+ {
+  "id": "de2-laden-gewinn-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "mein laden hat diesen monat zum ersten mal richtig gewinn gemacht"
+   ],
+   [
+    "B",
+    "glückwunsch!"
+   ],
+   [
+    "C",
+    "was hast du geändert"
+   ],
+   [
+    "A",
+    "volles team eingestellt, keine aushilfen mehr"
+   ],
+   [
+    "B",
+    "das ist das geheimnis"
+   ]
+  ]
+ },
+ {
+  "id": "de2-sparen-wohnung-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "spare auf ne wohnung, geht so langsam"
+   ],
+   [
+    "B",
+    "und jeden monat wird sie teurer"
+   ],
+   [
+    "A",
+    "erinner mich nicht"
+   ],
+   [
+    "C",
+    "mit kredit brauchst du so 20 prozent anzahlung"
+   ],
+   [
+    "A",
+    "ja das ist der plan, fast da"
+   ]
+  ]
+ },
+ {
+  "id": "de2-kurs-fertig-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "buchhaltungskurs fertig!!"
+   ],
+   [
+    "B",
+    "glückwunsch!"
+   ],
+   [
+    "A",
+    "jetzt noch 30 tage erfahrung"
+   ],
+   [
+    "C",
+    "geht schnell vorbei"
+   ],
+   [
+    "A",
+    "bald bin ich richtiger buchhalter"
+   ]
+  ]
+ },
+ {
+  "id": "de2-maklerschein-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hab heute meinen maklerschein bekommen"
+   ],
+   [
+    "B",
+    "endlich"
+   ],
+   [
+    "A",
+    "hat gefühlt ewig gedauert, paar sanduhren benutzt"
+   ],
+   [
+    "C",
+    "jetzt gehalt plus provision"
+   ],
+   [
+    "A",
+    "kanns kaum erwarten was zu verkaufen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-gehalt-hoch-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mein gehalt ist diesen monat gestiegen"
+   ],
+   [
+    "B",
+    "nice, wieso"
+   ],
+   [
+    "A",
+    "der index, preise gehen hoch, gehälter auch"
+   ],
+   [
+    "C",
+    "die gehälter hinken aber hinterher"
+   ],
+   [
+    "A",
+    "ja die miete war natürlich zuerst dran"
+   ]
+  ]
+ },
+ {
+  "id": "de2-preise-laender-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ist die miete bei euch in anderen ländern gleich"
+   ],
+   [
+    "B",
+    "glaub schon, die sätze sind überall gleich"
+   ],
+   [
+    "C",
+    "später entscheidet die wirtschaft das pro land, hab ich gehört"
+   ],
+   [
+    "A",
+    "dann gibts reiche und arme länder?"
+   ],
+   [
+    "B",
+    "mal sehen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-witz-buchhalter-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "warum hat der buchhalter seinen taschenrechner verlassen"
+   ],
+   [
+    "B",
+    "warum"
+   ],
+   [
+    "A",
+    "er konnte nicht mehr auf ihn zählen"
+   ],
+   [
+    "C",
+    "buuuh"
+   ],
+   [
+    "B",
+    "ich hab gelacht und schäme mich"
+   ]
+  ]
+ },
+ {
+  "id": "de2-witz-vermieter-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "vermieter sagt ich soll die miete pünktlich zahlen"
+   ],
+   [
+    "B",
+    "fair"
+   ],
+   [
+    "A",
+    "ich so: klar, wie spät ist es"
+   ],
+   [
+    "C",
+    "{A} bitte"
+   ],
+   [
+    "B",
+    "er hat nicht gelacht oder"
+   ],
+   [
+    "A",
+    "nein"
+   ]
+  ]
+ },
+ {
+  "id": "de2-lob-tuerken-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "die türkischen spieler sind so freundlich, sagen immer willkommen"
+   ],
+   [
+    "B",
+    "stimmt, haben mir beim kredit geholfen"
+   ],
+   [
+    "C",
+    "die sind wie die lehrer von diesem spiel"
+   ],
+   [
+    "A",
+    "und um jede uhrzeit online"
+   ],
+   [
+    "B",
+    "tee-power"
+   ]
+  ]
+ },
+ {
+  "id": "de2-kaputtes-tuerkisch-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "merhaba arkadaslar, nasilsiniz?"
+   ],
+   [
+    "B",
+    "wow {A} sprichst du jetzt türkisch?"
+   ],
+   [
+    "A",
+    "lerne vom türkischen chat"
+   ],
+   [
+    "C",
+    "sehr gut"
+   ],
+   [
+    "A",
+    "tesekkur ederim, cok guzel"
+   ],
+   [
+    "B",
+    "beeindruckend"
+   ]
+  ]
+ },
+ {
+  "id": "de2-kaputtes-tuerkisch-2",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "gunaydin turk freunde, cay hazir mi?"
+   ],
+   [
+    "B",
+    "haha du kennst die kultur schon"
+   ],
+   [
+    "A",
+    "tee ist leben, hab ich gelernt"
+   ],
+   [
+    "C",
+    "die adoptieren dich bald"
+   ]
+  ]
+ },
+ {
+  "id": "de2-ein-wort-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "montage sollten verboten werden"
+   ],
+   [
+    "B",
+    "stimmt"
+   ],
+   [
+    "C",
+    "same"
+   ],
+   [
+    "D",
+    "genau"
+   ],
+   [
+    "A",
+    "wow alle einer meinung, zum ersten mal"
+   ]
+  ]
+ },
+ {
+  "id": "de2-besserwisser-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "grundstück bringt keine miete also ist es sinnlos"
+   ],
+   [
+    "B",
+    "falsch, es steigt im wert, weiß doch jeder"
+   ],
+   [
+    "A",
+    "ok herr experte"
+   ],
+   [
+    "C",
+    "{B} hat aber recht"
+   ],
+   [
+    "B",
+    "ich hab immer recht"
+   ],
+   [
+    "C",
+    "nicht immer"
+   ],
+   [
+    "B",
+    "meistens"
+   ]
+  ]
+ },
+ {
+  "id": "de2-grummelig-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "sprecht nicht mit mir vor dem kaffee"
+   ],
+   [
+    "B",
+    "guten morgen {A}!"
+   ],
+   [
+    "A",
+    "ich sagte nicht sprechen"
+   ],
+   [
+    "C",
+    "haha"
+   ],
+   [
+    "B",
+    "ok ok, genieß deinen kaffee"
+   ],
+   [
+    "A",
+    "...danke"
+   ]
+  ]
+ },
+ {
+  "id": "de2-durcheinander-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "leute ich hab neuigkeiten"
+   ],
+   [
+    "B",
+    "ich auch"
+   ],
+   [
+    "C",
+    "warte ich zuerst"
+   ],
+   [
+    "A",
+    "neuer job"
+   ],
+   [
+    "B",
+    "neue katze"
+   ],
+   [
+    "C",
+    "hab mir beim kochen die hand verbrannt"
+   ],
+   [
+    "A",
+    "ok {C} gewinnt, alles gut?"
+   ],
+   [
+    "C",
+    "geht schon"
+   ]
+  ]
+ },
+ {
+  "id": "de2-pflanze-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "meine pflanze stirbt, gibts hier experten"
+   ],
+   [
+    "B",
+    "zu viel wasser wahrscheinlich"
+   ],
+   [
+    "A",
+    "ich gieße jeden tag"
+   ],
+   [
+    "C",
+    "da hast du es"
+   ],
+   [
+    "A",
+    "ich hab sie totgeliebt"
+   ]
+  ]
+ },
+ {
+  "id": "de2-puzzle-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "1000 teile puzzle, tag 3, halb fertig"
+   ],
+   [
+    "B",
+    "der himmel ist das schlimmste"
+   ],
+   [
+    "A",
+    "alles blau, ich dreh durch"
+   ],
+   [
+    "C",
+    "nach form sortieren"
+   ],
+   [
+    "A",
+    "versuch ich heute"
+   ]
+  ]
+ },
+ {
+  "id": "de2-kurier-regen-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "den ganzen tag im regen ausgeliefert, klatschnass"
+   ],
+   [
+    "B",
+    "kurierleben"
+   ],
+   [
+    "C",
+    "wenigstens gutes geld wenn man viel macht"
+   ],
+   [
+    "A",
+    "nur deswegen"
+   ],
+   [
+    "B",
+    "trockene socken zuhause hoffentlich"
+   ]
+  ]
+ },
+ {
+  "id": "de2-kredit-abbezahlt-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "kredit abbezahlt, ich bin frei"
+   ],
+   [
+    "B",
+    "glückwunsch!"
+   ],
+   [
+    "C",
+    "kreditwürdigkeit gestiegen?"
+   ],
+   [
+    "A",
+    "ja, langsam"
+   ],
+   [
+    "B",
+    "jetzt kannst du mehr leihen"
+   ],
+   [
+    "A",
+    "nein danke, ich genieß erstmal die freiheit"
+   ]
+  ]
+ },
+ {
+  "id": "de2-umzug-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "ziehe am wochenende um, überall kartons"
+   ],
+   [
+    "B",
+    "schlimmster job der welt"
+   ],
+   [
+    "C",
+    "kartons beschriften"
+   ],
+   [
+    "A",
+    "zu spät, auf allen steht \"zeug\""
+   ],
+   [
+    "B",
+    "viel glück beim löffel suchen"
+   ]
+  ]
+ },
+ {
+  "id": "de2-wind-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "so windig in {A.sehir}, mein regenschirm ist weggeflogen"
+   ],
+   [
+    "B",
+    "tschüss schirm"
+   ],
+   [
+    "C",
+    "der ist jetzt in ner anderen stadt"
+   ],
+   [
+    "A",
+    "er ist frei"
+   ],
+   [
+    "B",
+    "haha"
+   ]
+  ]
+ },
+ {
+  "id": "de2-wecker-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "heute 7 mal auf snooze gedrückt"
+   ],
+   [
+    "B",
+    "neuer rekord?"
+   ],
+   [
+    "A",
+    "nein, rekord ist 11"
+   ],
+   [
+    "C",
+    "beeindruckend und besorgniserregend"
+   ]
+  ]
+ },
+ {
+  "id": "de2-handy-kaputt-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "handy runtergefallen, display gesprungen"
+   ],
+   [
+    "B",
+    "autsch"
+   ],
+   [
+    "C",
+    "nächstes mal schutzfolie"
+   ],
+   [
+    "A",
+    "hatte ich, die ist auch gesprungen"
+   ],
+   [
+    "B",
+    "das handy kämpft gegen dich"
+   ]
+  ]
+ },
+ {
+  "id": "de2-gute-nacht-echt-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "ok ich geh jetzt wirklich schlafen"
+   ],
+   [
+    "B",
+    "hast du vor ner stunde auch gesagt"
+   ],
+   [
+    "A",
+    "diesmal echt"
+   ],
+   [
+    "C",
+    "klar"
+   ],
+   [
+    "A",
+    "tschüss"
+   ],
+   [
+    "B",
+    "gute nacht {A}"
+   ]
+  ]
+ }
+]

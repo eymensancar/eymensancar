@@ -1113,7 +1113,7 @@ function shCiz(){const {w,p}=G(),sh=SOH(),ks=shKanallar();if(!shDm&&!ks.includes
       (()=>{const son=ms.slice(-140),idx={};son.forEach(m=>{idx[m.id]=m});return son.map(m=>{if(m.sistem)return `<div class="shSistem">${kac(m.metin)}</div>`;
         const al=m.yanit?m.yanit:(m.alinti&&m.cevap&&idx[m.cevap]&&idx[m.cevap].ad!==m.ad?{ad:idx[m.cevap].ad,metin:idx[m.cevap].metin}:null);
         return `<div class="msj${m.oyuncu?' ben':''}">${m.oyuncu?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon" data-msj="${kac(m.id||'')}">${m.oyuncu?'':`<button data-kisi="${m.npcId||''}" data-kad="${kac(m.ad)}">${kac(m.ad)}</button>`}${al?`<span class="alinti"><b>${kac(al.ad)}</b> ${kac(al.metin)}</span>`:''}${kac(m.metin)}<em>${saatYaz(m.zaman)}</em></div></div>`}).join('')})()+
-      (()=>{const y=[...new Set(shYazanlar.filter(x=>x.bag===shBaglam()).map(x=>x.ad))];return y.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(y.slice(0,2).join(', '))} yazıyor…</div>`:''})();
+      (()=>{const y=[...new Set(shYazanlar.filter(x=>x.bag===shBaglam()).map(x=>x.ad).concat(K.npc&&NPCYZ.yazanlar?NPCYZ.yazanlar(K.npc,shKanal,Date.now()).filter(a=>!sh.engel.includes(a)):[]))];return y.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(y.length>2?y.slice(0,2).join(', ')+' ve '+(y.length-2)+' kişi':y.join(', '))} yazıyor…</div>`:''})();
     $('shListe').querySelectorAll('[data-kisi]').forEach(b=>b.onclick=e=>{e.stopPropagation();kisiMenu(b.dataset.kisi,b.dataset.kad)});
     $('shListe').querySelectorAll('[data-msj]').forEach(b=>b.onclick=()=>msjMenu(b.dataset.msj));
   }

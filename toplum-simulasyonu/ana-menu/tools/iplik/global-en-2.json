@@ -1,0 +1,4788 @@
+[
+ {
+  "id": "en2-gym-legday-1",
+  "konu": "spor",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "skipped leg day [again|for the third week], don't judge me"
+   ],
+   [
+    "B",
+    "judging you"
+   ],
+   [
+    "C",
+    "we all skip leg day, it's tradition"
+   ],
+   [
+    "A",
+    "my calves look like toothpicks"
+   ],
+   [
+    "B",
+    "stairs. take the stairs. free gym"
+   ],
+   [
+    "A",
+    "i live on the ground floor {B}"
+   ]
+  ]
+ },
+ {
+  "id": "en2-gym-newbie-1",
+  "konu": "spor",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "first time at a gym today, i have no idea what the machines do"
+   ],
+   [
+    "B",
+    "watch someone else and copy them, that's how we all started"
+   ],
+   [
+    "C",
+    "and wipe the bench after, people get mad"
+   ],
+   [
+    "A",
+    "wait you're supposed to wipe it"
+   ],
+   [
+    "C",
+    "yes {A}. yes."
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-gym-protein-1",
+  "konu": "spor",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "is it normal to eat 6 eggs a day"
+   ],
+   [
+    "B",
+    "normal for a gym person"
+   ],
+   [
+    "C",
+    "normal for a chicken"
+   ],
+   [
+    "A",
+    "ok rude but fair"
+   ],
+   [
+    "B",
+    "just don't eat them all at once"
+   ],
+   [
+    "A",
+    "too late"
+   ]
+  ]
+ },
+ {
+  "id": "en2-gaming-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "anyone else play other games besides this one"
+   ],
+   [
+    "B",
+    "a football game sometimes, i always lose online"
+   ],
+   [
+    "C",
+    "puzzle games before bed, it calms me"
+   ],
+   [
+    "D",
+    "i play this one and stare at my rent income, that's my hobby"
+   ],
+   [
+    "A",
+    "{D} that's the saddest hobby i've heard"
+   ],
+   [
+    "D",
+    "it's peaceful"
+   ]
+  ]
+ },
+ {
+  "id": "en2-gaming-rage-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "lost [five|six] online matches in a row, i'm done for tonight"
+   ],
+   [
+    "B",
+    "the classic \"one more game\" trap"
+   ],
+   [
+    "A",
+    "one more game turned into two hours"
+   ],
+   [
+    "C",
+    "put the phone down and drink water"
+   ],
+   [
+    "A",
+    "yes doctor"
+   ],
+   [
+    "C",
+    "you're welcome"
+   ]
+  ]
+ },
+ {
+  "id": "en2-drawing-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "started drawing again after years, my hands forgot everything"
+   ],
+   [
+    "B",
+    "what are you drawing"
+   ],
+   [
+    "A",
+    "trees mostly. they look like broccoli"
+   ],
+   [
+    "C",
+    "broccoli is a tree for ants"
+   ],
+   [
+    "A",
+    "...that actually made me feel better"
+   ],
+   [
+    "B",
+    "{C} the philosopher"
+   ]
+  ]
+ },
+ {
+  "id": "en2-drawing-portrait-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "i tried to draw my cat and it looks like a potato with ears"
+   ],
+   [
+    "B",
+    "post it nowhere please"
+   ],
+   [
+    "C",
+    "potato cats are art"
+   ],
+   [
+    "A",
+    "my cat saw it and left the room"
+   ],
+   [
+    "B",
+    "the critic has spoken"
+   ]
+  ]
+ },
+ {
+  "id": "en2-guitar-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "day 10 of learning guitar, my fingertips hurt so much"
+   ],
+   [
+    "B",
+    "it gets better after a month or so"
+   ],
+   [
+    "C",
+    "what songs can you play"
+   ],
+   [
+    "A",
+    "one. badly. the neighbors know it by heart now"
+   ],
+   [
+    "B",
+    "ha, they're learning with you"
+   ],
+   [
+    "A",
+    "they are not happy students"
+   ]
+  ]
+ },
+ {
+  "id": "en2-piano-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my sister is practicing piano in the next room, same song for 2 hours"
+   ],
+   [
+    "B",
+    "is she getting better at least"
+   ],
+   [
+    "A",
+    "she was good after 10 minutes. it's been 2 hours"
+   ],
+   [
+    "C",
+    "headphones, my friend"
+   ],
+   [
+    "A",
+    "already on, i can still hear it in my head"
+   ]
+  ]
+ },
+ {
+  "id": "en2-singing-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "i sing in the shower so loud the neighbors clap"
+   ],
+   [
+    "B",
+    "clap or bang on the wall"
+   ],
+   [
+    "A",
+    "...let's say clap"
+   ],
+   [
+    "C",
+    "that's the spirit"
+   ],
+   [
+    "B",
+    "{A} the shower star"
+   ]
+  ]
+ },
+ {
+  "id": "en2-exam-week-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "exam [tomorrow|in 8 hours] and i'm in global chat"
+   ],
+   [
+    "B",
+    "what subject"
+   ],
+   [
+    "A",
+    "statistics. i understand nothing"
+   ],
+   [
+    "C",
+    "close the app and go study"
+   ],
+   [
+    "A",
+    "five more minutes"
+   ],
+   [
+    "C",
+    "that's what you said five minutes ago, i was watching"
+   ],
+   [
+    "A",
+    "ok ok going"
+   ]
+  ]
+ },
+ {
+  "id": "en2-exam-passed-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "I PASSED. the exam i was crying about last week"
+   ],
+   [
+    "B",
+    "congrats!! told you"
+   ],
+   [
+    "C",
+    "what was it"
+   ],
+   [
+    "A",
+    "driving test, third try"
+   ],
+   [
+    "B",
+    "third time lucky"
+   ],
+   [
+    "C",
+    "now don't hit anything please"
+   ],
+   [
+    "A",
+    "no promises"
+   ]
+  ]
+ },
+ {
+  "id": "en2-study-group-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "studying with friends is useless, we just eat snacks and gossip"
+   ],
+   [
+    "B",
+    "that's not studying that's a party"
+   ],
+   [
+    "C",
+    "best way to fail together"
+   ],
+   [
+    "A",
+    "at least we fail as a team"
+   ],
+   [
+    "B",
+    "teamwork"
+   ]
+  ]
+ },
+ {
+  "id": "en2-study-music-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "what do you listen to while studying"
+   ],
+   [
+    "B",
+    "rain sounds"
+   ],
+   [
+    "C",
+    "nothing, total silence"
+   ],
+   [
+    "D",
+    "game soundtracks, they're made to keep you focused"
+   ],
+   [
+    "A",
+    "{D} that's smart actually"
+   ],
+   [
+    "D",
+    "i know, i'm a genius who still failed math"
+   ]
+  ]
+ },
+ {
+  "id": "en2-commute-bus-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "bus driver waited for me today, i almost cried"
+   ],
+   [
+    "B",
+    "a hero"
+   ],
+   [
+    "C",
+    "mine drives off when he sees me running"
+   ],
+   [
+    "A",
+    "it was a good start to the day"
+   ],
+   [
+    "B",
+    "ok but did you thank him"
+   ],
+   [
+    "A",
+    "i waved like an idiot, yes"
+   ]
+  ]
+ },
+ {
+  "id": "en2-commute-train-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "fell asleep on the train and missed my stop by 4 stations"
+   ],
+   [
+    "B",
+    "classic"
+   ],
+   [
+    "C",
+    "did you at least have a nice nap"
+   ],
+   [
+    "A",
+    "best sleep of my week honestly"
+   ],
+   [
+    "B",
+    "late for work though?"
+   ],
+   [
+    "A",
+    "very. told my boss \"the train was confusing\""
+   ]
+  ]
+ },
+ {
+  "id": "en2-commute-bike-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "cycling to work now, saves money and i feel great"
+   ],
+   [
+    "B",
+    "until it rains"
+   ],
+   [
+    "A",
+    "...it's raining right now actually"
+   ],
+   [
+    "C",
+    "so how do you feel"
+   ],
+   [
+    "A",
+    "wet. very wet"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-commute-walk-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "started walking 40 minutes to work instead of taking the bus"
+   ],
+   [
+    "B",
+    "legs of steel soon"
+   ],
+   [
+    "C",
+    "podcasts make it go faster"
+   ],
+   [
+    "A",
+    "yeah i finish a whole episode every morning"
+   ],
+   [
+    "B",
+    "nice routine"
+   ]
+  ]
+ },
+ {
+  "id": "en2-roommate-dishes-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "my roommate left dishes in the sink for 4 days"
+   ],
+   [
+    "B",
+    "talk to them"
+   ],
+   [
+    "C",
+    "or put the dishes on their bed"
+   ],
+   [
+    "B",
+    "{C} no"
+   ],
+   [
+    "C",
+    "{B} yes"
+   ],
+   [
+    "A",
+    "tempting. very tempting"
+   ]
+  ]
+ },
+ {
+  "id": "en2-roommate-fridge-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "someone ate my yogurt. i live with one person. i know who it was"
+   ],
+   [
+    "B",
+    "the yogurt detective"
+   ],
+   [
+    "C",
+    "label your food"
+   ],
+   [
+    "A",
+    "i did. they ate the label too probably"
+   ],
+   [
+    "C",
+    "lol"
+   ],
+   [
+    "B",
+    "confront them, gently"
+   ]
+  ]
+ },
+ {
+  "id": "en2-roommate-loud-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "roommate is on a video call at 2am, loud"
+   ],
+   [
+    "B",
+    "knock on the door"
+   ],
+   [
+    "A",
+    "he's laughing, i can't be mad, it's contagious"
+   ],
+   [
+    "C",
+    "so join the call"
+   ],
+   [
+    "A",
+    "lol no"
+   ],
+   [
+    "B",
+    "earplugs then"
+   ]
+  ]
+ },
+ {
+  "id": "en2-roommate-good-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "my roommate made me breakfast today, no reason"
+   ],
+   [
+    "B",
+    "keep that roommate forever"
+   ],
+   [
+    "C",
+    "does he have a brother looking for a room"
+   ],
+   [
+    "A",
+    "haha he'll be famous now"
+   ],
+   [
+    "B",
+    "10 out of 10 roommate"
+   ]
+  ]
+ },
+ {
+  "id": "en2-sale-shopping-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "big sale this weekend, i bought 3 things i don't need"
+   ],
+   [
+    "B",
+    "the sale won"
+   ],
+   [
+    "A",
+    "it said 50% off, i saved money right?"
+   ],
+   [
+    "C",
+    "you spent money to save money"
+   ],
+   [
+    "A",
+    "don't ruin it for me {C}"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-sale-shoes-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "bought shoes on sale, half size too small"
+   ],
+   [
+    "B",
+    "return them"
+   ],
+   [
+    "A",
+    "can't, final sale"
+   ],
+   [
+    "C",
+    "wear them for short trips"
+   ],
+   [
+    "A",
+    "they hurt standing still"
+   ],
+   [
+    "B",
+    "lesson learned"
+   ]
+  ]
+ },
+ {
+  "id": "en2-grocery-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "went to the store for bread, came back with 12 things and no bread"
+   ],
+   [
+    "B",
+    "happens to everyone"
+   ],
+   [
+    "C",
+    "the store is designed like that"
+   ],
+   [
+    "A",
+    "i have to go back now"
+   ],
+   [
+    "B",
+    "buy only bread this time"
+   ],
+   [
+    "A",
+    "no promises"
+   ]
+  ]
+ },
+ {
+  "id": "en2-cook-experiment-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "tried cooking pasta with yogurt sauce, don't knock it"
+   ],
+   [
+    "B",
+    "the turks would approve"
+   ],
+   [
+    "C",
+    "that sounds wild"
+   ],
+   [
+    "A",
+    "it was actually good"
+   ],
+   [
+    "B",
+    "there's a turkish dish like that, with yogurt and garlic"
+   ],
+   [
+    "A",
+    "see, i'm a natural"
+   ]
+  ]
+ },
+ {
+  "id": "en2-cook-spicy-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "put way too much chili in the soup, i'm sweating"
+   ],
+   [
+    "B",
+    "drink milk, not water"
+   ],
+   [
+    "A",
+    "why milk"
+   ],
+   [
+    "C",
+    "milk fights the spice, water just spreads it"
+   ],
+   [
+    "A",
+    "ok milk it is"
+   ],
+   [
+    "B",
+    "report back"
+   ]
+  ]
+ },
+ {
+  "id": "en2-cook-baking-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "baked my first cake, it's flat like a pancake"
+   ],
+   [
+    "B",
+    "forgot baking powder?"
+   ],
+   [
+    "A",
+    "what's baking powder"
+   ],
+   [
+    "C",
+    "there it is"
+   ],
+   [
+    "B",
+    "call it a pancake cake and move on"
+   ],
+   [
+    "A",
+    "pancake cake it is"
+   ]
+  ]
+ },
+ {
+  "id": "en2-cook-burned-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "smoke alarm went off, dinner is ruined"
+   ],
+   [
+    "B",
+    "what was it"
+   ],
+   [
+    "A",
+    "eggs. just eggs"
+   ],
+   [
+    "C",
+    "how do you burn eggs that hard"
+   ],
+   [
+    "A",
+    "i went to check my rent income for one minute"
+   ],
+   [
+    "B",
+    "the game cost you dinner lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-cook-mom-recipe-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my mom gave me her recipe, it says \"add enough salt\""
+   ],
+   [
+    "B",
+    "how much is enough"
+   ],
+   [
+    "A",
+    "exactly, she won't tell me"
+   ],
+   [
+    "C",
+    "all moms write recipes like that"
+   ],
+   [
+    "D",
+    "\"cook until it looks right\""
+   ],
+   [
+    "A",
+    "yes! that's on the next line"
+   ]
+  ]
+ },
+ {
+  "id": "en2-travel-plan-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "planning a trip, beach or mountains"
+   ],
+   [
+    "B",
+    "mountains, fewer people"
+   ],
+   [
+    "C",
+    "beach, obviously"
+   ],
+   [
+    "A",
+    "that's not helpful"
+   ],
+   [
+    "D",
+    "go both, beach then mountain"
+   ],
+   [
+    "A",
+    "with what money {D}"
+   ],
+   [
+    "D",
+    "details"
+   ]
+  ]
+ },
+ {
+  "id": "en2-travel-turkey-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "thinking of visiting turkey one day, what city should i start with"
+   ],
+   [
+    "B",
+    "istanbul, everyone starts there"
+   ],
+   [
+    "C",
+    "ask the turkish players, they'll give you a whole plan"
+   ],
+   [
+    "A",
+    "they'll probably invite me for tea too"
+   ],
+   [
+    "B",
+    "guaranteed"
+   ],
+   [
+    "C",
+    "and food. so much food"
+   ]
+  ]
+ },
+ {
+  "id": "en2-travel-luggage-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "airline lost my luggage on vacation"
+   ],
+   [
+    "B",
+    "oh no"
+   ],
+   [
+    "A",
+    "i'm on day 2 in the same shirt"
+   ],
+   [
+    "C",
+    "buy a new one, call it a souvenir"
+   ],
+   [
+    "A",
+    "best advice i've had all week"
+   ],
+   [
+    "B",
+    "did they find it at least"
+   ],
+   [
+    "A",
+    "\"soon\" they said"
+   ]
+  ]
+ },
+ {
+  "id": "en2-travel-story-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "back from my trip, i walked 20k steps every day"
+   ],
+   [
+    "B",
+    "where did you go"
+   ],
+   [
+    "A",
+    "small town by a lake, no internet at all"
+   ],
+   [
+    "C",
+    "how did you survive without this chat"
+   ],
+   [
+    "A",
+    "i didn't, i checked it from the bus every night"
+   ],
+   [
+    "B",
+    "lol addicted"
+   ]
+  ]
+ },
+ {
+  "id": "en2-travel-packing-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "leaving tomorrow and i haven't packed"
+   ],
+   [
+    "B",
+    "what are you waiting for"
+   ],
+   [
+    "A",
+    "motivation"
+   ],
+   [
+    "C",
+    "pack chargers first, always"
+   ],
+   [
+    "A",
+    "good tip, last time i forgot it"
+   ],
+   [
+    "B",
+    "and socks"
+   ]
+  ]
+ },
+ {
+  "id": "en2-lang-mixup-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i tried to say \"good morning\" in turkish to someone and said \"good night\" instead"
+   ],
+   [
+    "B",
+    "at least it was nice"
+   ],
+   [
+    "A",
+    "he answered \"good night to you too\" at 10 am"
+   ],
+   [
+    "C",
+    "the turks are polite"
+   ],
+   [
+    "A",
+    "very"
+   ]
+  ]
+ },
+ {
+  "id": "en2-lang-mixup-2",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "learning spanish and i keep mixing it with italian"
+   ],
+   [
+    "B",
+    "everyone does that"
+   ],
+   [
+    "C",
+    "you'll invent a new language soon"
+   ],
+   [
+    "A",
+    "spantalian"
+   ],
+   [
+    "B",
+    "lol"
+   ],
+   [
+    "C",
+    "patent it"
+   ]
+  ]
+ },
+ {
+  "id": "en2-lang-practice-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "any spanish speakers here, i want to practice"
+   ],
+   [
+    "B",
+    "sí, aquí"
+   ],
+   [
+    "A",
+    "hola! cómo... estás?"
+   ],
+   [
+    "B",
+    "muy bien! see, you can do it"
+   ],
+   [
+    "A",
+    "that's all i know"
+   ],
+   [
+    "C",
+    "a great start honestly"
+   ]
+  ]
+ },
+ {
+  "id": "en2-lang-hard-word-1",
+  "konu": "dil",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "turkish words are so long, i saw one with like 30 letters"
+   ],
+   [
+    "B",
+    "they glue everything together"
+   ],
+   [
+    "C",
+    "one word is a whole sentence"
+   ],
+   [
+    "A",
+    "efficient though"
+   ],
+   [
+    "B",
+    "very efficient, very scary"
+   ]
+  ]
+ },
+ {
+  "id": "en2-weekend-lazy-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "[saturday|weekend] plan: stay in bed until noon"
+   ],
+   [
+    "B",
+    "solid plan"
+   ],
+   [
+    "C",
+    "i have to work, enjoy for me"
+   ],
+   [
+    "A",
+    "i will, every minute of it"
+   ],
+   [
+    "B",
+    "what's your job {C}"
+   ],
+   [
+    "C",
+    "{C.meslek}, weekends don't exist for me"
+   ]
+  ]
+ },
+ {
+  "id": "en2-weekend-hike-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "going hiking this weekend, anyone else"
+   ],
+   [
+    "B",
+    "in this weather?"
+   ],
+   [
+    "A",
+    "it's supposed to be sunny"
+   ],
+   [
+    "C",
+    "weather apps lie"
+   ],
+   [
+    "A",
+    "then i'll get wet and complain here"
+   ],
+   [
+    "B",
+    "looking forward to it"
+   ]
+  ]
+ },
+ {
+  "id": "en2-birthday-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "it's my birthday today"
+   ],
+   [
+    "B",
+    "happy birthday {A}!"
+   ],
+   [
+    "C",
+    "happy birthday! any plans"
+   ],
+   [
+    "A",
+    "cake and an early night, getting old"
+   ],
+   [
+    "D",
+    "there's no age in the game at least"
+   ],
+   [
+    "A",
+    "true, in here i'm forever young"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-birthday-forgot-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "forgot my best friend's birthday. it was yesterday"
+   ],
+   [
+    "B",
+    "oof"
+   ],
+   [
+    "C",
+    "call now and say you wanted to be the last one"
+   ],
+   [
+    "A",
+    "that's genius"
+   ],
+   [
+    "B",
+    "or the first one of next year"
+   ],
+   [
+    "A",
+    "i'm calling, wish me luck"
+   ]
+  ]
+ },
+ {
+  "id": "en2-birthday-gift-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "what do you get for someone who has everything"
+   ],
+   [
+    "B",
+    "socks"
+   ],
+   [
+    "C",
+    "nobody has enough socks"
+   ],
+   [
+    "A",
+    "that's... actually true"
+   ],
+   [
+    "D",
+    "a nice letter, people keep those"
+   ],
+   [
+    "A",
+    "{D} wins"
+   ]
+  ]
+ },
+ {
+  "id": "en2-wedding-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "going to a wedding this weekend, i can't dance"
+   ],
+   [
+    "B",
+    "nobody can, that's the fun"
+   ],
+   [
+    "C",
+    "just move side to side and smile"
+   ],
+   [
+    "A",
+    "i'll practice tonight"
+   ],
+   [
+    "B",
+    "send a video"
+   ],
+   [
+    "A",
+    "never"
+   ]
+  ]
+ },
+ {
+  "id": "en2-wedding-turkish-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "went to a turkish wedding once, the dancing went on for hours"
+   ],
+   [
+    "B",
+    "the circle dance thing?"
+   ],
+   [
+    "A",
+    "yes everyone holding hands, i got pulled in"
+   ],
+   [
+    "C",
+    "did you survive"
+   ],
+   [
+    "A",
+    "barely, they were all better than me"
+   ],
+   [
+    "B",
+    "it's a skill"
+   ]
+  ]
+ },
+ {
+  "id": "en2-argument-pizza-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{B} i still say pineapple on pizza is fine"
+   ],
+   [
+    "B",
+    "we talked about this"
+   ],
+   [
+    "C",
+    "not again"
+   ],
+   [
+    "A",
+    "fine, fine, i'm wrong. it's still fine"
+   ],
+   [
+    "B",
+    "...ok whatever, eat what you want"
+   ],
+   [
+    "C",
+    "peace at last"
+   ]
+  ]
+ },
+ {
+  "id": "en2-argument-resolved-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "{B} sorry about yesterday, i was in a bad mood"
+   ],
+   [
+    "B",
+    "it's ok, i was a bit harsh too"
+   ],
+   [
+    "A",
+    "friends?"
+   ],
+   [
+    "B",
+    "always"
+   ],
+   [
+    "C",
+    "this chat is wholesome today"
+   ]
+  ]
+ },
+ {
+  "id": "en2-argument-cats-dogs-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "dogs are better than cats, fight me"
+   ],
+   [
+    "B",
+    "cats, no contest"
+   ],
+   [
+    "C",
+    "both are good, why fight"
+   ],
+   [
+    "A",
+    "because it's fun"
+   ],
+   [
+    "B",
+    "ok but cats still win"
+   ],
+   [
+    "C",
+    "you two are the cat and the dog of this chat"
+   ]
+  ]
+ },
+ {
+  "id": "en2-help-app-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "how do i see my money history, i can't find it"
+   ],
+   [
+    "B",
+    "bank tab i think"
+   ],
+   [
+    "C",
+    "yeah bank, scroll down a bit"
+   ],
+   [
+    "A",
+    "found it! thanks"
+   ],
+   [
+    "B",
+    "no problem"
+   ]
+  ]
+ },
+ {
+  "id": "en2-help-job-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "where do i apply for a job"
+   ],
+   [
+    "B",
+    "career screen"
+   ],
+   [
+    "A",
+    "i only see courier and civil servant"
+   ],
+   [
+    "C",
+    "those you can start directly, the others need applications"
+   ],
+   [
+    "A",
+    "ah ok, i'll do courier first"
+   ],
+   [
+    "B",
+    "good choice to start"
+   ]
+  ]
+ },
+ {
+  "id": "en2-help-course-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "what's the difference between the courses"
+   ],
+   [
+    "B",
+    "each one opens a different job"
+   ],
+   [
+    "C",
+    "accounting course for accountant, exam course for civil servant"
+   ],
+   [
+    "D",
+    "and a certificate for real estate agent"
+   ],
+   [
+    "A",
+    "and master craftsman?"
+   ],
+   [
+    "C",
+    "mastery certificate plus some days as a construction worker"
+   ],
+   [
+    "A",
+    "got it, lots of options"
+   ]
+  ]
+ },
+ {
+  "id": "en2-help-hourglass-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my course says many days left, can i speed it up"
+   ],
+   [
+    "B",
+    "hourglasses, one hourglass skips one day"
+   ],
+   [
+    "A",
+    "i have two"
+   ],
+   [
+    "C",
+    "use them, they're for exactly that"
+   ],
+   [
+    "A",
+    "done, two days off"
+   ],
+   [
+    "B",
+    "there you go"
+   ]
+  ]
+ },
+ {
+  "id": "en2-help-kind-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "having a rough day, nothing serious just tired"
+   ],
+   [
+    "B",
+    "hope it gets better {A}"
+   ],
+   [
+    "C",
+    "drink something warm and rest"
+   ],
+   [
+    "D",
+    "you can talk here if you want"
+   ],
+   [
+    "A",
+    "thanks guys, this helps more than you think"
+   ],
+   [
+    "B",
+    "anytime"
+   ]
+  ]
+ },
+ {
+  "id": "en2-return-break-1",
+  "konu": "selam",
+  "kosul": [
+   "A.eski"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i'm back! took a month off"
+   ],
+   [
+    "B",
+    "{A}! where were you"
+   ],
+   [
+    "A",
+    "real life got busy"
+   ],
+   [
+    "C",
+    "did your rent pay itself while you were gone"
+   ],
+   [
+    "A",
+    "yes, came back to a nice surprise"
+   ],
+   [
+    "B",
+    "the dream"
+   ]
+  ]
+ },
+ {
+  "id": "en2-return-break-2",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "guess who's back"
+   ],
+   [
+    "B",
+    "no idea"
+   ],
+   [
+    "A",
+    "ok that hurts"
+   ],
+   [
+    "C",
+    "welcome back {A} haha"
+   ],
+   [
+    "A",
+    "thank you {C}, at least someone remembers me"
+   ],
+   [
+    "B",
+    "i'm joking, welcome back"
+   ]
+  ]
+ },
+ {
+  "id": "en2-return-lost-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "came back after weeks and i don't understand my own finances"
+   ],
+   [
+    "B",
+    "check the bank tab, it shows everything"
+   ],
+   [
+    "A",
+    "apparently i had a loan"
+   ],
+   [
+    "C",
+    "oops"
+   ],
+   [
+    "A",
+    "it's fine, it's fine, i'm paying it"
+   ],
+   [
+    "B",
+    "you got this"
+   ]
+  ]
+ },
+ {
+  "id": "en2-intro-detail-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hi all, i'm {A}, from {A.sehir}, working as {A.meslek} in the game"
+   ],
+   [
+    "B",
+    "welcome {A}"
+   ],
+   [
+    "A",
+    "i like cooking, bad movies and long walks"
+   ],
+   [
+    "C",
+    "a man of culture"
+   ],
+   [
+    "A",
+    "and i'm terrible at saving money"
+   ],
+   [
+    "B",
+    "you're in the right game then"
+   ]
+  ]
+ },
+ {
+  "id": "en2-intro-detail-2",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "hello. i'm new and a bit shy, just wanted to say hi"
+   ],
+   [
+    "B",
+    "hi! no need to be shy"
+   ],
+   [
+    "C",
+    "welcome, ask anything"
+   ],
+   [
+    "A",
+    "thank you. where are you all from?"
+   ],
+   [
+    "B",
+    "{B.sehir}"
+   ],
+   [
+    "C",
+    "{C.sehir}, nice to meet you"
+   ],
+   [
+    "A",
+    "nice to meet you too"
+   ]
+  ]
+ },
+ {
+  "id": "en2-intro-detail-3",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "introduction time: who are you and what do you do"
+   ],
+   [
+    "B",
+    "{B}, {B.meslek}, i like tea"
+   ],
+   [
+    "C",
+    "{C}, from {C.sehir}, currently broke"
+   ],
+   [
+    "D",
+    "{D}, here for the chat honestly"
+   ],
+   [
+    "A",
+    "you're all my kind of people"
+   ]
+  ]
+ },
+ {
+  "id": "en2-timezone-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "good night everyone"
+   ],
+   [
+    "B",
+    "it's 10 am here"
+   ],
+   [
+    "A",
+    "good night anyway"
+   ],
+   [
+    "C",
+    "good afternoon from {C.sehir}"
+   ],
+   [
+    "B",
+    "we're in three different days at this point"
+   ],
+   [
+    "A",
+    "time is fake"
+   ]
+  ]
+ },
+ {
+  "id": "en2-timezone-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i set an alarm to talk to {B} and they were asleep"
+   ],
+   [
+    "B",
+    "sorry! i got the hours wrong"
+   ],
+   [
+    "A",
+    "it's ok, our time difference is evil"
+   ],
+   [
+    "C",
+    "use a world clock"
+   ],
+   [
+    "B",
+    "good idea, next time i'll be awake"
+   ]
+  ]
+ },
+ {
+  "id": "en2-timezone-3",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "is it night for everyone or just me"
+   ],
+   [
+    "B",
+    "lunch time here"
+   ],
+   [
+    "C",
+    "sunrise here"
+   ],
+   [
+    "A",
+    "i feel lonely and confused"
+   ],
+   [
+    "C",
+    "go to sleep, we'll still be here"
+   ]
+  ]
+ },
+ {
+  "id": "en2-latenight-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "random [3am|late night] thought: why do we say \"fall asleep\""
+   ],
+   [
+    "B",
+    "because you fall into it"
+   ],
+   [
+    "C",
+    "go to sleep {A}"
+   ],
+   [
+    "A",
+    "can't, too philosophical right now"
+   ],
+   [
+    "B",
+    "classic 3am brain"
+   ]
+  ]
+ },
+ {
+  "id": "en2-latenight-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "anyone else hungry at this hour"
+   ],
+   [
+    "B",
+    "always"
+   ],
+   [
+    "C",
+    "toast is calling my name"
+   ],
+   [
+    "A",
+    "cereal here"
+   ],
+   [
+    "B",
+    "a midnight snack club"
+   ],
+   [
+    "C",
+    "best club"
+   ]
+  ]
+ },
+ {
+  "id": "en2-latenight-3",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "night shift people, how do you stay awake"
+   ],
+   [
+    "B",
+    "coffee and music"
+   ],
+   [
+    "C",
+    "walk around every hour"
+   ],
+   [
+    "D",
+    "i talk to this chat"
+   ],
+   [
+    "A",
+    "{D} same"
+   ],
+   [
+    "B",
+    "a support group"
+   ]
+  ]
+ },
+ {
+  "id": "en2-shop-owner-stock-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "running a shop is harder than i thought"
+   ],
+   [
+    "B",
+    "what's wrong"
+   ],
+   [
+    "A",
+    "expenses come every month no matter what"
+   ],
+   [
+    "C",
+    "and customers aren't the same every day"
+   ],
+   [
+    "A",
+    "exactly, some days it's dead"
+   ],
+   [
+    "B",
+    "location matters a lot, how's yours"
+   ],
+   [
+    "A",
+    "average. i'll live"
+   ]
+  ]
+ },
+ {
+  "id": "en2-shop-owner-staff-quit-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "one of my workers left, now a temp is covering"
+   ],
+   [
+    "B",
+    "temps are expensive and slow"
+   ],
+   [
+    "A",
+    "yeah i noticed, profit dropped"
+   ],
+   [
+    "C",
+    "post a job ad, people apply quickly"
+   ],
+   [
+    "A",
+    "done, waiting for applications"
+   ],
+   [
+    "B",
+    "hourglass can speed that up i think"
+   ]
+  ]
+ },
+ {
+  "id": "en2-shop-owner-competition-1",
+  "konu": "isletme",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "another cafe opened right next to mine"
+   ],
+   [
+    "B",
+    "oof, customers get split"
+   ],
+   [
+    "A",
+    "my income dropped already"
+   ],
+   [
+    "C",
+    "better staff, better quality, they'll come back"
+   ],
+   [
+    "A",
+    "i hope so"
+   ],
+   [
+    "B",
+    "or open something different next time"
+   ]
+  ]
+ },
+ {
+  "id": "en2-shop-owner-proud-1",
+  "konu": "isletme",
+  "kosul": [
+   "A.patron"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "my shop made its first real profit this month"
+   ],
+   [
+    "B",
+    "congrats!"
+   ],
+   [
+    "C",
+    "what changed"
+   ],
+   [
+    "A",
+    "hired a full team, no more temp workers"
+   ],
+   [
+    "B",
+    "that's the secret"
+   ],
+   [
+    "A",
+    "took me long enough"
+   ]
+  ]
+ },
+ {
+  "id": "en2-save-apartment-1",
+  "konu": "mulk",
+  "kosul": [
+   "A.kiraci"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "saving for an apartment, it's so slow"
+   ],
+   [
+    "B",
+    "every month the price goes up too"
+   ],
+   [
+    "A",
+    "don't remind me"
+   ],
+   [
+    "C",
+    "loan with down payment, about 20% upfront"
+   ],
+   [
+    "A",
+    "yeah that's the plan, almost there"
+   ],
+   [
+    "B",
+    "good luck {A}"
+   ]
+  ]
+ },
+ {
+  "id": "en2-save-apartment-2",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "rent or buy, i keep changing my mind every day"
+   ],
+   [
+    "B",
+    "what does your bank account say"
+   ],
+   [
+    "A",
+    "it says \"rent\""
+   ],
+   [
+    "C",
+    "then rent for now and save"
+   ],
+   [
+    "A",
+    "sensible advice, i hate it"
+   ],
+   [
+    "B",
+    "haha"
+   ]
+  ]
+ },
+ {
+  "id": "en2-course-done-1",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "finished the accounting course!!"
+   ],
+   [
+    "B",
+    "congrats!"
+   ],
+   [
+    "A",
+    "now i need 30 days of experience too"
+   ],
+   [
+    "C",
+    "patience, it goes quick"
+   ],
+   [
+    "A",
+    "i'll be a real accountant soon"
+   ],
+   [
+    "B",
+    "fixed salary life, nice"
+   ]
+  ]
+ },
+ {
+  "id": "en2-course-done-2",
+  "konu": "kurs",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "got my real estate certificate today"
+   ],
+   [
+    "B",
+    "finally, how long did it take"
+   ],
+   [
+    "A",
+    "felt like forever, i used some hourglasses"
+   ],
+   [
+    "C",
+    "now salary plus commission, nice"
+   ],
+   [
+    "A",
+    "can't wait to sell something"
+   ]
+  ]
+ },
+ {
+  "id": "en2-course-start-1",
+  "konu": "kurs",
+  "kosul": [
+   "A.kursta"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "started the exam course for civil servant, so many days"
+   ],
+   [
+    "B",
+    "worth it, fixed salary forever"
+   ],
+   [
+    "A",
+    "even when i'm offline?"
+   ],
+   [
+    "C",
+    "yes, they get paid even if they don't log in"
+   ],
+   [
+    "A",
+    "ok this is the dream"
+   ]
+  ]
+ },
+ {
+  "id": "en2-raise-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my salary went up this month"
+   ],
+   [
+    "B",
+    "nice, how"
+   ],
+   [
+    "A",
+    "the index i guess, prices went up so salaries too"
+   ],
+   [
+    "C",
+    "salaries follow but a bit behind"
+   ],
+   [
+    "A",
+    "yeah my rent went up first, of course"
+   ],
+   [
+    "B",
+    "classic"
+   ]
+  ]
+ },
+ {
+  "id": "en2-raise-real-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "asked my boss for a raise in real life. he said \"we'll see\""
+   ],
+   [
+    "B",
+    "that's a no"
+   ],
+   [
+    "C",
+    "that's a \"maybe in 3 years\""
+   ],
+   [
+    "A",
+    "i knew it"
+   ],
+   [
+    "B",
+    "ask again with numbers"
+   ]
+  ]
+ },
+ {
+  "id": "en2-prices-countries-1",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "is rent the same for you guys in other countries"
+   ],
+   [
+    "B",
+    "think so, rates are the same everywhere for now"
+   ],
+   [
+    "C",
+    "the economy engine changes it later apparently"
+   ],
+   [
+    "A",
+    "so we'll have rich and poor countries?"
+   ],
+   [
+    "B",
+    "maybe, that's the plan i heard"
+   ],
+   [
+    "A",
+    "interesting"
+   ]
+  ]
+ },
+ {
+  "id": "en2-prices-countries-2",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "apartment prices feel the same in every city?"
+   ],
+   [
+    "B",
+    "yeah, district doesn't change prices right now"
+   ],
+   [
+    "C",
+    "maybe later"
+   ],
+   [
+    "A",
+    "so living in a fancy area is free basically"
+   ],
+   [
+    "B",
+    "in game yes lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-prices-countries-3",
+  "konu": "ekonomi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "who has the richest players, which country"
+   ],
+   [
+    "B",
+    "probably turkey, they've been playing longer"
+   ],
+   [
+    "C",
+    "they're grinding hard"
+   ],
+   [
+    "A",
+    "we need to catch up"
+   ],
+   [
+    "B",
+    "country ranking motivation"
+   ]
+  ]
+ },
+ {
+  "id": "en2-joke-pun-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "why did the accountant break up with the calculator"
+   ],
+   [
+    "B",
+    "why"
+   ],
+   [
+    "A",
+    "she felt he was always counting on her"
+   ],
+   [
+    "C",
+    "boooo"
+   ],
+   [
+    "B",
+    "i laughed, i'm ashamed"
+   ],
+   [
+    "A",
+    "thank you {B}"
+   ]
+  ]
+ },
+ {
+  "id": "en2-joke-pun-2",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i'm reading a book about anti gravity"
+   ],
+   [
+    "B",
+    "ok"
+   ],
+   [
+    "A",
+    "it's impossible to put down"
+   ],
+   [
+    "C",
+    "that's an old one"
+   ],
+   [
+    "A",
+    "old but gold"
+   ],
+   [
+    "B",
+    "like my phone"
+   ]
+  ]
+ },
+ {
+  "id": "en2-joke-pun-3",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my landlord asked me to pay rent on time"
+   ],
+   [
+    "B",
+    "fair request"
+   ],
+   [
+    "A",
+    "i said \"sure, what time is it?\""
+   ],
+   [
+    "C",
+    "{A} please"
+   ],
+   [
+    "B",
+    "he did not laugh did he"
+   ],
+   [
+    "A",
+    "he did not"
+   ]
+  ]
+ },
+ {
+  "id": "en2-joke-pun-4",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "tell me a joke, i need it"
+   ],
+   [
+    "B",
+    "what do you call a lazy kangaroo"
+   ],
+   [
+    "A",
+    "what"
+   ],
+   [
+    "B",
+    "a pouch potato"
+   ],
+   [
+    "C",
+    "that's terrible"
+   ],
+   [
+    "A",
+    "it's perfect, thank you"
+   ]
+  ]
+ },
+ {
+  "id": "en2-joke-courier-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i'm a courier, my legs are my business plan"
+   ],
+   [
+    "B",
+    "and your knees are the investors"
+   ],
+   [
+    "C",
+    "who are leaving"
+   ],
+   [
+    "A",
+    "ouch"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-compliment-turks-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "turkish players are so friendly, they always say welcome"
+   ],
+   [
+    "B",
+    "true, they made me feel at home"
+   ],
+   [
+    "C",
+    "they also give the best advice"
+   ],
+   [
+    "A",
+    "and they're always up, at any hour"
+   ],
+   [
+    "B",
+    "maybe they don't sleep"
+   ],
+   [
+    "C",
+    "tea power"
+   ]
+  ]
+ },
+ {
+  "id": "en2-compliment-turks-2",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "shout out to the turkish players who helped me with my loan"
+   ],
+   [
+    "B",
+    "they're the best"
+   ],
+   [
+    "C",
+    "they're like the teachers of this game"
+   ],
+   [
+    "A",
+    "seriously, i was lost"
+   ],
+   [
+    "B",
+    "teşekkürler turks"
+   ]
+  ]
+ },
+ {
+  "id": "en2-compliment-turks-3",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "the turkish channel is so lively, i just read it for fun"
+   ],
+   [
+    "B",
+    "can you understand it"
+   ],
+   [
+    "A",
+    "no, but the energy is great"
+   ],
+   [
+    "C",
+    "you'll pick words up"
+   ],
+   [
+    "A",
+    "i know \"abi\" and \"kanka\" already"
+   ],
+   [
+    "B",
+    "a fluent speaker"
+   ]
+  ]
+ },
+ {
+  "id": "en2-broken-turkish-1",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "merhaba arkadaslar, nasilsiniz?"
+   ],
+   [
+    "B",
+    "wow {A} you speak turkish now?"
+   ],
+   [
+    "A",
+    "i learn from the turkish chat"
+   ],
+   [
+    "C",
+    "good job, very nice"
+   ],
+   [
+    "A",
+    "tesekkur ederim, cok guzel"
+   ],
+   [
+    "B",
+    "i'm impressed"
+   ]
+  ]
+ },
+ {
+  "id": "en2-broken-turkish-2",
+  "konu": "selam",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "merhaba turkiye! ben {A}, iyi misiniz"
+   ],
+   [
+    "B",
+    "lol {A} learning turkish"
+   ],
+   [
+    "A",
+    "i try! is it correct?"
+   ],
+   [
+    "C",
+    "almost perfect"
+   ],
+   [
+    "A",
+    "yay. tesekkurler"
+   ],
+   [
+    "B",
+    "next step: ordering tea"
+   ]
+  ]
+ },
+ {
+  "id": "en2-broken-turkish-3",
+  "konu": "dil",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "iyi aksamlar herkese. did i say it right"
+   ],
+   [
+    "B",
+    "yes! good evening"
+   ],
+   [
+    "A",
+    "i practice every day with the turks"
+   ],
+   [
+    "C",
+    "they are good teachers"
+   ],
+   [
+    "A",
+    "they laugh at me but nicely"
+   ],
+   [
+    "B",
+    "that's love"
+   ]
+  ]
+ },
+ {
+  "id": "en2-broken-turkish-4",
+  "konu": "selam",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "gunaydin turk arkadaslar, cay hazir mi"
+   ],
+   [
+    "B",
+    "haha you know the culture already"
+   ],
+   [
+    "A",
+    "tea is life i learned"
+   ],
+   [
+    "C",
+    "they will adopt you soon"
+   ],
+   [
+    "A",
+    "i hope"
+   ]
+  ]
+ },
+ {
+  "id": "en2-oneword-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "mondays should be illegal"
+   ],
+   [
+    "B",
+    "true"
+   ],
+   [
+    "C",
+    "same"
+   ],
+   [
+    "D",
+    "facts"
+   ],
+   [
+    "A",
+    "wow full agreement, first time ever"
+   ]
+  ]
+ },
+ {
+  "id": "en2-oneword-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "just ate an entire pizza alone"
+   ],
+   [
+    "B",
+    "lol"
+   ],
+   [
+    "C",
+    "respect"
+   ],
+   [
+    "A",
+    "no regrets"
+   ],
+   [
+    "B",
+    "a few regrets?"
+   ],
+   [
+    "A",
+    "ok a few"
+   ]
+  ]
+ },
+ {
+  "id": "en2-oneword-3",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "so tired"
+   ],
+   [
+    "B",
+    "same"
+   ],
+   [
+    "C",
+    "same"
+   ],
+   [
+    "D",
+    "same but louder"
+   ],
+   [
+    "A",
+    "we're all a mess today"
+   ]
+  ]
+ },
+ {
+  "id": "en2-knowitall-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "land doesn't give rent so it's useless"
+   ],
+   [
+    "B",
+    "actually it gains value over time, everyone knows that"
+   ],
+   [
+    "A",
+    "ok ok mr. expert"
+   ],
+   [
+    "C",
+    "{B} is right though"
+   ],
+   [
+    "B",
+    "i'm always right"
+   ],
+   [
+    "C",
+    "not always"
+   ],
+   [
+    "B",
+    "mostly"
+   ]
+  ]
+ },
+ {
+  "id": "en2-knowitall-2",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i think civil servant is the best job"
+   ],
+   [
+    "B",
+    "wrong, real estate agent, salary plus commission"
+   ],
+   [
+    "C",
+    "depends on how much you play"
+   ],
+   [
+    "D",
+    "{C} said it right, active players earn more as couriers"
+   ],
+   [
+    "B",
+    "fine, i'll allow it"
+   ]
+  ]
+ },
+ {
+  "id": "en2-grumpy-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "no talking to me before coffee"
+   ],
+   [
+    "B",
+    "good morning {A}!"
+   ],
+   [
+    "A",
+    "i said no talking"
+   ],
+   [
+    "C",
+    "haha"
+   ],
+   [
+    "B",
+    "ok ok, enjoy your coffee"
+   ],
+   [
+    "A",
+    "...thanks"
+   ]
+  ]
+ },
+ {
+  "id": "en2-grumpy-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "this chat is too happy today, it's suspicious"
+   ],
+   [
+    "B",
+    "we're just in a good mood"
+   ],
+   [
+    "A",
+    "i don't trust it"
+   ],
+   [
+    "C",
+    "have a cookie {A}"
+   ],
+   [
+    "A",
+    "...fine. one cookie"
+   ],
+   [
+    "B",
+    "progress"
+   ]
+  ]
+ },
+ {
+  "id": "en2-shy-newbie-1",
+  "konu": "selam",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "um hi, sorry if i'm interrupting"
+   ],
+   [
+    "B",
+    "you're not interrupting, hi!"
+   ],
+   [
+    "A",
+    "ok good. i just wanted to read the chat"
+   ],
+   [
+    "C",
+    "read and type whenever you like"
+   ],
+   [
+    "A",
+    "thanks, everyone seems nice here"
+   ],
+   [
+    "B",
+    "we try"
+   ]
+  ]
+ },
+ {
+  "id": "en2-overtalk-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "guys i have news"
+   ],
+   [
+    "B",
+    "me too"
+   ],
+   [
+    "C",
+    "wait me first"
+   ],
+   [
+    "A",
+    "i got a new job"
+   ],
+   [
+    "B",
+    "i got a cat"
+   ],
+   [
+    "C",
+    "i burned my hand cooking"
+   ],
+   [
+    "A",
+    "ok {C} wins, are you ok?"
+   ],
+   [
+    "C",
+    "fine lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-overtalk-2",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "what's the best breakfast"
+   ],
+   [
+    "B",
+    "pancakes"
+   ],
+   [
+    "C",
+    "eggs"
+   ],
+   [
+    "D",
+    "pancakes"
+   ],
+   [
+    "B",
+    "told you"
+   ],
+   [
+    "C",
+    "eggs are better and i won't move on this"
+   ]
+  ]
+ },
+ {
+  "id": "en2-hobby-plants-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my plant is dying, any plant experts"
+   ],
+   [
+    "B",
+    "too much water probably"
+   ],
+   [
+    "A",
+    "i water it every day"
+   ],
+   [
+    "C",
+    "there you go, that's too much"
+   ],
+   [
+    "A",
+    "i was loving it to death"
+   ],
+   [
+    "B",
+    "literally"
+   ]
+  ]
+ },
+ {
+  "id": "en2-hobby-puzzle-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "1000 piece puzzle, 3 days in, half done"
+   ],
+   [
+    "B",
+    "the sky part is the worst"
+   ],
+   [
+    "A",
+    "the sky part is all blue, i'm losing my mind"
+   ],
+   [
+    "C",
+    "sort by shape"
+   ],
+   [
+    "A",
+    "i'll try that tonight"
+   ],
+   [
+    "B",
+    "pictures when done"
+   ]
+  ]
+ },
+ {
+  "id": "en2-hobby-reading-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "finished a book in one day, couldn't stop"
+   ],
+   [
+    "B",
+    "what kind"
+   ],
+   [
+    "A",
+    "mystery, the ending got me"
+   ],
+   [
+    "C",
+    "no spoilers"
+   ],
+   [
+    "A",
+    "wasn't going to, i'm not evil"
+   ],
+   [
+    "B",
+    "that's what an evil person says"
+   ]
+  ]
+ },
+ {
+  "id": "en2-hobby-photo-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "woke up early to take sunrise photos"
+   ],
+   [
+    "B",
+    "dedication"
+   ],
+   [
+    "A",
+    "and clouds ruined everything"
+   ],
+   [
+    "C",
+    "clouds are photos too"
+   ],
+   [
+    "A",
+    "wise words at 7 am"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-hobby-knit-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "learning to knit, my scarf is shaped like a triangle"
+   ],
+   [
+    "B",
+    "triangle scarves are a thing now"
+   ],
+   [
+    "A",
+    "really?"
+   ],
+   [
+    "B",
+    "no, but keep going"
+   ],
+   [
+    "C",
+    "i'd wear it"
+   ],
+   [
+    "A",
+    "thank you {C}"
+   ]
+  ]
+ },
+ {
+  "id": "en2-music-concert-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "going to a concert tonight, can't wait"
+   ],
+   [
+    "B",
+    "what kind of music"
+   ],
+   [
+    "A",
+    "rock, small local band"
+   ],
+   [
+    "C",
+    "small bands are the best live"
+   ],
+   [
+    "A",
+    "yeah you can actually see them"
+   ],
+   [
+    "B",
+    "have fun, save your voice"
+   ]
+  ]
+ },
+ {
+  "id": "en2-music-playlist-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my playlist is 400 songs and i skip all of them"
+   ],
+   [
+    "B",
+    "classic"
+   ],
+   [
+    "C",
+    "make a smaller one"
+   ],
+   [
+    "A",
+    "i tried, i added 400 more"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-work-courier-rain-1",
+  "konu": "is",
+  "kosul": [
+   "A.kurye"
+  ],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "delivering in the rain all day, i'm soaked"
+   ],
+   [
+    "B",
+    "the true courier life"
+   ],
+   [
+    "C",
+    "at least it's good money when you work hard"
+   ],
+   [
+    "A",
+    "yeah, that's the only reason"
+   ],
+   [
+    "B",
+    "dry socks waiting at home i hope"
+   ]
+  ]
+ },
+ {
+  "id": "en2-work-waiter-tip-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "a table left me the nicest note today"
+   ],
+   [
+    "B",
+    "aww"
+   ],
+   [
+    "A",
+    "said i was the best waiter they had in years"
+   ],
+   [
+    "C",
+    "made your day"
+   ],
+   [
+    "A",
+    "made my week"
+   ],
+   [
+    "B",
+    "frame it"
+   ]
+  ]
+ },
+ {
+  "id": "en2-work-cashier-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "cashier tip: never say \"next\" too loud, people jump"
+   ],
+   [
+    "B",
+    "lol"
+   ],
+   [
+    "C",
+    "i'm a pro at the \"next please\" smile"
+   ],
+   [
+    "A",
+    "that's a skill"
+   ],
+   [
+    "B",
+    "you two should teach a course"
+   ]
+  ]
+ },
+ {
+  "id": "en2-work-construction-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "construction work today, sun is brutal"
+   ],
+   [
+    "B",
+    "drink water"
+   ],
+   [
+    "A",
+    "i drink like a camel"
+   ],
+   [
+    "C",
+    "you're working toward master craftsman?"
+   ],
+   [
+    "A",
+    "yes, need the certificate plus 20 days on site"
+   ],
+   [
+    "B",
+    "almost there?"
+   ]
+  ]
+ },
+ {
+  "id": "en2-work-civil-servant-1",
+  "konu": "is",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "civil servant life: tea, files, tea, more files"
+   ],
+   [
+    "B",
+    "sounds relaxing"
+   ],
+   [
+    "A",
+    "it is, i'm not complaining"
+   ],
+   [
+    "C",
+    "and paid even when you're offline"
+   ],
+   [
+    "A",
+    "the best part honestly"
+   ]
+  ]
+ },
+ {
+  "id": "en2-loan-paid-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "paid off my loan, i'm free"
+   ],
+   [
+    "B",
+    "congrats!"
+   ],
+   [
+    "C",
+    "credit score up?"
+   ],
+   [
+    "A",
+    "yes, slowly going up"
+   ],
+   [
+    "B",
+    "now you can borrow more"
+   ],
+   [
+    "A",
+    "no thanks, i'm enjoying freedom for a while"
+   ]
+  ]
+ },
+ {
+  "id": "en2-loan-advice-1",
+  "konu": "kredi",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "thinking of a big loan for a cafe"
+   ],
+   [
+    "B",
+    "can you pay the installments if the cafe is slow"
+   ],
+   [
+    "A",
+    "...maybe?"
+   ],
+   [
+    "C",
+    "maybe isn't enough, 3 missed payments and it's foreclosure"
+   ],
+   [
+    "A",
+    "ok that scared me"
+   ],
+   [
+    "B",
+    "good, plan a bit more first"
+   ]
+  ]
+ },
+ {
+  "id": "en2-goal-chat-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "what's everyone's goal in this game"
+   ],
+   [
+    "B",
+    "own 10 apartments"
+   ],
+   [
+    "C",
+    "have the biggest cafe in my city"
+   ],
+   [
+    "D",
+    "survive the rent lol"
+   ],
+   [
+    "A",
+    "{D} relatable"
+   ],
+   [
+    "D",
+    "thank you"
+   ]
+  ]
+ },
+ {
+  "id": "en2-movie-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "watched a sad movie and now i'm crying over my dinner"
+   ],
+   [
+    "B",
+    "what movie"
+   ],
+   [
+    "A",
+    "something about an old dog"
+   ],
+   [
+    "C",
+    "never watch dog movies"
+   ],
+   [
+    "A",
+    "i know that now"
+   ],
+   [
+    "B",
+    "hug a pillow"
+   ]
+  ]
+ },
+ {
+  "id": "en2-series-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "finished a whole series in two days"
+   ],
+   [
+    "B",
+    "how many episodes"
+   ],
+   [
+    "A",
+    "don't ask"
+   ],
+   [
+    "C",
+    "now the empty feeling comes"
+   ],
+   [
+    "A",
+    "it's already here"
+   ],
+   [
+    "B",
+    "start another one"
+   ]
+  ]
+ },
+ {
+  "id": "en2-family-call-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "my mom called and asked if i'm eating well"
+   ],
+   [
+    "B",
+    "are you"
+   ],
+   [
+    "A",
+    "i had cereal for dinner"
+   ],
+   [
+    "C",
+    "don't tell her"
+   ],
+   [
+    "A",
+    "i said \"yes mom, vegetables\""
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-sibling-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my little brother took my charger again"
+   ],
+   [
+    "B",
+    "hide it"
+   ],
+   [
+    "A",
+    "i did, he found it"
+   ],
+   [
+    "C",
+    "buy two"
+   ],
+   [
+    "A",
+    "then he'll take both"
+   ],
+   [
+    "B",
+    "a smart kid"
+   ]
+  ]
+ },
+ {
+  "id": "en2-weather-wind-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "so windy in {A.sehir} my umbrella flew away"
+   ],
+   [
+    "B",
+    "goodbye umbrella"
+   ],
+   [
+    "C",
+    "it's in another city now"
+   ],
+   [
+    "A",
+    "it's free now"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-weather-perfect-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "perfect weather today, not hot not cold"
+   ],
+   [
+    "B",
+    "lucky"
+   ],
+   [
+    "C",
+    "enjoy it, rain tomorrow here"
+   ],
+   [
+    "A",
+    "i'm eating lunch outside"
+   ],
+   [
+    "B",
+    "jealous"
+   ]
+  ]
+ },
+ {
+  "id": "en2-weather-fog-1",
+  "konu": "hava",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "fog so thick this morning i couldn't see the street"
+   ],
+   [
+    "B",
+    "spooky"
+   ],
+   [
+    "C",
+    "drive slow"
+   ],
+   [
+    "A",
+    "i walked, and i still almost hit a pole"
+   ],
+   [
+    "B",
+    "poor pole"
+   ]
+  ]
+ },
+ {
+  "id": "en2-sleep-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "slept 10 hours and still tired"
+   ],
+   [
+    "B",
+    "too much sleep does that"
+   ],
+   [
+    "C",
+    "no such thing as too much sleep"
+   ],
+   [
+    "A",
+    "{C} i like you"
+   ],
+   [
+    "B",
+    "ok sleep fans"
+   ]
+  ]
+ },
+ {
+  "id": "en2-alarm-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "pressed snooze 7 times this morning"
+   ],
+   [
+    "B",
+    "a new record?"
+   ],
+   [
+    "A",
+    "no, the record is 11"
+   ],
+   [
+    "C",
+    "impressive and worrying"
+   ],
+   [
+    "A",
+    "that's my life motto"
+   ]
+  ]
+ },
+ {
+  "id": "en2-coffee-machine-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "the coffee machine at work broke"
+   ],
+   [
+    "B",
+    "nooo"
+   ],
+   [
+    "C",
+    "emergency"
+   ],
+   [
+    "A",
+    "everyone is walking around like zombies"
+   ],
+   [
+    "B",
+    "call the repair person now"
+   ]
+  ]
+ },
+ {
+  "id": "en2-phone-broke-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "dropped my phone, screen cracked"
+   ],
+   [
+    "B",
+    "ouch"
+   ],
+   [
+    "C",
+    "a screen protector next time"
+   ],
+   [
+    "A",
+    "i had one, it cracked too"
+   ],
+   [
+    "B",
+    "the phone is fighting you"
+   ]
+  ]
+ },
+ {
+  "id": "en2-chat-fast-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i blinked and missed 50 messages"
+   ],
+   [
+    "B",
+    "welcome to global chat"
+   ],
+   [
+    "C",
+    "it's like a river"
+   ],
+   [
+    "A",
+    "i'll just say hi and leave"
+   ],
+   [
+    "B",
+    "hi {A}"
+   ],
+   [
+    "A",
+    "hi! ok bye"
+   ]
+  ]
+ },
+ {
+  "id": "en2-chat-quiet-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "chat is quiet tonight"
+   ],
+   [
+    "B",
+    "everyone's asleep"
+   ],
+   [
+    "C",
+    "not me"
+   ],
+   [
+    "A",
+    "two people club"
+   ],
+   [
+    "B",
+    "three"
+   ],
+   [
+    "C",
+    "a party then"
+   ]
+  ]
+ },
+ {
+  "id": "en2-network-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "how many people from {A.sehir} are in this game"
+   ],
+   [
+    "B",
+    "not many i think, you're the first i see"
+   ],
+   [
+    "A",
+    "then i'm the king of {A.sehir}"
+   ],
+   [
+    "C",
+    "a lonely king"
+   ],
+   [
+    "A",
+    "a rich king soon"
+   ]
+  ]
+ },
+ {
+  "id": "en2-motivate-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "feeling like quitting, i'm not making progress"
+   ],
+   [
+    "B",
+    "what's your job right now"
+   ],
+   [
+    "A",
+    "{A.meslek}"
+   ],
+   [
+    "C",
+    "take a course, the next level pays more"
+   ],
+   [
+    "B",
+    "small steps, you'll see"
+   ],
+   [
+    "A",
+    "ok one more try"
+   ]
+  ]
+ },
+ {
+  "id": "en2-tips-share-1",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "sharing my best tip: don't let temp workers run your shop for long"
+   ],
+   [
+    "B",
+    "true, they're so expensive"
+   ],
+   [
+    "C",
+    "learned that the hard way"
+   ],
+   [
+    "A",
+    "we all did"
+   ],
+   [
+    "B",
+    "classic mistake"
+   ]
+  ]
+ },
+ {
+  "id": "en2-tips-share-2",
+  "konu": "oyun",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "tip from me: do the daily tasks every day"
+   ],
+   [
+    "B",
+    "for the hourglasses?"
+   ],
+   [
+    "A",
+    "yes, they save you so much waiting"
+   ],
+   [
+    "C",
+    "i forget them every time"
+   ],
+   [
+    "A",
+    "set a reminder"
+   ],
+   [
+    "B",
+    "good tip"
+   ]
+  ]
+ },
+ {
+  "id": "en2-property-tenant-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "rent from my apartment came in, i feel like a boss"
+   ],
+   [
+    "B",
+    "passive income feels good"
+   ],
+   [
+    "C",
+    "how many do you have"
+   ],
+   [
+    "A",
+    "just one, but it's a start"
+   ],
+   [
+    "B",
+    "one becomes two"
+   ],
+   [
+    "A",
+    "that's the plan"
+   ]
+  ]
+ },
+ {
+  "id": "en2-shop-vs-apt-1",
+  "konu": "mulk",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "should my next buy be a shop or an apartment"
+   ],
+   [
+    "B",
+    "both pay rent"
+   ],
+   [
+    "C",
+    "shops are good too"
+   ],
+   [
+    "A",
+    "i'll flip a coin"
+   ],
+   [
+    "B",
+    "leave it to fate"
+   ],
+   [
+    "C",
+    "heads apartment, tails shop"
+   ]
+  ]
+ },
+ {
+  "id": "en2-wordplay-1",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "i'm on a seafood diet"
+   ],
+   [
+    "B",
+    "what's that"
+   ],
+   [
+    "A",
+    "i see food and i eat it"
+   ],
+   [
+    "C",
+    "oldest joke in the book"
+   ],
+   [
+    "A",
+    "still works"
+   ],
+   [
+    "B",
+    "it does"
+   ]
+  ]
+ },
+ {
+  "id": "en2-wordplay-2",
+  "konu": "saka",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my bank account is like an onion"
+   ],
+   [
+    "B",
+    "layers?"
+   ],
+   [
+    "A",
+    "it makes me cry when i open it"
+   ],
+   [
+    "C",
+    "oof"
+   ],
+   [
+    "B",
+    "too real {A}"
+   ]
+  ]
+ },
+ {
+  "id": "en2-deep-talk-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "do you ever think about how small we are"
+   ],
+   [
+    "B",
+    "every night at this hour"
+   ],
+   [
+    "C",
+    "go to sleep, both of you"
+   ],
+   [
+    "A",
+    "{C} you're also awake"
+   ],
+   [
+    "C",
+    "...fair point"
+   ]
+  ]
+ },
+ {
+  "id": "en2-food-swap-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "what's a dish from your country i should try"
+   ],
+   [
+    "B",
+    "{B.sehir} has amazing soups"
+   ],
+   [
+    "C",
+    "try our dumplings"
+   ],
+   [
+    "D",
+    "come to my place, i'll cook everything"
+   ],
+   [
+    "A",
+    "{D} sending address?"
+   ],
+   [
+    "D",
+    "lol no"
+   ]
+  ]
+ },
+ {
+  "id": "en2-tea-time-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "tea break time"
+   ],
+   [
+    "B",
+    "already on my second cup"
+   ],
+   [
+    "C",
+    "tea with lemon or without"
+   ],
+   [
+    "A",
+    "without, always"
+   ],
+   [
+    "B",
+    "with milk here"
+   ],
+   [
+    "C",
+    "three people, three ways"
+   ]
+  ]
+ },
+ {
+  "id": "en2-breakfast-late-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "ogle",
+  "turlar": [
+   [
+    "A",
+    "ate breakfast at 1 pm, is it lunch now"
+   ],
+   [
+    "B",
+    "brunch"
+   ],
+   [
+    "A",
+    "fancy word for late"
+   ],
+   [
+    "C",
+    "lol"
+   ],
+   [
+    "B",
+    "fancy people eat late"
+   ]
+  ]
+ },
+ {
+  "id": "en2-diet-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "started a diet today"
+   ],
+   [
+    "B",
+    "good luck"
+   ],
+   [
+    "A",
+    "already thinking about cake"
+   ],
+   [
+    "C",
+    "first day is the hardest"
+   ],
+   [
+    "A",
+    "it's 9 am {C}"
+   ],
+   [
+    "C",
+    "...well"
+   ]
+  ]
+ },
+ {
+  "id": "en2-snack-1",
+  "konu": "yemek",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "chips or chocolate"
+   ],
+   [
+    "B",
+    "both"
+   ],
+   [
+    "C",
+    "both"
+   ],
+   [
+    "A",
+    "that's not how choices work"
+   ],
+   [
+    "B",
+    "it is tonight"
+   ]
+  ]
+ },
+ {
+  "id": "en2-neighbor-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "my neighbor brought me cookies for no reason"
+   ],
+   [
+    "B",
+    "best neighbor"
+   ],
+   [
+    "C",
+    "mine just complains about noise"
+   ],
+   [
+    "A",
+    "i'll share the cookies with you in spirit"
+   ],
+   [
+    "C",
+    "thanks i guess"
+   ]
+  ]
+ },
+ {
+  "id": "en2-holiday-end-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "first day back at work after vacation"
+   ],
+   [
+    "B",
+    "pain"
+   ],
+   [
+    "A",
+    "my brain is still on the beach"
+   ],
+   [
+    "C",
+    "give it a week"
+   ],
+   [
+    "A",
+    "a week of pain"
+   ],
+   [
+    "B",
+    "we've all been there"
+   ]
+  ]
+ },
+ {
+  "id": "en2-stuck-elevator-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "stuck in the elevator for 20 minutes today"
+   ],
+   [
+    "B",
+    "oh no"
+   ],
+   [
+    "A",
+    "i played this game the whole time"
+   ],
+   [
+    "C",
+    "productive"
+   ],
+   [
+    "A",
+    "earned a delivery too"
+   ],
+   [
+    "B",
+    "lol"
+   ]
+  ]
+ },
+ {
+  "id": "en2-cleaning-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "cleaning day, found 3 lost socks and a coin"
+   ],
+   [
+    "B",
+    "a treasure hunt"
+   ],
+   [
+    "C",
+    "rich now"
+   ],
+   [
+    "A",
+    "almost, need 9 million more coins"
+   ],
+   [
+    "B",
+    "keep cleaning"
+   ]
+  ]
+ },
+ {
+  "id": "en2-new-phone-game-1",
+  "konu": "oyun",
+  "kosul": [
+   "A.yeni"
+  ],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "just downloaded this game, everyone talks so fast"
+   ],
+   [
+    "B",
+    "welcome! you get used to it"
+   ],
+   [
+    "A",
+    "what do i do with 100k"
+   ],
+   [
+    "C",
+    "don't spend it all at once"
+   ],
+   [
+    "D",
+    "start a job first"
+   ],
+   [
+    "A",
+    "ok got it, job first"
+   ]
+  ]
+ },
+ {
+  "id": "en2-moving-house-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": null,
+  "turlar": [
+   [
+    "A",
+    "moving house this weekend, boxes everywhere"
+   ],
+   [
+    "B",
+    "worst job in the world"
+   ],
+   [
+    "C",
+    "label the boxes"
+   ],
+   [
+    "A",
+    "too late, they all say \"stuff\""
+   ],
+   [
+    "B",
+    "good luck finding your spoons"
+   ],
+   [
+    "A",
+    "i'll eat with my hands"
+   ]
+  ]
+ },
+ {
+  "id": "en2-late-bus-1",
+  "konu": "gundelik",
+  "kosul": [],
+  "saat": "sabah",
+  "turlar": [
+   [
+    "A",
+    "bus is 25 minutes late and it's freezing"
+   ],
+   [
+    "B",
+    "walk?"
+   ],
+   [
+    "A",
+    "it's too far"
+   ],
+   [
+    "C",
+    "hot drink while waiting"
+   ],
+   [
+    "A",
+    "no shop here, just me and the cold"
+   ],
+   [
+    "B",
+    "stay strong"
+   ]
+  ]
+ },
+ {
+  "id": "en2-farewell-1",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "gece",
+  "turlar": [
+   [
+    "A",
+    "ok i'm going to sleep for real this time"
+   ],
+   [
+    "B",
+    "you said that an hour ago"
+   ],
+   [
+    "A",
+    "this time is different"
+   ],
+   [
+    "C",
+    "sure"
+   ],
+   [
+    "A",
+    "ok bye bye"
+   ],
+   [
+    "B",
+    "night {A}"
+   ]
+  ]
+ },
+ {
+  "id": "en2-farewell-2",
+  "konu": "veda",
+  "kosul": [],
+  "saat": "aksam",
+  "turlar": [
+   [
+    "A",
+    "dinner time, see you later"
+   ],
+   [
+    "B",
+    "enjoy"
+   ],
+   [
+    "C",
+    "what are you having"
+   ],
+   [
+    "A",
+    "no idea yet, opening the fridge for a miracle"
+   ],
+   [
+    "B",
+    "good luck"
+   ]
+  ]
+ }
+]
