@@ -381,6 +381,42 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .sohbetEkran{position:fixed;left:0;right:0;top:0;height:100%;z-index:90;background:var(--zemin);display:flex;flex-direction:column;
   padding:0 max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px));opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .2s,transform .2s;font-size:15px}
 .sohbetEkran.acik{opacity:1;pointer-events:auto;transform:none}
+/* Sohbete giriş: kurallar ve izinler. Yalnız metin kayar; onay düğmesi hep altta görünür. */
+.onayEkran{position:fixed;inset:0;z-index:95;background:var(--zemin);display:flex;flex-direction:column;font-size:15px;
+  padding:0 max(14px,env(safe-area-inset-right,0px)) 0 max(14px,env(safe-area-inset-left,0px));opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .2s,transform .2s}
+.onayEkran.acik{opacity:1;pointer-events:auto;transform:none}
+.onBas{display:flex;align-items:center;gap:12px;padding:max(8px,env(safe-area-inset-top,0px)) 0 8px;border-bottom:1px solid var(--cizgi);flex:none}
+.onBas b{font-family:var(--baslik);font-size:18px;flex:1}
+.onBas .x{width:44px;height:44px;border:1px solid var(--cizgi);background:var(--kart);border-radius:12px;display:grid;place-items:center;color:var(--ikincil)}
+.onBas .x svg{width:14px;height:14px}
+.onKay{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:14px 4px 22px;user-select:text;-webkit-user-select:text}
+.onKay .ic{max-width:680px;margin:0 auto;line-height:1.5}
+.onKay h3{font-family:var(--baslik);font-size:16px;margin:20px 0 6px}
+.onKay h3:first-child{margin-top:0}
+.onKay p{margin:0 0 8px;color:var(--metin)}
+.onKay ul{margin:0 0 8px;padding-left:20px}
+.onKay li{margin:0 0 4px}
+.onKay .sik{color:var(--ikincil);font-size:14px}
+.onKutu{display:flex;align-items:flex-start;gap:12px;margin:10px 0 4px;padding:12px;border:1px solid var(--cizgi);border-radius:12px;background:var(--kart);cursor:pointer;user-select:none;-webkit-user-select:none;min-height:44px}
+.onKutu input{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;margin:0;border:2px solid var(--cizgi);border-radius:7px;background:var(--zemin);display:grid;place-items:center;cursor:pointer}
+.onKutu input:checked{background:var(--ana);border-color:var(--ana)}
+.onKutu input:checked::after{content:"";width:6px;height:11px;border:solid var(--anaUstu);border-width:0 3px 3px 0;transform:translateY(-1px) rotate(45deg)}
+.onKutu input:focus-visible{outline:2px solid var(--ana);outline-offset:2px}
+.onKutu span{flex:1;font-weight:600}
+.onKutu em{display:inline-block;font-style:normal;font-size:12px;font-weight:700;padding:1px 7px;border-radius:6px;margin-left:6px;vertical-align:1px}
+.onKutu em.z{background:var(--vurguYumusak);color:var(--vurgu)}
+.onKutu em.i{background:var(--anaYumusak);color:var(--ana)}
+.onAlt{flex:none;display:flex;align-items:center;gap:14px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));border-top:1px solid var(--cizgi)}
+.onIpucu{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ikincil);font-weight:600}
+.onIpucu .cubuk{height:5px;border-radius:3px;background:var(--cizgi);overflow:hidden}
+.onIpucu .cubuk i{display:block;height:100%;width:0;background:var(--ana);border-radius:3px;transition:width .15s}
+.onIpucu.tamam{color:var(--ana)}
+.onIpucu.uyari{color:var(--vurgu)}
+.onKabul{flex:none;height:48px;min-width:44px;border:0;border-radius:13px;padding:0 22px;background:var(--ana);color:var(--anaUstu);font-weight:800;font-size:16px;transition:opacity .15s}
+.onKabul:disabled{opacity:.38;cursor:not-allowed}
+.onAsagi{position:absolute;right:max(24px,calc(env(safe-area-inset-right,0px) + 12px));width:44px;height:44px;border-radius:22px;border:1px solid var(--cizgi);background:var(--kart);box-shadow:0 4px 14px rgba(0,0,0,.18);display:grid;place-items:center;color:var(--ana);transition:opacity .2s}
+.onAsagi svg{width:18px;height:18px}
+.onAsagi[hidden]{display:none}
 .shBas{display:flex;align-items:center;gap:10px;padding:max(8px,env(safe-area-inset-top,0px)) 0 8px;border-bottom:1px solid var(--cizgi);flex:none}
 .shBas .geri{height:36px;font-size:15px}
 .shSekme{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
@@ -564,6 +600,43 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
   <div class="shListe" id="shListe"></div>
   <div class="shYanitBar" id="shYanitBar" hidden><div id="shYanitMetin"></div><button type="button" id="shYanitKapat" aria-label="Yanıtı iptal et">×</button></div>
   <form class="shYaz" id="shForm" autocomplete="off"><input class="shGiris" id="shGiris" maxlength="300" placeholder="Mesaj yaz…" enterkeyhint="send" autocomplete="off" autocorrect="on"><button class="shGonder" id="shGonder" type="submit" disabled>Gönder</button></form>
+</div>
+
+<div class="onayEkran" id="onayEkran" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="onBaslik">
+  <div class="onBas"><b id="onBaslik">Sohbet kuralları ve izinler</b><button class="x" id="onKapat" aria-label="Kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="onKay" id="onKay"><div class="ic">
+    <h3>Sohbete hoş geldin</h3>
+    <p>Türkiye ve Global kanallarında binlerce oyuncuyla konuşabilirsin. Kanala yazdığın her mesajı o kanaldaki herkes görür. Girmeden önce lütfen kuralları ve izinleri sonuna kadar oku.</p>
+    <p class="sik">Aşağıdaki kutular hazır işaretli gelir. İstemediğin izni kaldırabilirsin; zorunlu olanlar işaretli olmadan sohbete girilemez.</p>
+    <h3>Kurallar</h3>
+    <ul>
+      <li>Saygılı ol. Hakaret, küfür, aşağılama ve nefret söylemi yok.</li>
+      <li>Kimseyi taciz etme, tehdit etme, rahatsız etme.</li>
+      <li>Siyasi, dini ya da etnik kavga çıkarma.</li>
+      <li>Spam, reklam ve dolandırıcılık yok. Oyun parasını gerçek parayla satmak ya da satın almak yasak.</li>
+      <li>Kişisel bilgini paylaşma: gerçek adın soyadın, telefonun, adresin, okulun, şifren. Ekip senden asla şifre istemez.</li>
+      <li>Başkasının kişisel bilgisini de paylaşma.</li>
+    </ul>
+    <p>Kurallara uyulmazsa mesaj gizlenir, sohbet bir süre kapanır; tekrarında hesap kapatılabilir. Rahatsız olduğun bir mesaja basılı tut: <b>Engelle</b> ya da <b>Şikâyet et</b>.</p>
+    <label class="onKutu"><input type="checkbox" data-izin="kural" checked><span>Sohbet kurallarına uyacağım.<em class="z">Zorunlu</em></span></label>
+    <h3>Mesajlarını kimler görür</h3>
+    <p>Türkiye ve Global kanallarına yazdıkların herkese açıktır. Şikâyet edilen mesajlar moderasyon ekibi tarafından incelenebilir.</p>
+    <p>Özel mesajların (DM) yalnız seninle karşındaki kişi arasındadır; şikâyet etmedikçe kimse okumaz ve hiçbir yere gönderilmez.</p>
+    <label class="onKutu"><input type="checkbox" data-izin="acik" checked><span>Kanala yazdıklarımın herkese görüneceğini ve şikâyet edilirse incelenebileceğini anladım.<em class="z">Zorunlu</em></span></label>
+    <h3>Yapay zekâyı geliştirme</h3>
+    <p>Oyundaki yapay zekâ karakterlerinin (NPC) seni daha iyi anlaması için Türkiye ve Global kanallarına yazdığın mesajlar, öncesindeki birkaç mesajla birlikte, kimliksiz olarak bize gönderilir. Bu mesajlarla karakterleri eğitiriz.</p>
+    <ul>
+      <li><b>Gönderilen:</b> mesajın metni, hangi kanal, saat, karakterlerin verdiği cevap.</li>
+      <li><b>Gönderilmeyen:</b> kullanıcı adın, hesap ya da cihaz kimliğin, konumun, özel mesajların.</li>
+      <li>Göndermeden önce telefonunda mesajdaki isimler, telefon numaraları, e-posta ve bağlantılar silinir.</li>
+      <li>Bu izni istediğin zaman <b>Ayarlar → Sohbet</b>'ten kapatabilirsin. Kapatınca henüz gönderilmemiş mesajlar da silinir.</li>
+    </ul>
+    <label class="onKutu"><input type="checkbox" data-izin="yz" checked><span>Kanal mesajlarım yapay zekâyı geliştirmek için kimliksiz gönderilebilir.<em class="i">İsteğe bağlı</em></span></label>
+    <h3>Son</h3>
+    <p>Bu metni istediğin zaman <b>Ayarlar → Sohbet</b>'ten yeniden okuyabilirsin. Kurallar ya da izinler değişirse sohbete girerken sana yeniden sorarız.</p>
+  </div></div>
+  <button class="onAsagi" id="onAsagi" type="button" aria-label="Aşağı kaydır"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="onAlt"><div class="onIpucu" id="onIpucu"><span id="onIpucuMetin">Kabul etmek için metni en sonuna kadar kaydır</span><div class="cubuk"><i id="onCubuk"></i></div></div><button class="onKabul" id="onKabul" type="button" disabled>Okudum, kabul ediyorum</button></div>
 </div>
 
 <div id="cevir">
@@ -845,9 +918,9 @@ addEventListener('visibilitychange',()=>{if(!document.hidden&&K.oyuncuId&&yetist
 document.querySelectorAll('[data-sohbet]').forEach(b=>b.onclick=()=>sohbetAc(b.dataset.sohbet));
 function ileriSar(gun){K.baslangic-=gun*GUN_MS;yetistir();hepsiniCiz()}
 function temaSec(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('toplum-tema',t)}catch(e){}}
-$('ayarlar').onclick=$('ayarlar2').onclick=()=>modal('Ayarlar',`<div class="altBaslik" style="margin-top:0">Görünüm</div><div class="deneme">${[['light','Açık'],['dark','Koyu']].map(([k,t])=>`<button data-tema="${k}" aria-pressed="${document.documentElement.dataset.theme===k}">${t}</button>`).join('')}</div><p class="ornek" style="margin-top:6px">Ses, bildirimler, dil ve hesap da burada olacak.</p><div class="altBaslik">Denemek için: zamanı ilerlet</div>
+$('ayarlar').onclick=$('ayarlar2').onclick=()=>modal('Ayarlar',`<div class="altBaslik" style="margin-top:0">Görünüm</div><div class="deneme">${[['light','Açık'],['dark','Koyu']].map(([k,t])=>`<button data-tema="${k}" aria-pressed="${document.documentElement.dataset.theme===k}">${t}</button>`).join('')}</div><div class="altBaslik">Sohbet</div><div class="deneme"><button id="aYz" aria-pressed="${!!(K.sohbet&&K.sohbet.onay&&K.sohbet.onay.yz)}">Yapay zekâ için mesaj gönder: ${K.sohbet&&K.sohbet.onay&&K.sohbet.onay.yz?'Açık':'Kapalı'}</button><button id="aKural">Sohbet kuralları</button></div><p class="ornek" style="margin-top:6px" id="aYzNot">${K.sohbet&&K.sohbet.onay?'Yalnız Türkiye ve Global kanal mesajların, kimliksiz. Özel mesajlar asla gönderilmez.'+(K.sohbet.yzKuyruk&&K.sohbet.yzKuyruk.length?' Bekleyen: '+K.sohbet.yzKuyruk.length+' mesaj.':''):'Sohbete ilk girişte sorulur.'}</p><p class="ornek" style="margin-top:6px">Ses, bildirimler, dil ve hesap da burada olacak.</p><div class="altBaslik">Denemek için: zamanı ilerlet</div>
   <div class="deneme"><button data-g="1">+1 gün</button><button data-g="7">+1 hafta</button><button data-g="30">+1 ay</button><button id="dSifirla" style="color:var(--tehlike)">Baştan başla</button></div><p class="ornek">Oyunda 1 gün = 30 dakika ve oyun kapalıyken de akar.</p><div class="altBaslik">Denemek için: şirket</div><div class="deneme"><button id="dSirket">Örnek şirket kur</button>${[['tek','Tek kişilik'],['ortakli','Ortaklı (çoğul)'],['kisitli','Sen müdürsün (yetkisiz)']].map(([k,t])=>`<button data-mod="${k}" aria-pressed="${K.sirket&&S().mod===k}">${t}</button>`).join('')}</div>`,
-  g=>{g.querySelectorAll('[data-tema]').forEach(b=>b.onclick=()=>{temaSec(b.dataset.tema);g.querySelectorAll('[data-tema]').forEach(x=>x.setAttribute('aria-pressed',x===b))});g.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{kapat();ileriSar(+b.dataset.g)});g.querySelector('#dSirket').onclick=()=>{kapat();if(!K.oyuncuId)return;ornekSirket()};g.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{if(!K.oyuncuId)return;if(!patronMu(G().p))return tost('Önce örnek şirket kur.',1);sirketModu(b.dataset.mod);g.querySelectorAll('[data-mod]').forEach(x=>x.setAttribute('aria-pressed',x===b));tost('Şirket denemesi: '+b.textContent)});g.querySelector('#dSifirla').onclick=()=>onay('Baştan başla?','Bütün ilerlemen silinir.','Sil ve baştan başla',()=>{try{localStorage.removeItem(ANAHTAR)}catch(e){}K=yeniKayit();sohbetKapat();ekranAd='ana';document.body.dataset.ekran='ana';panelKapat();hepsiniCiz();kayitEkrani()})});
+  g=>{g.querySelectorAll('[data-tema]').forEach(b=>b.onclick=()=>{temaSec(b.dataset.tema);g.querySelectorAll('[data-tema]').forEach(x=>x.setAttribute('aria-pressed',x===b))});g.querySelector('#aKural').onclick=()=>{if(!K.oyuncuId)return tost('Önce oyuncunu oluştur.',1);onayAc()};g.querySelector('#aYz').onclick=b=>{const s=SOH();if(!s.onay)return tost('Sohbete ilk girişte sorulur.',1);s.onay.yz=!s.onay.yz;if(!s.onay.yz)s.yzKuyruk=[];kaydet();const e=g.querySelector('#aYz');e.setAttribute('aria-pressed',s.onay.yz);e.textContent='Yapay zekâ için mesaj gönder: '+(s.onay.yz?'Açık':'Kapalı');g.querySelector('#aYzNot').textContent='Yalnız Türkiye ve Global kanal mesajların, kimliksiz. Özel mesajlar asla gönderilmez.';tost(s.onay.yz?'Açık: kanal mesajların kimliksiz gönderilecek.':'Kapalı: bekleyen mesajlar silindi.')};g.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{kapat();ileriSar(+b.dataset.g)});g.querySelector('#dSirket').onclick=()=>{kapat();if(!K.oyuncuId)return;ornekSirket()};g.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{if(!K.oyuncuId)return;if(!patronMu(G().p))return tost('Önce örnek şirket kur.',1);sirketModu(b.dataset.mod);g.querySelectorAll('[data-mod]').forEach(x=>x.setAttribute('aria-pressed',x===b));tost('Şirket denemesi: '+b.textContent)});g.querySelector('#dSifirla').onclick=()=>onay('Baştan başla?','Bütün ilerlemen silinir.','Sil ve baştan başla',()=>{try{localStorage.removeItem(ANAHTAR)}catch(e){}K=yeniKayit();sohbetKapat();ekranAd='ana';document.body.dataset.ekran='ana';panelKapat();hepsiniCiz();kayitEkrani()})});
 function siraVerisi(){const {w,p}=G();if(!K.npc||!K.oyuncuId)return null;return NPCYZ.siralama(w,K.npc,p.id,'İstanbul',KUR.USD)}
 $('siralama').onclick=()=>{const v=siraVerisi();if(!v)return;let aktif='Ülkemde ben';
   const kisi=(l,usd)=>{const i=l.findIndex(x=>x.oyuncu),ust=l.slice(0,5),ben=l[i];const satir=x=>[x.sira.toLocaleString('tr-TR'),kac(x.ad)+(x.ulke&&x.ulke!=='TR'?` (${x.ulke})`:''),usd?'$'+Math.round(x.usd).toLocaleString('tr-TR'):para(x.net),x.oyuncu?1:0];return ust.map(satir).concat(i>=5?[['…','',''],satir(ben)]:[])};
@@ -1148,7 +1221,53 @@ function sikayetEt(npcId,ad,m){const shAcik=$('sohbet').classList.contains('acik
   modal(ad+' kişisini şikâyet et',`<p style="margin:0 0 10px;color:var(--ikincil)">Neden şikâyet ediyorsun?</p><div class="msjMenu">${N.map((n,i)=>`<button data-neden="${i}">${n}</button>`).join('')}</div>`,
     g=>g.querySelectorAll('[data-neden]').forEach(b=>b.onclick=()=>{const s=SOH();(s.sikayet=s.sikayet||[]).push({npcId:npcId||null,ad,neden:N[+b.dataset.neden],mesaj:m?m.metin:null,kanal:m?shKanal:null,zaman:Date.now()});if(s.sikayet.length>100)s.sikayet.splice(0,s.sikayet.length-100);kaydet();don();tost('Şikâyetin alındı, moderasyon inceleyecek. Teşekkürler.')}))}
 /** sohbetAc('ulke') kanal açar; sohbetAc({dm:npcId}) özel mesaj açar. */
-function sohbetAc(k){if(!K.oyuncuId)return;if(k&&typeof k==='object'){shDm=k.dm}else{shDm=null;if(k)shKanal=k}
+// ---- Sohbete giriş onayı (kurallar + izinler) ----
+// Metin değişirse ONAY_SURUM artar; herkes sohbete girerken yeniden onaylar.
+const ONAY_SURUM=1;
+// Kutular hazır işaretli gelir (Eymen'in kararı). Not: AB'de (GDPR) isteğe bağlı izin için hazır işaretli kutu geçerli onay sayılmaz; yayından önce bölgeye göre false yapılabilir.
+const ONAY_ON_ISARET=true;
+let onaySonra=null,onaySonaVardi=false;
+function onayGecerli(){const o=SOH().onay;return !!o&&o.s===ONAY_SURUM}
+function onayDurum(){const e=$('onayEkran'),k=$('onKay'),kal=k.scrollHeight-k.clientHeight-k.scrollTop,oran=k.scrollHeight>k.clientHeight?Math.min(1,k.scrollTop/(k.scrollHeight-k.clientHeight)):1;
+  if(kal<=12)onaySonaVardi=true;$('onCubuk').style.width=(onaySonaVardi?100:oran*100)+'%';
+  const zorunluTamam=[...e.querySelectorAll('[data-izin="kural"],[data-izin="acik"]')].every(x=>x.checked);
+  const ip=$('onIpucu'),m=$('onIpucuMetin');ip.classList.remove('tamam','uyari');
+  if(!onaySonaVardi){m.textContent='Kabul etmek için metni en sonuna kadar kaydır'}
+  else if(!zorunluTamam){m.textContent='Sohbete girmek için zorunlu iki kutu işaretli olmalı';ip.classList.add('uyari')}
+  else{m.textContent='Okudun, sohbete girebilirsin';ip.classList.add('tamam')}
+  $('onKabul').disabled=!(onaySonaVardi&&zorunluTamam);
+  const a=$('onAsagi');a.hidden=kal<=12||onaySonaVardi;a.style.bottom=($('onayEkran').querySelector('.onAlt').offsetHeight+12)+'px'}
+function onayAc(sonra){const e=$('onayEkran'),o=SOH().onay;onaySonra=sonra||null;onaySonaVardi=false;
+  e.querySelectorAll('[data-izin]').forEach(x=>{x.checked=o&&o.s===ONAY_SURUM?(x.dataset.izin==='yz'?!!o.yz:true):ONAY_ON_ISARET});
+  $('onKay').scrollTop=0;telefonKapat();kapat();e.classList.add('acik');e.setAttribute('aria-hidden','false');requestAnimationFrame(onayDurum)}
+function onayKapat(){const e=$('onayEkran');e.classList.remove('acik');e.setAttribute('aria-hidden','true');onaySonra=null}
+$('onKay').addEventListener('scroll',onayDurum,{passive:true});
+addEventListener('resize',()=>{if($('onayEkran').classList.contains('acik'))onayDurum()});
+$('onayEkran').querySelectorAll('[data-izin]').forEach(x=>x.onchange=onayDurum);
+$('onAsagi').onclick=()=>{const k=$('onKay');k.scrollBy({top:k.clientHeight*.85,behavior:'smooth'})};
+$('onKapat').onclick=onayKapat;
+$('onKabul').onclick=()=>{if($('onKabul').disabled)return;const yz=$('onayEkran').querySelector('[data-izin="yz"]').checked,s=SOH();
+  s.onay={s:ONAY_SURUM,t:Date.now(),yz};if(!yz)s.yzKuyruk=[];kaydet();const f=onaySonra;onayKapat();if(f)f()};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('onayEkran').classList.contains('acik'))onayKapat()});
+// ---- Yapay zekâ verisi: kanal mesajları, kimliksiz, telefonda temizlenip sıraya konur ----
+// Özel mesajlar (DM) asla girmez. Gönderilecek adres henüz yok: YZ_VERI_URL boşken hiçbir şey gönderilmez, yalnız sıra tutulur.
+const YZ_VERI_URL='',YZ_KUYRUK_MAX=3000;
+function yzTemizle(t,adlar){let x=String(t);
+  x=x.replace(/https?:\/\/\S+|www\.\S+/gi,'[bağlantı]').replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g,'[eposta]').replace(/(?:\+?\d[\d\s().-]{8,}\d)/g,'[numara]');
+  adlar.filter(a=>a&&a.length>=2).sort((a,b)=>b.length-a.length).forEach(a=>{const e=a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');x=x.replace(new RegExp('(^|[^\\p{L}\\d])@?'+e+'(?=$|[^\\p{L}\\d]|\')','giu'),'$1[ad]')});
+  return x}
+function yzAdlar(kanal){const {p}=G(),a=new Set();if(p&&p.name){a.add(p.name);p.name.split(/[ _]+/).forEach(x=>x.length>=3&&a.add(x))}
+  (K.npc.kanal[kanal]||[]).slice(-40).forEach(m=>{if(m.ad){a.add(m.ad);m.ad.split(/[ _]+/).forEach(x=>x.length>=3&&a.add(x))}});return [...a]}
+function yzKaydet(kanal,metin,yanit,cevaplar){const s=SOH();if(!s.onay||!s.onay.yz||kanal==='sirket')return;const adlar=yzAdlar(kanal);
+  const once=(K.npc.kanal[kanal]||[]).slice(-4,-1).filter(m=>!m.sistem).map(m=>({k:m.oyuncu?'o':'n',m:yzTemizle(m.metin,adlar)}));
+  const q=s.yzKuyruk=s.yzKuyruk||[];
+  q.push({v:1,z:Math.floor(Date.now()/60000)*60,kanal,m:yzTemizle(metin,adlar),yanit:yanit?yzTemizle(yanit.metin,adlar):undefined,once,cevap:cevaplar.map(c=>yzTemizle(c.metin,adlar))});
+  if(q.length>YZ_KUYRUK_MAX)q.splice(0,q.length-YZ_KUYRUK_MAX)}
+function yzGonder(){const s=K&&K.sohbet;if(!YZ_VERI_URL||!s||!s.onay||!s.onay.yz||!s.yzKuyruk||!s.yzKuyruk.length)return;const paket=s.yzKuyruk.slice(0,300);
+  fetch(YZ_VERI_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({v:1,olay:paket}),keepalive:true}).then(r=>{if(r.ok){s.yzKuyruk.splice(0,paket.length);kaydet()}}).catch(()=>{})}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)yzGonder()});
+/** sohbetAc('ulke') kanal açar; sohbetAc({dm:npcId}) özel mesaj açar. */
+function sohbetAc(k){if(!K.oyuncuId)return;if(!onayGecerli())return onayAc(()=>sohbetAc(k));if(k&&typeof k==='object'){shDm=k.dm}else{shDm=null;if(k)shKanal=k}
   telefonKapat();kapat();$('shGiris').placeholder=shDm?'Mesaj yaz…':'Kanala yaz…';shAkis();shCiz();$('sohbet').classList.add('acik');$('sohbet').setAttribute('aria-hidden','false');shYerlestir();requestAnimationFrame(shAlta)}
 function sohbetKapat(){$('shGiris').blur();$('sohbet').classList.remove('acik');$('sohbet').setAttribute('aria-hidden','true');shDm=null;setTimeout(()=>{scrollTo(0,0);olcekle()},250)}
 /** Klavye açılınca görünen alan küçülür: sohbet ekranı tam o alana oturur. */
@@ -1172,6 +1291,7 @@ $('shForm').onsubmit=e=>{e.preventDefault();const m=$('shGiris').value.trim();if
     const m2=yt&&!yt.oyuncu&&yt.npcId&&!/^@/.test(m)?'@'+yt.ad.split(/[ _]/)[0]+' '+m:m;
     const r=NPCYZ.oyuncuMesaji(w,K.npc,kanal,m2,p,new Date().getHours(),sirketNpcIdleri(),yt&&!yt.oyuncu?{npcId:yt.npcId,metin:yt.metin}:null);
     if(r.uyari)K.npc.kanal[kanal].push({id:'u'+Date.now(),sistem:true,metin:r.uyari,zaman:Date.now()});
+    yzKaydet(kanal,m,yt,r.cevaplar);
     r.cevaplar.forEach(c=>cevapZamanla(c,()=>K.npc.kanal[kanal].push({id:'c'+Date.now()+Math.random(),npcId:c.npcId,ad:c.ad,metin:c.metin,zaman:Date.now()})));
     // Sohbetten doğan gerçek işler: "ben varım" diyenler başvuru olur, "tamam" denince gelen teklif özel mesajda
     if(r.adaylar&&r.adaylar.length&&patronMu(p)){const s2=S(),b2=isletmem(w,p),ml=C.BUSINESS_STAFF_PROFESSIONS[b2.type]||[];
