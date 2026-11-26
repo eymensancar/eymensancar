@@ -645,6 +645,9 @@
     ['selam', 1.3, '\\bhayirli (sabah|aksam|gun)\\w*'],
     ['selam', 2.5, '\\b(yeni (girdim|katildim)|(oyuna|kanala|aramiza) (girdim|katildim|yeni geldim))'],
     ['hal_hatir', 2.4, '\\bkeyf\\w* (yerinde|nasil)\\w*'],
+    ['hal_hatir', 3.2, '\\b(ben de|bende|ben|ben de cok) (iyiyim|iyi|idare ediyor|fena degil|iyi sayilir)\\b|^(iyiyim|iyidir|idare|eh iste|fena degil)\\b'],
+    ['iltifat', 3.2, '\\b(guzel|hos|cok guzel|ne guzel) (isim|ad|adin|ismin)\\b|\\b(ismin|adin) (cok )?(guzel|hos)\\w*'],
+    ['saka', 4.5, '\\bharclik\\w*|\\b(beni|bana) (evlat edin|sponsor ol)\\w*'],
     ['tebrik', 3.2, '\\b(helal\\w*|masallah|eline saglik|ellerine saglik|super olmus|guzel olmus|cok yakisti)\\b'],
     ['veda', 2.4, '\\b(hosca kal\\w*|ben (gideyim|kacayim|cikayim|yatayim|kaciyorum|gidiyorum)|(gideyim|kacayim|cikayim|yatayim) (ben|artik|hadi)|hadi (bana )?(eyvallah|gorusuruz|kactim)|gitmem (lazim|gerek)|ise gec kal\\w*)'],
     ['bayram', 3, '\\b(hayirli cumalar|cumaniz (mubarek|hayirli)\\w*|kandiliniz\\w*)'],
@@ -851,6 +854,9 @@
     r.kural = { niyet: r.niyet, guven: r.guven };
     r.model = { niyet: mEn, guven: Math.round(Math.exp(mP) * 100) / 100 };
     r.niyet = k.niyet; r.ikinci = k.ikinci; r.guven = k.guven;
+    // cok guclu kural (puan >= 4) ve emin olmayan model: kural kazanir
+    { var kEn = null, kP = 0; Object.keys(r.puanlar || {}).forEach(function (a) { if (r.puanlar[a] > kP) { kP = r.puanlar[a]; kEn = a; } });
+      if (kEn && kP >= 4 && r.model.guven < 0.6 && r.niyet !== kEn && !r.kufur) { r.ikinci = r.niyet; r.niyet = kEn; r.guven = Math.max(r.guven, 0.7); } }
     // hic kural tetiklenmediyse ve model de emin degilse tahmin yerine 'genel' (sohbette onceki konunun devami sayilsin)
     var kuralBos = !Object.keys(r.puanlar || {}).some(function (a) { return r.puanlar[a] > 0; });
     var esik = (secenek && secenek.esik != null) ? secenek.esik : NIYET_ESIK;
