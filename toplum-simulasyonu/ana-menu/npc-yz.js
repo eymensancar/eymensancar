@@ -1214,7 +1214,9 @@
     // İplikler: aynı anda birkaç konuşma, her biri kendi hızında ilerler
     if (ipliVar) {
       meta.ipl = meta.ipl || {}; let akt = (meta.ipl[kanal] || []).filter(ip => ip.t >= bas - 90e3);
-      const K = kanal === 'global' ? 24 : 16, ort = K / (R * (1 - (kanal === 'global' ? .08 : .14))) * 60e3;
+      // Erken biten iplikler hızı düşürürse aynı anda süren iplik sayısı kendiliğinden artar (hedef hız korunur)
+      meta.hiz = meta.hiz || {}; const Kt = kanal === 'global' ? 24 : 16, hz = meta.hiz[kanal] || R;
+      const K = Math.round(Math.min(Kt * 2.2, Math.max(Kt, Kt * R / Math.max(R * .3, hz)))), ort = K / (R * (1 - (kanal === 'global' ? .08 : .14))) * 60e3;
       const mesgul = () => new Set([].concat(...akt.map(ip => Object.values(ip.roller))));
       while (akt.length < K) { const ip = iplikBaslat(world, meta, kanal, rng, saat, bas + rng.next() * ort, mesgul(), new Set(akt.map(x => x.id))); if (!ip) break; akt.push(ip); }
       for (let guv = 0; guv < 400; guv++) {
@@ -1228,6 +1230,7 @@
         else en.t += ort * (.35 + rng.next() * 1.3) + (m ? m.metin.length * 60 : 0);
       }
       meta.ipl[kanal] = akt;
+      if (pencere > 1000) { const olcu = yeni.length / (pencere / 60e3); meta.hiz[kanal] = Math.round(((meta.hiz[kanal] || R) * .97 + olcu * .03) * 10) / 10; }
     }
     if (donus) yeni.push(donus);
     yeni.forEach(m => { m.metin = emojisiz(m.metin); if (kanal !== 'sirket') { gorulduEkle(meta, m.metin); if (m.ham) gorulduEkle(meta, m.ham); } delete m.ham; });
