@@ -1,0 +1,4557 @@
+[
+ {
+  "ad": "k8 NPC'ye kişisel yer",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kacinci semtte oturuyosun sen",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "orasi guzel mi",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   },
+   {
+    "m": "ev fiyatlari orda nasil",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "ayni",
+     "fark etmiyor"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 veda",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "tamam ben kaciyorum yarin gorusuruz",
+    "konu": "veda",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "gitmeden son soru kurye ayda ne kazanir",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 bir oyun ayı kaç saat",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "oyunda bir ay gercekte ne kadar",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b30\\b",
+     "otuz"
+    ]
+   },
+   {
+    "m": "maaslar o zaman mi yatiyo",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "ay sonu",
+     "ay sonunda",
+     "ayda bir",
+     "evet",
+     "ay donunce"
+    ]
+   },
+   {
+    "m": "bi gun kac dakika",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b60\\b",
+     "\\bsaat\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 yaş",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "karakterim yaslaniyo mu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "yaslanmiyor",
+     "yaslan",
+     "yas yok",
+     "yas kavram",
+     "hayir"
+    ]
+   },
+   {
+    "m": "emekli olabilir miyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "emeklilik"
+    ]
+   },
+   {
+    "m": "olum var mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 başlangıç parası",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "herkes ayni parayla mi basladi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "evet",
+     "\\b100\\b",
+     "yuz bin",
+     "esit"
+    ]
+   },
+   {
+    "m": "para bitince ne olcak",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\bis\\b",
+     "\\bise\\b",
+     "\\bisi\\b",
+     "zorunda",
+     "calis",
+     "kurye"
+    ]
+   },
+   {
+    "m": "yuz binle ilk ay idare eder mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gecim",
+     "kira",
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 olmayan: kumarhane",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "kumarhane acabilir miyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "kumar"
+    ]
+   },
+   {
+    "m": "peki bar ya da gece kulubu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 meslek değişince deneyim",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kuryeligi birakip garson olsam biriktirdigim gunler sifirlanir mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "gitmiyor",
+     "sayil",
+     "kalir",
+     "sifirlanmaz",
+     "silinmez",
+     "hayir"
+    ]
+   },
+   {
+    "m": "yani memurluk icin kuryelik gunleri de geciyo",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "sayilir",
+     "fark etmiyor",
+     "herhangi"
+    ]
+   },
+   {
+    "m": "usta icin de sayilir mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "insaat",
+     "hayir",
+     "sayilmaz",
+     "ozellikle",
+     "\\b20\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 takip neden",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "kurye en mantiklisi diyolar",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kurye",
+     "sartsiz",
+     "hemen",
+     "\\d"
+    ]
+   },
+   {
+    "m": "neden",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "sartsiz",
+     "hemen",
+     "isveren",
+     "\\d",
+     "cok kazan"
+    ]
+   },
+   {
+    "m": "garson neden daha az",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "gorev"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 argo kredi",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "ya bu banka bana para vermiyo ne alaka",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "limit",
+     "gelir",
+     "not",
+     "yarisi",
+     "yarisin",
+     "\\b50\\b",
+     "gecikmis"
+    ]
+   },
+   {
+    "m": "gecen ay calistim ama",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "limit",
+     "gelir",
+     "not",
+     "\\d"
+    ]
+   },
+   {
+    "m": "limit nasil hesaplaniyo tam",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelir",
+     "not",
+     "\\b100\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 yeni geldim uzun",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "merhaba ben yeniyim hicbisey bilmiyorum",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kariyer",
+     "\\bis\\b",
+     "\\bise\\b",
+     "\\bisi\\b",
+     "kurye",
+     "calis",
+     "gorev"
+    ]
+   },
+   {
+    "m": "para nasil kazaniliyo burda",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "calis",
+     "gorev",
+     "\\bis\\b",
+     "\\bise\\b",
+     "\\bisi\\b",
+     "mulk",
+     "kurye"
+    ]
+   },
+   {
+    "m": "ilk ne yapmaliyim",
+    "konu": "yardim",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kariyer",
+     "kurye",
+     "garson",
+     "\\bis\\b",
+     "\\bise\\b",
+     "\\bisi\\b"
+    ]
+   },
+   {
+    "m": "kursa ne zaman gitsem iyi olur",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "deneyim",
+     "\\b30\\b",
+     "kamu",
+     "biriktir"
+    ]
+   },
+   {
+    "m": "tsk ederim",
+    "konu": "tesekkur",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 tek şehir",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "sadece istanbul mu var",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "evet",
+     "istanbul",
+     "simdilik"
+    ]
+   },
+   {
+    "m": "ankaraya tasinabilir miyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "ileride",
+     "simdilik",
+     "istanbul"
+    ]
+   },
+   {
+    "m": "istanbulun neresindesiniz",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 patron kapatma",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "dukkani kapatirsam calisanlar ne olur",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "issiz"
+    ]
+   },
+   {
+    "m": "sonra ne is yapabilirim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "meslek",
+     "\\bsec\\b",
+     "secersin",
+     "\\bsecip",
+     "secebilirsin",
+     "kariyer",
+     "\\bgec\\b",
+     "\\bgecebilir",
+     "gecersin",
+     "\\bgecis"
+    ]
+   },
+   {
+    "m": "kapatmadan baska meslege gecebilir miyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gecemez",
+     "kapat",
+     "olmaz",
+     "hayir"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 işletme kredisi",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "isletmeyi kredi cekerek acabilir miyim",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "evet",
+     "\\b70\\b",
+     "\\b60\\b",
+     "kredi"
+    ]
+   },
+   {
+    "m": "yuzde kacini veriyolar",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b70\\b",
+     "yetmis"
+    ]
+   },
+   {
+    "m": "kac ay vadeli",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b60\\b",
+     "altmis"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 şans oyunu",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "piyango cekilisi var mi zengin olmak icin",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "gorev",
+     "calis"
+    ]
+   },
+   {
+    "m": "iddaa",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "bahis"
+    ]
+   },
+   {
+    "m": "gunluk gorev nedir",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b3\\b",
+     "gorev",
+     "kum saati"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 iki konu ve özür",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kurs fiyatlari ve kredi faizi nedir ikisini de soylerseniz sevinirim",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "kusura bakmayin cok soru sordum",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "o zaman sadece faizi soyleyin",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "1,5",
+     "1\\.5",
+     "%1",
+     "yuzde 1",
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 mal mısın",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "mal misin sen ya",
+    "konu": "hakaret",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "pardon yanlis kisiye yazdim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kredi notu kac olunca iyi sayilir",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zengin 4. kademe süre",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "en ust kademeye ne kadar surede cikilir",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b120\\b",
+     "\\b180\\b",
+     "\\d+ gun",
+     "\\bgun\\b",
+     "hafta"
+    ]
+   },
+   {
+    "m": "gercek hayatta kac gun eder",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "\\d+ gun",
+     "\\bgun\\b",
+     "hafta",
+     "\\bsaat\\b"
+    ]
+   },
+   {
+    "m": "deneyimi hizlandirmanin yolu yok mu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "kisa yol",
+     "sabir",
+     "hayir",
+     "olmaz"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 not aralığı",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kredi notu en fazla kac olabilir",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b900\\b"
+    ]
+   },
+   {
+    "m": "en dusuk",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b300\\b"
+    ]
+   },
+   {
+    "m": "herkes kacla basliyo",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b620\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dükkanıma garson",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "dukkanima garson alabilir miyim",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "market",
+     "kasiyer",
+     "muhasebe",
+     "olmaz",
+     "hayir",
+     "kafe"
+    ]
+   },
+   {
+    "m": "kac kisi calistirabilirim",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b2\\b",
+     "\\biki\\b"
+    ]
+   },
+   {
+    "m": "maas en az ne kadar olmali",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "asgari"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 hadi bb",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "neyse bb herkese",
+    "konu": "veda",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ay unuttum memur kursu kac gundu",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b3\\b",
+     "uc gun"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kardeşim garson",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "kardesim de oynuyo kafede garson ben de onun yanina girebilir miyim",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "ilan",
+     "basvur",
+     "kafe"
+    ]
+   },
+   {
+    "m": "kardesim isveren degil ama kafe baskasinin",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "ilan",
+     "basvur",
+     "sahib"
+    ]
+   },
+   {
+    "m": "garsonluk icin kurs lazim mi",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "hayir",
+     "sartsiz",
+     "istemiyor",
+     "gerekmiyor"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 hırsızlık",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "evime hirsiz girer mi oyunda",
+    "konu": "saka",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "olmaz",
+     "suc"
+    ]
+   },
+   {
+    "m": "dolandirici var mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   },
+   {
+    "m": "param guvende mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "sunucu",
+     "hile",
+     "guvende"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 şaka zengin",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "zengin olunca hepinize cay ismarlicam",
+    "konu": "saka",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "bagis yapsam daha mi iyi olur",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "itibar",
+     "bagis"
+    ]
+   },
+   {
+    "m": "en cok kim bagis yapti",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 yorgunluk",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "bugun cok paket attim yoruldum",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "dinlen o zaman diyosunuz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "yarin yine 5 paket var mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b5\\b",
+     "evet",
+     "yenilen",
+     "\\bbes\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 net servet",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "net servetim nasil hesaplaniyo",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "nakit",
+     "mulk",
+     "borc",
+     "isletme"
+    ]
+   },
+   {
+    "m": "kredim varsa dusuyo mu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "dus",
+     "borc"
+    ]
+   },
+   {
+    "m": "servetimi nerden goruyorum",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "ozet"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zekat",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "zekat verebiliyo muyuz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "ileride",
+     "gelecek",
+     "henuz",
+     "yok",
+     "bagis"
+    ]
+   },
+   {
+    "m": "bagis yapinca ne kazaniyorum",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "itibar"
+    ]
+   },
+   {
+    "m": "bayramda yapsam",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b2\\b",
+     "iki kat",
+     "kati"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 işsizlik maaşı dolaylı",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "devlet issizlere yardim ediyo mu burda",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "yardim yok",
+     "kendin"
+    ]
+   },
+   {
+    "m": "bari kira yardimi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok"
+    ]
+   },
+   {
+    "m": "en cabuk para nerden gelir",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kurye",
+     "hemen"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 bahar abla nerede",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "herkese merhabalar",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "siz nerelisiniz",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   },
+   {
+    "m": "ben antepten geldim istanbula",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dükkan aylık masraf",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "dukkanimin aylik sabit masrafi ne kadar",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "buna maaslar dahil mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "ayri",
+     "dahil degil",
+     "haric",
+     "maaslar"
+    ]
+   },
+   {
+    "m": "kafenin masrafi daha mi fazla",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "\\d",
+     "fazla",
+     "kafe"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 şirket yetkisi",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "calisanlarimdan birine ilan acma yetkisi verebilir miyim",
+    "konu": "yetki_istegi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "calisanlarim maaslarini kendileri goruyo mu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 elektrikçi olmak",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "elektrikci olmak istiyom yolu ne",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "usta",
+     "ustalik",
+     "belge"
+    ]
+   },
+   {
+    "m": "direk kursa yazilsam yeter mi ama",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "insaat",
+     "\\b20\\b",
+     "deneyim",
+     "yetmez"
+    ]
+   },
+   {
+    "m": "belgenin parasi ne kadar",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 patron kafe açmak ikinci",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "dukkanim var bi de kafe acabilir miyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kafe acmak kac para",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 evsahibi dükkan da",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "dukkan da almak istiyorum ne kadar",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "kirasi daireden fazla mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "fazla",
+     "dukkan",
+     "biraz"
+    ]
+   },
+   {
+    "m": "param yetmez krediyle olur mu",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "konut",
+     "kredi",
+     "limit",
+     "gelir",
+     "pesinat",
+     "evet"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zengin kararsız",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "3 milyonum var kararsizim",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "mulk",
+     "daire",
+     "dukkan",
+     "isletme",
+     "kurs",
+     "deneyim"
+    ]
+   },
+   {
+    "m": "dukkan alsam kira mi daha iyi kafe acsam mi",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kafe",
+     "dukkan",
+     "kira",
+     "deneyim",
+     "\\b60\\b"
+    ]
+   },
+   {
+    "m": "deneyimim 0",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "deneyim",
+     "calis",
+     "mulk",
+     "kira",
+     "\\d+ gun",
+     "\\bgun\\b"
+    ]
+   },
+   {
+    "m": "o zaman ilk ne yapayim",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "mulk",
+     "\\bis\\b",
+     "\\bise\\b",
+     "\\bisi\\b",
+     "calis",
+     "kurye",
+     "kurs",
+     "daire",
+     "dukkan"
+    ]
+   },
+   {
+    "m": "olur mantikli",
+    "konu": "oneri_kabul",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 konu değiştirme sonra geri",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "dukkan alsam ne kadar kira getirir",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "ha bu arada dun ne yaptiniz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "dukkan konusuna donersek fiyati ne",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 bayram kutlama",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "bayraminiz mubarek olsun herkese",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "siz bayramda ne yapiyosunuz",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   },
+   {
+    "m": "bayramda oyunda ozel bisey oluyo mu",
+    "konu": "bayram",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "bagis",
+     "\\b2\\b",
+     "iki kat",
+     "itibar",
+     "etkinlik"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 sıkıldım",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "cok sikildim yapacak bisey yok",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ne yapabilirim oneri",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kurye",
+     "\\bis\\b",
+     "\\bise\\b",
+     "\\bisi\\b",
+     "kurs",
+     "gorev",
+     "calis",
+     "kariyer"
+    ]
+   },
+   {
+    "m": "sohbet edelim biraz ne yapiyosunuz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kurs bitti tebrik",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "muhasebe kursunu bitirdim yeyyy",
+    "konu": "tebrik",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "simdi ne yapiyorum muhasebeci olmak icin",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kariyer",
+     "deneyim",
+     "\\b30\\b",
+     "\\bsec\\b",
+     "secersin",
+     "\\bsecip",
+     "secebilirsin"
+    ]
+   },
+   {
+    "m": "muhasebeci olunca ne kazanicam",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 iki soru kurs ve süre",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "emlak belgesinin ucreti ve suresi nedir",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d",
+     "\\b5\\b"
+    ]
+   },
+   {
+    "m": "sonra hemen emlakci olabilir miyim",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b30\\b",
+     "deneyim",
+     "kariyer"
+    ]
+   },
+   {
+    "m": "deneyimimi nerden gorurum",
+    "konu": "kisisel_meslek",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "profil",
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 eleman bulamıyorum",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "dukkanima kimse basvurmuyo napcam",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "ilan",
+     "maas",
+     "itibar",
+     "gecici"
+    ]
+   },
+   {
+    "m": "kimse gelmezse dukkan kapanir mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gecici",
+     "kapanmaz",
+     "durmaz",
+     "personel"
+    ]
+   },
+   {
+    "m": "gecici personel pahali mi",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "pahali",
+     "\\b20\\b",
+     "fazla",
+     "verim"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 ev satarsam kaça",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "dairemi satsam kaca giderdi",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d",
+     "\\b5\\b",
+     "piyasa"
+    ]
+   },
+   {
+    "m": "neden biraz eksik aliyolar",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "hemen",
+     "nakit",
+     "piyasa"
+    ]
+   },
+   {
+    "m": "oyuncuya satabilir miyim daha pahaliya",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "piyasa",
+     "henuz"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 semt farkı",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "kadikoyde ev bagcilardan pahali mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "ayni",
+     "fark etmiyor",
+     "degismiyor"
+    ]
+   },
+   {
+    "m": "nisantasi da mi ayni",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "ayni",
+     "fark",
+     "degismiyor",
+     "her yerde"
+    ]
+   },
+   {
+    "m": "ileride degisecek mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "ileride",
+     "degisebilir",
+     "bilmiyorum",
+     "belki"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 evsahibi zincir",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "selam ev sahipleri",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kiradaki dairemden bu ay ne kadar gelir gelecek",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "bundan vergi kesilir mi",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelir",
+     "vergi",
+     "dilim",
+     "\\b30\\b",
+     "toplan"
+    ]
+   },
+   {
+    "m": "bakim masrafi da dusuluyor mu",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "bakim",
+     "\\baz\\b",
+     "evet",
+     "kucuk"
+    ]
+   },
+   {
+    "m": "net ne kalir",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "kira"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 döviz lisansı neye yarar",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "doviz lisansi ne ise yariyo",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "doviz burosu",
+     "buro"
+    ]
+   },
+   {
+    "m": "kac kisiyle donuyo o buro",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b3\\b",
+     "\\buc\\b"
+    ]
+   },
+   {
+    "m": "buroyu acmak icin sermaye ne kadar",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b6\\b",
+     "\\balti\\b",
+     "milyon"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 slm nbr",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "slm nbr millet",
+    "konu": "selam",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "iyiyim de bi is lazim bana",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "somut"
+    ]
+   },
+   {
+    "m": "nerden bakiyoz ilanlara",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kariyer",
+     "ilan"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 en kısa kurs",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "en cabuk biten kurs hangisi",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kamu",
+     "\\b3\\b",
+     "uc gun"
+    ]
+   },
+   {
+    "m": "o neyi aciyo",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "memur"
+    ]
+   },
+   {
+    "m": "ne kadar tutuyo",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "memur olmak icin baska ne lazim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b30\\b",
+     "deneyim"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 itiraz kurye",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "en iyi kazanan ilk is hangisi",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kurye"
+    ]
+   },
+   {
+    "m": "bence garson daha iyi",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kurye",
+     "garson",
+     "\\d"
+    ]
+   },
+   {
+    "m": "yok bence yanlis biliyosun",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kurye",
+     "\\d",
+     "gorev"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 haftada bir giren",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "ben haftada bi iki girebilirim ancak bana hangi meslek uyar",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "memur",
+     "muhasebe",
+     "sabit",
+     "maasli"
+    ]
+   },
+   {
+    "m": "gorev yapmasam maasim kesilmez di mi",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kesilmez",
+     "yatar",
+     "evet",
+     "girmesen",
+     "sabit"
+    ]
+   },
+   {
+    "m": "hangisi daha cok veriyo ikisinden",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "muhasebe"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 ciroyu artırmak",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "satislarim dusuk nasil arttiririm",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yonet",
+     "kadro",
+     "kalite",
+     "calisan",
+     "konum"
+    ]
+   },
+   {
+    "m": "gunde kac kere yonetebiliyorum",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b3\\b",
+     "\\buc\\b"
+    ]
+   },
+   {
+    "m": "musteriler kimler zaten",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "npc",
+     "oyunun"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 tatil",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "tatile cikinca paralar ne olur",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "yani gelmesem kurye olarak kazanir miyim",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kazanmaz",
+     "gelmez",
+     "gorev",
+     "hayir",
+     "girmezsen"
+    ]
+   },
+   {
+    "m": "memur olsaydim",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yatar",
+     "evet",
+     "sabit",
+     "girmesen"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 yalnızlık",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "kimse benimle konusmuyo",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "burda arkadas edinilir mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 çalışana ne kadar vereyim",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "kasiyere kac lira maas vereyim sizce",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d",
+     "asgari"
+    ]
+   },
+   {
+    "m": "az verirsem ne olur",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "moral",
+     "istifa",
+     "zam"
+    ]
+   },
+   {
+    "m": "asgari ucret kac su an",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 peşinatı bilmeyen",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "krediyle ev alsam elimde ne kadar olmasi lazim",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "pesinat",
+     "\\b20\\b",
+     "\\d"
+    ]
+   },
+   {
+    "m": "gerisini banka mi veriyo",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "banka",
+     "kredi",
+     "kalan"
+    ]
+   },
+   {
+    "m": "aylik ne kadar oderim",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "taksit",
+     "\\d",
+     "banka"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zengin müteahhit uzun",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "muteahhitlik belgesi icin kursa yazildim kac gun bekleyecegim",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b15\\b",
+     "on bes"
+    ]
+   },
+   {
+    "m": "bitince hemen muteahhit olurum herhalde",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b180\\b",
+     "\\b700\\b",
+     "deneyim",
+     "sermaye",
+     "\\b12\\b"
+    ]
+   },
+   {
+    "m": "12 milyon nerde bende 3 var",
+    "konu": "dert",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "biriktir",
+     "mulk",
+     "kira",
+     "isletme",
+     "k[aâ]r\\b",
+     "k[aâ]r[ıi]"
+    ]
+   },
+   {
+    "m": "nasil buyuturum bu parayi",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "mulk",
+     "isletme",
+     "kira",
+     "kafe",
+     "dukkan"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 konu değiştirme kredi-hava",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kredi notum ne kadar",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "bu arada bugun cok sicak di mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kredi limitim kac peki",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d",
+     "limit"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 müteahhit not şartı",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "muteahit olmak icin kredi notum kac olmali",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b700\\b",
+     "yedi yuz"
+    ]
+   },
+   {
+    "m": "benimki kac",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "nasil yukseltirim hizlica",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "taksit",
+     "zamaninda",
+     "ode",
+     "itibar",
+     "bagis"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 hakaret ve dönüş",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "hepiniz salaksiniz hicbiriniz cevap vermiyo",
+    "konu": "hakaret",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ozur dilerim gerginim biraz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kurye nasil olunur",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kariyer",
+     "sartsiz",
+     "direkt",
+     "hemen"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dükkan mı daire mi yatırım",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "kira icin dukkan mi daire mi daha karli",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "dukkan"
+    ]
+   },
+   {
+    "m": "fiyat farki ne",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "dukkani alinca isletme acmam gerekiyo mu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "hayir",
+     "ayri",
+     "kira",
+     "gerek yok"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dolaylı ev",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "kira vermekten kurtulmanin yolu ne",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\bev\\b",
+     "\\bevi\\b",
+     "\\bevin\\b",
+     "daire",
+     "tasin"
+    ]
+   },
+   {
+    "m": "krediyle de olur mu",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "konut",
+     "evet",
+     "pesinat",
+     "\\b120\\b",
+     "olur"
+    ]
+   },
+   {
+    "m": "pesinat ne kadar",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "\\b20\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 sigorta",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "evimi sigortalatabilir miyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "duymadim"
+    ]
+   },
+   {
+    "m": "deprem olursa ev gider mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   },
+   {
+    "m": "ev yansa ne olur",
+    "konu": "saka",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kira öder mi ev sahibi",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "benim dairem var ama kirada oturuyorum neden kira kesiliyo",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "tasin",
+     "kira",
+     "oturmuyorsan"
+    ]
+   },
+   {
+    "m": "nasil tasinicam",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "mulk",
+     "tasin"
+    ]
+   },
+   {
+    "m": "tasininca o daireden kira gelmez di mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelmez",
+     "getirmez",
+     "evet",
+     "dogru"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 patron çalışan izin",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "calisanim gelmiyo oyuna ne olur",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "gecici",
+     "npc",
+     "verim",
+     "maas",
+     "gorev"
+    ]
+   },
+   {
+    "m": "maasini tam mi oduyorum",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b20\\b",
+     "eksik",
+     "tam yat",
+     "tam oden",
+     "tam al",
+     "gorev"
+    ]
+   },
+   {
+    "m": "ayda kac gorev yapmali",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b20\\b",
+     "yirmi"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 itiraz vergi",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "vergi var mi burda",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "vergi",
+     "dilim",
+     "yuzde",
+     "%",
+     "evet"
+    ]
+   },
+   {
+    "m": "yalan oyunda vergi olmaz",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "vergi",
+     "dilim",
+     "\\d"
+    ]
+   },
+   {
+    "m": "kac yuzde kesiliyo yani",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b20\\b",
+     "\\b30\\b",
+     "yuzde"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 teklif NPC'ye",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "biri dairemi almak ister mi",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "fiyat soyleyen olursa yazsin",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   },
+   {
+    "m": "piyasaya satsam daha mi iyi",
+    "konu": "mulk_satiyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b5\\b",
+     "piyasa",
+     "hemen"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kurye uzun takip",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kuryelik guzel de daha fazla kazanmak istiyorum",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kurs",
+     "usta",
+     "muhasebe",
+     "memur",
+     "kademe"
+    ]
+   },
+   {
+    "m": "muhasebe icin kac gunum olmali",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b30\\b",
+     "otuz"
+    ]
+   },
+   {
+    "m": "kursu simdi alsam olur mu deneyim dolmadan",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "olur",
+     "dolarken",
+     "kazan"
+    ]
+   },
+   {
+    "m": "kursun parasi ne",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "bitince kendiliginden mi gecerim",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kariyer",
+     "\\bsec\\b",
+     "secersin",
+     "\\bsecip",
+     "secebilirsin",
+     "otomatik",
+     "kendin"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kurye kredi planı",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "ev almak istiyorum kuryeyim",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d",
+     "pesinat",
+     "kredi",
+     "daire"
+    ]
+   },
+   {
+    "m": "bu gelirle konut kredisi cikar mi",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelir",
+     "yarisi",
+     "yarisin",
+     "\\b50\\b",
+     "taksit",
+     "pesinat",
+     "limit"
+    ]
+   },
+   {
+    "m": "taksit gelirin yarisini gecemez demek ne demek",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b50\\b",
+     "yarisi",
+     "yarisin",
+     "taksit",
+     "gelir"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 NPC kişisel ev",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "siz kirada mi oturuyosunuz",
+    "konu": "kisisel_yer",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "kiraniz ne kadar",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "ben de kiradayim ev almak istiyorum",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "pesinat",
+     "kredi",
+     "daire"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kira artışı",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "kiraya verdigim dairenin kirasi artiyo mu zamanla",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "artiyor",
+     "artar",
+     "evet",
+     "deger",
+     "fiyat"
+    ]
+   },
+   {
+    "m": "ne kadar getiriyo su an",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "kiraci arayan var mi bulmam lazim mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gerek yok",
+     "npc",
+     "kendiliginden",
+     "aramana"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 usta mı muhasebe mi",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "usta mi olayim muhasebeci mi",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "usta",
+     "muhasebe",
+     "iscilik",
+     "belge"
+    ]
+   },
+   {
+    "m": "hangisinin kursu daha uzun",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "muhasebe",
+     "\\b10\\b"
+    ]
+   },
+   {
+    "m": "hangisinin parasi daha cok",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "usta",
+     "muhasebe"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 iyi geceler",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "iyi geceler millet ben yatiyorum",
+    "konu": "veda",
+    "beklenen": [
+     "cevap_yok_olabilir",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "pardon yatmadan son soru kurs gece de ilerliyo mu",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "evet",
+     "akar",
+     "ilerler",
+     "gecer"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zengin parayla kademe",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "param cok direk muteahhit olayim",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "deneyim",
+     "\\b180\\b",
+     "belge",
+     "\\b700\\b",
+     "kurs"
+    ]
+   },
+   {
+    "m": "parayla deneyim alinmiyo mu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "alinmaz",
+     "atlanmaz",
+     "hayir",
+     "olmaz",
+     "atlanmiyor"
+    ]
+   },
+   {
+    "m": "gercek parayla da mi olmuyo",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "olmuyor",
+     "hayir",
+     "olmaz",
+     "atlanmiyor",
+     "atlanmaz"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kurye işe almak",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "dukkanima kurye alsam",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "olmaz",
+     "calismaz",
+     "hayir",
+     "kurye",
+     "isveren"
+    ]
+   },
+   {
+    "m": "memur da olmaz di mi",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "olmaz",
+     "calismaz",
+     "hayir",
+     "isveren"
+    ]
+   },
+   {
+    "m": "muhasebeci olur mu",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "olur",
+     "butun"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 bekleyen ilanım",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "markete basvurdum hala cevap yok",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "bekle",
+     "kum saati",
+     "isveren",
+     "kabul"
+    ]
+   },
+   {
+    "m": "hizlandirmanin yolu var mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kum saati"
+    ]
+   },
+   {
+    "m": "kum saatini nerden bulcam",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gorev",
+     "gunluk",
+     "magaza",
+     "\\b3\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 patron kadro dolu",
+  "durum": "patron",
+  "turlar": [
+   {
+    "m": "3. bir eleman alabilir miyim dukkana",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b2\\b",
+     "\\biki\\b",
+     "dolu",
+     "sabit",
+     "olmaz"
+    ]
+   },
+   {
+    "m": "dolu kadroda birini cikarirsam ne olur",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "moral",
+     "tepki",
+     "gecici",
+     "dus"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dolaylı ay sonu",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "ay sonu param yetmezse ne olur",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "borc",
+     "gecikmis",
+     "not",
+     "itibar",
+     "dus"
+    ]
+   },
+   {
+    "m": "bu borc nasil kapanir",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "calis",
+     "gelince",
+     "kapat"
+    ]
+   },
+   {
+    "m": "yatirim yapamaz miyim o zaman",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "kapali",
+     "yapamazsin",
+     "kapanana",
+     "hayir"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dış ticaret",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "ithalat ihracat isine girmek istiyorum",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "dis ticaret",
+     "\\b6\\b",
+     "milyon",
+     "\\b120\\b",
+     "kurs"
+    ]
+   },
+   {
+    "m": "egitimi kac gunluk",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b10\\b",
+     "\\bon gun"
+    ]
+   },
+   {
+    "m": "ne kadar tutuyo",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zengin ortak",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "biriyle ortak dukkan acmak istiyorum",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "ileride",
+     "henuz"
+    ]
+   },
+   {
+    "m": "ne zaman gelir ortaklik",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "bilmiyorum",
+     "sonraki",
+     "guncelleme",
+     "gelecek",
+     "belli degil"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 inşaat yolu",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "insaatta calismanin bi avantaji var mi",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "usta",
+     "basamak",
+     "ustalik"
+    ]
+   },
+   {
+    "m": "kac gun calismam lazim usta icin",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b20\\b",
+     "yirmi"
+    ]
+   },
+   {
+    "m": "iscilik ne kadar kazandirir gunluk",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kuryeliği bırakmak",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kuryelikten sıkıldım bırakcam nerden yapılıyo",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kariyer",
+     "istifa"
+    ]
+   },
+   {
+    "m": "biraktiktan sonra para gelmez herhalde",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelmez",
+     "kesil",
+     "yok",
+     "hayir"
+    ]
+   },
+   {
+    "m": "yerine ne yapayim",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kurs",
+     "memur",
+     "muhasebe",
+     "usta",
+     "garson",
+     "kasiyer",
+     "emlak"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 olmayan: inşaat projesi",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "rezidans projesi yapmak istiyorum",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "ileride",
+     "henuz",
+     "sonraki"
+    ]
+   },
+   {
+    "m": "avm",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "ileride",
+     "henuz"
+    ]
+   },
+   {
+    "m": "ihaleye girebilir miyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "ileride",
+     "henuz"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 evsahibi vergi",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "evim icin her yil vergi mi oduyorum",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "binde",
+     "\\b2\\b",
+     "emlak vergisi",
+     "\\baz\\b",
+     "evet"
+    ]
+   },
+   {
+    "m": "kira gelirimden de kesiliyo mu",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelir",
+     "vergi",
+     "dilim",
+     "\\b30\\b",
+     "toplan"
+    ]
+   },
+   {
+    "m": "yilda ne kadar tutar",
+    "konu": "ekonomi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d",
+     "binde",
+     "\\baz\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 takip zamiri",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "muhasebe kursu kac lira",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "onu bitirince ne olurum",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "muhasebeci"
+    ]
+   },
+   {
+    "m": "o ne kadar kazaniyo",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "ondan sonra ne yapayim",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "isletme",
+     "mulk",
+     "kafe",
+     "dukkan",
+     "biriktir"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zaman geri",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "kum saatini ters cevirsem zaman geri gider mi :)",
+    "konu": "saka",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ciddi soru kum saati kac gun kisaltir",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b1\\b",
+     "bir gun",
+     "bir oyun gunu"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 taşeron kurmak",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "taseron firma acmak istiyorum",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "usta",
+     "\\b20\\b",
+     "sermaye",
+     "milyon",
+     "1,2"
+    ]
+   },
+   {
+    "m": "kim calisir orda",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "insaat",
+     "usta",
+     "muhasebe"
+    ]
+   },
+   {
+    "m": "kac kisi",
+    "konu": "eleman_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b4\\b",
+     "dort"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dolaylı kredi",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "bankaya borcumu odemezsem basima ne gelir",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "not",
+     "icra",
+     "\\b40\\b",
+     "dus"
+    ]
+   },
+   {
+    "m": "ilk seferde de mi icra",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b3\\b",
+     "\\buc\\b",
+     "hayir",
+     "not"
+    ]
+   },
+   {
+    "m": "not kac duser",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b40\\b",
+     "kirk"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 iki işte birden",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "gunduz kurye aksam garson olsam olur mu",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "tek",
+     "olmaz",
+     "hayir",
+     "\\biki\\b"
+    ]
+   },
+   {
+    "m": "ek gelir icin baska yol yok mu yani",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kira",
+     "mulk"
+    ]
+   },
+   {
+    "m": "peki isimi degistirmek istersem",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kariyer",
+     "\\bgec\\b",
+     "\\bgecebilir",
+     "gecersin",
+     "\\bgecis",
+     "meslek"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 konu değiştirme ev-kurs",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "daire kac para",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "neyse bosver kurs fiyatlari nasil",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "en pahalisi",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "muteahhit"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 işsiz itiraz zincir",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "kurye olmak icin motor almak lazim mi",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "gerek yok",
+     "sart yok",
+     "almana",
+     "yok",
+     "hayir"
+    ]
+   },
+   {
+    "m": "inanmiyorum gercek hayatta lazim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "sart yok",
+     "gerek yok",
+     "yok",
+     "sartsiz"
+    ]
+   },
+   {
+    "m": "ok peki nerden baslicam",
+    "konu": "is_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kariyer"
+    ]
+   },
+   {
+    "m": "kurs da istemiyo di mi",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "istemiyor",
+     "yok",
+     "hayir",
+     "sartsiz",
+     "gerekmiyor"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 şaka kurye",
+  "durum": "kurye",
+  "turlar": [
+   {
+    "m": "kuryeyim ama motorum yok yuruyerek mi tasiyorum paketleri :D",
+    "konu": "saka",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "ciddi soruyorum arac lazim mi",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gerek yok",
+     "sart yok",
+     "almana",
+     "yok",
+     "hayir"
+    ]
+   },
+   {
+    "m": "paket basina kac lira",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 mülk arıyorum",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "satilik dukkan arayan biriyim elinde olan var mi",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "somut"
+    ]
+   },
+   {
+    "m": "piyasadan alsam fiyat ne",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   },
+   {
+    "m": "pazarlik olur mu",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "sabit",
+     "herkese ayni",
+     "kirilmiyor",
+     "olmaz"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 NPC hedef",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "senin hedefin ne bu oyunda",
+    "konu": "kisisel_meslek",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "bende ev almak istiyorum",
+    "konu": "mulk_ariyorum",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "daire",
+     "\\d",
+     "pesinat",
+     "kredi"
+    ]
+   },
+   {
+    "m": "peki pesinati nasil biriktiririm",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "calis",
+     "biriktir",
+     "kurs",
+     "gorev",
+     "maas"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kefil",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "kredi icin kefil lazim mi",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "kefil",
+     "gelir",
+     "not"
+    ]
+   },
+   {
+    "m": "maas bordrosu falan isteniyo mu",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "gelir",
+     "not",
+     "evrak"
+    ]
+   },
+   {
+    "m": "ben birine kefil olabilir miyim",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "olunmuyor",
+     "hayir",
+     "kefil"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 borsa farklı söyleyiş",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "hisse senedi alip satabiliyo muyuz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "henuz",
+     "sonraki",
+     "ileride"
+    ]
+   },
+   {
+    "m": "doviz bozdurmak",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "henuz",
+     "ileride"
+    ]
+   },
+   {
+    "m": "peki gram altin",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "henuz",
+     "ileride"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 market çalışanı",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "markette calisirsam sabit maas var mi",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "evet",
+     "asgari",
+     "maas",
+     "sabit"
+    ]
+   },
+   {
+    "m": "gorevden de para geliyo mu",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "gorev",
+     "\\d",
+     "biraz"
+    ]
+   },
+   {
+    "m": "kuryeyle kiyaslarsak",
+    "konu": "meslek_tavsiyesi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kurye",
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 emlakçı prim farklı",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "emlakcilar satis yapinca ne kadar komisyon aliyo",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "prim",
+     "\\d"
+    ]
+   },
+   {
+    "m": "ne siklikla oluyo",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "arada",
+     "sans",
+     "nadir",
+     "bazen"
+    ]
+   },
+   {
+    "m": "kurs ne kadar emlakcilik icin",
+    "konu": "kurs_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 para gönder",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "biri bana 20 bin atsin geri veririm",
+    "konu": "teklif",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "gonderme",
+     "gonderilemez",
+     "kredi",
+     "banka",
+     "transfer"
+    ]
+   },
+   {
+    "m": "neden gonderemiyoruz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "hile",
+     "yok",
+     "kapali"
+    ]
+   },
+   {
+    "m": "kredi cekebilir miyim o zaman",
+    "konu": "kredi_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelir",
+     "limit",
+     "sifir",
+     "calis",
+     "banka"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zam istiyorum patrondan",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "patron bey maasimi biraz artirsaniz",
+    "konu": "zam_istegi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ]
+   },
+   {
+    "m": "patronum yoksa kime soracagim",
+    "konu": "zam_istegi",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ]
+   },
+   {
+    "m": "memurum diyelim zam nasil gelir",
+    "konu": "maas_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "kidem",
+     "kendiliginden",
+     "\\b180\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 zengin yurtdışı",
+  "durum": "zengin",
+  "turlar": [
+   {
+    "m": "baska ulkede sirket kurabiliyo muyuz",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "yok",
+     "gelecek",
+     "ileride",
+     "henuz",
+     "istanbul"
+    ]
+   },
+   {
+    "m": "ne zaman gelir",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "bilmiyorum",
+     "sonraki",
+     "guncelleme",
+     "gelecek",
+     "belli degil"
+    ]
+   },
+   {
+    "m": "siralamada dunyada kacinciyim",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "sirala",
+     "\\d"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 dolaylı meslek sayısı",
+  "durum": "issiz",
+  "turlar": [
+   {
+    "m": "toplam kac farkli is yapilabiliyo",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "\\b17\\b",
+     "on yedi"
+    ]
+   },
+   {
+    "m": "kacinci kademede kac meslek var",
+    "konu": "genel",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "\\b4\\b",
+     "\\b5\\b",
+     "kademe"
+    ]
+   }
+  ]
+ },
+ {
+  "ad": "k8 kendi evime geçsem",
+  "durum": "evsahibi",
+  "turlar": [
+   {
+    "m": "kiradayim ama bi dairem var kirada, tasinsam mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok"
+    ],
+    "icermeli": [
+     "kira",
+     "tasin"
+    ]
+   },
+   {
+    "m": "tasinirsam oradan kira gelir mi",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "gelmez",
+     "getirmez",
+     "hayir",
+     "kesilir"
+    ]
+   },
+   {
+    "m": "ama ben de kira odemem",
+    "konu": "fiyat_sorusu",
+    "beklenen": [
+     "cevap_var",
+     "anlamsiz_onay_yok",
+     "baglam"
+    ],
+    "icermeli": [
+     "evet",
+     "odemezsin",
+     "odemez",
+     "kira yok",
+     "biter"
+    ]
+   }
+  ]
+ }
+]
