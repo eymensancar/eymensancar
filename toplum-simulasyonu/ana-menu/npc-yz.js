@@ -1615,6 +1615,8 @@
     let r0 = s0 && s0.skor >= SSS_GUCLU ? null : bilgi0(world, meta, kim, konu, varlik, oyuncu, katli, takip);
     if (!r0 && s0) r0 = { metin: s0.metin, sss: s0.sss };
     if (!r0) { const s1 = sssCevap(world, meta, kim, oyuncu, katli, SSS_ESIK); if (s1) r0 = { metin: s1.metin, sss: s1.sss }; }
+    // Cevap az önce söylenmişse (kanal aynı bilgiyi tekrar ederdi) bankada bu soruya uyan, henüz söylenmemiş bir cevap varsa o verilir
+    if (r0 && !r0.kisisel && tekrarMi(meta, kim, r0.metin)) { const s2 = sssCevap(world, meta, kim, oyuncu, katli, SSS_ESIK); if (s2 && s2.sss !== r0.sss && !tekrarMi(meta, kim, s2.metin)) r0 = { metin: s2.metin, sss: s2.sss }; }
     if (r0 && r0.odak) meta._odakSon = { odak: r0.odak, t: Date.now() }; return r0;
   }
   let SSS_GUCLU = .8, SSS_ESIK = .35;
