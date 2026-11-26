@@ -1323,6 +1323,15 @@
     }
   };
 
+  // Yabanci adlardan kadin olanlar (geri kalan erkek; Sam, Morgan, Kai, Nour, Noor iki cinse de konur, erkek listesinde sayilir)
+  VERI.yabanciKadin = {
+    en: ['Megan', 'Holly', 'Abbie', 'Zoe', 'Ruby', 'Freya', 'Katie', 'Beth', 'Niamh', 'Erin', 'Ava', 'Isla', 'Rachel', 'Jade', 'Kirsty', 'Phoebe', 'Leah', 'Tara', 'Aisha', 'Emma', 'Olivia', 'Amelia', 'Sophie', 'Grace', 'Chloe', 'Emily', 'Hannah', 'Lucy', 'Ella', 'Mia', 'Jessica'],
+    de: ['Mia', 'Emily', 'Johanna', 'Lina', 'Emma', 'Nele', 'Paula', 'Greta', 'Ida', 'Frieda', 'Sarah', 'Katharina', 'Svenja', 'Miriam', 'Anna', 'Lena', 'Laura', 'Lea', 'Sophie', 'Marie', 'Julia', 'Hannah', 'Clara', 'Lisa'],
+    es: ['Rocío', 'Nerea', 'Irene', 'Andrea', 'Claudia', 'Alba', 'Sara', 'Cristina', 'Natalia', 'Ana', 'Pilar', 'Noelia', 'Ximena', 'Camila', 'Lucía', 'María', 'Paula', 'Sofía', 'Carmen', 'Laura', 'Elena', 'Marta', 'Valeria', 'Isabel'],
+    az: ['Könül', 'Sevinc', 'Aytən', 'Şəbnəm', 'Gülnar', 'Xədicə', 'Nərgiz', 'Zəhra', 'Ayan', 'Arzu', 'Aysel', 'Leyla', 'Nərmin', 'Günay', 'Səbinə', 'Aynur', 'Lalə', 'Nigar', 'Fidan', 'Ülviyyə'],
+    ar: ['Yara', 'Reem', 'Salma', 'Nadia', 'Hala', 'Jana', 'Malak', 'Aya', 'Ruba', 'Heba', 'Dalia', 'Fatima', 'Layla', 'Mariam', 'Sara', 'Huda', 'Rania', 'Amira', 'Dana', 'Lina']
+  };
+
   // Takma ad kaliplari: {a}=ad, {s}=soyad, {i}=soyad bas harfi, {n}=sayi, {A}/{S}=buyuk harfle baslayan
   VERI.kullaniciAdiKaliplari = ['{a}_{n}', '{a}.{i}', '{A}{S}', '{a}{s}', '{a}_{s}', '{a}{i}{n}', '{a}.{s}', '{a}{n}',
     '{a}_{i}', '{i}{a}', '{a}_tr', '{A}_{S}', '{a}.{s}{n}', '{s}.{a}', '{a}x', 'the{a}', '{a}{a2}', '{A}{n}', '{a}__', '{a}.{n}'];

@@ -107,9 +107,12 @@
 
   /** Dil verisindeki il kaydını {sehir, ilce} biçimine çevirir (eski kayıtlar için de). */
   function yerDuzelt(y, rng) { if (!y) return { sehir: 'İstanbul', ilce: 'Kadıköy' }; if (y.sehir) return y; const ilceler = y.ilceler || []; return { sehir: y.ad || 'İstanbul', ilce: ilceler.length ? ilceler[Math.floor((rng ? rng.next() : .5) * ilceler.length)] : '' }; }
-  function kimlikUret(rng, yabanci) {
+  // Kadın oranı (Eymen, 26 Kasım): bu tür oyunlarda oyuncuların büyük çoğunluğu erkek. Dünyadaki NPC'lerde erkekler 2 kat,
+  // sohbette konuşan kalabalıkta (figüranlar) 10 kattan fazla.
+  const KADIN_NPC = 1 / 3, KADIN_FIG = .05;
+  function kimlikUret(rng, yabanci, kadinOran) {
     const v = dil().veri;
-    const kadin = rng.chance(.5);
+    const kadin = rng.chance(kadinOran == null ? KADIN_NPC : kadinOran);
     let ad = rng.pick(kadin ? v.kadinAdlari : v.erkekAdlari), soyad = rng.pick(v.soyadlari);
     // Tanınmış biriyle aynı ad-soyad çıkmasın
     for (let i = 0; i < 10 && dil().kimlikUygun && !dil().kimlikUygun(ad, soyad); i++) soyad = rng.pick(v.soyadlari);
@@ -218,7 +221,9 @@
     const v = dil().veri.yabanci || {};
     const diller = Object.keys(v).length ? Object.keys(v) : ['en'];
     const d = diller[i % diller.length], vv = v[d] || { adlar: ['Alex'], soyadlar: ['Smith'], sehirler: ['London'] };
-    const ad = rng.pick(vv.adlar), soyad = rng.pick(vv.soyadlar || ['']);
+    const kz = ((dil().veri.yabanciKadin || {})[d]) || [], kadinMi = rng.chance(KADIN_FIG);
+    const havuz = vv.adlar.filter(x => kz.includes(x) === kadinMi);
+    const ad = rng.pick(havuz.length ? havuz : vv.adlar), soyad = rng.pick(vv.soyadlar || ['']);
     const sehir = rng.pick(vv.sehirler || ['']);
     const kim = kimlikUret(rng); // kişilik için
     const kk = x => x.toLowerCase().replace(/\s/g, ''), r = rng.next();
@@ -928,7 +933,7 @@
     meta.figuran = [];
     for (let i = 0; i < 400; i++) {
       const yasak = (meta.adKontrol || '').split(/\s+/)[0].toLocaleLowerCase('tr');
-      let k = kimlikUret(rng); for (let j = 0; j < 12 && (adlar.has(k.gorunen) || (yasak && k.ad.toLocaleLowerCase('tr') === yasak)); j++) k = kimlikUret(rng); adlar.add(k.gorunen);
+      let k = kimlikUret(rng, 0, KADIN_FIG); for (let j = 0; j < 12 && (adlar.has(k.gorunen) || (yasak && k.ad.toLocaleLowerCase('tr') === yasak)); j++) k = kimlikUret(rng, 0, KADIN_FIG); adlar.add(k.gorunen);
       const mk = FIG_MESLEK[agirlikliSec(rng, FIG_MESLEK.map((x, ii) => ii), ii => FIG_MESLEK[ii][1])][0];
       meta.figuran.push({ id: 'f' + i, ad: k.ad, gorunen: k.gorunen, kadin: k.kadin, yer: k.yer, kronotip: k.kronotip, k: k.k, ascii: k.ascii, meslek: mk, ev: rng.chance(.22), borc: rng.chance(.3), gun: Math.floor(rng.between(1, 420)), zengin: mk && /sahibi/.test(mk) ? rng.chance(.5) : rng.chance(.04), kurs: rng.chance(.07) });
     }
@@ -957,7 +962,7 @@
     const i = +id.slice(1), rng = rngYap(hash(anahtar)); let f;
     if (id[0] === 'F') {
       const yasak = (meta.adKontrol || '').split(/\s+/)[0].toLocaleLowerCase('tr');
-      let k = kimlikUret(rng); for (let j = 0; j < 8 && yasak && k.ad.toLocaleLowerCase('tr') === yasak; j++) k = kimlikUret(rng);
+      let k = kimlikUret(rng, 0, KADIN_FIG); for (let j = 0; j < 8 && yasak && k.ad.toLocaleLowerCase('tr') === yasak; j++) k = kimlikUret(rng, 0, KADIN_FIG);
       const mk = FIG_MESLEK[agirlikliSec(rng, FIG_MESLEK.map((x, ii) => ii), ii => FIG_MESLEK[ii][1])][0];
       let gorunen = k.gorunen, ad = k.ad;
       if (rng.chance(.2)) { const n = rng.pick(TAKMA_S) + rng.pick(TAKMA_I); const st = rng.next(); gorunen = st < .4 ? asc0(n) + Math.floor(rng.between(1, 99)) : st < .7 ? n : asc0(n) + '_' + Math.floor(rng.between(10, 81)); ad = n.charAt(0).toLocaleUpperCase('tr') + n.slice(1); }
@@ -1097,7 +1102,8 @@
           if (kanal !== 'global' && (!kb || !kos.every(k => kosulUyar(kb, k)))) return 0;
           const n = meta.npc[id] || NPCYZ.figuranBul(meta, id); if (n && n.vedaZaman && t - n.vedaZaman < 90 * 60e3 && t >= n.vedaZaman) return 0;
           const kr = (n && DUZEN[n.kronotip]) ? DUZEN[n.kronotip][saat] : .5;
-          return .08 + kr;
+          // Dünyadaki NPC'lerin kadınları kanalda daha seyrek söz alır: sohbette erkekler en az 10 kat (Eymen)
+          return (.08 + kr) * (meta.npc[id] && n.kadin ? .35 : 1);
         });
         if (!sec) { ok = false; break; }
         kul.add(sec); adlar.add(ilkAd(sec)); roller[r0] = sec;
