@@ -1076,7 +1076,7 @@
     const secilebilir = secenek.filter(x => !(anahtarSure[x[0]] && Date.now() - anahtarSure[x[0]] < 12 * 60e3));
     const s = agirlikliSec(rng, secilebilir.length ? secilebilir : secenek, x => x[1]);
     anahtarSure[s[0]] = Date.now();
-    if (s[0] === 'gundelik') { let m = rng.pick(GUNLUK[s[2].dilim]); for (let i = 0; i < 4 && tekrarMi(meta, kim, m); i++) m = rng.pick(GUNLUK[s[2].dilim]); if (tekrarMi(meta, kim, m)) return null; try { m = (dil().stillendir)(m, stilOf(kim), rng); } catch (e) { } soyledi(meta, kim, m); return { npcId: id, ad: kim.gorunen, metin: m }; }
+    if (s[0] === 'gundelik') { const gunH = new Date(Date.now() + 3 * 3600e3).getUTCDay(), uygun = x => !/hafta sonu/.test(x) || gunH === 5; const liste = GUNLUK[s[2].dilim].filter(uygun); let m = rng.pick(liste); for (let i = 0; i < 4 && tekrarMi(meta, kim, m); i++) m = rng.pick(liste); if (tekrarMi(meta, kim, m)) return null; try { m = (dil().stillendir)(m, stilOf(kim), rng); } catch (e) { } soyledi(meta, kim, m); return { npcId: id, ad: kim.gorunen, metin: m }; }
     return { npcId: id, ad: kim.gorunen, metin: konus(world, meta, kim, s[0], s[2] || {}, rng) };
   }
 
