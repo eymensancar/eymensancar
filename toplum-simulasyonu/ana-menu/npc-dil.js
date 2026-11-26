@@ -2758,11 +2758,10 @@
     var k = adaylar[Math.floor(rs(rng) * adaylar.length)], m2 = parcalar[k].match(/^(\p{Ll}+)([^\p{L}]*)$/u), g = m2[1], tur = rs(rng), poz = 1 + Math.floor(rs(rng) * (g.length - 2));
     // Çoğu gerçek hata Türkçe harf eksikliği (ı→i, ş→s ...); sonra harf düşmesi; yan tuş seyrek
     var TRH = { 'ı': 'i', 'ş': 's', 'ğ': 'g', 'ç': 'c', 'ö': 'o', 'ü': 'u' };
-    if (tur < 0.5 && /[ışğçöü]/.test(g)) { g = g.replace(/[ışğçöü]/g, function (c) { return TRH[c]; }); }
-    else if (tur < 0.6) { var komsu = KOMSU[g.charAt(poz)]; if (komsu) g = g.slice(0, poz) + komsu.charAt(Math.floor(rs(rng) * komsu.length)) + g.slice(poz + 1); }
-    else if (tur < 0.75) g = g.slice(0, poz) + g.slice(poz + 1);
-    else if (tur < 0.85) g = g.slice(0, poz) + g.charAt(poz) + g.slice(poz);
-    else g = g.slice(0, poz) + g.charAt(poz + 1) + g.charAt(poz) + g.slice(poz + 2);
+    // Harf ikileme ve yer değiştirme yapay duruyordu (hakem: "kaadarıyla", "toparalnırsın"); yalnız gerçekçi olanlar kaldı
+    if (/[ışğçöü]/.test(g) && tur < 0.8) { g = g.replace(/[ışğçöü]/g, function (c) { return TRH[c]; }); }
+    else if (tur < 0.9) { var sp = Math.max(1, g.length - 1 - Math.floor(rs(rng) * 2)); var komsu = KOMSU[g.charAt(sp)]; if (komsu) g = g.slice(0, sp) + komsu.charAt(Math.floor(rs(rng) * komsu.length)) + g.slice(sp + 1); }
+    else { var sp2 = g.length - 1 - Math.floor(rs(rng) * 2); if (sp2 > 3) g = g.slice(0, sp2) + g.slice(sp2 + 1); }
     parcalar[k] = g + m2[2];
     return parcalar.join(' ');
   }
