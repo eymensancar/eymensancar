@@ -1520,6 +1520,8 @@
     }
     return null;
   }
+  const VARLIK_KOK = '(?:kurye\\w*|garson\\w*|kasiyer\\w*|market\\w*|memur\\w*|muhasebe\\w*|usta\\w*|emlak\\w*|insaat\\w*|taseron\\w*|nakliye\\w*|muteahhit\\w*|fabrika\\w*|doviz\\w*|ithalat\\w*|ihracat\\w*|kafe\\w*|dukkan\\w*|daire\\w*|arsa\\w*|kredi\\w*|kurs\\w*|kpss|buro\\w*)';
+  const VARLIK_RE = new RegExp('\\b' + VARLIK_KOK + '\\b'), VARLIK_RE_G = new RegExp('\\b' + VARLIK_KOK + '\\b', 'g');
   // ---- Soru-cevap bankası araması (npc-sss.js): örnek soruluşlarla ağırlıklı kelime benzerliği ----
   const SSS_DUR = new Set('bir bu su o ve ile de da ki mi mu mı mü ya abi kanka knk hocam valla ama ben sen biz siz bana sana bunu sunu icin gibi cok daha en her hic bi sey seyi oyunda oyun bu oyunda acaba peki merak ediyorum biliyor bilen var kimse arkadaslar millet'.split(' '));
   const kok5 = w => w.length > 5 ? w.slice(0, 5) : w;
@@ -1602,7 +1604,9 @@
     const yol = esik === SSS_GUCLU ? 'g' : esik === ERKEN_SSS ? 'e' : 'z', anlam = !GOMME_AYAR.yol || GOMME_AYAR.yol.includes(yol);
     let a = sssAra(katli, !anlam);
     // Kısa takip sorusu ("ya arsa", "peki kaç gün"): önceki mesajla birlikte de aranır, daha iyi eşleşen alınır
-    if (meta._baglamMetin && katli.split(' ').length <= 5 && meta._baglamMetin !== katli) { const b = sssAra(meta._baglamMetin + ' ' + katli, !anlam); if (b && (!a || b.skor > a.skor + .05)) a = b; }
+    if (meta._baglamMetin && katli.split(' ').length <= 5 && meta._baglamMetin !== katli) { const b = sssAra(meta._baglamMetin + ' ' + katli, !anlam); if (b && (!a || b.skor > a.skor + .05)) a = b;
+      // Mesaj konusunu adıyla söylemiyorsa ("kaç kişi", "en pahalısı"): önceki mesajın adı geçen konusu (meslek, işletme, kurs, mülk) soruya eklenip de aranır
+      if (!VARLIK_RE.test(katli) && katli.split(' ').length >= 2) { const vk = (meta._baglamMetin.match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) { const c = sssAra(katli + ' ' + vk, !anlam); if (c && (!a || c.skor > a.skor + .05)) a = c; } } }
     if (!a || a.skor < esik) return null;
     const v = sssVeri(world, meta, oyuncu), sec = a.e.cevap.map(c => c.replace(/\{([\w.]+)\}/g, (m, k) => v[k] != null ? v[k] : m)).filter(c => !/\{[\w.]+\}/.test(c));
     if (!sec.length) return null; const taze = sec.filter(c => !tekrarMi(meta, kim, c));
