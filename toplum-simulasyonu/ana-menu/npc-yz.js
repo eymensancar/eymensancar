@@ -1620,7 +1620,7 @@
     if (r0 && r0.odak) meta._odakSon = { odak: r0.odak, t: Date.now() }; return r0;
   }
   let SSS_GUCLU = .8, SSS_ESIK = .35;
-  let ERKEN_SSS = .7;
+  let ERKEN_SSS = .7, KURALSIZ_SSS = .5;
   const ERKEN_SOSYAL = new Set(['selam', 'veda', 'tesekkur', 'evet', 'hayir', 'oneri_kabul', 'teklif', 'hakaret', 'ozur', 'saka', 'tebrik', 'iltifat', 'hal_hatir', 'mulk_satiyorum', 'eleman_ariyorum', 'zam_istegi', 'yetki_istegi']);
   const ERKEN_SORU = /\b(mi|mu|misin|miyim|miyiz|musun|ne|neden|niye|nasil|kac|kim|nerde|nerede|nereden|nerden|hangi\w*|ne zaman|ne kadar|olur mu|var mi)$|\b(neden|niye|nasil|kac|hangi\w*|ne zaman|ne kadar)\b/;
   NPCYZ.sssAyar = (g, e, k) => { SSS_GUCLU = g; SSS_ESIK = e; if (k != null) ERKEN_SSS = k; };
@@ -1994,9 +1994,10 @@
     }
 
     // Yeni bir bilgi sorusu bankayla güçlü eşleşiyorsa, önceki konunun akışına kapılmadan doğrudan banka cevabı verilir
-    if (ERKEN_SSS < 1 && !hedefKisi && kanal === 'ulke' && !ERKEN_SOSYAL.has(ny.niyet) && !st.satis && !IKINCI_TEKIL.test(katli) && (/\?/.test(metin) || ERKEN_SORU.test(katli))) {
+    if (ERKEN_SSS < 1 && !hedefKisi && kanal === 'ulke' && !ERKEN_SOSYAL.has(ny.niyet) && !st.satis && !IKINCI_TEKIL.test(katli) && (/\?/.test(metin) || ERKEN_SORU.test(katli) || (!kuralDestek && ny.soru && katli.split(' ').length >= 3))) {
       const idE = takip && st.sonNpc && meta.npc[st.sonNpc] && world.players[st.sonNpc] ? st.sonNpc : agirlikliSec(rng, npcIdler.filter(x => world.players[x] && !st.cevaplayan.includes(x)), x => DUZEN[meta.npc[x].kronotip][saat] + .15);
-      const sc = idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, ERKEN_SSS);
+      // Niyet yalnız modelin tahminiyse (kurallar o niyeti hiç görmüyorsa) banka daha düşük eşikle de öne geçer
+      const sc = idE && sssCevap(world, meta, meta.npc[idE], oyuncu, katli, kuralDestek || ny.niyet === 'genel' || katli.split(' ').length < 3 ? ERKEN_SSS : KURALSIZ_SSS);
       if (sc) { cevaplar.push(bilgiPaketi(world, meta, idE, { metin: sc.metin, sss: sc.sss }, rng, 1800)); if (!st.cevaplayan.includes(idE)) st.cevaplayan.push(idE); st.sonNpc = idE; sonuc.niyet.sss = sc.sss; return sonuc; }
     }
     // Son konuşana dönük ikinci tekil soru: o kişi kendi gerçek verisinden cevap verir
