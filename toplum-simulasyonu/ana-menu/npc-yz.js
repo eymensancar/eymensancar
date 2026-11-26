@@ -917,7 +917,7 @@
     if (gecen < 4000) { const d0 = kanal === 'ulke' && oyuncu ? donusMesaji(world, meta, oyuncu, simdiMs, rngYap(hash('d' + simdiMs))) : null; if (d0) { d0.zaman = simdiMs; d0.kanal = kanal; d0.id = 'k' + (++meta.sayac); meta.kanal[kanal].push(d0); return [d0]; } return []; }
     // Dakikada ortalama mesaj: kanala ve saate göre
     const aktiflik = Object.values(meta.npc).reduce((t, k) => t + DUZEN[k.kronotip][saat], 0) / Math.max(1, Object.keys(meta.npc).length);
-    const dakikada = kanal === 'global' ? .9 * (.4 + aktiflik) : kanal === 'ulke' ? 1.1 * (.3 + aktiflik) : .25;
+    const dakikada = kanal === 'global' ? .9 * (.4 + aktiflik) : kanal === 'ulke' ? 1.3 * (.04 + aktiflik) : .25; // gece 3-5 arası saatte birkaç mesaj, akşam yoğun
     let n = Math.round(gecen / 60e3 * dakikada);
     n = Math.min(n, kanal === 'sirket' ? 4 : 14);
     if (n <= 0 && rngYap(hash(kanal + simdiMs)).chance(gecen / 60e3 * dakikada)) n = 1;
