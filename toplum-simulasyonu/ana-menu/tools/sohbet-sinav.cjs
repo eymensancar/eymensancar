@@ -85,7 +85,7 @@ function oyna(diyalog, tohum) {
       if (b === 'dm_teklif') kontrol.push([b, !!(r.dm && r.dm.length)]);
     }
     // icermeli: cevaplardan en az biri bu kalıplardan birini içermeli (büyük/küçük harf ve Türkçe harf farkı gözetilmez)
-    if (tur.icermeli && tur.icermeli.length) { const ns = x => D.normal(x).katli; const ok = r.cevaplar.some(c => tur.icermeli.some(k => new RegExp(ns(k).replace(/\s+/g, '\\s*'), 'i').test(ns(c.metin)))); kontrol.push(['icermeli:' + tur.icermeli[0], ok]); }
+    if (tur.icermeli && tur.icermeli.length) { const ns = x => D.normal(x).katli; const esle = (k, m) => { const katla = x => String(x).toLocaleLowerCase('tr').replace(/[çğıöşü]/g, h => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' })[h]); try { if (new RegExp(katla(k), 'i').test(katla(m))) return true; } catch (e) { } return ns(m).includes(ns(k)); }; const ok = r.cevaplar.some(c => tur.icermeli.some(k => esle(k, c.metin))); kontrol.push(['icermeli:' + tur.icermeli[0], ok]); }
     if (tur.icermemeli && tur.icermemeli.length) { const ns = x => D.normal(x).katli; const ok = !r.cevaplar.some(c => tur.icermemeli.some(k => ns(c.metin).includes(ns(k)))); kontrol.push(['icermemeli:' + tur.icermemeli[0], ok]); }
     {
     }

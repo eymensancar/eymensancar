@@ -239,6 +239,17 @@
       }
     }
     out = ikinciDilDuzelt(out);
+    // Bitişik yazım: "varmı" -> "var mı", "nekadar" -> "ne kadar", "işvarmı" -> "iş var mı"
+    var BITIS = { nekadar: 'ne kadar', nezaman: 'ne zaman', nekadarlik: 'ne kadarlik', hersey: 'her sey', bisey: 'bir sey', birsey: 'bir sey', hicbirsey: 'hic bir sey', napcam: 'ne yapacagim', napcaz: 'ne yapacagiz' };
+    var ayr = [];
+    out.forEach(function (w) {
+      var f = katla(w);
+      if (BITIS[f]) { ayr.push.apply(ayr, BITIS[f].split(' ')); return; }
+      var m = /^(is|ev|daire|kurs|kredi|eleman)?(var|yok|olur|olmaz|lazim|gerek|iyi|dogru|tamam|guzel|kolay|zor|mumkun|gecerli|bos|dolu|acik|pahali|ucuz)(mi|mu|mı|mü|mu)$/.exec(f);
+      if (m) { if (m[1]) ayr.push(m[1]); ayr.push(m[2]); ayr.push(m[3]); return; }
+      ayr.push(w);
+    });
+    out = ayr;
     var kucuk = out.join(' ');
     return { ham: ham, kucuk: kucuk, katli: katla(kucuk), kelimeler: out };
   }
