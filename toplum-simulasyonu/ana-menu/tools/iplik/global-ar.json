@@ -7,23 +7,23 @@
   "turlar": [
    [
     "A",
-    "[صباح الخير|صباحو] يا جماعة"
+    "[صباح الخير يا جماعة|صباحو يا شباب|صباح الخير، في حد صاحي؟]"
    ],
    [
     "B",
-    "صباح النور {A}"
+    "[صباح النور {A}|صباحك فل {A}|صباح الورد {A}]"
    ],
    [
     "C",
-    "sabah el fol"
+    "[sabah el fol|sabah el ward|sabah el noor ya gama3a]"
    ],
    [
     "A",
-    "انا لسه صاحي، محتاج قهوة"
+    "[انا لسه صاحي، محتاج قهوة|لسه فايق، بدي قهوة|عيوني لسه مسكرة، قهوة بسرعة]"
    ],
    [
     "B",
-    "القهوة أولا وبعدين نتكلم"
+    "[القهوة أولا وبعدين نتكلم|أول شي قهوة، بعدين حكي|بلا قهوة ما في كلام]"
    ]
   ]
  },
@@ -35,27 +35,27 @@
   "turlar": [
    [
     "A",
-    "ahlan ya shabab, 3amlin eh"
+    "[ahlan ya shabab, 3amlin eh|ahlan ya gama3a, ezayoko|salam ya shabab, eh el akhbar]"
    ],
    [
     "B",
-    "tamam, kollo fol. w enta?"
+    "[tamam, kollo fol. w enta?|kollo tamam, w enta?|el7amdolellah, w enta 3amel eh?]"
    ],
    [
     "A",
-    "kwayes, ana gdeed hena"
+    "[kwayes, ana gdeed hena|tamam, ana lessa gdeed|kwayes, awel yom leya hena]"
    ],
    [
     "C",
-    "ahlan beek, mn ayn?"
+    "[ahlan beek, mn ayn?|ahlan w sahlan, enta mnen?|nawart, mn ayn ya basha?]"
    ],
    [
     "A",
-    "mn {A.sehir}"
+    "[mn {A.sehir}|ana mn {A.sehir}|{A.sehir}]"
    ],
    [
     "C",
-    "tmam, nawart"
+    "[tmam, nawart|ahlan beek, nawart|tamam, mnawar el chat]"
    ]
   ]
  },
@@ -67,23 +67,23 @@
   "turlar": [
    [
     "A",
-    "في حد هون من {A.sehir}؟"
+    "[في حد هون من {A.sehir}؟|مين من {A.sehir} هون؟|حدا من {A.sehir} موجود؟]"
    ],
    [
     "B",
-    "لا انا من {B.sehir}"
+    "[لا انا من {B.sehir}|لأ، انا من {B.sehir}|انا من {B.sehir}، سوري]"
    ],
    [
     "C",
-    "انا {C.sehir}، بس عندي قرايب هناك"
+    "[انا {C.sehir}، بس عندي قرايب هناك|انا من {C.sehir}، بس قرايبي هناك|{C.sehir}، بس إلي أهل هونيك]"
    ],
    [
     "A",
-    "الدنيا صغيرة"
+    "[الدنيا صغيرة|شو صغيرة الدنيا|الدنيا زغيرة والله]"
    ],
    [
     "C",
-    "صغيرة كتير"
+    "[صغيرة كتير|كتير|اي والله]"
    ]
   ]
  },
@@ -95,27 +95,27 @@
   "turlar": [
    [
     "A",
-    "انا جديد، شو أول شي لازم أعمله؟"
+    "[انا جديد، شو أول شي لازم أعمله؟|جديد هون، من وين بلّش؟|أول يوم إلي، شو بتنصحوني؟]"
    ],
    [
     "B",
-    "لا تصرف ال 100 ألف كلهم أول يوم"
+    "[لا تصرف ال 100 ألف كلهم أول يوم|لا تصرف كل المصاري أول يوم|خلي ال 100 ألف، لا تحرقهم بيوم]"
    ],
    [
     "C",
-    "اشتغل أول شي، الكورير ما بدو أي شروط"
+    "[اشتغل أول شي، الكورير ما بدو أي شروط|لاقيلك شغل، الكورير بلا شروط|صير كورير، ما في ولا شرط]"
    ],
    [
     "A",
-    "جد؟ بدون شروط؟"
+    "[جد؟ بدون شروط؟|عن جد؟ ولا شي؟|هيك بس؟]"
    ],
    [
     "C",
-    "اي، من شاشة المهنة مباشرة"
+    "[اي، من شاشة المهنة مباشرة|اي، بتفوت على المهنة وبتبلش|اي، من صفحة المهنة فورا]"
    ],
    [
     "B",
-    "وسوي المهام اليومية، بتعطيك ساعة رملية ببلاش"
+    "[وسوي المهام اليومية، بتعطيك ساعة رملية ببلاش|ولا تنسى المهام اليومية، فيها ساعة رملية مجانية|المهام اليومية كل يوم، بتاخد ساعة رملية ببلاش]"
    ]
   ]
  },
@@ -127,23 +127,23 @@
   "turlar": [
    [
     "A",
-    "[المطر ما وقف|مطر مطر] عندنا اليوم"
+    "[المطر ما وقف عندنا اليوم|مطر مطر عندنا اليوم|اليوم كمان مطر، زهقنا]"
    ],
    [
     "B",
-    "عندنا شمس، سوري"
+    "[عندنا شمس، سوري|هون شمس، سوري|عنا شمس، آسف]"
    ],
    [
     "A",
-    "حسدتك"
+    "[حسدتك|بحسدك|غيرت منك]"
    ],
    [
     "C",
-    "ابعتلنا شوي، محتاجينه"
+    "[ابعتلنا شوي، محتاجينه|ابعتلنا شوي، عطشانين|ابعته لهون، ما عنا مطر أبدا]"
    ],
    [
     "A",
-    "خذه كله"
+    "[خذه كله|كله إلك|خذه ومع السلامة]"
    ]
   ]
  },
@@ -155,23 +155,23 @@
   "turlar": [
    [
     "A",
-    "shu ya3ni \"kanka\"? el atrak by2oloha kteer"
+    "[shu ya3ni \"kanka\"? el atrak by2oloha kteer|\"kanka\" shu ma3naha? bshofha kteer|7ada yshre7li \"kanka\"? el atrak bystakhdmoha daymn]"
    ],
    [
     "B",
-    "ya3ni sa7bak el 2areeb"
+    "[ya3ni sa7bak el 2areeb|ya3ni el sa7eb el 2areeb|sa7bak el ro7, ya3ni]"
    ],
    [
     "C",
-    "zay \"ya sa7bi\" 3andena"
+    "[zay \"ya sa7bi\" 3andena|mitl \"ya zalame\" 3anna|zay \"ya basha\" ta2riban]"
    ],
    [
     "A",
-    "ok kanka"
+    "[ok kanka|tamam kanka|shokran kanka]"
    ],
    [
     "B",
-    "haha bt3allam bsor3a"
+    "[haha bt3allam bsor3a|haha shater|haha sert turki]"
    ]
   ]
  },
@@ -183,27 +183,27 @@
   "turlar": [
    [
     "A",
-    "شفتوا الماتش؟"
+    "[شفتوا الماتش؟|حد شاف الماتش؟|ماتش امبارح، شفتوه؟]"
    ],
    [
     "B",
-    "ايوه، جون في آخر دقيقة، مش طبيعي"
+    "[ايوه، جون في آخر دقيقة، مش طبيعي|اه، جون في الدقيقة الأخيرة، جنان|طبعا! الجون الأخير ده كان خرافي]"
    ],
    [
     "A",
-    "صرخت لدرجة الجيران خبطوا"
+    "[صرخت لدرجة الجيران خبطوا|زعقت لحد ما الجيران خبطوا على الحيطة|الجيران خبطوا من كتر ما صرخت]"
    ],
    [
     "C",
-    "انا نمت في الشوط الأول، متقولوش"
+    "[انا نمت في الشوط الأول، متقولوش|نمت في الشوط الأول، محدش يقول حاجة|انا نمت بين الشوطين، متحرقوش]"
    ],
    [
     "B",
-    "اتأخرت يا {C}"
+    "[اتأخرت يا {C}|فات الأوان يا {C}|سوري يا {C}، قلنا خلاص]"
    ],
    [
     "C",
-    "يا خسارة"
+    "[يا خسارة|لا بجد|ليه كده]"
    ]
   ]
  },
@@ -215,27 +215,27 @@
   "turlar": [
    [
     "A",
-    "el naharda 3amalt [15|kteer] tawseela, rgli wag3ani"
+    "[el naharda 3amalt 15 tawseela, rgli wag3ani|kteer tawseelat el naharda, rgli msh 7asa beha|15 order el naharda, ana khalas]"
    ],
    [
     "B",
-    "7ayat el courier"
+    "[7ayat el courier|el courier keda|ahlan beek fe 7ayat el courier]"
    ],
    [
     "A",
-    "el felous kwayesa bas ya3"
+    "[el felous kwayesa bas ya3|el felous 7elwa bs el gesm ta3ban|el kasb kwayes bs ah ya rgli]"
    ],
    [
     "C",
-    "ekhtar garson, 3ala el a2al taht sa2f"
+    "[ekhtar garson, 3ala el a2al taht sa2f|khaleek garson, 3ala el a2al gowwa|eshtaghal garson, msh hate3ra2 fel shams]"
    ],
    [
     "A",
-    "w zbayen mot3ebeen"
+    "[w zbayen mot3ebeen|w zbayen ghalsin|w astaghfar 3ala el zbayen]"
    ],
    [
     "C",
-    "kol shoghl w leh hammo"
+    "[kol shoghl w leh hammo|kol shoghlana w leha mashakelha|mafeesh shoghl kamel]"
    ]
   ]
  },
@@ -247,27 +247,27 @@
   "turlar": [
    [
     "A",
-    "اشتري شقة هلأ ولا استنى؟"
+    "[اشتري شقة هلأ ولا استنى؟|بشتري شقة هلأ ولا بستنى؟|شو رأيكم، شقة هلأ ولا بعدين؟]"
    ],
    [
     "B",
-    "انت ساكن بالإيجار؟"
+    "[انت ساكن بالإيجار؟|عم تدفع إيجار؟|انت مستأجر؟]"
    ],
    [
     "A",
-    "اي، الإيجار عم ياكل راتبي"
+    "[اي، الإيجار عم ياكل راتبي|اي، الإيجار عم يخلص معاشي|اي، نص راتبي بيروح إيجار]"
    ],
    [
     "B",
-    "اشتري، اللي ساكن بملكه ما بيدفع إيجار"
+    "[اشتري، اللي ساكن بملكه ما بيدفع إيجار|اشتري، صاحب البيت ما بيدفع إيجار|اشتري، اذا البيت إلك ما في إيجار]"
    ],
    [
     "C",
-    "والأسعار بتطلع كل شهر، الاستنا كمان إلو تمن"
+    "[والأسعار بتطلع كل شهر، الاستنا كمان إلو تمن|الأسعار عم تغلى كل شهر، الاستنا بيكلف|لا تستنى، كل شهر بيغلى]"
    ],
    [
     "A",
-    "طيب بشوف القرض"
+    "[طيب بشوف القرض|ماشي، بشوف شروط القرض|تمام، بتطلع عالقرض]"
    ]
   ]
  },
@@ -279,23 +279,23 @@
   "turlar": [
    [
     "A",
-    "fi borsa fel le3ba di?"
+    "[fi borsa fel le3ba di?|el le3ba feha borsa?|lessa mafeesh borsa, sa7?]"
    ],
    [
     "B",
-    "lessa, by2olo gaya fe update"
+    "[lessa, by2olo gaya fe update|lessa, gaya fe update by2olo|la2, by2olo hatenzel ba3den]"
    ],
    [
     "A",
-    "khsara, kont 3ayez a3mel felous"
+    "[khsara, kont 3ayez a3mel felous|ya khsara, kont 3ayez ala3ab fel ashom|7aram, kont 3ayez adareb]"
    ],
    [
     "C",
-    "wala dollar wala dahab lel2an"
+    "[wala dollar wala dahab lel2an|la dollar wala dahab lessa|dahab w 3omla kaman lessa]"
    ],
    [
     "B",
-    "3a2arat w shoghl bs, zay zaman"
+    "[3a2arat w shoghl bs, zay zaman|shoghl w 3a2arat bs, old school|lel2an shoghl w sha2a2, zay gedoodna]"
    ]
   ]
  },
@@ -307,27 +307,27 @@
   "turlar": [
    [
     "A",
-    "فتحت الكافيه، أول الزباين وصلوا"
+    "[فتحت الكافيه، أول الزباين وصلوا|الكافيه اتفتح، أول زباين دخلوا|فتحت الكافيه بتاعي! أول ناس وصلوا]"
    ],
    [
     "B",
-    "مبروك! المكان حلو؟"
+    "[مبروك! المكان حلو؟|مبروك! الشغل عامل إيه؟|ألف مبروك، المنطقة حلوة؟]"
    ],
    [
     "A",
-    "كويس، بس في كافيه تاني جنبي"
+    "[كويس، بس في كافيه تاني جنبي|حلو، بس في كافيه تاني قريب|ماشي، بس في كافيه قصادي]"
    ],
    [
     "C",
-    "يبقى الزباين هتتقسم، خلي بالك"
+    "[يبقى الزباين هتتقسم، خلي بالك|خلي بالك، الزباين هتتقسم|يبقى الزبون هيتقسم نصين]"
    ],
    [
     "A",
-    "اه لاحظت"
+    "[اه لاحظت|اه، باين|اه شايف]"
    ],
    [
     "B",
-    "شغل ناس كويسين، المؤقتين غاليين"
+    "[شغل ناس كويسين، المؤقتين غاليين|هات موظفين كويسين، المؤقتين غاليين|شغّل ناس ثابتة، المؤقت غالي وبطيء]"
    ]
   ]
  },
@@ -339,27 +339,27 @@
   "turlar": [
    [
     "A",
-    "شو فطوركم اليوم"
+    "[شو فطوركم اليوم|شو فطرتو اليوم؟|فطور اليوم شو؟]"
    ],
    [
     "B",
-    "فول وطعمية"
+    "[فول وطعمية|فول وطعمية طبعا|زي كل يوم، فول وطعمية]"
    ],
    [
     "C",
-    "لبنة وزيت وزعتر"
+    "[لبنة وزيت وزعتر|لبنة وزعتر وزيت|زيت وزعتر ولبنة، كلاسيك]"
    ],
    [
     "A",
-    "انا فطور تركي، صاحبي علمني"
+    "[انا فطور تركي، صاحبي علمني|انا فطرت تركي، صاحبي علمني عليه|انا صرت على الفطور التركي، من صاحبي]"
    ],
    [
     "B",
-    "اللي فيه مية صحن؟"
+    "[اللي فيه مية صحن؟|اللي فيه صحون زغار كتير؟|اللي بيعبي الطاولة كلها؟]"
    ],
    [
     "A",
-    "هو بالضبط"
+    "[هو بالضبط|هو ذاته|بالزبط هو]"
    ]
   ]
  },
@@ -371,27 +371,27 @@
   "turlar": [
    [
     "A",
-    "meen lessa sa7i"
+    "[meen lessa sa7i|7ad sa7i?|meen msh 3aref yenam]"
    ],
    [
     "B",
-    "ana, msh 3aref anam"
+    "[ana, msh 3aref anam|ana, el nom msh gay|ana hena, ar2]"
    ],
    [
     "C",
-    "shift bel leil"
+    "[shift bel leil|shift leil|ana fel shoghl lessa]"
    ],
    [
     "A",
-    "btshtghl eh?"
+    "[btshtghl eh?|shoghlak eh?|bt3mel eh?]"
    ],
    [
     "C",
-    "{C.meslek}, el leil hadi"
+    "[{C.meslek}, el leil hadi|{C.meslek}, bel leil hadya|ana {C.meslek}, el leil ray2]"
    ],
    [
     "B",
-    "ana ba2allib fel e2gar w ba3ayat"
+    "[ana ba2allib fel e2gar w ba3ayat|ana bbos 3al egar w ba3ayat|ana ba2ra el egar w a3ayat beshwesh]"
    ]
   ]
  },
@@ -403,27 +403,27 @@
   "turlar": [
    [
     "A",
-    "الساعات الرملية هاي شو فايدتها؟"
+    "[الساعات الرملية هاي شو فايدتها؟|شو بتعمل الساعة الرملية؟|الساعات الرملية لشو؟]"
    ],
    [
     "B",
-    "بتختصر الانتظار، وحدة تساوي يوم"
+    "[بتختصر الانتظار، وحدة تساوي يوم|بتقصر الانتظار، كل وحدة يوم|وحدة بتوفرلك يوم انتظار]"
    ],
    [
     "A",
-    "بتنفع للكورسات؟"
+    "[بتنفع للكورسات؟|وللكورسات؟|بتمشي مع الكورسات؟]"
    ],
    [
     "B",
-    "اي، كورسات وطلبات"
+    "[اي، كورسات وطلبات|اي، للكورسات والطلبات|أكيد، كورسات وطلبات]"
    ],
    [
     "C",
-    "بس ما بتعطي مصاري، بس وقت"
+    "[بس ما بتعطي مصاري، بس وقت|بس مصاري ما بتعطي، وقت بس|ما بتغنيك، بتوفر وقت بس]"
    ],
    [
     "A",
-    "فهمت"
+    "[فهمت|تمام، فهمت|ماشي، شكرا]"
    ]
   ]
  },
@@ -435,27 +435,27 @@
   "turlar": [
    [
     "A",
-    "صاحب البيت رفع الإيجار تاني"
+    "[صاحب البيت رفع الإيجار تاني|الإيجار زاد تاني، شكرا يا صاحب البيت|تاني زيادة إيجار]"
    ],
    [
     "B",
-    "في اللعبة ولا في الحقيقة؟"
+    "[في اللعبة ولا في الحقيقة؟|هنا ولا في الحقيقة؟|في اللعبة ولا بجد؟]"
    ],
    [
     "A",
-    "[الاتنين|ايوه]"
+    "[الاتنين|ايوه|للأسف الاتنين]"
    ],
    [
     "C",
-    "يا ويلي"
+    "[يا ويلي|يا ساتر|يا حرام]"
    ],
    [
     "B",
-    "اشتري العمارة وخلص"
+    "[اشتري العمارة وخلص|اشتري العمارة وريّح دماغك|بقى انت صاحب البيت]"
    ],
    [
     "A",
-    "بأنهي فلوس يا عم"
+    "[بأنهي فلوس يا عم|بأي فلوس يعني|أكيد، بفلوسي اللي مش موجودة]"
    ]
   ]
  },
@@ -467,27 +467,27 @@
   "turlar": [
    [
     "A",
-    "leh el limit bta3 el 2ard olayel keda?"
+    "[leh el limit bta3 el 2ard olayel keda?|leh el 2ard olayel keda?|el limit bta3i ta3ban, leh?]"
    ],
    [
     "B",
-    "3ala 7asab dakhlak el shahr elli fat w el credit score"
+    "[3ala 7asab dakhlak el shahr elli fat w el credit score|by7sbo mn dakhl el shahr elli fat w el score|dakhl el shahr elli fat w el score, keda btet7seb]"
    ],
    [
     "A",
-    "el shahr elli fat kont 3atel nosso"
+    "[el shahr elli fat kont 3atel nosso|el shahr elli fat ma eshtaghaltesh kteer|el shahr elli fat kasabt shwaya awi]"
    ],
    [
     "C",
-    "ahoh"
+    "[ahoh|ahi el mashkala|da el sabab]"
    ],
    [
     "B",
-    "edfa3 el a2sat fe wa2taha, el score yetla3"
+    "[edfa3 el a2sat fe wa2taha, el score yetla3|edfa3 fel ma3ad w el score yezeed|a2sat fe wa2taha = score a3la]"
    ],
    [
     "A",
-    "tamam fhemt"
+    "[tamam fhemt|tamam|ok, hafteker]"
    ]
   ]
  },
@@ -499,27 +499,27 @@
   "turlar": [
    [
     "A",
-    "merhaba lel atrak elli hena"
+    "[merhaba lel atrak elli hena|merhaba ya atrak|merhaba lel turk fel chat]"
    ],
    [
     "B",
-    "merhaba! nasılsın?"
+    "[merhaba! nasılsın?|merhaba, nasılsın?|ahh merhaba! nasılsın?]"
    ],
    [
     "A",
-    "msh ba3raf ghair merhaba w çay"
+    "[msh ba3raf ghair merhaba w çay|ba3raf merhaba w çay bs|el turki bta3i merhaba w çay, khalas]"
    ],
    [
     "B",
-    "kfaya, haha"
+    "[kfaya, haha|kfaya keda haha|da kfaya w zyada]"
    ],
    [
     "C",
-    "zawed \"tamam\" w enta keda turki"
+    "[zawed \"tamam\" w enta keda turki|zawed \"tamam\" w b2eit turki|bs \"tamam\" w ba2a native]"
    ],
    [
     "A",
-    "tamam tamam"
+    "[tamam tamam|tamam|tamam ya basha]"
    ]
   ]
  },
@@ -531,27 +531,27 @@
   "turlar": [
    [
     "A",
-    "شو خططكم للويكند؟"
+    "[شو خططكم للويكند؟|شو عاملين بالويكند؟|في خطط للويكند؟]"
    ],
    [
     "B",
-    "نوم"
+    "[نوم|نوم كتير|نوم وبس]"
    ],
    [
     "C",
-    "نوم وأكل"
+    "[نوم وأكل|أكل ونوم|نوم، أكل، نوم]"
    ],
    [
     "A",
-    "طموحين كتير"
+    "[طموحين كتير|شو هالطموح|خطط كبيرة والله]"
    ],
    [
     "B",
-    "وانت؟"
+    "[وانت؟|وانت شو؟|انت شو رح تعمل؟]"
    ],
    [
     "A",
-    "[غسيل|ترتيب البيت]. مثير، بعرف"
+    "[غسيل. مثير، بعرف|ترتيب البيت. مثير، بعرف|رح اغسل تياب. حياة مجنونة]"
    ]
   ]
  },
@@ -563,27 +563,27 @@
   "turlar": [
    [
     "A",
-    "بفكر أعمل كورس المحاسبة"
+    "[بفكر أعمل كورس المحاسبة|عم فكر بكورس المحاسبة|أعمل كورس المحاسبة؟]"
    ],
    [
     "B",
-    "انا عملته، بيستاهل"
+    "[انا عملته، بيستاهل|عملته، بيسوى|اعمله، بيستاهل]"
    ],
    [
     "A",
-    "قديش بياخد؟"
+    "[قديش بياخد؟|طويل؟|كم يوم؟]"
    ],
    [
     "B",
-    "كم يوم، وبدك 30 يوم خبرة"
+    "[كم يوم، وبدك 30 يوم خبرة|كم يوم، و30 يوم خبرة|كم يوم بس بدك 30 يوم خبرة قبل]"
    ],
    [
     "A",
-    "وبعدين راتب ثابت؟"
+    "[وبعدين راتب ثابت؟|وبعدها راتب ثابت؟|يعني بعدين معاش ثابت؟]"
    ],
    [
     "B",
-    "اي، حتى لو ما فتحت اللعبة"
+    "[اي، حتى لو ما فتحت اللعبة|اي، ولو ما فتت عاللعبة|اي، حتى وانت أوفلاين]"
    ]
   ]
  },
@@ -595,23 +595,23 @@
   "turlar": [
    [
     "A",
-    "howa el wa2t byemshi w el app ma2fool?"
+    "[howa el wa2t byemshi w el app ma2fool?|el wa2t byemshi law 2afalt el le3ba?|el sa3a btlef w el le3ba ma2fola?]"
    ],
    [
     "B",
-    "aywa, yom fel le3ba = sa3a 7a2e2eya"
+    "[aywa, yom fel le3ba = sa3a 7a2e2eya|aywa, kol sa3a 7a2e2eya yom fel le3ba|ah, el yom fel le3ba sa3a bs]"
    ],
    [
     "A",
-    "ya3ni el shahr 30 sa3a?"
+    "[ya3ni el shahr 30 sa3a?|yeb2a el shahr 30 sa3a?|el shahr 30 sa3a bs??]"
    ],
    [
     "B",
-    "bezabt"
+    "[bezabt|mazbout|aywa keda]"
    ],
    [
     "C",
-    "3ashan keda el egar beygi besor3a"
+    "[3ashan keda el egar beygi besor3a|3ashan keda el egar kol shwaya|keda el egar beyegi bsor3a]"
    ]
   ]
  },
@@ -623,27 +623,27 @@
   "turlar": [
    [
     "A",
-    "شاي ولا قهوة؟"
+    "[شاي ولا قهوة؟|قهوة ولا شاي؟|بسرعة: شاي ولا قهوة]"
    ],
    [
     "B",
-    "قهوة طبعا"
+    "[قهوة طبعا|قهوة أكيد|قهوة، بلا نقاش]"
    ],
    [
     "C",
-    "شاي، بالنعناع"
+    "[شاي، بالنعناع|شاي بالنعناع|شاي، ومع نعناع]"
    ],
    [
     "A",
-    "الأتراك بيشربوه بكاسة صغيرة"
+    "[الأتراك بيشربوه بكاسة صغيرة|الأتراك بيشربوه بكاسات صغيرة|الأتراك بيشربوه بكاسة زغيرة شكلها حلو]"
    ],
    [
     "C",
-    "جربته، حلو"
+    "[جربته، حلو|جربته، طيب|ذقته، كتير حلو]"
    ],
    [
     "B",
-    "انتو خونة"
+    "[انتو خونة|خيانة|يا خونة]"
    ]
   ]
  },
@@ -655,23 +655,23 @@
   "turlar": [
    [
     "A",
-    "ana bs ely 7ases en kol 7aga bteghla kol shahr?"
+    "[ana bs ely 7ases en kol 7aga bteghla kol shahr?|kol shahr kol 7aga bteghla walla ana bata5ayal?|ana bs wala el as3ar btzeed kol shahr?]"
    ],
    [
     "B",
-    "tad7akhom, mawgood fel le3ba"
+    "[tad7akhom, mawgood fel le3ba|tad7akhom, el le3ba keda|da tad7akhom, goz2 mn el le3ba]"
    ],
    [
     "A",
-    "le3ba wa2e3eya aktar mn el lazem"
+    "[le3ba wa2e3eya aktar mn el lazem|wa2e3eya zyada 3an el lazem|el wa2e3eya btewga3]"
    ],
    [
     "C",
-    "el marattbat btzeed bardo, bs abta2"
+    "[el marattbat btzeed bardo, bs abta2|el marattbat btzeed, bs wara|el rawateb btel7a2, bs ba3d shwaya]"
    ],
    [
     "A",
-    "tab3an"
+    "[tab3an|akeed|zay el 7aya bezabt]"
    ]
   ]
  },
@@ -683,27 +683,27 @@
   "turlar": [
    [
     "A",
-    "مسا الخير يا جماعة"
+    "[مسا الخير يا جماعة|مسا الخير يا شباب|مسا الخير للكل]"
    ],
    [
     "B",
-    "مسا النور {A}"
+    "[مسا النور {A}|مسا الورد {A}|أهلين {A}]"
    ],
    [
     "C",
-    "كيف كان يومك"
+    "[كيف كان يومك|كيف مر نهارك؟|شو أخبار يومك؟]"
    ],
    [
     "A",
-    "طويل. وانت؟"
+    "[طويل. وانت؟|طويل. وانت كيف؟|كتير طويل. وانت؟]"
    ],
    [
     "C",
-    "كمان، خلينا نحكي عن الأكل"
+    "[كمان، خلينا نحكي عن الأكل|كمان طويل، خلينا نحكي أكل|نفس الشي، بلا ما نحكي إلا عن الأكل]"
    ],
    [
     "B",
-    "أحلى اقتراح"
+    "[أحلى اقتراح|أحسن فكرة اليوم|موافق مية بالمية]"
    ]
   ]
  },
@@ -715,27 +715,27 @@
   "turlar": [
    [
     "A",
-    "wakil 3a2arat, yestahel?"
+    "[wakil 3a2arat, yestahel?|semsar 3a2arat, yenfa3?|shoghl el 3a2arat 3amel ezay?]"
    ],
    [
     "B",
-    "rateb + 3omola, law nashet btksab kwayes"
+    "[rateb + 3omola, law nashet btksab kwayes|rateb w 3omola, law nashet htkasab|sabet + 3omola, law shaghal kteer tamam]"
    ],
    [
     "A",
-    "lazem course?"
+    "[lazem course?|mehtag course?|feeh course?]"
    ],
    [
     "B",
-    "aywa, shehadet el 3a2arat"
+    "[aywa, shehadet el 3a2arat|aywa, lazem shehadet el 3a2arat|aywa, mn gheir el shehada mafeesh]"
    ],
    [
     "C",
-    "w 2ablaha 30 yom khebra"
+    "[w 2ablaha 30 yom khebra|w 30 yom khebra 2ablaha|w kaman 30 yom khebra]"
    ],
    [
     "A",
-    "ya3ni msh men awel yom"
+    "[ya3ni msh men awel yom|ya3ni msh lel bedaya|tamam, da ba3den]"
    ]
   ]
  },
@@ -747,27 +747,27 @@
   "turlar": [
    [
     "A",
-    "القطة تبعي مشيت على التلفون"
+    "[القطة تبعي مشيت على التلفون|القطة تمشت على تلفوني|قطتي داست على التلفون هلأ]"
    ],
    [
     "B",
-    "اشترت شي؟"
+    "[اشترت شي؟|اشترت شي؟ شقة؟|طلبت شي؟]"
    ],
    [
     "A",
-    "لحسن الحظ لا"
+    "[لحسن الحظ لا|لا، الحمدلله|لأ، ولله الحمد]"
    ],
    [
     "C",
-    "القطط هم اللاعبين الحقيقيين"
+    "[القطط هم اللاعبين الحقيقيين|القطط هني اللعيبة الحقيقيين|القطة بتلعب أحسن منا]"
    ],
    [
     "B",
-    "كلبي أكل الشاحن الأسبوع الماضي"
+    "[كلبي أكل الشاحن الأسبوع الماضي|كلبي أكل الشاحن الجمعة الماضية|كلبي قطع الشاحن الأسبوع الماضي]"
    ],
    [
     "A",
-    "أسطورة"
+    "[أسطورة|بطل|كلب بيعرف شو بدو]"
    ]
   ]
  },
@@ -779,27 +779,27 @@
   "turlar": [
    [
     "A",
-    "eh asra3 tare2a lel felous?"
+    "[eh asra3 tare2a lel felous?|ezay akasab felous besor3a?|eh a2rab tare2 lel felous?]"
    ],
    [
     "B",
-    "mafeesh short cut"
+    "[mafeesh short cut|mafeesh tare2 sahl|mafeesh 7ellawa]"
    ],
    [
     "C",
-    "law online kteer, courier. law la, 7aga beratteb sabet"
+    "[law online kteer, courier. law la, 7aga beratteb sabet|online kteer? courier. olayel? rateb sabet|3ala 7asab, law fatta7 daymn courier, gheir keda rateb sabet]"
    ],
    [
     "A",
-    "ana 3al mobile tool el yom"
+    "[ana 3al mobile tool el yom|ana 3al mobile 3ala tool|ana online daymn]"
    ],
    [
     "C",
-    "yeb2a courier, bta5od 3ala kol mohemma"
+    "[yeb2a courier, bta5od 3ala kol mohemma|yeb2a courier, btet2ebed 3ala kol mohemma|courier, kol tawseela b felousha]"
    ],
    [
     "B",
-    "w matakhodsh 2ard msh hate2dar tedfa3o"
+    "[w matakhodsh 2ard msh hate2dar tedfa3o|w balash 2ord akbar mn 2odretak|w khali balak mn el 2ord elli msh hatesadedha]"
    ]
   ]
  },
@@ -811,23 +811,23 @@
   "turlar": [
    [
     "A",
-    "فوتت قسطين، مشكلة؟"
+    "[فوتت قسطين، مشكلة؟|ما دفعت قسطين، في مشكلة؟|نسيت قسطين، شو بيصير؟]"
    ],
    [
     "B",
-    "اي، التالت بيجي الحجز"
+    "[اي، التالت بيجي الحجز|اي، بعد التالت في حجز|اي، واحد كمان وبيصير حجز]"
    ],
    [
     "A",
-    "لا لا"
+    "[لا لا|يا ويلي|مش معقول]"
    ],
    [
     "C",
-    "ادفع واحد هلأ حتى لو بيوجع"
+    "[ادفع واحد هلأ حتى لو بيوجع|ادفع واحد هلأ مهما كان|ادفع قسط هلأ، شو ما صار]"
    ],
    [
     "A",
-    "هلأ بدفع"
+    "[هلأ بدفع|هلأ هلأ|عم ادفع هلأ]"
    ]
   ]
  },
@@ -839,27 +839,27 @@
   "turlar": [
    [
     "A",
-    "ba3d el ghada nafsi anam"
+    "[ba3d el ghada nafsi anam|ba3d el ghada 3eeni btetsaker|kalt w dlwa2ti 3ayez anam]"
    ],
    [
     "B",
-    "etmasha shwaya"
+    "[etmasha shwaya|etmasha shwaya barra|o2om et7arak shwaya]"
    ],
    [
     "A",
-    "el mashy maghood"
+    "[el mashy maghood|mashy? ta3ab|7araka? la shokran]"
    ],
    [
     "C",
-    "yeb2a shay"
+    "[yeb2a shay|yeb2a eshrab shay|shay hayfo2ak]"
    ],
    [
     "A",
-    "el kobaya el talta"
+    "[el kobaya el talta|di talet kobaya|shrebt talata khalas]"
    ],
    [
     "B",
-    "khalas mafeesh amal"
+    "[khalas mafeesh amal|yeb2a mafeesh 7al|keda khalas, ra7et 3aleek]"
    ]
   ]
  },
@@ -871,27 +871,27 @@
   "turlar": [
    [
     "A",
-    "كافيه ولا محل، شو بتفتح؟"
+    "[كافيه ولا محل، شو بتفتح؟|شو بتفتحوا، كافيه ولا محل؟|محل ولا كافيه، شو أحسن؟]"
    ],
    [
     "B",
-    "كافيه، القهوة دايما بتبيع"
+    "[كافيه، القهوة دايما بتبيع|كافيه، القهوة ما بتخيب|كافيه أكيد، الكل بيشرب قهوة]"
    ],
    [
     "C",
-    "محل، وجع راس أقل مع الموظفين"
+    "[محل، وجع راس أقل مع الموظفين|محل، مشاكل أقل مع الموظفين|انا بقول محل، الموظفين وجع راس]"
    ],
    [
     "A",
-    "التنين بدهم 60 يوم خبرة صح؟"
+    "[التنين بدهم 60 يوم خبرة صح؟|التنين بدهم 60 يوم خبرة، مزبوط؟|بالتنين لازم 60 يوم خبرة؟]"
    ],
    [
     "B",
-    "اي، ورأس مال"
+    "[اي، ورأس مال|اي، ورأس مال كمان|اي، ومصاري منيحة]"
    ],
    [
     "C",
-    "يعني من هلأ وفّر"
+    "[يعني من هلأ وفّر|يعني وفّر من هلأ|يعني توفير توفير توفير]"
    ]
   ]
  },
@@ -903,23 +903,23 @@
   "turlar": [
    [
     "A",
-    "بقالي 40 دقيقة في الزحمة"
+    "[بقالي 40 دقيقة في الزحمة|40 دقيقة واقف في الزحمة|زحمة 40 دقيقة، هتجنن]"
    ],
    [
     "B",
-    "بتكتب وانت سايق؟؟"
+    "[بتكتب وانت سايق؟؟|انت بتكتب وانت بتسوق؟؟|بتكتب ع الدريكسيون؟؟]"
    ],
    [
     "A",
-    "لا، في الأتوبيس، اهدى"
+    "[لا، في الأتوبيس، اهدى|لا، راكب أتوبيس، اهدى|أتوبيس يا عم، متقلقش]"
    ],
    [
     "C",
-    "زحمة الأتوبيس أسوأ زحمة"
+    "[زحمة الأتوبيس أسوأ زحمة|الأتوبيس في الزحمة أسوأ حاجة|أسوأ زحمة هي زحمة الأتوبيس]"
    ],
    [
     "B",
-    "طب كويس"
+    "[طب كويس|طب تمام|اه، يبقى ماشي]"
    ]
   ]
  },
@@ -931,27 +931,27 @@
   "turlar": [
    [
     "A",
-    "eshtareet awel sha2a!"
+    "[eshtareet awel sha2a!|awel sha2a leya!|akheeran sha2a bta3ty!]"
    ],
    [
     "B",
-    "mabrook!"
+    "[mabrook!|alf mabrook!|mabrook ya basha!]"
    ],
    [
     "C",
-    "2ard walla cash?"
+    "[2ard walla cash?|cash walla 2ard?|be 2ard?]"
    ],
    [
     "A",
-    "2ard, el mo2addam 7awali 20 fel meya"
+    "[2ard, el mo2addam 7awali 20 fel meya|2ard, dafa3t 7awali 20 fel meya mo2addam|be 2ard, mo2addam ta2riban 20 fel meya]"
    ],
    [
     "C",
-    "7elw, khalas mafeesh egar"
+    "[7elw, khalas mafeesh egar|7elw, bay bay egar|shater, khalas el egar]"
    ],
    [
     "A",
-    "bs a2sat haha"
+    "[bs a2sat haha|dlwa2ti a2sat haha|mafeesh egar, feeh a2sat haha]"
    ]
   ]
  },
@@ -963,23 +963,23 @@
   "turlar": [
    [
     "A",
-    "[الحرارة 45|حر مش طبيعي] اليوم، ذايب"
+    "[الحرارة 45 اليوم، ذايب|حر مش طبيعي اليوم، ذايب|45 درجة اليوم، عم بدوب]"
    ],
    [
     "B",
-    "اشرب مية"
+    "[اشرب مية|اشرب مي كتير|اشرب مية وما تطلع]"
    ],
    [
     "A",
-    "بشرب تلج"
+    "[بشرب تلج|عم آكل تلج|صرت عالتلج]"
    ],
    [
     "C",
-    "خليك جوا والعب"
+    "[خليك جوا والعب|ضل بالبيت والعب|لا تطلع، العب هون]"
    ],
    [
     "A",
-    "هي الخطة"
+    "[هي الخطة|هيدا اللي عم اعمله|هي الخطة بالزبط]"
    ]
   ]
  },
@@ -991,23 +991,23 @@
   "turlar": [
    [
     "A",
-    "el leila 3amlin mansaf 3andna"
+    "[el leila 3amlin mansaf 3andna|el leila mansaf 3anna|3amlin mansaf el leila]"
    ],
    [
     "B",
-    "3azzemni"
+    "[3azzemni|ana gay|fe 3azoma?]"
    ],
    [
     "C",
-    "w ana kaman, ana gay"
+    "[w ana kaman, ana gay|ana kaman gay|w ana ma3akom]"
    ],
    [
     "A",
-    "el 3azoma lel kol, bs ta3alo badri"
+    "[el 3azoma lel kol, bs ta3alo badri|el kol ma3zoom, bs badri|ta3alo kollokom bs badri]"
    ],
    [
     "B",
-    "ana awel wa7ed"
+    "[ana awel wa7ed|awel wa7ed ana|ana awel el taboor]"
    ]
   ]
  },
@@ -1019,23 +1019,23 @@
   "turlar": [
    [
     "A",
-    "يلا انا رايح، [تصبحوا على خير|بشوفكم بكرا]"
+    "[يلا انا رايح، تصبحوا على خير|يلا انا رايح، بشوفكم بكرا|انا رايح نام، تصبحوا على خير]"
    ],
    [
     "B",
-    "وانت من أهله {A}"
+    "[وانت من أهله {A}|تصبح على خير {A}|نوم الهنا {A}]"
    ],
    [
     "C",
-    "لا تنسى المهام اليومية"
+    "[لا تنسى المهام اليومية|انتبه عالمهام اليومية|المهام اليومية لا تنساها]"
    ],
    [
     "A",
-    "أبدا"
+    "[أبدا|مستحيل|ولا مرة]"
    ],
    [
     "B",
-    "رح ينساهم، بعرفه"
+    "[رح ينساهم، بعرفه|رح ينسى، بتراهن|بعرفه، رح ينساهم]"
    ]
   ]
  },
@@ -1047,27 +1047,27 @@
   "turlar": [
    [
     "A",
-    "akheeran 500 alf fel 7esab"
+    "[akheeran 500 alf fel 7esab|500 alf fel 7esab akheeran|wasalt 500 alf!]"
    ],
    [
     "B",
-    "7elw, w ba3den?"
+    "[7elw, w ba3den?|gamed, w hate3mel eh?|7elw, w dlwa2ti eh?]"
    ],
    [
     "A",
-    "msh 3aref, khayef asrafhom"
+    "[msh 3aref, khayef asrafhom|msh 3aref, khayef agarab|ma3rafsh, khayef a3mel ghalta]"
    ],
    [
     "C",
-    "el felous el wa2fa bt2el 2emetha m3a el ghala"
+    "[el felous el wa2fa bt2el 2emetha m3a el ghala|el felous el na2ma byakolha el tad7akhom|law sebtaha, el ghala hayakolha]"
    ],
    [
     "B",
-    "w el bank ma bye3teesh fayda"
+    "[w el bank ma bye3teesh fayda|w el bank mabyedfa3sh fayda|w fayda mafeesh]"
    ],
    [
     "A",
-    "tab, h-shoof sha2a2"
+    "[tab, h-shoof sha2a2|tamam, hadawar 3ala sha2a|tab, h-shoof el sha2a2 el mota7a]"
    ]
   ]
  }
