@@ -1535,7 +1535,10 @@
     return v;
   }
   function sssCevap(world, meta, kim, oyuncu, katli, esik) {
-    const a = sssAra(katli); if (!a || a.skor < esik) return null;
+    let a = sssAra(katli);
+    // Kısa takip sorusu ("ya arsa", "peki kaç gün"): önceki mesajla birlikte de aranır, daha iyi eşleşen alınır
+    if (meta._baglamMetin && katli.split(' ').length <= 5 && meta._baglamMetin !== katli) { const b = sssAra(meta._baglamMetin + ' ' + katli); if (b && (!a || b.skor > a.skor + .05)) a = b; }
+    if (!a || a.skor < esik) return null;
     const v = sssVeri(world, meta, oyuncu), sec = a.e.cevap.map(c => c.replace(/\{([\w.]+)\}/g, (m, k) => v[k] != null ? v[k] : m)).filter(c => !/\{[\w.]+\}/.test(c));
     if (!sec.length) return null; const taze = sec.filter(c => !tekrarMi(meta, kim, c));
     return { metin: (taze.length ? taze : sec)[Math.floor(Math.random() * (taze.length || sec.length))], sss: a.e.id, skor: a.skor };
@@ -1831,6 +1834,7 @@
     const npcIdler = kanal === 'sirket' ? (sirketNpcIdleri || []).filter(id => meta.npc[id]) : Object.keys(meta.npc);
     adCakismasi(world, meta, oyuncu);
     meta._gelen = (dil().normal)(metin).katli;
+    { const s0 = meta.diyalog && meta.diyalog[kanal]; meta._baglamMetin = s0 && Date.now() - s0.zaman < KONU_SURE ? (s0.simdiki || s0.ilk || null) : null; }
     if (kanal === 'sirket') { const ny0 = (dil().niyetBul)(metin, { adlar: [] }); const c0 = sirketCevap(world, meta, oyuncu, meta._gelen, ny0, npcIdler, rng, saat); if (c0) return { cevaplar: [c0], niyet: ny0 }; }
     const adlar = npcIdler.map(id => meta.npc[id].gorunen).concat(npcIdler.map(id => meta.npc[id].ad));
     const ny = (dil().niyetBul)(metin, { adlar, oyuncuAd: oyuncu.name });
@@ -2367,6 +2371,7 @@
     meta.diyalog = meta.diyalog || {};
     const dk = 'dm:' + npcId, simdi = Date.now(), katli = (dil().normal)(metin).katli;
     let st = meta.diyalog[dk]; if (st && simdi - st.zaman > 30 * 60e3) st = null;
+    meta._baglamMetin = st && st.simdiki ? st.simdiki : null;
     // Kapanış: teşekkür / veda / "tamam sağol" -> kısa kapanış, bilgi yinelenmez
     if (['tesekkur', 'veda'].includes(ny.niyet) || /^(tamam|tmm|ok|peki)\W*\s*(sag ?ol|sagol|tesekkur|tsk|eyv)/.test(katli)) { const c = cevapPaketi(world, meta, npcId, ny.niyet === 'veda' ? 'cevap.veda' : 'cevap.tesekkur', { oyuncuAd: oyuncu.name.split(' ')[0] }, rng); meta.diyalog['dm:' + npcId] = null; return { metin: c.metin, gecikmeMs: c.gecikmeMs }; }
     const p0 = world.players[npcId];
@@ -2388,7 +2393,7 @@
     // "dairen satılık mı": oyuncu ALICI (NPC'nin mülkü soruluyor)
     if (/\b(dairen|evin|arsan|dukkanin|mulkun|daireni|evini|arsani)\b/.test(katli) && /(satilik|satar misin|satiyor musun|verir misin|kaca)/.test(katli)) { konu = 'mulk_ariyorum'; ny.varlik = Object.assign({}, ny.varlik, { mulk: /arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : 'daire' }); }
     const varlik = Object.assign({}, takip && st ? st.varlik : {}, ny.varlik || {});
-    meta.diyalog[dk] = { konu, varlik, zaman: simdi, cevaplayan: [npcId], sonNpc: npcId };
+    meta.diyalog[dk] = { konu, varlik, zaman: simdi, cevaplayan: [npcId], sonNpc: npcId, simdiki: katli };
     const p = world.players[npcId];
     // İş arayan oyuncu, işletmesi olan NPC'ye yazdı: açığı varsa gerçek teklif
     const bekleyen = meta.teklifler.find(x => x.npcId === npcId && x.durum === 'bekliyor' && x.bitis >= world.day && x.tur === 'is');

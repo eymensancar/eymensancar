@@ -1,0 +1,1404 @@
+# k6 karışık: patron görev
+  Sen: maç izleyen var mı   [genel→genel, takip:detay]
+  Sen: calisanim gorevleri yapmazsa maasi tam mi vericem   [maas_sorusu→maas_sorusu]
+     Selin Demir: çalışan görev yapmazsa hem verim düşer hem maaşı tam yatmaz
+     ✗ icermeli:20
+
+# k6 karışık: olmayan ve var olan
+  Sen: ok anladim   [genel→maas_sorusu, takip:onay]
+  Sen: ortaklik yok ihale yok borsa yok ne var bu oyunda   [ekonomi→ekonomi]
+     turgut_a: altın, döviz, borsa daha yok oyunda
+     ✗ konu dert, icermeli:mulk
+
+# k6 karışık: olmayan ve var olan
+  Sen: ortaklik yok ihale yok borsa yok ne var bu oyunda   [ekonomi→ekonomi]
+  Sen: sonra gelecekler mi   [genel→ekonomi, takip:tekrar]
+     turgut_a: dedim ya ortaklık yok oyunda, ancak tek başına alırsın. dükkan 2,8 milyon civarı
+     ✗ baglam, icermeli:gelecek
+
+# k6 enflasyon: fiyatlar artıyor
+  Sen: sonra gelecekler mi   [genel→ekonomi, takip:tekrar]
+  Sen: fiyatlar neden surekli artiyo   [ekonomi→ekonomi]
+     Yalçın K.: fiyatlar son bi yılda %12,7 arttı. maaşlar da endekse göre artıyor ama biraz geriden geliyor
+     ✗ icermeli:enflasyon
+
+# k6 enflasyon: fiyatlar artıyor
+  Sen: fiyatlar neden surekli artiyo   [ekonomi→ekonomi]
+  Sen: maaslar da artiyo mu   [maas_sorusu→maas_sorusu]
+     Yusuf U.: valla artıyor ama geç, o yüzden sadece maaşla zengin olunmuyor
+     ✗ icermeli:artar
+
+# k6 karışık: müteahhit kademe
+  Sen: bu ay yuzde kac artti   [ekonomi→maas_sorusu, takip:detay]
+  Sen: muteahhitlik var mi   [genel→genel]
+     hande_tr: en zor meslek bu, kredi notun da en az 700 olmalı
+     ✗ konu meslek_tavsiyesi, icermeli:4
+
+# k6 meslek: ilk kademe listesi
+  Sen: bina yapabiliyo muyuz ama   [genel→genel, takip:detay]
+  Sen: 1. kademede neler var   [kisisel_meslek→meslek_tavsiyesi]
+     Cemile Kuzu: dordu de sartsiz, hemen baslarsin
+     ✗ icermeli:garson
+
+# k6 meslek: ilk kademe listesi
+  Sen: 1. kademede neler var   [kisisel_meslek→meslek_tavsiyesi]
+  Sen: sart var mi bunlara   [genel→meslek_tavsiyesi]
+     Cemile Kuzu: emlak danismani olarak calisiyorum, bi yila yakin
+     ✗ icermeli:sart\w* yok
+
+# k6 kum saati: maaşa etki
+  Sen: sart var mi bunlara   [genel→meslek_tavsiyesi]
+  Sen: kum saati maasi arttirir mi   [zam_istegi→genel]
+     Taha D.: kum Saati kurs süresini kısaltıyor, biri bi gün. günde 3 görev yapınca bi tane geliyor
+     ✗ icermeli:etkilemez
+
+# k6 kum saati: maaşa etki
+  Sen: kum saati maasi arttirir mi   [zam_istegi→genel]
+  Sen: servete eklenir mi   [ekonomi→genel]
+     Taha D.: fiyatlar yılda %11,1 artıyor faiz aylık %1,5. parayı nakitte tutmak yerine mülke yatırmak mantıklı
+     ✗ icermeli:etkilemez
+
+# k6 karışık: dm iş tavsiyesi
+  Sen: sence ben ne is yapayim   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: sonra buyumek icin   [genel→meslek_tavsiyesi]
+     tulaysezgin: valla yazdım ya şartsız işlerde en çok kurye kazandırıyor
+     ✗ icermeli:kurs
+
+# k6 yeni: para bitti
+  Sen: param bitti ne olcak simdi   [dert→dert]
+  Sen: yatirim yapamaz miyim   [ekonomi→ekonomi]
+     hakann: ben paramı mülke yatırdım, 1 mülküm var, daire şu an 1,8 milyon civarı her ay değerleniyor
+     Erhan Metin: bence yuksek, ben pisman oldum biraz
+     ✗ konu kredi_sorusu, baglam, icermeli:borc
+
+# k6 yeni: para bitti
+  Sen: yatirim yapamaz miyim   [ekonomi→ekonomi]
+  Sen: borcum da var   [kredi_sorusu→ekonomi, takip:detay]
+     hakann: fiyatlar yılda %12 artıyor, faiz aylık %1,5 parayı nakitte tutmak yerine mülke yatırmak mantıklı
+     ✗ konu dert, baglam, icermeli:is
+
+# k6 yok: araba
+  Sen: galeriden araba alinmiyo mu   [genel→genel]
+  Sen: sacma lux bisey yok mu hic   [hayir→genel]
+     Harun B.: Teşekkür ederim, anladım.
+     ✗ icermeli:yok
+
+# k6 meslek: muhasebeci oyuna girmese de
+  Sen: kursu ne kadar surer peki   [kurs_sorusu→kurs_sorusu]
+  Sen: deneyim sarti var mi   [kurs_sorusu→kurs_sorusu]
+     Mustafa A.: emin değilim, biri bilen çıkar elbet
+     ✗ icermeli:30
+
+# k6 sosyal: tebrik
+  Sen: maasim sabit artik oyuna girmesem de yatiyo   [maas_sorusu→maas_sorusu]
+  Sen: siradaki hedef ne olsun   [genel→maas_sorusu, takip:detay]
+     Alperen Şeker: emlak danışmanı ayda 68 bin civarı kazanıyor
+     ✗ konu meslek_tavsiyesi, baglam
+
+# k6 yok: lonca dernek
+  Sen: siradaki hedef ne olsun   [genel→maas_sorusu, takip:detay]
+  Sen: dernek kurabiliyo muyuz   [genel→genel]
+     meral_tr: ne demek istedin biraz daha anlatsana?
+     ✗ icermeli:yok
+
+# k6 yok: lonca dernek
+  Sen: lonca var miydi   [genel→genel, takip:tekrar]
+  Sen: mahalle sistemi   [genel→genel, takip:tekrar]
+     meral_tr: mahalle sistemi ileride geliyor, dernekle beraber
+     ✗ icermeli:yok
+
+# k6 kredi: kredi çekmeli mi
+  Sen: kredi cekip dukkan acsam mantikli mi   [kredi_sorusu→kredi_sorusu]
+  Sen: batarsam   [dert→kredi_sorusu]
+     yesil.recep: Valla istersen istifa edip baska ilana basvurabilirsin
+     ✗ icermeli:icra
+
+# k6 iş: işsizlik maaşı
+  Sen: issizlik maasi veriyolar mi   [maas_sorusu→maas_sorusu]
+  Sen: devlet yardimi da mi yok   [genel→maas_sorusu, takip:detay]
+     Ebru Uçar: garson fena kazanmiyor, ayda 22 bin falan bir sey
+     ✗ icermeli:yok
+
+# k6 karışık: emlakçı yer
+  Sen: oranin kirasi pahali mi   [fiyat_sorusu→fiyat_sorusu]
+  Sen: en iyi semt hangisi ev almak icin   [meslek_tavsiyesi→meslek_tavsiyesi]
+     Merve Sağlam: şartsız işlerde en çok kurye kazandırıyor 54 bin civarı. kasiyer de olur ama daha az.
+     ✗ konu fiyat_sorusu, icermeli:fark yok
+
+# k6 karışık: emlakçı yer
+  Sen: en iyi semt hangisi ev almak icin   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: kira da semte gore degismiyo mu   [fiyat_sorusu→fiyat_sorusu]
+     Burak D.: Daire şu sıralar 1,8 milyon civarı, kira getirisi ayda 8.900 ₺. Krediyle alırsan peşinat 356 bin civarı
+     ✗ icermeli:ayni
+
+# k6 karışık: kurye vs memur zaman
+  Sen: kira da semte gore degismiyo mu   [fiyat_sorusu→fiyat_sorusu]
+  Sen: cok oyun oynayamiyorum hangi meslek uygun   [meslek_tavsiyesi→meslek_tavsiyesi]
+     Sami Canbaz: şartsız işlerde en çok kurye kazandırıyor, 54 bin civarı. kasiyer de olur ama daha az
+     ✗ icermeli:memur
+
+# k6 karışık: kurye vs memur zaman
+  Sen: cok oyun oynayamiyorum hangi meslek uygun   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: ama onlar kurs istiyo   [kurs_sorusu→meslek_tavsiyesi, takip:detay]
+     Sami Canbaz: e kurye şartsız, direkt başlıyorsun ya
+     ✗ icermeli:evet
+
+# k6 karışık: kurye vs memur zaman
+  Sen: ama onlar kurs istiyo   [kurs_sorusu→meslek_tavsiyesi, takip:detay]
+  Sen: kurs bitince 30 gun daha mi   [kurs_sorusu→meslek_tavsiyesi, takip:detay]
+     Sami Canbaz: yazdım ya, kurye şartsız
+     ✗ baglam, icermeli:evet
+
+# k6 karışık: tebrik ev
+  Sen: ilk dairemi aldim   [mulk_satiyorum→mulk_satiyorum]
+  Sen: kiraya mi vereyim icinde mi oturayim   [dert→dert]
+     Beyza Coşar: Zor ama sabır. Bir şey lazımsa söyleyin.
+     bilal_tr: moralini bozma Eymen, birlikte bi cozum buluruz
+     ✗ konu mulk_ariyorum, baglam, icermeli:kira
+
+# k6 karışık: tebrik ev
+  Sen: kiraya mi vereyim icinde mi oturayim   [dert→dert]
+  Sen: oturursam kira odemem di mi   [genel→dert, takip:detay]
+     bilal_tr: daire alip tasinirsan aylik 8.900 TL kiradan kurtulursun
+     ✗ konu fiyat_sorusu, baglam, icermeli:evet
+
+# k6 mülk: peşinat
+  Sen: oturursam kira odemem di mi   [genel→dert, takip:detay]
+  Sen: konut kredisiyle ev alcam pesinat kac   [kredi_sorusu→kredi_sorusu]
+     Oktay Tunç: alinir ama pesin 1,8 milyon civari lazim, senin nakdin 100.000 ₺. krediyle pesinat 355 bin civari
+     Eylül E.: faiz bana yüksek geliyor açıkçası
+     ✗ icermeli:20
+
+# k6 kum saati: ne işe yarar
+  Sen: kum saati ne ise yarar   [yardim→yardim]
+  Sen: nerden bulcam   [yardim→yardim, takip:detay]
+     Nilay07: Bildiğim kadarıyla Kum Saati kurs süresini kısaltıyor, biri bir gün. Günde 3 görev yapınca bir tane geliyor.
+     ✗ konu genel, baglam
+
+# k6 kum saati: ne işe yarar
+  Sen: nerden bulcam   [yardim→yardim, takip:detay]
+  Sen: kac gorevde 1 tane   [genel→yardim, takip:detay]
+     Nilay07: Anlayamadım, ne demek istedin?
+     ✗ baglam, icermeli:3
+
+# k6 kum saati: ne işe yarar
+  Sen: kac gorevde 1 tane   [genel→yardim, takip:detay]
+  Sen: kursta kullaninca kac gun kisalir   [kurs_sorusu→yardim, takip:detay]
+     Nilay07: Onu bilmiyorum, biri cevaplar elbet.
+     ✗ konu genel, baglam
+
+# k6 zincir: ev alma uzun
+  Sen: fiyati ne kadar   [fiyat_sorusu→fiyat_sorusu]
+  Sen: kredi cekersem pesinat   [kredi_sorusu→kredi_sorusu]
+     Seda Aksu: aylik faiz %1,5, ihtiyac kredisi 24 ay vadeli. senin limitin su an 0 ₺ ilk ay maasin yatinca aciliyor
+     ✗ icermeli:20
+
+# k6 yok: ihale
+  Sen: devlet ihalesine nasil girilir   [yardim→yardim]
+  Sen: insaat yapabiliyo muyuz   [genel→yardim, takip:detay]
+     Bekir Altun: Evet ya, bu aralar herkes bundan bahsediyor
+     ✗ anlamsiz_onay_yok, baglam, icermeli:yok
+
+# k6 yok: ihale
+  Sen: insaat yapabiliyo muyuz   [genel→yardim, takip:detay]
+  Sen: ne zaman gelir bunlar   [genel→yardim, takip:ne_zaman]
+     Bekir Altun: Hangi konuda soruyorsun?
+     ✗ baglam, icermeli:sonraki
+
+# k6 kredi: kredi notu max
+  Sen: kredi notunun tavani ne   [kredi_sorusu→kredi_sorusu]
+  Sen: 620 iyi mi kotu mu   [genel→kredi_sorusu, takip:detay]
+     Sibel K.: Emin değilim, bilen biri yazar belki.
+     ✗ icermeli:orta
+
+# k6 meslek: 4. kademe meslekleri
+  Sen: 4.kademe meslekler ne   [kisisel_meslek→kisisel_meslek]
+  Sen: kac para lazim oraya   [fiyat_sorusu→kisisel_meslek, takip:miktar]
+     yusufsaglam: İkinci kademe için kurs ve en az 20 gün deneyim, üçüncü kademe için 60 gün deneyim ve en az 668 bin civarı sermaye lazım. Dördüncü kademe 3,3 milyon flan sermaye ve 60 gün deneyimle başlıyor.
+     ✗ konu kurs_sorusu, baglam
+
+# k6 meslek: 4. kademe meslekleri
+  Sen: kac para lazim oraya   [fiyat_sorusu→kisisel_meslek, takip:miktar]
+  Sen: yalniz para mi yeter   [dert→kisisel_meslek, takip:detay]
+     yusufsaglam: Emlak danışmanı olarak çalışıyorum, 9-10 aydır.
+     ✗ konu kurs_sorusu, baglam, icermeli:kurs
+
+# k6 isletme: ilan açma
+  Sen: ilan nasıl acılıyo isletmede   [yardim→yardim]
+  Sen: basvuran olunca ne olcak   [genel→yardim, takip:detay]
+     Azra Biçer: Evet ya, bence de.
+     ✗ konu eleman_ariyorum, anlamsiz_onay_yok, baglam, icermeli:ise al
+
+# k6 isletme: ilan açma
+  Sen: basvuran olunca ne olcak   [genel→yardim, takip:detay]
+  Sen: ilana maas yazmak zorunlu mu   [maas_sorusu→maas_sorusu]
+     Nesrin D.: valla cok degil ama geciniyoruz
+     ✗ konu eleman_ariyorum, baglam
+
+# k6 yeni: tutorial
+  Sen: rehber yok mu oyunda   [yardim→yardim]
+  Sen: sen anlatsana   [iltifat→yardim, takip:detay]
+     nazan__: özet, Kariyer, Mülk ve Banka var. hepsini gez
+     ✗ icermeli:is
+
+# k6 kurs: ustalik belgesi kimde
+  Sen: sen anlatsana   [iltifat→yardim, takip:detay]
+  Sen: ustalik belgesi almak icin once ne yapmali   [kurs_sorusu→kurs_sorusu]
+     Jale Demirci: Bildiğim kadarıyla ustalık kursu 22 bin civarı, 7 gün sürüyor. Bitince usta olabiliyorsun
+     ✗ icermeli:insaat
+
+# k6 kurs: ustalik belgesi kimde
+  Sen: ustalik belgesi almak icin once ne yapmali   [kurs_sorusu→kurs_sorusu]
+  Sen: insaat iscisi nasil olunuyo   [yardim→kurs_sorusu, takip:detay]
+     Jale Demirci: Ondan pek anlamam, başkası bilir
+     ✗ konu is_ariyorum, icermeli:sart\w* yok
+
+# k6 kurs: ustalik belgesi kimde
+  Sen: insaat iscisi nasil olunuyo   [yardim→kurs_sorusu, takip:detay]
+  Sen: insaatta 20 gun calisinca otomatik mi usta oluyom   [bot_musun→bot_musun]
+     Berkay Kuzu: usta ayda 116 bin flan, inşaat işçisi 38 bin civarı. para olarak usta önde ama usta için ustalık kursu gerekiyor, inşaat işçisi için şartsız başlanıyor
+     ✗ konu kurs_sorusu, baglam
+
+# k6 yeni: gecim
+  Sen: insaatta 20 gun calisinca otomatik mi usta oluyom   [bot_musun→bot_musun]
+  Sen: her ay param neden azaliyo hic harcamadim   [dert→dert]
+     Kezban Çınar: Ay sonu ödemeyi yapamazsan itibar düşer.
+     ✗ icermeli:kira
+
+# k6 yeni: gecim
+  Sen: her ay param neden azaliyo hic harcamadim   [dert→dert]
+  Sen: ne kadar gidiyo aylik   [fiyat_sorusu→fiyat_sorusu]
+     Kezban Çınar: Zor ama gececek. Bir şey lazımsa söyle.
+     ✗ icermeli:\d
+
+# k6 karışık: zaman ve kurs
+  Sen: kimse yok mu   [genel→eleman_ariyorum, takip:tekrar]
+  Sen: kurs 5 gun diyo gercekte kac saat   [kurs_sorusu→kurs_sorusu]
+     Çağan Tatlı: Bi saatte bir gün geçiyor, 30 günde bir ay.
+     ✗ konu genel, icermeli:5 saat
+
+# k6 karışık: zaman ve kurs
+  Sen: kurs 5 gun diyo gercekte kac saat   [kurs_sorusu→kurs_sorusu]
+  Sen: kum saatiyle hemen biter mi   [genel→kurs_sorusu, takip:detay]
+     Çağan Tatlı: Kum Saati kurs süresini kısaltıyor, biri bir gün. Günde 3 görev yapınca bir tane geliyor.
+     ✗ baglam
+
+# k6 iki soru: kredi ve icra
+  Sen: kum saatiyle hemen biter mi   [genel→kurs_sorusu, takip:detay]
+  Sen: kredi kac ay vadeli ve kac taksit kacirinca icra   [kredi_sorusu→kredi_sorusu]
+     Yavuz Y.: Nakliyeci olmak için 891 bin civarı sermaye lazım, aracın parası o. Bi de 60 gün iş deneyimi.
+     Ayten Çetin: faiz bana yüksek geliyor açıkçası
+     ✗ icermeli:24
+
+# k6 iki soru: arsa ve dükkan
+  Sen: arsa mi dukkan mi kira getirir ikisi de mi   [mulk_ariyorum→mulk_ariyorum]
+  Sen: fiyatlari semte gore mi   [fiyat_sorusu→mulk_ariyorum, takip:detay]
+     İlknur T.: arsa su siralar 886 bin civari, kira getirmiyor ama degeri artiyor. krediyle alirsan pesinat 177 bin civari
+     ✗ baglam, icermeli:degismez
+
+# k6 iki soru: arsa ve dükkan
+  Sen: fiyatlari semte gore mi   [fiyat_sorusu→mulk_ariyorum, takip:detay]
+  Sen: en ucuz hangisi   [meslek_tavsiyesi→mulk_ariyorum, takip:detay]
+     İlknur T.: bilmiyom valla, hic denemedim
+     ✗ konu fiyat_sorusu, baglam
+
+# k6 meslek: isini biraksam
+  Sen: en ucuz hangisi   [meslek_tavsiyesi→mulk_ariyorum, takip:detay]
+  Sen: kuryeligi biraksam deneyim gider mi   [meslek_tavsiyesi→meslek_tavsiyesi]
+     CaganBaysal: Kurye ayda 54 bin civarı getiriyor. Hemen başlayabilirsin, çalıştıkça kazanıyorsun.
+     ✗ icermeli:gitmez
+
+# k6 mülk: mülk türleri
+  Sen: tamam tsk   [tesekkur→meslek_tavsiyesi, takip:onay]
+  Sen: ne tur mulk alinabiliyo   [genel→mulk_ariyorum]
+     Tugba_Erol: birden fazla alabilirsin her biri ayrı kira getirir
+     ✗ icermeli:daire
+
+# k6 mülk: mülk türleri
+  Sen: villa yok mu   [genel→mulk_ariyorum]
+  Sen: rezidans   [hakaret→mulk_ariyorum]
+     Tugba_Erol: şimdilik daire, dükkan ve arsa var sadece
+     ✗ icermeli:yok
+
+# k6 mülk: kira her ay
+  Sen: kira ne zaman kesiliyo   [yardim→yardim]
+  Sen: param yetmezse   [dert→yardim, takip:detay]
+     Oğuzhan T.: kredi notun 20, itibarın 2 düşer, gecikmiş borç kapanana kadar yatırım yok
+     ✗ konu fiyat_sorusu, baglam
+
+# k6 yeni: hangi menü
+  Sen: ne kadar oluyo genelde   [fiyat_sorusu→yardim, takip:miktar]
+  Sen: is nerden aranir menude   [yardim→is_ariyorum]
+     Tarık Ö.: iyi soru ben de bilmiyom
+     ✗ icermeli:kariyer
+
+# k6 karışık: tek kelime mülk
+  Sen: arsa   [mulk_ariyorum→mulk_ariyorum]
+  Sen: kira getirmez di mi   [genel→mulk_ariyorum, takip:detay]
+     Emir Erol: valla arsa kira getirmiyor, ama değeri artıyor
+     ✗ konu fiyat_sorusu, icermeli:getirmez
+
+# k6 kurs: 2. kademe ortak şart
+  Sen: saka saka   [saka→saka]
+  Sen: 2.kademeye gecmek icin kac gun calismak lazim   [kurs_sorusu→kurs_sorusu]
+     thegulnur: Benim bildiğim ikinci kademe için kurs ve en az 20 gün deneyim, üçüncü kademe için 60 gün deneyim ve en az 669 bin civarı sermaye lazım. Dördüncü kademe 3,3 milyon civarı sermaye ve 60 gün deneyimle başlıyor.
+     Burak Öncel: ben aldım değdi bence
+     ✗ icermeli:30
+
+# k6 kurs: 2. kademe ortak şart
+  Sen: 2.kademeye gecmek icin kac gun calismak lazim   [kurs_sorusu→kurs_sorusu]
+  Sen: kuryelik de sayiliyo mu   [genel→kurs_sorusu, takip:detay]
+     thegulnur: 30 oyun günü, gerçekte 30 saat ediyor.
+     ✗ icermeli:evet
+
+# k6 kurs: 2. kademe ortak şart
+  Sen: kuryelik de sayiliyo mu   [genel→kurs_sorusu, takip:detay]
+  Sen: usta icin de 30 mu   [genel→kurs_sorusu, takip:detay]
+     thegulnur: Ustalık kursu 22 bin falan, 7 gün sürüyor. Bitince usta olabiliyorsunuz.
+     ✗ icermeli:20
+
+# k6 bayram: kutlama
+  Sen: bayramda bagis 2 kat mi   [bayram→bayram, takip:tekrar]
+  Sen: kac liraya 1 itibar normalde   [fiyat_sorusu→bayram, takip:detay]
+     bayram_tr: iyi seneldr, bol kazançlı bir yıl olsun
+     ✗ konu genel, icermeli:10
+
+# k6 karışık: dert sonra iş
+  Sen: isim de yok zaten   [genel→dert, takip:detay]
+  Sen: kuryelik nasil   [hal_hatir→dert, takip:detay]
+     Vedat Güçlü: kuryelikle başla şartsız ve işveren istemiyor
+     ✗ konu meslek_tavsiyesi, icermeli:gorev
+
+# k6 karışık: icra ihtimali hesap
+  Sen: kuryelik nasil   [hal_hatir→dert, takip:detay]
+  Sen: kredi cektim ama gelirim yok 3 ay sonra ne olur   [kredi_sorusu→kredi_sorusu]
+     Enes Yücel: Aylık faiz %1,5, ihtiyaç kredisi 24 ay vadeli. Sizin limitiniz şu an 0 ₺, ilk ay maaşın yatınca açılıyor.
+     ✗ icermeli:icra
+
+# k6 karışık: icra ihtimali hesap
+  Sen: kredi cektim ama gelirim yok 3 ay sonra ne olur   [kredi_sorusu→kredi_sorusu]
+  Sen: kurtulmanin yolu   [yardim→kredi_sorusu, takip:detay]
+     Enes Yücel: Emin değilim, bilen biri yazar belki.
+     ✗ icermeli:is
+
+# k6 kredi: limit artırma
+  Sen: limiti nasil arttiririm   [yardim→yardim]
+  Sen: gelir dedigin aylik mi   [maas_sorusu→yardim, takip:detay]
+     neslihan.erdem: bilmiyom valla, baska biri bilir belki
+     ✗ konu kredi_sorusu, baglam, icermeli:gecen ay
+
+# k6 kredi: limit artırma
+  Sen: gelir dedigin aylik mi   [maas_sorusu→yardim, takip:detay]
+  Sen: yani bu ay cok calisirsam gelecek ay artar   [genel→yardim, takip:detay]
+     neslihan.erdem: haklisin aslinda
+     ✗ konu kredi_sorusu, baglam, icermeli:evet
+
+# k6 meslek: kurye isvereni yok mu
+  Sen: yani bu ay cok calisirsam gelecek ay artar   [genel→yardim, takip:detay]
+  Sen: kurye olmak icin kime basvurcam   [eleman_ariyorum→eleman_ariyorum]
+     Büşra Gündüz: Kanala ilan aç, başvuran çok olur.
+     ✗ konu is_ariyorum, icermeli:kariyer
+
+# k6 meslek: kurye isvereni yok mu
+  Sen: kurye olmak icin kime basvurcam   [eleman_ariyorum→eleman_ariyorum]
+  Sen: yani patron matron yok mu   [is_ariyorum→eleman_ariyorum, takip:detay]
+     Büşra Gündüz: Benim bildiğim ilanı açınca kanala bi de sen yaz, iş arayanlar görür.
+     ✗ baglam, icermeli:yok
+
+# k6 meslek: kurye isvereni yok mu
+  Sen: yani patron matron yok mu   [is_ariyorum→eleman_ariyorum, takip:detay]
+  Sen: memur da oylemi   [genel→eleman_ariyorum, takip:tekrar]
+     Muhammed K.: su an bosta memur goremedim, ilan ac, 49.500 ₺ civari verirsen basvuru gelir
+     ✗ konu kurs_sorusu, baglam, icermeli:kariyer
+
+# k6 meslek: kurye isvereni yok mu
+  Sen: memur da oylemi   [genel→eleman_ariyorum, takip:tekrar]
+  Sen: kurye gunde kac teslimat yapabiliyo   [maas_sorusu→eleman_ariyorum, takip:detay]
+     Muhammed K.: evet, ilani acinca kanala bi de sen yaz
+     ✗ baglam
+
+# k6 kredi: limit formülü
+  Sen: kredi limiti neye gore   [kredi_sorusu→kredi_sorusu]
+  Sen: yani tam hesap nasil   [hal_hatir→kredi_sorusu, takip:detay]
+     Selçuk Alkan: Bilmiyorum valla, hiç denemedim.
+     ✗ icermeli:100
+
+# k6 tek: aynı tür dükkan
+  Sen: enflasyon cok fiyatlar artiyo   [ekonomi→zam_istegi]
+  Sen: yanima ayni dukkandan acarlarsa ne olur   [genel→genel]
+     ✗ konu ekonomi, cevap_var, icermeli:bolun
+
+# k6 tek: kira öder ev sahibi
+  Sen: kotu   [hakaret→undefined]
+  Sen: ev sahibi olunca kira gider mi   [genel→genel]
+     Özlem G.: daire alıp taşınırsan aylık 8.900 TL kiradan kurtulursun
+     ✗ konu fiyat_sorusu, icermeli:evet
+
+# k6 mülk: daire arıyorum
+  Sen: satilik daire arıyom bütce 2 milyon   [mulk_ariyorum→mulk_ariyorum]
+  Sen: ilan nerde bakılır   [yardim→mulk_ariyorum, takip:yer]
+     Sinan Güven: fiyat semte göre değişmiyor şu an, her yerde daire 1,8 milyon civarı. işine yakın bi yere bak bence
+     ✗ icermeli:mulk
+
+# k6 mülk: dükkan kira geliri
+  Sen: maas da var mi   [maas_sorusu→maas_sorusu]
+  Sen: dukkan alip kiraya vermek mantikli mi   [mulk_satiyorum→mulk_satiyorum]
+     Sedef Bal: dükkan piyasada 2,8 milyon civarı. ilan verince alıcı çıkar, acelen varsa piyasaya da satabilirsin
+     ✗ konu mulk_ariyorum, icermeli:kira
+
+# k6 mülk: dükkan kira geliri
+  Sen: dukkan alip kiraya vermek mantikli mi   [mulk_satiyorum→mulk_satiyorum]
+  Sen: arsadan iyi mi   [genel→mulk_satiyorum, takip:tekrar]
+     Sedef Bal: valla arsa piyasada 893 bin civarı, piyasaya hemen satarsan 849 bin civarı alırsın beklersen alıcı çıkar
+     ✗ konu mulk_ariyorum, baglam
+
+# k6 mülk: dükkan kira geliri
+  Sen: arsadan iyi mi   [genel→mulk_satiyorum, takip:tekrar]
+  Sen: kiraci oyuncu mu oluyo npc mi   [bot_musun→bot_musun]
+     Kader Kalkan: ben oyunun bi karakteriyim, ama maaşımı bende bekliyorum
+     ✗ konu fiyat_sorusu, baglam, icermeli:npc
+
+# k6 dolaylı: parası olan
+  Sen: kiraci oyuncu mu oluyo npc mi   [bot_musun→bot_musun]
+  Sen: param yatiyo bankada bosuna   [dert→ekonomi]
+     sevgi_tr: üzüldüm, geçmiş olsun. herkesin başına geliyor
+     ✗ icermeli:faiz yok
+
+# k6 dolaylı: parası olan
+  Sen: param yatiyo bankada bosuna   [dert→ekonomi]
+  Sen: faizi de yok di mi   [ekonomi→kredi_sorusu]
+     sevgi_tr: bak kredi faizi aylık %1,5, yıllık hesaplarsan %19,6 ediyor
+     ✗ icermeli:yok
+
+# k6 karışık: soru sonra hakaret
+  Sen: faizi de yok di mi   [ekonomi→kredi_sorusu]
+  Sen: kredi limitim neden bu kadar dusuk   [kredi_sorusu→kredi_sorusu]
+     cagri.tekin: aylık faiz %1,5, ihtiyaç kredisi 24 ay vadeli. senin limitin şu an 0 ₺, ilk ay maaşın yatınca açılıyor
+     Selim A.: Bence yüksek, ben pişman oldum biraz.
+     ✗ icermeli:gelir
+
+# k6 yazım: harf hatası
+  Sen: tamam anladim gelir artinca artar   [genel→kredi_sorusu, takip:onay]
+  Sen: emlakci olmk icim ne lazm   [genel→genel]
+     ✗ konu kurs_sorusu, cevap_var, icermeli:belge
+
+# k6 yazım: harf hatası
+  Sen: emlakci olmk icim ne lazm   [genel→genel]
+  Sen: kac gun deneyın   [kurs_sorusu→genel, takip:detay]
+     Kağan Özer: Bak toplam deneyimin 0 gun
+     ✗ baglam, icermeli:30
+
+# k6 tek: arsa
+  Sen: prımmı maasmı   [maas_sorusu→maas_sorusu]
+  Sen: arsanin kirasi olur mu   [fiyat_sorusu→fiyat_sorusu]
+     Yılmaz Ekici: bak arsa su siralar 887 bin civari, kira getirmiyor ama degeri artiyor. krediyle alirsan pesinat 177 bin flan
+     ✗ icermeli:olmaz
+
+# k6 enflasyon: maaş geride
+  Sen: deger kazanir mi bari   [maas_sorusu→fiyat_sorusu]
+  Sen: zam geliyo ama yetmiyo neden   [dert→dert]
+     Feyza Karahan: muhasebecide kıdem zammı 90 günde bi kendiliğinden gelir
+     ✗ konu ekonomi, icermeli:geriden
+
+# k6 enflasyon: maaş geride
+  Sen: haksizlik bu   [genel→dert, takip:tekrar]
+  Sen: memur maasi da mi geriden   [maas_sorusu→maas_sorusu]
+     Burcu Kocabaş: Memur ayda 50 bin civarı kazanıyor, sabit maaş. Ama önce KPSS kursu lazım.
+     ✗ icermeli:evet
+
+# k6 karışık: kum saati bekleme türleri
+  Sen: kum saati hangi beklemelerde kullaniliyo   [yardim→yardim]
+  Sen: deneyimde de mi   [kurs_sorusu→yardim, takip:detay]
+     Aydın K.: Toplam deneyimin 0 gün
+     ✗ konu genel, baglam, icermeli:hayir
+
+# k6 karışık: yeni başlayan iki soru
+  Sen: kira ne kadar ve is bulamazsam ne olur   [fiyat_sorusu→fiyat_sorusu]
+  Sen: kurye her zaman bos mu   [genel→fiyat_sorusu, takip:detay]
+     Filiz Sağlam: Geçen ay daha ucuzdu, şimdi epey arttı
+     ✗ konu is_ariyorum, baglam, icermeli:evet
+
+# k6 meslek: garsonluk mu kuryelik mi
+  Sen: garsonluk mu kuryelik mi daha iyi yeni basladim   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: kurye olursam motor almam lazim mi   [is_ariyorum→is_ariyorum]
+     Dilara Şen: Ben de kuryeyim, işveren aramana gerek yok, kariyer'den doğrudan başlıyon, görev başına 520 ₺
+     ✗ konu meslek_tavsiyesi, baglam
+
+# k6 sosyal: veda
+  Sen: eyv sagolasin kanka   [tesekkur→tesekkur]
+  Sen: kira oduyor muyum ev sahibiysem   [genel→fiyat_sorusu]
+     Alp Tezcan: Kendi dairene taşınmadıysan kiradasın ayda 8.900 TL
+     ✗ icermeli:odemez
+
+# k6 tek: 20 görev
+  Sen: olunca haber ver   [genel→genel]
+  Sen: ayda kac gorev yaparsam maasimin hepsi gelir   [maas_sorusu→maas_sorusu]
+     Fikret Kayacan: maaslar enflasyonla birlikte artiyor o yuzden takipte kal
+     ✗ icermeli:20
+
+# k6 zincir: kurye uzun
+  Sen: ne kadar kazanirim   [maas_sorusu→meslek_tavsiyesi, takip:miktar]
+  Sen: gunde kac gorev   [maas_sorusu→meslek_tavsiyesi, takip:detay]
+     Sadık Boz: Görevler Kariyer ekranında
+     ✗ baglam
+
+# k6 zincir: kurye uzun
+  Sen: gunde kac gorev   [maas_sorusu→meslek_tavsiyesi, takip:detay]
+  Sen: sonra ne olurum   [genel→meslek_tavsiyesi, takip:tekrar]
+     Sadık Boz: Şartsız işlerde en çok kurye kazandırıyor, 54 bin civarı, kasiyer de olur ama daha az
+     ✗ icermeli:2
+
+# k6 zincir: kurye uzun
+  Sen: sonra ne olurum   [genel→meslek_tavsiyesi, takip:tekrar]
+  Sen: nakliyeci olabilir miyim kuryeden   [meslek_tavsiyesi→meslek_tavsiyesi, takip:tekrar]
+     Sadık Boz: Kurye için şart yok lazım. Sen şartları tutuyon
+     ✗ icermeli:800
+
+# k6 tek: kredi vadesi
+  Sen: kac ay odenir ihtiyac kredisi   [kredi_sorusu→kredi_sorusu]
+  Sen: iki yil yani   [genel→kredi_sorusu]
+     Gökçe Demirci: Dediğim gibi aylık faiz %1,5.
+     ✗ icermeli:evet
+
+# k6 dolaylı: ev sahibi olma
+  Sen: kira odemekten biktim artik   [dert→dert]
+  Sen: ama param az   [genel→dert, takip:tekrar]
+     Tayfun Yetkin: zor ama geçecek. bişey lazımsa söyle. giderlerine bi bak, belki kısabileceğin bi şey vardır
+     ✗ icermeli:pesinat
+
+# k6 zaman: 60 gün
+  Sen: hm o kadar uzun degilmis   [genel→genel, takip:detay]
+  Sen: 30 gunluk deneyim de 30 saat yani   [genel→genel, takip:detay]
+     semih07: Hmm, nasıl yani?
+     ✗ icermeli:evet
+
+# k6 zaman: bir gün kaç saat
+  Sen: oyunda 1 gun kac saat   [yardim→yardim]
+  Sen: bir ay   [genel→yardim, takip:tekrar]
+     Tahsin Kuru: Benim bildiğim maaş ay sonunda yatıyor, 30 oyun gününde bir
+     ✗ baglam
+
+# k6 zaman: bir gün kaç saat
+  Sen: bir ay   [genel→yardim, takip:tekrar]
+  Sen: yani bir ay gercekte kac gun   [genel→yardim, takip:detay]
+     Tahsin Kuru: 30 günde bi ay dönüyor, maaş ve kira o zaman
+     ✗ baglam, icermeli:30 saat
+
+# k6 iş: çevrimdışı
+  Sen: yani bir ay gercekte kac gun   [genel→yardim, takip:detay]
+  Sen: oyuna girmezsem kurye param gelir mi   [genel→maas_sorusu]
+     İlker Başaran: Iyi soru bende bilmiyom
+     ✗ icermeli:gelmez
+
+# k6 iş: çevrimdışı
+  Sen: oyuna girmezsem kurye param gelir mi   [genel→maas_sorusu]
+  Sen: memur olsam   [meslek_tavsiyesi→maas_sorusu]
+     İlker Başaran: Memur icin KPSS kursu, 30 gun is deneyimi lazim sende eksik olan var, Kariyer ekraninda gorunuyor
+     ✗ icermeli:gelir
+
+# k6 karışık: ne zaman maaş
+  Sen: ben de iyiyim kurye olarak calisiyorum   [is_ariyorum→is_ariyorum]
+  Sen: ayda bir mi maas   [maas_sorusu→maas_sorusu]
+     Zerrin Gürsoy: yaa kurye ve garsonlar calistikca kazaniyor, memurlar sabit maas aliyor. ona gore sec
+     ✗ icermeli:evet
+
+# k6 kurs: başvuru beklemesi
+  Sen: doviz alsam   [ekonomi→ekonomi, takip:tekrar]
+  Sen: basvurdum cevap gelmedi ne kadar beklenir   [fiyat_sorusu→is_ariyorum]
+     Asım Güçlü: Kursu deneyim dolarken al, zaman kazanirsin.
+     ✗ icermeli:gun
+
+# k6 yeni: dolaylı yardım
+  Sen: kimse bisey anlatmiyo bu oyunda kayboldum   [dert→dert]
+  Sen: en basit is hangisi   [meslek_tavsiyesi→dert, takip:detay]
+     Anıl Sarıkaya: Bildiğim kadarıyla rahat olsun diyorsan sabit maaşlı iş seç, memur ya da muhasebeci.
+     ✗ baglam, icermeli:kurye
+
+# k6 kredi: vade
+  Sen: ihtiyac kredisinin vadesi kac ay oluyo   [kredi_sorusu→kredi_sorusu]
+  Sen: erken kapatabiliyomuyuz   [kredi_sorusu→kredi_sorusu, takip:tekrar]
+     Sadık Karabulut: emin değilim, bilen biri yazar belki
+     ✗ icermeli:evet
+
+# k6 yazım: büyük harf
+  Sen: 24 ayda ne kadar faiz ederr   [maas_sorusu→kredi_sorusu, takip:miktar]
+  Sen: ICRA NE ZAMAN GELIR   [kredi_sorusu→kredi_sorusu]
+     Cemile Okur: aylık faiz %1,5 ihtiyaç kredisi 24 ay vadeli. senin limitin şu an 0 ₺, ilk ay maaşın yatınca açılıyor
+     Yağmur Kılıç: faiz bana yüksek geliyor açıkçası
+     ✗ icermeli:3
+
+# k6 tek: dernek
+  Sen: sermaye kac   [fiyat_sorusu→kurs_sorusu, takip:detay]
+  Sen: dernege nasil girilir   [yardim→yardim]
+     Şenol K.: bankada kredi çekersin, borç ödersin, bağış yaparsın
+     ✗ konu genel, icermeli:yok
+
+# k6 tek: dernek
+  Sen: bekleriz   [genel→yardim, takip:tekrar]
+  Sen: lonca da yok mu   [ekonomi→yardim, takip:tekrar]
+     Şenol K.: dernek, lonca daha yok, gelecekmiş
+     ✗ konu genel, baglam
+
+# k6 bağış: cami yapmak
+  Sen: lonca da yok mu   [ekonomi→yardim, takip:tekrar]
+  Sen: cami yaptirmak istiyorum mumkun mu   [genel→genel]
+     EgemenErdem: şu an hangisini yaptırdığın fark etmiyor, her 10 bin bağışa 1 itibar geliyor, bayramda 2 katı itibar da kredi notuna ve iş başvurularına yarıyor
+     ✗ icermeli:yok
+
+# k6 bağış: cami yapmak
+  Sen: okul cesme falan   [hakaret→genel]
+  Sen: simdilik bagis yapinca ne oluyo   [genel→genel]
+     EgemenErdem: yazdım ya, şu an hangisini yaptırdığın fark etmiyor?
+     ✗ icermeli:itibar
+
+# k6 yeni: ilk ne yapmalı
+  Sen: slm yeni geldim ilk ne yapiyoz   [selam→selam]
+  Sen: param 100 bin bu yeter mi   [dert→dert]
+     İsmail Kuru: birkac aylik gecim ve kira var, 11 bin ve 8.900 TL; once bi ise gir
+     Melis Uğur: ben de aynisini yasadim, sonra toparladim
+     ✗ konu yardim, baglam
+
+# k6 yeni: ilk ne yapmalı
+  Sen: param 100 bin bu yeter mi   [dert→dert]
+  Sen: kira da veriyo muyuz   [genel→dert, takip:detay]
+     İsmail Kuru: sey kendi dairene tasinmadiysan kiradasin, ayda 8.900 TL
+     ✗ konu fiyat_sorusu, baglam
+
+# k6 tek: nakliyeci sermaye
+  Sen: kira da veriyo muyuz   [genel→dert, takip:detay]
+  Sen: nakliyecilik sermayesi   [meslek_tavsiyesi→meslek_tavsiyesi]
+     Zeki Arslan: Bildigim kadariyla nakliyeci ayda 140 bin civari getiriyor. Once biraz deneyim lazim, calistikca kazaniyon.
+     ✗ icermeli:800
+
+# k6 tek: nakliyeci sermaye
+  Sen: nakliyecilik sermayesi   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: aracla mi   [genel→meslek_tavsiyesi, takip:tekrar]
+     Zeki Arslan: Nakliyeci olmak icin 895 bin civari sermaye lazim, aracin parasi o. Bi de 60 gun is deneyimi.
+     ✗ icermeli:dahil
+
+# k6 karışık: @hitap memur
+  Sen: @Zeynep sen memurdun di mi maas sabit mi   [maas_sorusu→maas_sorusu]
+  Sen: oyuna girmesen de yatiyo mu   [genel→maas_sorusu, takip:detay]
+     Sedat Avcı: onu tam bilmiyom açıkçası
+     ✗ icermeli:evet
+
+# k6 tek: borsa
+  Sen: olmadi yani   [genel→ekonomi, takip:tekrar]
+  Sen: hisse yoksa altin   [ekonomi→ekonomi, takip:tekrar]
+     Yasemin Kocaoğlu: Onu tam bilmiyorum açıkçası.
+     ✗ icermeli:yok
+
+# k6 kurs: kademe atlamayı parayla
+  Sen: kum saatiyle deneyimi hizlandiririm o zaman   [genel→kurs_sorusu, takip:detay]
+  Sen: peki 3. kademe icin ne lazim   [kurs_sorusu→kurs_sorusu, takip:tekrar]
+     Hanife Taş: İkinci kademe için kurs ve en az 20 gün deneyim.
+     ✗ icermeli:60
+
+# k6 isletme: aynı tür çok
+  Sen: peki 3. kademe icin ne lazim   [kurs_sorusu→kurs_sorusu, takip:tekrar]
+  Sen: herkes kafe aciyo kazanc kalir mi   [maas_sorusu→maas_sorusu]
+     kneslihan: kafe iyi giderse ayda 39 bin civarı kâr bırakıyor, cironun %50'si sana kalıyor, gerisi mal maliyeti
+     ✗ konu ekonomi, icermeli:bolun
+
+# k6 isletme: aynı tür çok
+  Sen: herkes kafe aciyo kazanc kalir mi   [maas_sorusu→maas_sorusu]
+  Sen: o zaman ne acayim   [genel→maas_sorusu, takip:detay]
+     kneslihan: kafe sahibi ayda 44 bin civarı kazanıyor
+     ✗ konu meslek_tavsiyesi, baglam
+
+# k6 isletme: aynı tür çok
+  Sen: o zaman ne acayim   [genel→maas_sorusu, takip:detay]
+  Sen: kafe cok ise dukkan acsam   [genel→maas_sorusu, takip:detay]
+     kneslihan: kafe açmak 998 bin flan, aylık sabit gideri 67 bin falan 3 çalışan istiyor. şart: 60 gün iş deneyimi
+     ✗ konu meslek_tavsiyesi, baglam, icermeli:rakip
+
+# k6 iş: asgari ücret
+  Sen: oyunda asgari ucret var mi   [maas_sorusu→maas_sorusu]
+  Sen: patron vermezse   [is_ariyorum→is_ariyorum]
+     Şahin Şeker: hâlâ arıyorsan kafede garson olarak başlayabilirsin, 36.500 ₺ veriyoruz
+     Ensar Şenel: Şahin'in kafesi eleman bakıyordu, garson için. bir yaz bence
+     ✗ konu maas_sorusu, baglam, icermeli:borc
+
+# k6 iş: asgari ücret
+  Sen: patron vermezse   [is_ariyorum→is_ariyorum]
+  Sen: asgari ucret de enflasyonla artar mi   [maas_sorusu→is_ariyorum, takip:detay]
+     Şahin Şeker: maaş 36.500 ₺, pazarlığa da açığım biraz
+     ✗ baglam, icermeli:evet
+
+# k6 dolaylı: kurs uzun
+  Sen: asgari ucret de enflasyonla artar mi   [maas_sorusu→is_ariyorum, takip:detay]
+  Sen: kurslar beklemekle gecmez herhalde   [kurs_sorusu→kurs_sorusu]
+     Rabia Yıldız: Evet ya, bu aralar herkes bundan bahsediyor.
+     ✗ anlamsiz_onay_yok, icermeli:kum
+
+# k6 iki soru: memur ve muhasebe
+  Sen: memur mu muhasebeci mi hangisi daha kolay ikisi de kurs mu istiyo   [meslek_tavsiyesi→kurs_sorusu]
+  Sen: ikisi de sabit maasli mi   [meslek_tavsiyesi→maas_sorusu]
+     serpilx: Şartsız işlerde en çok kurye kazandırıyor, 54 bin civarı. İnşaat işçisi de olur ama daha az.
+     ✗ icermeli:evet
+
+# k6 tek: zaman akışı
+  Sen: ikisi de sabit maasli mi   [meslek_tavsiyesi→maas_sorusu]
+  Sen: oyun zamani gercek zamanla ayni mi   [bot_musun→bot_musun]
+     Hülya K.: şöyle diyeyim, ben bu oyunun bi karakteriyim. ama tavsiyelerim sağlam
+     ✗ konu genel, icermeli:saat
+
+# k6 tek: zaman akışı
+  Sen: oyun zamani gercek zamanla ayni mi   [bot_musun→bot_musun]
+  Sen: yani 24 kat hizli   [genel→bot_musun, takip:detay]
+     Hülya K.: oyunun bi karakteri olarak söylüyorum, sohbet etmeyi severim
+     ✗ baglam, icermeli:evet
+
+# k6 isletme: geçici personel
+  Sen: yani 24 kat hizli   [genel→bot_musun, takip:detay]
+  Sen: calisanim yok dukkan yine de aciliyo mu   [genel→eleman_ariyorum]
+     eren__: İyi soru, ben de bilmiyom.
+     ✗ icermeli:gecici
+
+# k6 karışık: itibar nedir
+  Sen: itibar puanı ne ise yariyo   [yardim→yardim]
+  Sen: nasil kazanilir   [yardim→yardim, takip:tekrar]
+     Oğuz K.: itibar kredi notuna ve iş başvurularına yarıyor
+     ✗ konu genel, baglam, icermeli:maas
+
+# k6 kredi: icrada ev
+  Sen: orda evin mi var kira mi   [genel→kisisel_yer]
+  Sen: icra olursam evim gider mi   [kredi_sorusu→kredi_sorusu]
+     Kerem Sayın: aylık faiz %1,5 ihtiyaç kredisi 24 ay vadeli senin limitin şu an 0 ₺ ilk ay maaşın yatınca açılıyor
+     ✗ icermeli:icra
+
+# k6 tek: kum saati günlük
+  Sen: az be   [genel→yetki_istegi, takip:tekrar]
+  Sen: parayla da aliniyo mu   [genel→yetki_istegi, takip:detay]
+     zumra.01: Yetki işleri bizde değil, oyunun kuralları belli.
+     ✗ baglam, icermeli:evet
+
+# k6 meslek: en cok kazandiran
+  Sen: en cok para hangi meslekte   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: e bize hangisi yeni gelene   [meslek_tavsiyesi→meslek_tavsiyesi, takip:tekrar]
+     Mehmet T.: emin degilim bilen biri yazar belki
+     ✗ icermeli:kurye
+
+# k6 kredi: kac taksit kaçırdım
+  Sen: 2 taksit kacirdim napcam   [yardim→dert]
+  Sen: param yok ama   [dert→dert]
+     Nazan Öztekin: kurye ya da garson ol, şartsız toparlarsın ya
+     ✗ icermeli:is
+
+# k6 kurs: kamu sinavi
+  Sen: memur maasi ne kadar   [maas_sorusu→kurs_sorusu, takip:miktar]
+  Sen: oyunu acmasam da maas gelir mi   [maas_sorusu→kurs_sorusu, takip:detay]
+     muge_s: Memur ayda 50 bin civarı kazanıyor, sabit maaş, ama önce KPSS kursu lazım
+     ✗ baglam
+
+# k6 döviz: borsa ne zaman
+  Sen: oyunu acmasam da maas gelir mi   [maas_sorusu→kurs_sorusu, takip:detay]
+  Sen: borsa ne zaman gelcek   [ekonomi→ekonomi]
+     Salih Öncel: Altın, döviz, borsa daha yok oyunda.
+     ✗ icermeli:sonraki
+
+# k6 döviz: borsa ne zaman
+  Sen: borsa ne zaman gelcek   [ekonomi→ekonomi]
+  Sen: ne alip satcaz o zaman   [mulk_satiyorum→ekonomi]
+     Salih Öncel: 1,8 milyon falan uygunsa ciddi düşünürüm.
+     ✗ icermeli:mulk
+
+# Emlak danışmanlığı işi
+  Sen: emlak danışmanı olarak çalışmak istiyorum, nasıl   [is_ariyorum→is_ariyorum]
+  Sen: prim nasıl oluyo   [yardim→is_ariyorum, takip:detay]
+     İlknur Kara: emlak danışmanı sabit maaşın üstüne sattığı her mülkten prim alıyor, ayda 68 bin civarı ediyor
+     ✗ konu maas_sorusu, baglam
+
+# Emlak danışmanlığı işi
+  Sen: prim nasıl oluyo   [yardim→is_ariyorum, takip:detay]
+  Sen: ofis lazım mı   [mulk_ariyorum→is_ariyorum, takip:detay]
+     İlknur Kara: danışman olarak ofis gerekmiyor emlak ofisi açmak dördüncü kademe milyonlar lazım. önce emlak belgesi kursu yeter
+     ✗ konu meslek_tavsiyesi, baglam
+
+# Kısaltmalı eleman arayışı
+  Sen: elmn lzm dükkana   [eleman_ariyorum→eleman_ariyorum]
+  Sen: ücret konuşuruz   [veda→eleman_ariyorum, takip:onay]
+     ✗ cevap_var
+
+# Tavsiye: zengin olmak
+  Sen: dm atın   [genel→eleman_ariyorum, takip:onay]
+  Sen: en hızlı nasıl zengin olunur bu oyunda   [yardim→yardim]
+     Ali T.: Kurslu meslekle başlayın, biriktirin, işletme aç.
+     ✗ konu meslek_tavsiyesi, somut
+
+# Tavsiye: zengin olmak
+  Sen: dükkan açmak için ne kadar lazım   [fiyat_sorusu→yardim, takip:miktar]
+  Sen: kaç gün deneyim   [kurs_sorusu→yardim, takip:detay]
+     Ali T.: 60 gün iş deneyimi lazım.
+     ✗ baglam
+
+# Patron: eleman ilanı → maaş → yer belirtme
+  Sen: aylık 28 bin + görev   [maas_sorusu→eleman_ariyorum, takip:detay]
+  Sen: ilgilenen var mı ciddi   [mulk_satiyorum→mulk_satiyorum]
+     Yağız T.: Bildigim kadariyla daire piyasada 1,8 milyon civari. Ilan verince alici cikar, acelen varsa piyasaya da satabilirsin.
+     ✗ konu eleman_ariyorum, baglam
+
+# Nerelisin kanalda, karaktersiz
+  Sen: millet nerelisiniz ben izmirliyim   [kisisel_yer→kisisel_yer]
+  Sen: izmirli var mi baska   [kisisel_yer→kisisel_yer, takip:tekrar]
+     Filiz Karagöz: Buradayim, Buca tarafi.
+     ✗ icermeli:izmir
+
+# Borsa var mı → döviz
+  Sen: izmirli var mi baska   [kisisel_yer→kisisel_yer, takip:tekrar]
+  Sen: borsa var mı bu oyunda   [ekonomi→ekonomi]
+     Simge Gül: valla borsa daha yok, gelecekmiş
+     ✗ somut
+
+# Borsa var mı → döviz
+  Sen: borsa var mı bu oyunda   [ekonomi→ekonomi]
+  Sen: döviz   [ekonomi→ekonomi, takip:tekrar]
+     Simge Gül: dolar euro alınmıyor şimdilik, ileride geliyor
+     ✗ icermeli:yok
+
+# Borsa var mı → döviz
+  Sen: döviz   [ekonomi→ekonomi, takip:tekrar]
+  Sen: ne zaman gelir   [genel→ekonomi, takip:ne_zaman]
+     Simge Gül: altın, döviz, borsa daha yok oyunda
+     ✗ icermeli:güncelleme
+
+# Mülk satış DM ev sahibi
+  Sen: 2.5 milyon   [teklif→mulk_satiyorum]
+  Sen: ne kadar verirsin peki   [maas_sorusu→mulk_satiyorum]
+     Recep Akkaya: yazdım ya, keşke
+     ✗ icermeli:0
+
+# Kaç zamandır oynuyorsun
+  Sen: ne kadar verirsin peki   [maas_sorusu→mulk_satiyorum]
+  Sen: kaç zamandır oynuyosun bu oyunu   [genel→kisisel_meslek]
+     Özge Gezer: bir yıla yakın buradayım
+     ✗ icermeli:0
+
+# Kum saati transfer
+  Sen: 1.2 son teklifim   [teklif→teklif]
+  Sen: arkadaşa kum saati gönderilir mi   [genel→genel]
+     Turgut K.: kum Saati gönderilmiyor, herkes kendi kazanıyor, günlük 3 görevi yapınca her gün 1 tane geliyor
+     ✗ konu yardim, icermeli:gönderilmez
+
+# Kum saati transfer
+  Sen: arkadaşa kum saati gönderilir mi   [genel→genel]
+  Sen: para gönderilebiliyo ama dimi   [yetki_istegi→genel, takip:detay]
+     Turgut K.: para gönderme yok bildiğim kadarıyla, herkes kendi kazanıyor. hile olmasın diye öyle
+     ✗ konu yardim, baglam
+
+# Kurs: ingilizce soru
+  Sen: kaç para peki kurs   [fiyat_sorusu→kurs_sorusu, takip:miktar]
+  Sen: how long is the course   [genel→genel]
+     Tolga C.: valla bilemedim, biraz açar mısın?
+     ✗ konu kurs_sorusu, icermeli:gün
+
+# Kurs: ingilizce soru
+  Sen: how long is the course   [genel→genel]
+  Sen: which one is best   [meslek_tavsiyesi→genel, takip:detay]
+     Tolga C.: kurye daha çok kazanıyor, görev başı 530 TL, ayda 54 bin
+     ✗ baglam
+
+# İhale var mı
+  Sen: başka ne yapabilirim ki   [genel→dert, takip:detay]
+  Sen: devlet ihalelerine nasıl girilir   [yardim→yardim]
+     Fikret Özen: Daha yok, sonraıi güncellemelerde gelecekmiş. Şimdilik sadece Türkiye var.
+     ✗ konu ekonomi, somut
+
+# İhale var mı
+  Sen: devlet ihalelerine nasıl girilir   [yardim→yardim]
+  Sen: mega proje   [genel→yardim, takip:tekrar]
+     Fikret Özen: Onu tam bilmiyorum açıkçası.
+     ✗ konu ekonomi, baglam, icermeli:yok
+
+# Ekonomi: başka ülke
+  Sen: peki ne zaman bakarsın   [genel→zam_istegi]
+  Sen: başka ülkede iş yapabilir miyim   [genel→genel]
+     Zafer A.: ya daha yok, sonraki güncellemelerde gelecekmiş. şimdilik sadece Türkiye var
+     ✗ konu ekonomi, somut
+
+# Ekonomi: başka ülke
+  Sen: başka ülkede iş yapabilir miyim   [genel→genel]
+  Sen: almanyada açsam   [kisisel_yer→genel, takip:detay]
+     Zafer A.: ondan pek anlamam, başkası bilir
+     ✗ konu ekonomi, baglam
+
+# Ne iş yapıyorsun → ne zamandır
+  Sen: sen ne iş yapıyosun   [kisisel_meslek→kisisel_meslek]
+  Sen: kaç zamandır   [genel→kisisel_meslek]
+     Erol G.: az once yazmistim, muhasebeci olarak calisiyom
+     ✗ icermeli:0
+
+# Dert: kötü gün
+  Sen: bugün çok kötü geçti işten kovuldum   [dert→dert]
+  Sen: ne yapcam bilmiyom   [yardim→dert, takip:detay]
+     erolb16: ali kasiyer arıyor 37.000 ₺ veriyor ona yaz bence
+     ✗ icermeli:işe
+
+# Zam olur mu
+  Sen: maaşlara zam gelir mi   [zam_istegi→zam_istegi]
+  Sen: ne zaman   [genel→zam_istegi, takip:ne_zaman]
+     Necati Dikmen: Ondan pek anlamam, başkası bilir.
+     ✗ konu ekonomi, baglam, icermeli:aylık
+
+# Özel mesajda iki soru bir arada
+  Sen: ne zaman   [genel→zam_istegi, takip:ne_zaman]
+  Sen: selam iş var mı bi de maaş kaç   [maas_sorusu→is_ariyorum]
+     zubeydek04: görev paran birikiyor ay sonunda hesabına geçer
+     ✗ somut
+
+# Özel mesajda iki soru bir arada
+  Sen: yarın başlasam olur mu   [teklif→is_ariyorum]
+  Sen: anlaştık   [oneri_kabul→is_ariyorum]
+     zubeydek04: ortada buluşalım olur mu?
+     ✗ dm_teklif
+
+# Dükkan kiralık arayan DM
+  Sen: aylık kira kaç   [fiyat_sorusu→fiyat_sorusu]
+  Sen: nerde   [kisisel_yer→mulk_ariyorum]
+     theyasemin: dediğim gibi dedim ya
+     ✗ somut, icermeli:istanbul
+
+# Günlük görevler
+  Sen: tamam tutuyorum   [genel→mulk_ariyorum]
+  Sen: günlük görevler nerde   [yardim→yardim]
+     necati.26: Görevler Kariyer ekranında.
+     ✗ somut
+
+# Günlük görevler
+  Sen: günlük görevler nerde   [yardim→yardim]
+  Sen: kaç tane yapınca ödül var   [genel→yardim, takip:detay]
+     necati.26: Moralinizi bozma. Kurye olursanız ayda 54 bin civarı kazanırsınız.
+     ✗ icermeli:3
+
+# Tavsiye: ithalat ihracat
+  Sen: ithalat ihracata girmek istiyorum mümkün mü   [genel→genel]
+  Sen: döviz bürosu da 4. kademe mi   [kurs_sorusu→kurs_sorusu]
+     Okan Ö.: Lisans kursu 223 bin, 10 gün sürüyor; üstüne 6 milyon ve 120 gün
+     ✗ konu meslek_tavsiyesi, baglam, icermeli:evet
+
+# İş → nerede → uzak
+  Sen: kasiyer arayan var mı istanbulda   [is_ariyorum→is_ariyorum]
+  Sen: hangi semt   [kisisel_yer→is_ariyorum, takip:yer]
+     ilayda_er: dükkan için eleman arıyorum, aklıma sen geldin...
+     hakankarahan: Benim yerde açık var: kasiyer 34.500 ₺. Gel konuşalım
+     ✗ ayni_kisi, icermeli:istanbul
+
+# Kredi: argo şikayet
+  Sen: bu bankalar soyguncu lan   [ekonomi→ekonomi]
+  Sen: kredi faizi neden bu kadar yüksek   [kredi_sorusu→ekonomi, takip:detay]
+     Asım S.: ben de çekmiyom, yıllığı %19,6 ediyor. biriktir, peşin al
+     ✗ baglam, icermeli:faiz
+
+# Hitaplı kişisel soru kanalda
+  Sen: @herkes kim ne iş yapıyo merak ettim   [kisisel_meslek→kisisel_meslek]
+  Sen: kurye olan var mı aranızda   [eleman_ariyorum→eleman_ariyorum]
+     Lina Dumlu: Ben varım, kurye olarak çalışıyorum. Ayda 56 bin civarı.
+     Sema Bayram: Evet, ben varim
+     ✗ konu kisisel_meslek, baglam
+
+# Kurs: kum saati satın alma parayla
+  Sen: kurye olan var mı aranızda   [eleman_ariyorum→eleman_ariyorum]
+  Sen: kursu parayla hızlandırabilir miyim   [kurs_sorusu→kurs_sorusu]
+     Bayram Kalaycı: hayır, kurs ve deneyim parayla atlanmıyor. kum Saati sadece bekleme süresini kısaltıyor, deneyim günlerini değil
+     ✗ somut
+
+# Kurs: kum saati satın alma parayla
+  Sen: kum saati kaç tl   [fiyat_sorusu→kurs_sorusu, takip:miktar]
+  Sen: bedava nasıl gelir   [yetki_istegi→yetki_istegi]
+     Hande Dalkılıç: yetki işleri bizde değil, oyunun kuralları belli
+     ✗ konu yardim, baglam, icermeli:3
+
+# Yardım: oyun nasıl oynanır
+  Sen: bedava nasıl gelir   [yetki_istegi→yetki_istegi]
+  Sen: bu oyun nasıl oynanıyo hiç anlamadım   [yardim→yardim]
+     Hüseyin Erdal: Çalış, kursla meslek atla, para birikince mülk ve işletme.
+     ✗ somut
+
+# Tavsiye: fabrikatör
+  Sen: zaman nasıl akıyo   [yardim→yardim, takip:tekrar]
+  Sen: fabrikatör olmak istiyom 3 milyonum var yeter mi   [genel→genel]
+     Yusuf Hacıoğlu: En tepedeki iş, fabrika 15 kişilik kadro istiyor.
+     ✗ konu meslek_tavsiyesi, icermeli:milyon
+
+# Tavsiye: fabrikatör
+  Sen: fabrikatör olmak istiyom 3 milyonum var yeter mi   [genel→genel]
+  Sen: deneyim kaç gün lazım   [kurs_sorusu→genel, takip:detay]
+     Yusuf Hacıoğlu: Şu an 0 gün deneyimin var, profilde de yazıyor.
+     ✗ baglam
+
+# Kademe 3-4 parayla atlanır mı
+  Sen: deneyim kaç gün lazım   [kurs_sorusu→genel, takip:detay]
+  Sen: param çok, kurs ve deneyimi parayla geçebilir miyim   [kurs_sorusu→kurs_sorusu]
+     Muhammed Yanık: Hayır, kurs ve deneyim parayla atlanmıyor. Kum Saati sadece bekleme süresini kısaltıyor deneyim günlerini değil
+     ✗ somut
+
+# Kademe 3-4 parayla atlanır mı
+  Sen: param çok, kurs ve deneyimi parayla geçebilir miyim   [kurs_sorusu→kurs_sorusu]
+  Sen: neden ya saçma   [hakaret→undefined]
+     Doğukan Demir: Neyse, ben isime bakayim
+     ✗ konu kurs_sorusu, baglam
+
+# Kredi: döviz kredisi
+  Sen: neden ya saçma   [hakaret→undefined]
+  Sen: dolar kredisi var mı   [kredi_sorusu→kredi_sorusu]
+     theriza: Altın, döviz, borsa daha yok oyunda.
+     ✗ somut
+
+# Kredi: döviz kredisi
+  Sen: dolar kredisi var mı   [kredi_sorusu→kredi_sorusu]
+  Sen: altın hesabı   [ekonomi→kredi_sorusu, takip:detay]
+     theriza: Bilmiyorum valla, hiç denemedim.
+     ✗ icermeli:yok
+
+# Kredi: icra sonrası
+  Sen: icra olan arkadaş ne yapacak şimdi   [kredi_sorusu→kredi_sorusu]
+  Sen: kredi notu sıfırlanır mı   [kredi_sorusu→kredi_sorusu, takip:tekrar]
+     Ferit Uslu: Evet, ihtiyaç kredisi 24 ay vadeli.
+     ✗ icermeli:not
+
+# Ekonomi: pazar doygunluğu
+  Sen: bitince ilk ne yapayım   [yardim→kurs_sorusu]
+  Sen: aynı sokakta 5 kafe var müşteri bölünüyo mu   [genel→genel]
+     Rabia K.: Herkes kafe açarsa kafeler daha az kazanır, az olan türe yönel.
+     ✗ konu ekonomi, icermeli:bölün
+
+# İki soru: kurs ve kredi
+  Sen: emlak belgesi kaç gün sürüyo ve kredi limiti nasıl artar   [kurs_sorusu→kurs_sorusu]
+  Sen: ikincisini sordum asıl   [genel→kurs_sorusu, takip:tekrar]
+     ZeynepOzdemir: Doğru.
+     ✗ konu kredi_sorusu, icermeli:gelir
+
+# İhtiyaç kredisi vadesi
+  Sen: prim ne kadar satış başı   [maas_sorusu→maas_sorusu, takip:miktar]
+  Sen: ihtiyaç kredisi kaç ay vadeli   [kredi_sorusu→kredi_sorusu]
+     Celal Toksöz: mevduat faizi yok oyunda, bankaya koyunca hiçbişey getirmiyor. fiyatlar yılda %11,7 artıyor, nakit durdukça eriyor
+     ✗ icermeli:24
+
+# Zekat sorusu
+  Sen: zekat veriliyo mu oyunda   [ekonomi→ekonomi]
+  Sen: zorunlu mu   [genel→ekonomi, takip:tekrar]
+     Rukiye Ekinci: zorunlu değil, isteğe bağlı olacakmış. şimdilik oyunda yok, bağış var
+     ✗ konu bayram, baglam
+
+# Patron: kaç görev yaparsa tam maaş
+  Sen: çalışanım kaç görev yaparsa maaşı tam yatar   [maas_sorusu→maas_sorusu]
+  Sen: yapmazsa   [hayir→maas_sorusu, takip:detay]
+     Reyhan Kalkan: Banka sekmesi, bağış. Her 10 bine 1 itibar.
+     ✗ icermeli:eksik
+
+# Kredi DM: kafa karışıklığı
+  Sen: çay içen var mı   [genel→selam, takip:detay]
+  Sen: kredi limitim 0 neden   [kredi_sorusu→kredi_sorusu]
+     Gökçe Demirci: Benim bildiğim aylık faiz %1,5, ihtiyaç kredisi 24 ay vadeli. Senin limitin şu an 0 ₺, ilk ay maaşın yatınca açılıyor.
+     ✗ icermeli:gelir
+
+# Kredi DM: kafa karışıklığı
+  Sen: kredi limitim 0 neden   [kredi_sorusu→kredi_sorusu]
+  Sen: hayır geliri sormadım notu sordum   [hayir→kredi_sorusu]
+     Gökçe Demirci: Eyw, zorlama yok.
+     ✗ icermeli:620
+
+# Kibar resmi iş başvurusu
+  Sen: Merhaba, işletmenizde açık pozisyon varsa çalışmak isterim.   [is_ariyorum→is_ariyorum]
+  Sen: Ücret ve çalışma şartlarını öğrenebilir miyim?   [maas_sorusu→is_ariyorum]
+     adag07: kademe atladıkça maaş da yükseliyor, kurslara bak
+     ✗ somut
+
+# Kibar resmi iş başvurusu
+  Sen: Ücret ve çalışma şartlarını öğrenebilir miyim?   [maas_sorusu→is_ariyorum]
+  Sen: Teşekkürler, kabul ediyorum.   [tesekkur→is_ariyorum]
+     adag07: bi şey değil, takıldığın yer olursa yaz
+     ✗ dm_teklif
+
+# Kredi limiti hesabı
+  Sen: kredi limitim neye göre belirleniyo   [kredi_sorusu→kredi_sorusu]
+  Sen: yani maaşım artarsa limit artar mı   [maas_sorusu→maas_sorusu]
+     Emin Yılmaz: hcm limit gecen ayki gelirine gore: gelir carpi kredi notu bolu 100. yani gelirin ya da notun artarsa limit de artiyor.
+     ✗ konu kredi_sorusu, baglam
+
+# Uzun soru: maaş ve gider
+  Sen: kredi notu kaçtan başlıyodu   [kredi_sorusu→kredi_sorusu]
+  Sen: ya bu oyunda garson maaşıyla kira ve geçim ödenir mi yoksa hep eksiye mi düşerim çünkü dün baktım para azalmış   [maas_sorusu→maas_sorusu]
+     Bilal Ö.: garson ayda 34 bin civarı kazanıyor, görev başına 330 ₺ aliyor
+     ✗ icermeli:kira
+
+# Bağış itibar oranı
+  Sen: bağış yapınca ne oluyo   [genel→genel]
+  Sen: kaç para bağışlarsam 1 itibar   [fiyat_sorusu→genel, takip:miktar]
+     vedata07: Her 10 bin bagisa 1 itibar geliyor
+     ✗ konu bayram, baglam
+
+# Ev arayan karaktersiz
+  Sen: butcem 500 bin   [genel→mulk_ariyorum, takip:tekrar]
+  Sen: kredi ile olur mu   [kredi_sorusu→mulk_ariyorum, takip:detay]
+     Defne Can: 500.000 ₺ için aylık gelirin 81 bin civarı olmalı, senin limitin şu an 0 ₺
+     ✗ icermeli:peşinat
+
+# NPC’nin hedefi
+  Sen: hedefin ne bu oyunda   [genel→kisisel_meslek]
+  Sen: ne kadar biriktirdin   [fiyat_sorusu→kisisel_meslek]
+     Özgür Mert: hmm, nasıl yani?
+     ✗ icermeli:0
+
+# Bağış DM
+  Sen: sen hiç bağış yaptın mı   [genel→bayram]
+  Sen: ne kadar yaptın   [fiyat_sorusu→bayram]
+     Hilal Gültekin: bu konusa pek bilgim yok acikcasi
+     ✗ icermeli:0
+
+# Bağış DM
+  Sen: ne kadar yaptın   [fiyat_sorusu→bayram]
+  Sen: itibarın kaç oldu   [genel→bayram]
+     Hilal Gültekin: profil'e bak, kum saati satiri var
+     ✗ icermeli:0
+
+# Ekonomi: aynı anda iki soru
+  Sen: kandilde bağış iki kat mı   [bayram→bayram, takip:tekrar]
+  Sen: borsa ne zaman gelecek bi de altın alınıyo mu   [ekonomi→ekonomi]
+     esen_tr: altın, döviz, borsa daha yok oyunda
+     ✗ somut
+
+# Ekonomi: aynı anda iki soru
+  Sen: borsa ne zaman gelecek bi de altın alınıyo mu   [ekonomi→ekonomi]
+  Sen: peki o zamana kadar para nerde değerlenir   [genel→ekonomi, takip:yer]
+     esen_tr: fiyatlar son bi yılda %11,8 arttı. maaşlar da endekse göre artıyor ama biraz geriden geliyor
+     ✗ icermeli:arsa
+
+# Şaka: kum saati ile uyku
+  Sen: kum saatiyle uykumu da kısaltabilir miyim   [genel→genel]
+  Sen: ciddi olarak kum saati neye yarıyo   [genel→genel, takip:detay]
+     caner34: Kum Saati kurs suresini kisaltiyor
+     ✗ konu yardim, somut
+
+# Patron ve geçici personel
+  Sen: ciddi olarak kum saati neye yarıyo   [genel→genel, takip:detay]
+  Sen: geçici personel ne demek   [yardim→yardim]
+     Buse Oral: işletme durmaz ama kâr düşer, gerçek eleman al
+     ✗ icermeli:geçici
+
+# Patron ve geçici personel
+  Sen: geçici personel ne demek   [yardim→yardim]
+  Sen: verimi düşük mü   [genel→yardim, takip:tekrar]
+     Buse Oral: bunu ben de merak ediyom açıkçası
+     ✗ icermeli:düşük
+
+# Özelden patrona iş isteği
+  Sen: hangisini önce alayım   [meslek_tavsiyesi→kurs_sorusu, takip:detay]
+  Sen: slm abi dükkanında eleman lazım mı   [eleman_ariyorum→is_ariyorum]
+     Sema Ekinci: ilan açınca başvurular gelir, Başvurular'dan kabul edersin
+     ✗ somut
+
+# Özelden patrona iş isteği
+  Sen: görev şartı var mı   [genel→is_ariyorum]
+  Sen: olur abi başlayayım   [evet→is_ariyorum]
+     Sema Ekinci: dükkan sahibi mi arıyorsun? tanıdık biri vardı, haber veririm?
+     ✗ dm_teklif
+
+# Mülk: m2 fiyatı
+  Sen: ya arsa   [mulk_ariyorum→fiyat_sorusu, takip:detay]
+  Sen: hangisi daha karlı   [meslek_tavsiyesi→meslek_tavsiyesi]
+     Melis Kabak: Şartsız işlerde en çok kurye kazandırıyor, 54 bin civarı, kasiyer de olur ama daha az
+     Meryem Yurt: ben muhasebeci oldum ilk ay zor geçti ama alışıyorsun
+     ✗ konu mulk_ariyorum, baglam, icermeli:kira
+
+# Tavsiye: inşaat işçisi iyi mi
+  Sen: hangisi daha karlı   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: inşaat işçiliği mantıklı mı   [meslek_tavsiyesi→meslek_tavsiyesi]
+     turkanb85: Şartsız işlerde en çok kurye kazandırıyor, 54 bin civarı. Kasiyer de olur ama daha az.
+     Sibel Şen: ben kurye oldum ilk ay zor geçti ama alışıyorsun
+     ✗ icermeli:inşaat
+
+# Tavsiye: inşaat işçisi iyi mi
+  Sen: sonra usta olunuyo dimi   [meslek_tavsiyesi→meslek_tavsiyesi, takip:tekrar]
+  Sen: peki usta sonrası   [genel→meslek_tavsiyesi, takip:detay]
+     turkanb85: Benim bildiğim usta ayda 114 bin civarı getiriyor.
+     ✗ konu kurs_sorusu, baglam, icermeli:taşeron
+
+# Usta arıyorum diye iş isteyen inşaatçı
+  Sen: ustalık belgem var usta olarak alan var mı   [is_ariyorum→is_ariyorum]
+  Sen: taşeron olmak için ne kadar ustalık lazım   [eleman_ariyorum→is_ariyorum, takip:miktar]
+     kvolkan: ah benim yerde acik var: kasiyer, 38.000 ₺. dusunursen yaz
+     Ayşe Y.: Bak bizde garson arıyoruz, iş hafif, maaş 36.000 ₺
+     ✗ konu kurs_sorusu, icermeli:20
+
+# Bot musun → işe dönüş DM
+  Sen: kaç verirsin   [maas_sorusu→is_ariyorum]
+  Sen: tamam başlıyorum   [evet→is_ariyorum]
+     Gül Turgut: Kafe sahibi için şu an ortalama 44 bin civarı.
+     ✗ dm_teklif
+
+# Mülk: zengin portföy
+  Sen: 3 milyonla en iyi yatırım ne   [ekonomi→ekonomi]
+  Sen: dükkan alıp kiraya mı versem işletme mi açsam   [mulk_satiyorum→mulk_satiyorum]
+     bahadir.84: dükkan piyasada 2,8 milyon civarı, ilan verince alıcı çıkar, acelen varsa piyasaya da satabilirsin
+     ✗ konu mulk_ariyorum, baglam
+
+# Mülk: zengin portföy
+  Sen: dükkan alıp kiraya mı versem işletme mi açsam   [mulk_satiyorum→mulk_satiyorum]
+  Sen: sen olsan hangisi   [meslek_tavsiyesi→mulk_satiyorum, takip:detay]
+     bahadir.84: keşke, o kadar nakdim yok. 2,8 milyon falan kolay para değil
+     ✗ konu mulk_ariyorum, baglam
+
+# Muhasebeci arayan
+  Sen: muhasebeci arıyorum işletmeme   [eleman_ariyorum→eleman_ariyorum]
+  Sen: muhasebeci sabit maaş alıyo değil mi   [maas_sorusu→eleman_ariyorum, takip:detay]
+     Türkan Z.: ya ilanı açınca kanala bi de sen yaz, iş arayanlar görür
+     ✗ icermeli:sabit
+
+# Kurs: kum saati kaç gün kısaltır
+  Sen: 1 kum saati kaç gün kısaltıyo   [genel→genel]
+  Sen: başvuruda da işe yarıyo mu   [is_ariyorum→genel, takip:detay]
+     Sinan Güçlü: istediği maaşa bak, ilandakinden yüksek isteyen de olabiliyor
+     ✗ konu kurs_sorusu, baglam, icermeli:başvuru
+
+# Kurs: kum saati kaç gün kısaltır
+  Sen: başvuruda da işe yarıyo mu   [is_ariyorum→genel, takip:detay]
+  Sen: maaşı arttırır mı   [zam_istegi→genel, takip:detay]
+     Sinan Güçlü: maaşlar fiyat endeksine göre artıyor ama biraz geriden geliyor. fiyatlar yılda %12,3 artıyor
+     ✗ konu kurs_sorusu, baglam, icermeli:hayır
+
+# Eleman → maaşı ödeyemezsem ne olur
+  Sen: maaşı arttırır mı   [zam_istegi→genel, takip:detay]
+  Sen: çalışan aldım ama param azaldı maaş ödeyemezsem napar   [dert→dert]
+     mirza.07: hayırlı olsun Eymen!
+     Şükran Altun: ooo hayirlisi olsun
+     ✗ konu maas_sorusu, icermeli:borç
+
+# Eleman → maaşı ödeyemezsem ne olur
+  Sen: çalışan aldım ama param azaldı maaş ödeyemezsem napar   [dert→dert]
+  Sen: itibar ne işe yarıyo   [yardim→dert, takip:detay]
+     mirza.07: saygınlık gibi, bankada da işte de işe yarıyor
+     ✗ konu genel, baglam, icermeli:kredi
+
+# Mülk: geçim gideri
+  Sen: itibar ne işe yarıyo   [yardim→dert, takip:detay]
+  Sen: her ay para kesiliyo neden   [ekonomi→ekonomi]
+     Emel Uçar: valla fiyatlar yılda %12,6 artiyor, faiz aylık %1,5. parayı nakitte tutmak yerine mülke yatırmak mantıklı
+     ✗ konu yardim, icermeli:kira
+
+# Mülk: geçim gideri
+  Sen: her ay para kesiliyo neden   [ekonomi→ekonomi]
+  Sen: ev alırsam biter mi   [genel→ekonomi, takip:detay]
+     Emel Uçar: bilmiyon valla hiç denemedim
+     ✗ konu mulk_ariyorum, baglam, icermeli:kira
+
+# İnşaat işçiliği ve usta yolu
+  Sen: geçim ne kadar   [fiyat_sorusu→ekonomi, takip:miktar]
+  Sen: inşaatta çalışmak istiyom yer var mı   [is_ariyorum→is_ariyorum]
+     Selim Serin: benim yerde acik var: kasiyer, 38.000 ₺. gel konusalim
+     ✗ icermeli:inşaat
+
+# Kum saati DM
+  Sen: senin yerde açık var mı   [genel→kisisel_meslek, takip:detay]
+  Sen: kaç kum saatin var   [fiyat_sorusu→yardim]
+     Esen Sarı: profil'e bak, kum saati satırı var
+     ✗ icermeli:0
+
+# Kum saati DM
+  Sen: kaç kum saatin var   [fiyat_sorusu→yardim]
+  Sen: satın aldın mı yoksa görevden mi   [genel→yardim]
+     Esen Sarı: tam bilmiyom açıkçası, kanala sorarsan biri bilir
+     ✗ icermeli:görev
+
+# Hitaplı iş isteği
+  Sen: tamam sağol   [tesekkur→kredi_sorusu, takip:onay]
+  Sen: @herkes iş arıyorum garson olabilirim   [is_ariyorum→is_ariyorum]
+     ✗ cevap_var, somut
+
+# Hitaplı iş isteği
+  Sen: @herkes iş arıyorum garson olabilirim   [is_ariyorum→is_ariyorum]
+  Sen: kafede mi restoranda mı   [genel→is_ariyorum, takip:detay]
+     Özcan Çakmak: bak bizde kasiyer arıyoruz, ortam iyi, maaş 36.500 ₺
+     theyener: 36.000 ₺ maasla kasiyer olarak calismak ister misin?
+     ✗ icermeli:kafe
+
+# Hitaplı iş isteği
+  Sen: kafede mi restoranda mı   [genel→is_ariyorum, takip:detay]
+  Sen: fark etmez yeter ki maaş tam yatsın   [maas_sorusu→is_ariyorum, takip:detay]
+     Özcan Çakmak: 36.500 ₺ veriyoruz her ay aksatmadan
+     ✗ icermeli:20
+
+# Ortaklık sorusu
+  Sen: fark etmez yeter ki maaş tam yatsın   [maas_sorusu→is_ariyorum, takip:detay]
+  Sen: biriyle ortak dükkan açabilir miyiz   [teklif→teklif]
+     Handan Şimşek: ortaklik sistemi oyunda daha yok, gelecek guncellemede gelecekmis. simdilik herkes kendi isini kuruyor
+     ✗ konu ekonomi, somut
+
+# Ortaklık sorusu
+  Sen: biriyle ortak dükkan açabilir miyiz   [teklif→teklif]
+  Sen: peki para gönderip ortak gibi yapsak   [yetki_istegi→yetki_istegi]
+     necati_96: Para gonderme yok bildigim kadariyla, herkes kendi kazaniyor. Hile olmasin diye oyle.
+     ✗ konu ekonomi, baglam
+
+# NPC patron: işletmen ne
+  Sen: işletmen var mı senin   [kisisel_meslek→kisisel_meslek]
+  Sen: kaç çalışanın var   [kisisel_meslek→kisisel_meslek]
+     muratx: Yazdım ya kafe sahibi olarak çalışıyorum
+     ✗ icermeli:0
+
+# Kredi notu nasıl yükselir DM
+  Sen: kredi notun kaç senin   [kredi_sorusu→kredi_sorusu]
+  Sen: nasıl yükselttin   [yardim→kredi_sorusu]
+     Sezen Güven: kurye, sonra memur ya da muhasebeci, 60 gun ve sermaye olunca kafe ya da dukkan
+     ✗ icermeli:taksit
+
+# Mülk: değerleniyor mu
+  Sen: bağış da etkiler mi   [genel→kredi_sorusu]
+  Sen: ev fiyatları artıyo mu   [ekonomi→ekonomi]
+     Ömer Bal: Fiyatlar son bir yılda %11,4 arttı maaşlar da endekse göre artıyor ama biraz geriden geliyor
+     ✗ icermeli:artar
+
+# Kurs: deneyim sıfırlanır mı
+  Sen: satmak için bekleyeyim mi   [genel→ekonomi, takip:detay]
+  Sen: meslek değiştirince deneyimim sıfırlanıyo mu   [meslek_tavsiyesi→meslek_tavsiyesi]
+     Begüm Başaran: bırakmadan önce kurye şartlarına bak, ayda 54 bin civarı. deneyim günlerin de sayılıyor
+     ✗ konu kurs_sorusu, icermeli:sıfırlan
+
+# Kurs: deneyim sıfırlanır mı
+  Sen: meslek değiştirince deneyimim sıfırlanıyo mu   [meslek_tavsiyesi→meslek_tavsiyesi]
+  Sen: emin misin   [genel→meslek_tavsiyesi, takip:teyit]
+     Begüm Başaran: şartsız işlerde en çok kurye kazandırıyor, 54 bin civarı. kasiyer de olur ama daha az.
+     ✗ konu kurs_sorusu, baglam
+
+# DM: patron, karşı tarafın deneyimini soruyor
+  Sen: merhaba eleman arıyorum ilgilenir misin   [eleman_ariyorum→eleman_ariyorum]
+  Sen: daha önce nerde çalıştın   [yardim→kisisel_meslek]
+     Nazan Ö.: valla kimsenin yanında çalışmıyor şartlar tamamsa Kariyer'den geçiyorsun
+     ✗ somut
+
+# DM: patron, karşı tarafın deneyimini soruyor
+  Sen: daha önce nerde çalıştın   [yardim→kisisel_meslek]
+  Sen: kaç gündür oynuyosun   [genel→kisisel_meslek]
+     Nazan Ö.: bi yıla yakın buradayım
+     ✗ somut, icermeli:0
+
+# Ev sahibi kira ödemez
+  Sen: ev alırsam kira ödemem dimi   [genel→genel]
+  Sen: aldığım evde oturmam lazım mı   [genel→genel, takip:detay]
+     ekrem__: hangi konudan bahsediyorsun
+     ✗ konu mulk_ariyorum, baglam, icermeli:otur
+
+# Meslek: kademe 3 için 60 gün
+  Sen: kiraya versem ne kadar gelir   [fiyat_sorusu→genel, takip:miktar]
+  Sen: dükkan sahibi olmak için kaç gün çalışmam lazım   [eleman_ariyorum→eleman_ariyorum]
+     Dilan Önal: Ben şu an çalışıyorum ama çevreme sorarım.
+     ✗ konu kurs_sorusu, somut, icermeli:60
+
+# Meslek: kademe 3 için 60 gün
+  Sen: dükkan sahibi olmak için kaç gün çalışmam lazım   [eleman_ariyorum→eleman_ariyorum]
+  Sen: hangi işte olursa olur mu   [meslek_tavsiyesi→meslek_tavsiyesi]
+     Berk Karadağ: Şartsız işlerde en çok kurye kazandırıyor, 54 bin civarı. İnşaat işçisi de olur ama daha az.
+     ✗ konu kurs_sorusu, baglam
+
+# Mülk: oyuncular arası satış var mı
+  Sen: hayır şimdilik istemiyorum   [hayir→hayir]
+  Sen: başka oyuncuya ev satabiliyo muyuz   [genel→genel]
+     Kader K.: Oyuncuya ilanla satis daha tam gelmedi simdilik piyasaya satiliyor
+     ✗ konu mulk_satiyorum, somut
+
+# Mülk: oyuncular arası satış var mı
+  Sen: başka oyuncuya ev satabiliyo muyuz   [genel→genel]
+  Sen: nasıl   [hal_hatir→genel, takip:detay]
+     Kader K.: Ne demek istedin, biraz daha anlatsana?
+     ✗ konu mulk_satiyorum, baglam, icermeli:ilan
+
