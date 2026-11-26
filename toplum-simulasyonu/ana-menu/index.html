@@ -403,9 +403,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .onKutu input:checked::after{content:"";width:6px;height:11px;border:solid var(--anaUstu);border-width:0 3px 3px 0;transform:translateY(-1px) rotate(45deg)}
 .onKutu input:focus-visible{outline:2px solid var(--ana);outline-offset:2px}
 .onKutu span{flex:1;font-weight:600}
-.onKutu em{display:inline-block;font-style:normal;font-size:12px;font-weight:700;padding:1px 7px;border-radius:6px;margin-left:6px;vertical-align:1px}
-.onKutu em.z{background:var(--vurguYumusak);color:var(--vurgu)}
-.onKutu em.i{background:var(--anaYumusak);color:var(--ana)}
+.onKutu em,.onKay .yildiz{font-style:normal;font-weight:800;color:var(--tehlike,#C0392B);margin-left:2px}
 .onAlt{flex:none;display:flex;align-items:center;gap:14px;padding:10px 0 max(10px,env(safe-area-inset-bottom,0px));border-top:1px solid var(--cizgi)}
 .onIpucu{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ikincil);font-weight:600}
 .onIpucu .cubuk{height:5px;border-radius:3px;background:var(--cizgi);overflow:hidden}
@@ -607,7 +605,7 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
   <div class="onKay" id="onKay"><div class="ic">
     <h3>Sohbete hoş geldin</h3>
     <p>Türkiye ve Global kanallarında binlerce oyuncuyla konuşabilirsin. Kanala yazdığın her mesajı o kanaldaki herkes görür. Girmeden önce lütfen kuralları ve izinleri sonuna kadar oku.</p>
-    <p class="sik">Aşağıdaki kutular hazır işaretli gelir. İstemediğin izni kaldırabilirsin; zorunlu olanlar işaretli olmadan sohbete girilemez.</p>
+    <p class="sik">Aşağıdaki kutular hazır işaretli gelir. İstemediğin izni kaldırabilirsin; <span class="yildiz">*</span> işaretli olanlar zorunludur, onlar olmadan sohbete girilemez.</p>
     <h3>Kurallar</h3>
     <ul>
       <li>Saygılı ol. Hakaret, küfür, aşağılama ve nefret söylemi yok.</li>
@@ -618,11 +616,11 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
       <li>Başkasının kişisel bilgisini de paylaşma.</li>
     </ul>
     <p>Kurallara uyulmazsa mesaj gizlenir, sohbet bir süre kapanır; tekrarında hesap kapatılabilir. Rahatsız olduğun bir mesaja basılı tut: <b>Engelle</b> ya da <b>Şikâyet et</b>.</p>
-    <label class="onKutu"><input type="checkbox" data-izin="kural" checked><span>Sohbet kurallarına uyacağım.<em class="z">Zorunlu</em></span></label>
+    <label class="onKutu"><input type="checkbox" data-izin="kural" checked><span>Sohbet kurallarına uyacağım.<em aria-label="zorunlu">*</em></span></label>
     <h3>Mesajlarını kimler görür</h3>
     <p>Türkiye ve Global kanallarına yazdıkların herkese açıktır. Şikâyet edilen mesajlar moderasyon ekibi tarafından incelenebilir.</p>
     <p>Özel mesajların (DM) yalnız seninle karşındaki kişi arasındadır; şikâyet etmedikçe kimse okumaz ve hiçbir yere gönderilmez.</p>
-    <label class="onKutu"><input type="checkbox" data-izin="acik" checked><span>Kanala yazdıklarımın herkese görüneceğini ve şikâyet edilirse incelenebileceğini anladım.<em class="z">Zorunlu</em></span></label>
+    <label class="onKutu"><input type="checkbox" data-izin="acik" checked><span>Kanala yazdıklarımın herkese görüneceğini ve şikâyet edilirse incelenebileceğini anladım.<em aria-label="zorunlu">*</em></span></label>
     <h3>Yapay zekâyı geliştirme</h3>
     <p>Oyundaki yapay zekâ karakterlerinin (NPC) seni daha iyi anlaması için Türkiye ve Global kanallarına yazdığın mesajlar, öncesindeki birkaç mesajla birlikte, kimliksiz olarak bize gönderilir. Bu mesajlarla karakterleri eğitiriz.</p>
     <ul>
@@ -631,7 +629,7 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
       <li>Göndermeden önce telefonunda mesajdaki isimler, telefon numaraları, e-posta ve bağlantılar silinir.</li>
       <li>Bu izni istediğin zaman <b>Ayarlar → Sohbet</b>'ten kapatabilirsin. Kapatınca henüz gönderilmemiş mesajlar da silinir.</li>
     </ul>
-    <label class="onKutu"><input type="checkbox" data-izin="yz" checked><span>Kanal mesajlarım yapay zekâyı geliştirmek için kimliksiz gönderilebilir.<em class="i">İsteğe bağlı</em></span></label>
+    <label class="onKutu"><input type="checkbox" data-izin="yz" checked><span>Kanal mesajlarım yapay zekâyı geliştirmek için kimliksiz gönderilebilir.</span></label>
     <h3>Son</h3>
     <p>Bu metni istediğin zaman <b>Ayarlar → Sohbet</b>'ten yeniden okuyabilirsin. Kurallar ya da izinler değişirse sohbete girerken sana yeniden sorarız.</p>
   </div></div>
@@ -1233,7 +1231,7 @@ function onayDurum(){const e=$('onayEkran'),k=$('onKay'),kal=k.scrollHeight-k.cl
   const zorunluTamam=[...e.querySelectorAll('[data-izin="kural"],[data-izin="acik"]')].every(x=>x.checked);
   const ip=$('onIpucu'),m=$('onIpucuMetin');ip.classList.remove('tamam','uyari');
   if(!onaySonaVardi){m.textContent='Kabul etmek için metni en sonuna kadar kaydır'}
-  else if(!zorunluTamam){m.textContent='Sohbete girmek için zorunlu iki kutu işaretli olmalı';ip.classList.add('uyari')}
+  else if(!zorunluTamam){m.textContent='Sohbete girmek için * işaretli kutular işaretli olmalı';ip.classList.add('uyari')}
   else{m.textContent='Okudun, sohbete girebilirsin';ip.classList.add('tamam')}
   $('onKabul').disabled=!(onaySonaVardi&&zorunluTamam);
   const a=$('onAsagi');a.hidden=kal<=12||onaySonaVardi;a.style.bottom=($('onayEkran').querySelector('.onAlt').offsetHeight+12)+'px'}
