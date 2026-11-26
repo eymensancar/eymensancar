@@ -942,7 +942,43 @@
     for (let i = 0; i < 400; i++) { const y = yabanciUret(rng, i + 1000); y.id = 'g' + i; delete y.servetUsd; meta.yabanciK.push(y); }
     return meta.yabanciK;
   }
-  NPCYZ.figuranBul = (meta, id) => (meta.figuran || []).find(x => x.id === id) || (meta.yabanciK || []).find(x => x.id === id) || null;
+  const kisaAd = g => { const a = String(g || '').split(/[ _.]/)[0].replace(/\d+$/, ''); return a.charAt(0).toUpperCase() + a.slice(1); };
+  // Binlerce kişi: kimliği numarasından üretilir, kayda yazılmaz (F0..F4999 Türk, G0..G4999 yabancı)
+  const FIG_SAYI = 5000;
+  const TAKMA_S = ['gece', 'mavi', 'sessiz', 'deli', 'tatlı', 'yalnız', 'kara', 'beyaz', 'küçük', 'koca', 'eski', 'sakin', 'hızlı', 'uykucu', 'çaylı', 'kahveli', 'garip', 'mutlu', 'asi', 'bulut'];
+  const TAKMA_I = ['kuşu', 'kedi', 'kurt', 'yolcu', 'kaptan', 'reis', 'çiçek', 'deniz', 'rüzgar', 'ayı', 'aslan', 'tilki', 'martı', 'okur', 'gezgin', 'şehirli', 'yıldız', 'usta', 'patron', 'kurye'];
+  const NICK_A = ['night', 'lazy', 'blue', 'silent', 'happy', 'crazy', 'tiny', 'big', 'cozy', 'sleepy', 'salty', 'lucky', 'chill', 'grumpy', 'golden'];
+  const NICK_B = ['owl', 'panda', 'fox', 'bean', 'cat', 'wolf', 'cookie', 'tiger', 'otter', 'potato', 'pixel', 'shark', 'bee', 'duck', 'ninja'];
+  const FIG_ONBELLEK = new Map();
+  const asc0 = x => String(x).toLocaleLowerCase('tr').replace(/[çğıöşü]/g, h => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' })[h]);
+  function figTohum(meta) { if (!meta.figTohum) meta.figTohum = hash(Object.values(meta.npc).slice(0, 3).map(k => k.gorunen).join('|')) >>> 0; return meta.figTohum; }
+  function figuranUret(meta, id) {
+    const anahtar = figTohum(meta) + ':' + id + ':' + (meta.adKontrol || ''); if (FIG_ONBELLEK.has(anahtar)) return FIG_ONBELLEK.get(anahtar);
+    const i = +id.slice(1), rng = rngYap(hash(anahtar)); let f;
+    if (id[0] === 'F') {
+      const yasak = (meta.adKontrol || '').split(/\s+/)[0].toLocaleLowerCase('tr');
+      let k = kimlikUret(rng); for (let j = 0; j < 8 && yasak && k.ad.toLocaleLowerCase('tr') === yasak; j++) k = kimlikUret(rng);
+      const mk = FIG_MESLEK[agirlikliSec(rng, FIG_MESLEK.map((x, ii) => ii), ii => FIG_MESLEK[ii][1])][0];
+      let gorunen = k.gorunen, ad = k.ad;
+      if (rng.chance(.2)) { const n = rng.pick(TAKMA_S) + rng.pick(TAKMA_I); const st = rng.next(); gorunen = st < .4 ? asc0(n) + Math.floor(rng.between(1, 99)) : st < .7 ? n : asc0(n) + '_' + Math.floor(rng.between(10, 81)); ad = n.charAt(0).toLocaleUpperCase('tr') + n.slice(1); }
+      f = { id, ad, gorunen, kadin: k.kadin, yer: k.yer, kronotip: k.kronotip, k: k.k, ascii: k.ascii, meslek: mk, ev: rng.chance(.22), borc: rng.chance(.3), gun: Math.floor(rng.between(1, 420)), zengin: mk && /sahibi/.test(mk) ? rng.chance(.5) : rng.chance(.04), kurs: rng.chance(.07) };
+    } else {
+      const y = yabanciUret(rng, i); y.id = id; delete y.servetUsd;
+      y.ad = kisaAd(y.gorunen);
+      if (y.dil !== 'ar' && rng.chance(.15)) { const n = rng.pick(NICK_A) + '_' + rng.pick(NICK_B); y.gorunen = rng.chance(.5) ? n + Math.floor(rng.between(1, 99)) : n; y.ad = n.split('_')[1]; }
+      f = y;
+    }
+    if (FIG_ONBELLEK.size > 20000) FIG_ONBELLEK.clear();
+    FIG_ONBELLEK.set(anahtar, f); return f;
+  }
+  NPCYZ.figuranBul = (meta, id) => (/^[FG]\d+$/.test(id || '') ? figuranUret(meta, id) : null) || (meta.figuran || []).find(x => x.id === id) || (meta.yabanciK || []).find(x => x.id === id) || null;
+  /** Kanal için aday kalabalık: gerçek NPC'ler + rastgele seçilmiş yüzlerce figüran (her seferinde farklı). */
+  function kalabalikOrnek(meta, kanal, rng, dilSec) {
+    const out = new Set();
+    if (kanal === 'global') { const D = Object.keys((dil().veri || {}).yabanci || { en: 1 }); const di = Math.max(0, D.indexOf(dilSec)), adim = D.length; for (let j = 0; j < 300; j++) out.add('G' + (Math.floor(rng.next() * (FIG_SAYI / adim)) * adim + di)); return [...out]; }
+    for (let j = 0; j < 350; j++) out.add('F' + Math.floor(rng.next() * FIG_SAYI));
+    return Object.keys(meta.npc).concat([...out]);
+  }
   /** Sohbette konuşan herkes için ortak görünüm: gerçek NPC (oyun verisinden) ya da figüran. */
   function kisiBak(world, meta, id) {
     const n = meta.npc[id];
@@ -979,9 +1015,12 @@
     _veri = { gun: world.day, w: world, v }; return v;
   }
   NPCYZ.iplikVeri = iplikVeri;
-  const kisaAd = g => { const a = String(g || '').split(/[ _.]/)[0].replace(/\d+$/, ''); return a.charAt(0).toUpperCase() + a.slice(1); };
-  function iplikMetni(sablon, roller, kisiler, veri, rng) {
+  function iplikMetni(sablon, roller, kisiler, veri, rng, ip, dilKod) {
     let m = sablon.replace(/\[([^\]]*)\]/g, (a, b) => rng.pick(b.split('|')));
+    // Sözlük yuvası: {s:yemek} iplik boyunca aynı değer, {s:yemek#2} ikinci farklı değer
+    const I = IPLIK(), soz = I && I.soz ? (dilKod ? (I.soz.global || {})[dilKod] : I.soz.tr) : null;
+    if (soz) m = m.replace(/\{s:([a-z_]+)(#\d)?\}/g, (a, ad, no) => { const l = soz[ad]; if (!l || !l.length) return ''; const k = ad + (no || ''); ip.soz = ip.soz || {};
+      if (ip.soz[k] == null) { const kul = new Set(Object.entries(ip.soz).filter(([kk]) => kk.split('#')[0] === ad).map(([, v]) => v)); let v; for (let d = 0; d < 6; d++) { v = rng.pick(l); if (!kul.has(v)) break; } ip.soz[k] = v; } return ip.soz[k]; });
     m = m.replace(/\{([ABCD])(?:\.(\w+))?\}/g, (a, r0, alan) => { const kb = kisiler[r0]; if (!kb) return ''; if (!alan) return kb.ad; if (alan === 'meslek') return kb.meslek ? meslekAdi(kb.meslek).toLocaleLowerCase('tr') : 'işsiz'; if (alan === 'yer') return kb.yer || kb.sehir; if (alan === 'sehir') return kb.sehir; return ''; });
     m = m.replace(/\{([\w.]+)\}/g, (a, k) => veri[k] != null ? veri[k] : '');
     return m.replace(/\s{2,}/g, ' ').replace(/\s+([,.!?])/g, '$1').trim();
@@ -1034,11 +1073,14 @@
       if (kanal === 'global' && meta.iplImza[b.imza] && meta.iplImza[b.imza].dil !== dilSec && t - meta.iplImza[b.imza].t < 10 * 60e3) return false;
       return mv === 'kis' ? !b.sicak : mv === 'yaz' ? !b.soguk : !(b.sicak && b.soguk); };
     const saatUyar = x => kanal === 'global' || !x.saat || x.saat === dlm; // yabancılar farklı saat dilimlerinde
-    let aday = havuz.filter(x => !aktif.has(x.id) && saatUyar(x) && uygunMevsim(x) && !(meta.iplSon[x.id] && t - meta.iplSon[x.id] < 8 * 3600e3));
+    const sonG = x => { const v = meta.iplSon[x.id] || 0; return v > 1e11 ? 0 : v; }; // eski kayıtlardaki gerçek zaman damgaları sayılmaz
+    // En uzun süredir (izleme süresine göre) görülmeyenlerden seçilir: hiç görülmeyen önce, sonra en eskiler
+    const uygunlar = havuz.filter(x => !aktif.has(x.id) && saatUyar(x) && uygunMevsim(x)).sort((a, b) => sonG(a) - sonG(b));
+    let aday = uygunlar.slice(0, Math.max(30, Math.floor(uygunlar.length * .25)));
     if (kanal === 'global') { const a2 = aday.filter(x => !x.konu || !aktifKonu.has(x.konu)); if (a2.length) aday = a2; }
     // Havuz yetmezse en uzun süredir kullanılmayanlar (LRU) eklenir; tek bir uygunsuz şablona takılmaz
     const liste = aday.length >= 30 ? aday : aday.concat(havuz.filter(x => !aktif.has(x.id) && !aday.includes(x) && saatUyar(x) && uygunMevsim(x)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 40));
-    const kisiHavuz = kanal === 'global' ? yabanciKalabalik(meta).filter(y => y.dil === dilSec).map(y => y.id).concat(meta.yabanci.filter(y => y.dil === dilSec).map(y => y.id)) : Object.keys(meta.npc).concat(figuranlar(meta).map(f => f.id));
+    const kisiHavuz = kalabalikOrnek(meta, kanal, rng, dilSec);
     if (!liste.length) return null;
     for (let deneme = 0; deneme < 6; deneme++) {
       const sb = rng.pick(liste), roller = {}, kisiler = {}, kul = new Set(), adlar = new Set();
@@ -1063,7 +1105,7 @@
         else kisiler[r0] = kisiBak(world, meta, sec);
       }
       if (!ok) continue;
-      meta.iplSon[sb.id] = t; if (kanal === 'global') meta.iplImza[sablonCoz(sb).imza] = { dil: dilSec, t };
+      meta.iplSon[sb.id] = (meta.izleme && meta.izleme[kanal]) || t; if (kanal === 'global') meta.iplImza[sablonCoz(sb).imza] = { dil: dilSec, t };
       return { id: sb.id, dil: dilSec, konu: sb.konu, roller, i: 0, t };
     }
     return null;
@@ -1077,7 +1119,7 @@
     const kisiler = {}; for (const [rr, kid] of Object.entries(ip.roller)) { if (kanal === 'global') { const y = NPCYZ.figuranBul(meta, kid) || meta.yabanci.find(x => x.id === kid); kisiler[rr] = y ? { ad: kisaAd(y.gorunen), sehir: y.sehir, yer: y.sehir } : null; } else kisiler[rr] = kisiBak(world, meta, kid); }
     const ks = kisiler[r0]; if (!ks) return null;
     let metin = '';
-    for (let d = 0; d < 4; d++) { metin = iplikMetni(sab, ip.roller, kisiler, kanal === 'global' ? {} : iplikVeri(world, meta), rng); if (!(meta.kanalSon || []).includes(normSoz(metin))) break; }
+    for (let d = 0; d < 10; d++) { const soz0 = ip.soz ? Object.assign({}, ip.soz) : null; metin = iplikMetni(sab, ip.roller, kisiler, kanal === 'global' ? {} : iplikVeri(world, meta), rng, ip, kanal === 'global' ? ip.dil : null); if (!(meta.kanalSon || []).includes(normSoz(metin)) && !gorulduMu(meta, metin)) break; if (d < 9 && d >= 4 && soz0) ip.soz = soz0; }
     const kim = meta.npc[id] || NPCYZ.figuranBul(meta, id) || meta.yabanci.find(x => x.id === id);
     // Kalabalık kanalda kime cevap verildiği belli olsun: bir önceki konuşana ara sıra adıyla seslen
     { const onceki = ip.i > 0 ? sb.turlar[ip.i - 1][0] : null; if (onceki && onceki !== r0 && kisiler[onceki] && !/\{[ABCD]\}/.test(sab) && rng.chance(.22)) { const ad0 = kisiler[onceki].ad; if (ad0 && !metin.toLocaleLowerCase('tr').includes(ad0.toLocaleLowerCase('tr'))) metin = (rng.chance(.5) ? '@' + ad0 + ' ' : (kanal === 'global' ? ad0.toLowerCase() : ad0.toLocaleLowerCase('tr')) + ' ') + metin; } }
@@ -1113,6 +1155,15 @@
     if ((kim.k.mizah ?? .5) > .6 && rng.chance(.08)) m += rng.pick({ en: [' lol', ' haha', ' lmao'], es: [' jaja', ' jajaja', ' xd'], de: [' haha', ' xd', ' lol'], az: [' haha', ' hahaha'] }[kim.dil] || [' haha']);
     return m;
   }
+  // Görülen cümle hafızası: yakın zamanda kanalda geçen cümle tekrar yazılmaz (kayıtta küçük halka, bellekte küme)
+  const GOR_BELLEK = new WeakMap(), GOR_MAX = 16000;
+  const cumleAnahtar = m => hash(String(m).toLocaleLowerCase('tr').replace(/^@?\S+\s+/, '').replace(/[^\p{L}\p{N} ]/gu, '').replace(/\s+/g, ' ').trim()).toString(36);
+  function gorKume(meta) { let g = GOR_BELLEK.get(meta); if (!g) { const l = meta.gorH ? meta.gorH.split(',') : []; g = { set: new Set(l), list: l }; GOR_BELLEK.set(meta, g); } return g; }
+  function gorulduMu(meta, metin) { if (String(metin).length < 14) return false; return gorKume(meta).set.has(cumleAnahtar(metin)); }
+  function gorulduEkle(meta, metin) { if (String(metin).length < 14) return; const g = gorKume(meta), k = cumleAnahtar(metin); if (g.set.has(k)) return; g.set.add(k); g.list.push(k);
+    if (g.list.length > GOR_MAX) { const at = g.list.splice(0, g.list.length - GOR_MAX); at.forEach(x => g.set.delete(x)); }
+    if (g.list.length % 200 === 0 || g.list.length < 200) meta.gorH = g.list.join(','); }
+  NPCYZ.gorulduKaydet = meta => { const g = GOR_BELLEK.get(meta); if (g) meta.gorH = g.list.join(','); };
   /** Kanalın saatlik hızı (dakikada mesaj): Türkiye 25, global 40; gece biraz düşer. */
   function kanalHizi(kanal, saat) { if (kanal === 'global') return 80; const f = saat < 2 ? .8 : saat < 7 ? .55 : saat < 9 ? .8 : 1; return 50 * f; }
   NPCYZ.kanalHizi = kanalHizi;
@@ -1124,6 +1175,7 @@
 
   NPCYZ.kanalAkisi = function (world, meta, kanal, simdiMs, saat, oyuncu, sirketNpcIdleri) {
     adCakismasi(world, meta, oyuncu);
+    if (meta.figuran || meta.yabanciK) { delete meta.figuran; delete meta.yabanciK; delete meta.yabanciKS; } // artık üretiliyor, kayıtta tutulmaz
     if (!meta.kanal[kanal]) meta.kanal[kanal] = [];
     const ilkAcilis = !meta.kanalZaman[kanal];
     const son = meta.kanalZaman[kanal] || (simdiMs - (kanal === 'sirket' ? 6 : 40) * 60e3);
@@ -1136,6 +1188,7 @@
     const dakikada = kanal === 'sirket' ? .25 : ipliVar ? R * (kanal === 'global' ? .08 : .14) : R * .3;
     // Uzun aradan sonra yalnız son birkaç dakikanın akışı üretilir (geri kalanı "kaçırılmış" sayılır)
     const pencere = kanal === 'sirket' ? gecen : Math.min(gecen, (ilkAcilis ? 4 : 3) * 60e3);
+    meta.izleme = meta.izleme || {}; meta.izleme[kanal] = (meta.izleme[kanal] || 0) + pencere; // yalnız kanalın gerçekten aktığı süre
     let n = Math.round(pencere / 60e3 * dakikada);
     n = Math.min(n, kanal === 'sirket' ? 4 : 30);
     if (n <= 0 && rngYap(hash(kanal + simdiMs)).chance(gecen / 60e3 * dakikada)) n = 1;
@@ -1151,6 +1204,7 @@
       const m = kanal === 'global' ? globalMesaj(world, meta, rng, saat) : kanal === 'sirket' ? sirketMesaj(world, meta, rng, sirketNpcIdleri || [], oyuncu) : ulkeMesaj(world, meta, rng, saat, meta.kanal[kanal].slice(-40).concat(yeni).filter(m => !m.iplik).slice(-8));
       if (!m) continue;
       // Aynı cümle kanalda yakın zamanda geçtiyse yazılmaz; vedalaşan kişi saatlerce yazmaz
+      if (kanal !== 'sirket' && gorulduMu(meta, m.metin)) continue;
       { const nm = normSoz(m.metin); if ((meta.kanalSon || []).includes(nm)) continue; meta.kanalSon = (meta.kanalSon || []).concat([nm]).slice(-150); }
       if (m.npcId && meta.npc[m.npcId]) { const kv = meta.npc[m.npcId]; if (kv.vedaZaman && zaman - kv.vedaZaman < 90 * 60e3) continue; try { if ((dil().niyetBul)(m.metin, { adlar: [] }).niyet === 'veda' && !m.cevap) kv.vedaZaman = zaman; } catch (e) { } }
       m.zaman = zaman; m.kanal = kanal; m.id = 'k' + (++meta.sayac); m.oyunGun = world.day;
@@ -1175,7 +1229,7 @@
       meta.ipl[kanal] = akt;
     }
     if (donus) yeni.push(donus);
-    yeni.forEach(m => { m.metin = emojisiz(m.metin); });
+    yeni.forEach(m => { m.metin = emojisiz(m.metin); if (kanal !== 'sirket') gorulduEkle(meta, m.metin); });
     yeni.sort((a, b) => a.zaman - b.zaman);
     meta.kanal[kanal] = meta.kanal[kanal].concat(yeni).slice(-200);
     return yeni;
@@ -1783,9 +1837,8 @@
     const oAd = oyuncu.name.split(' ')[0];
     // Yalnız sohbette görünen kişiye (figüran) hitap ya da yanıt: o kişi cevap verir
     if (hitapAd && !hedefKisi && kanal !== 'sirket') {
-      const hs = sade(hitapAd), fl = kanal === 'global' ? (meta.yabanciK || []) : (meta.figuran || []);
-      const sonlar = new Set((meta.kanal[kanal] || []).slice(-40).map(m => m.npcId));
-      const f = fl.find(x => sonlar.has(x.id) && (sade(x.ad || '') === hs || sade(x.gorunen).startsWith(hs)));
+      const hs = sade(hitapAd), sonlar = [...new Set((meta.kanal[kanal] || []).slice(-60).map(m => m.npcId).filter(x => /^[FG]\d+$/.test(x || '')))].map(x => NPCYZ.figuranBul(meta, x)).filter(Boolean);
+      const f = sonlar.find(x => sade(x.ad || '') === hs || sade(x.gorunen).startsWith(hs));
       if (f) { const c = figuranCevap(world, meta, f, kanal, katli, ny, oyuncu, rng); if (c) { cevaplar.push(c); return sonuc; } }
     }
     // Kanalda olmayan birine hitap: o yok; konuşmadaki kişi kendisi devam eder ya da biri "bugün girmedi galiba" der

@@ -60,7 +60,17 @@ Kanalda NPC'ler (oyunun karakterleri) birbiriyle konuşur. Bir **iplik**, 2-4 ki
 
 Para cümlesi yazarken eki yer tutucuya yapıştırmayın ("{daire}'ye" olmaz). Cümleyi eksiz kurun: "daire {daire}, bence pahalı".
 
-## Rol koşulları (`kosul`)
+## Sözlük yuvaları (`{s:...}`): aynı iplik her seferinde başka içerikle
+
+Kanal 24 saat izlenince bile aynı cümle görülmemeli. Bunun için cümledeki değişebilir şeyleri sözlük yuvasıyla yazın: oyun her açılışta listeden rastgele bir değer seçer.
+
+- **Türkçe dosyalarda** (`tools/iplik/sozluk.json` → `tr`): `{s:yemek}` `{s:tatli}` `{s:icecek}` `{s:semt}` (İstanbul semti) `{s:sehir}` (memleket) `{s:esya}` `{s:hobi}` `{s:gun}` (pazartesi…) `{s:akraba}` (teyzem, dayım…) `{s:mekan}` (markette, parkta…; bulunma ekli) `{s:ulasim}` `{s:hayvan}` `{s:meyve}` `{s:dizi_tur}` `{s:saat}` (yedide, sekizde…; bulunma ekli) `{s:sayi}` (iki, üç…) `{s:ev_isi}` `{s:kis_hava}` (kar yağıyor, ayaz var…; tam yan cümle) `{s:renk}` `{s:oyun_meslek}`.
+- **Global dosyalarda** (dilin kendi listesi): `{s:food}` `{s:drink}` `{s:hobby}` `{s:day}` `{s:family}` (my mum…) `{s:thing}` (my keys…).
+- **Aynı iplikte aynı değer:** bir iplik içinde `{s:yemek}` her geçtiğinde aynı yemek olur. İkinci, farklı bir değer için `{s:yemek#2}` yazın.
+- **Ek yapıştırmayın:** değerin sonu belli değil ("pilav", "menemen"). "{s:yemek}'i" yazmayın; cümleyi eksiz kurun: "bugün {s:yemek} yaptım", "{s:yemek} mi, iyiymiş".
+- **Hepsine uyacak cümle kurun:** "akşama {s:yemek} var" her yemekle doğru okunur.
+
+
 
 Her rol için şunlar kullanılabilir (A yerine B/C/D de olur):
 
