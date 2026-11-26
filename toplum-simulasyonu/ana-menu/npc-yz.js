@@ -1062,7 +1062,7 @@
     const son = meta.kanalZaman[kanal] || (simdiMs - (kanal === 'sirket' ? 6 : 40) * 60e3);
     let gecen = Math.min(simdiMs - son, 3 * 3600e3);
     meta.kanalZaman[kanal] = simdiMs;
-    if (gecen < 4000) { const d0 = kanal === 'ulke' && oyuncu ? donusMesaji(world, meta, oyuncu, simdiMs, rngYap(hash('d' + simdiMs))) : null; if (d0) { d0.zaman = simdiMs; d0.kanal = kanal; d0.id = 'k' + (++meta.sayac); meta.kanal[kanal].push(d0); return [d0]; } return []; }
+    if (gecen < 4000 && (kanal === 'sirket' || !IPLIK())) { const d0 = kanal === 'ulke' && oyuncu ? donusMesaji(world, meta, oyuncu, simdiMs, rngYap(hash('d' + simdiMs))) : null; if (d0) { d0.zaman = simdiMs; d0.kanal = kanal; d0.id = 'k' + (++meta.sayac); meta.kanal[kanal].push(d0); return [d0]; } return []; }
     // Dakikada ortalama mesaj: Türkiye 25, global 40 (iplikler); tek mesajlar (olaylar, sorular) bunun küçük bir payı
     const ipliVar = kanal !== 'sirket' && !!IPLIK();
     const R = kanal === 'sirket' ? .25 : kanalHizi(kanal, saat);
