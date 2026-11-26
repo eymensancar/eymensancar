@@ -837,8 +837,9 @@
   const meslekAdi = id => (id ? MESLEK_SOZ[id] || (T.t ? T.t('meslek.' + id) : id).toLocaleLowerCase('tr') : '');
   const isletmeAdi = id => (id ? ISLETME_SOZ[id] || (T.t ? T.t('isletme.' + id) : id).toLocaleLowerCase('tr') : '');
   const mulkAdi = id => (id ? (T.t ? T.t('mulk_turu.' + id) : id).toLocaleLowerCase('tr') : '');
-  const kursSoz = id => (id ? (T.t ? T.t('kurs.' + id) : id).toLocaleLowerCase('tr') : '');
-  const kursAdi = id => (id ? (T.t ? T.t('kurs.' + id) : id).split(' ').map(w => w.charAt(0).toLocaleUpperCase('tr') + w.slice(1)).join(' ') : '');
+  const KURS_SOZ = { kamu_sinavi: 'KPSS kursu', muhasebe: 'muhasebe kursu', emlak_belgesi: 'emlak kursu', ustalik: 'ustalık kursu', muteahhitlik: 'müteahhitlik belgesi', doviz_lisansi: 'döviz lisansı', dis_ticaret: 'dış ticaret kursu' };
+  const kursSoz = id => (id ? KURS_SOZ[id] || (T.t ? T.t('kurs.' + id) : id).toLocaleLowerCase('tr') : '');
+  const kursAdi = id => kursSoz(id);
   const yerAdi = kim => (kim.yer ? (kim.yer.ilce || kim.yer.sehir) : '');
 
   function konus(world, meta, kim, anahtar, slot, rng) {
@@ -1000,6 +1001,9 @@
       const p = world.players[o.npcId];
       const harita = { katildi: 'paylasim.gunaydin', is_degisti: v.ayrildi ? 'paylasim.is_ariyor' : 'paylasim.is_degisti', kurs_basladi: 'paylasim.kurs_basladi', kurs_bitti: 'paylasim.kurs_bitti', mulk_aldi: 'paylasim.mulk_aldi', mulk_satti: 'paylasim.mulk_satti', isletme_acti: 'paylasim.isletme_acti', isletme_kapandi: 'paylasim.isletme_kapandi', bagis: 'paylasim.bagis', kredi_cekti: 'paylasim.kredi_cekti', ay_sonu_iyi: 'paylasim.ay_sonu_iyi', ay_sonu_kotu: 'paylasim.ay_sonu_kotu' };
       const anahtar = harita[o.tur]; if (!anahtar) return null;
+      meta.anahtarZaman = meta.anahtarZaman || {};
+      if (meta.anahtarZaman[anahtar] && Date.now() - meta.anahtarZaman[anahtar] < 20 * 60e3) { meta.olayKuyrugu.push(o); return null; }
+      meta.anahtarZaman[anahtar] = Date.now();
       return { npcId: o.npcId, ad: kim.gorunen, metin: konus(world, meta, kim, anahtar, { meslek: meslekAdi(v.meslek || (p && p.profession)), kurs: kursAdi(v.kurs), mulk: mulkAdi(v.mulk), isletme: isletmeAdi(v.isletme), tutar: v.tutar ? paraYaz(v.tutar) : undefined }, rng), olay: o.tur };
     }
     const id = konusanSec(world, meta, rng, saat); if (!id) return null;
@@ -1020,7 +1024,10 @@
     secenek.push(['gundelik', 3.2, { dilim }]);
     secenek.push(['paylasim.ekonomi_genel', .8], ['paylasim.soru', 1.6], ['paylasim.motivasyon', kim.ruh > 0 ? 1 : .3], ['paylasim.yorgun', kim.ruh < 0 ? 1.2 : .3]);
     if (T.netWorth(world, p) > 5e6) secenek.push(['paylasim.zengin_oldu', .3]);
-    const s = agirlikliSec(rng, secenek, x => x[1]);
+    const anahtarSure = meta.anahtarZaman || (meta.anahtarZaman = {});
+    const secilebilir = secenek.filter(x => !(anahtarSure[x[0]] && Date.now() - anahtarSure[x[0]] < 12 * 60e3));
+    const s = agirlikliSec(rng, secilebilir.length ? secilebilir : secenek, x => x[1]);
+    anahtarSure[s[0]] = Date.now();
     if (s[0] === 'gundelik') { let m = rng.pick(GUNLUK[s[2].dilim]); for (let i = 0; i < 4 && tekrarMi(meta, kim, m); i++) m = rng.pick(GUNLUK[s[2].dilim]); if (tekrarMi(meta, kim, m)) return null; try { m = (dil().stillendir)(m, stilOf(kim), rng); } catch (e) { } soyledi(meta, kim, m); return { npcId: id, ad: kim.gorunen, metin: m }; }
     return { npcId: id, ad: kim.gorunen, metin: konus(world, meta, kim, s[0], s[2] || {}, rng) };
   }
@@ -1049,6 +1056,8 @@
   // ------------------------------------------------------------------
   // Kalıp cümle yerine: fiyatlar, faiz, enflasyon, kredi limiti, kurs ücreti, meslek kazancı,
   // işletme maliyeti, satılık mülkler, "nasıl yapılır" yol tarifleri. NPC bunu kendi üslubuyla söyler.
+  /** 348 gün → 'bir yıla yakın'; 40 → '1-2 aydır' */
+  const sureYaz = g => g < 7 ? 'birkaç gündür' : g < 25 ? `${Math.round(g / 7)} haftadır` : g < 300 ? `${Math.max(1, Math.round(g / 30))}-${Math.round(g / 30) + 1} aydır` : g < 400 ? 'bir yıla yakın' : `${Math.round(g / 365)} yıldır`;
   const yuzde = x => '%' + (Math.round(x * 10) / 10).toLocaleString('tr-TR');
   function enflasyonYillik(world, meta) {
     const g = meta.yonetici.gecmis;
@@ -1060,7 +1069,7 @@
   const bul = (katli, liste) => { const x = liste.find(([re]) => new RegExp('\\b(' + re + ')').test(katli)); return x ? x[1] : null; };
   // "Nasıl yapılır" yol tarifleri: oyunun gerçek ekranları
   const NASIL = [
-    [/kum saat/, () => 'Kum Saati kursu kısaltıyor, 1 tanesi 1 gün. Günde 3 görev yapınca 1 tane veriyor'],
+    [/kum saat/, () => 'Kum Saati kurs süresini kısaltıyor, biri bir gün. Günde 3 görev yapınca bir tane geliyor'],
     [/(mulk|ev|daire|arsa|dukkan)\w* (nasil|nerden|nereden) (al|bul)|nasil (ev|daire|mulk) al/, (w) => `Mülklerim ekranından alıyorsun. Daire ${paraYaz(T.propertyMarketPrice(w, 'daire'))}, krediyle alırsan peşinat ${paraYaz(T.propertyMarketPrice(w, 'daire') * (1 - C().MORTGAGE_MAX_LTV))}`],
     [/(isletme|dukkan|kafe|sirket)\w* (nasil|nerden) ac|nasil (isletme|dukkan|kafe|sirket) ac/, (w) => `Kariyer ekranında 3. kademeden açılıyor. Dükkan ${paraYaz(T.indexed(w, T.getBusinessDef('dukkan').setupCost))}, kafe ${paraYaz(T.indexed(w, T.getBusinessDef('kafe').setupCost))}, bir de 60 gün iş deneyimi istiyor`],
     [/(calisan|eleman|isci)\w* (nasil|nerden) al|nasil (calisan|eleman) al/, () => 'Şirketim ekranında Çalışanlar kısmından + ile ilan veriyorsun, başvuranlardan seçiyorsun. İyi maaş verirsen çok başvuru gelir'],
@@ -1083,17 +1092,20 @@
     if (/\b(adin|ismin|isim)\b/.test(katli)) return `Ben ${kim.ad}${kim.gorunen !== kim.ad && !kim.gorunen.startsWith(kim.ad + ' ') ? ', burada ' + kim.gorunen + ' yazıyor' : ''}`;
     if (/(kaca|kac paraya|ne kadara) (al|aldin|aldiniz|aldin mi)/.test(katli)) { const m = p.propertyIds.map(x => world.properties[x]).filter(Boolean).pop(); return m ? `${paraYaz(m.boughtFor)}'ye aldım, şimdi ${paraYaz(T.propertyMarketPrice(world, m.kind))} ediyor` : 'Mülküm yok daha, biriktiriyorum'; }
     if (/kredi (mi )?(cektin|aldin|var mi)|borcun var/.test(katli)) { const l = p.loans; return l.length ? `Evet, ${l.length} kredim var, aylık ${paraYaz(l.reduce((t, x) => t + x.monthlyPayment, 0))} taksit ödüyorum` : 'Yok, kredi çekmedim, peşin aldım'; }
-    if (/ne zaman(dir|dan beri) (oynu|buradas|burda|calis)|kac gundur/.test(katli)) return `${Math.max(1, world.day - (kim.katildi || 0))} gündür buradayım`;
-    if (/ne (is|iş) yapiyorsun|ne yapiyorsun orda|orda ne is|mesleg/.test(katli)) return p.profession ? `${meslekAdi(p.profession)} olarak çalışıyorum, ${Math.max(1, world.day - p.professionSince)} gündür` : 'Şu an boştayım';
+    if (/ne zaman(dir|dan beri) (oynu|buradas|burda|calis)|kac gundur/.test(katli)) return `${sureYaz(world.day - (kim.katildi || 0))} buradayım`;
+    if (/ne (is|iş) yapiyorsun|ne yapiyorsun orda|orda ne is|mesleg/.test(katli)) return p.profession ? rng0(kim.id).pick([`${meslekAdi(p.profession)}ım, ${sureYaz(world.day - p.professionSince)}`, `${meslekAdi(p.profession)} olarak çalışıyorum, ${sureYaz(world.day - p.professionSince)}`, `${sureYaz(world.day - p.professionSince)} ${meslekAdi(p.profession)}ım`]).replace(/ımım/, 'ım') : 'Şu an boştayım';
     if (/nerelisin|nerdesin|neredesin|nerden yaziyor/.test(katli)) return `${yerAdi(kim)}${kim.yer && kim.yer.sehir !== yerAdi(kim) ? ', ' + kim.yer.sehir : ''}`;
     return null;
   }
   // Mesaj son konuşana mı dönük? ("sen", "-dın", "-sın" ...)
   const IKINCI_TEKIL = /\b(sen|senin|sana|seni|sende)\b|\w(iyorsun|uyorsun|ıyorsun|üyorsun|yorsun|dın|din|dun|dün|tın|tin|tun|tün|sın|sin|sun|sün)( mi| mı| mu| mü)?\b/;
+  const MESLEK_ANAHTAR = [['emlakci|emlak danisman', 'emlak_danismani'], ['muhasebeci|muhasebe', 'muhasebeci'], ['memur', 'memur'], ['kurye', 'kurye'], ['garson', 'garson'], ['kasiyer', 'market_calisani'], ['usta|elektrikci|tesisatci', 'usta'], ['insaat iscisi|insaatta', 'insaat_iscisi'], ['taksici|taksi|nakliyeci|sofor', 'nakliyeci']];
   function bilgi(world, meta, kim, konu, varlik, oyuncu, katli, takip) {
     const p = world.players[kim.id];
-    const mulk = (varlik && varlik.mulk) || (/arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : /(daire|ev\b|konut|1\+1|2\+1|3\+1)/.test(katli) ? 'daire' : null);
+    const mulk = (varlik && varlik.mulk) || (/arsa/.test(katli) ? 'arsa' : /dukkan/.test(katli) ? 'dukkan' : /(daire|ev\b|konut|1\+1|2\+1|3\+1|kira)/.test(katli) ? 'daire' : null);
+    if (mulk && /(kira\w* (kac|ne kadar)|kac kira|kira getir|kira gelir)/.test(katli)) { const f = T.propertyMarketPrice(world, mulk), oran = (C().PROPERTY_TYPES.find(x => x.kind === mulk) || {}).monthlyRentRate || 0; return { metin: oran ? `${mulkAdi(mulk)} ayda ${paraYaz(f * oran)} civarı kira getiriyor, değerinin yaklaşık %${(oran * 100).toLocaleString('tr-TR')}'i` : `${mulkAdi(mulk)} kira getirmiyor, ama değeri artıyor` }; }
     for (const [re, f] of NASIL) if (re.test(katli)) return { metin: f(world, meta, oyuncu) };
+    if (/asgari/.test(katli)) return { metin: `Asgari ücret ${paraYaz(T.indexed(world, C().MIN_WAGE))}, işletmeler bunun altında maaş veremiyor` };
     if (konu === 'yetki_istegi') return { metin: rng0(katli).pick(['Ben admin değilim ki 😄 Herkes gibi oyuncuyum', 'Para gönderme diye bir şey yok oyunda, herkes kendi kazanıyor', 'Hile falan yok valla, çalışıp biriktireceksin', 'Yetki işleri bizde değil, oyunun kuralları belli']) };
     // İki seçeneği karşılaştırma: "ustalık mı muhasebe mi", "kurye mi garson mu"
     const kurslar2 = KURS_ANAHTAR.filter(([re]) => new RegExp('\\b(' + re + ')').test(katli)).map(x => x[1]);
@@ -1111,13 +1123,13 @@
       return { metin: `Ben ev almak için biriktiriyorum, ${paraYaz(p.cash)} oldu. Daire ${paraYaz(d)}, krediyle peşinat ${paraYaz(d * (1 - C().MORTGAGE_MAX_LTV))}. Nakitte tutunca enflasyon eritiyor` };
     }
     const kurs = bul(katli, KURS_ANAHTAR), isletme = bul(katli, ISLETME_ANAHTAR);
-    const MESLEK_ANAHTAR = [['emlakci|emlak danisman', 'emlak_danismani'], ['muhasebeci', 'muhasebeci'], ['memur', 'memur'], ['kurye', 'kurye'], ['garson', 'garson'], ['kasiyer', 'market_calisani'], ['usta|elektrikci|tesisatci', 'usta'], ['insaat iscisi|insaatta', 'insaat_iscisi'], ['taksici|nakliyeci|sofor', 'nakliyeci']];
     // Açıkça sorulan şeyler önce (konu ne olursa olsun)
     if (isletme && /\b(ac|acmak|acsam|acarim|acilir|kur|kurmak|kursam|maliyet\w*|sermaye\w*|kac|kaca|ne kadar|patlar|tutar|gerek\w*|lazim)\b/.test(katli) && !/(calis|eleman|garson ari|lisans|belge|kursu)/.test(katli)) {
       const d = T.getBusinessDef(isletme), sahip = C().PROFESSIONS.find(m => m.business === isletme), rq = sahip ? sahip.requirements : {};
       const sart = [rq.course ? kursSoz(rq.course) : null, rq.anyExperienceDays ? `${rq.anyExperienceDays} gün iş deneyimi` : null, rq.professionExperience ? `${rq.professionExperience.days} gün ${meslekAdi(rq.professionExperience.profession)} deneyimi` : null].filter(Boolean);
       return { metin: `${isletmeAdi(isletme).charAt(0).toLocaleUpperCase('tr') + isletmeAdi(isletme).slice(1)} açmak ${paraYaz(T.indexed(world, d.setupCost))}, aylık sabit gideri ${paraYaz(T.indexed(world, d.monthlyFixedCost))}, ${d.staffNeeded} çalışan istiyor.${sart.length ? ' Şart: ' + sart.join(', ') + '.' : ''} İyi giderse ayda ${paraYaz(Math.max(0, T.estimateBusinessMonthlyProfit(world, isletme, 2)))} kâr bırakıyor`, odak: { isletme, kurs: rq.course || null } };
     }
+    if (isletme && /(kazan|kar\b|kâr|gelir|nasil para|nerden para|kur farki)/.test(katli)) { const d = T.getBusinessDef(isletme); return { metin: `${isletmeAdi(isletme)} iyi giderse ayda ${paraYaz(Math.max(0, T.estimateBusinessMonthlyProfit(world, isletme, 2)))} kâr bırakıyor. Cironun %${Math.round((1 - d.costOfGoodsRate) * 100)}'i sana kalıyor, gerisi mal maliyeti. Bir de ${paraYaz(T.indexed(world, d.monthlyFixedCost))} sabit gider var`, odak: { isletme } }; }
     const sorulanMeslek = (varlik && varlik.meslek) || bul(katli, MESLEK_ANAHTAR);
     if (sorulanMeslek && !(kurs && /(kurs|belge|lisans|sinav|sure|kac gun)/.test(katli)) && /(kazan|maas|ne kadar|kac (para|alir|veriyor)|getiri|aliyor)/.test(katli)) {
       const pr = T.getProfession(sorulanMeslek); const ne = pr.earning === 'task' ? `, görev başına ${paraYaz(T.indexed(world, pr.payPerTask))} alıyor` : pr.earning === 'salary' ? ', sabit maaş' : '';
@@ -1137,6 +1149,7 @@
     if (konu === 'kredi_sorusu' || (takip && /kredi|taksit|faiz|odeyemez|not\b/.test(katli))) {
       if (/odeyemez|odeyemiyor|kacirir|batar/.test(katli)) return { metin: `${C().MISSED_PAYMENTS_FOR_FORECLOSURE} taksit üst üste kaçırırsan icraya düşüyorsun, kredi notun da düşer. Bence taksiti gelirinin yarısını geçmesin` };
       const limit = Math.round(oyuncu.lastMonthIncome * oyuncu.creditScore / 100);
+      if (varlik && varlik.tutar && varlik.tutar > 1000) { const gerekGelir = Math.round(varlik.tutar / (oyuncu.creditScore / 100)); return { metin: varlik.tutar <= limit ? `${paraYaz(varlik.tutar)} çıkar, limitin ${paraYaz(limit)}` : `${paraYaz(varlik.tutar)} için aylık gelirin ${paraYaz(gerekGelir)} civarı olmalı, senin limitin şu an ${paraYaz(limit)}` }; }
       return { metin: `Aylık faiz ${yuzde(world.policy.loanMonthlyRate * 100)}, ihtiyaç kredisi ${C().PERSONAL_LOAN_TERM_MONTHS} ay vadeli. Senin limitin şu an ${paraYaz(limit)}${limit ? '' : ', ilk ay maaşın yatınca açılıyor'}` };
     }
     if (konu === 'ekonomi') {
@@ -1154,7 +1167,7 @@
       return { metin: `${mulkAdi(mulk)} şu sıralar ${paraYaz(f)} civarı${kira ? `, kira getirisi ayda ${paraYaz(kira)}` : ', kira getirmiyor ama değeri artıyor'}. Krediyle alırsan peşinat ${paraYaz(f * (1 - C().MORTGAGE_MAX_LTV))}` };
     }
     if (konu === 'maas_sorusu' || (takip === 'miktar' && varlik && varlik.meslek)) {
-      const m = (varlik && varlik.meslek) || bul(katli, [['emlakci|emlak danisman', 'emlak_danismani'], ['muhasebe', 'muhasebeci'], ['memur', 'memur'], ['kurye', 'kurye'], ['garson', 'garson'], ['kasiyer|market', 'market_calisani'], ['usta|elektrik', 'usta'], ['insaat', 'insaat_iscisi'], ['taksi|nakliye|sofor', 'nakliyeci']]) || p.profession;
+      const m = (varlik && varlik.meslek) || bul(katli, MESLEK_ANAHTAR) || (IKINCI_TEKIL.test(katli) ? p.profession : null);
       if (m) { const pr = T.getProfession(m); const ne = pr.earning === 'task' ? `, görev başına ${paraYaz(T.indexed(world, pr.payPerTask))}` : pr.earning === 'salary' ? ', sabit maaş' : ''; return { metin: `${meslekAdi(m)} ayda ${paraYaz(beklenenGelir(world, { k: { caliskan: .75 } }, m))} civarı kazanıyor${ne}` }; }
     }
     if (konu === 'bayram') { const o = ozelGun(world.day); if (/etkinlik|ne var|ne olacak|bagis|ne oluyor|ne olur/.test(katli)) return { metin: `${o ? o.ad + ' boyunca' : 'Bayramlarda'} bağış iki kat itibar veriyor, herkes bağış yapıyor. Kanal da hareketli oluyor` }; }
@@ -1168,6 +1181,7 @@
         return { metin: sebep.slice(0, 2).join('; ').replace(/^\p{Ll}/u, c => c.toLocaleUpperCase('tr')) };
       }
       if (oyuncu.mustWork || oyuncu.cash < aylikIhtiyac(world) || /(param bitti|iflas|sifirlan|eksiye|bes parasiz|meteliksiz)/.test(katli)) { const t = tavsiye(world, oyuncu); return { metin: `Önce bir işe gir, borç kapanana kadar yatırım yapamıyorsun. ${t.meslek ? `${t.meslek} olursan ayda ${t.tutar} civarı gelir` : ''}`.trim() }; }
+      if (/(ne yap|napca|ne yapcam|ne yapmali|is versen|is lazim|is verin|kim alir)/.test(katli)) { const f = isFirsatlari(world, meta, oyuncu)[0]; if (f) return { metin: `${meta.npc[f.npcId] ? meta.npc[f.npcId].ad : 'Bir tanıdık'} ${meslekAdi(f.meslek)} arıyor, ${paraYaz(f.maas)} veriyor. Ona yaz bence` }; const t = tavsiye(world, oyuncu); if (t.meslek) return { metin: `Bence önce ${t.meslek} ol, ayda ${t.tutar} civarı gelir, sonra toparlarsın` }; }
       return null; // genel moral derdi: kalıp cevaplar (empati) yeter, meslek tavsiyesi yok
     }
     if (konu === 'yardim' && /ne yap|napca|ne yapacag/.test(katli)) {
@@ -1176,8 +1190,22 @@
       if (t.meslek) return { metin: `Moralini bozma. ${t.kurs ? `${t.kurs} alırsan ${t.meslek} olabilirsin, ayda ${t.tutar} kazandırıyor` : `${t.meslek} olursan ayda ${t.tutar} civarı kazanırsın`}` };
     }
     if (konu === 'teklif' && /ortak|beraber|birlikte|yari yariya|takas/.test(katli)) return { metin: 'Ortaklık sistemi oyunda daha yok, gelecek güncellemede gelecekmiş. Şimdilik herkes kendi işini kuruyor' };
+    if (konu === 'meslek_tavsiyesi' || (konu === 'yardim' && /(ne yap|ne onerir|nasil para|para nasil|ilk ne|baslangic)/.test(katli))) {
+      const sahte = { k: { caliskan: .75 } }, ml = MESLEK_ANAHTAR.filter(([re]) => new RegExp('\\b(' + re + ')').test(katli)).map(x => x[1]);
+      // Belirli bir meslek anıldıysa onun hakkında konuş
+      if (ml.length === 1) { const m = ml[0], pr = T.getProfession(m), g = beklenenGelir(world, sahte, m), eksik = T.missingRequirements(world, oyuncu.id, m).length; return { metin: `${meslekAdi(m)} ayda ${paraYaz(g)} civarı getiriyor. ${eksik ? `Önce ${pr.requirements.course ? kursSoz(pr.requirements.course) : 'biraz deneyim'} lazım` : 'Hemen başlayabilirsin'}${pr.earning === 'task' ? ', çalıştıkça kazanıyorsun' : pr.earning === 'salary' ? ', maaş sabit' : ''}`, odak: { meslek: m, kurs: pr.requirements.course || null } }; }
+      // Oyuncunun durumuna göre: işsiz → iki seçenek + uzun vade; işi varsa → bir üst basamak
+      const sartsiz = C().PROFESSIONS.filter(m => m.tier === 1 && m.earning !== 'business').map(m => ({ m: m.id, g: beklenenGelir(world, sahte, m.id) })).sort((a, b) => b.g - a.g);
+      const kurslu = C().PROFESSIONS.filter(m => m.requirements.course && m.earning !== 'business' && !oyuncu.completedCourses.includes(m.requirements.course)).map(m => ({ m: m.id, g: beklenenGelir(world, sahte, m.id), k: m.requirements.course })).sort((a, b) => b.g - a.g);
+      const r2 = rng0(katli + kim.id);
+      if (!oyuncu.profession) { const a = sartsiz[0], b = sartsiz[1 + Math.floor(r2.next() * 2)], u = kurslu[Math.floor(r2.next() * Math.min(3, kurslu.length))]; return { metin: `Şartsız işlerde en çok ${meslekAdi(a.m)} kazandırıyor, ${paraYaz(a.g)} civarı. ${meslekAdi(b.m)} da olur ama daha az. Uzun vadede ${u ? kursSoz(u.k) + ' alıp ' + meslekAdi(u.m) + ' ol' : 'kendi işini kur'}, ${u ? paraYaz(u.g) : ''} civarı`.replace(/, civarı$/, ''), odak: { meslek: a.m } }; }
+      const simdi = beklenenGelir(world, sahte, oyuncu.profession), ust = kurslu.find(x => x.g > simdi * 1.1);
+      if (ust) return { metin: `Şu an ${meslekAdi(oyuncu.profession)} ${paraYaz(simdi)} civarı getiriyor. Bir üst basamak için ${kursSoz(ust.k)} al, ${meslekAdi(ust.m)} ${paraYaz(ust.g)} civarı kazanıyor`, odak: { meslek: ust.m, kurs: ust.k } };
+      const isl = C().PROFESSIONS.find(m => m.earning === 'business' && m.tier === 3);
+      return { metin: `Bence sıradaki adım kendi işin. ${isletmeAdi(isl.business)} açmak ${paraYaz(T.indexed(world, T.getBusinessDef(isl.business).setupCost))}, birikimin yeterse düşün`, odak: { isletme: isl.business } };
+    }
     if (konu === 'kisisel_yer') return { metin: `${yerAdi(kim)}${kim.yer && kim.yer.sehir && kim.yer.sehir !== yerAdi(kim) ? ', ' + kim.yer.sehir : ''}. Sen nerdesin?` };
-    if (konu === 'kisisel_meslek') return { metin: p.profession ? `${meslekAdi(p.profession)} olarak çalışıyorum, ${Math.max(1, world.day - p.professionSince)} gündür. ${p.businessIds.length ? '' : `Ayda ${paraYaz(suAnkiGelir(world, kim, p))} civarı kazanıyorum`}` : 'Şu an boştayım, iş bakıyorum' };
+    if (konu === 'kisisel_meslek') return { metin: p.profession ? `${meslekAdi(p.profession)} olarak çalışıyorum, ${sureYaz(world.day - p.professionSince)}` : 'Şu an boştayım, iş bakıyorum', kisisel: true };
     return null;
   }
   NPCYZ.bilgi = (world, meta, id, konu, varlik, oyuncu, metin) => bilgi(world, meta, meta.npc[id], konu, varlik, oyuncu, (dil().normal)(metin).katli, null);
@@ -1185,14 +1213,29 @@
   /** Bilgi cümlesini NPC'nin üslubuyla söyler (bazen kısa bir girişle). */
   function bilgiPaketi(world, meta, id, b, rng, gecikme) {
     const kim = meta.npc[id];
-    const giris = rng.chance(.35) ? rng.pick(kim.k.resmi > .55 ? ['Bildiğim kadarıyla', 'Şöyle söyleyeyim:', 'Benim bildiğim'] : ['valla', 'bak', 'şöyle', 'hocam', 'bence']) + ' ' : '';
+    const giris = !b.kisisel && rng.chance(.18) ? rng.pick(kim.k.resmi > .55 ? ['Bildiğim kadarıyla', 'Benim bildiğim'] : ['valla', 'bak', 'bence']) + ' ' : '';
+    // En çok iki bilgi: cümleleri ve virgüllü parçaları kırp (soru çok parçalıysa üç)
+    { const cumleler = b.metin.split(/(?<=[.!?])\s+/); let kisa = cumleler.slice(0, 2).join(' '); const parca = kisa.split(', '); if (parca.length > 3) kisa = parca.slice(0, 3).join(', '); b = Object.assign({}, b, { metin: kisa }); }
     let govde = b.metin;
-    if (tekrarMi(meta, kim, govde)) govde = rng.pick(['Az önce yazdım ya, ', 'Dediğim gibi, ', 'Yukarıda yazdım, ']) + govde.split(/[.;](?=\s|$)/)[0].replace(/^\p{Lu}(?!\p{Lu})/u, c => c.toLocaleLowerCase('tr'));
+    // Takip sorusu: bilginin yalnız sorulan parçasını söyle (daha önce söylenmemişse)
+    if (tekrarMi(meta, kim, govde) && b.soru) {
+      const parcalar = govde.split(/(?<=[.!?])\s+|,\s+/).map(x => x.trim()).filter(Boolean);
+      const k = b.soru, ISTEK = [[/(kac gun|ne kadar surer|sure|surer|kac ay)/, /gün|ay vade|süre/], [/(kac para|ne kadar|kaca|fiyat|ucret|maliyet|kac|tutar)/, /₺|bin|milyon/], [/(kira|getiri)/, /kira|getiri/], [/(faiz)/, /faiz/], [/(limit)/, /limit/], [/(peşinat|pesinat)/, /peşinat/], [/(sart|ne lazim|gerek|deneyim)/, /şart|lazım|deneyim|gerek/], [/(kazan|kar|gelir)/, /kazan|kâr|getir/], [/(nerede|nerden|nereden|nasil)/, /ekran|sekme|Kariyer|Banka|Mülklerim|Şirketim/]];
+      const hedef = ISTEK.filter(([q]) => q.test(k)).map(x => x[1]);
+      const sec = parcalar.find(x => hedef.some(h => h.test(x)) && !tekrarMi(meta, kim, x)) || parcalar.find(x => hedef.some(h => h.test(x)));
+      if (sec) { govde = sec.charAt(0).toLocaleUpperCase('tr') + sec.slice(1); b = Object.assign({}, b, { metin: govde, tekrarOk: true }); }
+    }
+    if (!b.tekrarOk && tekrarMi(meta, kim, govde)) {
+      // Aynı bilgiyi yeniden yapıştırma: kısa, dürüst bir cevap
+      kim.yazdimSayisi = (kim.yazdimSayisi || 0) + 1;
+      govde = kim.yazdimSayisi === 1 && rng.chance(.5) ? rng.pick(['Yukarıda yazdım bak', 'Az önce yazmıştım', 'Onu yazdım, kaydır biraz']) : rng.pick(['Onu tam bilmiyorum açıkçası', 'Bilmiyorum valla, başkası bilir belki', 'Emin değilim, ilana ya da ekrana bak', 'Ondan pek anlamam']);
+    }
     // Giriş kelimesinden sonra cümle küçük harfle devam eder (özel ad değilse)
     const ikinciBuyuk = /^\S+ \p{Lu}/u.test(govde);
     let metin = giris ? giris + (ikinciBuyuk ? govde : govde.charAt(0).toLocaleLowerCase('tr') + govde.slice(1)) : govde;
     metin = yuvarla(metin, rng);
     try { metin = (dil().stillendir)(metin, stilOf(kim), rng); } catch (e) { }
+    b.metin.split(/(?<=[.!?])\s+|,\s+/).forEach(x => soyledi(meta, kim, x));
     soyledi(meta, kim, b.metin);
     const hiz = lerp(260, 120, kim.k.kisaltma);
     return { npcId: id, ad: kim.gorunen, metin, gecikmeMs: Math.round((gecikme || 1500) + Math.min(9000, metin.length * hiz * .35) + rng.next() * 2500) };
@@ -1226,6 +1269,7 @@
     for (const [tur, re] of TAKIP_DESEN) if (re.test(katli)) return tur;
     const kelime = katli.split(/\s+/).filter(Boolean).length;
     if (st && ny.varlik && ny.varlik.meslek && /\b(ben|bende|ben de)\b/.test(katli)) return 'ben_de';
+    if (st && ny.varlik && ny.varlik.yer && kelime <= 3) return 'detay';
     if (st && kelime <= 3 && (ny.niyet === 'genel' || ny.guven < .5)) return 'tekrar';
     // Konu sürerken anlaşılmayan bir cümle büyük ihtimalle konuya ek bilgidir ("Kadıköy Moda", "deneyimli olsun")
     if (st && (ny.niyet === 'genel' || ny.guven < .45) && kelime <= 8) return 'detay';
@@ -1336,6 +1380,11 @@
     const ekle = (id, anahtar, slot, gec) => { const c = cevapPaketi(world, meta, id, anahtar, slot, rng, gec); cevaplar.push(c); (meta.ihtiyac || []).forEach(x => { if (x.zaman === simdi && !x.npcler.includes(id)) x.npcler.push(id); }); if (!st.cevaplayan.includes(id)) st.cevaplayan.push(id); st.sonNpc = id; iliski(meta, id).mesaj++; iliski(meta, id).tanir = true; return c; };
     const oAd = oyuncu.name.split(' ')[0];
 
+    // ================= KAPANIŞ: teşekkür, tamam sağ ol → kısa karşılık (bilgi dökümü yok) =================
+    if (st.sonNpc && meta.npc[st.sonNpc] && (ny.niyet === 'tesekkur' || ny.niyet === 'veda' || /^(tamam|tmm|ok|peki)\w* (sag ?ol|tesekkur|eyv|bakarim|anladim)/.test(katli))) {
+      if (rng.chance(.75)) { let m = rng.pick(['rica ederim', 'ne demek, kolay gelsin', 'bir şey değil', 'kolay gelsin', 'eyvallah', 'rica ederim, bol şans']); try { m = (dil().stillendir)(m, stilOf(meta.npc[st.sonNpc]), rng); } catch (e) { } cevaplar.push({ npcId: st.sonNpc, ad: meta.npc[st.sonNpc].gorunen, metin: m, gecikmeMs: 2000 + rng.next() * 2000 }); }
+      return sonuc;
+    }
     // ================= AÇIK BİLGİ SORUSU (konu ne olursa olsun önce) =================
     if (!takip && /(kac para|maliyet|ne kadar tutar|kaca patlar|nasil alinir|nerden alinir|nereden alinir|kac gun surer|kac isci|kac calisan)/.test(katli) && (bul(katli, ISLETME_ANAHTAR) || bul(katli, KURS_ANAHTAR))) {
       const id = konusanSec(world, meta, rng, saat, x => npcIdler.includes(x)); const b = id && bilgi(world, meta, meta.npc[id], konu, varlik, oyuncu, katli, takip);
@@ -1454,15 +1503,16 @@
       const kimId = (takip && st.sonNpc && meta.npc[st.sonNpc]) ? st.sonNpc : (hedefKisi || null);
       // Zamir ('onun', 'o', 'orası') ya da varlıksız takip: en son konuşulan kurs/meslek/işletme sorunun içine katılır
       let katli2 = katli;
-      if (st.odak && (takip || /\b(o|onun|ona|orasi|orda|bunun|o is)\b/.test(katli))) { if (st.odak.kurs && /(kurs|kac para|ne kadar|sure|kac gun|gun surer|lisans|belge|nerden|nereden|nasil)/.test(katli)) katli2 = katli + ' ' + ({ kamu_sinavi: 'kamu sinavi kursu', muhasebe: 'muhasebe kursu', emlak_belgesi: 'emlak belgesi', ustalik: 'ustalik kursu', muteahhitlik: 'muteahhitlik kursu', doviz_lisansi: 'doviz lisansi kursu', dis_ticaret: 'dis ticaret kursu' }[st.odak.kurs] || ''); else if (st.odak.meslek && /(kurs|belge|ne lazim|sart)/.test(katli)) { const pr = T.getProfession(st.odak.meslek); if (pr.requirements.course) katli2 = katli + ' kurs ' + ({ kamu_sinavi: 'kamu sinavi', muhasebe: 'muhasebe', emlak_belgesi: 'emlak', ustalik: 'ustalik', muteahhitlik: 'muteahhit', doviz_lisansi: 'doviz', dis_ticaret: 'dis ticaret' }[pr.requirements.course] || ''); } }
+      if (st.odak && (takip || /\b(o|onun|ona|orasi|orda|bunun|o is|bu is)\b/.test(katli) || /(kur farki|lisans|belge)/.test(katli))) { if (st.odak.kurs && /(kurs|kac para|ne kadar|sure|kac gun|gun surer|lisans|belge|nerden|nereden|nasil)/.test(katli)) katli2 = katli + ' ' + ({ kamu_sinavi: 'kamu sinavi kursu', muhasebe: 'muhasebe kursu', emlak_belgesi: 'emlak belgesi', ustalik: 'ustalik kursu', muteahhitlik: 'muteahhitlik kursu', doviz_lisansi: 'doviz lisansi kursu', dis_ticaret: 'dis ticaret kursu' }[st.odak.kurs] || ''); else if (st.odak.isletme && /(kazan|kar\b|gelir|para|kur farki)/.test(katli)) katli2 = katli + ' ' + ({ dukkan: 'dukkan', kafe: 'kafe', tasaron: 'taseron', emlak_ofisi: 'emlak ofis', doviz_burosu: 'doviz burosu', ithalat_ihracat: 'ithalat', muteahhit: 'muteahhit', fabrika: 'fabrika' }[st.odak.isletme] || ''); else if (st.odak.meslek && /(kurs|belge|ne lazim|sart)/.test(katli)) { const pr = T.getProfession(st.odak.meslek); if (pr.requirements.course) katli2 = katli + ' kurs ' + ({ kamu_sinavi: 'kamu sinavi', muhasebe: 'muhasebe', emlak_belgesi: 'emlak', ustalik: 'ustalik', muteahhitlik: 'muteahhit', doviz_lisansi: 'doviz', dis_ticaret: 'dis ticaret' }[pr.requirements.course] || ''); } }
       const dene = id => bilgi(world, meta, meta.npc[id], konu, varlik, oyuncu, katli2, takip);
       let id = kimId, b = id ? dene(id) : null;
       if (!b && !kimId) { const aday = agirlikliSec(rng, npcIdler.filter(x => world.players[x] && !st.cevaplayan.includes(x)), x => niyetUygunluk(world, meta, x, Object.assign({}, ny, { niyet: konu }), oyuncu) * (DUZEN[meta.npc[x].kronotip][saat] + .15)); if (aday) { const b2 = dene(aday); if (b2) { id = aday; b = b2; } } }
       if (b && !b.satis) {
+        b.soru = katli;
         if (b.odak) st.odak = b.odak;
         cevaplar.push(bilgiPaketi(world, meta, id, b, rng, 2000)); if (!st.cevaplayan.includes(id)) st.cevaplayan.push(id); st.sonNpc = id; iliski(meta, id).mesaj++; iliski(meta, id).tanir = true;
         // Konuşkan biri bazen kendi deneyimini ekler (kalıp değil: konuya göre)
-        if (!takip && rng.chance(.35) && ['ekonomi', 'mulk_ariyorum', 'kredi_sorusu', 'dert', 'kurs_sorusu', 'meslek_tavsiyesi'].includes(konu)) { const id2 = agirlikliSec(rng, npcIdler.filter(x => x !== id && world.players[x]), x => meta.npc[x].k.sosyal * (DUZEN[meta.npc[x].kronotip][saat] + .1)); if (id2) { const b2 = dene(id2); if (b2 && !b2.satis && b2.metin !== b.metin) { const c = bilgiPaketi(world, meta, id2, b2, rng, 5500); cevaplar.push(c); } } }
+        if (!takip && rng.chance(.35) && ['ekonomi', 'mulk_ariyorum', 'kredi_sorusu', 'dert', 'kurs_sorusu', 'meslek_tavsiyesi'].includes(konu)) { const id2 = agirlikliSec(rng, npcIdler.filter(x => x !== id && world.players[x]), x => meta.npc[x].k.sosyal * (DUZEN[meta.npc[x].kronotip][saat] + .1)); if (id2) { const k2 = meta.npc[id2], p2 = world.players[id2]; const tepki = konu === 'kredi_sorusu' || konu === 'ekonomi' ? (p2.loans.length ? ['aynen, ben de geçen ay çektim, taksit can yakıyor', 'bence yüksek, ben pişman oldum biraz'] : ['ben hiç çekmedim, peşin almayı seviyorum', 'faiz bana yüksek geliyor açıkçası']) : konu === 'mulk_ariyorum' ? (p2.propertyIds.length ? ['ben de geçen yıl aldım, iyi ki almışım', 'kira getirisi az ama değer kazanıyor'] : ['bu fiyatlarla bize ev zor', 'ben de bakıyorum, çok pahalı']) : konu === 'kurs_sorusu' ? ['ben aldım, değdi bence', 'ben de düşünüyorum onu'] : ['aynen', 'katılıyorum', 'bence de']; let m2 = rng.pick(tepki); try { m2 = (dil().stillendir)(m2, stilOf(k2), rng); } catch (e) { } if (!tekrarMi(meta, k2, m2)) { soyledi(meta, k2, m2); cevaplar.push({ npcId: id2, ad: k2.gorunen, metin: m2, gecikmeMs: 6000 + rng.next() * 3000 }); } } }
         return sonuc;
       }
       if (cevaplar.length) return sonuc;

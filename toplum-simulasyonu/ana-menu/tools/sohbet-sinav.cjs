@@ -46,7 +46,8 @@ const ELLE = [
 ];
 
 const BOS_ONAY = /^(dogru diyorsun\w*|hakli\w*|aynen\w*|anladim|eyw\w*,? anladim|olabilir\w*( tabii)?|ben de ayni seyi dusunuyordum|evet ya.*)\W*$/;
-const somutMu = m => /₺|\d/.test(m) || /(dükkan|kafe|market|ofis|firma|büro|fabrika|kurye|garson|kasiyer|memur|muhasebe|usta|emlak|inşaat|nakliye|taşeron|daire|arsa)/i.test(m) || /'(de|da|te|ta)\b/.test(m);
+const YERLER = new Set([].concat(...D.veri.yerler.map(y => [y.ad].concat(y.ilceler || []))).map(x => D.normal(x).katli));
+const somutMu = m => D.normal(m).katli.split(/[^a-z0-9]+/).some(w => YERLER.has(w)) || /₺|\d/.test(m) || /(dükkan|kafe|market|ofis|firma|büro|fabrika|kurye|garson|kasiyer|memur|muhasebe|usta|emlak|inşaat|nakliye|taşeron|daire|arsa)/i.test(m) || /'(de|da|te|ta)\b/.test(m);
 
 let toplamTur = 0, gecenTur = 0, toplamKontrol = 0, gecenKontrol = 0, konuDogru = 0, konuToplam = 0;
 const hatalar = [];

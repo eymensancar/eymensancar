@@ -2672,13 +2672,13 @@
   function samimilestir(t, st, rng, korunan) {
     t = degistir(t, 'teşekkür ederim', 'sağ ol', rng, 0.5);
     t = degistir(t, 'merhaba', 'selam', rng, 0.4);
-    var p = (0.4 - st.resmi) * 1.1;
+    var p = (0.4 - st.resmi) * 0.7;
     if (sans(rng, p) && !SELAMLASMA.test(t) && !/^[@\d]/.test(t)) {
       var dolgu = st.nese < -0.3 ? ['of', 'ya', 'valla'] : ['ya', 'valla', 'hocam', 'bak', 'kanka', 'abi', 'yaa'];
       var ilk = (t.match(/^[\p{L}\p{N}']+/u) || [''])[0];
       t = sec(rng, dolgu) + ' ' + (korunuyor(ilk, korunan || []) ? t : ilkKucuk(t));
     }
-    if (sans(rng, p * 0.6) && !/[?]$/.test(t) && !/ (ya|valla)[.!]?$/.test(t)) {
+    if (sans(rng, p * 0.25) && !/[?]$/.test(t) && !/ (ya|valla)[.!]?$/.test(t)) {
       t = t.replace(/[.!]*$/, '') + ' ' + sec(rng, ['ya', 'valla', 'ya']);
     }
     return t;
@@ -2746,12 +2746,15 @@
   // Türler: komşu tuşa basma (Türkçe Q klavye), harf düşürme, çift harf, harf takası. Kısa/sık kelimelere dokunulmaz.
   var KOMSU = { a: 'sq', s: 'adw', d: 'sfe', f: 'dgr', g: 'fht', h: 'gjy', j: 'hku', k: 'jlı', l: 'kş', e: 'wrd', r: 'etf', t: 'ryg', y: 'tuh', u: 'yıj', 'ı': 'uok', o: 'ıpl', p: 'oğ', i: 'üçl', n: 'bm', m: 'nö', b: 'vn', v: 'cb', c: 'xv', z: 'xs' };
   function hataEkle(t, h, rng, korunan) {
-    if (!sans(rng, Math.min(0.12, h * 0.35))) return t;
+    if (!sans(rng, Math.min(0.045, h * 0.15))) return t;
     var parcalar = t.split(' '), adaylar = [];
     for (var i = 0; i < parcalar.length; i++) { var m = parcalar[i].match(/^(\p{Ll}+)([^\p{L}]*)$/u); if (m && m[1].length >= 5 && !korunuyor(m[1], korunan)) adaylar.push(i); }
     if (!adaylar.length) return t;
     var k = adaylar[Math.floor(rs(rng) * adaylar.length)], m2 = parcalar[k].match(/^(\p{Ll}+)([^\p{L}]*)$/u), g = m2[1], tur = rs(rng), poz = 1 + Math.floor(rs(rng) * (g.length - 2));
-    if (tur < 0.4) { var komsu = KOMSU[g.charAt(poz)]; if (komsu) g = g.slice(0, poz) + komsu.charAt(Math.floor(rs(rng) * komsu.length)) + g.slice(poz + 1); }
+    // Çoğu gerçek hata Türkçe harf eksikliği (ı→i, ş→s ...); sonra harf düşmesi; yan tuş seyrek
+    var TRH = { 'ı': 'i', 'ş': 's', 'ğ': 'g', 'ç': 'c', 'ö': 'o', 'ü': 'u' };
+    if (tur < 0.5 && /[ışğçöü]/.test(g)) { g = g.replace(/[ışğçöü]/g, function (c) { return TRH[c]; }); }
+    else if (tur < 0.6) { var komsu = KOMSU[g.charAt(poz)]; if (komsu) g = g.slice(0, poz) + komsu.charAt(Math.floor(rs(rng) * komsu.length)) + g.slice(poz + 1); }
     else if (tur < 0.75) g = g.slice(0, poz) + g.slice(poz + 1);
     else if (tur < 0.85) g = g.slice(0, poz) + g.charAt(poz) + g.slice(poz);
     else g = g.slice(0, poz) + g.charAt(poz + 1) + g.charAt(poz) + g.slice(poz + 2);
