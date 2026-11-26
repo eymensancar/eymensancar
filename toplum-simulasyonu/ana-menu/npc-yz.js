@@ -1103,7 +1103,33 @@
   function sirketMesaj(world, meta, rng, idler, oyuncu) {
     const id = agirlikliSec(rng, idler.filter(x => meta.npc[x]), x => .2 + meta.npc[x].k.sosyal); if (!id) return null;
     const kim = meta.npc[id], b = oyuncu && oyuncu.businessIds.length ? world.businesses[oyuncu.businessIds[oyuncu.businessIds.length - 1]] : null;
-    return { npcId: id, ad: kim.gorunen, metin: konus(world, meta, kim, 'paylasim.sirket_ici', { isletme: b ? isletmeAdi(b.type) : '' }, rng) };
+    const p = world.players[id], mudur = b && meta.mudur && meta.mudur[b.id] === id, ayGunu = world.day % C().DAYS_PER_MONTH;
+    // Çalışan gibi konuşur, gerçek veriyle: kendi görevleri, ciro, maaş günü. Yönetici cümleleri ("vardiyayı güncelledim") yalnız müdürde.
+    const sec = [];
+    if (p && p.tasksToday) sec.push(rng.pick([`Bugün ${p.tasksToday} görev bitirdim, devam`, `${p.tasksToday} görev tamam, biraz mola`]));
+    if (b && b.monthRevenue > 0) sec.push(rng.pick([`Bu ay ciro ${paraYaz(b.monthRevenue)} oldu, fena değil`, `Ciro ${paraYaz(b.monthRevenue)}, ay sonuna kadar artar`]));
+    if (ayGunu <= 1) sec.push(rng.pick(['Maaş yattı, sağ ol patron', 'Maaşlar tam yatmış, teşekkürler']));
+    sec.push(rng.pick(['Geldim, başlıyorum', 'Çay molası, 5 dakikaya dönüyorum ☕', `${b ? isletmeAdi(b.type) : 'Dükkan'} hazır, müşteri bekliyoruz`, 'Bugün sakin gibi', 'Bugün yoğun olacak gibi']));
+    let m = rng.pick(sec);
+    if (mudur && rng.chance(.4)) { let t = konus(world, meta, kim, 'paylasim.sirket_ici', { isletme: b ? isletmeAdi(b.type) : '' }, rng); if (!/maaşlar yattı/i.test(t) || ayGunu <= 1) m = t; }
+    if (tekrarMi(meta, kim, m)) return null;
+    try { m = (dil().stillendir)(m, stilOf(kim), rng); } catch (e) { } soyledi(meta, kim, m);
+    return { npcId: id, ad: kim.gorunen, metin: m };
+  }
+  /** Şirket kanalında oyuncuya (patrona) çalışanın cevabı; null: bu mesaja özel cevap yok. */
+  function sirketCevap(world, meta, oyuncu, katli, ny, idler, rng, saat) {
+    const b = oyuncu.businessIds.length ? world.businesses[oyuncu.businessIds[oyuncu.businessIds.length - 1]] : null; if (!b || !idler.length) return null;
+    const id = agirlikliSec(rng, idler.filter(x => meta.npc[x] && world.players[x]), x => .3 + meta.npc[x].k.sosyal + (meta.npc[x].calisan ? meta.npc[x].calisan.moral * .3 : 0)); if (!id) return null;
+    const p = world.players[id], maas = b.employees[id], kalan = C().DAYS_PER_MONTH - (world.day % C().DAYS_PER_MONTH);
+    let m = null;
+    if (ny.niyet === 'selam' || /^(gunaydin|selam|merhaba|iyi aksamlar|hayirli sabahlar)/.test(katli)) m = saat < 12 ? rng.pick(['Günaydın patron', 'Günaydın, buradayız', 'Günaydın şef, başladık bile']) : rng.pick(['Selam patron', 'Selam şef, buradayız', 'Merhaba, her şey yolunda']);
+    else if (/(maas|maaslar)\w* (yatti|yatar|ne zaman|yatacak)|maas gunu/.test(katli)) m = (world.day % C().DAYS_PER_MONTH) <= 1 ? 'Yattı, sağ ol patron' : `Ay sonunda yatıyor, ${kalan} gün kaldı${maas ? '. ' + paraYaz(maas) + ' anlaşmıştık' : ''}`;
+    else if (/(musteri|ciro|satis|nasil gidiyor|isler nasil|durum ne)/.test(katli) || ny.niyet === 'hal_hatir') m = b.monthRevenue > 0 ? `Bu ay ciro ${paraYaz(b.monthRevenue)} oldu, ${b.tasksToday > 2 ? 'bugün de yoğun' : 'bugün biraz sakin'}` : rng.pick(['Daha yeni açıldık, müşteri yavaş yavaş geliyor', 'Bugün sakin, ama ilk günler hep böyle']);
+    else if (/(kac gorev|gorev yaptin|calistin mi|ne yaptin)/.test(katli)) m = p.tasksToday ? `Bugün ${p.tasksToday} görev yaptım, bu ay ${p.tasksThisMonth}` : `Bugün daha başlamadım, birazdan başlıyorum. Bu ay ${p.tasksThisMonth} görev oldu`;
+    else if (ny.niyet === 'tesekkur' || ny.niyet === 'veda' || /(iyi calismalar|kolay gelsin|eline saglik|emegine saglik|tebrikler ekip|super ekip)/.test(katli)) m = rng.pick(['Sağ ol patron, sana da', 'Eyvallah şef 💪', 'Sağ ol, sana da kolay gelsin', 'Teşekkürler, devam ediyoruz']);
+    if (!m) return null;
+    try { m = (dil().stillendir)(m, stilOf(meta.npc[id]), rng); } catch (e) { } soyledi(meta, meta.npc[id], m);
+    return { npcId: id, ad: meta.npc[id].gorunen, metin: m, gecikmeMs: 2500 + rng.next() * 4000 };
   }
 
   /**
@@ -1407,6 +1433,7 @@
     const npcIdler = kanal === 'sirket' ? (sirketNpcIdleri || []).filter(id => meta.npc[id]) : Object.keys(meta.npc);
     adCakismasi(world, meta, oyuncu);
     meta._gelen = (dil().normal)(metin).katli;
+    if (kanal === 'sirket') { const ny0 = (dil().niyetBul)(metin, { adlar: [] }); const c0 = sirketCevap(world, meta, oyuncu, meta._gelen, ny0, npcIdler, rng, saat); if (c0) return { cevaplar: [c0], niyet: ny0 }; }
     const adlar = npcIdler.map(id => meta.npc[id].gorunen).concat(npcIdler.map(id => meta.npc[id].ad));
     const ny = (dil().niyetBul)(metin, { adlar, oyuncuAd: oyuncu.name });
     const dilTr = (dil().dilBul)(metin);
