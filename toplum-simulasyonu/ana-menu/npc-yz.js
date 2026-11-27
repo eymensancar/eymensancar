@@ -1935,6 +1935,8 @@
     const dilTr = (dil().dilBul)(metin);
     const nM = (dil().normal)(metin), katli = nM.katli; gommeKaydet(nM);
     const cevaplar = [];
+    // Satış niyeti satış sözü ister: mülkünü anıp başka bir şey soran ("dairem var, kira neden kesiliyor") satış konuşması açmaz
+    if (ny.niyet === 'mulk_satiyorum' && (ny.soru || /\?/.test(metin) || ERKEN_SORU.test(katli) || /\b(mi|mu|miyim|muyum|miyiz|muyuz|misin|musun)\b/.test(katli)) && !/(sat|elden|devr|alici|alan|alir|alacak|almak ister|teklif)/.test(katli)) { ny.niyet = ny.kural && !['genel', 'mulk_satiyorum'].includes(ny.kural.niyet) ? ny.kural.niyet : 'genel'; ny.guven = .4; }
     const simdi = Date.now();
     meta.diyalog = meta.diyalog || {};
     let st = meta.diyalog[kanal];
