@@ -893,7 +893,8 @@
     soyledi(meta, kim, m);
     return m;
   }
-  function dmEkle(meta, npcId, m) { if (m && m.kimden === 'npc' && m.metin) m.metin = emojisiz(m.metin); const l = meta.dm[npcId] || (meta.dm[npcId] = []); m.okundu = m.kimden !== 'npc'; m.zaman = Date.now(); l.push(m); if (l.length > 60) l.splice(0, l.length - 60); }
+  const l0 = (meta, id) => (meta.dm[id] || []).length;
+  function dmEkle(meta, npcId, m) { if (m && m.kimden === 'npc' && m.metin) m.metin = kahkahaKarma(emojisiz(m.metin), l0(meta, npcId)); const l = meta.dm[npcId] || (meta.dm[npcId] = []); m.okundu = m.kimden !== 'npc'; m.zaman = Date.now(); l.push(m); if (l.length > 60) l.splice(0, l.length - 60); }
   NPCYZ.dmListesi = meta => Object.keys(meta.dm).map(id => ({ npcId: id, son: meta.dm[id][meta.dm[id].length - 1], okunmamis: meta.dm[id].filter(m => !m.okundu).length })).filter(x => x.son).sort((a, b) => b.son.zaman - a.son.zaman);
 
   // Özel günler (oyun takvimi: gün 0 = 1 Ocak 2027). Bayram tarihleri yaklaşık.
@@ -924,6 +925,30 @@
   const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu;
   const emojisiz = m => String(m || '').replace(EMOJI_RE, '').replace(/\s{2,}/g, ' ').replace(/\s+([.,!?])/g, '$1').trim();
   NPCYZ.emojisiz = emojisiz;
+  // Kahkaha yerine klavye karması (Eymen, 27 Kasım): NPC'nin "haha"sı %50 ihtimalle 7-12 harflik rastgele tuşlama olur.
+  // Havuzun ilk beşi Eymen'in kendi yazdıkları; kalanı aynı tarzda (iPhone'da başparmakla ana sıra: s j a n b d k h g).
+  const KARMA = ['Gsbsbsbsbsn', 'Jajsjsnsnans', 'Ndnznsnx', 'Agaggsagshah', 'Sjsksjsns',
+    'Ajsjsjsjs', 'Sksksksjsk', 'Hshshshsh', 'Asdjkasd', 'Ksjsnsjsk', 'Bdbdbdbsj', 'Jsjsjsnsk', 'Ahsjsjajs', 'Skdjskdjs',
+    'Nsnsnsjs', 'Gdgshshs', 'Sjdjsjdjsk', 'Akakakska', 'Hdhdjsjsj', 'Jajajsjsk', 'Asjdkdjsj', 'Kakskskak', 'Snsnsjsjs', 'Dkdkdksjs'];
+  const KARMA_KOMSU = { s: 'jdakn', j: 'sknah', a: 'sjgh', n: 'sbzmj', b: 'sdnh', d: 'ksjb', k: 'sjda', h: 'sajg', g: 'shab', z: 'nsx', x: 'zns', m: 'nsj' };
+  function karmaUret(r) {
+    if (r.chance(.5)) return r.pick(KARMA);
+    const uz = 7 + Math.floor(r.next() * 6), ilk = r.pick(['s', 'j', 'a', 'h', 'n', 'g', 'k', 'd', 'b']);
+    let a = ilk, b = r.pick(KARMA_KOMSU[ilk].split('')), o = '';
+    for (let i = 0; o.length < uz; i++) { o += i % 2 ? b : a; if (r.chance(.16)) { const y = r.pick(KARMA_KOMSU[i % 2 ? b : a].split('')); if (i % 2) b = y; else a = y; } }
+    return o.charAt(0).toUpperCase() + o.slice(1);
+  }
+  const KAHKAHA_RE = /^(?=[aehi]*h)(?=[aehi]*[aei])[aeh]{4,}$|^(hi){2,}h?$/;
+  function kahkahaKarma(metin, tohum) {
+    const m = String(metin || ''); if (!/h/i.test(m)) return m;
+    const r = rngYap(hash('karma|' + m + '|' + (tohum || 0)));
+    return m.replace(/[A-Za-zÇĞİÖŞÜçğıöşü]+/g, (w, i) => {
+      const k = w.toLocaleLowerCase('tr'); if (!KAHKAHA_RE.test(k) || (k.match(/h/g) || []).length < 2 || !r.chance(.5)) return w;
+      const y = karmaUret(r), bas = i === 0 || /[.!?]\s*$/.test(m.slice(0, i)) || /^[A-ZÇĞİÖŞÜ]/.test(w);
+      return bas ? y : y.toLowerCase();
+    });
+  }
+  NPCYZ.kahkahaKarma = kahkahaKarma;
   const IPLIK = () => (typeof NPCIplik !== 'undefined' ? NPCIplik : (typeof globalThis !== 'undefined' && globalThis.NPCIplik) || null);
   const FIG_MESLEK = [['kurye', 5], ['garson', 4], ['market_calisani', 4], ['insaat_iscisi', 3], ['memur', 2.2], ['muhasebeci', 1.4], ['usta', 1.5], ['emlak_danismani', 1], ['nakliyeci', .5], ['kafe_sahibi', .6], ['dukkan_sahibi', .7], [null, 2.2]];
   function figuranlar(meta) {
@@ -1275,7 +1300,7 @@
       if (pencere > 1000) { const olcu = yeni.length / (pencere / 60e3); meta.hiz[kanal] = Math.round(((meta.hiz[kanal] || R) * .97 + olcu * .03) * 10) / 10; }
     }
     if (donus) yeni.push(donus);
-    yeni.forEach(m => { m.metin = emojisiz(m.metin); if (kanal !== 'sirket') { gorulduEkle(meta, m.metin); if (m.ham) gorulduEkle(meta, m.ham); } delete m.ham; });
+    yeni.forEach(m => { m.metin = kahkahaKarma(emojisiz(m.metin), m.zaman); if (kanal !== 'sirket') { gorulduEkle(meta, m.metin); if (m.ham) gorulduEkle(meta, m.ham); } delete m.ham; });
     yeni.sort((a, b) => a.zaman - b.zaman);
     meta.kanal[kanal] = meta.kanal[kanal].concat(yeni).slice(-200);
     return yeni;

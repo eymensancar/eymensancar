@@ -1218,11 +1218,11 @@ function shAkis(giris){if(!K.npc||shDm)return 0;const {w,p}=G(),t=Date.now(),yon
 function teklifKarti(t){const {w}=G(),k=K.npc.npc[t.npcId];const ne=t.tur==='is'?`İş teklifi: ${mAd(t.meslek)} · ${para(t.maas)} / ay`:t.tur==='mulk_al'?`${T.t('mulk_turu.'+t.mulk)} için alım teklifi: ${para(t.fiyat)}`:`${T.t('mulk_turu.'+t.mulk)} satış teklifi: ${para(t.fiyat)}`;
   return `<div class="teklifKart"><b>${ne}</b><span style="font-size:12.5px;color:var(--ikincil)">${t.bitis-w.day} gün geçerli</span><div><button class="ana" data-tkabul="${t.id}">Kabul et</button><button data-tpaz="${t.id}">Pazarlık</button><button data-tred="${t.id}">Reddet</button></div></div>`}
 function shCiz(){const {w,p}=G(),sh=SOH(),ks=shKanallar();if(!shDm&&!ks.includes(shKanal))shKanal=ks[0];
-  const alttaydi=shAltta(),capa=alttaydi?null:shCapa();
+  const alttaydi=shAltta(),capa=alttaydi?null:shCapa();let ek=null;
   if(shDm){const kim=K.npc&&K.npc.npc[shDm],pr=K.npc?NPCYZ.profil(w,K.npc,shDm):null;
     $('shSekme').innerHTML=`<div class="shDmBas"><span class="av">${bas(kim?kim.gorunen:'?')}</span><div style="min-width:0"><b>${kac(kim?kim.gorunen:'')}</b><span>${pr?kac(pr.meslek+' · '+(pr.yer?pr.yer.ilce||pr.yer.sehir:'')+' · '+pr.iliski):''}</span></div></div>`;
     $('shBilgi').innerHTML=`<button class="btn" id="shProfil">Profil</button>`;$('shProfil').onclick=()=>kisiMenu(shDm);
-    const ms=(K.npc.dm[shDm]||[]);NPCYZ.dmOkundu(K.npc,shDm);cizRozet();
+    $('shListe').dataset.imza='dm';const ms=(K.npc.dm[shDm]||[]);NPCYZ.dmOkundu(K.npc,shDm);cizRozet();
     const tk=NPCYZ.bekleyenTeklifler(w,K.npc).filter(t=>t.npcId===shDm);
     $('shListe').innerHTML=`<div class="shSistem">Özel mesajlar yalnız ikiniz arasında.</div>`+ms.map(m=>{const ben=m.kimden==='oyuncu';return `<div class="msj${ben?' ben':''}">${ben?'':`<span class="av">${bas(kim.gorunen)}</span>`}<div class="balon">${kac(m.metin)}<em>${m.zaman?saatYaz(m.zaman):''}</em></div></div>`+(m.zam&&!ben?`<div class="teklifKart"><b>Zam isteği: ${para(m.zam)}</b><div><button class="ana" data-zam="${shDm}">Maaşını düzenle</button></div></div>`:'')}).join('')+tk.map(teklifKarti).join('')+(()=>{const y=[...new Set(shYazanlar.filter(x=>x.bag===shBaglam()).map(x=>x.ad))];return y.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(y.join(', '))} yazıyor…</div>`:''})();
     $('shListe').querySelectorAll('[data-tkabul]').forEach(b=>b.onclick=()=>teklifCevapla(b.dataset.tkabul,'kabul'));
@@ -1234,16 +1234,20 @@ function shCiz(){const {w,p}=G(),sh=SOH(),ks=shKanallar();if(!shDm&&!ks.includes
     $('shSekme').querySelectorAll('[data-kn]').forEach(b=>b.onclick=()=>{shKanal=b.dataset.kn;ilgiYer('s:'+shKanal);shAkis(true);shCiz();shAlta()});
     const cev=K.npc?NPCYZ.cevrimici(K.npc,shKanal,new Date().getHours()):null;
     $('shBilgi').innerHTML=`<i></i>${cev!=null?cev.toLocaleString('tr-TR'):sirketNpcIdleri().length+1} çevrimiçi`;
-    const ms=(K.npc?K.npc.kanal[shKanal]:[]).filter(m=>!sh.engel.includes(m.ad));
-    $('shListe').innerHTML=`<div class="shSistem">${shKanal==='sirket'?'Şirket içi sohbet: yalnız şirketin üyeleri görür.':'Saygılı ol: hakaret, dolandırıcılık ve reklam yasak. Bir ada dokunarak profiline bakabilir, özel mesaj atabilir, engelleyebilir ya da şikâyet edebilirsin.'}</div>`+
-      (()=>{const ci=capa?ms.findIndex(m=>m.id===capa.id):-1,son=ms.slice(ci>=0?Math.max(0,Math.min(ms.length-140,ci-10)):-140),idx={};son.forEach(m=>{idx[m.id]=m});return son.map(m=>{if(m.sistem)return `<div class="shSistem">${kac(m.metin)}</div>`;
+    const ms=(K.npc?K.npc.kanal[shKanal]:[]).filter(m=>!sh.engel.includes(m.ad)),L=$('shListe'),imza=shKanal+'|'+sh.engel.join(','),idx={};ms.forEach(m=>{if(m.id)idx[m.id]=m});
+    const msjH=m=>{if(m.sistem)return `<div class="shSistem">${kac(m.metin)}</div>`;
         const al=m.yanit?m.yanit:(m.alinti&&m.cevap&&idx[m.cevap]&&idx[m.cevap].ad!==m.ad?{ad:idx[m.cevap].ad,metin:idx[m.cevap].metin}:null);
-        return `<div class="msj${m.oyuncu?' ben':''}">${m.oyuncu?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon" data-msj="${kac(m.id||'')}">${m.oyuncu?'':`<button data-kisi="${m.npcId||''}" data-kad="${kac(m.ad)}">${kac(m.ad)}</button>`}${al?`<span class="alinti"><b>${kac(al.ad)}</b> ${kac(al.metin)}</span>`:''}${kac(m.metin)}<em>${saatYaz(m.zaman)}</em></div></div>`}).join('')})()+
-      (()=>{const y=[...new Set(shYazanlar.filter(x=>x.bag===shBaglam()).map(x=>x.ad).concat(K.npc&&NPCYZ.yazanlar?NPCYZ.yazanlar(K.npc,shKanal,Date.now()).filter(a=>!sh.engel.includes(a)):[]))];return y.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(y.length>2?y.slice(0,2).join(', ')+' ve '+(y.length-2)+' kişi':y.join(', '))} yazıyor…</div>`:''})();
-    $('shListe').querySelectorAll('[data-kisi]').forEach(b=>b.onclick=e=>{e.stopPropagation();kisiMenu(b.dataset.kisi,b.dataset.kad)});
-    $('shListe').querySelectorAll('[data-msj]').forEach(b=>b.onclick=()=>msjMenu(b.dataset.msj));
+        return `<div class="msj${m.oyuncu?' ben':''}">${m.oyuncu?'':`<span class="av">${bas(m.ad)}</span>`}<div class="balon" data-msj="${kac(m.id||'')}">${m.oyuncu?'':`<button data-kisi="${m.npcId||''}" data-kad="${kac(m.ad)}">${kac(m.ad)}</button>`}${al?`<span class="alinti"><b>${kac(al.ad)}</b> ${kac(al.metin)}</span>`:''}${kac(m.metin)}<em>${saatYaz(m.zaman)}</em></div></div>`};
+    const yazH=()=>{const y=[...new Set(shYazanlar.filter(x=>x.bag===shBaglam()).map(x=>x.ad).concat(K.npc&&NPCYZ.yazanlar?NPCYZ.yazanlar(K.npc,shKanal,Date.now()).filter(a=>!sh.engel.includes(a)):[]))];return y.length?`<div class="shYaziyor"><i><b></b><b></b><b></b></i>${kac(y.length>2?y.slice(0,2).join(', ')+' ve '+(y.length-2)+' kişi':y.join(', '))} yazıyor…</div>`:''};
+    // Okurken hiç kıpırdamasın: aynı kanal çiziliyse yalnız yeni mesajlar sona eklenir, üstteki hiçbir şey değişmez, kaydırmaya dokunulmaz.
+    const i0=L.dataset.imza===imza&&shSonCiz?ms.findIndex(m=>m.id===shSonCiz):-1;
+    ek=i0>=0&&!(alttaydi&&L.childElementCount>190)?ms.slice(i0+1):null;
+    if(ek){const y=L.querySelector(':scope > .shYaziyor');if(y)y.remove();L.insertAdjacentHTML('beforeend',ek.map(msjH).join('')+yazH())}
+    else{const ci=capa?ms.findIndex(m=>m.id===capa.id):-1,son=ms.slice(ci>=0?Math.max(0,Math.min(ms.length-140,ci-10)):-140);
+      L.innerHTML=`<div class="shSistem">${shKanal==='sirket'?'Şirket içi sohbet: yalnız şirketin üyeleri görür.':'Saygılı ol: hakaret, dolandırıcılık ve reklam yasak. Bir ada dokunarak profiline bakabilir, özel mesaj atabilir, engelleyebilir ya da şikâyet edebilirsin.'}</div>`+son.map(msjH).join('')+yazH()}
+    L.dataset.imza=imza;shSonCiz=ms.length?ms[ms.length-1].id:null;
   }
-  if(alttaydi)shAlta();else if(capa)shCapaGeri(capa);shAsagiDurum()}
+  if(alttaydi)shAlta();else if(capa&&!ek)shCapaGeri(capa);shAsagiDurum()}
 function teklifCevapla(id,cevap){const {w,p}=G();const r=NPCYZ.teklifCevap(w,K.npc,id,p.id,cevap);kaydet();hepsiniCiz();shCiz();shAlta();if(!r.ok)tost(r.mesaj||'Olmadı.',1);else if(r.islem)tost(r.islem==='is'?'Yeni işine başladın.':r.islem==='zam'?'Maaşın arttı.':'Satış tamamlandı.')}
 /** Profil: NPC'nin herkese açık bilgileri ve ilişkin; buradan özel mesaj, engelle, şikâyet. */
 function kisiMenu(id,ad){const yab=!id||!K.npc||!K.npc.npc[id];const {w}=G(),pr=yab?null:NPCYZ.profil(w,K.npc,id);ad=pr?pr.ad:ad||'';
@@ -1255,7 +1259,13 @@ function kisiMenu(id,ad){const yab=!id||!K.npc||!K.npc.npc[id];const {w}=G(),pr=
       g.querySelector('#kSikayet').onclick=()=>{don();sikayetEt(id,ad,null)}})}
 const shAlta=()=>{const l=$('shListe');l.scrollTop=l.scrollHeight;shAsagiDurum()};
 /** Okurken yerinde kal (WhatsApp gibi): oyuncu yukarı kaydırdıysa yeni mesaj onu aşağı atmaz; sağ alttaki tuş en alta indirir. */
-const shAltta=()=>{const l=$('shListe');return l.scrollHeight-l.scrollTop-l.clientHeight<60};
+let shSonCiz=null,shDokun=0,shKayZ=0;
+/** En altta mı: birkaç piksel pay; parmak ekrandayken ya da kaydırma yeni bittiyse "altta" sayılmaz (oyuncu okuyor). */
+const shAltta=()=>{const l=$('shListe');if(shDokun||Date.now()-shKayZ<700&&l.scrollHeight-l.scrollTop-l.clientHeight>2)return false;return l.scrollHeight-l.scrollTop-l.clientHeight<14};
+$('shListe').addEventListener('touchstart',()=>{shDokun=1},{passive:true});
+['touchend','touchcancel'].forEach(t=>$('shListe').addEventListener(t,()=>{shDokun=0;shKayZ=Date.now()},{passive:true}));
+$('shListe').addEventListener('scroll',()=>{shKayZ=Date.now()},{passive:true});
+$('shListe').addEventListener('click',e=>{if(shDm)return;const k=e.target.closest('[data-kisi]');if(k){e.stopPropagation();kisiMenu(k.dataset.kisi,k.dataset.kad);return}const m=e.target.closest('[data-msj]');if(m)msjMenu(m.dataset.msj)});
 /** Görünen ilk mesaj ve listenin üstüne uzaklığı: yeniden çizimden sonra aynı yere dönmek için. */
 function shCapa(){const l=$('shListe'),ust=l.getBoundingClientRect().top;for(const b of l.querySelectorAll('[data-msj]')){const r=b.getBoundingClientRect();if(r.bottom>ust+2&&b.dataset.msj)return {id:b.dataset.msj,y:r.top-ust}}return null}
 function shCapaGeri(c){const l=$('shListe'),b=[...l.querySelectorAll('[data-msj]')].find(x=>x.dataset.msj===c.id);if(b)l.scrollTop+=b.getBoundingClientRect().top-l.getBoundingClientRect().top-c.y}
@@ -1366,7 +1376,7 @@ function shIsle(m,dm,kanal,yt,m2){if(!K.npc)return;const {w,p}=G();
     const r=NPCYZ.oyuncuMesaji(w,K.npc,kanal,m2,p,new Date().getHours(),sirketNpcIdleri(),yt&&!yt.oyuncu?{npcId:yt.npcId,metin:yt.metin}:null);
     if(r.uyari)K.npc.kanal[kanal].push({id:'u'+Date.now(),sistem:true,metin:r.uyari,zaman:Date.now()});
     yzKaydet(kanal,m,yt,r.cevaplar);
-    r.cevaplar.forEach(c=>cevapZamanla(c,()=>K.npc.kanal[kanal].push({id:'c'+Date.now()+Math.random(),npcId:c.npcId,ad:c.ad,metin:c.metin,zaman:Date.now()})));
+    r.cevaplar.forEach(c=>cevapZamanla(c,()=>K.npc.kanal[kanal].push({id:'c'+Date.now()+Math.random(),npcId:c.npcId,ad:c.ad,metin:NPCYZ.kahkahaKarma?NPCYZ.kahkahaKarma(c.metin,Date.now()):c.metin,zaman:Date.now()})));
     // Sohbetten doğan gerçek işler: "ben varım" diyenler başvuru olur, "tamam" denince gelen teklif özel mesajda
     if(r.adaylar&&r.adaylar.length&&patronMu(p)){const s2=S(),b2=isletmem(w,p),ml=C.BUSINESS_STAFF_PROFESSIONS[b2.type]||[];
       r.adaylar.forEach(a=>{const mes=ml.includes(a.meslek)?a.meslek:ml[0];let il=s2.ilanlar.find(i=>i.meslek===mes);if(!il){il={id:yeniId('i'),poz:mAd(mes),meslek:mes,maas:Math.round(T.indexed(w,C.MIN_WAGE)*1.15/500)*500,acik:'Sohbet kanalından',gun:w.day};s2.ilanlar.unshift(il)}
