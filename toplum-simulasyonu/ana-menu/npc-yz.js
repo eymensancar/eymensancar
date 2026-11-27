@@ -1059,11 +1059,15 @@
   /** Oyun takvimine göre mevsim (oyun 1 Ocak'ta başlar). */
   const mevsim = world => { const ay = gunAy(world.day) % 12; return ay === 11 || ay <= 1 ? 'kis' : ay >= 5 && ay <= 7 ? 'yaz' : 'ara'; };
   const dilimOf = saat => saat < 6 || saat >= 23 ? 'gece' : saat < 11 ? 'sabah' : saat < 17 ? 'ogle' : 'aksam';
-  /** Yeni iplik başlatır: uygun şablon + rollere uygun, şu an çevrimiçi kişiler. */
-  function iplikBaslat(world, meta, kanal, rng, saat, t, mesgul, aktifIdler) {
+  /** İpliğin şablon havuzu. İlgi iplikleri (ip.ilgi) ayrı havuzdadır, normal akışa girmez. */
+  function ipHavuz(kanal, ip) { const I = IPLIK(); if (!I) return []; const K0 = ip && ip.ilgi ? (I.ilgi || {}) : I; return kanal === 'global' ? ((K0.global || {})[ip.dil] || []) : (K0.tr || []); }
+  /** Yeni iplik başlatır: uygun şablon + rollere uygun, şu an çevrimiçi kişiler.
+   *  yon (isteğe bağlı): {ozel: şablonlar, dil} yalnız bu şablonlardan seçer; {konu: Set, pay} şablonların bir payını bu konulardan seçer. */
+  function iplikBaslat(world, meta, kanal, rng, saat, t, mesgul, aktifIdler, yon) {
     const I = IPLIK(); if (!I) return null;
     let havuz, dilSec = null;
-    if (kanal === 'global') { const D = Object.keys(I.global || {}).filter(d => (I.global[d] || []).length); if (!D.length) return null; dilSec = agirlikliSec(rng, D, d => ({ en: 4, de: 1.5, es: 1.5, az: 1.3, ar: 1.3 })[d] || 1); havuz = I.global[dilSec]; }
+    if (yon && yon.ozel) { havuz = yon.ozel; dilSec = kanal === 'global' ? yon.dil || 'en' : null; }
+    else if (kanal === 'global') { const D = Object.keys(I.global || {}).filter(d => (I.global[d] || []).length); if (!D.length) return null; dilSec = agirlikliSec(rng, D, d => ({ en: 4, de: 1.5, es: 1.5, az: 1.3, ar: 1.3 })[d] || 1); havuz = I.global[dilSec]; }
     else havuz = I.tr || [];
     if (!havuz.length) return null;
     meta.iplSon = meta.iplSon || {};
@@ -1081,10 +1085,13 @@
     const sonG = x => { const v = meta.iplSon[x.id] || 0; return v > 1e11 ? 0 : v; }; // eski kayıtlardaki gerçek zaman damgaları sayılmaz
     // En uzun süredir (izleme süresine göre) görülmeyenlerden seçilir: hiç görülmeyen önce, sonra en eskiler
     const uygunlar = havuz.filter(x => !aktif.has(x.id) && saatUyar(x) && uygunMevsim(x)).sort((a, b) => sonG(a) - sonG(b));
-    let aday = uygunlar.slice(0, Math.max(30, Math.floor(uygunlar.length * .25)));
+    let aday = uygunlar.slice(0, Math.max(30, Math.floor(uygunlar.length * .25))), dar = false;
     if (kanal === 'global') { const a2 = aday.filter(x => !x.konu || !aktifKonu.has(x.konu)); if (a2.length) aday = a2; }
+    // İlgi: özel havuzda en uzun süredir görülmeyen yarı (aynı iplik art arda gelmez); konu yönünde şablonların bir payı oyuncunun ilgi konularından
+    if (yon && yon.ozel) { aday = uygunlar.slice(0, Math.max(1, Math.ceil(uygunlar.length / 2))); dar = true; }
+    else if (yon && yon.konu && rng.chance(yon.pay)) { const a3 = uygunlar.filter(x => yon.konu.has(x.konu)); if (a3.length) { aday = a3.slice(0, Math.max(12, Math.floor(a3.length * .25))); dar = true; } }
     // Havuz yetmezse en uzun süredir kullanılmayanlar (LRU) eklenir; tek bir uygunsuz şablona takılmaz
-    const liste = aday.length >= 30 ? aday : aday.concat(havuz.filter(x => !aktif.has(x.id) && !aday.includes(x) && saatUyar(x) && uygunMevsim(x)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 40));
+    const liste = aday.length >= 30 || dar ? aday : aday.concat(havuz.filter(x => !aktif.has(x.id) && !aday.includes(x) && saatUyar(x) && uygunMevsim(x)).sort((a, b) => (meta.iplSon[a.id] || 0) - (meta.iplSon[b.id] || 0)).slice(0, 40));
     const kisiHavuz = kalabalikOrnek(meta, kanal, rng, dilSec);
     if (!liste.length) return null;
     for (let deneme = 0; deneme < 6; deneme++) {
@@ -1118,7 +1125,7 @@
   }
   /** İpliğin sıradaki turu: mesaj nesnesi (zamanı t). */
   function iplikTuru(world, meta, kanal, ip, rng) {
-    const I = IPLIK(); const havuz = kanal === 'global' ? (I.global || {})[ip.dil] || [] : I.tr || [];
+    const havuz = ipHavuz(kanal, ip);
     const sb = havuz.find(x => x.id === ip.id); if (!sb || ip.i >= sb.turlar.length) return null;
     const [r0, sab] = sb.turlar[ip.i]; const id = ip.roller[r0];
     { const vr = sablonCoz(sb).vedaRol[r0]; if (vr != null && ip.i > vr) return null; }
@@ -1136,7 +1143,7 @@
     if (!metin) return null;
     if (!sb.turlar.slice(ip.i + 1).some(x => x[0] === r0) && kim && /(görüşürüz|gorusuruz|iyi geceler|kaçtım|kactim|ben çıkıyorum|ben çıktım|yatıyorum|yatmaya gidiyorum|goodnight|good night|\bbye\b|gotta go|me voy|tschüss|bis morgen|getdim|gecəniz xeyr|ma3 el salama)/i.test(metin)) kim.vedaZaman = ip.t;
     const ad = kanal === 'global' ? (kim.gorunen) : ks.gorunen;
-    return { npcId: id, ad, metin, ham, iplik: ip.id, yabanci: kanal === 'global' || undefined, dil: ip.dil || undefined, figuran: (!meta.npc[id]) || undefined };
+    return { npcId: id, ad, metin, ham, iplik: ip.id, yabanci: kanal === 'global' || undefined, dil: ip.dil || undefined, figuran: (!meta.npc[id]) || undefined, ilgi: ip.ilgi ? sb.konu : undefined };
   }
   /** Figüranın oyuncuya cevabı: kendi sabit bilgisinden (meslek, yer) ya da benzer bir NPC'nin bildiğinden. */
   function figuranCevap(world, meta, f, kanal, katli, ny, oyuncu, rng) {
@@ -1192,10 +1199,18 @@
   /** Şu an yazmakta olanlar: birkaç saniye içinde iplikte sırası gelecek kişiler (arayüzdeki "yazıyor…"). */
   NPCYZ.yazanlar = function (meta, kanal, simdi) {
     const I = IPLIK(); if (!I || !meta.ipl || !meta.ipl[kanal]) return [];
-    return meta.ipl[kanal].filter(ip => ip.t > simdi && ip.t - simdi < 5000).map(ip => { const havuz = kanal === 'global' ? (I.global || {})[ip.dil] || [] : I.tr || []; const sb = havuz.find(x => x.id === ip.id); if (!sb || !sb.turlar[ip.i]) return null; const id = ip.roller[sb.turlar[ip.i][0]]; const n = meta.npc[id] || NPCYZ.figuranBul(meta, id) || (meta.yabanci || []).find(x => x.id === id); return n ? n.gorunen : null; }).filter(Boolean).slice(0, 3);
+    return meta.ipl[kanal].filter(ip => ip.t > simdi && ip.t - simdi < 5000).map(ip => { const sb = ipHavuz(kanal, ip).find(x => x.id === ip.id); if (!sb || !sb.turlar[ip.i]) return null; const id = ip.roller[sb.turlar[ip.i][0]]; const n = meta.npc[id] || NPCYZ.figuranBul(meta, id) || (meta.yabanci || []).find(x => x.id === id); return n ? n.gorunen : null; }).filter(Boolean).slice(0, 3);
   };
 
-  NPCYZ.kanalAkisi = function (world, meta, kanal, simdiMs, saat, oyuncu, sirketNpcIdleri) {
+  // İlgi konusu -> normal havuzdaki iplik konuları (oyuncunun ilgisi kanalı hafifçe yönlendirir)
+  const ILGI_KONU = {
+    tr: { is: ['is', 'maas'], eleman: ['isletme', 'patron'], kredi: ['kredi', 'birikim'], kurs: ['kurs', 'kademe'], mulk: ['mulk', 'kira'], gorev: ['gorev'], kumsaati: ['kumsaati'], gunluk: ['gorev', 'kumsaati'], isletme: ['isletme'], siralama: ['siralama'], bagis: ['bagis'] },
+    global: { is: ['is'], eleman: ['isletme'], kredi: ['kredi', 'kredit', 'banka'], kurs: ['kurs'], mulk: ['mulk'], gorev: ['is'], gunluk: ['is'], isletme: ['isletme'] } };
+  NPCYZ.ILGI_KONU = ILGI_KONU;
+  /** Kanal akışı. ilgi (isteğe bağlı, cihazdaki ilgi profilinden): {konular: [[konu, ağırlık]], pay, one: 'is' | 'tiyo-dm' ...}.
+   *  konular: yeni ipliklerin yaklaşık `pay` kadarı bu konulardan seçilir. one: son birkaç dakikaya bu konuda bir ilgi ipliği
+   *  yerleştirilir (yalnız kanala yeterince uzun aradan sonra girilince); yerleştirilirse ilgi.sonuc = {konu, id}. */
+  NPCYZ.kanalAkisi = function (world, meta, kanal, simdiMs, saat, oyuncu, sirketNpcIdleri, ilgi) {
     adCakismasi(world, meta, oyuncu);
     if (meta.figuran || meta.yabanciK) { delete meta.figuran; delete meta.yabanciK; delete meta.yabanciKS; } // artık üretiliyor, kayıtta tutulmaz
     if (!meta.kanal[kanal]) meta.kanal[kanal] = [];
@@ -1239,16 +1254,22 @@
       meta.hiz = meta.hiz || {}; const Kt = kanal === 'global' ? 24 : 16, hz = meta.hiz[kanal] || R;
       const K = Math.round(Math.min(Kt * 3.2, Math.max(Kt, Kt * R / Math.max(R * .3, hz)))), ort = K / (R * (1 - (kanal === 'global' ? .08 : .14))) * 60e3;
       const mesgul = () => new Set([].concat(...akt.map(ip => Object.values(ip.roller))));
-      while (akt.length < K) { const ip = iplikBaslat(world, meta, kanal, rng, saat, bas + rng.next() * ort, mesgul(), new Set(akt.map(x => x.id))); if (!ip) break; akt.push(ip); }
+      let yon = null;
+      if (ilgi && ilgi.konular && ilgi.konular.length) { const KM = ILGI_KONU[kanal === 'global' ? 'global' : 'tr'], ks = new Set(); ilgi.konular.forEach(([k]) => (KM[k] || []).forEach(x => ks.add(x))); if (ks.size) yon = { konu: ks, pay: Math.min(.5, ilgi.pay == null ? .3 : ilgi.pay) }; }
+      // Öne çıkan ilgi ipliği: son 2-3 dakikada başlamış gibi, biraz daha hızlı akar; oyuncu girince çoğu yazılmış, kalanı canlı gelir
+      if (ilgi && ilgi.one && pencere >= 140e3) { const II = (IPLIK().ilgi || {}), ozel = (kanal === 'global' ? (II.global || {}).en : II.tr) || [], sec = ozel.filter(x => x.konu === ilgi.one);
+        if (sec.length) { const ip = iplikBaslat(world, meta, kanal, rng, saat, Math.max(bas + 3000, simdiMs - 100e3 - rng.next() * 50e3), mesgul(), new Set(akt.map(x => x.id)), { ozel: sec, dil: 'en' });
+          if (ip) { ip.ilgi = 1; ip.hz = .55; akt.push(ip); ilgi.sonuc = { konu: ilgi.one, id: ip.id }; } } }
+      while (akt.length < K) { const ip = iplikBaslat(world, meta, kanal, rng, saat, bas + rng.next() * ort, mesgul(), new Set(akt.map(x => x.id)), yon); if (!ip) break; akt.push(ip); }
       for (let guv = 0; guv < 400; guv++) {
         let en = null; for (const ip of akt) if (!en || ip.t < en.t) en = ip;
         if (!en || en.t > simdiMs) break;
         const m = iplikTuru(world, meta, kanal, en, rng);
         en.i++;
         if (m) { const nm = normSoz(m.metin); if (!(meta.kanalSon || []).includes(nm)) { meta.kanalSon = (meta.kanalSon || []).concat([nm]).slice(-300); if (en.sonId) { m.cevap = en.sonId; if (rng.chance(.35)) m.alinti = true; } m.zaman = Math.round(en.t); m.kanal = kanal; m.id = 'k' + (++meta.sayac); m.oyunGun = world.day; en.sonId = m.id; yeni.push(m); } }
-        const I = IPLIK(), sb = (kanal === 'global' ? (I.global || {})[en.dil] || [] : I.tr || []).find(x => x.id === en.id);
-        if (!sb || en.i >= sb.turlar.length) { akt = akt.filter(x => x !== en); const ip = iplikBaslat(world, meta, kanal, rng, saat, en.t + rng.next() * ort * .6, mesgul(), new Set(akt.map(x => x.id))); if (ip) akt.push(ip); }
-        else en.t += ort * (.35 + rng.next() * 1.3) + (m ? m.metin.length * 60 : 0);
+        const sb = ipHavuz(kanal, en).find(x => x.id === en.id);
+        if (!sb || en.i >= sb.turlar.length) { akt = akt.filter(x => x !== en); const ip = iplikBaslat(world, meta, kanal, rng, saat, en.t + rng.next() * ort * .6, mesgul(), new Set(akt.map(x => x.id)), yon); if (ip) akt.push(ip); }
+        else en.t += (ort * (.35 + rng.next() * 1.3) + (m ? m.metin.length * 60 : 0)) * (en.hz || 1);
       }
       meta.ipl[kanal] = akt;
       if (pencere > 1000) { const olcu = yeni.length / (pencere / 60e3); meta.hiz[kanal] = Math.round(((meta.hiz[kanal] || R) * .97 + olcu * .03) * 10) / 10; }
@@ -1907,6 +1928,14 @@
     return liste.sort((a, b) => (b.uyum - a.uyum) || (b.maas - a.maas));
   }
   NPCYZ.isFirsatlari = isFirsatlari;
+  /** İlgi: iş ilanlarına çok bakan oyuncuya, boş kadrosu olan bir işletme sahibi özelden gerçek iş teklifi yazar.
+   *  Ne zaman çağrılacağına cihazdaki ilgi sistemi karar verir (seyrek). Teklif yoksa null. */
+  NPCYZ.ilgiIsTeklifi = function (world, meta, oyuncu) {
+    if (!oyuncu || oyuncu.businessIds.length || (meta.teklifler || []).some(t => t.tur === 'is' && t.durum === 'bekliyor' && t.bitis >= world.day)) return null;
+    const f = isFirsatlari(world, meta, oyuncu)[0]; if (!f) return null;
+    const cikti = []; teklifYap(world, meta, cikti, { tur: 'is', npcId: f.npcId, isletmeId: f.isletmeId, isletme: f.isletme, meslek: f.meslek, maas: f.maas, sure: 5 });
+    return cikti[0] || null;
+  };
   /** Patronun teklif edeceği maaş: asgari ücretin üstü, mesleğin piyasa değerine yakın, cömertliğe göre. */
   function isverenMaasi(world, kim, b, meslek) {
     const taban = T.indexed(world, T.getBusinessDef(b.type).minWage);
