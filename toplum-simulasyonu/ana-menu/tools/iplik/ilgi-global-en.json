@@ -1,0 +1,190 @@
+[
+  {
+    "id": "ilgi-en-job-hunt-1",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[looking for a job, where do i even start|need a job, where do people look|job hunting, any tips]"],
+      ["B", "[tier 1 jobs need nothing|start with tier 1, no requirements|tier 1 has no requirements at all]"],
+      ["C", "[courier is the best start imo|go courier, best starter job|courier, easily]. [5 tasks a day|you get 5 tasks a day]"],
+      ["A", "[what about waiter|is waiter any good|waiter not worth it?]"],
+      ["B", "[it's ok too|not bad either], [courier pays a bit more though|courier is slightly better]"],
+      ["D", "[same boat here, also looking|i'm looking too lol|me too, job hunting]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-job-hunt-2",
+    "konu": "is",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[been staring at job listings for two days|can't decide which job to take|two days of scrolling job listings]"],
+      ["B", "[what are the options|between what|what's on the table]"],
+      ["A", "[cashier or courier|courier vs cashier|market cashier or courier]"],
+      ["C", "[cashier gets salary plus tasks|cashier is salary plus tasks], [courier is all tasks|courier is pure task pay]"],
+      ["B", "[if you log in every day go courier|daily player? courier|if you're on daily, courier]"],
+      ["A", "[i'm here every day anyway|i'm on all the time lol|that's me, courier it is]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-hiring-1",
+    "konu": "eleman",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[can't find staff for my shop|nobody applies to my listing|my shop still has no staff]"],
+      ["B", "[temp staff fill in but they're expensive|temps cost a lot and work slow|temps are pricey and slow]"],
+      ["A", "[i know, that's the problem|yeah my profit is gone|exactly, eating my profit]"],
+      ["C", "[raise the salary a bit|offer a bit more], [applications come fast then|people apply way faster]"],
+      ["D", "[ask in the channel too|post here too], [lots of people looking|plenty of job seekers here]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-hiring-2",
+    "konu": "eleman",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[got three applications, who do i pick|three people applied, help me choose|which applicant should i take]"],
+      ["B", "[most experience|the one with more experience|experience first]"],
+      ["C", "[check reputation too|reputation matters too], [low reputation = trouble|low rep is a red flag]"],
+      ["A", "[the cheap one has almost no experience|cheapest one is brand new]"],
+      ["B", "[cheap gets expensive|you get what you pay for|don't go cheap]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-loan-1",
+    "konu": "kredi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[thinking about taking a loan|should i take a personal loan|is a loan a bad idea]"],
+      ["B", "[for what|what for|what do you need it for]"],
+      ["A", "[course money|short on course money|to pay for a course]"],
+      ["C", "[24 months term|it's 24 months], [keep the installment under half your income|installment under half your income]"],
+      ["D", "[miss 3 installments and it's foreclosure|3 missed payments = foreclosure], [careful|be careful]"],
+      ["A", "[small loan then|i'll keep it small|ok, a small one]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-loan-2",
+    "konu": "kredi",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[my loan limit says zero|why is my credit limit zero|bank shows 0 limit, bug?]"],
+      ["B", "[not a bug|normal], [it opens after your first month end|wait for the first month end]"],
+      ["C", "[it's last month's income times your score over 100|last month income x score / 100]"],
+      ["A", "[so just wait|so i wait then|ok, patience]"],
+      ["B", "[pay on time later and the score climbs|on time payments push the score up]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-course-1",
+    "konu": "kurs",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[which course should i take|need a course, ideas?|best course for a salary job?]"],
+      ["B", "[want fixed salary?|salary or tasks?|do you want a fixed salary]"],
+      ["A", "[yes, tired of tasks|yeah no more tasks|fixed salary please]"],
+      ["C", "[civil servant or accountant then|accountant or civil servant], [both salaried|both pay a fixed salary]"],
+      ["B", "[both need 30 days of experience too|you need 30 days experience as well]"],
+      ["A", "[almost there|close to 30 days|nearly have it]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-course-2",
+    "konu": "kurs",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[finished my accounting course|accounting course done finally|course finished today]"],
+      ["B", "[congrats|nice one|well done], [how long did it take|how many days]"],
+      ["A", "[10 days, cut a few with hourglasses|10 days but i used hourglasses]"],
+      ["C", "[what's an accountant making|how's accountant pay]"],
+      ["A", "[fixed salary, no tasks|salary, no tasks at all], [that's the dream|finally]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-property-1",
+    "konu": "mulk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[buy an apartment or keep renting|is buying a flat worth it|should i buy a place]"],
+      ["B", "[owners don't pay rent|if you own your place, no rent]"],
+      ["A", "[can't pay cash though|no way i have the full price]"],
+      ["C", "[mortgage then|take a mortgage], [about 20 percent down|down payment is around 20%]"],
+      ["D", "[prices go up every month btw|it only gets pricier|inflation, don't wait too long]"],
+      ["A", "[saving for the down payment then|ok, saving up|down payment it is]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-property-2",
+    "konu": "mulk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[land or apartment for investment|investing in land, good idea?|apartment vs land]"],
+      ["B", "[land doesn't pay rent|no rent from land], [only goes up in value|it just appreciates]"],
+      ["C", "[apartments and shops pay rent|flats and shops bring rent], [minus upkeep|upkeep comes out of it]"],
+      ["A", "[i want monthly income|monthly income is the goal]"],
+      ["B", "[apartment then|go apartment|flat it is]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-task-1",
+    "konu": "gorev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[all 5 tasks done for today|today's tasks done|5 out of 5 today]"],
+      ["B", "[already?|that fast?|early bird]"],
+      ["A", "[did them with my coffee|before breakfast lol|first thing this morning]"],
+      ["C", "[money comes at month end right|it all pays out at month end]"],
+      ["A", "[yep, month end|yeah, end of month], [tasks reset every day|new tasks every day]"],
+      ["D", "[i'm still on 2|only did 2 so far|2 down, 3 to go]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-task-2",
+    "konu": "gorev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[do 3 tasks a day and you get an hourglass|3 tasks a day = free hourglass], [did you know|not everyone knows]"],
+      ["B", "[wait really|seriously?|huh, didn't know]"],
+      ["C", "[yep, daily goal|it's the daily goal], [one hourglass cuts a day of waiting|each one skips a day of waiting]"],
+      ["B", "[for courses?|on courses?]"],
+      ["C", "[yes, courses|yeah, course time]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-business-1",
+    "konu": "isletme",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[what does it take to open a cafe|thinking of opening a cafe|cafe owner life, worth it?]"],
+      ["B", "[900k capital and 60 days of experience|60 days experience and 900k capital]"],
+      ["A", "[shop cheaper?|is a shop cheaper|what about a shop]"],
+      ["C", "[shop needs 600k|600k for a shop], [same 60 days|still 60 days experience]"],
+      ["D", "[too many of the same kind and customers split|lots of cafes = fewer customers each], [keep that in mind|watch out]"]
+    ]
+  },
+  {
+    "id": "ilgi-en-business-2",
+    "konu": "isletme",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      ["A", "[first month of my shop is done|closed my first month as owner|one month in with my business]"],
+      ["B", "[profit?|how'd it go|making money?]"],
+      ["A", "[barely|break even], [temp staff ate it all|temps were expensive]"],
+      ["C", "[hire real staff|get permanent staff], [temps are slow and pricey|temps cost too much]"],
+      ["B", "[and manage every day|manage daily too], [it adds to revenue|boosts that day's revenue]"]
+    ]
+  }
+]

@@ -1,0 +1,956 @@
+[
+  {
+    "id": "tiyo-dm-gel",
+    "konu": "tiyo-dm",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "@{B} [dm'e gel|özelden yaz bana|özele gel], [bi şey soracağım|bi şey diyeceğim|kanalda olmaz]"
+      ],
+      [
+        "B",
+        "[nasıl gireceğim dm'e|dm nerde ya|özel mesaj nasıl atılıyor], [yeniyim daha|daha yeni başladım|ilk haftam]"
+      ],
+      [
+        "C",
+        "{B} [mesajın üstündeki isme dokun|kanalda yazanın ismine dokun|birinin ismine bir dokun], [profil açılıyor, Özel mesaj gönder yazıyor|profili çıkıyor, orda Özel mesaj gönder var]"
+      ],
+      [
+        "A",
+        "[gelen mesajlar da telefona düşüyor|cevaplar telefona düşüyor], [sağ altta telefon var, ona bas, Mesajlar'a gir|sağ alttaki telefona bas, Mesajlar uygulaması]"
+      ],
+      [
+        "B",
+        "[buldum|tamam buldum|haa tamam], [yazdım bile|yazıyorum şimdi|attım mesajı]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-dm-bilmiyordum",
+    "konu": "tiyo-dm",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[bana kimse özelden yazmıyor mu ya|özel mesaj gelince nerden anlıyoruz|dm gelince nereye düşüyor]"
+      ],
+      [
+        "B",
+        "[telefonun üstünde sayı çıkıyor|telefonda kırmızı sayı çıkıyor], [sağ altta|sağ alt köşede]"
+      ],
+      [
+        "A",
+        "[o telefonu süs sanıyordum|ben o telefonu saat sanıyordum|o telefona hiç basmadım]"
+      ],
+      [
+        "C",
+        "[haha|ahah], [bas ona, Mesajlar'a gir|bas, Mesajlar'da hepsi duruyor]"
+      ],
+      [
+        "B",
+        "[sen yazmak istersen kanalda adına dokun|yazmak için de birinin adına dokun], [Özel mesaj gönder çıkıyor|profilde Özel mesaj gönder var]"
+      ],
+      [
+        "A",
+        "[vay, iki mesaj varmış|bakıyorum şimdi|ooo mesaj varmış]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-dm-is-teklif",
+    "konu": "tiyo-dm",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[bi işletme özelden iş teklif etti bana|biri dm'den iş teklif etti|özelden teklif geldi]"
+      ],
+      [
+        "B",
+        "[nerden gördün|nasıl gördün onu|nerde çıkıyor o]"
+      ],
+      [
+        "A",
+        "[sağ alttaki telefondan|telefondan baktım], [Mesajlar'a girince teklif kartı var|Mesajlar'da teklif duruyor], [kabul et, pazarlık, reddet|kabul, pazarlık, red diye]"
+      ],
+      [
+        "C",
+        "[pazarlık et bence|bi pazarlık dene|direkt kabul etme], [biraz esniyorlar|çoğu biraz esniyor]"
+      ],
+      [
+        "D",
+        "[ben kimseye yazmadım hiç|bana öyle bişey gelmedi], [nasıl yazılıyor|nasıl özelden yazılıyor]"
+      ],
+      [
+        "B",
+        "[kanalda adına dokun|kişinin adına bas], [Özel mesaj gönder|Özel mesaj gönder yazıyor]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-dm-ozelden-konusalim",
+    "konu": "tiyo-dm",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "{B} [buraya yazmayalım|kanalda uzun olur], [özelden konuşalım|özelden devam edelim]"
+      ],
+      [
+        "B",
+        "[olur da nasıl|tamam da nasıl yapılıyor], [ilk defa özelden yazacağım|daha önce hiç yapmadım]"
+      ],
+      [
+        "C",
+        "[mesajındaki adına dokun|adına bir dokun], [Özel mesaj gönder diye bi şey çıkar|profil açılır, Özel mesaj gönder]"
+      ],
+      [
+        "D",
+        "[sonra telefondan da devam edersin|sonra telefondan devam], [sağ alt köşe, Mesajlar|sağ altta telefon, Mesajlar]"
+      ],
+      [
+        "B",
+        "[tamamdır|anladım|oldu], @{A} [yazdım|yazıyorum]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-telefon-haberler",
+    "konu": "tiyo-telefon",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[ay sonunda ne kadar yattığını nerden görüyorsunuz|ay sonu ne yattı nerden bakılıyor|maaşım yattı mı nerden anlarım]"
+      ],
+      [
+        "B",
+        "[telefondan|telefonda], [sağ altta telefon var, Haberler'e gir|sağ alttaki telefona bas, Haberler]"
+      ],
+      [
+        "C",
+        "[kurs bitince de oraya yazıyor|kurs bitti, mülk alındı hepsi orda|satışlar da Haberler'de]"
+      ],
+      [
+        "A",
+        "[telefona hiç basmamıştım|o telefonu görmemiştim bile|telefonu süs sanıyordum]"
+      ],
+      [
+        "B",
+        "[Bankam da var orda|Bankam'da paran da görünüyor], [nakit, bekleyen, borç|ay sonunda yatacak olan da]"
+      ],
+      [
+        "A",
+        "[iyiymiş|güzelmiş|tamam bakıyorum]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-telefon-bankam",
+    "konu": "tiyo-telefon",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[paramın ne kadarı ay sonunda gelecek bilen var mı|bekleyen param nerde yazıyor|ay sonu ne kadar yatacak görebiliyor muyuz]"
+      ],
+      [
+        "B",
+        "[telefona bak|telefonda bak], [Bankam uygulaması|Bankam'a gir]"
+      ],
+      [
+        "A",
+        "[hangi telefon|telefon nerde ya]"
+      ],
+      [
+        "C",
+        "[sağ alttaki|ekranın sağ altında], [saat yazan telefon|üstünde saat yazıyor]"
+      ],
+      [
+        "B",
+        "[Ay sonunda yatacak diye yazıyor|ay sonunda yatacak kısmı var], [orda|ona bak]"
+      ],
+      [
+        "A",
+        "[buldum|gördüm|tamam buldum], [sağ olun|eyvallah]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-telefon-rozet",
+    "konu": "tiyo-telefon",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[telefonun üstünde kırmızı bi sayı var|telefonda kırmızı sayı çıktı], [ne o|o ne demek]"
+      ],
+      [
+        "B",
+        "[yeni haber ya da mesaj var|yeni haberin var], [bas bak|bas, gör]"
+      ],
+      [
+        "C",
+        "[Haberler'de ay sonları, kurslar yazıyor|haberlerde ay sonu, kurs falan çıkıyor], [Mesajlar'da da özel mesajlar|mesajlar ayrı]"
+      ],
+      [
+        "A",
+        "[on tane birikmiş|9+ yazıyor|baya birikmiş]"
+      ],
+      [
+        "D",
+        "[haha hiç bakmamışsın|hiç açmamışsın belli], [aç bak|bi bak]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kariyer-ilk-is",
+    "konu": "tiyo-kariyer",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[yeni başladım, iş nerden bulunuyor|iş nasıl bulunuyor burda|ilk işi nerden buluyoruz]"
+      ],
+      [
+        "B",
+        "[soldaki İşim kartında İlanlara bak var|solda İşim yazıyor, altında İlanlara bak], [ona bas|bas ona]"
+      ],
+      [
+        "C",
+        "[alttaki şeritte Kariyer de aynı yer|alttan Kariyer'e de girebilirsin], [kademe 1 şartsız|kademe 1'de şart yok]"
+      ],
+      [
+        "A",
+        "[hangisini seçeyim|hangisi iyi]"
+      ],
+      [
+        "B",
+        "[kurye bence|kurye], [günde 5 görev|5 görev hakkı var], [Bu işe geç de|Bu işe geç tuşuna bas]"
+      ],
+      [
+        "A",
+        "[tamam, kurye oldum|oldu, kuryeyim|geçtim kuryeye]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kariyer-en-uygun",
+    "konu": "tiyo-kariyer",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[işsiz kaldım, ne yapsam|şu an işim yok, nerden bakayım|işim yok, bi yer söyleyin]"
+      ],
+      [
+        "B",
+        "[İşim kartında En uygun ilan diye bi şey çıkıyor|solda En uygun ilan yazıyor], [ona bak|ona bas]"
+      ],
+      [
+        "C",
+        "[şartını tuttuğun en iyi işi gösteriyor|tuttuğun en iyi işi öneriyor], [kazancı da yazıyor|parası da yanında]"
+      ],
+      [
+        "A",
+        "[hepsini görmek istersem|diğerlerine nerden bakarım]"
+      ],
+      [
+        "B",
+        "[Kariyer|alttaki Kariyer], [kademe kademe duruyor|sekmelerde kademe 1, 2, 3, 4]"
+      ],
+      [
+        "A",
+        "[tamam baktım|tamamdır|gördüm, sağ ol]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kariyer-sart",
+    "konu": "tiyo-kariyer",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[memur olmak için ne lazım nerden görüyoruz|şartları nerden görüyoruz|hangi iş ne istiyor nerde yazıyor]"
+      ],
+      [
+        "B",
+        "[Kariyer'de her işin altında yazıyor|Kariyer'de işlerin altında şartlar var], [tik ve çarpı olarak|tutanlar tikli, tutmayanlar çarpılı]"
+      ],
+      [
+        "C",
+        "[memur kademe 2'de|memur 2. kademede], [kamu sınavı kursu ve 30 gün deneyim|kurs artı 30 gün]"
+      ],
+      [
+        "A",
+        "[kurs nerde peki|kursu nerden alıyoruz]"
+      ],
+      [
+        "B",
+        "[aynı yer, sekmelerin sonunda Kurslar|Kariyer'in en sağında Kurslar sekmesi]"
+      ],
+      [
+        "A",
+        "[tamam|buldum|oldu]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-gorev-para-gelmiyor",
+    "konu": "tiyo-gorev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kurye oldum ama para gelmiyor|işe girdim ama hiç kazanmıyorum|iş buldum ama para birikmiyor]"
+      ],
+      [
+        "B",
+        "[görev yapıyor musun|görevleri yapıyor musun], [kuryede görev yapmazsan para yok|kurye görev yaptıkça kazanıyor]"
+      ],
+      [
+        "A",
+        "[görev nerde|nasıl görev yapılıyor|görev mi var]"
+      ],
+      [
+        "C",
+        "[soldaki İşim kartında Görev yap tuşu var|İşim kartında Görev yap yazıyor], [yanında 0/5 falan|yanında kaç hakkın kaldığı]"
+      ],
+      [
+        "B",
+        "[her basış bir görev|her basışta bi görev], [günde 5 hak|günde 5 tane]"
+      ],
+      [
+        "A",
+        "[ahaa|vay be], [bugüne kadar boşa durmuşum|kaç gündür boş oturuyormuşum]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-gorev-sayac",
+    "konu": "tiyo-gorev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[işim kartındaki 2/5 ne demek|İşim'de 0/5 yazıyor, ne o|kartta bi sayaç var, ne sayıyor]"
+      ],
+      [
+        "B",
+        "[bugünkü görevlerin|bugün kaç görev yaptığın], [5 olunca Bitti yazıyor|bitince Bitti yazıyor]"
+      ],
+      [
+        "C",
+        "[ertesi gün sıfırlanıyor|yeni günde yenileniyor], [her gün gir bas|her gün tekrar basarsın]"
+      ],
+      [
+        "A",
+        "[para hemen mi geliyor|parası ne zaman geliyor]"
+      ],
+      [
+        "B",
+        "[ay sonunda toplu yatıyor|ay sonunda yatıyor hepsi], [o zamana kadar bekleyen|o zamana kadar bekleyende duruyor]"
+      ],
+      [
+        "A",
+        "[tamam basıyorum|anladım|şimdi yaptım üçünü]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-gorev-unutma",
+    "konu": "tiyo-gorev",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[yeni gelenler görev yapmayı unutmasın|yeni başlayanlar: görevi unutmayın], [en çok yapılan hata|herkes ilk hafta unutuyor]"
+      ],
+      [
+        "B",
+        "[nerden yapılıyordu|nerdeydi o tuş]"
+      ],
+      [
+        "A",
+        "[solda İşim kartı, Görev yap|İşim kartındaki Görev yap tuşu]"
+      ],
+      [
+        "C",
+        "[ben ilk iki gün hiç basmadım|ben de ilk günler bilmiyordum], [kaçan gün geri gelmiyor|kaçan görev kaçıyor]"
+      ],
+      [
+        "B",
+        "[haklısın|doğru], [her gün yenileniyor çünkü|her gün yeni hak geliyor]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-gunluk-kumsaati",
+    "konu": "tiyo-gunluk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[günde 3 görev yapınca kum saati geldiğini bilen var mı|3 görev yapınca kum saati veriyor, biliyor muydunuz]"
+      ],
+      [
+        "B",
+        "[ciddi mi|gerçekten mi|nasıl yani]"
+      ],
+      [
+        "A",
+        "[günlük hedef o|günlük hedef], [üçüncü görevde Günlük hedef: +1 Kum Saati yazıyor|üçüncüde +1 Kum Saati çıkıyor]"
+      ],
+      [
+        "C",
+        "[her gün bi tane|her gün 1 tane], [kurs kısaltmaya yarıyor|kursu kısaltıyorsun onunla]"
+      ],
+      [
+        "B",
+        "[bugün 2'de kaldım|bugün iki yaptım], [bir tane daha yapayım|üçüncüyü yapayım hemen]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-gunluk-hedef-ne",
+    "konu": "tiyo-gunluk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[günlük görev diye bişey var mı|günlük görev nerde|günlük ödül var mı bu oyunda]"
+      ],
+      [
+        "B",
+        "[var|var tabii], [o günkü 3 görevini yap|günde 3 görev yap], [1 kum saati veriyor|kum saati geliyor]"
+      ],
+      [
+        "A",
+        "[görevi nerden yapıyoruz|görev nerdeydi]"
+      ],
+      [
+        "C",
+        "[soldaki İşim kartında Görev yap|İşim'de Görev yap tuşu], [sayacı da yanında|yanında sayısı yazıyor]"
+      ],
+      [
+        "D",
+        "[ben her sabah üçünü hallediyorum|ben sabahları yapıyorum], [kum saatleri birikiyor|kum saatim birikti]"
+      ],
+      [
+        "A",
+        "[tamam, deneyeceğim|oldu, yapıyorum|hemen yapayım]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-gunluk-kacirma",
+    "konu": "tiyo-gunluk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[dün günlük hedefi kaçırdım|dün 3 görevi tamamlayamadım|dün hedefi yapamadım]"
+      ],
+      [
+        "B",
+        "[yazık|olsun|dert etme], [kum saati gitti o zaman|bir kum saati kaçtı]"
+      ],
+      [
+        "C",
+        "[3 görev yapınca geliyor ya|günde 3 görev, 1 kum saati], [bugün yap|bugün telafi et]"
+      ],
+      [
+        "A",
+        "[telafi olmuyor ama|geri gelmiyor ama], [her gün ayrı|her gün kendi hakkı]"
+      ],
+      [
+        "B",
+        "[doğru|aynen], [yeni başlayanlara da söyleyelim|yeniler bilsin]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kumsaati-nereye",
+    "konu": "tiyo-kumsaati",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kum saatim birikti, nereye basılıyor bu|kum saati nasıl kullanılıyor|kum saatlerimi nerde harcıyorum]"
+      ],
+      [
+        "B",
+        "[kurstaysan Kariyer'e gir, Kurslar sekmesi|Kariyer, en sağda Kurslar]"
+      ],
+      [
+        "C",
+        "[devam eden kursun altında Kum Saati ile hızlandır yazıyor|kursun kartında Kum Saati ile hızlandır tuşu var]"
+      ],
+      [
+        "A",
+        "[kurs almadım daha|kursta değilim şu an]"
+      ],
+      [
+        "B",
+        "[o zaman sakla|sakla o zaman], [kursa başlayınca basarsın|kursa yazılınca kullanırsın]"
+      ],
+      [
+        "A",
+        "[tamam|anladım|olur]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kumsaati-ne-ise",
+    "konu": "tiyo-kumsaati",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kum saati ne işe yarıyor tam olarak anlamadım|şu kum saati ne yapıyor|kum saatini ne yapacağız]"
+      ],
+      [
+        "B",
+        "[bir tanesi bir gün kısaltıyor|her biri bir günü kısaltıyor], [kursta|kurs süresinde]"
+      ],
+      [
+        "C",
+        "[Kariyer, Kurslar, kursun kartında Kum Saati ile hızlandır|Kurslar'da kursun altındaki hızlandır tuşu]"
+      ],
+      [
+        "A",
+        "[para veriyor mu|paraya etkisi var mı]"
+      ],
+      [
+        "B",
+        "[yok|hayır], [maaşa servete dokunmuyor|sadece zaman kazandırıyor]"
+      ],
+      [
+        "D",
+        "[ben 10 günlük kursu yarıya indirdim|muhasebeyi yarıya indirdim böyle], [baya işe yarıyor|baya iyi]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kumsaati-kursta",
+    "konu": "tiyo-kumsaati",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kursun bitmesine {s:sayi} gün var|kursumun bitmesine çok var], [beklemekten sıkıldım|çok uzun geldi]"
+      ],
+      [
+        "B",
+        "[kum saatin var mı|elinde kum saati var mı]"
+      ],
+      [
+        "A",
+        "[var birkaç tane|üç dört tane var|var galiba]"
+      ],
+      [
+        "C",
+        "[bas o zaman|kullan], [Kariyer'de Kurslar sekmesinde kursun üstünde|Kurslar'daki kursun kartında Kum Saati ile hızlandır]"
+      ],
+      [
+        "A",
+        "[bastım|tamam bastım], [kısaldı|günler düştü|vay, kısaldı]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-banka-kredi-nerde",
+    "konu": "tiyo-banka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kredi nerden çekiliyor bu oyunda|kredi çekmek istiyorum nerden|kredi nasıl alınıyor]"
+      ],
+      [
+        "B",
+        "[alttaki şeritte Banka var|alttaki menüde Banka], [İhtiyaç kredisi orda|ihtiyaç kredisi orda]"
+      ],
+      [
+        "A",
+        "[limitim sıfır yazıyor ama|sıfır diyor ama]"
+      ],
+      [
+        "C",
+        "[ilk ay sonunda açılıyor|ay sonu geçince açılır], [geçen ayki gelirine bakıyor|geçen ayın gelirine göre]"
+      ],
+      [
+        "B",
+        "[24 ay vade, faiz ayda {faiz}|vade 24 ay, faiz {faiz}], [taksiti de orda ödüyorsun|Kredilerim'de taksit öde tuşu var]"
+      ],
+      [
+        "A",
+        "[tamam bakıyorum|anladım, ay sonunu bekleyeyim|oldu]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-banka-bagis",
+    "konu": "tiyo-banka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[itibar nasıl artıyor|itibarım hiç artmıyor|itibarı yükseltmenin yolu var mı]"
+      ],
+      [
+        "B",
+        "[bağış yap|bağış yapabilirsin], [Banka'nın içinde Bağış var|Banka'da bağış kısmı var]"
+      ],
+      [
+        "A",
+        "[banka nerde|bankaya nerden giriliyor]"
+      ],
+      [
+        "C",
+        "[alttaki şeritte, Kariyer'in yanında|alttaki menüde ikinci], [Banka yazıyor|sütunlu bina]"
+      ],
+      [
+        "B",
+        "[her 10 bine 1 itibar|10 bin başına 1 itibar], [bayramda iki katı|bayramda iki kat]"
+      ],
+      [
+        "A",
+        "[bayramı bekleyeyim o zaman|bayramda yaparım|tamam, bakarım]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-banka-giderler",
+    "konu": "tiyo-banka",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[her ay param eriyor, nereye gidiyor bu|giderlerim nerde yazıyor|ay sonunda neden param azalıyor]"
+      ],
+      [
+        "B",
+        "[Banka'ya gir, Aylık giderlerin yazıyor|Banka'da aylık giderler var], [geçim, oda kirası|kira, geçim falan]"
+      ],
+      [
+        "C",
+        "[ana ekranda Bu ay kartındaki soru işaretine de basabilirsin|Bu ay yazan kartta soru işareti var, ona bas]"
+      ],
+      [
+        "A",
+        "[kira {evkira} mi gidiyor her ay|oda kirası {evkira} mi]"
+      ],
+      [
+        "B",
+        "[ev alırsan o gider|evin olursa o kalkar], [kendi evinde oturan kira ödemiyor|ev sahibi kira ödemiyor]"
+      ],
+      [
+        "A",
+        "[hedef belli o zaman|ev hedefim oldu|tamam, ev için biriktireceğim]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kurs-nerde",
+    "konu": "tiyo-kurs",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kurslar nerde|kursa nerden yazılıyoruz|kurs nasıl alınıyor]"
+      ],
+      [
+        "B",
+        "[Kariyer'e gir|alttaki şeritten Kariyer], [sekmelerin en sonunda Kurslar|en sağdaki sekme Kurslar]"
+      ],
+      [
+        "C",
+        "[her kursun parası ve kaç gün sürdüğü yazıyor|kursların fiyatı ve günü yazıyor], [hangi işi açtığı da|neyi açtığı da altında]"
+      ],
+      [
+        "A",
+        "[aynı anda iki kurs olur mu|iki kurs birden alınır mı]"
+      ],
+      [
+        "B",
+        "[olmuyor|olmaz], [biri bitmeden öteki başlamıyor|biri bitince öbürüne]"
+      ],
+      [
+        "A",
+        "[tamam, kamu sınavından başlıyorum|muhasebeden başlayacağım|tamam, birini seçeyim]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kurs-projem",
+    "konu": "tiyo-kurs",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kursa yazıldım ama ne kadar kaldı göremiyorum|kursumun kaç günü kaldı nerden bakıyorum]"
+      ],
+      [
+        "B",
+        "[ana ekranda Projem kartı var|Projem kartına bak], [kalan gün orda yazıyor|kaç gün kaldığı orda]"
+      ],
+      [
+        "C",
+        "[çubuğu da var|yüzde kaçı bittiği de çıkıyor], [basınca Kurslar açılıyor|basınca Kurslar'a götürüyor]"
+      ],
+      [
+        "A",
+        "[ah tamam|haa], [Projem'i başka bişey sanıyordum|Projem'e hiç basmamıştım]"
+      ],
+      [
+        "D",
+        "[yeni başlayan herkes kurslara bir baksın bence|herkes bir kurslara baksın], [Kariyer'in en sağı|Kariyer'de en sağda]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-kurs-ne-acar",
+    "konu": "tiyo-kurs",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[hangi kurs hangi işi açıyor|kurslar ne işe yarıyor|kurs alınca ne oluyor]"
+      ],
+      [
+        "B",
+        "[Kariyer'de Kurslar sekmesinde her kursun altında Açar diye yazıyor|Kurslar'da her kursun altında Açar yazıyor]"
+      ],
+      [
+        "C",
+        "[muhasebe muhasebeciyi açıyor|muhasebe kursu muhasebeciliği], [kamu sınavı memurluğu|kamu sınavı da memurluğu]"
+      ],
+      [
+        "A",
+        "[deneyim de lazım mı|sadece kurs yetiyor mu]"
+      ],
+      [
+        "C",
+        "[2. kademe 30 gün deneyim istiyor|kademe 2 için 30 gün de lazım]"
+      ],
+      [
+        "A",
+        "[tamam|anladım|oldu, bakacağım]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-mulk-nerde",
+    "konu": "tiyo-mulk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[ev nerden alınıyor|daire almak istiyorum, nerden|mülk nasıl alınıyor bu oyunda]"
+      ],
+      [
+        "B",
+        "[alttaki şeritte Mülklerim|alttaki menüde Mülklerim], [sağ tarafta Satın al var|sağda satın al kısmı]"
+      ],
+      [
+        "C",
+        "[daire, dükkan, arsa|daire, dükkan, arsa var], [Peşin al ya da Krediyle al|peşin ya da krediyle]"
+      ],
+      [
+        "A",
+        "[krediyle peşinat ne kadar|krediyle alırsam peşinat ne]"
+      ],
+      [
+        "B",
+        "[{pesinat} civarı|peşinat {pesinat} falan], [Alınca içine taşın işaretlersen kira biter|içine taşın dersen kira ödemezsin]"
+      ],
+      [
+        "A",
+        "[süper|tamam, bakıyorum|bunu bilmiyordum]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-mulk-tasin",
+    "konu": "tiyo-mulk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[daire aldım ama hâlâ kira ödüyorum|ev aldım, kira niye gidiyor hâlâ]"
+      ],
+      [
+        "B",
+        "[içine taşındın mı|taşınmadın mı yoksa]"
+      ],
+      [
+        "A",
+        "[taşınmak mı var|nasıl taşınılıyor|ne taşınması]"
+      ],
+      [
+        "C",
+        "[Mülklerim'e gir, dairenin altında Taşın tuşu var|Mülklerim'de daire kartında Taşın yazıyor]"
+      ],
+      [
+        "B",
+        "[taşınınca oda kirası bitiyor|taşınırsan kira kesilir]"
+      ],
+      [
+        "A",
+        "[tamam taşındım|taşındım şimdi|hallettim]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-mulk-kira-geliri",
+    "konu": "tiyo-mulk",
+    "kosul": [],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[kira geliri nasıl elde ediliyor|kiradan nasıl para kazanılır|kira geliri isteyen ne yapmalı]"
+      ],
+      [
+        "B",
+        "[daire ya da dükkan al|daire ya da dükkan alırsan], [içinde oturmadığın kiraya gidiyor|oturmadığın mülk kira getiriyor]"
+      ],
+      [
+        "C",
+        "[alttaki Mülklerim'de her mülkün kira getirisi yazıyor|Mülklerim'de fiyatın altında kira yazıyor], [daire ayda {daire.kira} civarı|dairede {daire.kira} falan]"
+      ],
+      [
+        "A",
+        "[arsa|arsa da getiriyor mu]"
+      ],
+      [
+        "B",
+        "[arsa getirmiyor|arsadan kira yok], [değeri artıyor sadece|sadece değerleniyor]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-ilan-eleman",
+    "konu": "tiyo-ilan",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[dükkanı açtım ama eleman nasıl bulunuyor|işletme açtım, eleman nerden|eleman almak istiyorum, nasıl]"
+      ],
+      [
+        "B",
+        "[ana ekranda İş ilanı oluştur var|İş ilanı oluştur tuşuna bas], [orda ilan aç|ilanını orda aç]"
+      ],
+      [
+        "C",
+        "[başvurular gelince İşim kartında Başvurular'a bak|başvurular İşim kartındaki Başvurular'da]"
+      ],
+      [
+        "A",
+        "[ilan verince hemen mi geliyor|ne zaman gelir başvuru]"
+      ],
+      [
+        "B",
+        "[ertesi gün gelmeye başlıyor|gün dönünce geliyor], [maaşı iyi koyarsan çok gelir|maaş yüksekse çok gelir]"
+      ],
+      [
+        "D",
+        "[kanala da yaz bence|burda da sor], [iş arayan çok|arayan bol]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-ilan-gecici",
+    "konu": "tiyo-ilan",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[işletmemde geçici personel yazıyor, o ne|geçici personel çalışıyor yazıyor bende]"
+      ],
+      [
+        "B",
+        "[eleman almadıysan onlar çalışıyor|eksik kadroyu geçiciler dolduruyor], [hem pahalı hem verimsiz|pahalılar, verimleri düşük]"
+      ],
+      [
+        "A",
+        "[nasıl değiştiririm|kalıcı eleman nasıl alınıyor]"
+      ],
+      [
+        "C",
+        "[İş ilanı oluştur'dan ilan aç|ana ekranda İş ilanı oluştur var], [başvuranları Başvurular'dan alırsın|başvurular gelince seçersin]"
+      ],
+      [
+        "A",
+        "[tamam ilan açıyorum|oldu, açtım|hemen açayım]"
+      ]
+    ]
+  },
+  {
+    "id": "tiyo-ilan-calisanlar",
+    "konu": "tiyo-ilan",
+    "kosul": [
+      "A.patron"
+    ],
+    "saat": null,
+    "turlar": [
+      [
+        "A",
+        "[çalışanlarımın maaşını nerden görüyorum|kim ne kadar alıyor nerden bakarım|elemanlarımı nerden görüyorum]"
+      ],
+      [
+        "B",
+        "[İşim kartında Çalışanlar var|soldaki İşim'de Çalışanlar], [maaşları orda|maaşlar orda yazıyor]"
+      ],
+      [
+        "C",
+        "[eleman eksikse İş ilanı oluştur'dan ilan aç|eksik varsa İş ilanı oluştur], [geçiciler pahalı|geçici personel pahalıya gelir]"
+      ],
+      [
+        "A",
+        "[tamam|baktım|oldu]"
+      ],
+      [
+        "D",
+        "[zam isteyen olursa özelden yazıyor bu arada|zam isteyen özelden yazar], [telefondaki Mesajlar'a bak|telefonda Mesajlar'a düşer]"
+      ]
+    ]
+  }
+]

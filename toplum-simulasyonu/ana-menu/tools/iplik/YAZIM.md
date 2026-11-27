@@ -132,6 +132,19 @@ Yanlış bilgi yazmayın; emin değilseniz kişi "bilmiyorum, bakmak lazım" des
 - **İçerik oyunun dünyasıyla bağlı olmalı:** iş, para, kira, kurs, dükkan. Ama yarısı gündelik hayat (yemek, trafik, maç, hava, uyku, iş yorgunluğu, tatil, aile, çay). Bunlar oyunun içindeki hayat gibi anlatılır.
 - **Aynı açılış iki iplikte olmasın.** Aynı kelime kalıbı ("arkadaşlar bir sorum var") en çok 3 iplikte geçsin.
 
+## İlgi iplikleri ve tiyolar (`ilgi-*.json`)
+
+`ilgi-tr-*.json` ve `ilgi-global-<dil>.json` normal akışa girmez: oyun bunları oyuncunun ilgisine göre seçer (`oyuncu-ilgi.js`). `konu` ilgi konusudur (`is`, `eleman`, `kredi`, `kurs`, `mulk`, `gorev`, `kumsaati`, `gunluk`, `isletme`) ya da tiyo adıdır (`tiyo-dm`, `tiyo-telefon`, `tiyo-kariyer`, `tiyo-gorev`, `tiyo-gunluk`, `tiyo-kumsaati`, `tiyo-banka`, `tiyo-kurs`, `tiyo-mulk`, `tiyo-ilan`). Her konuda en az 3 iplik olsun. Tiyolar arayüzün gerçek adlarını ve yerlerini söyler; arayüz değişirse tiyolar da güncellenir:
+
+- Telefon ana ekranın (ve Ben/Şirketim ekranının) sağ alt köşesinde, üstünde saat yazar; yeni haber ya da mesaj olunca üstünde kırmızı sayı çıkar. Uygulamalar: Mesajlar, Akış, Bankam, Haberler, Rehber, Takvim, Borsa, Notlar.
+- Özel mesaj: kanalda bir mesajın üstündeki isme dokununca profil açılır, "Özel mesaj gönder". Gelenler telefonda Mesajlar'da; iş teklifinde Kabul et / Pazarlık / Reddet.
+- Solda İşim kartı: İlanlara bak, En uygun ilan (işsizken), Kendi işini kur, Görev yap (sayaç 0/5; bitince Bitti). Patronken Başvurular, Çalışanlar; ortada İş ilanı oluştur.
+- Alttaki şerit: Kariyer, Banka, Mülklerim, Borsa, Hukuk. Kariyer sekmeleri Kademe 1-4 ve en sağda Kurslar; kurs kartında "Açar:" ve devam eden kursta "Kum Saati ile hızlandır". Banka: İhtiyaç kredisi, Kredilerim (Taksit öde), Aylık giderlerin, Bağış. Mülklerim: solda mülklerin (Taşın, Sat), sağda Satın al (Peşin al, Krediyle al, Alınca içine taşın).
+- Ana ekranda Bu ay kartında soru işareti (gelir-gider), Projem kartında süren kurs.
+- Günde 3 görev yapınca +1 Kum Saati ("Günlük hedef"). Kum saati yalnız kursu kısaltır.
+
+Oyunda 1 gün = 30 dakika (bu sürümde).
+
 ## Denetim
 
 Her dosyayı yazdıktan sonra çalıştırın:
