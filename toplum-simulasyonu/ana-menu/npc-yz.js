@@ -1634,7 +1634,7 @@
   // Eylem niyetleri (satıyorum, eleman arıyorum, teklif...): soru biçimindeyse banka ancak çok güçlü eşleşmeyle öne geçer
   const EYLEM_NIYET = new Set(['teklif', 'mulk_satiyorum', 'eleman_ariyorum', 'yetki_istegi', 'zam_istegi']), EYLEM_SSS = .7;
   const ERKEN_SOSYAL = new Set(['selam', 'veda', 'tesekkur', 'evet', 'hayir', 'oneri_kabul', 'teklif', 'hakaret', 'ozur', 'saka', 'tebrik', 'iltifat', 'hal_hatir', 'mulk_satiyorum', 'eleman_ariyorum', 'zam_istegi', 'yetki_istegi']);
-  const ERKEN_SORU = /\b(mi|mu|misin|miyim|miyiz|musun|ne|neden|niye|nasil|kac|kim|nerde|nerede|nereden|nerden|hangi\w*|ne zaman|ne kadar|olur mu|var mi)$|\b(neden|niye|nasil|kac|hangi\w*|ne zaman|ne kadar)\b/;
+  const ERKEN_SORU = /\b(mi|mu|misin|miyim|miyiz|musun|ne|neden|niye|nasil|kac|kim|nerde|nerede|nereden|nerden|hangi\w*|ne zaman|ne kadar|olur mu|var mi|ne olur|ne olacak|ne olcak|napcam|napicam|napayim|napiyim|ne yapayim|ne yapmaliyim|ne yapcam|ne yapicam|ne yapacagim)$|\b(neden|niye|nasil|kac|hangi\w*|ne zaman|ne kadar)\b/;
   NPCYZ.sssAyar = (g, e, k) => { SSS_GUCLU = g; SSS_ESIK = e; if (k != null) ERKEN_SSS = k; };
   function bilgi0(world, meta, kim, konu, varlik, oyuncu, katli, takip) {
     const p = world.players[kim.id];
