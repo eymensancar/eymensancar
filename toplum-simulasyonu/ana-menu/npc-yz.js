@@ -1561,7 +1561,7 @@
     const n = (dil().normal)(metin), out = [n.kucuk || n.katli]; if (n.katli && n.katli !== out[0]) out.push(n.katli);
     const st = meta && meta.diyalog && meta.diyalog[kanal], b = st && (st.simdiki || st.ilk);
     if (b && n.katli.split(' ').length <= 5 && b !== n.katli) out.push(b + ' ' + n.katli);
-    if (b && n.katli.split(' ').length <= 5 && n.katli.split(' ').length >= 2 && b !== n.katli && !VARLIK_RE.test(n.katli)) { const vk = (b.match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) out.push(n.katli + ' ' + vk); }
+    if (b && n.katli.split(' ').length <= 5 && n.katli.split(' ').length >= 2 && b !== n.katli && !VARLIK_RE.test(n.katli)) { const vk = (((b.match(VARLIK_RE_G) || []).length || (st.onceki && st.onceki !== st.ilk) ? b : (st.ilk || '')).match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) out.push(n.katli + ' ' + vk); }
     return out.filter(Boolean);
   };
   // Oyuncunun Türkçe harfli yazdığı hâli (varsa) gömmeye o hâliyle gider
@@ -1615,11 +1615,11 @@
     let a = sssAra(katli, !anlam, ayar);
     // Konusunu adıyla söylemeyen kısa takip sorusu ("kaç gün sürüyor"), bağlamda bir varlık (kurs, meslek, işletme) adı geçiyorsa tek başına aranmaz:
     // tek başına eşleşme başka bir varlığın kaydına gider; yalnız bağlamla birlikte aranır
-    if (a && meta._baglamMetin && katli.split(' ').length <= 5 && katli.split(' ').length >= 2 && !VARLIK_RE.test(katli) && !KONU_KELIME.test(katli) && VARLIK_RE.test(meta._baglamMetin)) a = null;
+    if (a && meta._baglamMetin && katli.split(' ').length <= 5 && katli.split(' ').length >= 2 && !VARLIK_RE.test(katli) && !KONU_KELIME.test(katli) && VARLIK_RE.test(meta._baglamVarlik || '')) a = null;
     // Kısa takip sorusu ("ya arsa", "peki kaç gün"): önceki mesajla birlikte de aranır, daha iyi eşleşen alınır
     if (meta._baglamMetin && katli.split(' ').length <= 5 && meta._baglamMetin !== katli) { const b = sssAra(meta._baglamMetin + ' ' + katli, !anlam, ayar); if (b && (!a || b.skor > a.skor + .05)) a = b;
       // Mesaj konusunu adıyla söylemiyorsa ("kaç kişi", "en pahalısı"): önceki mesajın adı geçen konusu (meslek, işletme, kurs, mülk) soruya eklenip de aranır
-      if (!VARLIK_RE.test(katli) && katli.split(' ').length >= 2) { const vk = (meta._baglamMetin.match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) { const c = sssAra(katli + ' ' + vk, !anlam, ayar); if (c && (!a || c.skor > a.skor + .05)) a = c; } } }
+      if (!VARLIK_RE.test(katli) && katli.split(' ').length >= 2) { const vk = (String(meta._baglamVarlik || meta._baglamMetin).match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) { const c = sssAra(katli + ' ' + vk, !anlam, ayar); if (c && (!a || c.skor > a.skor + .05)) a = c; } } }
     if (!a || a.skor < esik) return null;
     const v = sssVeri(world, meta, oyuncu), sec = a.e.cevap.map(c => c.replace(/\{([\w.]+)\}/g, (m, k) => v[k] != null ? v[k] : m)).filter(c => !/\{[\w.]+\}/.test(c));
     if (!sec.length) return null; const taze = sec.filter(c => !tekrarMi(meta, kim, c));
@@ -1940,7 +1940,9 @@
     const npcIdler = kanal === 'sirket' ? (sirketNpcIdleri || []).filter(id => meta.npc[id]) : Object.keys(meta.npc);
     adCakismasi(world, meta, oyuncu);
     meta._gelen = (dil().normal)(metin).katli;
-    { const s0 = meta.diyalog && meta.diyalog[kanal]; meta._baglamMetin = s0 && Date.now() - s0.zaman < KONU_SURE ? (s0.simdiki || s0.ilk || null) : null; }
+    { const s0 = meta.diyalog && meta.diyalog[kanal]; meta._baglamMetin = s0 && Date.now() - s0.zaman < KONU_SURE ? (s0.simdiki || s0.ilk || null) : null;
+      // Önceki mesaj da konusunu adıyla söylemediyse ("kim çalışır orda"), konuyu açan ilk mesajın varlığı bağlam olur (en çok iki mesaj geriye)
+      meta._baglamVarlik = meta._baglamMetin && !VARLIK_RE.test(meta._baglamMetin) && s0.ilk && (!s0.onceki || s0.onceki === s0.ilk) && VARLIK_RE.test(s0.ilk) ? s0.ilk : meta._baglamMetin; }
     if (kanal === 'sirket') { const ny0 = (dil().niyetBul)(metin, { adlar: [] }); const c0 = sirketCevap(world, meta, oyuncu, meta._gelen, ny0, npcIdler, rng, saat); if (c0) return { cevaplar: [c0], niyet: ny0 }; }
     const adlar = npcIdler.map(id => meta.npc[id].gorunen).concat(npcIdler.map(id => meta.npc[id].ad));
     const ny = (dil().niyetBul)(metin, { adlar, oyuncuAd: oyuncu.name });
@@ -2512,7 +2514,7 @@
     meta.diyalog = meta.diyalog || {};
     const dk = 'dm:' + npcId, simdi = Date.now(), nM = (dil().normal)(metin), katli = nM.katli; gommeKaydet(nM);
     let st = meta.diyalog[dk]; if (st && simdi - st.zaman > 30 * 60e3) st = null;
-    meta._baglamMetin = st && st.simdiki ? st.simdiki : null;
+    meta._baglamMetin = st && st.simdiki ? st.simdiki : null; meta._baglamVarlik = meta._baglamMetin && !VARLIK_RE.test(meta._baglamMetin) && st.ilk && (!st.onceki || st.onceki === st.ilk) && VARLIK_RE.test(st.ilk) ? st.ilk : meta._baglamMetin;
     // Kapanış: teşekkür / veda / "tamam sağol" -> kısa kapanış, bilgi yinelenmez
     if (['tesekkur', 'veda'].includes(ny.niyet) || /^(tamam|tmm|ok|peki)\W*\s*(sag ?ol|sagol|tesekkur|tsk|eyv)/.test(katli)) { const c = cevapPaketi(world, meta, npcId, ny.niyet === 'veda' ? 'cevap.veda' : 'cevap.tesekkur', { oyuncuAd: oyuncu.name.split(' ')[0] }, rng); meta.diyalog['dm:' + npcId] = null; return { metin: c.metin, gecikmeMs: c.gecikmeMs }; }
     const p0 = world.players[npcId];
