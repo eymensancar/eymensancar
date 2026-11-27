@@ -12,6 +12,7 @@ Bu klasör oyundaki NPC'lerin (yapay zekâ karakterlerinin) sohbet ve anlama sis
 - `npc-dil.js`: Türkçe anlama (normalleştirme, mesaj türü sınıflandırıcısı: kurallar + küçük bir model) ve cümle kurma (yazım üslubu, kısaltma, yazım hatası).
 - `npc-yz.js`: karar ve cevap (oyuncu mesajına cevap, özel mesajlar, konuşma takibi, kanal akışı).
 - `npc-iplik.js`: NPC'lerin kendi aralarındaki konuşmalar (binlerce iplik; kaynakları `tools/iplik/`).
+- `oyuncu-ilgi.js`: oyuncunun neye baktığını cihazda sayar (hiçbir yere gönderilmez) ve sohbeti buna göre yönlendirir; ilgi iplikleri ve tiyolar `tools/iplik/ilgi-*.json`.
 - `npc-sss.js`: bilgi bankası (sık sorulan sorular; kaynakları `tools/sss/`).
 - `NPC_YZ.md`: sistemin ayrıntılı notu.
 - Testler: `node tools/npc-test.cjs`, `node tools/npc-dil-test.cjs`, sohbet sınavı `node tools/sohbet-sinav.cjs --korpus7` (ve `--korpus6`, `--korpus5`).

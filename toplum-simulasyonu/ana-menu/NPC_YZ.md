@@ -87,6 +87,14 @@ Sunucu gerekmez, ücretli yapay zekâ servisi kullanılmaz: her şey telefonda �
   - Gece kanal sessiz, akşam yoğundur; ilk girişte son 40 dakikanın geçmişi görünür.
 - **Şirket kanalı:** çalışanlar çalışan gibi konuşur. Görev sayısı, ciro ve maaş gününe kalan gün gerçektir; yönetici cümleleri yalnız müdürdedir.
 - **Global kanal:** yabancılar kendi dillerinde yazar. Bir kerelik olayları ("ilk evimi aldım") birer kez yaşanır. Selama, "where are you from" sorusuna, teşekküre ve vedaya uygun cevap verirler.
+- **İlgiye göre sohbet (`oyuncu-ilgi.js`, kayıt `K.ilgi`, cihazdan çıkmaz):**
+  - Sayılanlar: hangi ekrana, panele (Kariyer sekmesiyle), telefon uygulamasına ve kanala kaç kez girildiği ve ne kadar kalındığı; bakılan meslek, kurs, mülk, kredi, bağış; yapılan eylemler; ayar değişiklikleri (tema, yapay zekâ izni; ileride ses ve titreşim de `ilgiAyar` ile); oturum sayısı ve süresi, son çıkış, saat dağılımı, üst üste gelinen gün. Tıklamalar tek bir yakalayıcıdan, yer değişimi `ekran()`, `panelCiz()`, telefon ve sohbet geçişlerinden.
+  - Boyut sınırlı: anahtar başına sayaç (en çok 64), son 40 olaylık halka, konu başına tek sıcaklık puanı (45 dakikada yarıya iner). 5000 olaydan sonra yaklaşık 3 KB.
+  - İlgi profili: en sıcak konular (iş, eleman, kredi, kurs, mülk, görev, kum saati, işletme, sıralama, bağış) ve benimseme (ayar yapmış mı, kaç gün üst üste, kaç oturum, ortalama süre).
+  - Kanal (yalnız Türkiye ve Global; Şirket'te yok): yeni ipliklerin yaklaşık üçte biri oyuncunun ilgi konularından seçilir (iki haftadan sonra beşte bir). Kanala uzun aradan sonra girilince (en az 5 dk, sonra 12 dk arayla, her girişte değil) son 2-3 dakikaya konuyla ilgili bir **ilgi ipliği** yerleşir: soru, cevap, araya girenler, farklı NPC'ler; kalanı oyuncu bakarken akar. İlgi iplikleri ayrı havuzda (`tools/iplik/ilgi-*.json` → `NPCIplik.ilgi`), normal akışa girmez; aynısı art arda gelmez.
+  - **Tiyolar** (yalnız Türkiye kanalı, arayüzün gerçek adlarıyla): oyuncunun henüz yapmadığı şeyler (Kariyer, Görev yap, DM ve Mesajlar, günlük 3 görev = kum saati, telefon, Kurslar, Banka, Mülklerim, Kum Saati ile hızlandır, patronsa İş ilanı oluştur). Yapınca o tiyo bir daha gelmez. İlk iki hafta sık (aynı tiyo en çok 3 kez, 3 saat arayla), sonra seyrek (6 saatte bir, aynı tiyo 3 günde bir).
+  - İş ilanlarına çok bakan işçiye arada bir (günde en çok bir) boş kadrosu olan bir işletme sahibi özelden gerçek iş teklifi yazar (`NPCYZ.ilgiIsTeklifi`).
+  - Test: `tools/ilgi-test.cjs` (Playwright).
 - **Ölçüm:** `tools/sohbet-sinav.cjs` (iki kör set; geliştirme kısımları ayar için, saklı kısımlar yalnız rapor için). Niyet modeli `tools/niyet-egit.cjs` ile eğitilir. Eğitim verisi: korpus3 (sentetik) ve geliştirme setleri; saklı setler eğitimde kullanılmaz.
 
 ## 6. Ekonomik ilişkiler (gerçek işlemler)
