@@ -1574,7 +1574,7 @@
     GOMME_B = Object.assign({ G0, I, ok }, G0); return ok ? GOMME_B : null;
   }
   /** En yakın kayıt: {e, skor, ikinci}. */
-  function sssAra(katli, kelimeYalniz) {
+  function sssAra(katli, kelimeYalniz, ayar) {
     const I = sssIndeks(); if (!I) return null;
     const qt = [...new Set(sssTokenler(katli))]; if (!qt.length) return null;
     const qv = new Map(qt.map(x => [x, I.idf(x) * (x.includes('_') ? 1.3 : 1)])), qn = Math.sqrt([...qv.values()].reduce((a, b) => a + b * b, 0)) || 1;
@@ -1589,6 +1589,7 @@
         if (sk > (enIyi.get(d.ei) || 0)) enIyi.set(d.ei, sk);
       });
     } else for (const d of I.dokuman) { let c = 0; for (const [x, w] of qv) { const v = d.v.get(x); if (v) c += w * v; } if (!c) continue; const sk = c / (qn * d.n); if (sk > (enIyi.get(d.ei) || 0)) enIyi.set(d.ei, sk); }
+    if (ayar && ayar.yonler) for (const [ei, sk] of enIyi) if (ayar.yonler.some(q => yonOrani(I, ei, q) < .25)) enIyi.set(ei, sk * YON_CEZA);
     const sirali = [...enIyi.entries()].sort((a, b) => b[1] - a[1]); if (!sirali.length) return null;
     return { e: I.L[sirali[0][0]], skor: sirali[0][1], ikinci: sirali[1] ? sirali[1][1] : 0 };
   }
@@ -1602,17 +1603,23 @@
       'o.limit': oyuncu ? sade(Math.round(oyuncu.lastMonthIncome * oyuncu.creditScore / 100)) : '0 TL', 'o.not': oyuncu ? String(oyuncu.creditScore) : '620', 'o.nakit': oyuncu ? sade(oyuncu.cash) : '', 'o.deneyim': oyuncu ? String(oyuncu.totalExperienceDays) : '0', 'o.meslek': oyuncu && oyuncu.profession ? meslekAdi(oyuncu.profession).toLocaleLowerCase('tr') : 'işsiz' });
     return v;
   }
+  // Kısa takip sorusunun yönü (süre, fiyat, kişi sayısı): o yönü soran soruluşu az olan kayıt geri düşer.
+  // Önceki soruyla birleştirilmiş aramada önceki sorunun yönü ("ne kadar") değil, şimdiki sorunun yönü ("süresi ne") belirleyici olur
+  const SORU_YONU = [/\b(kac gun|kac gunde|ne kadar sur\w*|sure\w*|surer|suruyor|surecek|kac ay|ne zaman biter|kac haftada)\b/, /\b(kac para|kac lira|kac tl|ne kadar tutar|tutar\w*|fiyat\w*|ucret\w*|kaca|parasi|maliyet\w*|kac bin)\b/, /\b(kac kisi|kac calisan|kac eleman|kac isci|kadro\w*)\b/];
+  const YON_CEZA = .85;
+  function yonOrani(I, ei, q) { I.yon = I.yon || new Map(); const k = ei + ':' + q.source; if (!I.yon.has(k)) { const qs = I.L[ei].sorular; I.yon.set(k, qs.filter(x => q.test((dil().normal)(x).katli)).length / qs.length); } return I.yon.get(k); }
   function sssCevap(world, meta, kim, oyuncu, katli, esik) {
     // Anlam modeli hangi yollarda: GOMME_AYAR.yol içinde g (güçlü eşleşme kuralların önüne geçer), e (erken cevap), z (kurallar bulamazsa)
     const yol = esik === SSS_GUCLU ? 'g' : esik === ERKEN_SSS ? 'e' : 'z', anlam = !GOMME_AYAR.yol || GOMME_AYAR.yol.includes(yol);
-    let a = sssAra(katli, !anlam);
+    const yonler = meta._baglamMetin && katli.split(' ').length <= 5 ? SORU_YONU.filter(q => q.test(katli)) : [], ayar = yonler.length ? { yonler } : null;
+    let a = sssAra(katli, !anlam, ayar);
     // Konusunu adıyla söylemeyen kısa takip sorusu ("kaç gün sürüyor"), bağlamda bir varlık (kurs, meslek, işletme) adı geçiyorsa tek başına aranmaz:
     // tek başına eşleşme başka bir varlığın kaydına gider; yalnız bağlamla birlikte aranır
     if (a && meta._baglamMetin && katli.split(' ').length <= 5 && katli.split(' ').length >= 2 && !VARLIK_RE.test(katli) && !KONU_KELIME.test(katli) && VARLIK_RE.test(meta._baglamMetin)) a = null;
     // Kısa takip sorusu ("ya arsa", "peki kaç gün"): önceki mesajla birlikte de aranır, daha iyi eşleşen alınır
-    if (meta._baglamMetin && katli.split(' ').length <= 5 && meta._baglamMetin !== katli) { const b = sssAra(meta._baglamMetin + ' ' + katli, !anlam); if (b && (!a || b.skor > a.skor + .05)) a = b;
+    if (meta._baglamMetin && katli.split(' ').length <= 5 && meta._baglamMetin !== katli) { const b = sssAra(meta._baglamMetin + ' ' + katli, !anlam, ayar); if (b && (!a || b.skor > a.skor + .05)) a = b;
       // Mesaj konusunu adıyla söylemiyorsa ("kaç kişi", "en pahalısı"): önceki mesajın adı geçen konusu (meslek, işletme, kurs, mülk) soruya eklenip de aranır
-      if (!VARLIK_RE.test(katli) && katli.split(' ').length >= 2) { const vk = (meta._baglamMetin.match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) { const c = sssAra(katli + ' ' + vk, !anlam); if (c && (!a || c.skor > a.skor + .05)) a = c; } } }
+      if (!VARLIK_RE.test(katli) && katli.split(' ').length >= 2) { const vk = (meta._baglamMetin.match(VARLIK_RE_G) || []).filter((x, i, d) => d.indexOf(x) === i).join(' '); if (vk) { const c = sssAra(katli + ' ' + vk, !anlam, ayar); if (c && (!a || c.skor > a.skor + .05)) a = c; } } }
     if (!a || a.skor < esik) return null;
     const v = sssVeri(world, meta, oyuncu), sec = a.e.cevap.map(c => c.replace(/\{([\w.]+)\}/g, (m, k) => v[k] != null ? v[k] : m)).filter(c => !/\{[\w.]+\}/.test(c));
     if (!sec.length) return null; const taze = sec.filter(c => !tekrarMi(meta, kim, c));
