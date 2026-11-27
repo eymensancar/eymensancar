@@ -1935,6 +1935,8 @@
     const dilTr = (dil().dilBul)(metin);
     const nM = (dil().normal)(metin), katli = nM.katli; gommeKaydet(nM);
     const cevaplar = [];
+    // Eleman arama niyeti de işe alma sözü ister ("eleman, kadro, alacağım" ya da "kasiyer lazım/arıyorum"); "kurye olmak için motor lazım mı" eleman araması değil
+    if (ny.niyet === 'eleman_ariyorum' && (ny.soru || /\?/.test(metin) || ERKEN_SORU.test(katli)) && !/(eleman|isci|personel|calisan|calistir|kadro|aday|ise al|alacag|alirim|alicam|alsam|alabilir|ari(yor|yom|yoruz)|bulamiyor|basvur|(kurye|garson|kasiyer|memur|muhasebeci|usta|emlakci|sofor)\w* (lazim|ari))/.test(katli)) { ny.niyet = ny.kural && !['genel', 'eleman_ariyorum'].includes(ny.kural.niyet) ? ny.kural.niyet : 'genel'; ny.guven = .4; }
     // Satış niyeti satış sözü ister: mülkünü anıp başka bir şey soran ("dairem var, kira neden kesiliyor") satış konuşması açmaz
     if (ny.niyet === 'mulk_satiyorum' && (ny.soru || /\?/.test(metin) || ERKEN_SORU.test(katli) || /\b(mi|mu|miyim|muyum|miyiz|muyuz|misin|musun)\b/.test(katli)) && !/(sat|elden|devr|alici|alan|alir|alacak|almak ister|teklif)/.test(katli)) { ny.niyet = ny.kural && !['genel', 'mulk_satiyorum'].includes(ny.kural.niyet) ? ny.kural.niyet : 'genel'; ny.guven = .4; }
     const simdi = Date.now();
