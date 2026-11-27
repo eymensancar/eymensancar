@@ -659,6 +659,8 @@ try{document.documentElement.dataset.theme=localStorage.getItem('toplum-tema')||
 <script src="npc-dil.js"></script>
 <script src="npc-yz.js"></script>
 <script src="npc-iplik.js"></script>
+<!-- Oyuncu ilgisi: nereye baktığı cihazda sayılır, sohbet buna göre yön alır; hiçbir yere gönderilmez -->
+<script src="oyuncu-ilgi.js"></script>
 <script src="npc-sss.js"></script>
 <script src="anlam-sozcuk.js"></script>
 <script src="anlam-tarayici.js"></script>
@@ -704,6 +706,47 @@ let K=oku()||yeniKayit();
 const ONIZ=(()=>{const w=T.createWorld(1);const p=T.addPlayer(w,'Sen');return {w,p}})();
 const G=()=>K.oyuncuId&&K.world.players[K.oyuncuId]?{w:K.world,p:K.world.players[K.oyuncuId]}:ONIZ;
 
+// ---- Oyuncu ilgisi (oyuncu-ilgi.js): hangi ekrana kaç kez ve ne kadar girdi, neye baktı, ayarları, oturumları. ----
+// Kayıt K.ilgi'de, birkaç KB; cihazdan çıkmaz (YZ_VERI_URL kuyruğuna girmez). Tıklamalar tek bir yakalayıcıdan,
+// ekran değişimleri ekran()/panelAc()/telefon/sohbet geçişlerinden sayılır. Sohbet kanalı bu profile göre hafifçe yön alır.
+const IL=window.OyuncuIlgi||null;let ilgiK=null,telUyg=null;
+/** Eski kayıtta yoksa: oyunun durumundan yapılmış olanlar çıkarılır (kredisi olan Banka'yı biliyor, özelden yazan DM'i biliyor...). */
+function ilgiCikar(){const {p}=G(),y=[];if(!K.oyuncuId)return {yapti:y};
+  if(p.profession||p.totalExperienceDays>0)y.push('kariyer');if(p.completedCourses.length||p.courseInProgress)y.push('kurs','kariyer');
+  if(p.loans.length)y.push('banka');if(p.propertyIds.length)y.push('mulk');if(p.pendingEarnings>0||p.tasksToday>0)y.push('gorev');if(p.hourglasses>0)y.push('gunluk','gorev');
+  if(K.npc&&Object.values(K.npc.dm||{}).some(l=>l.some(m=>m.kimden==='oyuncu')))y.push('dm');if(K.sirket&&K.sirket.ilanlar&&K.sirket.ilanlar.length)y.push('ilan');
+  const ilk=K.baslangic+p.joinedOnDay*GUN_MS;return {yapti:y,ilk:isFinite(ilk)?ilk:0}}
+function ILG(){if(!IL||!K.oyuncuId)return null;if(ilgiK!==K.ilgi||!K.ilgi){K.ilgi=IL.hazirla(K.ilgi,Date.now(),ilgiCikar());ilgiK=K.ilgi}return K.ilgi}
+function ilgiYer(a){const r=ILG();if(r)IL.yer(r,Date.now(),a)}
+const panelYeri=()=>'p:'+pTur+(pTur==='kariyer'?':'+pSekme:'');
+/** Üstte açık olan yer: sohbet, telefon, panel ya da ekran. */
+function ilgiYerGeri(){ilgiYer($('sohbet').classList.contains('acik')?(shDm?'s:dm':'s:'+shKanal):document.body.classList.contains('telAcik')?'u:'+(telUyg||'ana'):$('panel').classList.contains('acik')?panelYeri():'e:'+ekranAd)}
+function ilgiAyar(ad,v){const r=ILG();if(r)IL.ayar(r,Date.now(),ad,v)}
+const ILGI_EYLEM={gorev_yap:['gorev','gorev',.25],meslek_sec:['kariyer','is',1],kursa_yazil:['kurs','kurs',1],kredi_cek:['banka','kredi',1.5],kredi_ode:['banka','kredi',.6],mulk_al:['mulk','mulk',1.5],mulk_sat:['mulk','mulk',1],eve_tasin:['mulk','mulk',.5],kum_saati_kullan:['kumsaati','kumsaati',1],bagis_yap:['banka','bagis',1]};
+function ilgiEylem(tur){const r=ILG(),x=ILGI_EYLEM[tur];if(!r||!x)return;const t=Date.now();IL.yapti(r,x[0],t);IL.bak(r,t,'e:'+tur,x[1],x[2]);if(tur==='gorev_yap'&&G().p.tasksToday>=3)IL.yapti(r,'gunluk',t)}
+function ilgiOturum(ac){const r=ILG();if(!r)return;const t=Date.now();if(ac){IL.oturumBasla(r,t);ilgiYerGeri()}else IL.oturumBitir(r,t)}
+// Tek yakalayıcı: dokunulan şey data-* ya da kimliğinden tanınır (her düğmeye ayrı dinleyici yok)
+const ILGI_TIK='[data-meslek],[data-kurs],[data-hizlan],[data-al],[data-sat],[data-tasin],[data-ode],[data-bagis],[data-tkabul],[data-tpaz],[data-kisi],[data-i],#krediCek,#gorevBtn,#siralama,#ayarlar,#ayarlar2,#ilanBtn,#projem,#soru,#halka';
+document.addEventListener('click',e=>{const r=ILG();if(!r)return;const t=Date.now();IL.aktif(r,t);const b=e.target&&e.target.closest?e.target.closest(ILGI_TIK):null;if(!b)return;const d=b.dataset;
+  if(d.meslek){const m=mDef(d.meslek);IL.bak(r,t,'meslek:'+d.meslek,m&&m.tier>=3?'isletme':'is')}
+  else if(d.kurs)IL.bak(r,t,'kurs:'+d.kurs,'kurs');else if(d.hizlan)IL.bak(r,t,'hizlan','kumsaati');
+  else if(d.al)IL.bak(r,t,'mulk:'+d.al+(d.kredi?':kredi':''),'mulk');else if(d.sat||d.tasin)IL.bak(r,t,d.sat?'mulk:sat':'mulk:tasin','mulk');
+  else if(d.ode||b.id==='krediCek')IL.bak(r,t,d.ode?'kredi:ode':'kredi:cek','kredi',1.5);else if(d.bagis)IL.bak(r,t,'bagis','bagis');
+  else if(d.tkabul||d.tpaz)IL.bak(r,t,'teklif',null);else if(d.kisi!=null)IL.bak(r,t,'kisi',null);
+  else if(d.i!=null){const tx=b.textContent.trim();IL.bak(r,t,'isim:'+tx.slice(0,18),/En uygun/.test(tx)?'is':null)}
+  else IL.bak(r,t,b.id,b.id==='gorevBtn'?'gorev':b.id==='siralama'?'siralama':b.id==='ilanBtn'?(patronMu(G().p)?'eleman':'is'):null,b.id==='gorevBtn'?.4:1)},true);
+let ilgiMevcutK=null;
+/** Bu kanalda ilgi ipliği bulunan konular (npc-iplik.js → ilgi). */
+function ilgiMevcut(kanal){if(!ilgiMevcutK){const I=window.NPCIplik&&NPCIplik.ilgi||{};ilgiMevcutK={ulke:new Set((I.tr||[]).map(x=>x.konu)),global:new Set(((I.global||{}).en||[]).map(x=>x.konu))}}return ilgiMevcutK[kanal]||new Set()}
+/** Sohbet akışına verilecek yön (giris: kanala yeni girildi). */
+function ilgiYon(giris){const r=ILG();if(!r||shKanal==='sirket')return null;const {p}=G(),m=mDef(p.profession);
+  const d={patron:patronMu(p),issiz:!p.profession,gorevli:!!(m&&m.maxTasksPerDay),kursta:!!p.courseInProgress,kum:p.hourglasses};
+  const y=IL.karar(r,Date.now(),shKanal,!!giris,d,ilgiMevcut(shKanal),Math.random);return y&&(y.one||y.konular.length)?y:null}
+function ilgiSonra(y,t){const r=ILG();if(!r||!y)return;IL.sonuc(r,t,y);
+  if(y.dmIs){IL.dmYazildi(r,t);setTimeout(()=>{if(!K.npc||!K.oyuncuId)return;const c=NPCYZ.ilgiIsTeklifi(K.world,K.npc,G().p);if(!c)return;olayEkle(c.baslik,c.metin);kaydet();cizRozet();tost(c.baslik+' (Mesajlar)')},20000+Math.random()*25000)}}
+addEventListener('visibilitychange',()=>{if(!K.oyuncuId)return;if(document.hidden){ilgiOturum(false);kaydet()}else ilgiOturum(true)});
+addEventListener('pagehide',()=>{if(K.oyuncuId){ilgiOturum(false);kaydet()}});
+
 const tarih=n=>{const ay=Math.floor(n/30);return {gun:n%30+1,ay:ay%12,yil:YIL0+Math.floor(ay/12)}};
 const gunYazi=n=>{const t=tarih(n);return `${t.gun} ${AY[t.ay]} ${t.yil}`};
 const OLAY_AD={kurs_bitti:'Kurs bitti',komisyon:'Satış primi',mulk_alindi:'Mülk alındı',isletme_acildi:'İşletme açıldı',isletme_kapandi:'İşletme kapandı',icra:'İcra',para_bitti:'Paran bitti',ise_alim:'İşe alım'};
@@ -733,7 +776,7 @@ function eylem(g,sessiz){yetistir(true);const e=T.parseEylem(g);if(typeof e==='s
   const d=structuredClone(K.world),n0=d.events.length;let r;
   try{r=T.applyEylem(d,K.oyuncuId,e,T.actionSeed(d.seed,K.eylemSayaci))}catch(x){tost('İşlem yapılamadı.',1);return null}
   if(!r.ok){tost(T.sunucuMetni(r.error),1);return null}
-  K.world=d;K.eylemSayaci++;
+  K.world=d;K.eylemSayaci++;ilgiEylem(g.tur);
   const ad=G().p.name+': ';d.events.slice(n0).filter(x=>x.playerId===K.oyuncuId).forEach(x=>olayEkle(OLAY_AD[x.kind]||'Haber',T.sunucuMetni(x.message).replace(ad,'')));
   kaydet();if(!sessiz)tost(T.sunucuMetni(r.message||'Tamam.'));hepsiniCiz();return r}
 
@@ -858,9 +901,9 @@ function benEkrani(){const {w,p}=G(),dny=Object.entries(p.experience).filter(([,
 let pTur='kariyer',pSekme='1';
 function panelAc(tur,sekme){telefonKapat();kapat();pTur=tur;if(sekme)pSekme=sekme;else if(tur==='kariyer')pSekme=String(Math.max(1,T.hesap.kademe(G().p.profession)));
   $('pGeri').lastChild.textContent=ekranAd==='sirket'?(patronMu(G().p)?'Şirketim':'Ben'):'Ana menü';panelCiz();$('pGovde').scrollTop=0;$('panel').classList.add('acik');document.body.classList.add('panelAcik');$('panel').setAttribute('aria-hidden','false')}
-function panelKapat(){$('panel').classList.remove('acik');document.body.classList.remove('panelAcik');$('panel').setAttribute('aria-hidden','true')}
+function panelKapat(){$('panel').classList.remove('acik');document.body.classList.remove('panelAcik');$('panel').setAttribute('aria-hidden','true');ilgiYerGeri()}
 $('pGeri').onclick=panelKapat;
-function panelCiz(){const {w,p}=G();let baslik,sek=[],govde='';
+function panelCiz(){const {w,p}=G();let baslik,sek=[],govde='';if(!$('sohbet').classList.contains('acik')&&!document.body.classList.contains('telAcik'))ilgiYer(panelYeri());
   $('pOzet').innerHTML=`<span class="cip">Nakit <b>${para(p.cash)}</b></span><span class="cip">Kredi notu <b>${p.creditScore}</b></span><span class="cip">Deneyim <b>${p.totalExperienceDays} gün</b></span>${p.hourglasses?`<span class="cip">Kum Saati <b>${p.hourglasses}</b></span>`:''}`;
   if(pTur==='kariyer'){baslik='Kariyer';sek=[['1','Kademe 1'],['2','Kademe 2'],['3','Kademe 3'],['4','Kademe 4'],['kurs','Kurslar']];
     if(pSekme==='kurs')govde=`<div class="kartlar dort">${C.COURSES.map(c=>kursKart(w,p,c)).join('')}</div>`;
@@ -926,10 +969,10 @@ addEventListener('visibilitychange',()=>{if(!document.hidden&&K.oyuncuId&&yetist
 // ---- sohbet, ayarlar, sıralama ----
 document.querySelectorAll('[data-sohbet]').forEach(b=>b.onclick=()=>sohbetAc(b.dataset.sohbet));
 function ileriSar(gun){K.baslangic-=gun*GUN_MS;yetistir();hepsiniCiz()}
-function temaSec(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('toplum-tema',t)}catch(e){}}
+function temaSec(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('toplum-tema',t)}catch(e){}ilgiAyar('tema',t)}
 $('ayarlar').onclick=$('ayarlar2').onclick=()=>modal('Ayarlar',`<div class="altBaslik" style="margin-top:0">Görünüm</div><div class="deneme">${[['light','Açık'],['dark','Koyu']].map(([k,t])=>`<button data-tema="${k}" aria-pressed="${document.documentElement.dataset.theme===k}">${t}</button>`).join('')}</div><div class="altBaslik">Sohbet</div><div class="deneme"><button id="aYz" aria-pressed="${!!(K.sohbet&&K.sohbet.onay&&K.sohbet.onay.yz)}">Yapay zekâ için mesaj gönder: ${K.sohbet&&K.sohbet.onay&&K.sohbet.onay.yz?'Açık':'Kapalı'}</button><button id="aKural">Sohbet kuralları</button></div><p class="ornek" style="margin-top:6px" id="aYzNot">${K.sohbet&&K.sohbet.onay?'Yalnız Türkiye ve Global kanal mesajların, kimliksiz. Özel mesajlar asla gönderilmez.'+(K.sohbet.yzKuyruk&&K.sohbet.yzKuyruk.length?' Bekleyen: '+K.sohbet.yzKuyruk.length+' mesaj.':''):'Sohbete ilk girişte sorulur.'}</p><p class="ornek" style="margin-top:6px">Ses, bildirimler, dil ve hesap da burada olacak.</p><div class="altBaslik">Denemek için: zamanı ilerlet</div>
   <div class="deneme"><button data-g="1">+1 gün</button><button data-g="7">+1 hafta</button><button data-g="30">+1 ay</button><button id="dSifirla" style="color:var(--tehlike)">Baştan başla</button></div><p class="ornek">Oyunda 1 gün = 30 dakika ve oyun kapalıyken de akar.</p><div class="altBaslik">Denemek için: şirket</div><div class="deneme"><button id="dSirket">Örnek şirket kur</button>${[['tek','Tek kişilik'],['ortakli','Ortaklı (çoğul)'],['kisitli','Sen müdürsün (yetkisiz)']].map(([k,t])=>`<button data-mod="${k}" aria-pressed="${K.sirket&&S().mod===k}">${t}</button>`).join('')}</div>`,
-  g=>{g.querySelectorAll('[data-tema]').forEach(b=>b.onclick=()=>{temaSec(b.dataset.tema);g.querySelectorAll('[data-tema]').forEach(x=>x.setAttribute('aria-pressed',x===b))});g.querySelector('#aKural').onclick=()=>{if(!K.oyuncuId)return tost('Önce oyuncunu oluştur.',1);onayAc()};g.querySelector('#aYz').onclick=b=>{const s=SOH();if(!s.onay)return tost('Sohbete ilk girişte sorulur.',1);s.onay.yz=!s.onay.yz;if(!s.onay.yz)s.yzKuyruk=[];kaydet();const e=g.querySelector('#aYz');e.setAttribute('aria-pressed',s.onay.yz);e.textContent='Yapay zekâ için mesaj gönder: '+(s.onay.yz?'Açık':'Kapalı');g.querySelector('#aYzNot').textContent='Yalnız Türkiye ve Global kanal mesajların, kimliksiz. Özel mesajlar asla gönderilmez.';tost(s.onay.yz?'Açık: kanal mesajların kimliksiz gönderilecek.':'Kapalı: bekleyen mesajlar silindi.')};g.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{kapat();ileriSar(+b.dataset.g)});g.querySelector('#dSirket').onclick=()=>{kapat();if(!K.oyuncuId)return;ornekSirket()};g.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{if(!K.oyuncuId)return;if(!patronMu(G().p))return tost('Önce örnek şirket kur.',1);sirketModu(b.dataset.mod);g.querySelectorAll('[data-mod]').forEach(x=>x.setAttribute('aria-pressed',x===b));tost('Şirket denemesi: '+b.textContent)});g.querySelector('#dSifirla').onclick=()=>onay('Baştan başla?','Bütün ilerlemen silinir.','Sil ve baştan başla',()=>{try{localStorage.removeItem(ANAHTAR)}catch(e){}K=yeniKayit();sohbetKapat();ekranAd='ana';document.body.dataset.ekran='ana';panelKapat();hepsiniCiz();kayitEkrani()})});
+  g=>{g.querySelectorAll('[data-tema]').forEach(b=>b.onclick=()=>{temaSec(b.dataset.tema);g.querySelectorAll('[data-tema]').forEach(x=>x.setAttribute('aria-pressed',x===b))});g.querySelector('#aKural').onclick=()=>{if(!K.oyuncuId)return tost('Önce oyuncunu oluştur.',1);onayAc()};g.querySelector('#aYz').onclick=b=>{const s=SOH();if(!s.onay)return tost('Sohbete ilk girişte sorulur.',1);s.onay.yz=!s.onay.yz;if(!s.onay.yz)s.yzKuyruk=[];ilgiAyar('yz',s.onay.yz);kaydet();const e=g.querySelector('#aYz');e.setAttribute('aria-pressed',s.onay.yz);e.textContent='Yapay zekâ için mesaj gönder: '+(s.onay.yz?'Açık':'Kapalı');g.querySelector('#aYzNot').textContent='Yalnız Türkiye ve Global kanal mesajların, kimliksiz. Özel mesajlar asla gönderilmez.';tost(s.onay.yz?'Açık: kanal mesajların kimliksiz gönderilecek.':'Kapalı: bekleyen mesajlar silindi.')};g.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{kapat();ileriSar(+b.dataset.g)});g.querySelector('#dSirket').onclick=()=>{kapat();if(!K.oyuncuId)return;ornekSirket()};g.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{if(!K.oyuncuId)return;if(!patronMu(G().p))return tost('Önce örnek şirket kur.',1);sirketModu(b.dataset.mod);g.querySelectorAll('[data-mod]').forEach(x=>x.setAttribute('aria-pressed',x===b));tost('Şirket denemesi: '+b.textContent)});g.querySelector('#dSifirla').onclick=()=>onay('Baştan başla?','Bütün ilerlemen silinir.','Sil ve baştan başla',()=>{try{localStorage.removeItem(ANAHTAR)}catch(e){}K=yeniKayit();sohbetKapat();ekranAd='ana';document.body.dataset.ekran='ana';panelKapat();hepsiniCiz();kayitEkrani()})});
 function siraVerisi(){const {w,p}=G();if(!K.npc||!K.oyuncuId)return null;return NPCYZ.siralama(w,K.npc,p.id,'İstanbul',KUR.USD)}
 $('siralama').onclick=()=>{const v=siraVerisi();if(!v)return;let aktif='Ülkemde ben';
   const kisi=(l,usd)=>{const i=l.findIndex(x=>x.oyuncu),ust=l.slice(0,5),ben=l[i];const satir=x=>[x.sira.toLocaleString('tr-TR'),kac(x.ad)+(x.ulke&&x.ulke!=='TR'?` (${x.ulke})`:''),usd?'$'+Math.round(x.usd).toLocaleString('tr-TR'):para(x.net),x.oyuncu?1:0];return ust.map(satir).concat(i>=5?[['…','',''],satir(ben)]:[])};
@@ -959,9 +1002,9 @@ document.querySelectorAll('[data-menu]').forEach(b=>b.onclick=MENU[b.dataset.men
 const UYG=[['Mesajlar','#2F9E6B','<path d="M4 5h16v11H9l-5 4z"/>'],['Akış','#C2410C','<circle cx="12" cy="12" r="4"/><rect x="3" y="3" width="18" height="18" rx="5"/>'],['Bankam','#1D4E89','<path d="M3 10l9-6 9 6M5 10v8M19 10v8M12 10v8M3 20h18"/>'],['Haberler','#6B4FA3','<path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/>'],['Rehber','#0E7490','<circle cx="12" cy="9" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>'],['Takvim','#B91C1C','<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'],['Borsa','#0F766E','<path d="M3 17l6-6 4 4 8-8"/>'],['Notlar','#A16207','<path d="M6 3h9l4 4v14H6zM9 12h7M9 16h7"/>']];
 function dmOkunmamis(){return K.npc?NPCYZ.dmListesi(K.npc).reduce((t,x)=>t+x.okunmamis,0):0}
 function cizRozet(){const n=K.okunmamis+dmOkunmamis();$('tRozet').hidden=$('tRozet2').hidden=!n;$('tRozet').textContent=$('tRozet2').textContent=n>9?'9+':n;$('telefon').setAttribute('aria-label',n?`Telefonu aç; ${n} yeni haber`:'Telefonu aç')}
-function anaEkran(){$('tGovde').innerHTML=`<div class="uygulamalar">${UYG.map(([ad,renk,yol])=>{const r=ad==='Haberler'?K.okunmamis:ad==='Mesajlar'?dmOkunmamis():0;return `<button class="uyg" data-u="${ad}"><span class="uIkon" style="background:${renk}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${yol}</svg></span>${ad}${r?`<span class="rozet">${r>9?'9+':r}</span>`:''}</button>`}).join('')}</div>`;
+function anaEkran(){telUyg=null;ilgiYer('u:ana');$('tGovde').innerHTML=`<div class="uygulamalar">${UYG.map(([ad,renk,yol])=>{const r=ad==='Haberler'?K.okunmamis:ad==='Mesajlar'?dmOkunmamis():0;return `<button class="uyg" data-u="${ad}"><span class="uIkon" style="background:${renk}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${yol}</svg></span>${ad}${r?`<span class="rozet">${r>9?'9+':r}</span>`:''}</button>`}).join('')}</div>`;
   document.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>uygulama(b.dataset.u))}
-function uygulama(ad){const {w,p}=G();let govde;
+function uygulama(ad){const {w,p}=G();let govde;telUyg=ad;ilgiYer('u:'+ad);
   if(ad==='Haberler'){K.okunmamis=0;kaydet();cizRozet();govde=K.olaylar.length?K.olaylar.map(o=>`<div class="haber"><b>${kac(o.baslik)}</b><span>${kac(o.metin)}</span><em>${gunYazi(o.gun)}</em></div>`).join(''):'<p style="margin:8px 0;color:var(--ikincil)">Henüz haber yok. Ay sonları, kurslar ve satışlar burada görünür.</p>'}
   else if(ad==='Bankam')govde=`<div class="ozetKart"><span>Vadesiz hesap</span><b class="sayi">${para(p.cash)}</b></div><div class="ozetKart"><span>Ay sonunda yatacak</span><b class="sayi">${para(p.pendingEarnings)}</b></div><div class="ozetKart"><span>Kredi borcu</span><b class="sayi">${para(p.loans.reduce((t,l)=>t+l.remaining,0))}</b></div><button class="tamBtn" id="bankaAc">Bankaya git</button>`;
   else if(ad==='Mesajlar'){const l=K.npc?NPCYZ.dmListesi(K.npc):[];govde=l.map(x=>{const k=K.npc.npc[x.npcId];return `<button class="dmSatir" data-dmac="${x.npcId}"><span class="av">${bas(k.gorunen)}</span><div><b>${kac(k.gorunen)}</b><span>${x.son.kimden==='oyuncu'?'Sen: ':''}${kac(x.son.metin)}</span></div>${x.okunmamis?`<em>${x.okunmamis}</em>`:''}</button>`}).join('')+S().mesajlar.map(m=>`<div class="mesaj"><span class="av">${bas(m.kime||m.kimden)}</span><div><b>${kac(m.kime||m.kimden)}</b><span>${m.kime?'Sen: ':''}${kac(m.metin)}</span></div><em>${m.durum==='bekliyor'?'yanıt bekliyor':gunYazi(m.gun).split(' ').slice(0,2).join(' ')}</em></div>`).join('')||'<p style="margin:8px 0;color:var(--ikincil)">Henüz mesajın yok. Sohbette birinin adına dokunup özel mesaj atabilirsin.</p>'}
@@ -970,7 +1013,7 @@ function uygulama(ad){const {w,p}=G();let govde;
   if($('bankaAc'))$('bankaAc').onclick=()=>panelAc('banka');
   $('tGovde').querySelectorAll('[data-dmac]').forEach(b=>b.onclick=()=>sohbetAc({dm:b.dataset.dmac}))}
 function telefonAc(){anaEkran();document.body.classList.add('telAcik');$('telefonAcik').classList.add('acik');$('telefonAcik').setAttribute('aria-hidden','false');$('telefonPerde').classList.add('acik')}
-function telefonKapat(){document.body.classList.remove('telAcik');$('telefonAcik').classList.remove('acik');$('telefonAcik').setAttribute('aria-hidden','true');$('telefonPerde').classList.remove('acik')}
+function telefonKapat(){const acikti=document.body.classList.contains('telAcik');document.body.classList.remove('telAcik');$('telefonAcik').classList.remove('acik');$('telefonAcik').setAttribute('aria-hidden','true');$('telefonPerde').classList.remove('acik');if(acikti)ilgiYerGeri()}
 $('telefon').onclick=$('telefon2').onclick=telefonAc;$('sGeri').onclick=()=>ekran('ana');$('sAd').onclick=benEkrani;$('sAnlik').onclick=()=>panelAc('gecmis');
 $('sChat').onclick=()=>sohbetAc('sirket');$('tKapat').onclick=telefonKapat;$('telefonPerde').onclick=telefonKapat;
 
@@ -1024,7 +1067,7 @@ function ayKapat(w,p){S().gecmis.push({ay:Math.floor(w.day/30),kar:anlik(w,p,30)
 
 // ---- ekran ----
 let ekranAd='ana';
-function ekran(ad){ekranAd=ad;document.body.dataset.ekran=ad;panelKapat();kapat();telefonKapat();hepsiniCiz()}
+function ekran(ad){ekranAd=ad;document.body.dataset.ekran=ad;panelKapat();kapat();telefonKapat();hepsiniCiz();ilgiYerGeri()}
 const anaProjem=()=>S().projeler.find(x=>x.ana);
 function cizSirket(){if(ekranAd!=='sirket')return;const {w,p}=G(),s=S(),cg=cogul(),pat=patronMu(p),ben=benUye();
   const k=anlik(w,p),t=tarih(w.day);
@@ -1171,7 +1214,7 @@ function shKanallar(){const {p}=G();return Object.keys(KANAL).filter(k=>k!=='sir
 function sirketNpcIdleri(){const {w,p}=G();if(!patronMu(p)||!K.npc)return [];const b=isletmem(w,p),ids=Object.keys(b.employees);const m=NPCYZ.mudurAta(w,K.npc,b);if(m&&!ids.includes(m))ids.push(m);return ids}
 const saatYaz=z=>{const d=new Date(z);return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
 /** Kanal: son bakıştan beri NPC'lerin yazdıkları (gerçek zamana göre) eklenir. */
-function shAkis(){if(!K.npc||shDm)return 0;const {w,p}=G();const yeni=NPCYZ.kanalAkisi(w,K.npc,shKanal,Date.now(),new Date().getHours(),p,sirketNpcIdleri());if(yeni.length)kaydet();return yeni.length}
+function shAkis(giris){if(!K.npc||shDm)return 0;const {w,p}=G(),t=Date.now(),yon=ilgiYon(giris);const yeni=NPCYZ.kanalAkisi(w,K.npc,shKanal,t,new Date().getHours(),p,sirketNpcIdleri(),yon||undefined);if(yon)ilgiSonra(yon,t);if(yeni.length)kaydet();return yeni.length}
 function teklifKarti(t){const {w}=G(),k=K.npc.npc[t.npcId];const ne=t.tur==='is'?`İş teklifi: ${mAd(t.meslek)} · ${para(t.maas)} / ay`:t.tur==='mulk_al'?`${T.t('mulk_turu.'+t.mulk)} için alım teklifi: ${para(t.fiyat)}`:`${T.t('mulk_turu.'+t.mulk)} satış teklifi: ${para(t.fiyat)}`;
   return `<div class="teklifKart"><b>${ne}</b><span style="font-size:12.5px;color:var(--ikincil)">${t.bitis-w.day} gün geçerli</span><div><button class="ana" data-tkabul="${t.id}">Kabul et</button><button data-tpaz="${t.id}">Pazarlık</button><button data-tred="${t.id}">Reddet</button></div></div>`}
 function shCiz(){const {w,p}=G(),sh=SOH(),ks=shKanallar();if(!shDm&&!ks.includes(shKanal))shKanal=ks[0];
@@ -1188,7 +1231,7 @@ function shCiz(){const {w,p}=G(),sh=SOH(),ks=shKanallar();if(!shDm&&!ks.includes
     $('shListe').querySelectorAll('[data-zam]').forEach(b=>b.onclick=()=>{sohbetKapat();ekran('sirket');panelAc('calisanlar');maasPenceresi(b.dataset.zam)});
   }else{
     $('shSekme').innerHTML=ks.map(k=>`<button data-kn="${k}" aria-pressed="${k===shKanal}">${KANAL[k]}${k==='sirket'&&isletmem(w,p)?' · '+(KISA_IS[isletmem(w,p).type]||''):''}</button>`).join('');
-    $('shSekme').querySelectorAll('[data-kn]').forEach(b=>b.onclick=()=>{shKanal=b.dataset.kn;shAkis();shCiz();shAlta()});
+    $('shSekme').querySelectorAll('[data-kn]').forEach(b=>b.onclick=()=>{shKanal=b.dataset.kn;ilgiYer('s:'+shKanal);shAkis(true);shCiz();shAlta()});
     const cev=K.npc?NPCYZ.cevrimici(K.npc,shKanal,new Date().getHours()):null;
     $('shBilgi').innerHTML=`<i></i>${cev!=null?cev.toLocaleString('tr-TR'):sirketNpcIdleri().length+1} çevrimiçi`;
     const ms=(K.npc?K.npc.kanal[shKanal]:[]).filter(m=>!sh.engel.includes(m.ad));
@@ -1291,8 +1334,8 @@ function yzGonder(){const s=K&&K.sohbet;if(!YZ_VERI_URL||!s||!s.onay||!s.onay.yz
 document.addEventListener('visibilitychange',()=>{if(document.hidden)yzGonder()});
 /** sohbetAc('ulke') kanal açar; sohbetAc({dm:npcId}) özel mesaj açar. */
 function sohbetAc(k){if(!K.oyuncuId)return;if(!onayGecerli())return onayAc(()=>sohbetAc(k));if(k&&typeof k==='object'){shDm=k.dm}else{shDm=null;if(k)shKanal=k}
-  telefonKapat();kapat();$('shGiris').placeholder=shDm?'Mesaj yaz…':'Kanala yaz…';shAkis();shCiz();$('sohbet').classList.add('acik');$('sohbet').setAttribute('aria-hidden','false');shYerlestir();requestAnimationFrame(shAlta)}
-function sohbetKapat(){$('shGiris').blur();$('sohbet').classList.remove('acik');$('sohbet').setAttribute('aria-hidden','true');shDm=null;setTimeout(()=>{scrollTo(0,0);olcekle()},250)}
+  telefonKapat();kapat();ilgiYer(shDm?'s:dm':'s:'+shKanal);$('shGiris').placeholder=shDm?'Mesaj yaz…':'Kanala yaz…';shAkis(true);shCiz();$('sohbet').classList.add('acik');$('sohbet').setAttribute('aria-hidden','false');shYerlestir();requestAnimationFrame(shAlta)}
+function sohbetKapat(){$('shGiris').blur();$('sohbet').classList.remove('acik');$('sohbet').setAttribute('aria-hidden','true');shDm=null;ilgiYerGeri();setTimeout(()=>{scrollTo(0,0);olcekle()},250)}
 /** Klavye açılınca görünen alan küçülür: sohbet ekranı tam o alana oturur. */
 function shYerlestir(){const v=window.visualViewport,e=$('sohbet');if(!v){e.style.top='0';e.style.height='100%';e.style.left=e.style.width=e.style.right='';return}
   // Dönük sayfada klavye ekranın altında = sohbetin sağında: sohbet ekranın görünen kısmına (sayfanın x ekseninde) daralır, yazı kutusu klavyenin üstünde kalır.
@@ -1341,7 +1384,7 @@ function kayitEkrani(){kilit=true;modal('Toplum Simülasyonu',`<p>Herkes eşit b
   g=>{const i=g.querySelector('#kAd'),b=()=>{const ad=i.value.trim().replace(/\s+/g,' ');if(ad.length<2||ad.length>24)return tost('Ad 2-24 harf olmalı.',1);
       if(!K.npc)K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:360,yabanciSayi:40});if(Object.values(K.world.players).some(q=>q.name.toLocaleLowerCase('tr')===ad.toLocaleLowerCase('tr')))return tost('Bu ad alınmış, başka bir ad dene.',1);
       if(!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:360,yabanciSayi:40})}
-      K.oyuncuId=T.addPlayer(K.world,ad).id;K.baslangic=Date.now()-GUN_MS*(K.world.day+.4);kaydet();kilit=false;kapat();hepsiniCiz();
+      K.oyuncuId=T.addPlayer(K.world,ad).id;K.baslangic=Date.now()-GUN_MS*(K.world.day+.4);if(IL)K.ilgi=IL.yeni(Date.now());ilgiOturum(true);kaydet();kilit=false;kapat();hepsiniCiz();
       bildirim('Hoş geldin, '+ad,'İlk işin için İşim → İlanlara bak. Kurye günde 5 görevle en çok kazandıran başlangıç işi.')};
     g.querySelector('#kBasla').onclick=b;i.onkeydown=e=>{if(e.key==='Enter')b()};setTimeout(()=>i.focus(),50)})}
 
@@ -1370,7 +1413,7 @@ olcekle();
 if(K.oyuncuId&&!K.npc){K.npc=NPCYZ.kur(K.world,{sayi:70,onYasamGun:0,yabanciSayi:40});kaydet()}
 // Sancar Games açılışı (bütün oyunlarda aynı; ?debug ve ?nosplash atlar)
 if(window.SancarIntro&&!/[?&](debug|nosplash)\b/.test(location.search)){try{SancarIntro.play({audio:'sancar-intro.mp3'})}catch(e){}}
-hepsiniCiz();if(!K.oyuncuId)kayitEkrani();else{if(yetistir())hepsiniCiz();donusKontrol()}
+hepsiniCiz();if(!K.oyuncuId)kayitEkrani();else{if(yetistir())hepsiniCiz();donusKontrol();ilgiOturum(true)}
 // Anlam modeli (bilgi bankası araması için): açılıştan sonra boşta, arka planda yüklenir; olmazsa sessizce eski yol. ?anlamyok kapatır
 if(window.AnlamTarayici&&!/[?&]anlamyok\b/.test(location.search))setTimeout(()=>{const f=()=>AnlamTarayici.yukle();window.requestIdleCallback?requestIdleCallback(f,{timeout:5000}):f()},4000);
 /** Sen yokken: vekil müdür (ya da banka temsilcisi) olanları anlatır; zarar ettiysen bir süre işler biraz şanslı gider. */
