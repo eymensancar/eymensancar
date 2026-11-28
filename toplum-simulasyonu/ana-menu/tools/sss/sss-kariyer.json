@@ -4047,7 +4047,7 @@
   ],
   "cevap": [
    "Profil'de Kum Saati sayın yazıyor",
-   "Kaç tane olduğunu Profil ekranında görürsün",
+   "Şu an {o.kumsaati} Kum Saatin var, Profil ekranında da yazıyor",
    "Profil'e bak, kum saati satırı var"
   ]
  },

@@ -501,7 +501,7 @@
   ],
   "cevap": [
    "Döviz lisansı döviz bürosunu, dış ticaret kursu ithalat-ihracatı, müteahhitlik belgesi müteahhitliği açıyor. Fabrikatör kurs istemiyor",
-   "Üçü de 4. kademe için: döviz lisansı {kurs.doviz}, dış ticaret {kurs.dis}, müteahhitlik {kurs.muteahhit}",
+   "Üçü de dördüncü kademe için: döviz lisansı {kurs.doviz}, dış ticaret {kurs.dis}, müteahhitlik {kurs.muteahhit}",
    "Kurs tek başına yetmiyor, milyonlarca sermaye ve 120-180 gün deneyim de lazım"
   ]
  },
@@ -1101,6 +1101,98 @@
    "Satılıyor ama kredi kendiliğinden kapanmıyor, taksit devam eder. Satış parasıyla Banka'dan tamamını öde",
    "Evi satınca borç yerinde durur. İstersen Banka ekranından kalan borcu kapatırsın",
    "Satış piyasanın %5 altına, kredi ayrı. Taksitleri kaçırma, icra olmasın"
+  ]
+ },
+ {
+  "id": "kumsaati-patron",
+  "konu": "genel",
+  "sorular": [
+   "patron kum saati kazanabilir mi",
+   "işletme sahibi kum saatini nasıl alır",
+   "yönetim görevi kum saatine sayılır mı",
+   "işletmeni yönet kum saati verir mi",
+   "kafe sahibiyim kum saati nasıl kazanırım",
+   "patronken günlük hedef nasıl tamamlanır",
+   "isletme sahibi kum saati",
+   "yönetim görevleriyle kum saati gelir mi",
+   "patron olunca kum saati gelmiyor mu",
+   "işletmeci günlük görev yapabilir mi",
+   "dükkan sahibi kum saati alır mı",
+   "patron günde kaç yönetim yapınca kum saati"
+  ],
+  "cevap": [
+   "Gelir, günde 3 kez işletmeni yönet de, günlük hedef tamam olur, 1 Kum Saati",
+   "Yönetim görevleri de görev sayılıyor. 3 tanesi hem ciroyu artırır hem Kum Saati verir",
+   "Patronun günde 3 yönetim hakkı var, üçünü de yaparsan Kum Saati gelir"
+  ]
+ },
+ {
+  "id": "kumsaati-maasli",
+  "konu": "genel",
+  "sorular": [
+   "memur kum saati kazanabilir mi",
+   "muhasebeci kum saati nasıl alır",
+   "görevsiz meslekte kum saati gelir mi",
+   "memurum günlük hedefi nasıl yaparım",
+   "maaşlı işte kum saati yok mu",
+   "memur olunca kum saati gelmiyor",
+   "muhasebeciyim görev yok kum saati ne olacak",
+   "memurken bedava kum saati",
+   "maasli meslek kum saati",
+   "işsizken kum saati kazanılır mı",
+   "görev yapamıyorum kum saati nasıl gelecek",
+   "memurlar günlük görev yapar mı"
+  ],
+  "cevap": [
+   "Memur ve muhasebecide görev olmadığı için günlük hedef dolmuyor, bedava Kum Saati gelmiyor. Mağazadan alınır sadece",
+   "Kum Saati görevle geliyor; maaşlı işte görev yok. Görevli bir meslekte günde 3 görev yapan kazanıyor",
+   "İşsizken de görev yok, Kum Saati yok. Emlak danışmanında görev var, o kazanabiliyor"
+  ]
+ },
+ {
+  "id": "kumsaati-ne-zaman-gelir",
+  "konu": "genel",
+  "sorular": [
+   "kum saati ne zaman geliyor",
+   "3. görevi yapınca hemen mi gelir",
+   "kum saati gün sonunda mı veriliyor",
+   "günde birden fazla kum saati alınır mı",
+   "günde kaç kum saati kazanılır",
+   "5 görev yapsam 2 kum saati gelir mi",
+   "kum saati ödülü anında mı",
+   "kum saati gunde en fazla kac",
+   "fazla görev yaparsam fazla kum saati olur mu",
+   "üçüncü görevden sonra kum saati gelmedi",
+   "günlük hedef ne zaman sıfırlanır",
+   "kum saati her görevde mi"
+  ],
+  "cevap": [
+   "Günün üçüncü görevini yaptığın anda 1 Kum Saati gelir. Günde en çok 1 tane",
+   "5 görev yapsan da günde 1 Kum Saati. Ertesi oyun günü, yani bir saat sonra hedef yenilenir",
+   "Anında geliyor, üçüncü görevde. Fazlası Kum Saati vermez, ama para verir"
+  ]
+ },
+ {
+  "id": "kumsaati-kurs-bitirme",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kum saatiyle kursu hemen bitirebilir miyim",
+   "kaç kum saati kursu tamamen bitirir",
+   "bütün kum saatlerimi kursa harcasam",
+   "kum saati kalan günden fazla harcanır mı",
+   "muhasebe kursunu kum saatiyle bitirmek",
+   "10 günlük kurs için kaç kum saati lazım",
+   "kum saatiyle kurs anında biter mi",
+   "kumsaati ile kurs bitirme",
+   "kalan gün kadar kum saati kullanınca",
+   "kum saati kursu ne kadar kısaltır",
+   "kursu beklemeden bitirmek istiyorum",
+   "kum saati ile hızlandır butonu ne yapıyor"
+  ],
+  "cevap": [
+   "Kalan gün kadar Kum Saati harcarsan kurs hemen biter. Her biri 1 gün kısaltıyor",
+   "Kalan günden fazlası harcanmıyor. Muhasebe kursu {kurs.muhasebe.gun} gün, bitirmek için o kadar lazım",
+   "Elinde ne kadar varsa o kadar gün kısalır, şu an {o.kumsaati} tane var"
   ]
  }
 ]
