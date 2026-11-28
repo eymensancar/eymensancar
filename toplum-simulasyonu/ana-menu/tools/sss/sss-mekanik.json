@@ -619,5 +619,373 @@
    "Başta kurs ve meslek, maaş büyüyünce mülk. Daire {daire}, o para hemen birikmiyor",
    "Ustalık belgesi {kurs.ustalik}, usta ayda {maas.usta} civarı yapıyor; kendini hemen çıkarır. Mülk sonra, peşinat {pesinat}"
   ]
+ },
+ {
+  "id": "taseron-kurulus",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "taşeron açmak kaç para",
+   "taşeron firması kurmak ne kadar tutar",
+   "taşeronun kuruluş maliyeti",
+   "taseron firmasi kac para",
+   "taşeron firması açmanın bedeli",
+   "taşeron kurmak için kaç milyon",
+   "taşeron şirketi ne kadara açılır",
+   "taşeron firmasının fiyatı",
+   "taşeronu krediyle açarsam ne kadar lazım",
+   "taşeron kuruluşu kaç",
+   "taseron acmak icin para ne kadar",
+   "taşeron firması pahalı mı"
+  ],
+  "cevap": [
+   "Taşeron kuruluşu {isl.tasaron.kurulus}, aylık sabit gideri {isl.tasaron.gider}",
+   "{isl.tasaron.kurulus} tutuyor. Krediyle açarsan cepten {isl.tasaron.pesin} yeter",
+   "Kafeden pahalı, {isl.tasaron.kurulus}. Üstüne 20 gün ustalık şart"
+  ]
+ },
+ {
+  "id": "emlak-ofisi-isletme",
+  "konu": "genel",
+  "sorular": [
+   "emlak ofisinin gideri ne kadar",
+   "emlak ofisi kaç çalışan ister",
+   "emlak ofisine kimler alınır",
+   "emlak ofisi ayda ne kazandırır",
+   "emlak ofisinin kadrosu",
+   "emlak ofisi aylik gideri",
+   "emlak ofisinde kim çalışır",
+   "emlak ofisi kâr eder mi",
+   "emlak ofisi kurmak ne kadar tutar",
+   "emlak ofisinin sabit masrafı",
+   "emlak ofisi karli mi",
+   "emlak ofisi için kaç eleman"
+  ],
+  "cevap": [
+   "Emlak ofisi kuruluşu {isl.emlak_ofisi.kurulus}, aylık gider {isl.emlak_ofisi.gider}, {isl.emlak_ofisi.kadro} kişilik kadro: emlak danışmanı ve muhasebeci",
+   "Günde 3 yönetimle ayda {isl.emlak_ofisi.kar} civarı kâr bırakıyor",
+   "{isl.emlak_ofisi.kadro} çalışan ister, emlak danışmanı ya da muhasebeci alırsın"
+  ]
+ },
+ {
+  "id": "doviz-burosu-isletme",
+  "konu": "genel",
+  "sorular": [
+   "döviz bürosunun gideri ne kadar",
+   "döviz bürosu kaç çalışan ister",
+   "döviz bürosuna kim alınır",
+   "döviz bürosu ayda ne kazandırır",
+   "döviz bürosunun kadrosu",
+   "doviz burosu aylik gider",
+   "döviz bürosu kâr eder mi",
+   "döviz bürosu kuruluşu kaç para",
+   "döviz bürosunda kim çalışır",
+   "döviz bürosu kârlı mı",
+   "döviz bürosunun sabit masrafı",
+   "döviz bürosu için kaç eleman"
+  ],
+  "cevap": [
+   "Döviz bürosu kuruluşu {isl.doviz_burosu.kurulus}, gideri ayda {isl.doviz_burosu.gider}, {isl.doviz_burosu.kadro} kişi ister; sadece muhasebeci alınıyor",
+   "Kâr tahmini ayda {isl.doviz_burosu.kar} civarı. Döviz alım satımı oyunda yok, işletme olarak çalışıyor",
+   "{isl.doviz_burosu.kadro} muhasebeci lazım, başka meslek alınmıyor"
+  ]
+ },
+ {
+  "id": "ithalat-isletme",
+  "konu": "genel",
+  "sorular": [
+   "ithalat ihracat firmasının gideri ne",
+   "ithalat firması kaç çalışan ister",
+   "ithalat ihracata kim alınır",
+   "ithalat ihracat ayda ne kazandırır",
+   "dış ticaret firmasının kadrosu",
+   "ithalat firmasi aylik gider",
+   "ithalat ihracat kâr eder mi",
+   "ithalat firması kuruluşu kaç para",
+   "ithalat ihracat firmasında kim çalışır",
+   "ithalat ihracat kârlı mı",
+   "tüccarın firması ne kadar masraf yapar",
+   "ithalat ihracat için kaç eleman"
+  ],
+  "cevap": [
+   "İthalat-ihracat kuruluşu {isl.ithalat_ihracat.kurulus}, gideri ayda {isl.ithalat_ihracat.gider}, {isl.ithalat_ihracat.kadro} kişilik kadro: muhasebeci ve market çalışanı",
+   "Ayda {isl.ithalat_ihracat.kar} civarı kâr tahmini var, ama mal maliyeti yüksek",
+   "{isl.ithalat_ihracat.kadro} kişi lazım, muhasebeci ya da market çalışanı alırsın"
+  ]
+ },
+ {
+  "id": "muteahhit-isletme",
+  "konu": "genel",
+  "sorular": [
+   "müteahhitlik firmasının gideri ne",
+   "müteahhit kaç çalışan ister",
+   "müteahhitlik firmasına kim alınır",
+   "müteahhit ayda ne kazanır",
+   "müteahhitlik firmasının kadrosu",
+   "muteahhit firmasi aylik gider",
+   "müteahhitlik kâr eder mi",
+   "müteahhitlik firması kuruluşu kaç",
+   "müteahhit firmasında kim çalışır",
+   "müteahhitlik kârlı mı",
+   "müteahhitin sabit masrafı",
+   "müteahhit için kaç eleman"
+  ],
+  "cevap": [
+   "Müteahhitlik firması kuruluşu {isl.muteahhit.kurulus}, gideri ayda {isl.muteahhit.gider}, {isl.muteahhit.kadro} kişilik kadro: inşaat işçisi, usta, muhasebeci",
+   "Kâr tahmini ayda {isl.muteahhit.kar} civarı. Bina yapma projeleri daha yok, işletme olarak çalışıyor",
+   "{isl.muteahhit.kadro} kişi ister, işçi, usta ve muhasebeci alınıyor"
+  ]
+ },
+ {
+  "id": "fabrika-isletme",
+  "konu": "genel",
+  "sorular": [
+   "fabrikanın gideri ne kadar",
+   "fabrika kaç işçi çalıştırır",
+   "fabrikaya kimler alınır",
+   "fabrika ayda ne kazandırır",
+   "fabrikanın kadrosu",
+   "fabrika aylik gideri",
+   "fabrika kâr eder mi",
+   "fabrika kuruluşu kaç para",
+   "fabrikada kim çalışır",
+   "fabrika kârlı mı",
+   "fabrikanın sabit masrafı ne",
+   "fabrika için kaç eleman lazım"
+  ],
+  "cevap": [
+   "Fabrika kuruluşu {isl.fabrika.kurulus}, gideri ayda {isl.fabrika.gider}, {isl.fabrika.kadro} kişilik kadro: işçi, usta, muhasebeci, market çalışanı",
+   "Kâr tahmini ayda {isl.fabrika.kar} civarı, oyunun en büyük işi",
+   "{isl.fabrika.kadro} kişi lazım, kadroyu doldurmak zor, boşlar geçici personelle döner"
+  ]
+ },
+ {
+  "id": "kafe-kar",
+  "konu": "genel",
+  "sorular": [
+   "kafe ayda ne kadar kâr eder",
+   "kafe açsam ayda kaç kazanırım",
+   "kafenin aylık kârı ne kadar",
+   "kafe kac ayda kendini oder",
+   "kafe işletmek kârlı mı",
+   "kafe sahibi ayda ne kazanıyor",
+   "kafeden aylık ne kalır",
+   "kafe kari ne kadar",
+   "kafe açan kaç para kazanır",
+   "kafe kurulusu kac ayda cikar",
+   "restoran ayda ne kadar kazandırır",
+   "kafe sahibinin geliri ne"
+  ],
+  "cevap": [
+   "Günde 3 yönetim yaparsan kafe ayda {isl.kafe.kar} civarı kâr bırakıyor, vergi sonrası",
+   "Kuruluş {isl.kafe.kurulus}, kâr ayda {isl.kafe.kar} kadar; yarım yıl gibi kendini çıkarır",
+   "Aynı türden çok kafe açılırsa müşteri bölünür, kâr düşer. Şu an ayda {isl.kafe.kar} civarı"
+  ]
+ },
+ {
+  "id": "dukkan-kar",
+  "konu": "genel",
+  "sorular": [
+   "dükkan ayda ne kadar kâr eder",
+   "dükkan açsam ayda kaç kazanırım",
+   "dükkanın aylık kârı ne kadar",
+   "dükkan işletmesi kaç ayda kendini öder",
+   "market işletmek kârlı mı",
+   "dükkan sahibi ayda ne kazanıyor",
+   "dükkandan aylık ne kalır",
+   "dukkan isletmesi ayda kac kar birakir",
+   "market sahibi kaç para kazanır",
+   "dükkan işletmesinin geliri",
+   "dükkan kârlı mı",
+   "market ayda ne kazandırır"
+  ],
+  "cevap": [
+   "Dükkan işletmesi günde 3 yönetimle ayda {isl.dukkan.kar} civarı kâr bırakıyor",
+   "Kuruluş {isl.dukkan.kurulus}, kâr ayda {isl.dukkan.kar} kadar; yarım yılda kendini çıkarır",
+   "Kafeden az kazanır ama daha ucuza açılır. Ayda {isl.dukkan.kar} civarı"
+  ]
+ },
+ {
+  "id": "buyuk-isletme-kar",
+  "konu": "genel",
+  "sorular": [
+   "4. kademe işletmeler ne kadar kazandırır",
+   "büyük işletmeler ayda kaç kâr eder",
+   "en çok kazandıran işletme hangisi",
+   "hangi işletme en kârlı",
+   "fabrika mı müteahhit mi daha çok kazanır",
+   "büyük patronlar ne kazanıyor",
+   "en karli isletme",
+   "işletmelerin kârları ne kadar",
+   "işletme kârları karşılaştırma",
+   "hangi işletmeyi açmak en çok para getirir",
+   "4. kademede en iyi işletme",
+   "büyük işletme kârı"
+  ],
+  "cevap": [
+   "Kabaca aylık kâr: dükkan {isl.dukkan.kar}, kafe {isl.kafe.kar}, taşeron {isl.tasaron.kar}, emlak ofisi {isl.emlak_ofisi.kar}, fabrika {isl.fabrika.kar}",
+   "Büyüdükçe kâr artıyor ama kuruluş da katlanıyor. Fabrika ayda {isl.fabrika.kar} civarı, kuruluşu {isl.fabrika.kurulus}",
+   "Küçükler yarım yılda, büyükler bir yıla yakın sürede kendini çıkarıyor. Mesele sermayeyi bulmak"
+  ]
+ },
+ {
+  "id": "isletme-sermaye-harcanir",
+  "konu": "genel",
+  "sorular": [
+   "işletme açınca sermaye harcanıyor mu",
+   "sermaye şartı param cebimde mi kalıyor",
+   "kafe açınca param gidiyor mu",
+   "işletme sermayesi geri gelir mi",
+   "sermaye şartı ile kuruluş parası aynı mı",
+   "isletme acinca para kesiliyor mu",
+   "sermaye gösterip geri alabilir miyim",
+   "işletmeyi kapatırsam kuruluş parası geri gelir mi",
+   "işletme kuruluş parası nereye gidiyor",
+   "sermaye şartı sadece göstermelik mi",
+   "işletme açarken ne kadar para çıkar",
+   "kafe kurunca nakit param düşer mi"
+  ],
+  "cevap": [
+   "Harcanıyor, sermaye şartı kuruluş parası demek. Kafe açınca {isl.kafe.kurulus} kesilir",
+   "Kuruluş parası geri gelmiyor, kapatırsan sadece işletmenin kasasındaki para sana geçer",
+   "Para gider, işletme gelir. Net servette işletme kuruluşunun yarısı kadar sayılıyor"
+  ]
+ },
+ {
+  "id": "isletme-kar-ne-zaman",
+  "konu": "genel",
+  "sorular": [
+   "işletme kârı bana ne zaman geçer",
+   "işletmenin parası benim hesabıma geliyor mu",
+   "kâr ay sonunda mı yatıyor",
+   "işletme kasası nedir",
+   "işletmeden para nasıl çekerim",
+   "isletme kari ne zaman gelir",
+   "işletme kârı gelirime sayılır mı",
+   "işletme kârından gelir vergisi kesilir mi",
+   "işletmenin kazancı nereye gidiyor",
+   "patron parayı ne zaman alıyor",
+   "işletme kârı kredi limitimi artırır mı",
+   "işletmenin parası kasada mı kalıyor"
+  ],
+  "cevap": [
+   "Ay sonunda giderler ve %25 kurumlar vergisi düşülür, kasada bir aylık gider kadar kalır, fazlası senin hesabına geçer",
+   "Kâr ay sonu kendiliğinden geliyor, elle çekilmiyor. Geçen ayki gelirine de sayılıyor, kredi limitin büyüyor",
+   "İşletme kârından gelir vergisi yok, kurumlar vergisi kesiliyor. Kalanı ay sonunda senin"
+  ]
+ },
+ {
+  "id": "isletme-batar-mi",
+  "konu": "dert",
+  "sorular": [
+   "işletme batar mı",
+   "işletmem neden kapandı",
+   "işletme kapandı giderler ödenemedi diyor",
+   "kafem iflas eder mi",
+   "işletme ne zaman kapanır",
+   "isletme batarsa ne olur",
+   "dükkanım kapandı ne oldu",
+   "işletme zarar edince kapanıyor mu",
+   "işletmenin giderlerini ödeyemezsem",
+   "işletme kapanınca ne kaybederim",
+   "batan işletmeden ne kalır",
+   "işletmem iflas etti"
+  ],
+  "cevap": [
+   "Ay sonunda gider ve maaşlar ne kasadan ne senin cebinden ödenemezse işletme kapanıyor",
+   "Kasa yetmezse önce senin nakdinden ödeniyor; o da bitince işletme kapanır, çalışanlar işsiz kalır",
+   "Kapanınca kuruluş parası gider, mesleğin de boşalır. Bir işe girip yeniden toplanırsın"
+  ]
+ },
+ {
+  "id": "isletme-net-servet",
+  "konu": "genel",
+  "sorular": [
+   "işletme net servete nasıl sayılır",
+   "işletmem servetimde görünüyor mu",
+   "kafe kurunca servetim düştü neden",
+   "işletmenin değeri ne kadar sayılıyor",
+   "isletme net servet hesabi",
+   "işletme açınca net servet azalır mı",
+   "işletme sıralamada sayılıyor mu",
+   "işletmemin değeri nedir",
+   "servet hesabında işletme",
+   "kuruluş parası servetten düşer mi",
+   "işletme mi mülk mü servette çok sayılır",
+   "net servetim işletmeyle neden azaldı"
+  ],
+  "cevap": [
+   "İşletme servete kuruluşunun yarısı kadar artı kasası kadar sayılıyor. O yüzden açınca servet biraz düşer, kârla toparlanır",
+   "Mülk servete tam değeriyle, işletme kuruluşun yarısıyla sayılır",
+   "Kafe açınca servetin kuruluşun yarısı kadar düşer, ama kâr ayda {isl.kafe.kar} civarı; birkaç ayda kapanır"
+  ]
+ },
+ {
+  "id": "nakliyeci-mi-kafe-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nakliyeci mi olayım kafe mi açayım",
+   "kafe mi nakliyecilik mi",
+   "nakliyecilik mi işletme mi",
+   "araç mı alayım kafe mi açayım",
+   "nakliyeci mi kafe sahibi mi kazancli",
+   "nakliyeci mi dukkan mi",
+   "3. kademede hangisi iyi",
+   "nakliyecilik kafeden iyi mi",
+   "kafe mi nakliye mi",
+   "nakliyeci olsam mı dükkan açsam mı",
+   "3. kademede en çok kazandıran",
+   "kafe sahibi nakliyeciden çok mu kazanır"
+  ],
+  "cevap": [
+   "Nakliyeci {nakliyeci.sermaye} ile ayda {maas.nakliyeci} yapar ama her gün 2 sefer ister. Kafe {isl.kafe.kurulus} ile ayda {isl.kafe.kar} civarı, kadro gerekir",
+   "Az giriyorsan kafe, yönetimi günde 3 basış. Nakliyecide girmezsen para yok",
+   "Dükkan en ucuzu, {isl.dukkan.kurulus}, kâr {isl.dukkan.kar}. Nakliyeci tek kişilik iş, eleman derdi yok"
+  ]
+ },
+ {
+  "id": "isletme-mi-mulk-mu",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "önce ev mi alayım işletme mi",
+   "işletme mi açayım mülk mü alayım",
+   "paramı işletmeye mi yatırayım daireye mi",
+   "kafe mi açsam daire mi alsam",
+   "mülk mü işletme mi daha kârlı",
+   "isletme mi mulk mu",
+   "kira mı işletme kârı mı",
+   "daire alıp kira mı toplasam dükkan mı açsam",
+   "yatırım olarak işletme mi mülk mü",
+   "işletme mi ev mi",
+   "önce işletme mi kurayım ev mi alayım",
+   "mülk almak mı işletme açmak mı mantıklı"
+  ],
+  "cevap": [
+   "İşletme çok daha çok getiriyor: kafe ayda {isl.kafe.kar}, daire kirası {daire.kira}. Ama işletme emek ve kadro ister, mülk kendi kendine",
+   "Kirada oturuyorsan önce daire al taşın, {evkira} kiradan kurtul. Sonra işletme",
+   "Mülk güvenli, değeri artıyor; kafe gibi bir işletme hızlı büyütür ama gider ödenemezse kapanır"
+  ]
+ },
+ {
+  "id": "dukkan-mulku-mu-isletmesi-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "dükkan mülkü mü alayım dükkan işletmesi mi açayım",
+   "dükkan alıp kiraya vermek mi işletmek mi",
+   "dükkan kirası mı market kârı mı",
+   "mülk olarak dükkan mı işletme olarak dükkan mı",
+   "dukkan mulku mu isletme mi",
+   "dükkanı kiraya mı vereyim işletme mi açayım",
+   "kira getiren dükkan mı market mi",
+   "dükkan mülkü ile dükkan işletmesi farkı",
+   "dükkan almak mı dükkan açmak mı",
+   "dükkan işletmesi mi dükkan kirası mı kazandırır",
+   "market açmak mı dükkan alıp kiraya vermek mi",
+   "dükkanı işletsem mi kiralasam mı"
+  ],
+  "cevap": [
+   "İkisi ayrı şey. Dükkan mülkü {dukkan}, ayda {dukkan.kira} kira. Dükkan işletmesi {isl.dukkan.kurulus}, ayda {isl.dukkan.kar} civarı kâr ama 60 gün deneyim ve kadro ister",
+   "İşletme kat kat fazla kazandırıyor, mülk ise uğraşsız. Kira istiyorsan mülk, büyümek istiyorsan işletme",
+   "İşletme açmak için dükkan mülkü almana gerek yok, Kariyer'den açılıyor"
+  ]
  }
 ]

@@ -803,8 +803,8 @@
    "taşeron için önce usta olmak mı lazım"
   ],
   "cevap": [
-   "Taşeron için sermaye ve 20 gün ustalık gerekiyor, sermaye 1,2 milyon civarı",
-   "Evet, önce usta olup 20 gün çalışacaksın, sonra 1,2 milyon kadar sermaye",
+   "Taşeron için sermaye ve 20 gün ustalık gerekiyor, sermaye {isl.tasaron.kurulus} civarı",
+   "Evet, önce usta olup 20 gün çalışacaksın, sonra {isl.tasaron.kurulus} kadar sermaye",
    "Başka iş deneyimi sayılmıyor, 20 gün ustalık şart"
   ]
  },
@@ -829,8 +829,8 @@
    "taşeron firmasına kaç kişi lazım"
   ],
   "cevap": [
-   "Taşeron 4 kişilik kadro ister, işçi, usta ya da muhasebeci alırsın; sabit gideri ayda 50 bin civarı",
-   "Kadro 4 kişi, gider aylık 50 bin kadar; kârı ciroya ve çalışana bağlı",
+   "Taşeron {isl.tasaron.kadro} kişilik kadro ister, işçi, usta ya da muhasebeci alırsın; sabit gideri ayda {isl.tasaron.gider}",
+   "Kadro {isl.tasaron.kadro} kişi, gider aylık {isl.tasaron.gider}; günde 3 yönetimle ayda {isl.tasaron.kar} civarı kâr",
    "Ciro yüksek ama malzeme payı da yüksek, 4 çalışanı doldurmazsan geçici personel pahalıya gelir"
   ]
  },
@@ -855,8 +855,8 @@
    "emlak ofisi 4. kademe mi"
   ],
   "cevap": [
-   "Emlak ofisi 4. kademe: 3 milyon civarı sermaye ve 60 gün emlak danışmanlığı ister",
-   "Önce emlak danışmanı olup 60 gün çalışacaksın, sonra 3 milyon kadar sermaye",
+   "Emlak ofisi 4. kademe: {isl.emlak_ofisi.kurulus} civarı sermaye ve 60 gün emlak danışmanlığı ister",
+   "Önce emlak danışmanı olup 60 gün çalışacaksın, sonra {isl.emlak_ofisi.kurulus} kadar sermaye",
    "Büyük iş, milyonlar istiyor; danışmanlık deneyimi de şart"
   ]
  },
@@ -882,9 +882,9 @@
    "döviz bürosu kurmak istiyom"
   ],
   "cevap": [
-   "Döviz bürosu 4. kademe: 6 milyon civarı sermaye, döviz bürosu lisansı ve 120 gün deneyim",
-   "Lisans kursu {kurs.doviz}, {kurs.doviz.gun} gün sürüyor; üstüne 6 milyon ve 120 gün",
-   "6 milyon sermaye istiyor, önce küçük işlerle biriktirmen lazım"
+   "Döviz bürosu 4. kademe: {isl.doviz_burosu.kurulus} civarı sermaye, döviz bürosu lisansı ve 120 gün deneyim",
+   "Lisans kursu {kurs.doviz}, {kurs.doviz.gun} gün sürüyor; üstüne {isl.doviz_burosu.kurulus} ve 120 gün",
+   "{isl.doviz_burosu.kurulus} sermaye istiyor, önce küçük işlerle biriktirmen lazım"
   ]
  },
  {
@@ -908,8 +908,8 @@
    "dış ticaret firmasının sermayesi"
   ],
   "cevap": [
-   "İthalat-ihracat 4. kademe: 6 milyon civarı sermaye, dış ticaret kursu ve 120 gün deneyim",
-   "Dış ticaret kursu {kurs.dis}, {kurs.dis.gun} gün; sermaye 6 milyon kadar",
+   "İthalat-ihracat 4. kademe: {isl.ithalat_ihracat.kurulus} civarı sermaye, dış ticaret kursu ve 120 gün deneyim",
+   "Dış ticaret kursu {kurs.dis}, {kurs.dis.gun} gün; sermaye {isl.ithalat_ihracat.kurulus} kadar",
    "Büyük oyun bu, 120 gün deneyim ve milyonlar istiyor"
   ]
  },
@@ -940,8 +940,8 @@
    "müteahhitlik kaçıncı kademe"
   ],
   "cevap": [
-   "Müteahhit 4. kademe: 12 milyon civarı sermaye, müteahhitlik belgesi, 700 kredi notu ve 180 gün deneyim",
-   "Belge kursu {kurs.muteahhit}, {kurs.muteahhit.gun} gün; üstüne 12 milyon ve 180 gün",
+   "Müteahhit 4. kademe: {isl.muteahhit.kurulus} civarı sermaye, müteahhitlik belgesi, 700 kredi notu ve 180 gün deneyim",
+   "Belge kursu {kurs.muteahhit}, {kurs.muteahhit.gun} gün; üstüne {isl.muteahhit.kurulus} ve 180 gün",
    "En zor meslek bu, kredi notun da en az 700 olmalı"
   ]
  },
@@ -971,8 +971,8 @@
    "3 milyonla fabrika kurulur mu"
   ],
   "cevap": [
-   "Fabrikatör için 30 milyon civarı sermaye, 650 kredi notu ve 180 gün deneyim gerekiyor",
-   "Kurs istemiyor ama 30 milyon kadar sermaye ve 180 gün deneyim şart",
+   "Fabrikatör için {isl.fabrika.kurulus} civarı sermaye, 650 kredi notu ve 180 gün deneyim gerekiyor",
+   "Kurs istemiyor ama {isl.fabrika.kurulus} kadar sermaye ve 180 gün deneyim şart",
    "En tepedeki iş, fabrika 15 kişilik kadro istiyor"
   ]
  },
@@ -2380,7 +2380,7 @@
   ],
   "cevap": [
    "İşletmede çalışan ayda 20 görevi yaparsa maaşı tam yatar",
-   "Ayda 20 görevin altında kalırsan maaşın eksik yatar",
+   "Ayda 20 görevin altında kalırsan maaş eksik, oranla yatar; 10 görevde yarısı",
    "Ayda 20 görev, günde 1 bile yetiyor aslında"
   ]
  },
@@ -2910,7 +2910,7 @@
    "dükkan kafeden ucuz mu"
   ],
   "cevap": [
-   "Dükkan daha ucuz ve 2 kişiyle döner, kafe daha pahalı ama cirosu biraz yüksek",
+   "Dükkan {isl.dukkan.kurulus}, ayda {isl.dukkan.kar} civarı kâr; kafe {isl.kafe.kurulus}, ayda {isl.kafe.kar}. Kafe daha çok kazanır ama 3 kişilik kadro ister",
    "Paran azsa dükkan, kadro bulabiliyorsan kafe",
    "Dükkan daha ucuz; yakınında aynı türden çok işletme varsa müşteri bölünür, ona da bak"
   ]
@@ -3000,7 +3000,7 @@
   ],
   "cevap": [
    "İşletmeni yönet her gün o günkü ciroyu artırıyor",
-   "Patronun günde 3 yönetim görevi var, yaparsan ciro yükselir",
+   "Patronun günde 3 yönetim görevi var, her biri o günkü ciroyu %3 artırıyor",
    "Yönetim görevleri de günlük hedefe sayılıyor, Kum Saati için"
   ]
  },
@@ -3068,7 +3068,7 @@
   ],
   "cevap": [
    "Eksik çalışanın yerine geçici personel çalışır, pahalı ve verimsiz",
-   "Geçici personel asgarinin üstüne yüzde 20 fazla tutar, verimi de düşük",
+   "Geçici personel ayda {gecici.maas} tutar, asgarinin %20 fazlası; verimi de %80",
    "İşletme durmaz ama kâr düşer, gerçek eleman al"
   ]
  },
@@ -3343,7 +3343,7 @@
   ],
   "cevap": [
    "Kâr = ciro eksi mal, sabit gider ve maaşlar; kadro doluysa iyi kazandırır",
-   "Kafe ve dükkan dolu kadroyla maaşlı işlerden fazla getiriyor",
+   "Günde 3 yönetimle kafe ayda {isl.kafe.kar}, dükkan {isl.dukkan.kar} civarı kâr bırakıyor",
    "Rakip çoksa müşteri bölünüyor, kâr düşebilir"
   ]
  },
