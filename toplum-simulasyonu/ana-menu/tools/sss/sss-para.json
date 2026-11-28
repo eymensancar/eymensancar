@@ -2884,8 +2884,8 @@
    "itibar azaldı"
   ],
   "cevap": [
-   "Ay sonu ödemeyi yapamazsan itibar düşer",
-   "Patronsan işçinin maaşını ödeyemezsen itibar sert düşer",
+   "Ay sonu ödemeyi yapamazsan itibar 2 düşer",
+   "Patronsan işçinin maaşını ödeyemezsen her biri için itibar 5 düşer",
    "Borç ve ödenmeyen maaş itibarı yer"
   ]
  },
@@ -3696,7 +3696,7 @@
   "cevap": [
    "Günlük 3 görev yapınca 1 Kum Saati bedava geliyor",
    "Mesleğinin görevlerini yap, kazanırsın, 3 görevde Kum Saati",
-   "Görev yap düğmesi Özet ekranında, günün üçüncü görevinde Kum Saati gelir"
+   "Görev yap düğmesi Özet ekranında, günde 3 görev yapınca Kum Saati gelir"
   ]
  },
  {

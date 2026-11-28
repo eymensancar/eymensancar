@@ -1167,9 +1167,9 @@
    "kum saati her görevde mi"
   ],
   "cevap": [
-   "Günün üçüncü görevini yaptığın anda 1 Kum Saati gelir. Günde en çok 1 tane",
+   "Günde 3 görevi tamamladığın anda 1 Kum Saati gelir. Günde en çok 1 tane",
    "5 görev yapsan da günde 1 Kum Saati. Ertesi oyun günü, yani bir saat sonra hedef yenilenir",
-   "Anında geliyor, üçüncü görevde. Fazlası Kum Saati vermez, ama para verir"
+   "Anında geliyor, 3 görev tamamlanınca. Fazlası Kum Saati vermez, ama para verir"
   ]
  },
  {
@@ -1193,6 +1193,98 @@
    "Kalan gün kadar Kum Saati harcarsan kurs hemen biter. Her biri 1 gün kısaltıyor",
    "Kalan günden fazlası harcanmıyor. Muhasebe kursu {kurs.muhasebe.gun} gün, bitirmek için o kadar lazım",
    "Elinde ne kadar varsa o kadar gün kısalır, şu an {o.kumsaati} tane var"
+  ]
+ },
+ {
+  "id": "itibar-puan",
+  "konu": "genel",
+  "sorular": [
+   "itibar ayda kaç artıyor",
+   "itibar kaç puan düşer",
+   "maaş ödeyemezsem itibar ne kadar gider",
+   "itibar puanı nasıl değişiyor",
+   "ay sonunu düzgün kapatınca itibar kaç artar",
+   "borç birikince itibar kaç düşer",
+   "itibar artis azalis miktari",
+   "işçinin maaşını ödemezsem kaç itibar kaybederim",
+   "itibar her ay artar mı",
+   "itibar düşüşü kaç puan",
+   "itibarım kendiliğinden yükselir mi",
+   "itibar kac puan artiyo"
+  ],
+  "cevap": [
+   "Ay sonu borçsuz ve taksit kaçırmadan kapanırsa itibar 1 artar. Ödeyemezsen 2 düşer, ödenmeyen her çalışan maaşı için 5 düşer",
+   "Bağışta 10 bine 1. Kendiliğinden her temiz ayda +1, gecikmede -2, işçinin maaşını ödeyemezsen -5",
+   "Yavaş çıkar hızlı düşer. Şu an itibarın {o.itibar}"
+  ]
+ },
+ {
+  "id": "itibarim",
+  "konu": "kisisel_meslek",
+  "sorular": [
+   "itibarım kaç",
+   "benim itibarım ne kadar",
+   "itibarımı söyler misin",
+   "itibarım nerede yazıyor",
+   "itibarim kac",
+   "kaç itibarım var",
+   "bende ne kadar itibar var",
+   "itibarım yüksek mi",
+   "itibarım iyi mi",
+   "şu an itibarım ne",
+   "itibarımı nerede görürüm",
+   "itibar sayim kac"
+  ],
+  "cevap": [
+   "Şu an itibarın {o.itibar}. Profil ekranında da yazıyor",
+   "{o.itibar} itibarın var. Bağışla ve temiz ay sonlarıyla artar",
+   "Profil'de yazıyor, şu an {o.itibar}"
+  ]
+ },
+ {
+  "id": "bagis-hesap",
+  "konu": "genel",
+  "sorular": [
+   "100 bin bağışlarsam kaç itibar alırım",
+   "bayramda 50 bin bağışlasam kaç itibar",
+   "küçük küçük bağış yapsam itibar gelir mi",
+   "15 bin bağışa kaç itibar",
+   "bağışı bölerek yapsam olur mu",
+   "5 binlik iki bağış itibar verir mi",
+   "bagis kac itibar eder hesap",
+   "1 milyon bağış kaç itibar",
+   "bağış küsuratı sayılıyor mu",
+   "bayramda 100 bin bağış",
+   "bağışı tek seferde mi yapayım",
+   "az az bağış mı toplu bağış mı"
+  ],
+  "cevap": [
+   "Her bağış ayrı hesaplanıyor: 10 bine 1, küsurat sayılmıyor. 100 bin 10 itibar, bayramda 20",
+   "15 bin bağışlarsan 1 itibar, 5 binlik iki bağış hiç vermez. Toplu yap",
+   "Bayramda katı 2: 50 bin bağış normalde 5, bayramda 10 itibar"
+  ]
+ },
+ {
+  "id": "bagis-mi-yatirim-mi",
+  "konu": "genel",
+  "sorular": [
+   "bağış mı yapayım mülk mü alayım",
+   "bağış yapmak mantıklı mı",
+   "bağış servetimi düşürür mü",
+   "bağış mı yatırım mı",
+   "para bağışlamaya değer mi",
+   "bağış yapınca net servet azalır mı",
+   "bagis mi yatirim mi",
+   "zengin olmak için bağış yapmalı mıyım",
+   "bağışın getirisi ne",
+   "bağış para kaybettirir mi",
+   "bağış mı biriktirmek mi",
+   "bağış yapmak sıralamayı etkiler mi"
+  ],
+  "cevap": [
+   "Bağış servetten düşer, sıralamada geri gidersin. Karşılığında itibar alırsın; kredi notuna ve iş başvurusuna yarıyor",
+   "Önce mülk ve işletmeyle büyü, para artınca bağış yap. Bayramı bekle, 2 kat itibar",
+   "Kazanç için değil itibar için. Daire ayda {daire.kira} getirir, bağış getirmez"
   ]
  }
 ]
