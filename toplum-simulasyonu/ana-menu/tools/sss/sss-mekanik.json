@@ -987,5 +987,120 @@
    "İşletme kat kat fazla kazandırıyor, mülk ise uğraşsız. Kira istiyorsan mülk, büyümek istiyorsan işletme",
    "İşletme açmak için dükkan mülkü almana gerek yok, Kariyer'den açılıyor"
   ]
+ },
+ {
+  "id": "sadece-dairede-oturulur",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "dükkanda oturabilir miyim",
+   "arsada oturulur mu",
+   "dükkana taşınabilir miyim",
+   "arsada yaşanır mı",
+   "sadece dairede mi oturuluyor",
+   "dukkanda yasanir mi",
+   "arsaya ev yapıp oturabilir miyim",
+   "dükkan alıp içinde yaşasam",
+   "hangi mülkte oturabilirim",
+   "dükkanı ev yapabilir miyim",
+   "arsada çadır kurup otursam",
+   "sadece dairede oturabilirsin diyor"
+  ],
+  "cevap": [
+   "Sadece dairede oturulabiliyor. Dükkan ve arsaya taşınamazsın, kiradan kurtulmak için daire lazım",
+   "Dükkanda, arsada oturma yok. Daire al, Mülk ekranından taşın",
+   "Arsaya ev yapmak daha yok, inşaat gelecekmiş. Oturmak için daire şart"
+  ]
+ },
+ {
+  "id": "mulk-gider-ne-kadar",
+  "konu": "fiyat_sorusu",
+  "sorular": [
+   "dairenin aylık gideri ne kadar",
+   "ev sahibi olunca ayda ne ödüyorum",
+   "dairenin bakım ve vergisi kaç",
+   "mülk ayda kaç lira masraf çıkarır",
+   "dükkan mülkünün aylık masrafı",
+   "arsanın vergisi ne kadar",
+   "kira geliri masrafları karşılar mı",
+   "daireden net ne kalır",
+   "ev sahibinin masrafı ne",
+   "oturduğum evin gideri var mı",
+   "dukkan mulkunun net kirasi",
+   "mülkün emlak vergisi ayda kaç"
+  ],
+  "cevap": [
+   "Daire ayda {mulk.daire.gider} civarı bakım ve emlak vergisi çıkarıyor, kiradan net {mulk.daire.net} kalıyor",
+   "Dükkan mülkünün gideri ayda {mulk.dukkan.gider}, net kirası {mulk.dukkan.net}. Arsanın sadece vergisi var, {mulk.arsa.gider}",
+   "İçinde oturduğun evin de bakımı ve vergisi kesilir, ayda {mulk.daire.gider} kadar; ama {evkira} kira ödemezsin"
+  ]
+ },
+ {
+  "id": "oturdugum-evi-satma",
+  "konu": "mulk_satiyorum",
+  "sorular": [
+   "oturduğum evi satarsam ne olur",
+   "evimi satınca kira ödemeye başlar mıyım",
+   "içinde oturduğum daireyi satabilir miyim",
+   "tek evimi satarsam nerede otururum",
+   "evi satınca kiraya mı çıkarım",
+   "oturdugum evi satsam",
+   "ev sahibiyken evi satınca",
+   "evimi satarsam oda kirası öder miyim",
+   "yaşadığım daireyi satmak",
+   "evden çıkıp satmak istiyorum",
+   "evimi satıp kiraya geçsem",
+   "oturduğum ev satılırsa kira başlar mı"
+  ],
+  "cevap": [
+   "Satabilirsin, ama başka dairende oturmuyorsan her ay {evkira} oda kirası başlar",
+   "Oturduğun evi satınca kiracı olursun, ayda {evkira}. Satış da piyasanın %5 altına",
+   "Başka dairen varsa ona taşın, kira başlamasın"
+  ]
+ },
+ {
+  "id": "birden-fazla-daire-oturma",
+  "konu": "mulk_ariyorum",
+  "sorular": [
+   "iki dairem var ikisinde de oturabilir miyim",
+   "birden fazla evde oturulur mu",
+   "öbür dairemi kiraya verebilir miyim",
+   "iki evim var hangisinde oturayım",
+   "ikinci daire kira getirir mi",
+   "oturmadığım dairem kira getiriyor mu",
+   "iki daire alsam biri kira getirir mi",
+   "birden çok daire oturma",
+   "yeni daireye taşınınca eskisi ne olur",
+   "eski evim kiraya mı çıkıyor",
+   "iki ev sahibi olmak",
+   "bir evde oturup diğerini kiraya vermek"
+  ],
+  "cevap": [
+   "Aynı anda tek dairede oturursun. Oturmadığın daireler kendiliğinden kiraya gider, her biri ayda {daire.kira}",
+   "Yeni daireye taşınınca eskisi boşalır, kira getirmeye başlar",
+   "Biri ev, gerisi kira. Oturduğun daire kira getirmez"
+  ]
+ },
+ {
+  "id": "kredili-evi-satma",
+  "konu": "mulk_satiyorum",
+  "sorular": [
+   "kredili evi satabilir miyim",
+   "konut kredisi bitmeden ev satılır mı",
+   "kredisi süren daireyi satarsam borç ne olur",
+   "krediyle aldığım evi satınca kredi kapanır mı",
+   "ev kredisi varken satış",
+   "kredili mulk satilir mi",
+   "taksiti bitmemiş evi satmak",
+   "evi satsam konut kredisi devam eder mi",
+   "kredili daireyi satıp borcu kapatmak",
+   "satınca kredi kendiliğinden ödenir mi",
+   "borçlu evi satmak",
+   "ev satınca kalan kredi"
+  ],
+  "cevap": [
+   "Satılıyor ama kredi kendiliğinden kapanmıyor, taksit devam eder. Satış parasıyla Banka'dan tamamını öde",
+   "Evi satınca borç yerinde durur. İstersen Banka ekranından kalan borcu kapatırsın",
+   "Satış piyasanın %5 altına, kredi ayrı. Taksitleri kaçırma, icra olmasın"
+  ]
  }
 ]

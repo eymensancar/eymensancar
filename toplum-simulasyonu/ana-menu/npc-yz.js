@@ -1655,6 +1655,8 @@
     v['emlak.prim'] = sade(ix(pr('emlak_danismani').commission.amount)); v['emlak.maas'] = sade(ix(pr('emlak_danismani').monthlySalary));
     v['gecici.maas'] = sade(ix(C().MIN_WAGE) * C().NPC_STAFF_COST_MULTIPLIER);
     { const fD = T.propertyMarketPrice(world, 'daire'); v['konut.taksit'] = sade(taksit(Math.round(fD * C().MORTGAGE_MAX_LTV), C().MORTGAGE_TERM_MONTHS)); v['kredi.taksit'] = sade(taksit(100000, C().PERSONAL_LOAN_TERM_MONTHS)); }
+    // Mülkün aylık gideri (bakım + emlak vergisi) ve kira çıkınca kalan
+    for (const m of C().PROPERTY_TYPES) { const f = T.propertyMarketPrice(world, m.kind), gd = Math.round(f * m.monthlyUpkeepRate) + Math.round(f * world.policy.propertyTaxYearlyRate / 12); v['mulk.' + m.kind + '.gider'] = sade(gd); if (m.monthlyRentRate) v['mulk.' + m.kind + '.net'] = sade(Math.round(f * m.monthlyRentRate) - gd); }
     for (const b of C().BUSINESSES) { const s = ix(b.setupCost), k = Math.round(s * C().BUSINESS_LOAN_MAX_RATIO), p = 'isl.' + b.id + '.';
       v[p + 'kurulus'] = sade(s); v[p + 'gider'] = sade(ix(b.monthlyFixedCost)); v[p + 'kadro'] = String(b.staffNeeded); v[p + 'kredi'] = sade(k); v[p + 'pesin'] = sade(s - k); v[p + 'taksit'] = sade(taksit(k, C().BUSINESS_LOAN_TERM_MONTHS));
       const kar = T.estimateBusinessMonthlyProfit ? T.estimateBusinessMonthlyProfit(world, b.id) : 0; if (kar > 0) v[p + 'kar'] = sade(kar); }

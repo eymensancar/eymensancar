@@ -46,6 +46,7 @@ NPC'ler oyuncunun sorularına cevap verirken bu bankada arama yapar. Oyuncunun m
 - **İşletmeler:** `{kafe.kurulus}` `{kafe.gider}` `{dukkan.kurulus}` `{dukkan.gider}` `{nakliyeci.sermaye}` `{kafe.sermaye}` `{dukkan.sermaye}`
 - **Görev başı:** `{gorev.garson}` `{gorev.insaat}` `{gorev.kasiyer}` `{gorev.usta}` `{gorev.nakliyeci}` (kurye `{gorev.kurye}`)
 - **Zam ve prim:** `{memur.baslangic}` `{memur.zam}` `{memur.zamgun}` `{memur.tavan}` (aynısı `muhasebeci.`) `{emlak.maas}` `{emlak.prim}` `{gecici.maas}` (geçici NPC personelin aylık maliyeti)
+- **Mülk gideri:** `{mulk.daire.gider}` `{mulk.dukkan.gider}` `{mulk.arsa.gider}` (aylık bakım + emlak vergisi) `{mulk.daire.net}` `{mulk.dukkan.net}` (kira eksi bu gider)
 - **Taksitler:** `{konut.taksit}` (daire için konut kredisi aylık taksiti) `{kredi.taksit}` (100 bin TL ihtiyaç kredisinin aylık taksiti)
 - **Bütün işletmeler:** `{isl.ID.kurulus}` `{isl.ID.gider}` `{isl.ID.kadro}` `{isl.ID.kredi}` (en çok işletme kredisi) `{isl.ID.pesin}` (krediyle açarken cepten) `{isl.ID.taksit}` `{isl.ID.kar}` (kadro geçici personelle, günde 3 yönetimle aylık vergi sonrası kâr tahmini; gerçek çalışanla biraz daha fazla; zarar tahmininde boş kalır, o cevap atlanır). ID: `dukkan kafe tasaron emlak_ofisi doviz_burosu ithalat_ihracat muteahhit fabrika`
 - **Ekonomi:** `{enflasyon}` (yıllık) `{faiz}` (aylık kredi faizi) `{faiz.yillik}`

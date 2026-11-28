@@ -678,7 +678,7 @@
    "dükkan bakım ücreti"
   ],
   "cevap": [
-   "Daire ve dükkanın çok küçük bir aylık bakım gideri var, kira bunu rahat karşılıyor",
+   "Daire ayda {mulk.daire.gider} civarı bakım ve emlak vergisi çıkarıyor, kira bunu rahat karşılıyor",
    "Az bir bakım masrafı kesiliyor, arsanın yok",
    "Bakım gideri var ama ufak, kiranın yanında devede kulak"
   ]
@@ -803,11 +803,21 @@
    "mülk yatırımının getirisi",
    "dükkanın yıllık getirisi",
    "yıllık kira getirisi yüzde kaç",
-   "kira getirisi düşük mü"
+   "kira getirisi düşük mü",
+   "daire kendini kaç yılda öder",
+   "mülk kaç ayda amorti olur",
+   "kira ile ev parası kaç yılda çıkar",
+   "dükkan kendini ne zaman öder",
+   "daire almak kaç ayda geri döner",
+   "ev parasını kiradan ne zaman çıkarırım",
+   "daire mi dukkan mi daha cabuk amorti",
+   "mülk geri dönüş süresi",
+   "yatırımın geri dönüşü ne kadar mülkte",
+   "kirayla daireyi kaç senede kurtarırım"
   ],
   "cevap": [
    "Daire ayda fiyatının yüzde yarımı kadar kira getiriyor, dükkan biraz daha fazla",
-   "Daire {daire}, kirası {daire.kira}, hesabını sen yap uzun sürüyor",
+   "Daire değerinin ayda %0,5'ini kira getiriyor, yani kiradan kendini 200 ayda, kabaca 17 oyun yılında çıkarır. Değeri de enflasyonla artıyor",
    "Yılda yüzde 6-7 civarı kira, artı değer artışı"
   ]
  },
@@ -3766,9 +3776,6 @@
    "oturdugum ev kira getirmiyor",
    "iki evim var birinde oturuyorum kira",
    "kendi evim kira kazandırmıyor neden",
-   "dükkanda oturulur mu",
-   "dükkana taşınabilir miyim",
-   "arsada oturulur mu",
    "içinde oturursam kira geliri gider mi",
    "taşınınca o evin kira geliri kesilir mi",
    "eve taşınırsam kira gelirini kaybeder miyim"
