@@ -228,5 +228,396 @@
    "Kâr taksitten fazlaysa çek. Kafede kâr {isl.kafe.kar}, taksit {isl.kafe.taksit} civarı. Ama kâr düşerse taksit yine kesilir",
    "Bence %30'u biriktirip krediyle aç, beklemekten iyi. Yalnız 3 taksit kaçarsa icra var, dikkat"
   ]
+ },
+ {
+  "id": "garson-gorev-ucreti",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "garson görev başı kaç para",
+   "garsonluk bir görev ne kadar kazandırıyor",
+   "garsonda görev ücreti ne",
+   "garson her görevde kaç lira alıyor",
+   "garson gorev basi ne kadar",
+   "garson bir siparişten kaç kazanır",
+   "garsonun görev parası kaç tl",
+   "kafede çalışanın görev ücreti",
+   "garsonluk görev başına ne veriyor",
+   "garson günde kaç görev yapar ne kazanır",
+   "garsonlukta bir iş kaç para",
+   "garson görev ücreti düşük mü"
+  ],
+  "cevap": [
+   "Garsonda görev başı {gorev.garson}, günde en çok 5 görev. Ayda {maas.garson} civarı eder",
+   "Görev başı {gorev.garson}. Kuryeden az, kuryede {gorev.kurye}",
+   "Bir oyuncunun kafesinde çalışıyorsan patronun maaşı geçer, kendi başına çalışırsan görev başı {gorev.garson}"
+  ]
+ },
+ {
+  "id": "insaat-gorev-ucreti",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "inşaat işçisi görev başı kaç para",
+   "inşaatta bir görev ne kadar",
+   "işçinin görev ücreti ne",
+   "insaat iscisi gorev ucreti",
+   "inşaat işçiliğinde iş başı kaç lira",
+   "şantiyede bir görev kaç tl",
+   "inşaat görev parası ne kadar",
+   "işçi her görevde ne alıyor",
+   "inşaatçı görev başına ne kazanır",
+   "inşaat işi bir görev kaç",
+   "inşaat işçisi günde kaç görev yapıyor",
+   "inşaatta görev başı kazanç"
+  ],
+  "cevap": [
+   "İnşaat işçisinde görev başı {gorev.insaat}, günde 5 görev var",
+   "Görev başı {gorev.insaat}, ayda {maas.insaat} civarı. Asıl getirisi ustalığa yol açması",
+   "{gorev.insaat} görev başı, garsondan biraz fazla, kuryeden az"
+  ]
+ },
+ {
+  "id": "usta-gorev-ucreti",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "usta görev başı kaç para",
+   "usta bir işten ne kadar alıyor",
+   "ustanın iş başı ücreti ne",
+   "usta gorev basi kac tl",
+   "elektrikçi bir iş kaç lira",
+   "tesisatçı görev başına ne kazanır",
+   "usta günde kaç iş yapıyor",
+   "ustalıkta bir görev ne kadar",
+   "usta iş başı kaç bin",
+   "ustanın görev parası",
+   "usta görevi neden günde 2",
+   "usta tek işten kaç kazanıyor"
+  ],
+  "cevap": [
+   "Usta iş başı {gorev.usta} alıyor ama günde 2 iş var. Ayda {maas.usta} civarı",
+   "Görev başı {gorev.usta}, şartsız işlerin kat kat üstü. Günde 2 görevi kaçırma",
+   "Günde 2 iş, her biri {gorev.usta}. Düzenli girersen iyi para"
+  ]
+ },
+ {
+  "id": "nakliyeci-sefer-ucreti",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "nakliyeci sefer başı kaç para",
+   "taksici bir seferden ne kazanır",
+   "nakliyecinin görev ücreti",
+   "nakliyeci gorev basi ne kadar",
+   "taksicilik sefer başına kaç lira",
+   "nakliye bir sefer kaç tl",
+   "nakliyeci günde kaç sefer yapıyor",
+   "taksi bir görev ne kadar",
+   "nakliyeci tek seferde ne alır",
+   "sefer ücreti ne kadar nakliyede",
+   "taksici görev başı",
+   "nakliyeci bir iş kaç bin"
+  ],
+  "cevap": [
+   "Sefer başı {gorev.nakliyeci}, günde 2 sefer. Araç bakımı çıkınca ayda {maas.nakliyeci} civarı",
+   "Bir sefer {gorev.nakliyeci}, günde en çok 2 tane",
+   "Sefer başına {gorev.nakliyeci}, ustadan biraz fazla ama araç parası istiyor"
+  ]
+ },
+ {
+  "id": "kasiyer-gorev-ucreti",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "kasiyer görev başı kaç para",
+   "kasiyerin görev ücreti ne",
+   "market çalışanı görevden ne kazanır",
+   "kasiyer gorev yapinca ne kadar alir",
+   "kasiyerin maaşı ne görev parası ne",
+   "markette görev başı kaç tl",
+   "kasiyer görev yapmazsa maaş alır mı",
+   "mağaza çalışanının görev parası",
+   "kasiyerlikte görev ne kadar eder",
+   "kasiyer maaşının üstüne ne geliyor",
+   "market calisani gorev ucreti",
+   "kasiyerin sabit maaşı var mı"
+  ],
+  "cevap": [
+   "Kasiyer asgari ücret kadar maaş alır, üstüne görev başı {gorev.kasiyer}. Ortalama {maas.kasiyer}",
+   "Maaş {asgari} civarı sabit, görev başı sadece {gorev.kasiyer} ek",
+   "Görev parası küçük, {gorev.kasiyer}. Asıl kazanç maaş"
+  ]
+ },
+ {
+  "id": "memur-maas-tavan",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "memur maaşı en fazla kaç olur",
+   "memurun maaş tavanı ne",
+   "memur zamla nereye kadar çıkar",
+   "memur kac zamda tavana gelir",
+   "memur maaşı ne kadar artıyor",
+   "memura her zamda ne kadar ekleniyor",
+   "memur maaşı kaçtan başlayıp kaça çıkar",
+   "memur kıdem zammı ne kadar",
+   "memur maaşının sınırı var mı",
+   "memur maasi en cok kac",
+   "memur kaç günde tavan maaşa ulaşır",
+   "memurluk uzun vadede ne kazandırır"
+  ],
+  "cevap": [
+   "Memur {memur.baslangic} ile başlar, her {memur.zamgun} günde {memur.zam} zam alır, tavan {memur.tavan}",
+   "Kıdemle {memur.tavan} civarına kadar çıkıyor. Meslek değiştirirsen kıdem baştan başlar",
+   "Her {memur.zamgun} günde {memur.zam}. Tavana gelmesi uzun sürüyor ama oyuna girmesen de artıyor"
+  ]
+ },
+ {
+  "id": "muhasebeci-maas-tavan",
+  "konu": "maas_sorusu",
+  "sorular": [
+   "muhasebeci maaşı en fazla kaç olur",
+   "muhasebecinin maaş tavanı",
+   "muhasebeci zamla kaça çıkar",
+   "muhasebeci her zamda ne kadar alıyor",
+   "muhasebeci maasi en cok ne kadar",
+   "muhasebeci kıdem zammı kaç para",
+   "muhasebecinin maaşı kaçtan kaça",
+   "muhasebeci maaşının sınırı",
+   "muhasebeci kaç günde tavana gelir",
+   "muhasebecilik uzun vadede ne kazandırır",
+   "muhasebeci maaşı ne kadar yükselir",
+   "muhasebeci memurdan çok mu artar"
+  ],
+  "cevap": [
+   "Muhasebeci {muhasebeci.baslangic} ile başlar, her {muhasebeci.zamgun} günde {muhasebeci.zam} artar, tavan {muhasebeci.tavan}",
+   "Tavan {muhasebeci.tavan}, memurunki {memur.tavan}. Zammı da memurdan sık geliyor",
+   "{muhasebeci.zamgun} günde bir {muhasebeci.zam} zam. Mesleği bırakırsan kıdem sıfırlanır"
+  ]
+ },
+ {
+  "id": "deneyim-gorev-sart",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "kurye görev yapmazsa deneyim sayılır mı",
+   "deneyim günü sayılması için görev şart mı",
+   "bugün görev yapmadım deneyim gelir mi",
+   "deneyim neden artmadı",
+   "oyuna girmediğim gün deneyim yazılır mı",
+   "garson görev yapmazsa gün sayılmaz mı",
+   "deneyim gunu nasil sayiliyor",
+   "görevli işte deneyim nasıl birikir",
+   "kuryeyim girmeyince deneyimim artıyor mu",
+   "deneyim için her gün görev yapmalı mıyım",
+   "maaşlıda deneyim kendiliğinden mi",
+   "deneyimim yerinde sayıyor"
+  ],
+  "cevap": [
+   "Kurye, garson, işçi, kasiyer, usta, nakliyecide o gün en az 1 görev yapmazsan gün deneyime sayılmıyor",
+   "Görevli işte günde 1 görev yeter, gün sayılır. Memur, muhasebeci, emlakçı ve patronlarda kendiliğinden sayılıyor",
+   "Görev yapmadığın gün deneyim yazılmaz. Her gün bir tane bas, yeter"
+  ]
+ },
+ {
+  "id": "deneyim-meslek-degisince",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "meslek değişince deneyim sıfırlanır mı",
+   "işi bırakırsam deneyimim gider mi",
+   "başka mesleğe geçince günlerim kalır mı",
+   "kuryelikten memurluğa geçince deneyim silinir mi",
+   "deneyim meslek değiştirince kaybolur mu",
+   "meslek degistirince deneyim sifirlanir mi",
+   "eski işimdeki deneyim sayılıyor mu",
+   "kıdem zammı meslek değişince ne olur",
+   "istifa edersem deneyimim yanar mı",
+   "meslek değiştirsem toplam deneyim düşer mi",
+   "yeni işe geçince günler baştan mı başlar",
+   "deneyimlerim kalıcı mı"
+  ],
+  "cevap": [
+   "Deneyim kalıcı, meslek değişince silinmez. Toplam günlerin ve her meslekteki günlerin duruyor",
+   "Günlerin kalır, şu an toplam {o.deneyim} gün. Yalnız memur ve muhasebecinin kıdem zammı yeni meslekte baştan başlar",
+   "Silinmiyor, merak etme. Usta için gereken inşaat günleri gibi meslek günleri de saklı"
+  ]
+ },
+ {
+  "id": "nakliyeci-arac-parasi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nakliyeci olunca sermaye harcanıyor mu",
+   "nakliyecinin araç parası geri gelir mi",
+   "nakliyeci olmak için para ödeniyor mu",
+   "nakliyeci sermayesi cebimde kalır mı",
+   "araç parası nakliyecide ne oluyor",
+   "nakliyecilikten çıkınca aracı satabilir miyim",
+   "nakliyeci sermayesi harcanir mi",
+   "nakliyeci olurken para kesiliyor mu",
+   "taksici olunca araba parası gidiyor mu",
+   "nakliyeciliği bırakırsam paramı alır mıyım",
+   "nakliyecide araç için ödenen para",
+   "nakliyeci sermayesi yatırım mı masraf mı"
+  ],
+  "cevap": [
+   "Nakliyeci olunca {nakliyeci.sermaye} araç parası olarak kesiliyor, geri gelmiyor. Aracı satma seçeneği yok",
+   "Sermaye sadece gösterilmiyor, harcanıyor. Aracın parasını seferlerle birkaç ayda çıkarırsın",
+   "Para gider, araç gelir. Ayda {maas.nakliyeci} civarı getiriyor, bakımı da 5 bin kadar"
+  ]
+ },
+ {
+  "id": "kurs-para-bitince",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "param bitti kursa yazılabilir miyim",
+   "işsizken kurs alınır mı",
+   "para bitince kurs alamıyor muyum",
+   "önce bir işe girmelisin diyor kurs için",
+   "kursa yazılamıyorum neden",
+   "borçluyken kurs alınır mı",
+   "işim yokken kursa başlayabilir miyim",
+   "zorunlu çalışmadayken kurs olur mu",
+   "kursa başlarken param yetmezse",
+   "gecikmiş borç varken kurs alabilir miyim",
+   "kurs için önce iş mi lazım",
+   "işsizim kursa başlayamıyorum"
+  ],
+  "cevap": [
+   "Paran bitip işsiz kaldıysan önce bir işe gireceksin, sonra kurs. Kurs parası da peşin ödeniyor",
+   "İşin varsa borçluyken de kursa yazılabilirsin, yeter ki ücret cebinde olsun",
+   "Kurs parası yetmiyorsa kuryelikle biriktir. Kamu sınavı en ucuzu, {kurs.kpss}"
+  ]
+ },
+ {
+  "id": "kurs-buyuk-neye-yarar",
+  "konu": "kurs_sorusu",
+  "sorular": [
+   "döviz bürosu lisansı ne işe yarar",
+   "dış ticaret kursu hangi mesleği açıyor",
+   "müteahhitlik belgesi neye yarar",
+   "pahalı kurslar ne için",
+   "büyük kurslar hangi meslekler için",
+   "döviz lisansını alınca ne olur",
+   "müteahhitlik belgesiyle ne yaparım",
+   "4. kademe kursları neler",
+   "hangi kurs döviz bürosu için",
+   "ithalat ihracat için hangi kurs",
+   "fabrikatör için kurs lazım mı",
+   "müteahhitlik kursu hangi işe yarar"
+  ],
+  "cevap": [
+   "Döviz lisansı döviz bürosunu, dış ticaret kursu ithalat-ihracatı, müteahhitlik belgesi müteahhitliği açıyor. Fabrikatör kurs istemiyor",
+   "Üçü de 4. kademe için: döviz lisansı {kurs.doviz}, dış ticaret {kurs.dis}, müteahhitlik {kurs.muteahhit}",
+   "Kurs tek başına yetmiyor, milyonlarca sermaye ve 120-180 gün deneyim de lazım"
+  ]
+ },
+ {
+  "id": "memur-mu-kurye-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "memur mu olayım kurye mi kalayım",
+   "kuryelik mi memurluk mu",
+   "kurye memurdan çok mu kazanıyor",
+   "memur olsam kuryeden iyi mi",
+   "kuryeyi bırakıp memur olmaya değer mi",
+   "memur mu kurye mi hangisi iyi",
+   "kurye mi memur mu daha kazancli",
+   "memurluk mu kuryelik mi mantıklı",
+   "kurye kalsam mı kursa mı gitsem",
+   "kurye memur karşılaştırması",
+   "memur olmak kuryelikten kârlı mı",
+   "kuryelikten memurluğa geçeyim mi"
+  ],
+  "cevap": [
+   "Kurye her gün girersen ayda {maas.kurye} civarı yapar, memur {memur.baslangic} ile başlar ama girmesen de yatar ve zamla {memur.tavan} olur",
+   "Sık giriyorsan başta kurye iyi, az giriyorsan memur. Memur kıdemle kuryeyi geçiyor",
+   "Memura geçmek için {kurs.kpss} kurs ve 30 gün deneyim lazım. Uzun vadede memur daha rahat"
+  ]
+ },
+ {
+  "id": "usta-mi-muhasebeci-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "usta mı olayım muhasebeci mi",
+   "ustalık mı muhasebecilik mi",
+   "usta muhasebeciden çok mu kazanır",
+   "muhasebe kursu mu ustalık belgesi mi",
+   "usta mi muhasebeci mi daha iyi",
+   "hangisi daha kârlı usta muhasebeci",
+   "muhasebeci mi olsam usta mı",
+   "ustalık mı memurluk mu",
+   "usta memurdan iyi mi",
+   "muhasebeci usta farkı ne",
+   "ikinci kademede hangi meslek",
+   "ustalık belgesi mi alsam muhasebe kursu mu"
+  ],
+  "cevap": [
+   "Usta aktif oynarsan ayda {maas.usta} civarı yapar, muhasebeci {maas.muhasebeci} ile başlar ama görev istemez",
+   "Her gün giriyorsan usta, az giriyorsan muhasebeci. Usta taşeronluğun da yolu",
+   "Usta için 20 gün inşaat işçiliği ve {kurs.ustalik} belge, muhasebeci için {kurs.muhasebe} kurs ve 30 gün deneyim"
+  ]
+ },
+ {
+  "id": "nakliyeci-mi-usta-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "nakliyeci mi olayım usta mı",
+   "nakliyecilik mi ustalık mı",
+   "taksici mi usta mı daha iyi",
+   "nakliyeci ustadan çok mu kazanır",
+   "nakliyeci mi usta mi",
+   "araç alıp nakliyeci mi olsam usta mı",
+   "hangisi kârlı nakliyeci usta",
+   "nakliyeci olmaya değer mi ustayken",
+   "usta varken nakliyeciye geçilir mi",
+   "ustalık ucuz nakliyecilik pahalı mı",
+   "nakliyeci usta karşılaştırma",
+   "nakliyeci mi muhasebeci mi"
+  ],
+  "cevap": [
+   "Nakliyeci ayda {maas.nakliyeci} civarı yapar ama {nakliyeci.sermaye} araç parası ve 60 gün ister. Usta {maas.usta} kadar, {kurs.ustalik} belgeyle olur",
+   "Kazançları yakın, usta çok daha ucuza açılıyor. Paran varsa ve sık giriyorsan nakliyeci de olur",
+   "İkisi de günde 2 görevli. Usta yolu taşeronluğa gidiyor, nakliyecilik orada kalıyor"
+  ]
+ },
+ {
+  "id": "insaat-mi-kurye-mi",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "inşaat işçisi mi olayım kurye mi",
+   "kuryelik mi inşaat işçiliği mi",
+   "inşaat işçiliği kuryeden iyi mi",
+   "usta olmak için inşaatta mı başlamalıyım",
+   "insaat mi kurye mi",
+   "işçi mi kurye mi daha çok kazanır",
+   "kurye yerine inşaat işçisi olsam",
+   "inşaatta çalışmak mantıklı mı kurye varken",
+   "inşaat işçiliği neden seçilir",
+   "kurye mi olsam işçi mi",
+   "inşaat işçisi olmanın avantajı",
+   "işçilik mi kuryelik mi"
+  ],
+  "cevap": [
+   "Kurye daha çok kazanır, {gorev.kurye} görev başı; işçide {gorev.insaat}. Ama usta olmak istiyorsan 20 gün inşaat işçiliği şart",
+   "Hedefin usta ya da taşeronsa inşaat işçisi ol, değilse kurye",
+   "Para için kurye, yol için inşaat. Usta ayda {maas.usta} civarı yapıyor, değer"
+  ]
+ },
+ {
+  "id": "kurs-mu-mulk-mu",
+  "konu": "meslek_tavsiyesi",
+  "sorular": [
+   "önce kurs mu alayım mülk mü",
+   "daire mi alayım kurs mu",
+   "paramı kursa mı yatırayım eve mi",
+   "önce meslek mi yükselteyim yatırım mı",
+   "kurs almak mı arsa almak mı",
+   "ilk paramla ne yapayım kurs mu ev mi",
+   "önce ne yapmalıyım kurs mu mülk mü",
+   "kurs mu yatirim mi",
+   "kursa para vermek mi mülk almak mı",
+   "önce kariyer mi yatırım mı",
+   "100 binle kurs mu alayım arsa mı",
+   "ilk olarak kurs mu ev mi"
+  ],
+  "cevap": [
+   "Önce kurs bence. Kurslar {kurs.kpss} gibi ucuz, mülk pahalı; arsa bile {arsa}",
+   "Başta kurs ve meslek, maaş büyüyünce mülk. Daire {daire}, o para hemen birikmiyor",
+   "Ustalık belgesi {kurs.ustalik}, usta ayda {maas.usta} civarı yapıyor; kendini hemen çıkarır. Mülk sonra, peşinat {pesinat}"
+  ]
  }
 ]

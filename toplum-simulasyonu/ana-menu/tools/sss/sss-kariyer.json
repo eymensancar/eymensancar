@@ -528,12 +528,23 @@
    "prim ne sıklıkla çıkıyor",
    "emlakçı ne sıklıkla prim alır",
    "prim kaç görevde bir geliyor",
-   "emlakçının primi sık mı"
+   "emlakçının primi sık mı",
+   "emlak danışmanının primi kaç para",
+   "emlakçı bir satıştan ne kadar prim alır",
+   "emlak primi ne sıklıkla geliyor",
+   "emlakçı ayda kaç satış yapar",
+   "emlak danismani prim ne kadar",
+   "emlakta satış primi kaç bin",
+   "prim her görevde mi çıkıyor",
+   "emlak danışmanı görev yapınca ne olur",
+   "emlakçının sabit maaşı ne kadar",
+   "emlakçı görev yapmasa prim alır mı",
+   "emlak satis primi"
   ],
   "cevap": [
    "Emlakçı görev yaptıkça arada bir satış denk gelir, o zaman prim çıkar",
    "Prim şansa bağlı, arada bir çıkar; ne kadar görev yaparsan ihtimal o kadar artıyor",
-   "Maaş sabit, prim her görevde küçük bir ihtimalle, arada bir geliyor"
+   "Sabit maaş {emlak.maas}, her görevde küçük bir satış şansı var; tutarsa {emlak.prim} prim. Günde 5 görevle ayda 1-2 satış denk gelir"
   ]
  },
  {
@@ -3642,7 +3653,7 @@
   ],
   "cevap": [
    "Kurye daha çok kazanıyor, görev başı {gorev.kurye}, ayda {maas.kurye}",
-   "Usta olmak istiyorsan inşaat işçisi ol, 20 gün işçilik lazım",
+   "Garsonda görev başı {gorev.garson}, kuryede {gorev.kurye}. Usta olmayı düşünüyorsan inşaat işçiliğiyle başla",
    "Kasiyerin maaşı sabit tabanlı, kurye ise çalıştıkça kazanır"
   ]
  },
@@ -3803,7 +3814,7 @@
    "büyük işletme ne zaman açarım"
   ],
   "cevap": [
-   "En az 120-180 gün deneyim ve milyonlar lazım, birkaç gerçek hafta sürer",
+   "En az 120-180 gün deneyim ve milyonlar lazım. 180 oyun günü gerçekte bir haftadan biraz fazla, asıl zor olan para",
    "Önce 3. kademede işletmeyle para biriktir",
    "Müteahhit için 180 gün ve 700 kredi notu, fabrikatör için 180 gün ve 650"
   ]
