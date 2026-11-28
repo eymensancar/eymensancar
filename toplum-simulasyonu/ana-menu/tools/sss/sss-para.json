@@ -2220,7 +2220,7 @@
    "param her ay neden düşüyor"
   ],
   "cevap": [
-   "Ay sonu geçim {yasam}, kiran varsa {evkira}, kredi taksitleri kesiliyor",
+   "Ay sonu geçim {yasam}, kiran varsa {evkira}, mülk bakımı ve emlak vergisi, kredi taksitleri kesiliyor; gelirden de vergi",
    "Banka ekranında aylık giderlerin yazıyor",
    "Geçim, kira ve taksit. Ev alırsan kira gider"
   ]
@@ -3418,7 +3418,7 @@
    "mülk değeri servete girer mi"
   ],
   "cevap": [
-   "Nakit artı mülklerin değeri artı işletmeler, eksi borçlar",
+   "Nakit artı mülklerin değeri, işletmelerin kasası ve kuruluşunun yarısı, eksi borçlar",
    "Mülkler piyasa fiyatından sayılıyor, krediler düşülüyor",
    "Özet ekranında net servetin yazıyor"
   ]

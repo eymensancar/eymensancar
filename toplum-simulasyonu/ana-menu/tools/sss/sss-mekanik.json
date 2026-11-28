@@ -1286,5 +1286,51 @@
    "Önce mülk ve işletmeyle büyü, para artınca bağış yap. Bayramı bekle, 2 kat itibar",
    "Kazanç için değil itibar için. Daire ayda {daire.kira} getirir, bağış getirmez"
   ]
+ },
+ {
+  "id": "enflasyon-neden",
+  "konu": "ekonomi",
+  "sorular": [
+   "enflasyon neden oluyor oyunda",
+   "enflasyonu ne belirliyor",
+   "fiyatların artışını ne hızlandırıyor",
+   "para çoğalınca fiyatlar artar mı",
+   "enflasyon kimin elinde",
+   "enflasyon nasıl hesaplanıyor",
+   "enflasyon her ay aynı mı",
+   "enflasyon dusebilir mi",
+   "oyuncular zenginleşince fiyatlar artıyor mu",
+   "fiyat artışının sebebi ne",
+   "enflasyon neye bağlı",
+   "enflasyonu oyuncular mı yapıyor"
+  ],
+  "cevap": [
+   "Fiyat endeksi her ay en az %0,3 artıyor. Oyuncuların elindeki para hızlı büyürse artış hızlanıyor",
+   "Ekonomiye giren para çoğaldıkça fiyatlar daha çabuk artıyor. Şu an yıllık {enflasyon}",
+   "Taban bir artış var, üstüne kişi başı paranın büyümesi ekleniyor. Fiyat düşmüyor, sadece yavaşlıyor"
+  ]
+ },
+ {
+  "id": "ay-sonu-sirasi",
+  "konu": "ekonomi",
+  "sorular": [
+   "ay sonunda neler oluyor",
+   "ay dönünce hangi ödemeler yapılıyor",
+   "ay sonu hesap kesimi nasıl",
+   "ay sonunda önce maaş mı yatar gider mi kesilir",
+   "ay başında ne değişiyor",
+   "ay sonu hangi sırayla kesiliyor",
+   "ay sonunda ne yatıyor ne kesiliyor",
+   "ay sonu hesaplaşması",
+   "ay bitince param nasıl değişiyor",
+   "ay sonu olayları",
+   "ay sonu gelir gider sirasi",
+   "ay dönümünde neler hesaplanıyor"
+  ],
+  "cevap": [
+   "Ay sonunda önce maaş, görev parası ve kira gelirin yatar, gelir vergisi kesilir; sonra geçim, kira, mülk gideri ve taksitler düşer",
+   "Kazanç yatar, vergi kesilir, sonra geçim {yasam}, evin yoksa kira {evkira}, en son taksitler. Geçime yetmeyen gecikmiş borç olur, taksite yetmezse taksit kaçar",
+   "Önce gelir, sonra gider. İşletmen varsa onun kârı da o gün hesabına geçer"
+  ]
  }
 ]
