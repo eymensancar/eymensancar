@@ -1,0 +1,232 @@
+[
+ {
+  "id": "konut-kredisi-taksit",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "konut kredisinin aylık taksiti ne kadar",
+   "ev kredisi çeksem ayda kaç öderim",
+   "krediyle daire alırsam taksit kaç olur",
+   "ev kredisi taksidi ne kadar tutuyor",
+   "konut kredisi aylik odeme nekadar",
+   "daireyi krediyle alsam aylık ne öderim",
+   "120 ay vadeli ev kredisinin taksiti kaç",
+   "ev kredisi ayda kac lira",
+   "konut kredisi taksidi ağır mı",
+   "krediyle ev alanın aylık taksiti",
+   "ev kredisinde aylik taksit ne kdr",
+   "konut kredisi ödemesi ayda ne kadar oluyor"
+  ],
+  "cevap": [
+   "Daire için konut kredisi çekersen ayda {konut.taksit} civarı taksit ödersin, 120 ay boyunca",
+   "Peşinat {pesinat}, sonra 120 ay her ay {konut.taksit} kadar",
+   "Taksit ayda {konut.taksit} civarı. Kira {evkira}, taşınırsan kiradan da kurtulursun"
+  ]
+ },
+ {
+  "id": "kredi-mi-kira-mi-ev",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "kredi çekip ev mi alayım kirada mı kalayım",
+   "ev kredisi taksiti mi kira mı daha ucuz",
+   "kira vereceğime krediyle ev alsam mantıklı mı",
+   "kirada oturmak mı konut kredisi mi",
+   "kredili ev almak kiradan iyi mi",
+   "kira mi odeyim kredi mi",
+   "ev kredisi kiradan pahalı mı",
+   "taksit mi kira mı hangisi mantıklı",
+   "kiraya para vermek yerine kredi çekeyim mi",
+   "konut kredisiyle ev mi alsam kiracı mı kalsam",
+   "kirayla taksit arasında fark ne",
+   "krediyle eve taşınsam kârlı çıkar mıyım"
+  ],
+  "cevap": [
+   "Kira ayda {evkira}, konut kredisi taksiti {konut.taksit} civarı. Taksit fazla ama sonunda ev senin oluyor, değeri de artıyor",
+   "Taksit {konut.taksit}, kira {evkira}. Gelirin taksidi kaldırıyorsa krediyle al taşın, kiradan kurtulursun",
+   "Uzun vadede ev almak iyi, ama taksit gelirinin yarısını geçemiyor. Peşinat {pesinat} hazırsa düşün"
+  ]
+ },
+ {
+  "id": "pesin-mi-kredili-mi-ev",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "evi peşin mi alayım kredili mi",
+   "peşin almak mı kredi çekmek mi daha iyi",
+   "paran yetiyorsa yine de kredi çekilir mi",
+   "nakit mi ödeyeyim krediyle mi alayım daireyi",
+   "pesin mi kredili mi hangisi karli",
+   "kredisiz mi alsam kredili mi",
+   "parayı peşin yatırsam mı taksite mi bölsem",
+   "ev alırken kredi mi kullanayım nakit mi",
+   "peşin alırsam faizden kurtulur muyum",
+   "kredili almanın avantajı ne peşine göre",
+   "pesin almak mantikli mi",
+   "peşin al diyorlar neden"
+  ],
+  "cevap": [
+   "Paran yetiyorsa peşin al, faiz ödemezsin. Kredi aylık {faiz} faiz işletiyor",
+   "Peşin daha ucuz, faiz yok. Kredili alırsan elinde nakit kalır ama 120 ay faiz ödersin",
+   "Peşin alırsan {daire} ödersin, biter. Kredide peşinat {pesinat}, kalanı 120 ay {konut.taksit} civarı"
+  ]
+ },
+ {
+  "id": "kredi-taksit-ornek",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "100 bin kredi çeksem aylık taksit ne olur",
+   "ihtiyaç kredisinin taksiti ne kadar çıkıyor",
+   "yüz bin çeksem ayda kaç öderim",
+   "100k kredinin taksidi ne",
+   "ihtiyac kredisi aylik taksit hesabi",
+   "kredi çekince ayda ne kadar kesiliyor",
+   "50 bin kredi çeksem taksidi kaç",
+   "kredi taksitleri nasıl hesaplanıyor",
+   "24 ay vadede taksit ne kadar olur",
+   "kredi çeksem aylık geri ödemesi ne",
+   "çektiğim kredinin taksidi neye göre",
+   "taksit tutarı nasıl çıkıyor kredide"
+  ],
+  "cevap": [
+   "100 bin çekersen 24 ay boyunca ayda {kredi.taksit} civarı ödersin. Faiz aylık {faiz}",
+   "Taksit 24 aya bölünüyor, faiz de ekleniyor. Örnek 100 bin için ayda {kredi.taksit}",
+   "Çektiğin para, aylık {faiz} faizle 24 eşit taksit. 100 binde ayda {kredi.taksit} kadar"
+  ]
+ },
+ {
+  "id": "isletme-kredisi-taksit",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "işletme kredisinin faizi ne kadar",
+   "işletme kredisi kaç ay vadeli",
+   "kafeyi krediyle açsam taksidi ne olur",
+   "işletme kredisinin aylık taksiti kaç",
+   "isletme kredisi faiz orani",
+   "krediyle dükkan açarsam ayda ne öderim",
+   "işletme kredisi vadesi kac ay",
+   "işletme kredisinin faizi ihtiyaç kredisiyle aynı mı",
+   "kredili açılan kafenin taksiti",
+   "işyeri kredisi ne kadar faizli",
+   "işletme için kredi çekince ayda kaç kesilir",
+   "işletme kredisi kaç yılda biter"
+  ],
+  "cevap": [
+   "İşletme kredisi 60 ay vadeli, faiz yine aylık {faiz}. Kafe için ayda {isl.kafe.taksit}, dükkan için {isl.dukkan.taksit} civarı",
+   "Faiz ihtiyaç kredisiyle aynı, aylık {faiz}. Vade 60 ay, yani 5 oyun yılı",
+   "Kuruluşun %70'ine kadar veriyor, 60 ayda ödüyorsun. Kafede taksit {isl.kafe.taksit} kadar"
+  ]
+ },
+ {
+  "id": "isletme-kredisi-pesin",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "krediyle kafe açmak için cepten ne kadar lazım",
+   "işletmeyi kredili açarsam ne kadar param olmalı",
+   "kredili dükkan açarken peşin ne veriyorum",
+   "işletme kredisinde kendi paramdan kaç gerekiyor",
+   "krediyle aç dersem sermaye şartı düşer mi",
+   "kafeyi krediyle açsam kaç para yeter",
+   "isletme kredisi pesinat ne kadar",
+   "işletme kredisi kuruluşun yüzde kaçını veriyor",
+   "kredi kafenin tamamını karşılar mı",
+   "taşeronu krediyle açmak için ne kadar nakit lazım",
+   "işletme kredisi ne kadar para veriyor",
+   "kredili işletmede elimde ne kadar olmalı"
+  ],
+  "cevap": [
+   "Banka kuruluşun %70'ini veriyor, %30'u senden. Kafe için cepten {isl.kafe.pesin}, dükkan için {isl.dukkan.pesin}",
+   "Krediyle açınca sermaye şartı da %30'a iniyor. Kafe {isl.kafe.pesin}, taşeron {isl.tasaron.pesin} nakit yeter",
+   "Kafede kredi {isl.kafe.kredi} kadar, kalan {isl.kafe.pesin} senden. Ama gelirin taksidi taşımalı"
+  ]
+ },
+ {
+  "id": "isletme-kredisi-sart",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "gelirin işletme kredisini karşılamıyor diyor",
+   "işletme kredisi neden verilmedi",
+   "işletme kredisi için gelir şartı var mı",
+   "krediyle aç basınca reddediyor neden",
+   "isletme kredisi alamiyorum",
+   "işletme kredisinde neye bakıyorlar",
+   "kredili kafe açamadım gelir yetmiyor dedi",
+   "işletme kredisi kimlere veriliyor",
+   "yeni başlayan işletme kredisi alabilir mi",
+   "işletme kredisi onayı neye göre",
+   "geliri olmayan işletme kredisi çekebilir mi",
+   "isletme kredisi icin ne lazim"
+  ],
+  "cevap": [
+   "Banka geçen ayki gelirine işletmenin beklenen gelirini de ekleyip bakıyor. Bütün taksitlerin bunun yarısını geçmemeli",
+   "Genelde başka kredin varsa reddediyor, taksitler gelirinin yarısını aşıyor. Önce eski kredileri azalt",
+   "Kuruluşun %30'u cepte olmalı, bir de taksitler gelirinin yarısına sığmalı. Eski kredi çoksa olmuyor"
+  ]
+ },
+ {
+  "id": "kredi-notu-ne-kadar",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "taksit kaçırınca kredi notu kaç puan düşer",
+   "kredi notu ne kadar düşüyor",
+   "her ödemede not kaç artıyor",
+   "kredi notum kaç puan kaybeder",
+   "not kac puan dusuyo taksit odemeyince",
+   "zamanında ödeyince kredi notu kaç artar",
+   "kredi notu hangi durumda ne kadar değişiyor",
+   "icra olunca kredi notu kaç düşer",
+   "ay sonu ödeyemezsem not kaç gider",
+   "kredi notu puanları nasıl değişir",
+   "kredi notu artis azalis miktari",
+   "bir taksit gecikse not ne olur"
+  ],
+  "cevap": [
+   "Taksiti ödedikçe ayda 5 artıyor. Kaçırırsan 40, ay sonu ödeyemezsen 20, icrada 100 düşüyor",
+   "Ödenen her taksit +5, kaçan taksit -40. İcra olursan bir de -100. 300 ile 900 arası",
+   "Düşmesi kolay çıkması zor: bir kaçan taksit 40 puan, toparlamak 8 ay düzgün ödeme"
+  ]
+ },
+ {
+  "id": "kacan-taksit-faiz",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "taksiti ödeyemezsem borcum artar mı",
+   "kaçan taksitin faizi ne oluyor",
+   "ödenmeyen taksit borca eklenir mi",
+   "taksit atlayınca kalan borç büyür mü",
+   "taksidi kacirdim borcum arttı mı",
+   "ödemediğim ay faiz işliyor mu",
+   "kredi ödenmezse faiz birikiyor mu",
+   "taksit gecikince ceza var mı",
+   "atlanan taksit sonra ne olacak",
+   "gecikmeli taksit faizi",
+   "bir ay ödemesem kredi borcum ne olur",
+   "kredi borcu ödemeyince şişiyor mu"
+  ],
+  "cevap": [
+   "Kaçan ayın faizi kalan borcuna ekleniyor, borç büyüyor. Not da 40 düşüyor",
+   "Ayrı ceza yok ama o ayın faizi borca biniyor. 3 taksit üst üste kaçarsa icra",
+   "Ödemezsen faiz borca eklenir, kredi notun düşer. Nakit gelince ertesi ay yine kesilir"
+  ]
+ },
+ {
+  "id": "kredi-mi-biriktir-isletme",
+  "konu": "kredi_sorusu",
+  "sorular": [
+   "işletmeyi krediyle mi açayım para biriktirip mi",
+   "kafe için kredi mi çekeyim beklesem mi",
+   "kredili işletme mantıklı mı",
+   "işletme kredisi çekmeye değer mi",
+   "krediyle açmak mı peşin açmak mı",
+   "kredi cekip dukkan acsam kar eder miyim",
+   "isletmeyi kredili acmak riskli mi",
+   "biriktirip açmak mı krediyle hemen açmak mı",
+   "işletme kredisi kâr ettirir mi",
+   "kredi taksidini işletme kârı öder mi",
+   "kredi çekip kafe açanlar kazanıyor mu",
+   "işletme kredisi çekmeli miyim"
+  ],
+  "cevap": [
+   "Kafe ayda {isl.kafe.kar} civarı kâr bırakıyor, kredi taksiti {isl.kafe.taksit}. Kadroyu doldurabileceksen kredi mantıklı",
+   "Kâr taksitten fazlaysa çek. Kafede kâr {isl.kafe.kar}, taksit {isl.kafe.taksit} civarı. Ama kâr düşerse taksit yine kesilir",
+   "Bence %30'u biriktirip krediyle aç, beklemekten iyi. Yalnız 3 taksit kaçarsa icra var, dikkat"
+  ]
+ }
+]

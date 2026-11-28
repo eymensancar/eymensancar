@@ -44,9 +44,13 @@ NPC'ler oyuncunun sorularına cevap verirken bu bankada arama yapar. Oyuncunun m
 - **Diğer ücretler:** `{gorev.kurye}` `{asgari}` `{yasam}` (aylık geçim) `{evkira}` (ev sahibi olmayanın aylık kirası)
 - **Kurslar:** `{kurs.kpss}` `{kurs.kpss.gun}` `{kurs.muhasebe}` `{kurs.muhasebe.gun}` `{kurs.ustalik}` `{kurs.ustalik.gun}` `{kurs.emlak}` `{kurs.emlak.gun}` `{kurs.doviz}` `{kurs.doviz.gun}` `{kurs.dis}` `{kurs.dis.gun}` `{kurs.muteahhit}` `{kurs.muteahhit.gun}`
 - **İşletmeler:** `{kafe.kurulus}` `{kafe.gider}` `{dukkan.kurulus}` `{dukkan.gider}` `{nakliyeci.sermaye}` `{kafe.sermaye}` `{dukkan.sermaye}`
+- **Görev başı:** `{gorev.garson}` `{gorev.insaat}` `{gorev.kasiyer}` `{gorev.usta}` `{gorev.nakliyeci}` (kurye `{gorev.kurye}`)
+- **Zam ve prim:** `{memur.baslangic}` `{memur.zam}` `{memur.zamgun}` `{memur.tavan}` (aynısı `muhasebeci.`) `{emlak.maas}` `{emlak.prim}` `{gecici.maas}` (geçici NPC personelin aylık maliyeti)
+- **Taksitler:** `{konut.taksit}` (daire için konut kredisi aylık taksiti) `{kredi.taksit}` (100 bin TL ihtiyaç kredisinin aylık taksiti)
+- **Bütün işletmeler:** `{isl.ID.kurulus}` `{isl.ID.gider}` `{isl.ID.kadro}` `{isl.ID.kredi}` (en çok işletme kredisi) `{isl.ID.pesin}` (krediyle açarken cepten) `{isl.ID.taksit}` `{isl.ID.kar}` (kadro geçici personelle, günde 3 yönetimle aylık vergi sonrası kâr tahmini; gerçek çalışanla biraz daha fazla; zarar tahmininde boş kalır, o cevap atlanır). ID: `dukkan kafe tasaron emlak_ofisi doviz_burosu ithalat_ihracat muteahhit fabrika`
 - **Ekonomi:** `{enflasyon}` (yıllık) `{faiz}` (aylık kredi faizi) `{faiz.yillik}`
 - **Bayram:** `{bayram}` `{bayram.gun}`
-- **Oyuncunun kendisi** (soran kişinin gerçek durumu): `{o.limit}` (kredi limiti) `{o.not}` (kredi notu) `{o.nakit}` `{o.deneyim}` (toplam deneyim günü) `{o.meslek}`
+- **Oyuncunun kendisi** (soran kişinin gerçek durumu): `{o.limit}` (kredi limiti) `{o.not}` (kredi notu) `{o.nakit}` `{o.deneyim}` (toplam deneyim günü) `{o.meslek}` `{o.itibar}` `{o.kumsaati}`
 
 Ek yapıştırmayın ("{daire}'ye" olmaz); cümleyi eksiz kurun.
 

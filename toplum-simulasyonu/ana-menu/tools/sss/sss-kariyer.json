@@ -1692,7 +1692,6 @@
    "iki kursa aynı anda yazılabilir miyim",
    "kurs bitmeden yeni kurs",
    "aynı anda birden fazla kurs",
-   "kurs üstüne kurs",
    "iki kurs alınır mı aynı anda"
   ],
   "cevap": [
@@ -1849,7 +1848,6 @@
   "konu": "kurs_sorusu",
   "sorular": [
    "en ucuz kurs hangisi",
-   "en pahalı kurs hangisi",
    "hangi kurs daha ucuz",
    "kurs fiyatları",
    "kursların fiyatları ne kadar",
@@ -2566,7 +2564,6 @@
    "maaşa vergi var mı",
    "gelir vergisi ne kadar",
    "vergi dilimleri",
-   "vergi yüzde kaç",
    "maaştan ne kadar kesiliyor",
    "vergi oranlari",
    "vergi ödüyor muyuz"
@@ -3956,7 +3953,6 @@
    "kum saati hediye edilir mi",
    "kum saati transferi",
    "kum saati başkasına aktarılır mı",
-   "kum saati satabilir miyim",
    "kumsaati gonder",
    "bana kum saati atar mısın",
    "kum saati paylaşılır mı",

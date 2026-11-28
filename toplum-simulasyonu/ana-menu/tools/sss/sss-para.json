@@ -834,10 +834,17 @@
    "icra olursam evim gider mi",
    "icrada dairem elimden gider mi",
    "icra olunca mülklerime ne olur",
-   "icra mülkümü alır mı"
+   "icra mülkümü alır mı",
+   "icrada oturduğum ev de gider mi",
+   "icra olunca bütün mülklerim mi satılıyor",
+   "icrada evim kaça satılır",
+   "icrada ne kaybederim",
+   "icra olunca nakit param da gider mi",
+   "icrada sadece bir mulk mu satiliyor",
+   "icrada para kalırsa bana mı geçer"
   ],
   "cevap": [
-   "İcra olursan mülklerin piyasanın yüzde 80'ine satılıp borca sayılır",
+   "İcrada bütün mülklerin, oturduğun ev de dahil, piyasanın %80'ine satılıp borca sayılır. Nakdin de borca gider",
    "İcrada evin gider, hem de ucuza. 3 taksiti kaçırma",
    "Haciz gibi, mülkler satılıyor, para borcu kapatıyor"
   ]
@@ -1406,7 +1413,7 @@
    "kredi notu neden azalır"
   ],
   "cevap": [
-   "Taksit kaçırınca not 40 düşer, ay sonu ödemeyi yapamayınca da düşer",
+   "Taksit kaçırınca not 40 düşer, ay sonu ödemeyi yapamayınca 20, icrada 100 düşer",
    "Gecikme yaptıysan düşmüştür. İcrada çok düşer",
    "Ödemeleri aksatma, not oradan düşüyor. Şu an {o.not}"
   ]
@@ -1785,10 +1792,9 @@
   ]
  },
  {
-  "id": "isletme-kredisi",
+  "id": "isletme-kredisi-var",
   "konu": "kredi_sorusu",
   "sorular": [
-   "işletme kredisi var mı",
    "krediyle kafe açılır mı",
    "dükkanı krediyle açmak",
    "işletme açmak için kredi",
@@ -1830,12 +1836,17 @@
    "gecikmiş borç nasıl ödenir",
    "ay sonu ödeyemedim borç kaldı",
    "gecikmiş borçlar ne demek",
-   "birikmiş borç"
+   "birikmiş borç",
+   "gecikmis borc kendiliginden kapanir mi",
+   "gecikmiş borç ne zaman silinir",
+   "geciken ödemeler nereden kesilir",
+   "gecikmiş borcu elle mi öderim",
+   "gecikmiş borcum ne zaman biter"
   ],
   "cevap": [
    "Ay sonu ödeyemediklerin birikti, onları kapatmadan yatırım yok",
    "Gecikmiş borcu kapat, sonra kredi ve mülk açılır",
-   "Para gelince önce o kapanıyor. Çalış, kapat"
+   "Elle ödenmiyor, ay sonunda paran varsa kendiliğinden kesiliyor. Çalış, kapanınca yatırım açılır"
   ]
  },
  {
@@ -2205,23 +2216,19 @@
   ]
  },
  {
-  "id": "asgari-ucret",
+  "id": "asgari-ucret-tutar",
   "konu": "maas_sorusu",
   "sorular": [
-   "asgari ücret ne kadar",
-   "asgari ücret kaç",
    "asgari kac",
    "en düşük maaş ne",
    "asgari ücret oyunda",
    "minimum maaş",
    "asgari ücretin altında maaş olur mu",
    "işçiye en az ne vermem lazım",
-   "asgari ucret nekadar",
    "asgari ücret ne alemde",
    "asgari ücret kaç lira",
    "en düşük ücret ne kadar",
    "en az maaş kaç",
-   "asgari ücret ne kadar oldu",
    "asgari ücretin altına işçi çalışır mı",
    "minimum ücret"
   ],
@@ -2289,7 +2296,6 @@
   "sorular": [
    "para nereden geliyor oyunda",
    "npc müşteriler ne",
-   "müşteriler kim",
    "para oyuna nasıl giriyor",
    "müşteriler gerçek mi",
    "esnafa kim para veriyor",
@@ -3013,15 +3019,12 @@
   ]
  },
  {
-  "id": "para-bitti",
+  "id": "para-bitti-ne-yapmali",
   "konu": "dert",
   "sorular": [
    "param bitti ne yapacağım",
    "para kalmadı",
    "beş param yok",
-   "meteliğe kurşun atıyorum",
-   "param sıfırlandı",
-   "iflas ettim",
    "batırdım her şeyi",
    "param bitti yardim",
    "cebimde para yok",
@@ -4051,21 +4054,17 @@
   ]
  },
  {
-  "id": "maas-ne-zaman",
+  "id": "maas-gunu",
   "konu": "maas_sorusu",
   "sorular": [
    "maaş ne zaman yatar",
    "maaş hangi gün gelir",
    "maaş ayda bir mi",
-   "maaşım ne zaman yatacak",
-   "maaş günü ne zaman",
    "maaş ödemesi ne zaman",
-   "maas ne zaman yatiyor",
    "maaşım gelmedi",
    "maaş yatırılıyor mu",
    "maaşlar her ay mı",
    "maaş günü kaçıncı gün",
-   "maaşım ne zaman gelir",
    "maaş ne zaman hesaba geçer",
    "maaşın yatma zamanı",
    "maaş ayda bir mi yatıyor",

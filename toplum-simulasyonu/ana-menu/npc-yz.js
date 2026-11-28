@@ -1646,9 +1646,21 @@
       'kurs.doviz': sade(T.indexed(world, kc('doviz_lisansi').cost)), 'kurs.doviz.gun': String(kc('doviz_lisansi').durationDays), 'kurs.dis': sade(T.indexed(world, kc('dis_ticaret').cost)), 'kurs.dis.gun': String(kc('dis_ticaret').durationDays), 'kurs.muteahhit': sade(T.indexed(world, kc('muteahhitlik').cost)), 'kurs.muteahhit.gun': String(kc('muteahhitlik').durationDays),
       'nakliyeci.sermaye': sade(T.indexed(world, pr('nakliyeci').requirements.capital)), 'kafe.sermaye': sade(T.indexed(world, pr('kafe_sahibi').requirements.capital)), 'dukkan.sermaye': sade(T.indexed(world, pr('dukkan_sahibi').requirements.capital)),
       'faiz.yillik': yuzde(((1 + world.policy.loanMonthlyRate) ** 12 - 1) * 100),
-      'o.limit': oyuncu ? sade(Math.round(oyuncu.lastMonthIncome * oyuncu.creditScore / 100)) : '0 TL', 'o.not': oyuncu ? String(oyuncu.creditScore) : '620', 'o.nakit': oyuncu ? sade(oyuncu.cash) : '', 'o.deneyim': oyuncu ? String(oyuncu.totalExperienceDays) : '0', 'o.meslek': oyuncu && oyuncu.profession ? meslekAdi(oyuncu.profession).toLocaleLowerCase('tr') : 'işsiz' });
+      'o.limit': oyuncu ? sade(Math.round(oyuncu.lastMonthIncome * oyuncu.creditScore / 100)) : '0 TL', 'o.not': oyuncu ? String(oyuncu.creditScore) : '620', 'o.nakit': oyuncu ? sade(oyuncu.cash) : '', 'o.deneyim': oyuncu ? String(oyuncu.totalExperienceDays) : '0', 'o.meslek': oyuncu && oyuncu.profession ? meslekAdi(oyuncu.profession).toLocaleLowerCase('tr') : 'işsiz',
+      'o.itibar': oyuncu ? String(oyuncu.reputation || 0) : '0', 'o.kumsaati': oyuncu ? String(oyuncu.hourglasses || 0) : '0' });
+    // Görev başı ücretler, zam tavanları, prim, geçici personel, kredi taksitleri ve işletmeler (kuruluş, gider, kadro, kâr tahmini, kredi): hepsi çekirdeğin ayarından, fiyat endeksiyle
+    const ix = n => T.indexed(world, n), r = world.policy.loanMonthlyRate, taksit = (P, n) => Math.ceil(r === 0 ? P / n : P * r / (1 - Math.pow(1 + r, -n)));
+    for (const [k, id] of [['garson', 'garson'], ['insaat', 'insaat_iscisi'], ['kasiyer', 'market_calisani'], ['usta', 'usta'], ['nakliyeci', 'nakliyeci']]) v['gorev.' + k] = sade(ix(pr(id).payPerTask || 0));
+    for (const [k, id] of [['memur', 'memur'], ['muhasebeci', 'muhasebeci']]) { const z = pr(id).raise; v[k + '.tavan'] = sade(ix(z.maxSalary)); v[k + '.zam'] = sade(ix(z.amount)); v[k + '.zamgun'] = String(z.everyDays); v[k + '.baslangic'] = sade(ix(pr(id).monthlySalary)); }
+    v['emlak.prim'] = sade(ix(pr('emlak_danismani').commission.amount)); v['emlak.maas'] = sade(ix(pr('emlak_danismani').monthlySalary));
+    v['gecici.maas'] = sade(ix(C().MIN_WAGE) * C().NPC_STAFF_COST_MULTIPLIER);
+    { const fD = T.propertyMarketPrice(world, 'daire'); v['konut.taksit'] = sade(taksit(Math.round(fD * C().MORTGAGE_MAX_LTV), C().MORTGAGE_TERM_MONTHS)); v['kredi.taksit'] = sade(taksit(100000, C().PERSONAL_LOAN_TERM_MONTHS)); }
+    for (const b of C().BUSINESSES) { const s = ix(b.setupCost), k = Math.round(s * C().BUSINESS_LOAN_MAX_RATIO), p = 'isl.' + b.id + '.';
+      v[p + 'kurulus'] = sade(s); v[p + 'gider'] = sade(ix(b.monthlyFixedCost)); v[p + 'kadro'] = String(b.staffNeeded); v[p + 'kredi'] = sade(k); v[p + 'pesin'] = sade(s - k); v[p + 'taksit'] = sade(taksit(k, C().BUSINESS_LOAN_TERM_MONTHS));
+      const kar = T.estimateBusinessMonthlyProfit ? T.estimateBusinessMonthlyProfit(world, b.id) : 0; if (kar > 0) v[p + 'kar'] = sade(kar); }
     return v;
   }
+  NPCYZ.sssVeri = sssVeri;
   // Kısa takip sorusunun yönü (süre, fiyat, kişi sayısı): o yönü soran soruluşu az olan kayıt geri düşer.
   // Önceki soruyla birleştirilmiş aramada önceki sorunun yönü ("ne kadar") değil, şimdiki sorunun yönü ("süresi ne") belirleyici olur
   const SORU_YONU = [/\b(kac gun|kac gunde|ne kadar sur\w*|sure\w*|surer|suruyor|surecek|kac ay|ne zaman biter|kac haftada)\b/, /\b(kac para|kac lira|kac tl|ne kadar tutar|tutar\w*|fiyat\w*|ucret\w*|kaca|parasi|maliyet\w*|kac bin)\b/, /\b(kac kisi|kac calisan|kac eleman|kac isci|kadro\w*)\b/];
